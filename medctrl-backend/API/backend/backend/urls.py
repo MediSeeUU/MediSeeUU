@@ -15,8 +15,8 @@ Including another URLconf
 """
 import os
 import sys
-sys.path.append(os.path.abspath('./start'))
-import views
+
+import start.views
 
 from django.contrib import admin
 from django.urls import path,include
