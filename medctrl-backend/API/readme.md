@@ -19,14 +19,14 @@ SECRET_KEY = 'random secret key'
 DEBUG = True
 
 DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'Database name',
-    'USER': 'Database username',
-    'PASSWORD': 'Database password',
-    'HOST': 'Database host',
-    'PORT': 'Database port',
-  }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Database name',
+        'USER': 'Database username',
+        'PASSWORD': 'Database password',
+        'HOST': 'Database host',
+        'PORT': 'Database port',
+    }
 }
 ```
 3. **IMPORTANT**: Make sure to actually change the settings values that you just pasted in.
