@@ -2,8 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.mixins import UpdateModelMixin, DestroyModelMixin
 
-from start.models import Dummy
-from start.serializers import DummySerializer
+from API.models import Dummy
+from API.serializers import DummySerializer
 
 
 class DummyListView(

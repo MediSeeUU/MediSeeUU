@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from start.models import Dummy
+from API.models import Dummy
 
 
 class DummySerializer(serializers.ModelSerializer):
