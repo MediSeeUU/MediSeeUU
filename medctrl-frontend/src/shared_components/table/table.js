@@ -1,6 +1,8 @@
 import './table.css';
 
+//function based component, returns table
 function DisplayTable(props) {
+  //constant with the table body data, for every data entry add a new row
   const htmlData = props.data.map(
     (entry, index1) => {
       return(
@@ -10,7 +12,8 @@ function DisplayTable(props) {
       )
     }
   );
-
+  
+  //return table, with a header with the data keywords
   return(
     <table>
       <thead class="tableHeader">
