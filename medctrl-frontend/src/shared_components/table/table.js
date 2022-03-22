@@ -12,16 +12,14 @@ function DisplayTable(props) {
   );
 
   return(
-    <div>
-      <table>
-        <thead>
-          <tr>
-            {props.data.length > 0 && Object.keys(props.data[0]).map((key, index) => { return( <th key={index}>{key}</th> ) })}
-          </tr>
-        </thead>
-        <tbody>{htmlData}</tbody>
-      </table>
-    </div>
+    <table>
+      <thead class="tableHeader">
+        <tr>
+          {props.data.length > 0 && Object.keys(props.data[0]).map((key, index) => { return( <th key={index}>{key}</th> ) })}
+        </tr>
+      </thead>
+        <tbody class="tableBody">{htmlData}</tbody>
+    </table>
   )
 }
 

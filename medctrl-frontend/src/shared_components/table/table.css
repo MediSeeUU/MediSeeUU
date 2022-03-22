@@ -1,0 +1,37 @@
+/* change colors to variables */
+
+table {
+  display: block;
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 1400px;
+  border-spacing: 0;
+  height: 441px;
+}
+
+.tableHeader {
+  display: block;
+  position: sticky;
+  top:0;
+  border: 0px;
+  overflow-x: visible;
+  color: white;
+}
+
+.tableBody {
+  display: block;
+  overflow-y: visible;
+  overflow-x: visible;
+}
+
+.tableHeader tr {  background-color: #114B5F; }
+.tableBody tr:nth-child(even) {background-color: #BAC4C9;}
+.tableBody tr:nth-child(odd) {background-color: #D6D6D7;}
+
+th, td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  min-width: 200px;
+  max-width: 200px;
+}
