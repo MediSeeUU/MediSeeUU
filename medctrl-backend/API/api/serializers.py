@@ -4,6 +4,10 @@ from api.models import Dummy
 
 
 class DummySerializer(serializers.ModelSerializer):
+    """
+    Serializer that can serialize a Dummy object from given data
+    """
+
     text = serializers.CharField(max_length=1000, required=True)
 
     def create(self, validated_data):
@@ -19,5 +23,9 @@ class DummySerializer(serializers.ModelSerializer):
         return instance
 
     class Meta:
+        """
+        Metadata for serializer
+        """
+
         model = Dummy
         fields = ("id", "text")

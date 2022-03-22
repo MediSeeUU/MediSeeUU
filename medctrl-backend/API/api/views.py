@@ -11,8 +11,15 @@ class DummyListView(
     UpdateModelMixin,  # Mixin that allows the basic APIView to handle PUT HTTP requests
     DestroyModelMixin,  # Mixin that allows the basic APIView to handle DELETE HTTP requests
 ):
+    """
+    Router handler for dummy data
+    """
+
     @staticmethod
-    def get(request, dummy_id=None):
+    def get(_request, dummy_id=None):
+        """
+        Returns a specific dummy given a dummy_id. Or returns all dummies if no id is specified
+        """
         if dummy_id:
             # If an id is provided in the GET request, retrieve the Todo item by that id
             try:
@@ -37,7 +44,11 @@ class DummyListView(
         # Return a HTTP response object with the list of todo items as JSON
         return Response(read_serializer.data)
 
-    def post(self, request):
+    @staticmethod
+    def post(request):
+        """
+        Creates a Dummy based on the request values
+        """
         # Pass JSON data from user POST request to serializer for validation
         create_serializer = DummySerializer(data=request.data)
 
@@ -58,6 +69,9 @@ class DummyListView(
 
     @staticmethod
     def put(request, dummy_id=None):
+        """
+        Update a specific dummy with the requests' data
+        """
         try:
             # Check if the todo item the user wants to update exists
             todo_item = Dummy.objects.get(id=dummy_id)
@@ -84,7 +98,10 @@ class DummyListView(
         return Response(update_serializer.errors, status=400)
 
     @staticmethod
-    def delete(request, dummy_id=None):
+    def delete(_request, dummy_id=None):
+        """
+        Delete a dummy based on a dummy_id
+        """
         try:
             # Check if the todo item the user wants to update exists
             todo_item = Dummy.objects.get(id=dummy_id)
