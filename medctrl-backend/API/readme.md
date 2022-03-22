@@ -11,8 +11,9 @@ To configure your local settings follow these steps:
 
 1. Create a file called `dev_settings.py` in the `API_settings/settings/` folder.
 2. Paste the example settings from below into the file you just created:
+
 ```py
-from API_settings.settings.common import *
+from api_settings.settings.common import *
 
 SECRET_KEY = "random secret key"
 

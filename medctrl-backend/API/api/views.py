@@ -2,8 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.mixins import UpdateModelMixin, DestroyModelMixin
 
-from API.models import Dummy
-from API.serializers import DummySerializer
+from api.models import Dummy
+from api.serializers import DummySerializer
 
 
 class DummyListView(
@@ -11,12 +11,13 @@ class DummyListView(
     UpdateModelMixin,  # Mixin that allows the basic APIView to handle PUT HTTP requests
     DestroyModelMixin,  # Mixin that allows the basic APIView to handle DELETE HTTP requests
 ):
-    def get(self, request, id=None):
-        if id:
+    @staticmethod
+    def get(request, dummy_id=None):
+        if dummy_id:
             # If an id is provided in the GET request, retrieve the Todo item by that id
             try:
                 # Check if the todo item the user wants to update exists
-                queryset = Dummy.objects.get(id=id)
+                queryset = Dummy.objects.get(id=dummy_id)
             except Dummy.DoesNotExist:
                 # If the todo item does not exist, return an error response
                 return Response(
@@ -55,10 +56,11 @@ class DummyListView(
         # If the users POST data is not valid, return a 400 response with an error message
         return Response(create_serializer.errors, status=400)
 
-    def put(self, request, id=None):
+    @staticmethod
+    def put(request, dummy_id=None):
         try:
             # Check if the todo item the user wants to update exists
-            todo_item = Dummy.objects.get(id=id)
+            todo_item = Dummy.objects.get(id=dummy_id)
         except Dummy.DoesNotExist:
             # If the todo item does not exist, return an error response
             return Response({"errors": "This todo item does not exist."}, status=400)
@@ -81,10 +83,11 @@ class DummyListView(
         # If the update data is not valid, return an error response
         return Response(update_serializer.errors, status=400)
 
-    def delete(self, request, id=None):
+    @staticmethod
+    def delete(request, dummy_id=None):
         try:
             # Check if the todo item the user wants to update exists
-            todo_item = Dummy.objects.get(id=id)
+            todo_item = Dummy.objects.get(id=dummy_id)
         except Dummy.DoesNotExist:
             # If the todo item does not exist, return an error response
             return Response({"errors": "This todo item does not exist."}, status=400)
