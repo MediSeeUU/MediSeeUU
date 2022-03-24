@@ -1,10 +1,20 @@
 import './css/App.css';
+import React, { useState } from 'react';
+import Table from './shared_components/table/table'
+import DummyData from './json/data.json'
 
 function App() {
+  const allData = DummyData
+  let selectedData = [];
+
+  const dataToApp = (childData) => {
+    selectedData = childData;
+  }
+
   return (
-    <div className="app">
-      <h1>Hello World!</h1>
-    </div>
+    <Table data={allData}
+           selectTable={true}
+           dataToParent={dataToApp}/>
   );
 }
 

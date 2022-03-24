@@ -1,13 +1,38 @@
 import React, { useState } from 'react';
 import './table.css';
 
-
-
 //function based component, returns table
-function DisplayTable({initData, selectTable}) {
-  const [tdata, setData] = React.useState([]);
-  //var test = data.length <= 0 //?? setData(initData)
-  const data = initData;
+function DisplayTable({data, selectTable, dataToParent}) {
+  const [checkedState, setCheckedState] = useState(
+    new Array(data.length).fill(false)
+  );
+  
+
+  const allSelected = checkedState.find((item) => {
+    return !item;
+  }) ?? true;
+
+  const handleOnChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+    setCheckedState(updatedCheckedState);
+  }
+
+  const handleAllChange = (event) => {
+    const updatedCheckedState = new Array(data.length).fill(!allSelected);
+    setCheckedState(updatedCheckedState);
+  }
+
+  const handleSelectedData = () => {
+    const selectedData = data.filter((item, index) => {
+      return checkedState[index];
+    });
+    dataToParent(selectedData);
+  }
+
+  handleSelectedData();
+
   //constant with the table body data, for every data entry add a new row
   const htmlData = data.map(
     (entry, index1) => {
@@ -16,9 +41,9 @@ function DisplayTable({initData, selectTable}) {
           {
             selectTable ? 
               <CheckboxColumn 
-                dataEntry={entry} 
-                onChange={checkboxChange}
-                data={null}/> 
+                value={checkedState[index1]} 
+                onChange={handleOnChange.bind(null, index1)}
+                data={data}/> 
               : null
           }
           {
@@ -30,10 +55,6 @@ function DisplayTable({initData, selectTable}) {
       )
     }
   );
-  
-  let selectAll = {
-    selected: false
-  }
 
   //return table, with a header with the data keywords
   return(
@@ -43,8 +64,8 @@ function DisplayTable({initData, selectTable}) {
           {
             selectTable ? 
               <CheckboxColumn 
-                dataEntry={selectAll} 
-                onChange={checkAllChange}
+                value={allSelected} 
+                onChange={handleAllChange}
                 data={data}/> 
               : null
           }
@@ -61,37 +82,15 @@ function DisplayTable({initData, selectTable}) {
 }
 
 //checkbox for the selection table
-const CheckboxColumn = ({dataEntry, onChange, data}) => {
+const CheckboxColumn = ({value, onChange, data, setData}) => {
   return (
     <td className="checkboxColumn"> 
       <input 
         type="checkbox" 
-        checked={dataEntry?.selected} 
-        onChange={onChange.bind(null, dataEntry, data)}/>
+        checked={value} 
+        onChange={onChange.bind(null, value, data, setData)}/>
     </td>
   );
-}
-
-function checkboxChange(dataEntry) {
-  dataEntry.selected = !dataEntry.selected;
-  handleSelectionChanged();
-}
-
-function checkAllChange(dataEntry, data) {
-  dataEntry.selected = !dataEntry.selected;
-  if (dataEntry.selected) {
-    data.forEach(element => {
-      element.selected = true;
-    });
-  } else {
-    data.forEach(element => {
-      element.selected = false;
-    });
-  }
-}
-
-function handleSelectionChanged(){
-
 }
 
 export default DisplayTable;
