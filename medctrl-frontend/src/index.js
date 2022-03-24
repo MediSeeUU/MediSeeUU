@@ -7,7 +7,7 @@ import DummyData from './json/small_data.json'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Table data={DummyData}
+    <Table initData={DummyData}
            selectTable={true}/>
   </React.StrictMode>,
   document.getElementById('root')
