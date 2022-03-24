@@ -1,0 +1,35 @@
+.app {
+  color:rgb(0, 0, 0);
+  text-align: center;
+}
+
+/* very basic template css */
+header {
+  background-color: rgb(255, 255, 255);
+  height: 75px;
+  position: fixed;
+  width: 100%;
+}
+
+h1 {
+  margin: 10px;
+}
+
+h3 {
+  margin: 8px;
+}
+
+.content {
+  background-color: rgb(240, 240, 240);
+  padding-left: 78px;
+  padding-top: 75px;
+}
+
+.placeholder {
+  margin: 8px;
+}
+
+footer {
+  background-color: rgb(177, 177, 177);
+  padding: 2px;
+}
