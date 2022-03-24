@@ -1,9 +1,14 @@
 import {useNavigate} from 'react-router-dom';
 
+// function based component, returns a nav account component
+// which when clicked redirects the user to the account page,
+// and displays account info when the navigation is expanded
 function NavAccount(props) {
   let navigate = useNavigate();
   function clicked() {props.parent.close(); navigate('/account'); }
   return (
+    // when the nav account component is clicked, collapse the parent
+    // (the navigation bar) and redirect the user to the account page
     <div className='nav-item account' onClick={() => clicked()}>
       <div className='nav-item-content'>
         <i className='bx bx-user' /> 
