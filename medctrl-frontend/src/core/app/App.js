@@ -2,6 +2,8 @@ import './App.css';
 import {BrowserRouter} from 'react-router-dom';
 import SideNavigation from '../navigation/Navigation';
 import AllRoutes from "../routes/AllRoutes.js";
+import Header from '../header/Header';
+import Footer from '../footer/Footer';
 
 const userLoggedIn = true;
 const defUser = {
@@ -13,18 +15,19 @@ const defUser = {
 function App() {
   return (
     <BrowserRouter>
-      <header>
-        <h1>
-          European Medinice Data Dashboard
-        </h1>
-      </header>
-      <SideNavigation loggedin={userLoggedIn} user={defUser}/>
-      <main className='content'>
-        <AllRoutes />
-        <footer>
-          <h3>Footer</h3>
-        </footer>
-      </main>
+      <div className='page__wrapper'>
+        
+        <Header />
+        <SideNavigation loggedin={userLoggedIn} user={defUser}/>
+
+        <main className='content'>
+          <div id='content__wrapper'>
+            <AllRoutes />
+          </div>
+          <Footer />
+        </main>
+
+      </div>
     </BrowserRouter>
   );
 }

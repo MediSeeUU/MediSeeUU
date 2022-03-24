@@ -8,6 +8,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--blue-grey-background); /* from color scheme but lighter */
+  padding-left: calc((100% - 1400px) / 2);
+  padding-right: calc((100% - 1400px) / 2);
 }
 
 code {
@@ -29,4 +32,5 @@ code {
   --white-text: #fff;
 
   --grey-text: #d3d3d3;
+  --blue-grey-background: #eaf0f8;
 }
