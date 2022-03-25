@@ -28,3 +28,15 @@ header {
   header h1 {
     float: left;    
   }
+
+  /* Media query: makes sure that when the screen width drops below 1400px (the size where the page content
+  fits the entire webbrowser page) the rounded borders on the outside disappear.  */
+  @media only screen and (max-width: 1400px) {
+    
+    header {
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+  }
