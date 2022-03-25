@@ -51,7 +51,7 @@ class VisualizationForm extends Component {
         </label>
         <br />
         <label>
-          X axis: <br />
+          Variable: <br />
           <select value={this.state.x_axis} 
                   name="x_axis" 
                   onChange={this.handleChange}>
@@ -60,7 +60,7 @@ class VisualizationForm extends Component {
         </label>
         <br />
         <label>
-          Y axis: <br />
+          Amount of: <br />
           <select value={this.state.y_axis} 
                   name="y_axis" 
                   onChange={this.handleChange}>
