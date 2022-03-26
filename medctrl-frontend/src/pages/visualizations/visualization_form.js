@@ -12,7 +12,7 @@ class VisualizationForm extends Component {
                   legend_on: true,
                   labels_on: true,
                   chartSpecificOptions: {},
-                  chartSpecificOptionsName: ""};
+                  chartSpecificOptionsName: ""}
 
     // event handlers
     this.handleChange = this.handleChange.bind(this);
@@ -28,7 +28,10 @@ class VisualizationForm extends Component {
     this.setState({[name]: value});
   }
 
+
+
   handleChartSpecificChange(options) {
+    console.log(options);
     this.setState({chartSpecificOptions: options[0], chartSpecificOptionsName: options[1]});
   }
 
@@ -43,7 +46,7 @@ class VisualizationForm extends Component {
 
   renderChartOptions(chart_type) {
     switch (chart_type) {
-      case "bar": return <BarForm onChange = {this.handleChartSpecificChange}/>;
+      case "bar": return <BarForm uniqueCategories={this.props.uniqueCategories} onChange = {this.handleChartSpecificChange}/>;
 
       default: return <div> Not bar </div>
     }

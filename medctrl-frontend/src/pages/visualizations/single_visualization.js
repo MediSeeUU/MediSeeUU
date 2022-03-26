@@ -26,7 +26,8 @@ class SingleVisualization extends Component {
 															uniqueCategories["Rapporteur"])[0];
 		let series = 
 		  this.createSelectedSeries(dict, 
-				                        uniqueCategories["Rapporteur"]);
+				                        uniqueCategories["Rapporteur"],
+																uniqueCategories["DecisionYear"]);
 		//console.log(series);
 
 		this.state = {chart_type: "bar", 
@@ -47,12 +48,15 @@ class SingleVisualization extends Component {
 	handleChange(event) {
 		let xAxis = event.chartSpecificOptions.xAxis;
 		let yAxis = event.chartSpecificOptions.yAxis;
+		let categoriesSelected = event.chartSpecificOptions.categoriesSelected;
+    console.log(categoriesSelected);
 
 		let dict = this.pollChosenVariable(event.chartSpecificOptions.xAxis, 
 			                                 event.chartSpecificOptions.yAxis, 
-																			 this.state.allUniqueCategories[yAxis])[0];
+																			 categoriesSelected)[0];
 		let series = this.createSelectedSeries(dict, 
-			                                     this.state.allUniqueCategories[yAxis]);
+			                                     categoriesSelected,
+																					 this.state.allUniqueCategories[xAxis]);
 
 		//console.log(event.chartSpecificOptions);
     this.setState({chart_type: event.chart_type, 
@@ -105,42 +109,53 @@ class SingleVisualization extends Component {
 				}							
 			}
 		})
-		//console.log(dict);
+		console.log(dict);
 		return [dict, uniqueCategories.sort()];
 	}
 
-	createSelectedSeries(dict, categories_y) {
+	createSelectedSeries(dict, categories_y, categories_x) {
 		let series = {}
 
-		let keys = Object.keys(dict);
-		keys = keys.sort();
+		let keys = categories_x.sort();
 
-		//console.log(categories_y);
+		console.log(keys);
 		keys.forEach((k) => {
 			for (let category in categories_y) {
 				category = categories_y[category];
-				if (series[category] === undefined) {
-					series[category] = [];
-					if ((category in dict[k])) {
-						
-						series[category].push(dict[k][category]);
-					}		
+				if (dict[k] === undefined) {
+					if (series[category] === undefined) {
+						series[category] = [];
+					}
 					else {
-						series[category].push(0);
-					}			
+            series[category].push(0);
+					}
+					
 				}
 				else {
-					if (!(dict[k][category] === undefined)) {
-						series[category].push(dict[k][category]);
-					}			
-					else {
-						series[category].push(0);
-					}		
-				}			
+          if (series[category] === undefined) {
+					  series[category] = [];
+					  if ((category in dict[k])) {
+						
+						  series[category].push(dict[k][category]);
+					  }		
+					  else {
+						  series[category].push(0);
+				  	}			
+				  }
+				  else {
+					  if (!(dict[k][category] === undefined)) {
+						  series[category].push(dict[k][category]);
+					  }			
+					  else {
+						  series[category].push(0);
+					  }		
+				  }			
+				}
+				
 			}
 		})
 
-		//console.log(series);
+		console.log(series);
 		return series;
 	}
 
@@ -162,7 +177,7 @@ class SingleVisualization extends Component {
 			}
 		});
 
-		//console.log(dict);
+		console.log(dict);
 		return dict;
 	}
 
@@ -200,6 +215,7 @@ class SingleVisualization extends Component {
 	chooseChart(chart_type) {
 		const legend_on = this.state.legend_on;
 		const labels_on = this.state.labels_on;
+		console.log(this.state.changeName);
 
 		switch(chart_type) {
 			case "bar": return <BarChart key={this.state.chartSpecificOptions[this.state.changeName]}
@@ -247,7 +263,7 @@ class SingleVisualization extends Component {
 						<Col sm={4} style={{backgroundColor: 'grey', 
 																borderRadius: '15px', 
 																borderRight: '2px solid black'}}>
-								<VisualizationForm onFormChange={this.handleChange}/></Col>
+								<VisualizationForm uniqueCategories={this.state.allUniqueCategories} onFormChange={this.handleChange}/></Col>
 					  <Col sm={8}>
 							<Row>
 								hello

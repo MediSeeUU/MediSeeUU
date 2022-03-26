@@ -41,10 +41,12 @@ class BarForm extends Component {
       yAxis: "Rapporteur",
 			stacked: false,
 			stackType: "100%",
-			horizontal: false
+			horizontal: false,
+      categoriesSelected: []
 		}
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleCategorySelection = this.handleCategorySelection.bind(this);
 	}
 
   handleChange(event) {
@@ -54,6 +56,46 @@ class BarForm extends Component {
     this.setState({[name]: value}, () => {
       this.props.onChange([this.state, name]);
     });
+  }
+
+  handleCategorySelection(event) {
+    const target = event.target;
+    const value = target.checked;
+    const name = target.name;
+    if (value) {
+      this.setState((state, props) => ({
+        categoriesSelected: [...state.categoriesSelected, name]}),
+         () => this.props.onChange([this.state, "categoriesSelected"]));
+    }
+    else {
+      if (this.state.categoriesSelected.includes(name)) {
+        this.setState((state, props) => ({
+          categoriesSelected: state.categoriesSelected.filter((el) => 
+            el !== name
+          )
+        }), () => this.props.onChange([this.state, "categoriesSelected"]));
+      }
+    }
+
+  }
+
+  renderCategoryOptions(Axis) {
+    const options = this.props.uniqueCategories[Axis];
+    return (options.map((option) => {
+      return (
+        <React.Fragment key={option}>
+          <label>
+            show {option}
+            <input type="checkbox"
+                   name={option}
+                   checked={this.state.categoriesSelected.name}
+                   onChange={this.handleCategorySelection} />
+          </label>
+          <br />
+        </React.Fragment>
+        
+      )
+    }))
   }
 
   renderVariableCheckBox() {
@@ -110,6 +152,10 @@ class BarForm extends Component {
           Stack type
 
         </label>
+        <br />
+        <div style={{backgroundColor: "whitesmoke", height: "100px", overflowY: "scroll"}}>
+          {this.renderCategoryOptions(this.state.yAxis)}
+        </div>
 
       </React.Fragment>
 

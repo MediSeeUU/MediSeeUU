@@ -44,7 +44,7 @@ class BarChart extends Component {
       series.push({name: key, data: dict[key]})
     }
 
-    //console.log(series);
+    console.log(series);
     return series;
   }
 
