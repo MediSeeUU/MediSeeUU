@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import BarForm from "./form_types/bar_form";
+
 // form component for a single visualization
 class VisualizationForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {chart_type: "bar", 
-                  x_axis: "test", 
-                  y_axis: "test",
                   legend_on: true,
-                  labels_on: true};
+                  labels_on: true,
+                  chartSpecificOptions: {},
+                  chartSpecificOptionsName: ""};
 
     // event handlers
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChartSpecificChange = this.handleChartSpecificChange.bind(this);
   }
 
   // event handler for updating the state after a single selection 
@@ -25,6 +28,10 @@ class VisualizationForm extends Component {
     this.setState({[name]: value});
   }
 
+  handleChartSpecificChange(options) {
+    this.setState({chartSpecificOptions: options[0], chartSpecificOptionsName: options[1]});
+  }
+
   // event handler for the submission after all selections
   handleSubmit(event) {
     // makes sure that the page does not reload and thus resets the data
@@ -33,8 +40,16 @@ class VisualizationForm extends Component {
     this.props.onFormChange(this.state);
   }
 
+
+  renderChartOptions(chart_type) {
+    switch (chart_type) {
+      case "bar": return <BarForm onChange = {this.handleChartSpecificChange}/>;
+
+      default: return <div> Not bar </div>
+    }
+  }
+
   // render method for the form
-  // the last 2 drop down menus can be removed
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -50,26 +65,7 @@ class VisualizationForm extends Component {
           </select>
         </label>
         <br />
-        <label>
-          Variable: <br />
-          <select value={this.state.x_axis} 
-                  name="x_axis" 
-                  onChange={this.handleChange}>
-            <option value="test">test value</option>
-          </select>
-        </label>
-        <br />
-        <label>
-          Amount of: <br />
-          <select value={this.state.y_axis} 
-                  name="y_axis" 
-                  onChange={this.handleChange}>
-            <option value="grapefruit">Grapefruit</option>
-            <option value="lime">Lime</option>
-            <option value="coconut">Coconut</option>
-            <option value="mango">Mango</option>
-          </select> 
-        </label>
+        {this.renderChartOptions(this.state.chart_type)}
         <br />       
         <label>
           show legend
@@ -79,7 +75,7 @@ class VisualizationForm extends Component {
                  onChange={this.handleChange}/>
         </label>
         <br />
-        <label htmlFor="generalOption2">
+        <label>
           show labels
           <input type="checkbox" 
                  name="labels_on" 

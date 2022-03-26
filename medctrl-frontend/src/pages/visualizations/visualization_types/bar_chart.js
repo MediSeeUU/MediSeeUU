@@ -5,7 +5,7 @@ import Chart from "react-apexcharts";
 class BarChart extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.categories);
+    //console.log(this.props.categories);
     let seriess = this.toSeriesFormat(this.props.series);
 
     this.state = {
@@ -13,17 +13,17 @@ class BarChart extends Component {
         chart: {
           id: String(this.props.number),
           type: "bar",
-          stacked: true,
-          stackType: '100%'
+          stacked: this.props.options.stacked,
+          stackType: this.props.options.stackType
         },
         plotOptions: {
           bar: {
-            horizontal: true,
+            horizontal: this.props.options.horizontal,
             distributed: false
           }
         },
         xaxis: {
-          categories: this.props.categories["DecisionYear"] //[1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+          categories: this.props.categories
         },
         dataLabels: {
           enabled: this.props.labels
@@ -36,12 +36,11 @@ class BarChart extends Component {
     };
   }
 
-
   toSeriesFormat(dict) {
-    console.log(dict);
+    //console.log(dict);
     let series = [];
     for (let key in dict) {
-      console.log(key);
+     // console.log(key);
       series.push({name: key, data: dict[key]})
     }
 
@@ -53,6 +52,7 @@ class BarChart extends Component {
 
   // renders the bar chart with the given options
   render() {
+    console.log(this.state.series);
     return (
           <div className="mixed-chart">
             <Chart
