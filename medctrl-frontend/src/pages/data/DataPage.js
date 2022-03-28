@@ -1,8 +1,22 @@
+import Table from '../../shared/table/table'
+import DummyData from '../../json/data.json'
+
 function DataPage() {
+  const allData = DummyData
+  let selectedData = []
+
+  const dataToApp = (childData) => {
+    selectedData = childData
+  }
+
   return (
-    <div>
-      <h1>Data Page!</h1>
-    </div>
+    <Table
+      data={allData}
+      currentPage={1}
+      amountPerPage={100}
+      selectTable={true}
+      dataToParent={dataToApp}
+    />
   )
 }
 
