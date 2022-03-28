@@ -11,6 +11,8 @@ function DataPage() {
   
   return (
     <Table data={allData}
+           currentPage={1}
+           amountPerPage={100}
            selectTable={true}
            dataToParent={dataToApp}/>
   )

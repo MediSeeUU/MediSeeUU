@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import './table.css';
 
 //Function based component, returns table
-function DisplayTable({data, selectTable, dataToParent}) {
+function DisplayTable({data, selectTable, dataToParent, amountPerPage, currentPage}) {
+  if (!data || !amountPerPage || !currentPage) {
+    throw Error('parameters data, amountPerPage and currentPage are mandatory')
+  }
+  
   //State variable for the selection checkboxes, for more about states see: https://reactjs.org/docs/hooks-state.html
   const [checkedState, setCheckedState] = useState(
     new Array(data.length).fill(false)
@@ -44,16 +48,24 @@ function DisplayTable({data, selectTable, dataToParent}) {
     throw Error("If table is a select table, dataToParent should be defined")
   }
 
+  //lower and higherbound for pagination
+  const lowerBoundDataPage = amountPerPage*(currentPage-1)
+  const higherBoundDataPage = amountPerPage*(currentPage)
+
+  if (lowerBoundDataPage > data.length){
+    throw Error("Pagination too high, data not defined")
+  }
+
   //constant with the table body data, for every data entry add a new row
-  const htmlData = data.map(
+  const htmlData = data.slice(lowerBoundDataPage, higherBoundDataPage).map(
     (entry, index1) => {
       return(
-        <tr key={index1}>
+        <tr key={index1+lowerBoundDataPage}>
           {
             selectTable ? 
               <CheckboxColumn 
-                value={checkedState[index1]} 
-                onChange={handleOnChange.bind(null, index1)}
+                value={checkedState[index1+lowerBoundDataPage]} 
+                onChange={handleOnChange.bind(null, index1+lowerBoundDataPage)}
                 data={data}/> 
               : null
           }
@@ -89,7 +101,7 @@ function DisplayTable({data, selectTable, dataToParent}) {
           }
         </tr>
       </thead>
-        <tbody className="tableBody">{htmlData}</tbody>
+      <tbody className="tableBody">{htmlData}</tbody>
     </table>
   )
 }
