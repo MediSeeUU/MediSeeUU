@@ -5,22 +5,23 @@ import './table.css'
 function DisplayTable({
   data,
   selectTable,
-  dataToParent,
   amountPerPage,
   currentPage,
+  checkedState,
+  setCheckedState,
 }) {
+  //throw error if parameters not defined
   if (!data || !amountPerPage || !currentPage) {
     throw Error('parameters data, amountPerPage and currentPage are mandatory')
   }
-
-  //State variable for the selection checkboxes, for more about states see: https://reactjs.org/docs/hooks-state.html
-  const [checkedState, setCheckedState] = useState(
-    new Array(data.length).fill(false)
-  )
+  //throw error when table is a select table but selected data is not handled
+  if (selectTable && (!setCheckedState || !checkedState)) {
+    throw Error('If table is a select table, dataToParent should be defined')
+  }
 
   //Check if all checkboxes are checked, used to check/uncheck the checkbox in the header
   const allSelected =
-    checkedState.find((item) => {
+    checkedState?.find((item) => {
       return !item
     }) ?? true
 
@@ -36,23 +37,6 @@ function DisplayTable({
   const handleAllChange = () => {
     const updatedCheckedState = new Array(data.length).fill(!allSelected)
     setCheckedState(updatedCheckedState)
-  }
-
-  //Handle the selected data list on checkbox change, send the data to the parent
-  const handleSelectedData = () => {
-    const selectedData = data.filter((item, index) => {
-      return checkedState[index]
-    })
-    dataToParent(selectedData)
-  }
-
-  //Run handleSelectedData when it is a select table and dataToParent is defined
-  //This function is run on every reload, when state is set, page will 'reload'
-  if (selectTable && !!dataToParent) {
-    handleSelectedData()
-  } else if (selectTable && !dataToParent) {
-    //throw error when table is a select table but selected data is not handled
-    throw Error('If table is a select table, dataToParent should be defined')
   }
 
   //lower and higherbound for pagination
@@ -113,14 +97,10 @@ function DisplayTable({
 }
 
 //logic for the checkboxes
-const CheckboxColumn = ({ value, onChange, data, setData }) => {
+const CheckboxColumn = ({ value, onChange }) => {
   return (
     <td className="checkboxColumn">
-      <input
-        type="checkbox"
-        checked={value}
-        onChange={onChange.bind(null, value, data, setData)}
-      />
+      <input type="checkbox" checked={value} onChange={onChange} />
     </td>
   )
 }
