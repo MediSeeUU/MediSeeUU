@@ -9,13 +9,13 @@ import SingleVisualization from "./single_visualization";
 class VisualizationPage extends Component {
 	constructor(props) {
 		super(props);
+		
+		// getting the data
 		const data = require("./data.json");
-		//let newData = this.rowsToColumns(data);
 		/* 
       the items array consists of the id's of the visualizations
 		  that are currently in use
 		*/
-		//console.log(newData);
 		this.state = {amountOfVisualizations: 0, items: [], data: data}
 		
 		// event handlers
@@ -42,36 +42,20 @@ class VisualizationPage extends Component {
 		this.setState({items: currentItems});
 	}
 
-
-	rowsToColumns(data) {
-		let dict = this.generateMDDataArray(data);
-		data.forEach(element => {
-			for(var key in element) {
-				dict[key].push(element[key]);
-			};
-		});
-		return dict;
-	}
-
-	generateMDDataArray(data) {
-		let dict = {};
-		Object.keys(data[0]).forEach(element => {
-			dict[element] = [];
-		});
-		return dict;
-	}
 	/*
 	  renders the visualizations
 		the id (element) is used as the key, 
 		so React knows which visualizations to show
 
 		the button for the removal is also here,
-		as the logic that keeps track of all the visualizatoin is also here
+		as the logic that keeps track of all the visualization is also here
 	*/
 	render() {
 		const displayItems = this.state.items.map((element) => {
 			return (<Row key={element} style={{ marginBottom: '50px'}}>
-					      <SingleVisualization number={element} data={JSON.parse(JSON.stringify(this.state.data))}/>
+					      <SingleVisualization 
+								  number={element} 
+								  data={JSON.parse(JSON.stringify(this.state.data))}/>
 					      <br />
 					      <button value = {element} onClick={this.handleRemoval}>
 				    		Remove visualization

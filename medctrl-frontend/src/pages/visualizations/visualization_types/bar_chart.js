@@ -5,16 +5,26 @@ import Chart from "react-apexcharts";
 class BarChart extends Component {
   constructor(props) {
     super(props);
-    //console.log(this.props.categories);
-    let seriess = this.toSeriesFormat(this.props.series);
 
+    let series = this.toSeriesFormat(this.props.series);
+
+    let stacktype;
+    if (this.props.options.stackType) {
+      stacktype = "100%";
+    }
+    else {
+      stacktype = "normal";
+    }
+
+    // initializing the state with data passed from the form
     this.state = {
       options: {
         chart: {
           id: String(this.props.number),
           type: "bar",
           stacked: this.props.options.stacked,
-          stackType: this.props.options.stackType
+          stackType: stacktype,
+          toolbar: {show: false}
         },
         plotOptions: {
           bar: {
@@ -32,23 +42,19 @@ class BarChart extends Component {
           show: this.props.legend
         }
       },
-      series: seriess
+      series: series
     };
   }
 
+  // turning a dict into the data format accepted by ApexChart
+  // the entry key becomes the name, the entry value becomes the data
   toSeriesFormat(dict) {
-    //console.log(dict);
     let series = [];
     for (let key in dict) {
-     // console.log(key);
       series.push({name: key, data: dict[key]})
     }
-
-    console.log(series);
     return series;
   }
-
-
 
   // renders the bar chart with the given options
   render() {
@@ -59,7 +65,6 @@ class BarChart extends Component {
               options={this.state.options}
               series={this.state.series}
               type= "bar"
-              //width={1000}
             />
           </div>
     );

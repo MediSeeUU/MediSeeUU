@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 
+// the bar part of a form if a bar chart is chosen
 class BarForm extends Component {
   constructor(props) {
 		super(props);
 
+    // the list of eligible variables
+    // if we do not want to include a variable for the bar chart,
+    // it can be removed from here
     const eligibleVariables = [
       "ApplicationNo",
       "EUNumber",
@@ -35,20 +39,24 @@ class BarForm extends Component {
       "TotalTimeElapsed"
     ]
 
+    // initialization of the state
 		this.state = {
       eligibleVariables: eligibleVariables,
       xAxis: "DecisionYear",
       yAxis: "Rapporteur",
 			stacked: false,
-			stackType: "100%",
+			stackType: false,
 			horizontal: false,
       categoriesSelected: []
 		}
 
+    // event handlers
     this.handleChange = this.handleChange.bind(this);
     this.handleCategorySelection = this.handleCategorySelection.bind(this);
 	}
 
+  // updates the state,
+  // then passes it to the general form
   handleChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -58,56 +66,64 @@ class BarForm extends Component {
     });
   }
 
+  // updating what categories have been selected,
+  // then passes it to the general form
   handleCategorySelection(event) {
     const target = event.target;
     const value = target.checked;
     const name = target.name;
+
+    // if the category has been selected,
+    // add it to the list of selected categories
     if (value) {
-      this.setState((state, props) => ({
+      this.setState(state => ({
         categoriesSelected: [...state.categoriesSelected, name]}),
          () => this.props.onChange([this.state, "categoriesSelected"]));
     }
     else {
+      // remove if the category was previously on the list,
       if (this.state.categoriesSelected.includes(name)) {
-        this.setState((state, props) => ({
-          categoriesSelected: state.categoriesSelected.filter((el) => 
+        this.setState(state => ({
+          categoriesSelected: state.categoriesSelected.filter(el => 
             el !== name
           )
         }), () => this.props.onChange([this.state, "categoriesSelected"]));
       }
     }
-
   }
 
+  // create the list of category checkboxes
   renderCategoryOptions(Axis) {
-    const options = this.props.uniqueCategories[Axis];
-    return (options.map((option) => {
+    const categories = this.props.uniqueCategories[Axis];
+    return (categories.map(category => {
       return (
-        <React.Fragment key={option}>
+        <React.Fragment key={category}>
           <label>
-            show {option}
+            show {category}
             <input type="checkbox"
-                   name={option}
-                   checked={this.state.categoriesSelected.name}
+                   name={category}
+                   checked={this.state.categoriesSelected.includes(category)}
                    onChange={this.handleCategorySelection} />
           </label>
           <br />
-        </React.Fragment>
-        
-      )
-    }))
+        </React.Fragment>       
+      );
+    }));
   }
 
-  renderVariableCheckBox() {
+  // creates a drop down menu based on the allowed variables
+  renderVariableDropDown() {
     return this.state.eligibleVariables.map((variable) => {
       return (<option key={variable} value={variable}>{variable}</option>);
     });
   }
 
+  // renders the bar form part of the form
 	render() {
     let x_axis;
     let y_axis;
 
+    // the x/y axis can change, it is easier to just change the labels
 		if (this.state.horizontal) {
 			x_axis = <React.Fragment>Y Axis</React.Fragment>
 			y_axis = <React.Fragment>X Axis</React.Fragment>
@@ -117,8 +133,8 @@ class BarForm extends Component {
 			y_axis = <React.Fragment>Y Axis</React.Fragment>
 		}
 
-    const variablesXAxis = this.renderVariableCheckBox();
-    const variablesYAxis = this.renderVariableCheckBox();
+    const variablesXAxis = this.renderVariableDropDown();
+    const variablesYAxis = this.renderVariableDropDown();
 		
     return (
       <React.Fragment>
@@ -149,19 +165,29 @@ class BarForm extends Component {
         </label>
         <br />
         <label>
-          Stack type
-
+          Stack fully
+          <input type="checkbox"
+                 name="stackType"
+                 checked={this.state.stackType}
+                 onChange={this.handleChange} />
         </label>
         <br />
-        <div style={{backgroundColor: "whitesmoke", height: "100px", overflowY: "scroll"}}>
+        <label>
+          Horizontal
+          <input type="checkbox"
+                 name="horizontal"
+                 checked={this.state.horizontal}
+                 onChange={this.handleChange} />
+        </label>
+        <br />
+        <div style={{backgroundColor: "whitesmoke", 
+                     height: "100px", 
+                     overflowY: "scroll"}}>
           {this.renderCategoryOptions(this.state.yAxis)}
         </div>
-
       </React.Fragment>
-
     );
   }
-
 }
 
 export default BarForm

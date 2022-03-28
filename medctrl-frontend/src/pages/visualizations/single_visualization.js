@@ -13,22 +13,28 @@ import LineGraph from "./visualization_types/line_graph";
 import DonutChart from "./visualization_types/donut_chart";
 import BoxPlot from "./visualization_types/box_plot";
 
+import {PollChosenVariable, CreateSelectedSeries} from "./data_interfaces/bar_interface";
+
 // renders the components for a single visualization
 class SingleVisualization extends Component {
 	constructor(props) {
 		super(props);
 
+		// get the categories of all the variables
+		// right now the filter for the visualizations has not been implemented,
+		// so this should not change
 		let uniqueCategories = this.getUniqueCategories(this.props.data);
-		//console.log(uniqueCategories);
+
+		// initia data for the initial chart
 		let dict = 
-		  this.pollChosenVariable("DecisionYear", 
-			                        "Rapporteur", 
-															uniqueCategories["Rapporteur"])[0];
+		  PollChosenVariable("DecisionYear", 
+			                   "Rapporteur", 
+												 ["United Kingdom"],
+												 this.props.data)[0];
 		let series = 
-		  this.createSelectedSeries(dict, 
-				                        uniqueCategories["Rapporteur"],
-																uniqueCategories["DecisionYear"]);
-		//console.log(series);
+		  CreateSelectedSeries(dict, 
+				                   uniqueCategories["Rapporteur"],
+													 ["United Kingdom"]);
 
 		this.state = {chart_type: "bar", 
 									chartSpecificOptions: {xAxis: "DecisionYear"},
@@ -49,16 +55,16 @@ class SingleVisualization extends Component {
 		let xAxis = event.chartSpecificOptions.xAxis;
 		let yAxis = event.chartSpecificOptions.yAxis;
 		let categoriesSelected = event.chartSpecificOptions.categoriesSelected;
-    console.log(categoriesSelected);
 
-		let dict = this.pollChosenVariable(event.chartSpecificOptions.xAxis, 
-			                                 event.chartSpecificOptions.yAxis, 
-																			 categoriesSelected)[0];
-		let series = this.createSelectedSeries(dict, 
-			                                     categoriesSelected,
-																					 this.state.allUniqueCategories[xAxis]);
+		let dict = PollChosenVariable(xAxis, 
+			                            yAxis, 
+																	categoriesSelected,
+																	this.props.data)[0];
 
-		//console.log(event.chartSpecificOptions);
+		let series = CreateSelectedSeries(dict, 
+			                                categoriesSelected,
+																			this.state.allUniqueCategories[xAxis]);
+
     this.setState({chart_type: event.chart_type, 
 			             chartSpecificOptions: event.chartSpecificOptions,
 									 legend_on: event.legend_on,
@@ -72,117 +78,8 @@ class SingleVisualization extends Component {
 		ApexCharts.getChartByID(this.props.number).updateOptions({
     	dataLabels: {enabled: event.labels_on},
 	  	legend: {show: event.legend_on}
-			//xaxis: {categories: this.state.allUniqueCategories[xAxis]}
-		}
-		);
-
-		/* ApexCharts.getChartByID(this.props.number).updateSeries([{
-			data: this.toSeriesFormat(series)
-		}]); */
-  }
-
-
-
-	pollChosenVariable(x_axis, y_axis, categories_y) {
-		//console.log(x_axis);
-		//console.log(y_axis);
-		//console.log(categories_y);
-
-		let dict = {};
-		let uniqueCategories = [];
-		this.props.data.forEach((element) => {
-			if (uniqueCategories.includes(element[x_axis])) {
-				if (categories_y.includes(element[y_axis])) {
-					if (dict[element[x_axis]][element[y_axis]] === undefined) {
-						dict[element[x_axis]][element[y_axis]] = 1;
-					}
-					else {
-						dict[element[x_axis]][element[y_axis]]+= 1;
-					}	
-				}
-			}
-			else {				
-				if (categories_y.includes(element[y_axis])) {
-					dict[element[x_axis]] = {};
-					dict[element[x_axis]][element[y_axis]] = 1;
-					uniqueCategories = [...uniqueCategories, element[x_axis]];
-				}							
-			}
-		})
-		console.log(dict);
-		return [dict, uniqueCategories.sort()];
-	}
-
-	createSelectedSeries(dict, categories_y, categories_x) {
-		let series = {}
-
-		let keys = categories_x.sort();
-
-		console.log(keys);
-		keys.forEach((k) => {
-			for (let category in categories_y) {
-				category = categories_y[category];
-				if (dict[k] === undefined) {
-					if (series[category] === undefined) {
-						series[category] = [];
-					}
-					else {
-            series[category].push(0);
-					}
-					
-				}
-				else {
-          if (series[category] === undefined) {
-					  series[category] = [];
-					  if ((category in dict[k])) {
-						
-						  series[category].push(dict[k][category]);
-					  }		
-					  else {
-						  series[category].push(0);
-				  	}			
-				  }
-				  else {
-					  if (!(dict[k][category] === undefined)) {
-						  series[category].push(dict[k][category]);
-					  }			
-					  else {
-						  series[category].push(0);
-					  }		
-				  }			
-				}
-				
-			}
-		})
-
-		console.log(series);
-		return series;
-	}
-
-
-	getUniqueCategories(data) {
-		let dict = {};
-
-		data.forEach(element => {
-			for (let attribute in element) {
-				let val = element[attribute];
-				if (dict[attribute] === undefined) {
-					dict[attribute] = [val];
-				}
-				else {
-					if (!(dict[attribute].includes(val))) {
-						dict[attribute].push(val);
-					}			 
-				}
-			}
 		});
-
-		console.log(dict);
-		return dict;
-	}
-
-
-
+  }
   
 	/*
 	  event handler for exporting the visualization to svg and png
@@ -215,14 +112,14 @@ class SingleVisualization extends Component {
 	chooseChart(chart_type) {
 		const legend_on = this.state.legend_on;
 		const labels_on = this.state.labels_on;
-		console.log(this.state.changeName);
+		const number = this.props.number;
 
 		switch(chart_type) {
-			case "bar": return <BarChart key={this.state.chartSpecificOptions[this.state.changeName]}
+			case "bar": return <BarChart key={`${this.state.changeName} 
+			              ${this.state.chartSpecificOptions[this.state.changeName]}`}
 			                             legend={legend_on} 
 																	 labels={labels_on}
-																	 number={this.props.number}
-																	 data={this.props.data}
+																	 number={number}
 																	 series={this.state.series}
 																	 categories={this.state.allUniqueCategories[
 																		 this.state.chartSpecificOptions.xAxis
@@ -232,21 +129,43 @@ class SingleVisualization extends Component {
 			
 			case "line": return <LineGraph legend={legend_on} 
 																		 labels={labels_on} 
-																		 number={this.props.number}/>;
+																		 number={number}/>;
 			
 			case "donut": return <DonutChart legend={legend_on} 
 																			 labels={labels_on} 
-																			 number={this.props.number}/>;
+																			 number={number}/>;
 
 			case "boxPlot": return <BoxPlot legend={legend_on} 
 																			labels={labels_on} 
-																			number={this.props.number}/>;
+																			number={number}/>;
 
 			default: return <BarChart legend={legend_on} 
 																labels={labels_on} 
-																number={this.props.number}/>;									
+																number={number}/>;									
 		}
 	}
+
+	// takes the (JSON) data and gets the categories for each variable
+	getUniqueCategories(data) {
+		let dict = {};
+
+		// element is a single 'database entry'
+		data.forEach(element => {
+			for (let attribute in element) {
+				let val = element[attribute];
+				if (dict[attribute] === undefined) {
+					dict[attribute] = [val];
+				}
+				else {
+					if (!(dict[attribute].includes(val))) {
+						dict[attribute].push(val);
+					}			 
+				}
+			}
+		});
+
+		return dict;
+	}	
  	
   /*
 	  renders a single visualization
@@ -263,7 +182,10 @@ class SingleVisualization extends Component {
 						<Col sm={4} style={{backgroundColor: 'grey', 
 																borderRadius: '15px', 
 																borderRight: '2px solid black'}}>
-								<VisualizationForm uniqueCategories={this.state.allUniqueCategories} onFormChange={this.handleChange}/></Col>
+								<VisualizationForm 
+								  uniqueCategories={this.state.allUniqueCategories} 
+								  onFormChange={this.handleChange}/>
+						</Col>
 					  <Col sm={8}>
 							<Row>
 								hello
