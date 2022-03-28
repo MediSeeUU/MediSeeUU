@@ -1,9 +1,10 @@
-name: Frontend tests and style checks
+name: Deploy frontend to online environment
 
 on:
-  pull_request:
-    paths: 
-      - "medctrl-frontend/**"
+  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 env:
   NODE_VERSION: "16.x"
@@ -14,7 +15,7 @@ defaults:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-1
     steps:
       - uses: actions/checkout@v2
 
@@ -42,3 +43,8 @@ jobs:
       - name: Run tests
         run: |
           npm run ci-test
+
+      - name: Build and deploy frontend
+        run: |
+          npm run build
+          cp -r build/* /var/www/medctrl
