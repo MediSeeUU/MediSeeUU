@@ -1,5 +1,4 @@
 /* change colors to variables */
-
 table {
   display: block;
   overflow: auto;
@@ -14,7 +13,7 @@ table {
   top: 0;
   border: 0px;
   overflow-x: visible;
-  color: white;
+  color: var(--white-text);
 }
 
 .tableBody {
@@ -23,17 +22,18 @@ table {
 }
 
 .tableHeader tr {
-  background-color: #114b5f;
+  background-color: var(--blue-main);
 }
+
 .tableBody tr:nth-child(even) {
   background-color: #bac4c9;
 }
+
 .tableBody tr:nth-child(odd) {
   background-color: #d6d6d7;
 }
 
-th,
-td {
+th, td {
   padding: 10px 0;
   text-align: center;
   min-width: 200px;
@@ -43,5 +43,5 @@ td {
 .checkboxColumn {
   min-width: 50px;
   max-width: 50px;
-  border-right: 1px solid #38576B
+  border-right: 1px solid var(--blue-alt)
 }
