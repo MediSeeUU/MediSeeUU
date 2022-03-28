@@ -34,5 +34,27 @@ test("checkboxes displayed", () => {
                                   dataToParent={() => {}} />);
     const table = wrapper.getByRole('table');
     const checkboxes = table.getElementsByClassName('checkboxColumn');
-    expect(checkboxes).toHaveLength(data.length);
+    expect(checkboxes).toHaveLength(data.length + 1);
+})
+
+test("data in selecteddata, when checkbox clicked", () => {
+    const data = DummyData
+    let newData = [];
+    const parentFunction = (selected) => {
+        newData = selected;
+    }
+    const wrapper = render(<Table data={data}
+                                  selectTable={true}
+                                  dataToParent={parentFunction} />);
+    const table = wrapper.getByRole('table');
+    const checkboxes = table.getElementsByClassName('checkboxColumn');
+    const input = checkboxes[0].getElementsByTagName('input')[0];
+    fireEvent.click(input);
+    expect(newData[0]).toBe(data[0]);
+})
+
+test("data in selecteddata, when checkbox clicked", () => {
+    const renderFunction = () => render(<Table data={DummyData}
+                                  selectTable={true} />);
+    expect(renderFunction).toThrow(Error);
 })
