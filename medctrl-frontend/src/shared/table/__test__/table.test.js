@@ -40,7 +40,8 @@ test('checkboxes displayed', () => {
     <Table
       data={data}
       selectTable={true}
-      dataToParent={() => {}}
+      setCheckedState={() => {}}
+      checkedState={Array(data.length).fill(false)}
       currentPage={1}
       amountPerPage={10}
     />
@@ -50,39 +51,19 @@ test('checkboxes displayed', () => {
   expect(checkboxes).toHaveLength(11)
 })
 
-test('data in selecteddata, when checkbox clicked', () => {
+test('row selected, when checkbox clicked', () => {
   const data = DummyData
-  let newData = []
-  const parentFunction = (selected) => {
-    newData = selected
+  let checkedState = Array(data.length).fill(false)
+  const setCheckedState = (newState) => {
+    checkedState = newState
   }
-  const view = render(
-    <Table
-      data={data}
-      selectTable={true}
-      dataToParent={parentFunction}
-      currentPage={1}
-      amountPerPage={10}
-    />
-  )
-  const table = view.getByRole('table')
-  const checkboxes = table.getElementsByClassName('checkboxColumn')
-  const input = checkboxes[0].getElementsByTagName('input')[0]
-  fireEvent.click(input)
-  expect(newData[0]).toBe(data[0])
-})
 
-test('correct row selected, when checkbox clicked on second page', () => {
-  const data = DummyData
-  let newData = []
-  const parentFunction = (selected) => {
-    newData = selected
-  }
   const view = render(
     <Table
       data={data}
       selectTable={true}
-      dataToParent={parentFunction}
+      setCheckedState={setCheckedState}
+      checkedState={checkedState}
       currentPage={2}
       amountPerPage={10}
     />
@@ -91,20 +72,22 @@ test('correct row selected, when checkbox clicked on second page', () => {
   const checkboxes = table.getElementsByClassName('checkboxColumn')
   const input = checkboxes[1].getElementsByTagName('input')[0]
   fireEvent.click(input)
-  expect(newData[0]).toBe(data[10])
+  expect(checkedState[10]).toBe(true)
 })
 
 test('all rows selected when select all pressed', () => {
   const data = DummyData
-  let newData = []
-  const parentFunction = (selected) => {
-    newData = selected
+  let checkedState = Array(data.length).fill(false)
+  const setCheckedState = (newState) => {
+    checkedState = newState
   }
+
   const view = render(
     <Table
       data={data}
       selectTable={true}
-      dataToParent={parentFunction}
+      setCheckedState={setCheckedState}
+      checkedState={checkedState}
       currentPage={2}
       amountPerPage={10}
     />
@@ -113,15 +96,31 @@ test('all rows selected when select all pressed', () => {
   const checkboxes = table.getElementsByClassName('checkboxColumn')
   const input = checkboxes[0].getElementsByTagName('input')[0]
   fireEvent.click(input)
-  expect(newData.length).toBe(data.length)
+  checkedState = checkedState.filter((value) => value)
+  expect(checkedState.length).toBe(data.length)
 })
 
-test('throw error when callback not defined', () => {
+test('throw error when checkedstate not defined and selectTable true', () => {
   const renderFunction = () =>
     render(
       <Table
         data={DummyData}
         selectTable={true}
+        setCheckedState={() => {}}
+        currentPage={5}
+        amountPerPage={10}
+      />
+    )
+  expect(renderFunction).toThrow(Error)
+})
+
+test('throw error when setCheckedState not defined and selectable', () => {
+  const renderFunction = () =>
+    render(
+      <Table
+        data={DummyData}
+        selectTable={true}
+        checkedState={[]}
         currentPage={5}
         amountPerPage={10}
       />
