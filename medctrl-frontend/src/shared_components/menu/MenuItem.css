@@ -1,0 +1,35 @@
+.MenuItem {
+  background-color: rgb(215, 215, 214);
+  padding:10px;
+  width: 200px;
+  margin:20px;
+  border-radius: 10px;
+  display: inline-block;
+  position:relative;
+}
+
+#filterSelect {
+  display:inline-block;
+  width: 160px;
+}
+
+#filterInput {
+  display:block;
+  margin-top:10px;
+}
+
+#addLabel {
+  font-size:10px;
+  color: blue;
+  cursor: pointer;
+}
+
+.delete {
+  position:absolute;
+  color: red;
+  font-size:20px;
+  cursor: pointer;
+  display: inline-block;
+  top: 5px;
+  right: 5px;
+}
