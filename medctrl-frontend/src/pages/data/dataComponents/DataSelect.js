@@ -5,7 +5,7 @@ import Table from '../../../shared/table/table'
 
 import allData from '../../../json/small_data.json' // we can replace this with a mock API?
 
-function DataSelect({func}) {
+function DataSelect({ setCheckedState, checkedState }) {
   return (
     <div className="TopTableHolder">
       <Menu />
@@ -19,7 +19,8 @@ function DataSelect({func}) {
         currentPage={1}
         amountPerPage={100}
         selectTable={true}
-        dataToParent={func}
+        setCheckedState={setCheckedState}
+        checkedState={checkedState}
       />
 
       <ResultsSelector />

@@ -42,13 +42,13 @@ td {
   max-width: 200px;
 }
 
-th{
+th {
   padding: 10px 0;
   font-size: 14px;
 }
 
-td{
-  font-size: 12px;
+td {
+  font-size: 13px;
 }
 .checkboxColumn {
   min-width: 50px;
@@ -56,12 +56,12 @@ td{
   border-right: 1px solid var(--blue-alt);
 }
 
-.icons{
+.icons {
   font-size: 20px;
   margin-top: 2px;
   color: var(--blue-alt);
 }
 
-.icons:hover{
+.icons:hover {
   color: var(--blue-light);
 }

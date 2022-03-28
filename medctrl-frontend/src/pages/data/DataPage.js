@@ -1,22 +1,29 @@
-import React, { useState } from 'react'
-import './Data.css'
+import DummyData from '../../json/data.json'
 import DataSelect from './dataComponents/DataSelect'
 import SelectedData from './dataComponents/SelectedData'
-
+import { useState } from 'react'
+import './Data.css'
 
 function DataPage() {
-  const [data, setData] = useState(null); 
+  const allData = DummyData
 
-  const dataToApp = (childData) => {
-    setData(childData);
-  }
+  //State variable for the selection checkboxes, for more about states see: https://reactjs.org/docs/hooks-state.html
+  const [checkedState, setCheckedState] = useState(
+    new Array(allData.length).fill(false)
+  )
+
+  const selectedData = allData.filter((item, index) => {
+    return checkedState[index]
+  })
 
   return (
     <div>
-      <DataSelect func={dataToApp}/> 
-      <SelectedData list={data}/>
+      <DataSelect
+        setCheckedState={setCheckedState}
+        checkedState={checkedState}
+      />
+      <SelectedData list={selectedData} />
     </div>
-
   )
 }
 
