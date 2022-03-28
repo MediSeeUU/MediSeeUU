@@ -1,7 +1,13 @@
+import React from "react";
+import './Data.css'
+import DataSelect from "./dataComponents/DataSelect";
+import SelectedData from "./dataComponents/SelectedData";
+
 function DataPage() {
   return (
     <div>
-      <h1>Data Page!</h1>
+      <DataSelect />
+      <SelectedData />
     </div>
   )
 }

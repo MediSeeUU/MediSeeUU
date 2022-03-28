@@ -35,4 +35,7 @@ code {
 
   --grey-text: #d3d3d3;
   --blue-grey-background: #eaf0f8;
+
+  --BorderClrTableHolder: darkgray;
+  --seperation-line: lightgray;
 }
