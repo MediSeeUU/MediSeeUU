@@ -12,9 +12,7 @@ function App() {
   }
 
   return (
-    <Table data={allData}
-           selectTable={true}
-           dataToParent={dataToApp}/>
+    <Table data={allData}/>
   );
 }
 

@@ -26,3 +26,13 @@ test("at least one row in the table", () => {
     const body = bodies[0];
     expect(body.childElementCount).toBeGreaterThan(0);
 })
+
+test("checkboxes displayed", () => {
+    const data = DummyData
+    const wrapper = render(<Table data={data}
+                                  selectTable={true}
+                                  dataToParent={() => {}} />);
+    const table = wrapper.getByRole('table');
+    const checkboxes = table.getElementsByClassName('checkboxColumn');
+    expect(checkboxes).toHaveLength(data.length);
+})
