@@ -59,3 +59,7 @@ hr {
   margin: 2px 0px 0px 10px;
   border: 1px solid black;
 }
+
+.lb-tableholder{
+  position: absolute;
+}
