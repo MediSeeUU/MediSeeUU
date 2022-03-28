@@ -2,6 +2,8 @@ name: Frontend tests and style checks
 
 on:
   pull_request:
+    paths: 
+      - "medctrl-frontend/**"
 
 env:
   NODE_VERSION: "16.x"

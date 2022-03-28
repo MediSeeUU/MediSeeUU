@@ -1,6 +1,9 @@
 name: Check for linting and formatting errors
 
-on: [pull_request]
+on:
+  pull_request:
+    paths:
+      - "medctrl-backed/**"
 
 jobs:
   build:
