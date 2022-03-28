@@ -8,6 +8,6 @@
   min-width: 950px;
 }
 
-#content__wrapper{
+#content__wrapper {
   min-height: calc(100vh - 75px - 170px);
 }

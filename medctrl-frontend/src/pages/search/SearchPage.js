@@ -3,7 +3,7 @@ function SearchPage() {
     <div>
       <h1>Search!</h1>
     </div>
-  );
+  )
 }
 
-export default SearchPage;
+export default SearchPage
