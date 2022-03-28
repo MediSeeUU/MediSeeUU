@@ -1,20 +1,20 @@
-import React from 'react';
-import ResultsSelector from './ResultsSelector';
+import React from 'react'
+import ResultsSelector from './ResultsSelector'
 
 function SelectedData() {
-    return (
-        <div className="TopTableHolder">
+  return (
+    <div className="TopTableHolder">
+      <div>
+        <label>Selected data points</label>
+        <button className="tableButtons">
+          <i className="bx bxs-file-export"></i>Export
+        </button>
+        <hr></hr>
+      </div>
 
-            <div>
-                <label>Selected data points</label>
-                <button className="tableButtons"><i className='bx bxs-file-export' ></i>Export</button>
-                <hr></hr>
-            </div>
-
-            <ResultsSelector />
-
-        </div>
-    );
+      <ResultsSelector />
+    </div>
+  )
 }
 
-export default SelectedData;
+export default SelectedData

@@ -1,13 +1,13 @@
 @import '../../shared/shared.css';
 
-label{
+label {
   float: left;
   margin-left: 1%;
   margin-top: 2px;
   font-weight: bold;
 }
 
-button:hover{
+button:hover {
   background-color: var(--blue-light);
 }
 
@@ -19,41 +19,42 @@ hr {
   margin-right: auto;
 }
 
-.bx-plusMinus{
+.bx-plusMinus {
   color: var(--blue-alt);
-  font-size: 35px;  
+  font-size: 35px;
 }
 
-.bx-plusMinus:hover{
+.bx-plusMinus:hover {
   color: var(--blue-light);
 }
 
-.filter-Icon, .bxs-file-export{
+.filter-Icon,
+.bxs-file-export {
   font-size: 25px;
   margin-left: 10px;
   float: left;
 }
 
-.addRmCollumn{
+.addRmCollumn {
   float: right;
   margin: 0px 1% 0px 0px;
 }
 
-.bottomOfTableHolder{
+.bottomOfTableHolder {
   position: sticky;
   top: 100%;
   width: 100%;
   height: 30px;
 }
 
-.resultsSelector{
+.resultsSelector {
   position: sticky;
   width: 200px;
   height: 30px;
   left: 100%;
 }
 
-#topSelector{
+#topSelector {
   height: 25px;
   margin: 2px 0px 0px 10px;
   border: 1px solid black;
