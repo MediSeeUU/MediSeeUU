@@ -8,7 +8,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--blue-grey-background); /* from color scheme but lighter */
+  background-color: var(
+    --blue-grey-background
+  ); /* from color scheme but lighter */
   padding-left: calc((100% - 1400px) / 2);
   padding-right: calc((100% - 1400px) / 2);
 }
@@ -21,8 +23,8 @@ code {
 /* variables*/
 
 :root {
-  --blue-main: #114B5F;
-  --blue-alt: #38576B;
+  --blue-main: #114b5f;
+  --blue-alt: #38576b;
   --blue-light: #607e92;
 
   --aqua-main: #5f9ea0;

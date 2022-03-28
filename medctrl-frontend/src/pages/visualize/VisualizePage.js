@@ -3,7 +3,7 @@ function VisualizePage() {
     <div>
       <h1>Visualize!</h1>
     </div>
-  );
+  )
 }
 
-export default VisualizePage;
+export default VisualizePage

@@ -11,7 +11,7 @@ table {
 .tableHeader {
   display: block;
   position: sticky;
-  top:0;
+  top: 0;
   border: 0px;
   overflow-x: visible;
   color: white;
@@ -22,11 +22,18 @@ table {
   overflow: visible;
 }
 
-.tableHeader tr {  background-color: #114B5F; }
-.tableBody tr:nth-child(even) {background-color: #BAC4C9;}
-.tableBody tr:nth-child(odd) {background-color: #D6D6D7;}
+.tableHeader tr {
+  background-color: #114b5f;
+}
+.tableBody tr:nth-child(even) {
+  background-color: #bac4c9;
+}
+.tableBody tr:nth-child(odd) {
+  background-color: #d6d6d7;
+}
 
-th, td {
+th,
+td {
   padding: 10px 0;
   text-align: center;
   min-width: 200px;

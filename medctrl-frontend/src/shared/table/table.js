@@ -68,7 +68,7 @@ function DisplayTable({data, selectTable, dataToParent}) {
   );
 
   //return table, with a header with the data keywords
-  return(
+  return (
     <table>
       <thead className="tableHeader">
         <tr>

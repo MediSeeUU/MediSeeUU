@@ -1,42 +1,49 @@
 /* Main ruleset for the footer, gives its size and general styling */
 footer {
-    padding: 10px;
-    padding-bottom: 30px;
-    height: 160px;
-  
-    background-color: rgb(215, 215, 215);
-    box-shadow: 3px 2px 8px rgb(215, 215, 215);
-  
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-  }
-  
-  /* These two rulesets are for the 2 rows of content in the footer, it makes sure that they stay 
+  padding: 10px;
+  padding-bottom: 30px;
+  height: 160px;
+
+  background-color: rgb(215, 215, 215);
+  box-shadow: 3px 2px 8px rgb(215, 215, 215);
+
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+/* These two rulesets are for the 2 rows of content in the footer, it makes sure that they stay 
   next to each other instead of on top. */
-  #footer__information {
-   width:50%;
-   text-align: center;
+#footer__information {
+  width: 50%;
+  text-align: center;
+}
+
+#footer__organisations {
+  width: 50%;
+  text-align: center;
+  float: right;
+}
+
+/* For the list of relevant organisations, keeps the list positioned correctly */
+.footer__organisation__list {
+  display: inline-block;
+  text-align: left;
+}
+
+/* Rulesets for the links under relevant organisations, only does styling and colors */
+#footer__organisations a {
+  color: purple;
+  text-decoration: none;
+}
+
+#footer__organisations a:hover {
+  color: blue;
+}
+
+/* Media query: makes sure that when the screen width drops below 1400px (the size where the page content
+  fits the entire webbrowser page) the rounded borders on the outside disappear.  */
+@media only screen and (max-width: 1400px) {
+  footer {
+    border-top-right-radius: 0px;
   }
-  
-  #footer__organisations {
-    width: 50%;
-    text-align: center;
-    float: right;
-  }
-  
-  /* For the list of relevant organisations, keeps the list positioned correctly */
-  .footer__organisation__list {
-    display: inline-block;  
-    text-align: left;
-  }
-  
-  /* Rulesets for the links under relevant organisations, only does styling and colors */
-  #footer__organisations a {
-    color: purple;
-    text-decoration: none;
-  }
-  
-  #footer__organisations a:hover {
-    color: blue;
-  }
-  
+}
