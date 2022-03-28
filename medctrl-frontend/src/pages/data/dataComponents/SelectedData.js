@@ -1,5 +1,8 @@
 import React from 'react'
 import ResultsSelector from './ResultsSelector'
+import DisplayTable from '../../../shared/table/table'
+
+import DummyData from '../../../json/small_data.json' // we can replace this with a mock API?
 
 function SelectedData() {
   return (
@@ -11,7 +14,7 @@ function SelectedData() {
         </button>
         <hr></hr>
       </div>
-
+      <DisplayTable data={DummyData} />
       <ResultsSelector />
     </div>
   )

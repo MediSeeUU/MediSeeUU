@@ -15,8 +15,7 @@ hr {
   width: 98%;
   border: 1px solid var(--seperation-line);
   position: sticky;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0px auto 10px auto;
 }
 
 .bx-plusMinus {
