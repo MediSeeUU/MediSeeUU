@@ -1,6 +1,7 @@
 name: Deploy frontend to online environment
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
