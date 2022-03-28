@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - CI-deploy-master
 
 env:
   NODE_VERSION: "16.x"
