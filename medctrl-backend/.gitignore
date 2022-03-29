@@ -1,6 +1,6 @@
 .vscode
 dev_settings.py
-api_settings/settings/local_*.py
+**/api_settings/settings/local_*.py
 
 ################################################
 ######## Python boilerplate gitignore ##########
