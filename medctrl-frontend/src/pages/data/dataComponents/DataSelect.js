@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ResultsSelector from './ResultsSelector'
 import Menu from '../../../shared/menu/Menu'
 import Table from '../../../shared/table/table'
 
-import allData from '../../../json/small_data.json' // we can replace this with a mock API?
+import allData from '../../../json/data.json' // we can replace this with a mock API?
 
 function DataSelect({ setCheckedState, checkedState }) {
+  const [resultsPerPage, setResultsPerPage] = useState(50)
+  const [loadedPage, setPage] = useState(1)
+
+  if (allData.length / resultsPerPage + 1 < loadedPage) {
+    setPage(allData.length / resultsPerPage)
+  }
+
+  var Options = []
+  Options.push(<option value={50}>50</option>)
+  for (var j = 100; j <= allData.length; j += 50) {
+    Options.push(<option value={j}>{j}</option>)
+  }
+
   return (
     <div className="TopTableHolder">
       <Menu />
@@ -16,14 +29,21 @@ function DataSelect({ setCheckedState, checkedState }) {
 
       <Table
         data={allData}
-        currentPage={1}
-        amountPerPage={100}
+        currentPage={loadedPage}
+        amountPerPage={resultsPerPage}
         selectTable={true}
         setCheckedState={setCheckedState}
         checkedState={checkedState}
       />
 
-      <ResultsSelector />
+      <ResultsSelector
+        data={allData}
+        amount={resultsPerPage}
+        resultsPerPage={setResultsPerPage}
+        pageNumber={setPage}
+        currPage={loadedPage}
+        Options={Options}
+      />
     </div>
   )
 }

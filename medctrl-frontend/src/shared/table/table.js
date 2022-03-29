@@ -120,7 +120,7 @@ const CheckboxColumn = ({ value, onChange }) => {
 const BinboxColumn = ({ value, onChange, data, setData }) => {
   return (
     <td className="checkboxColumn">
-      <i class="bx bx-trash icons"></i>
+      <i className="bx bx-trash icons"></i>
     </td>
   )
 }
@@ -129,7 +129,7 @@ const BinboxColumn = ({ value, onChange, data, setData }) => {
 const InfoboxColumn = ({ value, onChange, data, setData }) => {
   return (
     <td className="checkboxColumn">
-      <i class="bx bx-info-circle icons" />
+      <i className="bx bx-info-circle icons" />
     </td>
   )
 }
