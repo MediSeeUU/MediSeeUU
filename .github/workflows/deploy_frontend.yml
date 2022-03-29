@@ -46,5 +46,5 @@ jobs:
 
       - name: Build and deploy frontend
         run: |
-          npm run build
+          CI='' npm run build
           cp -r build/* /var/www/medctrl
