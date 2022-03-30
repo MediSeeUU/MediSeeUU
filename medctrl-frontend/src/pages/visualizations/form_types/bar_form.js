@@ -64,6 +64,9 @@ class BarForm extends Component {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
+    if (name === "xAxis" || name === "yAxis") {
+      this.setState({categoriesSelected: []});
+    }
     this.setState({[name]: value}, () => {
       this.props.onChange([this.state, name]);
     });
