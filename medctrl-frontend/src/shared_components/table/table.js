@@ -1,6 +1,6 @@
 import React from 'react';
 import './table.css';
-import Menu from '../menu/menu';
+import Menu from '../menu/Menu';
 
 class Table extends React.Component {
   constructor(props) {

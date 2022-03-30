@@ -1,12 +1,12 @@
 .modal {
   position: absolute;
-  top: 220px;
-  left: 300px;
-  right: 300px;
-  bottom: 220px;
+  top: 20%;
+  bottom: 20%;
+  left: 15%;
+  right: 15%;
   background-color: rgb(17, 75, 95);
   border-radius: 10px;
-  overflow-y:auto;
+  overflow: hidden;
 }
 
 .options {
@@ -19,41 +19,48 @@
 }
 
 .mb {
-  position: absolute;
   padding: 10px;
   margin: 20px;
-  border-radius: 2px;
   cursor: pointer;
-}
-
-.close {
-  right: 0;
-  top: 0;
-  font-size: 50px;
-  color: white;
-}
-
-.close:hover {
-  color: rgb(154, 113, 151);
-}
-
-.clear {
-  left: 0;
-  top: 0;
-  background-color: white;
+  float: right;
   font-weight: bold;
+}
+
+.close-clean {
+  background-color: white;
 }
 
 .apply {
-  left: 100px;
-  top: 0;
   background-color: rgb(154, 113, 151);
   color: white;
+}
+
+.add {
+  color:rgb(154, 113, 151);
   font-weight: bold;
-  border-radius: 3px;
+  font-size: 20px;
+  padding-right: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.add:hover {
+  filter: brightness(150%);
+}
+
+.add-icon {
+  font-size: 30px;
+  position:absolute;
+  padding-left: 10px;
 }
 
 h1 {
-  text-align: center;
   color: rgb(214, 203, 180);
+  text-align: center;
+}
+
+.filters {
+  overflow-y: auto;
+  height: calc(100% - 170px);
 }
