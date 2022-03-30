@@ -1,4 +1,7 @@
 from django.db import models
+from api.models.atc_code import AtcCode
+from api.models.legal_basis import LegalBasis
+from api.models.legal_scope import LegalScope
 
 class Medicine(models.Model):
     eu_nr = models.IntegerField(primary_key=True)

@@ -1,4 +1,5 @@
 from django.db import models
+from api.models.medicine import Medicine
 
 class Procedure(models.Model):
     eu_nr = models.OneToOneField(Medicine, models.DO_NOTHING, db_column='eu_nr', primary_key=True)
