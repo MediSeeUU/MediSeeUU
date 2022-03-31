@@ -1,67 +1,88 @@
-import React, {Component} from "react";
+import React from 'react'
 
+// a component for showing and selecting categories for a variable
 class CategoryOptions extends React.Component {
   constructor(props) {
-		super(props);
-    this.state = {categoriesSelected: []}
-		this.handleCategorySelection = this.handleCategorySelection.bind(this);
-	}
+    // Receives a key, a list of categories of the selected variable and
+    // a function to send the state back to the form.
+    super(props)
 
-	  // updating what categories have been selected,
-  // then passes it to the general form
+    // the state contains a list with the names of the selected categories
+    this.state = { categoriesSelected: [] }
+
+    // event handlers
+    this.handleCategorySelection = this.handleCategorySelection.bind(this)
+  }
+
+  // Updating what categories have been selected,
+  // then passes it to the general form.
   handleCategorySelection(event) {
-    const target = event.target;
-    const value = target.checked;
-    const name = target.name;
+    const target = event.target
+    const value = target.checked
+    const name = target.name
 
-    // if the category has been selected,
-    // add it to the list of selected categories
+    // If the category has been selected,
+    // add it to the list of selected categories.
+    // The event is only triggered when the value changes,
+    // so we know that it was previously not on the list
     if (value) {
-      this.setState(state => ({
-        categoriesSelected: [...state.categoriesSelected, name]}),
-         () => this.props.onChange(this.state.categoriesSelected));
-    }
-    else {
-      // remove if the category was previously on the list,
+      this.setState(
+        (state) => ({
+          categoriesSelected: [...state.categoriesSelected, name],
+        }),
+        () => this.props.onChange(this.state.categoriesSelected)
+      )
+    } else {
+      // remove if the category was previously on the list
       if (this.state.categoriesSelected.includes(name)) {
-        this.setState(state => ({
-          categoriesSelected: state.categoriesSelected.filter(el => 
-            el !== name
-          )
-        }), () => this.props.onChange(this.state.categoriesSelected));
+        this.setState(
+          (state) => ({
+            categoriesSelected: state.categoriesSelected.filter(
+              (el) => el !== name
+            ),
+          }),
+          () => this.props.onChange(this.state.categoriesSelected)
+        )
       }
     }
   }
 
   // create the list of category checkboxes
   renderCategoryOptions() {
-    const categories = this.props.categories;
-    return (categories.map(category => {
+    const categories = this.props.categories
+    return categories.map((category) => {
       return (
         <React.Fragment key={category}>
           <label>
             show {category}
-            <input type="checkbox"
-                   name={category}
-                   checked={this.state.categoriesSelected.includes(category)}
-                   onChange={this.handleCategorySelection} />
+            <input
+              type="checkbox"
+              name={category}
+              checked={this.state.categoriesSelected.includes(category)}
+              onChange={this.handleCategorySelection}
+            />
           </label>
           <br />
-        </React.Fragment>       
-      );
-    }));
+        </React.Fragment>
+      )
+    })
   }
 
-	render() {
-		const categories = this.renderCategoryOptions();
-		return (
-			<div style={{backgroundColor: "whitesmoke", 
-                     height: "100px", 
-                     overflowY: "scroll"}}>
-          {categories}
+  // renders checkboxes for each category of the given variable
+  render() {
+    const categories = this.renderCategoryOptions()
+    return (
+      <div
+        style={{
+          backgroundColor: 'whitesmoke',
+          height: '100px',
+          overflowY: 'scroll',
+        }}
+      >
+        {categories}
       </div>
-		);
-	}
-} 
+    )
+  }
+}
 
 export default CategoryOptions

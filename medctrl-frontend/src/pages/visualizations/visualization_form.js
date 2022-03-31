@@ -8,9 +8,9 @@ class VisualizationForm extends Component {
   constructor(props) {
     super(props);
 
-    // initializing the state, options are off to keep the start quick
-    // the chartSpecificOptionsName is used for determining the key of 
-    // the actual chart, to notigy the chart that it has been updated
+    // Initializing the state, options are off to keep the start quick.
+    // The chartSpecificOptionsName is used for determining the key of 
+    // the actual chart, to notify the chart that it has been updated.
     this.state = {chart_type: "bar", 
                   legend_on: false,
                   labels_on: false,
@@ -31,24 +31,19 @@ class VisualizationForm extends Component {
     this.setState({[name]: value});
   }
 
-  // event handler for updating the state
-  // after the chart specific options were altered
-  // also updates which value was last updated
+  // Event handler for updating the state,
+  // after the chart specific options were altered.
+  // Also updates which value was last updated.
   handleChartSpecificChange(options) {
-    console.log("here");
     this.setState({chartSpecificOptions: options[0], 
-                   chartSpecificOptionsName: options[1]}, () => {
-                     console.log(this.state.chartSpecificOptions);
-                     console.log(options[0].categoriesSelected);
-                   });
+                   chartSpecificOptionsName: options[1]});
   }
 
   // event handler for the submission after all selections
   handleSubmit(event) {
     // makes sure that the page does not reload and thus resets the data
     event.preventDefault();
-    // function passed down as a prop by SingleVisualization
-    console.log(this.state.chartSpecificOptions);
+    // event handler passed down as a prop by SingleVisualization
     this.props.onFormChange(this.state);
   }
 

@@ -1,72 +1,66 @@
-  export function PollChosenVariable(x_axis, y_axis, categories_y, data) {
-		let dict = {};
-		let uniqueCategories = [];
+/*
+  Expects data to be an array of ob objects, 
+	where each object has a value for each variable.
+	It builds a dictionary where the keys are the categories of the x variable,
+	the values themselves are also dictionaries.
+	In this dictionary the keys are categories of the y variable,
+	the values are how often this combination of categories happened.
+*/
+export function PollChosenVariable(
+  x_axis,
+  y_axis,
+  categories_x,
+  categories_y,
+  data
+) {
+  let dict = {}
 
-		data.forEach((element) => {
-			if (uniqueCategories.includes(element[x_axis])) {
-				if (categories_y.includes(element[y_axis])) {
-					if (dict[element[x_axis]][element[y_axis]] === undefined) {
-						dict[element[x_axis]][element[y_axis]] = 1;
-					}
-					else {
-						dict[element[x_axis]][element[y_axis]]+= 1;
-					}	
-				}
-			}
-			else {				
-				if (categories_y.includes(element[y_axis])) {
-					dict[element[x_axis]] = {};
-					dict[element[x_axis]][element[y_axis]] = 1;
-					uniqueCategories = [...uniqueCategories, element[x_axis]];
-				}							
-			}
-		})
+  // adding a key for each category
+  categories_x.forEach((category) => {
+    dict[category] = {}
+  })
 
-		return [dict, uniqueCategories.sort()];
-	}
+  // going through all data entries
+  data.forEach((element) => {
+    // only if the value of the y variable is one of the selecte categories
+    if (categories_y.includes(element[y_axis])) {
+      if (dict[element[x_axis]][element[y_axis]] === undefined) {
+        dict[element[x_axis]][element[y_axis]] = 1
+      } else {
+        dict[element[x_axis]][element[y_axis]] += 1
+      }
+    }
+  })
 
-	export function CreateSelectedSeries(dict, categories_y, categories_x) {
-		let series = {}
-		let keys = categories_x.sort();
+  return dict
+}
 
-		console.log(keys);
-		keys.forEach((k) => {
-			for (let category in categories_y) {
-				category = categories_y[category];
-				if (dict[k] === undefined) {
-					if (series[category] === undefined) {
-						series[category] = [];
-					}
-					else {
-            series[category].push(0);
-					}
-					
-				}
-				else {
-          if (series[category] === undefined) {
-					  series[category] = [];
-					  if ((category in dict[k])) {
-						
-						  series[category].push(dict[k][category]);
-					  }		
-					  else {
-						  series[category].push(0);
-				  	}			
-				  }
-				  else {
-					  if (!(dict[k][category] === undefined)) {
-						  series[category].push(dict[k][category]);
-					  }			
-					  else {
-						  series[category].push(0);
-					  }		
-				  }			
-				}
-				
-			}
-		})
+/*
+  Creates an array for each selected category of the y variable.
+  If a y category was never combined with an x category,
+	a 0 will be added, otherwise the amount of occurrences.
+*/
+export function CreateSelectedSeries(dict, categories_y, categories_x) {
+  let series = {}
+  categories_y.forEach((category) => {
+    series[category] = []
+  })
 
-		return series;
-	}
+	/* 
+	  Sorts the keys, so the order corresponds with the categories,
+	  given to the BarChart object.
+	*/
+  let keys = categories_x.sort()
 
+  keys.forEach((k) => {
+    categories_y.forEach((category) => {
+      if (dict[k][category] === undefined) {
+        series[category].push(0)
+      } else {
+        series[category].push(dict[k][category])
+      }
+    })
+  })
 
+  return series
+}
