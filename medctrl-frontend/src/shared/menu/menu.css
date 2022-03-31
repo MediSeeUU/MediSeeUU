@@ -1,7 +1,7 @@
 .modal {
   position: absolute;
-  top: 20%;
-  bottom: 20%;
+  top: 19%;
+  bottom: 19%;
   left: 15%;
   right: 15%;
   background-color: rgb(17, 75, 95);
@@ -55,7 +55,7 @@
   padding-left: 10px;
 }
 
-h1 {
+.filter-header {
   color: rgb(214, 203, 180);
   text-align: center;
 }

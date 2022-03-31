@@ -135,7 +135,7 @@ class Menu extends React.Component {
           ariaHideApp={false}
           contentLabel="Menu"
         >
-          <h1>Filter Menu</h1>
+          <h1 className="filter-header">Filter Menu</h1>
           <div className="menu-button add" onClick={this.addFilter}>
             Add Filter
             <i className="bx bxs-plus-square add-icon"></i>
