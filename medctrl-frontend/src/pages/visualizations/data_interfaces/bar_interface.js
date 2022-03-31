@@ -1,3 +1,32 @@
+
+export function GenerateBarSeries(
+  options,
+  allCategories,
+  data
+) {
+  console.log(options)
+  console.log(allCategories)
+  let xAxis = options.chartSpecificOptions.xAxis
+  let yAxis = options.chartSpecificOptions.yAxis
+  let categoriesSelectedY = options.chartSpecificOptions.categoriesSelected
+
+  let dict = PollChosenVariable(
+    xAxis,
+    yAxis,
+    allCategories[xAxis],
+    categoriesSelectedY,
+    data
+  )
+
+  let series = CreateSelectedSeries(
+    dict,
+    categoriesSelectedY,
+    allCategories[xAxis]
+  )
+  return series
+}
+
+
 /*
   Expects data to be an array of ob objects, 
 	where each object has a value for each variable.

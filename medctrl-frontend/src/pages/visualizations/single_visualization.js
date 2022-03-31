@@ -14,6 +14,7 @@ import DonutChart from './visualization_types/donut_chart'
 import BoxPlot from './visualization_types/box_plot'
 
 import {
+  GenerateBarSeries,
   PollChosenVariable,
   CreateSelectedSeries,
 } from './data_interfaces/bar_interface'
@@ -29,7 +30,7 @@ class SingleVisualization extends Component {
       Right now the filter for the visualizations has not been implemented,
       so this should not change.
     */
-     let uniqueCategories = this.getUniqueCategories(this.props.data)
+    let uniqueCategories = this.getUniqueCategories(this.props.data)
 
     // initial data for the initial chart
     let dict = PollChosenVariable(
@@ -39,7 +40,12 @@ class SingleVisualization extends Component {
       ['United Kingdom'],
       this.props.data
     )
-    let series = CreateSelectedSeries(dict, ["United Kingdom"], uniqueCategories["DecisionYear"])
+
+    let series = CreateSelectedSeries(
+      dict,
+      ['United Kingdom'],
+      uniqueCategories['DecisionYear']
+    )
 
     // state initialization
     this.state = {
@@ -50,7 +56,7 @@ class SingleVisualization extends Component {
       data: this.props.data,
       allUniqueCategories: uniqueCategories,
       series: series,
-      changeName: '',
+      changeName: ''
     }
 
     // event handlers
@@ -60,23 +66,7 @@ class SingleVisualization extends Component {
 
   // event handler for the form data
   handleChange(event) {
-    let xAxis = event.chartSpecificOptions.xAxis
-    let yAxis = event.chartSpecificOptions.yAxis
-    let categoriesSelectedY = event.chartSpecificOptions.categoriesSelected
-
-    let dict = PollChosenVariable(
-      xAxis,
-      yAxis,
-      this.state.allUniqueCategories[xAxis],
-      categoriesSelectedY,
-      this.props.data
-    )
-
-    let series = CreateSelectedSeries(
-      dict,
-      categoriesSelectedY,
-      this.state.allUniqueCategories[xAxis]
-    )
+    const series = this.generateSeries(event.chart_type, event)
 
     this.setState({
       chart_type: event.chart_type,
@@ -92,7 +82,7 @@ class SingleVisualization extends Component {
       we may want to do this purely using the states,
       currently not sure if that would be more efficient
     */
-     ApexCharts.getChartByID(this.props.number).updateOptions({
+    ApexCharts.getChartByID(this.props.number).updateOptions({
       dataLabels: { enabled: event.labels_on },
       legend: { show: event.legend_on },
     })
@@ -121,7 +111,7 @@ class SingleVisualization extends Component {
           does not currently export it using the title of the visualization,
           as the title is not currently set as an option for the user to enter
         */
-          exp.triggerDownload(
+        exp.triggerDownload(
           dataURI300,
           exp.w.config.chart.toolbar.export.png.filename,
           '.png'
@@ -132,12 +122,11 @@ class SingleVisualization extends Component {
   }
 
   // creating a chart based on the chosen chart type
-  chooseChart(chart_type) {
+  createChart(chart_type) {
     const legend_on = this.state.legend_on
     const labels_on = this.state.labels_on
     const number = this.props.number
 
-    console.log(this.state.series);
     switch (chart_type) {
       case 'bar':
         return (
@@ -174,6 +163,26 @@ class SingleVisualization extends Component {
         return (
           <BarChart legend={legend_on} labels={labels_on} number={number} />
         )
+    }
+  }
+
+  /*
+    Returns series data depending on the chart type,
+    as each chart type expects data in a certain way.
+    For example, a pie chart only expect one variable,
+    whereas a bar chart expect two.
+  */
+  generateSeries(chartType, options) {
+    switch (chartType) {
+      case "bar":
+        return GenerateBarSeries(
+          options,
+          this.state.allUniqueCategories,
+          this.props.data
+        )
+
+      default:
+        return GenerateBarSeries(options)
     }
   }
 
@@ -225,7 +234,7 @@ class SingleVisualization extends Component {
             </Col>
             <Col sm={8}>
               <Row>hello</Row>
-              <Row>{this.chooseChart(this.state.chart_type)}</Row>
+              <Row>{this.createChart(this.state.chart_type)}</Row>
             </Col>
           </Row>
           <Row>
