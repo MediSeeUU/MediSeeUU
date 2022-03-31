@@ -22,5 +22,4 @@ class Medicine(models.Model):
     ema_url = models.CharField(max_length=320, blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = "medicine"

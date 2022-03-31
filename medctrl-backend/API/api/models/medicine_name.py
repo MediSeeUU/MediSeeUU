@@ -15,6 +15,5 @@ class MedicineName(models.Model):
     brand = models.TextField(blank=True, null=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
         db_table = "medicine_name"
         unique_together = (("eu_nr", "region", "start_date", "mah"),)

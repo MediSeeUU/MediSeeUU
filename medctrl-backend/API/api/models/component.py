@@ -11,6 +11,5 @@ class Component(models.Model):
     )  # This field type is a guess.
 
     class Meta:
-        managed = False
         db_table = "component"
         unique_together = (("eu_nr", "substance"),)
