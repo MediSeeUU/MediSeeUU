@@ -41,6 +41,9 @@ class BarChart extends Component {
         legend: {
           show: this.props.legend,
         },
+        noData: {
+          text: "pick your preferred options to create a visualization"
+        }
       },
       series: this.props.series,
     }

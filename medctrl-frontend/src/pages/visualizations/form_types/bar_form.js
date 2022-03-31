@@ -51,7 +51,7 @@ class BarForm extends Component {
       stacked: false,
       stackType: false,
       horizontal: false,
-      categoriesSelected: [],
+      categoriesSelected: []
     }
 
     // event handlers

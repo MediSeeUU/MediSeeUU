@@ -13,11 +13,7 @@ import LineGraph from './visualization_types/line_graph'
 import DonutChart from './visualization_types/donut_chart'
 import BoxPlot from './visualization_types/box_plot'
 
-import {
-  GenerateBarSeries,
-  PollChosenVariable,
-  CreateSelectedSeries,
-} from './data_interfaces/bar_interface'
+import GenerateBarSeries from './data_interfaces/bar_interface'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
@@ -29,33 +25,30 @@ class SingleVisualization extends Component {
       Gets the categories of all the variables.
       Right now the filter for the visualizations has not been implemented,
       so this should not change.
+      Keep in mind that the categories for all variables are sorted,
+      this is important for interfacing with the ApexCharts library!
     */
     let uniqueCategories = this.getUniqueCategories(this.props.data)
 
-    // initial data for the initial chart
-    let dict = PollChosenVariable(
-      'DecisionYear',
-      'Rapporteur',
-      uniqueCategories['DecisionYear'],
-      ['United Kingdom'],
-      this.props.data
-    )
-
-    let series = CreateSelectedSeries(
-      dict,
-      ['United Kingdom'],
-      uniqueCategories['DecisionYear']
-    )
+    // generating the initial series data
+    let series = GenerateBarSeries({
+      chartSpecificOptions: {
+        xAxis: "DecisionYear",
+        yAxis: "Rapporteur",
+        categoriesSelected: ["United Kingdom"]
+      }
+    }, uniqueCategories, this.props.data)
 
     // state initialization
     this.state = {
       chart_type: 'bar',
-      chartSpecificOptions: { xAxis: 'DecisionYear' },
+      chartSpecificOptions: { 
+        xAxis: 'DecisionYear'
+      },
       legend_on: false,
       labels_on: false,
       data: this.props.data,
       allUniqueCategories: uniqueCategories,
-      series: series,
       changeName: ''
     }
 
@@ -108,8 +101,8 @@ class SingleVisualization extends Component {
         )
 
         /*
-          does not currently export it using the title of the visualization,
-          as the title is not currently set as an option for the user to enter
+          Does not currently export it using the title of the visualization,
+          as the title is not currently set as an option for the user to enter.
         */
         exp.triggerDownload(
           dataURI300,
@@ -178,7 +171,7 @@ class SingleVisualization extends Component {
         return GenerateBarSeries(
           options,
           this.state.allUniqueCategories,
-          this.props.data
+          this.state.data
         )
 
       default:
@@ -204,6 +197,16 @@ class SingleVisualization extends Component {
       }
     })
 
+    // sorting the array
+    for (let categories in dict) {
+      dict[categories] = dict[categories].sort(function(a, b) {
+        return String(a).localeCompare(String(b), "en", {
+          numeric: true,
+          sensitivity: "base"
+        })
+      })
+    }
+    
     return dict
   }
 

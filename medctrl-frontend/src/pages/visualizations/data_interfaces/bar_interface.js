@@ -1,11 +1,13 @@
-
-export function GenerateBarSeries(
+/* 
+  generates series for a bar chart,
+  keep in mind that the index of a serie corresponds with the index of the 
+  'xaxis: {categories}' option!  
+*/
+export default function GenerateBarSeries(
   options,
   allCategories,
   data
 ) {
-  console.log(options)
-  console.log(allCategories)
   let xAxis = options.chartSpecificOptions.xAxis
   let yAxis = options.chartSpecificOptions.yAxis
   let categoriesSelectedY = options.chartSpecificOptions.categoriesSelected
@@ -23,7 +25,10 @@ export function GenerateBarSeries(
     categoriesSelectedY,
     allCategories[xAxis]
   )
-  return series
+
+  let seriesFormatted = ToSeriesFormat(series)
+
+  return seriesFormatted
 }
 
 
@@ -35,7 +40,7 @@ export function GenerateBarSeries(
 	In this dictionary the keys are categories of the y variable,
 	the values are how often this combination of categories happened.
 */
-export function PollChosenVariable(
+function PollChosenVariable(
   x_axis,
   y_axis,
   categories_x,
@@ -69,19 +74,13 @@ export function PollChosenVariable(
   If a y category was never combined with an x category,
 	a 0 will be added, otherwise the amount of occurrences.
 */
-export function CreateSelectedSeries(dict, categories_y, categories_x) {
+function CreateSelectedSeries(dict, categories_y, categories_x) {
   let series = {}
   categories_y.forEach((category) => {
     series[category] = []
   })
 
-	/* 
-	  Sorts the keys, so the order corresponds with the categories,
-	  given to the BarChart object.
-	*/
-  let keys = categories_x.sort()
-
-  keys.forEach((k) => {
+  categories_x.forEach((k) => {
     categories_y.forEach((category) => {
       if (dict[k][category] === undefined) {
         series[category].push(0)
@@ -91,5 +90,15 @@ export function CreateSelectedSeries(dict, categories_y, categories_x) {
     })
   })
 
+  return series
+}
+
+// turning a dict into the data format accepted by ApexChart
+// the entry key becomes the name, the entry value becomes the data
+function ToSeriesFormat(dict) {
+  let series = []
+  for (let key in dict) {
+    series.push({ name: key, data: dict[key] })
+  }
   return series
 }
