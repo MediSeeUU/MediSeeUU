@@ -1,0 +1,7 @@
+[tool.black]
+extend-exclude = """
+(
+        api/migrations/
+    |   __pycache__
+)
+"""

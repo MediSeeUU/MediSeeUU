@@ -1,0 +1,163 @@
+/* variables*/
+
+:root {
+  --main-nav: var(--blue-main);
+  --alt-nav: var(--blue-alt);
+  --light-nav: var(--blue-light);
+
+  --main-toggle: var(--aqua-main);
+  --alt-toggle: var(--aqua-alt);
+
+  --tooltip-nav: var(--white-tooltip);
+
+  --text-nav: var(--white-text);
+  --text-alt-nav: var(--grey-text);
+}
+
+/* overall */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* for the navigation bar itself */
+
+.side-nav {
+  position: fixed;
+  top: 75px;
+  height: calc(100% - 75px);
+  background: var(--main-nav);
+  padding: 6px 14px;
+  transition: all 0.3s;
+}
+
+.side-nav.open-nav {
+  width: 200px;
+}
+
+.side-nav.closed-nav {
+  width: 78px;
+}
+
+/* for the individual items in the navigation bar */
+
+.nav-item {
+  position: relative;
+  height: 50px;
+  margin: 8px 0;
+  cursor: pointer;
+  border-radius: 12px;
+  background: var(--alt-nav);
+  transition: 0.2s;
+}
+
+.nav-item:hover {
+  background: var(--light-nav);
+}
+
+.nav-item.toggle {
+  background-color: var(--main-toggle);
+}
+
+.nav-item.toggle:hover {
+  background-color: var(--alt-toggle);
+}
+
+/* for the content of the individual items in the navigation bar */
+
+.nav-item-content {
+  display: flex;
+  align-items: center;
+  transition: all 0.4s;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-item-content i {
+  min-width: 50px;
+  color: var(--text-nav);
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  text-align: center;
+}
+
+/*  show the names corresponding to the different individual items in 
+    the navigation bar only when the navigation bar in expanded
+*/
+
+.nav-item-content .nav-item-name {
+  color: var(--text-nav);
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  transition: 0.4s;
+}
+
+.side-nav.closed-nav .nav-item-content .nav-item-name {
+  opacity: 0;
+}
+
+.side-nav.open-nav .nav-item-content .nav-item-name {
+  opacity: 1;
+}
+
+/*  show the tooltip boxes corresponding to the different individual items in
+    the navigation bar only when the navigation bar in collapsed 
+*/
+
+.tooltip {
+  position: absolute;
+  left: calc(100% + 20px);
+  top: 7.5px;
+  opacity: 0;
+
+  background: var(--tooltip-nav);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+
+  border-radius: 4px;
+  padding: 6px 12px;
+
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 400;
+
+  transition: 0.08s;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.side-nav.closed-nav .nav-item:hover .tooltip {
+  opacity: 1;
+}
+
+/*  position the lowest navigation item at the bottom of the navigation bar */
+
+.lowest {
+  bottom: 8px;
+  position: absolute;
+  width: calc(100% - 28px);
+}
+
+/* account specific styling */
+
+.nav-item.account {
+  bottom: 75px;
+  position: absolute;
+  width: calc(100% - 28px);
+}
+
+.side-nav.open-nav .nav-item.account {
+  height: 75px;
+  padding: 12.5px 0px;
+}
+
+.nav-item-name.user-alt {
+  font-size: 14px;
+  color: var(--text-alt-nav);
+}

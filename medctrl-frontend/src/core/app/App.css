@@ -1,0 +1,13 @@
+.content {
+  padding-left: 78px;
+  padding-top: 75px;
+}
+
+.page__wrapper {
+  max-width: 1400px;
+  min-width: 950px;
+}
+
+#content__wrapper {
+  min-height: calc(100vh - 75px - 170px);
+}

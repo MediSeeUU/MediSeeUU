@@ -1,0 +1,48 @@
+/* change colors to variables */
+table {
+  display: block;
+  overflow: auto;
+  border-spacing: 0;
+  width: 1400px;
+  height: 441px;
+}
+
+.tableHeader {
+  display: block;
+  position: sticky;
+  top: 0;
+  border: 0px;
+  overflow-x: visible;
+  color: var(--white-text);
+}
+
+.tableBody {
+  display: block;
+  overflow: visible;
+}
+
+.tableHeader tr {
+  background-color: var(--blue-main);
+}
+
+.tableBody tr:nth-child(even) {
+  background-color: #bac4c9;
+}
+
+.tableBody tr:nth-child(odd) {
+  background-color: #d6d6d7;
+}
+
+th,
+td {
+  padding: 10px 0;
+  text-align: center;
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.checkboxColumn {
+  min-width: 50px;
+  max-width: 50px;
+  border-right: 1px solid var(--blue-alt);
+}
