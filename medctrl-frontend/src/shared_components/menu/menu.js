@@ -7,7 +7,8 @@ import './Menu.css';
 class Menu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {showModal: false, filters: [{selected: null, input: [""]}]}
+    this.filterObject = [{selected: "", input: [""]}]
+    this.state = {showModal: false, filters: this.filterObject}
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.addFilter = this.addFilter.bind(this);
@@ -26,7 +27,7 @@ class Menu extends React.Component {
   addFilter() {
     this.setState(
       prevState => ({
-        filters: prevState.filters.concat([{selected: null, input: [""]}])
+        filters: prevState.filters.concat(this.filterObject)
       })
     );
   }
@@ -95,7 +96,7 @@ class Menu extends React.Component {
   }
 
   applyFilter(item, data) {
-    if (item.selected === null) {
+    if (!item.selected) {
       return data
     }
     return data.filter(
@@ -107,7 +108,7 @@ class Menu extends React.Component {
 
   clearFilters() {
     this.setState({
-      filters: [{selected: null, input: [""]}]
+      filters: this.filterObject
     });
     this.props.updateTable(this.props.cachedData);
     this.handleCloseModal();
