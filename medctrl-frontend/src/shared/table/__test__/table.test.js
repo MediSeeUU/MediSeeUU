@@ -12,19 +12,27 @@ test('renders without crashing', () => {
   )
 })
 
-test("expected amount of rows in the table", () => {
-  const view = render(<Table data={DummyData} currentPage={1} amountPerPage={DummyData.length + 10} />);
-  const table = view.getByRole('table');
-  const rows = within(table).getAllByRole('row');
-  expect(rows).toHaveLength(DummyData.length + 1);
+test('expected amount of rows in the table', () => {
+  const view = render(
+    <Table
+      data={DummyData}
+      currentPage={1}
+      amountPerPage={DummyData.length + 10}
+    />
+  )
+  const table = view.getByRole('table')
+  const rows = within(table).getAllByRole('row')
+  expect(rows).toHaveLength(DummyData.length + 1)
 })
 
-test("expected amount of headers in the table", () => {
-  const view = render(<Table data={DummyData} currentPage={1} amountPerPage={10} />);
-  const table = view.getByRole('table');
-  const rows = within(table).getAllByRole('row');
-  const headers = within(rows[0]).queryAllByRole('columnheader');
-  expect(headers).toHaveLength(Object.keys(DummyData[0]).length);
+test('expected amount of headers in the table', () => {
+  const view = render(
+    <Table data={DummyData} currentPage={1} amountPerPage={10} />
+  )
+  const table = view.getByRole('table')
+  const rows = within(table).getAllByRole('row')
+  const headers = within(rows[0]).queryAllByRole('columnheader')
+  expect(headers).toHaveLength(Object.keys(DummyData[0]).length)
 })
 
 test('checkboxes displayed', () => {

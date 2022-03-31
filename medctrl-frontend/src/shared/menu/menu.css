@@ -36,7 +36,7 @@
 }
 
 .add {
-  color:rgb(154, 113, 151);
+  color: rgb(154, 113, 151);
   font-weight: bold;
   font-size: 20px;
   padding-right: 50px;
@@ -51,7 +51,7 @@
 
 .add-icon {
   font-size: 30px;
-  position:absolute;
+  position: absolute;
   padding-left: 10px;
 }
 

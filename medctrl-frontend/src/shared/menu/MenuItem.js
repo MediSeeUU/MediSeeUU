@@ -1,8 +1,8 @@
-import { v4 as uuidv4 } from "uuid";
-import "./MenuItem.css";
+import { v4 as uuidv4 } from 'uuid'
+import './MenuItem.css'
 
 function filtersToHTML(props) {
-  const fields = [];
+  const fields = []
   for (let i = 0; i < props.item.input.length; i++) {
     fields.push(
       <div key={uuidv4()}>
@@ -19,9 +19,9 @@ function filtersToHTML(props) {
           onClick={() => props.dbox(props.id, i)}
         ></i>
       </div>
-    );
+    )
   }
-  return fields;
+  return fields
 }
 
 function displayItem(props) {
@@ -46,7 +46,7 @@ function displayItem(props) {
         + Add
       </label>
     </div>
-  );
+  )
 }
 
-export default displayItem;
+export default displayItem
