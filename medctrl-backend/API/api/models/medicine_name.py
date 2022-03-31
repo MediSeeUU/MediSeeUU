@@ -12,7 +12,7 @@ class MedicineName(models.Model):
     mah = models.ForeignKey(MarketingAuthorisationHolder, models.DO_NOTHING)
     name = models.CharField(max_length=320)
     end_date = models.DateField(blank=True, null=True)
-    brand = models.TextField(blank=True, null=True)  # This field type is a guess.
+    brand = models.TextField(blank=True, null=True)
 
     class Meta:
         db_table = "medicine_name"

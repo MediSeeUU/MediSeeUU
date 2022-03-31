@@ -8,7 +8,7 @@ class Component(models.Model):
     substance = models.ForeignKey("Substance", models.DO_NOTHING)
     substance_new = models.TextField(
         blank=True, null=True
-    )  # This field type is a guess.
+    ) 
 
     class Meta:
         db_table = "component"
