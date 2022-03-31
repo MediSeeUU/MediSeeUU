@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 
-.options {
+.open-menu {
   background-color: rgb(154, 113, 151);
   color: white;
   padding: 10px;
@@ -18,7 +18,7 @@
   margin: 5px;
 }
 
-.mb {
+.menu-button {
   padding: 10px;
   margin: 20px;
   cursor: pointer;
@@ -26,7 +26,7 @@
   font-weight: bold;
 }
 
-.close-clean {
+.cl {
   background-color: white;
 }
 
@@ -62,5 +62,5 @@ h1 {
 
 .filters {
   overflow-y: auto;
-  height: calc(100% - 170px);
+  height: calc(100% - 160px);
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, within } from '@testing-library/react'
 import Table from '../table'
-import DummyData from '../../../json/data.json' // we can replace this with a mock API?
+import DummyData from '../../../json/data.json'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')
@@ -12,26 +12,19 @@ test('renders without crashing', () => {
   )
 })
 
-test('at least one column in the table', () => {
-  const view = render(
-    <Table data={DummyData} currentPage={1} amountPerPage={10} />
-  )
-  const table = view.getByRole('table')
-  const heads = table.getElementsByTagName('thead')
-  expect(heads).toHaveLength(1)
-  const head = heads[0]
-  expect(head.childElementCount).toBeGreaterThan(0)
+test("expected amount of rows in the table", () => {
+  const view = render(<Table data={DummyData} currentPage={1} amountPerPage={DummyData.length + 10} />);
+  const table = view.getByRole('table');
+  const rows = within(table).getAllByRole('row');
+  expect(rows).toHaveLength(DummyData.length + 1);
 })
 
-test('at least one row in the table', () => {
-  const view = render(
-    <Table data={DummyData} currentPage={1} amountPerPage={10} />
-  )
-  const table = view.getByRole('table')
-  const bodies = table.getElementsByTagName('tbody')
-  expect(bodies).toHaveLength(1)
-  const body = bodies[0]
-  expect(body.childElementCount).toBeGreaterThan(0)
+test("expected amount of headers in the table", () => {
+  const view = render(<Table data={DummyData} currentPage={1} amountPerPage={10} />);
+  const table = view.getByRole('table');
+  const rows = within(table).getAllByRole('row');
+  const headers = within(rows[0]).queryAllByRole('columnheader');
+  expect(headers).toHaveLength(Object.keys(DummyData[0]).length);
 })
 
 test('checkboxes displayed', () => {

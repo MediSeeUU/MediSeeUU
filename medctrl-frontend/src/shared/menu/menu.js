@@ -2,7 +2,7 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import { v4 as uuidv4 } from 'uuid';
 import MenuItem from './MenuItem';
-import './Menu.css';
+import './menu.css';
 
 class Menu extends React.Component {
   constructor(props) {
@@ -118,10 +118,10 @@ class Menu extends React.Component {
     const list = this.props.cachedData.length > 0 && Object.keys(this.props.cachedData[0]).map(item => { return( <option key={item} value={item}>{item}</option> ) });
     return (
       <div>
-        <i className="bx bxs-filter-alt options" onClick={this.handleOpenModal} > Open Menu</i>
+        <i className="bx bxs-filter-alt open-menu" onClick={this.handleOpenModal} > Open Menu</i>
         <ReactModal className="modal" isOpen={this.state.showModal} ariaHideApp={false} contentLabel="Menu">
           <h1>Filter Menu</h1>
-          <div className="mb add" onClick={this.addFilter}>
+          <div className="menu-button add" onClick={this.addFilter}>
             Add Filter
             <i className="bx bxs-plus-square add-icon"></i>
           </div>
@@ -140,9 +140,9 @@ class Menu extends React.Component {
               />
             )}
           </div>
-          <button className="mb apply" onClick={this.applyFilters}>Apply</button>
-          <button className="mb close-clean" onClick={this.clearFilters}>Clear</button>
-          <button className="mb close-clean" onClick={this.handleCloseModal}>Close</button>
+          <button className="menu-button apply" onClick={this.applyFilters}>Apply</button>
+          <button className="menu-button cl" onClick={this.clearFilters}>Clear</button>
+          <button className="menu-button cl" onClick={this.handleCloseModal}>Close</button>
         </ReactModal>
       </div>
     );
