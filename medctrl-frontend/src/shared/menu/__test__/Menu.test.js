@@ -139,9 +139,7 @@ test('multiple values in filter applied correctly', () => {
 })
 
 test('saved filters in state', () => {
-  const { getByText, getByRole } = render(
-    <Menu cachedData={DummyData} />
-  )
+  const { getByText, getByRole } = render(<Menu cachedData={DummyData} />)
   fireEvent.click(getByText(/Open Menu/i))
   const select = getByRole('combobox')
   fireEvent.change(select, { target: { value: 'ApplicationNo' } })

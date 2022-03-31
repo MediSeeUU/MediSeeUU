@@ -10,7 +10,6 @@ import {
 } from '@testing-library/react'
 import Filter from '../filter'
 
-// Checks if the component renders correctly
 test('renders without crashing', () => {
   const root = document.createElement('div')
   ReactDOM.render(<Filter item={{ selected: null, input: [''] }} />, root)
