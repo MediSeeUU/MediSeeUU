@@ -4,8 +4,6 @@ import DummyData from '../../json/data.json'
 import { useState } from 'react'
 
 function DataPage() {
-  const [currentData, setData] = useState(DummyData)
-
   //State variable for the selection checkboxes, for more about states see: https://reactjs.org/docs/hooks-state.html
   const [checkedState, setCheckedState] = useState(
     new Array(DummyData.length).fill(false)
@@ -15,6 +13,10 @@ function DataPage() {
     return checkedState[index]
   })
 
+  // Give data a state
+  const [currentData, setData] = useState(DummyData)
+
+  // Updates the state with new data and with that updating the table
   const updateTable = (updatedData) => {
     setData(updatedData)
   }

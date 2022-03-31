@@ -1,14 +1,20 @@
 import React from 'react'
 import ReactModal from 'react-modal'
 import { v4 as uuidv4 } from 'uuid'
-import MenuItem from './MenuItem'
+import Filter from './filter'
 import './menu.css'
 
 class Menu extends React.Component {
   constructor(props) {
     super(props)
+
+    // Default filter object
     this.filterObject = [{ selected: '', input: [''] }]
+
+    // Set init state
     this.state = { showModal: false, filters: this.filterObject }
+
+    // Binding of functions
     this.handleOpenModal = this.handleOpenModal.bind(this)
     this.handleCloseModal = this.handleCloseModal.bind(this)
     this.addFilter = this.addFilter.bind(this)
@@ -16,20 +22,24 @@ class Menu extends React.Component {
     this.clearFilters = this.clearFilters.bind(this)
   }
 
+  // Opens menu
   handleOpenModal() {
     this.setState({ showModal: true })
   }
 
+  // Closes menu
   handleCloseModal() {
     this.setState({ showModal: false })
   }
 
+  // Adds new filter item to the menu
   addFilter() {
     this.setState((prevState) => ({
       filters: prevState.filters.concat(this.filterObject),
     }))
   }
 
+  // Standard function to update element with given id in filters
   updateElement(id, func) {
     var newFilter = this.state.filters.map((obj, oid) => {
       if (oid === id) {
@@ -42,6 +52,7 @@ class Menu extends React.Component {
     })
   }
 
+  // Adds a new filter input box to a filter item
   addFilterBox = (id) => {
     this.updateElement(id, (obj) => {
       let newInput = obj.input.concat([''])
@@ -49,6 +60,7 @@ class Menu extends React.Component {
     })
   }
 
+  // Deletes the specified input box of the filter item
   deleteFilterBox = (id, bid) => {
     this.updateElement(id, (obj) => {
       if (obj.input.length > 1) {
@@ -60,6 +72,7 @@ class Menu extends React.Component {
     })
   }
 
+  // Deletes specified filter item from the menu
   deleteFilter = (id) => {
     if (this.state.filters.length > 1) {
       let newFilter = [...this.state.filters]
@@ -70,12 +83,14 @@ class Menu extends React.Component {
     }
   }
 
+  // Updates the selected item of the specified filter item
   updateSelected = (id, newSelected) => {
     this.updateElement(id, (obj) => {
       return { ...obj, selected: newSelected }
     })
   }
 
+  // Updates the specified input box value of the specified filter item
   updateInput = (id, index, value) => {
     this.updateElement(id, (obj) => {
       let newInput = [...obj.input]
@@ -84,6 +99,7 @@ class Menu extends React.Component {
     })
   }
 
+  // Applies all filters to the cached data, updates the table with this updated data and closes menu
   applyFilters() {
     let filterData = this.props.cachedData
     this.state.filters.forEach((item) => {
@@ -93,6 +109,7 @@ class Menu extends React.Component {
     this.handleCloseModal()
   }
 
+  // Single filter that returns the updated data given the filter item
   applyFilter(item, data) {
     if (!item.selected) {
       return data
@@ -102,6 +119,7 @@ class Menu extends React.Component {
     })
   }
 
+  // Resets the filter menu, updates the table with the cached data and closes menu
   clearFilters() {
     this.setState({
       filters: this.filterObject,
@@ -111,6 +129,7 @@ class Menu extends React.Component {
   }
 
   render() {
+    // List of options which will be used in every select of a filter item
     const list =
       this.props.cachedData.length > 0 &&
       Object.keys(this.props.cachedData[0]).map((item) => {
@@ -120,6 +139,7 @@ class Menu extends React.Component {
           </option>
         )
       })
+    // Returns the menu in HTML
     return (
       <div>
         <i
@@ -142,7 +162,7 @@ class Menu extends React.Component {
           </div>
           <div className="filters">
             {this.state.filters.map((obj, oid) => (
-              <MenuItem
+              <Filter
                 key={uuidv4()}
                 id={oid}
                 item={obj}

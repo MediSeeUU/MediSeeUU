@@ -8,9 +8,10 @@ import {
   cleanup,
   within,
 } from '@testing-library/react'
-import MenuItem from '../MenuItem'
+import Filter from '../filter'
 
+// Checks if the component renders correctly
 test('renders without crashing', () => {
   const root = document.createElement('div')
-  ReactDOM.render(<MenuItem item={{ selected: null, input: [''] }} />, root)
+  ReactDOM.render(<Filter item={{ selected: null, input: [''] }} />, root)
 })

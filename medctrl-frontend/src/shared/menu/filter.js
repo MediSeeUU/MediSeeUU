@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
-import './MenuItem.css'
+import './filter.css'
 
+// Returns all filter input boxes in HTML
 function filtersToHTML(props) {
   const fields = []
   for (let i = 0; i < props.item.input.length; i++) {
@@ -24,6 +25,7 @@ function filtersToHTML(props) {
   return fields
 }
 
+// Returns the filter item in HTML
 function displayItem(props) {
   return (
     <div id={props.id} className="menu-item">
