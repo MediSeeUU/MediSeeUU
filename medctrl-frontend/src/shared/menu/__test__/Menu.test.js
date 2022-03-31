@@ -95,7 +95,7 @@ test('two filters applied correctly', () => {
   const update = (data) => {
     data.forEach((element) => {
       expect(element.ApplicationNo.toString()).toContain('7')
-      expect(element.DecisionYear.toString()).toBe('2001')
+      expect(element.DecisionYear.toString()).toContain('2001')
     })
   }
   const { getByText, getByRole, getAllByRole } = render(
@@ -114,4 +114,41 @@ test('two filters applied correctly', () => {
   fireEvent.change(secondText, { target: { value: '2001' } })
   fireEvent.focusOut(secondText)
   fireEvent.click(getByText(/Apply/i))
+})
+
+test('multiple values in filter applied correctly', () => {
+  const update = (data) => {
+    data.forEach((element) => {
+      expect(element.DecisionYear.toString()).toMatch(/(1997|2001)/i)
+    })
+  }
+  const { getByText, getByRole, getAllByRole } = render(
+    <Menu cachedData={DummyData} updateTable={update} />
+  )
+  fireEvent.click(getByText(/Open Menu/i))
+  const firstSelect = getByRole('combobox')
+  fireEvent.change(firstSelect, { target: { value: 'DecisionYear' } })
+  const firstText = getByRole('textbox')
+  fireEvent.change(firstText, { target: { value: '1997' } })
+  fireEvent.focusOut(firstText)
+  fireEvent.click(getByText('+ Add'))
+  const secondText = getAllByRole('textbox')[1]
+  fireEvent.change(secondText, { target: { value: '2001' } })
+  fireEvent.focusOut(secondText)
+  fireEvent.click(getByText(/Apply/i))
+})
+
+test('saved filters in state', () => {
+  const { getByText, getByRole } = render(
+    <Menu cachedData={DummyData} />
+  )
+  fireEvent.click(getByText(/Open Menu/i))
+  const select = getByRole('combobox')
+  fireEvent.change(select, { target: { value: 'ApplicationNo' } })
+  const text = getByRole('textbox')
+  fireEvent.change(text, { target: { value: '10' } })
+  fireEvent.click(getByText(/Close/i))
+  fireEvent.click(getByText(/Open Menu/i))
+  expect(select.value).toBe('ApplicationNo')
+  expect(text.value).toBe('10')
 })
