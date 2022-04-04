@@ -63,7 +63,12 @@ class VisualizationPage extends Component {
             data={JSON.parse(JSON.stringify(this.state.data))}
           />
           <br />
-          <button id="deleteButton" className="table-buttons button-remove hidden-illegal" value={element} onClick={this.handleRemoval}>
+          <button
+            id="deleteButton"
+            className="table-buttons button-remove hidden-illegal"
+            value={element}
+            onClick={this.handleRemoval}
+          >
             &#128465;
           </button>
         </Row>
@@ -75,7 +80,12 @@ class VisualizationPage extends Component {
         <Container>
           {displayItems}
           <Row>
-            <button className="table-buttons button-add" onClick={this.handleAddition}>Add visualization</button>
+            <button
+              className="table-buttons button-add"
+              onClick={this.handleAddition}
+            >
+              Add visualization
+            </button>
           </Row>
         </Container>
       </div>
