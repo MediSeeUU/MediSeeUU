@@ -23,6 +23,7 @@ class LegalBasisViewSet(
     """
     This viewset automatically provides `list` and `retrieve` actions for Legal basis.
     """
+
     queryset = LegalBasis.objects.all()
     serializer_class = LegalBasisSerializer
 
@@ -31,6 +32,7 @@ class LegalScopeViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list` and `retrieve` actions for Legal scope.
     """
+
     queryset = LegalScope.objects.all()
     serializer_class = LegalScopeSerializer
 
@@ -39,5 +41,6 @@ class AtcCodeViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list` and `retrieve` actions for atc code.
     """
+
     queryset = AtcCode.objects.all()
     serializer_class = AtcCodeSerializer
