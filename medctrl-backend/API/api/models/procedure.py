@@ -23,6 +23,5 @@ class Procedure(models.Model):
     annex_url = models.CharField(max_length=320, blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = "procedure"
         unique_together = (("eu_nr", "procedure_count"),)
