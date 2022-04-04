@@ -53,7 +53,10 @@ test('checkboxes displayed', () => {
 
 test('row selected, when checkbox clicked', () => {
   const data = DummyData
-  let checkedState = Object.assign({}, ...data.map((entry) => ({ [entry.EUNumber]: false })))
+  let checkedState = Object.assign(
+    {},
+    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+  )
   const setCheckedState = (newState) => {
     checkedState = newState
   }
@@ -77,7 +80,10 @@ test('row selected, when checkbox clicked', () => {
 
 test('all rows selected when select all pressed', () => {
   const data = DummyData
-  let checkedState = Object.assign({}, ...data.map((entry) => ({ [entry.EUNumber]: false })))
+  let checkedState = Object.assign(
+    {},
+    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+  )
   const setCheckedState = (newState) => {
     checkedState = newState
   }
@@ -97,13 +103,13 @@ test('all rows selected when select all pressed', () => {
   const input = checkboxes[0].getElementsByTagName('input')[0]
   fireEvent.click(input)
   let checkedCount = () => {
-    let count = 0;
+    let count = 0
     for (const prop in checkedState) {
       if (checkedState[prop]) {
-        count++;
+        count++
       }
     }
-    return count;
+    return count
   }
   expect(checkedCount()).toBe(data.length)
 })
