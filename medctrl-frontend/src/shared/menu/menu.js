@@ -22,7 +22,7 @@ class Menu extends React.Component {
     this.addFilter = this.addFilter.bind(this)
     this.addSort = this.addSort.bind(this)
     this.apply = this.apply.bind(this)
-    this.clear = this.clearFilters.bind(this)
+    this.clear = this.clear.bind(this)
   }
 
   // Opens menu
@@ -157,7 +157,6 @@ class Menu extends React.Component {
 
   // Deletes specified sort item from the menu
   deleteSort = (id) => {
-    console.log("JAAAA")
     if (this.state.sorters.length > 1) {
       let newSorters = [...this.state.sorters]
       newSorters.splice(id, 1)
