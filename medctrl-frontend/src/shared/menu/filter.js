@@ -30,7 +30,7 @@ function displayItem(props) {
   return (
     <div id={props.id} className="filter-item">
       <select
-        id="filter-select"
+        className="select"
         defaultValue={props.item.selected}
         onChange={(e) => props.sel(props.id, e.target.value)}
       >

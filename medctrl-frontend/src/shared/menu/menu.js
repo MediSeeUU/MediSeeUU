@@ -143,6 +143,7 @@ class Menu extends React.Component {
     this.setState({
       filters: this.filterObject,
       sorters: this.sortObject,
+      showAddSort: true,
     })
     this.props.updateTable(this.props.cachedData)
     this.handleCloseModal()
@@ -208,7 +209,7 @@ class Menu extends React.Component {
           contentLabel="Menu"
         >
           <div className="filter">
-            <h1 className="filter-header">Filter Menu</h1>
+            <h1 className="filter-header">Filters</h1>
             <div className="menu-button add" onClick={this.addFilter}>
               Add Filter
               <i className="bx bxs-plus-square add-icon"></i>

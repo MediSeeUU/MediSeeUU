@@ -22,7 +22,7 @@
   box-sizing: content-box;
 }
 
-#filter-select {
+.select {
   display: inline-block;
   width: 170px;
 }
