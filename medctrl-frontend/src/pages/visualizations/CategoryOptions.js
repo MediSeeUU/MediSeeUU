@@ -54,13 +54,13 @@ class CategoryOptions extends React.Component {
       return (
         <React.Fragment key={category}>
           <label>
-            show {category}
             <input
               type="checkbox"
               name={category}
               checked={this.state.categoriesSelected.includes(category)}
               onChange={this.handleCategorySelection}
             />
+            &nbsp;&nbsp;{category}
           </label>
           <br />
         </React.Fragment>
@@ -72,13 +72,7 @@ class CategoryOptions extends React.Component {
   render() {
     const categories = this.renderCategoryOptions()
     return (
-      <div
-        style={{
-          backgroundColor: 'whitesmoke',
-          height: '100px',
-          overflowY: 'scroll',
-        }}
-      >
+      <div className="country-options">
         {categories}
       </div>
     )

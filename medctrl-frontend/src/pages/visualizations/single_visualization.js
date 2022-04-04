@@ -243,34 +243,39 @@ class SingleVisualization extends Component {
 	*/
   render() {
     return (
-      <div>
+      <div className="table-holder">
         <Container>
           <Row>
-            <Col
-              sm={4}
-              style={{
-                backgroundColor: 'grey',
-                borderRadius: '15px',
-                borderRight: '2px solid black',
-              }}
-            >
+            <Col className="visualization-panel">
               <VisualizationForm
                 uniqueCategories={this.state.allUniqueCategories}
                 onFormChange={this.handleChange}
               />
             </Col>
             <Col sm={8}>
-              <Row>hello</Row>
+              <Row className="visualization-title"><h1>[Visualization name]</h1></Row>
               <Row>{this.createChart(this.state.chart_type)}</Row>
+              <Row>
+                <button className="table-buttons button-export" onClick={this.handleExport}>
+							    Export as PNG
+					      </button>
+						    <button className="table-buttons button-export" onClick={this.handleExport}>
+							    Export as SVG
+					      </button>
+						    <button className="table-buttons button-remove" onClick={this.removalHandlerIllegal}>
+							    &#128465;
+					      </button>
+              </Row>
             </Col>
-          </Row>
-          <Row>
-            <button onClick={this.handleExport}>Print to svg</button>
           </Row>
         </Container>
       </div>
     )
   }
+
+  removalHandlerIllegal(event) {
+		document.getElementById("deleteButton").click();
+	}
 }
 
 export default SingleVisualization

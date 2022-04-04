@@ -57,14 +57,14 @@ class VisualizationPage extends Component {
   render() {
     const displayItems = this.state.items.map((element) => {
       return (
-        <Row key={element} style={{ marginBottom: '50px' }}>
+        <Row key={element}>
           <SingleVisualization
             number={element}
             data={JSON.parse(JSON.stringify(this.state.data))}
           />
           <br />
-          <button value={element} onClick={this.handleRemoval}>
-            Remove visualization
+          <button id="deleteButton" className="table-buttons button-remove hidden-illegal" value={element} onClick={this.handleRemoval}>
+            &#128465;
           </button>
         </Row>
       )
@@ -75,7 +75,7 @@ class VisualizationPage extends Component {
         <Container>
           {displayItems}
           <Row>
-            <button onClick={this.handleAddition}>Add visualization</button>
+            <button className="table-buttons button-add" onClick={this.handleAddition}>Add visualization</button>
           </Row>
         </Container>
       </div>
