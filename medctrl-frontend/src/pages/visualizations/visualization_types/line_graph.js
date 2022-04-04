@@ -16,8 +16,9 @@ class LineGraph extends Component {
         xaxis: {
           categories: this.props.categories,
           labels: {
-            hideOverLappingLabels: true
-          }
+            hideOverlappingLabels: true
+          },
+          tickPlacement: "between"
         },
         dataLabels: {
           enabled: this.props.labels,
@@ -26,7 +27,7 @@ class LineGraph extends Component {
           show: this.props.legend,
         },
         noData: {
-          test: "pick your preferred options to create a visualization"
+          text: "pick your preferred options to create a visualization"
         }
       },
       series: this.props.series
@@ -35,6 +36,7 @@ class LineGraph extends Component {
 
   // render a line graph
   render() {
+    console.log(this.state.options.xaxis.categories)
     return (
       <div className="mixed-chart">
         <Chart
