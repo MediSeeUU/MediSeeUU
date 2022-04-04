@@ -3,11 +3,7 @@
   keep in mind that the index of a serie corresponds with the index of the 
   'xaxis: {categories}' option!  
 */
-export default function GenerateLineSeries(
-  options,
-  allCategories,
-  data
-) {
+export default function GenerateLineSeries(options, allCategories, data) {
   let xAxis = options.chartSpecificOptions.xAxis
   let yAxis = options.chartSpecificOptions.yAxis
   let categoriesSelectedY = options.chartSpecificOptions.categoriesSelected
@@ -31,7 +27,6 @@ export default function GenerateLineSeries(
   return seriesFormatted
 }
 
-
 /*
   Expects data to be an array of ob objects, 
 	where each object has a value for each variable.
@@ -40,13 +35,7 @@ export default function GenerateLineSeries(
 	In this dictionary the keys are categories of the y variable,
 	the values are how often this combination of categories happened.
 */
-function PollChosenVariable(
-  x_axis,
-  y_axis,
-  categories_x,
-  categories_y,
-  data
-) {
+function PollChosenVariable(x_axis, y_axis, categories_x, categories_y, data) {
   let dict = {}
 
   // adding a key for each category

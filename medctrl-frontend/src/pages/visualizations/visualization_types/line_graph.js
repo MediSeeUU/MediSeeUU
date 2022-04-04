@@ -10,15 +10,15 @@ class LineGraph extends Component {
       options: {
         chart: {
           id: String(this.props.number),
-          type: "line",
-          toolbar: {show: false}
+          type: 'line',
+          toolbar: { show: false },
         },
         xaxis: {
           categories: this.props.categories,
           labels: {
-            hideOverlappingLabels: true
+            hideOverlappingLabels: true,
           },
-          tickPlacement: "between"
+          tickPlacement: 'between',
         },
         dataLabels: {
           enabled: this.props.labels,
@@ -27,10 +27,10 @@ class LineGraph extends Component {
           show: this.props.legend,
         },
         noData: {
-          text: "pick your preferred options to create a visualization"
-        }
+          text: 'pick your preferred options to create a visualization',
+        },
       },
-      series: this.props.series
+      series: this.props.series,
     }
   }
 

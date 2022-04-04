@@ -52,7 +52,7 @@ class LineForm extends Component {
       eligibleVariables: eligibleVariables,
       xAxis: 'DecisionYear',
       yAxis: 'Rapporteur',
-      categoriesSelected: []
+      categoriesSelected: [],
     }
 
     // event handlers
@@ -69,7 +69,7 @@ class LineForm extends Component {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-    
+
     /* 
       the categories depend on which variables you chose,
       so if these changes we want the categoriesSelected to re-initialized,
@@ -108,8 +108,8 @@ class LineForm extends Component {
   render() {
     let x_axis
     let y_axis
-    x_axis = <React.Fragment>X Axis</React.Fragment>
-    y_axis = <React.Fragment>Y Axis</React.Fragment>
+    x_axis = <React.Fragment>X-axis</React.Fragment>
+    y_axis = <React.Fragment>Y-axis</React.Fragment>
 
     // building drop down menus
     const variablesXAxis = this.renderVariableDropDown()
@@ -117,7 +117,7 @@ class LineForm extends Component {
 
     return (
       <React.Fragment>
-        <label>
+        <label className="visualization-panel-label">
           {x_axis} <br />
           <select
             value={this.state.xAxis}
@@ -128,7 +128,7 @@ class LineForm extends Component {
           </select>
         </label>
         <br />
-        <label>
+        <label className="visualization-panel-label">
           {y_axis} <br />
           <select
             value={this.state.yAxis}
