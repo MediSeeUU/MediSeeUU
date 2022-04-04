@@ -1,4 +1,4 @@
-.modal {
+.menu-modal {
   position: absolute;
   top: 19%;
   bottom: 19%;
@@ -58,6 +58,8 @@
 .filter-header {
   color: rgb(214, 203, 180);
   text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .filters {

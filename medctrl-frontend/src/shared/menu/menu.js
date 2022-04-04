@@ -142,15 +142,13 @@ class Menu extends React.Component {
     // Returns the menu in HTML
     return (
       <div>
-        <i
-          className="bx bxs-filter-alt open-menu"
-          onClick={this.handleOpenModal}
-        >
-          {' '}
-          Open Menu
-        </i>
+        <label>Active table settings</label>
+        <button className="tableButtons" onClick={this.handleOpenModal}>
+          <i className="bx bx-cog filter-Icon"></i>Filter & Sort
+        </button>
+        <hr></hr>
         <ReactModal
-          className="modal"
+          className="menu-modal"
           isOpen={this.state.showModal}
           ariaHideApp={false}
           contentLabel="Menu"
