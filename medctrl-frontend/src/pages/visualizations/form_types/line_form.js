@@ -52,7 +52,7 @@ class LineForm extends Component {
       eligibleVariables: eligibleVariables,
       xAxis: 'DecisionYear',
       yAxis: 'Rapporteur',
-      categoriesSelected: []
+      categoriesSelected: [],
     }
 
     // event handlers
@@ -69,7 +69,7 @@ class LineForm extends Component {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-    
+
     /* 
       the categories depend on which variables you chose,
       so if these changes we want the categoriesSelected to re-initialized,

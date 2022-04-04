@@ -130,8 +130,8 @@ class SingleVisualization extends Component {
       case 'bar':
         return (
           <BarChart
-           // Perhaps just using an increment function may be better,
-           // like in visualization page
+            // Perhaps just using an increment function may be better,
+            // like in visualization page
             key={`${this.state.changeName} 
 			              ${this.state.chartSpecificOptions[this.state.changeName]}`}
             legend={legend_on}
@@ -149,11 +149,11 @@ class SingleVisualization extends Component {
 
       case 'line':
         return (
-          <LineGraph 
+          <LineGraph
             key={`${this.state.changeName} 
 			              ${this.state.chartSpecificOptions[this.state.changeName]}`}
-            legend={legend_on} 
-            labels={labels_on} 
+            legend={legend_on}
+            labels={labels_on}
             number={number}
             series={this.state.series}
             categories={
@@ -161,7 +161,7 @@ class SingleVisualization extends Component {
                 this.state.chartSpecificOptions.xAxis
               ]
             }
-            options={this.state.chartSpecificOptions} 
+            options={this.state.chartSpecificOptions}
           />
         )
 
@@ -195,7 +195,7 @@ class SingleVisualization extends Component {
           this.state.data
         )
 
-      case "line":
+      case 'line':
         return GenerateLineSeries(
           options,
           this.state.allUniqueCategories,

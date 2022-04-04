@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import BarForm from "./form_types/bar_form";
-import LineForm from "./form_types/line_form";
+import BarForm from './form_types/bar_form'
+import LineForm from './form_types/line_form'
 
 // form component for a single visualization
 class VisualizationForm extends Component {
@@ -28,17 +28,17 @@ class VisualizationForm extends Component {
 
   // event handler for updating the state after a single selection
   handleChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+    const target = event.target
+    const value = target.type === 'checkbox' ? target.checked : target.value
+    const name = target.name
     /*
       the chart specific values depend on which chart type has been chosen,
       so if the chart type changes, this needs to be re-initialized
     */
-    if(name === "chart_type") {
+    if (name === 'chart_type') {
       this.resetChartSpecifics(value)
     }
-    this.setState({[name]: value});
+    this.setState({ [name]: value })
   }
 
   // Event handler for updating the state,
@@ -59,31 +59,35 @@ class VisualizationForm extends Component {
     this.props.onFormChange(this.state)
   }
 
-
   // re-initializing the state depending on which new chart type has been chosen
   resetChartSpecifics(chartType) {
     switch (chartType) {
-      case "bar": {this.setState({
-        chartSpecificOptions: {
-          yAxis: "Rapporteur",
-          xAxis: "DecisionYear",
-          categoriesSelected: []
-        },
-        chartSpecificOptionsName: ""
-      })
-      break}
+      case 'bar': {
+        this.setState({
+          chartSpecificOptions: {
+            yAxis: 'Rapporteur',
+            xAxis: 'DecisionYear',
+            categoriesSelected: [],
+          },
+          chartSpecificOptionsName: '',
+        })
+        break
+      }
 
-      case "line": {this.setState({
-        chartSpecificOptions: {
-          yAxis: "Rapporteur",
-          xAxis: "DecisionYear",
-          categoriesSelected: []
-        },
-        chartSpecificOptionsName: ""
-      })
-      break}
+      case 'line': {
+        this.setState({
+          chartSpecificOptions: {
+            yAxis: 'Rapporteur',
+            xAxis: 'DecisionYear',
+            categoriesSelected: [],
+          },
+          chartSpecificOptionsName: '',
+        })
+        break
+      }
 
-      default: return
+      default:
+        return
     }
   }
 
@@ -98,11 +102,16 @@ class VisualizationForm extends Component {
           />
         )
 
-      case "line": return (
-        <LineForm uniqueCategories={this.props.uniqueCategories}
-                  onChange={this.handleChartSpecificChange}/>);
-        
-      default: return <div> Not bar </div>
+      case 'line':
+        return (
+          <LineForm
+            uniqueCategories={this.props.uniqueCategories}
+            onChange={this.handleChartSpecificChange}
+          />
+        )
+
+      default:
+        return <div> Not bar </div>
     }
   }
 
