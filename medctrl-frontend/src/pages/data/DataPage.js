@@ -25,6 +25,6 @@ function DataPage() {
       <SelectedData list={selectedData} />
     </div>
   )
-} 
+}
 
 export default DataPage
