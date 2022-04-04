@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-
+import '../visualizations.css'
 import CategoryOptions from '../CategoryOptions'
 
-// the line part of a form if a line chart is chosen
-class LineForm extends Component {
+// the pie part of a form if a pie chart is chosen
+class PieForm extends Component {
   constructor(props) {
     /* 
       Receives the categories of all variables,
@@ -13,7 +13,7 @@ class LineForm extends Component {
 
     /*
       The list of eligible variables.
-      If we do not want to include a variable for the line chart,
+      If we do not want to include a variable for the pie chart,
       it can be removed from here.
     */
     const eligibleVariables = [
@@ -50,8 +50,7 @@ class LineForm extends Component {
     // initialization of the state
     this.state = {
       eligibleVariables: eligibleVariables,
-      xAxis: 'DecisionYear',
-      yAxis: 'Rapporteur',
+      chosenVariabe: "Rapporteur",
       categoriesSelected: [],
     }
 
@@ -75,7 +74,7 @@ class LineForm extends Component {
       so if these changes we want the categoriesSelected to re-initialized,
       in this case that is just resetting the array
     */
-    if (name === 'xAxis' || name === 'yAxis') {
+    if (name === "chosenVariable") {
       this.setState({ categoriesSelected: [] })
     }
     this.setState({ [name]: value }, () => {
@@ -104,38 +103,21 @@ class LineForm extends Component {
     })
   }
 
-  // renders the bar form part of the form
+  // renders the pie form part of the form
   render() {
-		// we may want to add the 'horizontal' option,
-		// so we may want to invert these, like in bar form
-    let x_axis = <React.Fragment>X-axis</React.Fragment>
-    let y_axis = <React.Fragment>Y-axis</React.Fragment>
-
     // building drop down menus
-    const variablesXAxis = this.renderVariableDropDown()
-    const variablesYAxis = this.renderVariableDropDown()
+    const variables = this.renderVariableDropDown()
 
     return (
       <React.Fragment>
         <label className="visualization-panel-label">
-          {x_axis} <br />
+          Variable <br />
           <select
-            value={this.state.xAxis}
-            name="xAxis"
+            value={this.state.chosenVariabe}
+            name="chosenVariable"
             onChange={this.handleChange}
           >
-            {variablesXAxis}
-          </select>
-        </label>
-        <br />
-        <label className="visualization-panel-label">
-          {y_axis} <br />
-          <select
-            value={this.state.yAxis}
-            name="yAxis"
-            onChange={this.handleChange}
-          >
-            {variablesYAxis}
+            {variables}
           </select>
         </label>
         <br />
@@ -144,7 +126,8 @@ class LineForm extends Component {
             We want to reset the component when the axis changes,
             may need to become an increment function
           */
-          key={`${this.state.xAxis}${this.state.yAxis}`}
+          key={`${this.state.chosenVariabe}`}
+          className="category-options"
           onChange={this.handleCategorySelectionChange}
           categories={this.props.uniqueCategories[this.state.yAxis]}
         />
@@ -153,4 +136,4 @@ class LineForm extends Component {
   }
 }
 
-export default LineForm
+export default PieForm

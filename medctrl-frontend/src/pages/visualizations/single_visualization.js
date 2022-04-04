@@ -15,6 +15,7 @@ import BoxPlot from './visualization_types/box_plot'
 
 import GenerateBarSeries from './data_interfaces/bar_interface'
 import GenerateLineSeries from './data_interfaces/line_interface'
+import GeneratePieSeries from './data_interfaces/pie_interface'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
@@ -203,7 +204,14 @@ class SingleVisualization extends Component {
           this.state.allUniqueCategories,
           this.state.data
         )
-
+      
+      case "donut":
+        return GeneratePieSeries(
+          options,
+          this.state.allUniqueCategories,
+          this.state.data
+        )
+      
       default:
         return GenerateBarSeries(options)
     }

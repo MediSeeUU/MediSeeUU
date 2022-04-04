@@ -36,7 +36,6 @@ class LineGraph extends Component {
 
   // render a line graph
   render() {
-    console.log(this.state.options.xaxis.categories)
     return (
       <div className="mixed-chart">
         <Chart

@@ -10,6 +10,8 @@ class DonutChart extends Component {
       options: {
         chart: {
           id: String(this.props.number),
+          type: "pie",
+          toolbar: {show: "false"}
         },
         dataLabels: {
           enabled: this.props.labels,
@@ -18,8 +20,8 @@ class DonutChart extends Component {
           show: this.props.legend,
         },
       },
-      series: [44, 55, 41, 17, 15],
-      labels: ['A', 'B', 'C', 'D', 'E'],
+      series: this.props.series,
+      labels: this.props.categories,
     }
   }
 
