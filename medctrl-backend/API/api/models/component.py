@@ -6,9 +6,7 @@ class Component(models.Model):
         "Medicine", models.DO_NOTHING, db_column="eu_nr", primary_key=True
     )
     substance = models.ForeignKey("Substance", models.DO_NOTHING)
-    substance_new = models.TextField(
-        blank=True, null=True
-    ) 
+    substance_new = models.TextField(blank=True, null=True)
 
     class Meta:
         db_table = "component"

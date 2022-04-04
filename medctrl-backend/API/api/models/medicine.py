@@ -8,7 +8,11 @@ class Medicine(models.Model):
     eu_nr = models.IntegerField(primary_key=True)
     ema_nr = models.CharField(max_length=45, blank=True, null=True)
     legal_basis = models.ForeignKey(
-        LegalBasis, models.DO_NOTHING, blank=True, null=True, related_name='legalbasis_description'
+        LegalBasis,
+        models.DO_NOTHING,
+        blank=True,
+        null=True,
+        related_name="legalbasis_description",
     )
     legal_scope = models.ForeignKey(
         LegalScope, models.DO_NOTHING, blank=True, null=True

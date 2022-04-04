@@ -9,143 +9,239 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('api', '0001_initial'),
+        ("api", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AtcCode',
+            name="AtcCode",
             fields=[
-                ('atc_code', models.CharField(max_length=7, primary_key=True, serialize=False)),
-                ('description', models.CharField(max_length=320)),
-                ('parent_code', models.ForeignKey(blank=True, db_column='parent_code', null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='api.atccode')),
+                (
+                    "atc_code",
+                    models.CharField(max_length=7, primary_key=True, serialize=False),
+                ),
+                ("description", models.CharField(max_length=320)),
+                (
+                    "parent_code",
+                    models.ForeignKey(
+                        blank=True,
+                        db_column="parent_code",
+                        null=True,
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="api.atccode",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'atc_code',
+                "db_table": "atc_code",
             },
         ),
         migrations.CreateModel(
-            name='LegalBasis',
+            name="LegalBasis",
             fields=[
-                ('legal_basis_id', models.UUIDField(primary_key=True, serialize=False)),
-                ('description', models.CharField(max_length=45)),
+                ("legal_basis_id", models.UUIDField(primary_key=True, serialize=False)),
+                ("description", models.CharField(max_length=45)),
             ],
             options={
-                'db_table': 'legal_basis',
+                "db_table": "legal_basis",
             },
         ),
         migrations.CreateModel(
-            name='LegalScope',
+            name="LegalScope",
             fields=[
-                ('legal_scope_id', models.UUIDField(primary_key=True, serialize=False)),
-                ('description', models.CharField(max_length=45)),
+                ("legal_scope_id", models.UUIDField(primary_key=True, serialize=False)),
+                ("description", models.CharField(max_length=45)),
             ],
             options={
-                'db_table': 'legal_scope',
+                "db_table": "legal_scope",
             },
         ),
         migrations.CreateModel(
-            name='MarketingAuthorisationHolder',
+            name="MarketingAuthorisationHolder",
             fields=[
-                ('mah_id', models.UUIDField(primary_key=True, serialize=False)),
-                ('description', models.CharField(max_length=320)),
+                ("mah_id", models.UUIDField(primary_key=True, serialize=False)),
+                ("description", models.CharField(max_length=320)),
             ],
             options={
-                'db_table': 'marketing_authorisation_holder',
+                "db_table": "marketing_authorisation_holder",
             },
         ),
         migrations.CreateModel(
-            name='Medicine',
+            name="Medicine",
             fields=[
-                ('eu_nr', models.IntegerField(primary_key=True, serialize=False)),
-                ('ema_nr', models.CharField(blank=True, max_length=45, null=True)),
-                ('prime', models.TextField(blank=True, null=True)),
-                ('orphan', models.TextField(blank=True, null=True)),
-                ('atmp', models.TextField(blank=True, null=True)),
-                ('ema_url', models.CharField(blank=True, max_length=320, null=True)),
-                ('atc_code', models.ForeignKey(blank=True, db_column='atc_code', null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='api.atccode')),
-                ('legal_basis', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='api.legalbasis')),
-                ('legal_scope', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='api.legalscope')),
+                ("eu_nr", models.IntegerField(primary_key=True, serialize=False)),
+                ("ema_nr", models.CharField(blank=True, max_length=45, null=True)),
+                ("prime", models.TextField(blank=True, null=True)),
+                ("orphan", models.TextField(blank=True, null=True)),
+                ("atmp", models.TextField(blank=True, null=True)),
+                ("ema_url", models.CharField(blank=True, max_length=320, null=True)),
+                (
+                    "atc_code",
+                    models.ForeignKey(
+                        blank=True,
+                        db_column="atc_code",
+                        null=True,
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="api.atccode",
+                    ),
+                ),
+                (
+                    "legal_basis",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="api.legalbasis",
+                    ),
+                ),
+                (
+                    "legal_scope",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="api.legalscope",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'medicine',
+                "db_table": "medicine",
             },
         ),
         migrations.CreateModel(
-            name='ProcedureType',
+            name="ProcedureType",
             fields=[
-                ('procedure_type_id', models.UUIDField(primary_key=True, serialize=False)),
-                ('description', models.CharField(max_length=320)),
+                (
+                    "procedure_type_id",
+                    models.UUIDField(primary_key=True, serialize=False),
+                ),
+                ("description", models.CharField(max_length=320)),
             ],
             options={
-                'db_table': 'procedure_type',
+                "db_table": "procedure_type",
             },
         ),
         migrations.CreateModel(
-            name='Region',
+            name="Region",
             fields=[
-                ('region_id', models.UUIDField(primary_key=True, serialize=False)),
-                ('description', models.CharField(max_length=320)),
+                ("region_id", models.UUIDField(primary_key=True, serialize=False)),
+                ("description", models.CharField(max_length=320)),
             ],
             options={
-                'db_table': 'region',
+                "db_table": "region",
             },
         ),
         migrations.CreateModel(
-            name='Substance',
+            name="Substance",
             fields=[
-                ('substance_id', models.UUIDField(primary_key=True, serialize=False)),
-                ('description', models.CharField(max_length=320)),
+                ("substance_id", models.UUIDField(primary_key=True, serialize=False)),
+                ("description", models.CharField(max_length=320)),
             ],
             options={
-                'db_table': 'substance',
+                "db_table": "substance",
             },
         ),
         migrations.CreateModel(
-            name='Procedure',
+            name="Procedure",
             fields=[
-                ('eu_nr', models.OneToOneField(db_column='eu_nr', on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='api.medicine')),
-                ('procedure_count', models.IntegerField()),
-                ('comission_procedure_nr', models.IntegerField(blank=True, null=True)),
-                ('ema_procedure_nr', models.IntegerField(blank=True, null=True)),
-                ('procedure_date', models.DateField(blank=True, null=True)),
-                ('decision_date', models.DateField(blank=True, null=True)),
-                ('decision_nr', models.IntegerField(blank=True, null=True)),
-                ('descision_url', models.CharField(blank=True, max_length=320, null=True)),
-                ('annex_url', models.CharField(blank=True, max_length=320, null=True)),
-                ('procedure_type', models.ForeignKey(blank=True, db_column='procedure_type', null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='api.proceduretype')),
+                (
+                    "eu_nr",
+                    models.OneToOneField(
+                        db_column="eu_nr",
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="api.medicine",
+                    ),
+                ),
+                ("procedure_count", models.IntegerField()),
+                ("comission_procedure_nr", models.IntegerField(blank=True, null=True)),
+                ("ema_procedure_nr", models.IntegerField(blank=True, null=True)),
+                ("procedure_date", models.DateField(blank=True, null=True)),
+                ("decision_date", models.DateField(blank=True, null=True)),
+                ("decision_nr", models.IntegerField(blank=True, null=True)),
+                (
+                    "descision_url",
+                    models.CharField(blank=True, max_length=320, null=True),
+                ),
+                ("annex_url", models.CharField(blank=True, max_length=320, null=True)),
+                (
+                    "procedure_type",
+                    models.ForeignKey(
+                        blank=True,
+                        db_column="procedure_type",
+                        null=True,
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="api.proceduretype",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'procedure',
-                'unique_together': {('eu_nr', 'procedure_count')},
+                "db_table": "procedure",
+                "unique_together": {("eu_nr", "procedure_count")},
             },
         ),
         migrations.CreateModel(
-            name='MedicineName',
+            name="MedicineName",
             fields=[
-                ('eu_nr', models.OneToOneField(db_column='eu_nr', on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='api.medicine')),
-                ('start_date', models.DateField()),
-                ('name', models.CharField(max_length=320)),
-                ('end_date', models.DateField(blank=True, null=True)),
-                ('brand', models.TextField(blank=True, null=True)),
-                ('mah', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='api.marketingauthorisationholder')),
-                ('region', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='api.region')),
+                (
+                    "eu_nr",
+                    models.OneToOneField(
+                        db_column="eu_nr",
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="api.medicine",
+                    ),
+                ),
+                ("start_date", models.DateField()),
+                ("name", models.CharField(max_length=320)),
+                ("end_date", models.DateField(blank=True, null=True)),
+                ("brand", models.TextField(blank=True, null=True)),
+                (
+                    "mah",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="api.marketingauthorisationholder",
+                    ),
+                ),
+                (
+                    "region",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING, to="api.region"
+                    ),
+                ),
             ],
             options={
-                'db_table': 'medicine_name',
-                'unique_together': {('eu_nr', 'region', 'start_date', 'mah')},
+                "db_table": "medicine_name",
+                "unique_together": {("eu_nr", "region", "start_date", "mah")},
             },
         ),
         migrations.CreateModel(
-            name='Component',
+            name="Component",
             fields=[
-                ('eu_nr', models.OneToOneField(db_column='eu_nr', on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='api.medicine')),
-                ('substance_new', models.TextField(blank=True, null=True)),
-                ('substance', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='api.substance')),
+                (
+                    "eu_nr",
+                    models.OneToOneField(
+                        db_column="eu_nr",
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="api.medicine",
+                    ),
+                ),
+                ("substance_new", models.TextField(blank=True, null=True)),
+                (
+                    "substance",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="api.substance",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'component',
-                'unique_together': {('eu_nr', 'substance')},
+                "db_table": "component",
+                "unique_together": {("eu_nr", "substance")},
             },
         ),
     ]
