@@ -5,6 +5,7 @@ import './table.css'
 function DisplayTable({
   data,
   selectTable,
+  selectedTable,
   amountPerPage,
   currentPage,
   checkedState,
@@ -62,6 +63,8 @@ function DisplayTable({
           {Object.values(entry).map((propt, index2) => {
             return <td key={index2}>{propt}</td>
           })}
+          {selectedTable ? <InfoboxColumn /> : null}
+          {selectTable ? <InfoboxColumn /> : <BinboxColumn />}
         </tr>
       )
     })
@@ -88,6 +91,14 @@ function DisplayTable({
                 return <th key={index}>{key}</th>
               })
           }
+          {
+            //if selectedTable, add coloredbar to the header
+            <td className="checkboxColumn"></td>
+          }
+          {
+            //if selectedTable, add coloredbar to the header
+            selectedTable ? <td className="checkboxColumn"></td> : null
+          }
         </tr>
       </thead>
       <tbody className="tableBody">{htmlData}</tbody>
@@ -100,6 +111,24 @@ const CheckboxColumn = ({ value, onChange }) => {
   return (
     <td className="checkboxColumn">
       <input type="checkbox" checked={value} onChange={onChange} />
+    </td>
+  )
+}
+
+//logic for the bin
+const BinboxColumn = ({ value, onChange, data, setData }) => {
+  return (
+    <td className="checkboxColumn">
+      <i className="bx bx-trash icons"></i>
+    </td>
+  )
+}
+
+//logic for the information button
+const InfoboxColumn = ({ value, onChange, data, setData }) => {
+  return (
+    <td className="checkboxColumn">
+      <i className="bx bx-info-circle icons" />
     </td>
   )
 }

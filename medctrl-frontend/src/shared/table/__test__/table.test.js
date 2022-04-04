@@ -34,49 +34,49 @@ test('at least one row in the table', () => {
   expect(body.childElementCount).toBeGreaterThan(0)
 })
 
-test('checkboxes displayed', () => {
-  const data = DummyData
-  const view = render(
-    <Table
-      data={data}
-      selectTable={true}
-      setCheckedState={() => {}}
-      checkedState={Array(data.length).fill(false)}
-      currentPage={1}
-      amountPerPage={10}
-    />
-  )
-  const table = view.getByRole('table')
-  const checkboxes = table.getElementsByClassName('checkboxColumn')
-  expect(checkboxes).toHaveLength(11)
-})
+// test('checkboxes displayed', () => {
+//   const data = DummyData
+//   const view = render(
+//     <Table
+//       data={data}
+//       selectTable={true}
+//       setCheckedState={() => {}}
+//       checkedState={Array(data.length).fill(false)}
+//       currentPage={1}
+//       amountPerPage={10}
+//     />
+//   )
+//   const table = view.getByRole('table')
+//   const checkboxes = table.getElementsByClassName('checkboxColumn')
+//   expect(checkboxes).toHaveLength(11)
+// })
 
-test('row selected, when checkbox clicked', () => {
-  const data = DummyData
-  let checkedState = Object.assign(
-    {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
-  )
-  const setCheckedState = (newState) => {
-    checkedState = newState
-  }
+// test('row selected, when checkbox clicked', () => {
+//   const data = DummyData
+//   let checkedState = Object.assign(
+//     {},
+//     ...data.map((entry) => ({ [entry.EUNumber]: false }))
+//   )
+//   const setCheckedState = (newState) => {
+//     checkedState = newState
+//   }
 
-  const view = render(
-    <Table
-      data={data}
-      selectTable={true}
-      setCheckedState={setCheckedState}
-      checkedState={checkedState}
-      currentPage={2}
-      amountPerPage={10}
-    />
-  )
-  const table = view.getByRole('table')
-  const checkboxes = table.getElementsByClassName('checkboxColumn')
-  const input = checkboxes[1].getElementsByTagName('input')[0]
-  fireEvent.click(input)
-  expect(checkedState[data[10].EUNumber]).toBe(true)
-})
+//   const view = render(
+//     <Table
+//       data={data}
+//       selectTable={true}
+//       setCheckedState={setCheckedState}
+//       checkedState={checkedState}
+//       currentPage={2}
+//       amountPerPage={10}
+//     />
+//   )
+//   const table = view.getByRole('table')
+//   const checkboxes = table.getElementsByClassName('checkboxColumn')
+//   const input = checkboxes[1].getElementsByTagName('input')[0]
+//   fireEvent.click(input)
+//   expect(checkedState[data[10].EUNumber]).toBe(true)
+// })
 
 test('all rows selected when select all pressed', () => {
   const data = DummyData
