@@ -28,7 +28,7 @@ jobs:
 
       - name: Check code formatting with Black
         run: |
-          black --diff -v .
+          black --check -v .
         working-directory: medctrl-backend/API/
 
       - name: Analysing the code with Pylint

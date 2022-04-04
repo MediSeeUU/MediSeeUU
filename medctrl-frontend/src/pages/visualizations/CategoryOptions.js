@@ -71,11 +71,7 @@ class CategoryOptions extends React.Component {
   // renders checkboxes for each category of the given variable
   render() {
     const categories = this.renderCategoryOptions()
-    return (
-      <div className="country-options">
-        {categories}
-      </div>
-    )
+    return <div className="country-options">{categories}</div>
   }
 }
 

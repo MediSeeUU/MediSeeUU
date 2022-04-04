@@ -32,26 +32,31 @@ class SingleVisualization extends Component {
     let uniqueCategories = this.getUniqueCategories(this.props.data)
 
     // generating the initial series data
-    let series = GenerateBarSeries({
-      chartSpecificOptions: {
-        xAxis: "DecisionYear",
-        yAxis: "Rapporteur",
-        categoriesSelected: []
-      }
-    }, uniqueCategories, this.props.data)
+    let series = GenerateBarSeries(
+      {
+        chartSpecificOptions: {
+          xAxis: 'DecisionYear',
+          yAxis: 'Rapporteur',
+          categoriesSelected: [],
+        },
+      },
+      uniqueCategories,
+      this.props.data
+    )
 
     // state initialization
     this.state = {
       chart_type: 'bar',
-      chartSpecificOptions: { 
-        xAxis: 'DecisionYear'
+      chartSpecificOptions: {
+        xAxis: 'DecisionYear',
       },
       legend_on: false,
       labels_on: false,
       data: this.props.data,
       series: series,
       allUniqueCategories: uniqueCategories,
-      changeName: ''
+      changeName: '',
+      series: series,
     }
 
     // event handlers
@@ -184,7 +189,7 @@ class SingleVisualization extends Component {
   */
   generateSeries(chartType, options) {
     switch (chartType) {
-      case "bar":
+      case 'bar':
         return GenerateBarSeries(
           options,
           this.state.allUniqueCategories,
@@ -223,14 +228,14 @@ class SingleVisualization extends Component {
 
     // sorting the array
     for (let categories in dict) {
-      dict[categories] = dict[categories].sort(function(a, b) {
-        return String(a).localeCompare(String(b), "en", {
+      dict[categories] = dict[categories].sort(function (a, b) {
+        return String(a).localeCompare(String(b), 'en', {
           numeric: true,
-          sensitivity: "base"
+          sensitivity: 'base',
         })
       })
     }
-    
+
     return dict
   }
 
@@ -253,18 +258,29 @@ class SingleVisualization extends Component {
               />
             </Col>
             <Col sm={8}>
-              <Row className="visualization-title"><h1>[Visualization name]</h1></Row>
+              <Row className="visualization-title">
+                <h1>[Visualization name]</h1>
+              </Row>
               <Row>{this.createChart(this.state.chart_type)}</Row>
               <Row>
-                <button className="table-buttons button-export" onClick={this.handleExport}>
-							    Export as PNG
-					      </button>
-						    <button className="table-buttons button-export" onClick={this.handleExport}>
-							    Export as SVG
-					      </button>
-						    <button className="table-buttons button-remove" onClick={this.removalHandlerIllegal}>
-							    &#128465;
-					      </button>
+                <button
+                  className="table-buttons button-export"
+                  onClick={this.handleExport}
+                >
+                  Export as PNG
+                </button>
+                <button
+                  className="table-buttons button-export"
+                  onClick={this.handleExport}
+                >
+                  Export as SVG
+                </button>
+                <button
+                  className="table-buttons button-remove"
+                  onClick={this.removalHandlerIllegal}
+                >
+                  &#128465;
+                </button>
               </Row>
             </Col>
           </Row>
@@ -274,8 +290,8 @@ class SingleVisualization extends Component {
   }
 
   removalHandlerIllegal(event) {
-		document.getElementById("deleteButton").click();
-	}
+    document.getElementById('deleteButton').click()
+  }
 }
 
 export default SingleVisualization
