@@ -118,9 +118,7 @@ class SingleVisualization extends Component {
   }
 
   handleSVGExport(event) {
-    let exp = new Exports(
-          ApexCharts.getChartByID(String(this.props.number))
-        )
+    let exp = new Exports(ApexCharts.getChartByID(String(this.props.number)))
     exp.exportToSVG(ApexCharts.getChartByID(String(this.props.number)))
   }
 
