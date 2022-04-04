@@ -56,12 +56,12 @@ class SingleVisualization extends Component {
       series: series,
       allUniqueCategories: uniqueCategories,
       changeName: '',
-      series: series,
     }
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
-    this.handleExport = this.handleExport.bind(this)
+    this.handlePNGExport = this.handlePNGExport.bind(this)
+    this.handleSVGExport = this.handleSVGExport.bind(this)
   }
 
   // event handler for the form data
@@ -91,10 +91,8 @@ class SingleVisualization extends Component {
   /*
 	  Event handler for exporting the visualization to svg and png.
 		Does not export the actual data.
-		Currently does both the svg and the png export at once,
-		seperate buttons should be made!
 	*/
-  handleExport(event) {
+  handlePNGExport(event) {
     /* 
 		  Get the visualization in the base64 format,
 			we scale it for a better resolution.
@@ -106,7 +104,6 @@ class SingleVisualization extends Component {
         let exp = new Exports(
           ApexCharts.getChartByID(String(this.props.number))
         )
-
         /*
           Does not currently export it using the title of the visualization,
           as the title is not currently set as an option for the user to enter.
@@ -116,9 +113,15 @@ class SingleVisualization extends Component {
           exp.w.config.chart.toolbar.export.png.filename,
           '.png'
         )
-        exp.exportToSVG(ApexCharts.getChartByID(String(this.props.number)))
       }
     )
+  }
+
+  handleSVGExport(event) {
+    let exp = new Exports(
+          ApexCharts.getChartByID(String(this.props.number))
+        )
+    exp.exportToSVG(ApexCharts.getChartByID(String(this.props.number)))
   }
 
   // creating a chart based on the chosen chart type
@@ -265,13 +268,13 @@ class SingleVisualization extends Component {
               <Row>
                 <button
                   className="table-buttons button-export"
-                  onClick={this.handleExport}
+                  onClick={this.handlePNGExport}
                 >
                   Export as PNG
                 </button>
                 <button
                   className="table-buttons button-export"
-                  onClick={this.handleExport}
+                  onClick={this.handleSVGExport}
                 >
                   Export as SVG
                 </button>
