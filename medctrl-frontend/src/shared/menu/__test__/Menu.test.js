@@ -8,7 +8,7 @@ import {
   cleanup,
   within,
 } from '@testing-library/react'
-import Menu from '../Menu'
+import Menu from '../menu'
 import DummyData from '../../../json/data.json'
 
 test('renders without crashing', () => {
