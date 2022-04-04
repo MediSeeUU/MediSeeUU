@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Filter from './filter'
 import Sort from './sort'
 import './menu.css'
+import { sortData } from './sorting'
 
 class Menu extends React.Component {
   constructor(props) {
@@ -11,10 +12,15 @@ class Menu extends React.Component {
 
     // Default filter object
     this.filterObject = [{ selected: '', input: [''] }]
-    this.sortObject = [{selected: '', order: 'asc'}]
+    this.sortObject = [{ selected: '', order: 'asc' }]
 
     // Set init state
-    this.state = { showModal: false, filters: this.filterObject, sorters: this.sortObject, showAddSort: true }
+    this.state = {
+      showModal: false,
+      filters: this.filterObject,
+      sorters: this.sortObject,
+      showAddSort: true,
+    }
 
     // Binding of functions
     this.handleOpenModal = this.handleOpenModal.bind(this)
@@ -123,8 +129,9 @@ class Menu extends React.Component {
     })
 
     // Hier komt sorteer functie
+    var sortedfilteredData = sortData(filterData, this.state.sorters)
 
-    this.props.updateTable(filterData)
+    this.props.updateTable(sortedfilteredData)
     this.handleCloseModal()
   }
 
@@ -155,7 +162,7 @@ class Menu extends React.Component {
       sorters: prevState.sorters.concat(this.sortObject),
     }))
     if (this.state.sorters.length >= 4) {
-      this.setState({showAddSort: false})
+      this.setState({ showAddSort: false })
     }
   }
 
@@ -168,7 +175,7 @@ class Menu extends React.Component {
         sorters: newSorters,
       })
     }
-    this.setState({showAddSort: true})
+    this.setState({ showAddSort: true })
   }
 
   updateSelectSort = (id, newSelected) => {
@@ -242,17 +249,21 @@ class Menu extends React.Component {
           <div className="sort">
             <h1 className="filter-header">Sort</h1>
             {this.state.sorters.map((obj, oid) => (
-                <Sort
-                  key={uuidv4()}
-                  id={oid}
-                  item={obj}
-                  options={list}
-                  del={this.deleteSort}
-                  sel={this.updateSelectSort}
-                  order={this.updateSortingOrder}
-                />
-              ))}
-            {this.state.showAddSort && <label className="add-sort" onClick={this.addSort}>Add Sorting option +</label>}
+              <Sort
+                key={uuidv4()}
+                id={oid}
+                item={obj}
+                options={list}
+                del={this.deleteSort}
+                sel={this.updateSelectSort}
+                order={this.updateSortingOrder}
+              />
+            ))}
+            {this.state.showAddSort && (
+              <label className="add-sort" onClick={this.addSort}>
+                Add Sorting option +
+              </label>
+            )}
           </div>
         </ReactModal>
       </div>
