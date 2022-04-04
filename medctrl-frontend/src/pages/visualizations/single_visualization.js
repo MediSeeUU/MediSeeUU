@@ -36,7 +36,7 @@ class SingleVisualization extends Component {
         chartSpecificOptions: {
           xAxis: 'DecisionYear',
           yAxis: 'Rapporteur',
-          categoriesSelected: ['United Kingdom'],
+          categoriesSelected: [],
         },
       },
       uniqueCategories,
@@ -54,6 +54,7 @@ class SingleVisualization extends Component {
       data: this.props.data,
       allUniqueCategories: uniqueCategories,
       changeName: '',
+      series: series,
     }
 
     // event handlers
