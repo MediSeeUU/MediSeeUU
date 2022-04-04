@@ -11,10 +11,10 @@ class Menu extends React.Component {
 
     // Default filter object
     this.filterObject = [{ selected: '', input: [''] }]
-    this.sortObject = [{selected: '', order: ''}]
+    this.sortObject = [{selected: '', order: 'asc'}]
 
     // Set init state
-    this.state = { showModal: false, filters: this.filterObject, sorters: this.sortObject }
+    this.state = { showModal: false, filters: this.filterObject, sorters: this.sortObject, showAddSort: true }
 
     // Binding of functions
     this.handleOpenModal = this.handleOpenModal.bind(this)
@@ -148,11 +148,14 @@ class Menu extends React.Component {
     this.handleCloseModal()
   }
 
-  // Adds new sort item to the menu
+  // Adds new sort item to the menu (max 5)
   addSort() {
     this.setState((prevState) => ({
       sorters: prevState.sorters.concat(this.sortObject),
     }))
+    if (this.state.sorters.length >= 4) {
+      this.setState({showAddSort: false})
+    }
   }
 
   // Deletes specified sort item from the menu
@@ -164,6 +167,7 @@ class Menu extends React.Component {
         sorters: newSorters,
       })
     }
+    this.setState({showAddSort: true})
   }
 
   updateSelectSort = (id, newSelected) => {
@@ -249,7 +253,7 @@ class Menu extends React.Component {
                   order={this.updateSortingOrder}
                 />
               ))}
-            <label onClick={this.addSort}>Add Sorting option +</label>
+            {this.state.showAddSort && <label className="add-sort" onClick={this.addSort}>Add Sorting option +</label>}
           </div>
         </ReactModal>
       </div>

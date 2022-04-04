@@ -1,10 +1,9 @@
-import { v4 as uuidv4 } from 'uuid'
-import './filter.css'
+import './menuitems.css'
 
 // Returns the filter item in HTML
 function displayItem(props) {
   return (
-    <div id={props.id} className="menu-item">
+    <div id={props.id} className="sort-item">
       <select
         id="filter-select"
         defaultValue={props.item.selected}
