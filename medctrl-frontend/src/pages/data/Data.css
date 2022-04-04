@@ -79,6 +79,12 @@ hr {
 
 .lb-pageCount:hover {
   background-color: var(--seperation-line);
+  border-radius: 2px;
+}
+
+.lb-pageCount_selected {
+  background-color: var(--seperation-line);
+  border-radius: 2px;
 }
 
 .dv-pageCount {
