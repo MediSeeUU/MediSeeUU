@@ -12,9 +12,8 @@ class MedicineName(models.Model):
     mah = models.ForeignKey(MarketingAuthorisationHolder, models.DO_NOTHING)
     name = models.CharField(max_length=320)
     end_date = models.DateField(blank=True, null=True)
-    brand = models.TextField(blank=True, null=True)  # This field type is a guess.
+    brand = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = "medicine_name"
         unique_together = (("eu_nr", "region", "start_date", "mah"),)

@@ -24,11 +24,12 @@
 
 #filter-select {
   display: inline-block;
-  width: 160px;
+  width: 170px;
 }
 
 .filter-input {
   display: inline-block;
+  width: 180px;
   margin-top: 10px;
 }
 

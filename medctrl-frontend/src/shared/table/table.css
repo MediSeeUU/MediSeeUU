@@ -3,8 +3,10 @@ table {
   display: block;
   overflow: auto;
   border-spacing: 0;
-  width: 1400px;
+  width: 98%;
   height: 441px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tableHeader {
@@ -35,14 +37,32 @@ table {
 
 th,
 td {
-  padding: 10px 0;
   text-align: center;
   min-width: 200px;
   max-width: 200px;
 }
 
-.checkboxColumn {
+th {
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+td {
+  font-size: 13px;
+}
+
+.smallColumn {
   min-width: 50px;
   max-width: 50px;
   border-right: 1px solid var(--blue-alt);
+}
+
+.icons {
+  font-size: 20px;
+  margin-top: 2px;
+  color: var(--blue-alt);
+}
+
+.icons:hover {
+  color: var(--blue-light);
 }
