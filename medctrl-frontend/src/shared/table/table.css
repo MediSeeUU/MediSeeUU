@@ -50,7 +50,8 @@ th {
 td {
   font-size: 13px;
 }
-.checkboxColumn {
+
+.smallColumn {
   min-width: 50px;
   max-width: 50px;
   border-right: 1px solid var(--blue-alt);
