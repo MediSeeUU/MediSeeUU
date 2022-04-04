@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import BarForm from "./form_types/bar_form";
+import LineForm from "./form_types/line_form";
 
 // form component for a single visualization
 class VisualizationForm extends Component {
@@ -28,6 +29,10 @@ class VisualizationForm extends Component {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
+    /*
+      the chart specific values depend on which chart type has been chosen,
+      so if the chart type changes, this needs to be re-initialized
+    */
     if(name === "chart_type") {
       this.resetChartSpecifics(value)
     }
@@ -53,7 +58,29 @@ class VisualizationForm extends Component {
 
   // re-initializing the state depending on which new chart type has been chosen
   resetChartSpecifics(chartType) {
-    switch (chartType) {}
+    switch (chartType) {
+      case "bar": {this.setState({
+        chartSpecificOptions: {
+          yAxis: "Rapporteur",
+          xAxis: "DecisionYear",
+          categoriesSelected: []
+        },
+        chartSpecificOptionsName: ""
+      })
+      break}
+
+      case "line": {this.setState({
+        chartSpecificOptions: {
+          yAxis: "Rapporteur",
+          xAxis: "DecisionYear",
+          categoriesSelected: []
+        },
+        chartSpecificOptionsName: ""
+      })
+      break}
+
+      default: return
+    }
   }
 
   // renders the form for the chosen chart
@@ -63,6 +90,10 @@ class VisualizationForm extends Component {
         <BarForm uniqueCategories={this.props.uniqueCategories} 
                  onChange={this.handleChartSpecificChange}/>);
 
+      case "line": return (
+        <LineForm uniqueCategories={this.props.uniqueCategories}
+                  onChange={this.handleChartSpecificChange}/>);
+        
       default: return <div> Not bar </div>
     }
   }

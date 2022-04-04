@@ -10,9 +10,14 @@ class LineGraph extends Component {
       options: {
         chart: {
           id: String(this.props.number),
+          type: "line",
+          toolbar: {show: false}
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+          categories: this.props.categories,
+          labels: {
+            hideOverLappingLabels: true
+          }
         },
         dataLabels: {
           enabled: this.props.labels,
@@ -20,13 +25,11 @@ class LineGraph extends Component {
         legend: {
           show: this.props.legend,
         },
+        noData: {
+          test: "pick your preferred options to create a visualization"
+        }
       },
-      series: [
-        {
-          name: 'series-1',
-          data: [30, 40, 45, 50, 49, 60, 70, 91],
-        },
-      ],
+      series: this.props.series
     }
   }
 

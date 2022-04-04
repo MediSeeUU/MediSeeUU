@@ -14,6 +14,7 @@ import DonutChart from './visualization_types/donut_chart'
 import BoxPlot from './visualization_types/box_plot'
 
 import GenerateBarSeries from './data_interfaces/bar_interface'
+import GenerateLineSeries from './data_interfaces/line_interface'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
@@ -35,7 +36,7 @@ class SingleVisualization extends Component {
       chartSpecificOptions: {
         xAxis: "DecisionYear",
         yAxis: "Rapporteur",
-        categoriesSelected: ["United Kingdom"]
+        categoriesSelected: []
       }
     }, uniqueCategories, this.props.data)
 
@@ -144,7 +145,20 @@ class SingleVisualization extends Component {
 
       case 'line':
         return (
-          <LineGraph legend={legend_on} labels={labels_on} number={number} />
+          <LineGraph 
+            key={`${this.state.changeName} 
+			              ${this.state.chartSpecificOptions[this.state.changeName]}`}
+            legend={legend_on} 
+            labels={labels_on} 
+            number={number}
+            series={this.state.series}
+            categories={
+              this.state.allUniqueCategories[
+                this.state.chartSpecificOptions.xAxis
+              ]
+            }
+            options={this.state.chartSpecificOptions} 
+          />
         )
 
       case 'donut':
@@ -172,6 +186,13 @@ class SingleVisualization extends Component {
     switch (chartType) {
       case "bar":
         return GenerateBarSeries(
+          options,
+          this.state.allUniqueCategories,
+          this.state.data
+        )
+
+      case "line":
+        return GenerateLineSeries(
           options,
           this.state.allUniqueCategories,
           this.state.data

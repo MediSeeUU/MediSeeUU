@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 import CategoryOptions from '../CategoryOptions'
 
-// the bar part of a form if a bar chart is chosen
-class BarForm extends Component {
+// the bar part of a form if a line chart is chosen
+class LineForm extends Component {
   constructor(props) {
     /* 
       Receives the categories of all variables,
@@ -13,7 +13,7 @@ class BarForm extends Component {
 
     /*
       The list of eligible variables.
-      If we do not want to include a variable for the bar chart,
+      If we do not want to include a variable for the line chart,
       it can be removed from here.
     */
     const eligibleVariables = [
@@ -52,9 +52,6 @@ class BarForm extends Component {
       eligibleVariables: eligibleVariables,
       xAxis: 'DecisionYear',
       yAxis: 'Rapporteur',
-      stacked: false,
-      stackType: false,
-      horizontal: false,
       categoriesSelected: []
     }
 
@@ -111,15 +108,8 @@ class BarForm extends Component {
   render() {
     let x_axis
     let y_axis
-
-    // the x/y axis can change, it is easier to just change the labels
-    if (this.state.horizontal) {
-      x_axis = <React.Fragment>Y Axis</React.Fragment>
-      y_axis = <React.Fragment>X Axis</React.Fragment>
-    } else {
-      x_axis = <React.Fragment>X Axis</React.Fragment>
-      y_axis = <React.Fragment>Y Axis</React.Fragment>
-    }
+    x_axis = <React.Fragment>Y Axis</React.Fragment>
+    y_axis = <React.Fragment>X Axis</React.Fragment>
 
     // building drop down menus
     const variablesXAxis = this.renderVariableDropDown()
@@ -149,36 +139,6 @@ class BarForm extends Component {
           </select>
         </label>
         <br />
-        <label>
-          Stacked
-          <input
-            type="checkbox"
-            name="stacked"
-            checked={this.state.stacked}
-            onChange={this.handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Stack fully
-          <input
-            type="checkbox"
-            name="stackType"
-            checked={this.state.stackType}
-            onChange={this.handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Horizontal
-          <input
-            type="checkbox"
-            name="horizontal"
-            checked={this.state.horizontal}
-            onChange={this.handleChange}
-          />
-        </label>
-        <br />
         <CategoryOptions
           /* 
             We want to reset the component when the axis changes,
@@ -193,4 +153,4 @@ class BarForm extends Component {
   }
 }
 
-export default BarForm
+export default LineForm

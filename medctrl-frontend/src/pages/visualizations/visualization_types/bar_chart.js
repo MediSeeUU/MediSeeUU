@@ -8,9 +8,9 @@ class BarChart extends Component {
 
     let stacktype
     if (this.props.options.stackType) {
-      stacktype = '100%'
+      stacktype = '100%' // relative stacking
     } else {
-      stacktype = 'normal'
+      stacktype = 'normal' // absolute stacking
     }
 
     // initializing the state with data passed from the form
@@ -51,7 +51,6 @@ class BarChart extends Component {
 
   // renders the bar chart with the given options
   render() {
-    console.log(this.state.series)
     return (
       <div className="mixed-chart">
         <Chart
