@@ -62,8 +62,8 @@ class VisualizationForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Visualization type: <br />
+        <label className="visualization-panel-label">
+          Visualization type <br />
           <select value={this.state.chart_type} 
                   name="chart_type" 
                   onChange={this.handleChange}>
@@ -75,24 +75,23 @@ class VisualizationForm extends Component {
         </label>
         <br />
         {this.renderChartOptions(this.state.chart_type)}
-        <br />       
-        <label>
-          show legend
+        <label className="visualization-panel-label">
           <input type="checkbox" 
                  name="legend_on" 
                  checked={this.state.legend_on} 
                  onChange={this.handleChange}/>
+          &nbsp;&nbsp;Show legend
         </label>
         <br />
-        <label>
-          show labels
+        <label className="visualization-panel-label">
           <input type="checkbox" 
                  name="labels_on" 
                  checked={this.state.labels_on} 
                  onChange={this.handleChange}/>
+          &nbsp;&nbsp;Show labels
         </label>
         <br />
-        <input type="submit" value="Submit" />
+        <input type="submit" className="table-buttons button-update" value="Update" />
       </form>
     );
   }

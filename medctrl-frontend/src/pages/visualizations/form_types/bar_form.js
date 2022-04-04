@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import '../visualizations.css'
 import CategoryOptions from '../CategoryOptions'
 
 // the bar part of a form if a bar chart is chosen
@@ -100,11 +100,11 @@ class BarForm extends Component {
 
     // the x/y axis can change, it is easier to just change the labels
     if (this.state.horizontal) {
-      x_axis = <React.Fragment>Y Axis</React.Fragment>
-      y_axis = <React.Fragment>X Axis</React.Fragment>
+      x_axis = <React.Fragment>Y-axis</React.Fragment>
+      y_axis = <React.Fragment>X-axis</React.Fragment>
     } else {
-      x_axis = <React.Fragment>X Axis</React.Fragment>
-      y_axis = <React.Fragment>Y Axis</React.Fragment>
+      x_axis = <React.Fragment>X-axis</React.Fragment>
+      y_axis = <React.Fragment>Y-axis</React.Fragment>
     }
 
     // building drop down menus
@@ -113,7 +113,7 @@ class BarForm extends Component {
 
     return (
       <React.Fragment>
-        <label>
+        <label className="visualization-panel-label">
           {x_axis} <br />
           <select
             value={this.state.xAxis}
@@ -124,7 +124,7 @@ class BarForm extends Component {
           </select>
         </label>
         <br />
-        <label>
+        <label className="visualization-panel-label">
           {y_axis} <br />
           <select
             value={this.state.yAxis}
@@ -135,38 +135,39 @@ class BarForm extends Component {
           </select>
         </label>
         <br />
-        <label>
-          Stacked
+        <label className="visualization-panel-label">
           <input
             type="checkbox"
             name="stacked"
             checked={this.state.stacked}
             onChange={this.handleChange}
           />
+          &nbsp;&nbsp;Stacked
         </label>
         <br />
-        <label>
-          Stack fully
+        <label className="visualization-panel-label">
           <input
             type="checkbox"
             name="stackType"
             checked={this.state.stackType}
             onChange={this.handleChange}
           />
+          &nbsp;&nbsp;Stack fully
         </label>
         <br />
-        <label>
-          Horizontal
+        <label className="visualization-panel-label">
           <input
             type="checkbox"
             name="horizontal"
             checked={this.state.horizontal}
             onChange={this.handleChange}
           />
+          &nbsp;&nbsp;Horizontal
         </label>
         <br />
         <CategoryOptions
           key={`${this.state.xAxis}${this.state.yAxis}`}
+          className="category-options"
           onChange={this.handleCategorySelectionChange}
           categories={this.props.uniqueCategories[this.state.yAxis]}
         />
