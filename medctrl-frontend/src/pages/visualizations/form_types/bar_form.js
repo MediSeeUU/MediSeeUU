@@ -166,6 +166,8 @@ class BarForm extends Component {
         </label>
         <br />
         <CategoryOptions
+          // We want to reset the component when the axis changes,
+          // may need to become an increment function
           key={`${this.state.xAxis}${this.state.yAxis}`}
           onChange={this.handleCategorySelectionChange}
           categories={this.props.uniqueCategories[this.state.yAxis]}

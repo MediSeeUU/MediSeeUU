@@ -28,6 +28,9 @@ class VisualizationForm extends Component {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
+    if(name === "chart_type") {
+      this.resetChartSpecifics(value)
+    }
     this.setState({[name]: value});
   }
 
@@ -45,6 +48,12 @@ class VisualizationForm extends Component {
     event.preventDefault();
     // event handler passed down as a prop by SingleVisualization
     this.props.onFormChange(this.state);
+  }
+
+
+  // re-initializing the state depending on which new chart type has been chosen
+  resetChartSpecifics(chartType) {
+    switch (chartType) {}
   }
 
   // renders the form for the chosen chart

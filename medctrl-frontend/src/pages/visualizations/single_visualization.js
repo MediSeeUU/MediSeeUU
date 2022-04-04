@@ -48,6 +48,7 @@ class SingleVisualization extends Component {
       legend_on: false,
       labels_on: false,
       data: this.props.data,
+      series: series,
       allUniqueCategories: uniqueCategories,
       changeName: ''
     }
@@ -124,6 +125,8 @@ class SingleVisualization extends Component {
       case 'bar':
         return (
           <BarChart
+           // Perhaps just using an increment function may be better,
+           // like in visualization page
             key={`${this.state.changeName} 
 			              ${this.state.chartSpecificOptions[this.state.changeName]}`}
             legend={legend_on}
