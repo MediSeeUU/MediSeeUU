@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './table.css'
 
 //Function based component, returns table
@@ -21,22 +21,21 @@ function DisplayTable({
   }
 
   //Check if all checkboxes are checked, used to check/uncheck the checkbox in the header
-  const allSelected =
-    checkedState?.find((item) => {
-      return !item
-    }) ?? true
+  const allSelected = getAllSelected(checkedState)
 
   //Handle a mouseclick on a checkbox in the normal row
-  const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    )
+  const handleOnChange = (key) => {
+    const updatedCheckedState = JSON.parse(JSON.stringify(checkedState)) //hard copy state
+    updatedCheckedState[key] = !updatedCheckedState[key]
     setCheckedState(updatedCheckedState)
   }
 
   //Handle a mouseclick on the checkbox in the header
   const handleAllChange = () => {
-    const updatedCheckedState = new Array(data.length).fill(!allSelected)
+    const updatedCheckedState = JSON.parse(JSON.stringify(checkedState)) //hard copy state
+    data.forEach((prop) => {
+      updatedCheckedState[prop.EUNumber] = !allSelected
+    })
     setCheckedState(updatedCheckedState)
   }
 
@@ -56,8 +55,8 @@ function DisplayTable({
         <tr key={index1 + lowerBoundDataPage}>
           {selectTable ? (
             <CheckboxColumn
-              value={checkedState[index1 + lowerBoundDataPage]}
-              onChange={handleOnChange.bind(null, index1 + lowerBoundDataPage)}
+              value={checkedState[entry.EUNumber]}
+              onChange={handleOnChange.bind(null, entry.EUNumber)}
               data={data}
             />
           ) : null}
@@ -134,4 +133,11 @@ const InfoboxColumn = ({ value, onChange, data, setData }) => {
   )
 }
 
+function getAllSelected(checkedState) {
+  let allBoolean = true
+  for (const prop in checkedState) {
+    allBoolean = allBoolean && checkedState[prop]
+  }
+  return allBoolean
+}
 export default DisplayTable

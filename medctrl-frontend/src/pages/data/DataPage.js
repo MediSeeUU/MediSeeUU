@@ -9,11 +9,11 @@ function DataPage() {
 
   //State variable for the selection checkboxes, for more about states see: https://reactjs.org/docs/hooks-state.html
   const [checkedState, setCheckedState] = useState(
-    new Array(allData.length).fill(false)
+    Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: false })))
   )
 
   const selectedData = allData.filter((item, index) => {
-    return checkedState[index]
+    return checkedState[item.EUNumber]
   })
 
   return (
