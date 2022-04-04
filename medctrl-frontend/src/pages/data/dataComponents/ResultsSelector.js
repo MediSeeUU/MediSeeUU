@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function ResultsSelector({
   data,
@@ -8,51 +8,60 @@ function ResultsSelector({
   currPage,
   Options,
 }) {
-  var pageCount = []
-
-  if (Math.ceil(data.length / amount) > 5) {
-    pageCount.push(
-      <div onClick={pageNumber.bind(null, 1)} className="lb-pageCount">
-        {' '}
-        1{' '}
-      </div>
-    )
-    pageCount.push(<div className="lb-pageCount"> .. </div>)
-
-    for (
-      var i = Math.floor((data.length / amount - 1) / 2);
-      i <= Math.ceil((data.length / amount + 1) / 2);
-      i++
-    ) {
-      pageCount.push(
-        <div onClick={pageNumber.bind(null, i)} className="lb-pageCount">
-          {' '}
-          {i}{' '}
-        </div>
-      )
-    }
-
-    pageCount.push(<div className="lb-pageCount"> .. </div>)
-
-    pageCount.push(
-      <div
-        onClick={pageNumber.bind(null, Math.ceil(data.length / amount))}
-        className="lb-pageCount"
-      >
-        {' '}
-        {Math.ceil(data.length / amount)}{' '}
-      </div>
-    )
-  } else {
-    for (var n = 1; n <= Math.ceil(data.length / amount); n++) {
-      pageCount.push(
-        <div onClick={pageNumber.bind(null, n)} className="lb-pageCount">
-          {' '}
-          {n}{' '}
-        </div>
-      )
-    }
+  
+  var [lastSelected, setSelected] = useState(1);
+  var pageCount = [];
+  const pages = data.length / amount;
+  
+  
+  function func(n) { 
+    pageNumber(n)
+    document.getElementById(lastSelected).className = 'lb-pageCount';
+    document.getElementById(n).className += ' lb-pageCount_selected';
+    setSelected(n);
   }
+  
+    //
+  if (Math.ceil(pages) > 5 && currPage < 4 ) {
+    pageCount.push(<div onClick={() => func(1)} className="lb-pageCount lb-pageCount_selected" id='1'> 1 </div>)
+
+    for(var n = 2; n < 5; n++){
+      pageCount.push(<div onClick={func.bind(null, n)} className="lb-pageCount" id={n}> {Math.ceil(n)} </div>)
+    }
+
+    pageCount.push(<div className="lb-pageCount"> .. </div>)
+
+    pageCount.push(<div onClick={pageNumber.bind(null, Math.ceil(pages))} className="lb-pageCount"> {Math.ceil(pages)} </div>)
+  } 
+  
+  if(Math.ceil(pages) > 5 && currPage >= 4  && Math.ceil(pages - 3) >= currPage){
+
+    pageCount.push(<div onClick={pageNumber.bind(null, 1)} className="lb-pageCount"> 1 </div>)
+
+    pageCount.push(<div className="lb-pageCount"> .. </div>)
+
+    pageCount.push(<div onClick={pageNumber.bind(null, currPage - 1 )} className="lb-pageCount"> {currPage - 1} </div>)
+    pageCount.push(<div onClick={pageNumber.bind(null, currPage)} className="lb-pageCount"> {currPage} </div>)
+    pageCount.push(<div onClick={pageNumber.bind(null, currPage + 1 )} className="lb-pageCount"> {currPage + 1} </div>)
+
+    pageCount.push(<div className="lb-pageCount"> .. </div>)
+
+    pageCount.push(<div onClick={pageNumber.bind(null, Math.ceil(pages))} className="lb-pageCount"> {Math.ceil(pages)} </div>)
+  }
+
+
+  if (currPage > Math.ceil(pages - 3)) {
+    pageCount.push(<div onClick={pageNumber.bind(null, 1)} className="lb-pageCount"> 1 </div>)
+
+    pageCount.push(<div className="lb-pageCount"> .. </div>)
+
+    for(var i = pages - 3; i <= pages; i++){
+      pageCount.push(<div onClick={pageNumber.bind(null, Math.ceil(i))} className="lb-pageCount"> {Math.ceil(i)} </div>)
+    }
+  } 
+
+
+
 
   return (
     <div className="bottomOfTableHolder">
