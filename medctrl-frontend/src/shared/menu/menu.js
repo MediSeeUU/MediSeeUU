@@ -2,6 +2,7 @@ import React from 'react'
 import ReactModal from 'react-modal'
 import { v4 as uuidv4 } from 'uuid'
 import Filter from './filter'
+import Sort from './sort'
 import './menu.css'
 
 class Menu extends React.Component {
@@ -10,16 +11,18 @@ class Menu extends React.Component {
 
     // Default filter object
     this.filterObject = [{ selected: '', input: [''] }]
+    this.sortObject = [{selected: '', order: ''}]
 
     // Set init state
-    this.state = { showModal: false, filters: this.filterObject }
+    this.state = { showModal: false, filters: this.filterObject, sorters: this.sortObject }
 
     // Binding of functions
     this.handleOpenModal = this.handleOpenModal.bind(this)
     this.handleCloseModal = this.handleCloseModal.bind(this)
     this.addFilter = this.addFilter.bind(this)
-    this.applyFilters = this.applyFilters.bind(this)
-    this.clearFilters = this.clearFilters.bind(this)
+    this.addSort = this.addSort.bind(this)
+    this.apply = this.apply.bind(this)
+    this.clear = this.clearFilters.bind(this)
   }
 
   // Opens menu
@@ -49,6 +52,19 @@ class Menu extends React.Component {
     })
     this.setState({
       filters: newFilter,
+    })
+  }
+
+  // Standard function to update element with given id in sorters
+  updateSortElement(id, func) {
+    var newSorters = this.state.sorters.map((obj, oid) => {
+      if (oid === id) {
+        return func(obj)
+      }
+      return obj
+    })
+    this.setState({
+      sorters: newSorters,
     })
   }
 
@@ -99,12 +115,15 @@ class Menu extends React.Component {
     })
   }
 
-  // Applies all filters to the cached data, updates the table with this updated data and closes menu
-  applyFilters() {
+  // Applies all filters and sorters to the cached data, updates the table with this updated data and closes menu
+  apply() {
     let filterData = this.props.cachedData
     this.state.filters.forEach((item) => {
       filterData = this.applyFilter(item, filterData)
     })
+
+    // Hier komt sorteer functie
+
     this.props.updateTable(filterData)
     this.handleCloseModal()
   }
@@ -119,13 +138,45 @@ class Menu extends React.Component {
     })
   }
 
-  // Resets the filter menu, updates the table with the cached data and closes menu
-  clearFilters() {
+  // Resets the filter and sort menu, updates the table with the cached data and closes menu
+  clear() {
     this.setState({
       filters: this.filterObject,
+      sorters: this.sortObject,
     })
     this.props.updateTable(this.props.cachedData)
     this.handleCloseModal()
+  }
+
+  // Adds new sort item to the menu
+  addSort() {
+    this.setState((prevState) => ({
+      sorters: prevState.sorters.concat(this.sortObject),
+    }))
+  }
+
+  // Deletes specified sort item from the menu
+  deleteSort = (id) => {
+    console.log("JAAAA")
+    if (this.state.sorters.length > 1) {
+      let newSorters = [...this.state.sorters]
+      newSorters.splice(id, 1)
+      this.setState({
+        sorters: newSorters,
+      })
+    }
+  }
+
+  updateSelectSort = (id, newSelected) => {
+    this.updateSortElement(id, (obj) => {
+      return { ...obj, selected: newSelected }
+    })
+  }
+
+  updateSortingOrder = (id, newOrder) => {
+    this.updateSortElement(id, (obj) => {
+      return { ...obj, order: newOrder }
+    })
   }
 
   render() {
@@ -155,35 +206,52 @@ class Menu extends React.Component {
           ariaHideApp={false}
           contentLabel="Menu"
         >
-          <h1 className="filter-header">Filter Menu</h1>
-          <div className="menu-button add" onClick={this.addFilter}>
-            Add Filter
-            <i className="bx bxs-plus-square add-icon"></i>
+          <div className="filter">
+            <h1 className="filter-header">Filter Menu</h1>
+            <div className="menu-button add" onClick={this.addFilter}>
+              Add Filter
+              <i className="bx bxs-plus-square add-icon"></i>
+            </div>
+            <div className="filters">
+              {this.state.filters.map((obj, oid) => (
+                <Filter
+                  key={uuidv4()}
+                  id={oid}
+                  item={obj}
+                  options={list}
+                  del={this.deleteFilter}
+                  box={this.addFilterBox}
+                  dbox={this.deleteFilterBox}
+                  sel={this.updateSelected}
+                  fil={this.updateInput}
+                />
+              ))}
+            </div>
+            <button className="menu-button apply" onClick={this.apply}>
+              Apply
+            </button>
+            <button className="menu-button cl" onClick={this.clear}>
+              Clear
+            </button>
+            <button className="menu-button cl" onClick={this.handleCloseModal}>
+              Close
+            </button>
           </div>
-          <div className="filters">
-            {this.state.filters.map((obj, oid) => (
-              <Filter
-                key={uuidv4()}
-                id={oid}
-                item={obj}
-                options={list}
-                del={this.deleteFilter}
-                box={this.addFilterBox}
-                dbox={this.deleteFilterBox}
-                sel={this.updateSelected}
-                fil={this.updateInput}
-              />
-            ))}
+          <div className="sort">
+            <h1 className="filter-header">Sort</h1>
+            {this.state.sorters.map((obj, oid) => (
+                <Sort
+                  key={uuidv4()}
+                  id={oid}
+                  item={obj}
+                  options={list}
+                  del={this.deleteSort}
+                  sel={this.updateSelectSort}
+                  order={this.updateSortingOrder}
+                />
+              ))}
+            <label onClick={this.addSort}>Add Sorting option +</label>
           </div>
-          <button className="menu-button apply" onClick={this.applyFilters}>
-            Apply
-          </button>
-          <button className="menu-button cl" onClick={this.clearFilters}>
-            Clear
-          </button>
-          <button className="menu-button cl" onClick={this.handleCloseModal}>
-            Close
-          </button>
         </ReactModal>
       </div>
     )

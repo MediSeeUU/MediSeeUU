@@ -9,6 +9,22 @@
   overflow: hidden;
 }
 
+.filter {
+  position: absolute;
+  height: 100%;
+  width: 80%
+}
+
+.sort {
+  position: absolute;
+  float: right;
+  width: 20%;
+  height: 100%;
+  background-color: yellow;
+  top: 0;
+  right: 0;
+}
+
 .open-menu {
   background-color: rgb(154, 113, 151);
   color: white;
