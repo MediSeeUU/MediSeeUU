@@ -9,5 +9,4 @@ class AtcCode(models.Model):
     )
 
     class Meta:
-        managed = False
         db_table = "atc_code"
