@@ -53,7 +53,10 @@ test('checkboxes displayed', () => {
 
 test('row selected, when checkbox clicked', () => {
   const data = DummyData
-  let checkedState = Array(data.length).fill(false)
+  let checkedState = Object.assign(
+    {},
+    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+  )
   const setCheckedState = (newState) => {
     checkedState = newState
   }
@@ -72,12 +75,15 @@ test('row selected, when checkbox clicked', () => {
   const checkboxes = table.getElementsByClassName('checkboxColumn')
   const input = checkboxes[1].getElementsByTagName('input')[0]
   fireEvent.click(input)
-  expect(checkedState[10]).toBe(true)
+  expect(checkedState[data[10].EUNumber]).toBe(true)
 })
 
 test('all rows selected when select all pressed', () => {
   const data = DummyData
-  let checkedState = Array(data.length).fill(false)
+  let checkedState = Object.assign(
+    {},
+    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+  )
   const setCheckedState = (newState) => {
     checkedState = newState
   }
@@ -96,8 +102,16 @@ test('all rows selected when select all pressed', () => {
   const checkboxes = table.getElementsByClassName('checkboxColumn')
   const input = checkboxes[0].getElementsByTagName('input')[0]
   fireEvent.click(input)
-  checkedState = checkedState.filter((value) => value)
-  expect(checkedState.length).toBe(data.length)
+  let checkedCount = () => {
+    let count = 0
+    for (const prop in checkedState) {
+      if (checkedState[prop]) {
+        count++
+      }
+    }
+    return count
+  }
+  expect(checkedCount()).toBe(data.length)
 })
 
 test('throw error when checkedstate not defined and selectTable true', () => {
