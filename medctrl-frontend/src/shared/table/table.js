@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './table.css'
 
 //Function based component, returns table
 function DisplayTable({
   data,
   selectTable,
+  selectedTable,
   amountPerPage,
   currentPage,
   checkedState,
@@ -20,22 +21,21 @@ function DisplayTable({
   }
 
   //Check if all checkboxes are checked, used to check/uncheck the checkbox in the header
-  const allSelected =
-    checkedState?.find((item) => {
-      return !item
-    }) ?? true
+  const allSelected = getAllSelected(checkedState)
 
   //Handle a mouseclick on a checkbox in the normal row
-  const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    )
+  const handleOnChange = (key) => {
+    const updatedCheckedState = JSON.parse(JSON.stringify(checkedState)) //hard copy state
+    updatedCheckedState[key] = !updatedCheckedState[key]
     setCheckedState(updatedCheckedState)
   }
 
   //Handle a mouseclick on the checkbox in the header
   const handleAllChange = () => {
-    const updatedCheckedState = new Array(data.length).fill(!allSelected)
+    const updatedCheckedState = JSON.parse(JSON.stringify(checkedState)) //hard copy state
+    data.forEach((prop) => {
+      updatedCheckedState[prop.EUNumber] = !allSelected
+    })
     setCheckedState(updatedCheckedState)
   }
 
@@ -55,14 +55,16 @@ function DisplayTable({
         <tr key={index1 + lowerBoundDataPage}>
           {selectTable ? (
             <CheckboxColumn
-              value={checkedState[index1 + lowerBoundDataPage]}
-              onChange={handleOnChange.bind(null, index1 + lowerBoundDataPage)}
+              value={checkedState[entry.EUNumber]}
+              onChange={handleOnChange.bind(null, entry.EUNumber)}
               data={data}
             />
           ) : null}
           {Object.values(entry).map((propt, index2) => {
             return <td key={index2}>{propt}</td>
           })}
+          {selectedTable ? <InfoboxColumn /> : null}
+          {selectTable ? <InfoboxColumn /> : <BinboxColumn />}
         </tr>
       )
     })
@@ -89,6 +91,14 @@ function DisplayTable({
                 return <th key={index}>{key}</th>
               })
           }
+          {
+            //if selectedTable, add coloredbar to the header
+            <td className="checkboxColumn"></td>
+          }
+          {
+            //if selectedTable, add coloredbar to the header
+            selectedTable ? <td className="checkboxColumn"></td> : null
+          }
         </tr>
       </thead>
       <tbody className="tableBody">{htmlData}</tbody>
@@ -105,4 +115,29 @@ const CheckboxColumn = ({ value, onChange }) => {
   )
 }
 
+//logic for the bin
+const BinboxColumn = ({ value, onChange, data, setData }) => {
+  return (
+    <td className="checkboxColumn">
+      <i className="bx bx-trash icons"></i>
+    </td>
+  )
+}
+
+//logic for the information button
+const InfoboxColumn = ({ value, onChange, data, setData }) => {
+  return (
+    <td className="checkboxColumn">
+      <i className="bx bx-info-circle icons" />
+    </td>
+  )
+}
+
+function getAllSelected(checkedState) {
+  let allBoolean = true
+  for (const prop in checkedState) {
+    allBoolean = allBoolean && checkedState[prop]
+  }
+  return allBoolean
+}
 export default DisplayTable

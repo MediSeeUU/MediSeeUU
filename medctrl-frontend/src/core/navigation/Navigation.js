@@ -103,7 +103,7 @@ class SideNavigation extends React.Component {
           <NavLink
             name="Visualize"
             image="bx bx-bar-chart"
-            dest="/visualize"
+            dest="/visualizations"
             parent={this}
           />
 

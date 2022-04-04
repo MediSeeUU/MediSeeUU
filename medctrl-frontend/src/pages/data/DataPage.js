@@ -1,28 +1,29 @@
-import Table from '../../shared/table/table'
 import DummyData from '../../json/data.json'
+import DataSelect from './dataComponents/DataSelect'
+import SelectedData from './dataComponents/SelectedData'
 import { useState } from 'react'
+import './Data.css'
 
 function DataPage() {
   const allData = DummyData
 
   //State variable for the selection checkboxes, for more about states see: https://reactjs.org/docs/hooks-state.html
   const [checkedState, setCheckedState] = useState(
-    new Array(allData.length).fill(false)
+    Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: false })))
   )
 
   const selectedData = allData.filter((item, index) => {
-    return checkedState[index]
+    return checkedState[item.EUNumber]
   })
-  var data = selectedData
+
   return (
-    <Table
-      data={allData}
-      currentPage={2}
-      amountPerPage={100}
-      selectTable={true}
-      setCheckedState={setCheckedState}
-      checkedState={checkedState}
-    />
+    <div>
+      <DataSelect
+        setCheckedState={setCheckedState}
+        checkedState={checkedState}
+      />
+      <SelectedData list={selectedData} />
+    </div>
   )
 }
 

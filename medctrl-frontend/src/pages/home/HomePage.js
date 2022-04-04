@@ -1,10 +1,11 @@
 import './HomePage.css'
+import '../../shared/shared.css'
 
 function HomePage() {
   return (
     // Homepage components, contains article containers (styling in HomePage.css)
     <div>
-      <article className="content__container__top">
+      <article className="content__container__top TopTableHolder">
         <h1>article title</h1>
 
         <h2>undertitle</h2>
@@ -12,7 +13,7 @@ function HomePage() {
         <p>Example text!</p>
       </article>
 
-      <article className="content__container">
+      <article className="content__container TopTableHolder">
         <h1>article title</h1>
 
         <h2>undertitle</h2>
