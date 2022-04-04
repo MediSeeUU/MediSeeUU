@@ -109,8 +109,13 @@ function DisplayTable({
 //logic for the checkboxes
 const CheckboxColumn = ({ value, onChange }) => {
   return (
-    <td className="checkboxColumn">
-      <input type="checkbox" checked={value} onChange={onChange} />
+    <td className="smallColumn">
+      <input
+        className="tableCheckboxColumn"
+        type="checkbox"
+        checked={value}
+        onChange={onChange}
+      />
     </td>
   )
 }
@@ -118,7 +123,7 @@ const CheckboxColumn = ({ value, onChange }) => {
 //logic for the bin
 const BinboxColumn = ({ value, onChange, data, setData }) => {
   return (
-    <td className="checkboxColumn">
+    <td className="smallColumn">
       <i className="bx bx-trash icons"></i>
     </td>
   )
@@ -127,7 +132,7 @@ const BinboxColumn = ({ value, onChange, data, setData }) => {
 //logic for the information button
 const InfoboxColumn = ({ value, onChange, data, setData }) => {
   return (
-    <td className="checkboxColumn">
+    <td className="smallColumn">
       <i className="bx bx-info-circle icons" />
     </td>
   )
