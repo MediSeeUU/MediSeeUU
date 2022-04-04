@@ -108,8 +108,8 @@ class LineForm extends Component {
   render() {
     let x_axis
     let y_axis
-    x_axis = <React.Fragment>X Axis</React.Fragment>
-    y_axis = <React.Fragment>Y Axis</React.Fragment>
+    x_axis = <React.Fragment>X-axis</React.Fragment>
+    y_axis = <React.Fragment>Y-axis</React.Fragment>
 
     // building drop down menus
     const variablesXAxis = this.renderVariableDropDown()
@@ -117,7 +117,7 @@ class LineForm extends Component {
 
     return (
       <React.Fragment>
-        <label>
+        <label className="visualization-panel-label">
           {x_axis} <br />
           <select
             value={this.state.xAxis}
@@ -128,7 +128,7 @@ class LineForm extends Component {
           </select>
         </label>
         <br />
-        <label>
+        <label className="visualization-panel-label">
           {y_axis} <br />
           <select
             value={this.state.yAxis}

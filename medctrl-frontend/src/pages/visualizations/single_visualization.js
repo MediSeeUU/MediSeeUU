@@ -56,7 +56,6 @@ class SingleVisualization extends Component {
       series: series,
       allUniqueCategories: uniqueCategories,
       changeName: '',
-      series: series,
     }
 
     // event handlers
