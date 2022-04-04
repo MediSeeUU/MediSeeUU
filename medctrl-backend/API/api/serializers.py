@@ -1,31 +1,50 @@
 from rest_framework import serializers
+from api.models import Medicine, LegalBasis, LegalScope, AtcCode
 
-from api.models import Dummy
 
-
-class DummySerializer(serializers.ModelSerializer):
-    """
-    Serializer that can serialize a Dummy object from given data
-    """
-
-    text = serializers.CharField(max_length=1000, required=True)
-
-    def create(self, validated_data):
-        # Once the request data has been validated
-        # we can create a todo item instance in the database
-        return Dummy.objects.create(text=validated_data.get("text"))
-
-    def update(self, instance, validated_data):
-        # Once the request data has been validated
-        # we can update the todo item instance in the database
-        instance.text = validated_data.get("text", instance.text)
-        instance.save()
-        return instance
+class LegalBasisSerializer(serializers.ModelSerializer):
+    """Legal basis serializer"""
 
     class Meta:
-        """
-        Metadata for serializer
-        """
+        """Metadata"""
 
-        model = Dummy
-        fields = ("id", "text")
+        model = LegalBasis
+        fields = ["description"]
+
+
+class LegalScopeSerializer(serializers.ModelSerializer):
+    """Legal scope serializer"""
+
+    class Meta:
+        """Metadata"""
+
+        model = LegalScope
+        fields = ["description"]
+
+
+class AtcCodeSerializer(serializers.ModelSerializer):
+    """Atc code serializer"""
+
+    class Meta:
+        """Metadata"""
+
+        model = AtcCode
+        fields = ["atc_code", "description"]
+
+
+class MedicineSerializer(serializers.ModelSerializer):
+    """Medicine serializer"""
+
+    legal_basis = (
+        LegalBasisSerializer()
+    )  # needs to be directly in legal_basis not legalbasis -> description
+    legal_scope = (
+        LegalScopeSerializer()
+    )  # needs to be directly in legal_scope not legalscope -> description
+    atc_code = AtcCodeSerializer()
+
+    class Meta:
+        """Metadata"""
+
+        model = Medicine
+        fields = "__all__"
