@@ -64,10 +64,10 @@ class VisualizationPage extends Component {
           />
           <br />
           <button
-            id="deleteButton"
+            id={"deleteButton" + element}
             className="table-buttons button-remove hidden-illegal"
-            value={element}
             onClick={this.handleRemoval}
+            value={element}
           >
             &#128465;
           </button>

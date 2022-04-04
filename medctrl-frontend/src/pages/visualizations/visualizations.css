@@ -92,6 +92,14 @@
 }
 
 /* Title */
-.visualization-title {
-  margin: 2% 0% 0% 0%;
+.graph-name {
+  margin: 2% 1% 2% 2%;
+  height: 40px;
+  width: 99%;
+  border: 1px hidden;
+  font-size: 25px;
+}
+
+.graph-name:hover {
+  border: 1px solid;
 }

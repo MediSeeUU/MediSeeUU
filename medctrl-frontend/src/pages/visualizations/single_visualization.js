@@ -110,7 +110,7 @@ class SingleVisualization extends Component {
         */
         exp.triggerDownload(
           dataURI300,
-          exp.w.config.chart.toolbar.export.png.filename,
+          'Graph ' + this.props.number + ' - ' + document.getElementById("graphName" + this.props.number).value,
           '.png'
         )
       }
@@ -260,7 +260,13 @@ class SingleVisualization extends Component {
             </Col>
             <Col sm={8}>
               <Row className="visualization-title">
-                <h1>[Visualization name]</h1>
+              <input
+                type="text"
+                id={"graphName" + this.props.number}
+                className="graph-name"
+                placeholder="Enter a graph name"
+                autocomplete="off"
+              />
               </Row>
               <Row>{this.createChart(this.state.chart_type)}</Row>
               <Row>
@@ -279,6 +285,7 @@ class SingleVisualization extends Component {
                 <button
                   className="table-buttons button-remove"
                   onClick={this.removalHandlerIllegal}
+                  value={this.props.number}
                 >
                   &#128465;
                 </button>
@@ -291,7 +298,7 @@ class SingleVisualization extends Component {
   }
 
   removalHandlerIllegal(event) {
-    document.getElementById('deleteButton').click()
+    document.getElementById('deleteButton' + event.target.value).click()
   }
 }
 
