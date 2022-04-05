@@ -18,7 +18,7 @@ class LineGraph extends Component {
           labels: {
             hideOverlappingLabels: true,
           },
-          tickPlacement: 'between',
+          overwriteCategories: this.props.categories,
         },
         dataLabels: {
           enabled: this.props.labels,
@@ -36,7 +36,6 @@ class LineGraph extends Component {
 
   // render a line graph
   render() {
-    console.log(this.state.options.xaxis.categories)
     return (
       <div className="mixed-chart">
         <Chart

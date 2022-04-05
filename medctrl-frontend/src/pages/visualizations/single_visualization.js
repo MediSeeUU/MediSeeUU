@@ -15,6 +15,7 @@ import BoxPlot from './visualization_types/box_plot'
 
 import GenerateBarSeries from './data_interfaces/bar_interface'
 import GenerateLineSeries from './data_interfaces/line_interface'
+import GeneratePieSeries from './data_interfaces/pie_interface'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
@@ -176,7 +177,16 @@ class SingleVisualization extends Component {
 
       case 'donut':
         return (
-          <DonutChart legend={legend_on} labels={labels_on} number={number} />
+          <DonutChart
+            key={`${this.state.changeName}
+                    ${this.state.chartSpecificOptions[this.state.changeName]}`}
+            legend={legend_on}
+            labels={labels_on}
+            number={number}
+            series={this.state.series}
+            categories={this.state.chartSpecificOptions.categoriesSelected}
+            options={this.state.chartSpecificOptions}
+          />
         )
 
       case 'boxPlot':
@@ -206,6 +216,13 @@ class SingleVisualization extends Component {
 
       case 'line':
         return GenerateLineSeries(
+          options,
+          this.state.allUniqueCategories,
+          this.state.data
+        )
+
+      case 'donut':
+        return GeneratePieSeries(
           options,
           this.state.allUniqueCategories,
           this.state.data

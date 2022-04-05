@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import BarForm from './form_types/bar_form'
 import LineForm from './form_types/line_form'
+import PieForm from './form_types/pie_form'
 
 // form component for a single visualization
 class VisualizationForm extends Component {
@@ -86,6 +87,17 @@ class VisualizationForm extends Component {
         break
       }
 
+      case 'donut': {
+        this.setState({
+          chartSpecificOptions: {
+            chosenVariables: 'Rapporteur',
+            categoriesSelected: [],
+          },
+          chartSpecificOptionsName: '',
+        })
+        break
+      }
+
       default:
         return
     }
@@ -110,8 +122,16 @@ class VisualizationForm extends Component {
           />
         )
 
+      case 'donut':
+        return (
+          <PieForm
+            uniqueCategories={this.props.uniqueCategories}
+            onChange={this.handleChartSpecificChange}
+          />
+        )
+
       default:
-        return <div> Not bar </div>
+        return <div> choose a form type </div>
     }
   }
 
