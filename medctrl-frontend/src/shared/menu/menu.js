@@ -123,15 +123,13 @@ class Menu extends React.Component {
 
   // Applies all filters and sorters to the cached data, updates the table with this updated data and closes menu
   apply() {
-    let filterData = this.props.cachedData
+    let filterData = [...this.props.cachedData]
     this.state.filters.forEach((item) => {
       filterData = this.applyFilter(item, filterData)
     })
-
-    // Hier komt sorteer functie
-    var sortedfilteredData = sortData(filterData, this.state.sorters)
-
-    this.props.updateTable(sortedfilteredData)
+    let sortedData = sortData(filterData, this.state.sorters)
+    console.log(sortedData)
+    this.props.updateTable(sortedData)
     this.handleCloseModal()
   }
 
