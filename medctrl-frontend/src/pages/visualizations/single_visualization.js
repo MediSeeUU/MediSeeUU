@@ -104,10 +104,7 @@ class SingleVisualization extends Component {
         let exp = new Exports(
           ApexCharts.getChartByID(String(this.props.number))
         )
-        /*
-          Does not currently export it using the title of the visualization,
-          as the title is not currently set as an option for the user to enter.
-        */
+        // exports the visualization with the name given by the user
         exp.triggerDownload(
           dataURI300,
           'Graph ' + this.props.number + ' - ' + document.getElementById("graphName" + this.props.number).value,
@@ -119,7 +116,7 @@ class SingleVisualization extends Component {
 
   handleSVGExport(event) {
     let exp = new Exports(ApexCharts.getChartByID(String(this.props.number)))
-    exp.exportToSVG(ApexCharts.getChartByID(String(this.props.number)))
+    exp.exportToSVG()
   }
 
   // creating a chart based on the chosen chart type
