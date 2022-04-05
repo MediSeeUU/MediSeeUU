@@ -28,6 +28,11 @@
 /* Keeps the text in the header on the left side, ensuring that the logo can be next to it */
 .med_main_header h1 {
   float: left;
+  margin: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.5;
 }
 
 /* Media query: makes sure that when the screen width drops below 1400px (the size where the page content

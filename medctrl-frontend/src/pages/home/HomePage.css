@@ -1,16 +1,9 @@
 /* Content__container rulesets and h1, h2 and p rulesets are for styling the containers placed inside the main page */
-.content__container__top {
-  margin: 20px;
+.med_home_content {
   margin-top: 40px;
-
-  background-color: white;
-  /* making the border grey makes it look thinner */
-  border: 1px solid grey;
-
-  border-radius: 5px;
 }
 
-.content__container {
+.med_content__container {
   margin: 20px;
 
   background-color: white;
@@ -19,8 +12,11 @@
   border-radius: 5px;
 }
 
-:local(h1,
-h2,
-p) {
+.med_home_content h1,
+.med_home_content h2 {
+  margin: 10px;
+  
+}
+.med_home_content p {
   margin: 10px;
 }

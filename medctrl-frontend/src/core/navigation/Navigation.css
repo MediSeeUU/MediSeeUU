@@ -162,3 +162,10 @@
   font-size: 14px;
   color: var(--text-alt-nav);
 }
+
+.med_nav_divider {
+  margin: 0px auto 10px auto;
+  border: 1px solid var(--seperation-line);
+  opacity: 100%;
+  border-radius: 100%;
+}
