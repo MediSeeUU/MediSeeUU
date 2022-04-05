@@ -40,7 +40,7 @@ class SideNavigation extends React.Component {
     // messages and settings pages below the other links
     let Extra = !(this.state.loggedin && this.state.user.isAdmin) ? null : (
       <div>
-        <hr className="med_nav_divider"/>
+        <hr className="med_nav_divider" />
         <NavLink
           name="Messages"
           image="bx bx-chat"

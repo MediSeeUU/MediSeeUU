@@ -61,7 +61,11 @@ function DisplayTable({
             />
           ) : null}
           {Object.values(entry).map((propt, index2) => {
-            return <td className="med_td" key={index2}>{propt}</td>
+            return (
+              <td className="med_td" key={index2}>
+                {propt}
+              </td>
+            )
           })}
           {selectedTable ? <InfoboxColumn /> : null}
           {selectTable ? <InfoboxColumn /> : <BinboxColumn />}
@@ -88,7 +92,11 @@ function DisplayTable({
             //add object keys to the table header
             data.length > 0 &&
               Object.keys(data[0]).map((key, index) => {
-                return <th className="med_th" key={index}>{key}</th>
+                return (
+                  <th className="med_th" key={index}>
+                    {key}
+                  </th>
+                )
               })
           }
           {

@@ -16,8 +16,12 @@ function App() {
   return (
     <BrowserRouter>
       <div className="med_page__wrapper">
-        <Header className="med_mainLayout"/>
-        <SideNavigation className="med_mainLayout" loggedin={userLoggedIn} user={defUser} />
+        <Header className="med_mainLayout" />
+        <SideNavigation
+          className="med_mainLayout"
+          loggedin={userLoggedIn}
+          user={defUser}
+        />
 
         <main className="med_content">
           <div id="med_content__wrapper">
