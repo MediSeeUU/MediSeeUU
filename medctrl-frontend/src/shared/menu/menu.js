@@ -48,35 +48,43 @@ class Menu extends React.Component {
     }))
   }
 
-  // Standard function to update element with given id in filters
-  updateElement(id, func) {
-    var newFilter = this.state.filters.map((obj, oid) => {
+  // Adds new sort item to the menu (max 5)
+  addSort() {
+    this.setState((prevState) => ({
+      sorters: prevState.sorters.concat(this.sortObject),
+    }))
+    if (this.state.sorters.length >= 4) {
+      this.setState({ showAddSort: false })
+    }
+  }
+
+  // Standard function to update element in state with given id in property
+  updateElement(propertyName, id, func) {
+    var newFilter = this.state[propertyName].map((obj, oid) => {
       if (oid === id) {
         return func(obj)
       }
       return obj
     })
     this.setState({
-      filters: newFilter,
+      [propertyName]: newFilter,
     })
   }
 
-  // Standard function to update element with given id in sorters
-  updateSortElement(id, func) {
-    var newSorters = this.state.sorters.map((obj, oid) => {
-      if (oid === id) {
-        return func(obj)
-      }
-      return obj
-    })
-    this.setState({
-      sorters: newSorters,
-    })
+  // Standard function to remove element in state with given id in property
+  removeElement(propertyName, id) {
+    if (this.state[propertyName].length > 1) {
+      let updated = [...this.state[propertyName]]
+      updated.splice(id, 1)
+      this.setState({
+        [propertyName]: updated,
+      })
+    }
   }
 
   // Adds a new filter input box to a filter item
   addFilterBox = (id) => {
-    this.updateElement(id, (obj) => {
+    this.updateElement("filters", id, (obj) => {
       let newInput = obj.input.concat([''])
       return { ...obj, input: newInput }
     })
@@ -84,7 +92,7 @@ class Menu extends React.Component {
 
   // Deletes the specified input box of the filter item
   deleteFilterBox = (id, bid) => {
-    this.updateElement(id, (obj) => {
+    this.updateElement("filters", id, (obj) => {
       if (obj.input.length > 1) {
         let newInput = [...obj.input]
         newInput.splice(bid, 1)
@@ -96,28 +104,42 @@ class Menu extends React.Component {
 
   // Deletes specified filter item from the menu
   deleteFilter = (id) => {
-    if (this.state.filters.length > 1) {
-      let newFilter = [...this.state.filters]
-      newFilter.splice(id, 1)
-      this.setState({
-        filters: newFilter,
-      })
-    }
+    this.removeElement("filters", id)
+  }
+
+  // Deletes specified sort item from the menu
+  deleteSort = (id) => {
+    this.removeElement("sorters", id)
+    this.setState({ showAddSort: true })
   }
 
   // Updates the selected item of the specified filter item
-  updateSelected = (id, newSelected) => {
-    this.updateElement(id, (obj) => {
+  updateFilterSelected = (id, newSelected) => {
+    this.updateElement("filters", id, (obj) => {
       return { ...obj, selected: newSelected }
     })
   }
 
   // Updates the specified input box value of the specified filter item
-  updateInput = (id, index, value) => {
-    this.updateElement(id, (obj) => {
+  updateFilterInput = (id, index, value) => {
+    this.updateElement("filters", id, (obj) => {
       let newInput = [...obj.input]
       newInput[index] = value
       return { ...obj, input: newInput }
+    })
+  }
+
+  // Updates the selected item of the specified sort item
+  updateSortSelected = (id, newSelected) => {
+    this.updateElement("sorters", id, (obj) => {
+      return { ...obj, selected: newSelected }
+    })
+  }
+
+  // Updates the sorting order of the specified sort item
+  updateSortOrder = (id, newOrder) => {
+    this.updateElement("sorters", id, (obj) => {
+      return { ...obj, order: newOrder }
     })
   }
 
@@ -128,7 +150,6 @@ class Menu extends React.Component {
       filterData = this.applyFilter(item, filterData)
     })
     let sortedData = sortData(filterData, this.state.sorters)
-    console.log(sortedData)
     this.props.updateTable(sortedData)
     this.handleCloseModal()
   }
@@ -152,40 +173,6 @@ class Menu extends React.Component {
     })
     this.props.updateTable(this.props.cachedData)
     this.handleCloseModal()
-  }
-
-  // Adds new sort item to the menu (max 5)
-  addSort() {
-    this.setState((prevState) => ({
-      sorters: prevState.sorters.concat(this.sortObject),
-    }))
-    if (this.state.sorters.length >= 4) {
-      this.setState({ showAddSort: false })
-    }
-  }
-
-  // Deletes specified sort item from the menu
-  deleteSort = (id) => {
-    if (this.state.sorters.length > 1) {
-      let newSorters = [...this.state.sorters]
-      newSorters.splice(id, 1)
-      this.setState({
-        sorters: newSorters,
-      })
-    }
-    this.setState({ showAddSort: true })
-  }
-
-  updateSelectSort = (id, newSelected) => {
-    this.updateSortElement(id, (obj) => {
-      return { ...obj, selected: newSelected }
-    })
-  }
-
-  updateSortingOrder = (id, newOrder) => {
-    this.updateSortElement(id, (obj) => {
-      return { ...obj, order: newOrder }
-    })
   }
 
   render() {
@@ -229,8 +216,8 @@ class Menu extends React.Component {
                   del={this.deleteFilter}
                   box={this.addFilterBox}
                   dbox={this.deleteFilterBox}
-                  sel={this.updateSelected}
-                  fil={this.updateInput}
+                  sel={this.updateFilterSelected}
+                  fil={this.updateFilterInput}
                 />
               ))}
             </div>
@@ -253,8 +240,8 @@ class Menu extends React.Component {
                 item={obj}
                 options={list}
                 del={this.deleteSort}
-                sel={this.updateSelectSort}
-                order={this.updateSortingOrder}
+                sel={this.updateSortSelected}
+                order={this.updateSortOrder}
               />
             ))}
             {this.state.showAddSort && (
