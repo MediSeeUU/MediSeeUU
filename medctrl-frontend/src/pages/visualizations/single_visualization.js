@@ -289,7 +289,7 @@ class SingleVisualization extends Component {
                   id={'graphName' + this.props.number}
                   className="graph-name"
                   placeholder="Enter a graph name"
-                  autocomplete="off"
+                  autoComplete="off"
                 />
               </Row>
               <Row>{this.createChart(this.state.chart_type)}</Row>
@@ -298,20 +298,20 @@ class SingleVisualization extends Component {
                   className="table-buttons button-export"
                   onClick={this.handlePNGExport}
                 >
-                  <i class="bx bx-save filter-Icon"></i>Export as PNG
+                  <i className="bx bx-save filter-Icon"></i>Export as PNG
                 </button>
                 <button
                   className="table-buttons button-export"
                   onClick={this.handleSVGExport}
                 >
-                  <i class="bx bx-save filter-Icon"></i>Export as SVG
+                  <i className="bx bx-save filter-Icon"></i>Export as SVG
                 </button>
                 <button
                   className="table-buttons button-remove"
                   onClick={this.removalHandlerIllegal}
                   value={this.props.number}
                 >
-                  <i class="bx bx-trash"></i>
+                  <i className="bx bx-trash"></i>
                 </button>
               </Row>
             </Col>
