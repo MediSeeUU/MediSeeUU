@@ -4,8 +4,8 @@ import '../../shared/shared.css'
 function HomePage() {
   return (
     // Homepage components, contains article containers (styling in HomePage.css)
-    <div>
-      <article className="content__container__top TopTableHolder">
+    <div className="med_home_content">
+      <article className="med_content__container TopTableHolder">
         <h1>article title</h1>
 
         <h2>undertitle</h2>
@@ -13,7 +13,7 @@ function HomePage() {
         <p>Example text!</p>
       </article>
 
-      <article className="content__container TopTableHolder">
+      <article className="med_content__container TopTableHolder">
         <h1>article title</h1>
 
         <h2>undertitle</h2>

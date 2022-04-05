@@ -47,6 +47,11 @@
   overflow-y: scroll;
 }
 
+.med_visualization_form {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Buttons */
 .table-buttons {
   width: 14%;
