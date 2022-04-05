@@ -91,11 +91,6 @@
   height: 50px;
 }
 
-.hidden-illegal {
-  visibility: hidden;
-  display: none;
-}
-
 /* Title */
 .graph-name {
   margin: 2% 5% 2% 5%;

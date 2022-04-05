@@ -308,7 +308,7 @@ class SingleVisualization extends Component {
                 </button>
                 <button
                   className="table-buttons button-remove"
-                  onClick={this.removalHandlerIllegal}
+                  onClick={this.props.onRemoval}
                   value={this.props.number}
                 >
                   <i className="bx bx-trash"></i>
@@ -319,10 +319,6 @@ class SingleVisualization extends Component {
         </Container>
       </div>
     )
-  }
-
-  removalHandlerIllegal(event) {
-    document.getElementById('deleteButton' + event.target.value).click()
   }
 }
 
