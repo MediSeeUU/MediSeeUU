@@ -91,6 +91,14 @@
   height: 50px;
 }
 
+.button-update:hover {
+  background-color: #32a852;
+}
+
+.button-remove:hover {
+  background-color: red;
+}
+
 /* Title */
 .graph-name {
   margin: 2% 5% 2% 5%;
