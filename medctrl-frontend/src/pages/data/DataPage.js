@@ -12,10 +12,12 @@ function DataPage() {
     Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: false })))
   )
 
+  //default filter on EU_Number
   const selectedData = allData.filter((item, index) => {
     return checkedState[item.EUNumber]
   })
 
+  //main body of the page
   return (
     <div>
       <DataSelect
