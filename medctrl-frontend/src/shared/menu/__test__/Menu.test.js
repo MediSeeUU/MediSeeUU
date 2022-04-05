@@ -58,9 +58,9 @@ test('close button closes menu', () => {
 test('add filter adds filter item', () => {
   render(<Menu cachedData={DummyData} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
-  expect(screen.queryAllByRole('combobox')).toHaveLength(1)
+  expect(screen.queryAllByTestId('filter-select')).toHaveLength(1)
   fireEvent.click(screen.getByText(/Add Filter/i))
-  expect(screen.queryAllByRole('combobox')).toHaveLength(2)
+  expect(screen.queryAllByTestId('filter-select')).toHaveLength(2)
 })
 
 test('single filter applied correctly', () => {
@@ -71,7 +71,7 @@ test('single filter applied correctly', () => {
   }
   render(<Menu cachedData={DummyData} updateTable={update} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
-  const select = screen.getByRole('combobox')
+  const select = screen.queryByTestId('filter-select')
   fireEvent.change(select, { target: { value: 'ApplicationNo' } })
   const textBox = screen.getByRole('textbox')
   fireEvent.change(textBox, { target: { value: '8' } })
@@ -88,13 +88,13 @@ test('two filters applied correctly', () => {
   }
   render(<Menu cachedData={DummyData} updateTable={update} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
-  const firstSelect = screen.getByRole('combobox')
+  const firstSelect = screen.queryByTestId('filter-select')
   fireEvent.change(firstSelect, { target: { value: 'ApplicationNo' } })
   const firstText = screen.getByRole('textbox')
   fireEvent.change(firstText, { target: { value: '7' } })
   fireEvent.focusOut(firstText)
   fireEvent.click(screen.getByText(/Add Filter/i))
-  const secondSelect = screen.getAllByRole('combobox')[1]
+  const secondSelect = screen.queryAllByTestId('filter-select')[1]
   fireEvent.change(secondSelect, { target: { value: 'DecisionYear' } })
   const secondText = screen.getAllByRole('textbox')[1]
   fireEvent.change(secondText, { target: { value: '2001' } })
@@ -110,7 +110,7 @@ test('multiple values in filter applied correctly', () => {
   }
   render(<Menu cachedData={DummyData} updateTable={update} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
-  const firstSelect = screen.getByRole('combobox')
+  const firstSelect = screen.queryByTestId('filter-select')
   fireEvent.change(firstSelect, { target: { value: 'DecisionYear' } })
   const firstText = screen.getByRole('textbox')
   fireEvent.change(firstText, { target: { value: '1997' } })
@@ -125,7 +125,7 @@ test('multiple values in filter applied correctly', () => {
 test('saved filters in state', () => {
   render(<Menu cachedData={DummyData} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
-  const select = screen.getByRole('combobox')
+  const select = screen.queryByTestId('filter-select')
   fireEvent.change(select, { target: { value: 'ApplicationNo' } })
   const text = screen.getByRole('textbox')
   fireEvent.change(text, { target: { value: '10' } })

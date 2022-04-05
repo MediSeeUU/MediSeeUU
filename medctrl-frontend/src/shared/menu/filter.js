@@ -33,6 +33,7 @@ function displayItem(props) {
         className="select"
         defaultValue={props.item.selected}
         onChange={(e) => props.sel(props.id, e.target.value)}
+        data-testid="filter-select"
       >
         <option key="" value="" hidden>
           Select a variable...

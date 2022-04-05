@@ -8,6 +8,7 @@ function displayItem(props) {
         className="select"
         defaultValue={props.item.selected}
         onChange={(e) => props.sel(props.id, e.target.value)}
+        data-testid="sort-select-attr"
       >
         <option key="" value="" hidden>
           Select a variable...
@@ -18,6 +19,7 @@ function displayItem(props) {
         className="select"
         defaultValue={props.item.order}
         onChange={(e) => props.order(props.id, e.target.value)}
+        data-testid="sort-select-order"
       >
         <option key="asc" value="asc">
           Ascending
