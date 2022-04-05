@@ -6,12 +6,13 @@ class DonutChart extends Component {
   constructor(props) {
     super(props)
 
+    console.log(props)
     this.state = {
       options: {
         chart: {
           id: String(this.props.number),
-          type: "pie",
-          toolbar: {show: "false"}
+          type: 'pie',
+          toolbar: { show: false },
         },
         dataLabels: {
           enabled: this.props.labels,
@@ -19,9 +20,9 @@ class DonutChart extends Component {
         legend: {
           show: this.props.legend,
         },
+        labels: this.props.categories,
       },
       series: this.props.series,
-      labels: this.props.categories,
     }
   }
 
@@ -32,7 +33,7 @@ class DonutChart extends Component {
         <Chart
           options={this.state.options}
           series={this.state.series}
-          type="donut"
+          type="pie"
         />
       </div>
     )

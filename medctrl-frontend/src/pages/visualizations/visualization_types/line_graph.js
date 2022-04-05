@@ -18,7 +18,7 @@ class LineGraph extends Component {
           labels: {
             hideOverlappingLabels: true,
           },
-          tickPlacement: 'between',
+          overwriteCategories: this.props.categories,
         },
         dataLabels: {
           enabled: this.props.labels,

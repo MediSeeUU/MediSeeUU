@@ -87,13 +87,13 @@ class VisualizationForm extends Component {
         break
       }
 
-      case "donut": {
+      case 'donut': {
         this.setState({
           chartSpecificOptions: {
-            chosenVariables: "Rapporteur",
-            categoriesSelected: []
+            chosenVariables: 'Rapporteur',
+            categoriesSelected: [],
           },
-          chartSpecificOptionsName: ""
+          chartSpecificOptionsName: '',
         })
         break
       }
@@ -122,7 +122,7 @@ class VisualizationForm extends Component {
           />
         )
 
-      case "donut":
+      case 'donut':
         return (
           <PieForm
             uniqueCategories={this.props.uniqueCategories}
@@ -132,7 +132,6 @@ class VisualizationForm extends Component {
 
       default:
         return <div> choose a form type </div>
-
     }
   }
 

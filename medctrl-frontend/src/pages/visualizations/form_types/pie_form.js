@@ -50,7 +50,7 @@ class PieForm extends Component {
     // initialization of the state
     this.state = {
       eligibleVariables: eligibleVariables,
-      chosenVariabe: "Rapporteur",
+      chosenVariable: 'Rapporteur',
       categoriesSelected: [],
     }
 
@@ -74,7 +74,7 @@ class PieForm extends Component {
       so if these changes we want the categoriesSelected to re-initialized,
       in this case that is just resetting the array
     */
-    if (name === "chosenVariable") {
+    if (name === 'chosenVariable') {
       this.setState({ categoriesSelected: [] })
     }
     this.setState({ [name]: value }, () => {
@@ -113,7 +113,7 @@ class PieForm extends Component {
         <label className="visualization-panel-label">
           Variable <br />
           <select
-            value={this.state.chosenVariabe}
+            value={this.state.chosenVariable}
             name="chosenVariable"
             onChange={this.handleChange}
           >
@@ -123,13 +123,13 @@ class PieForm extends Component {
         <br />
         <CategoryOptions
           /* 
-            We want to reset the component when the axis changes,
+            We want to reset the component when the variable changes,
             may need to become an increment function
           */
           key={`${this.state.chosenVariabe}`}
           className="category-options"
           onChange={this.handleCategorySelectionChange}
-          categories={this.props.uniqueCategories[this.state.yAxis]}
+          categories={this.props.uniqueCategories[this.state.chosenVariable]}
         />
       </React.Fragment>
     )

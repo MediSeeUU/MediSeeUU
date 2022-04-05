@@ -106,8 +106,8 @@ class LineForm extends Component {
 
   // renders the bar form part of the form
   render() {
-		// we may want to add the 'horizontal' option,
-		// so we may want to invert these, like in bar form
+    // we may want to add the 'horizontal' option,
+    // so we may want to invert these, like in bar form
     let x_axis = <React.Fragment>X-axis</React.Fragment>
     let y_axis = <React.Fragment>Y-axis</React.Fragment>
 

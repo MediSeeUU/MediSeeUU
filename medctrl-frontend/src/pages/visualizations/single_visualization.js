@@ -170,7 +170,16 @@ class SingleVisualization extends Component {
 
       case 'donut':
         return (
-          <DonutChart legend={legend_on} labels={labels_on} number={number} />
+          <DonutChart
+            key={`${this.state.changeName}
+                    ${this.state.chartSpecificOptions[this.state.changeName]}`}
+            legend={legend_on}
+            labels={labels_on}
+            number={number}
+            series={this.state.series}
+            categories={this.state.chartSpecificOptions.categoriesSelected}
+            options={this.state.chartSpecificOptions}
+          />
         )
 
       case 'boxPlot':
@@ -204,14 +213,14 @@ class SingleVisualization extends Component {
           this.state.allUniqueCategories,
           this.state.data
         )
-      
-      case "donut":
+
+      case 'donut':
         return GeneratePieSeries(
           options,
           this.state.allUniqueCategories,
           this.state.data
         )
-      
+
       default:
         return GenerateBarSeries(options)
     }
