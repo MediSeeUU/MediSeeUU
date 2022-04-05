@@ -119,7 +119,14 @@ class SingleVisualization extends Component {
 
   handleSVGExport(event) {
     let exp = new Exports(ApexCharts.getChartByID(String(this.props.number)))
-    exp.exportToSVG()
+    exp.triggerDownload(
+      exp.svgUrl(),
+      'Graph ' +
+        this.props.number +
+        ' - ' +
+        document.getElementById('graphName' + this.props.number).value,
+      '.svg'
+    )
   }
 
   // creating a chart based on the chosen chart type
