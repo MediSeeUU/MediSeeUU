@@ -84,7 +84,7 @@ class Menu extends React.Component {
 
   // Adds a new filter input box to a filter item
   addFilterBox = (id) => {
-    this.updateElement("filters", id, (obj) => {
+    this.updateElement('filters', id, (obj) => {
       let newInput = obj.input.concat([''])
       return { ...obj, input: newInput }
     })
@@ -92,7 +92,7 @@ class Menu extends React.Component {
 
   // Deletes the specified input box of the filter item
   deleteFilterBox = (id, bid) => {
-    this.updateElement("filters", id, (obj) => {
+    this.updateElement('filters', id, (obj) => {
       if (obj.input.length > 1) {
         let newInput = [...obj.input]
         newInput.splice(bid, 1)
@@ -104,25 +104,25 @@ class Menu extends React.Component {
 
   // Deletes specified filter item from the menu
   deleteFilter = (id) => {
-    this.removeElement("filters", id)
+    this.removeElement('filters', id)
   }
 
   // Deletes specified sort item from the menu
   deleteSort = (id) => {
-    this.removeElement("sorters", id)
+    this.removeElement('sorters', id)
     this.setState({ showAddSort: true })
   }
 
   // Updates the selected item of the specified filter item
   updateFilterSelected = (id, newSelected) => {
-    this.updateElement("filters", id, (obj) => {
+    this.updateElement('filters', id, (obj) => {
       return { ...obj, selected: newSelected }
     })
   }
 
   // Updates the specified input box value of the specified filter item
   updateFilterInput = (id, index, value) => {
-    this.updateElement("filters", id, (obj) => {
+    this.updateElement('filters', id, (obj) => {
       let newInput = [...obj.input]
       newInput[index] = value
       return { ...obj, input: newInput }
@@ -131,14 +131,14 @@ class Menu extends React.Component {
 
   // Updates the selected item of the specified sort item
   updateSortSelected = (id, newSelected) => {
-    this.updateElement("sorters", id, (obj) => {
+    this.updateElement('sorters', id, (obj) => {
       return { ...obj, selected: newSelected }
     })
   }
 
   // Updates the sorting order of the specified sort item
   updateSortOrder = (id, newOrder) => {
-    this.updateElement("sorters", id, (obj) => {
+    this.updateElement('sorters', id, (obj) => {
       return { ...obj, order: newOrder }
     })
   }
