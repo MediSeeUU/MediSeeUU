@@ -129,7 +129,7 @@ const CheckboxColumn = ({ value, onChange }) => {
 }
 
 //logic for the bin
-const BinboxColumn = ({ value, onChange, data, setData }) => {
+function BinboxColumn(){
   return (
     <td className="med_td smallColumn">
       <i className="bx bx-trash icons"></i>
@@ -138,7 +138,7 @@ const BinboxColumn = ({ value, onChange, data, setData }) => {
 }
 
 //logic for the information button
-const InfoboxColumn = ({ value, onChange, data, setData }) => {
+function InfoboxColumn(){
   return (
     <td className="med_td smallColumn">
       <i className="bx bx-info-circle icons" />
