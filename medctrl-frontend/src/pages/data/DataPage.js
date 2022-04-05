@@ -1,6 +1,8 @@
-import Table from '../../shared/table/table'
 import DummyData from '../../json/data.json'
+import DataSelect from './dataComponents/DataSelect'
+import SelectedData from './dataComponents/SelectedData'
 import { useState } from 'react'
+import './Data.css'
 
 function DataPage() {
   const allData = DummyData
@@ -13,16 +15,15 @@ function DataPage() {
   const selectedData = allData.filter((item, index) => {
     return checkedState[item.EUNumber]
   })
-  var data = selectedData
+
   return (
-    <Table
-      data={allData}
-      currentPage={2}
-      amountPerPage={100}
-      selectTable={true}
-      setCheckedState={setCheckedState}
-      checkedState={checkedState}
-    />
+    <div>
+      <DataSelect
+        setCheckedState={setCheckedState}
+        checkedState={checkedState}
+      />
+      <SelectedData list={selectedData} />
+    </div>
   )
 }
 

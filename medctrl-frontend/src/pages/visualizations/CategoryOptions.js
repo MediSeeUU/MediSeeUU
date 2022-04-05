@@ -62,7 +62,6 @@ class CategoryOptions extends React.Component {
             />
             &nbsp;&nbsp;{category}
           </label>
-          <br />
         </React.Fragment>
       )
     })
