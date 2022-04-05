@@ -271,20 +271,20 @@ class SingleVisualization extends Component {
                   className="table-buttons button-export"
                   onClick={this.handlePNGExport}
                 >
-                  Export as PNG
+                  <i class="bx bx-save filter-Icon"></i>Export as PNG
                 </button>
                 <button
                   className="table-buttons button-export"
                   onClick={this.handleSVGExport}
                 >
-                  Export as SVG
+                  <i class="bx bx-save filter-Icon"></i>Export as SVG
                 </button>
                 <button
                   className="table-buttons button-remove"
                   onClick={this.removalHandlerIllegal}
                   value={this.props.number}
                 >
-                  &#128465;
+                  <i class="bx bx-trash"></i>
                 </button>
               </Row>
             </Col>

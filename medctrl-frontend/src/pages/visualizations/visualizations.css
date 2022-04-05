@@ -74,14 +74,13 @@
 }
 
 .button-remove {
-  width: 40px;
   font-size: 20px;
   background: #d44e33;
   margin: 1.8% 0% 2% 2%;
 }
 
 .button-export {
-  width: 44%;
+  width: 40%;
   margin: 1.8% 0% 2% 2%;
 }
 
@@ -98,13 +97,12 @@
 
 /* Title */
 .graph-name {
-  margin: 2% 1% 2% 2%;
+  margin: 2% 5% 2% 5%;
   height: 40px;
-  width: 99%;
-  border: 1px hidden;
-  font-size: 25px;
+  width: 93%;
+  font-size: 30px;
 }
 
-.graph-name:hover {
-  border: 1px solid;
+.graph-name:not(:placeholder-shown) {
+  border: none;
 }
