@@ -1,13 +1,18 @@
-.content {
+.med_content {
   padding-left: 78px;
   padding-top: 75px;
+  z-index:50;
 }
 
-.page__wrapper {
+.med_page__wrapper {
   max-width: 1400px;
   min-width: 950px;
 }
 
-#content__wrapper {
+.med_content__wrapper {
   min-height: calc(100vh - 75px - 170px);
+}
+
+.med_main_layout {
+  z-index: 1000;
 }

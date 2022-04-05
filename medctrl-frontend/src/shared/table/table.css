@@ -1,5 +1,5 @@
 /* change colors to variables */
-table {
+.med_table {
   display: block;
   overflow: auto;
   border-spacing: 0;
@@ -35,19 +35,19 @@ table {
   background-color: #d6d6d7;
 }
 
-th,
-td {
+.med_th,
+.med_td {
   text-align: center;
   min-width: 200px;
   max-width: 200px;
 }
 
-th {
+.med_th {
   padding: 10px 0;
   font-size: 14px;
 }
 
-td {
+.med_td {
   font-size: 13px;
 }
 

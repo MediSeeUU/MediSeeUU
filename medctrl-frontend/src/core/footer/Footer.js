@@ -4,7 +4,7 @@ function Footer() {
   return (
     //Footer components, gives the information to be placed in the footer in two sections placed
     //next to each other.
-    <footer>
+    <footer className="med_footer">
       <section id="footer__organisations">
         <h2>Relevant organisations</h2>
 

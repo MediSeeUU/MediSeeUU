@@ -15,12 +15,12 @@ const defUser = {
 function App() {
   return (
     <BrowserRouter>
-      <div className="page__wrapper">
-        <Header />
-        <SideNavigation loggedin={userLoggedIn} user={defUser} />
+      <div className="med_page__wrapper">
+        <Header className="med_mainLayout"/>
+        <SideNavigation className="med_mainLayout" loggedin={userLoggedIn} user={defUser} />
 
-        <main className="content">
-          <div id="content__wrapper">
+        <main className="med_content">
+          <div id="med_content__wrapper">
             <AllRoutes />
           </div>
           <Footer />
