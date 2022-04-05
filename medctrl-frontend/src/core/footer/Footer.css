@@ -1,5 +1,5 @@
 /* Main ruleset for the footer, gives its size and general styling */
-footer {
+.med_footer {
   padding: 10px;
   padding-bottom: 30px;
   height: 160px;
@@ -9,6 +9,7 @@ footer {
 
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  margin-left: 2%;
 }
 
 /* These two rulesets are for the 2 rows of content in the footer, it makes sure that they stay 
@@ -43,7 +44,7 @@ footer {
 /* Media query: makes sure that when the screen width drops below 1400px (the size where the page content
   fits the entire webbrowser page) the rounded borders on the outside disappear.  */
 @media only screen and (max-width: 1400px) {
-  footer {
+  .med_footer {
     border-top-right-radius: 0px;
   }
 }

@@ -62,7 +62,6 @@ class VisualizationPage extends Component {
             number={element}
             data={JSON.parse(JSON.stringify(this.state.data))}
           />
-          <br />
           <button
             id="deleteButton"
             className="table-buttons button-remove hidden-illegal"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ResultsSelector from './ResultsSelector'
-import Menu from '../../../shared/menu/Menu'
+import Menu from '../../../shared/menu/menu'
 import Table from '../../../shared/table/table'
 
 import allData from '../../../json/data.json' // we can replace this with a mock API?
@@ -11,6 +11,7 @@ function DataSelect({ setCheckedState, checkedState }) {
 
   //current page
   const [loadedPage, setPage] = useState(1)
+  const [data, setData] = useState(allData)
 
   //all available options for resultsPerPage
   var Options = []
@@ -29,14 +30,17 @@ function DataSelect({ setCheckedState, checkedState }) {
   //main body of the page
   return (
     <div className="TopTableHolder">
-      <Menu />
+      <Menu
+        cachedData={allData}
+        updateTable={(updatedData) => setData(updatedData)}
+      />
       <div className="addRmCollumn">
         <i className="bx bxs-plus-square bx-plusMinus"></i>
         <i className="bx bxs-minus-square bx-plusMinus"></i>
       </div>
 
       <Table
-        data={allData}
+        data={data}
         currentPage={loadedPage}
         amountPerPage={resultsPerPage}
         selectTable={true}
@@ -45,7 +49,7 @@ function DataSelect({ setCheckedState, checkedState }) {
       />
 
       <ResultsSelector
-        data={allData}
+        data={data}
         amount={resultsPerPage}
         resultsPerPage={setResultsPerPage}
         pageNumber={setPage}
