@@ -107,7 +107,10 @@ class SingleVisualization extends Component {
         // exports the visualization with the name given by the user
         exp.triggerDownload(
           dataURI300,
-          'Graph ' + this.props.number + ' - ' + document.getElementById("graphName" + this.props.number).value,
+          'Graph ' +
+            this.props.number +
+            ' - ' +
+            document.getElementById('graphName' + this.props.number).value,
           '.png'
         )
       }
@@ -257,13 +260,13 @@ class SingleVisualization extends Component {
             </Col>
             <Col sm={8}>
               <Row className="visualization-title">
-              <input
-                type="text"
-                id={"graphName" + this.props.number}
-                className="graph-name"
-                placeholder="Enter a graph name"
-                autocomplete="off"
-              />
+                <input
+                  type="text"
+                  id={'graphName' + this.props.number}
+                  className="graph-name"
+                  placeholder="Enter a graph name"
+                  autocomplete="off"
+                />
               </Row>
               <Row>{this.createChart(this.state.chart_type)}</Row>
               <Row>
