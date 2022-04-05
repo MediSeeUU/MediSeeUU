@@ -105,13 +105,13 @@ class SingleVisualization extends Component {
         let exp = new Exports(
           ApexCharts.getChartByID(String(this.props.number))
         )
-        /*
-          Does not currently export it using the title of the visualization,
-          as the title is not currently set as an option for the user to enter.
-        */
+        // exports the visualization with the name given by the user
         exp.triggerDownload(
           dataURI300,
-          exp.w.config.chart.toolbar.export.png.filename,
+          'Graph ' +
+            this.props.number +
+            ' - ' +
+            document.getElementById('graphName' + this.props.number).value,
           '.png'
         )
       }
@@ -120,7 +120,7 @@ class SingleVisualization extends Component {
 
   handleSVGExport(event) {
     let exp = new Exports(ApexCharts.getChartByID(String(this.props.number)))
-    exp.exportToSVG(ApexCharts.getChartByID(String(this.props.number)))
+    exp.exportToSVG()
   }
 
   // creating a chart based on the chosen chart type
@@ -277,7 +277,13 @@ class SingleVisualization extends Component {
             </Col>
             <Col sm={8}>
               <Row className="visualization-title">
-                <h1>[Visualization name]</h1>
+                <input
+                  type="text"
+                  id={'graphName' + this.props.number}
+                  className="graph-name"
+                  placeholder="Enter a graph name"
+                  autocomplete="off"
+                />
               </Row>
               <Row>{this.createChart(this.state.chart_type)}</Row>
               <Row>
@@ -285,19 +291,20 @@ class SingleVisualization extends Component {
                   className="table-buttons button-export"
                   onClick={this.handlePNGExport}
                 >
-                  Export as PNG
+                  <i class="bx bx-save filter-Icon"></i>Export as PNG
                 </button>
                 <button
                   className="table-buttons button-export"
                   onClick={this.handleSVGExport}
                 >
-                  Export as SVG
+                  <i class="bx bx-save filter-Icon"></i>Export as SVG
                 </button>
                 <button
                   className="table-buttons button-remove"
                   onClick={this.removalHandlerIllegal}
+                  value={this.props.number}
                 >
-                  &#128465;
+                  <i class="bx bx-trash"></i>
                 </button>
               </Row>
             </Col>
@@ -308,7 +315,7 @@ class SingleVisualization extends Component {
   }
 
   removalHandlerIllegal(event) {
-    document.getElementById('deleteButton').click()
+    document.getElementById('deleteButton' + event.target.value).click()
   }
 }
 

@@ -47,6 +47,11 @@
   overflow-y: scroll;
 }
 
+.med_visualization_form {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Buttons */
 .table-buttons {
   width: 14%;
@@ -69,14 +74,13 @@
 }
 
 .button-remove {
-  width: 40px;
   font-size: 20px;
   background: #d44e33;
   margin: 1.8% 0% 2% 2%;
 }
 
 .button-export {
-  width: 44%;
+  width: 40%;
   margin: 1.8% 0% 2% 2%;
 }
 
@@ -92,6 +96,13 @@
 }
 
 /* Title */
-.visualization-title {
-  margin: 2% 0% 0% 0%;
+.graph-name {
+  margin: 2% 5% 2% 5%;
+  height: 40px;
+  width: 93%;
+  font-size: 30px;
+}
+
+.graph-name:not(:placeholder-shown) {
+  border: none;
 }

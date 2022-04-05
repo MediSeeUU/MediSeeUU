@@ -47,7 +47,7 @@ test('checkboxes displayed', () => {
     />
   )
   const table = view.getByRole('table')
-  const checkboxes = table.getElementsByClassName('checkboxColumn')
+  const checkboxes = table.getElementsByClassName('tableCheckboxColumn')
   expect(checkboxes).toHaveLength(11)
 })
 
@@ -72,8 +72,7 @@ test('row selected, when checkbox clicked', () => {
     />
   )
   const table = view.getByRole('table')
-  const checkboxes = table.getElementsByClassName('checkboxColumn')
-  const input = checkboxes[1].getElementsByTagName('input')[0]
+  const input = table.getElementsByClassName('tableCheckboxColumn')[1]
   fireEvent.click(input)
   expect(checkedState[data[10].EUNumber]).toBe(true)
 })
@@ -99,8 +98,7 @@ test('all rows selected when select all pressed', () => {
     />
   )
   const table = view.getByRole('table')
-  const checkboxes = table.getElementsByClassName('checkboxColumn')
-  const input = checkboxes[0].getElementsByTagName('input')[0]
+  const input = table.getElementsByClassName('tableCheckboxColumn')[0]
   fireEvent.click(input)
   let checkedCount = () => {
     let count = 0

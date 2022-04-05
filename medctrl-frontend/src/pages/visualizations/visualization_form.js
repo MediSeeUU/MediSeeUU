@@ -138,9 +138,9 @@ class VisualizationForm extends Component {
   // render method for the form
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="med_visualization_form" onSubmit={this.handleSubmit}>
         <label className="visualization-panel-label">
-          Visualization type <br />
+          Visualization type
           <select
             value={this.state.chart_type}
             name="chart_type"
@@ -152,7 +152,6 @@ class VisualizationForm extends Component {
             <option value="boxPlot">Box plot</option>
           </select>
         </label>
-        <br />
         {this.renderChartOptions(this.state.chart_type)}
         <label className="visualization-panel-label">
           <input
@@ -163,7 +162,6 @@ class VisualizationForm extends Component {
           />
           &nbsp;&nbsp;Show legend
         </label>
-        <br />
         <label className="visualization-panel-label">
           <input
             type="checkbox"
@@ -173,12 +171,9 @@ class VisualizationForm extends Component {
           />
           &nbsp;&nbsp;Show labels
         </label>
-        <br />
-        <input
-          type="submit"
-          className="table-buttons button-update"
-          value="Update"
-        />
+        <button type="submit" class="table-buttons button-update">
+          <i className="bx bx-check filter-Icon"></i>Update
+        </button>
       </form>
     )
   }

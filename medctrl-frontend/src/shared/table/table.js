@@ -5,6 +5,7 @@ import './table.css'
 function DisplayTable({
   data,
   selectTable,
+  selectedTable,
   amountPerPage,
   currentPage,
   checkedState,
@@ -60,15 +61,21 @@ function DisplayTable({
             />
           ) : null}
           {Object.values(entry).map((propt, index2) => {
-            return <td key={index2}>{propt}</td>
+            return (
+              <td className="med_td" key={index2}>
+                {propt}
+              </td>
+            )
           })}
+          {selectedTable ? <InfoboxColumn /> : null}
+          {selectTable ? <InfoboxColumn /> : <BinboxColumn />}
         </tr>
       )
     })
 
   //return table, with a header with the data keywords
   return (
-    <table>
+    <table className="med_table">
       <thead className="tableHeader">
         <tr>
           {
@@ -85,8 +92,20 @@ function DisplayTable({
             //add object keys to the table header
             data.length > 0 &&
               Object.keys(data[0]).map((key, index) => {
-                return <th key={index}>{key}</th>
+                return (
+                  <th className="med_th" key={index}>
+                    {key}
+                  </th>
+                )
               })
+          }
+          {
+            //if selectedTable, add coloredbar to the header
+            <td className="med_td smallColumn"></td>
+          }
+          {
+            //if selectedTable, add coloredbar to the header
+            selectedTable ? <td className="med_td smallColumn"></td> : null
           }
         </tr>
       </thead>
@@ -98,8 +117,31 @@ function DisplayTable({
 //logic for the checkboxes
 const CheckboxColumn = ({ value, onChange }) => {
   return (
-    <td className="checkboxColumn">
-      <input type="checkbox" checked={value} onChange={onChange} />
+    <td className="med_td smallColumn">
+      <input
+        className="tableCheckboxColumn"
+        type="checkbox"
+        checked={value}
+        onChange={onChange}
+      />
+    </td>
+  )
+}
+
+//logic for the bin
+const BinboxColumn = ({ value, onChange, data, setData }) => {
+  return (
+    <td className="med_td smallColumn">
+      <i className="bx bx-trash icons"></i>
+    </td>
+  )
+}
+
+//logic for the information button
+const InfoboxColumn = ({ value, onChange, data, setData }) => {
+  return (
+    <td className="med_td smallColumn">
+      <i className="bx bx-info-circle icons" />
     </td>
   )
 }

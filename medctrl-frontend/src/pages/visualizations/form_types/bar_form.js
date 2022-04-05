@@ -128,7 +128,7 @@ class BarForm extends Component {
     return (
       <React.Fragment>
         <label className="visualization-panel-label">
-          {x_axis} <br />
+          {x_axis}
           <select
             value={this.state.xAxis}
             name="xAxis"
@@ -137,9 +137,8 @@ class BarForm extends Component {
             {variablesXAxis}
           </select>
         </label>
-        <br />
         <label className="visualization-panel-label">
-          {y_axis} <br />
+          {y_axis}
           <select
             value={this.state.yAxis}
             name="yAxis"
@@ -148,7 +147,6 @@ class BarForm extends Component {
             {variablesYAxis}
           </select>
         </label>
-        <br />
         <label className="visualization-panel-label">
           <input
             type="checkbox"
@@ -158,7 +156,6 @@ class BarForm extends Component {
           />
           &nbsp;&nbsp;Stacked
         </label>
-        <br />
         <label className="visualization-panel-label">
           <input
             type="checkbox"
@@ -168,7 +165,6 @@ class BarForm extends Component {
           />
           &nbsp;&nbsp;Stack fully
         </label>
-        <br />
         <label className="visualization-panel-label">
           <input
             type="checkbox"
@@ -178,7 +174,6 @@ class BarForm extends Component {
           />
           &nbsp;&nbsp;Horizontal
         </label>
-        <br />
         <CategoryOptions
           /* 
             We want to reset the component when the axis changes,

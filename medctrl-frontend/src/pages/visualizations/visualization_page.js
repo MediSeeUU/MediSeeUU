@@ -62,12 +62,11 @@ class VisualizationPage extends Component {
             number={element}
             data={JSON.parse(JSON.stringify(this.state.data))}
           />
-          <br />
           <button
-            id="deleteButton"
+            id={'deleteButton' + element}
             className="table-buttons button-remove hidden-illegal"
-            value={element}
             onClick={this.handleRemoval}
+            value={element}
           >
             &#128465;
           </button>
@@ -84,7 +83,7 @@ class VisualizationPage extends Component {
               className="table-buttons button-add"
               onClick={this.handleAddition}
             >
-              Add visualization
+              <i className="bx bx-plus filter-Icon"></i>Add visualization
             </button>
           </Row>
         </Container>
