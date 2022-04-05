@@ -47,7 +47,7 @@
   overflow-y: scroll;
 }
 
-.med_visualization_form{
+.med_visualization_form {
   display: flex;
   flex-direction: column;
 }
