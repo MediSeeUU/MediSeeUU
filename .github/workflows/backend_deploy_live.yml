@@ -1,10 +1,10 @@
-name: Deploy dev backend environment
+name: Deploy live backend environment
 
 on:
   workflow_dispatch:
   push:
     branches:
-      - development
+      - master
     paths:
       - medctrl-backend
 
@@ -18,4 +18,4 @@ jobs:
   build_deploy:
     uses: Rutgerdj/med-ctrl/.github/workflows/backend_deploy_reusable.yml@master
     with:
-      build_name: development
+      build_name: live
