@@ -28,9 +28,9 @@ function print_highlight {
 # Setup a python environment
 function setup_python_env {
     print_highlight "Setting up python environment"
-    python3 -m pip install --upgrade pip
-    python3 -m pip install virtualenv
-    python3 -m virtualenv virtualenv
+    python3.10 -m pip install --upgrade pip
+    python3.10 -m pip install virtualenv
+    python3.10 -m virtualenv virtualenv
 
     source virtualenv/bin/activate
 
