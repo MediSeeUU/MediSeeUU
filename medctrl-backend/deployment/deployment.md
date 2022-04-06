@@ -90,6 +90,9 @@ SECRET_KEY = "random secret key"
 
 DEBUG = False
 
+# base url where the api will be served from
+BASE_URL = "baseurl/"
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",

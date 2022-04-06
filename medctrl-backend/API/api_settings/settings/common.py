@@ -35,6 +35,13 @@ INSTALLED_APPS = [
     "rest_framework",
 ]
 
+# Use sessionauthentication instead of Basic
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
