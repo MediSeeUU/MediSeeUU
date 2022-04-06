@@ -16,7 +16,7 @@ jobs:
         run: echo "done"
 
   deploy:
-    uses: Rutgerdj/med-ctrl/.github/workflows/frontend_deploy_reusable.yml@master
+    uses: Rutgerdj/med-ctrl/.github/workflows/frontend_deploy_reusable.yml@deploy-environments-ci
     with:
       public_url: /dev
       deploy_path: /var/www/medctrl/dev
