@@ -134,14 +134,12 @@ After the `build.sh` script is finished, the application runs on a Unix socket. 
     # The /api endpoint will be bound to the `development` build
     location /api {
         include proxy_params;
-        rewrite ^/api(.*)$ $1 break;
         proxy_pass http://unix:/opt/medctrl/backend/development/gunicorn.sock;
     }
 
     # The /testapi endpoint will be bound to the `testing` build
     location /testapi {
         include proxy_params;
-        rewrite ^/testapi(.*)$ $1 break;
         proxy_pass http://unix:/opt/medctrl/backend/testing/gunicorn.sock;
     }
 
