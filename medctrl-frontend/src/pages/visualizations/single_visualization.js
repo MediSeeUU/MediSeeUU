@@ -3,7 +3,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
-//import { changeDpiDataUrl } from 'changedpi'
+import { changeDpiDataUrl } from 'changedpi'
 import ApexCharts from 'apexcharts'
 
 import VisualizationForm from './visualization_form'
@@ -92,12 +92,12 @@ class SingleVisualization extends Component {
 	  Event handler for exporting the visualization to svg and png.
 		Does not export the actual data.
 	*/
- /*  handlePNGExport(event) {
+  handlePNGExport(event) {
     /* 
 		  Get the visualization in the base64 format,
 			we scale it for a better resolution.
 		*/
-    /*ApexCharts.exec(String(this.props.number), 'dataURI', { scale: 3.5 }).then(
+    ApexCharts.exec(String(this.props.number), 'dataURI', { scale: 3.5 }).then(
       ({ imgURI }) => {
         // changes the dpi of the visualization to 300
         const dataURI300 = changeDpiDataUrl(imgURI, 300)
@@ -111,20 +111,10 @@ class SingleVisualization extends Component {
         // exports the visualization with the name given by the user
       }
     )
-  } */
+  }
 
   handleSVGExport(event) {
     ApexCharts.getChartByID(String(this.props.number)).exports.exportToSVG()
-    //this.triggerDownload(svg,"file", ".svg")
-    /* et exp = new Exports(ApexCharts.getChartByID(String(this.props.number)))
-    exp.triggerDownload(
-      exp.svgUrl(),
-      'Graph ' +
-        this.props.number +
-        ' - ' +
-        document.getElementById('graphName' + this.props.number).value,
-      '.svg'
-    ) */
   }
 
   // creating a chart based on the chosen chart type
@@ -259,15 +249,6 @@ class SingleVisualization extends Component {
     }
 
     return dict
-  }
-
-  triggerDownload(href, filename, ext) {
-    const downloadLink = document.createElement('a')
-    downloadLink.href = href
-    downloadLink.download = (filename) + ext
-    document.body.appendChild(downloadLink)
-    downloadLink.click()
-    document.body.removeChild(downloadLink)
   }
 
   /*
