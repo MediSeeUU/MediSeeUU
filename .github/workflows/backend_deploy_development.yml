@@ -1,0 +1,17 @@
+name: Deploy dev backend environment
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  checkout:
+    runs-on: deploy_backend_ci
+
+    steps:
+      - uses: actions/checkout@v2
+
+  deploy:
+    uses: Rutgerdj/med-ctrl/.github/workflows/backend_deploy_reusable.yml@deploy-environments-ci
+    with:
+      build_name: development
