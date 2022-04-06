@@ -3,7 +3,7 @@ import ResultsSelector from './ResultsSelector'
 import Menu from '../../../shared/menu/menu'
 import Table from '../../../shared/table/table'
 
-import allData from '../../../json/data.json' // we can replace this with a mock API?
+import allData from '../../../json/data.json'
 
 function DataSelect({ setCheckedState, checkedState }) {
   const [resultsPerPage, setResultsPerPage] = useState(50)

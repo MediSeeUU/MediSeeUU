@@ -196,3 +196,57 @@ test('throw error when current page does not exist', () => {
     )
   expect(renderFunction).toThrow(Error)
 })
+
+test('data put properly in table', () => {
+  const view = render(
+    <Table
+      data={DummyData}
+      selectTable={true}
+      setCheckedState={() => {}}
+      checkedState={Array(DummyData.length).fill(false)}
+      currentPage={1}
+      amountPerPage={10}
+    />
+  )
+  const headers = view.getAllByRole('columnheader')
+  const rowgroup = view.getAllByRole('rowgroup')[1]
+  const rows = within(rowgroup).getAllByRole('row')
+  headers.forEach((header, index) => {
+    const select = within(header).getByRole('combobox')
+    const selectValue = select.value
+    rows.forEach((row, index2) => {
+      const cells = within(row).getAllByRole('cell')
+      const cellValue = cells[index + 1].innerHTML
+      const dataElement = DummyData[index2]
+      expect(cellValue).toBe(dataElement[selectValue].toString())
+    });
+  });
+})
+
+test('column change changes data in row properly', () => {
+  const view = render(
+    <Table
+      data={DummyData}
+      selectTable={true}
+      setCheckedState={() => {}}
+      checkedState={Array(DummyData.length).fill(false)}
+      currentPage={1}
+      amountPerPage={10}
+    />
+  )
+  const headers = view.queryAllByRole('columnheader')
+  const firstSelect = within(headers[0]).getByRole('combobox')
+  const startValue = firstSelect.value
+  const options = within(firstSelect).getAllByRole('option')
+  const newValue = options[1].value
+  expect(startValue).not.toBe(newValue)
+  fireEvent.change(firstSelect, {target: {value: newValue}})
+  const rowgroup = view.getAllByRole('rowgroup')[1]
+  const rows = within(rowgroup).getAllByRole('row')
+  rows.forEach((row, index) => {
+    const cells = within(row).getAllByRole('cell')
+    const cellValue = cells[1].innerHTML
+    const dataElement = DummyData[index]
+    expect(cellValue).toBe(dataElement[newValue].toString())
+  });
+})

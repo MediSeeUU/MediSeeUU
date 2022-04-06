@@ -47,8 +47,10 @@ function DisplayTable({
     throw Error('Pagination too high, data not defined')
   }
 
-  const [columnSelection, setColumnSelection] = useState(Object.keys(data[0]))
+  //the column selection state
+  const [columnSelection, setColumnSelection] = useState(data.length > 0 && Object.keys(data[0]))
 
+  //handler that changes the column based on the target value
   const handleColumnChange = (id, value) => {
     let newColumnSelection = [...columnSelection]
     newColumnSelection[id] = value
@@ -98,20 +100,19 @@ function DisplayTable({
           }
           {
             //add object keys to the table header
-            data.length > 0 &&
-              columnSelection.map((key, index) => {
-                return (
-                  <th key={index}>
-                    <select defaultValue={key} className="med_th" onChange={(e) => handleColumnChange(index, e.target.value)}>
-                      {Object.keys(data[0]).map((keyy, iii) => {
-                        return (
-                          <option key={iii} value={keyy}>{keyy}</option>
-                        )
-                      })}
-                    </select>
-                  </th>
-                )
-              })
+            columnSelection.map((key1, index1) => {
+              return (
+                <th key={index1}>
+                  <select value={key1} className="med_th" onChange={(e) => handleColumnChange(index1, e.target.value)}>
+                    {Object.keys(data[0]).map((key2, index2) => {
+                      return (
+                        <option key={index2} value={key2}>{key2}</option>
+                      )
+                    })}
+                  </select>
+                </th>
+              )
+            })
           }
           {
             //if selectedTable, add coloredbar to the header
