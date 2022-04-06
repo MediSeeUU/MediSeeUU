@@ -17,20 +17,23 @@ class CategoryOptions extends React.Component {
 
   // allows user to select all categories
   handleAllCategorySelection(event) {
-    console.log(this.props.categories)
     if (this.state.selectAllCategories) {
-      this.setState({
-        selectAllCategories: false,
-        categoriesSelected: []
-      },
-      () => this.props.onChange(this.state.categoriesSelected))
+      this.setState(
+        {
+          selectAllCategories: false,
+          categoriesSelected: [],
+        },
+        () => this.props.onChange(this.state.categoriesSelected)
+      )
     } else {
-      this.setState({
-        selectAllCategories: true,
-        categoriesSelected: this.props.categories
-      },
-      () => this.props.onChange(this.state.categoriesSelected))
-    }   
+      this.setState(
+        {
+          selectAllCategories: true,
+          categoriesSelected: this.props.categories,
+        },
+        () => this.props.onChange(this.state.categoriesSelected)
+      )
+    }
   }
 
   // Updating what categories have been selected,
@@ -91,6 +94,7 @@ class CategoryOptions extends React.Component {
     const categories = this.renderCategoryOptions()
     return (
       <React.Fragment>
+        <br />
         <label>
           <input
             type="checkbox"
@@ -98,12 +102,10 @@ class CategoryOptions extends React.Component {
             checked={this.state.selectAllCategories}
             onChange={this.handleAllCategorySelection}
           />
-          Select all categories
+          &nbsp;&nbsp;Select all categories
         </label>
-        <div className="country-options">
-        {categories}
-        </div>
-      </React.Fragment>    
+        <div className="country-options">{categories}</div>
+      </React.Fragment>
     )
   }
 }
