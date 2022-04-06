@@ -51,4 +51,6 @@ jobs:
       - name: Build and deploy frontend
         run: |
           CI='' PUBLIC_URL=${{inputs.public_url}} npm run build
-          cp -r build/* ${{deploy_path}}
+
+          mkdir -p ${{inputs.deploy_path}}
+          cp -r build/* ${{inputs.deploy_path}}
