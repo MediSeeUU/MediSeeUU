@@ -5,13 +5,13 @@ on:
   push:
 
 jobs:
-  deploy:
+  checkout:
     runs-on: deploy_backend_ci
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build and deploy backend
-        uses: Rutgerdj/med-ctrl/.github/workflows/backend_deploy_reusable.yml@deploy-environments-ci
-        with:
-          build_name: development
+  build_deploy:
+    uses: Rutgerdj/med-ctrl/.github/workflows/backend_deploy_reusable.yml@deploy-environments-ci
+    with:
+      build_name: development
