@@ -1,0 +1,54 @@
+name: Deploy frontend to online environment
+
+on:
+  workflow_call:
+    inputs:
+      public_url:
+        required: true
+        type: string
+      deploy_path:
+        required: true
+        type: string
+
+env:
+  NODE_VERSION: "16.x"
+
+defaults:
+  run:
+    working-directory: "medctrl-frontend"
+
+jobs:
+  build:
+    runs-on: self-hosted-1
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npm install prettier
+          npm install eslint
+
+      - name: Run prettier
+        run: |
+          npx prettier --check ./
+
+      - name: Run ESLint
+        run: |
+          npx eslint ./
+
+      - name: Run tests
+        run: |
+          npm run ci-test
+
+      - name: Build and deploy frontend
+        run: |
+          CI='' PUBLIC_URL=${{inputs.public_url}} npm run build
+          cp -r build/* ${{deploy_path}}
