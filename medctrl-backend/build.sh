@@ -48,6 +48,7 @@ function check_config {
 
 function migrate_db {
     cd API
+    export DJANGO_SETTINGS_MODULE=api_settings.settings.deploy_$BUILD_NAME
     print_highlight "Migrating database"
     python manage.py migrate
     cd ..
