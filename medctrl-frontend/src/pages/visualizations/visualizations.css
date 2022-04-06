@@ -91,9 +91,12 @@
   height: 50px;
 }
 
-.hidden-illegal {
-  visibility: hidden;
-  display: none;
+.button-update:hover {
+  background-color: #32a852;
+}
+
+.button-remove:hover {
+  background-color: red;
 }
 
 /* Title */

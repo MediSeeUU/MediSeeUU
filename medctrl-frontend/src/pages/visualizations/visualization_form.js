@@ -171,7 +171,7 @@ class VisualizationForm extends Component {
           />
           &nbsp;&nbsp;Show labels
         </label>
-        <button type="submit" class="table-buttons button-update">
+        <button type="submit" className="table-buttons button-update">
           <i className="bx bx-check filter-Icon"></i>Update
         </button>
       </form>

@@ -61,15 +61,8 @@ class VisualizationPage extends Component {
           <SingleVisualization
             number={element}
             data={JSON.parse(JSON.stringify(this.state.data))}
+            onRemoval={this.handleRemoval}
           />
-          <button
-            id={'deleteButton' + element}
-            className="table-buttons button-remove hidden-illegal"
-            onClick={this.handleRemoval}
-            value={element}
-          >
-            &#128465;
-          </button>
         </Row>
       )
     })
