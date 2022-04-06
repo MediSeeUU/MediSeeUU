@@ -14,7 +14,7 @@ const defUser = {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL} >
       <div className="page__wrapper">
         <Header />
         <SideNavigation loggedin={userLoggedIn} user={defUser} />
