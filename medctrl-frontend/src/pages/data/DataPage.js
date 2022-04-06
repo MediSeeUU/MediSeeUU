@@ -13,7 +13,7 @@ function DataPage() {
   const selectedData = allData.filter((item, index) => {
     return checkedState[item.EUNumber]
   })
-  var data = selectedData
+//  var data = selectedData
   return (
     <Table
       data={allData}
