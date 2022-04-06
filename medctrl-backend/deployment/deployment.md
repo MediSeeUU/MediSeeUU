@@ -57,6 +57,7 @@ At this stage we will create a directory where all the build files will live. We
 1. Create a folder where the builds will live:
     ```bash
     mkdir -p /opt/medctrl/backend
+    mkdir -p /var/www/medctrl/django-static
     ```
     Any builds that you run will end up in a subdirectory of this directory. So if you have a build with name `development` the build files will be placed in `/opt/medctrl/backend/development`.
 
