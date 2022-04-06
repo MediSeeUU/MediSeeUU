@@ -4,9 +4,11 @@ on:
   workflow_dispatch:
   push:
 
+
+
 jobs:
   checkout:
-    runs-on: deploy_backend_ci
+    runs-on: self-hosted-1
 
     steps:
       - uses: actions/checkout@v2
