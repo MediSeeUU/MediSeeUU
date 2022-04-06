@@ -1,0 +1,21 @@
+name: Build and deploy backend
+
+on:
+  workflow_call:
+    inputs:
+      build_name:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: deploy_backend_ci
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy backend
+      - run: |
+          cp /etc/medctrl/config/deploy_${{inputs.build_name}}.py ./API/api_settings/settings/
+          BUILD_NAME=${{inputs.build_name}} ./build.sh
+        working-directory: medctrl-backend
