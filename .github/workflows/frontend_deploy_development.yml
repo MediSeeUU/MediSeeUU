@@ -1,0 +1,18 @@
+name: Deploy development frontend environment
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  do-it:
+    runs-on: self-hosted-1
+
+    steps:
+      - uses: actions/checkout@v2
+
+  deploy:
+    uses: Rutgerdj/med-ctrl/.github/workflows/frontend_deploy_reusable.yml@deploy-environments-ci
+    with:
+      public_url: /site2
+      deploy_path: /var/www/medctrl/site2
