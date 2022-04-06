@@ -11,9 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Print status
-        run: echo "done"
-
   build_deploy:
     uses: Rutgerdj/med-ctrl/.github/workflows/backend_deploy_reusable.yml@deploy-environments-ci
     with:

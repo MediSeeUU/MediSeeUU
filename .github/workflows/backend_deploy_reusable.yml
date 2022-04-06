@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Deploy backend
-      - run: |
+        run: |
           cp /etc/medctrl/config/deploy_${{inputs.build_name}}.py ./API/api_settings/settings/
           BUILD_NAME=${{inputs.build_name}} ./build.sh
         working-directory: medctrl-backend
