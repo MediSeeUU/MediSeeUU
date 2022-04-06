@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Print status
+        run: echo "done"
+
   deploy:
     uses: Rutgerdj/med-ctrl/.github/workflows/frontend_deploy_reusable.yml@master
     with:
