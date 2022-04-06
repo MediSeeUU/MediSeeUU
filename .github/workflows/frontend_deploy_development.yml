@@ -3,8 +3,7 @@ name: Deploy development frontend environment
 on:
   workflow_dispatch:
   push:
-    branches:
-      - development
+
 
 jobs:
   checkout:
