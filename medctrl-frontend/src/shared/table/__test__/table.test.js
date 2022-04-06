@@ -197,7 +197,7 @@ test('throw error when current page does not exist', () => {
   expect(renderFunction).toThrow(Error)
 })
 
-test('data put properly in table', () => {
+test('data put correctly into table', () => {
   const view = render(
     <Table
       data={DummyData}
@@ -219,11 +219,11 @@ test('data put properly in table', () => {
       const cellValue = cells[index + 1].innerHTML
       const dataElement = DummyData[index2]
       expect(cellValue).toBe(dataElement[selectValue].toString())
-    });
-  });
+    })
+  })
 })
 
-test('column change changes data in row properly', () => {
+test('column change changes data in row', () => {
   const view = render(
     <Table
       data={DummyData}
@@ -240,7 +240,7 @@ test('column change changes data in row properly', () => {
   const options = within(firstSelect).getAllByRole('option')
   const newValue = options[1].value
   expect(startValue).not.toBe(newValue)
-  fireEvent.change(firstSelect, {target: {value: newValue}})
+  fireEvent.change(firstSelect, { target: { value: newValue } })
   const rowgroup = view.getAllByRole('rowgroup')[1]
   const rows = within(rowgroup).getAllByRole('row')
   rows.forEach((row, index) => {
@@ -248,5 +248,5 @@ test('column change changes data in row properly', () => {
     const cellValue = cells[1].innerHTML
     const dataElement = DummyData[index]
     expect(cellValue).toBe(dataElement[newValue].toString())
-  });
+  })
 })

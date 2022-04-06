@@ -48,7 +48,9 @@ function DisplayTable({
   }
 
   //the column selection state
-  const [columnSelection, setColumnSelection] = useState(data.length > 0 && Object.keys(data[0]))
+  const [columnSelection, setColumnSelection] = useState(
+    data.length > 0 && Object.keys(data[0])
+  )
 
   //handler that changes the column based on the target value
   const handleColumnChange = (id, value) => {
@@ -103,10 +105,16 @@ function DisplayTable({
             columnSelection.map((key1, index1) => {
               return (
                 <th key={index1}>
-                  <select value={key1} className="med_th" onChange={(e) => handleColumnChange(index1, e.target.value)}>
+                  <select
+                    value={key1}
+                    className="med_th"
+                    onChange={(e) => handleColumnChange(index1, e.target.value)}
+                  >
                     {Object.keys(data[0]).map((key2, index2) => {
                       return (
-                        <option key={index2} value={key2}>{key2}</option>
+                        <option key={index2} value={key2}>
+                          {key2}
+                        </option>
                       )
                     })}
                   </select>
