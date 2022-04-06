@@ -46,6 +46,8 @@
   padding: 10px 0;
   font-size: 14px;
   font-weight: 500;
+  background-color: var(--blue-main);
+  color: var(--white-text);
 }
 
 .med_td {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './table.css'
 
 //Function based component, returns table
@@ -47,6 +47,14 @@ function DisplayTable({
     throw Error('Pagination too high, data not defined')
   }
 
+  const [columnSelection, setColumnSelection] = useState(Object.keys(data[0]))
+
+  const handleColumnChange = (id, value) => {
+    let newColumnSelection = [...columnSelection]
+    newColumnSelection[id] = value
+    setColumnSelection(newColumnSelection)
+  }
+
   //constant with the table body data, for every data entry add a new row
   const htmlData = data
     .slice(lowerBoundDataPage, higherBoundDataPage)
@@ -60,10 +68,10 @@ function DisplayTable({
               data={data}
             />
           ) : null}
-          {Object.values(entry).map((propt, index2) => {
+          {columnSelection.map((propt, index2) => {
             return (
               <td className="med_td" key={index2}>
-                {propt}
+                {entry[propt]}
               </td>
             )
           })}
@@ -91,10 +99,16 @@ function DisplayTable({
           {
             //add object keys to the table header
             data.length > 0 &&
-              Object.keys(data[0]).map((key, index) => {
+              columnSelection.map((key, index) => {
                 return (
-                  <th className="med_th" key={index}>
-                    {key}
+                  <th key={index}>
+                    <select defaultValue={key} className="med_th" onChange={(e) => handleColumnChange(index, e.target.value)}>
+                      {Object.keys(data[0]).map((keyy, iii) => {
+                        return (
+                          <option key={iii} value={keyy}>{keyy}</option>
+                        )
+                      })}
+                    </select>
                   </th>
                 )
               })
