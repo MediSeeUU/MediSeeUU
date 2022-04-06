@@ -93,6 +93,8 @@ DEBUG = False
 # base url where the api will be served from
 BASE_URL = "baseurl/"
 
+STATIC_ROOT = "/var/www/medctrl/django-static"
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
