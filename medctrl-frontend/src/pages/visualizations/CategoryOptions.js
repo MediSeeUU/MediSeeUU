@@ -6,7 +6,7 @@ class CategoryOptions extends React.Component {
     // Receives a key, a list of categories of the selected variable and
     // a function to send the state back to the form.
     super(props)
-
+    
     // the state contains a list with the names of the selected categories
     this.state = { categoriesSelected: [], selectAllCategories: false }
 

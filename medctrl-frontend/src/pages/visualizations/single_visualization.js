@@ -3,8 +3,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { changeDpiDataUrl } from 'changedpi'
-import Exports from 'apexcharts/src/modules/Exports'
+//import { changeDpiDataUrl } from 'changedpi'
 import ApexCharts from 'apexcharts'
 
 import VisualizationForm from './visualization_form'
@@ -61,7 +60,7 @@ class SingleVisualization extends Component {
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
-    this.handlePNGExport = this.handlePNGExport.bind(this)
+    //this.handlePNGExport = this.handlePNGExport.bind(this)
     this.handleSVGExport = this.handleSVGExport.bind(this)
   }
 
@@ -93,33 +92,31 @@ class SingleVisualization extends Component {
 	  Event handler for exporting the visualization to svg and png.
 		Does not export the actual data.
 	*/
-  handlePNGExport(event) {
+ /*  handlePNGExport(event) {
     /* 
 		  Get the visualization in the base64 format,
 			we scale it for a better resolution.
 		*/
-    ApexCharts.exec(String(this.props.number), 'dataURI', { scale: 3.5 }).then(
+    /*ApexCharts.exec(String(this.props.number), 'dataURI', { scale: 3.5 }).then(
       ({ imgURI }) => {
         // changes the dpi of the visualization to 300
         const dataURI300 = changeDpiDataUrl(imgURI, 300)
-        let exp = new Exports(
-          ApexCharts.getChartByID(String(this.props.number))
-        )
-        // exports the visualization with the name given by the user
-        exp.triggerDownload(
+        let inst = ApexCharts.getChartByID(String(this.props.number))
+        inst.exports.triggerDownload(
           dataURI300,
-          'Graph ' +
-            this.props.number +
-            ' - ' +
-            document.getElementById('graphName' + this.props.number).value,
+          inst.w.config.chart.toolbar.export.png.filename,
           '.png'
         )
+        
+        // exports the visualization with the name given by the user
       }
     )
-  }
+  } */
 
   handleSVGExport(event) {
-    let exp = new Exports(ApexCharts.getChartByID(String(this.props.number)))
+    ApexCharts.getChartByID(String(this.props.number)).exports.exportToSVG()
+    //this.triggerDownload(svg,"file", ".svg")
+    /* et exp = new Exports(ApexCharts.getChartByID(String(this.props.number)))
     exp.triggerDownload(
       exp.svgUrl(),
       'Graph ' +
@@ -127,7 +124,7 @@ class SingleVisualization extends Component {
         ' - ' +
         document.getElementById('graphName' + this.props.number).value,
       '.svg'
-    )
+    ) */
   }
 
   // creating a chart based on the chosen chart type
@@ -264,6 +261,15 @@ class SingleVisualization extends Component {
     return dict
   }
 
+  triggerDownload(href, filename, ext) {
+    const downloadLink = document.createElement('a')
+    downloadLink.href = href
+    downloadLink.download = (filename) + ext
+    document.body.appendChild(downloadLink)
+    downloadLink.click()
+    document.body.removeChild(downloadLink)
+  }
+
   /*
 	  Renders a single visualization,
 		based on the layout from the prototype:
@@ -296,13 +302,13 @@ class SingleVisualization extends Component {
               <Row>
                 <button
                   className="table-buttons button-export"
-                  onClick={this.handlePNGExport}
+                  //onClick={this.handlePNGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as PNG
                 </button>
                 <button
                   className="table-buttons button-export"
-                  onClick={this.handleSVGExport}
+                  //onClick={this.handleSVGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as SVG
                 </button>
