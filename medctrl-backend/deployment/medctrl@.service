@@ -1,0 +1,19 @@
+[Unit]
+Description=MedCtrl service daemon
+After=network.target
+PartOf=medctrl.target
+ReloadPropagatedFrom=medctrl.target
+
+
+[Service]
+Environment="DJANGO_SETTINGS_MODULE=api_settings.settings.deploy_%i"
+WorkingDirectory=/opt/medctrl/backend/%i/API
+ExecStart=/opt/medctrl/backend/%i/virtualenv/bin/gunicorn \
+        -k uvicorn.workers.UvicornWorker \
+        --workers 4 \
+        --bind unix:/opt/medctrl/backend/%i/gunicorn.sock \
+        api_settings.asgi:application \
+
+
+[Install]
+WantedBy=medctrl.target
