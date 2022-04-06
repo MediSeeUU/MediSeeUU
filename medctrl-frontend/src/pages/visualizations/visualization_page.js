@@ -11,7 +11,7 @@ class VisualizationPage extends Component {
     super(props)
 
     // getting the data
-    const data = require("./data.json")
+    const data = require('./data.json')
 
     /* 
       The items array consists of the id's of the visualizations,

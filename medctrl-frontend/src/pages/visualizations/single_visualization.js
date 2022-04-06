@@ -60,7 +60,7 @@ class SingleVisualization extends Component {
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
-    //this.handlePNGExport = this.handlePNGExport.bind(this)
+    this.handlePNGExport = this.handlePNGExport.bind(this)
     this.handleSVGExport = this.handleSVGExport.bind(this)
   }
 
@@ -104,17 +104,28 @@ class SingleVisualization extends Component {
         let inst = ApexCharts.getChartByID(String(this.props.number))
         inst.exports.triggerDownload(
           dataURI300,
-          inst.w.config.chart.toolbar.export.png.filename,
+          'Graph ' +
+            this.props.number +
+            ' - ' +
+            document.getElementById('graphName' + this.props.number).value,
           '.png'
         )
-        
+
         // exports the visualization with the name given by the user
       }
     )
   }
 
   handleSVGExport(event) {
-    ApexCharts.getChartByID(String(this.props.number)).exports.exportToSVG()
+    let inst = ApexCharts.getChartByID(String(this.props.number))
+    inst.exports.triggerDownload(
+      inst.exports.svgUrl(),
+      'Graph ' +
+        this.props.number +
+        ' - ' +
+        document.getElementById('graphName' + this.props.number).value,
+      '.svg'
+    )
   }
 
   // creating a chart based on the chosen chart type
@@ -283,13 +294,13 @@ class SingleVisualization extends Component {
               <Row>
                 <button
                   className="table-buttons button-export"
-                  //onClick={this.handlePNGExport}
+                  onClick={this.handlePNGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as PNG
                 </button>
                 <button
                   className="table-buttons button-export"
-                  //onClick={this.handleSVGExport}
+                  onClick={this.handleSVGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as SVG
                 </button>
