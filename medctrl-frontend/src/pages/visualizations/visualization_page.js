@@ -17,7 +17,7 @@ class VisualizationPage extends Component {
       The items array consists of the id's of the visualizations,
 		  that are currently in use
 		*/
-    this.state = { amountOfVisualizations: 0, items: [], data: data }
+    this.state = { amountOfVisualizations: 1, items: [1], data: data }
 
     // event handlers
     this.handleAddition = this.handleAddition.bind(this)

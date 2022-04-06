@@ -21,6 +21,9 @@ class DonutChart extends Component {
           show: this.props.legend,
         },
         labels: this.props.categories,
+        noData: {
+          text: "pick your preferred options to create a visualization"
+        }
       },
       series: this.props.series,
     }
