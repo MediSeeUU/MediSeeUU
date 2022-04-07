@@ -1,4 +1,5 @@
 import React from 'react'
+import { useCheckedState, useCheckedStateUpdate } from '../datacontext/DataContext'
 import './table.css'
 
 //Function based component, returns table
@@ -7,18 +8,15 @@ function DisplayTable({
   selectTable,
   selectedTable,
   amountPerPage,
-  currentPage,
-  checkedState,
-  setCheckedState,
+  currentPage
 }) {
   //throw error if parameters not defined
   if (!data || !amountPerPage || !currentPage) {
     throw Error('parameters data, amountPerPage and currentPage are mandatory')
   }
-  //throw error when table is a select table but selected data is not handled
-  if (selectTable && (!setCheckedState || !checkedState)) {
-    throw Error('If table is a select table, dataToParent should be defined')
-  }
+
+  const checkedState = useCheckedState();
+  const setCheckedState = useCheckedStateUpdate();
 
   //Check if all checkboxes are checked, used to check/uncheck the checkbox in the header
   const allSelected = getAllSelected(checkedState)

@@ -1,9 +1,9 @@
 import './SearchPage.css'
 import Table from '../../shared/table/table'
-import DummyData from '../../json/data.json'
+import { useData } from '../../shared/datacontext/DataContext'
 
 function SearchPage() {
-  const allData = DummyData
+  const allData = useData();
 
   return (
     <div>

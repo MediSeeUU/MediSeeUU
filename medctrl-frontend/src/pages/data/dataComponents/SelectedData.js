@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import ResultsSelector from './ResultsSelector'
 import Table from '../../../shared/table/table'
+import { useSelectedData } from '../../../shared/datacontext/DataContext'
 
-function SelectedData({ list, setCheckedState, checkedState }) {
+function SelectedData() {
   //amount of databse hits shown per page
   const [resultsPerPage, setResultsPerPage] = useState(25)
 
   //current page
   const [loadedPage, setPage] = useState(1)
 
+  const selectedData = useSelectedData();
   //if items are selected in the select data table, these will show up here, when nothing is selected a label will be shown
   var tableholder
-  if (!list || list.length === 0) {
+  if (!selectedData || selectedData.length === 0) {
     tableholder = (
       <label className="lb-tableholder">
         No data has been selected, select data points in the table above.
@@ -19,7 +21,7 @@ function SelectedData({ list, setCheckedState, checkedState }) {
     )
   } else {
     //Maximum amount of pages available
-    const amountOfPages = Math.ceil(list.length / resultsPerPage)
+    const amountOfPages = Math.ceil(selectedData.length / resultsPerPage)
 
     //if less pages are available than the currenly loaded page, loadedPage is set to the highest available page.
     if (loadedPage > amountOfPages) {
@@ -29,15 +31,13 @@ function SelectedData({ list, setCheckedState, checkedState }) {
     tableholder = (
       <>
         <Table
-          data={list}
+          data={selectedData}
           currentPage={loadedPage}
           amountPerPage={resultsPerPage}
           selectedTable={true}
-          setCheckedState={setCheckedState}
-          checkedState={checkedState}
         />
         <ResultsSelector
-          data={list}
+          data={selectedData}
           amount={resultsPerPage}
           resultsPerPage={setResultsPerPage}
           pageNumber={setPage}

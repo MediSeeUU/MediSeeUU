@@ -6,6 +6,7 @@ import SettingsPage from '../../pages/settings/SettingsPage'
 import AccountPage from '../../pages/account/AccountPage'
 import { Routes, Route } from 'react-router-dom'
 import VisualizationPage from '../../pages/visualizations/visualization_page'
+import { useSelectedData } from '../../shared/datacontext/DataContext'
 
 function AllRoutes() {
   return (
@@ -13,7 +14,7 @@ function AllRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/data" element={<DataPage />} />
-      <Route path="/visualizations" element={<VisualizationPage />} />
+      <Route path="/visualizations" element={<VisualizationPage selectedData={useSelectedData()} />} />
       <Route path="/messages" element={<MessagesPage />} />
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/account" element={<AccountPage />} />
