@@ -5,14 +5,15 @@ import { useState } from 'react'
 import './Data.css'
 
 function DataPage() {
-  const allData = DummyData
-
   //State variable for the selection checkboxes, for more about states see: https://reactjs.org/docs/hooks-state.html
   const [checkedState, setCheckedState] = useState(
-    Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: false })))
+    Object.assign(
+      {},
+      ...DummyData.map((entry) => ({ [entry.EUNumber]: false }))
+    )
   )
 
-  const selectedData = allData.filter((item, index) => {
+  const selectedData = DummyData.filter((item, index) => {
     return checkedState[item.EUNumber]
   })
 
