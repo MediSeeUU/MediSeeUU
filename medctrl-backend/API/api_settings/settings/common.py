@@ -38,8 +38,8 @@ INSTALLED_APPS = [
 
 # Use sessionauthentication instead of Basic
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
     ]
 }
 
