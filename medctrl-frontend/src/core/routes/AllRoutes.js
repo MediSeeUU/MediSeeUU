@@ -1,11 +1,13 @@
-import HomePage from '../../pages/home/HomePage'
-import SearchPage from '../../pages/search/SearchPage'
-import DataPage from '../../pages/data/DataPage'
-import MessagesPage from '../../pages/messages/MessagesPage'
-import SettingsPage from '../../pages/settings/SettingsPage'
-import AccountPage from '../../pages/account/AccountPage'
+import HomePage from '../../pages/home/HomePage';
+import SearchPage from '../../pages/search/SearchPage';
+import DataPage from '../../pages/data/DataPage';
+import MessagesPage from '../../pages/messages/MessagesPage';
+import SettingsPage from '../../pages/settings/SettingsPage';
+import AccountPage from '../../pages/account/AccountPage';
+import VisualizationPage from '../../pages/visualizations/visualization_page';
+import DetailedInfoPage from "../../pages/detailed-info/DetailedInfoPage";
+
 import { Routes, Route } from 'react-router-dom'
-import VisualizationPage from '../../pages/visualizations/visualization_page'
 
 function AllRoutes() {
   return (
@@ -17,8 +19,9 @@ function AllRoutes() {
       <Route path="/messages" element={<MessagesPage />} />
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/account" element={<AccountPage />} />
+      <Route path='/details' element={<DetailedInfoPage />} />
     </Routes>
-  )
+  );
 }
 
-export default AllRoutes
+export default AllRoutes;
