@@ -13,18 +13,9 @@ function DataSelect({ setCheckedState, checkedState }) {
   const [loadedPage, setPage] = useState(1)
   const [data, setData] = useState(allData)
 
-  //all available options for resultsPerPage
-  var Options = []
-
   //if less pages are available than the currenly loaded page, loadedPage is set to the highest available page.
   if (allData.length / resultsPerPage + 1 < loadedPage) {
     setPage(allData.length / resultsPerPage)
-  }
-
-  //populates the Options variable
-  Options.push(<option  key={25} value={25}>25</option>)
-  for (var j = 50; j <= 300; j += 25) {
-    Options.push(<option key={j} value={j}>{j}</option>)
   }
 
   //main body of the page
@@ -54,7 +45,6 @@ function DataSelect({ setCheckedState, checkedState }) {
         resultsPerPage={setResultsPerPage}
         pageNumber={setPage}
         currPage={loadedPage}
-        Options={Options}
       />
     </div>
   )

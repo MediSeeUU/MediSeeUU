@@ -6,8 +6,23 @@ function ResultsSelector({
   resultsPerPage,
   pageNumber,
   currPage,
-  Options,
 }) {
+  //all available options for resultsPerPage
+  var options = []
+
+  //populates the Options variable
+  var upper = data.length >= 300 ? 300 : data.length
+
+  if (data.length % 25 > 0 && data.length < 300) upper += 25
+
+  for (var j = 25; j <= upper; j += 25) {
+    options.push(
+      <option key={j} value={j}>
+        {j}
+      </option>
+    )
+  }
+
   //pageCount holds all available pages.
   var pageCount = []
 
@@ -31,7 +46,8 @@ function ResultsSelector({
   //populates the pageCount variable depending on the strat and end page
   function PageSelector() {
     pageCount.push(
-      <div key={'1'}
+      <div
+        key={'n1'}
         onClick={() => pageNumber(1)}
         className={
           1 === currPage ? 'lb-pageCount lb-pageCount_selected' : 'lb-pageCount'
@@ -44,44 +60,58 @@ function ResultsSelector({
     )
 
     if (startPage > 2) {
-      pageCount.push(<div key={"."} className="lb-pageCount"> .. </div>)
+      pageCount.push(
+        <div key={'.'} className="lb-pageCount">
+          {' '}
+          ..{' '}
+        </div>
+      )
+
+      for (var i = startPage; i <= endpage; i++) {
+        pageCount.push(
+          <div
+            key={i}
+            onClick={pageNumber.bind(null, i)}
+            className={
+              i === currPage
+                ? 'lb-pageCount lb-pageCount_selected'
+                : 'lb-pageCount'
+            }
+            id={i}
+          >
+            {' '}
+            {i}{' '}
+          </div>
+        )
+      }
     }
 
-    for (var i = startPage; i <= endpage; i++) {
+    if (endpage < pages - 1) {
       pageCount.push(
-        <div key={i}
-          onClick={pageNumber.bind(null, i)}
-          className={
-            i === currPage
-              ? 'lb-pageCount lb-pageCount_selected'
-              : 'lb-pageCount'
-          }
-          id={i}
-        >
+        <div key={'..'} className="lb-pageCount">
           {' '}
-          {i}{' '}
+          ..{' '}
         </div>
       )
     }
 
-    if (endpage < pages - 1) {
-      pageCount.push(<div key={".."} className="lb-pageCount"> .. </div>)
+    if (pages > 1) {
+      pageCount.push(
+        <div
+          key={pages}
+          onClick={() => pageNumber(pages)}
+          className={
+            pages === currPage
+              ? 'lb-pageCount lb-pageCount_selected'
+              : 'lb-pageCount'
+          }
+          id={pages}
+        >
+          {' '}
+          {pages}{' '}
+        </div>
+      )
     }
-
-    pageCount.push(
-      <div key={pages}
-        onClick={() => pageNumber(pages)}
-        className={
-          pages === currPage
-            ? 'lb-pageCount lb-pageCount_selected'
-            : 'lb-pageCount'
-        }
-        id={pages}
-      >
-        {' '}
-        {pages}{' '}
-      </div>
-    )
 
     return pageCount
   }
@@ -128,7 +158,7 @@ function ResultsSelector({
           name="AmountShown"
           id="topSelector"
         >
-          {Options}
+          {options}
         </select>
       </div>
     </div>

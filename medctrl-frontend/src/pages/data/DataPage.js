@@ -25,7 +25,11 @@ function DataPage() {
         setCheckedState={setCheckedState}
         checkedState={checkedState}
       />
-      <SelectedData list={selectedData} />
+      <SelectedData
+        list={selectedData}
+        setCheckedState={setCheckedState}
+        checkedState={checkedState}
+      />
     </div>
   )
 }

@@ -68,7 +68,11 @@ function DisplayTable({
             )
           })}
           {selectedTable ? <InfoboxColumn /> : null}
-          {selectTable ? <InfoboxColumn /> : <BinboxColumn />}
+          {selectTable ? (
+            <InfoboxColumn />
+          ) : (
+            <BinboxColumn onp={handleOnChange.bind(null, entry.EUNumber)} />
+          )}
         </tr>
       )
     })
@@ -129,16 +133,16 @@ const CheckboxColumn = ({ value, onChange }) => {
 }
 
 //logic for the bin
-function BinboxColumn(){
+function BinboxColumn({ onp }) {
   return (
     <td className="med_td smallColumn">
-      <i className="bx bx-trash icons"></i>
+      <i className="bx bx-trash icons" onClick={onp}></i>
     </td>
   )
 }
 
 //logic for the information button
-function InfoboxColumn(){
+function InfoboxColumn() {
   return (
     <td className="med_td smallColumn">
       <i className="bx bx-info-circle icons" />
