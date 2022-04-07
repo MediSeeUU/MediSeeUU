@@ -13,9 +13,12 @@ function DataSelect({ setCheckedState, checkedState }) {
   const [loadedPage, setPage] = useState(1)
   const [data, setData] = useState(allData)
 
+  //Maximum amount of pages available
+  const amountOfPages = Math.ceil(data.length / resultsPerPage)
+
   //if less pages are available than the currenly loaded page, loadedPage is set to the highest available page.
-  if (allData.length / resultsPerPage + 1 < loadedPage) {
-    setPage(allData.length / resultsPerPage)
+  if (loadedPage > amountOfPages) {
+    setPage(amountOfPages)
   }
 
   //main body of the page

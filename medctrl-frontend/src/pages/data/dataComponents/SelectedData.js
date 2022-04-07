@@ -9,11 +9,6 @@ function SelectedData({ list, setCheckedState, checkedState }) {
   //current page
   const [loadedPage, setPage] = useState(1)
 
-  //if less pages are available than the currenly loaded page, loadedPage is set to the highest available page.
-  if (list.length / resultsPerPage + 1 < loadedPage) {
-    setPage(list.length / resultsPerPage)
-  }
-
   //if items are selected in the select data table, these will show up here, when nothing is selected a label will be shown
   var tableholder
   if (!list || list.length === 0) {
@@ -23,6 +18,14 @@ function SelectedData({ list, setCheckedState, checkedState }) {
       </label>
     )
   } else {
+    //Maximum amount of pages available
+    const amountOfPages = Math.ceil(list.length / resultsPerPage)
+
+    //if less pages are available than the currenly loaded page, loadedPage is set to the highest available page.
+    if (loadedPage > amountOfPages) {
+      setPage(amountOfPages)
+    }
+
     tableholder = (
       <>
         <Table

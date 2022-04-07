@@ -45,19 +45,7 @@ function ResultsSelector({
 
   //populates the pageCount variable depending on the strat and end page
   function PageSelector() {
-    pageCount.push(
-      <div
-        key={'n1'}
-        onClick={() => pageNumber(1)}
-        className={
-          1 === currPage ? 'lb-pageCount lb-pageCount_selected' : 'lb-pageCount'
-        }
-        id="1"
-      >
-        {' '}
-        1{' '}
-      </div>
-    )
+    addDiv(1)
 
     if (startPage > 2) {
       pageCount.push(
@@ -66,54 +54,45 @@ function ResultsSelector({
           ..{' '}
         </div>
       )
-
-      for (var i = startPage; i <= endpage; i++) {
-        pageCount.push(
-          <div
-            key={i}
-            onClick={pageNumber.bind(null, i)}
-            className={
-              i === currPage
-                ? 'lb-pageCount lb-pageCount_selected'
-                : 'lb-pageCount'
-            }
-            id={i}
-          >
-            {' '}
-            {i}{' '}
-          </div>
-        )
-      }
-    }
-
-    if (endpage < pages - 1) {
-      pageCount.push(
-        <div key={'..'} className="lb-pageCount">
-          {' '}
-          ..{' '}
-        </div>
-      )
     }
 
     if (pages > 1) {
-      pageCount.push(
-        <div
-          key={pages}
-          onClick={() => pageNumber(pages)}
-          className={
-            pages === currPage
-              ? 'lb-pageCount lb-pageCount_selected'
-              : 'lb-pageCount'
-          }
-          id={pages}
-        >
-          {' '}
-          {pages}{' '}
-        </div>
-      )
+      for (var i = startPage; i <= endpage; i++) {
+        addDiv(i)
+      }
+
+      if (endpage < pages - 1) {
+        pageCount.push(
+          <div key={'..'} className="lb-pageCount">
+            {' '}
+            ..{' '}
+          </div>
+        )
+      }
+
+      addDiv(pages)
     }
 
     return pageCount
+  }
+
+  //adds div with all infromation to pagecount
+  function addDiv(nr) {
+    pageCount.push(
+      <div
+        key={'nr' + nr}
+        onClick={pageNumber.bind(null, nr)}
+        className={
+          nr === currPage
+            ? 'lb-pageCount lb-pageCount_selected'
+            : 'lb-pageCount'
+        }
+        id={nr}
+      >
+        {' '}
+        {nr}{' '}
+      </div>
+    )
   }
 
   //sets currentpage to next page
