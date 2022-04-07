@@ -10,6 +10,7 @@ class MedicineAdmin(admin.ModelAdmin):
     """
     Admin View for Medicine
     """
+
     list = (
         "eu_nr",
         "ema_nr",
