@@ -2,20 +2,14 @@ import React, { useState } from 'react'
 import ResultsSelector from './ResultsSelector'
 import Table from '../../../shared/table/table'
 
-function SelectedData({ list }) {
-  const [resultsPerPage, setResultsPerPage] = useState(50)
+function SelectedData({ list, setCheckedState, checkedState }) {
+  //amount of databse hits shown per page
+  const [resultsPerPage, setResultsPerPage] = useState(25)
+
+  //current page
   const [loadedPage, setPage] = useState(1)
 
-  if (list.length / resultsPerPage + 1 < loadedPage) {
-    setPage(list.length / resultsPerPage)
-  }
-
-  var Options = []
-  Options.push(<option value={50}>50</option>)
-  for (var j = 100; j <= list.length; j += 50) {
-    Options.push(<option value={j}>{j}</option>)
-  }
-
+  //if items are selected in the select data table, these will show up here, when nothing is selected a label will be shown
   var tableholder
   if (!list || list.length === 0) {
     tableholder = (
@@ -24,6 +18,14 @@ function SelectedData({ list }) {
       </label>
     )
   } else {
+    //Maximum amount of pages available
+    const amountOfPages = Math.ceil(list.length / resultsPerPage)
+
+    //if less pages are available than the currenly loaded page, loadedPage is set to the highest available page.
+    if (loadedPage > amountOfPages) {
+      setPage(amountOfPages)
+    }
+
     tableholder = (
       <>
         <Table
@@ -31,6 +33,8 @@ function SelectedData({ list }) {
           currentPage={loadedPage}
           amountPerPage={resultsPerPage}
           selectedTable={true}
+          setCheckedState={setCheckedState}
+          checkedState={checkedState}
         />
         <ResultsSelector
           data={list}
@@ -38,12 +42,12 @@ function SelectedData({ list }) {
           resultsPerPage={setResultsPerPage}
           pageNumber={setPage}
           currPage={loadedPage}
-          Options={Options}
         />
       </>
     )
   }
 
+  //main body of the page
   return (
     <div className="TopTableHolder">
       <div>

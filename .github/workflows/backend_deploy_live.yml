@@ -6,7 +6,7 @@ on:
     branches:
       - master
     paths:
-      - medctrl-backend
+      - medctrl-backend/**
 
 jobs:
   checkout:
