@@ -1,20 +1,22 @@
+// external imports
 import React, { Component } from 'react'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { changeDpiDataUrl } from 'changedpi'
 import ApexCharts from 'apexcharts'
 
-import VisualizationForm from './visualization_form'
-import BarChart from './visualization_types/bar_chart'
-import LineGraph from './visualization_types/line_graph'
-import DonutChart from './visualization_types/donut_chart'
-import BoxPlot from './visualization_types/box_plot'
-
-import GenerateBarSeries from './data_interfaces/bar_interface'
-import GenerateLineSeries from './data_interfaces/line_interface'
-import GeneratePieSeries from './data_interfaces/pie_interface'
+// internal imports
+import VisualizationForm from '../forms/VisualizationForm'
+import BarChart from '../visualization_types/bar_chart'
+import LineGraph from '../visualization_types/line_graph'
+import DonutChart from '../visualization_types/donut_chart'
+import BoxPlot from '../visualization_types/box_plot'
+import GenerateBarSeries from '../data_interfaces/BarInterface'
+import GenerateLineSeries from '../data_interfaces/LineInterface'
+import GeneratePieSeries from '../data_interfaces/PieInterface'
+import HandleSVGExport from './exports/HandleSVGExport'
+import HandlePNGExport from './exports/HandlePNGExport'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
@@ -88,45 +90,19 @@ class SingleVisualization extends Component {
     })
   }
 
-  /*
-	  Event handler for exporting the visualization to svg and png.
-		Does not export the actual data.
-	*/
+  // handles the png export
   handlePNGExport(event) {
-    /* 
-		  Get the visualization in the base64 format,
-			we scale it for a better resolution.
-		*/
-    ApexCharts.exec(String(this.props.number), 'dataURI', { scale: 3.5 }).then(
-      ({ imgURI }) => {
-        // changes the dpi of the visualization to 300
-        const dataURI300 = changeDpiDataUrl(imgURI, 300)
-        let inst = ApexCharts.getChartByID(String(this.props.number))
-        inst.exports.triggerDownload(
-          dataURI300,
-          'Graph ' +
-            this.props.number +
-            ' - ' +
-            document.getElementById('graphName' + this.props.number).value,
-          '.png'
-        )
-
-        // exports the visualization with the name given by the user
-      }
-    )
+    HandlePNGExport(this.props.number, ApexCharts)
   }
 
+  // handles the svg export
   handleSVGExport(event) {
-    let inst = ApexCharts.getChartByID(String(this.props.number))
-    inst.exports.triggerDownload(
-      inst.exports.svgUrl(),
-      'Graph ' +
-        this.props.number +
-        ' - ' +
-        document.getElementById('graphName' + this.props.number).value,
-      '.svg'
-    )
+    HandleSVGExport(this.props.number, ApexCharts)
   }
+
+
+
+
 
   // creating a chart based on the chosen chart type
   createChart(chart_type) {

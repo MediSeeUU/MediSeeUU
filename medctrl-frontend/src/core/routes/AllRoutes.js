@@ -5,7 +5,7 @@ import MessagesPage from '../../pages/messages/MessagesPage'
 import SettingsPage from '../../pages/settings/SettingsPage'
 import AccountPage from '../../pages/account/AccountPage'
 import { Routes, Route } from 'react-router-dom'
-import VisualizationPage from '../../pages/visualizations/visualization_page'
+import VisualizationPage from '../../pages/visualizations/VisualizationPage'
 
 function AllRoutes() {
   return (

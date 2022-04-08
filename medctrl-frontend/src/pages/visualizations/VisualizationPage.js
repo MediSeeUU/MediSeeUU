@@ -1,9 +1,11 @@
+// external imports
 import React, { Component } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import SingleVisualization from './single_visualization'
+// internal imports
+import SingleVisualization from './single_visualization/single_visualization_controller/SingleVisualization'
 
 // the component that contains all the visualizations
 class VisualizationPage extends Component {
@@ -15,7 +17,7 @@ class VisualizationPage extends Component {
 
     /* 
       The items array consists of the id's of the visualizations,
-		  that are currently in use
+		  that are currently in use.
 		*/
     this.state = { amountOfVisualizations: 1, items: [1], data: data }
 
@@ -46,16 +48,9 @@ class VisualizationPage extends Component {
     this.setState({ items: currentItems })
   }
 
-  /*
-	  Renders the visualizations.
-		The id (element) is used as the key, 
-		so React knows which visualizations to show.
-
-		The button for the removal is also here,
-		as the logic that keeps track of all the visualization is also here.
-	*/
-  render() {
-    const displayItems = this.state.items.map((element) => {
+  // creates the visualizations
+  createVisualizations() {
+    return this.state.items.map((element) => {
       return (
         <Row key={element}>
           <SingleVisualization
@@ -66,6 +61,15 @@ class VisualizationPage extends Component {
         </Row>
       )
     })
+  }
+
+  /*
+	  Renders the visualizations.
+		The id (element) is used as the key, 
+		so React knows which visualizations to show.
+	*/
+  render() {
+    const displayItems = this.createVisualizations()
 
     return (
       <div>

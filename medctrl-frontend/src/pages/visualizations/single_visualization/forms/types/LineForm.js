@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import '../visualizations.css'
-import CategoryOptions from '../CategoryOptions'
+import '../../../visualizations.css'
+import CategoryOptions from '../shared/CategoryOptions'
 
-// the pie part of a form if a pie chart is chosen
-class PieForm extends Component {
+// the line part of a form if a line chart is chosen
+class LineForm extends Component {
   constructor(props) {
     /* 
       Receives the categories of all variables,
@@ -13,7 +13,7 @@ class PieForm extends Component {
 
     /*
       The list of eligible variables.
-      If we do not want to include a variable for the pie chart,
+      If we do not want to include a variable for the line chart,
       it can be removed from here.
     */
     const eligibleVariables = [
@@ -50,7 +50,8 @@ class PieForm extends Component {
     // initialization of the state
     this.state = {
       eligibleVariables: eligibleVariables,
-      chosenVariable: 'Rapporteur',
+      xAxis: 'DecisionYear',
+      yAxis: 'Rapporteur',
       categoriesSelected: [],
     }
 
@@ -74,7 +75,7 @@ class PieForm extends Component {
       so if these changes we want the categoriesSelected to re-initialized,
       in this case that is just resetting the array
     */
-    if (name === 'chosenVariable') {
+    if (name === 'xAxis' || name === 'yAxis') {
       this.setState({ categoriesSelected: [] })
     }
     this.setState({ [name]: value }, () => {
@@ -103,37 +104,51 @@ class PieForm extends Component {
     })
   }
 
-  // renders the pie form part of the form
+  // renders the bar form part of the form
   render() {
+    // we may want to add the 'horizontal' option,
+    // so we may want to invert these, like in bar form
+    let x_axis = <React.Fragment>X-axis</React.Fragment>
+    let y_axis = <React.Fragment>Y-axis</React.Fragment>
+
     // building drop down menus
-    const variables = this.renderVariableDropDown()
+    const variablesXAxis = this.renderVariableDropDown()
+    const variablesYAxis = this.renderVariableDropDown()
 
     return (
       <React.Fragment>
         <label className="visualization-panel-label">
-          Variable <br />
+          {x_axis}
           <select
-            value={this.state.chosenVariable}
-            name="chosenVariable"
+            value={this.state.xAxis}
+            name="xAxis"
             onChange={this.handleChange}
           >
-            {variables}
+            {variablesXAxis}
           </select>
         </label>
-        <br />
+        <label className="visualization-panel-label">
+          {y_axis}
+          <select
+            value={this.state.yAxis}
+            name="yAxis"
+            onChange={this.handleChange}
+          >
+            {variablesYAxis}
+          </select>
+        </label>
         <CategoryOptions
           /* 
-            We want to reset the component when the variable changes,
+            We want to reset the component when the axis changes,
             may need to become an increment function
           */
-          key={`${this.state.chosenVariabe}`}
-          className="category-options"
+          key={`${this.state.xAxis}${this.state.yAxis}`}
           onChange={this.handleCategorySelectionChange}
-          categories={this.props.uniqueCategories[this.state.chosenVariable]}
+          categories={this.props.uniqueCategories[this.state.yAxis]}
         />
       </React.Fragment>
     )
   }
 }
 
-export default PieForm
+export default LineForm

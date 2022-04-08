@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import BarForm from './form_types/bar_form'
-import LineForm from './form_types/line_form'
-import PieForm from './form_types/pie_form'
+import BarForm from './types/BarForm'
+import LineForm from './types/LineForm'
+import PieForm from './types/PieForm'
 
 // form component for a single visualization
 class VisualizationForm extends Component {

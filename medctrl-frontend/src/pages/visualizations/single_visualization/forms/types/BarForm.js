@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import '../visualizations.css'
-import CategoryOptions from '../CategoryOptions'
+import '../../../visualizations.css'
+import CategoryOptions from '../shared/CategoryOptions'
 
 // the bar part of a form if a bar chart is chosen
 class BarForm extends Component {
