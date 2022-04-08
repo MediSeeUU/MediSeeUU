@@ -59,6 +59,18 @@ function DisplayTable({
     setColumnSelection(newColumnSelection)
   }
 
+  const addColumn = () => {
+    let newColumnSelection = [...columnSelection]
+    newColumnSelection.push(Object.keys(data[0])[0])
+    setColumnSelection(newColumnSelection)
+  }
+
+  const removeColumn = () => {
+    let newColumnSelection = [...columnSelection]
+    newColumnSelection.pop()
+    setColumnSelection(newColumnSelection)
+  }
+
   //constant with the table body data, for every data entry add a new row
   const htmlData = data
     .slice(lowerBoundDataPage, higherBoundDataPage)
@@ -87,53 +99,69 @@ function DisplayTable({
 
   //return table, with a header with the data keywords
   return (
-    <table className="med_table">
-      <thead className="tableHeader">
-        <tr>
-          {
-            //if selectTable, add check all checkbox to the header
-            selectTable ? (
-              <CheckboxColumn
-                value={allSelected}
-                onChange={handleAllChange}
-                data={data}
-              />
-            ) : null
-          }
-          {
-            //add object keys to the table header
-            columnSelection.map((key1, index1) => {
-              return (
-                <th key={index1}>
-                  <select
-                    value={key1}
-                    className="med_th"
-                    onChange={(e) => handleColumnChange(index1, e.target.value)}
-                  >
-                    {Object.keys(data[0]).map((key2, index2) => {
-                      return (
-                        <option key={index2} value={key2}>
-                          {key2}
-                        </option>
-                      )
-                    })}
-                  </select>
-                </th>
-              )
-            })
-          }
-          {
-            //if selectedTable, add coloredbar to the header
-            <td className="med_td smallColumn"></td>
-          }
-          {
-            //if selectedTable, add coloredbar to the header
-            selectedTable ? <td className="med_td smallColumn"></td> : null
-          }
-        </tr>
-      </thead>
-      <tbody className="tableBody">{htmlData}</tbody>
-    </table>
+    <>
+      <div className="addRmCollumn">
+        <button className="columnbutton" onClick={() => addColumn()}>
+          <i className="bx bxs-plus-square bx-plusMinus"></i>
+        </button>
+        <button
+          className="columnbutton minusbutton"
+          onClick={() => removeColumn()}
+        >
+          <i className="bx bxs-minus-square bx-plusMinus"></i>
+        </button>
+      </div>
+
+      <table className="med_table">
+        <thead className="tableHeader">
+          <tr>
+            {
+              //if selectTable, add check all checkbox to the header
+              selectTable ? (
+                <CheckboxColumn
+                  value={allSelected}
+                  onChange={handleAllChange}
+                  data={data}
+                />
+              ) : null
+            }
+            {
+              //add object keys to the table header
+              columnSelection.map((key1, index1) => {
+                return (
+                  <th key={index1}>
+                    <select
+                      value={key1}
+                      className="med_th"
+                      onChange={(e) =>
+                        handleColumnChange(index1, e.target.value)
+                      }
+                    >
+                      {Object.keys(data[0]).map((key2, index2) => {
+                        return (
+                          <option key={index2} value={key2}>
+                            {key2}
+                          </option>
+                        )
+                      })}
+                    </select>
+                  </th>
+                )
+              })
+            }
+            {
+              //if selectedTable, add coloredbar to the header
+              <td className="med_td smallColumn"></td>
+            }
+            {
+              //if selectedTable, add coloredbar to the header
+              selectedTable ? <td className="med_td smallColumn"></td> : null
+            }
+          </tr>
+        </thead>
+        <tbody className="tableBody">{htmlData}</tbody>
+      </table>
+    </>
   )
 }
 
@@ -176,4 +204,5 @@ function getAllSelected(checkedState) {
   }
   return allBoolean
 }
+
 export default DisplayTable
