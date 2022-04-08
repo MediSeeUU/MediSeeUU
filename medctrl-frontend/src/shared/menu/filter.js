@@ -48,7 +48,11 @@ function displayItem(props) {
         data-testid="delete-icon"
       ></i>
       {filtersToHTML(props)}
-      <label id="add-label" onClick={() => props.box(props.id)} data-testid="add-label">
+      <label
+        id="add-label"
+        onClick={() => props.box(props.id)}
+        data-testid="add-label"
+      >
         + Add
       </label>
     </div>

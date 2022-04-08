@@ -57,7 +57,16 @@ test('delete filter box returns correct ids', () => {
     expect(id).toBe(4)
     expect(bid).toBe(2)
   }
-  render(<Filter id={4} item={{ selected: null, input: ['hi', 'there', 'this needs to be removed', 'this not'] }} dbox={dbox} />)
+  render(
+    <Filter
+      id={4}
+      item={{
+        selected: null,
+        input: ['hi', 'there', 'this needs to be removed', 'this not'],
+      }}
+      dbox={dbox}
+    />
+  )
   const removes = screen.getAllByTestId('remove-icon')
   fireEvent.click(removes[2])
 })
@@ -75,7 +84,14 @@ test('change selected returns correct id and value', () => {
     expect(id).toBe(12)
     expect(value).toBe('can be anything')
   }
-  render(<Filter id={12} options={<option value='can be anything'>this should not matter</option>} item={{ selected: null, input: [''] }} sel={sel} />)
+  render(
+    <Filter
+      id={12}
+      options={<option value="can be anything">this should not matter</option>}
+      item={{ selected: null, input: [''] }}
+      sel={sel}
+    />
+  )
   const select = screen.getByTestId('filter-select')
   fireEvent.change(select, { target: { value: 'can be anything' } })
 })
@@ -95,7 +111,13 @@ test('change input function returns correct ids and value', () => {
     expect(index).toBe(1)
     expect(value).toBe('can be anything')
   }
-  render(<Filter id={52} item={{ selected: null, input: ['hi', 'there', 'again'] }} fil={fil} />)
+  render(
+    <Filter
+      id={52}
+      item={{ selected: null, input: ['hi', 'there', 'again'] }}
+      fil={fil}
+    />
+  )
   const inputs = screen.getAllByTestId('filter-input')
   fireEvent.change(inputs[1], { target: { value: 'can be anything' } })
   fireEvent.focusOut(inputs[1])
