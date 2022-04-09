@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import Chart from 'react-apexcharts'
 
 // line graph component
-class LineGraph extends Component {
+class LineChart extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       options: {
         chart: {
-          id: String(this.props.number),
+          id: String(this.props.id),
           type: 'line',
           toolbar: { show: false },
         },
@@ -34,6 +34,8 @@ class LineGraph extends Component {
     }
   }
 
+  // RENDERER:
+
   // render a line graph
   render() {
     return (
@@ -48,4 +50,4 @@ class LineGraph extends Component {
   }
 }
 
-export default LineGraph
+export default LineChart

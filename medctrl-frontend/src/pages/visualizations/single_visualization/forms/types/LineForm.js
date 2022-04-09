@@ -61,6 +61,8 @@ class LineForm extends Component {
       this.handleCategorySelectionChange.bind(this)
   }
 
+  // EVENT HANDLERS:
+
   /*
     Updates the state,
     then passes it to the general form.
@@ -93,6 +95,8 @@ class LineForm extends Component {
     })
   }
 
+  // GENERAL FUNCTIONS:
+
   // creates a drop down menu based on the allowed variables
   renderVariableDropDown() {
     return this.state.eligibleVariables.map((variable) => {
@@ -103,6 +107,8 @@ class LineForm extends Component {
       )
     })
   }
+
+  // RENDERER:
 
   // renders the bar form part of the form
   render() {

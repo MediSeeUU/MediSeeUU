@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // internal imports
-import SingleVisualization from './single_visualization/single_visualization_controller/SingleVisualization'
+import SingleVisualization from './single_visualization/SingleVisualization'
 
 // the component that contains all the visualizations
 class VisualizationPage extends Component {
@@ -26,6 +26,8 @@ class VisualizationPage extends Component {
     this.handleRemoval = this.handleRemoval.bind(this)
   }
 
+  // EVENT HANDLERS:
+
   /* 
 	  Adds a new visualization to the array of visualizations.
     The newAmount will serve as the id of the added visualization.
@@ -39,14 +41,13 @@ class VisualizationPage extends Component {
     })
   }
 
-  //	removes the chosen visualization
-  handleRemoval(event) {
-    const id = event.target.value
-    const currentItems = this.state.items.filter(
-      (item) => String(item) !== id
-    )
+  // removes the chosen visualization
+  handleRemoval(id, event) {
+    const currentItems = this.state.items.filter((item) => item !== id)
     this.setState({ items: currentItems })
   }
+
+  // GENERAL FUNCTIONS:
 
   // Creates the visualizations,
   // gives them a new copy of the data.
@@ -57,7 +58,7 @@ class VisualizationPage extends Component {
       return (
         <Row key={id}>
           <SingleVisualization
-            number={id}
+            id={id}
             data={JSON.parse(JSON.stringify(this.state.data))}
             onRemoval={this.handleRemoval}
           />
@@ -65,6 +66,8 @@ class VisualizationPage extends Component {
       )
     })
   }
+
+  // RENDERER:
 
   /*
 	  Renders the visualizations.

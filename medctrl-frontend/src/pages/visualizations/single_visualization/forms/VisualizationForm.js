@@ -27,6 +27,8 @@ class VisualizationForm extends Component {
     this.handleChartSpecificChange = this.handleChartSpecificChange.bind(this)
   }
 
+  // EVENT HANDLERS:
+
   // event handler for updating the state after a single selection
   handleChange(event) {
     const target = event.target
@@ -60,6 +62,8 @@ class VisualizationForm extends Component {
     this.props.onFormChange(this.state)
   }
 
+  // GENERAL FUNCTIONS
+
   // re-initializing the state depending on which new chart type has been chosen
   resetChartSpecifics(chartType) {
     switch (chartType) {
@@ -87,7 +91,7 @@ class VisualizationForm extends Component {
         break
       }
 
-      case 'donut': {
+      case 'pie': {
         this.setState({
           chartSpecificOptions: {
             chosenVariables: 'Rapporteur',
@@ -122,7 +126,7 @@ class VisualizationForm extends Component {
           />
         )
 
-      case 'donut':
+      case 'pie':
         return (
           <PieForm
             uniqueCategories={this.props.uniqueCategories}
@@ -134,6 +138,8 @@ class VisualizationForm extends Component {
         return <div> choose a form type </div>
     }
   }
+
+  // RENDERER
 
   // render method for the form
   render() {
@@ -148,8 +154,7 @@ class VisualizationForm extends Component {
           >
             <option value="bar">Bar chart</option>
             <option value="line">Line graph</option>
-            <option value="donut">Pie chart</option>
-            <option value="boxPlot">Box plot</option>
+            <option value="pie">Pie chart</option>
           </select>
         </label>
         {this.renderChartOptions(this.state.chart_type)}

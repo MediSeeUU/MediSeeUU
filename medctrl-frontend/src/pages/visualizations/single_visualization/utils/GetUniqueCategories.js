@@ -1,8 +1,8 @@
 // takes the (JSON) data and gets the categories for each variable
 export default function GetUniqueCategories(data) {
-  let dict = {}  
-	
-	// element is a single 'database entry'
+  let dict = {}
+
+  // element is a single 'database entry'
   data.forEach((element) => {
     for (let attribute in element) {
       let val = element[attribute]
@@ -23,7 +23,7 @@ export default function GetUniqueCategories(data) {
         numeric: true,
         sensitivity: 'base',
       })
-   })
+    })
   }
 
   return dict

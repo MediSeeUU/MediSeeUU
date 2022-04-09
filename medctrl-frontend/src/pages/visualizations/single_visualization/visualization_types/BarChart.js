@@ -17,7 +17,7 @@ class BarChart extends Component {
     this.state = {
       options: {
         chart: {
-          id: String(this.props.number),
+          id: String(this.props.id),
           type: 'bar',
           stacked: this.props.options.stacked,
           stackType: stacktype,
@@ -48,6 +48,8 @@ class BarChart extends Component {
       series: this.props.series,
     }
   }
+
+  // RENDERER:
 
   // renders the bar chart with the given options
   render() {

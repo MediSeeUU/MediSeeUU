@@ -60,6 +60,8 @@ class PieForm extends Component {
       this.handleCategorySelectionChange.bind(this)
   }
 
+  // EVENT HANDLERS:
+
   /*
     Updates the state,
     then passes it to the general form.
@@ -92,6 +94,8 @@ class PieForm extends Component {
     })
   }
 
+  // GENERAL FUNCTIONS:
+
   // creates a drop down menu based on the allowed variables
   renderVariableDropDown() {
     return this.state.eligibleVariables.map((variable) => {
@@ -102,6 +106,8 @@ class PieForm extends Component {
       )
     })
   }
+
+  // RENDERER:
 
   // renders the pie form part of the form
   render() {

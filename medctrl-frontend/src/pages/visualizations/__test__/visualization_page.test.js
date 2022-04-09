@@ -1,6 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { cleanup, render, fireEvent, waitFor, screen, getByRole, getByText} from '@testing-library/react'
+import {
+  cleanup,
+  render,
+  fireEvent,
+  waitFor,
+  screen,
+  getByRole,
+  getByText,
+} from '@testing-library/react'
 import VisualizationPage from '../VisualizationPage'
 import SingleVisualization from '../single_visualization/single_visualization_controller/SingleVisualization'
 import ResizeObserver from '../mocks/observer'
@@ -10,14 +18,14 @@ import data from '../data.json'
 
 beforeAll(() => {
   // IntersectionObserver isn't available in test environment
-  const mockIntersectionObserver = jest.fn();
+  const mockIntersectionObserver = jest.fn()
   mockIntersectionObserver.mockReturnValue({
     observe: () => null,
     unobserve: () => null,
-    disconnect: () => null
-  });
-  window.IntersectionObserver = mockIntersectionObserver;
-});
+    disconnect: () => null,
+  })
+  window.IntersectionObserver = mockIntersectionObserver
+})
 
 jest.mock('../mocks/observer')
 jest.mock('../mocks/IntersectionObserver')
@@ -29,21 +37,19 @@ jest.mock('../mocks/IntersectionObserver')
   
 }) */
 
-// 
+//
 test('add a visualization', () => {
   const visualizationsArray = [
-    { name: 'visualization1'},
-    { name: 'visualization2'}
+    { name: 'visualization1' },
+    { name: 'visualization2' },
   ]
 
-  let view = render(<SingleVisualization number={1} data={data}   />)
+  let view = render(<SingleVisualization number={1} data={data} />)
 
   //fireEvent.click(view.getByText('Add visualization'))
 
   //expect(view.getAllByText('Remove visualization').length).toEqual(2)
 })
-
-
 
 /* test('render initial Category Options', () => {
   const root = document.createElement('div')

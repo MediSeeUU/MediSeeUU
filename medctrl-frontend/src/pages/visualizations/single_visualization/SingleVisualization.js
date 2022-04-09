@@ -7,17 +7,16 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import ApexCharts from 'apexcharts'
 
 // internal imports
-import VisualizationForm from '../forms/VisualizationForm'
-import BarChart from '../visualization_types/bar_chart'
-import LineGraph from '../visualization_types/line_graph'
-import DonutChart from '../visualization_types/donut_chart'
-import BoxPlot from '../visualization_types/box_plot'
-import GenerateBarSeries from '../data_interfaces/BarInterface'
-import GenerateLineSeries from '../data_interfaces/LineInterface'
-import GeneratePieSeries from '../data_interfaces/PieInterface'
+import VisualizationForm from './forms/VisualizationForm'
+import BarChart from './visualization_types/BarChart'
+import LineChart from './visualization_types/LineChart'
+import PieChart from './visualization_types/PieChart'
+import GenerateBarSeries from './data_interfaces/BarInterface'
+import GenerateLineSeries from './data_interfaces/LineInterface'
+import GeneratePieSeries from './data_interfaces/PieInterface'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
-import GetUniqueCategories from '../utils/GetUniqueCategories'
+import GetUniqueCategories from './utils/GetUniqueCategories'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
@@ -57,7 +56,7 @@ class SingleVisualization extends Component {
       labels_on: false,
       data: this.props.data,
       series: series,
-      allUniqueCategories: uniqueCategories,
+      uniqueCategories: uniqueCategories,
       changeName: '',
     }
 
@@ -65,7 +64,10 @@ class SingleVisualization extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handlePNGExport = this.handlePNGExport.bind(this)
     this.handleSVGExport = this.handleSVGExport.bind(this)
+    this.handleRemoval = this.handleRemoval.bind(this)
   }
+
+  // EVENT HANDLERS:
 
   // event handler for the form data
   handleChange(event) {
@@ -85,7 +87,7 @@ class SingleVisualization extends Component {
       we may want to do this purely using the states,
       currently not sure if that would be more efficient
     */
-    ApexCharts.getChartByID(this.props.id).updateOptions({
+    ApexCharts.getChartByID(String(this.props.id)).updateOptions({
       dataLabels: { enabled: event.labels_on },
       legend: { show: event.legend_on },
     })
@@ -101,32 +103,33 @@ class SingleVisualization extends Component {
     HandleSVGExport(this.props.id, ApexCharts)
   }
 
+  // handles the removal of this visualization
+  handleRemoval(event) {
+    this.props.onRemoval(this.props.id, event)
+  }
 
-
-
+  // GENERAL FUNCTIONS:
 
   // creating a chart based on the chosen chart type
   createChart(chart_type) {
+    const key = `${this.state.changeName} 
+			              ${this.state.chartSpecificOptions[this.state.changeName]}`
     const legend_on = this.state.legend_on
     const labels_on = this.state.labels_on
     const id = this.props.id
+    const series = this.state.series
 
     switch (chart_type) {
       case 'bar':
         return (
           <BarChart
-            // Perhaps just using an increment function may be better,
-            // like in visualization page
-            key={`${this.state.changeName} 
-			              ${this.state.chartSpecificOptions[this.state.changeName]}`}
+            key={key}
             legend={legend_on}
             labels={labels_on}
             id={id}
-            series={this.state.series}
+            series={series}
             categories={
-              this.state.allUniqueCategories[
-                this.state.chartSpecificOptions.xAxis
-              ]
+              this.state.uniqueCategories[this.state.chartSpecificOptions.xAxis]
             }
             options={this.state.chartSpecificOptions}
           />
@@ -134,42 +137,45 @@ class SingleVisualization extends Component {
 
       case 'line':
         return (
-          <LineGraph
-            key={`${this.state.changeName} 
-			              ${this.state.chartSpecificOptions[this.state.changeName]}`}
+          <LineChart
+            key={key}
             legend={legend_on}
             labels={labels_on}
             id={id}
-            series={this.state.series}
+            series={series}
             categories={
-              this.state.allUniqueCategories[
-                this.state.chartSpecificOptions.xAxis
-              ]
+              this.state.uniqueCategories[this.state.chartSpecificOptions.xAxis]
             }
             options={this.state.chartSpecificOptions}
           />
         )
 
-      case 'donut':
+      case 'pie':
         return (
-          <DonutChart
-            key={`${this.state.changeName}
-                    ${this.state.chartSpecificOptions[this.state.changeName]}`}
+          <PieChart
+            key={key}
             legend={legend_on}
             labels={labels_on}
             id={id}
-            series={this.state.series}
+            series={series}
             categories={this.state.chartSpecificOptions.categoriesSelected}
             options={this.state.chartSpecificOptions}
           />
         )
 
-      case 'boxPlot':
-        return <BoxPlot legend={legend_on} labels={labels_on} id={id} />
-
       default:
         return (
-          <BarChart legend={legend_on} labels={labels_on} id={id} />
+          <BarChart
+            key={key}
+            legend={legend_on}
+            labels={labels_on}
+            id={id}
+            series={series}
+            categories={
+              this.state.uniqueCategories[this.state.chartSpecificOptions.xAxis]
+            }
+            options={this.state.chartSpecificOptions}
+          />
         )
     }
   }
@@ -185,21 +191,21 @@ class SingleVisualization extends Component {
       case 'bar':
         return GenerateBarSeries(
           options,
-          this.state.allUniqueCategories,
+          this.state.uniqueCategories,
           this.state.data
         )
 
       case 'line':
         return GenerateLineSeries(
           options,
-          this.state.allUniqueCategories,
+          this.state.uniqueCategories,
           this.state.data
         )
 
-      case 'donut':
+      case 'pie':
         return GeneratePieSeries(
           options,
-          this.state.allUniqueCategories,
+          this.state.uniqueCategories,
           this.state.data
         )
 
@@ -207,6 +213,8 @@ class SingleVisualization extends Component {
         return GenerateBarSeries(options)
     }
   }
+
+  // RENDERER:
 
   /*
 	  Renders a single visualization,
@@ -222,7 +230,7 @@ class SingleVisualization extends Component {
           <Row>
             <Col className="visualization-panel">
               <VisualizationForm
-                uniqueCategories={this.state.allUniqueCategories}
+                uniqueCategories={this.state.uniqueCategories}
                 onFormChange={this.handleChange}
               />
             </Col>
@@ -252,10 +260,10 @@ class SingleVisualization extends Component {
                 </button>
                 <button
                   className="table-buttons button-remove"
-                  onClick={this.props.onRemoval}
+                  onClick={this.handleRemoval}
                   value={this.props.id}
                 >
-                  <i className="bx bx-trash"></i> Remove visualization
+                  <i className="bx bx-trash"></i>
                 </button>
               </Row>
             </Col>

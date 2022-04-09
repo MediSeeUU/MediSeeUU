@@ -1,13 +1,13 @@
-class IntersectionObserver{
+class IntersectionObserver {
   observe() {
-		return null
-	}
+    return null
+  }
   unobserve() {
-		return null
-	}
+    return null
+  }
   disconnect() {
-		return null
-	} 
+    return null
+  }
 }
 window.IntersectionObserver = IntersectionObserver
 export default IntersectionObserver

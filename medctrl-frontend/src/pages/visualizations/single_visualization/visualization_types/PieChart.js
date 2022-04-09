@@ -9,7 +9,7 @@ class DonutChart extends Component {
     this.state = {
       options: {
         chart: {
-          id: String(this.props.number),
+          id: String(this.props.id),
           type: 'pie',
           toolbar: { show: false },
         },
@@ -28,6 +28,8 @@ class DonutChart extends Component {
       series: this.props.series,
     }
   }
+
+  // RENDERER:
 
   // renders a pie chart
   render() {

@@ -15,6 +15,8 @@ class CategoryOptions extends React.Component {
     this.handleCategorySelection = this.handleCategorySelection.bind(this)
   }
 
+  // EVENT HANDLERS:
+
   // allows user to select all categories
   handleAllCategorySelection(event) {
     if (this.state.selectAllCategories) {
@@ -69,6 +71,8 @@ class CategoryOptions extends React.Component {
     }
   }
 
+  // GENERAL FUNCTIONS:
+
   // create the list of category checkboxes
   renderCategoryOptions() {
     const categories = this.props.categories
@@ -88,6 +92,8 @@ class CategoryOptions extends React.Component {
       )
     })
   }
+
+  // RENDERER:
 
   // renders checkboxes for each category of the given variable
   render() {

@@ -5,10 +5,7 @@ export default function HandleSVGExport(id, ApexCharts) {
   let inst = ApexCharts.getChartByID(String(id))
   inst.exports.triggerDownload(
     inst.exports.svgUrl(),
-    'Graph ' +
-    id +
-    ' - ' +
-    document.getElementById('graphName' + id).value,
+    'Graph ' + id + ' - ' + document.getElementById('graphName' + id).value,
     '.svg'
   )
 }
