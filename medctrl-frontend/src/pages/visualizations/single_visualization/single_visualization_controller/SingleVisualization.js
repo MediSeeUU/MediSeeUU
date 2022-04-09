@@ -17,6 +17,7 @@ import GenerateLineSeries from '../data_interfaces/LineInterface'
 import GeneratePieSeries from '../data_interfaces/PieInterface'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
+import GetUniqueCategories from '../utils/GetUniqueCategories'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
@@ -31,7 +32,7 @@ class SingleVisualization extends Component {
       Keep in mind that the categories for all variables are sorted,
       this is important for interfacing with the ApexCharts library!
     */
-    let uniqueCategories = this.getUniqueCategories(this.props.data)
+    let uniqueCategories = GetUniqueCategories(this.props.data)
 
     // generating the initial series data
     let series = GenerateBarSeries(
@@ -84,7 +85,7 @@ class SingleVisualization extends Component {
       we may want to do this purely using the states,
       currently not sure if that would be more efficient
     */
-    ApexCharts.getChartByID(this.props.number).updateOptions({
+    ApexCharts.getChartByID(this.props.id).updateOptions({
       dataLabels: { enabled: event.labels_on },
       legend: { show: event.legend_on },
     })
@@ -92,12 +93,12 @@ class SingleVisualization extends Component {
 
   // handles the png export
   handlePNGExport(event) {
-    HandlePNGExport(this.props.number, ApexCharts)
+    HandlePNGExport(this.props.id, ApexCharts)
   }
 
   // handles the svg export
   handleSVGExport(event) {
-    HandleSVGExport(this.props.number, ApexCharts)
+    HandleSVGExport(this.props.id, ApexCharts)
   }
 
 
@@ -108,7 +109,7 @@ class SingleVisualization extends Component {
   createChart(chart_type) {
     const legend_on = this.state.legend_on
     const labels_on = this.state.labels_on
-    const number = this.props.number
+    const id = this.props.id
 
     switch (chart_type) {
       case 'bar':
@@ -120,7 +121,7 @@ class SingleVisualization extends Component {
 			              ${this.state.chartSpecificOptions[this.state.changeName]}`}
             legend={legend_on}
             labels={labels_on}
-            number={number}
+            id={id}
             series={this.state.series}
             categories={
               this.state.allUniqueCategories[
@@ -138,7 +139,7 @@ class SingleVisualization extends Component {
 			              ${this.state.chartSpecificOptions[this.state.changeName]}`}
             legend={legend_on}
             labels={labels_on}
-            number={number}
+            id={id}
             series={this.state.series}
             categories={
               this.state.allUniqueCategories[
@@ -156,7 +157,7 @@ class SingleVisualization extends Component {
                     ${this.state.chartSpecificOptions[this.state.changeName]}`}
             legend={legend_on}
             labels={labels_on}
-            number={number}
+            id={id}
             series={this.state.series}
             categories={this.state.chartSpecificOptions.categoriesSelected}
             options={this.state.chartSpecificOptions}
@@ -164,11 +165,11 @@ class SingleVisualization extends Component {
         )
 
       case 'boxPlot':
-        return <BoxPlot legend={legend_on} labels={labels_on} number={number} />
+        return <BoxPlot legend={legend_on} labels={labels_on} id={id} />
 
       default:
         return (
-          <BarChart legend={legend_on} labels={labels_on} number={number} />
+          <BarChart legend={legend_on} labels={labels_on} id={id} />
         )
     }
   }
@@ -207,37 +208,6 @@ class SingleVisualization extends Component {
     }
   }
 
-  // takes the (JSON) data and gets the categories for each variable
-  getUniqueCategories(data) {
-    let dict = {}
-
-    // element is a single 'database entry'
-    data.forEach((element) => {
-      for (let attribute in element) {
-        let val = element[attribute]
-        if (dict[attribute] === undefined) {
-          dict[attribute] = [val]
-        } else {
-          if (!dict[attribute].includes(val)) {
-            dict[attribute].push(val)
-          }
-        }
-      }
-    })
-
-    // sorting the array
-    for (let categories in dict) {
-      dict[categories] = dict[categories].sort(function (a, b) {
-        return String(a).localeCompare(String(b), 'en', {
-          numeric: true,
-          sensitivity: 'base',
-        })
-      })
-    }
-
-    return dict
-  }
-
   /*
 	  Renders a single visualization,
 		based on the layout from the prototype:
@@ -260,7 +230,7 @@ class SingleVisualization extends Component {
               <Row className="visualization-title">
                 <input
                   type="text"
-                  id={'graphName' + this.props.number}
+                  id={'graphName' + this.props.id}
                   className="graph-name"
                   placeholder="Enter a graph name"
                   autoComplete="off"
@@ -283,9 +253,9 @@ class SingleVisualization extends Component {
                 <button
                   className="table-buttons button-remove"
                   onClick={this.props.onRemoval}
-                  value={this.props.number}
+                  value={this.props.id}
                 >
-                  <i className="bx bx-trash"></i>
+                  <i className="bx bx-trash"></i> Remove visualization
                 </button>
               </Row>
             </Col>

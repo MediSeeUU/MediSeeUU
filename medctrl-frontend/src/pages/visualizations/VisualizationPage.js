@@ -41,20 +41,23 @@ class VisualizationPage extends Component {
 
   //	removes the chosen visualization
   handleRemoval(event) {
-    const element = event.target.value
+    const id = event.target.value
     const currentItems = this.state.items.filter(
-      (item) => String(item) !== element
+      (item) => String(item) !== id
     )
     this.setState({ items: currentItems })
   }
 
-  // creates the visualizations
+  // Creates the visualizations,
+  // gives them a new copy of the data.
+  // This should be changed once a context for the data has been implemented
+  // As the visualizations should not change the data, only read from it
   createVisualizations() {
-    return this.state.items.map((element) => {
+    return this.state.items.map((id) => {
       return (
-        <Row key={element}>
+        <Row key={id}>
           <SingleVisualization
-            number={element}
+            number={id}
             data={JSON.parse(JSON.stringify(this.state.data))}
             onRemoval={this.handleRemoval}
           />
@@ -65,7 +68,7 @@ class VisualizationPage extends Component {
 
   /*
 	  Renders the visualizations.
-		The id (element) is used as the key, 
+		The id is used as the key, 
 		so React knows which visualizations to show.
 	*/
   render() {

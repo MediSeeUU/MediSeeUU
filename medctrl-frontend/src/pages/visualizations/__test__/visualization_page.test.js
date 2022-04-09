@@ -1,24 +1,51 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { render, fireEvent, waitFor, screen } from '@testing-library/react'
+import { cleanup, render, fireEvent, waitFor, screen, getByRole, getByText} from '@testing-library/react'
 import VisualizationPage from '../VisualizationPage'
-import CategoryOptions from '../single_visualization/forms/shared/CategoryOptions'
-import PieForm from '../form_types/pie_form'
-import VisualizationForm from '../single_visualization/single_visualization_controller/VisualizationForm'
 import SingleVisualization from '../single_visualization/single_visualization_controller/SingleVisualization'
+import ResizeObserver from '../mocks/observer'
+import IntersectionObserver from '../mocks/IntersectionObserver'
 
 import data from '../data.json'
 
-test('render initial page', () => {
-  // need to import ass jest.mock instead of Moch
-  require('../__Mocks__/observer.js')
+beforeAll(() => {
+  // IntersectionObserver isn't available in test environment
+  const mockIntersectionObserver = jest.fn();
+  mockIntersectionObserver.mockReturnValue({
+    observe: () => null,
+    unobserve: () => null,
+    disconnect: () => null
+  });
+  window.IntersectionObserver = mockIntersectionObserver;
+});
+
+jest.mock('../mocks/observer')
+jest.mock('../mocks/IntersectionObserver')
+
+// test if the initial page renders as a stand alonte without crashing
+/* test('render initial page', () => {
   const root = document.createElement('div')
   ReactDOM.render(<VisualizationPage />, root)
+  
+}) */
+
+// 
+test('add a visualization', () => {
+  const visualizationsArray = [
+    { name: 'visualization1'},
+    { name: 'visualization2'}
+  ]
+
+  let view = render(<SingleVisualization number={1} data={data}   />)
+
+  //fireEvent.click(view.getByText('Add visualization'))
+
+  //expect(view.getAllByText('Remove visualization').length).toEqual(2)
 })
 
 
 
-test('render initial Category Options', () => {
+/* test('render initial Category Options', () => {
   const root = document.createElement('div')
   ReactDOM.render(<CategoryOptions categories={[]} />, root)
 })
@@ -35,10 +62,10 @@ test('render initial form', () => {
   let categories = {}
   categories['Rapporteur'] = []
   ReactDOM.render(<VisualizationForm uniqueCategories={categories} />, root)
-})
+}) */
 
 test('render initial single visualization', () => {
-  require('../__Mocks__/observer.js')
+  screen.debug()
   const root = document.createElement('div')
   ReactDOM.render(<SingleVisualization number={1} data={data} />, root)
 })
