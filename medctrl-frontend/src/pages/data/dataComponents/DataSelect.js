@@ -6,20 +6,22 @@ import Table from '../../../shared/table/table'
 import allData from '../../../json/data.json'
 
 function DataSelect({ setCheckedState, checkedState }) {
-  const [resultsPerPage, setResultsPerPage] = useState(50)
+  //amount of databse hits shown per page
+  const [resultsPerPage, setResultsPerPage] = useState(25)
+
+  //current page
   const [loadedPage, setPage] = useState(1)
   const [data, setData] = useState(allData)
 
-  if (data.length / resultsPerPage + 1 < loadedPage) {
-    setPage(data.length / resultsPerPage)
+  //Maximum amount of pages available
+  const amountOfPages = Math.ceil(data.length / resultsPerPage)
+
+  //if less pages are available than the currenly loaded page, loadedPage is set to the highest available page.
+  if (loadedPage > amountOfPages) {
+    setPage(amountOfPages)
   }
 
-  var Options = []
-  Options.push(<option value={50}>50</option>)
-  for (var j = 100; j <= data.length; j += 50) {
-    Options.push(<option value={j}>{j}</option>)
-  }
-
+  //main body of the page
   return (
     <div className="TopTableHolder">
       <Menu
@@ -42,7 +44,6 @@ function DataSelect({ setCheckedState, checkedState }) {
         resultsPerPage={setResultsPerPage}
         pageNumber={setPage}
         currPage={loadedPage}
-        Options={Options}
       />
     </div>
   )

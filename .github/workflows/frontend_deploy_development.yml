@@ -1,0 +1,23 @@
+name: Deploy development frontend environment
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - development
+    paths:
+      - medctrl-frontend/**
+
+
+jobs:
+  checkout:
+    runs-on: self-hosted-1
+
+    steps:
+      - uses: actions/checkout@v2
+
+  deploy:
+    uses: Rutgerdj/med-ctrl/.github/workflows/frontend_deploy_reusable.yml@master
+    with:
+      public_url: /dev
+      deploy_path: /var/www/medctrl/dev

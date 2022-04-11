@@ -1,0 +1,5 @@
+[Unit]
+Description=MedCtrl API service
+
+[Install]
+WantedBy=multi-user.target

@@ -14,7 +14,7 @@ const defUser = {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div className="med_page__wrapper">
         <Header className="med_mainLayout" />
         <SideNavigation
