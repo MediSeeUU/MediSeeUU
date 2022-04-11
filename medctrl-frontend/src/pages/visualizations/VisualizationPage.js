@@ -1,9 +1,11 @@
+// external imports
 import React, { Component } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import SingleVisualization from './single_visualization'
+// internal imports
+import SingleVisualization from './single_visualization/SingleVisualization'
 
 // the component that contains all the visualizations
 class VisualizationPage extends Component {
@@ -15,7 +17,7 @@ class VisualizationPage extends Component {
 
     /* 
       The items array consists of the id's of the visualizations,
-		  that are currently in use
+		  that are currently in use.
 		*/
     this.state = { amountOfVisualizations: 1, items: [1], data: data }
 
@@ -23,6 +25,8 @@ class VisualizationPage extends Component {
     this.handleAddition = this.handleAddition.bind(this)
     this.handleRemoval = this.handleRemoval.bind(this)
   }
+
+  // EVENT HANDLERS:
 
   /* 
 	  Adds a new visualization to the array of visualizations.
@@ -37,42 +41,41 @@ class VisualizationPage extends Component {
     })
   }
 
-  //	removes the chosen visualization
-  handleRemoval(event) {
-    const element = event.target.value
-    const currentItems = this.state.items.filter(
-      (item) => String(item) !== element
-    )
+  // removes the chosen visualization
+  handleRemoval(id, event) {
+    const currentItems = this.state.items.filter((item) => item !== id)
     this.setState({ items: currentItems })
   }
 
-  /*
-	  Renders the visualizations.
-		The id (element) is used as the key, 
-		so React knows which visualizations to show.
+  // GENERAL FUNCTIONS:
 
-		The button for the removal is also here,
-		as the logic that keeps track of all the visualization is also here.
-	*/
-  render() {
-    const displayItems = this.state.items.map((element) => {
+  // Creates the visualizations,
+  // gives them a new copy of the data.
+  // This should be changed once a context for the data has been implemented
+  // As the visualizations should not change the data, only read from it
+  createVisualizations() {
+    return this.state.items.map((id) => {
       return (
-        <Row key={element}>
+        <Row key={id}>
           <SingleVisualization
-            number={element}
+            id={id}
             data={JSON.parse(JSON.stringify(this.state.data))}
+            onRemoval={this.handleRemoval}
           />
-          <button
-            id="deleteButton"
-            className="table-buttons button-remove hidden-illegal"
-            value={element}
-            onClick={this.handleRemoval}
-          >
-            &#128465;
-          </button>
         </Row>
       )
     })
+  }
+
+  // RENDERER:
+
+  /*
+	  Renders the visualizations.
+		The id is used as the key, 
+		so React knows which visualizations to show.
+	*/
+  render() {
+    const displayItems = this.createVisualizations()
 
     return (
       <div>
@@ -83,7 +86,7 @@ class VisualizationPage extends Component {
               className="table-buttons button-add"
               onClick={this.handleAddition}
             >
-              Add visualization
+              <i className="bx bx-plus filter-Icon"></i>Add visualization
             </button>
           </Row>
         </Container>

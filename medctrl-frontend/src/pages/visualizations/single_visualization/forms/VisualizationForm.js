@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import BarForm from './form_types/bar_form'
-import LineForm from './form_types/line_form'
+import BarForm from './types/BarForm'
+import LineForm from './types/LineForm'
+import PieForm from './types/PieForm'
 
 // form component for a single visualization
 class VisualizationForm extends Component {
@@ -25,6 +26,8 @@ class VisualizationForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChartSpecificChange = this.handleChartSpecificChange.bind(this)
   }
+
+  // EVENT HANDLERS:
 
   // event handler for updating the state after a single selection
   handleChange(event) {
@@ -59,6 +62,8 @@ class VisualizationForm extends Component {
     this.props.onFormChange(this.state)
   }
 
+  // GENERAL FUNCTIONS
+
   // re-initializing the state depending on which new chart type has been chosen
   resetChartSpecifics(chartType) {
     switch (chartType) {
@@ -79,6 +84,17 @@ class VisualizationForm extends Component {
           chartSpecificOptions: {
             yAxis: 'Rapporteur',
             xAxis: 'DecisionYear',
+            categoriesSelected: [],
+          },
+          chartSpecificOptionsName: '',
+        })
+        break
+      }
+
+      case 'pie': {
+        this.setState({
+          chartSpecificOptions: {
+            chosenVariables: 'Rapporteur',
             categoriesSelected: [],
           },
           chartSpecificOptionsName: '',
@@ -110,10 +126,20 @@ class VisualizationForm extends Component {
           />
         )
 
+      case 'pie':
+        return (
+          <PieForm
+            uniqueCategories={this.props.uniqueCategories}
+            onChange={this.handleChartSpecificChange}
+          />
+        )
+
       default:
-        return <div> Not bar </div>
+        return <div> choose a form type </div>
     }
   }
+
+  // RENDERER
 
   // render method for the form
   render() {
@@ -128,8 +154,7 @@ class VisualizationForm extends Component {
           >
             <option value="bar">Bar chart</option>
             <option value="line">Line graph</option>
-            <option value="donut">Pie chart</option>
-            <option value="boxPlot">Box plot</option>
+            <option value="pie">Pie chart</option>
           </select>
         </label>
         {this.renderChartOptions(this.state.chart_type)}
@@ -151,11 +176,9 @@ class VisualizationForm extends Component {
           />
           &nbsp;&nbsp;Show labels
         </label>
-        <input
-          type="submit"
-          className="table-buttons button-update"
-          value="Update"
-        />
+        <button type="submit" className="table-buttons button-update">
+          <i className="bx bx-check filter-Icon"></i>Update
+        </button>
       </form>
     )
   }

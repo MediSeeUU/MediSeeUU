@@ -1,24 +1,39 @@
 import React, { Component } from 'react'
 import Chart from 'react-apexcharts'
 
-// line graph component
-class LineGraph extends Component {
+// bar chart component
+class BarChart extends Component {
   constructor(props) {
     super(props)
 
+    let stacktype
+    if (this.props.options.stackType) {
+      stacktype = '100%' // relative stacking
+    } else {
+      stacktype = 'normal' // absolute stacking
+    }
+
+    // initializing the state with data passed from the form
     this.state = {
       options: {
         chart: {
-          id: String(this.props.number),
-          type: 'line',
+          id: String(this.props.id),
+          type: 'bar',
+          stacked: this.props.options.stacked,
+          stackType: stacktype,
           toolbar: { show: false },
+        },
+        plotOptions: {
+          bar: {
+            horizontal: this.props.options.horizontal,
+            distributed: false,
+          },
         },
         xaxis: {
           categories: this.props.categories,
           labels: {
             hideOverlappingLabels: true,
           },
-          tickPlacement: 'between',
         },
         dataLabels: {
           enabled: this.props.labels,
@@ -34,19 +49,20 @@ class LineGraph extends Component {
     }
   }
 
-  // render a line graph
+  // RENDERER:
+
+  // renders the bar chart with the given options
   render() {
-    console.log(this.state.options.xaxis.categories)
     return (
       <div className="mixed-chart">
         <Chart
           options={this.state.options}
           series={this.state.series}
-          type="line"
+          type="bar"
         />
       </div>
     )
   }
 }
 
-export default LineGraph
+export default BarChart

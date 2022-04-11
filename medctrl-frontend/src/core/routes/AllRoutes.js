@@ -4,7 +4,7 @@ import DataPage from '../../pages/data/DataPage'
 import MessagesPage from '../../pages/messages/MessagesPage'
 import SettingsPage from '../../pages/settings/SettingsPage'
 import AccountPage from '../../pages/account/AccountPage'
-import VisualizationPage from '../../pages/visualizations/visualization_page'
+import VisualizationPage from '../../pages/visualizations/VisualizationPage'
 import DetailedInfoPage from '../../pages/detailed-info/DetailedInfoPage'
 
 import { Routes, Route } from 'react-router-dom'
