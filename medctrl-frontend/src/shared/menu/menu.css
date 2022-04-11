@@ -8,9 +8,27 @@
   bottom: 19%;
   left: 15%;
   right: 15%;
-  background-color: rgb(17, 75, 95);
-  border-radius: 10px;
   overflow: hidden;
+  outline: none;
+}
+
+.filter {
+  position: absolute;
+  border-radius: 10px;
+  height: 100%;
+  width: 80%;
+  background-color: rgb(17, 75, 95);
+}
+
+.sort {
+  position: absolute;
+  float: right;
+  border-radius: 10px;
+  width: 19.5%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background-color: rgb(17, 75, 95);
 }
 
 .open-menu {
@@ -69,4 +87,17 @@
 .filters {
   overflow-y: auto;
   height: calc(100% - 160px);
+}
+
+.add-sort {
+  display: inline-block;
+  color: rgb(212, 213, 214);
+  font-size: 15px;
+  padding-left: 12px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.add-sort:hover {
+  filter: brightness(150%);
 }

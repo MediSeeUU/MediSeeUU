@@ -5,6 +5,7 @@ import './table.css'
 function DisplayTable({
   data,
   selectTable,
+  searchTable,
   selectedTable,
   amountPerPage,
   currentPage,
@@ -67,8 +68,10 @@ function DisplayTable({
               </td>
             )
           })}
-          {selectedTable ? <InfoboxColumn /> : null}
-          {selectTable ? <InfoboxColumn /> : <BinboxColumn />}
+          <InfoboxColumn />
+          {!selectTable && !searchTable && (
+            <BinboxColumn onp={handleOnChange.bind(null, entry.EUNumber)} />
+          )}
         </tr>
       )
     })
@@ -129,16 +132,16 @@ const CheckboxColumn = ({ value, onChange }) => {
 }
 
 //logic for the bin
-const BinboxColumn = ({ value, onChange, data, setData }) => {
+function BinboxColumn({ onp }) {
   return (
     <td className="med_td smallColumn">
-      <i className="bx bx-trash icons"></i>
+      <i className="bx bx-trash icons" onClick={onp}></i>
     </td>
   )
 }
 
 //logic for the information button
-const InfoboxColumn = ({ value, onChange, data, setData }) => {
+function InfoboxColumn() {
   return (
     <td className="med_td smallColumn">
       <i className="bx bx-info-circle icons" />

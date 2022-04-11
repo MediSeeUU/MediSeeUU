@@ -30,7 +30,6 @@ beforeAll(() => {
 jest.mock('../mocks/observer')
 jest.mock('../mocks/IntersectionObserver')
 
-
 // test if the initial page renders as a stand alonte without crashing
 /*test('render initial page', () => {
   
@@ -46,7 +45,10 @@ test('add a visualization', () => {
   ]
 
   const root = document.createElement('div')
-  let view = ReactDOM.render(<SingleVisualization number={1} data={data} />, root)
+  let view = ReactDOM.render(
+    <SingleVisualization number={1} data={data} />,
+    root
+  )
 
   //fireEvent.click(view.getByText('Add visualization'))
 

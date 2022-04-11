@@ -1,0 +1,21 @@
+name: Deploy live backend environment
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - medctrl-backend/**
+
+jobs:
+  checkout:
+    runs-on: deploy_backend_ci
+
+    steps:
+      - uses: actions/checkout@v2
+
+  build_deploy:
+    uses: Rutgerdj/med-ctrl/.github/workflows/backend_deploy_reusable.yml@master
+    with:
+      build_name: live

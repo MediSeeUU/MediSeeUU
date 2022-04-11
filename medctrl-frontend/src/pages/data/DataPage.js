@@ -13,17 +13,23 @@ function DataPage() {
     )
   )
 
+  //default filter on EU_Number
   const selectedData = DummyData.filter((item, index) => {
     return checkedState[item.EUNumber]
   })
 
+  //main body of the page
   return (
     <div>
       <DataSelect
         setCheckedState={setCheckedState}
         checkedState={checkedState}
       />
-      <SelectedData list={selectedData} />
+      <SelectedData
+        list={selectedData}
+        setCheckedState={setCheckedState}
+        checkedState={checkedState}
+      />
     </div>
   )
 }

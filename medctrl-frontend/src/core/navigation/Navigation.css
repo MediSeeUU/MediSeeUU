@@ -33,6 +33,7 @@
   padding: 6px 14px;
   transition: all 0.3s;
   z-index: 10000;
+  min-height: calc(700px - 75px);
 }
 
 .side-nav.open-nav {

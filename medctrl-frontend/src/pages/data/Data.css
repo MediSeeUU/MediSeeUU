@@ -37,6 +37,7 @@ hr {
 .addRmCollumn {
   float: right;
   margin: 0px 1% 0px 0px;
+  cursor: pointer;
 }
 
 .bottomOfTableHolder {
@@ -72,13 +73,22 @@ hr {
 .lb-pageCount {
   float: none;
   font-weight: bold;
-  width: 20px;
+  width: 25px;
   text-align: center;
   cursor: pointer;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .lb-pageCount:hover {
   background-color: var(--seperation-line);
+  border-radius: 2px;
+}
+
+.lb-pageCount_selected {
+  background-color: var(--blue-light);
+  color: white;
+  border-radius: 2px;
 }
 
 .dv-pageCount {
@@ -92,4 +102,5 @@ hr {
 
 .li-pageCount {
   font-size: 25px;
+  cursor: pointer;
 }

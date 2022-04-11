@@ -7,6 +7,7 @@
   height: 441px;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 8px;
 }
 
 .tableHeader {
@@ -62,6 +63,7 @@
   font-size: 20px;
   margin-top: 2px;
   color: var(--blue-alt);
+  cursor: pointer;
 }
 
 .icons:hover {

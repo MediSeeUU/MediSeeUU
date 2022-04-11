@@ -6,66 +6,130 @@ function ResultsSelector({
   resultsPerPage,
   pageNumber,
   currPage,
-  Options,
 }) {
-  var pageCount = []
+  //all available options for resultsPerPage
+  var options = []
 
-  if (Math.ceil(data.length / amount) > 5) {
-    pageCount.push(
-      <div onClick={pageNumber.bind(null, 1)} className="lb-pageCount">
-        {' '}
-        1{' '}
-      </div>
+  //populates the Options variable
+  var upper = data.length >= 300 ? 300 : data.length
+
+  if (data.length % 25 > 0 && data.length < 300) upper += 25
+
+  for (var j = 25; j <= upper; j += 25) {
+    options.push(
+      <option key={j} value={j}>
+        {j}
+      </option>
     )
-    pageCount.push(<div className="lb-pageCount"> .. </div>)
-
-    for (
-      var i = Math.floor((data.length / amount - 1) / 2);
-      i <= Math.ceil((data.length / amount + 1) / 2);
-      i++
-    ) {
-      pageCount.push(
-        <div onClick={pageNumber.bind(null, i)} className="lb-pageCount">
-          {' '}
-          {i}{' '}
-        </div>
-      )
-    }
-
-    pageCount.push(<div className="lb-pageCount"> .. </div>)
-
-    pageCount.push(
-      <div
-        onClick={pageNumber.bind(null, Math.ceil(data.length / amount))}
-        className="lb-pageCount"
-      >
-        {' '}
-        {Math.ceil(data.length / amount)}{' '}
-      </div>
-    )
-  } else {
-    for (var n = 1; n <= Math.ceil(data.length / amount); n++) {
-      pageCount.push(
-        <div onClick={pageNumber.bind(null, n)} className="lb-pageCount">
-          {' '}
-          {n}{' '}
-        </div>
-      )
-    }
   }
 
+  //pageCount holds all available pages.
+  var pageCount = []
+
+  //pages is the maximum amount of pages depnding on the amount of shown results per page
+  const pages = Math.ceil(data.length / amount)
+
+  //sets the start and end page of the results selector depending on the currently selected page
+  var startPage = currPage - 1
+  var endpage = currPage + 1
+
+  if (startPage <= 1) {
+    endpage -= startPage - 1
+    startPage = 2
+  }
+
+  if (endpage >= pages) {
+    endpage = pages - 1
+    startPage = pages - 2
+  }
+
+  //populates the pageCount variable depending on the strat and end page
+  function PageSelector() {
+    addDiv(1)
+
+    if (startPage > 2) {
+      pageCount.push(
+        <div key={'.'} className="lb-pageCount">
+          {' '}
+          ..{' '}
+        </div>
+      )
+    }
+
+    if (pages > 3) {
+      for (var i = startPage; i <= endpage; i++) {
+        addDiv(i)
+      }
+
+      if (endpage < pages - 1) {
+        pageCount.push(
+          <div key={'..'} className="lb-pageCount">
+            {' '}
+            ..{' '}
+          </div>
+        )
+      }
+    } else if (pages === 3) {
+      addDiv(2)
+    }
+
+    if (pages > 1) {
+      addDiv(pages)
+    }
+
+    return pageCount
+  }
+
+  //adds div with all infromation to pagecount
+  function addDiv(nr) {
+    pageCount.push(
+      <div
+        key={'nr' + nr}
+        onClick={pageNumber.bind(null, nr)}
+        className={
+          nr === currPage
+            ? 'lb-pageCount lb-pageCount_selected'
+            : 'lb-pageCount'
+        }
+        id={nr}
+      >
+        {' '}
+        {nr}{' '}
+      </div>
+    )
+  }
+
+  //sets currentpage to next page
+  function Next() {
+    if (currPage + 1 <= pages) {
+      currPage += 1
+    }
+
+    pageNumber(currPage)
+  }
+
+  //sets currentpage to last page
+  function Back() {
+    if (currPage - 1 > 0) {
+      currPage -= 1
+    }
+
+    pageNumber(currPage)
+  }
+
+  //main body of the page
   return (
     <div className="bottomOfTableHolder">
       <div className="dv-pageCount">
         <i
-          onClick={() => Back(pageNumber, currPage)}
+          onClick={() => Back()}
           className="bx bxs-chevron-left bx-plusMinus li-pageCount"
         />
-        {pageCount}
+
+        {PageSelector()}
+
         <i
-          onClick={() =>
-            Next(pageNumber, currPage, Math.ceil(data.length / amount))
-          }
+          onClick={() => Next()}
           className="bx bxs-chevron-right bx-plusMinus li-pageCount"
         />
       </div>
@@ -77,31 +141,11 @@ function ResultsSelector({
           name="AmountShown"
           id="topSelector"
         >
-          {Options}
+          {options}
         </select>
       </div>
     </div>
   )
-}
-
-const Next = (pageNumber, currPage, count) => {
-  var n = currPage
-
-  if (currPage + 1 <= count) {
-    n += 1
-  }
-
-  pageNumber(n)
-}
-
-const Back = (pageNumber, currPage) => {
-  var n = currPage
-
-  if (currPage - 1 > 0) {
-    n -= 1
-  }
-
-  pageNumber(n)
 }
 
 export default ResultsSelector
