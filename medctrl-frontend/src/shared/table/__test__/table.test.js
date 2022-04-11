@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom'
 import { render, fireEvent, within } from '@testing-library/react'
 import Table from '../table'
 import DummyData from '../../../testJson/data.json'
-import { CheckedContext, CheckedContextUpdate } from '../../contexts/DataContext'
+import {
+  CheckedContext,
+  CheckedContextUpdate,
+} from '../../contexts/DataContext'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')
@@ -48,15 +51,15 @@ test('checkboxes displayed', () => {
   }
   const view = render(
     <CheckedContext.Provider value={checkedState}>
-    <CheckedContextUpdate.Provider value={setCheckedState}>
-      <Table
-        data={data}
-        selectTable={true}
-        currentPage={1}
-        amountPerPage={10}
-      />
-    </CheckedContextUpdate.Provider>
-  </CheckedContext.Provider>
+      <CheckedContextUpdate.Provider value={setCheckedState}>
+        <Table
+          data={data}
+          selectTable={true}
+          currentPage={1}
+          amountPerPage={10}
+        />
+      </CheckedContextUpdate.Provider>
+    </CheckedContext.Provider>
   )
   const table = view.getByRole('table')
   const checkboxes = table.getElementsByClassName('tableCheckboxColumn')

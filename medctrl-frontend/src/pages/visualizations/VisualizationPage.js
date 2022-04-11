@@ -94,7 +94,7 @@ class VisualizationPage extends Component {
         </div>
       )
     } else {
-      return (<h1>No data selected to display</h1>)
+      return <h1>No data selected to display</h1>
     }
   }
 }
