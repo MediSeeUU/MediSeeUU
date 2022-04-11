@@ -1,4 +1,4 @@
-.menu-item {
+.filter-item {
   background-color: rgb(215, 215, 214);
   padding: 10px;
   width: 200px;
@@ -10,7 +10,19 @@
   box-sizing: content-box;
 }
 
-#filter-select {
+.sort-item {
+  background-color: rgb(215, 215, 214);
+  padding: 10px;
+  width: 200px;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 25px;
+  position: relative;
+  vertical-align: top;
+  box-sizing: content-box;
+}
+
+.select {
   display: inline-block;
   width: 170px;
 }
