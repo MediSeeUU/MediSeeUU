@@ -6,6 +6,7 @@ import './table.css'
 function DisplayTable({
   data,
   selectTable,
+  searchTable,
   selectedTable,
   amountPerPage,
   currentPage,
@@ -65,10 +66,8 @@ function DisplayTable({
               </td>
             )
           })}
-          {selectedTable ? <InfoboxColumn /> : null}
-          {selectTable ? (
-            <InfoboxColumn />
-          ) : (
+          <InfoboxColumn />
+          {!selectTable && !searchTable && (
             <BinboxColumn onp={handleOnChange.bind(null, entry.EUNumber)} />
           )}
         </tr>

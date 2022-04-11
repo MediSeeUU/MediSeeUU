@@ -25,7 +25,7 @@ function App() {
         />
 
         <main className="med_content">
-          <div id="med_content__wrapper">
+          <div className="med_content__wrapper">
             <DataProvider>
               <AllRoutes />
             </DataProvider>

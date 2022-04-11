@@ -12,10 +12,28 @@
   border-radius: 5px;
 }
 
-.med_home_content h1,
+.med_home_content h1 {
+  margin: 10px;
+  font-size: 25x;
+}
 .med_home_content h2 {
   margin: 10px;
+  font-size: 20px;
 }
 .med_home_content p {
   margin: 10px;
+}
+
+.institution-logo {
+  width: 400px;
+  float: right;
+}
+
+.institution-info {
+  width: calc(100% - 450px);
+}
+
+.institution-link {
+  color: purple;
+  text-decoration: none;
 }

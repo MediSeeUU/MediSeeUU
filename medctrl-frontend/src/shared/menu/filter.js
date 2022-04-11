@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-import './filter.css'
+import './menuitems.css'
 
 // Returns all filter input boxes in HTML
 function filtersToHTML(props) {
@@ -28,11 +28,12 @@ function filtersToHTML(props) {
 // Returns the filter item in HTML
 function displayItem(props) {
   return (
-    <div id={props.id} className="menu-item">
+    <div id={props.id} className="filter-item">
       <select
-        id="filter-select"
+        className="select"
         defaultValue={props.item.selected}
         onChange={(e) => props.sel(props.id, e.target.value)}
+        data-testid="filter-select"
       >
         <option key="" value="" hidden>
           Select a variable...

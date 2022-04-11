@@ -9,7 +9,9 @@ class DonutChart extends Component {
     this.state = {
       options: {
         chart: {
-          id: String(this.props.number),
+          id: String(this.props.id),
+          type: 'pie',
+          toolbar: { show: false },
         },
         dataLabels: {
           enabled: this.props.labels,
@@ -17,11 +19,17 @@ class DonutChart extends Component {
         legend: {
           show: this.props.legend,
         },
+        labels: this.props.categories,
+        noData: {
+          text: 'pick your preferred options to create a visualization',
+        },
+        plotOptions: { pie: { expandOnClick: false } },
       },
-      series: [44, 55, 41, 17, 15],
-      labels: ['A', 'B', 'C', 'D', 'E'],
+      series: this.props.series,
     }
   }
+
+  // RENDERER:
 
   // renders a pie chart
   render() {
@@ -30,7 +38,7 @@ class DonutChart extends Component {
         <Chart
           options={this.state.options}
           series={this.state.series}
-          type="donut"
+          type="pie"
         />
       </div>
     )
