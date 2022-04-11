@@ -18,3 +18,9 @@
   color: var(--white-text);
   border: none;
 }
+
+.search-Icon {
+  font-size: 25px;
+  margin-left: 10px;
+  float: left;
+}

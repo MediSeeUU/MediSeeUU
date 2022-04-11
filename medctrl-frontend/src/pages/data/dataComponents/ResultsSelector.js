@@ -56,7 +56,7 @@ function ResultsSelector({
       )
     }
 
-    if (pages > 1) {
+    if (pages > 3) {
       for (var i = startPage; i <= endpage; i++) {
         addDiv(i)
       }
@@ -69,7 +69,12 @@ function ResultsSelector({
           </div>
         )
       }
+    }
+    else if (pages === 3) {
+      addDiv(2)
+    }
 
+    if (pages > 1) {
       addDiv(pages)
     }
 

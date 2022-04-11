@@ -9,7 +9,7 @@ function SearchPage() {
     <div>
       <div className="TopTableHolder">
         <button className="searchbox__button">
-          <i className="bx bx-cog filter-Icon"></i>Filter & Sort
+          <i class='bx bx-search search-Icon'></i>Search
         </button>
         <input
           type="text"
@@ -26,7 +26,7 @@ function SearchPage() {
           data={allData}
           currentPage={1}
           amountPerPage={50}
-          selectTable={false}
+          searchTable={true}
         />
       </div>
     </div>
