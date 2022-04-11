@@ -44,8 +44,8 @@ function InfoPage(props) {
   return (
     <div>
       <Container>
-        <h1>{medicineData.info.BrandName} {' '} Medicine Details</h1>
-        <hr />
+        <h1 className="title">{medicineData.info.BrandName} {' '} Medicine Details</h1>
+        <hr className="separator" />
 
         <div class="flex-columns">
 
@@ -101,14 +101,14 @@ function InfoPage(props) {
       </Container>
 
       <Container> 
-        <h1>Procedure Details</h1>
-        <hr />
+        <h1 className="title">Procedure Details</h1>
+        <hr className="separator"/>
         {allProcedures}
       </Container>
 
       <Container> 
-        <h1>Additional Resources</h1>
-        <hr />
+        <h1 className="title">Additional Resources</h1>
+        <hr className="separator" />
 
         <CustomLink className="external-link" name="EMA Website" 
           dest="https://www.ema.europa.eu/en" />

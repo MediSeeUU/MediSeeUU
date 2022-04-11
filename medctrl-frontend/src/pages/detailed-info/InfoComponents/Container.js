@@ -3,7 +3,7 @@
 // which all content components should be displayed
 function Container(props) {
   return (
-    <div className="content-container">
+    <div className="TopTableHolder">
       {props.children}
     </div>
   );
