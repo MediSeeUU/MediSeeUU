@@ -30,7 +30,7 @@ function displayItem(props) {
       </select>
       <i
         className="bx bxs-x-circle delete"
-        data-testid = "delete-sorting-box"
+        data-testid="delete-sorting-box"
         onClick={() => props.del(props.id)}
       ></i>
     </div>
