@@ -118,7 +118,7 @@ class LineForm extends Component {
     return (
       <React.Fragment>
         <label className="visualization-panel-label">
-          {x_axis} <br />
+          {x_axis}
           <select
             value={this.state.xAxis}
             name="xAxis"
@@ -127,9 +127,8 @@ class LineForm extends Component {
             {variablesXAxis}
           </select>
         </label>
-        <br />
         <label className="visualization-panel-label">
-          {y_axis} <br />
+          {y_axis}
           <select
             value={this.state.yAxis}
             name="yAxis"
@@ -138,7 +137,6 @@ class LineForm extends Component {
             {variablesYAxis}
           </select>
         </label>
-        <br />
         <CategoryOptions
           /* 
             We want to reset the component when the axis changes,

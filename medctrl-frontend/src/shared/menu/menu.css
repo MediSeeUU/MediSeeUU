@@ -1,3 +1,7 @@
+.ReactModal__Overlay {
+  z-index: 100000;
+}
+
 .menu-modal {
   position: absolute;
   top: 19%;

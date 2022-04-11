@@ -1,0 +1,20 @@
+.content__container__textinput {
+  margin: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 83%;
+  font-size: 16px;
+}
+
+.searchbox__button {
+  width: 150px;
+  height: 40px;
+  float: right;
+  margin: 15px 1.5% 15px 0px;
+  font-size: 15px;
+  font-weight: 400;
+  background-color: var(--blue-alt);
+  border-radius: 5px;
+  color: var(--white-text);
+  border: none;
+}
