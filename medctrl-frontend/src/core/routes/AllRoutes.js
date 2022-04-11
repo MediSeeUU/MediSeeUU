@@ -14,7 +14,10 @@ function AllRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/data" element={<DataPage />} />
-      <Route path="/visualizations" element={<VisualizationPage selectedData={useSelectedData()} />} />
+      <Route
+        path="/visualizations"
+        element={<VisualizationPage selectedData={useSelectedData()} />}
+      />
       <Route path="/messages" element={<MessagesPage />} />
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/account" element={<AccountPage />} />

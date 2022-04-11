@@ -6,8 +6,8 @@ function DataPage() {
   //main body of the page
   return (
     <div>
-      <DataSelect/>
-      <SelectedData/>
+      <DataSelect />
+      <SelectedData />
     </div>
   )
 }

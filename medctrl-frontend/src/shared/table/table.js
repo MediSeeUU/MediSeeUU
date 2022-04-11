@@ -8,15 +8,15 @@ function DisplayTable({
   selectTable,
   selectedTable,
   amountPerPage,
-  currentPage
+  currentPage,
 }) {
   //throw error if parameters not defined
   if (!data || !amountPerPage || !currentPage) {
     throw Error('parameters data, amountPerPage and currentPage are mandatory')
   }
 
-  const checkedState = useCheckedState();
-  const setCheckedState = useCheckedStateUpdate();
+  const checkedState = useCheckedState()
+  const setCheckedState = useCheckedStateUpdate()
 
   //Check if all checkboxes are checked, used to check/uncheck the checkbox in the header
   const allSelected = getAllSelected(checkedState)

@@ -10,7 +10,7 @@ function SelectedData() {
   //current page
   const [loadedPage, setPage] = useState(1)
 
-  const selectedData = useSelectedData();
+  const selectedData = useSelectedData()
   //if items are selected in the select data table, these will show up here, when nothing is selected a label will be shown
   var tableholder
   if (!selectedData || selectedData.length === 0) {

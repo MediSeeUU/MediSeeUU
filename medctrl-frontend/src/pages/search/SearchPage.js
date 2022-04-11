@@ -3,7 +3,7 @@ import Table from '../../shared/table/table'
 import { useData } from '../../shared/contexts/DataContext'
 
 function SearchPage() {
-  const allData = useData();
+  const allData = useData()
 
   return (
     <div>

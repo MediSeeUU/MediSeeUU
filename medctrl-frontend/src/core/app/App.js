@@ -15,25 +15,25 @@ const defUser = {
 
 function App() {
   return (
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <div className="med_page__wrapper">
-          <Header className="med_mainLayout" />
-          <SideNavigation
-            className="med_mainLayout"
-            loggedin={userLoggedIn}
-            user={defUser}
-          />
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <div className="med_page__wrapper">
+        <Header className="med_mainLayout" />
+        <SideNavigation
+          className="med_mainLayout"
+          loggedin={userLoggedIn}
+          user={defUser}
+        />
 
-          <main className="med_content">
-            <div id="med_content__wrapper">
-              <DataProvider>
-                <AllRoutes />
-              </DataProvider>
-            </div>
-            <Footer />
-          </main>
-        </div>
-      </BrowserRouter>
+        <main className="med_content">
+          <div id="med_content__wrapper">
+            <DataProvider>
+              <AllRoutes />
+            </DataProvider>
+          </div>
+          <Footer />
+        </main>
+      </div>
+    </BrowserRouter>
   )
 }
 
