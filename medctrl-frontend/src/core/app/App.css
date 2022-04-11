@@ -10,7 +10,7 @@
 }
 
 .med_content__wrapper {
-  min-height: calc(100vh - 75px - 170px);
+  min-height: 75vh;
 }
 
 .med_main_layout {

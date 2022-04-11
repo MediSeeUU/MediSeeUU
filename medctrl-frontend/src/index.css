@@ -30,6 +30,11 @@ h6 {
   font-weight: bold;
 }
 
+select,
+input[type='checkbox'] {
+  cursor: pointer;
+}
+
 /* variables*/
 
 :root {

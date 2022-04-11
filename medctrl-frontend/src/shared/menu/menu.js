@@ -197,6 +197,7 @@ class Menu extends React.Component {
         <ReactModal
           className="menu-modal"
           isOpen={this.state.showModal}
+          onRequestClose={this.handleCloseModal}
           ariaHideApp={false}
           contentLabel="Menu"
         >
