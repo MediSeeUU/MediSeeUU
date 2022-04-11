@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
 import allData from '../../testJson/data.json'
 
-const DataContext = React.createContext()
+export const DataContext = React.createContext()
 export const SelectedContext = React.createContext()
-const CheckedContext = React.createContext()
-const CheckedContextUpdate = React.createContext()
+export const CheckedContext = React.createContext()
+export const CheckedContextUpdate = React.createContext()
 
 export function useData() {
   return useContext(DataContext)

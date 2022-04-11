@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { render, fireEvent, within } from '@testing-library/react'
 import Table from '../table'
 import DummyData from '../../../testJson/data.json'
+import { CheckedContext, CheckedContextUpdate } from '../../contexts/DataContext'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')
@@ -37,15 +38,25 @@ test('expected amount of headers in the table', () => {
 
 test('checkboxes displayed', () => {
   const data = DummyData
+
+  let checkedState = Object.assign(
+    {},
+    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+  )
+  const setCheckedState = (newState) => {
+    checkedState = newState
+  }
   const view = render(
-    <Table
-      data={data}
-      selectTable={true}
-      setCheckedState={() => {}}
-      checkedState={Array(data.length).fill(false)}
-      currentPage={1}
-      amountPerPage={10}
-    />
+    <CheckedContext.Provider value={checkedState}>
+    <CheckedContextUpdate.Provider value={setCheckedState}>
+      <Table
+        data={data}
+        selectTable={true}
+        currentPage={1}
+        amountPerPage={10}
+      />
+    </CheckedContextUpdate.Provider>
+  </CheckedContext.Provider>
   )
   const table = view.getByRole('table')
   const checkboxes = table.getElementsByClassName('tableCheckboxColumn')
@@ -63,14 +74,18 @@ test('row selected, when checkbox clicked', () => {
   }
 
   const view = render(
-    <Table
-      data={data}
-      selectTable={true}
-      setCheckedState={setCheckedState}
-      checkedState={checkedState}
-      currentPage={2}
-      amountPerPage={10}
-    />
+    <CheckedContext.Provider value={checkedState}>
+      <CheckedContextUpdate.Provider value={setCheckedState}>
+        <Table
+          data={data}
+          selectTable={true}
+          setCheckedState={setCheckedState}
+          checkedState={checkedState}
+          currentPage={2}
+          amountPerPage={10}
+        />
+      </CheckedContextUpdate.Provider>
+    </CheckedContext.Provider>
   )
   const table = view.getByRole('table')
   const input = table.getElementsByClassName('tableCheckboxColumn')[1]
@@ -89,14 +104,20 @@ test('all rows selected when select all pressed', () => {
   }
 
   const view = render(
-    <Table
-      data={data}
-      selectTable={true}
-      setCheckedState={setCheckedState}
-      checkedState={checkedState}
-      currentPage={2}
-      amountPerPage={10}
-    />
+    <CheckedContext.Provider value={checkedState}>
+      <CheckedContextUpdate.Provider value={setCheckedState}>
+        <Table
+          data={data}
+          selectTable={true}
+          setCheckedState={setCheckedState}
+          checkedState={checkedState}
+          currentPage={2}
+          amountPerPage={10}
+          testCheckedState={checkedState}
+          testCheckedStateUpdate={setCheckedState}
+        />
+      </CheckedContextUpdate.Provider>
+    </CheckedContext.Provider>
   )
   const table = view.getByRole('table')
   const input = table.getElementsByClassName('tableCheckboxColumn')[0]
@@ -111,34 +132,6 @@ test('all rows selected when select all pressed', () => {
     return count
   }
   expect(checkedCount()).toBe(data.length)
-})
-
-test('throw error when checkedstate not defined and selectTable true', () => {
-  const renderFunction = () =>
-    render(
-      <Table
-        data={DummyData}
-        selectTable={true}
-        setCheckedState={() => {}}
-        currentPage={5}
-        amountPerPage={10}
-      />
-    )
-  expect(renderFunction).toThrow(Error)
-})
-
-test('throw error when setCheckedState not defined and selectable', () => {
-  const renderFunction = () =>
-    render(
-      <Table
-        data={DummyData}
-        selectTable={true}
-        checkedState={[]}
-        currentPage={5}
-        amountPerPage={10}
-      />
-    )
-  expect(renderFunction).toThrow(Error)
 })
 
 test('throw error when data not defined', () => {
