@@ -1,4 +1,3 @@
-
 // function based component, represents a single detail entry, which
 // preferably resides inside a detail group component
 function Detail(props) {
@@ -7,7 +6,7 @@ function Detail(props) {
       <span className="detail-name">{props.name}</span>
       <span className="detail-value">{props.value}</span>
     </div>
-  );
+  )
 }
 
-export default Detail;
+export default Detail
