@@ -2,7 +2,6 @@ import React from 'react'
 import ReactModal from 'react-modal'
 import { v4 as uuidv4 } from 'uuid'
 import Filter from './filter'
-import OutsideClickHandler from 'react-outside-click-handler'
 import './menu.css'
 
 class Menu extends React.Component {
