@@ -10,7 +10,7 @@ import {
   getByText,
 } from '@testing-library/react'
 import VisualizationPage from '../VisualizationPage'
-import SingleVisualization from '../single_visualization/single_visualization_controller/SingleVisualization'
+import SingleVisualization from '../single_visualization/SingleVisualization'
 import ResizeObserver from '../mocks/observer'
 import IntersectionObserver from '../mocks/IntersectionObserver'
 
@@ -30,12 +30,13 @@ beforeAll(() => {
 jest.mock('../mocks/observer')
 jest.mock('../mocks/IntersectionObserver')
 
+
 // test if the initial page renders as a stand alonte without crashing
-/* test('render initial page', () => {
-  const root = document.createElement('div')
-  ReactDOM.render(<VisualizationPage />, root)
+/*test('render initial page', () => {
   
-}) */
+  //ReactDOM.render(<VisualizationPage />, root)
+  
+})*/
 
 //
 test('add a visualization', () => {
@@ -44,7 +45,8 @@ test('add a visualization', () => {
     { name: 'visualization2' },
   ]
 
-  let view = render(<SingleVisualization number={1} data={data} />)
+  const root = document.createElement('div')
+  let view = ReactDOM.render(<SingleVisualization number={1} data={data} />, root)
 
   //fireEvent.click(view.getByText('Add visualization'))
 

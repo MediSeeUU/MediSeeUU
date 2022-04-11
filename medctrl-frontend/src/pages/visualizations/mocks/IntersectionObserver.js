@@ -6,7 +6,7 @@ class IntersectionObserver {
     return null
   }
   disconnect() {
-    return null
+    //
   }
 }
 window.IntersectionObserver = IntersectionObserver
