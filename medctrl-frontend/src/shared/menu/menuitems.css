@@ -1,7 +1,7 @@
 .filter-item {
   background-color: rgb(215, 215, 214);
   padding: 10px;
-  width: 200px;
+  width: 19%;
   margin: 20px;
   border-radius: 10px;
   display: inline-block;
@@ -13,7 +13,7 @@
 .sort-item {
   background-color: rgb(215, 215, 214);
   padding: 10px;
-  width: 200px;
+  width: 80%;
   border-radius: 10px;
   margin: auto;
   margin-top: 25px;
@@ -24,12 +24,12 @@
 
 .select {
   display: inline-block;
-  width: 170px;
+  width: 85%;
 }
 
 .filter-input {
   display: inline-block;
-  width: 180px;
+  width: 85%;
   margin-top: 10px;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .remove-icon {
-  font-size: 12px;
+  font-size: 75%;
   color: red;
   cursor: pointer;
   padding-left: 5px;
