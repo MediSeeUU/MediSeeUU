@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { render, fireEvent, within } from '@testing-library/react'
 import Table from '../table'
-import DummyData from '../../../json/data.json'
+import DummyData from '../../../testJson/data.json'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')

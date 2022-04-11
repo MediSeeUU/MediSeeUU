@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import allData from '../../json/data.json'
+import allData from '../../testJson/data.json'
 
 const DataContext = React.createContext();
 export const SelectedContext = React.createContext();
