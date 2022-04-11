@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCheckedState, useCheckedStateUpdate } from '../datacontext/DataContext'
+import { useCheckedState, useCheckedStateUpdate } from '../contexts/DataContext'
 import './table.css'
 
 //Function based component, returns table

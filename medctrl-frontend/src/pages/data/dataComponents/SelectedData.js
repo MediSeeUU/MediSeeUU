@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ResultsSelector from './ResultsSelector'
 import Table from '../../../shared/table/table'
-import { useSelectedData } from '../../../shared/datacontext/DataContext'
+import { useSelectedData } from '../../../shared/contexts/DataContext'
 
 function SelectedData() {
   //amount of databse hits shown per page

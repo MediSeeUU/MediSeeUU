@@ -1,6 +1,6 @@
 import './SearchPage.css'
 import Table from '../../shared/table/table'
-import { useData } from '../../shared/datacontext/DataContext'
+import { useData } from '../../shared/contexts/DataContext'
 
 function SearchPage() {
   const allData = useData();

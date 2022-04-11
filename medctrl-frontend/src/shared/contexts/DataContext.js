@@ -26,13 +26,11 @@ export function useCheckedStateUpdate(){
 
 export function DataProvider({ children }) {
     const [checkedState, setCheckedState] = useState(
-        Object.assign({}, allData.map((entry) => ({ [entry.EUNumber]: false })))
+        Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: false })))
     )
     const selectedData = allData.filter((item, index) => {
       return checkedState[item.EUNumber]
     })
-    //const filteredData = [];
-    //const 
 
     return (
         <DataContext.Provider value={allData}>

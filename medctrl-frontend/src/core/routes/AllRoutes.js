@@ -6,7 +6,7 @@ import SettingsPage from '../../pages/settings/SettingsPage'
 import AccountPage from '../../pages/account/AccountPage'
 import { Routes, Route } from 'react-router-dom'
 import VisualizationPage from '../../pages/visualizations/visualization_page'
-import { useSelectedData } from '../../shared/datacontext/DataContext'
+import { useSelectedData } from '../../shared/contexts/DataContext'
 
 function AllRoutes() {
   return (
