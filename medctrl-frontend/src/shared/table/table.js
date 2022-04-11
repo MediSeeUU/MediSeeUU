@@ -69,7 +69,9 @@ function DisplayTable({
             )
           })}
           <InfoboxColumn />
-          {!selectTable && !searchTable && <BinboxColumn onp={handleOnChange.bind(null, entry.EUNumber)} /> }
+          {!selectTable && !searchTable && (
+            <BinboxColumn onp={handleOnChange.bind(null, entry.EUNumber)} />
+          )}
         </tr>
       )
     })

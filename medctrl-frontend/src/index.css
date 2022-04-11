@@ -30,7 +30,8 @@ h6 {
   font-weight: bold;
 }
 
-select, input[type="checkbox"] {
+select,
+input[type='checkbox'] {
   cursor: pointer;
 }
 

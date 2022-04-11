@@ -69,8 +69,7 @@ function ResultsSelector({
           </div>
         )
       }
-    }
-    else if (pages === 3) {
+    } else if (pages === 3) {
       addDiv(2)
     }
 
