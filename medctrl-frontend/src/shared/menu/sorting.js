@@ -1,5 +1,5 @@
-import { firstBy } from 'thenby' 
-import voca from 'voca' 
+import { firstBy } from 'thenby'
+import voca from 'voca'
 
 //function requires all Data, given as Array of objects, each object containing key:value; e.g. [ {"id":1, "clr": "red" } , {"id":2, "clr" : "blue"} ]
 //function requires sortingParameters, which is the sorting state object passed from the filtermenu; it is an array containing an object for each active sorting filter.
@@ -12,6 +12,7 @@ export function sortData(data, sortingparameters) {
     if(sortingparameters[sortparIndex].selected === '')
     {sortingparameters.splice(sortparIndex,1)}
   }
+  
   if(sortingparameters.length === 0 )
   {return data}
 
@@ -41,43 +42,33 @@ export function sortData(data, sortingparameters) {
 }
 
 function createComparisonFunction(attr) {
-  console.log(attr)
+  
   if(attr === undefined || attr === ''){
       return function baseComparison(jsonObject1, jsonObject2){
-          jsonObject1[0].toString().localeCompare(jsonObject2[0].toString())
+        
+        
+        return String.toString(jsonObject1[0]).localeCompare(String.toString(jsonObject2[0]))
+        //  jsonObject1[0].toString().localeCompare(jsonObject2[0].toString())
       }
     }
+  
   else{
     return function alphanumericalcomparison(jsonobject1, jsonobject2){
-      console.log(attr + "____"+ jsonobject1[attr] + "____"+ jsonobject1.toString()) // logt getallen id voor ApplicationNo
+      
+      if (typeof jsonobject1[attr] === 'number') {
+      return (jsonobject1[attr] - jsonobject2[attr])
+      }
+
       return convertStringToAlphaNumerical(jsonobject1[attr]).localeCompare(
         convertStringToAlphaNumerical(jsonobject2[attr]))
     }
   }
-  //return convertStringToAlphaNumerical(object1[attr]).localeCompare(
-  //  convertStringToAlphaNumerical(object2[attr])
-  //)
+ 
 
-  /* return function compareAlphabetical(object1, object2) {
-      if(attr === undefined || attr === ''){
-        return function baseComparison(jsonObject1, jsonObject2){
-            jsonObject1[0].toString().localeCompare(jsonObject2[0].toString())
-        }
-      }
-    if (typeof object1[attr] === "number") {
-      return object1[attr] - object2[attr]
-    }
-    return convertStringToAlphaNumerical(object1[attr]).localeCompare(
-      convertStringToAlphaNumerical(object2[attr])
-    )
-  } */
+  
 }
 function convertStringToAlphaNumerical(word) {
-  console.log(word)
-  if (typeof word === 'Number')
-  {word = Number.toString(word)
-   console.log("!!!!!!"+ word)
-  }
+  
   var lowercaselatinizedWord = voca.latinise(word.toString().toLowerCase())
   var AlphaNumericOnlyLatinizedWord = lowercaselatinizedWord.replace(
     /[^a-zA-Z0-9]+/g,
@@ -115,10 +106,8 @@ export function convertSortingAttributeNameToComparisonFunction(
         sortingFunctionToUse = CompareDateFunction
       } catch (errorID) {
         console.Error(errorID)
-        sortingFunctionToUse = (value1, value2) =>
-          value1['DecisionDate']
-            .toString()
-            .localeCompare(value2['DecisionDate'].toString())
+
+
       }
 
       break
@@ -132,32 +121,26 @@ export function convertSortingAttributeNameToComparisonFunction(
         sortingFunctionToUse = MAHcomparison
       } catch (errorID) {
         console.Error(errorID)
-        sortingFunctionToUse = (value1, value2) =>
-          value1['MAH'].toString().localeCompare(value2['MAH'].toString())
+
       }
       break
     case 'ActiveSubstance':
       try {
         function ActSubComparison(jsonObject1, jsonObject2) {
           return convertStringToAlphaNumerical(
-              jsonObject1['ActiveSubstance']
-            ).localeCompare(
-              convertStringToAlphaNumerical(jsonObject2['ActiveSubstance'])
-            )
-          
+            jsonObject1['ActiveSubstance']
+          ).localeCompare(
+            convertStringToAlphaNumerical(jsonObject2['ActiveSubstance'])
+          )
         }
         sortingFunctionToUse = ActSubComparison
       } catch (errorID) {
         console.Error(errorID)
-        sortingFunctionToUse = (value1, value2) =>
-          value1['ActiveSubstance']
-            .toString()
-            .localeCompare(value2['ActiveSubstance'].toString())
+        
       }
       break
     default:
       sortingFunctionToUse = createComparisonFunction(attributeNameAsString)
-    
   }
 
   return sortingFunctionToUse
@@ -167,75 +150,61 @@ export function convertSortingAttributeNameToComparisonFunction(
 //Function takes the name of an attribute as a string, returns the appropriate sorting function
 //use this function to sort an array containing only values of the provided AttributeName type.
 //use like: arrayName.sort(comparisonFunctionAsReturnedByThisFunction)
-export function getSortingFunctionFromAttributeName(
-    attributeNameAsString
-  ) {
-    var sortingFunctionToUse
-    switch (attributeNameAsString) {
-      case 'DecisionDate':
-        //format:  month/day/year -> day/month/year
-        try {
-          function CompareDateFunction(value1, value2) {
-            var splittedDate1 = value1.split('/')
-            var rightDatum1 =
-              splittedDate1[2] + splittedDate1[0] + splittedDate1[1]
-            var splittedDate2 = value2.split('/')
-            var rightDatum2 =
-              splittedDate2[2] + splittedDate2[0] + splittedDate2[1]
-            return rightDatum1.localeCompare(rightDatum2)
-          }
-  
-          sortingFunctionToUse = CompareDateFunction
-        } catch (errorID) {
-          console.Error(errorID)
-          sortingFunctionToUse = (value1, value2) =>
-            value1
-              .toString()
-              .localeCompare(value2.toString())
+export function getSortingFunctionFromAttributeName(attributeNameAsString) {
+  var sortingFunctionToUse
+  switch (attributeNameAsString) {
+    case 'DecisionDate':
+      //format:  month/day/year -> day/month/year
+      try {
+        function CompareDateFunction(value1, value2) {
+          var splittedDate1 = value1.split('/')
+          var rightDatum1 =
+            splittedDate1[2] + splittedDate1[0] + splittedDate1[1]
+          var splittedDate2 = value2.split('/')
+          var rightDatum2 =
+            splittedDate2[2] + splittedDate2[0] + splittedDate2[1]
+          return rightDatum1.localeCompare(rightDatum2)
         }
-  
-        break
-      case 'MAH':
-        try {
-          function MAHcomparison(value1, value2) {
-            return convertStringToAlphaNumerical(
-              value1
-            ).localeCompare(convertStringToAlphaNumerical(value2))
-          }
-          sortingFunctionToUse = MAHcomparison
-        } catch (errorID) {
-          console.Error(errorID)
-          sortingFunctionToUse = (value1, value2) =>
-            value1.toString().localeCompare(value2.toString())
-        }
-        break
-      case 'ActiveSubstance':
-        try {
-          function ActSubComparison(value1, value2) {
-            return convertStringToAlphaNumerical(
-                value1
-              ).localeCompare(
-                convertStringToAlphaNumerical(value2)
-              )
-            
-          }
-          sortingFunctionToUse = ActSubComparison
-        } catch (errorID) {
-          console.Error(errorID)
-          sortingFunctionToUse = (value1, value2) =>
-            value1
-              .toString()
-              .localeCompare(value2.toString())
-        }
-        break
-      default:
-        sortingFunctionToUse = createComparisonFunction2(attributeNameAsString)
+
+        sortingFunctionToUse = CompareDateFunction
+      } catch (errorID) {
+        console.Error(errorID)
         
-      
-    }
-  
-    return sortingFunctionToUse
+      }
+
+      break
+    case 'MAH':
+      try {
+        function MAHcomparison(value1, value2) {
+          return convertStringToAlphaNumerical(value1).localeCompare(
+            convertStringToAlphaNumerical(value2)
+          )
+        }
+        sortingFunctionToUse = MAHcomparison
+      } catch (errorID) {
+        console.Error(errorID)
+        
+      }
+      break
+    case 'ActiveSubstance':
+      try {
+        function ActSubComparison(value1, value2) {
+          return convertStringToAlphaNumerical(value1).localeCompare(
+            convertStringToAlphaNumerical(value2)
+          )
+        }
+        sortingFunctionToUse = ActSubComparison
+      } catch (errorID) {
+        console.Error(errorID)
+        
+      }
+      break
+    default:
+      sortingFunctionToUse = createComparisonFunction2(attributeNameAsString)
   }
+
+  return sortingFunctionToUse
+}
 //function takes an attribute name and returns the correpsonding comparison function,
 //base clause for when no other match is found in getSortingFunctionFromAttributeName(attributeName)
 function createComparisonFunction2(attr) {
@@ -245,25 +214,13 @@ function createComparisonFunction2(attr) {
             return value1.toString().localeCompare(value2.toString())
         }
     }
-    if (typeof value1 == 'number') {
-    return function basenumbercompare(value1, value2){ return (value1 - value2)}
-    }
+    
     return function alphanumericalcompare (value1, value2) {
-      return convertStringToAlphaNumerical(value1).localeCompare(convertStringToAlphaNumerical(value2))
+      if(typeof value1 === "number"){return (value1 - value2)}
+      else{return convertStringToAlphaNumerical(value1).localeCompare(convertStringToAlphaNumerical(value2))}
+      
     }
     
   
-/* return function compareAlphabeticalA(value1, value2) {
-    if(attr === undefined || attr === ''){
-        return function baseComparison(value1, value2){
-            value1.toString().localeCompare(value2.toString())
-        }
-    }
-    if (typeof value1 == 'number') {
-    return function basenumbercompare(value1, value2){ return (value1 - value2)}
-    }
-    return convertStringToAlphaNumerical(value1).localeCompare(
-    convertStringToAlphaNumerical(value2)
-    )
-} */
+
 }

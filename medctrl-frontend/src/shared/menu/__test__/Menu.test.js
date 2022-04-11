@@ -10,7 +10,7 @@ import {
 } from '@testing-library/react'
 import Menu from '../menu'
 import DummyData from '../../../json/data.json'
-import { convertSortingAttributeNameToComparisonFunction } from '../sorting'
+import { convertSortingAttributeNameToComparisonFunction, getSortingFunctionFromAttributeName } from '../sorting'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')
@@ -90,6 +90,19 @@ test('add sorting option adds sorting item', () => {
   fireEvent.click(screen.getByText(/Add Sorting option +/i))
   expect(screen.queryAllByTestId('sort-select-attr')).toHaveLength(2)
 })
+
+// test for checking if clicking the X button to remove sorting option removes an sorting-item when this item is not the last sorting box (A)
+test('remove sorting option removes sorting item', () => {
+  render(<Menu cachedData={DummyData} />)
+  fireEvent.click(screen.getByText(/Filter & Sort/i))
+  //add 2nd sorting option box
+  fireEvent.click(screen.getByText(/Add Sorting option +/i))
+  expect(screen.queryAllByTestId('sort-select-attr')).toHaveLength(2) 
+//remove the second option sorting box only
+  fireEvent.click(screen.getAllByTestId('delete-sorting-box')[1])
+  expect(screen.queryAllByTestId('sort-select-attr')).toHaveLength(1)
+})
+
 //test to check if single parameter sorting ascending on ApplicationNo (number) works
 test('single ascending sorter on ApplicationNo applied correctly', () => {
   const update = (data) => {
@@ -118,6 +131,35 @@ test('single ascending sorter on ApplicationNo applied correctly', () => {
   fireEvent.click(screen.getByText(/Apply/i))
 })
 
+//test to check if single parameter sorting ascending on ApplicationNo (number) works ARRAYS
+test('single ascending sorter on ApplicationNo applied correctly, FOR ARRAYS', () => {
+  const update = (data) => {
+    var compareFunc = getSortingFunctionFromAttributeName("ApplicationNo")
+    for(var i=0; i<Object.keys(data).length-1; i++)
+    {
+      var comparisonvalue = compareFunc(data[i]["ApplicationNo"], data[i+1]["ApplicationNo"])
+      expect(comparisonvalue).toBeLessThanOrEqual(0)
+    } 
+  }
+  render(<Menu cachedData={DummyData} updateTable={update} />)
+  fireEvent.click(screen.getByText(/Filter & Sort/i))
+  const selectedAttribute = screen.queryByTestId('sort-select-attr')
+  fireEvent.change(selectedAttribute, { target: { value: "ApplicationNo" } })
+  const selectedOrder = screen.getByTestId('sort-select-order')
+  fireEvent.change(selectedOrder, { target: { value: "asc" } })
+
+  // temp neccessarry to change filter state, otherwise no sorting is applied
+  const select = screen.queryByTestId('filter-select')
+  fireEvent.change(select, { target: { value: 'CMA' } })
+  const textBox = screen.getByRole('textbox')
+  fireEvent.change(textBox, { target: { value: 'no' } })
+  fireEvent.focusOut(textBox)
+  //
+
+  fireEvent.click(screen.getByText(/Apply/i))
+})
+
+//test to check if single descending sorting on ApplicationNo works correctly
 test('single descending sorter on ApplicationNo applied correctly', () => {
   const update = (data) => {
     var compareFunc = convertSortingAttributeNameToComparisonFunction("ApplicationNo")
@@ -144,7 +186,7 @@ test('single descending sorter on ApplicationNo applied correctly', () => {
 
   fireEvent.click(screen.getByText(/Apply/i))
 })
-
+//Test to see if single ascending sorting on Decisiondate (special sort case) works correctly
 test('single ascending sorter on DecisionDate applied correctly', () => {
   const update = (data) => {
     var compareFunc = convertSortingAttributeNameToComparisonFunction("DecisionDate")
@@ -171,31 +213,14 @@ test('single ascending sorter on DecisionDate applied correctly', () => {
 
   fireEvent.click(screen.getByText(/Apply/i))
 })
-/* //test to check if sorting ascending on DecisionDate (special sorting case) works
-test('single sorter on DecisionDate applied correctly', () => {
+//test to check if sorting ascending on MAH (special sorting case) works
+test('single ascending sorter on MAH applied correctly', () => {
   const update = (data) => {
-    var compareFunc = getSortingFunctionFromAttributeName("DecisionDate")
+    var compareFunc = convertSortingAttributeNameToComparisonFunction("MAH")
     for(var i=0; i<Object.keys(data).length-1; i++)
     {
-      expect(compareFunc(data[i]["DecisionDate"], data[i+1]["DecisionDate"])).toBeLessThanOrEqual(0)
-    } 
-  }
-  render(<Menu cachedData={DummyData} updateTable={update} />)
-  fireEvent.click(screen.getByText(/Filter & Sort/i))
-  const selectedAttribute = screen.queryByTestId('sort-select-attr')
-  fireEvent.change(selectedAttribute, { target: { value: "DecisionDate" } })
-  const selectedOrder = screen.getByTestId('sort-select-order')
-  fireEvent.change(selectedOrder, { target: { value: "asc" } })
-  fireEvent.click(screen.getByText(/Apply/i))
-})
-
-//test to check if sorting descending on MAH (special sorting case) works
-test('single sorter on MAH applied correctly', () => {
-  const update = (data) => {
-    var compareFunc = getSortingFunctionFromAttributeName("MAH")
-    for(var i=0; i<Object.keys(data).length-1; i++)
-    {
-      expect(compareFunc(data[i]["MAH"], data[i+1]["MAH"])).toBeMoreThanOrEqual(0)
+      var comparisonvalue = compareFunc(data[i], data[i+1])
+      expect(comparisonvalue).toBeLessThanOrEqual(0)
     } 
   }
   render(<Menu cachedData={DummyData} updateTable={update} />)
@@ -203,17 +228,27 @@ test('single sorter on MAH applied correctly', () => {
   const selectedAttribute = screen.queryByTestId('sort-select-attr')
   fireEvent.change(selectedAttribute, { target: { value: "MAH" } })
   const selectedOrder = screen.getByTestId('sort-select-order')
-  fireEvent.change(selectedOrder, { target: { value: "desc" } })
+  fireEvent.change(selectedOrder, { target: { value: "asc" } })
+
+  // temp neccessarry to change filter state, otherwise no sorting is applied
+  const select = screen.queryByTestId('filter-select')
+  fireEvent.change(select, { target: { value: 'CMA' } })
+  const textBox = screen.getByRole('textbox')
+  fireEvent.change(textBox, { target: { value: 'no' } })
+  fireEvent.focusOut(textBox)
+  //
+
   fireEvent.click(screen.getByText(/Apply/i))
 })
 
-//test to check if sorting descending on ActiveSubstance (special sorting case) works
-test('single sorter on ActiveSubstance applied correctly', () => {
+//test to check if sorting ascending on ActiveSubstance (special sorting case) works
+test('single ascending sorter on ActiveSubstance (special case) applied correctly', () => {
   const update = (data) => {
-    var compareFunc = getSortingFunctionFromAttributeName("ActiveSubstance")
+    var compareFunc = convertSortingAttributeNameToComparisonFunction("ActiveSubstance")
     for(var i=0; i<Object.keys(data).length-1; i++)
     {
-      expect(compareFunc(data[i]["ActiveSubstance"], data[i+1]["ActiveSubstance"])).toBeMoreThanOrEqual(0)
+      var comparisonvalue = compareFunc(data[i], data[i+1])
+      expect(comparisonvalue).toBeLessThanOrEqual(0)
     } 
   }
   render(<Menu cachedData={DummyData} updateTable={update} />)
@@ -221,40 +256,143 @@ test('single sorter on ActiveSubstance applied correctly', () => {
   const selectedAttribute = screen.queryByTestId('sort-select-attr')
   fireEvent.change(selectedAttribute, { target: { value: "ActiveSubstance" } })
   const selectedOrder = screen.getByTestId('sort-select-order')
-  fireEvent.change(selectedOrder, { target: { value: "desc" } })
+  fireEvent.change(selectedOrder, { target: { value: "asc" } })
+
+  // temp neccessarry to change filter state, otherwise no sorting is applied
+  const select = screen.queryByTestId('filter-select')
+  fireEvent.change(select, { target: { value: 'CMA' } })
+  const textBox = screen.getByRole('textbox')
+  fireEvent.change(textBox, { target: { value: 'no' } })
+  fireEvent.focusOut(textBox)
+  //
+
   fireEvent.click(screen.getByText(/Apply/i))
-}) */
-// data-testid="sort-select-order" data-testid="sort-select-attr"
-/* // replace by individual attribute sorting tests=> unit tests
-// make sorting checkkk data-testid="sort-select-order" data-testid="sort-select-attr"
-test('single sorter applied correctly', () => {
-
-  function geupdateDataCheck(data, attribuut, sortingorder) {
-    var sortFuncForAttribute = getSortingFunctionFromAttributeName(attribuut)
-
-    for(var i=0; i< data.Length-1; i++ )
-    {
-      expect(sortFuncForAttribute(DummyData[i], DummyData[i+1])).toBelessThanOrEqual(0)
-    }
-  }
-  var sortingorders = ["asc", "desc"]
-  var allattributes = Object.keys(DummyData[0])
-  allattributes.forEach((attribuut) => {
-
-    sortingorders.forEach((sortingorder) =>{
-      
-      render(<Menu cachedData={DummyData} updateTable={geupdateDataCheck(this.props.data, attribuut, sortingorder)} />)
-      fireEvent.click(screen.getByText(/Filter & Sort/i))
-      const selectedAttribute = screen.queryByTestId('sort-select-attr')
-      fireEvent.change(selectedAttribute, { target: { value: attribuut } })
-      const selectedOrder = screen.getByTestId('sort-select-order')
-      fireEvent.change(selectedOrder, { target: { value: sortingorder } })
-      fireEvent.click(screen.getByText(/Apply/i))
-    })
-  })
 })
-// */
 
+//test to check if sorting first on ascending CMA and next on asc ActiveSubstance (special sorting case) works
+test('double ascending sorters on 1:CMA 2:Activesubstance (special case) applied correctly', () => {
+  const update = (data) => {
+    var compareFunc1 = convertSortingAttributeNameToComparisonFunction("CMA")
+    var compareFunc2 = convertSortingAttributeNameToComparisonFunction("ActiveSubstance")
+    for(var i=0; i<Object.keys(data).length-1; i++)
+    {
+      var comparisonvalue1 = compareFunc1(data[i], data[i+1])
+      expect(comparisonvalue1).toBeLessThanOrEqual(0)
+
+      var comparisonvalue2 = 0
+      if(comparisonvalue1 === 0)
+      {
+        comparisonvalue2 = compareFunc2(data[i], data[i+1])
+        
+      }
+      expect(comparisonvalue2).toBeLessThanOrEqual(0)
+
+
+    } 
+  }
+
+  //set first sorting option
+  render(<Menu cachedData={DummyData} updateTable={update} />)
+  fireEvent.click(screen.getByText(/Filter & Sort/i))
+  const selectedAttribute = screen.queryAllByTestId('sort-select-attr')[0]
+  fireEvent.change(selectedAttribute, { target: { value: "CMA" } })
+  const selectedOrder = screen.getAllByTestId('sort-select-order')[0]
+  fireEvent.change(selectedOrder, { target: { value: "asc" } })
+
+  //set second sorting option
+  fireEvent.click(screen.getByText(/Add Sorting option +/i))
+  const selectedAttribute2 = screen.queryAllByTestId('sort-select-attr')[1]
+  fireEvent.change(selectedAttribute2, { target: { value: "ActiveSubstance" } })
+  const selectedOrder2 = screen.getAllByTestId('sort-select-order')[1]
+  fireEvent.change(selectedOrder2, { target: { value: "asc" } })
+
+  // temp neccessarry to change filter state, otherwise no sorting is applied
+  const select = screen.queryByTestId('filter-select')
+  fireEvent.change(select, { target: { value: 'AEC' } })
+  const textBox = screen.getByRole('textbox')
+  fireEvent.change(textBox, { target: { value: 'no' } })
+  fireEvent.focusOut(textBox)
+  //
+
+  fireEvent.click(screen.getByText(/Apply/i))
+})
+
+//test to check if sorting first on ascending CMA and next on asc ApplicationNo (special sorting case) works
+test('double ascending sorters on 1:CMA 2:ApplicationNo (special case) applied correctly', () => {
+  const update = (data) => {
+    var compareFunc1 = convertSortingAttributeNameToComparisonFunction("CMA")
+    var compareFunc2 = convertSortingAttributeNameToComparisonFunction("ApplicationNo")
+    for(var i=0; i<Object.keys(data).length-1; i++)
+    {
+      var comparisonvalue1 = compareFunc1(data[i], data[i+1])
+      expect(comparisonvalue1).toBeLessThanOrEqual(0)
+
+      var comparisonvalue2 = 0
+      if(comparisonvalue1 === 0)
+      {
+        comparisonvalue2 = compareFunc2(data[i], data[i+1])
+        
+      }
+      expect(comparisonvalue2).toBeLessThanOrEqual(0)
+
+
+    } 
+  }
+
+  //set first sorting option
+  render(<Menu cachedData={DummyData} updateTable={update} />)
+  fireEvent.click(screen.getByText(/Filter & Sort/i))
+  const selectedAttribute = screen.queryAllByTestId('sort-select-attr')[0]
+  fireEvent.change(selectedAttribute, { target: { value: "CMA" } })
+  const selectedOrder = screen.getAllByTestId('sort-select-order')[0]
+  fireEvent.change(selectedOrder, { target: { value: "asc" } })
+
+  //set second sorting option
+  fireEvent.click(screen.getByText(/Add Sorting option +/i))
+  const selectedAttribute2 = screen.queryAllByTestId('sort-select-attr')[1]
+  fireEvent.change(selectedAttribute2, { target: { value: "ApplicationNo" } })
+  const selectedOrder2 = screen.getAllByTestId('sort-select-order')[1]
+  fireEvent.change(selectedOrder2, { target: { value: "asc" } })
+
+  // temp neccessarry to change filter state, otherwise no sorting is applied
+  const select = screen.queryByTestId('filter-select')
+  fireEvent.change(select, { target: { value: 'AEC' } })
+  const textBox = screen.getByRole('textbox')
+  fireEvent.change(textBox, { target: { value: 'no' } })
+  fireEvent.focusOut(textBox)
+  //
+
+  fireEvent.click(screen.getByText(/Apply/i))
+})
+
+//test to see error handeling when no attribute to sort on has been selected
+//test to check if sorting ascending on ActiveSubstance (special sorting case) works
+test('single ascending sorter on unselected Attribute error handled correctly', () => {
+  const update = (data) => {
+    var compareFunc = convertSortingAttributeNameToComparisonFunction('')
+    for(var i=0; i<Object.keys(data).length-1; i++)
+    {
+      var comparisonvalue = compareFunc(data[i], data[i+1])
+      expect(comparisonvalue).toBeLessThanOrEqual(0)
+    } 
+  }
+  render(<Menu cachedData={DummyData} updateTable={update} />)
+  fireEvent.click(screen.getByText(/Filter & Sort/i))
+  const selectedAttribute = screen.queryByTestId('sort-select-attr')
+  fireEvent.change(selectedAttribute, { target: { value: '' } })
+  const selectedOrder = screen.getByTestId('sort-select-order')
+  fireEvent.change(selectedOrder, { target: { value: "asc" } })
+
+  // temp neccessarry to change filter state, otherwise no sorting is applied
+  const select = screen.queryByTestId('filter-select')
+  fireEvent.change(select, { target: { value: 'CMA' } })
+  const textBox = screen.getByRole('textbox')
+  fireEvent.change(textBox, { target: { value: 'no' } })
+  fireEvent.focusOut(textBox)
+
+  fireEvent.click(screen.getByText(/Apply/i))
+})
+//-------
 test('two filters applied correctly', () => {
   const update = (data) => {
     data.forEach((element) => {
