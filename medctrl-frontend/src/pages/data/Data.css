@@ -18,15 +18,6 @@ hr {
   margin: 0px auto 10px auto;
 }
 
-.bx-plusMinus {
-  color: var(--blue-alt);
-  font-size: 35px;
-}
-
-.bx-plusMinus:hover {
-  color: var(--blue-light);
-}
-
 .filter-Icon,
 .bxs-file-export {
   font-size: 25px;
