@@ -149,7 +149,8 @@ class Menu extends React.Component {
     this.state.filters.forEach((item) => {
       filterData = this.applyFilter(item, filterData)
     })
-    let sortedData = sortData(filterData, this.state.sorters)
+    let sorters = [...this.state.sorters]
+    let sortedData = sortData(filterData, sorters)
     this.props.updateTable(sortedData)
     this.handleCloseModal()
   }
