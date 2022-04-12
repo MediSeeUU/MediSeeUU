@@ -65,6 +65,7 @@ test('checkboxes displayed', () => {
 })
 
 test('row selected, when checkbox clicked', () => {
+  const data = DummyData
   let checkedState = Object.assign(
     {},
     ...DummyData.map((entry) => ({ [entry.EUNumber]: false }))
