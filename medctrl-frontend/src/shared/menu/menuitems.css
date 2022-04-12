@@ -24,6 +24,7 @@
 .select {
   display: inline-block;
   width: 85%;
+  margin-top: 5px;
 }
 
 .filter-input {
