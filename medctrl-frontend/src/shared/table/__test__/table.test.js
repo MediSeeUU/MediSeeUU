@@ -2,7 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { render, screen, fireEvent, within } from '@testing-library/react'
 import Table from '../table'
-import DummyData from '../../../json/data.json'
+import DummyData from '../../../testJson/data.json'
+import {
+  CheckedContext,
+  CheckedContextUpdate,
+} from '../../contexts/DataContext'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')
@@ -34,15 +38,26 @@ test('expected amount of headers in the table', () => {
 })
 
 test('checkboxes displayed', () => {
-  render(
-    <Table
-      data={DummyData}
-      selectTable={true}
-      setCheckedState={() => {}}
-      checkedState={Array(DummyData.length).fill(false)}
-      currentPage={1}
-      amountPerPage={10}
-    />
+  const data = DummyData
+
+  let checkedState = Object.assign(
+    {},
+    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+  )
+  const setCheckedState = (newState) => {
+    checkedState = newState
+  }
+  const view = render(
+    <CheckedContext.Provider value={checkedState}>
+      <CheckedContextUpdate.Provider value={setCheckedState}>
+        <Table
+          data={data}
+          selectTable={true}
+          currentPage={1}
+          amountPerPage={10}
+        />
+      </CheckedContextUpdate.Provider>
+    </CheckedContext.Provider>
   )
   const table = screen.getByRole('table')
   const checkboxes = within(table).getAllByRole('checkbox')
@@ -58,15 +73,19 @@ test('row selected, when checkbox clicked', () => {
     checkedState = newState
   }
 
-  render(
-    <Table
-      data={DummyData}
-      selectTable={true}
-      setCheckedState={setCheckedState}
-      checkedState={checkedState}
-      currentPage={2}
-      amountPerPage={10}
-    />
+  const view = render(
+    <CheckedContext.Provider value={checkedState}>
+      <CheckedContextUpdate.Provider value={setCheckedState}>
+        <Table
+          data={data}
+          selectTable={true}
+          setCheckedState={setCheckedState}
+          checkedState={checkedState}
+          currentPage={2}
+          amountPerPage={10}
+        />
+      </CheckedContextUpdate.Provider>
+    </CheckedContext.Provider>
   )
   const table = screen.getByRole('table')
   const input = within(table).getAllByRole('checkbox')[1]
@@ -84,15 +103,21 @@ test('all rows selected when select all pressed', () => {
     checkedState = newState
   }
 
-  render(
-    <Table
-      data={data}
-      selectTable={true}
-      setCheckedState={setCheckedState}
-      checkedState={checkedState}
-      currentPage={2}
-      amountPerPage={10}
-    />
+  const view = render(
+    <CheckedContext.Provider value={checkedState}>
+      <CheckedContextUpdate.Provider value={setCheckedState}>
+        <Table
+          data={data}
+          selectTable={true}
+          setCheckedState={setCheckedState}
+          checkedState={checkedState}
+          currentPage={2}
+          amountPerPage={10}
+          testCheckedState={checkedState}
+          testCheckedStateUpdate={setCheckedState}
+        />
+      </CheckedContextUpdate.Provider>
+    </CheckedContext.Provider>
   )
   const table = screen.getByRole('table')
   const input = within(table).getAllByRole('checkbox')[0]
@@ -107,34 +132,6 @@ test('all rows selected when select all pressed', () => {
     return count
   }
   expect(checkedCount()).toBe(data.length)
-})
-
-test('throw error when checkedstate not defined and selectTable true', () => {
-  const renderFunction = () =>
-    render(
-      <Table
-        data={DummyData}
-        selectTable={true}
-        setCheckedState={() => {}}
-        currentPage={5}
-        amountPerPage={10}
-      />
-    )
-  expect(renderFunction).toThrow(Error)
-})
-
-test('throw error when setCheckedState not defined and selectable', () => {
-  const renderFunction = () =>
-    render(
-      <Table
-        data={DummyData}
-        selectTable={true}
-        checkedState={[]}
-        currentPage={5}
-        amountPerPage={10}
-      />
-    )
-  expect(renderFunction).toThrow(Error)
 })
 
 test('throw error when data not defined', () => {
