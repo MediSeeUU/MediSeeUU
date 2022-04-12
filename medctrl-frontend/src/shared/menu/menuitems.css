@@ -1,25 +1,23 @@
-.filter-item {
-  background-color: rgb(215, 215, 214);
-  padding: 10px;
-  width: 19%;
-  margin: 20px;
+.filter-item, .sort-item {
+  background-color: var(--white-text);
+  border: 2px solid var(--BorderClrTableHolder);
   border-radius: 10px;
-  display: inline-block;
   position: relative;
   vertical-align: top;
   box-sizing: content-box;
+  padding: 10px;
+}
+
+.filter-item {
+  width: 19%;
+  margin: 19px;
+  display: inline-block;
 }
 
 .sort-item {
-  background-color: rgb(215, 215, 214);
-  padding: 10px;
   width: 80%;
-  border-radius: 10px;
   margin: auto;
   margin-top: 25px;
-  position: relative;
-  vertical-align: top;
-  box-sizing: content-box;
 }
 
 .select {
@@ -33,7 +31,7 @@
   margin-top: 10px;
 }
 
-#add-label {
+.add-label {
   font-size: 10px;
   color: blue;
   cursor: pointer;

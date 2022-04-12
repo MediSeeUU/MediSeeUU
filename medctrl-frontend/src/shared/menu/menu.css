@@ -12,23 +12,22 @@
   outline: none;
 }
 
-.filter {
+.filter, .sort {
   position: absolute;
   border-radius: 10px;
   height: 100%;
+  background-color: rgb(234, 240, 248);
+}
+
+.filter {
   width: 80%;
-  background-color: rgb(17, 75, 95);
 }
 
 .sort {
-  position: absolute;
   float: right;
-  border-radius: 10px;
   width: 19.5%;
-  height: 100%;
   top: 0;
   right: 0;
-  background-color: rgb(17, 75, 95);
 }
 
 .open-menu {
@@ -41,11 +40,13 @@
 }
 
 .menu-button {
-  padding: 10px;
-  margin: 20px;
+  margin: 28px;
   cursor: pointer;
   float: right;
   font-weight: bold;
+  width: 15%;
+  height: 6%;
+  border-radius: 5px;
 }
 
 .cl {
@@ -53,18 +54,20 @@
 }
 
 .apply {
-  background-color: rgb(154, 113, 151);
+  background-color: var(--blue-alt);;
   color: white;
 }
 
 .add {
-  color: rgb(154, 113, 151);
+  color: var(--blue-alt);;
   font-weight: bold;
   font-size: 20px;
   padding-right: 50px;
   position: absolute;
   top: 0;
   right: 0;
+  margin: 20px;
+  cursor: pointer;
 }
 
 .add:hover {
@@ -77,8 +80,8 @@
   padding-left: 10px;
 }
 
-.filter-header {
-  color: rgb(214, 203, 180);
+.header {
+  color: var(--blue-alt);;
   text-align: center;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -91,7 +94,7 @@
 
 .add-sort {
   display: inline-block;
-  color: rgb(212, 213, 214);
+  color: var(--blue-alt);;
   font-size: 15px;
   padding-left: 12px;
   margin-top: 10px;

@@ -45,7 +45,7 @@ function displayItem(props) {
         onClick={() => props.del(props.id)}
       ></i>
       {filtersToHTML(props)}
-      <label id="add-label" onClick={() => props.box(props.id)}>
+      <label className="add-label" onClick={() => props.box(props.id)}>
         + Add
       </label>
     </div>

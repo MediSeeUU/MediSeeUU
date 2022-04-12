@@ -200,10 +200,11 @@ class Menu extends React.Component {
           onRequestClose={this.handleCloseModal}
           ariaHideApp={false}
           contentLabel="Menu"
+          style={{ modal: {}, overlay: { background: "rgba(0, 0, 0, 0.75)" } }}
         >
           <div className="filter">
-            <h1 className="filter-header">Filters</h1>
-            <div className="menu-button add" onClick={this.addFilter}>
+            <h1 className="header">Filters</h1>
+            <div className="add" onClick={this.addFilter}>
               Add Filter
               <i className="bx bxs-plus-square add-icon"></i>
             </div>
@@ -233,7 +234,7 @@ class Menu extends React.Component {
             </button>
           </div>
           <div className="sort">
-            <h1 className="filter-header">Sort</h1>
+            <h1 className="header">Sort</h1>
             {this.state.sorters.map((obj, oid) => (
               <Sort
                 key={uuidv4()}
