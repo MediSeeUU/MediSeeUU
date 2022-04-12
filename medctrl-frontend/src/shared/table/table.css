@@ -72,7 +72,6 @@
   color: var(--blue-light);
 }
 
-
 /* Column addition/removal button styling */
 .bx-plusMinus {
   color: var(--blue-alt);
@@ -86,10 +85,10 @@
 .columnbutton {
   background-color: white;
   border: none;
-  color:white;
+  color: white;
   margin-left: 2px;
   margin-right: 2px;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .columnbutton:hover {
