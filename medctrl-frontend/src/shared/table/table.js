@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import { useCheckedState, useCheckedStateUpdate } from '../contexts/DataContext'
 import './table.css'
 
