@@ -195,9 +195,6 @@ test('data put correctly into table', () => {
   render(
     <Table
       data={DummyData}
-      selectTable={true}
-      setCheckedState={() => {}}
-      checkedState={Array(DummyData.length).fill(false)}
       currentPage={1}
       amountPerPage={10}
     />
@@ -221,9 +218,6 @@ test('column change changes data in row', () => {
   render(
     <Table
       data={DummyData}
-      selectTable={true}
-      setCheckedState={() => {}}
-      checkedState={Array(DummyData.length).fill(false)}
       currentPage={1}
       amountPerPage={10}
     />
