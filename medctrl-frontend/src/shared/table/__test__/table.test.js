@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { render, fireEvent, within } from '@testing-library/react'
+import { render, screen, fireEvent, within } from '@testing-library/react'
 import Table from '../table'
 import DummyData from '../../../testJson/data.json'
 import {
@@ -17,23 +17,21 @@ test('renders without crashing', () => {
 })
 
 test('expected amount of rows in the table', () => {
-  const view = render(
+  render(
     <Table
       data={DummyData}
       currentPage={1}
       amountPerPage={DummyData.length + 10}
     />
   )
-  const table = view.getByRole('table')
+  const table = screen.getByRole('table')
   const rows = within(table).getAllByRole('row')
   expect(rows).toHaveLength(DummyData.length + 1)
 })
 
 test('expected amount of headers in the table', () => {
-  const view = render(
-    <Table data={DummyData} currentPage={1} amountPerPage={10} />
-  )
-  const table = view.getByRole('table')
+  render(<Table data={DummyData} currentPage={1} amountPerPage={10} />)
+  const table = screen.getByRole('table')
   const rows = within(table).getAllByRole('row')
   const headers = within(rows[0]).queryAllByRole('columnheader')
   expect(headers).toHaveLength(Object.keys(DummyData[0]).length)
@@ -61,8 +59,8 @@ test('checkboxes displayed', () => {
       </CheckedContextUpdate.Provider>
     </CheckedContext.Provider>
   )
-  const table = view.getByRole('table')
-  const checkboxes = table.getElementsByClassName('tableCheckboxColumn')
+  const table = screen.getByRole('table')
+  const checkboxes = within(table).getAllByRole('checkbox')
   expect(checkboxes).toHaveLength(11)
 })
 
@@ -70,7 +68,7 @@ test('row selected, when checkbox clicked', () => {
   const data = DummyData
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...DummyData.map((entry) => ({ [entry.EUNumber]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -90,10 +88,10 @@ test('row selected, when checkbox clicked', () => {
       </CheckedContextUpdate.Provider>
     </CheckedContext.Provider>
   )
-  const table = view.getByRole('table')
-  const input = table.getElementsByClassName('tableCheckboxColumn')[1]
+  const table = screen.getByRole('table')
+  const input = within(table).getAllByRole('checkbox')[1]
   fireEvent.click(input)
-  expect(checkedState[data[10].EUNumber]).toBe(true)
+  expect(checkedState[DummyData[10].EUNumber]).toBe(true)
 })
 
 test('all rows selected when select all pressed', () => {
@@ -122,8 +120,8 @@ test('all rows selected when select all pressed', () => {
       </CheckedContextUpdate.Provider>
     </CheckedContext.Provider>
   )
-  const table = view.getByRole('table')
-  const input = table.getElementsByClassName('tableCheckboxColumn')[0]
+  const table = screen.getByRole('table')
+  const input = within(table).getAllByRole('checkbox')[0]
   fireEvent.click(input)
   let checkedCount = () => {
     let count = 0
@@ -191,4 +189,40 @@ test('throw error when current page does not exist', () => {
       />
     )
   expect(renderFunction).toThrow(Error)
+})
+
+test('data put correctly into table', () => {
+  render(<Table data={DummyData} currentPage={1} amountPerPage={10} />)
+  const headers = screen.getAllByRole('columnheader')
+  const rowgroup = screen.getAllByRole('rowgroup')[1]
+  const rows = within(rowgroup).getAllByRole('row')
+  headers.forEach((header, index) => {
+    const select = within(header).getByRole('combobox')
+    const selectValue = select.value
+    rows.forEach((row, index2) => {
+      const cells = within(row).getAllByRole('cell')
+      const cellValue = cells[index].innerHTML
+      const dataElement = DummyData[index2]
+      expect(cellValue).toBe(dataElement[selectValue].toString())
+    })
+  })
+})
+
+test('column change changes data in row', () => {
+  render(<Table data={DummyData} currentPage={1} amountPerPage={10} />)
+  const headers = screen.queryAllByRole('columnheader')
+  const firstSelect = within(headers[0]).getByRole('combobox')
+  const startValue = firstSelect.value
+  const options = within(firstSelect).getAllByRole('option')
+  const newValue = options[1].value
+  expect(startValue).not.toBe(newValue)
+  fireEvent.change(firstSelect, { target: { value: newValue } })
+  const rowgroup = screen.getAllByRole('rowgroup')[1]
+  const rows = within(rowgroup).getAllByRole('row')
+  rows.forEach((row, index) => {
+    const cells = within(row).getAllByRole('cell')
+    const cellValue = cells[1].innerHTML
+    const dataElement = DummyData[index]
+    expect(cellValue).toBe(dataElement[newValue].toString())
+  })
 })

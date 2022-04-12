@@ -8,7 +8,7 @@ function HomePage() {
   return (
     // Homepage components, contains article containers (styling in HomePage.css)
     <div className="med_home_content">
-      <article className="med_content__container TopTableHolder">
+      <article className="TopTableHolder">
         <h1>About This Dashboard</h1>
         <hr />
         <p>
@@ -77,7 +77,7 @@ function HomePage() {
       </article>
 
       <article className="med_content__container TopTableHolder">
-        <h1>Relevant Institutions</h1>
+        <h1>Non Affiliated Regulatory Institutions</h1>
         <hr />
         <h2>European Medicines Agency</h2>
 

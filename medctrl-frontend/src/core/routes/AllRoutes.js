@@ -24,6 +24,7 @@ function AllRoutes() {
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/account" element={<AccountPage />} />
       <Route path="/details" element={<DetailedInfoPage />} />
+      <Route path="/details/1528" element={<DetailedInfoPage />} />
     </Routes>
   )
 }
