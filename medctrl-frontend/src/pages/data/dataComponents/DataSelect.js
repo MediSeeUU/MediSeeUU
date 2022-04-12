@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import ResultsSelector from './ResultsSelector'
 import Menu from '../../../shared/menu/menu'
 import Table from '../../../shared/table/table'
+import { useData } from '../../../shared/contexts/DataContext'
 
-import allData from '../../../json/data.json' // we can replace this with a mock API?
-
-function DataSelect({ setCheckedState, checkedState }) {
+function DataSelect() {
   //amount of databse hits shown per page
   const [resultsPerPage, setResultsPerPage] = useState(25)
 
   //current page
   const [loadedPage, setPage] = useState(1)
+  const allData = useData()
   const [data, setData] = useState(allData)
 
   //Maximum amount of pages available
@@ -38,8 +38,6 @@ function DataSelect({ setCheckedState, checkedState }) {
         currentPage={loadedPage}
         amountPerPage={resultsPerPage}
         selectTable={true}
-        setCheckedState={setCheckedState}
-        checkedState={checkedState}
       />
 
       <ResultsSelector

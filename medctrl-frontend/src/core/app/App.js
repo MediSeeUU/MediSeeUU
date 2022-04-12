@@ -4,6 +4,7 @@ import SideNavigation from '../navigation/Navigation'
 import AllRoutes from '../routes/AllRoutes.js'
 import Header from '../header/Header'
 import Footer from '../footer/Footer'
+import { DataProvider } from '../../shared/contexts/DataContext'
 
 const userLoggedIn = true
 const defUser = {
@@ -25,7 +26,9 @@ function App() {
 
         <main className="med_content">
           <div className="med_content__wrapper">
-            <AllRoutes />
+            <DataProvider>
+              <AllRoutes />
+            </DataProvider>
           </div>
           <Footer />
         </main>

@@ -110,3 +110,8 @@
 .graph-name:not(:placeholder-shown) {
   border: none;
 }
+
+.visualization-no-data {
+  padding-top: 30vh;
+  text-align: center;
+}
