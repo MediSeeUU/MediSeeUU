@@ -32,8 +32,8 @@ function Footer() {
 
         <p>
           This is a development version of the dashboard created for the
-          Medicines Evaluation Board. For questions and remarks regarding this
-          website, please visit the <b>contact</b> page.
+          Medicines Evaluation Board and Utrecht University. For more information
+          please visit the home page.
         </p>
       </section>
     </footer>

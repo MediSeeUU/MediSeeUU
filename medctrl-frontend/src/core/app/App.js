@@ -7,7 +7,7 @@ import Footer from '../footer/Footer'
 
 const userLoggedIn = true
 const defUser = {
-  isAdmin: true,
+  isAdmin: false,
   userName: 'Lourens Bloem',
   accessLevel: 'X',
 }
