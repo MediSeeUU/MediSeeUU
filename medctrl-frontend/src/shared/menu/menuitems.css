@@ -1,4 +1,5 @@
-.filter-item, .sort-item {
+.filter-item,
+.sort-item {
   background-color: var(--white-text);
   border: 2px solid var(--BorderClrTableHolder);
   border-radius: 10px;

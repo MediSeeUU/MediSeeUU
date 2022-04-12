@@ -12,7 +12,8 @@
   outline: none;
 }
 
-.filter, .sort {
+.filter,
+.sort {
   position: absolute;
   border-radius: 10px;
   height: 100%;
@@ -68,13 +69,13 @@
 }
 
 .apply {
-  background-color: var(--blue-alt);;
+  background-color: var(--blue-alt);
   color: white;
   margin-right: 2%;
 }
 
 .add {
-  color: var(--blue-alt);;
+  color: var(--blue-alt);
   font-weight: bold;
   font-size: 20px;
   padding-right: 50px;
@@ -96,7 +97,7 @@
 }
 
 .header {
-  color: var(--blue-alt);;
+  color: var(--blue-alt);
   text-align: center;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -109,7 +110,7 @@
 
 .add-sort {
   display: inline-block;
-  color: var(--blue-alt);;
+  color: var(--blue-alt);
   font-size: 15px;
   padding-left: 12px;
   margin-top: 10px;

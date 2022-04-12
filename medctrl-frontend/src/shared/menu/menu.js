@@ -200,7 +200,13 @@ class Menu extends React.Component {
           onRequestClose={this.handleCloseModal}
           ariaHideApp={false}
           contentLabel="Menu"
-          style={{ modal: {}, overlay: { background: "rgba(0, 0, 0, 0.2)", backdropFilter: "blur(2px)"} }}
+          style={{
+            modal: {},
+            overlay: {
+              background: 'rgba(0, 0, 0, 0.2)',
+              backdropFilter: 'blur(2px)',
+            },
+          }}
         >
           <div className="filter">
             <h1 className="header">Filters</h1>
@@ -231,7 +237,10 @@ class Menu extends React.Component {
               <button className="menu-button cl" onClick={this.clear}>
                 Clear
               </button>
-              <button className="menu-button cl" onClick={this.handleCloseModal}>
+              <button
+                className="menu-button cl"
+                onClick={this.handleCloseModal}
+              >
                 Close
               </button>
             </div>
