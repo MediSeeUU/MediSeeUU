@@ -48,12 +48,12 @@ class Menu extends React.Component {
     }))
   }
 
-  // Adds new sort item to the menu (max 5)
+  // Adds new sort item to the menu (max 4)
   addSort() {
     this.setState((prevState) => ({
       sorters: prevState.sorters.concat(this.sortObject),
     }))
-    if (this.state.sorters.length >= 4) {
+    if (this.state.sorters.length >= 3) {
       this.setState({ showAddSort: false })
     }
   }
