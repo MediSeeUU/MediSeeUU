@@ -49,7 +49,7 @@ function displayItem(props) {
       ></i>
       {filtersToHTML(props)}
       <label
-        id="add-label"
+        className="add-label"
         onClick={() => props.box(props.id)}
         data-testid="add-label"
       >
