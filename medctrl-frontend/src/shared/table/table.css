@@ -39,18 +39,22 @@
 .med_th,
 .med_td {
   text-align: center;
-  min-width: 200px;
-  max-width: 200px;
 }
 
 .med_th {
   padding: 10px 0;
   font-size: 14px;
   font-weight: 500;
+  background-color: var(--blue-main);
+  color: var(--white-text);
+  min-width: 198px;
+  max-width: 198px;
 }
 
 .med_td {
   font-size: 13px;
+  min-width: 200px;
+  max-width: 200px;
 }
 
 .smallColumn {
@@ -68,4 +72,31 @@
 
 .icons:hover {
   color: var(--blue-light);
+}
+
+/* Column addition/removal button styling */
+.bx-plusMinus {
+  color: var(--blue-alt);
+  font-size: 35px;
+}
+
+.bx-plusMinus:hover {
+  color: var(--blue-light);
+}
+
+.columnbutton {
+  background-color: white;
+  border: none;
+  color: white;
+  margin-left: 2px;
+  margin-right: 2px;
+  cursor: pointer;
+}
+
+.columnbutton:hover {
+  background-color: white;
+}
+
+.minusbutton {
+  margin-right: 20px;
 }
