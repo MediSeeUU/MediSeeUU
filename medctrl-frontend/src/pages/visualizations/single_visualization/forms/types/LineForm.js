@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import '../visualizations.css'
-import CategoryOptions from '../CategoryOptions'
+import '../../../visualizations.css'
+import CategoryOptions from '../shared/CategoryOptions'
 
-// the bar part of a form if a bar chart is chosen
-class BarForm extends Component {
+// the line part of a form if a line chart is chosen
+class LineForm extends Component {
   constructor(props) {
     /* 
       Receives the categories of all variables,
@@ -13,7 +13,7 @@ class BarForm extends Component {
 
     /*
       The list of eligible variables.
-      If we do not want to include a variable for the bar chart,
+      If we do not want to include a variable for the line chart,
       it can be removed from here.
     */
     const eligibleVariables = [
@@ -52,9 +52,6 @@ class BarForm extends Component {
       eligibleVariables: eligibleVariables,
       xAxis: 'DecisionYear',
       yAxis: 'Rapporteur',
-      stacked: false,
-      stackType: false,
-      horizontal: false,
       categoriesSelected: [],
     }
 
@@ -63,6 +60,8 @@ class BarForm extends Component {
     this.handleCategorySelectionChange =
       this.handleCategorySelectionChange.bind(this)
   }
+
+  // EVENT HANDLERS:
 
   /*
     Updates the state,
@@ -96,6 +95,8 @@ class BarForm extends Component {
     })
   }
 
+  // GENERAL FUNCTIONS:
+
   // creates a drop down menu based on the allowed variables
   renderVariableDropDown() {
     return this.state.eligibleVariables.map((variable) => {
@@ -107,19 +108,14 @@ class BarForm extends Component {
     })
   }
 
+  // RENDERER:
+
   // renders the bar form part of the form
   render() {
-    let x_axis
-    let y_axis
-
-    // the x/y axis can change, it is easier to just change the labels
-    if (this.state.horizontal) {
-      x_axis = <React.Fragment>Y-axis</React.Fragment>
-      y_axis = <React.Fragment>X-axis</React.Fragment>
-    } else {
-      x_axis = <React.Fragment>X-axis</React.Fragment>
-      y_axis = <React.Fragment>Y-axis</React.Fragment>
-    }
+    // we may want to add the 'horizontal' option,
+    // so we may want to invert these, like in bar form
+    let x_axis = <React.Fragment>X-axis</React.Fragment>
+    let y_axis = <React.Fragment>Y-axis</React.Fragment>
 
     // building drop down menus
     const variablesXAxis = this.renderVariableDropDown()
@@ -147,40 +143,12 @@ class BarForm extends Component {
             {variablesYAxis}
           </select>
         </label>
-        <label className="visualization-panel-label">
-          <input
-            type="checkbox"
-            name="stacked"
-            checked={this.state.stacked}
-            onChange={this.handleChange}
-          />
-          &nbsp;&nbsp;Stacked
-        </label>
-        <label className="visualization-panel-label">
-          <input
-            type="checkbox"
-            name="stackType"
-            checked={this.state.stackType}
-            onChange={this.handleChange}
-          />
-          &nbsp;&nbsp;Stack fully
-        </label>
-        <label className="visualization-panel-label">
-          <input
-            type="checkbox"
-            name="horizontal"
-            checked={this.state.horizontal}
-            onChange={this.handleChange}
-          />
-          &nbsp;&nbsp;Horizontal
-        </label>
         <CategoryOptions
           /* 
             We want to reset the component when the axis changes,
             may need to become an increment function
           */
           key={`${this.state.xAxis}${this.state.yAxis}`}
-          className="category-options"
           onChange={this.handleCategorySelectionChange}
           categories={this.props.uniqueCategories[this.state.yAxis]}
         />
@@ -189,4 +157,4 @@ class BarForm extends Component {
   }
 }
 
-export default BarForm
+export default LineForm

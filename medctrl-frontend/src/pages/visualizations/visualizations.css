@@ -44,6 +44,7 @@
   background-color: whitesmoke;
   height: 230px;
   margin-top: 3%;
+  margin-left: 1%;
   overflow-y: scroll;
 }
 
@@ -74,14 +75,13 @@
 }
 
 .button-remove {
-  width: 40px;
   font-size: 20px;
   background: #d44e33;
   margin: 1.8% 0% 2% 2%;
 }
 
 .button-export {
-  width: 44%;
+  width: 40%;
   margin: 1.8% 0% 2% 2%;
 }
 
@@ -91,12 +91,27 @@
   height: 50px;
 }
 
-.hidden-illegal {
-  visibility: hidden;
-  display: none;
+.button-update:hover {
+  background-color: #32a852;
+}
+
+.button-remove:hover {
+  background-color: red;
 }
 
 /* Title */
-.visualization-title {
-  margin: 2% 0% 0% 0%;
+.graph-name {
+  margin: 2% 5% 2% 5%;
+  height: 40px;
+  width: 93%;
+  font-size: 30px;
+}
+
+.graph-name:not(:placeholder-shown) {
+  border: none;
+}
+
+.visualization-no-data {
+  padding-top: 30vh;
+  text-align: center;
 }

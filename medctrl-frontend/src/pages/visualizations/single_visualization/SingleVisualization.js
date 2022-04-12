@@ -1,20 +1,22 @@
+// external imports
 import React, { Component } from 'react'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { changeDpiDataUrl } from 'changedpi'
-import Exports from 'apexcharts/src/modules/Exports'
 import ApexCharts from 'apexcharts'
 
-import VisualizationForm from './visualization_form'
-import BarChart from './visualization_types/bar_chart'
-import LineGraph from './visualization_types/line_graph'
-import DonutChart from './visualization_types/donut_chart'
-import BoxPlot from './visualization_types/box_plot'
-
-import GenerateBarSeries from './data_interfaces/bar_interface'
-import GenerateLineSeries from './data_interfaces/line_interface'
+// internal imports
+import VisualizationForm from './forms/VisualizationForm'
+import BarChart from './visualization_types/BarChart'
+import LineChart from './visualization_types/LineChart'
+import PieChart from './visualization_types/PieChart'
+import GenerateBarSeries from './data_interfaces/BarInterface'
+import GenerateLineSeries from './data_interfaces/LineInterface'
+import GeneratePieSeries from './data_interfaces/PieInterface'
+import HandleSVGExport from './exports/HandleSVGExport'
+import HandlePNGExport from './exports/HandlePNGExport'
+import GetUniqueCategories from './utils/GetUniqueCategories'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
@@ -29,7 +31,7 @@ class SingleVisualization extends Component {
       Keep in mind that the categories for all variables are sorted,
       this is important for interfacing with the ApexCharts library!
     */
-    let uniqueCategories = this.getUniqueCategories(this.props.data)
+    let uniqueCategories = GetUniqueCategories(this.props.data)
 
     // generating the initial series data
     let series = GenerateBarSeries(
@@ -54,7 +56,7 @@ class SingleVisualization extends Component {
       labels_on: false,
       data: this.props.data,
       series: series,
-      allUniqueCategories: uniqueCategories,
+      uniqueCategories: uniqueCategories,
       changeName: '',
     }
 
@@ -62,7 +64,10 @@ class SingleVisualization extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handlePNGExport = this.handlePNGExport.bind(this)
     this.handleSVGExport = this.handleSVGExport.bind(this)
+    this.handleRemoval = this.handleRemoval.bind(this)
   }
+
+  // EVENT HANDLERS:
 
   // event handler for the form data
   handleChange(event) {
@@ -82,68 +87,49 @@ class SingleVisualization extends Component {
       we may want to do this purely using the states,
       currently not sure if that would be more efficient
     */
-    ApexCharts.getChartByID(this.props.number).updateOptions({
+    ApexCharts.getChartByID(String(this.props.id)).updateOptions({
       dataLabels: { enabled: event.labels_on },
       legend: { show: event.legend_on },
     })
   }
 
-  /*
-	  Event handler for exporting the visualization to svg and png.
-		Does not export the actual data.
-	*/
+  // handles the png export
   handlePNGExport(event) {
-    /* 
-		  Get the visualization in the base64 format,
-			we scale it for a better resolution.
-		*/
-    ApexCharts.exec(String(this.props.number), 'dataURI', { scale: 3.5 }).then(
-      ({ imgURI }) => {
-        // changes the dpi of the visualization to 300
-        const dataURI300 = changeDpiDataUrl(imgURI, 300)
-        let exp = new Exports(
-          ApexCharts.getChartByID(String(this.props.number))
-        )
-        /*
-          Does not currently export it using the title of the visualization,
-          as the title is not currently set as an option for the user to enter.
-        */
-        exp.triggerDownload(
-          dataURI300,
-          exp.w.config.chart.toolbar.export.png.filename,
-          '.png'
-        )
-      }
-    )
+    HandlePNGExport(this.props.id, ApexCharts)
   }
 
+  // handles the svg export
   handleSVGExport(event) {
-    let exp = new Exports(ApexCharts.getChartByID(String(this.props.number)))
-    exp.exportToSVG(ApexCharts.getChartByID(String(this.props.number)))
+    HandleSVGExport(this.props.id, ApexCharts)
   }
+
+  // handles the removal of this visualization
+  handleRemoval(event) {
+    this.props.onRemoval(this.props.id, event)
+  }
+
+  // GENERAL FUNCTIONS:
 
   // creating a chart based on the chosen chart type
   createChart(chart_type) {
+    const key = `${this.state.changeName} 
+			              ${this.state.chartSpecificOptions[this.state.changeName]}`
     const legend_on = this.state.legend_on
     const labels_on = this.state.labels_on
-    const number = this.props.number
+    const id = this.props.id
+    const series = this.state.series
 
     switch (chart_type) {
       case 'bar':
         return (
           <BarChart
-            // Perhaps just using an increment function may be better,
-            // like in visualization page
-            key={`${this.state.changeName} 
-			              ${this.state.chartSpecificOptions[this.state.changeName]}`}
+            key={key}
             legend={legend_on}
             labels={labels_on}
-            number={number}
-            series={this.state.series}
+            id={id}
+            series={series}
             categories={
-              this.state.allUniqueCategories[
-                this.state.chartSpecificOptions.xAxis
-              ]
+              this.state.uniqueCategories[this.state.chartSpecificOptions.xAxis]
             }
             options={this.state.chartSpecificOptions}
           />
@@ -151,33 +137,45 @@ class SingleVisualization extends Component {
 
       case 'line':
         return (
-          <LineGraph
-            key={`${this.state.changeName} 
-			              ${this.state.chartSpecificOptions[this.state.changeName]}`}
+          <LineChart
+            key={key}
             legend={legend_on}
             labels={labels_on}
-            number={number}
-            series={this.state.series}
+            id={id}
+            series={series}
             categories={
-              this.state.allUniqueCategories[
-                this.state.chartSpecificOptions.xAxis
-              ]
+              this.state.uniqueCategories[this.state.chartSpecificOptions.xAxis]
             }
             options={this.state.chartSpecificOptions}
           />
         )
 
-      case 'donut':
+      case 'pie':
         return (
-          <DonutChart legend={legend_on} labels={labels_on} number={number} />
+          <PieChart
+            key={key}
+            legend={legend_on}
+            labels={labels_on}
+            id={id}
+            series={series}
+            categories={this.state.chartSpecificOptions.categoriesSelected}
+            options={this.state.chartSpecificOptions}
+          />
         )
-
-      case 'boxPlot':
-        return <BoxPlot legend={legend_on} labels={labels_on} number={number} />
 
       default:
         return (
-          <BarChart legend={legend_on} labels={labels_on} number={number} />
+          <BarChart
+            key={key}
+            legend={legend_on}
+            labels={labels_on}
+            id={id}
+            series={series}
+            categories={
+              this.state.uniqueCategories[this.state.chartSpecificOptions.xAxis]
+            }
+            options={this.state.chartSpecificOptions}
+          />
         )
     }
   }
@@ -193,14 +191,21 @@ class SingleVisualization extends Component {
       case 'bar':
         return GenerateBarSeries(
           options,
-          this.state.allUniqueCategories,
+          this.state.uniqueCategories,
           this.state.data
         )
 
       case 'line':
         return GenerateLineSeries(
           options,
-          this.state.allUniqueCategories,
+          this.state.uniqueCategories,
+          this.state.data
+        )
+
+      case 'pie':
+        return GeneratePieSeries(
+          options,
+          this.state.uniqueCategories,
           this.state.data
         )
 
@@ -209,36 +214,7 @@ class SingleVisualization extends Component {
     }
   }
 
-  // takes the (JSON) data and gets the categories for each variable
-  getUniqueCategories(data) {
-    let dict = {}
-
-    // element is a single 'database entry'
-    data.forEach((element) => {
-      for (let attribute in element) {
-        let val = element[attribute]
-        if (dict[attribute] === undefined) {
-          dict[attribute] = [val]
-        } else {
-          if (!dict[attribute].includes(val)) {
-            dict[attribute].push(val)
-          }
-        }
-      }
-    })
-
-    // sorting the array
-    for (let categories in dict) {
-      dict[categories] = dict[categories].sort(function (a, b) {
-        return String(a).localeCompare(String(b), 'en', {
-          numeric: true,
-          sensitivity: 'base',
-        })
-      })
-    }
-
-    return dict
-  }
+  // RENDERER:
 
   /*
 	  Renders a single visualization,
@@ -254,13 +230,19 @@ class SingleVisualization extends Component {
           <Row>
             <Col className="visualization-panel">
               <VisualizationForm
-                uniqueCategories={this.state.allUniqueCategories}
+                uniqueCategories={this.state.uniqueCategories}
                 onFormChange={this.handleChange}
               />
             </Col>
             <Col sm={8}>
               <Row className="visualization-title">
-                <h1>[Visualization name]</h1>
+                <input
+                  type="text"
+                  id={'graphName' + this.props.id}
+                  className="graph-name"
+                  placeholder="Enter a graph name"
+                  autoComplete="off"
+                />
               </Row>
               <Row>{this.createChart(this.state.chart_type)}</Row>
               <Row>
@@ -268,19 +250,20 @@ class SingleVisualization extends Component {
                   className="table-buttons button-export"
                   onClick={this.handlePNGExport}
                 >
-                  Export as PNG
+                  <i className="bx bx-save filter-Icon"></i>Export as PNG
                 </button>
                 <button
                   className="table-buttons button-export"
                   onClick={this.handleSVGExport}
                 >
-                  Export as SVG
+                  <i className="bx bx-save filter-Icon"></i>Export as SVG
                 </button>
                 <button
                   className="table-buttons button-remove"
-                  onClick={this.removalHandlerIllegal}
+                  onClick={this.handleRemoval}
+                  value={this.props.id}
                 >
-                  &#128465;
+                  <i className="bx bx-trash"></i>
                 </button>
               </Row>
             </Col>
@@ -288,10 +271,6 @@ class SingleVisualization extends Component {
         </Container>
       </div>
     )
-  }
-
-  removalHandlerIllegal(event) {
-    document.getElementById('deleteButton').click()
   }
 }
 

@@ -8,10 +8,34 @@ class CategoryOptions extends React.Component {
     super(props)
 
     // the state contains a list with the names of the selected categories
-    this.state = { categoriesSelected: [] }
+    this.state = { categoriesSelected: [], selectAllCategories: false }
 
     // event handlers
+    this.handleAllCategorySelection = this.handleAllCategorySelection.bind(this)
     this.handleCategorySelection = this.handleCategorySelection.bind(this)
+  }
+
+  // EVENT HANDLERS:
+
+  // allows user to select all categories
+  handleAllCategorySelection(event) {
+    if (this.state.selectAllCategories) {
+      this.setState(
+        {
+          selectAllCategories: false,
+          categoriesSelected: [],
+        },
+        () => this.props.onChange(this.state.categoriesSelected)
+      )
+    } else {
+      this.setState(
+        {
+          selectAllCategories: true,
+          categoriesSelected: this.props.categories,
+        },
+        () => this.props.onChange(this.state.categoriesSelected)
+      )
+    }
   }
 
   // Updating what categories have been selected,
@@ -47,6 +71,8 @@ class CategoryOptions extends React.Component {
     }
   }
 
+  // GENERAL FUNCTIONS:
+
   // create the list of category checkboxes
   renderCategoryOptions() {
     const categories = this.props.categories
@@ -67,10 +93,26 @@ class CategoryOptions extends React.Component {
     })
   }
 
+  // RENDERER:
+
   // renders checkboxes for each category of the given variable
   render() {
     const categories = this.renderCategoryOptions()
-    return <div className="country-options">{categories}</div>
+    return (
+      <React.Fragment>
+        <br />
+        <label>
+          <input
+            type="checkbox"
+            name="selectAllCategories"
+            checked={this.state.selectAllCategories}
+            onChange={this.handleAllCategorySelection}
+          />
+          &nbsp;&nbsp;Select all categories
+        </label>
+        <div className="country-options">{categories}</div>
+      </React.Fragment>
+    )
   }
 }
 
