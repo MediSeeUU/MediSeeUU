@@ -192,13 +192,7 @@ test('throw error when current page does not exist', () => {
 })
 
 test('data put correctly into table', () => {
-  render(
-    <Table
-      data={DummyData}
-      currentPage={1}
-      amountPerPage={10}
-    />
-  )
+  render(<Table data={DummyData} currentPage={1} amountPerPage={10} />)
   const headers = screen.getAllByRole('columnheader')
   const rowgroup = screen.getAllByRole('rowgroup')[1]
   const rows = within(rowgroup).getAllByRole('row')
@@ -215,13 +209,7 @@ test('data put correctly into table', () => {
 })
 
 test('column change changes data in row', () => {
-  render(
-    <Table
-      data={DummyData}
-      currentPage={1}
-      amountPerPage={10}
-    />
-  )
+  render(<Table data={DummyData} currentPage={1} amountPerPage={10} />)
   const headers = screen.queryAllByRole('columnheader')
   const firstSelect = within(headers[0]).getByRole('combobox')
   const startValue = firstSelect.value
