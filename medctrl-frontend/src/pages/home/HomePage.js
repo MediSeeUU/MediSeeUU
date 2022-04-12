@@ -7,7 +7,7 @@ import mebLogo from '../../images/meb-logo.svg'
 function HomePage() {
   return (
     // Homepage components, contains article containers (styling in HomePage.css)
-    <div className='med_home_content'>
+    <div className="med_home_content">
       <article className="TopTableHolder">
         <h1>About This Dashboard</h1>
         <hr />
