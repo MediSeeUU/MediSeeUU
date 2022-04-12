@@ -201,7 +201,7 @@ test('data put correctly into table', () => {
     const selectValue = select.value
     rows.forEach((row, index2) => {
       const cells = within(row).getAllByRole('cell')
-      const cellValue = cells[index + 1].innerHTML
+      const cellValue = cells[index].innerHTML
       const dataElement = DummyData[index2]
       expect(cellValue).toBe(dataElement[selectValue].toString())
     })
