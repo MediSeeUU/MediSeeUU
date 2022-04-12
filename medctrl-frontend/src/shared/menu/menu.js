@@ -200,10 +200,11 @@ class Menu extends React.Component {
           onRequestClose={this.handleCloseModal}
           ariaHideApp={false}
           contentLabel="Menu"
-          style={{ modal: {}, overlay: { background: "rgba(0, 0, 0, 0.75)" } }}
+          style={{ modal: {}, overlay: { background: "rgba(0, 0, 0, 0.2)", backdropFilter: "blur(2px)"} }}
         >
           <div className="filter">
             <h1 className="header">Filters</h1>
+            <hr></hr>
             <div className="add" onClick={this.addFilter}>
               Add Filter
               <i className="bx bxs-plus-square add-icon"></i>
@@ -223,18 +224,21 @@ class Menu extends React.Component {
                 />
               ))}
             </div>
-            <button className="menu-button apply" onClick={this.apply}>
-              Apply
-            </button>
-            <button className="menu-button cl" onClick={this.clear}>
-              Clear
-            </button>
-            <button className="menu-button cl" onClick={this.handleCloseModal}>
-              Close
-            </button>
+            <div className="filter-bttn-box">
+              <button className="menu-button apply" onClick={this.apply}>
+                Apply
+              </button>
+              <button className="menu-button cl" onClick={this.clear}>
+                Clear
+              </button>
+              <button className="menu-button cl" onClick={this.handleCloseModal}>
+                Close
+              </button>
+            </div>
           </div>
           <div className="sort">
             <h1 className="header">Sort</h1>
+            <hr></hr>
             {this.state.sorters.map((obj, oid) => (
               <Sort
                 key={uuidv4()}
