@@ -1,11 +1,12 @@
 from rest_framework import viewsets
 from api.serializers import (
+    ProcedureSerializer,
     MedicineSerializer,
     LegalBasisSerializer,
     LegalScopeSerializer,
     AtcCodeSerializer,
 )
-from api.models import Medicine, LegalBasis, LegalScope, AtcCode
+from api.models import Medicine, LegalBasis, LegalScope, AtcCode, Procedure
 
 
 class MedicineViewSet(viewsets.ModelViewSet):
@@ -44,3 +45,12 @@ class AtcCodeViewSet(viewsets.ModelViewSet):
 
     queryset = AtcCode.objects.all()
     serializer_class = AtcCodeSerializer
+
+
+class ProceduresViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list` and `retrieve` actions for atc code.
+    """
+
+    queryset = Procedure.objects.all()
+    serializer_class = ProcedureSerializer

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import Medicine, LegalBasis, LegalScope, AtcCode
+from api.models import Medicine, LegalBasis, LegalScope, AtcCode, Procedure
 
 
 class LegalBasisSerializer(serializers.ModelSerializer):
@@ -47,4 +47,14 @@ class MedicineSerializer(serializers.ModelSerializer):
         """Metadata"""
 
         model = Medicine
+        fields = "__all__"
+
+
+class ProcedureSerializer(serializers.ModelSerializer):
+    """Endpoint procedure serializer"""
+
+    class Meta:
+        """Metadata"""
+
+        model = Procedure
         fields = "__all__"
