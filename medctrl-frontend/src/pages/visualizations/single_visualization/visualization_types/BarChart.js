@@ -50,12 +50,11 @@ class BarChart extends Component {
     }
   }
 
-
   // GENERAL FUNCTIONS:
 
   // error handler for when something in the chart generation goes wrong
   static getDerivedStateFromError(error, errorInfo) {
-    return {hasError: true}
+    return { hasError: true }
   }
 
   // RENDERER:
@@ -63,11 +62,7 @@ class BarChart extends Component {
   // renders the bar chart with the given options
   render() {
     if (this.state.hasError) {
-      return (
-        <div>
-          An error has occurred when drawing the chart
-        </div>
-      )
+      return <div>An error has occurred when drawing the chart</div>
     } else {
       return (
         <div className="mixed-chart">
@@ -79,7 +74,6 @@ class BarChart extends Component {
         </div>
       )
     }
-    
   }
 }
 
