@@ -66,9 +66,11 @@ function DisplayTable({
   }
 
   const removeColumn = () => {
-    let newColumnSelection = [...columnSelection]
-    newColumnSelection.pop()
-    setColumnSelection(newColumnSelection)
+    if (columnSelection.length > 4 ) {
+      let newColumnSelection = [...columnSelection]
+      newColumnSelection.pop()
+      setColumnSelection(newColumnSelection)
+    }
   }
 
   //constant with the table body data, for every data entry add a new row
