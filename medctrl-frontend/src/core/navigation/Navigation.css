@@ -136,6 +136,7 @@
 
 .side-nav.closed-nav .nav-item:hover .tooltip {
   opacity: 1;
+  font-family: 'Poppins';
 }
 
 /*  position the lowest navigation item at the bottom of the navigation bar */
