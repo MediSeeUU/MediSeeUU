@@ -15,6 +15,7 @@ class BarChart extends Component {
 
     // initializing the state with data passed from the form
     this.state = {
+      hasError: false,
       options: {
         chart: {
           id: String(this.props.id),
@@ -49,19 +50,36 @@ class BarChart extends Component {
     }
   }
 
+
+  // GENERAL FUNCTIONS:
+
+  // error handler for when something in the chart generation goes wrong
+  static getDerivedStateFromError(error, errorInfo) {
+    return {hasError: true}
+  }
+
   // RENDERER:
 
   // renders the bar chart with the given options
   render() {
-    return (
-      <div className="mixed-chart">
-        <Chart
-          options={this.state.options}
-          series={this.state.series}
-          type="bar"
-        />
-      </div>
-    )
+    if (this.state.hasError) {
+      return (
+        <div>
+          An error has occurred when drawing the chart
+        </div>
+      )
+    } else {
+      return (
+        <div className="mixed-chart">
+          <Chart
+            options={this.state.options}
+            series={this.state.series}
+            type="bar"
+          />
+        </div>
+      )
+    }
+    
   }
 }
 
