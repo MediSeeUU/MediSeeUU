@@ -254,7 +254,7 @@ test('Amount of columns does not drop below 4', () => {
     fireEvent.click(screen.getAllByRole('button')[1])
     headerLength = screen.queryAllByRole('columnheader').length
   }
-  
+
   fireEvent.click(screen.getAllByRole('button')[1])
   headerLength = screen.queryAllByRole('columnheader').length
 

@@ -66,7 +66,7 @@ function DisplayTable({
   }
 
   const removeColumn = () => {
-    if (columnSelection.length > 4 ) {
+    if (columnSelection.length > 4) {
       let newColumnSelection = [...columnSelection]
       newColumnSelection.pop()
       setColumnSelection(newColumnSelection)
