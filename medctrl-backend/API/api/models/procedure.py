@@ -1,4 +1,6 @@
 from django.db import models
+from api.models.medicine import Medicine
+from api.models.lookupproceduretype import Lookupproceduretype
 
 class Procedure(models.Model):
     eunumber = models.OneToOneField(Medicine, models.DO_NOTHING, db_column='EUNumber', primary_key=True)

@@ -1,4 +1,10 @@
 from django.db import models
+from api.models.lookupactivesubstance import Lookupactivesubstance
+from api.models.lookupatccode import Lookupatccode
+from api.models.lookuplegalbasis import Lookuplegalbasis
+from api.models.lookuplegalscope import Lookuplegalscope
+from api.models.lookupmedicinetype import Lookupmedicinetype
+from api.models.lookupstatus import Lookupstatus
 
 class Medicine(models.Model):
     eunumber = models.IntegerField(db_column='EUNumber', primary_key=True)
