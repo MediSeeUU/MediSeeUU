@@ -107,7 +107,10 @@ function DisplayTable({
           <i className="bx bxs-plus-square bx-plusMinus"></i>
         </button>
 
-        <button className="columnbutton minusbutton" onClick={() => removeColumn()}>
+        <button
+          className="columnbutton minusbutton"
+          onClick={() => removeColumn()}
+        >
           <i className="bx bxs-minus-square bx-plusMinus"></i>
         </button>
       </div>

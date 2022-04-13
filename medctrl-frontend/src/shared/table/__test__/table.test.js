@@ -238,7 +238,7 @@ test('Add column button adds a column', () => {
 
 test('Remove column button removes a column', () => {
   render(<Table data={DummyData} currentPage={1} amountPerPage={10} />)
-  
+
   const initHeaderLength = screen.queryAllByRole('columnheader').length
   fireEvent.click(screen.getAllByRole('button')[1])
   const newHeaderLength = screen.queryAllByRole('columnheader').length
