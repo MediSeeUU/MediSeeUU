@@ -13,7 +13,7 @@ class VisualizationPage extends Component {
     super(props)
 
     // getting the data
-    const data = require('./data.json')
+    const data = this.props.selectedData
 
     /* 
       The items array consists of the id's of the visualizations,
@@ -59,7 +59,7 @@ class VisualizationPage extends Component {
         <Row key={id}>
           <SingleVisualization
             id={id}
-            data={JSON.parse(JSON.stringify(this.state.data))}
+            data={this.state.data}
             onRemoval={this.handleRemoval}
           />
         </Row>
@@ -75,23 +75,29 @@ class VisualizationPage extends Component {
 		so React knows which visualizations to show.
 	*/
   render() {
-    const displayItems = this.createVisualizations()
+    if (this.props.selectedData?.length > 0) {
+      const displayItems = this.createVisualizations()
 
-    return (
-      <div>
-        <Container>
-          {displayItems}
-          <Row>
-            <button
-              className="table-buttons button-add"
-              onClick={this.handleAddition}
-            >
-              <i className="bx bx-plus filter-Icon"></i>Add visualization
-            </button>
-          </Row>
-        </Container>
-      </div>
-    )
+      return (
+        <div>
+          <Container>
+            {displayItems}
+            <Row>
+              <button
+                className="table-buttons button-add"
+                onClick={this.handleAddition}
+              >
+                <i className="bx bx-plus filter-Icon"></i>Add visualization
+              </button>
+            </Row>
+          </Container>
+        </div>
+      )
+    } else {
+      return (
+        <h1 className="visualization-no-data">No data selected to display</h1>
+      )
+    }
   }
 }
 

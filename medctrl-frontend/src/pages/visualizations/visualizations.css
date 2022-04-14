@@ -5,8 +5,8 @@
   border-radius: 10px;
   box-shadow: 0px 10px 15px 4px #969696;
   height: 100%;
-  width: 98%;
-  margin: 2% 1% 0% 2%;
+  width: 97%;
+  margin: 2% 2% 0% 2%;
 }
 
 /* Panel elements */
@@ -109,4 +109,9 @@
 
 .graph-name:not(:placeholder-shown) {
   border: none;
+}
+
+.visualization-no-data {
+  padding-top: 30vh;
+  text-align: center;
 }

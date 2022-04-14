@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../../../visualizations.css'
+import sortCategoryData from '../../utils/SortCategoryData'
 import CategoryOptions from '../shared/CategoryOptions'
 
 // the line part of a form if a line chart is chosen
@@ -150,7 +151,9 @@ class LineForm extends Component {
           */
           key={`${this.state.xAxis}${this.state.yAxis}`}
           onChange={this.handleCategorySelectionChange}
-          categories={this.props.uniqueCategories[this.state.yAxis]}
+          categories={sortCategoryData(
+            this.props.uniqueCategories[this.state.yAxis]
+          )}
         />
       </React.Fragment>
     )
