@@ -33,7 +33,7 @@ class BarChart extends Component {
         xaxis: {
           categories: this.props.categories,
           labels: {
-            hideOverlappingLabels: false,
+            hideOverlappingLabels: true,
           },
         },
         dataLabels: {
