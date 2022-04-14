@@ -19,7 +19,7 @@ export default function GetUniqueCategories(data) {
   // sorting the array
   for (let categories in dict) {
     dict[categories] = dict[categories].sort(function (a, b) {
-      return String(a).localeCompare(String(b), 'en', {
+      return String(a).localeCompare(b, 'en', {
         numeric: true,
         sensitivity: 'base',
       })

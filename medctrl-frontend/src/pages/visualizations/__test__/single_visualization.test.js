@@ -9,7 +9,6 @@ import {
   getByRole,
   getByText,
 } from '@testing-library/react'
-import VisualizationPage from '../VisualizationPage'
 import SingleVisualization from '../single_visualization/SingleVisualization'
 import ResizeObserver from '../mocks/observer'
 
@@ -18,6 +17,14 @@ import data from '../data.json'
 jest.mock('../mocks/observer')
 
 test('render initial single visualization', () => {
-  const root = document.createElement('div')
-  ReactDOM.render(<SingleVisualization number={1} data={data} />, root)
+  const handleChange = jest.fn()
+  render(<SingleVisualization id={1} data={data} onChange={handleChange}/>)
+  const dropdown = screen.getByRole('combobox', { name: 'Visualization type' })
+  fireEvent.change(dropdown, { target: { value: 'line' }})
+  //expect(screen.getByRole('combobox', { name: 'Visualization type' }).value).toMatch('line')
 })
+
+/* test('export to svg', () => {
+  render(<SingleVisualization id={1} data={data} />)
+  fireEvent.click(screen.getByRole('button', { name: 'Export as SVG'}))
+}) */

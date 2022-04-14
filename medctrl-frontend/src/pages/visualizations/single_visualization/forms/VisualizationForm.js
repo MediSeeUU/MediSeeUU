@@ -153,7 +153,7 @@ class VisualizationForm extends Component {
             onChange={this.handleChange}
           >
             <option value="bar">Bar chart</option>
-            <option value="line">Line graph</option>
+            <option value="line">Line chart</option>
             <option value="pie">Pie chart</option>
           </select>
         </label>
