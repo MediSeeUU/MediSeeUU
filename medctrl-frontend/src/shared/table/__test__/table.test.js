@@ -226,3 +226,37 @@ test('column change changes data in row', () => {
     expect(cellValue).toBe(dataElement[newValue].toString())
   })
 })
+
+test('Add column button adds a column', () => {
+  render(<Table data={DummyData} currentPage={1} amountPerPage={10} />)
+  const initHeaderLength = screen.queryAllByRole('columnheader').length
+  fireEvent.click(screen.getAllByRole('button')[0])
+  const newHeaderLength = screen.queryAllByRole('columnheader').length
+
+  expect(newHeaderLength).toBe(initHeaderLength + 1)
+})
+
+test('Remove column button removes a column', () => {
+  render(<Table data={DummyData} currentPage={1} amountPerPage={10} />)
+
+  const initHeaderLength = screen.queryAllByRole('columnheader').length
+  fireEvent.click(screen.getAllByRole('button')[1])
+  const newHeaderLength = screen.queryAllByRole('columnheader').length
+
+  expect(newHeaderLength).toBe(initHeaderLength - 1)
+})
+
+test('Amount of columns does not drop below 4', () => {
+  render(<Table data={DummyData} currentPage={1} amountPerPage={10} />)
+
+  let headerLength = screen.queryAllByRole('columnheader').length
+  while (headerLength > 4) {
+    fireEvent.click(screen.getAllByRole('button')[1])
+    headerLength = screen.queryAllByRole('columnheader').length
+  }
+
+  fireEvent.click(screen.getAllByRole('button')[1])
+  headerLength = screen.queryAllByRole('columnheader').length
+
+  expect(headerLength).toBe(4)
+})

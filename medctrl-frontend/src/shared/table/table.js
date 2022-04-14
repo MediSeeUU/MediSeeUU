@@ -66,9 +66,11 @@ function DisplayTable({
   }
 
   const removeColumn = () => {
-    let newColumnSelection = [...columnSelection]
-    newColumnSelection.pop()
-    setColumnSelection(newColumnSelection)
+    if (columnSelection.length > 4) {
+      let newColumnSelection = [...columnSelection]
+      newColumnSelection.pop()
+      setColumnSelection(newColumnSelection)
+    }
   }
 
   //constant with the table body data, for every data entry add a new row
@@ -106,6 +108,7 @@ function DisplayTable({
         <button className="columnbutton" onClick={() => addColumn()}>
           <i className="bx bxs-plus-square bx-plusMinus"></i>
         </button>
+
         <button
           className="columnbutton minusbutton"
           onClick={() => removeColumn()}
