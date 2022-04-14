@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models.medicine_models import LegalBasis
+from api.models.medicine_models import Lookuplegalbasis
 
 
 class LegalBasisSerializer(serializers.ModelSerializer):
@@ -8,5 +8,5 @@ class LegalBasisSerializer(serializers.ModelSerializer):
     class Meta:
         """Metadata"""
 
-        model = LegalBasis
-        fields = ["description"]
+        model = Lookuplegalbasis
+        fields = ["legalbasis"]
