@@ -23,7 +23,8 @@ function AllRoutes() {
       <Route path="/messages" element={<MessagesPage />} />
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/account" element={<AccountPage />} />
-      <Route path="/details" element={<DetailedInfoPage />} />
+      {/* <Route path="/details" element={<DetailedInfoPage />} /> */}
+      <Route path="/details/:medID" element={<DetailedInfoPage />} /> 
     </Routes>
   )
 }

@@ -11,11 +11,39 @@ import Detail from './InfoComponents/Detail'
 import Procedure from './InfoComponents/Procedure'
 import CustomLink from './InfoComponents/CustomLink'
 
+//
+import { DataContext, DataProvider, useData } from '../../shared/contexts/DataContext'
+import {useParams, useSearchParams}  from "react-router-dom";
+
 // the function acts as a placeholder to pass the right through to the actual
 // component, when the data flow is correctly linked, the component will
 // no longer be required and can be removed
-function DetailedInfoPage() {
-  return <InfoPage data={demoData} />
+function DetailedInfoPage(medIDnumbertje) {
+
+  const {medID} = useParams()
+
+  /* const [searchParams, setSearchParams] = useSearchParams({});
+  setSearchParams({ medID: medIDnumbertje  }); */
+
+ var cooledata;
+ /* var alledataAUB =  DataContext.value//useData
+ for(var i in alledataAUB)
+ {
+    if(i["ApplicationNo"] === medIDnumbertje) 
+    {cooledata = i}   
+
+ } */
+ return <DataProvider>
+   <DataContext.Consumer>
+     {(context) => (
+      
+       <InfoPage data ={context} medicijnnummer = {medID}></InfoPage>
+     )}
+   </DataContext.Consumer>
+ </DataProvider>
+ 
+  //return <InfoPage data = {cooledata}/>
+  //return <InfoPage data={demoData} />
 }
 
 export default DetailedInfoPage
@@ -25,7 +53,21 @@ export default DetailedInfoPage
 // the details page.
 function InfoPage(props) {
   // extract the medicine data from the props
-  let medicineData = props.data
+
+  //AAAA
+  var medicijnnummer = props.medicijnnummer
+  var alldata = props.data
+  var goededataobjectje = alldata.find((element) => element["EUNoShort"] === medicijnnummer)
+  alldata.forEach(element => {
+    var euNOelem = element["EUNoShort"].toString()
+    var euNOklik = medicijnnummer
+    if (euNOelem === euNOklik)//(String.toString( element["EUNoShort"]) === String.toString( medicijnnummer))
+    {goededataobjectje = element}
+  });
+
+
+  let medicineData = {info:goededataobjectje, procedures:[]}//goededataobjectje//props.data
+  
 
   // for each procedure present in the medicine data object, an procedure component
   // is created and added to an array for temporary storage
