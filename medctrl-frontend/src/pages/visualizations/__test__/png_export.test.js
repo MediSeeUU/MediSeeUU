@@ -19,6 +19,6 @@ import data from '../data.json'
 jest.mock('../mocks/observer')
 
 test('export to png', () => {
-	render(<SingleVisualization id={1} data={data}/>)
-	HandlePNGExport(1, ApexCharts)
+  render(<SingleVisualization id={1} data={data} />)
+  HandlePNGExport(1, ApexCharts)
 })

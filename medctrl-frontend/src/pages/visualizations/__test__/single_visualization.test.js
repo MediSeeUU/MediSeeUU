@@ -18,9 +18,9 @@ jest.mock('../mocks/observer')
 
 test('render initial single visualization', () => {
   const handleChange = jest.fn()
-  render(<SingleVisualization id={1} data={data} onChange={handleChange}/>)
+  render(<SingleVisualization id={1} data={data} onChange={handleChange} />)
   const dropdown = screen.getByRole('combobox', { name: 'Visualization type' })
-  fireEvent.change(dropdown, { target: { value: 'line' }})
+  fireEvent.change(dropdown, { target: { value: 'line' } })
   //expect(screen.getByRole('combobox', { name: 'Visualization type' }).value).toMatch('line')
 })
 

@@ -10,7 +10,8 @@ export default function HandlePNGExport(id, ApexCharts) {
 		Get the visualization in the base64 format,
 		we scale it for a better resolution.
 	*/
-    ApexCharts.exec(String(id), 'dataURI', { scale: 3.5 }).then(({ imgURI }) => {
+  ApexCharts.exec(String(id), 'dataURI', { scale: 3.5 })
+    .then(({ imgURI }) => {
       // changes the dpi of the visualization to 300
       const dataURI300 = changeDpiDataUrl(imgURI, 300)
 
@@ -20,5 +21,8 @@ export default function HandlePNGExport(id, ApexCharts) {
         'Graph ' + id + ' - ' + document.getElementById('graphName' + id).value,
         '.png'
       )
-    }).catch(err => console.log('an error occurred when trying to export to png'))
+    })
+    .catch((err) =>
+      console.log('an error occurred when trying to export to png')
+    )
 }

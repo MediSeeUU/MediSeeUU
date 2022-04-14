@@ -35,7 +35,6 @@ class LineChart extends Component {
     }
   }
 
-
   // GENERAL FUNCTIONS:
 
   // error handler for when something in the chart generation goes wrong
@@ -43,12 +42,11 @@ class LineChart extends Component {
     return { hasError: true }
   }
 
-
   // RENDERER:
 
   // render a line graph
   render() {
-    if(this.state.hasError) {
+    if (this.state.hasError) {
       return <div>An error has occurred when drawing the chart</div>
     } else {
       return (
@@ -61,7 +59,6 @@ class LineChart extends Component {
         </div>
       )
     }
-    
   }
 }
 
