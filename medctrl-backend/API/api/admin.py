@@ -3,7 +3,7 @@
 # Register your models here.
 
 from django.contrib import admin
-from .models.medicine import Medicine
+from .models.medicine_models.medicine import Medicine
 
 
 class MedicineAdmin(admin.ModelAdmin):
