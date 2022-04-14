@@ -1,5 +1,5 @@
 from django.db import models
-from api.models.medicine import Medicine
+from .medicine import Medicine
 
 
 class Procedure(models.Model):
