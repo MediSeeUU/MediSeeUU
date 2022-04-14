@@ -1,3 +1,5 @@
+import sortCategoryData from '../utils/SortCategoryData'
+
 /* 
   generates series for a bar chart,
   keep in mind that the index of a serie corresponds with the index of the 
@@ -7,20 +9,17 @@ export default function GenerateBarSeries(options, allCategories, data) {
   let xAxis = options.chartSpecificOptions.xAxis
   let yAxis = options.chartSpecificOptions.yAxis
   let categoriesSelectedY = options.chartSpecificOptions.categoriesSelected
+  let sortedxAxis = sortCategoryData(allCategories[xAxis])
 
   let dict = PollChosenVariable(
     xAxis,
     yAxis,
-    allCategories[xAxis],
+    sortedxAxis,
     categoriesSelectedY,
     data
   )
 
-  let series = CreateSelectedSeries(
-    dict,
-    categoriesSelectedY,
-    allCategories[xAxis]
-  )
+  let series = CreateSelectedSeries(dict, categoriesSelectedY, sortedxAxis)
 
   let seriesFormatted = ToSeriesFormat(series)
 
