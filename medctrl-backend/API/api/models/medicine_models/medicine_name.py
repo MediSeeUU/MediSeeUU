@@ -1,6 +1,6 @@
 from django.db import models
-from api.models.medicine import Medicine
-from api.models.marketing_authorisation_holder import MarketingAuthorisationHolder
+from .medicine import Medicine
+from .marketing_authorisation_holder import MarketingAuthorisationHolder
 
 
 class MedicineName(models.Model):
