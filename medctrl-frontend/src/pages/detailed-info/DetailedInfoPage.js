@@ -35,16 +35,13 @@ export default DetailedInfoPage
 function InfoPage(props) {
   var medIDnr = props.medIDnumber
   var alldata = props.data
-  var goededataobjectje
-  alldata.forEach((element) => {
-    if (element['EUNoShort'].toString() === medIDnr) {
-      goededataobjectje = element
-    }
+  var medDataObject = alldata.find((element) => {
+    return element['EUNoShort'].toString() === medIDnr
   })
 
   //if the medIDnumber does not correspond to any medicine in the datacontext,
   //a static page is displayed
-  if (goededataobjectje === undefined) {
+  if (medDataObject === undefined) {
     return (
       <div>
         <h1
@@ -59,7 +56,7 @@ function InfoPage(props) {
 
   //place the data corresponding to the specified medIDnumber in the medicine data capsule,
   //procedures currently are not supported, will be implemented after correct database connection
-  let medicineData = { info: goededataobjectje, procedures: [] }
+  let medicineData = { info: medDataObject, procedures: [] }
 
   // for each procedure present in the medicine data object, an procedure component
   // is created and added to an array for temporary storage
