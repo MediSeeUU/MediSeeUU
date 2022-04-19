@@ -48,34 +48,9 @@ function InfoPage(props) {
   if(goededataobjectje === undefined)
   {
       return (<div>
-        <h1 className="title" testid = "detailedInfoPageTitle">
+        <h1 className="detailedinfopage-unknown-medID" testid = "detailedInfoPageTitle">
           Unknown Medicine ID number
         </h1>
-      <Container>
-      <h1 className="title">Additional Resources</h1>
-      <hr className="separator" />
-
-      <CustomLink
-        className="external-link"
-        name="EMA Website"
-        dest="https://www.ema.europa.eu/en"
-      />
-      <CustomLink
-        className="external-link"
-        name="EC Website"
-        dest="https://ec.europa.eu/info/index_en"
-      />
-      <CustomLink
-        className="external-link"
-        name="MEB Website"
-        dest="https://english.cbg-meb.nl/"
-      />
-      <CustomLink
-        className="external-link"
-        name="MAH Website"
-        dest="https://www.ema.europa.eu/en/glossary/marketing-authorisation-holder"
-      />
-    </Container>
   </div>)
 
   }
