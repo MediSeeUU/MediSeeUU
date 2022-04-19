@@ -9,6 +9,7 @@ import {
   ColumnSelectionContext,
   ColumnSelectionContextUpdate,
 } from '../../contexts/DataContext'
+import { BrowserRouter } from 'react-router-dom'
 
 test('renders without crashing', () => {
   var columnSelection = [
@@ -27,11 +28,13 @@ test('renders without crashing', () => {
 
   const root = document.createElement('div')
   ReactDOM.render(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} />
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>,
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <Table data={DummyData} currentPage={1} amountPerPage={10} />
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>,
     root
   )
 })
@@ -52,15 +55,17 @@ test('expected amount of rows in the table', () => {
   }
 
   render(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <Table
-          data={DummyData}
-          currentPage={1}
-          amountPerPage={DummyData.length + 10}
-        />
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <Table
+            data={DummyData}
+            currentPage={1}
+            amountPerPage={DummyData.length + 10}
+          />
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
   )
   const table = screen.getByRole('table')
   const rows = within(table).getAllByRole('row')
@@ -83,11 +88,13 @@ test('expected amount of headers in the table', () => {
   }
 
   render(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} />
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <Table data={DummyData} currentPage={1} amountPerPage={10} />
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
   )
   const table = screen.getByRole('table')
   const rows = within(table).getAllByRole('row')
@@ -121,24 +128,26 @@ test('checkboxes displayed', () => {
   }
 
   render(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <CheckedContext.Provider value={checkedState}>
-          <CheckedContextUpdate.Provider value={setCheckedState}>
-            <Table
-              data={data}
-              selectTable={true}
-              setCheckedState={setCheckedState}
-              checkedState={checkedState}
-              currentPage={2}
-              amountPerPage={10}
-              testCheckedState={checkedState}
-              testCheckedStateUpdate={setCheckedState}
-            />
-          </CheckedContextUpdate.Provider>
-        </CheckedContext.Provider>
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <CheckedContext.Provider value={checkedState}>
+            <CheckedContextUpdate.Provider value={setCheckedState}>
+              <Table
+                data={data}
+                selectTable={true}
+                setCheckedState={setCheckedState}
+                checkedState={checkedState}
+                currentPage={2}
+                amountPerPage={10}
+                testCheckedState={checkedState}
+                testCheckedStateUpdate={setCheckedState}
+              />
+            </CheckedContextUpdate.Provider>
+          </CheckedContext.Provider>
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
   )
   const table = screen.getByRole('table')
   const checkboxes = within(table).getAllByRole('checkbox')
@@ -170,24 +179,26 @@ test('row selected, when checkbox clicked', () => {
   }
 
   render(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <CheckedContext.Provider value={checkedState}>
-          <CheckedContextUpdate.Provider value={setCheckedState}>
-            <Table
-              data={data}
-              selectTable={true}
-              setCheckedState={setCheckedState}
-              checkedState={checkedState}
-              currentPage={2}
-              amountPerPage={10}
-              testCheckedState={checkedState}
-              testCheckedStateUpdate={setCheckedState}
-            />
-          </CheckedContextUpdate.Provider>
-        </CheckedContext.Provider>
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <CheckedContext.Provider value={checkedState}>
+            <CheckedContextUpdate.Provider value={setCheckedState}>
+              <Table
+                data={data}
+                selectTable={true}
+                setCheckedState={setCheckedState}
+                checkedState={checkedState}
+                currentPage={2}
+                amountPerPage={10}
+                testCheckedState={checkedState}
+                testCheckedStateUpdate={setCheckedState}
+              />
+            </CheckedContextUpdate.Provider>
+          </CheckedContext.Provider>
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
   )
   const table = screen.getByRole('table')
   const input = within(table).getAllByRole('checkbox')[1]
@@ -220,24 +231,26 @@ test('all rows selected when select all pressed', () => {
   }
 
   render(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <CheckedContext.Provider value={checkedState}>
-          <CheckedContextUpdate.Provider value={setCheckedState}>
-            <Table
-              data={data}
-              selectTable={true}
-              setCheckedState={setCheckedState}
-              checkedState={checkedState}
-              currentPage={2}
-              amountPerPage={10}
-              testCheckedState={checkedState}
-              testCheckedStateUpdate={setCheckedState}
-            />
-          </CheckedContextUpdate.Provider>
-        </CheckedContext.Provider>
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <CheckedContext.Provider value={checkedState}>
+            <CheckedContextUpdate.Provider value={setCheckedState}>
+              <Table
+                data={data}
+                selectTable={true}
+                setCheckedState={setCheckedState}
+                checkedState={checkedState}
+                currentPage={2}
+                amountPerPage={10}
+                testCheckedState={checkedState}
+                testCheckedStateUpdate={setCheckedState}
+              />
+            </CheckedContextUpdate.Provider>
+          </CheckedContext.Provider>
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
   )
   const table = screen.getByRole('table')
   const input = within(table).getAllByRole('checkbox')[0]
@@ -271,11 +284,13 @@ test('throw error when data not defined', () => {
 
   const renderFunction = () =>
     render(
-      <ColumnSelectionContext.Provider value={columnSelection}>
-        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-          <Table currentPage={1} amountPerPage={10} />
-        </ColumnSelectionContextUpdate.Provider>
-      </ColumnSelectionContext.Provider>
+      <BrowserRouter>
+        <ColumnSelectionContext.Provider value={columnSelection}>
+          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+            <Table currentPage={1} amountPerPage={10} />
+          </ColumnSelectionContextUpdate.Provider>
+        </ColumnSelectionContext.Provider>
+      </BrowserRouter>
     )
   expect(renderFunction).toThrow(Error)
 })
@@ -297,11 +312,13 @@ test('throw error when currentPage not defined', () => {
 
   const renderFunction = () =>
     render(
-      <ColumnSelectionContext.Provider value={columnSelection}>
-        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-          <Table data={DummyData} amountPerPage={10} />
-        </ColumnSelectionContextUpdate.Provider>
-      </ColumnSelectionContext.Provider>
+      <BrowserRouter>
+        <ColumnSelectionContext.Provider value={columnSelection}>
+          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+            <Table data={DummyData} amountPerPage={10} />
+          </ColumnSelectionContextUpdate.Provider>
+        </ColumnSelectionContext.Provider>
+      </BrowserRouter>
     )
   expect(renderFunction).toThrow(Error)
 })
@@ -323,11 +340,13 @@ test('throw error when amountPerPage not defined', () => {
 
   const renderFunction = () =>
     render(
-      <ColumnSelectionContext.Provider value={columnSelection}>
-        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-          <Table data={DummyData} currentPage={1} />
-        </ColumnSelectionContextUpdate.Provider>
-      </ColumnSelectionContext.Provider>
+      <BrowserRouter>
+        <ColumnSelectionContext.Provider value={columnSelection}>
+          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+            <Table data={DummyData} currentPage={1} />
+          </ColumnSelectionContextUpdate.Provider>
+        </ColumnSelectionContext.Provider>
+      </BrowserRouter>
     )
   expect(renderFunction).toThrow(Error)
 })
@@ -349,11 +368,13 @@ test('throw error when current page does not exist', () => {
 
   const renderFunction = () =>
     render(
-      <ColumnSelectionContext.Provider value={columnSelection}>
-        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-          <Table data={DummyData} currentPage={500000} amountPerPage={10} />
-        </ColumnSelectionContextUpdate.Provider>
-      </ColumnSelectionContext.Provider>
+      <BrowserRouter>
+        <ColumnSelectionContext.Provider value={columnSelection}>
+          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+            <Table data={DummyData} currentPage={500000} amountPerPage={10} />
+          </ColumnSelectionContextUpdate.Provider>
+        </ColumnSelectionContext.Provider>
+      </BrowserRouter>
     )
   expect(renderFunction).toThrow(Error)
 })
@@ -374,11 +395,13 @@ test('data put correctly into table', () => {
   }
 
   render(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} />
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <Table data={DummyData} currentPage={1} amountPerPage={10} />
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
   )
   const headers = screen.getAllByRole('columnheader')
   const rowgroup = screen.getAllByRole('rowgroup')[1]
@@ -411,11 +434,13 @@ test('column change changes data in row', () => {
   }
 
   const { rerender } = render(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} />
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <Table data={DummyData} currentPage={1} amountPerPage={10} />
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
   )
   const headers = screen.queryAllByRole('columnheader')
   const firstSelect = within(headers[0]).getByRole('combobox')
@@ -425,11 +450,13 @@ test('column change changes data in row', () => {
   expect(startValue).not.toBe(newValue)
   fireEvent.change(firstSelect, { target: { value: newValue } })
   rerender(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} />
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <Table data={DummyData} currentPage={1} amountPerPage={10} />
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
   )
 
   const newheaders = screen.queryAllByRole('columnheader')
@@ -454,20 +481,24 @@ test('Add column button adds a column', () => {
   }
 
   const { rerender } = render(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} />
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <Table data={DummyData} currentPage={1} amountPerPage={10} />
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
   )
   const initHeaderLength = screen.queryAllByRole('columnheader').length
   fireEvent.click(screen.getAllByRole('button')[0])
   rerender(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} />
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <Table data={DummyData} currentPage={1} amountPerPage={10} />
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
   )
   const newHeaderLength = screen.queryAllByRole('columnheader').length
 
@@ -490,28 +521,32 @@ test('Remove column button removes a column', () => {
   }
 
   const { rerender } = render(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} />
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <Table data={DummyData} currentPage={1} amountPerPage={10} />
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
   )
 
   const initHeaderLength = screen.queryAllByRole('columnheader').length
   fireEvent.click(screen.getAllByRole('button')[1])
   rerender(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} />
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <Table data={DummyData} currentPage={1} amountPerPage={10} />
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
   )
   const newHeaderLength = screen.queryAllByRole('columnheader').length
 
   expect(newHeaderLength).toBe(initHeaderLength - 1)
 })
 
-test('Amount of columns does not drop below 4', () => {
+test('Amount of columns does not drop below 5', () => {
   var columnSelection = [
     'EUNoShort',
     'BrandName',
@@ -527,22 +562,26 @@ test('Amount of columns does not drop below 4', () => {
   }
 
   const { rerender } = render(
-    <ColumnSelectionContext.Provider value={columnSelection}>
-      <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} />
-      </ColumnSelectionContextUpdate.Provider>
-    </ColumnSelectionContext.Provider>
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <Table data={DummyData} currentPage={1} amountPerPage={10} />
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
   )
 
   let headerLength = screen.queryAllByRole('columnheader').length
   while (headerLength > 5) {
     fireEvent.click(screen.getAllByRole('button')[1])
     rerender(
-      <ColumnSelectionContext.Provider value={columnSelection}>
-        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-          <Table data={DummyData} currentPage={1} amountPerPage={10} />
-        </ColumnSelectionContextUpdate.Provider>
-      </ColumnSelectionContext.Provider>
+      <BrowserRouter>
+        <ColumnSelectionContext.Provider value={columnSelection}>
+          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+            <Table data={DummyData} currentPage={1} amountPerPage={10} />
+          </ColumnSelectionContextUpdate.Provider>
+        </ColumnSelectionContext.Provider>
+      </BrowserRouter>
     )
     headerLength = screen.queryAllByRole('columnheader').length
   }
