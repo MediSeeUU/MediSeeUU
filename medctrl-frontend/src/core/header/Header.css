@@ -7,7 +7,8 @@
   max-width: 1400px;
   min-width: 950px;
 
-  box-shadow: 3px 2px 8px blue;
+  /*box-shadow: 3px 2px 8px blue;*/
+  box-shadow: 3px 2px 8px #969696;
   background-color: white;
 
   border-top-left-radius: 10px;

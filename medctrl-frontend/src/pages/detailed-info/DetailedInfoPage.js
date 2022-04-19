@@ -1,10 +1,5 @@
 import './DetailedInfo.css'
 
-// the data in this json file includes not only general medicine information,
-// but also a few (bu not all) procedures which are related to medicine used
-// for the demo dataset
-import demoData from './detailed-info-data.json'
-
 import Container from './InfoComponents/Container'
 import DetailGroup from './InfoComponents/DetailGroup'
 import Detail from './InfoComponents/Detail'
@@ -19,7 +14,7 @@ import {useParams}  from "react-router-dom";
 // passes this ID to the detailedPage component, along with the access 
 // to the overarching datacontext, where the DetailedInfoPage will request 
 // the medicine data corresponding to the medID number.
-function DetailedInfoPage(medIDnumbertje) {
+function DetailedInfoPage() {
 
   const {medID} = useParams()
 
@@ -53,7 +48,7 @@ function InfoPage(props) {
   if(goededataobjectje === undefined)
   {
       return (<div>
-        <h1 className="title">
+        <h1 className="title" testid = "detailedInfoPageTitle">
           Unknown Medicine ID number
         </h1>
       <Container>

@@ -28,10 +28,6 @@ function DataSelect() {
         cachedData={allData}
         updateTable={(updatedData) => setData(updatedData)}
       />
-      <div className="addRmCollumn">
-        <i className="bx bxs-plus-square bx-plusMinus"></i>
-        <i className="bx bxs-minus-square bx-plusMinus"></i>
-      </div>
 
       <Table
         data={data}
