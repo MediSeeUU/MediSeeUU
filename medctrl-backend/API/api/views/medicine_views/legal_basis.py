@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from api.serializers.medicine_serializers import LegalBasisSerializer
-from api.models.medicine_models import LegalBasis
+from api.models.medicine_models import Lookuplegalbasis
 
 
 class LegalBasisViewSet(
@@ -10,5 +10,5 @@ class LegalBasisViewSet(
     This viewset automatically provides `list` and `retrieve` actions for Legal basis.
     """
 
-    queryset = LegalBasis.objects.all()
+    queryset = Lookuplegalbasis.objects.all()
     serializer_class = LegalBasisSerializer

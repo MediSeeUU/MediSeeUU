@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models.medicine_models import AtcCode
+from api.models.medicine_models import Lookupatccode
 
 
 class AtcCodeSerializer(serializers.ModelSerializer):
@@ -8,5 +8,5 @@ class AtcCodeSerializer(serializers.ModelSerializer):
     class Meta:
         """Metadata"""
 
-        model = AtcCode
-        fields = ["atc_code", "description"]
+        model = Lookupatccode
+        fields = ["atccode"]
