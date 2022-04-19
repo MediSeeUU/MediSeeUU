@@ -2,8 +2,11 @@
 
 // exports the visualization with the given id to an svg file
 export default function HandleSVGExport(id, ApexCharts) {
-
-  try{let inst = ApexCharts.getChartByID(String(id))} catch {console.log('error')}
+  try {
+    let inst = ApexCharts.getChartByID(String(id))
+  } catch {
+    console.log('error')
+  }
   try {
     inst.exports.triggerDownload(
       inst.exports.svgUrl(),
