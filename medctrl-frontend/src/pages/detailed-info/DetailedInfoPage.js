@@ -12,61 +12,82 @@ import Procedure from './InfoComponents/Procedure'
 import CustomLink from './InfoComponents/CustomLink'
 
 //
-import { DataContext, DataProvider, useData } from '../../shared/contexts/DataContext'
-import {useParams, useSearchParams}  from "react-router-dom";
+import { DataContext, DataProvider } from '../../shared/contexts/DataContext'
+import {useParams}  from "react-router-dom";
 
-// the function acts as a placeholder to pass the right through to the actual
-// component, when the data flow is correctly linked, the component will
-// no longer be required and can be removed
+// the function takes the unique medicine ID number (EUshortNumber) and 
+// passes this ID to the detailedPage component, along with the access 
+// to the overarching datacontext, where the DetailedInfoPage will request 
+// the medicine data corresponding to the medID number.
 function DetailedInfoPage(medIDnumbertje) {
 
   const {medID} = useParams()
 
-  /* const [searchParams, setSearchParams] = useSearchParams({});
-  setSearchParams({ medID: medIDnumbertje  }); */
-
- var cooledata;
- /* var alledataAUB =  DataContext.value//useData
- for(var i in alledataAUB)
- {
-    if(i["ApplicationNo"] === medIDnumbertje) 
-    {cooledata = i}   
-
- } */
  return <DataProvider>
    <DataContext.Consumer>
      {(context) => (
-      
-       <InfoPage data ={context} medicijnnummer = {medID}></InfoPage>
+       <InfoPage data ={context} medIDnumber = {medID}></InfoPage>
      )}
    </DataContext.Consumer>
  </DataProvider>
- 
-  //return <InfoPage data = {cooledata}/>
-  //return <InfoPage data={demoData} />
 }
 
 export default DetailedInfoPage
 
 // function based component, which represents the entire detailed information page
-// an json object is passed via the data tag. this is the data which is displayed on
+// the loaded data in datacontext is passed via the data tag. The specific medID no.
+// is passed via the me  this is the data which is displayed on
 // the details page.
 function InfoPage(props) {
-  // extract the medicine data from the props
-
-  //AAAA
-  var medicijnnummer = props.medicijnnummer
+  
+  var medIDnr = props.medIDnumber
   var alldata = props.data
-  var goededataobjectje = alldata.find((element) => element["EUNoShort"] === medicijnnummer)
+  var goededataobjectje
   alldata.forEach(element => {
-    var euNOelem = element["EUNoShort"].toString()
-    var euNOklik = medicijnnummer
-    if (euNOelem === euNOklik)//(String.toString( element["EUNoShort"]) === String.toString( medicijnnummer))
+    if (element["EUNoShort"].toString() === medIDnr)
     {goededataobjectje = element}
   });
 
+  //if the medIDnumber does not correspond to any medicine in the datacontext, 
+  //a static page is displayed
+  if(goededataobjectje === undefined)
+  {
+      return (<div>
+        <h1 className="title">
+          Unknown Medicine ID number
+        </h1>
+      <Container>
+      <h1 className="title">Additional Resources</h1>
+      <hr className="separator" />
 
-  let medicineData = {info:goededataobjectje, procedures:[]}//goededataobjectje//props.data
+      <CustomLink
+        className="external-link"
+        name="EMA Website"
+        dest="https://www.ema.europa.eu/en"
+      />
+      <CustomLink
+        className="external-link"
+        name="EC Website"
+        dest="https://ec.europa.eu/info/index_en"
+      />
+      <CustomLink
+        className="external-link"
+        name="MEB Website"
+        dest="https://english.cbg-meb.nl/"
+      />
+      <CustomLink
+        className="external-link"
+        name="MAH Website"
+        dest="https://www.ema.europa.eu/en/glossary/marketing-authorisation-holder"
+      />
+    </Container>
+  </div>)
+
+  }
+
+  //place the data corresponding to the specified medIDnumber in the medicine data capsule,
+  //procedures currently are not supported, will be implemented after correct database connection
+  let medicineData = {info:goededataobjectje, procedures:[]}
   
 
   // for each procedure present in the medicine data object, an procedure component
@@ -79,7 +100,7 @@ function InfoPage(props) {
   // returns the component which discribes the entire detailed information page
   // the page consists of three containers, each holds a specific category of
   // information pertaining to the current medicine. this first holds general
-  // information, teh next procedure related information, and the last holds some
+  // information, the next procedure related information, and the last holds some
   // links to external website which could be usefull
   return (
     <div>

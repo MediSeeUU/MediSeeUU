@@ -1,12 +1,7 @@
 import React from 'react'
 import { useCheckedState, useCheckedStateUpdate } from '../contexts/DataContext'
 import './table.css'
-
-//
-import { Routes, Route } from 'react-router-dom'
-import { useNavigate , useHistory, useParams} from "react-router-dom";
 import {Link} from 'react-router-dom';
-import { search } from 'voca';
 
 //Function based component, returns table
 function DisplayTable({
@@ -147,36 +142,15 @@ function BinboxColumn({ onp }) {
 //logic for the information button
 function InfoboxColumn({EUidNummertje}) {
 
-  const searchnaam = "?medID" + EUidNummertje.toString
-
   return (
     <td className="med_td smallColumn">
-      
-      {/* <Link to = {{ pathname : "/details" , search: searchnaam} } >  */}
       <Link to={`/details/${EUidNummertje}`}>
-
-      {/* <i  className="bx bx-info-circle icons" id = {"detailInfo"+EUidNummertje} onClick={() => HandeleerInfoButtonClick(EUidNummertje)} /> */}
-      <i  className="bx bx-info-circle icons" id = {"detailInfo"+EUidNummertje}  />
+      <i  className="bx bx-info-circle icons" id = {"detailInfo"+EUidNummertje}  testid = {"detailInfo"+EUidNummertje}/>
         </Link>
     </td>
   )
 }
 
-function HandeleerInfoButtonClick(EUidNummertje) {
-
-  let navigatie = useNavigate();
-  
-  const routeverandering = () => {
-    let padje = "/details"
-    var eunumstring = EUidNummertje.toString()
-    padje = "details?EUnumber=" + eunumstring
-    navigatie(padje)
-    //navigatie(Route)
-  }
-  routeverandering()
-  
-  
-}
 
 function getAllSelected(checkedState) {
   let allBoolean = true
