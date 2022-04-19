@@ -7,3 +7,4 @@ pylint
 uvicorn
 gunicorn
 django-rest-knox
+djangorestframework-guardian
