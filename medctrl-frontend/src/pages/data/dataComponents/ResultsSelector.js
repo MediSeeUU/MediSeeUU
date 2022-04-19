@@ -49,7 +49,7 @@ function ResultsSelector({
 
     if (startPage > 2) {
       pageCount.push(
-        <div key={'.'} className="lb-pageCount">
+        <div key={'.'} className="lb-pageCount med-no-select">
           {' '}
           ..{' '}
         </div>
@@ -63,7 +63,7 @@ function ResultsSelector({
 
       if (endpage < pages - 1) {
         pageCount.push(
-          <div key={'..'} className="lb-pageCount">
+          <div key={'..'} className="lb-pageCount med-no-select">
             {' '}
             ..{' '}
           </div>
@@ -88,8 +88,8 @@ function ResultsSelector({
         onClick={pageNumber.bind(null, nr)}
         className={
           nr === currPage
-            ? 'lb-pageCount lb-pageCount_selected'
-            : 'lb-pageCount'
+            ? 'lb-pageCount med-no-select lb-pageCount_selected'
+            : 'lb-pageCount med-no-select'
         }
         id={nr}
       >
