@@ -1,24 +1,33 @@
 import React from 'react'
+import {
+  useCheckedState,
+  useCheckedStateUpdate,
+  useColumnSelection,
+  useColumnSelectionUpdate,
+} from '../contexts/DataContext'
 import './table.css'
+import { Link } from 'react-router-dom'
 
 //Function based component, returns table
 function DisplayTable({
   data,
   selectTable,
+  searchTable,
   selectedTable,
   amountPerPage,
   currentPage,
-  checkedState,
-  setCheckedState,
 }) {
   //throw error if parameters not defined
   if (!data || !amountPerPage || !currentPage) {
     throw Error('parameters data, amountPerPage and currentPage are mandatory')
   }
-  //throw error when table is a select table but selected data is not handled
-  if (selectTable && (!setCheckedState || !checkedState)) {
-    throw Error('If table is a select table, dataToParent should be defined')
-  }
+
+  const checkedState = useCheckedState()
+  const setCheckedState = useCheckedStateUpdate()
+
+  //column selection methods
+  const columnSelection = useColumnSelection()
+  const setColumnSelection = useColumnSelectionUpdate()
 
   //Check if all checkboxes are checked, used to check/uncheck the checkbox in the header
   const allSelected = getAllSelected(checkedState)
@@ -47,12 +56,33 @@ function DisplayTable({
     throw Error('Pagination too high, data not defined')
   }
 
+  //handler that changes the column based on the target value
+  const handleColumnChange = (id, value) => {
+    let newColumnSelection = [...columnSelection]
+    newColumnSelection[id] = value
+    setColumnSelection(newColumnSelection)
+  }
+
+  const addColumn = () => {
+    let newColumnSelection = [...columnSelection]
+    newColumnSelection.push(Object.keys(data[0])[0])
+    setColumnSelection(newColumnSelection)
+  }
+
+  const removeColumn = () => {
+    if (columnSelection.length > 5) {
+      let newColumnSelection = [...columnSelection]
+      newColumnSelection.pop()
+      setColumnSelection(newColumnSelection)
+    }
+  }
+
   //constant with the table body data, for every data entry add a new row
   const htmlData = data
     .slice(lowerBoundDataPage, higherBoundDataPage)
     .map((entry, index1) => {
       return (
-        <tr key={index1 + lowerBoundDataPage}>
+        <tr key={index1 + lowerBoundDataPage} className="med_rows">
           {selectTable ? (
             <CheckboxColumn
               value={checkedState[entry.EUNumber]}
@@ -60,17 +90,15 @@ function DisplayTable({
               data={data}
             />
           ) : null}
-          {Object.values(entry).map((propt, index2) => {
+          {columnSelection.map((propt, index2) => {
             return (
               <td className="med_td" key={index2}>
-                {propt}
+                {entry[propt]}
               </td>
             )
           })}
-          {selectedTable ? <InfoboxColumn /> : null}
-          {selectTable ? (
-            <InfoboxColumn />
-          ) : (
+          <InfoboxColumn EUidNumber={entry.EUNoShort} />
+          {!selectTable && !searchTable && (
             <BinboxColumn onp={handleOnChange.bind(null, entry.EUNumber)} />
           )}
         </tr>
@@ -79,42 +107,70 @@ function DisplayTable({
 
   //return table, with a header with the data keywords
   return (
-    <table className="med_table">
-      <thead className="tableHeader">
-        <tr>
-          {
-            //if selectTable, add check all checkbox to the header
-            selectTable ? (
-              <CheckboxColumn
-                value={allSelected}
-                onChange={handleAllChange}
-                data={data}
-              />
-            ) : null
-          }
-          {
-            //add object keys to the table header
-            data.length > 0 &&
-              Object.keys(data[0]).map((key, index) => {
+    <>
+      <div className="addRmCollumn">
+        <button className="columnbutton" onClick={() => addColumn()}>
+          <i className="bx bxs-plus-square bx-plusMinus"></i>
+        </button>
+
+        <button
+          className="columnbutton minusbutton"
+          onClick={() => removeColumn()}
+        >
+          <i className="bx bxs-minus-square bx-plusMinus"></i>
+        </button>
+      </div>
+
+      <table className="med_table">
+        <thead className="tableHeader">
+          <tr className="med_rows">
+            {
+              //if selectTable, add check all checkbox to the header
+              selectTable ? (
+                <CheckboxColumn
+                  value={allSelected}
+                  onChange={handleAllChange}
+                  data={data}
+                />
+              ) : null
+            }
+            {
+              //add object keys to the table header
+              columnSelection.map((key1, index1) => {
                 return (
-                  <th className="med_th" key={index}>
-                    {key}
+                  <th key={index1} className="med_th">
+                    <select
+                      value={key1}
+                      className="med_th_select"
+                      onChange={(e) =>
+                        handleColumnChange(index1, e.target.value)
+                      }
+                    >
+                      {Object.keys(data[0]).map((key2, index2) => {
+                        return (
+                          <option key={index2} value={key2}>
+                            {key2}
+                          </option>
+                        )
+                      })}
+                    </select>
                   </th>
                 )
               })
-          }
-          {
-            //if selectedTable, add coloredbar to the header
-            <td className="med_td smallColumn"></td>
-          }
-          {
-            //if selectedTable, add coloredbar to the header
-            selectedTable ? <td className="med_td smallColumn"></td> : null
-          }
-        </tr>
-      </thead>
-      <tbody className="tableBody">{htmlData}</tbody>
-    </table>
+            }
+            {
+              //if selectedTable, add coloredbar to the header
+              <td className="med_td smallColumn"></td>
+            }
+            {
+              //if selectedTable, add coloredbar to the header
+              selectedTable ? <td className="med_td smallColumn"></td> : null
+            }
+          </tr>
+        </thead>
+        <tbody className="tableBody">{htmlData}</tbody>
+      </table>
+    </>
   )
 }
 
@@ -142,10 +198,16 @@ function BinboxColumn({ onp }) {
 }
 
 //logic for the information button
-function InfoboxColumn() {
+function InfoboxColumn({ EUidNumber }) {
   return (
     <td className="med_td smallColumn">
-      <i className="bx bx-info-circle icons" />
+      <Link to={`/details/${EUidNumber}`}>
+        <i
+          className="bx bx-info-circle icons"
+          id={'detailInfo' + EUidNumber}
+          testid={'detailInfo' + EUidNumber}
+        />
+      </Link>
     </td>
   )
 }
@@ -157,4 +219,5 @@ function getAllSelected(checkedState) {
   }
   return allBoolean
 }
+
 export default DisplayTable

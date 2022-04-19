@@ -34,13 +34,20 @@ INSTALLED_APPS = [
     "api.apps.ApiConfig",
     "rest_framework",
     "corsheaders",
+    "knox",
 ]
+
 
 # Use sessionauthentication instead of Basic
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
+        "knox.auth.TokenAuthentication",
     ]
+}
+
+REST_KNOX = {
+    "USER_SERIALIZER": "knox.serializers.UserSerializer",
 }
 
 MIDDLEWARE = [

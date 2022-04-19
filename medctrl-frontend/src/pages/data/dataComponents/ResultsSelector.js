@@ -49,27 +49,31 @@ function ResultsSelector({
 
     if (startPage > 2) {
       pageCount.push(
-        <div key={'.'} className="lb-pageCount">
+        <div key={'.'} className="lb-pageCount med-no-select">
           {' '}
           ..{' '}
         </div>
       )
     }
 
-    if (pages > 1) {
+    if (pages > 3) {
       for (var i = startPage; i <= endpage; i++) {
         addDiv(i)
       }
 
       if (endpage < pages - 1) {
         pageCount.push(
-          <div key={'..'} className="lb-pageCount">
+          <div key={'..'} className="lb-pageCount med-no-select">
             {' '}
             ..{' '}
           </div>
         )
       }
+    } else if (pages === 3) {
+      addDiv(2)
+    }
 
+    if (pages > 1) {
       addDiv(pages)
     }
 
@@ -84,8 +88,8 @@ function ResultsSelector({
         onClick={pageNumber.bind(null, nr)}
         className={
           nr === currPage
-            ? 'lb-pageCount lb-pageCount_selected'
-            : 'lb-pageCount'
+            ? 'lb-pageCount med-no-select lb-pageCount_selected'
+            : 'lb-pageCount med-no-select'
         }
         id={nr}
       >

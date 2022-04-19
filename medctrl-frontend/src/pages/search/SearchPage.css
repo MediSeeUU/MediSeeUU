@@ -18,3 +18,26 @@
   color: var(--white-text);
   border: none;
 }
+
+.search-Icon {
+  font-size: 25px;
+  margin-left: 10px;
+  float: left;
+}
+
+.searchDataTable .med_th {
+  min-width: 233px;
+  max-width: 233px;
+}
+
+.searchDataTable .med_td {
+  font-size: 13px;
+  min-width: 233px;
+  max-width: 233px;
+}
+
+.searchDataTable .smallColumn {
+  min-width: 50px;
+  max-width: 50px;
+  border-right: 1px solid var(--blue-alt);
+}

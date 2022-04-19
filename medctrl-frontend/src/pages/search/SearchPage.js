@@ -1,15 +1,15 @@
 import './SearchPage.css'
 import Table from '../../shared/table/table'
-import DummyData from '../../json/data.json'
+import { useData } from '../../shared/contexts/DataContext'
 
 function SearchPage() {
-  const allData = DummyData
+  const allData = useData()
 
   return (
     <div>
       <div className="TopTableHolder">
         <button className="searchbox__button">
-          <i className="bx bx-cog filter-Icon"></i>Filter & Sort
+          <i class="bx bx-search search-Icon"></i>Search
         </button>
         <input
           type="text"
@@ -19,14 +19,14 @@ function SearchPage() {
         />
       </div>
 
-      <div className="TopTableHolder">
+      <div className="TopTableHolder searchDataTable">
         <h1>Results</h1>
 
         <Table
           data={allData}
           currentPage={1}
           amountPerPage={50}
-          selectTable={false}
+          searchTable={true}
         />
       </div>
     </div>

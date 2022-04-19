@@ -33,6 +33,7 @@
   padding: 6px 14px;
   transition: all 0.3s;
   z-index: 10000;
+  min-height: calc(700px - 75px);
 }
 
 .side-nav.open-nav {
@@ -135,6 +136,7 @@
 
 .side-nav.closed-nav .nav-item:hover .tooltip {
   opacity: 1;
+  font-family: 'Poppins';
 }
 
 /*  position the lowest navigation item at the bottom of the navigation bar */

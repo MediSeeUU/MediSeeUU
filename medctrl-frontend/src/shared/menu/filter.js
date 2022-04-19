@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-import './filter.css'
+import './menuitems.css'
 
 // Returns all filter input boxes in HTML
 function filtersToHTML(props) {
@@ -13,11 +13,13 @@ function filtersToHTML(props) {
           className="filter-input"
           defaultValue={props.item.input[i]}
           placeholder="Enter value"
-          onBlur={(e) => props.fil(props.id, e.target.id, e.target.value)}
+          onBlur={(e) => props.fil(props.id, i, e.target.value)}
+          data-testid="filter-input"
         />
         <i
           className="bx bxs-minus-circle remove-icon"
           onClick={() => props.dbox(props.id, i)}
+          data-testid="remove-icon"
         ></i>
       </div>
     )
@@ -28,11 +30,12 @@ function filtersToHTML(props) {
 // Returns the filter item in HTML
 function displayItem(props) {
   return (
-    <div id={props.id} className="menu-item">
+    <div id={props.id} className="filter-item">
       <select
-        id="filter-select"
+        className="select"
         defaultValue={props.item.selected}
         onChange={(e) => props.sel(props.id, e.target.value)}
+        data-testid="filter-select"
       >
         <option key="" value="" hidden>
           Select a variable...
@@ -42,9 +45,14 @@ function displayItem(props) {
       <i
         className="bx bxs-x-circle delete"
         onClick={() => props.del(props.id)}
+        data-testid="delete-icon"
       ></i>
       {filtersToHTML(props)}
-      <label id="add-label" onClick={() => props.box(props.id)}>
+      <label
+        className="add-label"
+        onClick={() => props.box(props.id)}
+        data-testid="add-label"
+      >
         + Add
       </label>
     </div>

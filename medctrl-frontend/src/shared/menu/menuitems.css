@@ -1,0 +1,57 @@
+.filter-item,
+.sort-item {
+  background-color: var(--white-text);
+  border: 2px solid var(--BorderClrTableHolder);
+  border-radius: 10px;
+  position: relative;
+  vertical-align: top;
+  box-sizing: content-box;
+  padding: 10px;
+}
+
+.filter-item {
+  width: 19%;
+  margin: 19px;
+  display: inline-block;
+}
+
+.sort-item {
+  width: 80%;
+  margin: auto;
+  margin-top: 25px;
+}
+
+.select {
+  display: inline-block;
+  width: 85%;
+  margin-top: 5px;
+}
+
+.filter-input {
+  display: inline-block;
+  width: 85%;
+  margin-top: 10px;
+}
+
+.add-label {
+  font-size: 10px;
+  color: blue;
+  cursor: pointer;
+}
+
+.remove-icon {
+  font-size: 75%;
+  color: red;
+  cursor: pointer;
+  padding-left: 5px;
+}
+
+.delete {
+  position: absolute;
+  color: rgb(17, 75, 95);
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-block;
+  top: 5px;
+  right: 5px;
+}

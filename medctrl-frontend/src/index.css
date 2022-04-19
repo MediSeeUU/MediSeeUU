@@ -30,6 +30,19 @@ h6 {
   font-weight: bold;
 }
 
+select,
+input[type='checkbox'] {
+  cursor: pointer;
+}
+
+.med-no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
 /* variables*/
 
 :root {
@@ -42,9 +55,11 @@ h6 {
 
   --white-tooltip: #fff;
   --white-text: #fff;
+  --black-text: #000;
 
   --grey-text: #d3d3d3;
   --blue-grey-background: #eaf0f8;
+  --white-info-background: #fff;
 
   --BorderClrTableHolder: darkgray;
   --seperation-line: lightgray;
