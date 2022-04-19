@@ -19,7 +19,7 @@ function SearchPage() {
         />
       </div>
 
-      <div className="TopTableHolder">
+      <div className="TopTableHolder searchDataTable">
         <h1>Results</h1>
 
         <Table
