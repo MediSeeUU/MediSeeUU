@@ -97,7 +97,7 @@ function DisplayTable({
               </td>
             )
           })}
-          <InfoboxColumn EUidNummertje={entry.EUNoShort} />
+          <InfoboxColumn EUidNumber={entry.EUNoShort} />
           {!selectTable && !searchTable && (
             <BinboxColumn onp={handleOnChange.bind(null, entry.EUNumber)} />
           )}
@@ -198,14 +198,14 @@ function BinboxColumn({ onp }) {
 }
 
 //logic for the information button
-function InfoboxColumn({ EUidNummertje }) {
+function InfoboxColumn({ EUidNumber }) {
   return (
     <td className="med_td smallColumn">
-      <Link to={`/details/${EUidNummertje}`}>
+      <Link to={`/details/${EUidNumber}`}>
         <i
           className="bx bx-info-circle icons"
-          id={'detailInfo' + EUidNummertje}
-          testid={'detailInfo' + EUidNummertje}
+          id={'detailInfo' + EUidNumber}
+          testid={'detailInfo' + EUidNumber}
         />
       </Link>
     </td>
