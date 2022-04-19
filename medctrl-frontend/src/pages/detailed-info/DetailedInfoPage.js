@@ -8,23 +8,22 @@ import CustomLink from './InfoComponents/CustomLink'
 
 //
 import { DataContext, DataProvider } from '../../shared/contexts/DataContext'
-import {useParams}  from "react-router-dom";
+import { useParams } from 'react-router-dom'
 
-// the function takes the unique medicine ID number (EUshortNumber) and 
-// passes this ID to the detailedPage component, along with the access 
-// to the overarching datacontext, where the DetailedInfoPage will request 
+// the function takes the unique medicine ID number (EUshortNumber) and
+// passes this ID to the detailedPage component, along with the access
+// to the overarching datacontext, where the DetailedInfoPage will request
 // the medicine data corresponding to the medID number.
 function DetailedInfoPage() {
+  const { medID } = useParams()
 
-  const {medID} = useParams()
-
- return <DataProvider>
-   <DataContext.Consumer>
-     {(context) => (
-       <InfoPage data ={context} medIDnumber = {medID}></InfoPage>
-     )}
-   </DataContext.Consumer>
- </DataProvider>
+  return (
+    <DataProvider>
+      <DataContext.Consumer>
+        {(context) => <InfoPage data={context} medIDnumber={medID}></InfoPage>}
+      </DataContext.Consumer>
+    </DataProvider>
+  )
 }
 
 export default DetailedInfoPage
@@ -34,31 +33,33 @@ export default DetailedInfoPage
 // is passed via the me  this is the data which is displayed on
 // the details page.
 function InfoPage(props) {
-  
   var medIDnr = props.medIDnumber
   var alldata = props.data
   var goededataobjectje
-  alldata.forEach(element => {
-    if (element["EUNoShort"].toString() === medIDnr)
-    {goededataobjectje = element}
-  });
+  alldata.forEach((element) => {
+    if (element['EUNoShort'].toString() === medIDnr) {
+      goededataobjectje = element
+    }
+  })
 
-  //if the medIDnumber does not correspond to any medicine in the datacontext, 
+  //if the medIDnumber does not correspond to any medicine in the datacontext,
   //a static page is displayed
-  if(goededataobjectje === undefined)
-  {
-      return (<div>
-        <h1 className="detailedinfopage-unknown-medID" testid = "detailedInfoPageTitle">
+  if (goededataobjectje === undefined) {
+    return (
+      <div>
+        <h1
+          className="detailedinfopage-unknown-medID"
+          testid="detailedInfoPageTitle"
+        >
           Unknown Medicine ID number
         </h1>
-  </div>)
-
+      </div>
+    )
   }
 
   //place the data corresponding to the specified medIDnumber in the medicine data capsule,
   //procedures currently are not supported, will be implemented after correct database connection
-  let medicineData = {info:goededataobjectje, procedures:[]}
-  
+  let medicineData = { info: goededataobjectje, procedures: [] }
 
   // for each procedure present in the medicine data object, an procedure component
   // is created and added to an array for temporary storage

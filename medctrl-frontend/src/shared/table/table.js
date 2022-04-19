@@ -6,7 +6,7 @@ import {
   useColumnSelectionUpdate,
 } from '../contexts/DataContext'
 import './table.css'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 //Function based component, returns table
 function DisplayTable({
@@ -198,17 +198,19 @@ function BinboxColumn({ onp }) {
 }
 
 //logic for the information button
-function InfoboxColumn({EUidNummertje}) {
-
+function InfoboxColumn({ EUidNummertje }) {
   return (
     <td className="med_td smallColumn">
       <Link to={`/details/${EUidNummertje}`}>
-      <i  className="bx bx-info-circle icons" id = {"detailInfo"+EUidNummertje}  testid = {"detailInfo"+EUidNummertje}/>
-        </Link>
+        <i
+          className="bx bx-info-circle icons"
+          id={'detailInfo' + EUidNummertje}
+          testid={'detailInfo' + EUidNummertje}
+        />
+      </Link>
     </td>
   )
 }
-
 
 function getAllSelected(checkedState) {
   let allBoolean = true
