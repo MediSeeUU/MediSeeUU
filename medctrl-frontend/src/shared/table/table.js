@@ -6,6 +6,7 @@ import {
   useColumnSelectionUpdate,
 } from '../contexts/DataContext'
 import './table.css'
+import { Link } from 'react-router-dom'
 
 //Function based component, returns table
 function DisplayTable({
@@ -96,7 +97,7 @@ function DisplayTable({
               </td>
             )
           })}
-          <InfoboxColumn />
+          <InfoboxColumn EUidNumber={entry.EUNoShort} />
           {!selectTable && !searchTable && (
             <BinboxColumn onp={handleOnChange.bind(null, entry.EUNumber)} />
           )}
@@ -197,10 +198,16 @@ function BinboxColumn({ onp }) {
 }
 
 //logic for the information button
-function InfoboxColumn() {
+function InfoboxColumn({ EUidNumber }) {
   return (
     <td className="med_td smallColumn">
-      <i className="bx bx-info-circle icons" />
+      <Link to={`/details/${EUidNumber}`}>
+        <i
+          className="bx bx-info-circle icons"
+          id={'detailInfo' + EUidNumber}
+          testid={'detailInfo' + EUidNumber}
+        />
+      </Link>
     </td>
   )
 }
