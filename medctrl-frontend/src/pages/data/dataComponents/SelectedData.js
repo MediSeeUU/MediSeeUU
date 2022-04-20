@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelectedData } from '../../../shared/contexts/DataContext'
 import TableView from './TableView'
+import ExportMenu from '../ExportMenu/ExportMenu'
 
 function SelectedData() {
   //amount of databse hits shown per page
@@ -15,10 +16,7 @@ function SelectedData() {
   return (
     <div className="TopTableHolder">
       <div>
-        <label>Selected data points</label>
-        <button className="tableButtons">
-          <i className="bx bxs-file-export"></i>Export
-        </button>
+        <ExportMenu />
         <hr></hr>
       </div>
       {TableView(

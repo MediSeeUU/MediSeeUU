@@ -1,7 +1,12 @@
 import React from 'react'
-import { useState } from 'react'
-import { useCheckedState, useCheckedStateUpdate } from '../contexts/DataContext'
+import {
+  useCheckedState,
+  useCheckedStateUpdate,
+  useColumnSelection,
+  useColumnSelectionUpdate,
+} from '../contexts/DataContext'
 import './table.css'
+import { Link } from 'react-router-dom'
 
 //Function based component, returns table
 function DisplayTable({
@@ -18,6 +23,10 @@ function DisplayTable({
 
   const checkedState = useCheckedState()
   const setCheckedState = useCheckedStateUpdate()
+
+  //column selection methods
+  const columnSelection = useColumnSelection()
+  const setColumnSelection = useColumnSelectionUpdate()
 
   //Check if all checkboxes are checked, used to check/uncheck the checkbox in the header
   const allSelected = getAllSelected(checkedState)
@@ -46,11 +55,6 @@ function DisplayTable({
     throw Error('Pagination too high, data not defined')
   }
 
-  //the column selection state
-  const [columnSelection, setColumnSelection] = useState(
-    data.length > 0 && Object.keys(data[0])
-  )
-
   //handler that changes the column based on the target value
   const handleColumnChange = (id, value) => {
     let newColumnSelection = [...columnSelection]
@@ -65,7 +69,7 @@ function DisplayTable({
   }
 
   const removeColumn = () => {
-    if (columnSelection.length > 4) {
+    if (columnSelection.length > 5) {
       let newColumnSelection = [...columnSelection]
       newColumnSelection.pop()
       setColumnSelection(newColumnSelection)
@@ -77,7 +81,7 @@ function DisplayTable({
     .slice(lowerBoundDataPage, higherBoundDataPage)
     .map((entry, index1) => {
       return (
-        <tr key={index1 + lowerBoundDataPage}>
+        <tr key={index1 + lowerBoundDataPage} className="med_rows">
           {selectTable ? (
             <CheckboxColumn
               value={checkedState[entry.EUNumber]}
@@ -92,7 +96,7 @@ function DisplayTable({
               </td>
             )
           })}
-          <InfoboxColumn />
+          <InfoboxColumn EUidNumber={entry.EUNoShort} />
           {!selectTable && !searchTable && (
             <BinboxColumn onp={handleOnChange.bind(null, entry.EUNumber)} />
           )}
@@ -118,7 +122,7 @@ function DisplayTable({
 
       <table className="med_table">
         <thead className="tableHeader">
-          <tr>
+          <tr className="med_rows">
             {
               //if selectTable, add check all checkbox to the header
               selectTable ? (
@@ -133,10 +137,10 @@ function DisplayTable({
               //add object keys to the table header
               columnSelection.map((key1, index1) => {
                 return (
-                  <th key={index1}>
+                  <th key={index1} className="med_th">
                     <select
                       value={key1}
-                      className="med_th"
+                      className="med_th_select"
                       onChange={(e) =>
                         handleColumnChange(index1, e.target.value)
                       }
@@ -193,10 +197,16 @@ function BinboxColumn({ onp }) {
 }
 
 //logic for the information button
-function InfoboxColumn() {
+function InfoboxColumn({ EUidNumber }) {
   return (
     <td className="med_td smallColumn">
-      <i className="bx bx-info-circle icons" />
+      <Link to={`/details/${EUidNumber}`}>
+        <i
+          className="bx bx-info-circle icons"
+          id={'detailInfo' + EUidNumber}
+          testid={'detailInfo' + EUidNumber}
+        />
+      </Link>
     </td>
   )
 }
