@@ -163,7 +163,7 @@ function DisplayTable({
             }
             {
               //if selectedTable, add coloredbar to the header
-              !selectTable ? <td className="med_td smallColumn"></td> : null
+              !selectTable && !searchTable ? <td className="med_td smallColumn"></td> : null
             }
           </tr>
         </thead>
