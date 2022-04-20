@@ -108,16 +108,14 @@ function DisplayTable({
   return (
     <>
       <div className="addRmCollumn">
-        <button className="columnbutton" onClick={() => addColumn()}>
-          <i className="bx bxs-plus-square bx-plusMinus"></i>
-        </button>
-
-        <button
-          className="columnbutton minusbutton"
+        <i
+          className="bx bxs-plus-square bx-plusMinus"
+          onClick={() => addColumn()}
+        ></i>
+        <i
+          className="bx bxs-minus-square bx-plusMinus"
           onClick={() => removeColumn()}
-        >
-          <i className="bx bxs-minus-square bx-plusMinus"></i>
-        </button>
+        ></i>
       </div>
 
       <table className="med_table">
