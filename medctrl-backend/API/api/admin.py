@@ -12,10 +12,12 @@ class MedicineResource(resources.ModelResource):
     class Meta:
         model = Medicine
 
+
 class MedicineAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     """
     Admin View for Medicine
     """
+
     resource_class = MedicineResource
     list = (
         "eu_nr",
@@ -28,5 +30,6 @@ class MedicineAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         "atmp",
         "ema_url",
     )
+
 
 admin.site.register(Medicine, MedicineAdmin)
