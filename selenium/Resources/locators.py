@@ -18,3 +18,7 @@ class DataPageLocators():
   CELL = (By.TAG_NAME, 'td')
   SELECT = (By.CLASS_NAME, 'tableCheckboxColumn')
   RESULTS_PER_PAGE = (By.ID, 'topSelector')
+  INFO = (By.TAG_NAME, 'i')
+  SELECTED_PAGE = (By.CLASS_NAME, 'lb-pageCount_selected')
+  NEXT_PAGE = (By.CLASS_NAME, 'bxs-chevron-right')
+  PREV_PAGE = (By.CLASS_NAME, 'bxs-chevron-left')
