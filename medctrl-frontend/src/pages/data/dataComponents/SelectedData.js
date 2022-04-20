@@ -21,7 +21,15 @@ function SelectedData() {
         </button>
         <hr></hr>
       </div>
-      {TableView(selectedData, resultsPerPage, loadedPage, setPage, setResultsPerPage, false, "No data has been selected, select data points in the table above.")}
+      {TableView(
+        selectedData,
+        resultsPerPage,
+        loadedPage,
+        setPage,
+        setResultsPerPage,
+        false,
+        'No data has been selected, select data points in the table above.'
+      )}
     </div>
   )
 }

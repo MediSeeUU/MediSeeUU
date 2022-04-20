@@ -19,7 +19,15 @@ function DataSelect() {
         cachedData={allData}
         updateTable={(updatedData) => setData(updatedData)}
       />
-      {TableView(data, resultsPerPage, loadedPage, setPage, setResultsPerPage, true, "No data to display, please clear your filters.")}
+      {TableView(
+        data,
+        resultsPerPage,
+        loadedPage,
+        setPage,
+        setResultsPerPage,
+        true,
+        'No data to display, please clear your filters.'
+      )}
     </div>
   )
 }
