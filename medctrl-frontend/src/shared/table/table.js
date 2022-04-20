@@ -8,7 +8,6 @@ function DisplayTable({
   data,
   selectTable,
   searchTable,
-  selectedTable,
   amountPerPage,
   currentPage,
 }) {
@@ -160,7 +159,7 @@ function DisplayTable({
             }
             {
               //if selectedTable, add coloredbar to the header
-              selectedTable ? <td className="med_td smallColumn"></td> : null
+              !selectTable ? <td className="med_td smallColumn"></td> : null
             }
           </tr>
         </thead>
