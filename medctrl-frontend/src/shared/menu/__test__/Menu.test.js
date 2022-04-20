@@ -82,6 +82,7 @@ test('single filter applied correctly', () => {
   fireEvent.focusOut(textBox)
   fireEvent.click(screen.getByText(/Apply/i))
 })
+
 // test for checking if clicking the "Add sorting option" label adds an sorting-item (A)
 test('add sorting option adds sorting item', () => {
   render(<Menu cachedData={DummyData} />)
@@ -439,4 +440,56 @@ test('saved filters in state', () => {
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   expect(select.value).toBe('ApplicationNo')
   expect(text.value).toBe('10')
+})
+
+test('max 4 filters', () => {
+  render(<Menu cachedData={DummyData} />)
+  fireEvent.click(screen.getByText(/Filter & Sort/i))
+  const addSort = screen.getByText(/Add Sorting option +/i)
+  fireEvent.click(addSort)
+  fireEvent.click(addSort)
+  fireEvent.click(addSort)
+  expect(addSort).not.toBeInTheDocument()
+})
+
+test('add filterbox', () => {
+  render(<Menu cachedData={DummyData} />)
+  fireEvent.click(screen.getByText(/Filter & Sort/i))
+  expect(screen.getAllByRole('textbox')).toHaveLength(1)
+  fireEvent.click(screen.getByText('+ Add'))
+  expect(screen.getAllByRole('textbox')).toHaveLength(2)
+})
+
+test('remove filterbox', () => {
+  render(<Menu cachedData={DummyData} />)
+  fireEvent.click(screen.getByText(/Filter & Sort/i))
+  fireEvent.click(screen.getByText('+ Add'))
+  expect(screen.getAllByRole('textbox')).toHaveLength(2)
+  fireEvent.click(screen.getAllByTestId('remove-icon')[0])
+  expect(screen.getAllByRole('textbox')).toHaveLength(1)
+})
+
+test('always have one filterbox', () => {
+  render(<Menu cachedData={DummyData} />)
+  fireEvent.click(screen.getByText(/Filter & Sort/i))
+  expect(screen.getAllByRole('textbox')).toHaveLength(1)
+  fireEvent.click(screen.getByTestId('remove-icon'))
+  expect(screen.getAllByRole('textbox')).toHaveLength(1)
+})
+
+test('remove filter', () => {
+  render(<Menu cachedData={DummyData} />)
+  fireEvent.click(screen.getByText(/Filter & Sort/i))
+  fireEvent.click(screen.getByText(/Add Filter/i))
+  expect(screen.queryAllByTestId('filter-select')).toHaveLength(2)
+  fireEvent.click(screen.getAllByTestId('delete-icon')[0])
+  expect(screen.queryAllByTestId('filter-select')).toHaveLength(1)
+})
+
+test('always have one filter', () => {
+  render(<Menu cachedData={DummyData} />)
+  fireEvent.click(screen.getByText(/Filter & Sort/i))
+  expect(screen.queryAllByTestId('filter-select')).toHaveLength(1)
+  fireEvent.click(screen.getByTestId('delete-icon'))
+  expect(screen.queryAllByTestId('filter-select')).toHaveLength(1)
 })
