@@ -111,10 +111,12 @@ function DisplayTable({
         <i
           className="bx bxs-plus-square bx-plusMinus"
           onClick={() => addColumn()}
+          data-testid="add-column"
         ></i>
         <i
           className="bx bxs-minus-square bx-plusMinus"
           onClick={() => removeColumn()}
+          data-testid="remove-column"
         ></i>
       </div>
 
