@@ -22,3 +22,8 @@ class DataPageLocators():
   SELECTED_PAGE = (By.CLASS_NAME, 'lb-pageCount_selected')
   NEXT_PAGE = (By.CLASS_NAME, 'bxs-chevron-right')
   PREV_PAGE = (By.CLASS_NAME, 'bxs-chevron-left')
+  COLUMN_SELECT = (By.TAG_NAME, 'select')
+
+class VisualizePageLocators():
+  OPTIONS = (By.CLASS_NAME, 'country-options')
+  LABEL = (By.TAG_NAME, 'label')

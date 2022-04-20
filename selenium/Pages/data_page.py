@@ -14,18 +14,20 @@ class DataPage(BasePage):
     return self.driver.find_elements(*DataPageLocators.SELECTED_PAGE)[table].text
   
   def next_table_page(self, table):
-    self.driver.find_elements(*DataPageLocators.NEXT_PAGE)[table].click()
+    next_page = self.driver.find_elements(*DataPageLocators.NEXT_PAGE)[table]
+    self.driver.execute_script("arguments[0].click();", next_page)
   
   def prev_table_page(self, table):
-    self.driver.find_elements(*DataPageLocators.PREV_PAGE)[table].click()
+    prev_page = self.driver.find_elements(*DataPageLocators.PREV_PAGE)[table]
+    self.driver.execute_script("arguments[0].click();", prev_page)
   
   def select_all(self):
-    self.selects = self.driver.find_elements(*DataPageLocators.SELECT)
-    self.selects[0].click()
+    selects = self.driver.find_elements(*DataPageLocators.SELECT)
+    selects[0].click()
   
   def select(self, id):
-    self.selects = self.driver.find_elements(*DataPageLocators.SELECT)
-    self.selects[id].click()
+    selects = self.driver.find_elements(*DataPageLocators.SELECT)
+    self.driver.execute_script("arguments[0].click();", selects[id])
   
   def amount_of_rows(self, id):
     tables = self.driver.find_elements(*DataPageLocators.TABLE)
@@ -43,7 +45,7 @@ class DataPage(BasePage):
     key = row.find_elements(*DataPageLocators.CELL)[column]
     return key.text
   
-  def eu_number(self, table, id):
+  def first_value(self, table, id):
     if (table == 0):
       return self.cell_value(table, id, 1)
     return self.cell_value(table, id, 0)
@@ -54,3 +56,10 @@ class DataPage(BasePage):
     row = tbody.find_elements(*DataPageLocators.ROW)[id - 1]
     info = row.find_element(*DataPageLocators.INFO)
     info.click()
+  
+  def change_column(self, id, value):
+    table = self.driver.find_elements(*DataPageLocators.TABLE)[0]
+    thead = table.find_element(*DataPageLocators.HEAD)
+    columns = thead.find_elements(*DataPageLocators.COLUMN)
+    select = columns[id - 1].find_element(*DataPageLocators.COLUMN_SELECT)
+    select.send_keys(value)
