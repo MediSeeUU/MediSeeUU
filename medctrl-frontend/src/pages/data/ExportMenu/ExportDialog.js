@@ -61,6 +61,7 @@ class ExportDialog extends React.Component {
       this.exportData()
     } catch {
       this.setState({ dialogState: 'error' })
+      return;
     }
 
     this.setState({ dialogState: 'success' })

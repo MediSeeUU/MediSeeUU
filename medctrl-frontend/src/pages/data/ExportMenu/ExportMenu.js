@@ -10,6 +10,7 @@ import ExportDialog from './ExportDialog'
 function ExportMenu() {
   const [showModal, setModalState] = useState(false)
   const selectedData = useSelectedData()
+  const closeModal = () => setModalState(false)
 
   return (
     <div>
@@ -20,7 +21,7 @@ function ExportMenu() {
       <ReactModal
         className="menu-modal"
         isOpen={showModal}
-        onRequestClose={() => setModalState(false)}
+        onRequestClose={closeModal}
         ariaHideApp={false}
         style={{
           modal: {},
@@ -40,7 +41,7 @@ function ExportMenu() {
       >
         <ExportDialog
           data={selectedData}
-          onClose={() => setModalState(false)}
+          onClose={closeModal}
         />
       </ReactModal>
     </div>
