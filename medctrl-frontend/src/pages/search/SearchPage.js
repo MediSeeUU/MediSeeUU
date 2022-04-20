@@ -1,13 +1,14 @@
 import './SearchPage.css'
 import Table from '../../shared/table/table'
 import { useData } from '../../shared/contexts/DataContext'
+import ContentContainer from '../../shared/container/ContentContainer'
 
 function SearchPage() {
   const allData = useData()
 
   return (
     <div>
-      <div className="TopTableHolder">
+      <ContentContainer>
         <button className="searchbox__button">
           <i class="bx bx-search search-Icon"></i>Search
         </button>
@@ -17,9 +18,9 @@ function SearchPage() {
           className="content__container__textinput"
           onChange={(e) => test(e.target.value)}
         />
-      </div>
+      </ContentContainer>
 
-      <div className="TopTableHolder searchDataTable">
+      <ContentContainer className="searchDataTable">
         <h1>Results</h1>
 
         <Table
@@ -28,7 +29,7 @@ function SearchPage() {
           amountPerPage={50}
           searchTable={true}
         />
-      </div>
+      </ContentContainer>
     </div>
   )
 }

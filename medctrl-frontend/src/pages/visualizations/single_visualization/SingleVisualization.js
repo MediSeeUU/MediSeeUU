@@ -17,6 +17,7 @@ import GeneratePieSeries from './data_interfaces/PieInterface'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
 import GetUniqueCategories from './utils/GetUniqueCategories'
+import ContentContainer from '../../../shared/container/ContentContainer'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
@@ -225,7 +226,7 @@ class SingleVisualization extends Component {
 	*/
   render() {
     return (
-      <div className="table-holder">
+      <ContentContainer className='visual-container'>
         <Container>
           <Row>
             <Col className="visualization-panel">
@@ -269,7 +270,7 @@ class SingleVisualization extends Component {
             </Col>
           </Row>
         </Container>
-      </div>
+      </ContentContainer>
     )
   }
 }

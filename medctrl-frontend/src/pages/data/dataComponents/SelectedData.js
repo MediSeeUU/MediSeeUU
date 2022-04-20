@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelectedData } from '../../../shared/contexts/DataContext'
 import TableView from './TableView'
 import ExportMenu from '../ExportMenu/ExportMenu'
+import ContentContainer from '../../../shared/container/ContentContainer'
 
 function SelectedData() {
   //amount of databse hits shown per page
@@ -14,7 +15,7 @@ function SelectedData() {
 
   //main body of the page
   return (
-    <div className="TopTableHolder">
+    <ContentContainer>
       <div>
         <ExportMenu />
         <hr></hr>
@@ -28,7 +29,7 @@ function SelectedData() {
         false,
         'No data has been selected, select data points in the table above.'
       )}
-    </div>
+    </ContentContainer>
   )
 }
 

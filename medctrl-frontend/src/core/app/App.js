@@ -8,7 +8,7 @@ import { DataProvider } from '../../shared/contexts/DataContext'
 
 const userLoggedIn = true
 const defUser = {
-  isAdmin: false,
+  isAdmin: true,
   userName: 'Lourens Bloem',
   accessLevel: 'X',
 }

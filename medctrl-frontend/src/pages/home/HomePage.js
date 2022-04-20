@@ -1,5 +1,6 @@
 import './HomePage.css'
 import '../../shared/shared.css'
+import ContentContainer from '../../shared/container/ContentContainer'
 
 import uuLogo from '../../images/uu-logo.svg'
 import mebLogo from '../../images/meb-logo.svg'
@@ -8,7 +9,7 @@ function HomePage() {
   return (
     // Homepage components, contains article containers (styling in HomePage.css)
     <div className="med_home_content">
-      <article className="TopTableHolder">
+      <ContentContainer>
         <h1>About This Dashboard</h1>
         <hr />
         <p>
@@ -27,9 +28,9 @@ function HomePage() {
           visualization and make quantitative analyses of these data easier and
           more consistent.
         </p>
-      </article>
+      </ContentContainer>
 
-      <article className="med_content__container TopTableHolder">
+      <ContentContainer className="med_content__container">
         <h1>About Us</h1>
         <hr />
 
@@ -74,9 +75,9 @@ function HomePage() {
             Verweij).
           </p>
         </div>
-      </article>
+      </ContentContainer>
 
-      <article className="med_content__container TopTableHolder">
+      <ContentContainer className="med_content__container">
         <h1>Non Affiliated Regulatory Institutions</h1>
         <hr />
         <h2>European Medicines Agency</h2>
@@ -127,7 +128,7 @@ function HomePage() {
           </a>
           .
         </p>
-      </article>
+      </ContentContainer>
     </div>
   )
 }

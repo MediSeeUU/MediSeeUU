@@ -1,8 +1,15 @@
+import ContentContainer from "../../shared/container/ContentContainer"
+
 function MessagesPage() {
   return (
-    <div>
-      <h1>Messages!</h1>
-    </div>
+    <ContentContainer>
+      <h1>Message Information</h1>
+      <hr />
+      <p>
+        At this time, no message information is 
+        available for display on this page. 
+      </p>
+    </ContentContainer>
   )
 }
 

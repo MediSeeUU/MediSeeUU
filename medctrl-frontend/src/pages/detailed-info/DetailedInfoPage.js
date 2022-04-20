@@ -1,12 +1,11 @@
 import './DetailedInfo.css'
 
-import Container from './InfoComponents/Container'
 import DetailGroup from './InfoComponents/DetailGroup'
 import Detail from './InfoComponents/Detail'
 import Procedure from './InfoComponents/Procedure'
 import CustomLink from './InfoComponents/CustomLink'
+import ContentContainer from '../../shared/container/ContentContainer'
 
-//
 import { DataContext, DataProvider } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
 
@@ -65,6 +64,20 @@ function InfoPage(props) {
     allProcedures.push(<Procedure proc={medicineData.procedures[i]} />)
   }
 
+  // put all of the procedures from the allProcedures array into a content containers, 
+  // together with a meaningful title. if there are no procedures to display, the whole
+  // container should not be displayed
+  let procedureContrainer = 
+    <ContentContainer>
+      <h1 className="title">Procedure Details</h1>
+      <hr className="separator" />
+      {allProcedures}
+    </ContentContainer>
+
+  if (allProcedures.length === 0) {
+    procedureContrainer = null
+  }
+
   // returns the component which discribes the entire detailed information page
   // the page consists of three containers, each holds a specific category of
   // information pertaining to the current medicine. this first holds general
@@ -72,7 +85,7 @@ function InfoPage(props) {
   // links to external website which could be usefull
   return (
     <div>
-      <Container>
+      <ContentContainer>
         <h1 className="title">
           {medicineData.info.BrandName} Medicine Details
         </h1>
@@ -177,15 +190,11 @@ function InfoPage(props) {
             />
           </DetailGroup>
         </div>
-      </Container>
+      </ContentContainer>
 
-      <Container>
-        <h1 className="title">Procedure Details</h1>
-        <hr className="separator" />
-        {allProcedures}
-      </Container>
+      {procedureContrainer}
 
-      <Container>
+      <ContentContainer>
         <h1 className="title">Additional Resources</h1>
         <hr className="separator" />
 
@@ -209,7 +218,7 @@ function InfoPage(props) {
           name="MAH Website"
           dest="https://www.ema.europa.eu/en/glossary/marketing-authorisation-holder"
         />
-      </Container>
+      </ContentContainer>
     </div>
   )
 }

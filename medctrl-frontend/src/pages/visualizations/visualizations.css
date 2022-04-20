@@ -1,12 +1,9 @@
 /* Page elements */
-.table-holder {
-  background-color: var(--white-text);
-  border: 2px solid var(--BorderClrTableHolder);
-  border-radius: 10px;
-  box-shadow: 0px 10px 15px 4px #969696;
-  height: 100%;
-  width: 97%;
+.content-container.visual-container {
   margin: 2% 2% 0% 2%;
+  width: 97%;
+  padding: 0 12px;
+  font-size: 16px;
 }
 
 /* Panel elements */

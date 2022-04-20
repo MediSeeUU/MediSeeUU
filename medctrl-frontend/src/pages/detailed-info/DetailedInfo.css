@@ -8,18 +8,18 @@
 
 /* custom settings for content wrapper */
 
-.TopTableHolder {
+.content-container {
   padding: 10px;
   font-size: 15px;
 }
 
-.TopTableHolder .title {
+.content-container .title {
   margin: 0;
   padding: 0;
   font-size: 25px;
 }
 
-.TopTableHolder .separator {
+.content-container .separator {
   margin: 5px 0;
 }
 
