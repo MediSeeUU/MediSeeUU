@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "knox",
+    "import_export",
 ]
 
 

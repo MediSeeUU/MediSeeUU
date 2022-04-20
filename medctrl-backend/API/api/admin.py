@@ -2,15 +2,21 @@
 
 # Register your models here.
 
+from import_export.admin import ImportExportModelAdmin
+from import_export import resources
 from django.contrib import admin
 from .models.medicine_models.medicine import Medicine
 
 
-class MedicineAdmin(admin.ModelAdmin):
+class MedicineResource(resources.ModelResource):
+    class Meta:
+        model = Medicine
+
+class MedicineAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     """
     Admin View for Medicine
     """
-
+    resource_class = MedicineResource
     list = (
         "eu_nr",
         "ema_nr",
@@ -23,4 +29,4 @@ class MedicineAdmin(admin.ModelAdmin):
         "ema_url",
     )
 
-    admin.site.register(Medicine)
+admin.site.register(Medicine, MedicineAdmin)
