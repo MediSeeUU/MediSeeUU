@@ -11,6 +11,7 @@ from .models.medicine_models.medicine import Medicine
 class MedicineResource(resources.ModelResource):
     class Meta:
         model = Medicine
+        import_id_fields = ("eunumber",)
 
 
 class MedicineAdmin(ImportExportModelAdmin, admin.ModelAdmin):
