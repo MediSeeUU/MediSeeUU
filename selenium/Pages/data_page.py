@@ -43,9 +43,14 @@ class DataPage(BasePage):
     key = row.find_elements(*DataPageLocators.CELL)[column]
     return key.text
   
+  def eu_number(self, table, id):
+    if (table == 0):
+      return self.cell_value(table, id, 1)
+    return self.cell_value(table, id, 0)
+  
   def open_detailed_info(self, table, id):
     tables = self.driver.find_elements(*DataPageLocators.TABLE)
     tbody = tables[table].find_element(*DataPageLocators.BODY)
-    row = tbody.find_elements(*DataPageLocators.ROW)[id]
+    row = tbody.find_elements(*DataPageLocators.ROW)[id - 1]
     info = row.find_element(*DataPageLocators.INFO)
     info.click()

@@ -1,6 +1,7 @@
 import sys
 import os
 import unittest
+import random
 
 base_dir = os.path.dirname(__file__) or '.'
 sys.path.append("..")
@@ -33,25 +34,42 @@ class TestDataPage(WebDriverSetup):
     self.data_page.prev_table_page(0)
     assert self.data_page.current_table_page(0) == "2"
   
-  # select 3 rows and see if there are 3 rows in the selected table
+  # select 8 rows and see if there are 8 rows in the selected table
   def test_amount_of_selected(self):
-    self.data_page.select(3)
     self.data_page.select(7)
-    self.data_page.select(10)
+    self.data_page.select(13)
     self.data_page.next_table_page(0)
-    self.data_page.select(4)
+    self.data_page.select(11)
     self.data_page.select(7)
-    assert self.data_page.amount_of_rows(1) == 5
+    self.data_page.next_table_page(0)
+    self.data_page.select(20)
+    self.data_page.select(16)
+    self.data_page.next_table_page(0)
+    self.data_page.select(11)
+    self.data_page.select(19)
+    assert self.data_page.amount_of_rows(1) == 8
   
   # test if the correct row is selected
   def test_correct_selected(self):
-    self.data_page.select(4)
-    assert self.data_page.cell_value(1, 1, 0) == "4"
+    id = random.randint(1, 25)
+    self.data_page.select(id)
+    assert self.data_page.eu_number(0, id) == self.data_page.eu_number(1, 1)
   
   # test if we navigate to the correct page
   def test_detailed_forward(self):
-    self.data_page.open_detailed_info(0, 5)
-    assert self.data_page.current_url() == "http://localhost:3000/details/6"
+    id = random.randint(1, 25)
+    eu_number = self.data_page.eu_number(0, id)
+    self.data_page.open_detailed_info(0, id)
+    assert self.data_page.current_url() == "http://localhost:3000/details/" + eu_number
+  
+  # test if data in the row changes when navigated to next page
+  def test_next_page_new_rows(self):
+    eu_list = []
+    for i in range(24):
+      eu_list.append(self.data_page.eu_number(0, i + 1))
+    self.data_page.next_table_page(0)
+    for i in range(24):
+      assert self.data_page.eu_number(0, i + 1) not in eu_list
 
 if __name__ == '__main__':
   unittest.main()
