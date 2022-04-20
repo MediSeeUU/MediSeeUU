@@ -28,7 +28,6 @@ hr {
 .addRmCollumn {
   float: right;
   margin: 0px 1% 0px 0px;
-  cursor: pointer;
 }
 
 .bottomOfTableHolder {
