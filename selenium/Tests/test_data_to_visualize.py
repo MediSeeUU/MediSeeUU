@@ -24,7 +24,7 @@ class TestDataToVisualize(WebDriverSetup):
     ids = random.sample(range(1, 300), 10)
     for i in ids:
       data_page.select(i)
-      countries.append(data_page.first_value(0, i))
+      countries.append(data_page.table_value(0, i, 1))
     visualize_page = VisualizePage(self.driver)
     cat_list = visualize_page.possible_categories()
     for cat in cat_list:

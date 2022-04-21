@@ -24,6 +24,14 @@ class DataPageLocators():
   PREV_PAGE = (By.CLASS_NAME, 'bxs-chevron-left')
   COLUMN_SELECT = (By.TAG_NAME, 'select')
 
+  class MenuLocators():
+    FILTER_ITEM = (By.CLASS_NAME, 'filter-item')
+    ADD_FILTER = (By.CLASS_NAME, 'add')
+    SELECT = (By.TAG_NAME, 'select')
+    INPUT = (By.TAG_NAME, 'input')
+    SORT_ITEM = (By.CLASS_NAME, 'sort-item')
+    APPLY = (By.CLASS_NAME, 'apply')
+
 class VisualizePageLocators():
   OPTIONS = (By.CLASS_NAME, 'country-options')
   LABEL = (By.TAG_NAME, 'label')
