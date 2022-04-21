@@ -84,25 +84,10 @@
 .bx-plusMinus {
   color: var(--blue-alt);
   font-size: 35px;
+  cursor: pointer;
 }
 
 .bx-plusMinus:hover {
   color: var(--blue-light);
-}
-
-.columnbutton {
-  background-color: white;
-  border: none;
-  color: white;
-  margin-left: 2px;
-  margin-right: 2px;
   cursor: pointer;
-}
-
-.columnbutton:hover {
-  background-color: white;
-}
-
-.minusbutton {
-  margin-right: 20px;
 }
