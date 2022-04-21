@@ -78,7 +78,7 @@ class TestDataPage(WebDriverSetup):
     self.data_page.filter_select(2, "Rapporteur")
     self.data_page.filter_input(2, 1, "United Kingdom")
     self.data_page.apply()
-    self.data_page.change_column(2, "Rapporteur")
+    self.data_page.change_column(0, 2, "Rapporteur")
     eu_numbers = []
     for i in range(self.data_page.amount_of_rows(0) - 1):
       eu_number = self.data_page.table_value(0, i + 1, 1)

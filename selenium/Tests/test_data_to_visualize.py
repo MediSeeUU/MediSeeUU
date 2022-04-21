@@ -19,7 +19,7 @@ class TestDataToVisualize(WebDriverSetup):
   def test_categories(self):
     data_page = DataPage(self.driver)
     data_page.change_amount_of_results(300)
-    data_page.change_column(1, "Rapporteur")
+    data_page.change_column(0, 1, "Rapporteur")
     countries = []
     ids = random.sample(range(1, 300), 10)
     for i in ids:

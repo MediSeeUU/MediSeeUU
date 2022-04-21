@@ -8,21 +8,23 @@ class HomePageLocators():
   ARTICLE = (By.TAG_NAME, 'article')
   LINK = (By.CLASS_NAME, 'institution-link')
 
-class DataPageLocators():
-  BUTTON = (By.CLASS_NAME, 'tableButtons')
+class TableLocators():
   TABLE = (By.CLASS_NAME, 'med_table')
   BODY = (By.TAG_NAME, 'tbody')
   HEAD = (By.TAG_NAME, 'thead')
   COLUMN = (By.TAG_NAME, 'th')
   ROW = (By.TAG_NAME, 'tr')
   CELL = (By.TAG_NAME, 'td')
+  COLUMN_SELECT = (By.TAG_NAME, 'select')
+  INFO = (By.TAG_NAME, 'i')
+
+class DataPageLocators():
+  BUTTON = (By.CLASS_NAME, 'tableButtons')
   SELECT = (By.CLASS_NAME, 'tableCheckboxColumn')
   RESULTS_PER_PAGE = (By.ID, 'topSelector')
-  INFO = (By.TAG_NAME, 'i')
   SELECTED_PAGE = (By.CLASS_NAME, 'lb-pageCount_selected')
   NEXT_PAGE = (By.CLASS_NAME, 'bxs-chevron-right')
   PREV_PAGE = (By.CLASS_NAME, 'bxs-chevron-left')
-  COLUMN_SELECT = (By.TAG_NAME, 'select')
 
   class MenuLocators():
     FILTER_ITEM = (By.CLASS_NAME, 'filter-item')
