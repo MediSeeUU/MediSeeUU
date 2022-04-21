@@ -39,3 +39,17 @@ class Table():
     columns = thead.find_elements(*TableLocators.COLUMN)
     select = Select(columns[column - 1].find_element(*TableLocators.COLUMN_SELECT))
     return select.first_selected_option.text
+  
+  def amount_of_columns(self, table):
+    tables = self.driver.find_elements(*TableLocators.TABLE)
+    thead = tables[table].find_element(*TableLocators.HEAD)
+    columns = thead.find_elements(*TableLocators.COLUMN)
+    return len(columns)
+  
+  def add_column(self, table):
+    add = self.driver.find_elements(*TableLocators.ADD_COLUMN)[table]
+    add.click()
+  
+  def remove_column(self, table):
+    remove = self.driver.find_elements(*TableLocators.REMOVE_COLUMN)[table]
+    remove.click()

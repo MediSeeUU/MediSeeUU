@@ -17,6 +17,8 @@ class TableLocators():
   CELL = (By.TAG_NAME, 'td')
   COLUMN_SELECT = (By.TAG_NAME, 'select')
   INFO = (By.TAG_NAME, 'i')
+  ADD_COLUMN = (By.CLASS_NAME, 'bxs-plus-square')
+  REMOVE_COLUMN = (By.CLASS_NAME, 'bxs-minus-square')
 
 class DataPageLocators():
   BUTTON = (By.CLASS_NAME, 'tableButtons')
