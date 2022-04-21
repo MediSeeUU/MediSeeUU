@@ -1,5 +1,3 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
 import {
   cleanup,
   render,
@@ -9,10 +7,10 @@ import {
   getByRole,
   getByText,
 } from '@testing-library/react'
-import sortCategoryData from '../single_visualization/utils/SortCategoryData'
-import GetUniqueCategories from '../single_visualization/utils/GetUniqueCategories'
+import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
+import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
 
-import data from '../data.json'
+import data from '../../../../testJson/data.json'
 
 test('no data', () => {
   const data = []

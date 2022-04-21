@@ -1,5 +1,3 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
 import {
   cleanup,
   render,
@@ -9,12 +7,12 @@ import {
   getByRole,
   getByText,
 } from '@testing-library/react'
-import GenerateBarSeries from '../single_visualization/data_interfaces/BarInterface'
-import GetUniqueCategories from '../single_visualization/utils/GetUniqueCategories'
+import GenerateLineSeries from '../../single_visualization/data_interfaces/LineInterface'
+import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
 
-import data from '../data.json'
+import data from '../../../../testJson/data.json'
 
-test('no selected categories', () => {
+test('no data', () => {
   const uniqueCategories = GetUniqueCategories(data)
   const options = {
     chartSpecificOptions: {
@@ -23,7 +21,7 @@ test('no selected categories', () => {
       categoriesSelected: [],
     },
   }
-  const series = GenerateBarSeries(options, uniqueCategories, data)
+  const series = GenerateLineSeries(options, uniqueCategories, data)
   expect(series).toHaveLength(0)
 })
 
@@ -36,7 +34,7 @@ test('some selected categories', () => {
       categoriesSelected: ['United Kingdom', 'Denmark'],
     },
   }
-  const series = GenerateBarSeries(options, uniqueCategories, data)
+  const series = GenerateLineSeries(options, uniqueCategories, data)
   expect(series).toHaveLength(2)
   expect(series[0].name).toBe('United Kingdom')
 })

@@ -7,7 +7,6 @@ class LineChart extends Component {
     super(props)
 
     this.state = {
-      hasError: false,
       options: {
         chart: {
           id: String(this.props.id),
@@ -35,20 +34,11 @@ class LineChart extends Component {
     }
   }
 
-  // GENERAL FUNCTIONS:
-
-  // error handler for when something in the chart generation goes wrong
-  static getDerivedStateFromError(error, errorInfo) {
-    return { hasError: true }
-  }
-
   // RENDERER:
 
   // render a line graph
   render() {
-    if (this.state.hasError) {
-      return <div>An error has occurred when drawing the chart</div>
-    } else {
+    try {
       return (
         <div className="mixed-chart">
           <Chart
@@ -58,6 +48,8 @@ class LineChart extends Component {
           />
         </div>
       )
+    } catch {
+      return <div>An error occurred when drawing the chart</div>
     }
   }
 }
