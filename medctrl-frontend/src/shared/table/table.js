@@ -13,7 +13,6 @@ function DisplayTable({
   data,
   selectTable,
   searchTable,
-  selectedTable,
   amountPerPage,
   currentPage,
 }) {
@@ -109,16 +108,16 @@ function DisplayTable({
   return (
     <>
       <div className="addRmCollumn">
-        <button className="columnbutton" onClick={() => addColumn()}>
-          <i className="bx bxs-plus-square bx-plusMinus"></i>
-        </button>
-
-        <button
-          className="columnbutton minusbutton"
+        <i
+          className="bx bxs-plus-square bx-plusMinus"
+          onClick={() => addColumn()}
+          data-testid="add-column"
+        ></i>
+        <i
+          className="bx bxs-minus-square bx-plusMinus"
           onClick={() => removeColumn()}
-        >
-          <i className="bx bxs-minus-square bx-plusMinus"></i>
-        </button>
+          data-testid="remove-column"
+        ></i>
       </div>
 
       <table className="med_table">
@@ -164,7 +163,9 @@ function DisplayTable({
             }
             {
               //if selectedTable, add coloredbar to the header
-              selectedTable ? <td className="med_td smallColumn"></td> : null
+              !selectTable && !searchTable ? (
+                <td className="med_td smallColumn"></td>
+              ) : null
             }
           </tr>
         </thead>
