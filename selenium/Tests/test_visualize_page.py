@@ -17,7 +17,7 @@ class TestVisualizePage(WebDriverSetup):
   
   # test if the page is correct
   def test_visualize_url(self):
-    assert self.data_page.current_url() == "http://localhost:3000/visualize"
+    assert self.visualize_page.current_url() == "http://localhost:3000/visualizations"
 
 if __name__ == '__main__':
   unittest.main()
