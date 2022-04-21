@@ -73,13 +73,11 @@ class Menu extends React.Component {
 
   // Standard function to remove element in state with given id in property
   removeElement(propertyName, id) {
-    if (this.state[propertyName].length > 1) {
-      let updated = [...this.state[propertyName]]
-      updated.splice(id, 1)
-      this.setState({
-        [propertyName]: updated,
-      })
-    }
+    let updated = [...this.state[propertyName]]
+    updated.splice(id, 1)
+    this.setState({
+      [propertyName]: updated,
+    })
   }
 
   // Adds a new filter input box to a filter item
@@ -98,7 +96,7 @@ class Menu extends React.Component {
         newInput.splice(bid, 1)
         return { ...obj, input: newInput }
       }
-      return obj
+      return {...obj, input: ['']}
     })
   }
 
