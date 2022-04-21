@@ -7,7 +7,7 @@ import { SelectedContext } from '../../../../shared/contexts/DataContext'
 
 // this is required to make sure the tests don't crash
 // when the tested components try and download a file
-jest.mock('file-saver', ()=>({saveAs: jest.fn()}))
+jest.mock('file-saver', () => ({ saveAs: jest.fn() }))
 
 // the export dialog should render without crashing
 test('renders without crashing', () => {
@@ -44,10 +44,11 @@ test('no selection should result in UI error message', () => {
 // be redirected to a succes message screen
 test('valid selection download should result in UI success message', () => {
   const validOptions = [
-    "Excel File (.xlsx)",
-    "Comma Separated (.csv)",
-    "Tab Separeted (.tsv)",
-    "Semicolon Separeted (.ssv)"]
+    'Excel File (.xlsx)',
+    'Comma Separated (.csv)',
+    'Tab Separeted (.tsv)',
+    'Semicolon Separeted (.ssv)',
+  ]
   const view = render(
     <SelectedContext.Provider value={DummyData}>
       <ExportMenu />
@@ -108,7 +109,7 @@ test('custom selection with separator should result in UI success message', () =
 
 // when one of the radio buttons is manipulated to contain an incorrect
 // id, the no file type can corretly be selected and the file export
-// fails, this will be reflected by an error dialog 
+// fails, this will be reflected by an error dialog
 test('download attempt with invalid selection should result in error dialog', () => {
   const view = render(
     <SelectedContext.Provider value={DummyData}>
@@ -117,7 +118,7 @@ test('download attempt with invalid selection should result in error dialog', ()
   )
   fireEvent.click(screen.getByText('Export'))
   const radio = screen.getAllByRole('radio')[0]
-  radio.id = "invalid"
+  radio.id = 'invalid'
   fireEvent.click(radio)
   const downloadButton = screen.getByText('Download')
   fireEvent.click(downloadButton)

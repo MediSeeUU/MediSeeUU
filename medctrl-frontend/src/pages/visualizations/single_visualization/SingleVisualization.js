@@ -17,7 +17,6 @@ import GeneratePieSeries from './data_interfaces/PieInterface'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
 import GetUniqueCategories from './utils/GetUniqueCategories'
-import ContentContainer from '../../../shared/container/ContentContainer'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
@@ -226,7 +225,7 @@ class SingleVisualization extends Component {
 	*/
   render() {
     return (
-      <ContentContainer className='visual-container'>
+      <div className="content-container visual-container">
         <Container>
           <Row>
             <Col className="visualization-panel">
@@ -248,19 +247,19 @@ class SingleVisualization extends Component {
               <Row>{this.createChart(this.state.chart_type)}</Row>
               <Row>
                 <button
-                  className="table-buttons button-export"
+                  className="tableButtons button-export"
                   onClick={this.handlePNGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as PNG
                 </button>
                 <button
-                  className="table-buttons button-export"
+                  className="tableButtons button-export"
                   onClick={this.handleSVGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as SVG
                 </button>
                 <button
-                  className="table-buttons button-remove"
+                  className="tableButtons button-remove"
                   onClick={this.handleRemoval}
                   value={this.props.id}
                 >
@@ -270,7 +269,7 @@ class SingleVisualization extends Component {
             </Col>
           </Row>
         </Container>
-      </ContentContainer>
+      </div>
     )
   }
 }

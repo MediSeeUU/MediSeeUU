@@ -39,10 +39,7 @@ function ExportMenu() {
           },
         }}
       >
-        <ExportDialog
-          data={selectedData}
-          onClose={closeModal}
-        />
+        <ExportDialog data={selectedData} onClose={closeModal} />
       </ReactModal>
     </div>
   )

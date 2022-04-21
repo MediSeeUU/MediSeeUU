@@ -1,5 +1,5 @@
 /* Page elements */
-.content-container.visual-container {
+.visual-container {
   margin: 2% 2% 0% 2%;
   width: 97%;
   padding: 0 12px;
@@ -24,12 +24,14 @@
   user-select: none;
 }
 
+/*
 .category-options {
   margin-right: 10px;
   background-color: white;
   border: 1px solid grey;
   border-radius: 5px;
 }
+*/
 
 .country-options label {
   width: 95%;
@@ -51,20 +53,6 @@
 }
 
 /* Buttons */
-.table-buttons {
-  width: 14%;
-  height: 40px;
-  float: right;
-  margin: 20px 1% 15px 0px;
-  font-size: 15px;
-  font-weight: 400;
-  background-color: var(--blue-alt);
-  border-radius: 5px;
-  color: var(--white-text);
-  border: none;
-  user-select: none;
-}
-
 .button-update {
   width: 100%;
   margin-top: 3.6%;
@@ -72,6 +60,7 @@
 }
 
 .button-remove {
+  width: 14%;
   font-size: 20px;
   background: #d44e33;
   margin: 1.8% 0% 2% 2%;

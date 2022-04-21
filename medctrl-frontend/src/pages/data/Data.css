@@ -7,10 +7,6 @@ label {
   font-weight: bold;
 }
 
-button:hover {
-  background-color: var(--blue-light);
-}
-
 hr {
   width: 98%;
   border: 1px solid var(--seperation-line);

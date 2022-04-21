@@ -31,15 +31,6 @@
   right: 0;
 }
 
-.open-menu {
-  background-color: rgb(154, 113, 151);
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 5px;
-}
-
 .menu-button {
   margin-left: 10px;
   margin-top: 20px;

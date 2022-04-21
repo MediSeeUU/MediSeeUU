@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Menu from '../../../shared/menu/menu'
 import { useData } from '../../../shared/contexts/DataContext'
 import TableView from './TableView'
-import ContentContainer from '../../../shared/container/ContentContainer'
 
 function DataSelect() {
   //amount of databse hits shown per page
@@ -15,7 +14,7 @@ function DataSelect() {
 
   //main body of the page
   return (
-    <ContentContainer>
+    <div className="content-container">
       <Menu
         cachedData={allData}
         updateTable={(updatedData) => setData(updatedData)}
@@ -29,7 +28,7 @@ function DataSelect() {
         true,
         'No data to display, please clear your filters.'
       )}
-    </ContentContainer>
+    </div>
   )
 }
 

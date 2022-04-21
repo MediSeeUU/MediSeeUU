@@ -1,15 +1,13 @@
-import ContentContainer from "../../shared/container/ContentContainer"
-
 function SettingsPage() {
   return (
-    <ContentContainer>
+    <div className="content-container">
       <h1>Admin Settings Panel</h1>
       <hr />
       <p>
-        At this time, no settings information is 
-        available for display on this page. 
+        At this time, no settings information is available for display on this
+        page.
       </p>
-    </ContentContainer>
+    </div>
   )
 }
 
