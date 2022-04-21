@@ -96,7 +96,7 @@ class Menu extends React.Component {
         newInput.splice(bid, 1)
         return { ...obj, input: newInput }
       }
-      return {...obj, input: ['']}
+      return { ...obj, input: [''] }
     })
   }
 
