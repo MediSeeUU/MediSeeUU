@@ -159,7 +159,7 @@ class Menu extends React.Component {
       return data
     }
     return data.filter((obj) => {
-      return item.input.some((x) => obj[item.selected].toString().includes(x))
+      return item.input.some((x) => obj[item.selected].toString().toLowerCase().includes(x.toLowerCase()))
     })
   }
 
