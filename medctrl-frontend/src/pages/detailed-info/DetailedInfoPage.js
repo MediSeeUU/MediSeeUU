@@ -1,31 +1,62 @@
 import './DetailedInfo.css'
 
-// the data in this json file includes not only general medicine information,
-// but also a few (bu not all) procedures which are related to medicine used
-// for the demo dataset
-import demoData from './detailed-info-data.json'
-
 import Container from './InfoComponents/Container'
 import DetailGroup from './InfoComponents/DetailGroup'
 import Detail from './InfoComponents/Detail'
 import Procedure from './InfoComponents/Procedure'
 import CustomLink from './InfoComponents/CustomLink'
 
-// the function acts as a placeholder to pass the right through to the actual
-// component, when the data flow is correctly linked, the component will
-// no longer be required and can be removed
+//
+import { DataContext, DataProvider } from '../../shared/contexts/DataContext'
+import { useParams } from 'react-router-dom'
+
+// the function takes the unique medicine ID number (EUshortNumber) and
+// passes this ID to the detailedPage component, along with the access
+// to the overarching datacontext, where the DetailedInfoPage will request
+// the medicine data corresponding to the medID number.
 function DetailedInfoPage() {
-  return <InfoPage data={demoData} />
+  const { medID } = useParams()
+
+  return (
+    <DataProvider>
+      <DataContext.Consumer>
+        {(context) => <InfoPage data={context} medIDnumber={medID}></InfoPage>}
+      </DataContext.Consumer>
+    </DataProvider>
+  )
 }
 
 export default DetailedInfoPage
 
 // function based component, which represents the entire detailed information page
-// an json object is passed via the data tag. this is the data which is displayed on
+// the loaded data in datacontext is passed via the data tag. The specific medID no.
+// is passed via the me  this is the data which is displayed on
 // the details page.
 function InfoPage(props) {
-  // extract the medicine data from the props
-  let medicineData = props.data
+  var medIDnr = props.medIDnumber
+  var alldata = props.data
+  var medDataObject = alldata.find((element) => {
+    return element['EUNoShort'].toString() === medIDnr
+  })
+
+  //if the medIDnumber does not correspond to any medicine in the datacontext,
+  //a static page is displayed
+  if (medDataObject === undefined) {
+    return (
+      <div>
+        <h1
+          className="detailedinfopage-unknown-medID"
+          testid="detailedInfoPageTitle"
+        >
+          Unknown Medicine ID number
+        </h1>
+      </div>
+    )
+  }
+
+  //place the data corresponding to the specified medIDnumber in the medicine data capsule,
+  //procedures currently are not supported, will be implemented after correct database connection
+  let medicineData = { info: medDataObject, procedures: [] }
 
   // for each procedure present in the medicine data object, an procedure component
   // is created and added to an array for temporary storage
@@ -37,7 +68,7 @@ function InfoPage(props) {
   // returns the component which discribes the entire detailed information page
   // the page consists of three containers, each holds a specific category of
   // information pertaining to the current medicine. this first holds general
-  // information, teh next procedure related information, and the last holds some
+  // information, the next procedure related information, and the last holds some
   // links to external website which could be usefull
   return (
     <div>

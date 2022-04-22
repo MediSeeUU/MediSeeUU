@@ -152,3 +152,8 @@
   color: var(--link-color);
   width: calc(25% - 8px);
 }
+
+.detailedinfopage-unknown-medID {
+  padding-top: 30vh;
+  text-align: center;
+}

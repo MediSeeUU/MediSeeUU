@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "knox",
     "guardian",
+    "import_export",
 ]
 
 
