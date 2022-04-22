@@ -34,10 +34,9 @@ class VisualizationForm extends Component {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-    /*
-      the chart specific values depend on which chart type has been chosen,
-      so if the chart type changes, this needs to be re-initialized
-    */
+
+    //  the chart specific values depend on which chart type has been chosen,
+    //  so if the chart type changes, this needs to be re-initialized
     if (name === 'chart_type') {
       this.resetChartSpecifics(value)
     }
