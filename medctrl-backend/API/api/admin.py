@@ -6,7 +6,13 @@ from django.contrib import admin
 from import_export import fields, resources, widgets, admin as import_admin
 
 from api.models.medicine_models.medicine import Medicine, Lookupatccode
-from api.models.medicine_models import Lookuplegalbasis, Lookuplegalscope
+from api.models.medicine_models import (
+    Lookuplegalbasis,
+    Lookuplegalscope,
+    Lookupmedicinetype,
+    Lookupstatus,
+    Lookupactivesubstance,
+)
 
 
 def import_foreign_key(field, model):
@@ -28,9 +34,10 @@ class CustomForeignKeyWidget(widgets.ForeignKeyWidget):
     """
 
     def clean(self, value, row, *args, **kwargs):
-        res, _ = self.model.objects.get_or_create(**{self.field: value})
+        if value is not None:
+            value, _ = self.model.objects.get_or_create(**{self.field: value})
 
-        return res
+        return value
 
 
 class MedicineResource(resources.ModelResource):
@@ -42,6 +49,9 @@ class MedicineResource(resources.ModelResource):
     atccode = import_foreign_key("atccode", Lookupatccode)
     legalbasis = import_foreign_key("legalbasis", Lookuplegalbasis)
     legalscope = import_foreign_key("legalscope", Lookuplegalscope)
+    medicinetype = import_foreign_key("medicinetype", Lookupmedicinetype)
+    status = import_foreign_key("status", Lookupstatus)
+    activesubstance = import_foreign_key("activesubstance", Lookupactivesubstance)
 
     class Meta:
         """
