@@ -35,20 +35,22 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "knox",
+    "guardian",
+    "import_export",
 ]
 
 
 # Use sessionauthentication instead of Basic
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.SessionAuthentication",
         "knox.auth.TokenAuthentication",
     ]
 }
 
-REST_KNOX = {
-    "USER_SERIALIZER": "knox.serializers.UserSerializer",
-}
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "guardian.backends.ObjectPermissionBackend",
+]
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
