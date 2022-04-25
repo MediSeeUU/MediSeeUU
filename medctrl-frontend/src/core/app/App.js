@@ -6,7 +6,7 @@ import Header from '../header/Header'
 import Footer from '../footer/Footer'
 import { DataProvider } from '../../shared/contexts/DataContext'
 
-const userLoggedIn = true
+const userLoggedIn = false
 const defUser = {
   isAdmin: false,
   userName: 'Lourens Bloem',
