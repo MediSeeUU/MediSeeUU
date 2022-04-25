@@ -34,10 +34,9 @@ class VisualizationForm extends Component {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-    /*
-      the chart specific values depend on which chart type has been chosen,
-      so if the chart type changes, this needs to be re-initialized
-    */
+
+    //  the chart specific values depend on which chart type has been chosen,
+    //  so if the chart type changes, this needs to be re-initialized
     if (name === 'chart_type') {
       this.resetChartSpecifics(value)
     }
@@ -59,7 +58,7 @@ class VisualizationForm extends Component {
     // makes sure that the page does not reload and thus resets the data
     event.preventDefault()
     // event handler passed down as a prop by SingleVisualization
-    this.props.onFormChange(this.state)
+    this.props.onChange(this.state)
   }
 
   // GENERAL FUNCTIONS
@@ -151,9 +150,10 @@ class VisualizationForm extends Component {
             value={this.state.chart_type}
             name="chart_type"
             onChange={this.handleChange}
+            data-testid={'visType'}
           >
             <option value="bar">Bar chart</option>
-            <option value="line">Line graph</option>
+            <option value="line">Line chart</option>
             <option value="pie">Pie chart</option>
           </select>
         </label>

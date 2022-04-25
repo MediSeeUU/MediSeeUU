@@ -59,7 +59,7 @@ class VisualizationPage extends Component {
         <Row key={id}>
           <SingleVisualization
             id={id}
-            data={JSON.parse(JSON.stringify(this.state.data))}
+            data={this.state.data}
             onRemoval={this.handleRemoval}
           />
         </Row>

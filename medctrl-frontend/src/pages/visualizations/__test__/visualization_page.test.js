@@ -19,17 +19,19 @@ jest.mock('../mocks/observer')
 
 // rendering a visualization page and adding a visualization
 test('add a visualization', () => {
-  render(<VisualizationPage/>)
+  render(<VisualizationPage />)
   fireEvent.click(screen.getByRole('button', { name: /add visualization/i }))
   // we start with 1 visualization and add another
-  expect(screen.getAllByRole('button', { name: /export as svg/i }).length).toEqual(2)
+  expect(
+    screen.getAllByRole('button', { name: /export as svg/i }).length
+  ).toEqual(2)
 })
 
 // rendering a visualization page, then removing the initial visualization
 test('remove a visualization', () => {
   render(<VisualizationPage />)
   // the removal button is currently the only button with no text
-  fireEvent.click(screen.getByRole('button', { name: ''}))
+  fireEvent.click(screen.getByRole('button', { name: '' }))
   expect(screen.queryAllByText(/export as svg/i).length).toEqual(0)
 })
 
@@ -51,5 +53,3 @@ test('render initial form', () => {
   categories['Rapporteur'] = []
   ReactDOM.render(<VisualizationForm uniqueCategories={categories} />, root)
 }) */
-
-

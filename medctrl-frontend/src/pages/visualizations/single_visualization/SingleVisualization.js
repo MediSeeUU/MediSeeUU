@@ -203,11 +203,7 @@ class SingleVisualization extends Component {
         )
 
       case 'pie':
-        return GeneratePieSeries(
-          options,
-          this.state.uniqueCategories,
-          this.state.data
-        )
+        return GeneratePieSeries(options, this.state.data)
 
       default:
         return GenerateBarSeries(options)
@@ -231,7 +227,7 @@ class SingleVisualization extends Component {
             <Col className="visualization-panel">
               <VisualizationForm
                 uniqueCategories={this.state.uniqueCategories}
-                onFormChange={this.handleChange}
+                onChange={this.handleChange}
               />
             </Col>
             <Col sm={8}>
