@@ -123,14 +123,14 @@ function ResultsSelector({
       <div className="dv-pageCount">
         <i
           onClick={() => Back()}
-          className="bx bxs-chevron-left bx-plusMinus li-pageCount"
+          className="bx bxs-chevron-left li-pageCount"
         />
 
         {PageSelector()}
 
         <i
           onClick={() => Next()}
-          className="bx bxs-chevron-right bx-plusMinus li-pageCount"
+          className="bx bxs-chevron-right li-pageCount"
         />
       </div>
 

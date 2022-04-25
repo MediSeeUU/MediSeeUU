@@ -26,6 +26,10 @@
 }
 
 .institution-link {
-  color: purple;
+  color: var(--med-textlink-text);
   text-decoration: none;
+}
+
+.institution-link:hover {
+  color: var(--med-textlink-text-hover);
 }

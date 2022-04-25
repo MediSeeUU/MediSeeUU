@@ -12,13 +12,18 @@ function DataSelect() {
   const allData = useData()
   const [data, setData] = useState(allData)
 
+  // the menu button to be displayed with the table
+  const menu =       
+    <Menu
+      cachedData={allData}
+      updateTable={(updatedData) => setData(updatedData)}
+    />
+
   //main body of the page
   return (
     <div className="content-container">
-      <Menu
-        cachedData={allData}
-        updateTable={(updatedData) => setData(updatedData)}
-      />
+      <h1>Data Selection Table</h1>
+      <hr className='top-separator'/>
       {TableView(
         data,
         resultsPerPage,
@@ -26,7 +31,8 @@ function DataSelect() {
         setPage,
         setResultsPerPage,
         true,
-        'No data to display, please clear your filters.'
+        'No data to display, please clear your filters.',
+        menu
       )}
     </div>
   )

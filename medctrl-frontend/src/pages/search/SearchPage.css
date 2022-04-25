@@ -2,21 +2,13 @@
   margin: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
-  width: 83%;
+  width: calc(100% - 180px);
   font-size: 16px;
-}
-
-.searchbox__button {
-  width: 150px;
-  height: 40px;
-  float: right;
-  margin: 15px 1.5% 15px 0px;
-  font-size: 15px;
-  font-weight: 400;
-  background-color: var(--blue-alt);
-  border-radius: 5px;
-  color: var(--white-text);
-  border: none;
+  background-color: var(--med-text-input-background);
+  border: 1px solid var(--med-text-input-border);
+  border-radius: 4px;
+  padding: 0 7px;
+  height: 31px;
 }
 
 .search-Icon {
@@ -39,5 +31,5 @@
 .searchDataTable .smallColumn {
   min-width: 50px;
   max-width: 50px;
-  border-right: 1px solid var(--blue-alt);
+  border-right: 1px solid var(--med-table-border);
 }

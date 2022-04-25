@@ -15,6 +15,7 @@ function DisplayTable({
   searchTable,
   amountPerPage,
   currentPage,
+  menu
 }) {
   //throw error if parameters not defined
   if (!data || !amountPerPage || !currentPage) {
@@ -108,16 +109,19 @@ function DisplayTable({
   return (
     <>
       <div className="addRmCollumn">
-        <i
-          className="bx bxs-plus-square bx-plusMinus"
+        <i 
+          className='bx-plusMinus bx bxs-plus-square'
           onClick={() => addColumn()}
-          data-testid="add-column"
-        ></i>
-        <i
-          className="bx bxs-minus-square bx-plusMinus"
+          data-testid='add-column'
+        />
+        
+        <i 
+          className='bx-plusMinus bx bxs-minus-square'
           onClick={() => removeColumn()}
-          data-testid="remove-column"
-        ></i>
+          data-testid='remove-column'
+        />
+
+        {menu}  
       </div>
 
       <table className="med_table">

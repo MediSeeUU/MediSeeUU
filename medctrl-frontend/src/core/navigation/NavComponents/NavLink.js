@@ -19,7 +19,7 @@ function NavLink(props) {
         <i className={props.image} />
         <span className="nav-item-name"> {props.name} </span>
       </div>
-      <span className="tooltip"> {props.name} </span>
+      <span className="nav-tooltip"> {props.name} </span>
     </div>
   )
 }

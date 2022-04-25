@@ -189,12 +189,10 @@ class Menu extends React.Component {
       })
     // Returns the menu in HTML
     return (
-      <div>
-        <label>Active table settings</label>
-        <button className="tableButtons" onClick={this.handleOpenModal}>
+      <>
+        <button className="primary-solid-button" onClick={this.handleOpenModal}>
           <i className="bx bx-cog filter-Icon"></i>Filter & Sort
         </button>
-        <hr></hr>
         <ReactModal
           className="menu-modal"
           isOpen={this.state.showModal}
@@ -211,7 +209,7 @@ class Menu extends React.Component {
         >
           <div className="filter">
             <h1 className="header">Filters</h1>
-            <hr></hr>
+            <hr className='top-separator'/>
             <div className="add" onClick={this.addFilter}>
               Add Filter
               <i className="bx bxs-plus-square add-icon"></i>
@@ -248,7 +246,7 @@ class Menu extends React.Component {
           </div>
           <div className="sort">
             <h1 className="header">Sort</h1>
-            <hr></hr>
+            <hr className='top-separator'/>
             {this.state.sorters.map((obj, oid) => (
               <Sort
                 key={uuidv4()}
@@ -267,7 +265,7 @@ class Menu extends React.Component {
             )}
           </div>
         </ReactModal>
-      </div>
+      </>
     )
   }
 }

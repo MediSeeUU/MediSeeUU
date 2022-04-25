@@ -23,7 +23,7 @@ function NavAccount(props) {
           </span>
         </div>
       </div>
-      <span className="tooltip">Account Info</span>
+      <span className="nav-tooltip">Account Info</span>
     </div>
   )
 }

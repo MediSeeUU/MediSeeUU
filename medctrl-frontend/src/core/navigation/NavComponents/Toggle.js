@@ -14,7 +14,7 @@ function Toggle(props) {
         <i className={image} />
         <span className="nav-item-name"> {name} </span>
       </div>
-      <span className="tooltip"> {name} </span>
+      <span className="nav-tooltip"> {name} </span>
     </div>
   )
 }

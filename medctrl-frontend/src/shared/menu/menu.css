@@ -17,7 +17,7 @@
   position: absolute;
   border-radius: 10px;
   height: 100%;
-  background-color: rgb(234, 240, 248);
+  background-color: var(--med-dialog-background);
 }
 
 .filter {
@@ -39,16 +39,16 @@
   font-weight: 600;
   width: 15%;
   height: 35px;
-  border: 1px solid rgba(230, 221, 221, 0.9);
+  border: 1px solid var(--med-solid-light-button-background-hover);
   border-radius: 5px;
 }
 
 .cl {
-  background-color: white;
+  background-color: var(--med-solid-light-button-background);
 }
 
 .cl:hover {
-  background-color: rgba(248, 240, 240, 0.9);
+  background-color: var(--med-solid-light-button-background-hover);
 }
 
 .filter-bttn-box {
@@ -60,13 +60,18 @@
 }
 
 .apply {
-  background-color: var(--blue-alt);
-  color: white;
+  background-color: var(--med-solid-button-background);
+  color: var(--med-solid-button-text);
   margin-right: 2%;
 }
 
+.apply:hover {
+  background-color: var(--med-solid-button-background-hover);
+}
+
 .add {
-  color: var(--blue-alt);
+  background-color: var(--med-text-button-background);
+  color: var(--med-text-button-text);
   font-weight: bold;
   font-size: 20px;
   padding-right: 50px;
@@ -78,7 +83,7 @@
 }
 
 .add:hover {
-  filter: brightness(150%);
+  color: var(--med-text-button-text-hover);
 }
 
 .add-icon {
@@ -88,7 +93,7 @@
 }
 
 .header {
-  color: var(--blue-alt);
+  color: var(--med-header-text);
   text-align: center;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -101,7 +106,8 @@
 
 .add-sort {
   display: inline-block;
-  color: var(--blue-alt);
+  background-color: var(--med-text-button-background);
+  color: var(--med-text-button-text);
   font-size: 15px;
   padding-left: 12px;
   margin-top: 10px;
@@ -109,5 +115,65 @@
 }
 
 .add-sort:hover {
-  filter: brightness(150%);
+  color: var(--med-text-button-text-hover);
+}
+
+/* Individual Filter and Sort Items*/
+
+.filter-item,
+.sort-item {
+  background-color: var(--med-content-background);
+  border: 2px solid var(--med-content-border);
+  border-radius: 10px;
+  position: relative;
+  vertical-align: top;
+  box-sizing: content-box;
+  padding: 10px;
+}
+
+.filter-item {
+  width: 19%;
+  margin: 19px;
+  display: inline-block;
+}
+
+.sort-item {
+  width: 80%;
+  margin: auto;
+  margin-top: 25px;
+}
+
+.select {
+  display: inline-block;
+  width: 85%;
+  margin-top: 5px;
+}
+
+.filter-input {
+  display: inline-block;
+  width: 85%;
+  margin-top: 10px;
+}
+
+.add-label {
+  font-size: 10px;
+  color: var(--med-text-button-text);
+  cursor: pointer;
+}
+
+.remove-icon {
+  font-size: 75%;
+  color: var(--med-negative-message-text);
+  cursor: pointer;
+  padding-left: 5px;
+}
+
+.delete {
+  position: absolute;
+  color: var(--med-text-button-text);
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-block;
+  top: 5px;
+  right: 5px;
 }

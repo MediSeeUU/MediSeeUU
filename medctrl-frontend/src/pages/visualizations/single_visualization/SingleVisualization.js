@@ -247,19 +247,19 @@ class SingleVisualization extends Component {
               <Row>{this.createChart(this.state.chart_type)}</Row>
               <Row>
                 <button
-                  className="tableButtons button-export"
+                  className="primary-solid-button button-export"
                   onClick={this.handlePNGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as PNG
                 </button>
                 <button
-                  className="tableButtons button-export"
+                  className="primary-solid-button button-export"
                   onClick={this.handleSVGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as SVG
                 </button>
                 <button
-                  className="tableButtons button-remove"
+                  className="primary-solid-button button-remove"
                   onClick={this.handleRemoval}
                   value={this.props.id}
                 >

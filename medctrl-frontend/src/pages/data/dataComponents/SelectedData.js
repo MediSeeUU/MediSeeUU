@@ -15,10 +15,8 @@ function SelectedData() {
   //main body of the page
   return (
     <div className="content-container">
-      <div>
-        <ExportMenu />
-        <hr></hr>
-      </div>
+      <h1>Selected Data Points</h1>
+      <hr className='top-separator' />
       {TableView(
         selectedData,
         resultsPerPage,
@@ -26,7 +24,8 @@ function SelectedData() {
         setPage,
         setResultsPerPage,
         false,
-        'No data has been selected, select data points in the table above.'
+        'No data has been selected, select data points in the table above.',
+        <ExportMenu />
       )}
     </div>
   )

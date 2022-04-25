@@ -84,10 +84,10 @@ class VisualizationPage extends Component {
             {displayItems}
             <Row>
               <button
-                className="table-buttons button-add"
+                className="primary-solid-button button-add"
                 onClick={this.handleAddition}
               >
-                <i className="bx bx-plus filter-Icon"></i>Add visualization
+                <i className="bx bx-plus filter-Icon"/>Add visualization
               </button>
             </Row>
           </Container>

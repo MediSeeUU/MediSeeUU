@@ -6,9 +6,7 @@ body {
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(
-    --blue-grey-background
-  ); /* from color scheme but lighter */
+  background-color: var(--med-main-background);
   padding-left: calc((100% - 1400px) / 2);
   padding-right: calc((100% - 1400px) / 2);
 }
@@ -43,24 +41,60 @@ input[type='checkbox'] {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
 }
-/* variables*/
+
+
+/* Default Color Definitions */
 
 :root {
-  --blue-main: #114b5f;
-  --blue-alt: #38576b;
-  --blue-light: #607e92;
+  --core-body:        #eaf0f8;
+  --core-header:      #ffffff;
+  --core-footer:      #d7d7d7;
+  --core-border:      #969696;
+  --core-shadow:      #969696;
+  --core-content:     #ffffff;
+  --core-dialog:      #eaf0f8;
 
-  --aqua-main: #5f9ea0;
-  --aqua-alt: #85bec0;
+  --text-primary:     #212529;
+  --text-secondary:   #ffffff;
+  --text-additional:  #8b8b8b;
 
-  --white-tooltip: #fff;
-  --white-text: #fff;
-  --black-text: #000;
+  --primary-dark:     #114b5f;
+  --primary-normal:   #38576b;
+  --primary-light:    #607e92;
 
-  --grey-text: #d3d3d3;
-  --blue-grey-background: #eaf0f8;
-  --white-info-background: #fff;
+  --secondary-dark:   #d3d3d3;
+  --secondary-normal: #dde6f0;
+  --secondary-light:  #f5f5f5;
 
-  --BorderClrTableHolder: darkgray;
-  --seperation-line: lightgray;
+  --positive-dark:    #028a0f;
+  --positive-normal:  #3cb042;
+  --positive-light:   #bfffbf;
+
+  --negative-dark:    #ff0000;
+  --negative-normal:  #ff3d3d;
+  --negative-light:   #ffbfbf;
+
+  --accent-dark:      #9a7197;
+  --accent-light:     #ac80a0;
+}
+
+
+/* Core Color Variable Definitions */
+
+:root {
+  --med-main-background:      var(--core-body);
+  --med-shadow:               var(--core-shadow);
+  --med-content-background:   var(--core-content);
+  --med-content-border:       var(--core-border);
+  --med-nav-background:       var(--primary-dark);
+  --med-dialog-background:    var(--core-dialog);
+
+  --med-header-background:    var(--core-header);
+  --med-header-text:          var(--text-primary);
+
+  --med-footer-background:    var(--core-footer);
+  --med-footer-text:          var(--text-primary);
+
+  --med-textlink-text:        var(--accent-dark);
+  --med-textlink-text-hover:  var(--accent-light);
 }

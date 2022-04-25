@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from 'uuid'
-import './menuitems.css'
 
 // Returns all filter input boxes in HTML
 function filtersToHTML(props) {

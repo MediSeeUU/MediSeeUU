@@ -1,4 +1,3 @@
-import './menuitems.css'
 
 // Returns the filter item in HTML
 function displayItem(props) {

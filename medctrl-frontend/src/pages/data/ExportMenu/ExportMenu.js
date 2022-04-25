@@ -13,8 +13,8 @@ function ExportMenu() {
   const closeModal = () => setModalState(false)
 
   return (
-    <div>
-      <button className="tableButtons" onClick={() => setModalState(true)}>
+    <>
+      <button className="primary-solid-button" onClick={() => setModalState(true)}>
         <i className="bx bxs-file-export"></i>Export
       </button>
 
@@ -41,7 +41,7 @@ function ExportMenu() {
       >
         <ExportDialog data={selectedData} onClose={closeModal} />
       </ReactModal>
-    </div>
+    </>
   )
 }
 
