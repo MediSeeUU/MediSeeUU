@@ -485,11 +485,3 @@ test('remove filter', () => {
   fireEvent.click(screen.getAllByTestId('delete-icon')[0])
   expect(screen.queryAllByTestId('filter-select')).toHaveLength(1)
 })
-
-test('always have one filter', () => {
-  render(<Menu cachedData={DummyData} />)
-  fireEvent.click(screen.getByText(/Filter & Sort/i))
-  expect(screen.queryAllByTestId('filter-select')).toHaveLength(1)
-  fireEvent.click(screen.getByTestId('delete-icon'))
-  expect(screen.queryAllByTestId('filter-select')).toHaveLength(1)
-})
