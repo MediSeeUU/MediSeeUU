@@ -2,7 +2,6 @@ import sys
 import os
 import unittest
 import random
-import time
 
 base_dir = os.path.dirname(__file__) or '.'
 sys.path.append("..")
