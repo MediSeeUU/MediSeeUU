@@ -8,7 +8,7 @@ import {
   getByText,
 } from '@testing-library/react'
 import GetUniqueCategories from '../../../single_visualization/utils/GetUniqueCategories'
-import BarForm from '../../../single_visualization/forms/types/BarForm'
+import PieForm from '../../../single_visualization/forms/types/PieForm'
 
 import data from '../../../../../testJson/data.json'
 
@@ -19,19 +19,21 @@ beforeAll(() => {
 
 test('initial render', () => {
   const onChange = jest.fn()
-  render(<BarForm uniqueCategories={uniqueCategories} onChange={onChange} />)
+  render(<PieForm uniqueCategories={uniqueCategories} onChange={onChange} />)
 })
 
 test('category change', () => {
   const onChange = jest.fn()
-  render(<BarForm uniqueCategories={uniqueCategories} onChange={onChange} />)
+  render(<PieForm uniqueCategories={uniqueCategories} onChange={onChange} />)
   const target = screen.getByRole('checkbox', { name: /united kingdom/i })
   fireEvent.click(target)
 })
 
-test('horizontal option on', () => {
+test('xaxis change', () => {
   const onChange = jest.fn()
-  render(<BarForm uniqueCategories={uniqueCategories} onChange={onChange} />)
-  const target = screen.getByRole('checkbox', { name: /horizontal/i })
-  fireEvent.click(target)
+  render(<PieForm uniqueCategories={uniqueCategories} onChange={onChange} />)
+  let target = screen.getByRole('combobox', { name: /variable/i })
+  fireEvent.change(target, {
+    target: { value: 'Rapporteur', name: 'chosenVariable' },
+  })
 })
