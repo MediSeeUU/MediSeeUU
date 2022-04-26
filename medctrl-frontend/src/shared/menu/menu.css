@@ -40,12 +40,12 @@
   width: 15%;
   height: 35px;
   border: 1px solid var(--med-secondary-modal-button-hover);
-  color: var(--med-secondary-modal-button-text);
   border-radius: 5px;
 }
 
 .cl {
   background-color: var(--med-secondary-modal-button-background);
+  color: var(--med-secondary-modal-button-text);
 }
 
 .cl:hover {
@@ -63,7 +63,6 @@
 .apply {
   margin-right: 2%;
 }
-
 
 .add {
   font-weight: bold;
@@ -101,7 +100,6 @@
   margin-top: 10px;
   cursor: pointer;
 }
-
 
 /* Individual Filter and Sort Items*/
 

@@ -10,7 +10,7 @@ function HomePage() {
     <div className="med_home_content">
       <div className="med-content-container">
         <h1>About This Dashboard</h1>
-        <hr className='med-top-separator'/>
+        <hr className="med-top-separator" />
         <p>
           This software development project is a collaboration between Utrecht
           University (UU) and the Dutch Medicines Evaluation Board (MEB), also
@@ -31,7 +31,7 @@ function HomePage() {
 
       <div className="med-content-container med_content__container">
         <h1>About Us</h1>
-        <hr className='med-top-separator'/>
+        <hr className="med-top-separator" />
 
         <div>
           <h2>Utrecht University</h2>
@@ -78,7 +78,7 @@ function HomePage() {
 
       <div className="med-content-container med_content__container">
         <h1>Non Affiliated Regulatory Institutions</h1>
-        <hr className='med-top-separator'/>
+        <hr className="med-top-separator" />
         <h2>European Medicines Agency</h2>
 
         <p>

@@ -1,4 +1,3 @@
-
 // Returns the filter item in HTML
 function displayItem(props) {
   return (

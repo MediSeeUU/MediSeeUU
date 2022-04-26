@@ -69,7 +69,7 @@ function InfoPage(props) {
   let procedureContrainer = (
     <div className="med-content-container">
       <h1 className="title">Procedure Details</h1>
-      <hr className='med-top-separator' />
+      <hr className="med-top-separator" />
       {allProcedures}
     </div>
   )
@@ -89,7 +89,7 @@ function InfoPage(props) {
         <h1 className="title">
           {medicineData.info.BrandName} Medicine Details
         </h1>
-        <hr className='med-top-separator' />
+        <hr className="med-top-separator" />
 
         <div class="flex-columns">
           <DetailGroup title="General Information">
@@ -196,7 +196,7 @@ function InfoPage(props) {
 
       <div className="med-content-container">
         <h1 className="title">Additional Resources</h1>
-        <hr className='med-top-separator' />
+        <hr className="med-top-separator" />
 
         <CustomLink
           className="external-link"

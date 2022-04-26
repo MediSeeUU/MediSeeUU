@@ -13,17 +13,18 @@ function DataSelect() {
   const [data, setData] = useState(allData)
 
   // the menu button to be displayed with the table
-  const menu =       
+  const menu = (
     <Menu
       cachedData={allData}
       updateTable={(updatedData) => setData(updatedData)}
     />
+  )
 
   //main body of the page
   return (
     <div className="med-content-container">
       <h1>Data Selection Table</h1>
-      <hr className='med-top-separator'/>
+      <hr className="med-top-separator" />
       {TableView(
         data,
         resultsPerPage,

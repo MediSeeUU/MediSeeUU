@@ -21,7 +21,7 @@ function SearchPage() {
 
       <div className="med-content-container searchDataTable">
         <h1>Search Results</h1>
-        <hr className='med-top-separator'/>
+        <hr className="med-top-separator" />
         <Table
           data={allData}
           currentPage={1}

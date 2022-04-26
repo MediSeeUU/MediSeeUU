@@ -5,7 +5,7 @@ class BasePageLocators():
   NAV_ITEM = (By.CLASS_NAME, 'nav-item')
 
 class HomePageLocators():
-  ARTICLE = (By.TAG_NAME, 'article')
+  ARTICLE = (By.CLASS_NAME, 'med-content-container')
   LINK = (By.CLASS_NAME, 'institution-link')
 
 class TableLocators():
@@ -21,7 +21,7 @@ class TableLocators():
   REMOVE_COLUMN = (By.CLASS_NAME, 'bxs-minus-square')
 
 class DataPageLocators():
-  BUTTON = (By.CLASS_NAME, 'tableButtons')
+  BUTTON = (By.CLASS_NAME, 'med-bx-button')
   SELECT = (By.CLASS_NAME, 'tableCheckboxColumn')
   RESULTS_PER_PAGE = (By.ID, 'topSelector')
   SELECTED_PAGE = (By.CLASS_NAME, 'lb-pageCount_selected')

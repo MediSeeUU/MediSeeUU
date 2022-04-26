@@ -3,53 +3,52 @@
 
 :root {
   /* colors for the secondary modal (filter) buttons */
-  --med-secondary-modal-button-background:    var(--secondary-light);
-  --med-secondary-modal-button-hover:         var(--secondary-normal);
-  --med-secondary-modal-button-text:          var(--text-primary);
+  --med-secondary-modal-button-background: var(--secondary-light);
+  --med-secondary-modal-button-hover: var(--secondary-normal);
+  --med-secondary-modal-button-text: var(--text-primary);
 
   /* color of addition and/or descriptive text */
-  --med-additional-text:                      var(--text-additional);
-  --med-text-secondary:                       var(--text-secondary);
+  --med-additional-text: var(--text-additional);
+  --med-text-secondary: var(--text-secondary);
 
   /* color of the inside of a radio button */
-  --med-radio-inside:                         var(--primary-normal);
+  --med-radio-inside: var(--primary-normal);
 
   /* colors for the tooltip component (nav only) */
-  --med-tooltip-background:                   var(--core-content);
-  --med-tooltip-text:                         var(--text-primary);
+  --med-tooltip-background: var(--core-content);
+  --med-tooltip-text: var(--text-primary);
 
   /* colors for a success message */
-  --med-positive-message-background:          var(--positive-light);
-  --med-positive-message-text:                var(--positive-dark);
+  --med-positive-message-background: var(--positive-light);
+  --med-positive-message-text: var(--positive-dark);
 
   /* colors for displaying (groups of) details */
-  --med-info-collection-background:           var(--secondary-dark);
-  --med-info-detail-background:               var(--core-content);
+  --med-info-collection-background: var(--secondary-dark);
+  --med-info-detail-background: var(--core-content);
 
   /* colors for an element with negative effects (e.g. remove) */
-  --med-positive-button-background:           var(--positive-dark);
-  --med-positive-button-hover:                var(--positive-normal);
+  --med-positive-button-background: var(--positive-dark);
+  --med-positive-button-hover: var(--positive-normal);
 
   /* colors for an element with positive effects (e.g. add) */
-  --med-negative-button-background:           var(--negative-dark);
-  --med-negative-button-hover:                var(--negative-normal);
+  --med-negative-button-background: var(--negative-dark);
+  --med-negative-button-hover: var(--negative-normal);
 
   /* colors for the visualization menu's */
   --med-visualization-cagetory-menu-background: var(--secondary-light);
-  --med-visualization-vertical-border:        var(--core-border);
+  --med-visualization-vertical-border: var(--core-border);
 
   /* colors for styling the data tables */
-  --med-filter-remove-icon:                   var(--negative-dark);
-  --med-page-count-hover:                     var(--secondary-dark);
-  --med-page-count-selected:                  var(--primary-light);
-  --med-table-header-text:                    var(--text-secondary);
-  --med-table-header-background:              var(--primary-dark);
-  --med-table-header-border:                  var(--secondary-dark);
-  --med-table-border:                         var(--primary-normal);
-  --med-table-row-even-background:            var(--secondary-normal);
-  --med-table-row-odd-background:             var(--secondary-light);
+  --med-filter-remove-icon: var(--negative-dark);
+  --med-page-count-hover: var(--secondary-dark);
+  --med-page-count-selected: var(--primary-light);
+  --med-table-header-text: var(--text-secondary);
+  --med-table-header-background: var(--primary-dark);
+  --med-table-header-border: var(--secondary-dark);
+  --med-table-border: var(--primary-normal);
+  --med-table-row-even-background: var(--secondary-normal);
+  --med-table-row-odd-background: var(--secondary-light);
 }
-
 
 /* Shared Style Class Definitions */
 
@@ -81,7 +80,6 @@
   border: none;
 }
 
-
 /*
   Primary Text Button
 
@@ -97,7 +95,6 @@
 .med-primary-text:hover {
   color: var(--primary-light);
 }
-
 
 /*
   Text Input Field Styling
@@ -125,12 +122,10 @@
   Error Message Field Styling
 */
 
-
 .med-error-message {
   background-color: var(--negative-light);
   color: var(--negative-dark);
 }
-
 
 /* 
   Content Container Styling
@@ -146,7 +141,6 @@
   width: 97%;
   margin: 2%;
 }
-
 
 /* 
   Horizontal Separator Styling

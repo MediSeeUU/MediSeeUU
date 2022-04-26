@@ -43,98 +43,94 @@ input[type='checkbox'] {
   user-select: none;
 }
 
-
 /* Default Color Definitions */
 
 :root {
-  --core-body:        #eaf0f8;
-  --core-header:      #ffffff;
-  --core-footer:      #d7d7d7;
-  --core-border:      #969696;
-  --core-shadow:      #969696;
-  --core-content:     #ffffff;
-  --core-dialog:      #eaf0f8;
+  --core-body: #eaf0f8;
+  --core-header: #ffffff;
+  --core-footer: #d7d7d7;
+  --core-border: #969696;
+  --core-shadow: #969696;
+  --core-content: #ffffff;
+  --core-dialog: #eaf0f8;
 
-  --text-primary:     #212529;
-  --text-secondary:   #ffffff;
-  --text-additional:  #8b8b8b;
+  --text-primary: #212529;
+  --text-secondary: #ffffff;
+  --text-additional: #8b8b8b;
 
-  --primary-dark:     #114b5f;
-  --primary-normal:   #38576b;
-  --primary-light:    #607e92;
+  --primary-dark: #114b5f;
+  --primary-normal: #38576b;
+  --primary-light: #607e92;
 
-  --secondary-dark:   #d3d3d3;
+  --secondary-dark: #d3d3d3;
   --secondary-normal: #dde6f0;
-  --secondary-light:  #f5f5f5;
+  --secondary-light: #f5f5f5;
 
-  --positive-dark:    #028a0f;
-  --positive-normal:  #3cb042;
-  --positive-light:   #bfffbf;
+  --positive-dark: #028a0f;
+  --positive-normal: #3cb042;
+  --positive-light: #bfffbf;
 
-  --negative-dark:    #ff0000;
-  --negative-normal:  #ff3d3d;
-  --negative-light:   #ffbfbf;
+  --negative-dark: #ff0000;
+  --negative-normal: #ff3d3d;
+  --negative-light: #ffbfbf;
 
-  --accent-dark:      #9a7197;
-  --accent-light:     #ac80a0;
+  --accent-dark: #9a7197;
+  --accent-light: #ac80a0;
 }
 
 /* Dark Mode Color Definitions */
- 
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --core-body:        #020409;
-    --core-header:      #1c1c1d;
-    --core-footer:      #0b0d13;
-    --core-border:      #31363c;
-    --core-shadow:      #212222;
-    --core-content:     #212122;
-    --core-dialog:      #121314;
- 
-    --text-primary:     #ffffff;
-    --text-secondary:   #ffffff;
-    --text-additional:  #8b8b8b;
+    --core-body: #020409;
+    --core-header: #1c1c1d;
+    --core-footer: #0b0d13;
+    --core-border: #31363c;
+    --core-shadow: #212222;
+    --core-content: #212122;
+    --core-dialog: #121314;
 
-    --primary-dark:     #0d3a49;
-    --primary-normal:   #304a5c;
-    --primary-light:    #526c7e;
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --text-additional: #8b8b8b;
 
-    --secondary-dark:   #1b1b1b;
+    --primary-dark: #0d3a49;
+    --primary-normal: #304a5c;
+    --primary-light: #526c7e;
+
+    --secondary-dark: #1b1b1b;
     --secondary-normal: #1f2027;
-    --secondary-light:  #2c2c2c;
+    --secondary-light: #2c2c2c;
 
-    --positive-dark:    #028a0f;
-    --positive-normal:  #3cb042;
-    --positive-light:   #1b271b;
-  
-    --negative-dark:    #ff0000;
-    --negative-normal:  #ff3d3d;
-    --negative-light:   #3a0808;
-  
-    --accent-dark:      #9a7197;
-    --accent-light:     #ac80a0;
-    
+    --positive-dark: #028a0f;
+    --positive-normal: #3cb042;
+    --positive-light: #1b271b;
+
+    --negative-dark: #ff0000;
+    --negative-normal: #ff3d3d;
+    --negative-light: #3a0808;
+
+    --accent-dark: #9a7197;
+    --accent-light: #ac80a0;
   }
 }
-
-
 
 /* Core Color Variable Definitions */
 
 :root {
-  --med-main-background:      var(--core-body);
-  --med-shadow:               var(--core-shadow);
-  --med-content-background:   var(--core-content);
-  --med-content-border:       var(--core-border);
-  --med-nav-background:       var(--primary-dark);
-  --med-dialog-background:    var(--core-dialog);
+  --med-main-background: var(--core-body);
+  --med-shadow: var(--core-shadow);
+  --med-content-background: var(--core-content);
+  --med-content-border: var(--core-border);
+  --med-nav-background: var(--primary-dark);
+  --med-dialog-background: var(--core-dialog);
 
-  --med-header-background:    var(--core-header);
-  --med-header-text:          var(--text-primary);
+  --med-header-background: var(--core-header);
+  --med-header-text: var(--text-primary);
 
-  --med-footer-background:    var(--core-footer);
-  --med-footer-text:          var(--text-primary);
+  --med-footer-background: var(--core-footer);
+  --med-footer-text: var(--text-primary);
 
-  --med-textlink-text:        var(--accent-dark);
-  --med-textlink-text-hover:  var(--accent-light);
+  --med-textlink-text: var(--accent-dark);
+  --med-textlink-text-hover: var(--accent-light);
 }

@@ -87,7 +87,8 @@ class VisualizationPage extends Component {
                 className="med-primary-solid med-bx-button button-add"
                 onClick={this.handleAddition}
               >
-                <i className="bx bx-plus filter-Icon"/>Add visualization
+                <i className="bx bx-plus filter-Icon" />
+                Add visualization
               </button>
             </Row>
           </Container>

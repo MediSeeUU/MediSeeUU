@@ -1,10 +1,10 @@
 import Toggle from './NavComponents/Toggle'
 import NavLink from './NavComponents/NavLink'
 import NavAccount from './NavComponents/NavAccount'
+import LoginModal from '../login/LoginModal'
 import React from 'react'
 import OutsideClickHandler from 'react-outside-click-handler'
 import './Navigation.css'
-import LoginModal from '../login/LoginModal'
 
 // class based compenent, represents the entire navigation side bar
 class SideNavigation extends React.Component {

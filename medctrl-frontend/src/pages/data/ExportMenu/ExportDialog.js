@@ -215,7 +215,10 @@ class ExportDialog extends React.Component {
 
         {errorMessage}
 
-        <button className="med-primary-solid accept" onClick={this.handleDownload}>
+        <button
+          className="med-primary-solid accept"
+          onClick={this.handleDownload}
+        >
           Download
         </button>
         <button className="cancel" onClick={this.closeDialog}>
