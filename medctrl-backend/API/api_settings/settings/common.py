@@ -21,6 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = ["https://med-ctrl.science.uu.nl"]
+
 
 # Application definition
 
@@ -51,6 +53,10 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "guardian.backends.ObjectPermissionBackend",
 ]
+
+REST_KNOX = {
+    "USER_SERIALIZER": "api.serializers.user_serializers.normal_user.UserSerializer",
+}
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",

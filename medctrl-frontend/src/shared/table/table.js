@@ -15,6 +15,7 @@ function DisplayTable({
   searchTable,
   amountPerPage,
   currentPage,
+  menu,
 }) {
   //throw error if parameters not defined
   if (!data || !amountPerPage || !currentPage) {
@@ -109,15 +110,18 @@ function DisplayTable({
     <>
       <div className="addRmCollumn">
         <i
-          className="bx bxs-plus-square bx-plusMinus"
+          className="bx-plusMinus bx bxs-plus-square med-primary-text"
           onClick={() => addColumn()}
           data-testid="add-column"
-        ></i>
+        />
+
         <i
-          className="bx bxs-minus-square bx-plusMinus"
+          className="bx-plusMinus bx bxs-minus-square med-primary-text"
           onClick={() => removeColumn()}
           data-testid="remove-column"
-        ></i>
+        />
+
+        {menu}
       </div>
 
       <table className="med_table">
@@ -193,7 +197,7 @@ const CheckboxColumn = ({ value, onChange }) => {
 function BinboxColumn({ onp }) {
   return (
     <td className="med_td smallColumn">
-      <i className="bx bx-trash icons" onClick={onp}></i>
+      <i className="bx bx-trash icons med-primary-text" onClick={onp}></i>
     </td>
   )
 }
@@ -204,7 +208,7 @@ function InfoboxColumn({ EUidNumber }) {
     <td className="med_td smallColumn">
       <Link to={`/details/${EUidNumber}`}>
         <i
-          className="bx bx-info-circle icons"
+          className="bx bx-info-circle icons med-primary-text"
           id={'detailInfo' + EUidNumber}
           testid={'detailInfo' + EUidNumber}
         />

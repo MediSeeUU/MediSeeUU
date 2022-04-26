@@ -129,6 +129,7 @@ class LineForm extends Component {
           <select
             value={this.state.xAxis}
             name="xAxis"
+            className="med-select"
             onChange={this.handleChange}
           >
             {variablesXAxis}
@@ -139,6 +140,7 @@ class LineForm extends Component {
           <select
             value={this.state.yAxis}
             name="yAxis"
+            className="med-select"
             onChange={this.handleChange}
           >
             {variablesYAxis}

@@ -121,6 +121,7 @@ class PieForm extends Component {
           <select
             value={this.state.chosenVariable}
             name="chosenVariable"
+            className="med-select"
             onChange={this.handleChange}
           >
             {variables}

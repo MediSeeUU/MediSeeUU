@@ -73,13 +73,11 @@ class Menu extends React.Component {
 
   // Standard function to remove element in state with given id in property
   removeElement(propertyName, id) {
-    if (this.state[propertyName].length > 1) {
-      let updated = [...this.state[propertyName]]
-      updated.splice(id, 1)
-      this.setState({
-        [propertyName]: updated,
-      })
-    }
+    let updated = [...this.state[propertyName]]
+    updated.splice(id, 1)
+    this.setState({
+      [propertyName]: updated,
+    })
   }
 
   // Adds a new filter input box to a filter item
@@ -98,7 +96,7 @@ class Menu extends React.Component {
         newInput.splice(bid, 1)
         return { ...obj, input: newInput }
       }
-      return obj
+      return { ...obj, input: [''] }
     })
   }
 
@@ -161,7 +159,9 @@ class Menu extends React.Component {
       return data
     }
     return data.filter((obj) => {
-      return item.input.some((x) => obj[item.selected].toString().includes(x))
+      return item.input.some((x) =>
+        obj[item.selected].toString().toLowerCase().includes(x.toLowerCase())
+      )
     })
   }
 
@@ -189,12 +189,13 @@ class Menu extends React.Component {
       })
     // Returns the menu in HTML
     return (
-      <div>
-        <label>Active table settings</label>
-        <button className="tableButtons" onClick={this.handleOpenModal}>
+      <>
+        <button
+          className="med-primary-solid med-bx-button"
+          onClick={this.handleOpenModal}
+        >
           <i className="bx bx-cog filter-Icon"></i>Filter & Sort
         </button>
-        <hr></hr>
         <ReactModal
           className="menu-modal"
           isOpen={this.state.showModal}
@@ -211,8 +212,8 @@ class Menu extends React.Component {
         >
           <div className="filter">
             <h1 className="header">Filters</h1>
-            <hr></hr>
-            <div className="add" onClick={this.addFilter}>
+            <hr className="med-top-separator" />
+            <div className="add med-primary-text" onClick={this.addFilter}>
               Add Filter
               <i className="bx bxs-plus-square add-icon"></i>
             </div>
@@ -232,7 +233,10 @@ class Menu extends React.Component {
               ))}
             </div>
             <div className="filter-bttn-box">
-              <button className="menu-button apply" onClick={this.apply}>
+              <button
+                className="menu-button apply med-primary-solid"
+                onClick={this.apply}
+              >
                 Apply
               </button>
               <button className="menu-button cl" onClick={this.clear}>
@@ -248,7 +252,7 @@ class Menu extends React.Component {
           </div>
           <div className="sort">
             <h1 className="header">Sort</h1>
-            <hr></hr>
+            <hr className="med-top-separator" />
             {this.state.sorters.map((obj, oid) => (
               <Sort
                 key={uuidv4()}
@@ -261,13 +265,16 @@ class Menu extends React.Component {
               />
             ))}
             {this.state.showAddSort && (
-              <label className="add-sort" onClick={this.addSort}>
+              <label
+                className="add-sort med-primary-text"
+                onClick={this.addSort}
+              >
                 Add Sorting option +
               </label>
             )}
           </div>
         </ReactModal>
-      </div>
+      </>
     )
   }
 }

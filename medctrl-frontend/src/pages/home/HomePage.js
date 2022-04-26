@@ -8,9 +8,9 @@ function HomePage() {
   return (
     // Homepage components, contains article containers (styling in HomePage.css)
     <div className="med_home_content">
-      <article className="TopTableHolder">
+      <div className="med-content-container">
         <h1>About This Dashboard</h1>
-        <hr />
+        <hr className="med-top-separator" />
         <p>
           This software development project is a collaboration between Utrecht
           University (UU) and the Dutch Medicines Evaluation Board (MEB), also
@@ -27,11 +27,11 @@ function HomePage() {
           visualization and make quantitative analyses of these data easier and
           more consistent.
         </p>
-      </article>
+      </div>
 
-      <article className="med_content__container TopTableHolder">
+      <div className="med-content-container med_content__container">
         <h1>About Us</h1>
-        <hr />
+        <hr className="med-top-separator" />
 
         <div>
           <h2>Utrecht University</h2>
@@ -74,11 +74,11 @@ function HomePage() {
             Verweij).
           </p>
         </div>
-      </article>
+      </div>
 
-      <article className="med_content__container TopTableHolder">
+      <div className="med-content-container med_content__container">
         <h1>Non Affiliated Regulatory Institutions</h1>
-        <hr />
+        <hr className="med-top-separator" />
         <h2>European Medicines Agency</h2>
 
         <p>
@@ -127,7 +127,7 @@ function HomePage() {
           </a>
           .
         </p>
-      </article>
+      </div>
     </div>
   )
 }
