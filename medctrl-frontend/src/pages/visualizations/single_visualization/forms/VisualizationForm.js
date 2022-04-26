@@ -150,6 +150,7 @@ class VisualizationForm extends Component {
           <select
             value={this.state.chart_type}
             name="chart_type"
+            className="med-select"
             onChange={this.handleChange}
           >
             <option value="bar">Bar chart</option>
@@ -176,7 +177,10 @@ class VisualizationForm extends Component {
           />
           &nbsp;&nbsp;Show labels
         </label>
-        <button type="submit" className="table-buttons button-update">
+        <button
+          type="submit"
+          className="med-primary-solid med-bx-button button-update"
+        >
           <i className="bx bx-check filter-Icon"></i>Update
         </button>
       </form>

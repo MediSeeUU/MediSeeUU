@@ -1,19 +1,3 @@
-/* variables*/
-
-:root {
-  --main-nav: var(--blue-main);
-  --alt-nav: var(--blue-alt);
-  --light-nav: var(--blue-light);
-
-  --main-toggle: var(--aqua-main);
-  --alt-toggle: var(--aqua-alt);
-
-  --tooltip-nav: var(--white-tooltip);
-
-  --text-nav: var(--white-text);
-  --text-alt-nav: var(--grey-text);
-}
-
 /* overall */
 
 :local(*) {
@@ -29,7 +13,7 @@
   position: fixed;
   top: 75px;
   height: calc(100% - 75px);
-  background: var(--main-nav);
+  background: var(--med-nav-background);
   padding: 6px 14px;
   transition: all 0.3s;
   z-index: 10000;
@@ -44,6 +28,11 @@
   width: 78px;
 }
 
+.nav-separator {
+  margin: 0.5rem 0;
+  background-color: white;
+}
+
 /* for the individual items in the navigation bar */
 
 .nav-item {
@@ -52,20 +41,7 @@
   margin: 8px 0;
   cursor: pointer;
   border-radius: 12px;
-  background: var(--alt-nav);
   transition: 0.2s;
-}
-
-.nav-item:hover {
-  background: var(--light-nav);
-}
-
-.nav-item.toggle {
-  background-color: var(--main-toggle);
-}
-
-.nav-item.toggle:hover {
-  background-color: var(--alt-toggle);
 }
 
 /* for the content of the individual items in the navigation bar */
@@ -82,7 +58,7 @@
 
 .nav-item-content i {
   min-width: 50px;
-  color: var(--text-nav);
+  color: var(--med-solid-button-text);
   height: 50px;
   line-height: 50px;
   font-size: 18px;
@@ -94,7 +70,7 @@
 */
 
 .nav-item-content .nav-item-name {
-  color: var(--text-nav);
+  color: var(--med-solid-button-text);
   font-size: 15px;
   font-weight: 400;
   white-space: nowrap;
@@ -113,13 +89,14 @@
     the navigation bar only when the navigation bar in collapsed 
 */
 
-.tooltip {
+.nav-tooltip {
   position: absolute;
   left: calc(100% + 20px);
   top: 7.5px;
   opacity: 0;
 
-  background: var(--tooltip-nav);
+  color: var(--med-tooltip-text);
+  background-color: var(--med-tooltip-background);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 
   border-radius: 4px;
@@ -134,7 +111,7 @@
   z-index: 3;
 }
 
-.side-nav.closed-nav .nav-item:hover .tooltip {
+.side-nav.closed-nav .nav-item:hover .nav-tooltip {
   opacity: 1;
   font-family: 'Poppins';
 }
@@ -162,12 +139,5 @@
 
 .nav-item-name.user-alt {
   font-size: 14px;
-  color: var(--text-alt-nav);
-}
-
-.med_nav_divider {
-  margin: 0px auto 10px auto;
-  border: 1px solid var(--seperation-line);
-  opacity: 100%;
-  border-radius: 100%;
+  color: var(--med-additional-text);
 }

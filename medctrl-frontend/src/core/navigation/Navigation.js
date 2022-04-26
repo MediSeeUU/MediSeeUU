@@ -1,10 +1,10 @@
 import Toggle from './NavComponents/Toggle'
 import NavLink from './NavComponents/NavLink'
 import NavAccount from './NavComponents/NavAccount'
+import LoginModal from '../login/LoginModal'
 import React from 'react'
 import OutsideClickHandler from 'react-outside-click-handler'
 import './Navigation.css'
-import LoginModal from '../login/LoginModal'
 
 // class based compenent, represents the entire navigation side bar
 class SideNavigation extends React.Component {
@@ -50,7 +50,7 @@ class SideNavigation extends React.Component {
     // messages and settings pages below the other links
     let Extra = !(this.state.loggedin && this.state.isAdmin) ? null : (
       <div>
-        <hr className="med_nav_divider" />
+        <hr className="nav-separator" />
         <NavLink
           name="Messages"
           image="bx bx-chat"

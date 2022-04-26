@@ -62,8 +62,8 @@ class LoginForm extends React.Component {
           <input
             type="text"
             id="username"
-            className="credential-input"
-            placeholder="username"
+            className="credential-input med-text-input"
+            placeholder="Username"
             minLength={4}
             maxLength={64}
             autoComplete="off"
@@ -72,14 +72,17 @@ class LoginForm extends React.Component {
           <input
             type="password"
             id="password"
-            className="credential-input"
+            className="credential-input med-text-input"
             placeholder="Password"
           />
           {errorMessage}
-          <button type="submit" className="button-login">
+          <button
+            type="submit"
+            className="button-login med-primary-solid med-bx-button"
+          >
             Sign in
           </button>
-          <button className="cancel" onClick={this.closeDialog}>
+          <button className="button-cancel" onClick={this.closeDialog}>
             Cancel
           </button>
         </form>

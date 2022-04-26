@@ -1,7 +1,12 @@
 function MessagesPage() {
   return (
-    <div>
-      <h1>Messages!</h1>
+    <div className="med-content-container">
+      <h1>Message Information</h1>
+      <hr className="med-top-separator" />
+      <p>
+        At this time, no message information is available for display on this
+        page.
+      </p>
     </div>
   )
 }
