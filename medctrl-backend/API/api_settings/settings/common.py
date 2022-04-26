@@ -52,6 +52,10 @@ AUTHENTICATION_BACKENDS = [
     "guardian.backends.ObjectPermissionBackend",
 ]
 
+REST_KNOX = {
+    "USER_SERIALIZER": "api.serializers.user_serializers.normal_user.UserSerializer",
+}
+
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
