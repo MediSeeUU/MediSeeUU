@@ -4,9 +4,6 @@
   margin-bottom: 20px;
   width: calc(100% - 180px);
   font-size: 16px;
-  background-color: var(--med-text-input-background);
-  border: 1px solid var(--med-text-input-border);
-  border-radius: 4px;
   padding: 0 7px;
   height: 31px;
 }

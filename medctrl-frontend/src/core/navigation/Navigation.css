@@ -41,20 +41,7 @@
   margin: 8px 0;
   cursor: pointer;
   border-radius: 12px;
-  background: var(--med-solid-button-background);
   transition: 0.2s;
-}
-
-.nav-item:hover {
-  background: var(--med-solid-button-background-hover);
-}
-
-.nav-item.toggle {
-  background-color: var(--med-solid-button-background);
-}
-
-.nav-item.toggle:hover {
-  background-color: var(--med-solid-button-background-hover);
 }
 
 /* for the content of the individual items in the navigation bar */
@@ -108,6 +95,7 @@
   top: 7.5px;
   opacity: 0;
 
+  color: var(--med-tooltip-text);
   background-color: var(--med-tooltip-background);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 

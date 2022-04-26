@@ -9,7 +9,7 @@ function Toggle(props) {
   return (
     // when the toggle is clicked, the parent (the navigation bar) should to toggled
     // meaning it is either expanded or collapsed
-    <div className="nav-item toggle" onClick={() => props.parent.toggle()}>
+    <div className="med-primary-solid nav-item toggle" onClick={() => props.parent.toggle()}>
       <div className="nav-item-content">
         <i className={image} />
         <span className="nav-item-name"> {name} </span>

@@ -139,6 +139,7 @@ function ResultsSelector({
         <select
           onChange={(event) => resultsPerPage(event.target.value)}
           name="AmountShown"
+          className="med-select"
           id="topSelector"
         >
           {options}

@@ -27,9 +27,9 @@
 }
 
 #topSelector {
+  width: 55px;
   height: 25px;
   margin: 2px 0px 0px 10px;
-  border: 1px solid var(--med-select-border);
 }
 
 .lb-tableholder {
@@ -57,7 +57,7 @@
 }
 
 .lb-pageCount_selected {
-  background-color: var(--med-solid-button-background-hover);
+  background-color: var(--med-page-count-selected);
   color: white;
   border-radius: 2px;
 }

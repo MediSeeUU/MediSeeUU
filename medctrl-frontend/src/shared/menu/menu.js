@@ -190,7 +190,7 @@ class Menu extends React.Component {
     // Returns the menu in HTML
     return (
       <>
-        <button className="primary-solid-button" onClick={this.handleOpenModal}>
+        <button className="med-primary-solid med-bx-button" onClick={this.handleOpenModal}>
           <i className="bx bx-cog filter-Icon"></i>Filter & Sort
         </button>
         <ReactModal
@@ -209,8 +209,8 @@ class Menu extends React.Component {
         >
           <div className="filter">
             <h1 className="header">Filters</h1>
-            <hr className='top-separator'/>
-            <div className="add" onClick={this.addFilter}>
+            <hr className='med-top-separator'/>
+            <div className="add med-primary-text" onClick={this.addFilter}>
               Add Filter
               <i className="bx bxs-plus-square add-icon"></i>
             </div>
@@ -230,7 +230,7 @@ class Menu extends React.Component {
               ))}
             </div>
             <div className="filter-bttn-box">
-              <button className="menu-button apply" onClick={this.apply}>
+              <button className="menu-button apply med-primary-solid" onClick={this.apply}>
                 Apply
               </button>
               <button className="menu-button cl" onClick={this.clear}>
@@ -246,7 +246,7 @@ class Menu extends React.Component {
           </div>
           <div className="sort">
             <h1 className="header">Sort</h1>
-            <hr className='top-separator'/>
+            <hr className='med-top-separator'/>
             {this.state.sorters.map((obj, oid) => (
               <Sort
                 key={uuidv4()}
@@ -259,7 +259,7 @@ class Menu extends React.Component {
               />
             ))}
             {this.state.showAddSort && (
-              <label className="add-sort" onClick={this.addSort}>
+              <label className="add-sort med-primary-text" onClick={this.addSort}>
                 Add Sorting option +
               </label>
             )}

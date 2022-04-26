@@ -2,36 +2,21 @@
 /* Variable definitions to be used by all style sheets */
 
 :root {
-  /* colors for the primary solid button */
-  --med-solid-button-background:              var(--primary-normal);
-  --med-solid-button-background-hover:        var(--primary-light);
-  --med-solid-button-text:                    var(--text-secondary);
-
-  /* colors for the secondary solid button */
-  --med-solid-light-button-background:        var(--secondary-light);
-  --med-solid-light-button-background-hover:  var(--secondary-normal);
-  --med-solid-light-button-text:              var(--text-primary);
-
-  /* colors for the primary text button */
-  --med-text-button-background:               inherit;
-  --med-text-button-text:                     var(--primary-normal);
-  --med-text-button-text-hover:               var(--primary-light);
+  /* colors for the secondary modal (filter) buttons */
+  --med-secondary-modal-button-background:    var(--secondary-light);
+  --med-secondary-modal-button-hover:         var(--secondary-normal);
+  --med-secondary-modal-button-text:          var(--text-primary);
 
   /* color of addition and/or descriptive text */
   --med-additional-text:                      var(--text-additional);
+  --med-text-secondary:                       var(--text-secondary);
+
+  /* color of the inside of a radio button */
+  --med-radio-inside:                         var(--primary-normal);
 
   /* colors for the tooltip component (nav only) */
   --med-tooltip-background:                   var(--core-content);
   --med-tooltip-text:                         var(--text-primary);
-
-  /* colors for text input fields */
-  --med-text-input-background:                var(--core-content);
-  --med-text-input-border:                    var(--core-border);
-  --med-text-input-border-radius:             4px;
-
-  /* colors for a warning or error message */
-  --med-negative-message-background:          var(--negative-light);
-  --med-negative-message-text:                var(--negative-dark);
 
   /* colors for a success message */
   --med-positive-message-background:          var(--positive-light);
@@ -54,28 +39,40 @@
   --med-visualization-vertical-border:        var(--core-border);
 
   /* colors for styling the data tables */
-  --med-select-border:                        var(--text-primary);
+  --med-filter-remove-icon:                   var(--negative-dark);
   --med-page-count-hover:                     var(--secondary-dark);
+  --med-page-count-selected:                  var(--primary-light);
   --med-table-header-text:                    var(--text-secondary);
   --med-table-header-background:              var(--primary-dark);
+  --med-table-header-border:                  var(--secondary-dark);
   --med-table-border:                         var(--primary-normal);
-  --med-table-row-even-background:            var(--secondary-normal); /*#bac4c9;*/
-  --med-table-row-odd-background:             var(--secondary-light);  /*#d6d6d7;*/
+  --med-table-row-even-background:            var(--secondary-normal);
+  --med-table-row-odd-background:             var(--secondary-light);
 }
+
 
 /* Shared Style Class Definitions */
 
 /* 
   Primary Solid Button Styling
+
+  First two classes define the color of a button with the primary color
+  scheme, the last class defines the size, corners and margins of the button
 */
 
-.primary-solid-button {
+.med-primary-solid {
+  background-color: var(--primary-normal);
+  color: var(--text-secondary);
+}
+
+.med-primary-solid:hover {
+  background-color: var(--primary-light);
+}
+
+.med-bx-button {
   width: 150px;
   height: 40px;
   margin: 15px 5px 15px 5px;
-
-  background-color: var(--primary-normal);
-  color: var(--text-secondary);
 
   font-size: 15px;
   font-weight: 400;
@@ -84,8 +81,54 @@
   border: none;
 }
 
-.primary-solid-button:hover {
-  background-color: var(--primary-light);
+
+/*
+  Primary Text Button
+
+  The following twp classes define the colors for a text only 
+  button with the primary color scheme
+*/
+
+.med-primary-text {
+  background-color: inherit;
+  color: var(--primary-normal);
+}
+
+.med-primary-text:hover {
+  color: var(--primary-light);
+}
+
+
+/*
+  Text Input Field Styling
+*/
+
+.med-text-input {
+  background-color: var(--core-content);
+  color: var(--text-primary);
+  border: 1px solid var(--core-border);
+  border-radius: 4px;
+}
+
+/*
+  Drop Down Select Field Styling
+*/
+
+.med-select {
+  background-color: var(--secondary-light);
+  color: var(--text-primary);
+  border-radius: 4px;
+  border: 1px solid var(--core-border);
+}
+
+/*
+  Error Message Field Styling
+*/
+
+
+.med-error-message {
+  background-color: var(--negative-light);
+  color: var(--negative-dark);
 }
 
 
@@ -93,11 +136,12 @@
   Content Container Styling
 */
 
-.content-container {
+.med-content-container {
   background-color: var(--med-content-background);
   border: 2px solid var(--med-content-border);
   border-radius: 10px;
-  box-shadow: 0px 10px 10px 4px var(--med-shadow);
+  box-shadow: 0px 8px 8px 2px var(--med-shadow);
+  padding: 5px;
   height: auto;
   width: 97%;
   margin: 2%;
@@ -108,6 +152,6 @@
   Horizontal Separator Styling
 */
 
-.top-separator {
-  margin: 0.5rem 0;
+.med-top-separator {
+  margin: 0.5rem 0.5rem;
 }

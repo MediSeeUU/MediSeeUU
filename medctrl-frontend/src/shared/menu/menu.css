@@ -39,16 +39,17 @@
   font-weight: 600;
   width: 15%;
   height: 35px;
-  border: 1px solid var(--med-solid-light-button-background-hover);
+  border: 1px solid var(--med-secondary-modal-button-hover);
+  color: var(--med-secondary-modal-button-text);
   border-radius: 5px;
 }
 
 .cl {
-  background-color: var(--med-solid-light-button-background);
+  background-color: var(--med-secondary-modal-button-background);
 }
 
 .cl:hover {
-  background-color: var(--med-solid-light-button-background-hover);
+  background-color: var(--med-secondary-modal-button-hover);
 }
 
 .filter-bttn-box {
@@ -60,18 +61,11 @@
 }
 
 .apply {
-  background-color: var(--med-solid-button-background);
-  color: var(--med-solid-button-text);
   margin-right: 2%;
 }
 
-.apply:hover {
-  background-color: var(--med-solid-button-background-hover);
-}
 
 .add {
-  background-color: var(--med-text-button-background);
-  color: var(--med-text-button-text);
   font-weight: bold;
   font-size: 20px;
   padding-right: 50px;
@@ -80,10 +74,6 @@
   right: 0;
   margin: 20px;
   cursor: pointer;
-}
-
-.add:hover {
-  color: var(--med-text-button-text-hover);
 }
 
 .add-icon {
@@ -106,17 +96,12 @@
 
 .add-sort {
   display: inline-block;
-  background-color: var(--med-text-button-background);
-  color: var(--med-text-button-text);
   font-size: 15px;
   padding-left: 12px;
   margin-top: 10px;
   cursor: pointer;
 }
 
-.add-sort:hover {
-  color: var(--med-text-button-text-hover);
-}
 
 /* Individual Filter and Sort Items*/
 
@@ -157,20 +142,18 @@
 
 .add-label {
   font-size: 10px;
-  color: var(--med-text-button-text);
   cursor: pointer;
 }
 
 .remove-icon {
   font-size: 75%;
-  color: var(--med-negative-message-text);
   cursor: pointer;
   padding-left: 5px;
+  color: var(--med-filter-remove-icon);
 }
 
 .delete {
   position: absolute;
-  color: var(--med-text-button-text);
   font-size: 20px;
   cursor: pointer;
   display: inline-block;

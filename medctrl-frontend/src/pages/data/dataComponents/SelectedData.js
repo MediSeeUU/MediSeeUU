@@ -14,9 +14,9 @@ function SelectedData() {
 
   //main body of the page
   return (
-    <div className="content-container">
+    <div className="med-content-container">
       <h1>Selected Data Points</h1>
-      <hr className='top-separator' />
+      <hr className='med-top-separator' />
       {TableView(
         selectedData,
         resultsPerPage,

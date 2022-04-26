@@ -53,6 +53,8 @@
   font-weight: 500;
   background-color: var(--med-table-header-background);
   color: var(--med-table-header-text);
+  border: 1px solid var(--med-table-header-border);
+  border-radius: 4px;
   min-width: 100%;
   max-width: 100%;
 }
@@ -72,24 +74,13 @@
 .icons {
   font-size: 20px;
   margin-top: 2px;
-  color: var(--med-text-button-text);
   cursor: pointer;
-}
-
-.icons:hover {
-  color: var(--med-text-button-text-hover);
 }
 
 /* Column addition/removal button styling */
 .bx-plusMinus {
-  color: var(--med-text-button-text);
   cursor: pointer;
   margin-right: 5px;
   margin: 15px 0;
   font-size: 40px;
-}
-
-.bx-plusMinus:hover {
-  color: var(--med-text-button-text-hover);
-  cursor: pointer;
 }

@@ -67,9 +67,9 @@ function InfoPage(props) {
   // together with a meaningful title. if there are no procedures to display, the whole
   // container should not be displayed
   let procedureContrainer = (
-    <div className="content-container">
+    <div className="med-content-container">
       <h1 className="title">Procedure Details</h1>
-      <hr className='top-separator' />
+      <hr className='med-top-separator' />
       {allProcedures}
     </div>
   )
@@ -85,11 +85,11 @@ function InfoPage(props) {
   // links to external website which could be usefull
   return (
     <div>
-      <div className="content-container">
+      <div className="med-content-container">
         <h1 className="title">
           {medicineData.info.BrandName} Medicine Details
         </h1>
-        <hr className='top-separator' />
+        <hr className='med-top-separator' />
 
         <div class="flex-columns">
           <DetailGroup title="General Information">
@@ -194,9 +194,9 @@ function InfoPage(props) {
 
       {procedureContrainer}
 
-      <div className="content-container">
+      <div className="med-content-container">
         <h1 className="title">Additional Resources</h1>
-        <hr className='top-separator' />
+        <hr className='med-top-separator' />
 
         <CustomLink
           className="external-link"

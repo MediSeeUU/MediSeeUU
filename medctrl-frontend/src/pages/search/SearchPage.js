@@ -7,21 +7,21 @@ function SearchPage() {
 
   return (
     <>
-      <div className="content-container">
+      <div className="med-content-container">
         <input
           type="text"
           placeholder="Search"
-          className="content__container__textinput"
+          className="content__container__textinput med-text-input"
           onChange={(e) => test(e.target.value)}
         />
-        <button className="primary-solid-button">
+        <button className="med-primary-solid med-bx-button">
           <i class="bx bx-search search-Icon"></i>Search
         </button>
       </div>
 
-      <div className="content-container searchDataTable">
+      <div className="med-content-container searchDataTable">
         <h1>Search Results</h1>
-        <hr className='top-separator'/>
+        <hr className='med-top-separator'/>
         <Table
           data={allData}
           currentPage={1}

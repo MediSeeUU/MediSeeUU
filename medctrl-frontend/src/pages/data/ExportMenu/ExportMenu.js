@@ -14,7 +14,7 @@ function ExportMenu() {
 
   return (
     <>
-      <button className="primary-solid-button" onClick={() => setModalState(true)}>
+      <button className="med-primary-solid med-bx-button" onClick={() => setModalState(true)}>
         <i className="bx bxs-file-export"></i>Export
       </button>
 

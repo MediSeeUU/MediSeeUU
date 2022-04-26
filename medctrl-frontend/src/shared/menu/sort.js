@@ -4,7 +4,7 @@ function displayItem(props) {
   return (
     <div id={props.id} className="sort-item">
       <select
-        className="select"
+        className="select med-select"
         defaultValue={props.item.selected}
         onChange={(e) => props.sel(props.id, e.target.value)}
         data-testid="sort-select-attr"
@@ -15,7 +15,7 @@ function displayItem(props) {
         {props.options}
       </select>
       <select
-        className="select"
+        className="select med-select"
         defaultValue={props.item.order}
         onChange={(e) => props.order(props.id, e.target.value)}
         data-testid="sort-select-order"
@@ -28,7 +28,7 @@ function displayItem(props) {
         </option>
       </select>
       <i
-        className="bx bxs-x-circle delete"
+        className="bx bxs-x-circle delete med-primary-text"
         data-testid="delete-sorting-box"
         onClick={() => props.del(props.id)}
       ></i>

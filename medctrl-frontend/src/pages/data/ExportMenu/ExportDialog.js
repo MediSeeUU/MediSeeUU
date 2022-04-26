@@ -208,14 +208,14 @@ class ExportDialog extends React.Component {
               onChange={this.handleChange}
               type="text"
               id="separator"
-              className="text-input"
+              className="text-input med-text-input"
             />
           </RadioElement>
         </div>
 
         {errorMessage}
 
-        <button className="accept" onClick={this.handleDownload}>
+        <button className="med-primary-solid accept" onClick={this.handleDownload}>
           Download
         </button>
         <button className="cancel" onClick={this.closeDialog}>
