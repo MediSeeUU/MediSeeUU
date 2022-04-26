@@ -11,44 +11,38 @@ import {
 } from '@testing-library/react'
 import SingleVisualization from '../single_visualization/SingleVisualization'
 import ResizeObserver from '../mocks/observer'
-import UserEvent from '@testing-library/user-event'
-import GetUniqueCategories from '../single_visualization/utils/GetUniqueCategories'
 
 import data from '../../../testJson/data.json'
-import { act, createRenderer, renderIntoDocument } from 'react-dom/test-utils'
 
 jest.mock('../mocks/observer')
 
+let container
+beforeEach(() => {
+  container = document.createElement('div')
+  document.body.append(container)
+})
+
+afterEach(() => {
+  document.body.removeChild(container)
+  container = null
+})
+
 test('render initial single visualization', () => {
-  const root = document.createElement('div')
-  document.body.append(root)
-  ReactDOM.render(<SingleVisualization id={1} data={data} />, root)
+  ReactDOM.render(<SingleVisualization id={1} data={data} />, container)
 })
 
 test('export to svg', () => {
-  const root = document.createElement('div')
-  ReactDOM.render(<SingleVisualization id={1} data={data} />, root)
+  ReactDOM.render(<SingleVisualization id={1} data={data} />, container)
   fireEvent.click(screen.getByRole('button', { name: 'Export as SVG' }))
 })
 
-test('change chart type', () => {
-  const root = document.createElement('div')
-  let vis = ReactDOM.render(<SingleVisualization id={1} data={data} />, root)
-  const chartSpecificOptions = {
-    xAxis: 'DecisionYear',
-    yAxis: 'Rapporteur',
-    categoriesSelected: ['United Kingdom'],
-    stackType: 'normal',
-    stacked: false,
-    horizontal: false,
-  }
-  const event = {
-    chart_type: 'line',
-    chartSpecificOptions: chartSpecificOptions,
-    legend_on: false,
-    label_on: false,
-    chartSpecificOptionsName: '',
-  }
+test('export to png', () => {
+  ReactDOM.render(<SingleVisualization id={1} data={data} />, container)
+  fireEvent.click(screen.getByRole('button', { name: 'Export as PNG' }))
+})
 
-  expect(() => vis.handleChange(event)).toThrow()
+test('remove itself', () => {
+  const onRemoval = jest.fn()
+  ReactDOM.render(<SingleVisualization id={1} data={data} onRemoval={onRemoval}/>, container)
+  fireEvent.click(screen.getByRole('button', { name: '' }))
 })

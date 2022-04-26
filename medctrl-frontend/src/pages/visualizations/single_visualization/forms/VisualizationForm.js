@@ -150,7 +150,6 @@ class VisualizationForm extends Component {
             value={this.state.chart_type}
             name="chart_type"
             onChange={this.handleChange}
-            data-testid={'visType'}
           >
             <option value="bar">Bar chart</option>
             <option value="line">Line chart</option>

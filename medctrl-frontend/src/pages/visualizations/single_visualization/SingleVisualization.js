@@ -71,7 +71,9 @@ class SingleVisualization extends Component {
 
   // event handler for the form data
   handleChange(event) {
+    console.log('here')
     const series = this.generateSeries(event.chart_type, event)
+    console.log(event)
 
     this.setState({
       chart_type: event.chart_type,
