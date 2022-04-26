@@ -4,16 +4,19 @@ import NavAccount from './NavComponents/NavAccount'
 import React from 'react'
 import OutsideClickHandler from 'react-outside-click-handler'
 import './Navigation.css'
+import LoginModal from '../login/LoginModal'
 
 // class based compenent, represents the entire navigation side bar
 class SideNavigation extends React.Component {
   // initialize the navigation bar in the collapsed position
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       expanded: false,
-      loggedin: props.loggedin,
-      user: props.user,
+      loggedin: false,
+      isAdmin: false,
+      userName: '',
+      accessLevel: '',
     }
   }
 
@@ -38,7 +41,7 @@ class SideNavigation extends React.Component {
   render() {
     // if a user is logged in and is an admin, display the links to the
     // messages and settings pages below the other links
-    let Extra = !(this.state.loggedin && this.state.user.isAdmin) ? null : (
+    let Extra = !(this.state.loggedin && this.state.isAdmin) ? null : (
       <div>
         <hr className="nav-separator" />
         <NavLink
@@ -67,18 +70,18 @@ class SideNavigation extends React.Component {
         lowest={true}
       />
     ) : (
-      <NavLink
-        name="Login"
-        image="bx bx-log-in"
-        dest="/"
-        parent={this}
-        lowest={true}
-      />
+      <LoginModal parent={this} />
     )
 
     // only if the user is logged in, a link to the account page should be rendered
     let Acc = !this.state.loggedin ? null : (
-      <NavAccount user={this.state.user} parent={this} />
+      <NavAccount
+        user={{
+          userName: this.state.userName,
+          accessLevel: this.state.accessLevel,
+        }}
+        parent={this}
+      />
     )
 
     // returns the navigation bar component, with all the appropriate elements
