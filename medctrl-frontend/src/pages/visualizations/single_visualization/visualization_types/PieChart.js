@@ -32,8 +32,8 @@ class DonutChart extends Component {
   // RENDERER:
 
   // renders a pie chart
-  render() { 
-    try { 
+  render() {
+    try {
       return (
         <div className="donut">
           <Chart
@@ -42,7 +42,7 @@ class DonutChart extends Component {
             type="pie"
           />
         </div>
-      ) 
+      )
     } catch {
       return <div>An error occurred when drawing the chart</div>
     }

@@ -43,6 +43,9 @@ test('export to png', () => {
 
 test('remove itself', () => {
   const onRemoval = jest.fn()
-  ReactDOM.render(<SingleVisualization id={1} data={data} onRemoval={onRemoval}/>, container)
+  ReactDOM.render(
+    <SingleVisualization id={1} data={data} onRemoval={onRemoval} />,
+    container
+  )
   fireEvent.click(screen.getByRole('button', { name: '' }))
 })
