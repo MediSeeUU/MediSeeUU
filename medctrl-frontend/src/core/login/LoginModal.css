@@ -1,0 +1,111 @@
+:root {
+  --dialog-background: #eaf0f8;
+  --dialog-desc-text: #808080;
+  --white-text: #fff;
+
+  --radio-outside: var(--dialog-desc-text);
+  --radio-inside: var(--accept-button-background);
+
+  --text-input-background: #fff;
+  --text-input-border: #808080;
+
+  --error-background: #ffbfbf;
+  --error-text-color: #ff0000;
+
+  --success-background: #bfffbf;
+  --success-text-color: #00ff00;
+
+  --accept-button-background: var(--blue-alt);
+  --accept-button-hover: var(--blue-light);
+
+  --cancel-button-background: var(--dialog-background);
+  --cancel-button-hover: var(--dialog-background);
+}
+
+.login-dialog {
+  background-color: var(--dialog-background);
+  width: 350px;
+  border-radius: 15px;
+  text-align: center;
+  padding: 15px;
+  display: block;
+}
+
+.login-dialog i {
+  font-size: 60px;
+}
+
+.login-dialog .desc {
+  color: var(--dialog-desc-text);
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.login-dialog .error {
+  color: var(--error-text-color);
+  margin-bottom: 1%;
+  font-weight: 300;
+  font-size: 14px;
+  background-color: var(--error-background);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.login-dialog .error-header {
+  font-weight: bold;
+}
+
+.login-dialog .success {
+  color: var(--success-text-color);
+  margin-bottom: 20px;
+  font-weight: 300;
+  font-size: 14px;
+  background-color: var(--success-background);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+/* additional css for the credential input fields */
+
+.credential-input {
+  background-color: var(--text-input-background);
+  width: 100%;
+  height: 40px;
+  margin-top: 5%;
+  border-radius: 8px;
+  border: 1px solid var(--text-input-border);
+  padding: 0 7px;
+}
+
+/* for the dialog buttons */
+
+.login-dialog button {
+  border: none;
+  width: 100%;
+  height: 35px;
+  border-radius: 10px;
+}
+
+.login-dialog .button-login {
+  background-color: var(--accept-button-background);
+  color: var(--white-text);
+  margin-top: 5%;
+}
+
+.login-dialog .button-login:hover {
+  background-color: var(--accept-button-hover);
+}
+
+.login-dialog button.cancel {
+  background-color: var(--cancel-button-background);
+}
+
+.login-dialog button.cancel:hover {
+  background-color: var(--cancel-button-hover);
+}
+
+/* for the login dialog errors */
+
+.login-dialog .error {
+  margin-top: 20px;
+}
