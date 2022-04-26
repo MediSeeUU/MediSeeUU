@@ -71,7 +71,9 @@ class SingleVisualization extends Component {
 
   // event handler for the form data
   handleChange(event) {
+    console.log('here')
     const series = this.generateSeries(event.chart_type, event)
+    console.log(event)
 
     this.setState({
       chart_type: event.chart_type,
@@ -203,11 +205,7 @@ class SingleVisualization extends Component {
         )
 
       case 'pie':
-        return GeneratePieSeries(
-          options,
-          this.state.uniqueCategories,
-          this.state.data
-        )
+        return GeneratePieSeries(options, this.state.data)
 
       default:
         return GenerateBarSeries(options)
@@ -231,7 +229,7 @@ class SingleVisualization extends Component {
             <Col className="visualization-panel">
               <VisualizationForm
                 uniqueCategories={this.state.uniqueCategories}
-                onFormChange={this.handleChange}
+                onChange={this.handleChange}
               />
             </Col>
             <Col sm={8}>

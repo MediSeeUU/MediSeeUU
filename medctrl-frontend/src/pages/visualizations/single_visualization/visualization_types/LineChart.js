@@ -38,15 +38,19 @@ class LineChart extends Component {
 
   // render a line graph
   render() {
-    return (
-      <div className="mixed-chart">
-        <Chart
-          options={this.state.options}
-          series={this.state.series}
-          type="line"
-        />
-      </div>
-    )
+    try {
+      return (
+        <div className="mixed-chart">
+          <Chart
+            options={this.state.options}
+            series={this.state.series}
+            type="line"
+          />
+        </div>
+      )
+    } catch {
+      return <div>An error occurred when drawing the chart</div>
+    }
   }
 }
 

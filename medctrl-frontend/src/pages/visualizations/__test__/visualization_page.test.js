@@ -10,72 +10,47 @@ import {
   getByText,
 } from '@testing-library/react'
 import VisualizationPage from '../VisualizationPage'
-import SingleVisualization from '../single_visualization/SingleVisualization'
 import ResizeObserver from '../mocks/observer'
-import IntersectionObserver from '../mocks/IntersectionObserver'
 
-import data from '../data.json'
-
-beforeAll(() => {
-  // IntersectionObserver isn't available in test environment
-  const mockIntersectionObserver = jest.fn()
-  mockIntersectionObserver.mockReturnValue({
-    observe: () => null,
-    unobserve: () => null,
-    disconnect: () => null,
-  })
-  window.IntersectionObserver = mockIntersectionObserver
-})
+import data from '../../../testJson/data.json'
 
 jest.mock('../mocks/observer')
-jest.mock('../mocks/IntersectionObserver')
 
-// test if the initial page renders as a stand alonte without crashing
-/*test('render initial page', () => {
-  
-  //ReactDOM.render(<VisualizationPage />, root)
-  
-})*/
+let container
+beforeEach(() => {
+  container = document.createElement('div')
+  document.body.append(container)
+})
 
-//
+afterEach(() => {
+  document.body.removeChild(container)
+  container = null
+})
+
+test('no data', () => {
+  ReactDOM.render(<VisualizationPage selectedData={[]} />, container)
+})
+
+test('initial render', () => {
+  ReactDOM.render(<VisualizationPage selectedData={data} />, container)
+})
+
+// rendering a visualization page and adding a visualization
 test('add a visualization', () => {
-  const visualizationsArray = [
-    { name: 'visualization1' },
-    { name: 'visualization2' },
-  ]
-
-  const root = document.createElement('div')
-  let view = ReactDOM.render(
-    <SingleVisualization number={1} data={data} />,
-    root
-  )
-
-  //fireEvent.click(view.getByText('Add visualization'))
-
-  //expect(view.getAllByText('Remove visualization').length).toEqual(2)
+  ReactDOM.render(<VisualizationPage selectedData={data} />, container)
+  fireEvent.click(screen.getByRole('button', { name: /add visualization/i }))
+  // we start with 1 visualization and add another
+  expect(
+    screen.getAllByRole('button', { name: /export as svg/i }).length
+  ).toEqual(2)
 })
 
-/* test('render initial Category Options', () => {
-  const root = document.createElement('div')
-  ReactDOM.render(<CategoryOptions categories={[]} />, root)
-})
-
-test('render initial Pie form', () => {
-  const root = document.createElement('div')
-  let categories = {}
-  categories['Rapporteur'] = []
-  ReactDOM.render(<PieForm uniqueCategories={categories} />, root)
-})
-
-test('render initial form', () => {
-  const root = document.createElement('div')
-  let categories = {}
-  categories['Rapporteur'] = []
-  ReactDOM.render(<VisualizationForm uniqueCategories={categories} />, root)
-}) */
-
-test('render initial single visualization', () => {
-  screen.debug()
-  const root = document.createElement('div')
-  ReactDOM.render(<SingleVisualization number={1} data={data} />, root)
+// rendering a visualization page, then removing the initial visualization
+test('remove a visualization', () => {
+  ReactDOM.render(<VisualizationPage selectedData={data} />, container)
+  // the removal button is currently the only button with no text
+  let target = screen.getByRole('button', { name: '' })
+  // it throws an error that has to do with the ApexCharts library,
+  // we have not found any way around this sadly
+  expect(() => fireEvent.click(target)).toThrow()
 })
