@@ -11,12 +11,19 @@ class SideNavigation extends React.Component {
   // initialize the navigation bar in the collapsed position
   constructor() {
     super()
+
+    // Get login status from sessionStorage
+    let username = sessionStorage.getItem('username')
+    let accessLevel = sessionStorage.getItem('access_level')
+    let token = sessionStorage.getItem('token')
+    let loggedin = token != null
+
     this.state = {
       expanded: false,
-      loggedin: false,
+      loggedin: loggedin,
       isAdmin: false,
-      userName: '',
-      accessLevel: '',
+      userName: username,
+      accessLevel: accessLevel,
     }
   }
 
