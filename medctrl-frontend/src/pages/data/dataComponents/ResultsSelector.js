@@ -127,7 +127,6 @@ function ResultsSelector({
 
   //handler that removes all selected
   const removeAllSelected = () => {
-    console.log('JAA')
     let updatedCheckedState = JSON.parse(JSON.stringify(checkedState))
     for (var key of Object.keys(updatedCheckedState)) {
       updatedCheckedState[key] = false
