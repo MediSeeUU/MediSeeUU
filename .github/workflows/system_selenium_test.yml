@@ -55,7 +55,8 @@ jobs:
         working-directory: "selenium"
 
       - name: Run Tests  
-        run: |          
+        run: |
+          source virtualenv/bin/activate
           python TestRunner.py
         working-directory: "selenium"
         
