@@ -5,13 +5,17 @@
 from django.contrib import admin
 from import_export import fields, resources, widgets, admin as import_admin
 
-from api.models.medicine_models.medicine import Medicine, Lookupatccode
 from api.models.medicine_models import (
+    Medicine,
+    Authorisation,
+    Procedure,
+    Lookupatccode,
     Lookuplegalbasis,
     Lookuplegalscope,
     Lookupmedicinetype,
     Lookupstatus,
     Lookupactivesubstance,
+    Lookuprapporteur
 )
 
 
@@ -80,5 +84,27 @@ class MedicineAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
         "ema_url",
     )
 
+class AuthorisationResource(resources.ModelResource):
+    eunumber = import_foreign_key("eunumber", Medicine)
+    rapporteur = import_foreign_key("rapporteur", Lookuprapporteur)
+    corapporteur = import_foreign_key("corapporteur", Lookuprapporteur)
+
+class AuthorisationAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = AuthorisationResource
+    list = (
+        "eunumber",
+        "rapporteur",
+        "corapporteur",
+        "acceleratedgranted",
+        "acceleratedmaintained",
+        "authorisationtotaltime",
+        "authorisationactivetime",
+        "authorisationstoppedtime",
+        "decisiontime",
+        "decisionurl",
+        "annexurl",
+        "eparurl",
+    )
 
 admin.site.register(Medicine, MedicineAdmin)
+admin.site.register(Authorisation, AuthorisationAdmin)

@@ -36,7 +36,9 @@ class Authorisation(models.Model):
     authorisationstoppedtime = models.IntegerField(
         db_column="AuthorisationStoppedTime", blank=True, null=True
     )
-    decisiontime = models.IntegerField(db_column="DecisionTime", blank=True, null=True)
+    decisiontime = models.IntegerField(
+        db_column="DecisionTime", blank=True, null=True
+    )
     decisionurl = models.CharField(
         db_column="DecisionURL", max_length=255, blank=True, null=True
     )
