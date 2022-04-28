@@ -14,7 +14,11 @@ function NavLink(props) {
   return (
     // when this nav link is clicked, close the parent (the
     // navigation bar) and navigate the user to the appropriate page
-    <div className={className} onClick={() => clicked()}>
+    <div
+      className={className}
+      onClick={() => clicked()}
+      data-testid={props.name}
+    >
       <div className="nav-item-content">
         <i className={props.image} />
         <span className="nav-item-name"> {props.name} </span>

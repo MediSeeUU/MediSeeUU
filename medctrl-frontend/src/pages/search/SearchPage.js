@@ -9,7 +9,7 @@ function SearchPage() {
     <div>
       <div className="TopTableHolder">
         <button className="searchbox__button">
-          <i class="bx bx-search search-Icon"></i>Search
+          <i className="bx bx-search search-Icon"></i>Search
         </button>
         <input
           type="text"
@@ -33,8 +33,6 @@ function SearchPage() {
   )
 }
 
-function test(ding) {
-  console.log(ding)
-}
+function test() {}
 
 export default SearchPage

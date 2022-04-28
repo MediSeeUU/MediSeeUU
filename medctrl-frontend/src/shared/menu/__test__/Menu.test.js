@@ -1,19 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  render,
-  fireEvent,
-  waitFor,
-  screen,
-  cleanup,
-  within,
-} from '@testing-library/react'
+import { render, fireEvent, screen } from '@testing-library/react'
 import Menu from '../menu'
 import DummyData from '../../../testJson/data.json'
-import {
-  convertSortingAttributeNameToComparisonFunction,
-  getSortingFunctionFromAttributeName,
-} from '../sorting'
+import { convertSortingAttributeNameToComparisonFunction } from '../sorting'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')
@@ -110,36 +100,6 @@ test('single ascending sorter on ApplicationNo applied correctly', () => {
       convertSortingAttributeNameToComparisonFunction('ApplicationNo')
     for (var i = 0; i < Object.keys(data).length - 1; i++) {
       var comparisonvalue = compareFunc(data[i], data[i + 1])
-      expect(comparisonvalue).toBeLessThanOrEqual(0)
-    }
-  }
-  render(<Menu cachedData={DummyData} updateTable={update} />)
-  fireEvent.click(screen.getByText(/Filter & Sort/i))
-  const selectedAttribute = screen.queryByTestId('sort-select-attr')
-  fireEvent.change(selectedAttribute, { target: { value: 'ApplicationNo' } })
-  const selectedOrder = screen.getByTestId('sort-select-order')
-  fireEvent.change(selectedOrder, { target: { value: 'asc' } })
-
-  // temp neccessarry to change filter state, otherwise no sorting is applied
-  const select = screen.queryByTestId('filter-select')
-  fireEvent.change(select, { target: { value: 'CMA' } })
-  const textBox = screen.getByRole('textbox')
-  fireEvent.change(textBox, { target: { value: 'no' } })
-  fireEvent.focusOut(textBox)
-  //
-
-  fireEvent.click(screen.getByText(/Apply/i))
-})
-
-//test to check if single parameter sorting ascending on ApplicationNo (number) works ARRAYS
-test('single ascending sorter on ApplicationNo applied correctly, FOR ARRAYS', () => {
-  const update = (data) => {
-    var compareFunc = getSortingFunctionFromAttributeName('ApplicationNo')
-    for (var i = 0; i < Object.keys(data).length - 1; i++) {
-      var comparisonvalue = compareFunc(
-        data[i]['ApplicationNo'],
-        data[i + 1]['ApplicationNo']
-      )
       expect(comparisonvalue).toBeLessThanOrEqual(0)
     }
   }

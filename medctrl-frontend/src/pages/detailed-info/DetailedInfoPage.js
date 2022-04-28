@@ -5,8 +5,6 @@ import DetailGroup from './InfoComponents/DetailGroup'
 import Detail from './InfoComponents/Detail'
 import Procedure from './InfoComponents/Procedure'
 import CustomLink from './InfoComponents/CustomLink'
-
-//
 import { DataContext, DataProvider } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
 
@@ -32,12 +30,28 @@ export default DetailedInfoPage
 // the loaded data in datacontext is passed via the data tag. The specific medID no.
 // is passed via the me  this is the data which is displayed on
 // the details page.
-function InfoPage(props) {
+export function InfoPage(props) {
   var medIDnr = props.medIDnumber
   var alldata = props.data
-  var medDataObject = alldata.find((element) => {
-    return element['EUNoShort'].toString() === medIDnr
-  })
+
+  var medDataObject
+  var procedureDataPresentFlag = false
+
+  //depending on the provided JSONdata (not) containing proceduredata,
+  //use appropriate function to get the medicine data component
+  if (alldata[0].hasOwnProperty('procedures')) {
+    //if procedure data is present for the (first) jsondataobject
+    medDataObject = alldata.find(
+      (element) =>
+        element['info']['EUNoShort'].toString() === medIDnr.toString()
+    )
+
+    procedureDataPresentFlag = true
+  } else {
+    medDataObject = alldata.find((element) => {
+      return element['EUNoShort'].toString() === medIDnr.toString()
+    })
+  }
 
   //if the medIDnumber does not correspond to any medicine in the datacontext,
   //a static page is displayed
@@ -56,13 +70,23 @@ function InfoPage(props) {
 
   //place the data corresponding to the specified medIDnumber in the medicine data capsule,
   //procedures currently are not supported, will be implemented after correct database connection
-  let medicineData = { info: medDataObject, procedures: [] }
+  var medicineData
+  if (procedureDataPresentFlag) {
+    medicineData = {
+      info: medDataObject['info'],
+      procedures: medDataObject['procedures'],
+    }
+  } else {
+    medicineData = { info: medDataObject, procedures: [] }
+  }
 
   // for each procedure present in the medicine data object, an procedure component
   // is created and added to an array for temporary storage
   let allProcedures = []
-  for (var i = 0; i < medicineData.procedures.length; i++) {
-    allProcedures.push(<Procedure proc={medicineData.procedures[i]} />)
+  for (let i = 0; i < medicineData.procedures.length; i++) {
+    allProcedures.push(
+      <Procedure key={i} proc={medicineData.procedures[i]} id={i} />
+    )
   }
 
   // returns the component which discribes the entire detailed information page
@@ -78,7 +102,7 @@ function InfoPage(props) {
         </h1>
         <hr className="separator" />
 
-        <div class="flex-columns">
+        <div className="flex-columns">
           <DetailGroup title="General Information">
             <Detail name="Brand Name" value={medicineData.info.BrandName} />
             <Detail
