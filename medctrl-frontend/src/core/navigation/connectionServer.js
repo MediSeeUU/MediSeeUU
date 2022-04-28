@@ -19,9 +19,9 @@ async function handleLogOut() {
 }
 
 function setSession() {
-  sessionStorage.setItem('username', '')
-  sessionStorage.setItem('access_level', '')
-  sessionStorage.setItem('token', '')
+  sessionStorage.removeItem('username')
+  sessionStorage.removeItem('access_level')
+  sessionStorage.removeItem('token')
 }
 
 export default handleLogOut
