@@ -15,7 +15,8 @@ from api.models.medicine_models import (
     Lookupmedicinetype,
     Lookupstatus,
     Lookupactivesubstance,
-    Lookuprapporteur
+    Lookuprapporteur,
+    Lookupproceduretype,
 )
 
 
@@ -73,15 +74,19 @@ class MedicineAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
 
     resource_class = MedicineResource
     list = (
-        "eu_nr",
-        "ema_nr",
-        "legal_basis",
-        "legal_scope",
-        "atc_code",
-        "prime",
-        "orphan",
+        "eunumber",
+        "emanumber",
+        "atccode",
+        "activesubstance",
+        "newactivesubstance",
+        "legalbasis",
+        "legalscope",
         "atmp",
-        "ema_url",
+        "status",
+        "referral",
+        "suspension",
+        "emaurl",
+        "ecurl",
     )
 
 class AuthorisationResource(resources.ModelResource):
@@ -89,9 +94,13 @@ class AuthorisationResource(resources.ModelResource):
     rapporteur = import_foreign_key("rapporteur", Lookuprapporteur)
     corapporteur = import_foreign_key("corapporteur", Lookuprapporteur)
 
+    class Meta:
+        model = Authorisation
+        import_id_fields = ("eunumber",)
+
 class AuthorisationAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = AuthorisationResource
-    list = (
+    """list = (
         "eunumber",
         "rapporteur",
         "corapporteur",
@@ -104,7 +113,16 @@ class AuthorisationAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
         "decisionurl",
         "annexurl",
         "eparurl",
-    )
+    )"""
+
+class ProcedureResource(resources.ModelResource):
+    eunumber = import_foreign_key("eunumber", Medicine)
+    proceduretype = import_foreign_key("proceduretype", Lookupproceduretype)
+
+class ProcedureAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = ProcedureResource
+
 
 admin.site.register(Medicine, MedicineAdmin)
 admin.site.register(Authorisation, AuthorisationAdmin)
+admin.site.register(Procedure, ProcedureAdmin)
