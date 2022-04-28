@@ -119,6 +119,10 @@ class ProcedureResource(resources.ModelResource):
     eunumber = import_foreign_key("eunumber", Medicine)
     proceduretype = import_foreign_key("proceduretype", Lookupproceduretype)
 
+    class Meta:
+        model = Procedure
+        import_id_fields = ("eunumber", "procedurecount")
+
 class ProcedureAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = ProcedureResource
 
