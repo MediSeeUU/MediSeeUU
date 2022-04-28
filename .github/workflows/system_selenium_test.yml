@@ -1,0 +1,58 @@
+name: Integration tests using selenium
+
+on:
+  push:
+    branches: 
+      - selenium-ci
+    paths: 
+      - "medctrl-frontend/**"
+      - "selenium/**"
+      - ".github/workflows/system_selenium_test.yml"
+
+env:
+  NODE_VERSION: "16.x"
+
+defaults:
+  run:
+    working-directory: "medctrl-frontend"
+
+jobs:
+  build:
+    runs-on: selenium-tests
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run frontend
+        run: | 
+          npm start &
+
+      - name: Check CI
+        run: | 
+          echo $CI
+        
+      - name: Setup Python
+        run: |
+          python3.10 -m pip install --upgrade pip
+          python3.10 -m pip install virtualenv
+          python3.10 -m virtualenv virtualenv
+        working-directory: "selenium"
+
+      - name: Setup Python
+        run: |
+          source virtualenv/bin/activate
+          pip install -r requirements.txt
+          python TestRunner.py
+
+        working-directory: "selenium"
+      
