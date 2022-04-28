@@ -103,7 +103,7 @@ class AuthorisationResource(resources.ModelResource):
 
     eunumber = import_foreign_key("eunumber", Medicine)
     rapporteur = import_foreign_key("rapporteur", Lookuprapporteur)
-    corapporteur = import_foreign_key("corapporteur", Lookuprapporteur)
+    corapporteur = import_foreign_key("rapporteur", Lookuprapporteur)
 
     class Meta:
         """
