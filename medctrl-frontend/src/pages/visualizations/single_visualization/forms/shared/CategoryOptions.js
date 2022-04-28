@@ -8,7 +8,7 @@ class CategoryOptions extends React.Component {
     super(props)
 
     // the state contains a list with the names of the selected categories
-    this.state = { categoriesSelected: [], selectAllCategories: false }
+    this.state = this.props.settings
 
     // event handlers
     this.handleAllCategorySelection = this.handleAllCategorySelection.bind(this)
@@ -53,6 +53,7 @@ class CategoryOptions extends React.Component {
       this.setState(
         (state) => ({
           categoriesSelected: [...state.categoriesSelected, name],
+          selectAllCategories: this.state.categoriesSelected?.length + 1 === this.props.categories.length
         }),
         () => this.props.onChange(this.state.categoriesSelected)
       )
@@ -64,6 +65,7 @@ class CategoryOptions extends React.Component {
             categoriesSelected: state.categoriesSelected.filter(
               (el) => el !== name
             ),
+            selectAllCategories: false
           }),
           () => this.props.onChange(this.state.categoriesSelected)
         )

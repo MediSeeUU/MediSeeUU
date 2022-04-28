@@ -14,11 +14,11 @@ class VisualizationForm extends Component {
     // The chartSpecificOptionsName is used for determining the key of
     // the actual chart, to notify the chart that it has been updated.
     this.state = {
-      chart_type: 'bar',
-      legend_on: false,
-      labels_on: false,
-      chartSpecificOptions: {},
-      chartSpecificOptionsName: '',
+      chart_type: this.props.settings.chart_type,
+      legend_on: this.props.settings.legend_on,
+      labels_on: this.props.settings.labels_on,
+      chartSpecificOptions: this.props.settings.chartSpecificOptions,
+      chartSpecificOptionsName: this.props.settings.chartSpecificOptionsName,
     }
 
     // event handlers
@@ -115,6 +115,7 @@ class VisualizationForm extends Component {
           <BarForm
             uniqueCategories={this.props.uniqueCategories}
             onChange={this.handleChartSpecificChange}
+            graphSettings={this.state.chartSpecificOptions}
           />
         )
 
@@ -123,6 +124,7 @@ class VisualizationForm extends Component {
           <LineForm
             uniqueCategories={this.props.uniqueCategories}
             onChange={this.handleChartSpecificChange}
+            graphSettings={this.state.chartSpecificOptions}
           />
         )
 
@@ -131,6 +133,7 @@ class VisualizationForm extends Component {
           <PieForm
             uniqueCategories={this.props.uniqueCategories}
             onChange={this.handleChartSpecificChange}
+            graphSettings={this.state.chartSpecificOptions}
           />
         )
 
