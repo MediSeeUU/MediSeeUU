@@ -5,6 +5,7 @@ import LoginModal from '../login/LoginModal'
 import React from 'react'
 import OutsideClickHandler from 'react-outside-click-handler'
 import './Navigation.css'
+import handleLogOut from './connectionServer'
 
 // class based compenent, represents the entire navigation side bar
 class SideNavigation extends React.Component {
@@ -25,6 +26,17 @@ class SideNavigation extends React.Component {
       userName: username,
       accessLevel: accessLevel,
     }
+  }
+
+  // sets alls parametrs to loged out
+  async logOut() {
+    await handleLogOut()
+    this.setState({
+      loggedin: false,
+      isAdmin: false,
+      userName: '',
+      accessLevel: '',
+    })
   }
 
   // toggles the navigation bar, if the bar is in the expanded position,
@@ -75,6 +87,7 @@ class SideNavigation extends React.Component {
         dest="/"
         parent={this}
         lowest={true}
+        onClick={this.logOut.bind(this)}
       />
     ) : (
       <LoginModal parent={this} />
