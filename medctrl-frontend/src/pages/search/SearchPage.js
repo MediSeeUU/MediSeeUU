@@ -6,22 +6,22 @@ function SearchPage() {
   const allData = useData()
 
   return (
-    <div>
-      <div className="TopTableHolder">
-        <button className="searchbox__button">
-          <i class="bx bx-search search-Icon"></i>Search
-        </button>
+    <>
+      <div className="med-content-container">
         <input
           type="text"
           placeholder="Search"
-          className="content__container__textinput"
+          className="content__container__textinput med-text-input"
           onChange={(e) => test(e.target.value)}
         />
+        <button className="med-primary-solid med-bx-button">
+          <i class="bx bx-search search-Icon"></i>Search
+        </button>
       </div>
 
-      <div className="TopTableHolder searchDataTable">
-        <h1>Results</h1>
-
+      <div className="med-content-container searchDataTable">
+        <h1>Search Results</h1>
+        <hr className="med-top-separator" />
         <Table
           data={allData}
           currentPage={1}
@@ -29,7 +29,7 @@ function SearchPage() {
           searchTable={true}
         />
       </div>
-    </div>
+    </>
   )
 }
 

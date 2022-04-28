@@ -16,7 +16,6 @@ import GenerateLineSeries from './data_interfaces/LineInterface'
 import GeneratePieSeries from './data_interfaces/PieInterface'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
-import GetUniqueCategories from './utils/GetUniqueCategories'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
@@ -51,15 +50,6 @@ class SingleVisualization extends Component {
     this.settings.labels_on = event.labels_on
     this.settings.changeName = event.chartSpecificOptionsName
     this.settings.chartSpecificOptions.selectAllCategories = this.settings.chartSpecificOptions.categoriesSelected?.length === this.settings.uniqueCategories[this.settings.chartSpecificOptions.yAxis].length
-
-    // this.setState({
-    //   chart_type: event.chart_type,
-    //   chartSpecificOptions: event.chartSpecificOptions,
-    //   legend_on: event.legend_on,
-    //   labels_on: event.labels_on,
-    //   series: series,
-    //   changeName: event.chartSpecificOptionsName,
-    // })
 
     this.settings.series = generateSeries(this.settings.chart_type, this.settings)
     this.props.onFormChangeFunc(this.settings)
@@ -177,7 +167,7 @@ class SingleVisualization extends Component {
 	*/
   render() {
     return (
-      <div className="table-holder">
+      <div className="med-content-container visual-container">
         <Container>
           <Row>
             <Col className="visualization-panel">
@@ -192,7 +182,7 @@ class SingleVisualization extends Component {
                 <input
                   type="text"
                   id={'graphName' + this.props.id}
-                  className="graph-name"
+                  className="graph-name med-text-input"
                   placeholder="Enter a graph name"
                   autoComplete="off"
                   value={this.settings.chartName}
@@ -202,19 +192,19 @@ class SingleVisualization extends Component {
               <Row>{this.createChart(this.settings.chart_type)}</Row>
               <Row>
                 <button
-                  className="table-buttons button-export"
+                  className="med-primary-solid med-bx-button button-export"
                   onClick={this.handlePNGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as PNG
                 </button>
                 <button
-                  className="table-buttons button-export"
+                  className="med-primary-solid med-bx-button button-export"
                   onClick={this.handleSVGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as SVG
                 </button>
                 <button
-                  className="table-buttons button-remove"
+                  className="med-primary-solid med-bx-button button-remove"
                   onClick={this.handleRemoval}
                   value={this.props.id}
                 >

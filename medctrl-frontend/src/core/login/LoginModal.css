@@ -1,0 +1,66 @@
+.login-dialog {
+  background-color: var(--core-dialog);
+  width: 350px;
+  border-radius: 15px;
+  text-align: center;
+  padding: 15px;
+  display: block;
+}
+
+.login-dialog i {
+  font-size: 60px;
+}
+
+.login-dialog .desc {
+  color: var(--med-additional-text);
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.login-dialog .error {
+  margin-bottom: 1%;
+  font-weight: 300;
+  font-size: 14px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.login-dialog .error-header {
+  font-weight: bold;
+}
+
+/* additional css for the credential input fields */
+
+.credential-input {
+  width: calc(100% - 10px);
+  height: 31px;
+  margin-top: 5%;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 8px;
+  padding: 0 7px;
+}
+
+/* for the dialog buttons */
+
+.login-dialog button {
+  border: none;
+  width: calc(100% - 10px);
+  height: 35px;
+  border-radius: 10px;
+}
+
+.login-dialog .button-login {
+  margin-top: 5%;
+}
+
+.login-dialog .button-cancel {
+  background-color: var(--core-dialog);
+  color: var(--med-text-secondary);
+}
+
+/* for the login dialog errors */
+
+.login-dialog .error {
+  margin-top: 20px;
+}

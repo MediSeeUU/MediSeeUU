@@ -3,7 +3,7 @@
 	Keep in mind that the index of the array corresponds with the index of
   labels/this.props.categories of Pie/DonutChart
 */
-export default function GeneratePieSeries(options, allCategories, data) {
+export default function GeneratePieSeries(options, data) {
   let chosenVariable = options.chartSpecificOptions.chosenVariable
   let chosenCategories = options.chartSpecificOptions.categoriesSelected
 

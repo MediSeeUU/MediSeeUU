@@ -120,7 +120,7 @@ function VisualizationPage() {
         <Row key={visual.id}>
           <SingleVisualization
             id={visual.id}
-            data={JSON.parse(JSON.stringify(selectedData))}
+            data={selectedData}
             settings={visual}
             onRemoval={handleRemoval}
             onFormChangeFunc={handleChange}
@@ -146,10 +146,11 @@ function VisualizationPage() {
           {displayItems}
           <Row>
             <button
-              className="table-buttons button-add"
+              className="med-primary-solid med-bx-button button-add"
               onClick={handleAddition}
             >
-              <i className="bx bx-plus filter-Icon"></i>Add visualization
+              <i className="bx bx-plus filter-Icon" />
+              Add visualization
             </button>
           </Row>
         </Container>

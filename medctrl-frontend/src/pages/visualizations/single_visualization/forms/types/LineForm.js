@@ -66,7 +66,7 @@ class LineForm extends Component {
   */
   handleChange(event) {
     const target = event.target
-    const value = target.type === 'checkbox' ? target.checked : target.value
+    const value = target.value
     const name = target.name
 
     /* 
@@ -125,6 +125,7 @@ class LineForm extends Component {
           <select
             value={this.state.xAxis}
             name="xAxis"
+            className="med-select"
             onChange={this.handleChange}
           >
             {variablesXAxis}
@@ -135,6 +136,7 @@ class LineForm extends Component {
           <select
             value={this.state.yAxis}
             name="yAxis"
+            className="med-select"
             onChange={this.handleChange}
           >
             {variablesYAxis}
