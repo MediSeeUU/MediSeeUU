@@ -14,8 +14,13 @@ import sortCategoryData from '../../../single_visualization/utils/SortCategoryDa
 import data from '../../../../../testJson/data.json'
 
 let uniqueCategories
+let setting
 beforeAll(() => {
   uniqueCategories = GetUniqueCategories(data)
+  setting = {
+    categoriesSelected: [],
+    selectAllCategories: false
+  }
 })
 
 test('initial render', () => {
@@ -26,6 +31,7 @@ test('initial render', () => {
       className={'category-options'}
       onChange={onChange}
       categories={sortCategoryData(uniqueCategories['Rapporteur'])}
+      settings={setting}
     />
   )
 })
@@ -38,6 +44,7 @@ test('add and remove a category', () => {
       className={'category-options'}
       onChange={onChange}
       categories={sortCategoryData(uniqueCategories['Rapporteur'])}
+      settings={setting}
     />
   )
   const target = screen.getByRole('checkbox', { name: /united kingdom/i })
@@ -53,6 +60,7 @@ test('remove category when it was not first selected', () => {
       className={'category-options'}
       onChange={onChange}
       categories={sortCategoryData(uniqueCategories['Rapporteur'])}
+      settings={setting}
     />
   )
   const target = screen.getByRole('checkbox', { name: /united kingdom/i })
@@ -67,6 +75,7 @@ test('select and deselect all categories', () => {
       className={'category-options'}
       onChange={onChange}
       categories={sortCategoryData(uniqueCategories['Rapporteur'])}
+      settings={setting}
     />
   )
   const target = screen.getByRole('checkbox', {

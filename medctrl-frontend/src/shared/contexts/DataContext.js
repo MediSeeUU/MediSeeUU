@@ -45,7 +45,7 @@ export function useVisualsUpdate(){
 export function DataProvider({ children }) {
   //list of checked datapoints
   const [checkedState, setCheckedState] = useState(
-    Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: false })))
+    Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: true })))
   )
 
   //selected datalist
