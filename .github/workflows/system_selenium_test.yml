@@ -48,11 +48,15 @@ jobs:
           python3.10 -m virtualenv virtualenv
         working-directory: "selenium"
 
-      - name: Setup Python
+      - name: Install dependencies
         run: |
           source virtualenv/bin/activate
           pip install -r requirements.txt
-          python TestRunner.py
-
         working-directory: "selenium"
+
+      - name: Run Tests  
+        run: |          
+          python TestRunner.py
+        working-directory: "selenium"
+        
       
