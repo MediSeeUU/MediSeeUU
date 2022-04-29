@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import './Search.css'
+import { useSearchParams } from 'react-router-dom'
 
 function Search({data, updateData}) {
-  const [searchQuery, setQuery] = useState("")
+  const [params, setParams] = useSearchParams()
+  const [query, setQuery] = useState("")
 
-  const updateSearch = () => {
+  const update = (value) => {
     let updatedData = [...data]
     updatedData = updatedData.filter(obj => {
       let inText = false
       let vals = Object.values(obj)
       for (const val of vals) {
-        if (val.toString().toLowerCase().includes(searchQuery.toLowerCase())) {
+        if (val.toString().toLowerCase().includes(value.toLowerCase())) {
           inText = true
           break
         }
@@ -20,9 +22,18 @@ function Search({data, updateData}) {
     updateData(updatedData)
   }
 
+  const paramValue = params.get('q')
+  if (paramValue) {
+    // Delete the parameter value to prevent infinite loop in rendering
+    params.delete('q')
+    setParams(params)
+    
+    update(paramValue)
+  }
+
   const handlerKeyDown = (e) => {
     if (e.key === 'Enter') {
-      updateSearch()
+      update(query)
     }
   }
 
@@ -35,7 +46,7 @@ function Search({data, updateData}) {
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handlerKeyDown}
       />
-      <button className="med-primary-solid med-bx-button" onClick={updateSearch}>
+      <button className="med-primary-solid med-bx-button" onClick={() => update(query)}>
         <i className="bx bx-search search-Icon"></i>Search
       </button>
     </div>
