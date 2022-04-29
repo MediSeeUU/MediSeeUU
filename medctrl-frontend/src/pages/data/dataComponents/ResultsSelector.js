@@ -1,4 +1,8 @@
 import React from 'react'
+import {
+  useCheckedState,
+  useCheckedStateUpdate,
+} from '../../../shared/contexts/DataContext'
 
 function ResultsSelector({
   data,
@@ -6,6 +10,7 @@ function ResultsSelector({
   resultsPerPage,
   pageNumber,
   currPage,
+  clearEnabled,
 }) {
   //all available options for resultsPerPage
   var options = []
@@ -117,9 +122,28 @@ function ResultsSelector({
     pageNumber(currPage)
   }
 
+  const checkedState = useCheckedState()
+  const setCheckedState = useCheckedStateUpdate()
+
+  //handler that removes all selected
+  const removeAllSelected = () => {
+    let updatedCheckedState = JSON.parse(JSON.stringify(checkedState))
+    for (var key of Object.keys(updatedCheckedState)) {
+      updatedCheckedState[key] = false
+    }
+    setCheckedState(updatedCheckedState)
+  }
+
   //main body of the page
   return (
     <div className="bottomOfTableHolder">
+      {clearEnabled && (
+        <div className="clear med-primary-text" onClick={removeAllSelected}>
+          Clear All
+          <i className="bx bxs-trash clear-icon"></i>
+        </div>
+      )}
+
       <div className="dv-pageCount">
         <i
           onClick={() => Back()}

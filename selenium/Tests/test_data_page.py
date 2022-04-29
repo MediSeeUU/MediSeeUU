@@ -86,6 +86,16 @@ class TestDataPage(WebDriverSetup):
       assert "United Kingdom" in self.data_page.table_value(0, i + 1, 2)
       eu_numbers.append(int(eu_number))
     assert all(eu_numbers[i] >= eu_numbers[i+1] for i in range(len(eu_numbers) - 1))
+  
+  def test_clear_all(self):
+    assert not self.data_page.selected_visible()
+    ids = random.sample(range(1, 25), 8)
+    for id in ids:
+      self.data_page.select(id)
+    assert self.data_page.selected_visible()
+    assert self.data_page.amount_of_rows(1) == 8
+    self.data_page.clear_all()
+    assert not self.data_page.selected_visible()
 
 if __name__ == '__main__':
   unittest.main()
