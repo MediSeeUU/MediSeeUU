@@ -20,6 +20,12 @@ function Search({data, updateData}) {
     updateData(updatedData)
   }
 
+  const handlerKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      updateSearch()
+    }
+  }
+
   return (
     <div className="med-content-container">
       <input
@@ -27,6 +33,7 @@ function Search({data, updateData}) {
         placeholder="Search"
         className="content__container__textinput med-text-input"
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={handlerKeyDown}
       />
       <button className="med-primary-solid med-bx-button" onClick={updateSearch}>
         <i className="bx bx-search search-Icon"></i>Search
