@@ -67,6 +67,19 @@ class VisualizationPage extends Component {
     })
   }
 
+  createDataSelectedMessage() {
+    const dataPointAmount = this.props.selectedData.length
+    return (
+      <Row>
+        <div className="med-content-container visual-container">
+          <b>You have currently selected {dataPointAmount} datapoints.</b>
+          <br />
+          <b>Go to the data page to add/remove datapoints.</b>
+        </div>
+      </Row>
+    )
+  }
+
   // RENDERER:
 
   /*
@@ -77,10 +90,12 @@ class VisualizationPage extends Component {
   render() {
     if (this.props.selectedData?.length > 0) {
       const displayItems = this.createVisualizations()
+      const displayDataSelectedMessage = this.createDataSelectedMessage()
 
       return (
         <div>
           <Container>
+            {displayDataSelectedMessage}
             {displayItems}
             <Row>
               <button
