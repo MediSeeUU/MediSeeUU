@@ -11,9 +11,11 @@ import VisualizationForm from './forms/VisualizationForm'
 import BarChart from './visualization_types/BarChart'
 import LineChart from './visualization_types/LineChart'
 import PieChart from './visualization_types/PieChart'
+import HistogramChart from './visualization_types/HistogramChart'
 import GenerateBarSeries from './data_interfaces/BarInterface'
 import GenerateLineSeries from './data_interfaces/LineInterface'
 import GeneratePieSeries from './data_interfaces/PieInterface'
+import GenerateHistogramSeries from './data_interfaces/HistogramInterface'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
 import GetUniqueCategories from './utils/GetUniqueCategories'
@@ -39,7 +41,7 @@ class SingleVisualization extends Component {
         chartSpecificOptions: {
           xAxis: 'DecisionYear',
           yAxis: 'Rapporteur',
-          categoriesSelected: [],
+          categoriesSelected: uniqueCategories['Rapporteur'],
         },
       },
       uniqueCategories,
@@ -52,6 +54,7 @@ class SingleVisualization extends Component {
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
         yAxis: 'Rapporteur',
+        categoriesSelected: uniqueCategories['Rapporteur']
       },
       legend_on: false,
       labels_on: false,
@@ -74,6 +77,7 @@ class SingleVisualization extends Component {
   handleChange(event) {
     const series = this.generateSeries(event.chart_type, event)
 
+    console.log(event.chartSpecificOptions)
     this.setState({
       chart_type: event.chart_type,
       chartSpecificOptions: event.chartSpecificOptions,
@@ -164,6 +168,19 @@ class SingleVisualization extends Component {
           />
         )
 
+      case 'histogram':
+        return (
+          <HistogramChart 
+            key={key}
+            legend={legend_on}
+            labels={labels_on}
+            id={id}
+            series={series}
+            categories={this.state.chartSpecificOptions.categoriesSelected}
+            options={this.state.chartSpecificOptions}
+          />
+        )
+
       default:
         return (
           <BarChart
@@ -206,6 +223,9 @@ class SingleVisualization extends Component {
       case 'pie':
         return GeneratePieSeries(options, this.state.data)
 
+      case 'histogram':
+        return GenerateHistogramSeries(options, this.state.data)
+
       default:
         return GenerateBarSeries(
           options,
@@ -241,7 +261,7 @@ class SingleVisualization extends Component {
                   type="text"
                   id={'graphName' + this.props.id}
                   className="graph-name med-text-input"
-                  placeholder="Bar chart - DecisionYear vs. Rapporteur"
+                  placeholder={'my ' + this.state.chart_type + ' chart'}
                   autoComplete="off"
                 />
               </Row>

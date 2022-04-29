@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import '../../../visualizations.css'
 import CategoryOptions from '../shared/CategoryOptions'
 
-// the pie part of a form if a pie chart is chosen
-class PieForm extends Component {
+// the histogram part of a form if a histogram chart is chosen
+class HistogramForm extends Component {
   constructor(props) {
     /* 
       Receives the categories of all variables,
@@ -13,7 +13,7 @@ class PieForm extends Component {
 
     /*
       The list of eligible variables.
-      If we do not want to include a variable for the pie chart,
+      If we do not want to include a variable for the histogram chart,
       it can be removed from here.
     */
     const eligibleVariables = [
@@ -109,7 +109,7 @@ class PieForm extends Component {
 
   // RENDERER:
 
-  // renders the pie form part of the form
+  // renders the histogram form part of the form
   render() {
     // building drop down menus
     const variables = this.renderVariableDropDown()
@@ -142,4 +142,4 @@ class PieForm extends Component {
   }
 }
 
-export default PieForm
+export default HistogramForm

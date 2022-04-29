@@ -53,7 +53,7 @@ class LineForm extends Component {
       eligibleVariables: eligibleVariables,
       xAxis: 'DecisionYear',
       yAxis: 'Rapporteur',
-      categoriesSelected: [],
+      categoriesSelected: this.props.uniqueCategories['Rapporteur'],
     }
 
     // event handlers

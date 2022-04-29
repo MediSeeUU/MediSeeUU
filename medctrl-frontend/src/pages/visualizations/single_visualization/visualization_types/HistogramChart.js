@@ -1,17 +1,31 @@
 import React, { Component } from 'react'
 import Chart from 'react-apexcharts'
 
-// pie chart component
-class PieChart extends Component {
+// histogram chart component
+class HistogramChart extends Component {
   constructor(props) {
     super(props)
 
+    console.log(this.props.series)
     this.state = {
       options: {
         chart: {
           id: String(this.props.id),
-          type: 'pie',
+          type: 'bar',
           toolbar: { show: false },
+        },
+        xaxis: {
+          categories: this.props.categories,
+          tickPlacement: 'on',
+          overwriteCategories: this.props.categories,
+          title: {
+            text: this.props.options.xAxis,
+          },
+        },
+        yaxis: {
+          title: {
+            text: this.props.options.yAxis,
+          },
         },
         dataLabels: {
           enabled: this.props.labels,
@@ -19,11 +33,9 @@ class PieChart extends Component {
         legend: {
           show: this.props.legend,
         },
-        labels: this.props.categories,
         noData: {
           text: 'select the categories to be displayed',
         },
-        plotOptions: { pie: { expandOnClick: false } },
       },
       series: this.props.series,
     }
@@ -31,15 +43,15 @@ class PieChart extends Component {
 
   // RENDERER:
 
-  // renders a pie chart
+  // renders a histogram chart
   render() {
     try {
       return (
-        <div className="donut">
+        <div>
           <Chart
             options={this.state.options}
             series={this.state.series}
-            type="pie"
+            type="bar"
           />
         </div>
       )
@@ -49,4 +61,4 @@ class PieChart extends Component {
   }
 }
 
-export default PieChart
+export default HistogramChart

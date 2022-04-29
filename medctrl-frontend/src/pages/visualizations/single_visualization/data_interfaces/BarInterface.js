@@ -27,7 +27,7 @@ export default function GenerateBarSeries(options, allCategories, data) {
 }
 
 /*
-  Expects data to be an array of ob objects, 
+  Expects data to be an array of of objects, 
 	where each object has a value for each variable.
 	It builds a dictionary where the keys are the categories of the x variable,
 	the values themselves are also dictionaries.
@@ -44,7 +44,7 @@ function PollChosenVariable(x_axis, y_axis, categories_x, categories_y, data) {
 
   // going through all data entries
   data.forEach((element) => {
-    // only if the value of the y variable is one of the selecte categories
+    // only if the value of the y variable is one of the selected categories
     if (categories_y.includes(element[y_axis])) {
       if (dict[element[x_axis]][element[y_axis]] === undefined) {
         dict[element[x_axis]][element[y_axis]] = 1

@@ -8,7 +8,7 @@ class CategoryOptions extends React.Component {
     super(props)
 
     // the state contains a list with the names of the selected categories
-    this.state = { categoriesSelected: [], selectAllCategories: false }
+    this.state = { categoriesSelected: this.props.categories, selectAllCategories: true }
 
     // event handlers
     this.handleAllCategorySelection = this.handleAllCategorySelection.bind(this)

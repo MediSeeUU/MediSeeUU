@@ -63,6 +63,7 @@ class BarChart extends Component {
 
   // renders the bar chart with the given options
   render() {
+    console.log(this.state.series)
     try {
       return (
         <div className="mixed-chart">

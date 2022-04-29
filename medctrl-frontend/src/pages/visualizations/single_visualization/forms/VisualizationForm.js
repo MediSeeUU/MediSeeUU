@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import BarForm from './types/BarForm'
 import LineForm from './types/LineForm'
 import PieForm from './types/PieForm'
+import HistogramForm from './types/HistogramForm'
 
 // form component for a single visualization
 class VisualizationForm extends Component {
@@ -17,7 +18,9 @@ class VisualizationForm extends Component {
       chart_type: 'bar',
       legend_on: false,
       labels_on: false,
-      chartSpecificOptions: {},
+      chartSpecificOptions: {
+        categoriesSelected: this.props.uniqueCategories['Rapporteur']
+      },
       chartSpecificOptionsName: '',
     }
 
@@ -69,7 +72,9 @@ class VisualizationForm extends Component {
           chartSpecificOptions: {
             yAxis: 'Rapporteur',
             xAxis: 'DecisionYear',
-            categoriesSelected: [],
+            categoriesSelected:
+              this.props.uniqueCategories['Rapporteur']
+            ,
           },
           chartSpecificOptionsName: '',
         })
@@ -81,7 +86,9 @@ class VisualizationForm extends Component {
           chartSpecificOptions: {
             yAxis: 'Rapporteur',
             xAxis: 'DecisionYear',
-            categoriesSelected: [],
+            categoriesSelected:
+              this.props.uniqueCategories['Rapporteur']
+            ,
           },
           chartSpecificOptionsName: '',
         })
@@ -91,8 +98,23 @@ class VisualizationForm extends Component {
       case 'pie': {
         this.setState({
           chartSpecificOptions: {
-            chosenVariables: 'Rapporteur',
-            categoriesSelected: [],
+            chosenVariable: 'Rapporteur',
+            categoriesSelected:
+              this.props.uniqueCategories['Rapporteur']
+            ,
+          },
+          chartSpecificOptionsName: '',
+        })
+        break
+      }
+
+      case 'histogram': {
+        this.setState({
+          chartSpecificOptions: {
+            chosenVariable: 'Rapporteur',
+            categoriesSelected:
+              this.props.uniqueCategories['Rapporteur']
+            ,
           },
           chartSpecificOptionsName: '',
         })
@@ -130,6 +152,14 @@ class VisualizationForm extends Component {
             onChange={this.handleChartSpecificChange}
           />
         )
+      
+      case 'histogram':
+        return (
+          <HistogramForm 
+            uniqueCategories={this.props.uniqueCategories}
+            onChange={this.handleChartSpecificChange}
+          />
+        )
 
       default:
         return <div> choose a form type </div>
@@ -153,6 +183,7 @@ class VisualizationForm extends Component {
             <option value="bar">Bar chart</option>
             <option value="line">Line chart</option>
             <option value="pie">Pie chart</option>
+            <option value='histogram'>Histogram</option>
           </select>
         </label>
         {this.renderChartOptions(this.state.chart_type)}

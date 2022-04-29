@@ -56,7 +56,7 @@ class BarForm extends Component {
       stacked: false,
       stackType: false,
       horizontal: false,
-      categoriesSelected: [],
+      categoriesSelected: this.props.uniqueCategories['Rapporteur']
     }
 
     // event handlers
