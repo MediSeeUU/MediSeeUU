@@ -23,7 +23,6 @@ class VisualizationForm extends Component {
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChartSpecificChange = this.handleChartSpecificChange.bind(this)
   }
 
@@ -40,25 +39,24 @@ class VisualizationForm extends Component {
     if (name === 'chart_type') {
       this.resetChartSpecifics(value)
     }
-    this.setState({ [name]: value })
+    this.setState({ [name]: value }, () => {
+      this.props.onChange(this.state)
+    })
   }
 
   // Event handler for updating the state,
   // after the chart specific options were altered.
   // Also updates which value was last updated.
   handleChartSpecificChange(options) {
-    this.setState({
-      chartSpecificOptions: options[0],
-      chartSpecificOptionsName: options[1],
-    })
-  }
-
-  // event handler for the submission after all selections
-  handleSubmit(event) {
-    // makes sure that the page does not reload and thus resets the data
-    event.preventDefault()
-    // event handler passed down as a prop by SingleVisualization
-    this.props.onChange(this.state)
+    this.setState(
+      {
+        chartSpecificOptions: options[0],
+        chartSpecificOptionsName: options[1],
+      },
+      () => {
+        this.props.onChange(this.state)
+      }
+    )
   }
 
   // GENERAL FUNCTIONS
@@ -143,7 +141,7 @@ class VisualizationForm extends Component {
   // render method for the form
   render() {
     return (
-      <form className="med_visualization_form" onSubmit={this.handleSubmit}>
+      <div className="med_visualization_form">
         <label className="visualization-panel-label">
           Visualization type
           <select
@@ -176,13 +174,7 @@ class VisualizationForm extends Component {
           />
           &nbsp;&nbsp;Show labels
         </label>
-        <button
-          type="submit"
-          className="med-primary-solid med-bx-button button-update"
-        >
-          <i className="bx bx-check filter-Icon"></i>Update
-        </button>
-      </form>
+      </div>
     )
   }
 }

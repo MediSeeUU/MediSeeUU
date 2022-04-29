@@ -34,6 +34,16 @@ class BarChart extends Component {
           labels: {
             hideOverlappingLabels: true,
           },
+          tickPlacement: 'on',
+          overwriteCategories: this.props.categories,
+          title: {
+            text: this.props.options.xAxis,
+          },
+        },
+        yaxis: {
+          title: {
+            text: this.props.options.yAxis,
+          },
         },
         dataLabels: {
           enabled: this.props.labels,
@@ -42,7 +52,7 @@ class BarChart extends Component {
           show: this.props.legend,
         },
         noData: {
-          text: 'pick your preferred options to create a visualization',
+          text: 'select the categories to be displayed',
         },
       },
       series: this.props.series,

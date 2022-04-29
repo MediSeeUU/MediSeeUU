@@ -135,28 +135,6 @@ class BarForm extends Component {
     return (
       <React.Fragment>
         <label className="visualization-panel-label">
-          {x_axis}
-          <select
-            className="med-select"
-            value={this.state.xAxis}
-            name="xAxis"
-            onChange={this.handleChange}
-          >
-            {variablesXAxis}
-          </select>
-        </label>
-        <label className="visualization-panel-label">
-          {y_axis}
-          <select
-            className="med-select"
-            value={this.state.yAxis}
-            name="yAxis"
-            onChange={this.handleChange}
-          >
-            {variablesYAxis}
-          </select>
-        </label>
-        <label className="visualization-panel-label">
           <input
             type="checkbox"
             name="stacked"
@@ -182,6 +160,28 @@ class BarForm extends Component {
             onChange={this.handleChange}
           />
           &nbsp;&nbsp;Horizontal
+        </label>
+        <label className="visualization-panel-label">
+          {x_axis}
+          <select
+            className="med-select"
+            value={this.state.xAxis}
+            name="xAxis"
+            onChange={this.handleChange}
+          >
+            {variablesXAxis}
+          </select>
+        </label>
+        <label className="visualization-panel-label">
+          {y_axis}
+          <select
+            className="med-select"
+            value={this.state.yAxis}
+            name="yAxis"
+            onChange={this.handleChange}
+          >
+            {variablesYAxis}
+          </select>
         </label>
         <CategoryOptions
           /* 

@@ -21,7 +21,7 @@ class DonutChart extends Component {
         },
         labels: this.props.categories,
         noData: {
-          text: 'pick your preferred options to create a visualization',
+          text: 'select the categories to be displayed',
         },
         plotOptions: { pie: { expandOnClick: false } },
       },

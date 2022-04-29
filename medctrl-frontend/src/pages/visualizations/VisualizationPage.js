@@ -96,7 +96,9 @@ class VisualizationPage extends Component {
       )
     } else {
       return (
-        <h1 className="visualization-no-data">No data selected to display</h1>
+        <h1 className="visualization-no-data">
+          go to the data page to select datapoints to display
+        </h1>
       )
     }
   }

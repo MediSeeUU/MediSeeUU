@@ -127,7 +127,6 @@ class PieForm extends Component {
             {variables}
           </select>
         </label>
-        <br />
         <CategoryOptions
           /* 
             We want to reset the component when the variable changes,

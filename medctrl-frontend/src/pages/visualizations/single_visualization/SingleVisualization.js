@@ -51,6 +51,7 @@ class SingleVisualization extends Component {
       chart_type: 'bar',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
+        yAxis: 'Rapporteur',
       },
       legend_on: false,
       labels_on: false,
@@ -71,9 +72,7 @@ class SingleVisualization extends Component {
 
   // event handler for the form data
   handleChange(event) {
-    console.log('here')
     const series = this.generateSeries(event.chart_type, event)
-    console.log(event)
 
     this.setState({
       chart_type: event.chart_type,
@@ -208,7 +207,11 @@ class SingleVisualization extends Component {
         return GeneratePieSeries(options, this.state.data)
 
       default:
-        return GenerateBarSeries(options)
+        return GenerateBarSeries(
+          options,
+          this.state.uniqueCategories,
+          this.state.data
+        )
     }
   }
 
@@ -238,7 +241,7 @@ class SingleVisualization extends Component {
                   type="text"
                   id={'graphName' + this.props.id}
                   className="graph-name med-text-input"
-                  placeholder="Enter a graph name"
+                  placeholder="Bar chart - DecisionYear vs. Rapporteur"
                   autoComplete="off"
                 />
               </Row>
