@@ -60,7 +60,7 @@ function DataSelect() {
           setPage,
           setResultsPerPage,
           true,
-          'No data to display, please clear your filters.',
+          'No data to display, please clear your search or filters.',
           menu
         )}
       </div>
