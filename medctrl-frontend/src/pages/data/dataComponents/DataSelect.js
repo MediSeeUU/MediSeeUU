@@ -1,18 +1,34 @@
 import React, { useState } from 'react'
 import Menu from '../Menu/Menu'
+import Search from '../Search/Search'
 import TableView from './TableView'
+import { useData } from '../../../shared/contexts/DataContext'
+import updateData from '../Utils/update'
 
-function DataSelect({data, filters, sorters, updateFilters, updateSorters}) {
-  //amount of database hits shown per page
+function DataSelect() {
+  // Amount of database hits shown per page
   const [resultsPerPage, setResultsPerPage] = useState(25)
 
-  //current page
+  // Current page
   const [loadedPage, setPage] = useState(1)
+
+  // Current search
+  const [search, setSearch] = useState("")
+
+  // Current filters
+  const [filters, setFilters] = useState([{ selected: '', input: [''] }])
+
+  // Current sorters
+  const [sorters, setSorters] = useState([{ selected: '', order: 'asc' }])
+
+  // Current data
+  const allData = useData()
+  const updatedData = updateData(allData, search, filters, sorters)
 
   // List of variable options
   const list =
-    data.length > 0 &&
-    Object.keys(data[0]).map((item) => {
+    updatedData.length > 0 &&
+    Object.keys(updatedData[0]).map((item) => {
       return (
         <option key={item} value={item}>
           {item}
@@ -25,27 +41,30 @@ function DataSelect({data, filters, sorters, updateFilters, updateSorters}) {
       list={list}
       filters={filters}
       sorters={sorters}
-      updateFilters={updateFilters}
-      updateSorters={updateSorters}
+      updateFilters={setFilters}
+      updateSorters={setSorters}
     />
   )
 
   //main body of the page
   return (
-    <div className="med-content-container">
-      <h1>Data Selection Table</h1>
-      <hr className="med-top-separator" />
-      {TableView(
-        data,
-        resultsPerPage,
-        loadedPage,
-        setPage,
-        setResultsPerPage,
-        true,
-        'No data to display, please clear your filters.',
-        menu
-      )}
-    </div>
+    <>
+      <Search update={setSearch} />
+      <div className="med-content-container">
+        <h1>Data Selection Table</h1>
+        <hr className="med-top-separator" />
+        {TableView(
+          updatedData,
+          resultsPerPage,
+          loadedPage,
+          setPage,
+          setResultsPerPage,
+          true,
+          'No data to display, please clear your filters.',
+          menu
+        )}
+      </div>
+    </>
   )
 }
 

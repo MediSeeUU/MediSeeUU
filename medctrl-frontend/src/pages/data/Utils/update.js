@@ -7,7 +7,7 @@ function updateData(data, search, filters, sorters) {
   let updatedData = [...data]
   updatedData = searchData(updatedData, search)
   updatedData = filterData(updatedData, filters)
-  updatedData = sortData(updatedData, sorters)
+  updatedData = sortData(updatedData, [...sorters])
   return updatedData
 }
 

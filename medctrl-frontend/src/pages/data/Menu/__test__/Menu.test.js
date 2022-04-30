@@ -13,7 +13,7 @@ import DummyData from '../../../../testJson/data.json'
 import {
   convertSortingAttributeNameToComparisonFunction,
   getSortingFunctionFromAttributeName,
-} from '../sorting'
+} from '../../Utils/sorting'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')

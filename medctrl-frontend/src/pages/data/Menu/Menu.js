@@ -140,14 +140,14 @@ class Menu extends React.Component {
     })
   }
 
-  // Applies all filters and sorters to the cached data, updates the table with this updated data and closes menu
+  // Update the filters and sorters which will update the data displayed in the table
   apply() {
     this.props.updateFilters(this.state.filters)
     this.props.updateSorters(this.state.sorters)
     this.handleCloseModal()
   }
 
-  // Resets the filter and sort menu, updates the table with the cached data and closes menu
+  // Update the (local) filters and sorters which will update the data displayed in the table
   clear() {
     this.props.updateFilters([{ selected: '', input: [''] }])
     this.props.updateSorters([{ selected: '', order: 'asc' }])
