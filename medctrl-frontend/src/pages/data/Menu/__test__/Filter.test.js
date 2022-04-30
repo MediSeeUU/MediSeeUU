@@ -8,7 +8,7 @@ import {
   cleanup,
   within,
 } from '@testing-library/react'
-import Filter from '../filter'
+import Filter from '../Filter'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')

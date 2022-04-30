@@ -5,7 +5,7 @@ import voca from 'voca'
 //function requires sortingParameters, which is the sorting state object passed from the filtermenu; it is an array containing an object for each active sorting filter.
 //one sorting filter object consists of 2 properties, { selected, order}. With selected being a string containing the name of the attribute to sort on.
 // order contains a string of either "asc" or "desc", for ascending or descending order
-export function sortData(data, sortingparameters) {
+function sortData(data, sortingparameters) {
   for (
     var sortparIndex = 0;
     sortparIndex < sortingparameters.length;
@@ -213,3 +213,5 @@ function createComparisonFunction2(attr) {
     }
   }
 }
+
+export default sortData

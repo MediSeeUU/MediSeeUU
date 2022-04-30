@@ -9,7 +9,7 @@ import {
   within,
 } from '@testing-library/react'
 import Menu from '../menu'
-import DummyData from '../../../testJson/data.json'
+import DummyData from '../../../../testJson/data.json'
 import {
   convertSortingAttributeNameToComparisonFunction,
   getSortingFunctionFromAttributeName,

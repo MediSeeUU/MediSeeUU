@@ -1,10 +1,9 @@
 import React from 'react'
 import ReactModal from 'react-modal'
 import { v4 as uuidv4 } from 'uuid'
-import Filter from './filter'
-import Sort from './sort'
-import './menu.css'
-import { sortData } from './sorting'
+import Filter from './Filter'
+import Sort from './Sort'
+import './Menu.css'
 
 class Menu extends React.Component {
   constructor(props) {
@@ -17,8 +16,8 @@ class Menu extends React.Component {
     // Set init state
     this.state = {
       showModal: false,
-      filters: this.filterObject,
-      sorters: this.sortObject,
+      filters: props.filters,
+      sorters: props.sorters,
       showAddSort: true,
     }
 
@@ -143,50 +142,24 @@ class Menu extends React.Component {
 
   // Applies all filters and sorters to the cached data, updates the table with this updated data and closes menu
   apply() {
-    let filterData = [...this.props.cachedData]
-    this.state.filters.forEach((item) => {
-      filterData = this.applyFilter(item, filterData)
-    })
-    let sorters = [...this.state.sorters]
-    let sortedData = sortData(filterData, sorters)
-    this.props.updateTable(sortedData)
+    this.props.updateFilters(this.state.filters)
+    this.props.updateSorters(this.state.sorters)
     this.handleCloseModal()
-  }
-
-  // Single filter that returns the updated data given the filter item
-  applyFilter(item, data) {
-    if (!item.selected) {
-      return data
-    }
-    return data.filter((obj) => {
-      return item.input.some((x) =>
-        obj[item.selected].toString().toLowerCase().includes(x.toLowerCase())
-      )
-    })
   }
 
   // Resets the filter and sort menu, updates the table with the cached data and closes menu
   clear() {
+    this.props.updateFilters([{ selected: '', input: [''] }])
+    this.props.updateSorters([{ selected: '', order: 'asc' }])
     this.setState({
       filters: this.filterObject,
       sorters: this.sortObject,
       showAddSort: true,
     })
-    this.props.updateTable(this.props.cachedData)
     this.handleCloseModal()
   }
 
   render() {
-    // List of options which will be used in every select of a filter item
-    const list =
-      this.props.cachedData.length > 0 &&
-      Object.keys(this.props.cachedData[0]).map((item) => {
-        return (
-          <option key={item} value={item}>
-            {item}
-          </option>
-        )
-      })
     // Returns the menu in HTML
     return (
       <>
@@ -223,7 +196,7 @@ class Menu extends React.Component {
                   key={uuidv4()}
                   id={oid}
                   item={obj}
-                  options={list}
+                  options={this.props.list}
                   del={this.deleteFilter}
                   box={this.addFilterBox}
                   dbox={this.deleteFilterBox}
@@ -258,7 +231,7 @@ class Menu extends React.Component {
                 key={uuidv4()}
                 id={oid}
                 item={obj}
-                options={list}
+                options={this.props.list}
                 del={this.deleteSort}
                 sel={this.updateSortSelected}
                 order={this.updateSortOrder}
