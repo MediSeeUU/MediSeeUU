@@ -136,19 +136,7 @@ class SingleVisualization extends Component {
         )
 
       default:
-        return (
-          <BarChart
-            key={key}
-            legend={legend_on}
-            labels={labels_on}
-            id={id}
-            series={series}
-            categories={
-              this.settings.uniqueCategories[this.settings.chartSpecificOptions.xAxis]
-            }
-            options={this.settings.chartSpecificOptions}
-          />
-        )
+        throw Error('visualization settings incorrect settings: {' + this.settings + '}')
     }
   }
 
@@ -244,12 +232,11 @@ switch (chartType) {
   case 'pie':
     return GeneratePieSeries(
       options,
-      options.uniqueCategories,
       options.data
     )
 
   default:
-    return GenerateBarSeries(options)
+    throw Error('visualization settings incorrect settings: {' + this.settings + '}')
 }
 }
 

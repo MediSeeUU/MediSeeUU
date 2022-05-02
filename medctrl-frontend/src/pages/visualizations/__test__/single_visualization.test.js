@@ -67,3 +67,46 @@ test('remove itself', () => {
   )
   fireEvent.click(screen.getByRole('button', { name: '' }))
 })
+
+//render visualisation with line chart
+test('render with line chart', () => {
+  const unique = GetUniqueCategories(data)
+  setting = {
+    id: 1,
+    chart_type: 'bar',
+    chartSpecificOptions: {
+      xAxis: 'DecisionYear',
+      yAxis: 'Rapporteur',
+      categoriesSelected: [],
+    },
+    legend_on: true,
+    labels_on: false,
+    data: data,
+    series: [],
+    uniqueCategories: unique,
+    changeName: '',
+  }
+  
+  ReactDOM.render(<SingleVisualization id={1} data={data} settings={setting}/>, container)
+})
+
+//render visualisation with pie chart
+test('render with pie chart', () => {
+  const unique = GetUniqueCategories(data)
+  setting = {
+    id: 1,
+    chart_type: 'pie',
+    chartSpecificOptions: {
+      chosenVariables: 'Rapporteur',
+      categoriesSelected: [],
+    },
+    legend_on: true,
+    labels_on: false,
+    data: data,
+    series: [],
+    uniqueCategories: unique,
+    changeName: '',
+  }
+
+  ReactDOM.render(<SingleVisualization id={1} data={data} settings={setting}/>, container)
+})

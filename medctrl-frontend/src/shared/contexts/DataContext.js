@@ -73,7 +73,7 @@ export function DataProvider({ children }) {
     },
     legend_on: true,
     labels_on: false,
-    data: selectedData,
+    data: [],
     series: [],
     uniqueCategories: [],
     changeName: '',

@@ -21,6 +21,7 @@ jest.mock('../mocks/observer')
 
 let container
 let visuals
+let updateVisuals
 function contexts(children, contextData) {
   var unique = GetUniqueCategories(data)
   visuals = [{
@@ -44,10 +45,11 @@ function contexts(children, contextData) {
   } else {
     visuals[0].series = generateSeries(visuals[0].chart_type, visuals[0])
   }
+  updateVisuals = (value) => visuals = value
   return (
     <SelectedContext.Provider value={contextData}>
       <VisualsContext.Provider value={visuals}>
-        <VisualsUpdateContext.Provider value={(value) => visuals = value}>
+        <VisualsUpdateContext.Provider value={updateVisuals}>
           {children}
         </VisualsUpdateContext.Provider>
       </VisualsContext.Provider>
@@ -94,4 +96,106 @@ test('remove a visualization', () => {
   // we have not found any way around this sadly
   fireEvent.click(target)
   expect(visuals.length).toEqual(0)
+})
+
+// update the visual context when rendering the visualization page with bar chart
+test('update visuals when rendering with bar', () => {
+  visuals = [{
+    id: 1,
+    chart_type: 'bar',
+    chartSpecificOptions: {
+      xAxis: 'DecisionYear',
+      yAxis: 'Rapporteur',
+      categoriesSelected: ['1995','1996'],
+    },
+    legend_on: true,
+    labels_on: false,
+    data: [],
+    series: [],
+    uniqueCategories: [],
+    changeName: '',
+  }
+  ]
+  const page = (
+    <SelectedContext.Provider value={data}>
+      <VisualsContext.Provider value={visuals}>
+        <VisualsUpdateContext.Provider value={(value) => visuals = value}>
+          <VisualizationPage/>
+        </VisualsUpdateContext.Provider>
+      </VisualsContext.Provider>
+    </SelectedContext.Provider>)
+  
+  ReactDOM.render(page, container)
+  //check variable length in visuals
+  expect(visuals[0].data.length).not.toEqual(0)
+  expect(visuals[0].series.length).not.toEqual(0)
+  expect(visuals[0].uniqueCategories.length).not.toEqual(0)
+})
+
+// update the visual context when rendering the visualization page with line chart
+test('update visuals when rendering with line', () => {
+  visuals = [{
+    id: 1,
+    chart_type: 'line',
+    chartSpecificOptions: {
+      xAxis: 'DecisionYear',
+      yAxis: 'Rapporteur',
+      categoriesSelected: ['1995','1996'],
+    },
+    legend_on: true,
+    labels_on: false,
+    data: [],
+    series: [],
+    uniqueCategories: [],
+    changeName: '',
+  }
+  ]
+  const page = (
+    <SelectedContext.Provider value={data}>
+      <VisualsContext.Provider value={visuals}>
+        <VisualsUpdateContext.Provider value={(value) => visuals = value}>
+          <VisualizationPage/>
+        </VisualsUpdateContext.Provider>
+      </VisualsContext.Provider>
+    </SelectedContext.Provider>)
+  
+  ReactDOM.render(page, container)
+  //check variable length in visuals
+  expect(visuals[0].data.length).not.toEqual(0)
+  expect(visuals[0].series.length).not.toEqual(0)
+  expect(visuals[0].uniqueCategories.length).not.toEqual(0)
+})
+
+// update the visual context when rendering the visualization page with pie chart
+test('update visuals when rendering with pie', () => {
+  var unique = GetUniqueCategories(data)
+  visuals = [{
+    id: 1,
+    chart_type: 'pie',
+    chartSpecificOptions: {
+      chosenVariable: 'DecisionYear',
+      categoriesSelected: [],
+    },
+    legend_on: true,
+    labels_on: false,
+    data: [],
+    series: [],
+    uniqueCategories: [],
+    changeName: '',
+  }
+  ]
+  const page = (
+    <SelectedContext.Provider value={data.slice(0, data.length-5)}>
+      <VisualsContext.Provider value={visuals}>
+        <VisualsUpdateContext.Provider value={(value) => visuals = value}>
+          <VisualizationPage/>
+        </VisualsUpdateContext.Provider>
+      </VisualsContext.Provider>
+    </SelectedContext.Provider>)
+  
+  ReactDOM.render(page, container)
+  //check variable length in visuals
+  expect(visuals[0].data.length).not.toEqual(0)
+  expect(visuals[0].series.length).not.toEqual(0)
+  expect(visuals[0].uniqueCategories.length).not.toEqual(0)
 })
