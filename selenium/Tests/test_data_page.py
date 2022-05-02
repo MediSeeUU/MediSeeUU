@@ -26,6 +26,7 @@ class TestDataPage(WebDriverSetup):
   
   # select 3 random rows in each of the first 10 pages and check if they are correctly put into the select table
   def test_correct_selected(self):
+    self.data_page.select_all()
     eu_numbers = []
     for i in range(10):
       ids = random.sample(range(1, 25), 3)
@@ -88,17 +89,13 @@ class TestDataPage(WebDriverSetup):
   
   # check if the column change propagates to all tables
   def test_column_change(self):
-    select_row = random.randint(1, 25)
-    self.data_page.select(select_row)
-    column = random.randint(1, 5)
+    column = random.randint(1, self.data_page.amount_of_columns(0))
     self.data_page.change_column(0, column, "CoRapporteur")
     assert self.data_page.column_value(0, column) == "CoRapporteur"
     assert self.data_page.column_value(1, column) == "CoRapporteur"
   
   # check if a new column is added/removed to/from all tables
   def test_column_add_remove(self):
-    select_row = random.randint(1, 25)
-    self.data_page.select(select_row)
     assert self.data_page.amount_of_columns(0) == 5
     assert self.data_page.amount_of_columns(1) == 5
     columns = []
@@ -107,9 +104,9 @@ class TestDataPage(WebDriverSetup):
     adds = random.randint(1, 5)
     for i in range(adds):
       self.data_page.add_column(0)
-      column = self.data_page.column_value(0, 5 + i)
+      column = self.data_page.column_value(0, 6 + i)
       assert column not in columns
-      columns.add(column)
+      columns.append(column)
     assert self.data_page.amount_of_columns(0) == 5 + adds
     assert self.data_page.amount_of_columns(1) == 5 + adds
     removes = random.randint(1, 5)
@@ -119,6 +116,7 @@ class TestDataPage(WebDriverSetup):
     assert self.data_page.amount_of_columns(1) == 5 + adds - removes
   
   def test_clear_all(self):
+    self.data_page.select_all()
     assert not self.data_page.selected_visible()
     ids = random.sample(range(1, 25), 8)
     for id in ids:
