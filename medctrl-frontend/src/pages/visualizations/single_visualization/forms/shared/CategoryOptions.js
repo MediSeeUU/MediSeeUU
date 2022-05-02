@@ -53,7 +53,9 @@ class CategoryOptions extends React.Component {
       this.setState(
         (state) => ({
           categoriesSelected: [...state.categoriesSelected, name],
-          selectAllCategories: this.state.categoriesSelected?.length + 1 === this.props.categories.length
+          selectAllCategories:
+            this.state.categoriesSelected?.length + 1 ===
+            this.props.categories.length,
         }),
         () => this.props.onChange(this.state.categoriesSelected)
       )
@@ -65,7 +67,7 @@ class CategoryOptions extends React.Component {
             categoriesSelected: state.categoriesSelected.filter(
               (el) => el !== name
             ),
-            selectAllCategories: false
+            selectAllCategories: false,
           }),
           () => this.props.onChange(this.state.categoriesSelected)
         )

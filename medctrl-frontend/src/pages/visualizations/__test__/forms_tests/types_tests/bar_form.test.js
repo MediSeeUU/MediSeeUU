@@ -24,25 +24,43 @@ beforeAll(() => {
     stackType: false,
     horizontal: false,
     selectAllCategories: false,
-    eligibleVariables: []
+    eligibleVariables: [],
   }
 })
 
 test('initial render', () => {
   const onChange = jest.fn()
-  render(<BarForm uniqueCategories={uniqueCategories} onChange={onChange} graphSettings={graphSetting}/>)
+  render(
+    <BarForm
+      uniqueCategories={uniqueCategories}
+      onChange={onChange}
+      graphSettings={graphSetting}
+    />
+  )
 })
 
 test('category change', () => {
   const onChange = jest.fn()
-  var test = render(<BarForm uniqueCategories={uniqueCategories} onChange={onChange} graphSettings={graphSetting}/>)
+  var test = render(
+    <BarForm
+      uniqueCategories={uniqueCategories}
+      onChange={onChange}
+      graphSettings={graphSetting}
+    />
+  )
   const target = screen.getByRole('checkbox', { name: /united kingdom/i })
   fireEvent.click(target)
 })
 
 test('horizontal option on', () => {
   const onChange = jest.fn()
-  render(<BarForm uniqueCategories={uniqueCategories} onChange={onChange} graphSettings={graphSetting}/>)
+  render(
+    <BarForm
+      uniqueCategories={uniqueCategories}
+      onChange={onChange}
+      graphSettings={graphSetting}
+    />
+  )
   const target = screen.getByRole('checkbox', { name: /horizontal/i })
   fireEvent.click(target)
 })

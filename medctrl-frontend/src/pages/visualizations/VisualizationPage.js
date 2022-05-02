@@ -1,5 +1,5 @@
 // external imports
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -9,7 +9,7 @@ import SingleVisualization from './single_visualization/SingleVisualization'
 import { useSelectedData } from '../../shared/contexts/DataContext'
 import GetUniqueCategories from './single_visualization/utils/GetUniqueCategories'
 import GenerateBarSeries from './single_visualization/data_interfaces/BarInterface'
-import {useVisuals, useVisualsUpdate} from '../../shared/contexts/DataContext'
+import { useVisuals, useVisualsUpdate } from '../../shared/contexts/DataContext'
 import { generateSeries } from './single_visualization/SingleVisualization'
 
 // the component that contains all the visualizations
@@ -25,7 +25,8 @@ function VisualizationPage() {
   const setVisuals = useVisualsUpdate()
 
   //get the unique categories for the selected data
-  const uniqueCategories = selectedData.length > 0 ? GetUniqueCategories(selectedData) : []
+  const uniqueCategories =
+    selectedData.length > 0 ? GetUniqueCategories(selectedData) : []
 
   //add some series logic so the controls update
   var updateVisuals = false
@@ -44,14 +45,16 @@ function VisualizationPage() {
     if (updateVisuals) {
       setVisuals(visuals)
     }
-  }, [updateVisuals, visuals, setVisuals]);
+  }, [updateVisuals, visuals, setVisuals])
 
   //check if two arrays are equal, need to be in the same order
   function arrayEquals(a, b) {
-    return Array.isArray(a) &&
+    return (
+      Array.isArray(a) &&
       Array.isArray(b) &&
       a.length === b.length &&
-      a.every((val, index) => val === b[index]);
+      a.every((val, index) => val === b[index])
+    )
   }
 
   // EVENT HANDLERS:
@@ -62,7 +65,7 @@ function VisualizationPage() {
 	*/
   function handleAdditionFunc() {
     const newVisual = {
-      id: visuals.length+1,
+      id: visuals.length + 1,
       chart_type: 'bar',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
@@ -98,7 +101,7 @@ function VisualizationPage() {
   }
 
   function handleChangeFunc(settings) {
-    var newVisuals = JSON.parse(JSON.stringify(visuals));
+    var newVisuals = JSON.parse(JSON.stringify(visuals))
     newVisuals = newVisuals.map((item) => {
       if (item.id === settings.id) {
         return settings

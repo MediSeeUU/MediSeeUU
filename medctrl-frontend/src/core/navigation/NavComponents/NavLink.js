@@ -10,7 +10,7 @@ function NavLink(props) {
   function clicked() {
     props.parent.close()
     navigate(props.dest)
-    if (props.onClick){
+    if (props.onClick) {
       props.onClick()
     }
   }

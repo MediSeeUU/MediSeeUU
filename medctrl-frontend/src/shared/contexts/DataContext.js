@@ -34,11 +34,11 @@ export function useColumnSelectionUpdate() {
   return useContext(ColumnSelectionContextUpdate)
 }
 
-export function useVisuals(){
+export function useVisuals() {
   return useContext(VisualsContext)
 }
 
-export function useVisualsUpdate(){
+export function useVisualsUpdate() {
   return useContext(VisualsUpdateContext)
 }
 
@@ -63,21 +63,23 @@ export function DataProvider({ children }) {
   ])
 
   //visualisation context to save the visualisations when navigating the page
-  const [visuals, setVisuals] = useState([{
-    id: 1,
-    chart_type: 'bar',
-    chartSpecificOptions: {
-      xAxis: 'DecisionYear',
-      yAxis: 'Rapporteur',
-      categoriesSelected: [],
+  const [visuals, setVisuals] = useState([
+    {
+      id: 1,
+      chart_type: 'bar',
+      chartSpecificOptions: {
+        xAxis: 'DecisionYear',
+        yAxis: 'Rapporteur',
+        categoriesSelected: [],
+      },
+      legend_on: true,
+      labels_on: false,
+      data: [],
+      series: [],
+      uniqueCategories: [],
+      changeName: '',
     },
-    legend_on: true,
-    labels_on: false,
-    data: [],
-    series: [],
-    uniqueCategories: [],
-    changeName: '',
-  }])
+  ])
 
   return (
     <DataContext.Provider value={allData}>

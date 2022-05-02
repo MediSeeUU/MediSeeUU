@@ -21,7 +21,6 @@ import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCateg
 jest.mock('../../mocks/observer')
 
 test('export to png', () => {
-
   const unique = GetUniqueCategories(data)
   var setting = {
     id: 1,
@@ -41,6 +40,9 @@ test('export to png', () => {
   setting.series = generateSeries('bar', setting)
 
   const root = document.createElement('div')
-  const vis = ReactDOM.render(<SingleVisualization id={1} data={data} settings={setting}/>, root)
+  const vis = ReactDOM.render(
+    <SingleVisualization id={1} data={data} settings={setting} />,
+    root
+  )
   HandlePNGExport(1, ApexCharts)
 })

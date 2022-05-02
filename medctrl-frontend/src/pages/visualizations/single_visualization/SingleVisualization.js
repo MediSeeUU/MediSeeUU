@@ -49,9 +49,15 @@ class SingleVisualization extends Component {
     this.settings.legend_on = event.legend_on
     this.settings.labels_on = event.labels_on
     this.settings.changeName = event.chartSpecificOptionsName
-    this.settings.chartSpecificOptions.selectAllCategories = this.settings.chartSpecificOptions.categoriesSelected?.length === this.settings.uniqueCategories[this.settings.chartSpecificOptions.yAxis].length
+    this.settings.chartSpecificOptions.selectAllCategories =
+      this.settings.chartSpecificOptions.categoriesSelected?.length ===
+      this.settings.uniqueCategories[this.settings.chartSpecificOptions.yAxis]
+        .length
 
-    this.settings.series = generateSeries(this.settings.chart_type, this.settings)
+    this.settings.series = generateSeries(
+      this.settings.chart_type,
+      this.settings
+    )
     this.props.onFormChangeFunc(this.settings)
 
     /*
@@ -59,10 +65,10 @@ class SingleVisualization extends Component {
       we may want to do this purely using the states,
       currently not sure if that would be more efficient
     */
-      ApexCharts.getChartByID(String(this.props.id)).updateOptions({
-        dataLabels: { enabled: event.labels_on },
-        legend: { show: event.legend_on },
-      })
+    ApexCharts.getChartByID(String(this.props.id)).updateOptions({
+      dataLabels: { enabled: event.labels_on },
+      legend: { show: event.legend_on },
+    })
   }
 
   // handles the png export
@@ -101,7 +107,9 @@ class SingleVisualization extends Component {
             id={id}
             series={series}
             categories={
-              this.settings.uniqueCategories[this.settings.chartSpecificOptions.xAxis]
+              this.settings.uniqueCategories[
+                this.settings.chartSpecificOptions.xAxis
+              ]
             }
             options={this.settings.chartSpecificOptions}
           />
@@ -116,7 +124,9 @@ class SingleVisualization extends Component {
             id={id}
             series={series}
             categories={
-              this.settings.uniqueCategories[this.settings.chartSpecificOptions.xAxis]
+              this.settings.uniqueCategories[
+                this.settings.chartSpecificOptions.xAxis
+              ]
             }
             options={this.settings.chartSpecificOptions}
           />
@@ -136,11 +146,13 @@ class SingleVisualization extends Component {
         )
 
       default:
-        throw Error('visualization settings incorrect settings: {' + this.settings + '}')
+        throw Error(
+          'visualization settings incorrect settings: {' + this.settings + '}'
+        )
     }
   }
 
-  handleNameChange(event){
+  handleNameChange(event) {
     this.settings.chartName = event.target.value
   }
 
@@ -207,37 +219,28 @@ class SingleVisualization extends Component {
   }
 }
 
- /*
+/*
 Returns series data depending on the chart type,
 as each chart type expects data in a certain way.
 For example, a pie chart only expect one variable,
 whereas a bar chart expect two.
 */
 export function generateSeries(chartType, options) {
-switch (chartType) {
-  case 'bar':
-    return GenerateBarSeries(
-      options,
-      options.uniqueCategories,
-      options.data
-    )
+  switch (chartType) {
+    case 'bar':
+      return GenerateBarSeries(options, options.uniqueCategories, options.data)
 
-  case 'line':
-    return GenerateLineSeries(
-      options,
-      options.uniqueCategories,
-      options.data
-    )
+    case 'line':
+      return GenerateLineSeries(options, options.uniqueCategories, options.data)
 
-  case 'pie':
-    return GeneratePieSeries(
-      options,
-      options.data
-    )
+    case 'pie':
+      return GeneratePieSeries(options, options.data)
 
-  default:
-    throw Error('visualization settings incorrect settings: {' + this.settings + '}')
-}
+    default:
+      throw Error(
+        'visualization settings incorrect settings: {' + this.settings + '}'
+      )
+  }
 }
 
 export default SingleVisualization

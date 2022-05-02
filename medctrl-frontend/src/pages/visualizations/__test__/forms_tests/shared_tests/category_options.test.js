@@ -19,7 +19,7 @@ beforeAll(() => {
   uniqueCategories = GetUniqueCategories(data)
   setting = {
     categoriesSelected: [],
-    selectAllCategories: false
+    selectAllCategories: false,
   }
 })
 

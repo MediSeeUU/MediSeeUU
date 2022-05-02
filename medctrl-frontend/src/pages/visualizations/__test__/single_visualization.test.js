@@ -46,23 +46,37 @@ afterEach(() => {
 })
 
 test('render initial single visualization', () => {
-  ReactDOM.render(<SingleVisualization id={1} data={data} settings={setting}/>, container)
+  ReactDOM.render(
+    <SingleVisualization id={1} data={data} settings={setting} />,
+    container
+  )
 })
 
 test('export to svg', () => {
-  ReactDOM.render(<SingleVisualization id={1} data={data} settings={setting}/>, container)
+  ReactDOM.render(
+    <SingleVisualization id={1} data={data} settings={setting} />,
+    container
+  )
   fireEvent.click(screen.getByRole('button', { name: 'Export as SVG' }))
 })
 
 test('export to png', () => {
-  ReactDOM.render(<SingleVisualization id={1} data={data} settings={setting}/>, container)
+  ReactDOM.render(
+    <SingleVisualization id={1} data={data} settings={setting} />,
+    container
+  )
   fireEvent.click(screen.getByRole('button', { name: 'Export as PNG' }))
 })
 
 test('remove itself', () => {
   const onRemoval = jest.fn()
   ReactDOM.render(
-    <SingleVisualization id={1} data={data} onRemoval={onRemoval} settings={setting}/>,
+    <SingleVisualization
+      id={1}
+      data={data}
+      onRemoval={onRemoval}
+      settings={setting}
+    />,
     container
   )
   fireEvent.click(screen.getByRole('button', { name: '' }))
@@ -86,8 +100,11 @@ test('render with line chart', () => {
     uniqueCategories: unique,
     changeName: '',
   }
-  
-  ReactDOM.render(<SingleVisualization id={1} data={data} settings={setting}/>, container)
+
+  ReactDOM.render(
+    <SingleVisualization id={1} data={data} settings={setting} />,
+    container
+  )
 })
 
 //render visualisation with pie chart
@@ -108,5 +125,8 @@ test('render with pie chart', () => {
     changeName: '',
   }
 
-  ReactDOM.render(<SingleVisualization id={1} data={data} settings={setting}/>, container)
+  ReactDOM.render(
+    <SingleVisualization id={1} data={data} settings={setting} />,
+    container
+  )
 })

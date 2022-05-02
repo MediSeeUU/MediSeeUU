@@ -40,6 +40,9 @@ test('export to svg', () => {
   setting.series = generateSeries('bar', setting)
 
   const root = document.createElement('div')
-  ReactDOM.render(<SingleVisualization id={1} data={data} settings={setting}/>, root)
+  ReactDOM.render(
+    <SingleVisualization id={1} data={data} settings={setting} />,
+    root
+  )
   HandleSVGExport(1, ApexCharts)
 })
