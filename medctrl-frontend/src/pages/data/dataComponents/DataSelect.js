@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import ResultsSelector from './ResultsSelector'
 import Menu from '../../../shared/menu/menu'
-import Table from '../../../shared/table/table'
 import { useData } from '../../../shared/contexts/DataContext'
+import TableView from './TableView'
 
 function DataSelect() {
   //amount of databse hits shown per page
@@ -13,36 +12,29 @@ function DataSelect() {
   const allData = useData()
   const [data, setData] = useState(allData)
 
-  //Maximum amount of pages available
-  const amountOfPages = Math.ceil(data.length / resultsPerPage)
-
-  //if less pages are available than the currenly loaded page, loadedPage is set to the highest available page.
-  if (loadedPage > amountOfPages) {
-    setPage(amountOfPages)
-  }
+  // the menu button to be displayed with the table
+  const menu = (
+    <Menu
+      cachedData={allData}
+      updateTable={(updatedData) => setData(updatedData)}
+    />
+  )
 
   //main body of the page
   return (
-    <div className="TopTableHolder">
-      <Menu
-        cachedData={allData}
-        updateTable={(updatedData) => setData(updatedData)}
-      />
-
-      <Table
-        data={data}
-        currentPage={loadedPage}
-        amountPerPage={resultsPerPage}
-        selectTable={true}
-      />
-
-      <ResultsSelector
-        data={data}
-        amount={resultsPerPage}
-        resultsPerPage={setResultsPerPage}
-        pageNumber={setPage}
-        currPage={loadedPage}
-      />
+    <div className="med-content-container">
+      <h1>Data Selection Table</h1>
+      <hr className="med-top-separator" />
+      {TableView(
+        data,
+        resultsPerPage,
+        loadedPage,
+        setPage,
+        setResultsPerPage,
+        true,
+        'No data to display, please clear your filters.',
+        menu
+      )}
     </div>
   )
 }

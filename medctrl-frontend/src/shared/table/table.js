@@ -13,9 +13,9 @@ function DisplayTable({
   data,
   selectTable,
   searchTable,
-  selectedTable,
   amountPerPage,
   currentPage,
+  menu,
 }) {
   //throw error if parameters not defined
   if (!data || !amountPerPage || !currentPage) {
@@ -109,16 +109,19 @@ function DisplayTable({
   return (
     <>
       <div className="addRmCollumn">
-        <button className="columnbutton" onClick={() => addColumn()}>
-          <i className="bx bxs-plus-square bx-plusMinus"></i>
-        </button>
+        <i
+          className="bx-plusMinus bx bxs-plus-square med-primary-text"
+          onClick={() => addColumn()}
+          data-testid="add-column"
+        />
 
-        <button
-          className="columnbutton minusbutton"
+        <i
+          className="bx-plusMinus bx bxs-minus-square med-primary-text"
           onClick={() => removeColumn()}
-        >
-          <i className="bx bxs-minus-square bx-plusMinus"></i>
-        </button>
+          data-testid="remove-column"
+        />
+
+        {menu}
       </div>
 
       <table className="med_table">
@@ -164,7 +167,9 @@ function DisplayTable({
             }
             {
               //if selectedTable, add coloredbar to the header
-              selectedTable ? <td className="med_td smallColumn"></td> : null
+              !selectTable && !searchTable ? (
+                <td className="med_td smallColumn"></td>
+              ) : null
             }
           </tr>
         </thead>
@@ -192,7 +197,7 @@ const CheckboxColumn = ({ value, onChange }) => {
 function BinboxColumn({ onp }) {
   return (
     <td className="med_td smallColumn">
-      <i className="bx bx-trash icons" onClick={onp}></i>
+      <i className="bx bx-trash icons med-primary-text" onClick={onp}></i>
     </td>
   )
 }
@@ -203,7 +208,7 @@ function InfoboxColumn({ EUidNumber }) {
     <td className="med_td smallColumn">
       <Link to={`/details/${EUidNumber}`}>
         <i
-          className="bx bx-info-circle icons"
+          className="bx bx-info-circle icons med-primary-text"
           id={'detailInfo' + EUidNumber}
           testid={'detailInfo' + EUidNumber}
         />

@@ -59,7 +59,7 @@ class VisualizationPage extends Component {
         <Row key={id}>
           <SingleVisualization
             id={id}
-            data={JSON.parse(JSON.stringify(this.state.data))}
+            data={this.state.data}
             onRemoval={this.handleRemoval}
           />
         </Row>
@@ -84,10 +84,11 @@ class VisualizationPage extends Component {
             {displayItems}
             <Row>
               <button
-                className="table-buttons button-add"
+                className="med-primary-solid med-bx-button button-add"
                 onClick={this.handleAddition}
               >
-                <i className="bx bx-plus filter-Icon"></i>Add visualization
+                <i className="bx bx-plus filter-Icon" />
+                Add visualization
               </button>
             </Row>
           </Container>

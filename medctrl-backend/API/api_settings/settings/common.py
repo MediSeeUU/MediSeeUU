@@ -21,6 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = ["https://med-ctrl.science.uu.nl"]
+
 
 # Application definition
 
@@ -35,19 +37,25 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "knox",
+    "guardian",
+    "import_export",
 ]
 
 
 # Use sessionauthentication instead of Basic
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.SessionAuthentication",
         "knox.auth.TokenAuthentication",
     ]
 }
 
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "guardian.backends.ObjectPermissionBackend",
+]
+
 REST_KNOX = {
-    "USER_SERIALIZER": "knox.serializers.UserSerializer",
+    "USER_SERIALIZER": "api.serializers.user_serializers.normal_user.UserSerializer",
 }
 
 MIDDLEWARE = [

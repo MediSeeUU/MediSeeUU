@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from 'uuid'
-import './menuitems.css'
 
 // Returns all filter input boxes in HTML
 function filtersToHTML(props) {
@@ -10,7 +9,7 @@ function filtersToHTML(props) {
         <input
           type="text"
           id={i}
-          className="filter-input"
+          className="filter-input med-text-input"
           defaultValue={props.item.input[i]}
           placeholder="Enter value"
           onBlur={(e) => props.fil(props.id, i, e.target.value)}
@@ -32,7 +31,7 @@ function displayItem(props) {
   return (
     <div id={props.id} className="filter-item">
       <select
-        className="select"
+        className="select med-select"
         defaultValue={props.item.selected}
         onChange={(e) => props.sel(props.id, e.target.value)}
         data-testid="filter-select"
@@ -43,13 +42,13 @@ function displayItem(props) {
         {props.options}
       </select>
       <i
-        className="bx bxs-x-circle delete"
+        className="bx bxs-x-circle delete med-primary-text"
         onClick={() => props.del(props.id)}
         data-testid="delete-icon"
       ></i>
       {filtersToHTML(props)}
       <label
-        className="add-label"
+        className="add-label med-primary-text"
         onClick={() => props.box(props.id)}
         data-testid="add-label"
       >

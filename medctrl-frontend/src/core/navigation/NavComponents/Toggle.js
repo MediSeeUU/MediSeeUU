@@ -10,7 +10,7 @@ function Toggle(props) {
     // when the toggle is clicked, the parent (the navigation bar) should to toggled
     // meaning it is either expanded or collapsed
     <div
-      className="nav-item toggle"
+      className="nav-item toggle med-primary-solid"
       onClick={() => props.parent.toggle()}
       data-testid="navbartogglebutton"
     >
@@ -21,7 +21,7 @@ function Toggle(props) {
           {name}{' '}
         </span>
       </div>
-      <span className="tooltip"> {name} </span>
+      <span className="nav-tooltip"> {name} </span>
     </div>
   )
 }

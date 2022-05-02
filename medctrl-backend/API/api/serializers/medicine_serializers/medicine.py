@@ -11,6 +11,7 @@ from api.serializers.medicine_serializers import (
 class MedicineSerializer(serializers.ModelSerializer):
     """Medicine serializer"""
 
+    """outdated serializer, to be replaced with what Lars is working on
     legal_basis = (
         LegalBasisSerializer()
     )  # needs to be directly in legal_basis not legalbasis -> description
@@ -18,6 +19,7 @@ class MedicineSerializer(serializers.ModelSerializer):
         LegalScopeSerializer()
     )  # needs to be directly in legal_scope not legalscope -> description
     atc_code = AtcCodeSerializer()
+    """
 
     class Meta:
         """Metadata"""

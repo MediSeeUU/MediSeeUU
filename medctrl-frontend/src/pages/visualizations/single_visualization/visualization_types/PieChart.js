@@ -33,15 +33,19 @@ class DonutChart extends Component {
 
   // renders a pie chart
   render() {
-    return (
-      <div className="donut">
-        <Chart
-          options={this.state.options}
-          series={this.state.series}
-          type="pie"
-        />
-      </div>
-    )
+    try {
+      return (
+        <div className="donut">
+          <Chart
+            options={this.state.options}
+            series={this.state.series}
+            type="pie"
+          />
+        </div>
+      )
+    } catch {
+      return <div>An error occurred when drawing the chart</div>
+    }
   }
 }
 

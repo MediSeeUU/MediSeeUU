@@ -1,6 +1,5 @@
 import './DetailedInfo.css'
 
-import Container from './InfoComponents/Container'
 import DetailGroup from './InfoComponents/DetailGroup'
 import Detail from './InfoComponents/Detail'
 import Procedure from './InfoComponents/Procedure'
@@ -40,6 +39,7 @@ export function InfoPage(props) {
   //depending on the provided JSONdata (not) containing proceduredata,
   //use appropriate function to get the medicine data component
   if (alldata[0].hasOwnProperty('procedures')) {
+    
     //if procedure data is present for the (first) jsondataobject
     medDataObject = alldata.find(
       (element) =>
@@ -48,6 +48,7 @@ export function InfoPage(props) {
 
     procedureDataPresentFlag = true
   } else {
+    
     medDataObject = alldata.find((element) => {
       return element['EUNoShort'].toString() === medIDnr.toString()
     })
@@ -62,7 +63,7 @@ export function InfoPage(props) {
           className="detailedinfopage-unknown-medID"
           testid="detailedInfoPageTitle"
         >
-          Unknown Medicine ID number
+          Unknown Medicine ID Number
         </h1>
       </div>
     )
@@ -89,6 +90,21 @@ export function InfoPage(props) {
     )
   }
 
+  // put all of the procedures from the allProcedures array into a content containers,
+  // together with a meaningful title. if there are no procedures to display, the whole
+  // container should not be displayed
+  let procedureContrainer = (
+    <div className="med-content-container">
+      <h1 className="title">Procedure Details</h1>
+      <hr className="med-top-separator" />
+      {allProcedures}
+    </div>
+  )
+
+  if (allProcedures.length === 0) {
+    procedureContrainer = null
+  }
+
   // returns the component which discribes the entire detailed information page
   // the page consists of three containers, each holds a specific category of
   // information pertaining to the current medicine. this first holds general
@@ -96,11 +112,11 @@ export function InfoPage(props) {
   // links to external website which could be usefull
   return (
     <div>
-      <Container>
+      <div className="med-content-container">
         <h1 className="title">
           {medicineData.info.BrandName} Medicine Details
         </h1>
-        <hr className="separator" />
+        <hr className="med-top-separator" />
 
         <div className="flex-columns">
           <DetailGroup title="General Information">
@@ -201,17 +217,13 @@ export function InfoPage(props) {
             />
           </DetailGroup>
         </div>
-      </Container>
+      </div>
 
-      <Container>
-        <h1 className="title">Procedure Details</h1>
-        <hr className="separator" />
-        {allProcedures}
-      </Container>
+      {procedureContrainer}
 
-      <Container>
+      <div className="med-content-container">
         <h1 className="title">Additional Resources</h1>
-        <hr className="separator" />
+        <hr className="med-top-separator" />
 
         <CustomLink
           className="external-link"
@@ -233,7 +245,7 @@ export function InfoPage(props) {
           name="MAH Website"
           dest="https://www.ema.europa.eu/en/glossary/marketing-authorisation-holder"
         />
-      </Container>
+      </div>
     </div>
   )
 }

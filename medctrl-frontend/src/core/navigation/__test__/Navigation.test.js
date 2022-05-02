@@ -43,67 +43,7 @@ test('Sidenavigation bar should expand or collapse navbar after toggle', () => {
   expect(toggletext).not.toBe(screen.getByTestId('nav-item-name'))
 })
 
-test('clicking home button should collapse an opened navbar', () => {
-  render(
-    <BrowserRouter>
-      <SideNavigation />
-    </BrowserRouter>
-  )
-  var navbarhomebuttoncomponent = screen.getAllByTestId('Home')[0]
-  fireEvent.click(navbarhomebuttoncomponent)
-  var menuexpansion = screen.getAllByText('Expand Menu')[0]
-  expect(menuexpansion).toBeTruthy()
-})
 
-test('if user is logged in, show useraccount and logout button in sidenavbar', () => {
-  const userLoggedIn = true
-  const defUser = {
-    isAdmin: false,
-    userName: 'Lourens Bloem',
-    accessLevel: 'X',
-  }
-  render(
-    <BrowserRouter>
-      <SideNavigation loggedin={userLoggedIn} user={defUser} />
-    </BrowserRouter>
-  )
-  var userbutton = screen.getByText('Account Info')
-  expect(userbutton).toBeTruthy()
-  var logoutbutton = screen.getAllByText('Logout')[0]
-  expect(logoutbutton).toBeTruthy()
-})
-
-test('if logged in user is admin, display messages button', () => {
-  const userLoggedIn = true
-  const defUser = {
-    isAdmin: true,
-    userName: 'Lourens Bloem',
-    accessLevel: 'X',
-  }
-  render(
-    <BrowserRouter>
-      <SideNavigation loggedin={userLoggedIn} user={defUser} />
-    </BrowserRouter>
-  )
-
-  var messagesbutton = screen.getAllByText('Messages')[0]
-  expect(messagesbutton).toBeTruthy()
-})
-
-test('logout navbarbutton is clickable when logged in', () => {
-  const defUser = {
-    isAdmin: true,
-    userName: 'Lourens Bloem',
-    accessLevel: 'X',
-  }
-  render(
-    <BrowserRouter>
-      <SideNavigation loggedin={true} user={defUser} />
-    </BrowserRouter>
-  )
-  var useraccountbutton = screen.getByTestId('navaccountbutton')
-  fireEvent.click(useraccountbutton)
-})
 
 test('render account page without crashing', () => {
   const root = document.createElement('div')
@@ -237,7 +177,7 @@ test('text input in searchbar on searchpage should trigger search functionality'
   expect(test).toHaveBeenCalled()
 })
 
-test('text input in searchbar on searchpage should trigger search functionality2', () => {
+test('text input in searchbar should return correct search results', () => {
   const data = allData
 
   let checkedState = Object.assign(
@@ -343,3 +283,46 @@ test('render datapage without crashing', () => {
     </BrowserRouter>
   )
 })
+
+test('logout navbarbutton is clickable when logged in', () => {
+  const defUser = {
+    isAdmin: true,
+    userName: 'Lourens Bloem',
+    accessLevel: 'X',
+  }
+  render(
+    <BrowserRouter>
+      <SideNavigation loggedin={false} user={defUser} />
+    </BrowserRouter>
+  )
+  var loginbutton = screen.getAllByText('Login')[0]
+  fireEvent.click(loginbutton)
+})
+
+test('logout navbarbutton is clickable when logged in2', () => {
+  const defUser = {
+    isAdmin: true,
+    userName: 'Lourens Bloem',
+    accessLevel: 'X',
+  }
+
+  
+  sessionStorage.setItem('username', 'Sjoerd heart minecraft')
+  sessionStorage.setItem('access_level', 'X')
+  sessionStorage.setItem('token', 'oh zon mooi token')
+
+
+  render(
+    <BrowserRouter>
+      <SideNavigation />
+    </BrowserRouter>
+  )
+
+  sessionStorage.clear()
+
+
+  var loginbutton = screen.getAllByTestId("navaccountbutton")[0]
+  fireEvent.click(loginbutton)
+})
+
+

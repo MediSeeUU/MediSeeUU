@@ -71,7 +71,9 @@ class SingleVisualization extends Component {
 
   // event handler for the form data
   handleChange(event) {
+    console.log('here')
     const series = this.generateSeries(event.chart_type, event)
+    console.log(event)
 
     this.setState({
       chart_type: event.chart_type,
@@ -203,11 +205,7 @@ class SingleVisualization extends Component {
         )
 
       case 'pie':
-        return GeneratePieSeries(
-          options,
-          this.state.uniqueCategories,
-          this.state.data
-        )
+        return GeneratePieSeries(options, this.state.data)
 
       default:
         return GenerateBarSeries(options)
@@ -225,13 +223,13 @@ class SingleVisualization extends Component {
 	*/
   render() {
     return (
-      <div className="table-holder">
+      <div className="med-content-container visual-container">
         <Container>
           <Row>
             <Col className="visualization-panel">
               <VisualizationForm
                 uniqueCategories={this.state.uniqueCategories}
-                onFormChange={this.handleChange}
+                onChange={this.handleChange}
               />
             </Col>
             <Col sm={8}>
@@ -239,7 +237,7 @@ class SingleVisualization extends Component {
                 <input
                   type="text"
                   id={'graphName' + this.props.id}
-                  className="graph-name"
+                  className="graph-name med-text-input"
                   placeholder="Enter a graph name"
                   autoComplete="off"
                 />
@@ -247,19 +245,19 @@ class SingleVisualization extends Component {
               <Row>{this.createChart(this.state.chart_type)}</Row>
               <Row>
                 <button
-                  className="table-buttons button-export"
+                  className="med-primary-solid med-bx-button button-export"
                   onClick={this.handlePNGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as PNG
                 </button>
                 <button
-                  className="table-buttons button-export"
+                  className="med-primary-solid med-bx-button button-export"
                   onClick={this.handleSVGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as SVG
                 </button>
                 <button
-                  className="table-buttons button-remove"
+                  className="med-primary-solid med-bx-button button-remove"
                   onClick={this.handleRemoval}
                   value={this.props.id}
                 >

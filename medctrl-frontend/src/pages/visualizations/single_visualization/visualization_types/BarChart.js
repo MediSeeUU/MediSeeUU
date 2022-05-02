@@ -53,15 +53,19 @@ class BarChart extends Component {
 
   // renders the bar chart with the given options
   render() {
-    return (
-      <div className="mixed-chart">
-        <Chart
-          options={this.state.options}
-          series={this.state.series}
-          type="bar"
-        />
-      </div>
-    )
+    try {
+      return (
+        <div className="mixed-chart">
+          <Chart
+            options={this.state.options}
+            series={this.state.series}
+            type="bar"
+          />
+        </div>
+      )
+    } catch {
+      return <div>An error occurred when drawing the chart</div>
+    }
   }
 }
 

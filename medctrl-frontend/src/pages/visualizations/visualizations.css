@@ -1,19 +1,16 @@
 /* Page elements */
-.table-holder {
-  background-color: var(--white-text);
-  border: 2px solid var(--BorderClrTableHolder);
-  border-radius: 10px;
-  box-shadow: 0px 10px 15px 4px #969696;
-  height: 100%;
+.visual-container {
+  margin: 2%;
   width: 97%;
-  margin: 2% 2% 0% 2%;
+  padding: 0 12px;
+  font-size: 16px;
 }
 
 /* Panel elements */
 .visualization-panel {
-  background-color: white;
+  background-color: inherit;
   margin: 1% 0% 1% 0%;
-  border-right: 1px solid #cdcdcd;
+  border-right: 1px solid var(--med-visualization-vertical-border);
 }
 
 .visualization-panel select {
@@ -27,13 +24,6 @@
   user-select: none;
 }
 
-.category-options {
-  margin-right: 10px;
-  background-color: white;
-  border: 1px solid grey;
-  border-radius: 5px;
-}
-
 .country-options label {
   width: 95%;
   margin: 0px 0px 5px 5px;
@@ -41,7 +31,7 @@
 }
 
 .country-options {
-  background-color: whitesmoke;
+  background-color: var(--med-visualization-cagetory-menu-background);
   height: 230px;
   margin-top: 3%;
   margin-left: 1%;
@@ -54,29 +44,18 @@
 }
 
 /* Buttons */
-.table-buttons {
-  width: 14%;
-  height: 40px;
-  float: right;
-  margin: 20px 1% 15px 0px;
-  font-size: 15px;
-  font-weight: 400;
-  background-color: var(--blue-alt);
-  border-radius: 5px;
-  color: var(--white-text);
-  border: none;
-  user-select: none;
-}
-
 .button-update {
   width: 100%;
   margin-top: 3.6%;
-  background-color: #2d9135;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: var(--med-positive-button-background);
 }
 
 .button-remove {
+  width: 14%;
   font-size: 20px;
-  background: #d44e33;
+  background: var(--med-negative-button-background);
   margin: 1.8% 0% 2% 2%;
 }
 
@@ -86,17 +65,17 @@
 }
 
 .button-add {
-  margin: 2% 2% 7.5% 2%;
+  margin: 0% 2% 7.5% 2%;
   width: 98%;
   height: 50px;
 }
 
 .button-update:hover {
-  background-color: #32a852;
+  background-color: var(--med-positive-button-hover);
 }
 
 .button-remove:hover {
-  background-color: red;
+  background-color: var(--med-negative-button-hover);
 }
 
 /* Title */

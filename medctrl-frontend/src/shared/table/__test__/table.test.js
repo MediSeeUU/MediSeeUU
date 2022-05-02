@@ -490,7 +490,7 @@ test('Add column button adds a column', () => {
     </BrowserRouter>
   )
   const initHeaderLength = screen.queryAllByRole('columnheader').length
-  fireEvent.click(screen.getAllByRole('button')[0])
+  fireEvent.click(screen.getByTestId('add-column'))
   rerender(
     <BrowserRouter>
       <ColumnSelectionContext.Provider value={columnSelection}>
@@ -531,7 +531,7 @@ test('Remove column button removes a column', () => {
   )
 
   const initHeaderLength = screen.queryAllByRole('columnheader').length
-  fireEvent.click(screen.getAllByRole('button')[1])
+  fireEvent.click(screen.getByTestId('remove-column'))
   rerender(
     <BrowserRouter>
       <ColumnSelectionContext.Provider value={columnSelection}>
@@ -573,7 +573,7 @@ test('Amount of columns does not drop below 5', () => {
 
   let headerLength = screen.queryAllByRole('columnheader').length
   while (headerLength > 5) {
-    fireEvent.click(screen.getAllByRole('button')[1])
+    fireEvent.click(screen.getByTestId('remove-column'))
     rerender(
       <BrowserRouter>
         <ColumnSelectionContext.Provider value={columnSelection}>
@@ -586,7 +586,7 @@ test('Amount of columns does not drop below 5', () => {
     headerLength = screen.queryAllByRole('columnheader').length
   }
 
-  fireEvent.click(screen.getAllByRole('button')[1])
+  fireEvent.click(screen.getByTestId('remove-column'))
   headerLength = screen.queryAllByRole('columnheader').length
 
   expect(headerLength).toBe(5)

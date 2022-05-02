@@ -1,22 +1,151 @@
-.tableButtons {
+/* Shared Color (& Other) Variable Definitions */
+/* Variable definitions to be used by all style sheets */
+
+:root {
+  /* colors for the secondary modal (filter) buttons */
+  --med-secondary-modal-button-background: var(--secondary-light);
+  --med-secondary-modal-button-hover: var(--secondary-normal);
+  --med-secondary-modal-button-text: var(--text-primary);
+
+  /* color of addition and/or descriptive text */
+  --med-additional-text: var(--text-additional);
+  --med-text-secondary: var(--text-secondary);
+
+  /* color of the inside of a radio button */
+  --med-radio-inside: var(--primary-normal);
+
+  /* colors for the tooltip component (nav only) */
+  --med-tooltip-background: var(--core-content);
+  --med-tooltip-text: var(--text-primary);
+
+  /* colors for a success message */
+  --med-positive-message-background: var(--positive-light);
+  --med-positive-message-text: var(--positive-dark);
+
+  /* colors for displaying (groups of) details */
+  --med-info-collection-background: var(--secondary-dark);
+  --med-info-detail-background: var(--core-content);
+
+  /* colors for an element with negative effects (e.g. remove) */
+  --med-positive-button-background: var(--positive-dark);
+  --med-positive-button-hover: var(--positive-normal);
+
+  /* colors for an element with positive effects (e.g. add) */
+  --med-negative-button-background: var(--negative-dark);
+  --med-negative-button-hover: var(--negative-normal);
+
+  /* colors for the visualization menu's */
+  --med-visualization-cagetory-menu-background: var(--secondary-light);
+  --med-visualization-vertical-border: var(--core-border);
+
+  /* colors for styling the data tables */
+  --med-filter-remove-icon: var(--negative-dark);
+  --med-page-count-hover: var(--secondary-dark);
+  --med-page-count-selected: var(--primary-light);
+  --med-table-header-text: var(--text-secondary);
+  --med-table-header-background: var(--primary-dark);
+  --med-table-header-border: var(--secondary-dark);
+  --med-table-border: var(--primary-normal);
+  --med-table-row-even-background: var(--secondary-normal);
+  --med-table-row-odd-background: var(--secondary-light);
+}
+
+/* Shared Style Class Definitions */
+
+/* 
+  Primary Solid Button Styling
+
+  First two classes define the color of a button with the primary color
+  scheme, the last class defines the size, corners and margins of the button
+*/
+
+.med-primary-solid {
+  background-color: var(--primary-normal);
+  color: var(--text-secondary);
+}
+
+.med-primary-solid:hover {
+  background-color: var(--primary-light);
+}
+
+.med-bx-button {
   width: 150px;
   height: 40px;
-  float: right;
-  margin: 20px 1% 15px 0px;
+  margin: 15px 5px 15px 5px;
+
   font-size: 15px;
   font-weight: 400;
-  background-color: var(--blue-alt);
+
   border-radius: 5px;
-  color: var(--white-text);
   border: none;
 }
 
-.TopTableHolder {
-  background-color: var(--white-text);
-  border: 2px solid var(--BorderClrTableHolder);
+/*
+  Primary Text Button
+
+  The following twp classes define the colors for a text only 
+  button with the primary color scheme
+*/
+
+.med-primary-text {
+  background-color: inherit;
+  color: var(--primary-normal);
+}
+
+.med-primary-text:hover {
+  color: var(--primary-light);
+}
+
+/*
+  Text Input Field Styling
+*/
+
+.med-text-input {
+  background-color: var(--core-content);
+  color: var(--text-primary);
+  border: 1px solid var(--core-border);
+  border-radius: 4px;
+}
+
+/*
+  Drop Down Select Field Styling
+*/
+
+.med-select {
+  background-color: var(--secondary-light);
+  color: var(--text-primary);
+  border-radius: 4px;
+  border: 1px solid var(--core-border);
+}
+
+/*
+  Error Message Field Styling
+*/
+
+.med-error-message {
+  background-color: var(--negative-light);
+  color: var(--negative-dark);
+}
+
+/* 
+  Content Container Styling
+*/
+
+.med-content-container {
+  background-color: var(--med-content-background);
+  border: 2px solid var(--med-content-border);
   border-radius: 10px;
-  box-shadow: 0px 10px 15px 4px #969696;
+  box-shadow: 0px 8px 8px 2px var(--med-shadow);
+  padding: 5px;
   height: auto;
   width: 97%;
   margin: 2%;
+}
+
+/* 
+  Horizontal Separator Styling
+*/
+
+.med-top-separator {
+  margin: 0.5rem 0.5rem;
 }

@@ -137,6 +137,7 @@ class BarForm extends Component {
         <label className="visualization-panel-label">
           {x_axis}
           <select
+            className="med-select"
             value={this.state.xAxis}
             name="xAxis"
             onChange={this.handleChange}
@@ -147,6 +148,7 @@ class BarForm extends Component {
         <label className="visualization-panel-label">
           {y_axis}
           <select
+            className="med-select"
             value={this.state.yAxis}
             name="yAxis"
             onChange={this.handleChange}
