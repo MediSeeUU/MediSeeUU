@@ -104,7 +104,9 @@ class AuthorisationResource(resources.ModelResource):
     eunumber = import_foreign_key("eunumber", Medicine)
     rapporteur = import_foreign_key("rapporteur", Lookuprapporteur)
     corapporteur = fields.Field(
-        column_name="corapporteur", attribute="corapporteur", widget=CustomForeignKeyWidget(Lookuprapporteur, "rapporteur")
+        column_name="corapporteur",
+        attribute="corapporteur",
+        widget=CustomForeignKeyWidget(Lookuprapporteur, "rapporteur"),
     )
 
     class Meta:
