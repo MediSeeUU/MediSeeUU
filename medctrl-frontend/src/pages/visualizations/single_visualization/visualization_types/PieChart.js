@@ -11,7 +11,7 @@ class PieChart extends Component {
         chart: {
           id: String(this.props.id),
           type: 'pie',
-          toolbar: { show: false },
+          toolbar: { tools: { download: false } },
         },
         dataLabels: {
           enabled: this.props.labels,

@@ -21,7 +21,7 @@ class BarChart extends Component {
           type: 'bar',
           stacked: this.props.options.stacked,
           stackType: stacktype,
-          toolbar: { show: false },
+          toolbar: { tools: { download: false } },
         },
         plotOptions: {
           bar: {
@@ -35,7 +35,6 @@ class BarChart extends Component {
             hideOverlappingLabels: true,
           },
           tickPlacement: 'on',
-          overwriteCategories: this.props.categories,
           title: {
             text: this.props.options.xAxis,
           },

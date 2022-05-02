@@ -49,15 +49,8 @@ class BarForm extends Component {
     ]
 
     // initialization of the state
-    this.state = {
-      eligibleVariables: eligibleVariables,
-      xAxis: 'DecisionYear',
-      yAxis: 'Rapporteur',
-      stacked: false,
-      stackType: false,
-      horizontal: false,
-      categoriesSelected: this.props.uniqueCategories['Rapporteur']
-    }
+    this.state = this.props.graphSettings
+    this.state.eligibleVariables = eligibleVariables
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
@@ -194,6 +187,7 @@ class BarForm extends Component {
           categories={sortCategoryData(
             this.props.uniqueCategories[this.state.yAxis]
           )}
+          settings={this.state}
         />
       </React.Fragment>
     )

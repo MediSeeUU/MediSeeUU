@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../../../visualizations.css'
 import CategoryOptions from '../shared/CategoryOptions'
+import sortCategoryData from '../../utils/SortCategoryData'
 
 // the pie part of a form if a pie chart is chosen
 class PieForm extends Component {
@@ -48,11 +49,9 @@ class PieForm extends Component {
     ]
 
     // initialization of the state
-    this.state = {
-      eligibleVariables: eligibleVariables,
-      chosenVariable: 'Rapporteur',
-      categoriesSelected: this.props.uniqueCategories['Rapporteur'],
-    }
+    this.state = this.props.graphSettings
+    this.state.eligibleVariables = eligibleVariables
+    this.state.chosenVariable = this.state.chosenVariable ?? 'Rapporteur'
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
@@ -135,7 +134,10 @@ class PieForm extends Component {
           key={`${this.state.chosenVariable}`}
           className="category-options"
           onChange={this.handleCategorySelectionChange}
-          categories={this.props.uniqueCategories[this.state.chosenVariable]}
+          categories={sortCategoryData(
+            this.props.uniqueCategories[this.state.chosenVariable]
+          )}
+          settings={this.state}
         />
       </React.Fragment>
     )

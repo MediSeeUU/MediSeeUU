@@ -11,14 +11,13 @@ class LineChart extends Component {
         chart: {
           id: String(this.props.id),
           type: 'line',
-          toolbar: { show: false },
+          toolbar: { tools: { download: false } },
         },
         xaxis: {
           categories: this.props.categories,
           labels: {
             hideOverlappingLabels: true,
           },
-          overwriteCategories: this.props.categories,
           title: {
             text: this.props.options.xAxis,
           },

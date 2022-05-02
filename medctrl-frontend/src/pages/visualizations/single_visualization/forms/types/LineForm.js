@@ -49,12 +49,9 @@ class LineForm extends Component {
     ]
 
     // initialization of the state
-    this.state = {
-      eligibleVariables: eligibleVariables,
-      xAxis: 'DecisionYear',
-      yAxis: 'Rapporteur',
-      categoriesSelected: this.props.uniqueCategories['Rapporteur'],
-    }
+    this.state = this.props.graphSettings
+    this.state.eligibleVariables = eligibleVariables
+    this.state.chosenVariable = this.state.chosenVariable ?? 'Rapporteur'
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
@@ -156,6 +153,7 @@ class LineForm extends Component {
           categories={sortCategoryData(
             this.props.uniqueCategories[this.state.yAxis]
           )}
+          settings={this.state}
         />
       </React.Fragment>
     )

@@ -1,5 +1,6 @@
 .filter-Icon,
-.bxs-file-export {
+.bxs-file-export,
+.bxs-trash {
   font-size: 25px;
   margin-left: 10px;
   float: left;
@@ -75,4 +76,21 @@
   font-size: 25px;
   cursor: pointer;
   color: var(--blue-alt);
+}
+
+.clear {
+  z-index: 1;
+  position: absolute;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.clear:hover {
+  cursor: pointer;
+}
+
+.clear-icon {
+  font-size: 18px;
+  margin-top: 1px;
+  margin-right: 5px;
 }

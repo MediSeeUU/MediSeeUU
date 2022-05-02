@@ -7,7 +7,11 @@ export default function GenerateHistogramSeries(options, data) {
   let chosenVariable = options.chartSpecificOptions.chosenVariable
   let chosenCategories = options.chartSpecificOptions.categoriesSelected
 
-  let HistogramSeries = CreateHistogramSeries(data, chosenVariable, chosenCategories)
+  let HistogramSeries = CreateHistogramSeries(
+    data,
+    chosenVariable,
+    chosenCategories
+  )
 
   return HistogramSeries
 }
@@ -29,5 +33,5 @@ function CreateHistogramSeries(data, chosenVariable, chosenCategories) {
     }
   })
 
-  return [{ name: 'categories', data: Object.values(dict)}]
+  return [{ name: 'categories', data: Object.values(dict) }]
 }

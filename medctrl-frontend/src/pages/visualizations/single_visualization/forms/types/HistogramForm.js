@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../../../visualizations.css'
 import CategoryOptions from '../shared/CategoryOptions'
+import sortCategoryData from '../../utils/SortCategoryData'
 
 // the histogram part of a form if a histogram chart is chosen
 class HistogramForm extends Component {
@@ -135,7 +136,10 @@ class HistogramForm extends Component {
           key={`${this.state.chosenVariable}`}
           className="category-options"
           onChange={this.handleCategorySelectionChange}
-          categories={this.props.uniqueCategories[this.state.chosenVariable]}
+          categories={sortCategoryData(
+            this.props.uniqueCategories[this.state.chosenVariable]
+          )}
+          settings={this.state}
         />
       </React.Fragment>
     )

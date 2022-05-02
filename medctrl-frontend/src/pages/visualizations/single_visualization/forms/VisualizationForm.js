@@ -15,13 +15,11 @@ class VisualizationForm extends Component {
     // The chartSpecificOptionsName is used for determining the key of
     // the actual chart, to notify the chart that it has been updated.
     this.state = {
-      chart_type: 'bar',
-      legend_on: false,
-      labels_on: false,
-      chartSpecificOptions: {
-        categoriesSelected: this.props.uniqueCategories['Rapporteur']
-      },
-      chartSpecificOptionsName: '',
+      chart_type: this.props.settings.chart_type,
+      legend_on: this.props.settings.legend_on,
+      labels_on: this.props.settings.labels_on,
+      chartSpecificOptions: this.props.settings.chartSpecificOptions,
+      chartSpecificOptionsName: this.props.settings.chartSpecificOptionsName,
     }
 
     // event handlers
@@ -72,9 +70,7 @@ class VisualizationForm extends Component {
           chartSpecificOptions: {
             yAxis: 'Rapporteur',
             xAxis: 'DecisionYear',
-            categoriesSelected:
-              this.props.uniqueCategories['Rapporteur']
-            ,
+            categoriesSelected: this.props.uniqueCategories['Rapporteur'],
           },
           chartSpecificOptionsName: '',
         })
@@ -86,9 +82,7 @@ class VisualizationForm extends Component {
           chartSpecificOptions: {
             yAxis: 'Rapporteur',
             xAxis: 'DecisionYear',
-            categoriesSelected:
-              this.props.uniqueCategories['Rapporteur']
-            ,
+            categoriesSelected: this.props.uniqueCategories['Rapporteur'],
           },
           chartSpecificOptionsName: '',
         })
@@ -99,9 +93,7 @@ class VisualizationForm extends Component {
         this.setState({
           chartSpecificOptions: {
             chosenVariable: 'Rapporteur',
-            categoriesSelected:
-              this.props.uniqueCategories['Rapporteur']
-            ,
+            categoriesSelected: this.props.uniqueCategories['Rapporteur'],
           },
           chartSpecificOptionsName: '',
         })
@@ -112,9 +104,7 @@ class VisualizationForm extends Component {
         this.setState({
           chartSpecificOptions: {
             chosenVariable: 'Rapporteur',
-            categoriesSelected:
-              this.props.uniqueCategories['Rapporteur']
-            ,
+            categoriesSelected: this.props.uniqueCategories['Rapporteur'],
           },
           chartSpecificOptionsName: '',
         })
@@ -134,6 +124,7 @@ class VisualizationForm extends Component {
           <BarForm
             uniqueCategories={this.props.uniqueCategories}
             onChange={this.handleChartSpecificChange}
+            graphSettings={this.state.chartSpecificOptions}
           />
         )
 
@@ -142,6 +133,7 @@ class VisualizationForm extends Component {
           <LineForm
             uniqueCategories={this.props.uniqueCategories}
             onChange={this.handleChartSpecificChange}
+            graphSettings={this.state.chartSpecificOptions}
           />
         )
 
@@ -150,12 +142,13 @@ class VisualizationForm extends Component {
           <PieForm
             uniqueCategories={this.props.uniqueCategories}
             onChange={this.handleChartSpecificChange}
+            graphSettings={this.state.chartSpecificOptions}
           />
         )
-      
+
       case 'histogram':
         return (
-          <HistogramForm 
+          <HistogramForm
             uniqueCategories={this.props.uniqueCategories}
             onChange={this.handleChartSpecificChange}
           />
@@ -183,7 +176,7 @@ class VisualizationForm extends Component {
             <option value="bar">Bar chart</option>
             <option value="line">Line chart</option>
             <option value="pie">Pie chart</option>
-            <option value='histogram'>Histogram</option>
+            <option value="histogram">Histogram</option>
           </select>
         </label>
         {this.renderChartOptions(this.state.chart_type)}

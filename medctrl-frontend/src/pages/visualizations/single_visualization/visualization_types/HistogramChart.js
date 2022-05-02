@@ -12,12 +12,11 @@ class HistogramChart extends Component {
         chart: {
           id: String(this.props.id),
           type: 'bar',
-          toolbar: { show: false },
+          toolbar: { tools: { download: false } },
         },
         xaxis: {
           categories: this.props.categories,
           tickPlacement: 'on',
-          overwriteCategories: this.props.categories,
           title: {
             text: this.props.options.xAxis,
           },

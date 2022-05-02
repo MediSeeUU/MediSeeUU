@@ -15,8 +15,9 @@ function NavAccount(props) {
     <div
       className="med-primary-solid nav-item account"
       onClick={() => clicked()}
+      data-testid="navaccountbutton"
     >
-      <div className="nav-item-content">
+      <div className="nav-item-content med-primary-solid">
         <i className="bx bx-user" />
         <div>
           <span className="nav-item-name">{props.user.userName}</span>

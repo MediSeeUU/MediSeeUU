@@ -38,6 +38,7 @@ export default function TableView(
           resultsPerPage={setResultsPerPage}
           pageNumber={setPage}
           currPage={loadedPage}
+          clearEnabled={!select}
         />
       </>
     )
