@@ -8,6 +8,9 @@ import './LoginModal.css'
 function LoginModal(props) {
   const [showModal, setModalState] = useState(false)
 
+  const closeModal = () => setModalState(false)
+  const openModal = () => setModalState(true)
+
   return (
     <>
       <NavLink
@@ -16,13 +19,13 @@ function LoginModal(props) {
         dest="#"
         parent={props.parent}
         lowest={true}
-        onClick={() => setModalState(true)}
+        onClick={openModal}
       />
 
       <ReactModal
         className="menu-modal"
         isOpen={showModal}
-        onRequestClose={() => setModalState(false)}
+        onRequestClose={closeModal}
         ariaHideApp={false}
         style={{
           modal: {},
@@ -40,7 +43,7 @@ function LoginModal(props) {
           },
         }}
       >
-        <LoginForm onClose={() => setModalState(false)} parent={props.parent} />
+        <LoginForm onClose={closeModal} parent={props.parent} />
       </ReactModal>
     </>
   )
