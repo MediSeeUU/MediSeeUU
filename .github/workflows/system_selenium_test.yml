@@ -1,9 +1,17 @@
 name: Integration tests using selenium
 
 on:
+  pull_request:
+    paths: 
+      - "medctrl-frontend/**"
+      - "selenium/**"
+      - ".github/workflows/system_selenium_test.yml"
+
   push:
     branches: 
       - selenium-ci
+      - development
+      - master
     paths: 
       - "medctrl-frontend/**"
       - "selenium/**"
