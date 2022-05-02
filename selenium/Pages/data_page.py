@@ -7,6 +7,9 @@ class DataPage(BasePage, Table):
   def __init__(self, driver):
     super().__init__(driver)
     self.go_data()
+
+    self.default_rows = self.amount_of_rows(0)
+    self.default_columns = self.amount_of_columns(0)
   
   def current_table_page(self, table):
     return self.driver.find_elements(*DataPageLocators.SELECTED_PAGE)[table].text
