@@ -42,8 +42,9 @@ class CategoryOptions extends React.Component {
     } else {
       // remove if the category was previously on the list
       if (this.settings.categoriesSelected.includes(name)) {
-        this.props.onChange(this.settings.categoriesSelected.filter(
-          (el) => el !== name))
+        this.props.onChange(
+          this.settings.categoriesSelected.filter((el) => el !== name)
+        )
       }
     }
   }
