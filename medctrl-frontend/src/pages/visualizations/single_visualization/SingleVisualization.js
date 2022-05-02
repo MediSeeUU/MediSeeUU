@@ -49,10 +49,12 @@ class SingleVisualization extends Component {
     this.settings.legend_on = event.legend_on
     this.settings.labels_on = event.labels_on
     this.settings.changeName = event.chartSpecificOptionsName
+    var currentSetting =
+      this.settings.chartSpecificOptions.yAxis ??
+      this.settings.chartSpecificOptions.chosenVariable
     this.settings.chartSpecificOptions.selectAllCategories =
       this.settings.chartSpecificOptions.categoriesSelected?.length ===
-      this.settings.uniqueCategories[this.settings.chartSpecificOptions.yAxis]
-        .length
+      this.settings.uniqueCategories[currentSetting].length
 
     this.settings.series = generateSeries(
       this.settings.chart_type,

@@ -194,7 +194,7 @@ test('update visuals when rendering with pie', () => {
     },
   ]
   const page = (
-    <SelectedContext.Provider value={data.slice(0, data.length - 5)}>
+    <SelectedContext.Provider value={data}>
       <VisualsContext.Provider value={visuals}>
         <VisualsUpdateContext.Provider value={(value) => (visuals = value)}>
           <VisualizationPage />

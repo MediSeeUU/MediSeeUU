@@ -58,7 +58,7 @@ class VisualizationForm extends Component {
     // makes sure that the page does not reload and thus resets the data
     event.preventDefault()
     // event handler passed down as a prop by SingleVisualization
-    this.props.onChange(this.state)
+    this.props.onFormChange(this.state)
   }
 
   // GENERAL FUNCTIONS
@@ -93,7 +93,7 @@ class VisualizationForm extends Component {
       case 'pie': {
         this.setState({
           chartSpecificOptions: {
-            chosenVariables: 'Rapporteur',
+            chosenVariable: 'Rapporteur',
             categoriesSelected: [],
           },
           chartSpecificOptionsName: '',
