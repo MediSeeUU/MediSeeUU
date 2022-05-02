@@ -35,10 +35,6 @@ jobs:
         run: | 
           npm start &
 
-      - name: Check CI
-        run: | 
-          echo $CI
-        
       - name: Setup Python
         run: |
           python3.10 -m pip install --upgrade pip
