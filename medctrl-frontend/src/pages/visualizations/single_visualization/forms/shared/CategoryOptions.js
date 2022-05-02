@@ -19,8 +19,10 @@ class CategoryOptions extends React.Component {
 
   // allows user to select all categories
   handleAllCategorySelection(event) {
-    if (this.settings.selectAllCategories) {
-      this.props.onChange(this.settings.categoriesSelected)
+    if (
+      this.settings.categoriesSelected.length === this.props.categories.length
+    ) {
+      this.props.onChange([])
     } else {
       this.props.onChange(this.props.categories)
     }
@@ -84,7 +86,9 @@ class CategoryOptions extends React.Component {
           <input
             type="checkbox"
             name="selectAllCategories"
-            checked={this.settings.selectAllCategories}
+            checked={
+              this.settings.categoriesSelected.length === categories.length
+            }
             onChange={this.handleAllCategorySelection}
           />
           &nbsp;&nbsp;Select all categories
