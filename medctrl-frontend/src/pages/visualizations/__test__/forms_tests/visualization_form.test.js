@@ -13,8 +13,24 @@ import VisualizationForm from '../../single_visualization/forms/VisualizationFor
 import data from '../../../../testJson/data.json'
 
 let uniqueCategories
+let setting
 beforeAll(() => {
   uniqueCategories = GetUniqueCategories(data)
+  setting = {
+    id: 1,
+    chart_type: 'bar',
+    chartSpecificOptions: {
+      xAxis: 'DecisionYear',
+      yAxis: 'Rapporteur',
+      categoriesSelected: [],
+    },
+    legend_on: true,
+    labels_on: false,
+    data: data,
+    series: [],
+    uniqueCategories: uniqueCategories,
+    changeName: '',
+  }
 })
 
 test('initial render', () => {
@@ -23,6 +39,7 @@ test('initial render', () => {
     <VisualizationForm
       uniqueCategories={uniqueCategories}
       onchange={onChange}
+      settings={setting}
     />
   )
 })
@@ -33,6 +50,7 @@ test('change to line chart type', () => {
     <VisualizationForm
       uniqueCategories={uniqueCategories}
       onchange={onChange}
+      settings={setting}
     />
   )
   let target = screen.getByRole('combobox', { name: /visualization type/i })
@@ -51,6 +69,7 @@ test('change to pie chart type', () => {
     <VisualizationForm
       uniqueCategories={uniqueCategories}
       onchange={onChange}
+      settings={setting}
     />
   )
   let target = screen.getByRole('combobox', { name: /visualization type/i })
@@ -69,6 +88,7 @@ test('change to bar chart', () => {
     <VisualizationForm
       uniqueCategories={uniqueCategories}
       onchange={onChange}
+      settings={setting}
     />
   )
   let target = screen.getByRole('combobox', { name: /visualization type/i })
@@ -87,6 +107,7 @@ test('trigger defaults of resetChartSpecifics and renderChartOptions', () => {
     <VisualizationForm
       uniqueCategories={uniqueCategories}
       onchange={onChange}
+      settings={setting}
     />
   )
   let target = screen.getByRole('combobox', { name: /visualization type/i })
@@ -105,6 +126,7 @@ test('do a chart specific change', () => {
     <VisualizationForm
       uniqueCategories={uniqueCategories}
       onchange={onChange}
+      settings={setting}
     />
   )
   let target = screen.getByRole('combobox', { name: /x-axis/i })
@@ -123,6 +145,7 @@ test('make a submission', () => {
     <VisualizationForm
       uniqueCategories={uniqueCategories}
       onchange={onChange}
+      settings={setting}
     />
   )
   let target = screen.getByRole('button', { name: /update/i })

@@ -16,7 +16,6 @@ import GenerateLineSeries from './data_interfaces/LineInterface'
 import GeneratePieSeries from './data_interfaces/PieInterface'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
-import GetUniqueCategories from './utils/GetUniqueCategories'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
@@ -28,37 +27,11 @@ class SingleVisualization extends Component {
       Gets the categories of all the variables.
       Right now the filter for the visualizations has not been implemented,
       so this should not change.
-      Keep in mind that the categories for all variables are sorted,
+      Keep in mind that the categories for all variables will be sorted,
       this is important for interfacing with the ApexCharts library!
     */
-    let uniqueCategories = GetUniqueCategories(this.props.data)
 
-    // generating the initial series data
-    let series = GenerateBarSeries(
-      {
-        chartSpecificOptions: {
-          xAxis: 'DecisionYear',
-          yAxis: 'Rapporteur',
-          categoriesSelected: [],
-        },
-      },
-      uniqueCategories,
-      this.props.data
-    )
-
-    // state initialization
-    this.state = {
-      chart_type: 'bar',
-      chartSpecificOptions: {
-        xAxis: 'DecisionYear',
-      },
-      legend_on: false,
-      labels_on: false,
-      data: this.props.data,
-      series: series,
-      uniqueCategories: uniqueCategories,
-      changeName: '',
-    }
+    this.settings = this.props.settings
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
@@ -71,18 +44,23 @@ class SingleVisualization extends Component {
 
   // event handler for the form data
   handleChange(event) {
-    console.log('here')
-    const series = this.generateSeries(event.chart_type, event)
-    console.log(event)
+    this.settings.chart_type = event.chart_type
+    this.settings.chartSpecificOptions = event.chartSpecificOptions
+    this.settings.legend_on = event.legend_on
+    this.settings.labels_on = event.labels_on
+    this.settings.changeName = event.chartSpecificOptionsName
+    var currentSetting =
+      this.settings.chartSpecificOptions.yAxis ??
+      this.settings.chartSpecificOptions.chosenVariable
+    this.settings.chartSpecificOptions.selectAllCategories =
+      this.settings.chartSpecificOptions.categoriesSelected?.length ===
+      this.settings.uniqueCategories[currentSetting].length
 
-    this.setState({
-      chart_type: event.chart_type,
-      chartSpecificOptions: event.chartSpecificOptions,
-      legend_on: event.legend_on,
-      labels_on: event.labels_on,
-      series: series,
-      changeName: event.chartSpecificOptionsName,
-    })
+    this.settings.series = generateSeries(
+      this.settings.chart_type,
+      this.settings
+    )
+    this.props.onFormChangeFunc(this.settings)
 
     /*
       Actually updating the parameters of the chart
@@ -107,19 +85,19 @@ class SingleVisualization extends Component {
 
   // handles the removal of this visualization
   handleRemoval(event) {
-    this.props.onRemoval(this.props.id, event)
+    this.props.onRemoval(this.props.settings.id, event)
   }
 
   // GENERAL FUNCTIONS:
 
   // creating a chart based on the chosen chart type
   createChart(chart_type) {
-    const key = `${this.state.changeName} 
-			              ${this.state.chartSpecificOptions[this.state.changeName]}`
-    const legend_on = this.state.legend_on
-    const labels_on = this.state.labels_on
+    const key = `${this.settings.changeName} 
+			              ${this.settings.chartSpecificOptions[this.settings.changeName]}`
+    const legend_on = this.settings.legend_on
+    const labels_on = this.settings.labels_on
     const id = this.props.id
-    const series = this.state.series
+    const series = this.settings.series
 
     switch (chart_type) {
       case 'bar':
@@ -131,9 +109,11 @@ class SingleVisualization extends Component {
             id={id}
             series={series}
             categories={
-              this.state.uniqueCategories[this.state.chartSpecificOptions.xAxis]
+              this.settings.uniqueCategories[
+                this.settings.chartSpecificOptions.xAxis
+              ]
             }
-            options={this.state.chartSpecificOptions}
+            options={this.settings.chartSpecificOptions}
           />
         )
 
@@ -146,9 +126,11 @@ class SingleVisualization extends Component {
             id={id}
             series={series}
             categories={
-              this.state.uniqueCategories[this.state.chartSpecificOptions.xAxis]
+              this.settings.uniqueCategories[
+                this.settings.chartSpecificOptions.xAxis
+              ]
             }
-            options={this.state.chartSpecificOptions}
+            options={this.settings.chartSpecificOptions}
           />
         )
 
@@ -160,56 +142,20 @@ class SingleVisualization extends Component {
             labels={labels_on}
             id={id}
             series={series}
-            categories={this.state.chartSpecificOptions.categoriesSelected}
-            options={this.state.chartSpecificOptions}
+            categories={this.settings.chartSpecificOptions.categoriesSelected}
+            options={this.settings.chartSpecificOptions}
           />
         )
 
       default:
-        return (
-          <BarChart
-            key={key}
-            legend={legend_on}
-            labels={labels_on}
-            id={id}
-            series={series}
-            categories={
-              this.state.uniqueCategories[this.state.chartSpecificOptions.xAxis]
-            }
-            options={this.state.chartSpecificOptions}
-          />
+        throw Error(
+          'visualization settings incorrect settings: {' + this.settings + '}'
         )
     }
   }
 
-  /*
-    Returns series data depending on the chart type,
-    as each chart type expects data in a certain way.
-    For example, a pie chart only expect one variable,
-    whereas a bar chart expect two.
-  */
-  generateSeries(chartType, options) {
-    switch (chartType) {
-      case 'bar':
-        return GenerateBarSeries(
-          options,
-          this.state.uniqueCategories,
-          this.state.data
-        )
-
-      case 'line':
-        return GenerateLineSeries(
-          options,
-          this.state.uniqueCategories,
-          this.state.data
-        )
-
-      case 'pie':
-        return GeneratePieSeries(options, this.state.data)
-
-      default:
-        return GenerateBarSeries(options)
-    }
+  handleNameChange(event) {
+    this.settings.chartName = event.target.value
   }
 
   // RENDERER:
@@ -228,8 +174,9 @@ class SingleVisualization extends Component {
           <Row>
             <Col className="visualization-panel">
               <VisualizationForm
-                uniqueCategories={this.state.uniqueCategories}
-                onChange={this.handleChange}
+                uniqueCategories={this.settings.uniqueCategories}
+                onFormChange={this.handleChange}
+                settings={this.settings}
               />
             </Col>
             <Col sm={8}>
@@ -240,9 +187,11 @@ class SingleVisualization extends Component {
                   className="graph-name med-text-input"
                   placeholder="Enter a graph name"
                   autoComplete="off"
+                  value={this.settings.chartName}
+                  onChange={this.handleNameChange.bind(this)}
                 />
               </Row>
-              <Row>{this.createChart(this.state.chart_type)}</Row>
+              <Row>{this.createChart(this.settings.chart_type)}</Row>
               <Row>
                 <button
                   className="med-primary-solid med-bx-button button-export"
@@ -269,6 +218,30 @@ class SingleVisualization extends Component {
         </Container>
       </div>
     )
+  }
+}
+
+/*
+Returns series data depending on the chart type,
+as each chart type expects data in a certain way.
+For example, a pie chart only expect one variable,
+whereas a bar chart expect two.
+*/
+export function generateSeries(chartType, options) {
+  switch (chartType) {
+    case 'bar':
+      return GenerateBarSeries(options, options.uniqueCategories, options.data)
+
+    case 'line':
+      return GenerateLineSeries(options, options.uniqueCategories, options.data)
+
+    case 'pie':
+      return GeneratePieSeries(options, options.data)
+
+    default:
+      throw Error(
+        'visualization settings incorrect settings: {' + this.settings + '}'
+      )
   }
 }
 

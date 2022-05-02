@@ -1,29 +1,60 @@
 // external imports
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // internal imports
 import SingleVisualization from './single_visualization/SingleVisualization'
+import { useSelectedData } from '../../shared/contexts/DataContext'
+import GetUniqueCategories from './single_visualization/utils/GetUniqueCategories'
+import GenerateBarSeries from './single_visualization/data_interfaces/BarInterface'
+import { useVisuals, useVisualsUpdate } from '../../shared/contexts/DataContext'
+import { generateSeries } from './single_visualization/SingleVisualization'
 
 // the component that contains all the visualizations
-class VisualizationPage extends Component {
-  constructor(props) {
-    super(props)
+function VisualizationPage() {
+  const selectedData = useSelectedData()
+  // event handlers
+  const handleAddition = handleAdditionFunc.bind(this)
+  const handleRemoval = handleRemovalFunc.bind(this)
+  const handleChange = handleChangeFunc.bind(this)
 
-    // getting the data
-    const data = this.props.selectedData
+  //get the visualisation contexts
+  var visuals = useVisuals()
+  const setVisuals = useVisualsUpdate()
 
-    /* 
-      The items array consists of the id's of the visualizations,
-		  that are currently in use.
-		*/
-    this.state = { amountOfVisualizations: 1, items: [1], data: data }
+  //get the unique categories for the selected data
+  const uniqueCategories =
+    selectedData.length > 0 ? GetUniqueCategories(selectedData) : []
 
-    // event handlers
-    this.handleAddition = this.handleAddition.bind(this)
-    this.handleRemoval = this.handleRemoval.bind(this)
+  //add some series logic so the controls update
+  var updateVisuals = false
+  if (visuals.length > 0 && !arrayEquals(visuals[0].data, selectedData)) {
+    visuals = visuals.map((vis) => {
+      vis.data = selectedData
+      vis.uniqueCategories = uniqueCategories
+      vis.series = generateSeries(vis.chart_type, vis)
+      return vis
+    })
+    updateVisuals = true
+  }
+
+  //update visuals after page render, otherwise react can't handle the calls
+  useEffect(() => {
+    if (updateVisuals) {
+      setVisuals(visuals)
+    }
+  }, [updateVisuals, visuals, setVisuals])
+
+  //check if two arrays are equal, need to be in the same order
+  function arrayEquals(a, b) {
+    return (
+      Array.isArray(a) &&
+      Array.isArray(b) &&
+      a.length === b.length &&
+      a.every((val, index) => val === b[index])
+    )
   }
 
   // EVENT HANDLERS:
@@ -32,19 +63,52 @@ class VisualizationPage extends Component {
 	  Adds a new visualization to the array of visualizations.
     The newAmount will serve as the id of the added visualization.
 	*/
-  handleAddition(event) {
-    const newAmount = this.state.amountOfVisualizations + 1
-    const currentItems = this.state.items
-    this.setState({
-      amountOfVisualizations: newAmount,
-      items: [...currentItems, newAmount],
-    })
+  function handleAdditionFunc() {
+    const newVisual = {
+      id: visuals.length + 1,
+      chart_type: 'bar',
+      chartSpecificOptions: {
+        xAxis: 'DecisionYear',
+        yAxis: 'Rapporteur',
+        categoriesSelected: [],
+      },
+      legend_on: false,
+      labels_on: false,
+      data: selectedData,
+      series: GenerateBarSeries(
+        {
+          chartSpecificOptions: {
+            xAxis: 'DecisionYear',
+            yAxis: 'Rapporteur',
+            categoriesSelected: [],
+          },
+        },
+        uniqueCategories,
+        selectedData
+      ),
+      uniqueCategories: uniqueCategories,
+      changeName: '',
+    }
+
+    const newVisuals = [...visuals, newVisual]
+    setVisuals(newVisuals)
   }
 
   // removes the chosen visualization
-  handleRemoval(id, event) {
-    const currentItems = this.state.items.filter((item) => item !== id)
-    this.setState({ items: currentItems })
+  function handleRemovalFunc(id) {
+    const currentItems = visuals.filter((item) => item.id !== id)
+    setVisuals(currentItems)
+  }
+
+  function handleChangeFunc(settings) {
+    var newVisuals = JSON.parse(JSON.stringify(visuals))
+    newVisuals = newVisuals.map((item) => {
+      if (item.id === settings.id) {
+        return settings
+      }
+      return item
+    })
+    setVisuals(newVisuals)
   }
 
   // GENERAL FUNCTIONS:
@@ -53,14 +117,16 @@ class VisualizationPage extends Component {
   // gives them a new copy of the data.
   // This should be changed once a context for the data has been implemented
   // As the visualizations should not change the data, only read from it
-  createVisualizations() {
-    return this.state.items.map((id) => {
+  function createVisualizations() {
+    return visuals.map((visual) => {
       return (
-        <Row key={id}>
+        <Row key={visual.id}>
           <SingleVisualization
-            id={id}
-            data={this.state.data}
-            onRemoval={this.handleRemoval}
+            id={visual.id}
+            data={selectedData}
+            settings={visual}
+            onRemoval={handleRemoval}
+            onFormChangeFunc={handleChange}
           />
         </Row>
       )
@@ -74,31 +140,29 @@ class VisualizationPage extends Component {
 		The id is used as the key, 
 		so React knows which visualizations to show.
 	*/
-  render() {
-    if (this.props.selectedData?.length > 0) {
-      const displayItems = this.createVisualizations()
+  if (selectedData?.length > 0) {
+    const displayItems = createVisualizations()
 
-      return (
-        <div>
-          <Container>
-            {displayItems}
-            <Row>
-              <button
-                className="med-primary-solid med-bx-button button-add"
-                onClick={this.handleAddition}
-              >
-                <i className="bx bx-plus filter-Icon" />
-                Add visualization
-              </button>
-            </Row>
-          </Container>
-        </div>
-      )
-    } else {
-      return (
-        <h1 className="visualization-no-data">No data selected to display</h1>
-      )
-    }
+    return (
+      <div>
+        <Container>
+          {displayItems}
+          <Row>
+            <button
+              className="med-primary-solid med-bx-button button-add"
+              onClick={handleAddition}
+            >
+              <i className="bx bx-plus filter-Icon" />
+              Add visualization
+            </button>
+          </Row>
+        </Container>
+      </div>
+    )
+  } else {
+    return (
+      <h1 className="visualization-no-data">No data selected to display</h1>
+    )
   }
 }
 

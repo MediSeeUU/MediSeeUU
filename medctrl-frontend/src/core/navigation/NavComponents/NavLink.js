@@ -10,7 +10,9 @@ function NavLink(props) {
   function clicked() {
     props.parent.close()
     navigate(props.dest)
-    props.onClick()
+    if (props.onClick) {
+      props.onClick()
+    }
   }
   return (
     // when this nav link is clicked, close the parent (the
