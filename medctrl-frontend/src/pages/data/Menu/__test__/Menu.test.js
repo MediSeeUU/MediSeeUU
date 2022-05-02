@@ -134,17 +134,54 @@ test('remove filter', () => {
   expect(screen.queryAllByTestId('filter-select')).toHaveLength(1)
 })
 
-/* This test is not applicable anymore (may need to be moved to another test file)
+const list = [<option value='dummy1' key={1}>hi</option>, <option value='dummy2' key={2}>there</option>]
+
 test('saved filters in state', () => {
-  render(<Menu filters={[{ selected: '', input: [''] }]} sorters={[]} />)
+  render(<Menu filters={[{ selected: '', input: [''] }]} sorters={[]} list={list} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
-  const select = screen.queryByTestId('filter-select')
-  fireEvent.change(select, { target: { value: 'ApplicationNo' } })
-  const text = screen.getByRole('textbox')
-  fireEvent.change(text, { target: { value: '10' } })
+  fireEvent.click(screen.getByText(/Add Filter/i))
+
+  const select1 = screen.getAllByTestId('filter-select')[0]
+  fireEvent.change(select1, { target: { value: 'dummy2' } })
+  const text1 = screen.getAllByTestId('filter-input')[0]
+  fireEvent.change(text1, { target: { value: 'welcome' } })
+  fireEvent.focusOut(text1)
+
+  const select2 = screen.getAllByTestId('filter-select')[1]
+  fireEvent.change(select2, { target: { value: 'dummy1' } })
+  const text2 = screen.getAllByTestId('filter-input')[1]
+  fireEvent.change(text2, { target: { value: 'again' } })
+  fireEvent.focusOut(text2)
+
   fireEvent.click(screen.getByText(/Close/i))
   fireEvent.click(screen.getByText(/Filter & Sort/i))
-  expect(select.value).toBe('ApplicationNo')
-  expect(text.value).toBe('10')
+
+  expect(screen.getAllByTestId('filter-select')[0].value).toBe('dummy2')
+  expect(screen.getAllByTestId('filter-select')[1].value).toBe('dummy1')
+  expect(screen.getAllByTestId('filter-input')[0].value).toBe('welcome')
+  expect(screen.getAllByTestId('filter-input')[1].value).toBe('again')
 })
-*/
+
+test('saved sorters in state', () => {
+  render(<Menu filters={[]} sorters={[{ selected: '', order: 'asc' }]} list={list} />)
+  fireEvent.click(screen.getByText(/Filter & Sort/i))
+  fireEvent.click(screen.getByText(/Add Sorting option +/i))
+
+  const select1 = screen.getAllByTestId('sort-select-attr')[0]
+  fireEvent.change(select1, { target: { value: 'dummy1' } })
+  const order1 = screen.getAllByTestId('sort-select-order')[0]
+  fireEvent.change(order1, { target: { value: 'desc' } })
+
+  const select2 = screen.getAllByTestId('sort-select-attr')[1]
+  fireEvent.change(select2, { target: { value: 'dummy2' } })
+  const order2 = screen.getAllByTestId('sort-select-order')[1]
+  fireEvent.change(order2, { target: { value: 'asc' } })
+
+  fireEvent.click(screen.getByText(/Close/i))
+  fireEvent.click(screen.getByText(/Filter & Sort/i))
+
+  expect(screen.getAllByTestId('sort-select-attr')[0].value).toBe('dummy1')
+  expect(screen.getAllByTestId('sort-select-attr')[1].value).toBe('dummy2')
+  expect(screen.getAllByTestId('sort-select-order')[0].value).toBe('desc')
+  expect(screen.getAllByTestId('sort-select-order')[1].value).toBe('asc')
+})

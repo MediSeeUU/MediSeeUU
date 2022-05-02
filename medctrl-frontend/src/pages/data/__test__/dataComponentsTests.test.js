@@ -3,19 +3,14 @@ import ReactDOM from 'react-dom'
 import {
   render,
   fireEvent,
-  waitFor,
   screen,
-  cleanup,
   within,
-  getByTestId,
-  getAllByRole,
 } from '@testing-library/react'
 import DataPage from '../DataPage.js'
 import DataSelect from '../dataComponents/DataSelect'
 import SelectedData from '../dataComponents/SelectedData'
 import {
   DataProvider,
-  SelectedContext,
   DataContext,
   ColumnSelectionContext,
   ColumnSelectionContextUpdate,
@@ -24,7 +19,6 @@ import {
 } from '../../../shared/contexts/DataContext'
 import { BrowserRouter } from 'react-router-dom'
 import allData from '../../../testJson/data.json'
-import { check } from 'prettier'
 
 test('DataPage renders without crashing', () => {
   const root = document.createElement('div')
@@ -43,7 +37,7 @@ test('DataSelect renders without crashing', () => {
   ReactDOM.render(
     <BrowserRouter>
       <DataProvider>
-        <DataSelect />
+        <DataSelect initialSearch="" />
       </DataProvider>
     </BrowserRouter>,
     root
@@ -53,6 +47,24 @@ test('DataSelect renders without crashing', () => {
 test('SelectedData renders without crashing', () => {
   const root = document.createElement('div')
   ReactDOM.render(<SelectedData />, root)
+})
+
+test('data can be cleared', () => {
+  const root = document.createElement('div')
+  render(
+    <BrowserRouter>
+      <DataProvider>
+        <DataPage />
+      </DataProvider>
+    </BrowserRouter>,
+    root
+  )
+  const table = screen.getAllByRole('table')[1]
+  const rows = within(table).getAllByRole('row')
+  expect(rows.length).toBeGreaterThan(1)
+  const clear = screen.getByTestId('clear-all-label')
+  fireEvent.click(clear)
+  expect(screen.getAllByRole('table')).toHaveLength(1)
 })
 
 test('data can be selected', () => {
@@ -72,22 +84,22 @@ test('data can be selected', () => {
 
   // Get the content if the first column of the first row
   const firstRow = screen.getAllByRole('row')[1]
-  console.log(firstRow.children[1].textContent)
 
   // select the first entry in the main table
-  const checkBox = within(table).getAllByRole('checkbox')[1]
-  fireEvent.click(checkBox)
+  const checkBox = within(table).getAllByRole('checkbox')
+  fireEvent.click(checkBox[0])
+  fireEvent.click(checkBox[1])
 
   // There should now be 2 tables.
   const tables = screen.getAllByRole('table')
-  expect(tables.length === 2)
+  expect(tables).toHaveLength(2)
 
   // get the final row (AKA the row in the second table)
   const rows = screen.getAllByRole('row')
   const lastRow = rows[rows.length - 1]
 
   // the first row (selected entry) and last row (displayed entry) should have the same content
-  expect(firstRow.textContent === lastRow.textContent)
+  expect(firstRow.textContent).toBe(lastRow.textContent)
 })
 
 test('table updated', () => {
@@ -138,7 +150,7 @@ test('table updated', () => {
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   const select = screen.queryByTestId('filter-select')
   fireEvent.change(select, { target: { value: 'ApplicationNo' } })
-  const textBox = screen.getByRole('textbox')
+  const textBox = screen.getAllByRole('textbox')[1]
   fireEvent.change(textBox, { target: { value: '8' } })
   fireEvent.focusOut(textBox)
   fireEvent.click(screen.getByText(/Apply/i))
@@ -261,7 +273,7 @@ test('amount of pages is 3', () => {
   // pagination div should now have 5 childnodes.
   const paginationDiv = screen.getByTestId('pagination-div')
 
-  expect(paginationDiv.childNodes.length == 5)
+  expect(paginationDiv.childNodes).toHaveLength(5)
 })
 
 test('Can go a page forward and backwards', () => {
@@ -319,10 +331,10 @@ test('Can go a page forward and backwards', () => {
   const paginationDiv = screen.getByTestId('pagination-div')
 
   // After 5 clicks, the current page should be 7
-  expect(paginationDiv.childNodes[4].textContent == '7')
+  expect(paginationDiv.childNodes[4].textContent.trim()).toBe('7')
 
   fireEvent.click(prevPage)
 
   // clicking the previous page button once should bring the current page to 6
-  expect(paginationDiv.childNodes[4].textContent == '6')
+  expect(paginationDiv.childNodes[4].textContent.trim()).toBe('6')
 })

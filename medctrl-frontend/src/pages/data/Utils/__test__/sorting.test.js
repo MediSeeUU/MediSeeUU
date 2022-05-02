@@ -1,8 +1,5 @@
 import DummyData from '../../../../testJson/data.json'
-import sortData, {
-  convertSortingAttributeNameToComparisonFunction,
-  getSortingFunctionFromAttributeName,
-} from '../sorting'
+import sortData, { convertSortingAttributeNameToComparisonFunction } from '../sorting'
 
 //test to check if single parameter sorting ascending on ApplicationNo (number) works
 test('single ascending sorter on ApplicationNo applied correctly', () => {
@@ -10,19 +7,6 @@ test('single ascending sorter on ApplicationNo applied correctly', () => {
   var compareFunc = convertSortingAttributeNameToComparisonFunction('ApplicationNo')
   for (var i = 0; i < Object.keys(sortedData).length - 1; i++) {
     var comparisonvalue = compareFunc(sortedData[i], sortedData[i + 1])
-    expect(comparisonvalue).toBeLessThanOrEqual(0)
-  }
-})
-
-//test to check if single parameter sorting ascending on ApplicationNo (number) works ARRAYS
-test('single ascending sorter on ApplicationNo applied correctly, FOR ARRAYS', () => {
-  let sortedData = sortData(DummyData, [{ selected: 'ApplicationNo', order: 'asc' }])
-  var compareFunc = getSortingFunctionFromAttributeName('ApplicationNo')
-  for (var i = 0; i < Object.keys(sortedData).length - 1; i++) {
-    var comparisonvalue = compareFunc(
-      sortedData[i]['ApplicationNo'],
-      sortedData[i + 1]['ApplicationNo']
-    )
     expect(comparisonvalue).toBeLessThanOrEqual(0)
   }
 })
