@@ -20,25 +20,25 @@
   text-align: center;
 }
 
-#footer__organisations {
+#footer__organizations {
   width: 50%;
   text-align: center;
   float: right;
 }
 
-/* For the list of relevant organisations, keeps the list positioned correctly */
-.footer__organisation__list {
+/* For the list of relevant organizations, keeps the list positioned correctly */
+.footer__organization__list {
   display: inline-block;
   text-align: left;
 }
 
-/* Rulesets for the links under relevant organisations, only does styling and colors */
-#footer__organisations a {
+/* Rulesets for the links under relevant organizations, only does styling and colors */
+.med_footer a {
   color: var(--med-textlink-text);
   text-decoration: none;
 }
 
-#footer__organisations a:hover {
+.med_footer a:hover {
   color: var(--med-textlink-text-hover);
 }
 
