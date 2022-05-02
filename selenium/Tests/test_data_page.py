@@ -21,18 +21,8 @@ class TestDataPage(WebDriverSetup):
   # check if the amount of results in main table changes (by default 25)
   def test_results_per_page(self):
     assert self.data_page.amount_of_rows(0) == 25
-    self.data_page.change_amount_of_results(50)
-    assert self.data_page.amount_of_rows(0) == 50
-  
-  # check if pages change on command
-  def test_page_changes(self):
-    assert self.data_page.current_table_page(0) == "1"
-    self.data_page.next_table_page(0)
-    assert self.data_page.current_table_page(0) == "2"
-    self.data_page.next_table_page(0)
-    assert self.data_page.current_table_page(0) == "3"
-    self.data_page.prev_table_page(0)
-    assert self.data_page.current_table_page(0) == "2"
+    self.data_page.change_amount_of_results(100)
+    assert self.data_page.amount_of_rows(0) == 100
   
   # select 3 random rows in each of the first 10 pages and check if they are correctly put into the select table
   def test_correct_selected(self):
@@ -60,32 +50,74 @@ class TestDataPage(WebDriverSetup):
   
   # test if data in the row changes when navigated to next page
   def test_next_page_new_rows(self):
+    assert self.data_page.current_table_page(0) == "1"
     eu_list = []
     for i in range(24):
       eu_list.append(self.data_page.table_value(0, i + 1, 1))
     self.data_page.next_table_page(0)
+    assert self.data_page.current_table_page(0) == "2"
     for i in range(24):
       assert self.data_page.table_value(0, i + 1, 1) not in eu_list
+    self.data_page.prev_table_page(0)
+    assert self.data_page.current_table_page(0) == "1"
+    for i in range(24):
+      assert self.data_page.table_value(0, i + 1, 1) == eu_list[i]
   
   # test if filter and sort are properly applied to the table
-  def test_filter_and_sort(self):
+  def test_search_filter_sort(self):
+    self.data_page.input_query("pfizer")
+    self.data_page.search()
     self.data_page.open_menu()
     self.data_page.sort_select(1, "EUNoShort")
     self.data_page.sort_order(1, "Descending")
     self.data_page.filter_select(1, "EUNoShort")
     self.data_page.filter_input(1, 1, "10")
-    self.data_page.add_filter()
-    self.data_page.filter_select(2, "Rapporteur")
-    self.data_page.filter_input(2, 1, "United Kingdom")
     self.data_page.apply()
-    self.data_page.change_column(0, 2, "Rapporteur")
     eu_numbers = []
     for i in range(self.data_page.amount_of_rows(0) - 1):
       eu_number = self.data_page.table_value(0, i + 1, 1)
       assert "10" in eu_number
-      assert "United Kingdom" in self.data_page.table_value(0, i + 1, 2)
       eu_numbers.append(int(eu_number))
     assert all(eu_numbers[i] >= eu_numbers[i+1] for i in range(len(eu_numbers) - 1))
+    for i in range(self.data_page.amount_of_rows(0) - 1):
+      inText = False
+      for j in range(self.data_page.amount_of_columns(0) - 1):
+        if ("pfizer" in self.data_page.table_value(0, i + 1, j + 1).lower()):
+          inText = True
+      assert inText
+
+  
+  # check if the column change propagates to all tables
+  def test_column_change(self):
+    select_row = random.randint(1, 25)
+    self.data_page.select(select_row)
+    column = random.randint(1, 5)
+    self.data_page.change_column(0, column, "CoRapporteur")
+    assert self.data_page.column_value(0, column) == "CoRapporteur"
+    assert self.data_page.column_value(1, column) == "CoRapporteur"
+  
+  # check if a new column is added/removed to/from all tables
+  def test_column_add_remove(self):
+    select_row = random.randint(1, 25)
+    self.data_page.select(select_row)
+    assert self.data_page.amount_of_columns(0) == 5
+    assert self.data_page.amount_of_columns(1) == 5
+    columns = []
+    for i in range(5):
+      columns.append(self.data_page.column_value(0, i + 1))
+    adds = random.randint(1, 5)
+    for i in range(adds):
+      self.data_page.add_column(0)
+      column = self.data_page.column_value(0, 5 + i)
+      assert column not in columns
+      columns.add(column)
+    assert self.data_page.amount_of_columns(0) == 5 + adds
+    assert self.data_page.amount_of_columns(1) == 5 + adds
+    removes = random.randint(1, 5)
+    for i in range(removes):
+      self.data_page.remove_column(0)
+    assert self.data_page.amount_of_columns(0) == 5 + adds - removes
+    assert self.data_page.amount_of_columns(1) == 5 + adds - removes
 
 if __name__ == '__main__':
   unittest.main()

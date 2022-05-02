@@ -28,12 +28,12 @@ class DataPage(BasePage, Table):
     self.driver.execute_script("arguments[0].click();", selects[id])
   
   def change_amount_of_results(self, value):
-    self.results = self.driver.find_element(*DataPageLocators.RESULTS_PER_PAGE)
-    self.results.send_keys(value)
+    results = self.driver.find_element(*DataPageLocators.RESULTS_PER_PAGE)
+    results.send_keys(value)
   
   def open_menu(self):
-    self.table_buttons = self.driver.find_elements(*DataPageLocators.BUTTON)
-    self.table_buttons[0].click()
+    table_buttons = self.driver.find_elements(*DataPageLocators.BUTTON)
+    table_buttons[1].click()
   
   def add_filter(self):
     add = self.driver.find_element(*DataPageLocators.MenuLocators.ADD_FILTER)
@@ -62,3 +62,11 @@ class DataPage(BasePage, Table):
   def apply(self):
     apply = self.driver.find_element(*DataPageLocators.MenuLocators.APPLY)
     apply.click()
+  
+  def input_query(self, query):
+    search_bar = self.driver.find_element(*DataPageLocators.SEARCH_BAR)
+    search_bar.send_keys(query)
+  
+  def search(self):
+    table_buttons = self.driver.find_elements(*DataPageLocators.BUTTON)
+    table_buttons[0].click()
