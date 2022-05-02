@@ -1,5 +1,5 @@
 //creates JSON and communicts with server
-async function handleLogin(event, props) {
+async function handleLogin(event) {
   var success = false
 
   //takes form and selects all items needed to send to server
