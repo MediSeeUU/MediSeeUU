@@ -43,8 +43,6 @@ test('Sidenavigation bar should expand or collapse navbar after toggle', () => {
   expect(toggletext).not.toBe(screen.getByTestId('nav-item-name'))
 })
 
-
-
 test('render account page without crashing', () => {
   const root = document.createElement('div')
   ReactDOM.render(
@@ -306,11 +304,9 @@ test('logout navbarbutton is clickable when logged in2', () => {
     accessLevel: 'X',
   }
 
-  
   sessionStorage.setItem('username', 'Sjoerd heart minecraft')
   sessionStorage.setItem('access_level', 'X')
   sessionStorage.setItem('token', 'oh zon mooi token')
-
 
   render(
     <BrowserRouter>
@@ -320,9 +316,6 @@ test('logout navbarbutton is clickable when logged in2', () => {
 
   sessionStorage.clear()
 
-
-  var loginbutton = screen.getAllByTestId("navaccountbutton")[0]
+  var loginbutton = screen.getAllByTestId('navaccountbutton')[0]
   fireEvent.click(loginbutton)
 })
-
-

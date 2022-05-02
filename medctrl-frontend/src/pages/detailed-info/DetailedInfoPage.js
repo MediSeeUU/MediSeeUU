@@ -38,20 +38,16 @@ export function InfoPage(props) {
 
   //depending on the provided JSONdata (not) containing proceduredata,
   //use appropriate function to get the medicine data component
-  if (alldata[0].hasOwnProperty('procedures')) {
-    
-    //if procedure data is present for the (first) jsondataobject
-    medDataObject = alldata.find(
-      (element) =>
-        element['info']['EUNoShort'].toString() === medIDnr.toString()
-    )
 
+  if (alldata[0].hasOwnProperty('procedures')) {
+    medDataObject = alldata.find(
+      (element) => element['info'].EUNoShort.toString() === medIDnr.toString()
+    )
     procedureDataPresentFlag = true
   } else {
-    
-    medDataObject = alldata.find((element) => {
-      return element['EUNoShort'].toString() === medIDnr.toString()
-    })
+    medDataObject = alldata.find(
+      (element) => element['EUNoShort'].toString() === medIDnr.toString()
+    )
   }
 
   //if the medIDnumber does not correspond to any medicine in the datacontext,
