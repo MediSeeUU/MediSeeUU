@@ -7,16 +7,6 @@ on:
       - "selenium/**"
       - ".github/workflows/system_selenium_test.yml"
 
-  push:
-    branches: 
-      - selenium-ci
-      - development
-      - master
-    paths: 
-      - "medctrl-frontend/**"
-      - "selenium/**"
-      - ".github/workflows/system_selenium_test.yml"
-
 env:
   NODE_VERSION: "16.x"
 
