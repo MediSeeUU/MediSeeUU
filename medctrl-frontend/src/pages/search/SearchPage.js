@@ -15,7 +15,7 @@ function SearchPage() {
           onChange={(e) => test(e.target.value)}
         />
         <button className="med-primary-solid med-bx-button">
-          <i class="bx bx-search search-Icon"></i>Search
+          <i className="bx bx-search search-Icon"></i>Search
         </button>
       </div>
 
@@ -33,8 +33,6 @@ function SearchPage() {
   )
 }
 
-function test(ding) {
-  console.log(ding)
-}
+function test() {}
 
 export default SearchPage

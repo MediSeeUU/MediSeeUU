@@ -144,10 +144,11 @@ function ResultsSelector({
         </div>
       )}
 
-      <div className="dv-pageCount">
+      <div className="dv-pageCount" data-testid="pagination-div">
         <i
           onClick={() => Back()}
           className="bx bxs-chevron-left li-pageCount"
+          data-testid="prev-page-table"
         />
 
         {PageSelector()}
@@ -155,6 +156,7 @@ function ResultsSelector({
         <i
           onClick={() => Next()}
           className="bx bxs-chevron-right li-pageCount"
+          data-testid="next-page-table"
         />
       </div>
 
