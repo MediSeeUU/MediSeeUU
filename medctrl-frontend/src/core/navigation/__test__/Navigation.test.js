@@ -298,7 +298,6 @@ test('logout navbarbutton is clickable when logged in', () => {
 })
 
 test('logout navbarbutton is clickable when logged in2', () => {
-
   sessionStorage.setItem('username', 'Sjoerd heart minecraft')
   sessionStorage.setItem('access_level', 'X')
   sessionStorage.setItem('token', 'oh zon mooi token')
