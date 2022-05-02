@@ -1,29 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Menu from '../Menu/Menu'
 import Search from '../Search/Search'
 import TableView from './TableView'
-import { useData } from '../../../shared/contexts/DataContext'
+import { useData, useColumnSelection } from '../../../shared/contexts/DataContext'
 import updateData from '../Utils/update'
 
-function DataSelect() {
-  // Amount of database hits shown per page
-  const [resultsPerPage, setResultsPerPage] = useState(25)
+function DataSelect({initialSearch}) {
+  const [resultsPerPage, setResultsPerPage] = useState(25) // Amount of database hits shown per page
+  const [loadedPage, setPage] = useState(1) // Current page
+  const [search, setSearch] = useState(initialSearch) // Current search
+  const [filters, setFilters] = useState([{ selected: '', input: [''] }]) // Current filters
+  const [sorters, setSorters] = useState([{ selected: '', order: 'asc' }]) // Current sorters
 
-  // Current page
-  const [loadedPage, setPage] = useState(1)
-
-  // Current search
-  const [search, setSearch] = useState("")
-
-  // Current filters
-  const [filters, setFilters] = useState([{ selected: '', input: [''] }])
-
-  // Current sorters
-  const [sorters, setSorters] = useState([{ selected: '', order: 'asc' }])
-
+  // We need to keep a reference of the columns for ranking the data
+  let columns = useColumnSelection()
+  let columnsRef = useRef(columns)
+  let queryRef = useRef(search)
+  
+  // We update the columns if a new search is initialized
+  if (search !== queryRef.current) {
+    columnsRef.current = columns
+    queryRef.current = search
+  }
+  
   // Current data
   const allData = useData()
-  const updatedData = updateData(allData, search, filters, sorters)
+  const updatedData = updateData(allData, search, filters, sorters, columnsRef.current)
 
   // List of variable options
   const list =
@@ -49,7 +51,7 @@ function DataSelect() {
   //main body of the page
   return (
     <>
-      <Search update={setSearch} />
+      <Search update={setSearch} initial={initialSearch} />
       <div className="med-content-container">
         <h1>Data Selection Table</h1>
         <hr className="med-top-separator" />

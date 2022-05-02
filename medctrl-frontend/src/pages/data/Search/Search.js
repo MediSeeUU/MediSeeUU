@@ -1,29 +1,19 @@
 import './Search.css'
 import React, { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
 
-function Search({update}) {
-  // We need a parameter state for the initial query
-  const [params, setParams] = useSearchParams()
-
+function Search({update, initial}) {
   // We need a separate state for saving the query given in the textbox
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState(initial)
 
-  // Check if the query is specified in the url parameter
-  const paramValue = params.get('q')
-  if (paramValue) {
-    // Delete the parameter value to prevent infinite loop in rendering
-    params.delete('q')
-    setParams(params)
-
-    // Update the search
-    update(paramValue)
+  // Handler that applies the search by updating the query
+  const applySearch = () => {
+    update(new String(query)) // new String() is required here to also update with same query string
   }
 
   // Handler that updates the search after pressing enter key
   const handlerKeyDown = (e) => {
     if (e.key === 'Enter') {
-      update(query)
+      applySearch()
     }
   }
 
@@ -35,10 +25,10 @@ function Search({update}) {
         placeholder="Search"
         className="content__container__textinput med-text-input"
         onChange={(e) => setQuery(e.target.value)}
-        defaultValue={paramValue || ""}
+        defaultValue={initial}
         onKeyDown={handlerKeyDown}
       />
-      <button className="med-primary-solid med-bx-button" onClick={() => update(query)}>
+      <button className="med-primary-solid med-bx-button" onClick={applySearch}>
         <i className="bx bx-search search-Icon"></i>Search
       </button>
     </div>

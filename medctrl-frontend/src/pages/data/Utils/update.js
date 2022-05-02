@@ -3,9 +3,9 @@ import filterData from "./filter"
 import sortData from "./sorting"
 
 // Update the data by applying search, filters and sorters
-function updateData(data, search, filters, sorters) {
+function updateData(data, search, filters, sorters, columns) {
   let updatedData = [...data]
-  updatedData = searchData(updatedData, search)
+  updatedData = searchData(updatedData, search, columns)
   updatedData = filterData(updatedData, filters)
   updatedData = sortData(updatedData, [...sorters])
   return updatedData
