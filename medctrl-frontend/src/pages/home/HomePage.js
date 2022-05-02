@@ -9,6 +9,17 @@ function HomePage() {
     // Homepage components, contains article containers
     <div className="med_home_content">
       <div className="med-content-container">
+        <input
+          type="text"
+          placeholder="Search"
+          className="content__container__textinput med-text-input"
+        />
+        <button className="med-primary-solid med-bx-button">
+          <i className="bx bx-search search-Icon"></i>Search
+        </button>
+      </div>
+      
+      <div className="med-content-container">
         <h1>About This Dashboard</h1>
         <hr className="med-top-separator" />
         <p>
