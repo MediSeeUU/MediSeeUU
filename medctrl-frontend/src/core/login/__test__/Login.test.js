@@ -1,9 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { screen, fireEvent } from '@testing-library/react'
 import SideNavigation from '../../navigation/Navigation'
 import { BrowserRouter } from 'react-router-dom'
-import handleLogin from '../connectionServer'
 
 test('open and close login popup', () => {
   const defUser = {

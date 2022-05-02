@@ -27,6 +27,7 @@ class DataPageLocators():
   SELECTED_PAGE = (By.CLASS_NAME, 'lb-pageCount_selected')
   NEXT_PAGE = (By.CLASS_NAME, 'bxs-chevron-right')
   PREV_PAGE = (By.CLASS_NAME, 'bxs-chevron-left')
+  CLEAR_ALL = (By.CLASS_NAME, 'clear')
 
   class MenuLocators():
     FILTER_ITEM = (By.CLASS_NAME, 'filter-item')

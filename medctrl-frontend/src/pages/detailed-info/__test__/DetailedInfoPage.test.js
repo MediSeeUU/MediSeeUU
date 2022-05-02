@@ -1,12 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { render, fireEvent, screen } from '@testing-library/react'
-import { InfoPage, DetailedInfoPage } from '../DetailedInfoPage'
+import { render,  screen } from '@testing-library/react'
+import { InfoPage, } from '../DetailedInfoPage'
 import allData from '../../../testJson/data.json'
 import medDataWithProcedures from '../../../../src/pages/detailed-info/detailed-info-data.json'
-import { BrowserRouter, Route } from 'react-router-dom'
-import { DataContext, DataProvider } from '../../../shared/contexts/DataContext'
-import { Link } from 'react-router-dom'
+
 
 test('render detailedinfopage and display correct data', () => {
   render(<InfoPage data={allData} medIDnumber={'1528'} />)

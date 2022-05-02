@@ -298,11 +298,6 @@ test('logout navbarbutton is clickable when logged in', () => {
 })
 
 test('logout navbarbutton is clickable when logged in2', () => {
-  const defUser = {
-    isAdmin: true,
-    userName: 'Lourens Bloem',
-    accessLevel: 'X',
-  }
 
   sessionStorage.setItem('username', 'Sjoerd heart minecraft')
   sessionStorage.setItem('access_level', 'X')

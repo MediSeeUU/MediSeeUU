@@ -63,12 +63,14 @@ function DisplayTable({
     setColumnSelection(newColumnSelection)
   }
 
+  //handler that adds a column
   const addColumn = () => {
     let newColumnSelection = [...columnSelection]
     newColumnSelection.push(Object.keys(data[0])[0])
     setColumnSelection(newColumnSelection)
   }
 
+  //handler that removes a column
   const removeColumn = () => {
     if (columnSelection.length > 5) {
       let newColumnSelection = [...columnSelection]
