@@ -126,7 +126,7 @@
 
 .export-dialog button.cancel {
   background-color: var(--med-dialog-background);
-  color: var(--med-text-secondary);
+  color: var(--med-text-primary);
 }
 
 .export-dialog button.cancel:hover {

@@ -85,7 +85,6 @@ class TestDataPage(WebDriverSetup):
         if ("pfizer" in self.data_page.table_value(0, i + 1, j + 1).lower()):
           inText = True
       assert inText
-
   
   # check if the column change propagates to all tables
   def test_column_change(self):
@@ -118,6 +117,16 @@ class TestDataPage(WebDriverSetup):
       self.data_page.remove_column(0)
     assert self.data_page.amount_of_columns(0) == 5 + adds - removes
     assert self.data_page.amount_of_columns(1) == 5 + adds - removes
+  
+  def test_clear_all(self):
+    assert not self.data_page.selected_visible()
+    ids = random.sample(range(1, 25), 8)
+    for id in ids:
+      self.data_page.select(id)
+    assert self.data_page.selected_visible()
+    assert self.data_page.amount_of_rows(1) == 8
+    self.data_page.clear_all()
+    assert not self.data_page.selected_visible()
 
 if __name__ == '__main__':
   unittest.main()

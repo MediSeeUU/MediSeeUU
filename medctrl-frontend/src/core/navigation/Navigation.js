@@ -106,7 +106,7 @@ class SideNavigation extends React.Component {
 
     // returns the navigation bar component, with all the appropriate elements
     return (
-      <OutsideClickHandler onOutsideClick={() => this.close()}>
+      <OutsideClickHandler onOutsideClick={this.close}>
         <nav className={'side-nav ' + this.getState()}>
           <Toggle expanded={this.state.expanded} parent={this} />
 

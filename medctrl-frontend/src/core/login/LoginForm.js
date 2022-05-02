@@ -25,7 +25,7 @@ class LoginForm extends React.Component {
 
   async connection(event) {
     event.preventDefault()
-    var success = await handleLogin(event)
+    var success = await handleLogin(event, this.props.state)
 
     if (success) {
       let username = sessionStorage.getItem('username')

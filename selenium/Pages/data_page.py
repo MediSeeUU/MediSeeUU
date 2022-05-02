@@ -1,6 +1,6 @@
 from Pages.base_page import BasePage
 from Pages.shared.table import Table
-from Resources.locators import DataPageLocators
+from Resources.locators import DataPageLocators, TableLocators
 from selenium.webdriver.support.ui import Select
 
 class DataPage(BasePage, Table):
@@ -70,3 +70,11 @@ class DataPage(BasePage, Table):
   def search(self):
     table_buttons = self.driver.find_elements(*DataPageLocators.BUTTON)
     table_buttons[0].click()
+  
+  def clear_all(self):
+    clear_all = self.driver.find_element(*DataPageLocators.CLEAR_ALL)
+    self.driver.execute_script("arguments[0].click();", clear_all)
+  
+  def selected_visible(self):
+    tables = self.driver.find_elements(*TableLocators.TABLE)
+    return len(tables) > 1
