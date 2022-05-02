@@ -117,6 +117,12 @@ class SideNavigation extends React.Component {
             parent={this}
           />
           <NavLink
+            name="Info"
+            image="bx bx-info-circle"
+            dest="/info"
+            parent={this}
+          />
+          <NavLink
             name="Search"
             image="bx bx-search"
             dest="/search"

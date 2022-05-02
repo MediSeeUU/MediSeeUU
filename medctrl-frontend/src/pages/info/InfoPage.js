@@ -1,12 +1,12 @@
-import './HomePage.css'
+import './InfoPage.css'
 import '../../shared/shared.css'
 
 import uuLogo from '../../images/uu-logo.svg'
 import mebLogo from '../../images/meb-logo.svg'
 
-function HomePage() {
+function InfoPage() {
   return (
-    // Homepage components, contains article containers
+    // Infopage components, contains article containers
     <div className="med_home_content">
       <div className="med-content-container">
         <h1>About This Dashboard</h1>
@@ -132,4 +132,4 @@ function HomePage() {
   )
 }
 
-export default HomePage
+export default InfoPage

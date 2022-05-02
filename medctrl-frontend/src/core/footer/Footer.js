@@ -21,7 +21,7 @@ function Footer() {
           <li>
             {' '}
             <a className="footer__list__link" href="https://www.uu.nl/en">
-              University of Utrecht
+              Utrecht University
             </a>
           </li>
         </ul>
