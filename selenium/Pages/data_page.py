@@ -1,9 +1,10 @@
 from Pages.base_page import BasePage
 from Pages.shared.table import Table
+from Pages.shared.search import Search
 from Resources.locators import DataPageLocators, TableLocators
 from selenium.webdriver.support.ui import Select
 
-class DataPage(BasePage, Table):
+class DataPage(BasePage, Table, Search):
   def __init__(self, driver):
     super().__init__(driver)
     self.go_data()
@@ -65,14 +66,6 @@ class DataPage(BasePage, Table):
   def apply(self):
     apply = self.driver.find_element(*DataPageLocators.MenuLocators.APPLY)
     apply.click()
-  
-  def input_query(self, query):
-    search_bar = self.driver.find_element(*DataPageLocators.SEARCH_BAR)
-    search_bar.send_keys(query)
-  
-  def search(self):
-    table_buttons = self.driver.find_elements(*DataPageLocators.BUTTON)
-    table_buttons[0].click()
   
   def clear_all(self):
     clear_all = self.driver.find_element(*DataPageLocators.CLEAR_ALL)

@@ -30,8 +30,8 @@ class Table():
     tables = self.driver.find_elements(*TableLocators.TABLE)
     thead = tables[table].find_element(*TableLocators.HEAD)
     columns = thead.find_elements(*TableLocators.COLUMN)
-    select = columns[column - 1].find_element(*TableLocators.COLUMN_SELECT)
-    select.send_keys(value)
+    select = Select(columns[column - 1].find_element(*TableLocators.COLUMN_SELECT))
+    select.select_by_visible_text(value)
   
   def column_value(self, table, column):
     tables = self.driver.find_elements(*TableLocators.TABLE)
@@ -53,3 +53,11 @@ class Table():
   def remove_column(self, table):
     remove = self.driver.find_elements(*TableLocators.REMOVE_COLUMN)[table]
     self.driver.execute_script("arguments[0].click();", remove)
+  
+  def column_options(self):
+    tables = self.driver.find_elements(*TableLocators.TABLE)
+    thead = tables[0].find_element(*TableLocators.HEAD)
+    columns = thead.find_elements(*TableLocators.COLUMN)
+    select = Select(columns[0].find_element(*TableLocators.COLUMN_SELECT))
+    return list(map(lambda option: option.text, select.options))
+
