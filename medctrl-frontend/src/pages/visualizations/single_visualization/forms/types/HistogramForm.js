@@ -52,7 +52,7 @@ class HistogramForm extends Component {
     this.state = {
       eligibleVariables: eligibleVariables,
       chosenVariable: 'Rapporteur',
-      categoriesSelected: this.props.uniqueCategories['Rapporteur'],
+      categoriesSelectedX: this.props.uniqueCategories['Rapporteur'],
     }
 
     // event handlers
@@ -78,7 +78,7 @@ class HistogramForm extends Component {
       in this case that is just resetting the array
     */
     if (name === 'chosenVariable') {
-      this.setState({ categoriesSelected: [] })
+      this.setState({ categoriesSelectedX: [] })
     }
     this.setState({ [name]: value }, () => {
       this.props.onChange([this.state, name])
@@ -90,7 +90,7 @@ class HistogramForm extends Component {
     This event is passed to the CategoryOptions component.
   */
   handleCategorySelectionChange(event) {
-    this.setState({ categoriesSelected: event }, () => {
+    this.setState({ categoriesSelectedX: event }, () => {
       this.props.onChange([this.state, 'categoriesSelected'])
     })
   }

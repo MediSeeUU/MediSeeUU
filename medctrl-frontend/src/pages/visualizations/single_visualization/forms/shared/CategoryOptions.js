@@ -9,6 +9,7 @@ class CategoryOptions extends React.Component {
 
     // the state contains a list with the names of the selected categories
     this.settings = this.props.settings
+    this.state = { categoriesSelected: this.props.categories }
 
     // event handlers
     this.handleAllCategorySelection = this.handleAllCategorySelection.bind(this)
@@ -19,12 +20,14 @@ class CategoryOptions extends React.Component {
 
   // allows user to select all categories
   handleAllCategorySelection(event) {
-    if (
-      this.settings.categoriesSelected.length === this.props.categories.length
-    ) {
-      this.props.onChange([])
+    if (this.state.categoriesSelected.length === this.props.categories.length) {
+      this.setState({ categoriesSelected: [] }, () => {
+        this.props.onChange(this.state.categoriesSelected)
+      })
     } else {
-      this.props.onChange(this.props.categories)
+      this.setState({ categoriesSelected: this.props.categories }, () => {
+        this.props.onChange(this.props.categories)
+      })
     }
   }
 
@@ -40,13 +43,18 @@ class CategoryOptions extends React.Component {
     // The event is only triggered when the value changes,
     // so we know that it was previously not on the list
     if (value) {
-      this.props.onChange([...this.settings.categoriesSelected, name])
+      const newCategories = [...this.state.categoriesSelected, name]
+      this.setState({ categoriesSelected: newCategories })
+      this.props.onChange(newCategories)
     } else {
       // remove if the category was previously on the list
-      if (this.settings.categoriesSelected.includes(name)) {
-        this.props.onChange(
-          this.settings.categoriesSelected.filter((el) => el !== name)
+      if (this.state.categoriesSelected.includes(name)) {
+        const newCategories = this.state.categoriesSelected.filter(
+          (el) => el !== name
         )
+        this.setState({ categoriesSelected: newCategories }, () => {
+          this.props.onChange(this.state.categoriesSelected)
+        })
       }
     }
   }
@@ -55,7 +63,7 @@ class CategoryOptions extends React.Component {
 
   // create the list of category checkboxes
   renderCategoryOptions() {
-    this.settings = this.props.settings
+    //this.settings = this.props.settings
     const categories = this.props.categories
     return categories.map((category) => {
       return (
@@ -64,7 +72,7 @@ class CategoryOptions extends React.Component {
             <input
               type="checkbox"
               name={category}
-              checked={this.settings.categoriesSelected.includes(category)}
+              checked={this.state.categoriesSelected.includes(category)}
               onChange={this.handleCategorySelection}
             />
             &nbsp;&nbsp;{category}
@@ -86,9 +94,7 @@ class CategoryOptions extends React.Component {
           <input
             type="checkbox"
             name="selectAllCategories"
-            checked={
-              this.settings.categoriesSelected.length === categories.length
-            }
+            checked={this.state.categoriesSelected.length === categories.length}
             onChange={this.handleAllCategorySelection}
           />
           &nbsp;&nbsp;Select all categories

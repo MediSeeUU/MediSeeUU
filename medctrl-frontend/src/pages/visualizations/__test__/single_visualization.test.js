@@ -29,7 +29,7 @@ beforeEach(() => {
     chartSpecificOptions: {
       xAxis: 'DecisionYear',
       yAxis: 'Rapporteur',
-      categoriesSelected: [],
+      categoriesSelectedY: unique['Rapporteur'],
     },
     legend_on: true,
     labels_on: false,

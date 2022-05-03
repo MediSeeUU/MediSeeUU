@@ -70,7 +70,8 @@ class VisualizationForm extends Component {
           chartSpecificOptions: {
             yAxis: 'Rapporteur',
             xAxis: 'DecisionYear',
-            categoriesSelected: this.props.uniqueCategories['Rapporteur'],
+            categoriesSelectedX: this.props.uniqueCategories['DecisionYear'],
+            categoriesSelectedY: this.props.uniqueCategories['Rapporteur'],
           },
           chartSpecificOptionsName: '',
         })
@@ -82,7 +83,8 @@ class VisualizationForm extends Component {
           chartSpecificOptions: {
             yAxis: 'Rapporteur',
             xAxis: 'DecisionYear',
-            categoriesSelected: this.props.uniqueCategories['Rapporteur'],
+            categoriesSelectedX: this.props.uniqueCategories['DecisionYear'],
+            categoriesSelectedY: this.props.uniqueCategories['Rapporteur'],
           },
           chartSpecificOptionsName: '',
         })
@@ -93,7 +95,7 @@ class VisualizationForm extends Component {
         this.setState({
           chartSpecificOptions: {
             chosenVariable: 'Rapporteur',
-            categoriesSelected: this.props.uniqueCategories['Rapporteur'],
+            categoriesSelectedX: this.props.uniqueCategories['Rapporteur'],
           },
           chartSpecificOptionsName: '',
         })
@@ -104,7 +106,7 @@ class VisualizationForm extends Component {
         this.setState({
           chartSpecificOptions: {
             chosenVariable: 'Rapporteur',
-            categoriesSelected: this.props.uniqueCategories['Rapporteur'],
+            categoriesSelectedX: this.props.uniqueCategories['Rapporteur'],
           },
           chartSpecificOptionsName: '',
         })

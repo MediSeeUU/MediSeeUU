@@ -6,9 +6,10 @@ import sortCategoryData from '../utils/SortCategoryData'
   'xaxis: {categories}' option!  
 */
 export default function GenerateLineSeries(options, allCategories, data) {
+  console.log(options.chartSpecificOptions.categoriesSelectedY)
   let xAxis = options.chartSpecificOptions.xAxis
   let yAxis = options.chartSpecificOptions.yAxis
-  let categoriesSelectedY = options.chartSpecificOptions.categoriesSelected
+  let categoriesSelectedY = options.chartSpecificOptions.categoriesSelectedY
   let sortedxAxis = sortCategoryData(allCategories[xAxis])
 
   let dict = PollChosenVariable(

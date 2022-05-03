@@ -18,6 +18,7 @@ class LineChart extends Component {
           labels: {
             hideOverlappingLabels: true,
           },
+          tickPlacement: 'on',
           title: {
             text: this.props.options.xAxis,
           },
@@ -52,6 +53,7 @@ class LineChart extends Component {
             options={this.state.options}
             series={this.state.series}
             type="line"
+            height={700}
           />
         </div>
       )

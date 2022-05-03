@@ -5,7 +5,7 @@
 */
 export default function GeneratePieSeries(options, data) {
   let chosenVariable = options.chartSpecificOptions.chosenVariable
-  let chosenCategories = options.chartSpecificOptions.categoriesSelected
+  let chosenCategories = options.chartSpecificOptions.categoriesSelectedX
 
   let pieSeries = CreatePieSeries(data, chosenVariable, chosenCategories)
 

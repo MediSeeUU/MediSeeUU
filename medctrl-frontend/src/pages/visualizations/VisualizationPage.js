@@ -73,7 +73,8 @@ function VisualizationPage() {
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
         yAxis: 'Rapporteur',
-        categoriesSelected: uniqueCategories['Rapporteur'],
+        categoriesSelectedY: uniqueCategories['Rapporteur'],
+        categoriesSelectedX: uniqueCategories['DecisionYear'],
       },
       legend_on: false,
       labels_on: false,
@@ -83,7 +84,8 @@ function VisualizationPage() {
           chartSpecificOptions: {
             xAxis: 'DecisionYear',
             yAxis: 'Rapporteur',
-            categoriesSelected: uniqueCategories['Rapporteur'],
+            categoriesSelectedY: uniqueCategories['Rapporteur'],
+            categoriesSelectedX: uniqueCategories['DecisionYear'],
           },
         },
         uniqueCategories,
@@ -143,9 +145,14 @@ function VisualizationPage() {
     return (
       <Row>
         <div className="med-content-container visual-container">
-          <b>You have currently selected {dataPointAmount} datapoints.</b>
-          <br />
-          <b>Go to the data page to add/remove datapoints.</b>
+          <b>
+            You have currently selected {dataPointAmount} datapoints.
+            <br />
+            Go to the data page to add/remove datapoints.
+            <br />
+            In case some of the functionality is not clear, you can visit the
+            manual on the home page
+          </b>
         </div>
       </Row>
     )

@@ -54,8 +54,10 @@ class BarForm extends Component {
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
-    this.handleCategorySelectionChange =
-      this.handleCategorySelectionChange.bind(this)
+    this.handleCategorySelectionXChange =
+      this.handleCategorySelectionXChange.bind(this)
+    this.handleCategorySelectionYChange =
+      this.handleCategorySelectionYChange.bind(this)
   }
 
   // EVENT HANDLERS:
@@ -75,7 +77,10 @@ class BarForm extends Component {
       in this case that is just resetting the array
     */
     if (name === 'xAxis' || name === 'yAxis') {
-      this.setState({ categoriesSelected: [] })
+      this.setState({
+        categoriesSelectedX: [],
+        categoriesSelectedY: [],
+      })
     }
     this.setState({ [name]: value }, () => {
       this.props.onChange([this.state, name])
@@ -83,12 +88,22 @@ class BarForm extends Component {
   }
 
   /* 
-    Updates the categoriesSelected based on the new selection.
+    Updates the categoriesSelectedX based on the new selection.
     This event is passed to the CategoryOptions component.
   */
-  handleCategorySelectionChange(event) {
-    this.setState({ categoriesSelected: event }, () => {
-      this.props.onChange([this.state, 'categoriesSelected'])
+  handleCategorySelectionXChange(event) {
+    this.setState({ categoriesSelectedX: event }, () => {
+      this.props.onChange([this.state, 'categoriesSelectedX'])
+    })
+  }
+
+  /* 
+    Updates the categoriesSelectedY based on the new selection.
+    This event is passed to the CategoryOptions component.
+  */
+  handleCategorySelectionYChange(event) {
+    this.setState({ categoriesSelectedY: event }, () => {
+      this.props.onChange([this.state, 'categoriesSelectedY'])
     })
   }
 
@@ -105,6 +120,7 @@ class BarForm extends Component {
     })
   }
 
+  // renders the option to change the stack type
   renderStackType() {
     return (
       <label className="visualization-panel-label">
@@ -187,9 +203,22 @@ class BarForm extends Component {
             We want to reset the component when the axis changes,
             may need to become an increment function
           */
-          key={`${this.state.xAxis}${this.state.yAxis}`}
+          key={`${this.state.xAxis}${this.state.yAxis}` + 'X'}
           className="category-options"
-          onChange={this.handleCategorySelectionChange}
+          onChange={this.handleCategorySelectionXChange}
+          categories={sortCategoryData(
+            this.props.uniqueCategories[this.state.xAxis]
+          )}
+          settings={this.state}
+        />
+        <CategoryOptions
+          /* 
+            We want to reset the component when the axis changes,
+            may need to become an increment function
+          */
+          key={`${this.state.xAxis}${this.state.yAxis}` + 'Y'}
+          className="category-options"
+          onChange={this.handleCategorySelectionYChange}
           categories={sortCategoryData(
             this.props.uniqueCategories[this.state.yAxis]
           )}

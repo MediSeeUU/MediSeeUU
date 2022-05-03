@@ -49,8 +49,8 @@ class SingleVisualization extends Component {
     var currentSetting =
       this.settings.chartSpecificOptions.yAxis ??
       this.settings.chartSpecificOptions.chosenVariable
-    this.settings.chartSpecificOptions.selectAllCategories =
-      this.settings.chartSpecificOptions.categoriesSelected?.length ===
+    this.settings.chartSpecificOptions.selectAllCategoriesY =
+      this.settings.chartSpecificOptions.categoriesSelectedY?.length ===
       this.settings.uniqueCategories[currentSetting].length
 
     this.settings.series = generateSeries(
@@ -99,6 +99,7 @@ class SingleVisualization extends Component {
     const labels_on = this.settings.labels_on
     const id = this.props.id
     const series = this.settings.series
+    console.log(this.settings.chartSpecificOptions.categoriesSelectedX)
 
     switch (chart_type) {
       case 'bar':
@@ -109,11 +110,7 @@ class SingleVisualization extends Component {
             labels={labels_on}
             id={id}
             series={series}
-            categories={
-              this.settings.uniqueCategories[
-                this.settings.chartSpecificOptions.xAxis
-              ]
-            }
+            categories={this.settings.chartSpecificOptions.categoriesSelectedX}
             options={this.settings.chartSpecificOptions}
           />
         )
@@ -126,11 +123,7 @@ class SingleVisualization extends Component {
             labels={labels_on}
             id={id}
             series={series}
-            categories={
-              this.settings.uniqueCategories[
-                this.settings.chartSpecificOptions.xAxis
-              ]
-            }
+            categories={this.settings.chartSpecificOptions.categoriesSelectedX}
             options={this.settings.chartSpecificOptions}
           />
         )
@@ -143,7 +136,7 @@ class SingleVisualization extends Component {
             labels={labels_on}
             id={id}
             series={series}
-            categories={this.settings.chartSpecificOptions.categoriesSelected}
+            categories={this.settings.chartSpecificOptions.categoriesSelectedX}
             options={this.settings.chartSpecificOptions}
           />
         )
@@ -156,7 +149,7 @@ class SingleVisualization extends Component {
             labels={labels_on}
             id={id}
             series={series}
-            categories={this.settings.chartSpecificOptions.categoriesSelected}
+            categories={this.settings.chartSpecificOptions.categoriesSelectedX}
             options={this.settings.chartSpecificOptions}
           />
         )

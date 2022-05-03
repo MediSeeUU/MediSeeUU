@@ -5,7 +5,7 @@
 */
 export default function GenerateHistogramSeries(options, data) {
   let chosenVariable = options.chartSpecificOptions.chosenVariable
-  let chosenCategories = options.chartSpecificOptions.categoriesSelected
+  let chosenCategories = options.chartSpecificOptions.categoriesSelectedX
 
   let HistogramSeries = CreateHistogramSeries(
     data,
