@@ -8,7 +8,7 @@ import {
   cleanup,
   within,
 } from '@testing-library/react'
-import Menu from '../menu'
+import Menu from '../Menu'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')
