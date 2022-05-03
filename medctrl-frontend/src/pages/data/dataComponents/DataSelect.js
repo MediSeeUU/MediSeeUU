@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import Menu from '../Menu/Menu'
-import Search from '../Search/Search'
+import Search from '../../../shared/Search/Search'
 import TableView from './TableView'
 import { useData, useColumnSelection } from '../../../shared/contexts/DataContext'
 import updateData from '../Utils/update'

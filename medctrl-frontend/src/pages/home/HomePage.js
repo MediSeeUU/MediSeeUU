@@ -1,6 +1,6 @@
 import './HomePage.css'
 import '../../shared/shared.css'
-import Search from '../data/Search/Search'
+import Search from '../../shared/Search/Search'
 import { useNavigate } from 'react-router-dom'
 
 import uuLogo from '../../images/uu-logo.svg'
