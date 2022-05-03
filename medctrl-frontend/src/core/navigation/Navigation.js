@@ -106,7 +106,7 @@ class SideNavigation extends React.Component {
 
     // returns the navigation bar component, with all the appropriate elements
     return (
-      <OutsideClickHandler onOutsideClick={this.close}>
+      <OutsideClickHandler onOutsideClick={this.close.bind(this)}>
         <nav className={'side-nav ' + this.getState()}>
           <Toggle expanded={this.state.expanded} parent={this} />
 
@@ -120,12 +120,6 @@ class SideNavigation extends React.Component {
             name="Info"
             image="bx bx-info-circle"
             dest="/info"
-            parent={this}
-          />
-          <NavLink
-            name="Search"
-            image="bx bx-search"
-            dest="/search"
             parent={this}
           />
           <NavLink name="Data" image="bx bx-data" dest="/data" parent={this} />

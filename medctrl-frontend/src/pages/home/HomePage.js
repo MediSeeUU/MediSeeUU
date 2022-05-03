@@ -1,13 +1,17 @@
 import './HomePage.css'
 import '../../shared/shared.css'
+import Search from '../../shared/Search/Search'
+import { useNavigate } from 'react-router-dom'
 
 import uuLogo from '../../images/uu-logo.svg'
 import mebLogo from '../../images/meb-logo.svg'
 
 function HomePage() {
+  const navigate = useNavigate()
   return (
     // Homepage components, contains article containers
     <div className="med_home_content">
+      <Search update={(query) => navigate('/data?q=' + query)} />
       <div className="med-content-container">
         <input
           type="text"

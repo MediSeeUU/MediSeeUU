@@ -1,6 +1,5 @@
 import HomePage from '../../pages/home/HomePage'
 import InfoPage from '../../pages/info/InfoPage'
-import SearchPage from '../../pages/search/SearchPage'
 import DataPage from '../../pages/data/DataPage'
 import MessagesPage from '../../pages/messages/MessagesPage'
 import SettingsPage from '../../pages/settings/SettingsPage'
@@ -17,7 +16,6 @@ function AllRoutes() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/info" element={<InfoPage />} />
-      <Route path="/search" element={<SearchPage />} />
       <Route path="/data" element={<DataPage />} />
       <Route
         path="/visualizations"
