@@ -108,7 +108,8 @@ class TestDataPage(WebDriverSetup):
       columns.append(column)
     assert self.data_page.amount_of_columns(0) == self.data_page.default_columns + adds
     assert self.data_page.amount_of_columns(1) == self.data_page.default_columns + adds
-    removes = random.randint(1, 5)
+    removes = random.randint(1, adds)
+
     for i in range(removes):
       self.data_page.remove_column(0)
     assert self.data_page.amount_of_columns(0) == self.data_page.default_columns + adds - removes
