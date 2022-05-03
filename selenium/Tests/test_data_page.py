@@ -2,6 +2,7 @@ import sys
 import os
 import unittest
 import random
+import time
 
 base_dir = os.path.dirname(__file__) or '.'
 sys.path.append("..")
@@ -111,6 +112,7 @@ class TestDataPage(WebDriverSetup):
     removes = random.randint(1, 5)
     for i in range(removes):
       self.data_page.remove_column(0)
+      time.sleep(1)
     assert self.data_page.amount_of_columns(0) == self.data_page.default_columns + adds - removes
     assert self.data_page.amount_of_columns(1) == self.data_page.default_columns + adds - removes
   
