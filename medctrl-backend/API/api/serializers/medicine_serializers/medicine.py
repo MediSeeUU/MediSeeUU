@@ -1,11 +1,6 @@
 from rest_framework import serializers
 
 from api.models.medicine_models import Medicine
-from api.serializers.medicine_serializers import (
-    LegalBasisSerializer,
-    AtcCodeSerializer,
-    LegalScopeSerializer,
-)
 
 
 class MedicineSerializer(serializers.ModelSerializer):
