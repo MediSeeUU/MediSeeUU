@@ -1,6 +1,6 @@
-import searchData from "./search"
-import filterData from "./filter"
-import sortData from "./sorting"
+import searchData from './search'
+import filterData from './filter'
+import sortData from './sorting'
 
 // Update the data by applying search, filters and sorters
 function updateData(data, search, filters, sorters, columns) {

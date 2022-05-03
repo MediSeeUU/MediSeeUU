@@ -1,7 +1,7 @@
 import './Search.css'
 import React, { useState } from 'react'
 
-function Search({update, initial}) {
+function Search({ update, initial }) {
   // We need a separate state for saving the query given in the textbox
   const [query, setQuery] = useState(initial)
 

@@ -2,10 +2,13 @@ import React, { useState, useRef } from 'react'
 import Menu from '../Menu/Menu'
 import Search from '../../../shared/Search/Search'
 import TableView from './TableView'
-import { useData, useColumnSelection } from '../../../shared/contexts/DataContext'
+import {
+  useData,
+  useColumnSelection,
+} from '../../../shared/contexts/DataContext'
 import updateData from '../Utils/update'
 
-function DataSelect({initialSearch}) {
+function DataSelect({ initialSearch }) {
   const [resultsPerPage, setResultsPerPage] = useState(25) // Amount of database hits shown per page
   const [loadedPage, setPage] = useState(1) // Current page
   const [search, setSearch] = useState(initialSearch) // Current search
@@ -16,16 +19,22 @@ function DataSelect({initialSearch}) {
   let columns = useColumnSelection()
   let columnsRef = useRef(columns)
   let queryRef = useRef(search)
-  
+
   // We update the columns if a new search is initialized
   if (search !== queryRef.current) {
     columnsRef.current = columns
     queryRef.current = search
   }
-  
+
   // Current data
   const allData = useData()
-  const updatedData = updateData(allData, search, filters, sorters, columnsRef.current)
+  const updatedData = updateData(
+    allData,
+    search,
+    filters,
+    sorters,
+    columnsRef.current
+  )
 
   // List of variable options
   const list =

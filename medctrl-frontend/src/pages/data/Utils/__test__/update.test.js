@@ -10,7 +10,13 @@ let columnSelection = [
 ]
 
 test('applying search, filters and sorters', () => {
-  const updatedData = updateData(DummyData, 'cell', [{ selected: 'EUNoShort', input: ['10', '8'] }], [{ selected: 'Rapporteur', order: 'desc' }], columnSelection)
+  const updatedData = updateData(
+    DummyData,
+    'cell',
+    [{ selected: 'EUNoShort', input: ['10', '8'] }],
+    [{ selected: 'Rapporteur', order: 'desc' }],
+    columnSelection
+  )
   updatedData.forEach((element) => {
     // Test search
     const vals = Object.values(element)
@@ -25,6 +31,8 @@ test('applying search, filters and sorters', () => {
     expect(element.EUNoShort.toString()).toMatch(/(10|8)/i)
   })
   // Test sort
-  const sortedData = updatedData.sort((a, b) => b.Rapporteur.localeCompare(a.Rapporteur))
+  const sortedData = updatedData.sort((a, b) =>
+    b.Rapporteur.localeCompare(a.Rapporteur)
+  )
   expect(updatedData).toEqual(sortedData)
 })

@@ -1,11 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  render,
-  fireEvent,
-  screen,
-  within,
-} from '@testing-library/react'
+import { render, fireEvent, screen, within } from '@testing-library/react'
 import DataPage from '../DataPage.js'
 import DataSelect from '../dataComponents/DataSelect'
 import SelectedData from '../dataComponents/SelectedData'

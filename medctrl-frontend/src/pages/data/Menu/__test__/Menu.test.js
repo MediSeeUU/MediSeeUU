@@ -25,7 +25,14 @@ test('opens menu after clicking button', () => {
 test('apply button calls update function', () => {
   const update1 = jest.fn()
   const update2 = jest.fn()
-  render(<Menu filters={[]} sorters={[]} updateFilters={update1} updateSorters={update2} />)
+  render(
+    <Menu
+      filters={[]}
+      sorters={[]}
+      updateFilters={update1}
+      updateSorters={update2}
+    />
+  )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   expect(update1).not.toHaveBeenCalled()
   expect(update2).not.toHaveBeenCalled()
@@ -37,7 +44,14 @@ test('apply button calls update function', () => {
 test('clear button calls update function', () => {
   const update1 = jest.fn()
   const update2 = jest.fn()
-  render(<Menu filters={[]} sorters={[]} updateFilters={update1} updateSorters={update2} />)
+  render(
+    <Menu
+      filters={[]}
+      sorters={[]}
+      updateFilters={update1}
+      updateSorters={update2}
+    />
+  )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   expect(update1).not.toHaveBeenCalled()
   expect(update2).not.toHaveBeenCalled()
@@ -47,9 +61,18 @@ test('clear button calls update function', () => {
 })
 
 test('clear button resets filters and sorters', () => {
-  const update1 = (filters) => expect(filters).toEqual([{ selected: '', input: [''] }])
-  const update2 = (sorters) => expect(sorters).toEqual([{ selected: '', order: 'asc' }])
-  render(<Menu filters={[]} sorters={[]} updateFilters={update1} updateSorters={update2} />)
+  const update1 = (filters) =>
+    expect(filters).toEqual([{ selected: '', input: [''] }])
+  const update2 = (sorters) =>
+    expect(sorters).toEqual([{ selected: '', order: 'asc' }])
+  render(
+    <Menu
+      filters={[]}
+      sorters={[]}
+      updateFilters={update1}
+      updateSorters={update2}
+    />
+  )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   fireEvent.click(screen.getByText(/Clear/i))
 })
@@ -134,10 +157,19 @@ test('remove filter', () => {
   expect(screen.queryAllByTestId('filter-select')).toHaveLength(1)
 })
 
-const list = [<option value='dummy1' key={1}>hi</option>, <option value='dummy2' key={2}>there</option>]
+const list = [
+  <option value="dummy1" key={1}>
+    hi
+  </option>,
+  <option value="dummy2" key={2}>
+    there
+  </option>,
+]
 
 test('saved filters in state', () => {
-  render(<Menu filters={[{ selected: '', input: [''] }]} sorters={[]} list={list} />)
+  render(
+    <Menu filters={[{ selected: '', input: [''] }]} sorters={[]} list={list} />
+  )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   fireEvent.click(screen.getByText(/Add Filter/i))
 
@@ -163,7 +195,9 @@ test('saved filters in state', () => {
 })
 
 test('saved sorters in state', () => {
-  render(<Menu filters={[]} sorters={[{ selected: '', order: 'asc' }]} list={list} />)
+  render(
+    <Menu filters={[]} sorters={[{ selected: '', order: 'asc' }]} list={list} />
+  )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   fireEvent.click(screen.getByText(/Add Sorting option +/i))
 

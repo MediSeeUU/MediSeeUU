@@ -16,7 +16,7 @@ test('renders without crashing', () => {
 })
 
 test('initial query is set in textbox', () => {
-  render(<Search initial='pfizer' />)
+  render(<Search initial="pfizer" />)
   const input = screen.getByRole('textbox')
   expect(input.value).toBe('pfizer')
 })
@@ -27,7 +27,7 @@ test('update is called on enter press', () => {
   const input = screen.getByRole('textbox')
   fireEvent.focusIn(input)
   fireEvent.change(input, { target: { value: 'pfizer' } })
-  fireEvent.keyDown(input, { key: "Enter", code: 13, charCode: 13 })
+  fireEvent.keyDown(input, { key: 'Enter', code: 13, charCode: 13 })
   expect(update).toHaveBeenCalled()
 })
 
@@ -37,7 +37,7 @@ test('update is not called on other key presses', () => {
   const input = screen.getByRole('textbox')
   fireEvent.focusIn(input)
   fireEvent.change(input, { target: { value: 'pfizer' } })
-  fireEvent.keyDown(input, { key: "Space", code: "Space" })
+  fireEvent.keyDown(input, { key: 'Space', code: 'Space' })
   expect(update).not.toHaveBeenCalled()
 })
 
@@ -60,7 +60,7 @@ test('update returns right query on enter press', () => {
   const input = screen.getByRole('textbox')
   fireEvent.focusIn(input)
   fireEvent.change(input, { target: { value: 'pfizer' } })
-  fireEvent.keyDown(input, { key: "Enter", code: 13, charCode: 13 })
+  fireEvent.keyDown(input, { key: 'Enter', code: 13, charCode: 13 })
 })
 
 test('update returns right query on button click', () => {
