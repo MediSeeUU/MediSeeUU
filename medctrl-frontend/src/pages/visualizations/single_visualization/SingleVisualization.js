@@ -27,12 +27,14 @@ class SingleVisualization extends Component {
 
     // state of the visualization
     this.settings = this.props.settings
+    this.state = { title: '' }
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
     this.handlePNGExport = this.handlePNGExport.bind(this)
     this.handleSVGExport = this.handleSVGExport.bind(this)
     this.handleRemoval = this.handleRemoval.bind(this)
+    this.handleNameChange = this.handleNameChange.bind(this)
   }
 
   // EVENT HANDLERS:
@@ -81,6 +83,10 @@ class SingleVisualization extends Component {
   // handles the removal of this visualization
   handleRemoval(event) {
     this.props.onRemoval(this.props.settings.id, event)
+  }
+
+  handleNameChange(event) {
+    this.setState({ title: event.target.value })
   }
 
   // GENERAL FUNCTIONS:
@@ -162,10 +168,6 @@ class SingleVisualization extends Component {
     }
   }
 
-  handleNameChange(event) {
-    this.settings.chartName = event.target.value
-  }
-
   // RENDERER:
 
   // Renders a single visualization,
@@ -193,8 +195,8 @@ class SingleVisualization extends Component {
                   className="graph-name med-text-input"
                   placeholder={'my ' + this.settings.chart_type + ' chart'}
                   autoComplete="off"
-                  value={this.settings.chartName}
-                  onChange={this.handleNameChange.bind(this)}
+                  value={this.state.chartName}
+                  onChange={this.handleNameChange}
                 />
               </Row>
               <Row>{this.createChart(this.settings.chart_type)}</Row>

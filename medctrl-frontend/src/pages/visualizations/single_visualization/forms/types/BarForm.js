@@ -105,6 +105,20 @@ class BarForm extends Component {
     })
   }
 
+  renderStackType() {
+    return (
+      <label className="visualization-panel-label">
+        <input
+          type="checkbox"
+          name="stackType"
+          checked={this.state.stackType}
+          onChange={this.handleChange}
+        />
+        &nbsp;&nbsp;Stack fully
+      </label>
+    )
+  }
+
   // RENDERER:
 
   // renders the bar form part of the form
@@ -136,15 +150,7 @@ class BarForm extends Component {
           />
           &nbsp;&nbsp;Stacked
         </label>
-        <label className="visualization-panel-label">
-          <input
-            type="checkbox"
-            name="stackType"
-            checked={this.state.stackType}
-            onChange={this.handleChange}
-          />
-          &nbsp;&nbsp;Stack fully
-        </label>
+        {this.state.stacked && this.renderStackType()}
         <label className="visualization-panel-label">
           <input
             type="checkbox"
