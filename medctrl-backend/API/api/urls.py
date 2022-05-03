@@ -10,7 +10,7 @@ from api.views.medicine_views import (
     AtcCodeViewSet,
 )
 from api.views.account_views import RegisterAPI, LoginAPI
-
+from api.scraper.router import url_patterns as scraper_routes
 
 router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
@@ -35,4 +35,5 @@ urlpatterns = [
             ]
         ),
     ),
+    path("scraper/", include(scraper_routes)),
 ]
