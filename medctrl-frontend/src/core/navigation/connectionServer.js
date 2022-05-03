@@ -3,9 +3,9 @@ async function handleLogOut() {
   let Token = sessionStorage.getItem('token')
   let res = 'Token ' + Token
 
-  // call to server : /api/account/login/
+  // call to server : /api/account/login/ `${process.env.PUBLIC_URL}/api/account/logout/`
   const response = await fetch(
-    `${process.env.PUBLIC_URL}/api/account/logout/`,
+    "http://127.0.0.1:8000/account/logout/",
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: res },

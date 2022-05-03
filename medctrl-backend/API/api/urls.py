@@ -2,22 +2,14 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from knox import views as knox_views
 
-from api.views.medicine_views import (
-    MedicineViewSet,
-    ProcedureViewSet,
-    LegalBasisViewSet,
-    LegalScopeViewSet,
-    AtcCodeViewSet,
-)
+from api.views.medicine_views import ProcedureViewSet
 from api.views.account_views import RegisterAPI, LoginAPI
+from api.views.access_level_views import publicAccess
 
 
 router = DefaultRouter()
-router.register(r"medicine", MedicineViewSet, basename="medicine")
-router.register(r"legalbasis", LegalBasisViewSet, basename="legalbasis")
-router.register(r"legalscope", LegalScopeViewSet, basename="legalscope")
-router.register(r"atccode", AtcCodeViewSet, basename="atccode")
 router.register(r"procedures", ProcedureViewSet, basename="procedures")
+#router.register(r"public", publicAccess , basename="public")
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -35,4 +27,6 @@ urlpatterns = [
             ]
         ),
     ),
+
+    path("public/", publicAccess , name="public"), #path to all medicine temporaruy, please do not change
 ]
