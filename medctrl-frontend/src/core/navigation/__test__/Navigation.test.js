@@ -6,7 +6,6 @@ import SideNavigation from '../Navigation'
 import { BrowserRouter } from 'react-router-dom'
 import AccountPage from '../../../pages/account/AccountPage'
 import MessagesPage from '../../../pages/messages/MessagesPage'
-import SearchPage from '../../../pages/search/SearchPage'
 import { DataContext } from '../../../shared/contexts/DataContext'
 import allData from '../../../testJson/data.json'
 import Table from '../../../shared/table/table'
@@ -60,48 +59,6 @@ test('render messages page without crashing', () => {
       <MessagesPage />
     </BrowserRouter>,
     root
-  )
-})
-
-test('render search page without crashing', () => {
-  const data = allData
-
-  let checkedState = Object.assign(
-    {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
-  )
-  const setCheckedState = (newState) => {
-    checkedState = newState
-  }
-
-  var columnSelection = [
-    'EUNoShort',
-    'BrandName',
-    'MAH',
-    'DecisionDate',
-    'ATCNameL2',
-    'ApplicationNo',
-    'ApplicationNo',
-  ]
-
-  const setColumnSelection = (newColumns) => {
-    columnSelection = newColumns
-  }
-
-  render(
-    <BrowserRouter>
-      <DataContext.Provider value={allData}>
-        <ColumnSelectionContext.Provider value={columnSelection}>
-          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-            <CheckedContext.Provider value={checkedState}>
-              <CheckedContextUpdate.Provider value={setCheckedState}>
-                <SearchPage />
-              </CheckedContextUpdate.Provider>
-            </CheckedContext.Provider>
-          </ColumnSelectionContextUpdate.Provider>
-        </ColumnSelectionContext.Provider>
-      </DataContext.Provider>
-    </BrowserRouter>
   )
 })
 
@@ -173,51 +130,6 @@ test('text input in searchbar on searchpage should trigger search functionality'
   const searchbarComponent = screen.getByRole('textbox')
   fireEvent.change(searchbarComponent, { target: { value: '77' } })
   expect(test).toHaveBeenCalled()
-})
-
-test('text input in searchbar should return correct search results', () => {
-  const data = allData
-
-  let checkedState = Object.assign(
-    {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
-  )
-  const setCheckedState = (newState) => {
-    checkedState = newState
-  }
-
-  var columnSelection = [
-    'EUNoShort',
-    'BrandName',
-    'MAH',
-    'DecisionDate',
-    'ATCNameL2',
-    'ApplicationNo',
-    'ApplicationNo',
-  ]
-
-  const setColumnSelection = (newColumns) => {
-    columnSelection = newColumns
-  }
-
-  render(
-    <BrowserRouter>
-      <DataContext.Provider value={allData}>
-        <ColumnSelectionContext.Provider value={columnSelection}>
-          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-            <CheckedContext.Provider value={checkedState}>
-              <CheckedContextUpdate.Provider value={setCheckedState}>
-                <SearchPage />
-              </CheckedContextUpdate.Provider>
-            </CheckedContext.Provider>
-          </ColumnSelectionContextUpdate.Provider>
-        </ColumnSelectionContext.Provider>
-      </DataContext.Provider>
-    </BrowserRouter>
-  )
-  const searchbarComponent = screen.getByRole('textbox')
-  fireEvent.change(searchbarComponent, { target: { value: '77' } })
-  //no expect because search functionality is not yet implemented
 })
 
 test('render settingspage without crashing', () => {
