@@ -48,11 +48,11 @@ class Table():
   
   def add_column(self, table):
     add = self.driver.find_elements(*TableLocators.ADD_COLUMN)[table]
-    self.driver.execute_script("arguments[0].click();", add)
+    add.click()
   
   def remove_column(self, table):
     remove = self.driver.find_elements(*TableLocators.REMOVE_COLUMN)[table]
-    self.driver.execute_script("arguments[0].click();", remove)
+    remove.click()
   
   def column_options(self):
     tables = self.driver.find_elements(*TableLocators.TABLE)
