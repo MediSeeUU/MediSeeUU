@@ -1,12 +1,16 @@
 from Pages.base_page import BasePage
 from Pages.shared.table import Table
+from Pages.shared.search import Search
 from Resources.locators import DataPageLocators, TableLocators
 from selenium.webdriver.support.ui import Select
 
-class DataPage(BasePage, Table):
+class DataPage(BasePage, Table, Search):
   def __init__(self, driver):
     super().__init__(driver)
     self.go_data()
+
+    self.default_rows = self.amount_of_rows(0)
+    self.default_columns = self.amount_of_columns(0)
   
   def current_table_page(self, table):
     return self.driver.find_elements(*DataPageLocators.SELECTED_PAGE)[table].text
@@ -28,12 +32,12 @@ class DataPage(BasePage, Table):
     self.driver.execute_script("arguments[0].click();", selects[id])
   
   def change_amount_of_results(self, value):
-    self.results = self.driver.find_element(*DataPageLocators.RESULTS_PER_PAGE)
-    self.results.send_keys(value)
+    results = self.driver.find_element(*DataPageLocators.RESULTS_PER_PAGE)
+    results.send_keys(value)
   
   def open_menu(self):
-    self.table_buttons = self.driver.find_elements(*DataPageLocators.BUTTON)
-    self.table_buttons[0].click()
+    table_buttons = self.driver.find_elements(*DataPageLocators.BUTTON)
+    table_buttons[1].click()
   
   def add_filter(self):
     add = self.driver.find_element(*DataPageLocators.MenuLocators.ADD_FILTER)

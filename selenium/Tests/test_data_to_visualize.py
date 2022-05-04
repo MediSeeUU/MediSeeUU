@@ -17,6 +17,7 @@ class TestDataToVisualize(WebDriverSetup):
   # check if the right countries are listed in the visualize page
   def test_categories(self):
     data_page = DataPage(self.driver)
+    data_page.select_all()
     data_page.change_amount_of_results(300)
     data_page.change_column(0, 1, "Rapporteur")
     countries = []
