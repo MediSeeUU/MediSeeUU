@@ -14,7 +14,7 @@ class ProcedureSerializer(serializers.ModelSerializer):
         fields = ('decisiondate', )
 
 class MedicineSerializer(serializers.ModelSerializer):
-    authorisation = AuthorisationSerializer()
+    authorisation = AuthorisationSerializer(read_only=True)
     procedure = serializers.SerializerMethodField()
 
     class Meta:
