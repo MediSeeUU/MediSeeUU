@@ -27,7 +27,15 @@ class SingleVisualization extends Component {
 
     // state of the visualization
     this.settings = this.props.settings
-    this.state = { title: '' }
+    this.state = {
+      title:
+        'my ' +
+        this.settings.chart_type +
+        ' chart - ' +
+        this.settings.chartSpecificOptions.xAxis +
+        ' vs ' +
+        this.settings.chartSpecificOptions.yAxis,
+    }
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
@@ -72,12 +80,12 @@ class SingleVisualization extends Component {
 
   // handles the png export
   handlePNGExport(event) {
-    HandlePNGExport(this.props.id, ApexCharts)
+    HandlePNGExport(this.props.id, this.state.title, ApexCharts)
   }
 
   // handles the svg export
   handleSVGExport(event) {
-    HandleSVGExport(this.props.id, ApexCharts)
+    HandleSVGExport(this.props.id, this.state.title, ApexCharts)
   }
 
   // handles the removal of this visualization
@@ -85,6 +93,7 @@ class SingleVisualization extends Component {
     this.props.onRemoval(this.props.settings.id, event)
   }
 
+  // handles changing the title of the visualization
   handleNameChange(event) {
     this.setState({ title: event.target.value })
   }
@@ -99,7 +108,6 @@ class SingleVisualization extends Component {
     const labels_on = this.settings.labels_on
     const id = this.props.id
     const series = this.settings.series
-    console.log(this.settings.chartSpecificOptions.categoriesSelectedX)
 
     switch (chart_type) {
       case 'bar':
@@ -161,6 +169,30 @@ class SingleVisualization extends Component {
     }
   }
 
+  renderTitle() {
+    switch (this.settings.chart_type) {
+      case 'bar':
+        return (
+          <input
+            type="text"
+            id={'graphName' + this.props.id}
+            className="graph-name med-text-input"
+            placeholder={
+              'my ' +
+              this.settings.chart_type +
+              ' chart - ' +
+              this.settings.chartSpecificOptions.xAxis +
+              ' vs ' +
+              this.settings.chartSpecificOptions.yAxis
+            }
+            autoComplete="off"
+            value={this.state.chartName}
+            onChange={this.handleNameChange}
+          />
+        )
+    }
+  }
+
   // RENDERER:
 
   // Renders a single visualization,
@@ -181,17 +213,7 @@ class SingleVisualization extends Component {
               />
             </Col>
             <Col sm={8}>
-              <Row className="visualization-title">
-                <input
-                  type="text"
-                  id={'graphName' + this.props.id}
-                  className="graph-name med-text-input"
-                  placeholder={'my ' + this.settings.chart_type + ' chart'}
-                  autoComplete="off"
-                  value={this.state.chartName}
-                  onChange={this.handleNameChange}
-                />
-              </Row>
+              <Row className="visualization-title">{this.renderTitle()}</Row>
               <Row>{this.createChart(this.settings.chart_type)}</Row>
               <Row>
                 <button
