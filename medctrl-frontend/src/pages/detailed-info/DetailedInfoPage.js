@@ -4,8 +4,13 @@ import DetailGroup from './InfoComponents/DetailGroup'
 import Detail from './InfoComponents/Detail'
 import Procedure from './InfoComponents/Procedure'
 import CustomLink from './InfoComponents/CustomLink'
-import { DataContext, DataProvider } from '../../shared/contexts/DataContext'
+import TimeLine from './InfoComponents/TimeLine'
+
+import { useData } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
+
+import dummyData from './detailed-info-data.json'
+import { useEffect, useState } from 'react'
 
 // the function takes the unique medicine ID number (EUshortNumber) and
 // passes this ID to the detailedPage component, along with the access
@@ -13,82 +18,59 @@ import { useParams } from 'react-router-dom'
 // the medicine data corresponding to the medID number.
 function DetailedInfoPage() {
   const { medID } = useParams()
-
-  return (
-    <DataProvider>
-      <DataContext.Consumer>
-        {(context) => <InfoPage data={context} medIDnumber={medID}></InfoPage>}
-      </DataContext.Consumer>
-    </DataProvider>
-  )
+  return <InfoPage medIDnumber={medID} />
 }
 
 export default DetailedInfoPage
 
 // function based component, which represents the entire detailed information page
-// the loaded data in datacontext is passed via the data tag. The specific medID no.
-// is passed via the me  this is the data which is displayed on
-// the details page.
+// a medicine id number is passed to this component and the specific information
+// related to that medince is displayed
 export function InfoPage(props) {
-  var medIDnr = props.medIDnumber
-  var alldata = props.data
+  const medIDnr = props.medIDnumber
+  const [procData, setProcData] = useState(null)
 
-  var medDataObject
-  var procedureDataPresentFlag = false
+  // all information of all medicines is retrieved and the correct entry
+  // corresponding to the desired medicine is extracted from the array
+  const alldata = useData()
+  let medData = alldata.find(
+    (element) => element.EUNoShort.toString() === medIDnr.toString()
+  )
 
-  //depending on the provided JSONdata (not) containing proceduredata,
-  //use appropriate function to get the medicine data component
-
-  if (alldata[0].hasOwnProperty('procedures')) {
-    medDataObject = alldata.find(
-      (element) => element['info'].EUNoShort.toString() === medIDnr.toString()
-    )
-    procedureDataPresentFlag = true
-  } else {
-    medDataObject = alldata.find(
-      (element) => element['EUNoShort'].toString() === medIDnr.toString()
-    )
-  }
-
-  //if the medIDnumber does not correspond to any medicine in the datacontext,
-  //a static page is displayed
-  if (medDataObject === undefined) {
-    return (
-      <div>
-        <h1
-          className="detailedinfopage-unknown-medID"
-          testid="detailedInfoPageTitle"
-        >
-          Unknown Medicine ID Number
-        </h1>
-      </div>
-    )
-  }
-
-  //place the data corresponding to the specified medIDnumber in the medicine data capsule,
-  //procedures currently are not supported, will be implemented after correct database connection
-  var medicineData
-  if (procedureDataPresentFlag) {
-    medicineData = {
-      info: medDataObject['info'],
-      procedures: medDataObject['procedures'],
+  // all of the procedure data related to the desired medicine is asynchronously
+  // retrieved from the server. the result is stored in a state
+  useEffect(() => {
+    async function fetchProcedureData(medID) {
+      setTimeout(() => {
+        setProcData(dummyData[0].procedures)
+      }, 500)
     }
-  } else {
-    medicineData = { info: medDataObject, procedures: [] }
+    fetchProcedureData(medIDnr)
+  }, [setProcData, medIDnr])
+
+  // if the medIDnumber does not correspond to any medicine in the datacontext,
+  // a static error page is displayed
+  if (medData === undefined) {
+    return (
+      <h1 className="detailedinfopage-unknown-medID">
+        Unknown Medicine ID Number
+      </h1>
+    )
   }
 
   // for each procedure present in the medicine data object, an procedure component
   // is created and added to an array for temporary storage
   let allProcedures = []
-  for (let i = 0; i < medicineData.procedures.length; i++) {
-    allProcedures.push(
-      <Procedure key={i} proc={medicineData.procedures[i]} id={i} />
-    )
+  if (procData !== null) {
+    allProcedures = procData.map((proc) => {
+      return <Procedure proc={proc} key={proc.CommissionProcNumber} />
+    })
   }
 
   // put all of the procedures from the allProcedures array into a content containers,
-  // together with a meaningful title. if there are no procedures to display, the whole
-  // container should not be displayed
+  // together with a meaningful title. The procuedures are also combined into a visual
+  // timeline component, this component is placed in its own content container if
+  // there are no procedures to display, the both containers should not be displayed
   let procedureContrainer = (
     <div className="med-content-container">
       <h1 className="title">Procedure Details</h1>
@@ -97,8 +79,17 @@ export function InfoPage(props) {
     </div>
   )
 
+  let timeLineContainer = (
+    <div className="med-content-container">
+      <h1 className="title">Medicine Timeline</h1>
+      <hr className="med-top-separator" />
+      <TimeLine procs={procData} />
+    </div>
+  )
+
   if (allProcedures.length === 0) {
     procedureContrainer = null
+    timeLineContainer = null
   }
 
   // returns the component which discribes the entire detailed information page
@@ -109,112 +100,78 @@ export function InfoPage(props) {
   return (
     <div>
       <div className="med-content-container">
-        <h1 className="title">
-          {medicineData.info.BrandName} Medicine Details
-        </h1>
+        <h1 className="title">{medData.BrandName} Medicine Details</h1>
         <hr className="med-top-separator" />
 
         <div className="flex-columns">
           <DetailGroup title="General Information">
-            <Detail name="Brand Name" value={medicineData.info.BrandName} />
-            <Detail
-              name="Marketing Authorisation Holder"
-              value={medicineData.info.MAH}
-            />
-            <Detail
-              name="Active Substance"
-              value={medicineData.info.ActiveSubstance}
-            />
-            <Detail
-              name="Decision Date"
-              value={medicineData.info.DecisionDate}
-            />
+            <Detail name="Brand Name" value={medData.BrandName} />
+            <Detail name="Marketing Authorisation Holder" value={medData.MAH} />
+            <Detail name="Active Substance" value={medData.ActiveSubstance} />
+            <Detail name="Decision Date" value={medData.DecisionDate} />
           </DetailGroup>
 
           <DetailGroup title="Identifying Information">
-            <Detail
-              name="Application Number"
-              value={medicineData.info.ApplicationNo}
-            />
-            <Detail name="EU Number" value={medicineData.info.EUNumber} />
-            <Detail
-              name="Short EU Number"
-              value={medicineData.info.EUNoShort}
-            />
+            <Detail name="Application Number" value={medData.ApplicationNo} />
+            <Detail name="EU Number" value={medData.EUNumber} />
+            <Detail name="Short EU Number" value={medData.EUNoShort} />
           </DetailGroup>
 
           <DetailGroup title="Reporting Countries">
-            <Detail
-              name="Primary Reporter"
-              value={medicineData.info.Rapporteur}
-            />
-            <Detail
-              name="Secondary Reporter"
-              value={medicineData.info.CoRapporteur}
-            />
+            <Detail name="Primary Reporter" value={medData.Rapporteur} />
+            <Detail name="Secondary Reporter" value={medData.CoRapporteur} />
           </DetailGroup>
 
           <DetailGroup title="Medicine Designations">
-            <Detail name="ATMP" value={medicineData.info.ATMP} />
+            <Detail name="ATMP" value={medData.ATMP} />
             <Detail
               name="Orphan Designation"
-              value={medicineData.info.OrphanDesignation}
+              value={medData.OrphanDesignation}
             />
-            <Detail
-              name="NAS Qualified"
-              value={medicineData.info.NASQualified}
-            />
-            <Detail name="CMA" value={medicineData.info.CMA} />
-            <Detail name="AEC" value={medicineData.info.CMA} />
-            <Detail name="PRIME" value={medicineData.info.PRIME} />
-            <Detail name="NAS" value={medicineData.info.NAS} />
+            <Detail name="NAS Qualified" value={medData.NASQualified} />
+            <Detail name="CMA" value={medData.CMA} />
+            <Detail name="AEC" value={medData.CMA} />
+            <Detail name="PRIME" value={medData.PRIME} />
+            <Detail name="NAS" value={medData.NAS} />
           </DetailGroup>
 
           <DetailGroup title="ATC Code Information">
-            <Detail
-              name="ATC Code Level 1"
-              value={medicineData.info.ATCCodeL1}
-            />
-            <Detail
-              name="ATC Code Level 2"
-              value={medicineData.info.ATCCodeL2}
-            />
-            <Detail
-              name="ATC Name Level 2"
-              value={medicineData.info.ATCNameL2}
-            />
+            <Detail name="ATC Code Level 1" value={medData.ATCCodeL1} />
+            <Detail name="ATC Code Level 2" value={medData.ATCCodeL2} />
+            <Detail name="ATC Name Level 2" value={medData.ATCNameL2} />
           </DetailGroup>
 
           <DetailGroup title="Legal Information">
-            <Detail name="Legal Scope" value={medicineData.info.LegalSCope} />
-            <Detail name="Legal Type" value={medicineData.info.LegalType} />
+            <Detail name="Legal Scope" value={medData.LegalSCope} />
+            <Detail name="Legal Type" value={medData.LegalType} />
           </DetailGroup>
 
           <DetailGroup title="Authorisation Timing">
             <Detail
               name="Accelerated Granted"
-              value={medicineData.info.AcceleratedGranted}
+              value={medData.AcceleratedGranted}
             />
             <Detail
               name="Accelerated Executed"
-              value={medicineData.info.AcceleratedExecuted}
+              value={medData.AcceleratedExecuted}
             />
             <Detail
               name="Active Time Elapsed (days)"
-              value={medicineData.info.ActiveTimeElapsed}
+              value={medData.ActiveTimeElapsed}
             />
             <Detail
               name="Clock Stop Elapsed (days)"
-              value={medicineData.info.ClockStopElapsed}
+              value={medData.ClockStopElapsed}
             />
             <Detail
               name="Total Time Elapsed (days)"
-              value={medicineData.info.TotalTimeElapsed}
+              value={medData.TotalTimeElapsed}
             />
           </DetailGroup>
         </div>
       </div>
 
+      {timeLineContainer}
       {procedureContrainer}
 
       <div className="med-content-container">

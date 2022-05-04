@@ -14,7 +14,7 @@ function Procedure(props) {
   let decisionURL = props.proc.DecisionURL
 
   return (
-    <div className="procedure" key={'proc' + props.id}>
+    <div className="procedure">
       <div className="procedure-content">
         <ProcedureDetail
           name="Decision Date"
