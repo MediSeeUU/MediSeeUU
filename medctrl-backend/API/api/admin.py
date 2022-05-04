@@ -155,7 +155,7 @@ class ProcedureResource(resources.ModelResource):
         """
 
         model = Procedure
-        import_id_fields = ("eunumber", "procedurecount")
+        import_id_fields = ("commisionnumber",)
 
 
 class ProcedureAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
@@ -167,6 +167,7 @@ class ProcedureAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
     list = (
         "eunumber",
         "procedurecount",
+        "commisionnumber",
         "emanumber",
         "proceduredate",
         "proceduretype",
