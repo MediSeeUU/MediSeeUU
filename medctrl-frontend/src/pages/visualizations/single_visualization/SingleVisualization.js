@@ -109,7 +109,6 @@ class SingleVisualization extends Component {
   createChart(chart_type) {
     const key = `${this.settings.changeName} 
 			              ${this.settings.chartSpecificOptions[this.settings.changeName]}`
-    console.log(this.settings.changeName)
     const legend_on = this.settings.legend_on
     const labels_on = this.settings.labels_on
     const id = this.props.id
@@ -175,26 +174,40 @@ class SingleVisualization extends Component {
     }
   }
 
-  renderTitle() {
+  renderTitlePlaceHolder() {
+    const chartType = 'my ' + this.settings.chart_type
     switch (this.settings.chart_type) {
       case 'bar':
         return (
-          <input
-            type="text"
-            id={'graphName' + this.props.id}
-            className="graph-name med-text-input"
-            placeholder={
-              'my ' +
-              this.settings.chart_type +
-              ' chart - ' +
-              this.settings.chartSpecificOptions.xAxis +
-              ' vs ' +
-              this.settings.chartSpecificOptions.yAxis
-            }
-            autoComplete="off"
-            value={this.state.chartName}
-            onChange={this.handleNameChange}
-          />
+          chartType +
+          ' - ' +
+          this.settings.chartSpecificOptions.xAxis +
+          ' vs ' +
+          this.settings.chartSpecificOptions.yAxis
+        )
+
+      case 'line':
+        return (
+          chartType +
+          ' - ' +
+          this.settings.chartSpecificOptions.xAxis +
+          ' vs ' +
+          this.settings.chartSpecificOptions.yAxis
+        )
+
+      case 'pie':
+        return (
+          chartType + ' - ' + this.settings.chartSpecificOptions.chosenVariable
+        )
+
+      case 'histogram':
+        return (
+          chartType + ' - ' + this.settings.chartSpecificOptions.chosenVariable
+        )
+
+      default:
+        throw Error(
+          'visualization settings incorrect settings: {' + this.settings + '}'
         )
     }
   }
@@ -219,7 +232,17 @@ class SingleVisualization extends Component {
               />
             </Col>
             <Col sm={8}>
-              <Row className="visualization-title">{this.renderTitle()}</Row>
+              <Row>
+                <input
+                  type="text"
+                  id={'graphName' + this.props.id}
+                  className="graph-name med-text-input"
+                  placeholder={this.renderTitlePlaceHolder()}
+                  autoComplete="off"
+                  value={this.state.chartName}
+                  onChange={this.handleNameChange}
+                />
+              </Row>
               <Row>{this.createChart(this.settings.chart_type)}</Row>
               <Row>
                 <button
