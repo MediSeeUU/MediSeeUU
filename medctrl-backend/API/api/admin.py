@@ -362,7 +362,7 @@ class HistoryprimeResource(resources.ModelResource):
         model = Historyprime
         import_id_fields = (
             "eunumber",
-            "",
+            "primedate",
         )
 
 
