@@ -53,6 +53,12 @@ class BarChart extends Component {
         noData: {
           text: 'select the categories to be displayed',
         },
+        grid: {
+          padding: {
+            //right: 0,
+            //left: 30
+          },
+        },
       },
       series: this.props.series,
     }

@@ -91,7 +91,7 @@ class HistogramForm extends Component {
   */
   handleCategorySelectionChange(event) {
     this.setState({ categoriesSelectedX: event }, () => {
-      this.props.onChange([this.state, 'categoriesSelected'])
+      this.props.onChange([this.state, 'categoriesSelectedX'])
     })
   }
 

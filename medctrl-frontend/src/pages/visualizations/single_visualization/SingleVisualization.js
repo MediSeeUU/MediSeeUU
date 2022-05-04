@@ -61,10 +61,15 @@ class SingleVisualization extends Component {
       this.settings.chartSpecificOptions.categoriesSelectedY?.length ===
       this.settings.uniqueCategories[currentSetting].length
 
+    this.settings.chartSpecificOptions.selectAllCategoriesX =
+      this.settings.chartSpecificOptions.categoriesSelectedX?.length ===
+      this.settings.uniqueCategories[currentSetting].length
+
     this.settings.series = generateSeries(
       this.settings.chart_type,
       this.settings
     )
+
     this.props.onFormChangeFunc(this.settings)
 
     /*
@@ -104,6 +109,7 @@ class SingleVisualization extends Component {
   createChart(chart_type) {
     const key = `${this.settings.changeName} 
 			              ${this.settings.chartSpecificOptions[this.settings.changeName]}`
+    console.log(this.settings.changeName)
     const legend_on = this.settings.legend_on
     const labels_on = this.settings.labels_on
     const id = this.props.id
@@ -251,10 +257,10 @@ class SingleVisualization extends Component {
 export function generateSeries(chartType, options) {
   switch (chartType) {
     case 'bar':
-      return GenerateBarSeries(options, options.uniqueCategories, options.data)
+      return GenerateBarSeries(options, options.data)
 
     case 'line':
-      return GenerateLineSeries(options, options.uniqueCategories, options.data)
+      return GenerateLineSeries(options, options.data)
 
     case 'pie':
       return GeneratePieSeries(options, options.data)

@@ -5,22 +5,30 @@ import sortCategoryData from '../utils/SortCategoryData'
   keep in mind that the index of a serie corresponds with the index of the 
   'xaxis: {categories}' option!  
 */
-export default function GenerateLineSeries(options, allCategories, data) {
-  console.log(options.chartSpecificOptions.categoriesSelectedY)
+export default function GenerateLineSeries(options, data) {
+  if (options.chartSpecificOptions.categoriesSelectedX.length == 0) {
+    return []
+  }
   let xAxis = options.chartSpecificOptions.xAxis
   let yAxis = options.chartSpecificOptions.yAxis
+  let categoriesSelectedX = sortCategoryData(
+    options.chartSpecificOptions.categoriesSelectedX
+  )
   let categoriesSelectedY = options.chartSpecificOptions.categoriesSelectedY
-  let sortedxAxis = sortCategoryData(allCategories[xAxis])
 
   let dict = PollChosenVariable(
     xAxis,
     yAxis,
-    sortedxAxis,
+    categoriesSelectedX,
     categoriesSelectedY,
     data
   )
 
-  let series = CreateSelectedSeries(dict, categoriesSelectedY, sortedxAxis)
+  let series = CreateSelectedSeries(
+    dict,
+    categoriesSelectedY,
+    categoriesSelectedX
+  )
 
   let seriesFormatted = ToSeriesFormat(series)
 
@@ -46,7 +54,10 @@ function PollChosenVariable(x_axis, y_axis, categories_x, categories_y, data) {
   // going through all data entries
   data.forEach((element) => {
     // only if the value of the y variable is one of the selecte categories
-    if (categories_y.includes(element[y_axis])) {
+    if (
+      categories_y.includes(element[y_axis]) &&
+      categories_x.includes(element[x_axis])
+    ) {
       if (dict[element[x_axis]][element[y_axis]] === undefined) {
         dict[element[x_axis]][element[y_axis]] = 1
       } else {
