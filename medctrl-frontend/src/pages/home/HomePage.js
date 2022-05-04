@@ -11,17 +11,24 @@ function HomePage() {
       <Search update={(query) => navigate('/data?q=' + query)} />
 
       <div className="med-content-container med_content__container">
-        <h1>Tools</h1>
+        <h1>Dashboard</h1>
         <hr className="med-top-separator" />
-        <p>Explanation what can be done on every page</p>
-      </div>
-
-      <div className="med-content-container med_content__container">
-        <h1>Instructions</h1>
-        <hr className="med-top-separator" />
-
+        <p>
+          In this dashboard, tools for looking up, filtering and visualizing
+          data on medicines regulation are available. All functionality is split
+          up into two pages: <i>Data</i> and <i>Visualize</i>.
+        </p>
         <div>
           <h2>Data</h2>
+          <p>Explanation what can be done on every page</p>
+          <p className="institution-info">
+            A step-by-step plan how to use the site (first search and filter
+            data, make visualisations and export)
+          </p>
+        </div>
+        <div>
+          <h2>Visualize</h2>
+          <p>Explanation what can be done on every page</p>
           <p className="institution-info">
             A step-by-step plan how to use the site (first search and filter
             data, make visualisations and export)
