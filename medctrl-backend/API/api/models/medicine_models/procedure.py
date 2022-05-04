@@ -4,14 +4,14 @@ from .lookupproceduretype import Lookupproceduretype
 
 
 class Procedure(models.Model):
-    eunumber = models.ForeignKey(
-        Medicine, models.CASCADE, db_column="EUNumber"
-    )
+    eunumber = models.ForeignKey(Medicine, models.CASCADE, db_column="EUNumber")
     procedurecount = models.IntegerField(db_column="ProcedureCount")
     commisionnumber = models.IntegerField(
         db_column="CommisionNumber", blank=True, primary_key=True
     )
-    emanumber = models.CharField(db_column="EMANumber", max_length=128, blank=True, null=True)
+    emanumber = models.CharField(
+        db_column="EMANumber", max_length=128, blank=True, null=True
+    )
     proceduredate = models.DateField(db_column="ProcedureDate", blank=True, null=True)
     proceduretype = models.ForeignKey(
         Lookupproceduretype,
