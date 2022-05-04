@@ -10,3 +10,4 @@ class Historymah(models.Model):
 
     class Meta:
         db_table = "historymah"
+        unique_together = (("eunumber", "mahdate"),)

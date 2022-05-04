@@ -10,4 +10,4 @@ class Historyprime(models.Model):
 
     class Meta:
         db_table = "historyprime"
-        unique_together = (("eunumber", "prime"),)
+        unique_together = (("eunumber", "primedate"),)

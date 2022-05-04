@@ -20,3 +20,4 @@ class Historyauthorisation(models.Model):
 
     class Meta:
         db_table = "historyauthorisation"
+        unique_together = (("eunumber", "authorisationdate"),)

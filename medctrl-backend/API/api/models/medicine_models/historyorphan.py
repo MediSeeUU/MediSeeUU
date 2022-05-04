@@ -10,3 +10,4 @@ class Historyorphan(models.Model):
 
     class Meta:
         db_table = "historyorphan"
+        unique_together = (("eunumber", "orphandate"),)

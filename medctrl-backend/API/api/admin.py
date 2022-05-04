@@ -230,7 +230,7 @@ class HistorybrandnameResource(resources.ModelResource):
         model = Historybrandname
         import_id_fields = (
             "eunumber",
-            "brandname",
+            "brandnamedate",
         )
 
 
@@ -263,7 +263,7 @@ class HistoryindicationResource(resources.ModelResource):
         model = Historyindication
         import_id_fields = (
             "eunumber",
-            "indication",
+            "indicationdate",
         )
 
 
@@ -296,7 +296,7 @@ class HistorymahResource(resources.ModelResource):
         model = Historymah
         import_id_fields = (
             "eunumber",
-            "mah",
+            "mahdate",
         )
 
 
@@ -329,7 +329,7 @@ class HistoryorphanResource(resources.ModelResource):
         model = Historyorphan
         import_id_fields = (
             "eunumber",
-            "orphan",
+            "orphandate",
         )
 
 

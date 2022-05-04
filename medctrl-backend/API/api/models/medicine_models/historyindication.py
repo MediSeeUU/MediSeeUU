@@ -10,3 +10,4 @@ class Historyindication(models.Model):
 
     class Meta:
         db_table = "historyindication"
+        unique_together = (("eunumber", "indicationdate"),)

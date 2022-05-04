@@ -10,3 +10,4 @@ class Historybrandname(models.Model):
 
     class Meta:
         db_table = "historybrandname"
+        unique_together = (("eunumber", "brandnamedate"),)
