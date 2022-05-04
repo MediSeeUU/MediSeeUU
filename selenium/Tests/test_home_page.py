@@ -23,10 +23,9 @@ class TestHomePage(WebDriverSetup):
 
   # check if the homepage contains 3 articles and that the links are correct
   def test_content(self):
-    assert self.home_page.amount_of_articles() == 3
     assert self.home_page.get_link(0) == "https://cbg-meb.nl/"
     assert self.home_page.get_link(1) == "https://www.ema.europa.eu/"
     assert self.home_page.get_link(2) == "https://ec.europa.eu/health/documents/community-register_en"
-  
+    
 if __name__ == '__main__':
   unittest.main()
