@@ -1,1 +1,1 @@
-from .public_Access import publicAccess
+from .public_Access import PublicAccessViewSet

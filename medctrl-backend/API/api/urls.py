@@ -4,12 +4,12 @@ from knox import views as knox_views
 
 from api.views.medicine_views import ProcedureViewSet
 from api.views.account_views import RegisterAPI, LoginAPI
-from api.views.access_level_views import publicAccess
+from api.views.access_level_views import PublicAccessViewSet
 
 
 router = DefaultRouter()
 router.register(r"procedures", ProcedureViewSet, basename="procedures")
-#router.register(r"public", publicAccess , basename="public")
+router.register(r"public", PublicAccessViewSet , basename="public")
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -28,5 +28,5 @@ urlpatterns = [
         ),
     ),
 
-    path("public/", publicAccess , name="public"), #path to all medicine temporaruy, please do not change
+    #path("public/", publicAccess , name="public"), #path to all medicine temporaruy, please do not change
 ]
