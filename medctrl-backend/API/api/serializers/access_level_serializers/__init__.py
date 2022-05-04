@@ -1,1 +1,1 @@
-from .public_access import MedicineSerializer, AuthorisationSerializer, ProcedureSerializer
+from .public_access import MedicineSerializer
