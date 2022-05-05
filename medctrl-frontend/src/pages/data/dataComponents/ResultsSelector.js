@@ -138,7 +138,11 @@ function ResultsSelector({
   return (
     <div className="bottomOfTableHolder">
       {clearEnabled && (
-        <div className="clear med-primary-text" onClick={removeAllSelected}>
+        <div
+          className="clear med-primary-text"
+          onClick={removeAllSelected}
+          data-testid="clear-all-label"
+        >
           Clear All
           <i className="bx bxs-trash clear-icon"></i>
         </div>
