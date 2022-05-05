@@ -117,7 +117,7 @@ class HistogramForm extends Component {
           </select>
         </label>
         <CategoryOptions
-          //  We want to reset the component when the variable changes,
+          // We want to reset the component when the variable changes,
           // so we need to change the key depending on the axis.
           key={`${this.state.xAxis}`}
           className="category-options"
