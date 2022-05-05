@@ -64,6 +64,7 @@ export function DataProvider({ children }) {
   ])
 
   let uniqueCategories = GetUniqueCategories(allData)
+  
   //visualisation context to save the visualisations when navigating the page
   const [visuals, setVisuals] = useState([
     {
@@ -75,7 +76,6 @@ export function DataProvider({ children }) {
         categoriesSelectedY: uniqueCategories['Rapporteur'],
         categoriesSelectedX: uniqueCategories['DecisionYear'],
       },
-      title: 'my bar - DecisionYear vs Rapporteur',
       legend_on: false,
       labels_on: false,
       data: [],
