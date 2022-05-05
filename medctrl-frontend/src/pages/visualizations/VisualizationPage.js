@@ -105,7 +105,7 @@ function VisualizationPage() {
     setVisuals(currentItems)
   }
 
-  // hangles a change to a visualization
+  // handles a change to a visualization
   function handleChangeFunc(settings) {
     var newVisuals = JSON.parse(JSON.stringify(visuals))
     newVisuals = newVisuals.map((item) => {

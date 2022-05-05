@@ -38,7 +38,7 @@ class VisualizationForm extends Component {
     //  the chart specific values depend on which chart type has been chosen,
     //  so if the chart type changes, this needs to be re-initialized
     if (name === 'chart_type') {
-      this.resetChartSpecifics(value)
+      //this.resetChartSpecifics(value)
     }
     this.setState({ [name]: value }, () => {
       this.props.onChange(this.state)
@@ -64,11 +64,12 @@ class VisualizationForm extends Component {
 
   // re-initializing the state depending on which new chart type has been chosen
   resetChartSpecifics(chartType) {
+    const chartSpecificOptions = this.state.chartSpecificOptions
     switch (chartType) {
       case 'bar': {
         this.setState({
           chartSpecificOptions: {
-            yAxis: 'Rapporteur',
+            yAxis: chartSpecificOptions.yAxis,
             xAxis: 'DecisionYear',
             categoriesSelectedX: this.props.uniqueCategories['DecisionYear'],
             categoriesSelectedY: this.props.uniqueCategories['Rapporteur'],
@@ -105,6 +106,7 @@ class VisualizationForm extends Component {
       case 'histogram': {
         this.setState({
           chartSpecificOptions: {
+            yAxis: chartSpecificOptions.yAxis,
             chosenVariable: 'Rapporteur',
             categoriesSelectedX: this.props.uniqueCategories['Rapporteur'],
           },
