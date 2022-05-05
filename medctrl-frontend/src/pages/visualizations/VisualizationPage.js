@@ -76,8 +76,8 @@ function VisualizationPage() {
         categoriesSelectedX: uniqueCategories['DecisionYear'],
       },
       title: 'my bar - DecisionYear vs Rapporteur',
-      legend_on: false,
-      labels_on: false,
+      legendOn: false,
+      labelsOn: false,
       data: selectedData,
       series: GenerateBarSeries(
         {

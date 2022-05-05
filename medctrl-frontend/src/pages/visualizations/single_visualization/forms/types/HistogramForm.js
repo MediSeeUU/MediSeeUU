@@ -125,6 +125,7 @@ class HistogramForm extends Component {
           categories={sortCategoryData(
             this.props.uniqueCategories[this.state.xAxis]
           )}
+          categoriesSelected={this.state.categoriesSelectedX}
           settings={this.state}
         />
       </React.Fragment>

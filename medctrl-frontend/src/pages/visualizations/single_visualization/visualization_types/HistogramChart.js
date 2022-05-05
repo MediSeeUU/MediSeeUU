@@ -23,7 +23,7 @@ class HistogramChart extends Component {
         },
         yaxis: {
           title: {
-            text: this.props.options.yAxis,
+            text: 'amount',
           },
         },
         dataLabels: {

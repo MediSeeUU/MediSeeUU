@@ -1,11 +1,8 @@
 import sortCategoryData from '../utils/SortCategoryData'
 
-/* 
-  generates series for a bar chart,
-  keep in mind that the index of a serie corresponds with the index of the 
-  'xaxis: {categories}' option!  
-*/
+// Generates series for a bar chart
 export default function GenerateBarSeries(options, data) {
+  // no categories have been selected
   if (options.chartSpecificOptions.categoriesSelectedX.length === 0) {
     return []
   }
@@ -35,14 +32,8 @@ export default function GenerateBarSeries(options, data) {
   return seriesFormatted
 }
 
-/*
-  Expects data to be an array of of objects, 
-	where each object has a value for each variable.
-	It builds a dictionary where the keys are the categories of the x variable,
-	the values themselves are also dictionaries.
-	In this dictionary the keys are categories of the y variable,
-	the values are how often this combination of categories happened.
-*/
+// Counts the number of occurrences a given value of the x variable is paired
+// with a given value of the y variable.
 function PollChosenVariable(x_axis, y_axis, categories_x, categories_y, data) {
   let dict = {}
 
@@ -53,7 +44,7 @@ function PollChosenVariable(x_axis, y_axis, categories_x, categories_y, data) {
 
   // going through all data entries
   data.forEach((element) => {
-    // only if the value of the y variable is one of the selected categories
+    // only if the value of the x/y variable is one of the selected categories
     if (
       categories_y.includes(element[y_axis]) &&
       categories_x.includes(element[x_axis])
@@ -69,11 +60,9 @@ function PollChosenVariable(x_axis, y_axis, categories_x, categories_y, data) {
   return dict
 }
 
-/*
-  Creates an array for each selected category of the y variable.
-  If a y category was never combined with an x category,
-	a 0 will be added, otherwise the amount of occurrences.
-*/
+// Creates an array for each selected category of the y variable.
+// If a y category was never combined with an x category,
+// a 0 will be added, otherwise the amount of occurrences is added.
 function CreateSelectedSeries(dict, categories_y, categories_x) {
   let series = {}
 

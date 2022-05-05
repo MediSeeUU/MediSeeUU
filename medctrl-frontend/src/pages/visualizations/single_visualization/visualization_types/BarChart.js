@@ -6,12 +6,8 @@ class BarChart extends Component {
   constructor(props) {
     super(props)
 
-    let stacktype
-    if (this.props.options.stackType) {
-      stacktype = '100%' // relative stacking
-    } else {
-      stacktype = 'normal' // absolute stacking
-    }
+    // determines whether to stack relatively or absolutely
+    const stacktype = this.props.options.stackType ? '100%' : 'normal'
 
     // initializing the state with data passed from the form
     this.state = {

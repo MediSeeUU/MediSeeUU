@@ -37,9 +37,15 @@ class VisualizationForm extends Component {
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
 
-    this.setState({ [name]: value }, () => {
-      this.props.onChange(this.state)
-    })
+    this.setState(
+      {
+        [name]: value,
+        chartSpecificOptionsName: name,
+      },
+      () => {
+        this.props.onChange(this.state)
+      }
+    )
   }
 
   // Event handler for updating the state,
