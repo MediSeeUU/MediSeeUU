@@ -57,12 +57,14 @@ class SingleVisualization extends Component {
 
   // handles the png export
   handlePNGExport(event) {
-    HandlePNGExport(this.props.id, this.state.title, ApexCharts)
+    const title = this.settings.title ?? this.renderTitlePlaceHolder()
+    HandlePNGExport(this.props.id, title, ApexCharts)
   }
 
   // handles the svg export
   handleSVGExport(event) {
-    HandleSVGExport(this.props.id, this.state.title, ApexCharts)
+    const title = this.settings.title ?? this.renderTitlePlaceHolder()
+    HandleSVGExport(this.props.id, title, ApexCharts)
   }
 
   // handles the removal of this visualization
