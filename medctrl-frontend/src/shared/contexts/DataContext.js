@@ -68,13 +68,14 @@ export function DataProvider({ children }) {
   const [visuals, setVisuals] = useState([
     {
       id: 1,
-      chart_type: 'bar',
+      chartType: 'bar',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
         yAxis: 'Rapporteur',
         categoriesSelectedY: uniqueCategories['Rapporteur'],
         categoriesSelectedX: uniqueCategories['DecisionYear'],
       },
+      title: 'my bar - DecisionYear vs Rapporteur',
       legend_on: false,
       labels_on: false,
       data: [],
