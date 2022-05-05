@@ -2,7 +2,7 @@ from rest_framework import permissions
 from rest_framework.response import Response
 #from api..serializers import UserSerializer
 
-class MainUser(generics.RetrieveAPIView):
+class AuthenticatedUser(generics.RetrieveAPIView):
   permission_classes = [permissions.IsAuthenticated]
   serializer_class = UserSerializer
 
