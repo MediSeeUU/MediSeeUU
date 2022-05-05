@@ -27,6 +27,4 @@ urlpatterns = [
             ]
         ),
     ),
-
-    #path("public/", publicAccess , name="public"), #path to all medicine temporaruy, please do not change
 ]
