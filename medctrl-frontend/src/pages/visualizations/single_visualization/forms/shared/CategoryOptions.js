@@ -17,7 +17,7 @@ class CategoryOptions extends React.Component {
 
   // EVENT HANDLERS:
 
-  // allows user to select all categories
+  // allows user to deselect/select all categories
   handleAllCategorySelection(event) {
     if (this.state.categoriesSelected.length === this.props.categories.length) {
       this.setState({ categoriesSelected: [] }, () => {
@@ -37,14 +37,12 @@ class CategoryOptions extends React.Component {
     const value = target.checked
     const name = target.name
 
-    // If the category has been selected,
-    // add it to the list of selected categories.
-    // The event is only triggered when the value changes,
-    // so we know that it was previously not on the list
     if (value) {
+      // add category to the list
       const newCategories = [...this.state.categoriesSelected, name]
-      this.setState({ categoriesSelected: newCategories })
-      this.props.onChange(newCategories)
+      this.setState({ categoriesSelected: newCategories }, () => {
+        this.props.onChange(newCategories)
+      })
     } else {
       // remove if the category was previously on the list
       if (this.state.categoriesSelected.includes(name)) {

@@ -71,16 +71,6 @@ class SingleVisualization extends Component {
     )
 
     this.props.onFormChangeFunc(this.settings)
-
-    /*
-      Actually updating the parameters of the chart
-      we may want to do this purely using the states,
-      currently not sure if that would be more efficient
-    */
-    ApexCharts.getChartByID(String(this.props.id)).updateOptions({
-      dataLabels: { enabled: event.labels_on },
-      legend: { show: event.legend_on },
-    })
   }
 
   // handles the png export
