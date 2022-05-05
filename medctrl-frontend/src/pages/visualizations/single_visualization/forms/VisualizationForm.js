@@ -128,7 +128,7 @@ class VisualizationForm extends Component {
           <BarForm
             uniqueCategories={this.props.uniqueCategories}
             onChange={this.handleChartSpecificChange}
-            graphSettings={this.state.chartSpecificOptions}
+            chartSpecificOptions={this.state.chartSpecificOptions}
           />
         )
 

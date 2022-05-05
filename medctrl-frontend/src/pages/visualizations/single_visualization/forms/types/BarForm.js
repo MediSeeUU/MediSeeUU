@@ -6,17 +6,13 @@ import CategoryOptions from '../shared/CategoryOptions'
 // the bar part of a form if a bar chart is chosen
 class BarForm extends Component {
   constructor(props) {
-    /* 
-      Receives the categories of all variables,
-      also gets the event handler for passing data back to the general form.
-    */
+    // Receives the unique categories of all variables,
+    // also gets the event handler for passing data back to the general form.
     super(props)
 
-    /*
-      The list of eligible variables.
-      If we do not want to include a variable for the bar chart,
-      it can be removed from here.
-    */
+    // The list of eligible variables.
+    // If we do not want to include a variable for the bar chart,
+    // it can be removed from here.
     const eligibleVariables = [
       'ApplicationNo',
       'EUNumber',
@@ -49,7 +45,7 @@ class BarForm extends Component {
     ]
 
     // initialization of the state
-    this.state = this.props.graphSettings
+    this.state = this.props.chartSpecificOptions
     this.state.eligibleVariables = eligibleVariables
 
     // event handlers
@@ -62,20 +58,17 @@ class BarForm extends Component {
 
   // EVENT HANDLERS:
 
-  /*
-    Updates the state,
-    then passes it to the general form.
-  */
+  // Updates the state,
+  // then passes it to the general form.
   handleChange(event) {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
 
-    /* 
-      the categories depend on which variables you chose,
-      so if these changes we want the categoriesSelected to re-initialized,
-      in this case that is just resetting the array
-    */
+    // the categories depend on which variables you chose,
+    // so if these change we want the categoriesSelected to re-initialized,
+    // in this case that is just resetting the array,
+    // because some variables have a lot of categories
     if (name === 'xAxis' || name === 'yAxis') {
       this.setState({
         categoriesSelectedX: [],
@@ -87,20 +80,16 @@ class BarForm extends Component {
     })
   }
 
-  /* 
-    Updates the categoriesSelectedX based on the new selection.
-    This event is passed to the CategoryOptions component.
-  */
+  // Updates the categoriesSelectedX based on the new selection.
+  // This event handler is passed to the CategoryOptions component.
   handleCategorySelectionXChange(event) {
     this.setState({ categoriesSelectedX: event }, () => {
       this.props.onChange([this.state, 'categoriesSelectedX'])
     })
   }
 
-  /* 
-    Updates the categoriesSelectedY based on the new selection.
-    This event is passed to the CategoryOptions component.
-  */
+  // Updates the categoriesSelectedY based on the new selection.
+  // This event handler is passed to the CategoryOptions component.
   handleCategorySelectionYChange(event) {
     this.setState({ categoriesSelectedY: event }, () => {
       this.props.onChange([this.state, 'categoriesSelectedY'])
@@ -109,7 +98,7 @@ class BarForm extends Component {
 
   // GENERAL FUNCTIONS:
 
-  // creates a drop down menu based on the allowed variables
+  // creates a drop down menu based on the eligible variables
   renderVariableDropDown() {
     return this.state.eligibleVariables.map((variable) => {
       return (
@@ -121,6 +110,7 @@ class BarForm extends Component {
   }
 
   // renders the option to change the stack type
+  // only shown when the stacked option has been selected
   renderStackType() {
     return (
       <label className="visualization-panel-label">
@@ -139,16 +129,16 @@ class BarForm extends Component {
 
   // renders the bar form part of the form
   render() {
-    let x_axis
-    let y_axis
+    let xAxis
+    let yAxis
 
     // the x/y axis can change, it is easier to just change the labels
     if (this.state.horizontal) {
-      x_axis = <React.Fragment>Y-axis</React.Fragment>
-      y_axis = <React.Fragment>X-axis</React.Fragment>
+      xAxis = <React.Fragment>Y-axis</React.Fragment>
+      yAxis = <React.Fragment>X-axis</React.Fragment>
     } else {
-      x_axis = <React.Fragment>X-axis</React.Fragment>
-      y_axis = <React.Fragment>Y-axis</React.Fragment>
+      xAxis = <React.Fragment>X-axis</React.Fragment>
+      yAxis = <React.Fragment>Y-axis</React.Fragment>
     }
 
     // building drop down menus
@@ -177,7 +167,7 @@ class BarForm extends Component {
           &nbsp;&nbsp;Horizontal
         </label>
         <label className="visualization-panel-label">
-          {x_axis}
+          {xAxis}
           <select
             className="med-select"
             value={this.state.xAxis}
@@ -188,7 +178,7 @@ class BarForm extends Component {
           </select>
         </label>
         <label className="visualization-panel-label">
-          {y_axis}
+          {yAxis}
           <select
             className="med-select"
             value={this.state.yAxis}
@@ -199,29 +189,27 @@ class BarForm extends Component {
           </select>
         </label>
         <CategoryOptions
-          /* 
-            We want to reset the component when the axis changes,
-            may need to become an increment function
-          */
+          // We want to reset the component when the axis changes,
+          // so we need to change the key depending on the axis'.
           key={`${this.state.xAxis}${this.state.yAxis}` + 'X'}
           className="category-options"
           onChange={this.handleCategorySelectionXChange}
           categories={sortCategoryData(
             this.props.uniqueCategories[this.state.xAxis]
           )}
+          categoriesSelected={this.state.categoriesSelectedX}
           settings={this.state}
         />
         <CategoryOptions
-          /* 
-            We want to reset the component when the axis changes,
-            may need to become an increment function
-          */
+          // We want to reset the component when the axis changes,
+          // so we need to change the key depending on the axis'.
           key={`${this.state.xAxis}${this.state.yAxis}` + 'Y'}
           className="category-options"
           onChange={this.handleCategorySelectionYChange}
           categories={sortCategoryData(
             this.props.uniqueCategories[this.state.yAxis]
           )}
+          categoriesSelected={this.state.categoriesSelectedY}
           settings={this.state}
         />
       </React.Fragment>

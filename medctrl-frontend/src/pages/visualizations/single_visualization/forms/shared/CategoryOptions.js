@@ -8,7 +8,7 @@ class CategoryOptions extends React.Component {
     super(props)
 
     // the state contains a list with the names of the selected categories
-    this.state = { categoriesSelected: this.props.categories }
+    this.state = { categoriesSelected: this.props.categoriesSelected }
 
     // event handlers
     this.handleAllCategorySelection = this.handleAllCategorySelection.bind(this)
@@ -60,8 +60,7 @@ class CategoryOptions extends React.Component {
 
   // create the list of category checkboxes
   renderCategoryOptions() {
-    const categories = this.props.categories
-    return categories.map((category) => {
+    return this.props.categories.map((category) => {
       return (
         <React.Fragment key={category}>
           <label>
