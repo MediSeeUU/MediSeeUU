@@ -6,17 +6,13 @@ import sortCategoryData from '../../utils/SortCategoryData'
 // the pie part of a form if a pie chart is chosen
 class PieForm extends Component {
   constructor(props) {
-    /* 
-      Receives the categories of all variables,
-      also gets the event handler for passing data back to the general form.
-    */
+    // Receives the categories of all variables,
+    // also gets the event handler for passing data back to the general form.
     super(props)
 
-    /*
-      The list of eligible variables.
-      If we do not want to include a variable for the pie chart,
-      it can be removed from here.
-    */
+    // The list of eligible variables.
+    // If we do not want to include a variable for the pie chart,
+    // it can be removed from here.
     const eligibleVariables = [
       'ApplicationNo',
       'EUNumber',
@@ -49,9 +45,8 @@ class PieForm extends Component {
     ]
 
     // initialization of the state
-    this.state = this.props.graphSettings
+    this.state = this.props.chartSpecificOptions
     this.state.eligibleVariables = eligibleVariables
-    this.state.chosenVariable = this.state.chosenVariable ?? 'Rapporteur'
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
@@ -61,21 +56,18 @@ class PieForm extends Component {
 
   // EVENT HANDLERS:
 
-  /*
-    Updates the state,
-    then passes it to the general form.
-  */
+  // Updates the state,
+  // then passes it to the general form.
   handleChange(event) {
     const target = event.target
     const value = target.value
     const name = target.name
 
-    /* 
-      the categories depend on which variables you chose,
-      so if these changes we want the categoriesSelected to re-initialized,
-      in this case that is just resetting the array
-    */
-    if (name === 'chosenVariable') {
+    // the categories depend on which variables you chose,
+    // so if these changes we want the categoriesSelected to re-initialized,
+    // in this case that is just resetting the array,
+    // because some variables have a lot of categories.
+    if (name === 'xAxis') {
       this.setState({ categoriesSelectedX: [] })
     }
     this.setState({ [name]: value }, () => {
@@ -83,10 +75,8 @@ class PieForm extends Component {
     })
   }
 
-  /* 
-    Updates the categoriesSelected based on the new selection.
-    This event is passed to the CategoryOptions component.
-  */
+  // Updates the categoriesSelected based on the new selection.
+  // This event is passed to the CategoryOptions component.
   handleCategorySelectionChange(event) {
     this.setState({ categoriesSelectedX: event }, () => {
       this.props.onChange([this.state, 'categoriesSelectedX'])
@@ -118,8 +108,8 @@ class PieForm extends Component {
         <label className="visualization-panel-label">
           Variable <br />
           <select
-            value={this.state.chosenVariable}
-            name="chosenVariable"
+            value={this.state.xAxis}
+            name="xAxis"
             className="med-select"
             onChange={this.handleChange}
           >
@@ -127,16 +117,15 @@ class PieForm extends Component {
           </select>
         </label>
         <CategoryOptions
-          /* 
-            We want to reset the component when the variable changes,
-            may need to become an increment function
-          */
-          key={`${this.state.chosenVariable}`}
+          // We want to reset the component when the variable changes,
+          // so we need to change the key depending on the axis
+          key={`${this.state.xAxis}`}
           className="category-options"
           onChange={this.handleCategorySelectionChange}
           categories={sortCategoryData(
-            this.props.uniqueCategories[this.state.chosenVariable]
+            this.props.uniqueCategories[this.state.xAxis]
           )}
+          categoriesSelected={this.state.categoriesSelectedX}
           settings={this.state}
         />
       </React.Fragment>
