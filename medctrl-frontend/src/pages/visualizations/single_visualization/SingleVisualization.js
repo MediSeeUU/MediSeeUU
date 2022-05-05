@@ -114,6 +114,7 @@ class SingleVisualization extends Component {
               ]
             }
             options={this.settings.chartSpecificOptions}
+            onDataClick={this.props.onDataClick}
           />
         )
 
@@ -131,6 +132,7 @@ class SingleVisualization extends Component {
               ]
             }
             options={this.settings.chartSpecificOptions}
+            onDataClick={this.props.onDataClick}
           />
         )
 
@@ -144,6 +146,7 @@ class SingleVisualization extends Component {
             series={series}
             categories={this.settings.chartSpecificOptions.categoriesSelected}
             options={this.settings.chartSpecificOptions}
+            onDataClick={this.props.onDataClick}
           />
         )
 

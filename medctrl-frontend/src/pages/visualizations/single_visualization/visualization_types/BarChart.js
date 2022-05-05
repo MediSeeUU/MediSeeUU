@@ -22,6 +22,12 @@ class BarChart extends Component {
           stacked: this.props.options.stacked,
           stackType: stacktype,
           toolbar: { show: false },
+          events: {
+            dataPointSelection: (event, chartContext, config) => {
+              let eu_numbers = config.w.config.series[config.seriesIndex].eu_numbers[config.dataPointIndex]
+              this.props.onDataClick(eu_numbers)
+            }
+          },
         },
         plotOptions: {
           bar: {

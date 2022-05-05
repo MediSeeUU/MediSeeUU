@@ -1,8 +1,10 @@
 // external imports
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import ReactModal from 'react-modal'
+import SelectedData from '../data/dataComponents/SelectedData'
 
 // internal imports
 import SingleVisualization from './single_visualization/SingleVisualization'
@@ -15,10 +17,15 @@ import { generateSeries } from './single_visualization/SingleVisualization'
 // the component that contains all the visualizations
 function VisualizationPage() {
   const selectedData = useSelectedData()
+  const [tableData, setTableData] = useState(selectedData)
+  const [numbers, setNumbers] = useState([])
+  const [modal, setModal] = useState(false)
+
   // event handlers
   const handleAddition = handleAdditionFunc.bind(this)
   const handleRemoval = handleRemovalFunc.bind(this)
   const handleChange = handleChangeFunc.bind(this)
+  const handleDataClick = handleDataClickFunc.bind(this)
 
   //get the visualisation contexts
   var visuals = useVisuals()
@@ -111,6 +118,30 @@ function VisualizationPage() {
     setVisuals(newVisuals)
   }
 
+  // handler that updates the eu_numbers in the table
+  /*function handleDataClickFunc(event, chartContext, config) {
+    //console.log(config.dataPointIndex)
+    //console.log(config.w.config.series[config.seriesIndex].eu_numbers[config.dataPointIndex])
+    let eu_numbers = config.w.config.metaData[config.dataPointIndex]
+    setNumbers(eu_numbers)
+    setModal(true)
+  }*/
+
+  function handleDataClickFunc(eu_numbers) {
+    setNumbers(eu_numbers)
+    if (eu_numbers.length > 0) {
+      setModal(true)
+    }
+  }
+
+  useEffect(() => {
+    let updatedData = selectedData.filter((element) => numbers.includes(element.EUNoShort))
+    if (updatedData.length <= 0) {
+      setModal(false)
+    }
+    setTableData(updatedData)
+  }, [selectedData, numbers])
+
   // GENERAL FUNCTIONS:
 
   // Creates the visualizations,
@@ -123,10 +154,11 @@ function VisualizationPage() {
         <Row key={visual.id}>
           <SingleVisualization
             id={visual.id}
-            data={selectedData}
+            data={tableData}
             settings={visual}
             onRemoval={handleRemoval}
             onFormChangeFunc={handleChange}
+            onDataClick={handleDataClick}
           />
         </Row>
       )
@@ -145,6 +177,16 @@ function VisualizationPage() {
 
     return (
       <div>
+        <ReactModal className="visualize-modal" isOpen={modal} onRequestClose={() => setModal(false)} ariaHideApp={false} style={{
+            modal: {},
+            overlay: {
+              background: 'rgba(0, 0, 0, 0.2)',
+              backdropFilter: 'blur(2px)',
+            },
+          }}>
+          <i class='bx bx-x close-icon' onClick={() => setModal(false)}></i>
+          <SelectedData selectedData={tableData} />
+        </ReactModal>
         <Container>
           {displayItems}
           <Row>

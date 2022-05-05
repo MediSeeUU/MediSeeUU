@@ -12,6 +12,12 @@ class LineChart extends Component {
           id: String(this.props.id),
           type: 'line',
           toolbar: { show: false },
+          events: {
+            dataPointSelection: (event, chartContext, config) => {
+              let eu_numbers = config.w.config.series[config.seriesIndex].eu_numbers[config.dataPointIndex]
+              this.props.onDataClick(eu_numbers)
+            }
+          },
         },
         xaxis: {
           categories: this.props.categories,
@@ -28,6 +34,13 @@ class LineChart extends Component {
         },
         noData: {
           text: 'pick your preferred options to create a visualization',
+        },
+        tooltip: {
+          intersect: true,
+          shared: false
+        },
+        markers: {
+          size: 6,
         },
       },
       series: this.props.series,

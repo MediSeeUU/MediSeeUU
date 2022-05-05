@@ -19,15 +19,18 @@ export default function GeneratePieSeries(options, data) {
 */
 function CreatePieSeries(data, chosenVariable, chosenCategories) {
   let dict = {}
+  let eu_numbers = {}
   chosenCategories.forEach((category) => {
     dict[category] = 0
+    eu_numbers[category] = []
   })
 
   data.forEach((element) => {
     if (chosenCategories.includes(element[chosenVariable])) {
       dict[element[chosenVariable]] += 1
+      eu_numbers[element[chosenVariable]].push(element.EUNoShort)
     }
   })
 
-  return Object.values(dict)
+  return {data: Object.values(dict), eu_numbers: Object.values(eu_numbers)}
 }

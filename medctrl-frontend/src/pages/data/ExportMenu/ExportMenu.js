@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import ReactModal from 'react-modal'
 import './ExportMenu.css'
-import { useSelectedData } from '../../../shared/contexts/DataContext'
 import ExportDialog from './ExportDialog'
 
 // function based component, represents the export button, which is inserted
 // in the selected data table. when this button is pressed, the export dialog
 // compontent is shown in a react modal view
-function ExportMenu() {
+function ExportMenu({ selectedData }) {
   const [showModal, setModalState] = useState(false)
-  const selectedData = useSelectedData()
   const closeModal = () => setModalState(false)
 
   return (
