@@ -1,1 +1,2 @@
 from .public_Access import PublicAccessViewSet
+from .authenticated_Access import AuthenticatedUser
