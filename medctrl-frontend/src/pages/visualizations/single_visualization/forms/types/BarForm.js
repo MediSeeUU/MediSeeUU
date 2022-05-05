@@ -68,7 +68,7 @@ class BarForm extends Component {
     // the categories depend on which variables you chose,
     // so if these change we want the categoriesSelected to re-initialized,
     // in this case that is just resetting the array,
-    // because some variables have a lot of categories
+    // because some variables have a lot of categories.
     if (name === 'xAxis' || name === 'yAxis') {
       this.setState({
         categoriesSelectedX: [],

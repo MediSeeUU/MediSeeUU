@@ -137,7 +137,7 @@ class VisualizationForm extends Component {
           <LineForm
             uniqueCategories={this.props.uniqueCategories}
             onChange={this.handleChartSpecificChange}
-            graphSettings={this.state.chartSpecificOptions}
+            chartSpecificOptions={this.state.chartSpecificOptions}
           />
         )
 
