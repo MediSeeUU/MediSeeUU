@@ -22,20 +22,12 @@ import HandlePNGExport from './exports/HandlePNGExport'
 // renders the components for a single visualization
 class SingleVisualization extends Component {
   constructor(props) {
-    // receives its id and a copy of the data
+    // Receives its id, the selected data, the settings and
+    // two event handlers for removing or changing the visualization.
     super(props)
 
-    // state of the visualization
+    // initializing 'state' of the visualization
     this.settings = this.props.settings
-    this.state = {
-      title:
-        'my ' +
-        this.settings.chart_type +
-        ' chart - ' +
-        this.settings.chartSpecificOptions.xAxis +
-        ' vs ' +
-        this.settings.chartSpecificOptions.yAxis,
-    }
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
@@ -49,24 +41,14 @@ class SingleVisualization extends Component {
 
   // event handler for the form data
   handleChange(event) {
-    this.settings.chart_type = event.chart_type
+    this.settings.chartType = event.chartType
     this.settings.chartSpecificOptions = event.chartSpecificOptions
-    this.settings.legend_on = event.legend_on
-    this.settings.labels_on = event.labels_on
+    this.settings.legendOn = event.legendOn
+    this.settings.labelsOn = event.labelsOn
     this.settings.changeName = event.chartSpecificOptionsName
-    var currentSetting =
-      this.settings.chartSpecificOptions.yAxis ??
-      this.settings.chartSpecificOptions.chosenVariable
-    this.settings.chartSpecificOptions.selectAllCategoriesY =
-      this.settings.chartSpecificOptions.categoriesSelectedY?.length ===
-      this.settings.uniqueCategories[currentSetting].length
-
-    this.settings.chartSpecificOptions.selectAllCategoriesX =
-      this.settings.chartSpecificOptions.categoriesSelectedX?.length ===
-      this.settings.uniqueCategories[currentSetting].length
 
     this.settings.series = generateSeries(
-      this.settings.chart_type,
+      this.settings.chartType,
       this.settings
     )
 
@@ -96,25 +78,27 @@ class SingleVisualization extends Component {
   // GENERAL FUNCTIONS:
 
   // creating a chart based on the chosen chart type
-  createChart(chart_type) {
+  renderChart() {
     const key = `${this.settings.changeName} 
 			              ${this.settings.chartSpecificOptions[this.settings.changeName]}`
-    const legend_on = this.settings.legend_on
-    const labels_on = this.settings.labels_on
+    const legendOn = this.settings.legendOn
+    const labelsOn = this.settings.labelsOn
     const id = this.props.id
     const series = this.settings.series
+    const categories = this.settings.chartSpecificOptions.categoriesSelectedX
+    const options = this.settings.chartSpecificOptions
 
-    switch (chart_type) {
+    switch (this.settings.chartType) {
       case 'bar':
         return (
           <BarChart
             key={key}
-            legend={legend_on}
-            labels={labels_on}
+            legend={legendOn}
+            labels={labelsOn}
             id={id}
             series={series}
-            categories={this.settings.chartSpecificOptions.categoriesSelectedX}
-            options={this.settings.chartSpecificOptions}
+            categories={categories}
+            options={options}
           />
         )
 
@@ -122,12 +106,12 @@ class SingleVisualization extends Component {
         return (
           <LineChart
             key={key}
-            legend={legend_on}
-            labels={labels_on}
+            legend={legendOn}
+            labels={labelsOn}
             id={id}
             series={series}
-            categories={this.settings.chartSpecificOptions.categoriesSelectedX}
-            options={this.settings.chartSpecificOptions}
+            categories={categories}
+            options={options}
           />
         )
 
@@ -135,12 +119,12 @@ class SingleVisualization extends Component {
         return (
           <PieChart
             key={key}
-            legend={legend_on}
-            labels={labels_on}
+            legend={legendOn}
+            labels={labelsOn}
             id={id}
             series={series}
-            categories={this.settings.chartSpecificOptions.categoriesSelectedX}
-            options={this.settings.chartSpecificOptions}
+            categories={categories}
+            options={options}
           />
         )
 
@@ -148,12 +132,12 @@ class SingleVisualization extends Component {
         return (
           <HistogramChart
             key={key}
-            legend={legend_on}
-            labels={labels_on}
+            legend={legendOn}
+            labels={labelsOn}
             id={id}
             series={series}
-            categories={this.settings.chartSpecificOptions.categoriesSelectedX}
-            options={this.settings.chartSpecificOptions}
+            categories={categories}
+            options={options}
           />
         )
 
@@ -164,9 +148,10 @@ class SingleVisualization extends Component {
     }
   }
 
+  // renders the placeholder for the title depending on the chart type
   renderTitlePlaceHolder() {
-    const chartType = 'my ' + this.settings.chart_type
-    switch (this.settings.chart_type) {
+    const chartType = 'my ' + this.settingschartType
+    switch (this.settings.chartType) {
       case 'bar':
         return (
           chartType +
@@ -186,14 +171,10 @@ class SingleVisualization extends Component {
         )
 
       case 'pie':
-        return (
-          chartType + ' - ' + this.settings.chartSpecificOptions.chosenVariable
-        )
+        return chartType + ' - ' + this.settings.chartSpecificOptions.xAxis
 
       case 'histogram':
-        return (
-          chartType + ' - ' + this.settings.chartSpecificOptions.chosenVariable
-        )
+        return chartType + ' - ' + this.settings.chartSpecificOptions.xAxis
 
       default:
         throw Error(
@@ -229,11 +210,11 @@ class SingleVisualization extends Component {
                   className="graph-name med-text-input"
                   placeholder={this.renderTitlePlaceHolder()}
                   autoComplete="off"
-                  value={this.state.chartName}
+                  value={this.settings.title}
                   onChange={this.handleNameChange}
                 />
               </Row>
-              <Row>{this.createChart(this.settings.chart_type)}</Row>
+              <Row>{this.renderChart()}</Row>
               <Row>
                 <button
                   className="med-primary-solid med-bx-button button-export"
