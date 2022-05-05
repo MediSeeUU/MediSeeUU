@@ -1,8 +1,11 @@
+import sortCategoryData from '../utils/SortCategoryData'
+
 // creates an array of data for a pie chart
 export default function GeneratePieSeries(options, data) {
   let xAxis = options.chartSpecificOptions.xAxis
-  let chosenCategories = options.chartSpecificOptions.categoriesSelectedX
-
+  let chosenCategories = sortCategoryData(
+    options.chartSpecificOptions.categoriesSelectedX
+  )
   let pieSeries = CreatePieSeries(data, xAxis, chosenCategories)
 
   return pieSeries
@@ -22,6 +25,5 @@ function CreatePieSeries(data, xAxis, chosenCategories) {
       dict[element[xAxis]] += 1
     }
   })
-
   return Object.values(dict)
 }

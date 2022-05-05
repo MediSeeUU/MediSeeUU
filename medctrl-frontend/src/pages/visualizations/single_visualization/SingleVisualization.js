@@ -18,6 +18,7 @@ import GeneratePieSeries from './data_interfaces/PieInterface'
 import GenerateHistogramSeries from './data_interfaces/HistogramInterface'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
+import sortCategoryData from './utils/SortCategoryData'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
@@ -90,7 +91,9 @@ class SingleVisualization extends Component {
     const labelsOn = this.settings.labelsOn
     const id = this.props.id
     const series = this.settings.series
-    const categories = this.settings.chartSpecificOptions.categoriesSelectedX
+    const categories = sortCategoryData(
+      this.settings.chartSpecificOptions.categoriesSelectedX
+    )
     const options = this.settings.chartSpecificOptions
 
     switch (this.settings.chartType) {

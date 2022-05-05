@@ -1,7 +1,11 @@
+import sortCategoryData from '../utils/SortCategoryData'
+
 // creates an array of data for a Histogram chart
 export default function GenerateHistogramSeries(options, data) {
   let xAxis = options.chartSpecificOptions.xAxis
-  let chosenCategories = options.chartSpecificOptions.categoriesSelectedX
+  let chosenCategories = sortCategoryData(
+    options.chartSpecificOptions.categoriesSelectedX
+  )
 
   let HistogramSeries = CreateHistogramSeries(data, xAxis, chosenCategories)
 
