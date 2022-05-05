@@ -72,7 +72,8 @@ class SingleVisualization extends Component {
 
   // handles changing the title of the visualization
   handleNameChange(event) {
-    this.setState({ title: event.target.value })
+    this.settings.title = event.target.value
+    this.props.onFormChangeFunc(this.settings)
   }
 
   // GENERAL FUNCTIONS:
@@ -150,7 +151,7 @@ class SingleVisualization extends Component {
 
   // renders the placeholder for the title depending on the chart type
   renderTitlePlaceHolder() {
-    const chartType = 'my ' + this.settingschartType
+    const chartType = 'my ' + this.settings.chartType
     switch (this.settings.chartType) {
       case 'bar':
         return (
