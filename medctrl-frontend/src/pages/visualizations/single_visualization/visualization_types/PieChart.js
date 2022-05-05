@@ -24,6 +24,9 @@ class PieChart extends Component {
           text: 'select the categories to be displayed',
         },
         plotOptions: { pie: { expandOnClick: false } },
+        theme: {
+          palette: 'palette3',
+        },
       },
       series: this.props.series,
     }

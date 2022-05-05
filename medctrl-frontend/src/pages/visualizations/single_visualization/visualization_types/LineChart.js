@@ -37,6 +37,9 @@ class LineChart extends Component {
         noData: {
           text: 'select the categories to be displayed',
         },
+        theme: {
+          palette: 'palette3',
+        },
       },
       series: this.props.series,
     }

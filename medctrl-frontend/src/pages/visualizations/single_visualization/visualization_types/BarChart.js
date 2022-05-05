@@ -53,6 +53,9 @@ class BarChart extends Component {
         noData: {
           text: 'select the categories to be displayed',
         },
+        theme: {
+          palette: 'palette3',
+        },
         grid: {
           padding: {
             //right: 0,
