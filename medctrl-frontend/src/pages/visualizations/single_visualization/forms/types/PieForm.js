@@ -63,7 +63,7 @@ class PieForm extends Component {
     const value = target.value
     const name = target.name
 
-    // the categories depend on which variables you chose,
+    // The categories depend on which variables you chose,
     // so if these changes we want the categoriesSelected to re-initialized,
     // in this case that is just resetting the array,
     // because some variables have a lot of categories.
@@ -118,7 +118,7 @@ class PieForm extends Component {
         </label>
         <CategoryOptions
           // We want to reset the component when the variable changes,
-          // so we need to change the key depending on the axis
+          // so we need to change the key depending on the axis.
           key={`${this.state.xAxis}`}
           className="category-options"
           onChange={this.handleCategorySelectionChange}

@@ -65,7 +65,7 @@ class LineForm extends Component {
     const value = target.value
     const name = target.name
 
-    // the categories depend on which variables you chose,
+    // The categories depend on which variables you chose,
     // so if these changes we want the categoriesSelected to re-initialized,
     // in this case that is just resetting the array,
     // because some variables have a lot of categories.

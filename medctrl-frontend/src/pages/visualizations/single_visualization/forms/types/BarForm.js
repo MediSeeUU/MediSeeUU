@@ -65,7 +65,7 @@ class BarForm extends Component {
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
 
-    // the categories depend on which variables you chose,
+    // The categories depend on which variables you chose,
     // so if these change we want the categoriesSelected to re-initialized,
     // in this case that is just resetting the array,
     // because some variables have a lot of categories.
