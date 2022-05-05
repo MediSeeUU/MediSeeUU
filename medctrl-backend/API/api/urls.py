@@ -4,12 +4,13 @@ from knox import views as knox_views
 
 from api.views.medicine_views import ProcedureViewSet
 from api.views.account_views import RegisterAPI, LoginAPI
-from api.views.access_level_views import PublicAccessViewSet
+from api.views.access_level_views import PublicAccessViewSet, AuthenticatedUser
 
 
 router = DefaultRouter()
 router.register(r"procedures", ProcedureViewSet, basename="procedures")
 router.register(r"public", PublicAccessViewSet , basename="public")
+router.register(r"authenticated", AuthenticatedUser , basename="authenticatedUser")
 
 urlpatterns = [
     path("", include(router.urls)),
