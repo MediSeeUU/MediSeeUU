@@ -118,15 +118,7 @@ function VisualizationPage() {
     setVisuals(newVisuals)
   }
 
-  // handler that updates the eu_numbers in the table
-  /*function handleDataClickFunc(event, chartContext, config) {
-    //console.log(config.dataPointIndex)
-    //console.log(config.w.config.series[config.seriesIndex].eu_numbers[config.dataPointIndex])
-    let eu_numbers = config.w.config.metaData[config.dataPointIndex]
-    setNumbers(eu_numbers)
-    setModal(true)
-  }*/
-
+  // Handler that is called after clicking on a datapoint
   function handleDataClickFunc(eu_numbers) {
     setNumbers(eu_numbers)
     if (eu_numbers.length > 0) {
@@ -134,6 +126,7 @@ function VisualizationPage() {
     }
   }
 
+  // Update the table and modal state after changes
   useEffect(() => {
     let updatedData = selectedData.filter((element) =>
       numbers.includes(element.EUNoShort)
@@ -192,7 +185,7 @@ function VisualizationPage() {
             },
           }}
         >
-          <i class="bx bx-x close-icon" onClick={() => setModal(false)}></i>
+          <i className="bx bx-x close-icon" onClick={() => setModal(false)}></i>
           <SelectedData selectedData={tableData} />
         </ReactModal>
         <Container>
