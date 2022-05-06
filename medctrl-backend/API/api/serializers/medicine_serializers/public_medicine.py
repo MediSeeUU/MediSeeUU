@@ -13,20 +13,28 @@ class ProcedureSerializer(serializers.ModelSerializer):
         model = Procedure
         fields = ('decisiondate', )
 
-class MedicineSerializer(serializers.ModelSerializer):
-    authorisation = AuthorisationSerializer(read_only=True)
+class PublicMedicineSerializer(serializers.ModelSerializer):
+    authorisation = serializers.SerializerMethodField()
     procedure = serializers.SerializerMethodField()
 
     class Meta:
         model = Medicine
         fields = "__all__"
+
+    def get_authorisation(self, authorisation):
+        queryset = Authorisation.objects.filter(eunumber = authorisation.eunumber)
+        try:
+            queryset = queryset[0]
+        except:
+            queryset = None
+        return AuthorisationSerializer(instance=queryset, read_only=True).data
     
     def get_procedure(self, procedure):
         queryset = Procedure.objects.filter(procedurecount = 1, eunumber = procedure.eunumber)
         try:
-          queryset = queryset[0]
+            queryset = queryset[0]
         except:
-          queryset = None
+            queryset = None
         return ProcedureSerializer(instance=queryset, read_only=True).data
     
     def to_representation(self, obj):

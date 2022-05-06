@@ -1,1 +1,0 @@
-from .public_access import MedicineSerializer
