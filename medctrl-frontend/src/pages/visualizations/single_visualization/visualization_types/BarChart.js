@@ -24,9 +24,12 @@ class BarChart extends Component {
           toolbar: { show: false },
           events: {
             dataPointSelection: (event, chartContext, config) => {
-              let eu_numbers = config.w.config.series[config.seriesIndex].eu_numbers[config.dataPointIndex]
+              let eu_numbers =
+                config.w.config.series[config.seriesIndex].eu_numbers[
+                  config.dataPointIndex
+                ]
               this.props.onDataClick(eu_numbers)
-            }
+            },
           },
         },
         plotOptions: {

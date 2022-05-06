@@ -14,9 +14,12 @@ class LineChart extends Component {
           toolbar: { show: false },
           events: {
             dataPointSelection: (event, chartContext, config) => {
-              let eu_numbers = config.w.config.series[config.seriesIndex].eu_numbers[config.dataPointIndex]
+              let eu_numbers =
+                config.w.config.series[config.seriesIndex].eu_numbers[
+                  config.dataPointIndex
+                ]
               this.props.onDataClick(eu_numbers)
-            }
+            },
           },
         },
         xaxis: {
@@ -37,7 +40,7 @@ class LineChart extends Component {
         },
         tooltip: {
           intersect: true,
-          shared: false
+          shared: false,
         },
         markers: {
           size: 6,

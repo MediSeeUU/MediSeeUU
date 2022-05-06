@@ -32,5 +32,5 @@ function CreatePieSeries(data, chosenVariable, chosenCategories) {
     }
   })
 
-  return {data: Object.values(dict), eu_numbers: Object.values(eu_numbers)}
+  return { data: Object.values(dict), eu_numbers: Object.values(eu_numbers) }
 }

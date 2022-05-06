@@ -16,7 +16,7 @@ class DonutChart extends Component {
             dataPointSelection: (event, chartContext, config) => {
               let eu_numbers = config.w.config.metaData[config.dataPointIndex]
               this.props.onDataClick(eu_numbers)
-            }
+            },
           },
         },
         dataLabels: {
@@ -30,7 +30,7 @@ class DonutChart extends Component {
           text: 'pick your preferred options to create a visualization',
         },
         plotOptions: { pie: { expandOnClick: false } },
-        metaData: this.props.series.eu_numbers
+        metaData: this.props.series.eu_numbers,
       },
       series: this.props.series.data,
     }

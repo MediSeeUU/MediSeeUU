@@ -19,7 +19,12 @@ export default function GenerateBarSeries(options, allCategories, data) {
     data
   )
 
-  let [series, eu_series] = CreateSelectedSeries(dict, eu_numbers, categoriesSelectedY, sortedxAxis)
+  let [series, eu_series] = CreateSelectedSeries(
+    dict,
+    eu_numbers,
+    categoriesSelectedY,
+    sortedxAxis
+  )
 
   let seriesFormatted = ToSeriesFormat(series, eu_series)
 

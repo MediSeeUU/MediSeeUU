@@ -135,7 +135,9 @@ function VisualizationPage() {
   }
 
   useEffect(() => {
-    let updatedData = selectedData.filter((element) => numbers.includes(element.EUNoShort))
+    let updatedData = selectedData.filter((element) =>
+      numbers.includes(element.EUNoShort)
+    )
     if (updatedData.length <= 0) {
       setModal(false)
     }
@@ -177,14 +179,20 @@ function VisualizationPage() {
 
     return (
       <div>
-        <ReactModal className="visualize-modal" isOpen={modal} onRequestClose={() => setModal(false)} ariaHideApp={false} style={{
+        <ReactModal
+          className="visualize-modal"
+          isOpen={modal}
+          onRequestClose={() => setModal(false)}
+          ariaHideApp={false}
+          style={{
             modal: {},
             overlay: {
               background: 'rgba(0, 0, 0, 0.2)',
               backdropFilter: 'blur(2px)',
             },
-          }}>
-          <i class='bx bx-x close-icon' onClick={() => setModal(false)}></i>
+          }}
+        >
+          <i class="bx bx-x close-icon" onClick={() => setModal(false)}></i>
           <SelectedData selectedData={tableData} />
         </ReactModal>
         <Container>
