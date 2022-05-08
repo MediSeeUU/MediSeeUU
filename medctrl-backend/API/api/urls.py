@@ -6,8 +6,8 @@ from api.views.medicine_views import ProcedureViewSet, MedicineViewSet, Authenti
 from api.views.account_views import RegisterAPI, LoginAPI
 
 router = DefaultRouter()
-router.register(r"procedure", ProcedureViewSet, basename="procedure")
 router.register(r"medicine", MedicineViewSet , basename="medicine")
+router.register(r"procedure/(?P<eunumber>\d+)", ProcedureViewSet, basename="procedure")
 # router.register(r"authenticated", AuthenticatedUser , basename="authenticatedUser") this is giving me errors
 
 urlpatterns = [

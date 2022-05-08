@@ -7,5 +7,5 @@ class ProcedureViewSet(viewsets.ModelViewSet):
     serializer_class = ProcedureSerializer
 
     def get_queryset(self):
-        eunumber = self.request.query_params.get('eunumber')
+        eunumber = self.kwargs['eunumber']
         return Procedure.objects.filter(eunumber = eunumber)
