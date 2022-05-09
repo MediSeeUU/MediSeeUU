@@ -19,7 +19,8 @@ test('no data', () => {
     },
   }
   const series = GeneratePieSeries(options, data)
-  expect(series.length).toBe(0)
+  expect(series.data).toHaveLength(0)
+  expect(series.eu_numbers).toHaveLength(0)
 })
 
 test('some categories selected', () => {
@@ -30,5 +31,20 @@ test('some categories selected', () => {
     },
   }
   const series = GeneratePieSeries(options, data)
-  expect(series).toHaveLength(2)
+  expect(series.data).toHaveLength(2)
+  expect(series.eu_numbers).toHaveLength(2)
+})
+
+test('categories in data', () => {
+  const options = {
+    chartSpecificOptions: {
+      chosenVariable: 'Rapporteur',
+      categoriesSelected: ['United Kingdom', 'Denmark'],
+    },
+  }
+  const series = GeneratePieSeries(options, data)
+  let filteredData = data.filter((element) => series.eu_numbers.flat().includes(element.EUNoShort))
+  filteredData.forEach(element => {
+    expect(element.Rapporteur).toMatch(/(United Kingdom|Denmark)/i)
+  });
 })
