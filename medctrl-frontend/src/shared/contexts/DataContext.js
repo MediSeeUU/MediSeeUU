@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import allData from '../../testJson/data.json'
+import GetUniqueCategories from '../../pages/visualizations/single_visualization/utils/GetUniqueCategories'
 
 export const DataContext = React.createContext()
 export const SelectedContext = React.createContext()
@@ -62,18 +63,21 @@ export function DataProvider({ children }) {
     'ATCNameL2',
   ])
 
+  let uniqueCategories = GetUniqueCategories(allData)
+  
   //visualisation context to save the visualisations when navigating the page
   const [visuals, setVisuals] = useState([
     {
       id: 1,
-      chart_type: 'bar',
+      chartType: 'bar',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
         yAxis: 'Rapporteur',
-        categoriesSelected: [],
+        categoriesSelectedY: uniqueCategories['Rapporteur'],
+        categoriesSelectedX: uniqueCategories['DecisionYear'],
       },
-      legend_on: true,
-      labels_on: false,
+      legendOn: false,
+      labelsOn: false,
       data: [],
       series: [],
       uniqueCategories: [],

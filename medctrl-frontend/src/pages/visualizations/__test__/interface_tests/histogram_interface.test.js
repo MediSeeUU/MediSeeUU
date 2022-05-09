@@ -7,7 +7,7 @@ import {
   getByRole,
   getByText,
 } from '@testing-library/react'
-import GeneratePieSeries from '../../single_visualization/data_interfaces/PieInterface'
+import GenerateHistogramSeries from '../../single_visualization/data_interfaces/HistogramInterface'
 
 import data from '../../../../testJson/data.json'
 
@@ -18,8 +18,8 @@ test('no categories selected', () => {
       categoriesSelectedX: [],
     },
   }
-  const series = GeneratePieSeries(options, data)
-  expect(series.length).toBe(0)
+  const series = GenerateHistogramSeries(options, data)
+  expect(series[0].data.length).toBe(0)
 })
 
 test('some categories selected (sorted)', () => {
@@ -29,6 +29,6 @@ test('some categories selected (sorted)', () => {
       categoriesSelectedX: ['United Kingdom', 'Denmark'],
     },
   }
-  const series = GeneratePieSeries(options, data)
-  expect(series).toHaveLength(2)
+  const series = GenerateHistogramSeries(options, data)
+  expect(series[0].data.length).toBe(2)
 })

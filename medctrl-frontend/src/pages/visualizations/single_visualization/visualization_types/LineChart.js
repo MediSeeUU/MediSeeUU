@@ -11,14 +11,23 @@ class LineChart extends Component {
         chart: {
           id: String(this.props.id),
           type: 'line',
-          toolbar: { show: false },
+          toolbar: { tools: { download: false } },
         },
         xaxis: {
           categories: this.props.categories,
           labels: {
-            hideOverlappingLabels: true,
+            rotateAlways: true,
+            trim: true,
           },
-          overwriteCategories: this.props.categories,
+          tickPlacement: 'on',
+          title: {
+            text: this.props.options.xAxis,
+          },
+        },
+        yaxis: {
+          title: {
+            text: this.props.options.yAxis,
+          },
         },
         dataLabels: {
           enabled: this.props.labels,
@@ -27,7 +36,11 @@ class LineChart extends Component {
           show: this.props.legend,
         },
         noData: {
-          text: 'pick your preferred options to create a visualization',
+          test: `You can select the categories to be displayed.
+             Note that creating the graph may take some time`,
+        },
+        theme: {
+          palette: 'palette3',
         },
       },
       series: this.props.series,
@@ -45,6 +58,7 @@ class LineChart extends Component {
             options={this.state.options}
             series={this.state.series}
             type="line"
+            height={700}
           />
         </div>
       )

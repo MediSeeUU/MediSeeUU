@@ -8,7 +8,7 @@ import {
   getByText,
 } from '@testing-library/react'
 import GetUniqueCategories from '../../../single_visualization/utils/GetUniqueCategories'
-import PieForm from '../../../single_visualization/forms/types/PieForm'
+import HistogramForm from '../../../single_visualization/forms/types/HistogramForm'
 
 import data from '../../../../../testJson/data.json'
 
@@ -25,7 +25,7 @@ beforeAll(() => {
 test('initial render', () => {
   const onChange = jest.fn()
   render(
-    <PieForm
+    <HistogramForm
       uniqueCategories={uniqueCategories}
       onChange={onChange}
       chartSpecificOptions={chartSpecificOptions}
@@ -36,7 +36,7 @@ test('initial render', () => {
 test('category change', () => {
   const onChange = jest.fn()
   render(
-    <PieForm
+    <HistogramForm
       uniqueCategories={uniqueCategories}
       onChange={onChange}
       chartSpecificOptions={chartSpecificOptions}
@@ -49,7 +49,7 @@ test('category change', () => {
 test('xaxis change', () => {
   const onChange = jest.fn()
   render(
-    <PieForm
+    <HistogramForm
       uniqueCategories={uniqueCategories}
       onChange={onChange}
       chartSpecificOptions={chartSpecificOptions}
