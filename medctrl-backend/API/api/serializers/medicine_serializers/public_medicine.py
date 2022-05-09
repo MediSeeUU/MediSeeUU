@@ -1,7 +1,5 @@
 from rest_framework import serializers
-from api.models.medicine_models import Medicine
-from api.models.medicine_models import Authorisation
-from api.models.medicine_models import Procedure
+from api.models.medicine_models import Medicine, Authorisation, Procedure, Historybrandname
 
 
 class AuthorisationSerializer(serializers.ModelSerializer):
@@ -16,9 +14,17 @@ class ProcedureSerializer(serializers.ModelSerializer):
         fields = ("decisiondate",)
 
 
+class BrandnameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Historybrandname
+        fields = ("brandname",)
+        ordering = ("brandnamedate",)
+
+
 class PublicMedicineSerializer(serializers.ModelSerializer):
     authorisation = serializers.SerializerMethodField()
     procedure = serializers.SerializerMethodField()
+    brandname = serializers.SerializerMethodField()
 
     class Meta:
         model = Medicine
@@ -42,15 +48,11 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return ProcedureSerializer(instance=queryset, read_only=True).data
 
+
     def to_representation(self, obj):
         representation = super().to_representation(obj)
-
-        authorisation_representation = representation.pop("authorisation")
-        for key in authorisation_representation:
-            representation[key] = authorisation_representation[key]
-
-        procedure_representation = representation.pop("procedure")
-        for key in procedure_representation:
-            representation[key] = procedure_representation[key]
-
+        for field in ["authorisation", "procedure"]:
+            field_representation = representation.pop(field)
+            for key in field_representation:
+                representation[key] = field_representation[key]
         return representation
