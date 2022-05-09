@@ -64,7 +64,7 @@ export function DataProvider({ children }) {
   ])
 
   let uniqueCategories = GetUniqueCategories(allData)
-  
+
   //visualisation context to save the visualisations when navigating the page
   const [visuals, setVisuals] = useState([
     {
