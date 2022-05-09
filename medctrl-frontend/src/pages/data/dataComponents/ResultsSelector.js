@@ -138,16 +138,21 @@ function ResultsSelector({
   return (
     <div className="bottomOfTableHolder">
       {clearEnabled && (
-        <div className="clear med-primary-text" onClick={removeAllSelected}>
+        <div
+          className="clear med-primary-text"
+          onClick={removeAllSelected}
+          data-testid="clear-all-label"
+        >
           Clear All
           <i className="bx bxs-trash clear-icon"></i>
         </div>
       )}
 
-      <div className="dv-pageCount">
+      <div className="dv-pageCount" data-testid="pagination-div">
         <i
           onClick={() => Back()}
           className="bx bxs-chevron-left li-pageCount"
+          data-testid="prev-page-table"
         />
 
         {PageSelector()}
@@ -155,6 +160,7 @@ function ResultsSelector({
         <i
           onClick={() => Next()}
           className="bx bxs-chevron-right li-pageCount"
+          data-testid="next-page-table"
         />
       </div>
 

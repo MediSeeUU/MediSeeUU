@@ -22,12 +22,9 @@ class BasePage():
   def go_home(self):
     self.nav_items[1].click()
   
-  def go_search(self):
+  def go_data(self):
     self.nav_items[2].click()
   
-  def go_data(self):
-    self.nav_items[3].click()
-  
   def go_visualize(self):
-    self.nav_items[4].click()
+    self.nav_items[3].click()
   

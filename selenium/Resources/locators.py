@@ -8,6 +8,10 @@ class HomePageLocators():
   ARTICLE = (By.CLASS_NAME, 'med-content-container')
   LINK = (By.CLASS_NAME, 'institution-link')
 
+class SearchLocators():
+  SEARCH_BAR = (By.CLASS_NAME, 'med-text-input')
+  BUTTON = (By.CLASS_NAME, 'med-bx-button')
+
 class TableLocators():
   TABLE = (By.CLASS_NAME, 'med_table')
   BODY = (By.TAG_NAME, 'tbody')

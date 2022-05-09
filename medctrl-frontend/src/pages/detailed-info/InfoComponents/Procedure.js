@@ -14,8 +14,8 @@ function Procedure(props) {
   let decisionURL = props.proc.DecisionURL
 
   return (
-    <div class="procedure">
-      <div class="procedure-content">
+    <div className="procedure" key={'proc' + props.id}>
+      <div className="procedure-content">
         <ProcedureDetail
           name="Decision Date"
           value={decisionDate}
@@ -33,7 +33,7 @@ function Procedure(props) {
         />
       </div>
 
-      <div class="procedure-files">
+      <div className="procedure-files">
         <CustomLink
           className="procedure-file-link"
           name="Annex File"

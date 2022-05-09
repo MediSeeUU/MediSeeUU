@@ -79,9 +79,17 @@ function DisplayTable({
   
   //handler that adds a column
   const addColumn = () => {
-    let newColumnSelection = [...columnSelection]
-    newColumnSelection.push(Object.keys(LocalTableData[0])[0])
-    setColumnSelection(newColumnSelection)
+    let allColumnOptions = Object.keys(LocalTableData[0])
+    let availableColumns = allColumnOptions.filter(
+      (element) => ![...columnSelection].includes(element)
+    )
+
+    if (availableColumns.length > 0) {
+      let newColumnName = availableColumns[0]
+      let newColumnSelection = [...columnSelection]
+      newColumnSelection.push(newColumnName)
+      setColumnSelection(newColumnSelection)
+    }
   }
 
   //handler that removes a column
