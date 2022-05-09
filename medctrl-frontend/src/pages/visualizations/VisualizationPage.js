@@ -141,9 +141,9 @@ function VisualizationPage() {
       <Row>
         <div className="med-content-container visual-container">
           <b>
-            You have currently selected {dataPointAmount} datapoints.
+            You have currently selected {dataPointAmount} datapoint(s).
             <br />
-            Go to the data page to add/remove datapoints.
+            Go to the data page to add/remove datapoint(s).
             <br />
             In case some of the functionality is not clear, you can visit the
             manual on the home page

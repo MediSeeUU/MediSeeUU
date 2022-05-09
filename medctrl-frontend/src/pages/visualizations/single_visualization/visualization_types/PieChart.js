@@ -21,7 +21,8 @@ class PieChart extends Component {
         },
         labels: this.props.categories,
         noData: {
-          text: 'select the categories to be displayed',
+          text: `You can select the categories to be displayed.
+           Note that creating the graph may take some time`,
         },
         plotOptions: { pie: { expandOnClick: false } },
         theme: {

@@ -16,6 +16,10 @@ class HistogramChart extends Component {
         },
         xaxis: {
           categories: this.props.categories,
+          labels: {
+            rotateAlways: true,
+            trim: true,
+          },
           tickPlacement: 'on',
           title: {
             text: this.props.options.xAxis,
@@ -33,7 +37,8 @@ class HistogramChart extends Component {
           show: this.props.legend,
         },
         noData: {
-          text: 'select the categories to be displayed',
+          text: `You can select the categories to be displayed.
+            Note that creating the graph may take some time`,
         },
       },
       series: this.props.series,
@@ -51,6 +56,7 @@ class HistogramChart extends Component {
             options={this.state.options}
             series={this.state.series}
             type="bar"
+            height={700}
           />
         </div>
       )

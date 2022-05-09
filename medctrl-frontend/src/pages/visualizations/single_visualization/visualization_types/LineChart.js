@@ -16,7 +16,8 @@ class LineChart extends Component {
         xaxis: {
           categories: this.props.categories,
           labels: {
-            hideOverlappingLabels: true,
+            rotateAlways: true,
+            trim: true,
           },
           tickPlacement: 'on',
           title: {
@@ -35,7 +36,8 @@ class LineChart extends Component {
           show: this.props.legend,
         },
         noData: {
-          text: 'select the categories to be displayed',
+          test: `You can select the categories to be displayed.
+             Note that creating the graph may take some time`,
         },
         theme: {
           palette: 'palette3',
