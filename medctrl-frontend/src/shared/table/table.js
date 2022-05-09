@@ -7,7 +7,7 @@ import {
 } from '../contexts/DataContext'
 import './table.css'
 import { Link } from 'react-router-dom'
-import { sortData } from '../menu/sorting'
+import  sortData  from '../../pages/data/Utils/sorting.js'
 
 
 //Function based component, returns table
