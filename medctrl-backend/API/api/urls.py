@@ -2,11 +2,15 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from knox import views as knox_views
 
-from api.views.medicine_views import ProcedureViewSet, MedicineViewSet, AuthenticatedUser
+from api.views.medicine_views import (
+    ProcedureViewSet,
+    MedicineViewSet,
+    AuthenticatedUser,
+)
 from api.views.account_views import RegisterAPI, LoginAPI
 
 router = DefaultRouter()
-router.register(r"medicine", MedicineViewSet , basename="medicine")
+router.register(r"medicine", MedicineViewSet, basename="medicine")
 router.register(r"procedure/(?P<eunumber>\d+)", ProcedureViewSet, basename="procedure")
 # router.register(r"authenticated", AuthenticatedUser , basename="authenticatedUser") this is giving me errors
 
