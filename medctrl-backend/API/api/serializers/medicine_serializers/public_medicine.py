@@ -1,5 +1,13 @@
 from rest_framework import serializers
-from api.models.medicine_models import Medicine, Authorisation, Procedure, Historybrandname, Historymah, Historyorphan, Historyprime
+from api.models.medicine_models import (
+    Medicine,
+    Authorisation,
+    Procedure,
+    Historybrandname,
+    Historymah,
+    Historyorphan,
+    Historyprime,
+)
 
 
 class AuthorisationSerializer(serializers.ModelSerializer):
@@ -71,7 +79,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         except:
             queryset = None
         return ProcedureSerializer(instance=queryset, read_only=True).data
-    
+
     def get_brandname(self, brandname):
         queryset = Historybrandname.objects.filter(eunumber=brandname.eunumber)
         try:
@@ -79,7 +87,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         except:
             queryset = None
         return BrandnameSerializer(instance=queryset, read_only=True).data
-    
+
     def get_mah(self, mah):
         queryset = Historymah.objects.filter(eunumber=mah.eunumber)
         try:
@@ -87,7 +95,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         except:
             queryset = None
         return MAHSerializer(instance=queryset, read_only=True).data
-    
+
     def get_orphan(self, orphan):
         queryset = Historyorphan.objects.filter(eunumber=orphan.eunumber)
         try:
@@ -95,7 +103,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         except:
             queryset = None
         return OrphanSerializer(instance=queryset, read_only=True).data
-    
+
     def get_prime(self, prime):
         queryset = Historyprime.objects.filter(eunumber=prime.eunumber)
         try:
@@ -106,7 +114,14 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
     def to_representation(self, obj):
         representation = super().to_representation(obj)
-        for field in ["authorisation", "procedure", "brandname", "mah", "orphan", "prime"]:
+        for field in [
+            "authorisation",
+            "procedure",
+            "brandname",
+            "mah",
+            "orphan",
+            "prime",
+        ]:
             field_representation = representation.pop(field)
             for key in field_representation:
                 representation[key] = field_representation[key]
