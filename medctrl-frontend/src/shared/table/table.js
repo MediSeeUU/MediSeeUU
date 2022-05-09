@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {
   useCheckedState,
   useCheckedStateUpdate,
@@ -7,6 +7,8 @@ import {
 } from '../contexts/DataContext'
 import './table.css'
 import { Link } from 'react-router-dom'
+import { sortData } from '../menu/sorting'
+
 
 //Function based component, returns table
 function DisplayTable({
@@ -22,6 +24,12 @@ function DisplayTable({
     throw Error('parameters data, amountPerPage and currentPage are mandatory')
   }
 
+  const [LocalTableData, setLocalTableData] = useState(data)
+  
+  useEffect(() => {
+    setLocalTableData(data)
+  }, [data])
+  
   const checkedState = useCheckedState()
   const setCheckedState = useCheckedStateUpdate()
 
@@ -42,7 +50,7 @@ function DisplayTable({
   //Handle a mouseclick on the checkbox in the header
   const handleAllChange = () => {
     const updatedCheckedState = JSON.parse(JSON.stringify(checkedState)) //hard copy state
-    data.forEach((prop) => {
+    LocalTableData.forEach((prop) => {
       updatedCheckedState[prop.EUNumber] = !allSelected
     })
     setCheckedState(updatedCheckedState)
@@ -52,7 +60,7 @@ function DisplayTable({
   const lowerBoundDataPage = amountPerPage * (currentPage - 1)
   const higherBoundDataPage = amountPerPage * currentPage
 
-  if (lowerBoundDataPage > data.length) {
+  if (lowerBoundDataPage > LocalTableData.length) {
     throw Error('Pagination too high, data not defined')
   }
 
@@ -63,10 +71,16 @@ function DisplayTable({
     setColumnSelection(newColumnSelection)
   }
 
+  //handler that changes the data sorting order
+  const handleSortingChange = (attributename, value) => {
+      var sortedLocalData = sortData([...LocalTableData], [{ selected:attributename, order:value}])
+      setLocalTableData(sortedLocalData)
+  }
+  
   //handler that adds a column
   const addColumn = () => {
     let newColumnSelection = [...columnSelection]
-    newColumnSelection.push(Object.keys(data[0])[0])
+    newColumnSelection.push(Object.keys(LocalTableData[0])[0])
     setColumnSelection(newColumnSelection)
   }
 
@@ -80,7 +94,7 @@ function DisplayTable({
   }
 
   //constant with the table body data, for every data entry add a new row
-  const htmlData = data
+  const htmlData = LocalTableData
     .slice(lowerBoundDataPage, higherBoundDataPage)
     .map((entry, index1) => {
       return (
@@ -89,15 +103,17 @@ function DisplayTable({
             <CheckboxColumn
               value={checkedState[entry.EUNumber]}
               onChange={handleOnChange.bind(null, entry.EUNumber)}
-              data={data}
+              data={LocalTableData}
             />
           ) : null}
           {columnSelection.map((propt, index2) => {
             return (
-              <td className="med_td" key={index2}>
-                {entry[propt]}
-              </td>
-            )
+                      <td className="med_td" key={index2}>
+                        {dataToDisplayFormat({entry, propt})}
+                      </td>
+                    )
+           
+            
           })}
           <InfoboxColumn EUidNumber={entry.EUNoShort} />
           {!selectTable && !searchTable && (
@@ -135,7 +151,7 @@ function DisplayTable({
                 <CheckboxColumn
                   value={allSelected}
                   onChange={handleAllChange}
-                  data={data}
+                  data={LocalTableData}
                 />
               ) : null
             }
@@ -151,7 +167,7 @@ function DisplayTable({
                         handleColumnChange(index1, e.target.value)
                       }
                     >
-                      {Object.keys(data[0]).map((key2, index2) => {
+                      {Object.keys(LocalTableData[0]).map((key2, index2) => {
                         return (
                           <option key={index2} value={key2}>
                             {key2}
@@ -159,6 +175,20 @@ function DisplayTable({
                         )
                       })}
                     </select>
+                    
+                    
+                    <button
+                        className="med_th_sort"
+                        onClick={(e) => handleSortingChange(key1, "asc")}
+                      >
+                        ^
+                      </button>
+                      <button
+                        className="med_th_sort"
+                        onClick={(e) => handleSortingChange(key1, "desc")}
+                      >
+                        v
+                      </button>
                   </th>
                 )
               })
@@ -180,6 +210,29 @@ function DisplayTable({
     </>
   )
 }
+
+//backend received data can be reformatted when displayed in the table
+//depeding on the property/variable, different formatting may be applicable
+export const dataToDisplayFormat = ({entry, propt})=>{
+  switch(propt)
+  {
+    case "DecisionDate":
+      return (slashDateToStringDate(entry[propt]))
+    default:
+      return (entry[propt])
+  }
+  
+}
+function slashDateToStringDate(date)
+{
+  var splitteddate = date.split('/')
+  const day = splitteddate[1].replace(/^0+/, '')
+  const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][parseInt(splitteddate[0].replace(/^0+/, ''))-1]
+  const year = splitteddate[2]
+  const fullDate = day + ' '+ month + ' ' + year
+  return fullDate
+}
+
 
 //logic for the checkboxes
 const CheckboxColumn = ({ value, onChange }) => {

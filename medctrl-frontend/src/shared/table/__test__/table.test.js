@@ -10,6 +10,7 @@ import {
   ColumnSelectionContextUpdate,
 } from '../../contexts/DataContext'
 import { BrowserRouter } from 'react-router-dom'
+import { dataToDisplayFormat} from '../../table/table'
 
 test('renders without crashing', () => {
   var columnSelection = [
@@ -379,12 +380,12 @@ test('throw error when current page does not exist', () => {
   expect(renderFunction).toThrow(Error)
 })
 
-test('data put correctly into table', () => {
+test('data put and displayed correctly into table', () => {
   var columnSelection = [
     'EUNoShort',
     'BrandName',
     'MAH',
-    'DecisionDate',
+    'DecisionDate', 
     'ATCNameL2',
     'ApplicationNo',
     'ApplicationNo',
@@ -403,20 +404,65 @@ test('data put correctly into table', () => {
       </ColumnSelectionContext.Provider>
     </BrowserRouter>
   )
+
   const headers = screen.getAllByRole('columnheader')
   const rowgroup = screen.getAllByRole('rowgroup')[1]
   const rows = within(rowgroup).getAllByRole('row')
   headers.forEach((header, index) => {
     const select = within(header).getByRole('combobox')
-    const selectValue = select.value
+    const propt = select.value
     rows.forEach((row, index2) => {
       const cells = within(row).getAllByRole('cell')
       const cellValue = cells[index].innerHTML
-      const dataElement = DummyData[index2]
-      expect(cellValue).toBe(dataElement[selectValue].toString())
+      const entry = DummyData[index2]
+      const DisplayedData = dataToDisplayFormat({ entry, propt })
+      expect(cellValue).toBe(DisplayedData.toString())
     })
   })
+
 })
+
+test('sorting on EUNoShort columnheader sorts data', ()=>{
+  
+  var columnSelection = [
+    'EUNoShort',
+    'BrandName',
+    'MAH',
+    'DecisionDate', 
+    'ATCNameL2',
+    'ApplicationNo',
+    'ApplicationNo',
+  ]
+
+  const setColumnSelection = (newColumns) => {
+    columnSelection = newColumns
+  }
+
+  render(
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <Table data={DummyData} currentPage={1} amountPerPage={10} />
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
+  )
+
+  const firstcolumndescsortbutton = screen.getAllByText('v')[0]
+  fireEvent.click(firstcolumndescsortbutton)
+  //table should now be sorted descending on EUNoShort number
+  const rowgroup = screen.getAllByRole('rowgroup')[1]
+  const rows = within(rowgroup).getAllByRole('row')
+  var prevrowvalue = rows[0].cells[0].innerHTML
+  console.log(prevrowvalue)
+    rows.forEach((row) => {
+      const cellValue = row.cells[0].innerHTML
+      console.log(cellValue)
+      expect(parseInt(cellValue)).toBeLessThanOrEqual(parseInt(prevrowvalue))
+      prevrowvalue = cellValue
+    })
+  })
+
 
 test('column change changes data in row', () => {
   var columnSelection = [
