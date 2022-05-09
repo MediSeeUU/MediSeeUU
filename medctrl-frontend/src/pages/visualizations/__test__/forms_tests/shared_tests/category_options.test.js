@@ -19,7 +19,6 @@ beforeAll(() => {
   uniqueCategories = GetUniqueCategories(data)
   setting = {
     categoriesSelected: [],
-    selectAllCategories: false,
   }
 })
 
@@ -27,10 +26,9 @@ test('initial render', () => {
   const onChange = jest.fn()
   render(
     <CategoryOptions
-      key={1}
-      className={'category-options'}
       onChange={onChange}
       categories={sortCategoryData(uniqueCategories['Rapporteur'])}
+      categoriesSelected={uniqueCategories['Rapporteur']}
       settings={setting}
     />
   )
@@ -44,6 +42,7 @@ test('add and remove a category', () => {
       className={'category-options'}
       onChange={onChange}
       categories={sortCategoryData(uniqueCategories['Rapporteur'])}
+      categoriesSelected={uniqueCategories['Rapporteur']}
       settings={setting}
     />
   )
@@ -60,6 +59,7 @@ test('remove category when it was not first selected', () => {
       className={'category-options'}
       onChange={onChange}
       categories={sortCategoryData(uniqueCategories['Rapporteur'])}
+      categoriesSelected={uniqueCategories['Rapporteur']}
       settings={setting}
     />
   )
@@ -75,6 +75,7 @@ test('select and deselect all categories', () => {
       className={'category-options'}
       onChange={onChange}
       categories={sortCategoryData(uniqueCategories['Rapporteur'])}
+      categoriesSelected={uniqueCategories['Rapporteur']}
       settings={setting}
     />
   )

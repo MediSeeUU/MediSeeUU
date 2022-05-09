@@ -13,7 +13,7 @@ class BarForm extends Component {
     // The list of eligible variables.
     // If we do not want to include a variable for the bar chart,
     // it can be removed from here.
-    const eligibleVariables = [
+    let eligibleVariables = [
       'ApplicationNo',
       'EUNumber',
       'EUNoShort',
@@ -45,8 +45,9 @@ class BarForm extends Component {
     ]
 
     // initialization of the state
-    this.state = this.props.chartSpecificOptions
-    this.state.eligibleVariables = eligibleVariables
+    let chartSpecificOptions = this.props.chartSpecificOptions
+    chartSpecificOptions['eligibleVariables'] = eligibleVariables
+    this.state = chartSpecificOptions
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)

@@ -13,18 +13,17 @@ import BarForm from '../../../single_visualization/forms/types/BarForm'
 import data from '../../../../../testJson/data.json'
 
 let uniqueCategories
-let graphSetting
+let chartSpecificOptions
 beforeAll(() => {
   uniqueCategories = GetUniqueCategories(data)
-  graphSetting = {
+  chartSpecificOptions = {
     xAxis: 'DecisionYear',
     yAxis: 'Rapporteur',
-    categoriesSelected: [],
+    categoriesSelectedX: uniqueCategories['DecisionYear'],
+    categoriesSelectedY: uniqueCategories['Rapporteur'],
     stacked: false,
     stackType: false,
     horizontal: false,
-    selectAllCategories: false,
-    eligibleVariables: [],
   }
 })
 
@@ -34,7 +33,7 @@ test('initial render', () => {
     <BarForm
       uniqueCategories={uniqueCategories}
       onChange={onChange}
-      graphSettings={graphSetting}
+      chartSpecificOptions={chartSpecificOptions}
     />
   )
 })
@@ -45,7 +44,7 @@ test('category change', () => {
     <BarForm
       uniqueCategories={uniqueCategories}
       onChange={onChange}
-      graphSettings={graphSetting}
+      chartSpecificOptions={chartSpecificOptions}
     />
   )
   const target = screen.getByRole('checkbox', { name: /united kingdom/i })
@@ -58,7 +57,7 @@ test('horizontal option on', () => {
     <BarForm
       uniqueCategories={uniqueCategories}
       onChange={onChange}
-      graphSettings={graphSetting}
+      chartSpecificOptions={chartSpecificOptions}
     />
   )
   const target = screen.getByRole('checkbox', { name: /horizontal/i })

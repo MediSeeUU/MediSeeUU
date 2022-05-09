@@ -13,21 +13,34 @@ import HistogramForm from '../../../single_visualization/forms/types/HistogramFo
 import data from '../../../../../testJson/data.json'
 
 let uniqueCategories
+let chartSpecificOptions
 beforeAll(() => {
   uniqueCategories = GetUniqueCategories(data)
+  chartSpecificOptions = {
+    xAxis: 'Rapporteur',
+    categoriesSelectedX: uniqueCategories['Rapporteur'],
+  }
 })
 
 test('initial render', () => {
   const onChange = jest.fn()
   render(
-    <HistogramForm uniqueCategories={uniqueCategories} onChange={onChange} />
+    <HistogramForm
+      uniqueCategories={uniqueCategories}
+      onChange={onChange}
+      chartSpecificOptions={chartSpecificOptions}
+    />
   )
 })
 
 test('category change', () => {
   const onChange = jest.fn()
   render(
-    <HistogramForm uniqueCategories={uniqueCategories} onChange={onChange} />
+    <HistogramForm
+      uniqueCategories={uniqueCategories}
+      onChange={onChange}
+      chartSpecificOptions={chartSpecificOptions}
+    />
   )
   const target = screen.getByRole('checkbox', { name: /united kingdom/i })
   fireEvent.click(target)
@@ -36,7 +49,11 @@ test('category change', () => {
 test('xaxis change', () => {
   const onChange = jest.fn()
   render(
-    <HistogramForm uniqueCategories={uniqueCategories} onChange={onChange} />
+    <HistogramForm
+      uniqueCategories={uniqueCategories}
+      onChange={onChange}
+      chartSpecificOptions={chartSpecificOptions}
+    />
   )
   let target = screen.getByRole('combobox', { name: /variable/i })
   fireEvent.change(target, {

@@ -24,14 +24,15 @@ test('export to svg', () => {
   const unique = GetUniqueCategories(data)
   var setting = {
     id: 1,
-    chart_type: 'bar',
+    chartType: 'bar',
     chartSpecificOptions: {
       xAxis: 'DecisionYear',
       yAxis: 'Rapporteur',
-      categoriesSelected: [],
+      categoriesSelectedX: unique['DecisionYear'],
+      categoriesSelectedY: unique['Rapporteur'],
     },
-    legend_on: true,
-    labels_on: false,
+    legendOn: true,
+    labelsOn: false,
     data: data,
     series: [],
     uniqueCategories: unique,
@@ -44,5 +45,5 @@ test('export to svg', () => {
     <SingleVisualization id={1} data={data} settings={setting} />,
     root
   )
-  HandleSVGExport(1, ApexCharts)
+  HandleSVGExport(1, 'example title', ApexCharts)
 })

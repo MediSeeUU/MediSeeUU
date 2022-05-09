@@ -13,18 +13,14 @@ import LineForm from '../../../single_visualization/forms/types/LineForm'
 import data from '../../../../../testJson/data.json'
 
 let uniqueCategories
-let graphSetting
+let chartSpecificOptions
 beforeAll(() => {
   uniqueCategories = GetUniqueCategories(data)
-  graphSetting = {
+  chartSpecificOptions = {
     xAxis: 'DecisionYear',
     yAxis: 'Rapporteur',
-    categoriesSelected: [],
-    stacked: false,
-    stackType: false,
-    horizontal: false,
-    selectAllCategories: false,
-    eligibleVariables: [],
+    categoriesSelectedX: uniqueCategories['DecisionYear'],
+    categoriesSelectedY: uniqueCategories['Rapporteur'],
   }
 })
 
@@ -34,7 +30,7 @@ test('initial render', () => {
     <LineForm
       uniqueCategories={uniqueCategories}
       onChange={onChange}
-      graphSettings={graphSetting}
+      chartSpecificOptions={chartSpecificOptions}
     />
   )
 })
@@ -45,7 +41,7 @@ test('category change', () => {
     <LineForm
       uniqueCategories={uniqueCategories}
       onChange={onChange}
-      graphSettings={graphSetting}
+      chartSpecificOptions={chartSpecificOptions}
     />
   )
   const target = screen.getByRole('checkbox', { name: /united kingdom/i })
@@ -58,7 +54,7 @@ test('xaxis change', () => {
     <LineForm
       uniqueCategories={uniqueCategories}
       onChange={onChange}
-      graphSettings={graphSetting}
+      chartSpecificOptions={chartSpecificOptions}
     />
   )
   let target = screen.getByRole('combobox', { name: /x-axis/i })

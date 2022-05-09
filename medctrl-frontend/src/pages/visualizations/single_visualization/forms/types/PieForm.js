@@ -45,8 +45,9 @@ class PieForm extends Component {
     ]
 
     // initialization of the state
-    this.state = this.props.chartSpecificOptions
-    this.state.eligibleVariables = eligibleVariables
+    let chartSpecificOptions = this.props.chartSpecificOptions
+    chartSpecificOptions['eligibleVariables'] = eligibleVariables
+    this.state = chartSpecificOptions
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
