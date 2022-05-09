@@ -4,7 +4,7 @@ from api.models.medicine_models import Medicine
 from api.models.medicine_models import Procedure
 
 
-class MedicineViewSet(viewsets.ModelViewSet):
+class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
     # Here we should make the distinction in access level --> change serializer based on access level
 
     queryset = Medicine.objects.all()
