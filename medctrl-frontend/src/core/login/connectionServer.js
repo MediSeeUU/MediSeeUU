@@ -9,8 +9,8 @@ async function handleLogin(event, props) {
     json[item.id] = item.value
   })
 
-  // call to server : /api/account/login/ `${process.env.PUBLIC_URL}/api/account/login/`
-  const response = await fetch('http://127.0.0.1:8000/account/login/', {
+  // call to server : /api/account/login/
+  const response = await fetch(`${process.env.PUBLIC_URL}/api/account/login/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(json),
