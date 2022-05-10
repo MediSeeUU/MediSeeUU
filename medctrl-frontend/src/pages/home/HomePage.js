@@ -1,6 +1,7 @@
 import './HomePage.css'
 import '../../shared/shared.css'
 import Search from '../../shared/Search/Search'
+import DashboardTour from '../../core/tour/DashboardTour'
 import { useNavigate } from 'react-router-dom'
 
 import uuLogo from '../../images/uu-logo.svg'
@@ -12,7 +13,9 @@ function HomePage() {
     // Homepage components, contains article containers (styling in HomePage.css)
     <div className="med_home_content">
       <Search update={(query) => navigate('/data?q=' + query)} />
-      <div className="med-content-container">
+      <DashboardTour />
+
+      <div tour="step-two" className="med-content-container">
         <h1>About This Dashboard</h1>
         <hr className="med-top-separator" />
         <p>
