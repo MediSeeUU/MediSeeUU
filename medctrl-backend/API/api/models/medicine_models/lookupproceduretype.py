@@ -3,7 +3,7 @@ from django.db import models
 
 class Lookupproceduretype(models.Model):
     proceduretype = models.CharField(
-        db_column="ProcedureType", primary_key=True, max_length=45
+        db_column="ProcedureType", primary_key=True, max_length=128
     )
 
     class Meta:

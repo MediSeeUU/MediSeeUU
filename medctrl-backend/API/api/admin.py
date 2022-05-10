@@ -155,7 +155,7 @@ class ProcedureResource(resources.ModelResource):
         """
 
         model = Procedure
-        import_id_fields = ("eunumber", "procedurecount")
+        import_id_fields = ("commisionnumber",)
 
 
 class ProcedureAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
@@ -167,6 +167,7 @@ class ProcedureAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
     list = (
         "eunumber",
         "procedurecount",
+        "commisionnumber",
         "emanumber",
         "proceduredate",
         "proceduretype",
@@ -229,7 +230,7 @@ class HistorybrandnameResource(resources.ModelResource):
         model = Historybrandname
         import_id_fields = (
             "eunumber",
-            "brandname",
+            "brandnamedate",
         )
 
 
@@ -262,7 +263,7 @@ class HistoryindicationResource(resources.ModelResource):
         model = Historyindication
         import_id_fields = (
             "eunumber",
-            "indication",
+            "indicationdate",
         )
 
 
@@ -295,7 +296,7 @@ class HistorymahResource(resources.ModelResource):
         model = Historymah
         import_id_fields = (
             "eunumber",
-            "mah",
+            "mahdate",
         )
 
 
@@ -328,7 +329,7 @@ class HistoryorphanResource(resources.ModelResource):
         model = Historyorphan
         import_id_fields = (
             "eunumber",
-            "orphan",
+            "orphandate",
         )
 
 
@@ -361,7 +362,7 @@ class HistoryprimeResource(resources.ModelResource):
         model = Historyprime
         import_id_fields = (
             "eunumber",
-            "",
+            "primedate",
         )
 
 
