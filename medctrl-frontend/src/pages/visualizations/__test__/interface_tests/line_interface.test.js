@@ -37,4 +37,23 @@ test('some selected categories', () => {
   const series = GenerateLineSeries(options, uniqueCategories, data)
   expect(series).toHaveLength(2)
   expect(series[0].name).toBe('United Kingdom')
+  expect(series[1].name).toBe('Denmark')
+})
+
+test('data in categories', () => {
+  const uniqueCategories = GetUniqueCategories(data)
+  const options = {
+    chartSpecificOptions: {
+      xAxis: 'DecisionYear',
+      yAxis: 'Rapporteur',
+      categoriesSelected: ['United Kingdom', 'Denmark'],
+    },
+  }
+  const series = GenerateLineSeries(options, uniqueCategories, data)
+  series.forEach((element) => {
+    let filteredData = data.filter((datael) => element.eu_numbers.includes(datael.EUNoShort))
+    filteredData.forEach((datael) => {
+      expect(element.name).toBe(datael.Rapporteur)
+    })
+  })
 })

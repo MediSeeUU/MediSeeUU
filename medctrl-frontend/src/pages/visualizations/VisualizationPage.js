@@ -119,6 +119,8 @@ function VisualizationPage() {
   }
 
   // Handler that is called after clicking on a datapoint
+  // It will set the eu numbers state to the eu numbers of the selected datapoint
+  // And opens the pop-up which displays the entries in the table
   function handleDataClickFunc(eu_numbers) {
     setNumbers(eu_numbers)
     if (eu_numbers.length > 0) {
@@ -126,7 +128,8 @@ function VisualizationPage() {
     }
   }
 
-  // Update the table and modal state after changes
+  // Updates the states after changes to the selected data or eu numbers
+  // The table data will be all the eu numbers that are currently stored in the state
   useEffect(() => {
     let updatedData = selectedData.filter((element) =>
       numbers.includes(element.EUNoShort)
