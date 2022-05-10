@@ -129,7 +129,7 @@ function VisualizationPage() {
   }
 
   // Updates the states after changes to the selected data or eu numbers
-  // The table data will be all the eu numbers that are currently stored in the state
+  // The table data will be all the data with eu numbers that are currently stored in the state
   useEffect(() => {
     let updatedData = selectedData.filter((element) =>
       numbers.includes(element.EUNoShort)
