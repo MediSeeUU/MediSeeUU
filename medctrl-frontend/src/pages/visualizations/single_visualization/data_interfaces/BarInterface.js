@@ -1,20 +1,24 @@
 import sortCategoryData from '../utils/SortCategoryData'
 
-/* 
-  generates series for a bar chart,
-  keep in mind that the index of a serie corresponds with the index of the 
-  'xaxis: {categories}' option!  
-*/
-export default function GenerateBarSeries(options, allCategories, data) {
+// Generates series for a bar chart
+export default function GenerateBarSeries(options, data) {
+  // no categories have been selected
+  if (options.chartSpecificOptions.categoriesSelectedX.length === 0) {
+    return []
+  }
   let xAxis = options.chartSpecificOptions.xAxis
   let yAxis = options.chartSpecificOptions.yAxis
-  let categoriesSelectedY = options.chartSpecificOptions.categoriesSelected
-  let sortedxAxis = sortCategoryData(allCategories[xAxis])
+  let categoriesSelectedX = sortCategoryData(
+    options.chartSpecificOptions.categoriesSelectedX
+  )
+  let categoriesSelectedY = sortCategoryData(
+    options.chartSpecificOptions.categoriesSelectedY
+  )
 
   let [dict, eu_numbers] = PollChosenVariable(
     xAxis,
     yAxis,
-    sortedxAxis,
+    categoriesSelectedX,
     categoriesSelectedY,
     data
   )
@@ -23,7 +27,7 @@ export default function GenerateBarSeries(options, allCategories, data) {
     dict,
     eu_numbers,
     categoriesSelectedY,
-    sortedxAxis
+    categoriesSelectedX
   )
 
   let seriesFormatted = ToSeriesFormat(series, eu_series)
@@ -31,34 +35,31 @@ export default function GenerateBarSeries(options, allCategories, data) {
   return seriesFormatted
 }
 
-/*
-  Expects data to be an array of ob objects, 
-	where each object has a value for each variable.
-	It builds a dictionary where the keys are the categories of the x variable,
-	the values themselves are also dictionaries.
-	In this dictionary the keys are categories of the y variable,
-	the values are how often this combination of categories happened.
-*/
-function PollChosenVariable(x_axis, y_axis, categories_x, categories_y, data) {
+// Counts the number of occurrences a given value of the x variable is paired
+// with a given value of the y variable.
+function PollChosenVariable(xAxis, yAxis, categoriesX, categoriesY, data) {
   let dict = {}
   let eu_numbers = {}
 
   // adding a key for each category
-  categories_x.forEach((category) => {
+  categoriesX.forEach((category) => {
     dict[category] = {}
     eu_numbers[category] = {}
   })
 
   // going through all data entries
   data.forEach((element) => {
-    // only if the value of the y variable is one of the selecte categories
-    if (categories_y.includes(element[y_axis])) {
-      if (dict[element[x_axis]][element[y_axis]] === undefined) {
-        dict[element[x_axis]][element[y_axis]] = 1
-        eu_numbers[element[x_axis]][element[y_axis]] = [element.EUNoShort]
+    // only if the value of the x/y variable is one of the selected categories
+    if (
+      categoriesY.includes(element[yAxis]) &&
+      categoriesX.includes(element[xAxis])
+    ) {
+      if (dict[element[xAxis]][element[yAxis]] === undefined) {
+        dict[element[xAxis]][element[yAxis]] = 1
+        eu_numbers[element[xAxis]][element[yAxis]] = [element.EUNoShort]
       } else {
-        dict[element[x_axis]][element[y_axis]] += 1
-        eu_numbers[element[x_axis]][element[y_axis]].push(element.EUNoShort)
+        dict[element[xAxis]][element[yAxis]] += 1
+        eu_numbers[element[xAxis]][element[yAxis]].push(element.EUNoShort)
       }
     }
   })
@@ -66,21 +67,20 @@ function PollChosenVariable(x_axis, y_axis, categories_x, categories_y, data) {
   return [dict, eu_numbers]
 }
 
-/*
-  Creates an array for each selected category of the y variable.
-  If a y category was never combined with an x category,
-	a 0 will be added, otherwise the amount of occurrences.
-*/
-function CreateSelectedSeries(dict, eu_numbers, categories_y, categories_x) {
+// Creates an array for each selected category of the y variable.
+// If a y category was never combined with an x category,
+// a 0 will be added, otherwise the amount of occurrences is added.
+function CreateSelectedSeries(dict, eu_numbers, categoriesY, categoriesX) {
   let series = {}
   let eu_series = {}
-  categories_y.forEach((category) => {
+
+  categoriesY.forEach((category) => {
     series[category] = []
     eu_series[category] = []
   })
 
-  categories_x.forEach((k) => {
-    categories_y.forEach((category) => {
+  categoriesX.forEach((k) => {
+    categoriesY.forEach((category) => {
       if (dict[k][category] === undefined) {
         series[category].push(0)
         eu_series[category].push([])
