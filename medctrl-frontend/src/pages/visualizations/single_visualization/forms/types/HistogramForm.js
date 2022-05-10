@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../../../visualizations.css'
 import CategoryOptions from '../shared/CategoryOptions'
 import sortCategoryData from '../../utils/SortCategoryData'
+import { v4 as uuidv4 } from 'uuid'
 
 // the histogram part of a form if a histogram chart is chosen
 class HistogramForm extends Component {
@@ -79,7 +80,7 @@ class HistogramForm extends Component {
   // This event is passed to the CategoryOptions component.
   handleCategorySelectionChange(event) {
     this.setState({ categoriesSelectedX: event }, () => {
-      this.props.onChange([this.state, 'categoriesSelectedX'])
+      this.props.onChange([this.state, uuidv4()])
     })
   }
 

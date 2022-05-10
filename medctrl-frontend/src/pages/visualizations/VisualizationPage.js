@@ -1,5 +1,5 @@
 // external imports
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -146,21 +146,6 @@ function VisualizationPage() {
       setTableData(updatedData)
     }
   }, [selectedData, numbers, modal])
-
-  // const selectedRef = useRef(selectedData)
-  // useEffect(() => {
-  //   if (selectedRef.current.length !== selectedData.length) {
-  //     selectedRef.current = selectedData
-  //     console.log(visuals)
-  //     var newVisuals = JSON.parse(JSON.stringify(visuals))
-  //     newVisuals = newVisuals.map((vis) => {
-  //       vis.series = generateSeries(vis.chartType, vis)
-  //       return vis
-  //     })
-  //     setVisuals(newVisuals)
-  //     console.log(visuals)
-  //   }
-  // }, [selectedData, visuals, setVisuals])
 
 
   // GENERAL FUNCTIONS:

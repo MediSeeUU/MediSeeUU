@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../../../visualizations.css'
 import CategoryOptions from '../shared/CategoryOptions'
 import sortCategoryData from '../../utils/SortCategoryData'
+import { v4 as uuidv4 } from 'uuid'
 
 // the pie part of a form if a pie chart is chosen
 class PieForm extends Component {
@@ -80,7 +81,7 @@ class PieForm extends Component {
   // This event is passed to the CategoryOptions component.
   handleCategorySelectionChange(event) {
     this.setState({ categoriesSelectedX: event }, () => {
-      this.props.onChange([this.state, 'categoriesSelectedX'])
+      this.props.onChange([this.state, uuidv4()])
     })
   }
 

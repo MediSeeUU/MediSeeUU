@@ -83,10 +83,8 @@ class SingleVisualization extends Component {
 
   // creating a chart based on the chosen chart type
   renderChart() {
-    const newValue =
-      this.settings.chartSpecificOptions[this.settings.changeName] ??
-      this.settings[this.settings.changeName]
-    const key = `${this.settings.changeName}${newValue}`
+    const key = this.settings.changeName
+    console.log(key)
     const legendOn = this.settings.legendOn
     const labelsOn = this.settings.labelsOn
     const id = this.props.id
