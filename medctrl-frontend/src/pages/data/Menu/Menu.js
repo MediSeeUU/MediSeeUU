@@ -119,6 +119,7 @@ class Menu extends React.Component {
 
   // Updates the specified input box value of the specified filter item
   updateFilterInput = (id, index, value) => {
+    console.log("filter updated")
     this.updateElement('filters', id, (obj) => {
       let newInput = [...obj.input]
       newInput[index] = value

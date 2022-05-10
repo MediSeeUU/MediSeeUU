@@ -158,3 +158,17 @@
   top: 5px;
   right: 5px;
 }
+
+.filter-inputs:nth-child(2) {
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+
+.med-num-input {
+  margin-top: 0px;
+  margin-bottom: 10px
+}
+
+.med-select {
+  margin-bottom: 5px;
+}

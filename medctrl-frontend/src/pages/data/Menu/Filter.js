@@ -1,20 +1,16 @@
 import { v4 as uuidv4 } from 'uuid'
+import FilterInputs from './FilterComponents/FilterInputs'
 
 // Returns all filter input boxes in HTML
 function filtersToHTML(props) {
   const fields = []
+  // console.log(props)
   for (let i = 0; i < props.item.input.length; i++) {
     fields.push(
-      <div key={uuidv4()}>
-        <input
-          type="text"
-          id={i}
-          className="filter-input med-text-input"
-          defaultValue={props.item.input[i]}
-          placeholder="Enter value"
-          onBlur={(e) => props.fil(props.id, i, e.target.value)}
-          data-testid="filter-input"
-        />
+      <div key={uuidv4()} className="filter-picker">
+        {
+        pickFilter(props, i)
+        }
         <i
           className="bx bxs-minus-circle remove-icon"
           onClick={() => props.dbox(props.id, i)}
@@ -27,7 +23,7 @@ function filtersToHTML(props) {
 }
 
 // Returns the filter item in HTML
-function displayItem(props) {
+function DisplayItem(props) {
   return (
     <div id={props.id} className="filter-item">
       <select
@@ -58,4 +54,48 @@ function displayItem(props) {
   )
 }
 
-export default displayItem
+// variable type hardcoded for now. eventually change later if time/convenient :)
+
+// TODO: double check names of prime, medicine authorization holder (MAH), orphan and brand name
+const textVars = ['newactivesubstance', 'emaurl', 'ecurl', 'atccode', 'activesubstance', 
+  'medicinetype', 'decisionurl', 'annexurl', 'eparurl', 'rapporteur', 'corapporteur', 'brandname']
+
+const numVars = ['eunumber', 'emanumber', 'authorisationtotaltime', 'authorisationactivetime',
+ 'authorisationstoppedtime', 'decisiontime']
+
+const dateVars = ['decisiondate', ]
+
+const boolVars = ['atmp', 'referral', 'suspension', 'acceleratedgranted',
+  'acceleratedmaintained', 'prime', 'orphan']
+
+const optionVars = ['legalbasis', 'legalscope', 'status']
+
+// end of variable hardcoding
+
+function pickFilter(props, i) {
+  console.log(props.item)
+  if (props.item.selected === "ApplicationNo") {
+    return (<FilterInputs 
+      type = {"text"}
+      props = {props}
+      i = {i} 
+    />
+    )}
+
+  else if (props.item.selected === "EUNumber") {
+    return (
+      <FilterInputs 
+        type = {"number"}
+        elements = {props}
+        index = {i}
+      />
+    )}
+  else {
+    console.error("Variable doesn't have a filter type")
+  }
+}
+
+
+
+
+export default DisplayItem
