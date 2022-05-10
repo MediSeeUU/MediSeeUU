@@ -1,31 +1,27 @@
+import TimeLineElement from "./TimeLineElement";
+import { v4 } from "uuid";
+
+// function based element, which represents a visual timeline that includes
+// all of the procedures which are passed to this component as a prop. Each 
+// element displays both the date and the type of the procedure, if any of
+// these fields are unavailable, 'NA' is displayed
 function TimeLine(props) {
   let procedures = props.procs
-
   let allElements = procedures.map((proc) => {
+    const clean = (value) => {
+      return (!value) ? ("NA") : (value)
+    }
+
     return (
       <TimeLineElement
-        date={proc.DecisionDate}
-        event={proc.ProcType}
-        key={proc.DecisionDate.toString() + '-' + proc.ProcType.toString()}
+        date={clean(proc.decisiondate)}
+        event={clean(proc.proceduretype)}
+        key={v4()}
       />
     )
   })
 
   return <div className="timeline">{allElements}</div>
-}
-
-function TimeLineElement(props) {
-  return (
-    <div className="el">
-      <div className="timestamp">
-        <span className="date">{props.date}</span>
-      </div>
-      <div className="border-div" />
-      <div className="event">
-        <span>{props.event}</span>
-      </div>
-    </div>
-  )
 }
 
 export default TimeLine

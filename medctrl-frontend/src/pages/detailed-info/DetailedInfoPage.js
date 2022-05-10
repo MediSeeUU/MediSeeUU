@@ -8,45 +8,36 @@ import TimeLine from './InfoComponents/TimeLine'
 
 import { useData } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
-
-import dummyData from './detailed-info-data.json'
 import { useEffect, useState } from 'react'
-
-// the function takes the unique medicine ID number (EUshortNumber) and
-// passes this ID to the detailedPage component, along with the access
-// to the overarching datacontext, where the DetailedInfoPage will request
-// the medicine data corresponding to the medID number.
-function DetailedInfoPage() {
-  const { medID } = useParams()
-  return <InfoPage medIDnumber={medID} />
-}
-
-export default DetailedInfoPage
+import { v4 } from "uuid";
 
 // function based component, which represents the entire detailed information page
-// a medicine id number is passed to this component and the specific information
-// related to that medince is displayed
-export function InfoPage(props) {
-  const medIDnr = props.medIDnumber
+// a medicine id number is from the URL and the specific information related to 
+// that medince is displayed.
+function DetailedInfoPage() {
+  const { medID } = useParams()
   const [procData, setProcData] = useState(null)
 
   // all information of all medicines is retrieved and the correct entry
   // corresponding to the desired medicine is extracted from the array
   const alldata = useData()
   let medData = alldata.find(
-    (element) => element.EUNoShort.toString() === medIDnr.toString()
+    (element) => element.EUNoShort.toString() === medID.toString()
   )
 
   // all of the procedure data related to the desired medicine is asynchronously
   // retrieved from the server. the result is stored in a state
   useEffect(() => {
     async function fetchProcedureData(medID) {
-      setTimeout(() => {
-        setProcData(dummyData[0].procedures)
-      }, 500)
+      const response = await fetch(`${process.env.PUBLIC_URL}/api/procedure/`+medID+'/', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      const data = await response.json()
+      setProcData(data)
     }
-    fetchProcedureData(medIDnr)
-  }, [setProcData, medIDnr])
+    fetchProcedureData(medID)
+  }, [setProcData, medID])
 
   // if the medIDnumber does not correspond to any medicine in the datacontext,
   // a static error page is displayed
@@ -63,7 +54,7 @@ export function InfoPage(props) {
   let allProcedures = []
   if (procData !== null) {
     allProcedures = procData.map((proc) => {
-      return <Procedure proc={proc} key={proc.CommissionProcNumber} />
+      return <Procedure proc={proc} key={v4()}/>
     })
   }
 
@@ -202,3 +193,5 @@ export function InfoPage(props) {
     </div>
   )
 }
+
+export default DetailedInfoPage
