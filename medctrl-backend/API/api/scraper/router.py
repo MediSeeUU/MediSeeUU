@@ -2,8 +2,8 @@ from django.urls import path
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.models.medicine_models import Medicine
-from api.serializers.medicine_serializers import MedicineSerializer
-from api.serializers.medicine_serializers import MedicineFlexSerializer
+from api.serializers.medicine_serializers import PublicMedicineSerializer
+from api.serializers.medicine_serializers import MedicineFlexVarUpdateSerializer
 from api.models.medicine_models import Procedure
 from api.serializers.medicine_serializers import ProcedureSerializer
 from api.serializers.medicine_serializers import ProcedureFlexSerializer
@@ -27,7 +27,7 @@ class ScraperMedicine(APIView):
         #     current = None
         
         finally:
-            serializer = MedicineSerializer(current, data=medicine)
+            serializer = PublicMedicineSerializer(current, data=medicine)
             serializer2 = MedicineFlexSerializer(current, data=medicine)
             if serializer2.is_valid():
                 serializer2.save()
@@ -46,7 +46,7 @@ class ScraperProcedure(APIView):
     """
 
     def post(self, request, format=None):
-        # get "medicine" key from request
+        # get "procedure" key from request
         procedure = request.data.get("procedure")
         
         try:

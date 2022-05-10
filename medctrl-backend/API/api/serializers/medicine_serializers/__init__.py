@@ -1,4 +1,4 @@
 from .procedure import ProcedureSerializer
-from .medicineFlex import MedicineFlexSerializer
+from .medicineFlexVarUpdate import MedicineFlexVarUpdateSerializer
 from .procedureFlex import ProcedureFlexSerializer
 from .public_medicine import PublicMedicineSerializer
