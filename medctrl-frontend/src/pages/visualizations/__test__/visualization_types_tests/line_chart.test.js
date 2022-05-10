@@ -10,6 +10,7 @@ import {
   getByText,
 } from '@testing-library/react'
 import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
+import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
 import GenerateLineSeries from '../../single_visualization/data_interfaces/LineInterface'
 import LineChart from '../../single_visualization/visualization_types/LineChart'
 import ResizeObserver from '../../mocks/observer'
@@ -20,21 +21,23 @@ jest.mock('../../mocks/observer')
 
 let container
 let series
-let uniqueCategories
+let chartSpecificOptions
+let uniqueCategories = GetUniqueCategories(data)
 
 beforeEach(() => {
   container = document.createElement('div')
   document.body.append(container)
 
-  let chartSpecificOptions = {
+  chartSpecificOptions = {
     chartSpecificOptions: {
       xAxis: 'DecisionYear',
       yAxis: 'Rapporteur',
-      categoriesSelected: ['United Kingdom'],
+      categoriesSelectedX: uniqueCategories['DecisionYear'],
+      categoriesSelectedY: ['United Kingdom'],
     },
   }
-  uniqueCategories = GetUniqueCategories(data)
-  series = GenerateLineSeries(chartSpecificOptions, uniqueCategories, data)
+
+  series = GenerateLineSeries(chartSpecificOptions, data)
 })
 
 afterEach(() => {
@@ -50,7 +53,9 @@ test('initial render with usual initialization', () => {
       labels={false}
       id={1}
       series={series}
-      categories={uniqueCategories['DecisionYear']}
+      categories={sortCategoryData(
+        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
+      )}
       options={{}}
     />,
     container
@@ -65,7 +70,9 @@ test('error handler test', () => {
       labels={false}
       id={1}
       series={null}
-      categories={uniqueCategories['DecisionYear']}
+      categories={sortCategoryData(
+        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
+      )}
       options={{}}
     />,
     container

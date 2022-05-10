@@ -94,3 +94,8 @@
   padding-top: 30vh;
   text-align: center;
 }
+
+/* Graph, part of the example code for adding scroll bars to an axis */
+.chart {
+  overflow: auto;
+}
