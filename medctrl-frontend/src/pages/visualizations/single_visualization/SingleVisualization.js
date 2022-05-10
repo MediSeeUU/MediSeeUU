@@ -150,6 +150,7 @@ class SingleVisualization extends Component {
             series={series}
             categories={categories}
             options={options}
+            onDataClick={onDataClick}
           />
         )
 

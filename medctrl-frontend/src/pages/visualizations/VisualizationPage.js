@@ -1,10 +1,11 @@
 // external imports
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ReactModal from 'react-modal'
 import SelectedData from '../data/dataComponents/SelectedData'
+import { v4 as uuidv4 } from 'uuid'
 
 // internal imports
 import SingleVisualization from './single_visualization/SingleVisualization'
@@ -17,7 +18,7 @@ import { generateSeries } from './single_visualization/SingleVisualization'
 // the component that contains all the visualizations
 function VisualizationPage() {
   const selectedData = useSelectedData()
-  const [tableData, setTableData] = useState(selectedData)
+  const [tableData, setTableData] = useState([])
   const [numbers, setNumbers] = useState([])
   const [modal, setModal] = useState(false)
 
@@ -46,6 +47,7 @@ function VisualizationPage() {
       vis.data = selectedData
       vis.uniqueCategories = uniqueCategories
       vis.series = generateSeries(vis.chartType, vis)
+      vis.changeName = uuidv4()
       return vis
     })
     updateVisuals = true
@@ -134,14 +136,32 @@ function VisualizationPage() {
   // Updates the states after changes to the selected data or eu numbers
   // The table data will be all the data with eu numbers that are currently stored in the state
   useEffect(() => {
-    let updatedData = selectedData.filter((element) =>
-      numbers.includes(element.EUNoShort)
-    )
-    if (updatedData.length <= 0) {
-      setModal(false)
+    if (numbers.length > 0 && modal) {
+      let updatedData = selectedData.filter((element) =>
+        numbers.includes(element.EUNoShort)
+      )
+      if (updatedData.length <= 0) {
+        setModal(false)
+      }
+      setTableData(updatedData)
     }
-    setTableData(updatedData)
-  }, [selectedData, numbers])
+  }, [selectedData, numbers, modal])
+
+  // const selectedRef = useRef(selectedData)
+  // useEffect(() => {
+  //   if (selectedRef.current.length !== selectedData.length) {
+  //     selectedRef.current = selectedData
+  //     console.log(visuals)
+  //     var newVisuals = JSON.parse(JSON.stringify(visuals))
+  //     newVisuals = newVisuals.map((vis) => {
+  //       vis.series = generateSeries(vis.chartType, vis)
+  //       return vis
+  //     })
+  //     setVisuals(newVisuals)
+  //     console.log(visuals)
+  //   }
+  // }, [selectedData, visuals, setVisuals])
+
 
   // GENERAL FUNCTIONS:
 
@@ -152,7 +172,7 @@ function VisualizationPage() {
         <Row key={visual.id}>
           <SingleVisualization
             id={visual.id}
-            data={tableData}
+            data={selectedData}
             settings={visual}
             onRemoval={handleRemoval}
             onFormChangeFunc={handleChange}

@@ -6,13 +6,18 @@ class HistogramChart extends Component {
   constructor(props) {
     super(props)
 
-    console.log(this.props.series)
     this.state = {
       options: {
         chart: {
           id: String(this.props.id),
           type: 'bar',
           toolbar: { tools: { download: false } },
+          events: {
+            dataPointSelection: (event, chartContext, config) => {
+              let eu_numbers = config.w.config.series[config.seriesIndex].eu_numbers[config.dataPointIndex]
+              this.props.onDataClick(eu_numbers)
+            },
+          },
         },
         xaxis: {
           categories: this.props.categories,
@@ -40,6 +45,7 @@ class HistogramChart extends Component {
           text: `You can select the categories to be displayed.
             Note that creating the graph may take some time`,
         },
+        eu_numbers: this.props.series.eu_numbers,
       },
       series: this.props.series,
     }
