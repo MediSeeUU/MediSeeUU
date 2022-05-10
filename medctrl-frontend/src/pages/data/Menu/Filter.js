@@ -4,7 +4,6 @@ import FilterInputs from './FilterComponents/FilterInputs'
 // Returns all filter input boxes in HTML
 function filtersToHTML(props) {
   const fields = []
-  // console.log(props)
   for (let i = 0; i < props.item.input.length; i++) {
     fields.push(
       <div key={uuidv4()} className="filter-picker">
@@ -56,43 +55,100 @@ function DisplayItem(props) {
 
 // variable type hardcoded for now. eventually change later if time/convenient :)
 
-// TODO: double check names of prime, medicine authorization holder (MAH), orphan and brand name
+// TODO: check for changes in var name between versions
+
+// these lists are from the endpoints, second set of lists from the JSON data file for testing.
+// second set of lists can be removed once data is retrieved from DB instead
+// TODO: double check all these names once context is filled from DB instead of test JSON
 const textVars = ['newactivesubstance', 'emaurl', 'ecurl', 'atccode', 'activesubstance', 
   'medicinetype', 'decisionurl', 'annexurl', 'eparurl', 'rapporteur', 'corapporteur', 'brandname']
 
 const numVars = ['eunumber', 'emanumber', 'authorisationtotaltime', 'authorisationactivetime',
  'authorisationstoppedtime', 'decisiontime']
 
-const dateVars = ['decisiondate', ]
+const dateVars = ['decisiondate']
 
 const boolVars = ['atmp', 'referral', 'suspension', 'acceleratedgranted',
   'acceleratedmaintained', 'prime', 'orphan']
 
 const optionVars = ['legalbasis', 'legalscope', 'status']
 
+
+// SECOND SET OF LISTS TO WORK WITH THE DATA FROM JSON TEST FILE
+const tempTextVars = ['ATCNameL2', 'ATCCodeL2', 'Rapporteur', 'CoRapporteur',
+ 'BrandName', 'MAH', 'ActiveSubstance' ]
+
+const tempNumVars = ['EUNumber', 'TotalTimeElapsed', 'ClockStopElapsed', 'ActiveTimeElapsed',
+ 'EUNoShort', 'DecisionYear', 'ApplicationNo']
+
+const tempDateVars = ['DecisionDate']
+
+const tempBoolVars = ['ATMP', 'AcceleratedExecuted', 'AcceleratedGranted', 'NAS',
+ 'OrphanDesignation', 'NASQualified', 'CMA', 'AEC']
+
+const tempOptionVars = ['Period', 'ATCCodeL1', 'LegalSCope', 'LegalType', 'PRIME']
+
 // end of variable hardcoding
 
 function pickFilter(props, i) {
-  console.log(props.item)
-  if (props.item.selected === "ApplicationNo") {
+  if (textVars.includes(props.item.selected) || tempTextVars.includes(props.item.selected)) {
+    console.log("text type entered")
     return (<FilterInputs 
       type = {"text"}
       props = {props}
       i = {i} 
     />
-    )}
+  )}
 
-  else if (props.item.selected === "EUNumber") {
+  else if (numVars.includes(props.item.selected) || tempNumVars.includes(props.item.selected)) {
+    console.log("number type entered")
     return (
       <FilterInputs 
         type = {"number"}
-        elements = {props}
-        index = {i}
+        props = {props}
+        i = {i}
       />
-    )}
+  )}
+
+  else if (dateVars.includes(props.item.selected) || tempDateVars.includes(props.item.selected)){
+    console.log("date type entered")
+    return (
+      <FilterInputs 
+        type = {"date"}
+        props = {props}
+        i = {i}
+      />
+  )}
+
+  else if (boolVars.includes(props.item.selected) || tempBoolVars.includes(props.item.selected)){
+    console.log("bool type entered")
+    return (
+      <FilterInputs 
+        type = {"bool"}
+        props = {props}
+        i = {i}
+      />
+  )}
+
+  else if (optionVars.includes(props.item.selected) || tempOptionVars.includes(props.item.selected)){
+    console.log("option type entered")
+    return (
+      <FilterInputs 
+        type = {"option"}
+        props = {props}
+        i = {i}
+      />
+  )}
+
   else {
-    console.error("Variable doesn't have a filter type")
-  }
+    console.error("Variable doesn't have a filter type, continuing as text filter")
+    return (
+      <FilterInputs 
+        type = {"text"}
+        props = {props}
+        i = {i}
+      />
+  )}
 }
 
 
