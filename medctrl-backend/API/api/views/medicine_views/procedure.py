@@ -4,7 +4,7 @@ from api.serializers.medicine_serializers import ProcedureSerializer
 from api.models.medicine_models import Procedure
 
 
-class ProcedureViewSet(viewsets.ModelViewSet):
+class ProcedureViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProcedureSerializer
 
     def get_queryset(self):
