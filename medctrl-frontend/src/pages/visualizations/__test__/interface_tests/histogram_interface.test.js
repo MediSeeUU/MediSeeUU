@@ -42,8 +42,10 @@ test('categories in data', () => {
   }
   const series = GenerateHistogramSeries(options, data)
   series.forEach((element) => {
-    let filteredData = data.filter((datael) => element.eu_numbers.flat().includes(datael.EUNoShort))
-    filteredData.forEach(datael => {
+    let filteredData = data.filter((datael) =>
+      element.eu_numbers.flat().includes(datael.EUNoShort)
+    )
+    filteredData.forEach((datael) => {
       expect(datael.Rapporteur).toMatch(/(United Kingdom|Denmark)/i)
     })
   })

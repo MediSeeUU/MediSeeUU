@@ -54,10 +54,16 @@ test('categories in data', () => {
   }
   const series = GenerateBarSeries(options, data)
   series.forEach((element) => {
-    let filteredData = data.filter((datael) => element.eu_numbers.flat().includes(datael.EUNoShort))
+    let filteredData = data.filter((datael) =>
+      element.eu_numbers.flat().includes(datael.EUNoShort)
+    )
     filteredData.forEach((datael) => {
       expect(element.name).toBe(datael.Rapporteur)
-      expect(uniqueCategories['DecisionYear'].includes(datael.DecisionYear.toString())).toBe(true)
+      expect(
+        uniqueCategories['DecisionYear'].includes(
+          datael.DecisionYear.toString()
+        )
+      ).toBe(true)
     })
   })
 })
