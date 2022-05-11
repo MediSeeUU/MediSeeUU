@@ -38,8 +38,8 @@ test('some categories selected (sorted)', () => {
 test('categories in data', () => {
   const options = {
     chartSpecificOptions: {
-      chosenVariable: 'Rapporteur',
-      categoriesSelected: ['United Kingdom', 'Denmark'],
+      xAxis: 'Rapporteur',
+      categoriesSelectedX: ['United Kingdom', 'Denmark'],
     },
   }
   const series = GeneratePieSeries(options, data)

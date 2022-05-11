@@ -32,3 +32,19 @@ test('some categories selected (sorted)', () => {
   const series = GenerateHistogramSeries(options, data)
   expect(series[0].data.length).toBe(2)
 })
+
+test('categories in data', () => {
+  const options = {
+    chartSpecificOptions: {
+      xAxis: 'Rapporteur',
+      categoriesSelectedX: ['United Kingdom', 'Denmark'],
+    },
+  }
+  const series = GenerateHistogramSeries(options, data)
+  series.forEach((element) => {
+    let filteredData = data.filter((datael) => element.eu_numbers.flat().includes(datael.EUNoShort))
+    filteredData.forEach(datael => {
+      expect(datael.Rapporteur).toMatch(/(United Kingdom|Denmark)/i)
+    })
+  })
+})
