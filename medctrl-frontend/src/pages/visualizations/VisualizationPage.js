@@ -18,9 +18,10 @@ import { generateSeries } from './single_visualization/SingleVisualization'
 // the component that contains all the visualizations
 function VisualizationPage() {
   const selectedData = useSelectedData()
-  const [tableData, setTableData] = useState([])
-  const [numbers, setNumbers] = useState([])
-  const [modal, setModal] = useState(false)
+  
+  const [tableData, setTableData] = useState([]) // Data displayed in the modal table
+  const [numbers, setNumbers] = useState([]) // The eu numbers that correspond to the clicked selection
+  const [modal, setModal] = useState(false) // State of modal (open or closed)
 
   // event handlers
   const handleAddition = handleAdditionFunc.bind(this)

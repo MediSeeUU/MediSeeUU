@@ -40,7 +40,7 @@ class VisualizationForm extends Component {
     this.setState(
       {
         [name]: value,
-        chartSpecificOptionsName: name,
+        chartSpecificOptionsName: target.value,
       },
       () => {
         this.props.onChange(this.state)
