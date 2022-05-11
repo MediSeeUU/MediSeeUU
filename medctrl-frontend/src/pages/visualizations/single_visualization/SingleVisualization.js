@@ -169,7 +169,7 @@ class SingleVisualization extends Component {
 	*/
   render() {
     return (
-      <div className="med-content-container visual-container">
+      <div tour='step-vis-main' className="med-content-container visual-container">
         <Container>
           <Row>
             <Col className="visualization-panel">

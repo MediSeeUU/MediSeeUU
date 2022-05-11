@@ -1,7 +1,7 @@
 import './Search.css'
 import React, { useState } from 'react'
 
-function Search({ update, initial }) {
+function Search({ update, initial, tour }) {
   // We need a separate state for saving the query given in the textbox
   const [query, setQuery] = useState(initial)
 
@@ -19,7 +19,7 @@ function Search({ update, initial }) {
 
   // The HTML code of the search component
   return (
-    <div className="med-content-container">
+    <div tour={tour} className="med-content-container">
       <input
         type="text"
         placeholder="Search"
