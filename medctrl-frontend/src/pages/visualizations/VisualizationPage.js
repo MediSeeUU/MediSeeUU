@@ -48,7 +48,7 @@ function VisualizationPage() {
       vis.data = selectedData
       vis.uniqueCategories = uniqueCategories
       vis.series = generateSeries(vis.chartType, vis)
-      vis.changeName = uuidv4()
+      vis.key = uuidv4()
       return vis
     })
     updateVisuals = true
@@ -99,7 +99,7 @@ function VisualizationPage() {
         selectedData
       ),
       uniqueCategories: uniqueCategories,
-      changeName: '',
+      key: '',
     }
 
     const newVisuals = [...visuals, newVisual]
@@ -127,9 +127,9 @@ function VisualizationPage() {
   // Handler that is called after clicking on a datapoint
   // It will set the eu numbers state to the eu numbers of the selected datapoint
   // And opens the pop-up which displays the entries in the table
-  function handleDataClickFunc(eu_numbers) {
-    setNumbers(eu_numbers)
-    if (eu_numbers.length > 0) {
+  function handleDataClickFunc(numbers) {
+    setNumbers(numbers)
+    if (numbers.length > 0) {
       setModal(true)
     }
   }

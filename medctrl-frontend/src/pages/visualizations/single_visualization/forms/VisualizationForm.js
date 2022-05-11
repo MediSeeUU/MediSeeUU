@@ -20,7 +20,7 @@ class VisualizationForm extends Component {
       legendOn: this.props.settings.legendOn,
       labelsOn: this.props.settings.labelsOn,
       chartSpecificOptions: this.props.settings.chartSpecificOptions,
-      chartSpecificOptionsName: this.props.settings.chartSpecificOptionsName,
+      key: this.props.settings.key,
     }
 
     // event handlers
@@ -41,7 +41,7 @@ class VisualizationForm extends Component {
     this.setState(
       {
         [name]: value,
-        chartSpecificOptionsName: target.value,
+        key: uuidv4(),
       },
       () => {
         this.props.onChange(this.state)
@@ -56,7 +56,7 @@ class VisualizationForm extends Component {
     this.setState(
       {
         chartSpecificOptions: options[0],
-        chartSpecificOptionsName: options[1],
+        key: options[1],
       },
       () => {
         this.props.onChange(this.state)
@@ -139,7 +139,6 @@ class VisualizationForm extends Component {
             name="legendOn"
             checked={this.state.legendOn}
             onChange={this.handleChange}
-            value={uuidv4()}
           />
           &nbsp;&nbsp;Show legend
         </label>
@@ -149,7 +148,6 @@ class VisualizationForm extends Component {
             name="labelsOn"
             checked={this.state.labelsOn}
             onChange={this.handleChange}
-            value={uuidv4()}
           />
           &nbsp;&nbsp;Show labels
         </label>

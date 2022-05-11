@@ -15,7 +15,7 @@ export default function GenerateBarSeries(options, data) {
     options.chartSpecificOptions.categoriesSelectedY
   )
 
-  let [dict, eu_numbers] = PollChosenVariable(
+  let [dict, euNumbers] = PollChosenVariable(
     xAxis,
     yAxis,
     categoriesSelectedX,
@@ -23,14 +23,14 @@ export default function GenerateBarSeries(options, data) {
     data
   )
 
-  let [series, eu_series] = CreateSelectedSeries(
+  let [series, euSeries] = CreateSelectedSeries(
     dict,
-    eu_numbers,
+    euNumbers,
     categoriesSelectedY,
     categoriesSelectedX
   )
 
-  let seriesFormatted = ToSeriesFormat(series, eu_series)
+  let seriesFormatted = ToSeriesFormat(series, euSeries)
 
   return seriesFormatted
 }
@@ -39,12 +39,12 @@ export default function GenerateBarSeries(options, data) {
 // with a given value of the y variable.
 function PollChosenVariable(xAxis, yAxis, categoriesX, categoriesY, data) {
   let dict = {}
-  let eu_numbers = {}
+  let euNumbers = {}
 
   // adding a key for each category
   categoriesX.forEach((category) => {
     dict[category] = {}
-    eu_numbers[category] = {}
+    euNumbers[category] = {}
   })
 
   // going through all data entries
@@ -56,50 +56,50 @@ function PollChosenVariable(xAxis, yAxis, categoriesX, categoriesY, data) {
     ) {
       if (dict[element[xAxis]][element[yAxis]] === undefined) {
         dict[element[xAxis]][element[yAxis]] = 1
-        eu_numbers[element[xAxis]][element[yAxis]] = [element.EUNoShort]
+        euNumbers[element[xAxis]][element[yAxis]] = [element.EUNoShort]
       } else {
         dict[element[xAxis]][element[yAxis]] += 1
-        eu_numbers[element[xAxis]][element[yAxis]].push(element.EUNoShort)
+        euNumbers[element[xAxis]][element[yAxis]].push(element.EUNoShort)
       }
     }
   })
 
-  return [dict, eu_numbers]
+  return [dict, euNumbers]
 }
 
 // Creates an array for each selected category of the y variable.
 // If a y category was never combined with an x category,
 // a 0 will be added, otherwise the amount of occurrences is added.
-function CreateSelectedSeries(dict, eu_numbers, categoriesY, categoriesX) {
+function CreateSelectedSeries(dict, euNumbers, categoriesY, categoriesX) {
   let series = {}
-  let eu_series = {}
+  let euSeries = {}
 
   categoriesY.forEach((category) => {
     series[category] = []
-    eu_series[category] = []
+    euSeries[category] = []
   })
 
   categoriesX.forEach((k) => {
     categoriesY.forEach((category) => {
       if (dict[k][category] === undefined) {
         series[category].push(0)
-        eu_series[category].push([])
+        euSeries[category].push([])
       } else {
         series[category].push(dict[k][category])
-        eu_series[category].push(eu_numbers[k][category])
+        euSeries[category].push(euNumbers[k][category])
       }
     })
   })
 
-  return [series, eu_series]
+  return [series, euSeries]
 }
 
 // turning a dict into the data format accepted by ApexChart
 // the entry key becomes the name, the entry value becomes the data
-function ToSeriesFormat(dict, eu_series) {
+function ToSeriesFormat(dict, euSeries) {
   let series = []
   for (let key in dict) {
-    series.push({ name: key, data: dict[key], eu_numbers: eu_series[key] })
+    series.push({ name: key, data: dict[key], euNumbers: euSeries[key] })
   }
   return series
 }

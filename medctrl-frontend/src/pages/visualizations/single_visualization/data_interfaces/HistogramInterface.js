@@ -17,16 +17,16 @@ export default function GenerateHistogramSeries(options, data) {
 // is one of the chosen categories, its entry in the series will be incremented.
 function CreateHistogramSeries(data, xAxis, chosenCategories) {
   let dict = {}
-  let eu_numbers = {}
+  let euNumbers = {}
   chosenCategories.forEach((category) => {
     dict[category] = 0
-    eu_numbers[category] = []
+    euNumbers[category] = []
   })
 
   data.forEach((element) => {
     if (chosenCategories.includes(element[xAxis])) {
       dict[element[xAxis]] += 1
-      eu_numbers[element[xAxis]].push(element.EUNoShort)
+      euNumbers[element[xAxis]].push(element.EUNoShort)
     }
   })
 
@@ -34,7 +34,7 @@ function CreateHistogramSeries(data, xAxis, chosenCategories) {
     {
       name: 'amount',
       data: Object.values(dict),
-      eu_numbers: Object.values(eu_numbers),
+      euNumbers: Object.values(euNumbers),
     },
   ]
 }

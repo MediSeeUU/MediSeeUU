@@ -78,7 +78,7 @@ class BarForm extends Component {
       })
     }
     this.setState({ [name]: value }, () => {
-      this.props.onChange([this.state, target.value])
+      this.props.onChange([this.state, uuidv4()])
     })
   }
 
@@ -121,7 +121,6 @@ class BarForm extends Component {
           name="stackType"
           checked={this.state.stackType}
           onChange={this.handleChange}
-          value={uuidv4()}
         />
         &nbsp;&nbsp;Stack fully
       </label>
@@ -156,7 +155,6 @@ class BarForm extends Component {
             name="stacked"
             checked={this.state.stacked}
             onChange={this.handleChange}
-            value={uuidv4()}
           />
           &nbsp;&nbsp;Stacked
         </label>
@@ -167,7 +165,6 @@ class BarForm extends Component {
             name="horizontal"
             checked={this.state.horizontal}
             onChange={this.handleChange}
-            value={uuidv4()}
           />
           &nbsp;&nbsp;Horizontal
         </label>

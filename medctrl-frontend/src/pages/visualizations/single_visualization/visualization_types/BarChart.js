@@ -17,11 +17,11 @@ class BarChart extends Component {
           toolbar: { tools: { download: false } },
           events: {
             dataPointSelection: (event, chartContext, config) => {
-              let eu_numbers =
-                config.w.config.series[config.seriesIndex].eu_numbers[
+              let euNumbers =
+                config.w.config.series[config.seriesIndex].euNumbers[
                   config.dataPointIndex
                 ]
-              this.props.onDataClick(eu_numbers)
+              this.props.onDataClick(euNumbers)
             },
           },
         },
