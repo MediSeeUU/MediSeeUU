@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { v4 as uuidv4 } from 'uuid'
 
 import BarForm from './types/BarForm'
 import LineForm from './types/LineForm'
@@ -138,6 +139,7 @@ class VisualizationForm extends Component {
             name="legendOn"
             checked={this.state.legendOn}
             onChange={this.handleChange}
+            value={uuidv4()}
           />
           &nbsp;&nbsp;Show legend
         </label>
@@ -147,6 +149,7 @@ class VisualizationForm extends Component {
             name="labelsOn"
             checked={this.state.labelsOn}
             onChange={this.handleChange}
+            value={uuidv4()}
           />
           &nbsp;&nbsp;Show labels
         </label>
