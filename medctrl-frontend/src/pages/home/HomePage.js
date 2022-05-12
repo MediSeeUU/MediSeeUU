@@ -27,7 +27,7 @@ function HomePage() {
           around the website by clicking the button. This tour will not take
           long and familiarize you with all the core functionalities that this
           dashboard has to offer. You can end the tour at any time by clicking
-          'end'. When you reach the end of the tour, the tour will automaticly
+          'end'. When you reach the end of the tour, the tour will automatically
           finish.
         </p>
       </div>
