@@ -129,7 +129,6 @@ export function InfoPage({ medData, procData }) {
               name="Co-Rapporteur"
               value={medicineData.info.CoRapporteur}
             />
-
           </DetailGroup>
 
           <DetailGroup title="Medicine Designations">
@@ -139,7 +138,7 @@ export function InfoPage({ medData, procData }) {
               value={medData.OrphanDesignation}
             />
 
-           <Detail
+            <Detail
               name="NAS Qualified"
               value={medicineData.info.NASQualified}
             />
