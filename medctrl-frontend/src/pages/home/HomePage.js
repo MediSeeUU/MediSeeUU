@@ -74,8 +74,10 @@ function HomePage() {
             the latter is chosen, you can also choose to make all bars the same
             length (“Fully stacked”) so that the graph is expressed in relative
             quantities. For line charts and histograms, it is possible to zoom
-            in on a subset of the diagram. The resulting visualization can be
-            exported to a local image file if desired.
+            in on a subset of the diagram. For any diagram, all quantities are
+            clickable, which allows for the export or removal of specific data
+            points. The resulting visualization can be exported to a local image
+            file if desired.
           </p>
         </div>
       </div>
