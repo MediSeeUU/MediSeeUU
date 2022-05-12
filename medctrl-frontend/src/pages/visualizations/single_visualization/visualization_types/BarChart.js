@@ -15,6 +15,15 @@ class BarChart extends Component {
           stacked: this.props.options.stacked,
           stackType: this.props.options.stackType ? '100%' : 'normal',
           toolbar: { tools: { download: false } },
+          events: {
+            dataPointSelection: (event, chartContext, config) => {
+              let euNumbers =
+                config.w.config.series[config.seriesIndex].euNumbers[
+                  config.dataPointIndex
+                ]
+              this.props.onDataClick(euNumbers)
+            },
+          },
         },
         plotOptions: {
           bar: {

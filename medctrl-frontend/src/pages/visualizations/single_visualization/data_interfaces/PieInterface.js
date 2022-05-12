@@ -16,14 +16,17 @@ export default function GeneratePieSeries(options, data) {
 // is one of the chosen categories, its entry in the series will be incremented.
 function CreatePieSeries(data, xAxis, chosenCategories) {
   let dict = {}
+  let euNumbers = {}
   chosenCategories.forEach((category) => {
     dict[category] = 0
+    euNumbers[category] = []
   })
 
   data.forEach((element) => {
     if (chosenCategories.includes(element[xAxis])) {
       dict[element[xAxis]] += 1
+      euNumbers[element[xAxis]].push(element.EUNoShort)
     }
   })
-  return Object.values(dict)
+  return { data: Object.values(dict), euNumbers: Object.values(euNumbers) }
 }

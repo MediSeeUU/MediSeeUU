@@ -36,7 +36,7 @@ test('export to svg', () => {
     data: data,
     series: [],
     uniqueCategories: unique,
-    changeName: '',
+    key: '',
   }
   setting.series = generateSeries('bar', setting)
 
