@@ -37,7 +37,6 @@ export default function DetailedInfoPage() {
         }
       )
       const data = await response.json()
-      console.log(data)
       setProcData(data)
     }
     fetchProcedureData(medID)
@@ -62,13 +61,9 @@ export function InfoPage({ medData, procData }) {
   // the detailed info page
   let displayProcTypes = [
     'Centralised - Authorisation',
-    //"Centralised - Variation",
     'Centralised - Transfer Marketing Authorisation Holder',
-    //"Centralised - Variation (no change in Commission Decision)",
-    //"Centralised - Notification",
-    'Centralised - Renewal',
-    //"Corrigendum",
-    //"Centralised - Yearly update"
+    'Centralised - Annual reassessment',
+    'Centralised - Annual renewal',
   ]
 
   // if there is procedure data present, two containers should be added to the page

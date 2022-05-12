@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://med-ctrl.science.uu.nl/dev',
+      target: 'http://localhost:8000',
       changeOrigin: true,
     })
   )
