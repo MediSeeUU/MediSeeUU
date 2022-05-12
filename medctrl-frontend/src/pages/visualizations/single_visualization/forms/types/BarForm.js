@@ -167,52 +167,56 @@ class BarForm extends Component {
           />
           &nbsp;&nbsp;Horizontal
         </label>
-        <label className="visualization-panel-label">
-          {xAxis}
-          <select
-            className="med-select"
-            value={this.state.xAxis}
-            name="xAxis"
-            onChange={this.handleChange}
-          >
-            {variablesXAxis}
-          </select>
-        </label>
-        <label className="visualization-panel-label">
-          {yAxis}
-          <select
-            className="med-select"
-            value={this.state.yAxis}
-            name="yAxis"
-            onChange={this.handleChange}
-          >
-            {variablesYAxis}
-          </select>
-        </label>
-        <CategoryOptions
-          // We want to reset the component when the axis changes,
-          // so we need to change the key depending on the axis'.
-          key={`${this.state.xAxis}${this.state.yAxis}X`}
-          className="category-options"
-          onChange={this.handleCategorySelectionXChange}
-          categories={sortCategoryData(
-            this.props.uniqueCategories[this.state.xAxis]
-          )}
-          categoriesSelected={this.state.categoriesSelectedX}
-          settings={this.state}
-        />
-        <CategoryOptions
-          // We want to reset the component when the axis changes,
-          // so we need to change the key depending on the axis'.
-          key={`${this.state.xAxis}${this.state.yAxis}Y`}
-          className="category-options"
-          onChange={this.handleCategorySelectionYChange}
-          categories={sortCategoryData(
-            this.props.uniqueCategories[this.state.yAxis]
-          )}
-          categoriesSelected={this.state.categoriesSelectedY}
-          settings={this.state}
-        />
+        <div tour="step-vis-vars">
+          <label className="visualization-panel-label">
+            {xAxis}
+            <select
+              className="med-select"
+              value={this.state.xAxis}
+              name="xAxis"
+              onChange={this.handleChange}
+            >
+              {variablesXAxis}
+            </select>
+          </label>
+          <label className="visualization-panel-label">
+            {yAxis}
+            <select
+              className="med-select"
+              value={this.state.yAxis}
+              name="yAxis"
+              onChange={this.handleChange}
+            >
+              {variablesYAxis}
+            </select>
+          </label>
+        </div>
+        <div tour="step-vis-categories">
+          <CategoryOptions
+            // We want to reset the component when the axis changes,
+            // so we need to change the key depending on the axis'.
+            key={`${this.state.xAxis}${this.state.yAxis}X`}
+            className="category-options"
+            onChange={this.handleCategorySelectionXChange}
+            categories={sortCategoryData(
+              this.props.uniqueCategories[this.state.xAxis]
+            )}
+            categoriesSelected={this.state.categoriesSelectedX}
+            settings={this.state}
+          />
+          <CategoryOptions
+            // We want to reset the component when the axis changes,
+            // so we need to change the key depending on the axis'.
+            key={`${this.state.xAxis}${this.state.yAxis}Y`}
+            className="category-options"
+            onChange={this.handleCategorySelectionYChange}
+            categories={sortCategoryData(
+              this.props.uniqueCategories[this.state.yAxis]
+            )}
+            categoriesSelected={this.state.categoriesSelectedY}
+            settings={this.state}
+          />
+        </div>
       </React.Fragment>
     )
   }
