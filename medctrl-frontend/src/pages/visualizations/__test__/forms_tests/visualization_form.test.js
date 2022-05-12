@@ -30,7 +30,7 @@ beforeAll(() => {
     data: data,
     series: [],
     uniqueCategories: uniqueCategories,
-    changeName: '',
+    key: '',
   }
 })
 

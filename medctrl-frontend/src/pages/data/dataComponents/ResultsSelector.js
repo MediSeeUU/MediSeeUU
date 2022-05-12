@@ -128,8 +128,8 @@ function ResultsSelector({
   //handler that removes all selected
   const removeAllSelected = () => {
     let updatedCheckedState = JSON.parse(JSON.stringify(checkedState))
-    for (var key of Object.keys(updatedCheckedState)) {
-      updatedCheckedState[key] = false
+    for (var element of data) {
+      updatedCheckedState[element.EUNumber] = false
     }
     setCheckedState(updatedCheckedState)
   }

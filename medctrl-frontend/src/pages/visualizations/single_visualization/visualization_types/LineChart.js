@@ -12,6 +12,15 @@ class LineChart extends Component {
           id: String(this.props.id),
           type: 'line',
           toolbar: { tools: { download: false } },
+          events: {
+            dataPointSelection: (event, chartContext, config) => {
+              let euNumbers =
+                config.w.config.series[config.seriesIndex].euNumbers[
+                  config.dataPointIndex
+                ]
+              this.props.onDataClick(euNumbers)
+            },
+          },
         },
         xaxis: {
           categories: this.props.categories,
@@ -41,6 +50,13 @@ class LineChart extends Component {
         },
         theme: {
           palette: 'palette3',
+        },
+        tooltip: {
+          intersect: true,
+          shared: false,
+        },
+        markers: {
+          size: 6,
         },
       },
       series: this.props.series,

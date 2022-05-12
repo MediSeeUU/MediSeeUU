@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../../../visualizations.css'
 import sortCategoryData from '../../utils/SortCategoryData'
 import CategoryOptions from '../shared/CategoryOptions'
+import { v4 as uuidv4 } from 'uuid'
 
 // the line part of a form if a line chart is chosen
 class LineForm extends Component {
@@ -84,7 +85,7 @@ class LineForm extends Component {
   // This event handler is passed to the CategoryOptions component.
   handleCategorySelectionXChange(event) {
     this.setState({ categoriesSelectedX: event }, () => {
-      this.props.onChange([this.state, 'categoriesSelectedX'])
+      this.props.onChange([this.state, uuidv4()])
     })
   }
 
@@ -92,7 +93,7 @@ class LineForm extends Component {
   // This event is passed to the CategoryOptions component.
   handleCategorySelectionYChange(event) {
     this.setState({ categoriesSelectedY: event }, () => {
-      this.props.onChange([this.state, 'categoriesSelectedY'])
+      this.props.onChange([this.state, uuidv4()])
     })
   }
 
