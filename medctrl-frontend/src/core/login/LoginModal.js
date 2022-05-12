@@ -14,6 +14,7 @@ function LoginModal(props) {
   return (
     <>
       <NavLink
+        tour="step-nav-login"
         name="Login"
         image="bx bx-log-in"
         dest="#"

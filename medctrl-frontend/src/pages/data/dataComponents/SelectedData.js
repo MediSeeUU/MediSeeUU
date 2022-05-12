@@ -14,7 +14,7 @@ function SelectedData() {
 
   //main body of the page
   return (
-    <div className="med-content-container">
+    <div tour="step-data-selected" className="med-content-container">
       <h1>Selected Data Points</h1>
       <hr className="med-top-separator" />
       {TableView(
