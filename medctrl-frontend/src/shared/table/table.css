@@ -36,9 +36,15 @@
   background-color: var(--med-table-row-odd-background);
 }
 
-.med_th,
-.med_td {
+.med_td.smallColumn {
   text-align: center;
+}
+
+.med_td div {
+  display: block;
+  text-align: left;
+  width: calc(100% - 20px);
+  margin-inline: 10px;
 }
 
 .med_th {

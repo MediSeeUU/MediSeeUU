@@ -413,7 +413,9 @@ test('data put correctly into table', () => {
       const cells = within(row).getAllByRole('cell')
       const cellValue = cells[index].innerHTML
       const dataElement = DummyData[index2]
-      expect(cellValue).toBe(dataElement[selectValue].toString())
+      expect(cellValue).toBe(
+        '<div>' + dataElement[selectValue].toString() + '</div>'
+      )
     })
   })
 })

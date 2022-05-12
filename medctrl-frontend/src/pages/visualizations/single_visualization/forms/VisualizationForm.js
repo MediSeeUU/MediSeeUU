@@ -117,7 +117,7 @@ class VisualizationForm extends Component {
   render() {
     return (
       <div className="med_visualization_form">
-        <label className="visualization-panel-label">
+        <label tour="step-vis-type" className="visualization-panel-label">
           Visualization type
           <select
             value={this.state.chartType}
@@ -131,6 +131,7 @@ class VisualizationForm extends Component {
             <option value="histogram">Histogram</option>
           </select>
         </label>
+
         {this.renderChartOptions(this.state.chartType)}
         <label className="visualization-panel-label">
           <input

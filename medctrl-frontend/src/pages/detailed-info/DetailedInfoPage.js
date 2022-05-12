@@ -123,9 +123,13 @@ export function InfoPage({ medData, procData }) {
             <Detail name="Short EU Number" value={medData.EUNoShort} />
           </DetailGroup>
 
-          <DetailGroup title="Reporting Countries">
-            <Detail name="Primary Reporter" value={medData.Rapporteur} />
-            <Detail name="Secondary Reporter" value={medData.CoRapporteur} />
+          <DetailGroup title="(Co-)Rapporteur">
+            <Detail name="Rapporteur" value={medicineData.info.Rapporteur} />
+            <Detail
+              name="Co-Rapporteur"
+              value={medicineData.info.CoRapporteur}
+            />
+
           </DetailGroup>
 
           <DetailGroup title="Medicine Designations">
@@ -134,11 +138,14 @@ export function InfoPage({ medData, procData }) {
               name="Orphan Designation"
               value={medData.OrphanDesignation}
             />
-            <Detail name="NAS Qualified" value={medData.NASQualified} />
-            <Detail name="CMA" value={medData.CMA} />
-            <Detail name="AEC" value={medData.CMA} />
-            <Detail name="PRIME" value={medData.PRIME} />
-            <Detail name="NAS" value={medData.NAS} />
+
+           <Detail
+              name="NAS Qualified"
+              value={medicineData.info.NASQualified}
+            />
+            <Detail name="CMA" value={medicineData.info.CMA} />
+            <Detail name="AEC" value={medicineData.info.CMA} />
+            <Detail name="PRIME" value={medicineData.info.PRIME} />
           </DetailGroup>
 
           <DetailGroup title="ATC Code Information">
