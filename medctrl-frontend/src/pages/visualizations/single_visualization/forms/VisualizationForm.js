@@ -1,120 +1,80 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { v4 as uuidv4 } from 'uuid'
 
 import BarForm from './types/BarForm'
 import LineForm from './types/LineForm'
 import PieForm from './types/PieForm'
+import HistogramForm from './types/HistogramForm'
 
 // form component for a single visualization
 class VisualizationForm extends Component {
   constructor(props) {
+    // Recieves the settings, the unique categories and
+    // an event handler for changes.
     super(props)
 
-    // Initializing the state, options are off to keep the start quick.
-    // The chartSpecificOptionsName is used for determining the key of
-    // the actual chart, to notify the chart that it has been updated.
+    // initializing the state
     this.state = {
-      chart_type: 'bar',
-      legend_on: false,
-      labels_on: false,
-      chartSpecificOptions: {},
-      chartSpecificOptionsName: '',
+      chartType: this.props.settings.chartType,
+      legendOn: this.props.settings.legendOn,
+      labelsOn: this.props.settings.labelsOn,
+      chartSpecificOptions: this.props.settings.chartSpecificOptions,
+      key: this.props.settings.key,
     }
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChartSpecificChange = this.handleChartSpecificChange.bind(this)
   }
 
   // EVENT HANDLERS:
 
-  // event handler for updating the state after a single selection
+  // Event handler for updating the state after a single selection.
+  // Do note that if the chart type changes,
+  // we still remember the previous options.
   handleChange(event) {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-    /*
-      the chart specific values depend on which chart type has been chosen,
-      so if the chart type changes, this needs to be re-initialized
-    */
-    if (name === 'chart_type') {
-      this.resetChartSpecifics(value)
-    }
-    this.setState({ [name]: value })
+
+    this.setState(
+      {
+        [name]: value,
+        key: uuidv4(),
+      },
+      () => {
+        this.props.onChange(this.state)
+      }
+    )
   }
 
   // Event handler for updating the state,
   // after the chart specific options were altered.
   // Also updates which value was last updated.
   handleChartSpecificChange(options) {
-    this.setState({
-      chartSpecificOptions: options[0],
-      chartSpecificOptionsName: options[1],
-    })
-  }
-
-  // event handler for the submission after all selections
-  handleSubmit(event) {
-    // makes sure that the page does not reload and thus resets the data
-    event.preventDefault()
-    // event handler passed down as a prop by SingleVisualization
-    this.props.onFormChange(this.state)
+    this.setState(
+      {
+        chartSpecificOptions: options[0],
+        key: options[1],
+      },
+      () => {
+        this.props.onChange(this.state)
+      }
+    )
   }
 
   // GENERAL FUNCTIONS
 
-  // re-initializing the state depending on which new chart type has been chosen
-  resetChartSpecifics(chartType) {
-    switch (chartType) {
-      case 'bar': {
-        this.setState({
-          chartSpecificOptions: {
-            yAxis: 'Rapporteur',
-            xAxis: 'DecisionYear',
-            categoriesSelected: [],
-          },
-          chartSpecificOptionsName: '',
-        })
-        break
-      }
-
-      case 'line': {
-        this.setState({
-          chartSpecificOptions: {
-            yAxis: 'Rapporteur',
-            xAxis: 'DecisionYear',
-            categoriesSelected: [],
-          },
-          chartSpecificOptionsName: '',
-        })
-        break
-      }
-
-      case 'pie': {
-        this.setState({
-          chartSpecificOptions: {
-            chosenVariables: 'Rapporteur',
-            categoriesSelected: [],
-          },
-          chartSpecificOptionsName: '',
-        })
-        break
-      }
-
-      default:
-        return
-    }
-  }
-
   // renders the form for the chosen chart
-  renderChartOptions(chart_type) {
-    switch (chart_type) {
+  renderChartOptions(chartType) {
+    switch (chartType) {
       case 'bar':
         return (
           <BarForm
             uniqueCategories={this.props.uniqueCategories}
             onChange={this.handleChartSpecificChange}
+            chartSpecificOptions={this.state.chartSpecificOptions}
           />
         )
 
@@ -123,6 +83,7 @@ class VisualizationForm extends Component {
           <LineForm
             uniqueCategories={this.props.uniqueCategories}
             onChange={this.handleChartSpecificChange}
+            chartSpecificOptions={this.state.chartSpecificOptions}
           />
         )
 
@@ -131,11 +92,23 @@ class VisualizationForm extends Component {
           <PieForm
             uniqueCategories={this.props.uniqueCategories}
             onChange={this.handleChartSpecificChange}
+            chartSpecificOptions={this.state.chartSpecificOptions}
+          />
+        )
+
+      case 'histogram':
+        return (
+          <HistogramForm
+            uniqueCategories={this.props.uniqueCategories}
+            onChange={this.handleChartSpecificChange}
+            chartSpecificOptions={this.state.chartSpecificOptions}
           />
         )
 
       default:
-        return <div> choose a form type </div>
+        throw Error(
+          'form error: graph type is ineligible: {' + this.state + '}'
+        )
     }
   }
 
@@ -144,25 +117,28 @@ class VisualizationForm extends Component {
   // render method for the form
   render() {
     return (
-      <form className="med_visualization_form" onSubmit={this.handleSubmit}>
-        <label className="visualization-panel-label">
+      <div className="med_visualization_form">
+        <label tour="step-vis-type" className="visualization-panel-label">
           Visualization type
           <select
-            value={this.state.chart_type}
-            name="chart_type"
+            value={this.state.chartType}
+            name="chartType"
+            className="med-select"
             onChange={this.handleChange}
           >
             <option value="bar">Bar chart</option>
-            <option value="line">Line graph</option>
+            <option value="line">Line chart</option>
             <option value="pie">Pie chart</option>
+            <option value="histogram">Histogram</option>
           </select>
         </label>
-        {this.renderChartOptions(this.state.chart_type)}
+
+        {this.renderChartOptions(this.state.chartType)}
         <label className="visualization-panel-label">
           <input
             type="checkbox"
-            name="legend_on"
-            checked={this.state.legend_on}
+            name="legendOn"
+            checked={this.state.legendOn}
             onChange={this.handleChange}
           />
           &nbsp;&nbsp;Show legend
@@ -170,16 +146,13 @@ class VisualizationForm extends Component {
         <label className="visualization-panel-label">
           <input
             type="checkbox"
-            name="labels_on"
-            checked={this.state.labels_on}
+            name="labelsOn"
+            checked={this.state.labelsOn}
             onChange={this.handleChange}
           />
           &nbsp;&nbsp;Show labels
         </label>
-        <button type="submit" className="table-buttons button-update">
-          <i className="bx bx-check filter-Icon"></i>Update
-        </button>
-      </form>
+      </div>
     )
   }
 }

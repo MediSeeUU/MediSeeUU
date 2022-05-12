@@ -12,8 +12,12 @@ function NavAccount(props) {
   return (
     // when the nav account component is clicked, collapse the parent
     // (the navigation bar) and redirect the user to the account page
-    <div className="nav-item account" onClick={() => clicked()}>
-      <div className="nav-item-content">
+    <div
+      className="med-primary-solid nav-item account"
+      onClick={() => clicked()}
+      data-testid="navaccountbutton"
+    >
+      <div className="nav-item-content med-primary-solid">
         <i className="bx bx-user" />
         <div>
           <span className="nav-item-name">{props.user.userName}</span>
@@ -23,7 +27,7 @@ function NavAccount(props) {
           </span>
         </div>
       </div>
-      <span className="tooltip">Account Info</span>
+      <span className="nav-tooltip">Account Info</span>
     </div>
   )
 }

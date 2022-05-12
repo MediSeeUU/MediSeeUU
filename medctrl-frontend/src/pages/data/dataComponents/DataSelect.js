@@ -1,34 +1,85 @@
-import React, { useState } from 'react'
-import Menu from '../../../shared/menu/menu'
-import { useData } from '../../../shared/contexts/DataContext'
+import React, { useState, useRef } from 'react'
+import Menu from '../Menu/Menu'
+import Search from '../../../shared/Search/Search'
 import TableView from './TableView'
+import {
+  useData,
+  useColumnSelection,
+} from '../../../shared/contexts/DataContext'
+import updateData from '../Utils/update'
 
-function DataSelect() {
-  //amount of databse hits shown per page
-  const [resultsPerPage, setResultsPerPage] = useState(25)
+function DataSelect({ initialSearch }) {
+  const [resultsPerPage, setResultsPerPage] = useState(25) // Amount of database hits shown per page
+  const [loadedPage, setPage] = useState(1) // Current page
+  const [search, setSearch] = useState(initialSearch) // Current search
+  const [filters, setFilters] = useState([{ selected: '', input: [''] }]) // Current filters
+  const [sorters, setSorters] = useState([{ selected: '', order: 'asc' }]) // Current sorters
 
-  //current page
-  const [loadedPage, setPage] = useState(1)
+  // We need to keep a reference of the columns for ranking the data
+  let columns = useColumnSelection()
+  let columnsRef = useRef(columns)
+  let queryRef = useRef(search)
+
+  // We update the columns if a new search is initialized
+  if (search !== queryRef.current) {
+    columnsRef.current = columns
+    queryRef.current = search
+  }
+
+  // Current data
   const allData = useData()
-  const [data, setData] = useState(allData)
+  const updatedData = updateData(
+    allData,
+    search,
+    filters,
+    sorters,
+    columnsRef.current
+  )
+
+  // List of variable options
+  const list =
+    updatedData.length > 0 &&
+    Object.keys(updatedData[0]).map((item) => {
+      return (
+        <option key={item} value={item}>
+          {item}
+        </option>
+      )
+    })
+  //the menu button to be displayed with the table
+  const menu = (
+    <Menu
+      list={list}
+      filters={filters}
+      sorters={sorters}
+      updateFilters={setFilters}
+      updateSorters={setSorters}
+    />
+  )
 
   //main body of the page
   return (
-    <div className="TopTableHolder">
-      <Menu
-        cachedData={allData}
-        updateTable={(updatedData) => setData(updatedData)}
+    <>
+      <Search
+        tour="step-data-search"
+        update={setSearch}
+        initial={initialSearch}
       />
-      {TableView(
-        data,
-        resultsPerPage,
-        loadedPage,
-        setPage,
-        setResultsPerPage,
-        true,
-        'No data to display, please clear your filters.'
-      )}
-    </div>
+      <div tour="step-data-select" className="med-content-container">
+        <h1>Data Selection Table</h1>
+        <hr className="med-top-separator" />
+        {TableView(
+          updatedData,
+          resultsPerPage,
+          loadedPage,
+          setPage,
+          setResultsPerPage,
+          true,
+          'No data to display, please clear your search or filters.',
+          menu
+        )}
+      </div>
+    </>
   )
 }
 

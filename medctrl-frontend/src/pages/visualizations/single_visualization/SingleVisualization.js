@@ -11,127 +11,101 @@ import VisualizationForm from './forms/VisualizationForm'
 import BarChart from './visualization_types/BarChart'
 import LineChart from './visualization_types/LineChart'
 import PieChart from './visualization_types/PieChart'
+import HistogramChart from './visualization_types/HistogramChart'
 import GenerateBarSeries from './data_interfaces/BarInterface'
 import GenerateLineSeries from './data_interfaces/LineInterface'
 import GeneratePieSeries from './data_interfaces/PieInterface'
+import GenerateHistogramSeries from './data_interfaces/HistogramInterface'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
-import GetUniqueCategories from './utils/GetUniqueCategories'
+import sortCategoryData from './utils/SortCategoryData'
 
 // renders the components for a single visualization
 class SingleVisualization extends Component {
   constructor(props) {
-    // receives its id and a copy of the data
+    // Receives its id, the selected data, the settings and
+    // two event handlers for removing or changing the visualization.
     super(props)
 
-    /*
-      Gets the categories of all the variables.
-      Right now the filter for the visualizations has not been implemented,
-      so this should not change.
-      Keep in mind that the categories for all variables are sorted,
-      this is important for interfacing with the ApexCharts library!
-    */
-    let uniqueCategories = GetUniqueCategories(this.props.data)
-
-    // generating the initial series data
-    let series = GenerateBarSeries(
-      {
-        chartSpecificOptions: {
-          xAxis: 'DecisionYear',
-          yAxis: 'Rapporteur',
-          categoriesSelected: [],
-        },
-      },
-      uniqueCategories,
-      this.props.data
-    )
-
-    // state initialization
-    this.state = {
-      chart_type: 'bar',
-      chartSpecificOptions: {
-        xAxis: 'DecisionYear',
-      },
-      legend_on: false,
-      labels_on: false,
-      data: this.props.data,
-      series: series,
-      uniqueCategories: uniqueCategories,
-      changeName: '',
-    }
+    // initializing 'state' of the visualization
+    this.settings = this.props.settings
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
     this.handlePNGExport = this.handlePNGExport.bind(this)
     this.handleSVGExport = this.handleSVGExport.bind(this)
     this.handleRemoval = this.handleRemoval.bind(this)
+    this.handleNameChange = this.handleNameChange.bind(this)
   }
 
   // EVENT HANDLERS:
 
   // event handler for the form data
   handleChange(event) {
-    const series = this.generateSeries(event.chart_type, event)
+    this.settings.chartType = event.chartType
+    this.settings.chartSpecificOptions = event.chartSpecificOptions
+    this.settings.legendOn = event.legendOn
+    this.settings.labelsOn = event.labelsOn
+    this.settings.key = event.key
 
-    this.setState({
-      chart_type: event.chart_type,
-      chartSpecificOptions: event.chartSpecificOptions,
-      legend_on: event.legend_on,
-      labels_on: event.labels_on,
-      series: series,
-      changeName: event.chartSpecificOptionsName,
-    })
+    this.settings.series = generateSeries(
+      this.settings.chartType,
+      this.settings
+    )
 
-    /*
-      Actually updating the parameters of the chart
-      we may want to do this purely using the states,
-      currently not sure if that would be more efficient
-    */
-    ApexCharts.getChartByID(String(this.props.id)).updateOptions({
-      dataLabels: { enabled: event.labels_on },
-      legend: { show: event.legend_on },
-    })
+    this.props.onFormChangeFunc(this.settings)
   }
 
   // handles the png export
   handlePNGExport(event) {
-    HandlePNGExport(this.props.id, ApexCharts)
+    const title = this.settings.title ?? this.renderTitlePlaceHolder()
+    HandlePNGExport(this.props.id, title, ApexCharts)
   }
 
   // handles the svg export
   handleSVGExport(event) {
-    HandleSVGExport(this.props.id, ApexCharts)
+    const title = this.settings.title ?? this.renderTitlePlaceHolder()
+    HandleSVGExport(this.props.id, title, ApexCharts)
   }
 
   // handles the removal of this visualization
   handleRemoval(event) {
-    this.props.onRemoval(this.props.id, event)
+    this.props.onRemoval(this.props.settings.id, event)
+  }
+
+  // handles changing the title of the visualization
+  handleNameChange(event) {
+    this.settings.title = event.target.value
+    this.props.onFormChangeFunc(this.settings)
   }
 
   // GENERAL FUNCTIONS:
 
   // creating a chart based on the chosen chart type
-  createChart(chart_type) {
-    const key = `${this.state.changeName} 
-			              ${this.state.chartSpecificOptions[this.state.changeName]}`
-    const legend_on = this.state.legend_on
-    const labels_on = this.state.labels_on
+  renderChart() {
+    const key = this.settings.key
+    const legendOn = this.settings.legendOn
+    const labelsOn = this.settings.labelsOn
     const id = this.props.id
-    const series = this.state.series
+    const series = this.settings.series
+    const categories = sortCategoryData(
+      this.settings.chartSpecificOptions.categoriesSelectedX
+    )
+    const options = this.settings.chartSpecificOptions
+    const onDataClick = this.props.onDataClick
 
-    switch (chart_type) {
+    switch (this.settings.chartType) {
       case 'bar':
         return (
           <BarChart
             key={key}
-            legend={legend_on}
-            labels={labels_on}
+            legend={legendOn}
+            labels={labelsOn}
             id={id}
             series={series}
-            categories={
-              this.state.uniqueCategories[this.state.chartSpecificOptions.xAxis]
-            }
-            options={this.state.chartSpecificOptions}
+            categories={categories}
+            options={options}
+            onDataClick={onDataClick}
           />
         )
 
@@ -139,14 +113,13 @@ class SingleVisualization extends Component {
         return (
           <LineChart
             key={key}
-            legend={legend_on}
-            labels={labels_on}
+            legend={legendOn}
+            labels={labelsOn}
             id={id}
             series={series}
-            categories={
-              this.state.uniqueCategories[this.state.chartSpecificOptions.xAxis]
-            }
-            options={this.state.chartSpecificOptions}
+            categories={categories}
+            options={options}
+            onDataClick={onDataClick}
           />
         )
 
@@ -154,112 +127,120 @@ class SingleVisualization extends Component {
         return (
           <PieChart
             key={key}
-            legend={legend_on}
-            labels={labels_on}
+            legend={legendOn}
+            labels={labelsOn}
             id={id}
             series={series}
-            categories={this.state.chartSpecificOptions.categoriesSelected}
-            options={this.state.chartSpecificOptions}
+            categories={categories}
+            options={options}
+            onDataClick={onDataClick}
+          />
+        )
+
+      case 'histogram':
+        return (
+          <HistogramChart
+            key={key}
+            legend={legendOn}
+            labels={labelsOn}
+            id={id}
+            series={series}
+            categories={categories}
+            options={options}
+            onDataClick={onDataClick}
           />
         )
 
       default:
-        return (
-          <BarChart
-            key={key}
-            legend={legend_on}
-            labels={labels_on}
-            id={id}
-            series={series}
-            categories={
-              this.state.uniqueCategories[this.state.chartSpecificOptions.xAxis]
-            }
-            options={this.state.chartSpecificOptions}
-          />
+        throw Error(
+          'visualization settings incorrect settings: {' + this.settings + '}'
         )
     }
   }
 
-  /*
-    Returns series data depending on the chart type,
-    as each chart type expects data in a certain way.
-    For example, a pie chart only expect one variable,
-    whereas a bar chart expect two.
-  */
-  generateSeries(chartType, options) {
-    switch (chartType) {
+  // renders the placeholder for the title depending on the chart type
+  renderTitlePlaceHolder() {
+    const chartType = 'my ' + this.settings.chartType
+    switch (this.settings.chartType) {
       case 'bar':
-        return GenerateBarSeries(
-          options,
-          this.state.uniqueCategories,
-          this.state.data
+        return (
+          chartType +
+          ' - ' +
+          this.settings.chartSpecificOptions.xAxis +
+          ' vs ' +
+          this.settings.chartSpecificOptions.yAxis
         )
 
       case 'line':
-        return GenerateLineSeries(
-          options,
-          this.state.uniqueCategories,
-          this.state.data
+        return (
+          chartType +
+          ' - ' +
+          this.settings.chartSpecificOptions.xAxis +
+          ' vs ' +
+          this.settings.chartSpecificOptions.yAxis
         )
 
       case 'pie':
-        return GeneratePieSeries(
-          options,
-          this.state.uniqueCategories,
-          this.state.data
-        )
+        return chartType + ' - ' + this.settings.chartSpecificOptions.xAxis
+
+      case 'histogram':
+        return chartType + ' - ' + this.settings.chartSpecificOptions.xAxis
 
       default:
-        return GenerateBarSeries(options)
+        throw Error(
+          'visualization settings incorrect settings: {' + this.settings + '}'
+        )
     }
   }
 
   // RENDERER:
 
-  /*
-	  Renders a single visualization,
-		based on the layout from the prototype:
-		divides the visualization in a left part for the form,
-		a right-lower part for the visualization and 
-		a right-upper part for the filters.
-	*/
+  // Renders a single visualization,
+  // based on the layout from the prototype:
+  // divides the visualization in a left part for the form,
+  // a right-lower part for the visualization and
+  // a right-upper part for the filters.
   render() {
     return (
-      <div className="table-holder">
+      <div className="med-content-container visual-container">
         <Container>
           <Row>
             <Col className="visualization-panel">
               <VisualizationForm
-                uniqueCategories={this.state.uniqueCategories}
-                onFormChange={this.handleChange}
+                uniqueCategories={this.settings.uniqueCategories}
+                onChange={this.handleChange}
+                settings={this.settings}
               />
             </Col>
             <Col sm={8}>
-              <Row className="visualization-title">
+              <Row>
                 <input
+                  tour="step-vis-main"
                   type="text"
                   id={'graphName' + this.props.id}
-                  className="graph-name"
-                  placeholder="Enter a graph name"
+                  className="graph-name med-text-input"
+                  placeholder={this.renderTitlePlaceHolder()}
                   autoComplete="off"
+                  value={this.settings.title}
+                  onChange={this.handleNameChange}
                 />
               </Row>
-              <Row>{this.createChart(this.state.chart_type)}</Row>
+              <Row>{this.renderChart()}</Row>
               <Row>
                 <button
-                  className="table-buttons button-export"
+                  className="med-primary-solid med-bx-button button-export"
                   onClick={this.handlePNGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as PNG
                 </button>
                 <button
-                  className="table-buttons button-export"
+                  className="med-primary-solid med-bx-button button-export"
                   onClick={this.handleSVGExport}
                 >
                   <i className="bx bx-save filter-Icon"></i>Export as SVG
                 </button>
                 <button
-                  className="table-buttons button-remove"
+                  className="med-primary-solid med-bx-button button-remove"
                   onClick={this.handleRemoval}
                   value={this.props.id}
                 >
@@ -271,6 +252,31 @@ class SingleVisualization extends Component {
         </Container>
       </div>
     )
+  }
+}
+
+// Returns series data depending on the chart type,
+// as each chart type expects data in a certain way.
+// For example, a pie chart only expect one variable,
+// whereas a bar chart expect two.
+export function generateSeries(chartType, options) {
+  switch (chartType) {
+    case 'bar':
+      return GenerateBarSeries(options, options.data)
+
+    case 'line':
+      return GenerateLineSeries(options, options.data)
+
+    case 'pie':
+      return GeneratePieSeries(options, options.data)
+
+    case 'histogram':
+      return GenerateHistogramSeries(options, options.data)
+
+    default:
+      throw Error(
+        'visualization settings incorrect settings: {' + this.settings + '}'
+      )
   }
 }
 

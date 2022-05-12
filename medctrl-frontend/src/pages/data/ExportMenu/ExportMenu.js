@@ -1,26 +1,28 @@
 import React, { useState } from 'react'
 import ReactModal from 'react-modal'
 import './ExportMenu.css'
-import { useSelectedData } from '../../../shared/contexts/DataContext'
 import ExportDialog from './ExportDialog'
 
 // function based component, represents the export button, which is inserted
 // in the selected data table. when this button is pressed, the export dialog
 // compontent is shown in a react modal view
-function ExportMenu() {
+function ExportMenu({ selectedData }) {
   const [showModal, setModalState] = useState(false)
-  const selectedData = useSelectedData()
+  const closeModal = () => setModalState(false)
 
   return (
-    <div>
-      <button className="tableButtons" onClick={() => setModalState(true)}>
+    <>
+      <button
+        className="med-primary-solid med-bx-button"
+        onClick={() => setModalState(true)}
+      >
         <i className="bx bxs-file-export"></i>Export
       </button>
 
       <ReactModal
         className="menu-modal"
         isOpen={showModal}
-        onRequestClose={() => setModalState(false)}
+        onRequestClose={closeModal}
         ariaHideApp={false}
         style={{
           modal: {},
@@ -38,12 +40,9 @@ function ExportMenu() {
           },
         }}
       >
-        <ExportDialog
-          data={selectedData}
-          onClose={() => setModalState(false)}
-        />
+        <ExportDialog data={selectedData} onClose={closeModal} />
       </ReactModal>
-    </div>
+    </>
   )
 }
 

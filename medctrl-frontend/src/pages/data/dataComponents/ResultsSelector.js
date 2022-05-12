@@ -1,4 +1,8 @@
 import React from 'react'
+import {
+  useCheckedState,
+  useCheckedStateUpdate,
+} from '../../../shared/contexts/DataContext'
 
 function ResultsSelector({
   data,
@@ -6,6 +10,7 @@ function ResultsSelector({
   resultsPerPage,
   pageNumber,
   currPage,
+  clearEnabled,
 }) {
   //all available options for resultsPerPage
   var options = []
@@ -117,20 +122,45 @@ function ResultsSelector({
     pageNumber(currPage)
   }
 
+  const checkedState = useCheckedState()
+  const setCheckedState = useCheckedStateUpdate()
+
+  //handler that removes all selected
+  const removeAllSelected = () => {
+    let updatedCheckedState = JSON.parse(JSON.stringify(checkedState))
+    for (var element of data) {
+      updatedCheckedState[element.EUNumber] = false
+    }
+    setCheckedState(updatedCheckedState)
+  }
+
   //main body of the page
   return (
     <div className="bottomOfTableHolder">
-      <div className="dv-pageCount">
+      {clearEnabled && (
+        <div
+          className="clear med-primary-text"
+          onClick={removeAllSelected}
+          data-testid="clear-all-label"
+        >
+          Clear All
+          <i className="bx bxs-trash clear-icon"></i>
+        </div>
+      )}
+
+      <div className="dv-pageCount" data-testid="pagination-div">
         <i
           onClick={() => Back()}
-          className="bx bxs-chevron-left bx-plusMinus li-pageCount"
+          className="bx bxs-chevron-left li-pageCount"
+          data-testid="prev-page-table"
         />
 
         {PageSelector()}
 
         <i
           onClick={() => Next()}
-          className="bx bxs-chevron-right bx-plusMinus li-pageCount"
+          className="bx bxs-chevron-right li-pageCount"
+          data-testid="next-page-table"
         />
       </div>
 
@@ -139,6 +169,7 @@ function ResultsSelector({
         <select
           onChange={(event) => resultsPerPage(event.target.value)}
           name="AmountShown"
+          className="med-select"
           id="topSelector"
         >
           {options}

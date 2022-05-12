@@ -1,33 +1,15 @@
-@import '../../shared/shared.css';
-
-label {
-  float: left;
-  margin-left: 1%;
-  margin-top: 2px;
-  font-weight: bold;
-}
-
-button:hover {
-  background-color: var(--blue-light);
-}
-
-hr {
-  width: 98%;
-  border: 1px solid var(--seperation-line);
-  position: sticky;
-  margin: 0px auto 10px auto;
-}
-
 .filter-Icon,
-.bxs-file-export {
+.bxs-file-export,
+.bxs-trash {
   font-size: 25px;
   margin-left: 10px;
   float: left;
 }
 
 .addRmCollumn {
+  display: flex;
   float: right;
-  margin: 0px 1% 0px 0px;
+  margin-right: 25px;
 }
 
 .bottomOfTableHolder {
@@ -46,9 +28,9 @@ hr {
 }
 
 #topSelector {
+  width: 55px;
   height: 25px;
   margin: 2px 0px 0px 10px;
-  border: 1px solid black;
 }
 
 .lb-tableholder {
@@ -71,12 +53,12 @@ hr {
 }
 
 .lb-pageCount:hover {
-  background-color: var(--seperation-line);
+  background-color: var(--med-page-count-hover);
   border-radius: 2px;
 }
 
 .lb-pageCount_selected {
-  background-color: var(--blue-light);
+  background-color: var(--med-page-count-selected);
   color: white;
   border-radius: 2px;
 }
@@ -93,4 +75,22 @@ hr {
 .li-pageCount {
   font-size: 25px;
   cursor: pointer;
+  color: var(--blue-alt);
+}
+
+.clear {
+  z-index: 1;
+  position: absolute;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.clear:hover {
+  cursor: pointer;
+}
+
+.clear-icon {
+  font-size: 18px;
+  margin-top: 1px;
+  margin-right: 5px;
 }

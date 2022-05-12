@@ -2,16 +2,11 @@
 
 .med_content__container {
   margin: 20px;
-
-  background-color: white;
-  border: 1px solid grey;
-
-  border-radius: 5px;
 }
 
 .med_home_content h1 {
   margin: 10px;
-  font-size: 25x;
+  font-size: 25px;
 }
 .med_home_content h2 {
   margin: 10px;
@@ -19,6 +14,14 @@
 }
 .med_home_content p {
   margin: 10px;
+}
+
+.med-tour-button {
+  float: right;
+}
+
+.med-tour-paragraph {
+  width: calc(100% - 180px);
 }
 
 .institution-logo {
@@ -30,7 +33,27 @@
   width: calc(100% - 450px);
 }
 
+.example-visualization {
+  width: 500px;
+  float: right;
+  margin: 100px 125px 0px 0px;
+}
+
+.example-visualization-panel {
+  margin: 50px 0px 50px 100px;
+}
+
+.visualization-description {
+  width: calc(100% - 600px);
+  margin: 100px 50px 0px 0px !important;
+  float: right;
+}
+
 .institution-link {
-  color: purple;
+  color: var(--med-textlink-text);
   text-decoration: none;
+}
+
+.institution-link:hover {
+  color: var(--med-textlink-text-hover);
 }

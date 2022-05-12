@@ -2,14 +2,14 @@
 .med_footer {
   padding: 10px;
   padding-bottom: 30px;
-  height: 160px;
+  height: 130px;
   font-size: 14px;
 
-  background-color: rgb(215, 215, 215);
-  box-shadow: 3px 2px 8px rgb(215, 215, 215);
+  background-color: var(--med-footer-background);
+  box-shadow: 3px 2px 8px var(--med-shadow);
+  color: var(--med-footer-text);
 
   border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
   /*margin-left: 2%;*/ /* this rule causes the bug with jira code: V22E-161 */
 }
 
@@ -20,26 +20,30 @@
   text-align: center;
 }
 
-#footer__organisations {
+#footer__organizations {
   width: 50%;
   text-align: center;
   float: right;
 }
 
-/* For the list of relevant organisations, keeps the list positioned correctly */
-.footer__organisation__list {
+.footer-text {
+  margin-top: 2.5%;
+}
+
+/* For the list of relevant organizations, keeps the list positioned correctly */
+.footer__organization__list {
   display: inline-block;
   text-align: left;
 }
 
-/* Rulesets for the links under relevant organisations, only does styling and colors */
-#footer__organisations a {
-  color: purple;
+/* Rulesets for the links under relevant organizations, only does styling and colors */
+.med_footer a {
+  color: var(--med-textlink-text);
   text-decoration: none;
 }
 
-#footer__organisations a:hover {
-  color: blue;
+.med_footer a:hover {
+  color: var(--med-textlink-text-hover);
 }
 
 /* Media query: makes sure that when the screen width drops below 1400px (the size where the page content

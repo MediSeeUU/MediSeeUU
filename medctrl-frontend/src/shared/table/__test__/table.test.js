@@ -413,7 +413,9 @@ test('data put correctly into table', () => {
       const cells = within(row).getAllByRole('cell')
       const cellValue = cells[index].innerHTML
       const dataElement = DummyData[index2]
-      expect(cellValue).toBe(dataElement[selectValue].toString())
+      expect(cellValue).toBe(
+        '<div>' + dataElement[selectValue].toString() + '</div>'
+      )
     })
   })
 })
@@ -590,4 +592,39 @@ test('Amount of columns does not drop below 5', () => {
   headerLength = screen.queryAllByRole('columnheader').length
 
   expect(headerLength).toBe(5)
+})
+
+test('Add column button adds unique variable columns', () => {
+  var columnSelection = []
+  const setColumnSelection = (newColumns) => {
+    columnSelection = newColumns
+  }
+
+  const { rerender } = render(
+    <BrowserRouter>
+      <ColumnSelectionContext.Provider value={columnSelection}>
+        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+          <Table data={DummyData} currentPage={1} amountPerPage={10} />
+        </ColumnSelectionContextUpdate.Provider>
+      </ColumnSelectionContext.Provider>
+    </BrowserRouter>
+  )
+
+  for (var i = 0; i < 40; i++) {
+    fireEvent.click(screen.getByTestId('add-column'))
+
+    rerender(
+      <BrowserRouter>
+        <ColumnSelectionContext.Provider value={columnSelection}>
+          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+            <Table data={DummyData} currentPage={1} amountPerPage={10} />
+          </ColumnSelectionContextUpdate.Provider>
+        </ColumnSelectionContext.Provider>
+      </BrowserRouter>
+    )
+  }
+
+  const headerLength = screen.queryAllByRole('columnheader').length
+  const numberOfUniqueHeaders = Object.keys(DummyData[0]).length
+  expect(headerLength).toBe(numberOfUniqueHeaders)
 })

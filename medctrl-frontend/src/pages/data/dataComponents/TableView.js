@@ -9,7 +9,8 @@ export default function TableView(
   setPage,
   setResultsPerPage,
   select,
-  text
+  text,
+  menu
 ) {
   if (!data || data.length === 0) {
     return <label className="lb-tableholder">{text}</label>
@@ -29,6 +30,7 @@ export default function TableView(
           currentPage={loadedPage}
           amountPerPage={resultsPerPage}
           selectTable={select}
+          menu={menu}
         />
         <ResultsSelector
           data={data}
@@ -36,6 +38,7 @@ export default function TableView(
           resultsPerPage={setResultsPerPage}
           pageNumber={setPage}
           currPage={loadedPage}
+          clearEnabled={!select}
         />
       </>
     )

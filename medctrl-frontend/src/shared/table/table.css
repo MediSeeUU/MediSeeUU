@@ -4,10 +4,10 @@
   overflow: auto;
   border-spacing: 0;
   width: 98%;
-  height: 441px;
+  max-height: 441px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .tableHeader {
@@ -16,7 +16,7 @@
   top: 0;
   border: 0px;
   overflow-x: visible;
-  color: var(--white-text);
+  color: var(--med-table-header-text);
 }
 
 .tableBody {
@@ -25,20 +25,26 @@
 }
 
 .tableHeader tr {
-  background-color: var(--blue-main);
+  background-color: var(--med-table-header-background);
 }
 
 .tableBody tr:nth-child(even) {
-  background-color: #bac4c9;
+  background-color: var(--med-table-row-even-background);
 }
 
 .tableBody tr:nth-child(odd) {
-  background-color: #d6d6d7;
+  background-color: var(--med-table-row-odd-background);
 }
 
-.med_th,
-.med_td {
+.med_td.smallColumn {
   text-align: center;
+}
+
+.med_td div {
+  display: block;
+  text-align: left;
+  width: calc(100% - 20px);
+  margin-inline: 10px;
 }
 
 .med_th {
@@ -51,8 +57,10 @@
   padding: 10px 0;
   font-size: 14px;
   font-weight: 500;
-  background-color: var(--blue-main);
-  color: var(--white-text);
+  background-color: var(--med-table-header-background);
+  color: var(--med-table-header-text);
+  border: 1px solid var(--med-table-header-border);
+  border-radius: 4px;
   min-width: 100%;
   max-width: 100%;
 }
@@ -66,28 +74,19 @@
 .smallColumn {
   min-width: 50px;
   max-width: 50px;
-  border-right: 1px solid var(--blue-alt);
+  border-right: 1px solid var(--med-table-border);
 }
 
 .icons {
   font-size: 20px;
   margin-top: 2px;
-  color: var(--blue-alt);
   cursor: pointer;
-}
-
-.icons:hover {
-  color: var(--blue-light);
 }
 
 /* Column addition/removal button styling */
 .bx-plusMinus {
-  color: var(--blue-alt);
-  font-size: 35px;
   cursor: pointer;
-}
-
-.bx-plusMinus:hover {
-  color: var(--blue-light);
-  cursor: pointer;
+  margin-right: 5px;
+  margin: 15px 0;
+  font-size: 40px;
 }
