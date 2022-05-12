@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import '../../../visualizations.css'
-import sortCategoryData from '../../utils/SortCategoryData'
 import CategoryOptions from '../shared/CategoryOptions'
+import sortCategoryData from '../../utils/SortCategoryData'
 
-// the line part of a form if a line chart is chosen
-class LineForm extends Component {
+// the histogram part of a form if a histogram chart is chosen
+class HistogramForm extends Component {
   constructor(props) {
-    //  Receives the categories of all variables,
-    //  also gets the event handler for passing data back to the general form.
+    // Receives the categories of all variables,
+    // also gets the event handler for passing data back to the general form.
     super(props)
 
     // The list of eligible variables.
-    // If we do not want to include a variable for the line chart,
+    // If we do not want to include a variable for the histogram chart,
     // it can be removed from here.
     const eligibleVariables = [
       'ApplicationNo',
@@ -50,10 +50,8 @@ class LineForm extends Component {
 
     // event handlers
     this.handleChange = this.handleChange.bind(this)
-    this.handleCategorySelectionXChange =
-      this.handleCategorySelectionXChange.bind(this)
-    this.handleCategorySelectionYChange =
-      this.handleCategorySelectionYChange.bind(this)
+    this.handleCategorySelectionChange =
+      this.handleCategorySelectionChange.bind(this)
   }
 
   // EVENT HANDLERS:
@@ -69,30 +67,19 @@ class LineForm extends Component {
     // so if these changes we want the categoriesSelected to re-initialized,
     // in this case that is just resetting the array,
     // because some variables have a lot of categories.
-    if (name === 'xAxis' || name === 'yAxis') {
-      this.setState({
-        categoriesSelectedX: [],
-        categoriesSelectedY: [],
-      })
+    if (name === 'xAxis') {
+      this.setState({ categoriesSelectedX: [] })
     }
     this.setState({ [name]: value }, () => {
       this.props.onChange([this.state, name])
     })
   }
 
-  // Updates the categoriesSelectedX based on the new selection.
-  // This event handler is passed to the CategoryOptions component.
-  handleCategorySelectionXChange(event) {
+  // Updates the categoriesSelected based on the new selection.
+  // This event is passed to the CategoryOptions component.
+  handleCategorySelectionChange(event) {
     this.setState({ categoriesSelectedX: event }, () => {
       this.props.onChange([this.state, 'categoriesSelectedX'])
-    })
-  }
-
-  // Updates the categoriesSelectedY based on the new selection.
-  // This event is passed to the CategoryOptions component.
-  handleCategorySelectionYChange(event) {
-    this.setState({ categoriesSelectedY: event }, () => {
-      this.props.onChange([this.state, 'categoriesSelectedY'])
     })
   }
 
@@ -111,56 +98,34 @@ class LineForm extends Component {
 
   // RENDERER:
 
-  // renders the bar form part of the form
+  // renders the histogram form part of the form
   render() {
     // building drop down menus
-    const variablesXAxis = this.renderVariableDropDown()
-    const variablesYAxis = this.renderVariableDropDown()
+    const variables = this.renderVariableDropDown()
 
     return (
       <React.Fragment>
         <label className="visualization-panel-label">
-          X-axis
+          Variable <br />
           <select
             value={this.state.xAxis}
             name="xAxis"
             className="med-select"
             onChange={this.handleChange}
           >
-            {variablesXAxis}
-          </select>
-        </label>
-        <label className="visualization-panel-label">
-          Y-axis
-          <select
-            value={this.state.yAxis}
-            name="yAxis"
-            className="med-select"
-            onChange={this.handleChange}
-          >
-            {variablesYAxis}
+            {variables}
           </select>
         </label>
         <CategoryOptions
-          // We want to reset the component when the axis changes,
-          // so we need to change the key depending on the axis'
-          key={`${this.state.xAxis}${this.state.yAxis}` + 'X'}
-          onChange={this.handleCategorySelectionXChange}
+          // We want to reset the component when the variable changes,
+          // so we need to change the key depending on the axis.
+          key={`${this.state.xAxis}`}
+          className="category-options"
+          onChange={this.handleCategorySelectionChange}
           categories={sortCategoryData(
             this.props.uniqueCategories[this.state.xAxis]
           )}
           categoriesSelected={this.state.categoriesSelectedX}
-          settings={this.state}
-        />
-        <CategoryOptions
-          // We want to reset the component when the axis changes,
-          // so we need to change the key depending on the axis'.
-          key={`${this.state.xAxis}${this.state.yAxis}` + 'Y'}
-          onChange={this.handleCategorySelectionYChange}
-          categories={sortCategoryData(
-            this.props.uniqueCategories[this.state.yAxis]
-          )}
-          categoriesSelected={this.state.categoriesSelectedY}
           settings={this.state}
         />
       </React.Fragment>
@@ -168,4 +133,4 @@ class LineForm extends Component {
   }
 }
 
-export default LineForm
+export default HistogramForm

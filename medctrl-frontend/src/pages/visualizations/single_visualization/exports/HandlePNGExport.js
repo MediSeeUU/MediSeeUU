@@ -3,7 +3,7 @@ import { changeDpiDataUrl } from 'changedpi'
 
 // Event handler for exporting the visualization to png.
 // Does not export the actual data.
-export default function HandlePNGExport(id, ApexCharts) {
+export default function HandlePNGExport(id, title, ApexCharts) {
   // Get the visualization in the base64 format,
   // we scale it for a better resolution.
   ApexCharts.exec(String(id), 'dataURI', { scale: 3.5 })
@@ -14,7 +14,7 @@ export default function HandlePNGExport(id, ApexCharts) {
       let inst = ApexCharts.getChartByID(String(id))
       inst.exports.triggerDownload(
         dataURI300,
-        'Graph ' + id + ' - ' + document.getElementById('graphName' + id).value,
+        'Graph ' + id + ' - ' + title,
         '.png'
       )
     })

@@ -7,8 +7,8 @@ class VisualizePage(BasePage):
     self.go_visualize()
   
   def possible_categories(self):
-    div = self.driver.find_element(*VisualizePageLocators.OPTIONS)
-    labels = div.find_elements(*VisualizePageLocators.LABEL)
+    div = self.driver.find_elements(*VisualizePageLocators.OPTIONS)
+    labels = div[1].find_elements(*VisualizePageLocators.LABEL)
     label_text = []
     for x in labels:
       label_text.append(x.text.lstrip())
