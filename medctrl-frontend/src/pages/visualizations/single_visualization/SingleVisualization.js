@@ -169,7 +169,7 @@ class SingleVisualization extends Component {
 	*/
   render() {
     return (
-      <div tour='step-vis-main' className="med-content-container visual-container">
+      <div className="med-content-container visual-container">
         <Container>
           <Row>
             <Col className="visualization-panel">
@@ -182,6 +182,7 @@ class SingleVisualization extends Component {
             <Col sm={8}>
               <Row className="visualization-title">
                 <input
+                  tour='step-vis-main'
                   type="text"
                   id={'graphName' + this.props.id}
                   className="graph-name med-text-input"
