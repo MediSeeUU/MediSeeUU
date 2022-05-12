@@ -2,7 +2,7 @@
 .med_footer {
   padding: 10px;
   padding-bottom: 30px;
-  height: 160px;
+  height: 130px;
   font-size: 14px;
 
   background-color: var(--med-footer-background);
@@ -24,6 +24,10 @@
   width: 50%;
   text-align: center;
   float: right;
+}
+
+.footer-text {
+  margin-top: 2.5%;
 }
 
 /* For the list of relevant organizations, keeps the list positioned correctly */

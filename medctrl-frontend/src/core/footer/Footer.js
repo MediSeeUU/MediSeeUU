@@ -6,7 +6,7 @@ function Footer() {
     //next to each other.
     <footer className="med_footer">
       <section id="footer__organizations">
-        <h2>Relevant organizations</h2>
+        <h2>Relevant Organizations</h2>
 
         <ul className="footer__organization__list">
           <li>
@@ -28,9 +28,7 @@ function Footer() {
       </section>
 
       <section id="footer__information">
-        <h2>General information</h2>
-
-        <p>
+        <p className="footer-text">
           In the European Database For Pharmaceutical Policy & Regularization,
           data on medicines regulation and marketing approval is made available.
           The dashboard, including the data collection, is maintained by Utrecht
