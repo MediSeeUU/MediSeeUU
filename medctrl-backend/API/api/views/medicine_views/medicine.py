@@ -32,7 +32,7 @@ class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
             perm = [str(x.codename).split(".")[1] for x in permA if "." in x.codename]
         else:
             permB = user.get_all_permissions(obj=None)
-            perm = [x.split(".")[1] for x in permB if "." in x]
+            perm = [x.split(".")[2] for x in permB if "." in x]
 
         # Set the permissions in the requests' context so the serializer can use them
         context.update({"permissions": perm})
