@@ -43,7 +43,7 @@ function contexts(children, contextData) {
       data: data,
       series: [],
       uniqueCategories: unique,
-      changeName: '',
+      key: '',
     },
   ]
   if (contextData.length <= 0) {
@@ -120,7 +120,7 @@ test('update visuals when rendering with bar', () => {
       data: [],
       series: [],
       uniqueCategories: [],
-      changeName: '',
+      key: '',
     },
   ]
   const page = (
@@ -157,7 +157,7 @@ test('update visuals when rendering with line', () => {
       data: [],
       series: [],
       uniqueCategories: [],
-      changeName: '',
+      key: '',
     },
   ]
   const page = (
@@ -192,7 +192,7 @@ test('update visuals when rendering with pie', () => {
       data: [],
       series: [],
       uniqueCategories: [],
-      changeName: '',
+      key: '',
     },
   ]
   const page = (
