@@ -28,7 +28,10 @@ function Search({ update, initial, tour }) {
         defaultValue={initial}
         onKeyDown={handlerKeyDown}
       />
-      <button className="med-primary-solid med-bx-button" onClick={applySearch}>
+      <button
+        className="med-primary-solid med-bx-button search-button"
+        onClick={applySearch}
+      >
         <i className="bx bx-search search-Icon"></i>Search
       </button>
     </div>
