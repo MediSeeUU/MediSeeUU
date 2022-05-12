@@ -35,5 +35,7 @@ class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
         except FieldError as e:
             #return Response({'Error': "Wrong permissions set" + (str(e).split('.')[0])})
             filteredSet = []
+        except:
+            filteredSet = []
             
         return filteredSet
