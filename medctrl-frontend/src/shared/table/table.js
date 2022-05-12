@@ -18,6 +18,7 @@ function DisplayTable({
   amountPerPage,
   currentPage,
   menu,
+  setSorters
 }) {
   //throw error if parameters not defined
   if (!data || !amountPerPage || !currentPage) {
@@ -73,8 +74,7 @@ function DisplayTable({
 
   //handler that changes the data sorting order
   const handleSortingChange = (attributename, value) => {
-      var sortedLocalData = sortData([...LocalTableData], [{ selected:attributename, order:value}])
-      setLocalTableData(sortedLocalData)
+    setSorters([{ selected: attributename, order: value }])
   }
   
   //handler that adds a column
