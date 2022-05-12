@@ -241,7 +241,6 @@ function slashDateToStringDate(date)
   return fullDate
 }
 
-
 //logic for the checkboxes
 const CheckboxColumn = ({ value, onChange }) => {
   return (

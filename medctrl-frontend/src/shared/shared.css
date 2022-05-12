@@ -14,6 +14,10 @@
   /* color of the inside of a radio button */
   --med-radio-inside: var(--primary-normal);
 
+  /* colors for the medinice timeline */
+  --med-timeline-line: var(--primary-light);
+  --med-timeline-circle: var(--primary-dark);
+
   /* colors for the tooltip component (nav only) */
   --med-tooltip-background: var(--core-content);
   --med-tooltip-text: var(--text-primary);

@@ -51,7 +51,7 @@ test('valid selection download should result in UI success message', () => {
   ]
   const view = render(
     <SelectedContext.Provider value={DummyData}>
-      <ExportMenu />
+      <ExportMenu selectedData={DummyData} />
     </SelectedContext.Provider>
   )
   for (let i = 0; i < validOptions.length; i++) {
@@ -72,7 +72,7 @@ test('valid selection download should result in UI success message', () => {
 test('custom selection without separator should result in UI error message', () => {
   const view = render(
     <SelectedContext.Provider value={DummyData}>
-      <ExportMenu />
+      <ExportMenu selectedData={DummyData} />
     </SelectedContext.Provider>
   )
   fireEvent.click(screen.getByText('Export'))
@@ -93,7 +93,7 @@ test('custom selection without separator should result in UI error message', () 
 test('custom selection with separator should result in UI success message', () => {
   const view = render(
     <SelectedContext.Provider value={DummyData}>
-      <ExportMenu />
+      <ExportMenu selectedData={DummyData} />
     </SelectedContext.Provider>
   )
   fireEvent.click(screen.getByText('Export'))
@@ -113,7 +113,7 @@ test('custom selection with separator should result in UI success message', () =
 test('download attempt with invalid selection should result in error dialog', () => {
   const view = render(
     <SelectedContext.Provider value={DummyData}>
-      <ExportMenu />
+      <ExportMenu selectedData={DummyData} />
     </SelectedContext.Provider>
   )
   fireEvent.click(screen.getByText('Export'))

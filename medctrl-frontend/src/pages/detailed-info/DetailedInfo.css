@@ -67,6 +67,14 @@
   margin-left: 15px;
 }
 
+.procedure-value {
+  display: inline-block;
+  max-width: 98%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* for the procedures */
 
 .procedure {
@@ -105,6 +113,7 @@
 .procedure-files {
   display: inline-block;
   width: 17.5%;
+  height: calc(100% - 6px);
 }
 
 .procedure-file-link {
@@ -114,10 +123,26 @@
   margin: 3px;
   width: calc(100% - 6px);
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   text-decoration: none;
-  color: var(--link-color);
+  color: var(--med-textlink-text);
+}
+
+.procedure-file-link:hover {
+  color: var(--med-textlink-text-hover);
+}
+
+.procedure-file-link.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: var(--med-additional-text);
+}
+
+.procedure-file-link span {
+  display: inline-block;
+  padding-top: 1.5px;
+  padding-bottom: 1.5px;
 }
 
 /* for procedure labels */
@@ -148,4 +173,78 @@
 .detailedinfopage-unknown-medID {
   padding-top: 30vh;
   text-align: center;
+}
+
+/* for the time line component */
+
+.timeline {
+  padding: 10px 25px;
+  margin: auto;
+  display: flex;
+  justify-content: left;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.el {
+  width: 195px;
+  height: 144px;
+}
+
+.decoration {
+  width: 100%;
+  height: 2px;
+  background-color: var(--med-timeline-line);
+  position: relative;
+}
+
+.el:first-child .decoration {
+  float: right;
+  width: 50%;
+}
+
+.el:last-child .decoration {
+  float: left;
+  width: 50%;
+}
+
+.el:only-child .decoration {
+  width: 50%;
+  height: 0;
+}
+
+.timestamp {
+  display: inline-block;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  width: 100%;
+  font-weight: 100;
+  text-align: center;
+}
+
+.event {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 0 5px;
+  text-align: center;
+}
+
+.decoration:before {
+  content: '';
+  width: 25px;
+  height: 25px;
+  background-color: var(--med-timeline-circle);
+  border-radius: 25px;
+  border: 2px solid var(--med-timeline-line);
+  position: absolute;
+  top: -12px;
+  left: calc(50% - 12.5px);
+}
+
+.el:first-child .decoration:before {
+  left: 0;
+}
+
+.el:last-child .decoration:before {
+  left: calc(100% - 12.5px);
 }

@@ -21,10 +21,13 @@ class BasePage():
   
   def go_home(self):
     self.nav_items[1].click()
-  
-  def go_data(self):
+
+  def go_info(self):
     self.nav_items[2].click()
   
-  def go_visualize(self):
+  def go_data(self):
     self.nav_items[3].click()
+  
+  def go_visualize(self):
+    self.nav_items[4].click()
   

@@ -18,18 +18,19 @@ beforeAll(() => {
   uniqueCategories = GetUniqueCategories(data)
   setting = {
     id: 1,
-    chart_type: 'bar',
+    chartType: 'bar',
     chartSpecificOptions: {
       xAxis: 'DecisionYear',
       yAxis: 'Rapporteur',
-      categoriesSelected: [],
+      categoriesSelectedX: uniqueCategories['DecisionYear'],
+      categoriesSelectedY: uniqueCategories['Rapporteur'],
     },
-    legend_on: true,
-    labels_on: false,
+    legenOn: true,
+    labelsOn: false,
     data: data,
     series: [],
     uniqueCategories: uniqueCategories,
-    changeName: '',
+    key: '',
   }
 })
 
@@ -38,7 +39,7 @@ test('initial render', () => {
   render(
     <VisualizationForm
       uniqueCategories={uniqueCategories}
-      onchange={onChange}
+      onChange={onChange}
       settings={setting}
     />
   )
@@ -49,7 +50,7 @@ test('change to line chart type', () => {
   render(
     <VisualizationForm
       uniqueCategories={uniqueCategories}
-      onchange={onChange}
+      onChange={onChange}
       settings={setting}
     />
   )
@@ -58,7 +59,7 @@ test('change to line chart type', () => {
   fireEvent.change(target, {
     target: {
       value: 'line',
-      name: 'chart_type',
+      name: 'chartType',
     },
   })
 })
@@ -68,7 +69,7 @@ test('change to pie chart type', () => {
   render(
     <VisualizationForm
       uniqueCategories={uniqueCategories}
-      onchange={onChange}
+      onChange={onChange}
       settings={setting}
     />
   )
@@ -77,7 +78,7 @@ test('change to pie chart type', () => {
   fireEvent.change(target, {
     target: {
       value: 'pie',
-      name: 'chart_type',
+      name: 'chartType',
     },
   })
 })
@@ -87,7 +88,7 @@ test('change to bar chart', () => {
   render(
     <VisualizationForm
       uniqueCategories={uniqueCategories}
-      onchange={onChange}
+      onChange={onChange}
       settings={setting}
     />
   )
@@ -96,7 +97,7 @@ test('change to bar chart', () => {
   fireEvent.change(target, {
     target: {
       value: 'bar',
-      name: 'chart_type',
+      name: 'chartType',
     },
   })
 })
@@ -106,18 +107,20 @@ test('trigger defaults of resetChartSpecifics and renderChartOptions', () => {
   render(
     <VisualizationForm
       uniqueCategories={uniqueCategories}
-      onchange={onChange}
+      onChange={onChange}
       settings={setting}
     />
   )
   let target = screen.getByRole('combobox', { name: /visualization type/i })
 
-  fireEvent.change(target, {
-    target: {
-      value: 'pi',
-      name: 'chart_type',
-    },
-  })
+  expect(() =>
+    fireEvent.change(target, {
+      target: {
+        value: 'pi',
+        name: 'chartType',
+      },
+    })
+  ).toThrow()
 })
 
 test('do a chart specific change', () => {
@@ -125,7 +128,7 @@ test('do a chart specific change', () => {
   render(
     <VisualizationForm
       uniqueCategories={uniqueCategories}
-      onchange={onChange}
+      onChange={onChange}
       settings={setting}
     />
   )
@@ -137,18 +140,4 @@ test('do a chart specific change', () => {
       name: 'xAxis',
     },
   })
-})
-
-test('make a submission', () => {
-  const onChange = jest.fn()
-  render(
-    <VisualizationForm
-      uniqueCategories={uniqueCategories}
-      onchange={onChange}
-      settings={setting}
-    />
-  )
-  let target = screen.getByRole('button', { name: /update/i })
-
-  expect(() => fireEvent.click(target)).toThrow()
 })

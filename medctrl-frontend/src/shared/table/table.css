@@ -4,10 +4,10 @@
   overflow: auto;
   border-spacing: 0;
   width: 98%;
-  height: 441px;
+  max-height: 441px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .tableHeader {
@@ -36,9 +36,15 @@
   background-color: var(--med-table-row-odd-background);
 }
 
-.med_th,
-.med_td {
+.med_td.smallColumn {
   text-align: center;
+}
+
+.med_td div {
+  display: block;
+  text-align: left;
+  width: calc(100% - 20px);
+  margin-inline: 10px;
 }
 
 .med_th {
