@@ -13,8 +13,6 @@ function HomePage() {
   return (
     // Homepage components, contains article containers (styling in HomePage.css)
     <div className="med_home_content">
-      <Search tour='step-search' update={(query) => navigate('/data?q=' + query)} />
-      
       <div className="med-content-container">
         <h1>Dashboard Tour</h1>
         <hr className="med-top-separator" />
@@ -27,14 +25,20 @@ function HomePage() {
           Start Tour
         </button>
 
-        <p className='med-tour-paragraph'>
-          To explore all the features of this dashboard, take a guided tour around
-          the website by clicking the button. This tour will not take long and
-          familiarize you with all the core functionalities that this dashboard
-          has to offer. You can end the tour at any time by clicking 'end'. When
-          you reach the end of the tour, the tour will automaticly finish.
+        <p className="med-tour-paragraph">
+          To explore all the features of this dashboard, take a guided tour
+          around the website by clicking the button. This tour will not take
+          long and familiarize you with all the core functionalities that this
+          dashboard has to offer. You can end the tour at any time by clicking
+          'end'. When you reach the end of the tour, the tour will automaticly
+          finish.
         </p>
       </div>
+
+      <Search
+        tour="step-search"
+        update={(query) => navigate('/data?q=' + query)}
+      />
 
       <div className="med-content-container">
         <h1>About This Dashboard</h1>

@@ -19,7 +19,7 @@ function App() {
           <main className="med_content">
             <div className="med_content__wrapper">
               <DataProvider>
-                <AllRoutes/>
+                <AllRoutes />
               </DataProvider>
             </div>
             <Footer />

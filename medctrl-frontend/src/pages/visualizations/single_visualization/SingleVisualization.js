@@ -213,7 +213,7 @@ class SingleVisualization extends Component {
             <Col sm={8}>
               <Row>
                 <input
-                  tour='step-vis-main'
+                  tour="step-vis-main"
                   type="text"
                   id={'graphName' + this.props.id}
                   className="graph-name med-text-input"
