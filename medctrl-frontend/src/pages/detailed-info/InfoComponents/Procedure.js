@@ -7,7 +7,7 @@ import CustomLink from './CustomLink'
 // and the decision file.
 function Procedure(props) {
   const clean = (value) => {
-    return (!value) ? ("NA") : (value)
+    return !value ? 'NA' : value
   }
 
   let decisionDate = clean(props.proc.decisiondate)

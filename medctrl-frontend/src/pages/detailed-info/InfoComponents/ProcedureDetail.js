@@ -4,7 +4,7 @@ function ProcedureDetail(props) {
   return (
     <div className={'procedure-detail ' + props.width}>
       <span className="procedure-label">{props.name}</span> <br />
-      <span>{props.value}</span>
+      <span className="procedure-value">{props.value}</span>
     </div>
   )
 }

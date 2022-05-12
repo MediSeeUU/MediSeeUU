@@ -4,17 +4,12 @@
 function CustomLink(props) {
   let dest = props.dest
   let className = props.className
-  if(!props.dest) {
+  if (!props.dest) {
     className += ' disabled'
-    dest = "#"
+    dest = '#'
   }
   return (
-    <a
-      href={dest}
-      target="_blank"
-      rel="noreferrer"
-      className={className}
-    >
+    <a href={dest} target="_blank" rel="noreferrer" className={className}>
       <i className={props.image} />
       <span>{props.name}</span>
     </a>

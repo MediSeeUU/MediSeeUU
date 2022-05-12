@@ -67,6 +67,14 @@
   margin-left: 15px;
 }
 
+.procedure-value {
+  display: inline-block;
+  max-width: 98%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* for the procedures */
 
 .procedure {
@@ -105,6 +113,7 @@
 .procedure-files {
   display: inline-block;
   width: 17.5%;
+  height: calc(100% - 6px);
 }
 
 .procedure-file-link {
@@ -114,7 +123,7 @@
   margin: 3px;
   width: calc(100% - 6px);
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   text-decoration: none;
   color: var(--med-textlink-text);
@@ -127,7 +136,13 @@
 .procedure-file-link.disabled {
   pointer-events: none;
   cursor: default;
-  color: var(--med-additional-text)
+  color: var(--med-additional-text);
+}
+
+.procedure-file-link span {
+  display: inline-block;
+  padding-top: 1.5px;
+  padding-bottom: 1.5px;
 }
 
 /* for procedure labels */
@@ -191,6 +206,11 @@
 .el:last-child .decoration {
   float: left;
   width: 50%;
+}
+
+.el:only-child .decoration {
+  width: 50%;
+  height: 0;
 }
 
 .timestamp {

@@ -9,12 +9,12 @@ import TimeLine from './InfoComponents/TimeLine'
 import { useData } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { v4 } from "uuid";
+import { v4 } from 'uuid'
 
-// function based component, which represents the entire detailed information page
-// a medicine id number is from the URL and the specific information related to 
-// that medince is displayed.
-function DetailedInfoPage() {
+// function based component, which represents the top level detailed info page
+// component, it collects and fetches all the correct data and then passes this data
+// to the info page component and returns that component
+export default function DetailedInfoPage() {
   const { medID } = useParams()
   const [procData, setProcData] = useState(null)
 
@@ -29,19 +29,28 @@ function DetailedInfoPage() {
   // retrieved from the server. the result is stored in a state
   useEffect(() => {
     async function fetchProcedureData(medID) {
-      const response = await fetch(`${process.env.PUBLIC_URL}/api/procedure/`+medID+'/', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      const response = await fetch(
+        `${process.env.PUBLIC_URL}/api/procedure/` + medID + '/',
+        {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
       const data = await response.json()
+      console.log(data)
       setProcData(data)
     }
     fetchProcedureData(medID)
   }, [setProcData, medID])
 
-  // if the medIDnumber does not correspond to any medicine in the datacontext,
-  // a static error page is displayed
-  if (medData === undefined) {
+  return <InfoPage medData={medData} procData={procData} />
+}
+
+// function based component, which represents the entire detailed information page
+// it display the given medicine and procedure data
+export function InfoPage({ medData, procData }) {
+  // if no medicine data is provided, no meaning full can be displayed
+  if (!medData) {
     return (
       <h1 className="detailedinfopage-unknown-medID">
         Unknown Medicine ID Number
@@ -49,38 +58,49 @@ function DetailedInfoPage() {
     )
   }
 
-  // for each procedure present in the medicine data object, an procedure component
-  // is created and added to an array for temporary storage
-  let allProcedures = []
+  // a filter which determines which prodcures to show, and which to omit from
+  // the detailed info page
+  let displayProcTypes = [
+    'Centralised - Authorisation',
+    //"Centralised - Variation",
+    'Centralised - Transfer Marketing Authorisation Holder',
+    //"Centralised - Variation (no change in Commission Decision)",
+    //"Centralised - Notification",
+    'Centralised - Renewal',
+    //"Corrigendum",
+    //"Centralised - Yearly update"
+  ]
+
+  // if there is procedure data present, two containers should be added to the page
+  // with only the relevant procedure entries (based on the display proc types above)
+  // one container should display the procedures in text form, and the other should
+  // visually display them as a timeline. if no procedure data is present, both
+  // containers should not be displayed
+  let procedureContrainer = null
+  let timeLineContainer = null
+
   if (procData !== null) {
-    allProcedures = procData.map((proc) => {
-      return <Procedure proc={proc} key={v4()}/>
-    })
-  }
+    let procedures = procData.filter((proc) =>
+      displayProcTypes.includes(proc.proceduretype)
+    )
 
-  // put all of the procedures from the allProcedures array into a content containers,
-  // together with a meaningful title. The procuedures are also combined into a visual
-  // timeline component, this component is placed in its own content container if
-  // there are no procedures to display, the both containers should not be displayed
-  let procedureContrainer = (
-    <div className="med-content-container">
-      <h1 className="title">Procedure Details</h1>
-      <hr className="med-top-separator" />
-      {allProcedures}
-    </div>
-  )
+    procedureContrainer = (
+      <div className="med-content-container">
+        <h1 className="title">Procedure Details</h1>
+        <hr className="med-top-separator" />
+        {procedures.map((proc) => {
+          return <Procedure proc={proc} key={v4()} />
+        })}
+      </div>
+    )
 
-  let timeLineContainer = (
-    <div className="med-content-container">
-      <h1 className="title">Medicine Timeline</h1>
-      <hr className="med-top-separator" />
-      <TimeLine procs={procData} />
-    </div>
-  )
-
-  if (allProcedures.length === 0) {
-    procedureContrainer = null
-    timeLineContainer = null
+    timeLineContainer = (
+      <div className="med-content-container">
+        <h1 className="title">Medicine Timeline</h1>
+        <hr className="med-top-separator" />
+        <TimeLine procs={procedures} />
+      </div>
+    )
   }
 
   // returns the component which discribes the entire detailed information page
@@ -193,5 +213,3 @@ function DetailedInfoPage() {
     </div>
   )
 }
-
-export default DetailedInfoPage

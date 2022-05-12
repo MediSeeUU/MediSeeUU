@@ -230,16 +230,6 @@ test('render settingspage without crashing', () => {
   )
 })
 
-test('detailedinfopage with procedures', () => {
-  render(
-    <BrowserRouter>
-      <DataContext.Provider value={allData}>
-        <InfoPage data={proceduredataTest} medIDnumber={'1528'} />
-      </DataContext.Provider>
-    </BrowserRouter>
-  )
-})
-
 test('render datapage without crashing', () => {
   const data = allData
 
