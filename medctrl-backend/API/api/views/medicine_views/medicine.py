@@ -16,26 +16,42 @@ class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         serializer_class = UserSerializer
-        user = self.request.user
 
         queryset = Medicine.objects.all()
         
-        if user.is_anonymous:
-            permA = Group.objects.get(name="anonymous").permissions.all()
-        else:
-            permB = user.get_all_permissions(obj=None)
-
-        if user.is_anonymous:
-            perm = [str(x.codename).split('.')[1] for x in permA if "." in x.codename]
-        else:
-            perm = [x.split('.')[1] for x in permB if "." in x]
-
         try:
-            filteredSet = Medicine.objects.values(*perm)
+            filteredSet = []
         except FieldError as e:
             #return Response({'Error': "Wrong permissions set" + (str(e).split('.')[0])})
             filteredSet = []
         except:
             filteredSet = []
+
+        
             
-        return filteredSet
+        return queryset
+
+    def get_serializer_context(self):
+        context = super(MedicineViewSet, self).get_serializer_context()
+
+        user = self.request.user
+        if user.is_anonymous:
+            # If user is anonymous, return default permissions for anonymous group
+            permA = Group.objects.get(name="anonymous").permissions.all()
+            perm = [
+                str(x.codename).split('.')[1]
+                for x in permA
+                if "." in x.codename
+            ]
+        else:
+            permB = user.get_all_permissions(obj=None)
+            perm = [
+                x.split('.')[1]
+                for x in permB
+                if "." in x
+            ]
+
+        # Set the permissions in the requests' context so the serializer can use them
+        context.update({"permissions": perm})
+
+        return context
