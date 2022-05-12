@@ -144,7 +144,7 @@ class LineForm extends Component {
         <CategoryOptions
           // We want to reset the component when the axis changes,
           // so we need to change the key depending on the axis'
-          key={`${this.state.xAxis}${this.state.yAxis}` + 'X'}
+          key={`${this.state.xAxis}${this.state.yAxis}X`}
           onChange={this.handleCategorySelectionXChange}
           categories={sortCategoryData(
             this.props.uniqueCategories[this.state.xAxis]
@@ -155,7 +155,7 @@ class LineForm extends Component {
         <CategoryOptions
           // We want to reset the component when the axis changes,
           // so we need to change the key depending on the axis'.
-          key={`${this.state.xAxis}${this.state.yAxis}` + 'Y'}
+          key={`${this.state.xAxis}${this.state.yAxis}Y`}
           onChange={this.handleCategorySelectionYChange}
           categories={sortCategoryData(
             this.props.uniqueCategories[this.state.yAxis]
