@@ -124,8 +124,8 @@ export function InfoPage({ medData, procData }) {
           </DetailGroup>
 
           <DetailGroup title="(Co-)Rapporteur">
-            <Detail name="Rapporteur" value={medData.info.Rapporteur} />
-            <Detail name="Co-Rapporteur" value={medData.info.CoRapporteur} />
+            <Detail name="Rapporteur" value={medData.Rapporteur} />
+            <Detail name="Co-Rapporteur" value={medData.CoRapporteur} />
           </DetailGroup>
 
           <DetailGroup title="Medicine Designations">
@@ -135,10 +135,10 @@ export function InfoPage({ medData, procData }) {
               value={medData.OrphanDesignation}
             />
 
-            <Detail name="NAS Qualified" value={medData.info.NASQualified} />
-            <Detail name="CMA" value={medData.info.CMA} />
-            <Detail name="AEC" value={medData.info.CMA} />
-            <Detail name="PRIME" value={medData.info.PRIME} />
+            <Detail name="NAS Qualified" value={medData.NASQualified} />
+            <Detail name="CMA" value={medData.CMA} />
+            <Detail name="AEC" value={medData.CMA} />
+            <Detail name="PRIME" value={medData.PRIME} />
           </DetailGroup>
 
           <DetailGroup title="ATC Code Information">
