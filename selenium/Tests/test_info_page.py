@@ -12,14 +12,6 @@ class TestInfoPage(WebDriverSetup):
   def setUp(self):
     super().setUp()
     self.info_page = InfoPage(self.driver)
-  
-  # check if navigation bar opens and closes properly
-  def test_navbar(self):
-    assert self.info_page.navbar_is_closed() and not self.info_page.navbar_is_open()
-    self.info_page.click_expand_collapse()
-    assert self.info_page.navbar_is_open() and not self.info_page.navbar_is_closed()
-    self.info_page.click_expand_collapse()
-    assert self.info_page.navbar_is_closed() and not self.info_page.navbar_is_open()
 
   # check if the infopage contains 3 articles and that the links are correct
   def test_content(self):
