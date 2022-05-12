@@ -29,9 +29,9 @@ function Footer() {
 
       <section id="footer__information">
         <p className="footer-text">
-          In the European Database For Pharmaceutical Policy & Regularization,
-          data on medicines regulation and marketing approval is made available.
-          The dashboard, including the data collection, is maintained by Utrecht
+          In the European Database For Pharmaceutical Policy & Regulation, data
+          on medicines regulation and marketing approval is made available. The
+          dashboard, including the data collection, is maintained by Utrecht
           University and the Dutch Medicines Evaluation Board. For more
           information please visit the{' '}
           <a className="footer__list__link" href="/info">

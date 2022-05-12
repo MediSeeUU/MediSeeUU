@@ -43,8 +43,8 @@ function HomePage() {
         <p>
           This dashboard provides tools for looking up, filtering, and
           visualizing data points regarding pharmaceutical policy and
-          regularization. All functionality is split up into two pages:{' '}
-          <i>Data</i> and <i>Visualize</i>.
+          regulation. All functionality is split up into two pages: <i>Data</i>{' '}
+          and <i>Visualize</i>.
         </p>
         <div>
           <h2>Data</h2>
