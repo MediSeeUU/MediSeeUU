@@ -25,6 +25,10 @@
   width: calc(100% - 450px);
 }
 
+.visualization-description {
+  width: calc(100% - 600px);
+}
+
 .institution-link {
   color: var(--med-textlink-text);
   text-decoration: none;
