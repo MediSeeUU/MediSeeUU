@@ -6,7 +6,7 @@ from api.views.medicine_views import (
     ProcedureViewSet,
     MedicineViewSet,
 )
-from api.views.account_views import RegisterAPI, LoginAPI
+from api.views.account_views import LoginAPI
 
 router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
