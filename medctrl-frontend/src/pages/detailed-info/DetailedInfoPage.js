@@ -6,6 +6,7 @@ import Procedure from './InfoComponents/Procedure'
 import CustomLink from './InfoComponents/CustomLink'
 import { DataContext, DataProvider } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
+import { dataToDisplayFormat } from '../../shared/table/table'
 
 // the function takes the unique medicine ID number (EUshortNumber) and
 // passes this ID to the detailedPage component, along with the access
@@ -127,7 +128,7 @@ export function InfoPage(props) {
             />
             <Detail
               name="Decision Date"
-              value={medicineData.info.DecisionDate}
+              value={dataToDisplayFormat({entry:medicineData.info, propt:'DecisionDate'}) }
             />
           </DetailGroup>
 
