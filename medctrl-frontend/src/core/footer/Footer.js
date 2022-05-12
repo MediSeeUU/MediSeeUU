@@ -31,8 +31,10 @@ function Footer() {
         <h2>General information</h2>
 
         <p>
-          This is a development version of the dashboard created for the
-          Medicines Evaluation Board and Utrecht University. For more
+          In the European Database For Pharmaceutical Policy & Regularization,
+          data on medicines regulation and marketing approval is made available.
+          The dashboard, including the data collection, is maintained by Utrecht
+          University and the Dutch Medicines Evaluation Board. For more
           information please visit the{' '}
           <a className="footer__list__link" href="/info">
             info page
