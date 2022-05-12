@@ -52,24 +52,6 @@ function HomePage() {
           </p>
         </div>
       </div>
-
-      <div className="med-content-container med_content__container">
-        <h1>Example of a visualization</h1>
-        <hr className="med-top-separator" />
-        <p>
-          This must be a clear example such as a timeline of "orphan
-          designations" per decisionyear (image).
-        </p>
-        <p className="visualization-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
     </div>
   )
 }
