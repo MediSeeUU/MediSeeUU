@@ -9,27 +9,27 @@ from WebDriverSetup import WebDriverSetup
 from Pages.info_page import InfoPage
 from Pages.data_page import DataPage
 
-class TestHomeSearch(WebDriverSetup):
-  def setUp(self):
-    super().setUp()
+# class TestHomeSearch(WebDriverSetup):
+#   def setUp(self):
+#     super().setUp()
   
-  # check if the search forwards properly
-  def test_search_forward(self):
-    info_page = InfoPage(self.driver)
-    info_page.input_query("100")
-    info_page.search()
-    assert info_page.current_url() == "http://localhost:3000/data?q=100"
-    data_page = DataPage(self.driver)
-    self.driver.get("http://localhost:3000/data?q=100")
-    columns = data_page.column_options()
-    for i in range(data_page.amount_of_rows(0)):
-      inText = False
-      for column in columns:
-        data_page.change_column(0, 1, column)
-        if ("100" in data_page.table_value(0, i + 1, 1).lower()):
-          inText = True
-          break
-      assert inText
+#   # check if the search forwards properly
+#   def test_search_forward(self):
+#     info_page = InfoPage(self.driver)
+#     info_page.input_query("100")
+#     info_page.search()
+#     assert info_page.current_url() == "http://localhost:3000/data?q=100"
+#     data_page = DataPage(self.driver)
+#     self.driver.get("http://localhost:3000/data?q=100")
+#     columns = data_page.column_options()
+#     for i in range(data_page.amount_of_rows(0)):
+#       inText = False
+#       for column in columns:
+#         data_page.change_column(0, 1, column)
+#         if ("100" in data_page.table_value(0, i + 1, 1).lower()):
+#           inText = True
+#           break
+#       assert inText
       
 if __name__ == '__main__':
   unittest.main()
