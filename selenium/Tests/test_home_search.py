@@ -6,7 +6,7 @@ base_dir = os.path.dirname(__file__) or '.'
 sys.path.append("..")
 
 from WebDriverSetup import WebDriverSetup
-from Pages.home_page import HomePage
+from Pages.info_page import InfoPage
 from Pages.data_page import DataPage
 
 class TestHomeSearch(WebDriverSetup):
@@ -15,10 +15,10 @@ class TestHomeSearch(WebDriverSetup):
   
   # check if the search forwards properly
   def test_search_forward(self):
-    home_page = HomePage(self.driver)
-    home_page.input_query("100")
-    home_page.search()
-    assert home_page.current_url() == "http://localhost:3000/data?q=100"
+    info_page = InfoPage(self.driver)
+    info_page.input_query("100")
+    info_page.search()
+    assert info_page.current_url() == "http://localhost:3000/data?q=100"
     data_page = DataPage(self.driver)
     self.driver.get("http://localhost:3000/data?q=100")
     columns = data_page.column_options()
