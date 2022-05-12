@@ -23,7 +23,6 @@ from api.models.medicine_models import (
 )
 
 
-
 class Command(BaseCommand):
     """
     Django admin command that creates permissions for all models in the API.

@@ -11,24 +11,15 @@ from rest_framework.response import Response
 class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
     # Here we should make the distinction in access level --> change serializer based on access level
 
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly] #permissions.IsAuthenticated
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly
+    ]  # permissions.IsAuthenticated
     serializer_class = PublicMedicineSerializer
 
     def get_queryset(self):
         serializer_class = UserSerializer
 
         queryset = Medicine.objects.all()
-        
-        try:
-            filteredSet = []
-        except FieldError as e:
-            #return Response({'Error': "Wrong permissions set" + (str(e).split('.')[0])})
-            filteredSet = []
-        except:
-            filteredSet = []
-
-        
-            
         return queryset
 
     def get_serializer_context(self):
@@ -38,18 +29,10 @@ class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
         if user.is_anonymous:
             # If user is anonymous, return default permissions for anonymous group
             permA = Group.objects.get(name="anonymous").permissions.all()
-            perm = [
-                str(x.codename).split('.')[1]
-                for x in permA
-                if "." in x.codename
-            ]
+            perm = [str(x.codename).split(".")[1] for x in permA if "." in x.codename]
         else:
             permB = user.get_all_permissions(obj=None)
-            perm = [
-                x.split('.')[1]
-                for x in permB
-                if "." in x
-            ]
+            perm = [x.split(".")[1] for x in permB if "." in x]
 
         # Set the permissions in the requests' context so the serializer can use them
         context.update({"permissions": perm})

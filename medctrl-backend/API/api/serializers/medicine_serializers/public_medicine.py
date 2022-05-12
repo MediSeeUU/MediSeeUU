@@ -130,10 +130,9 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             for key in field_representation:
                 representation[key] = field_representation[key]
 
-
         # Filter the representation to return only fields that the user has permission to view
         representation_filtered = {
-            x: y for x,y in representation.items() if x in permissions
+            x: y for x, y in representation.items() if x in permissions
         }
 
         return representation_filtered
