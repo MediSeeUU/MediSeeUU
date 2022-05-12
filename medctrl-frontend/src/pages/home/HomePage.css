@@ -16,6 +16,14 @@
   margin: 10px;
 }
 
+.med-tour-button {
+  float: right;
+}
+
+.med-tour-paragraph {
+  width: calc(100% - 180px);
+}
+
 .institution-logo {
   width: 400px;
   float: right;

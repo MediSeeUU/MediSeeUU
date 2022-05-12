@@ -2,13 +2,40 @@ import './HomePage.css'
 import '../../shared/shared.css'
 import Search from '../../shared/Search/Search'
 import { useNavigate } from 'react-router-dom'
+import { useTourRun } from '../../core/tour/DashboardTour'
 
 function HomePage() {
   const navigate = useNavigate()
+  const runTour = useTourRun()
   return (
     // Homepage components, contains search bar and article containers
     <div className="med_home_content">
-      <Search update={(query) => navigate('/data?q=' + query)} />
+      <div className="med-content-container">
+        <h1>Dashboard Tour</h1>
+        <hr className="med-top-separator" />
+
+        <button
+          className="med-primary-solid med-bx-button med-tour-button"
+          onClick={() => runTour(true)}
+        >
+          <i className="bx bx-code-alt search-Icon" />
+          Start Tour
+        </button>
+
+        <p className="med-tour-paragraph">
+          To explore all the features of this dashboard, take a guided tour
+          around the website by clicking the button. This tour will not take
+          long and familiarize you with all the core functionalities that this
+          dashboard has to offer. You can end the tour at any time by clicking
+          'end'. When you reach the end of the tour, the tour will automaticly
+          finish.
+        </p>
+      </div>
+
+      <Search
+        tour="step-search"
+        update={(query) => navigate('/data?q=' + query)}
+      />
 
       <div className="med-content-container med_content__container">
         <h1>Tools</h1>

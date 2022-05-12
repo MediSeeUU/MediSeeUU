@@ -103,7 +103,7 @@ function DisplayTable({
           {columnSelection.map((propt, index2) => {
             return (
               <td className="med_td" key={index2}>
-                {entry[propt]}
+                <div>{entry[propt]}</div>
               </td>
             )
           })}
