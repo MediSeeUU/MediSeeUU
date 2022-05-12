@@ -1,20 +1,21 @@
 import sortCategoryData from '../utils/SortCategoryData'
 
-// creates an array of data for a pie chart
-export default function GeneratePieSeries(options, data) {
+// creates an array of data for a Histogram chart
+export default function GenerateHistogramSeries(options, data) {
   let xAxis = options.chartSpecificOptions.xAxis
   let chosenCategories = sortCategoryData(
     options.chartSpecificOptions.categoriesSelectedX
   )
-  let pieSeries = CreatePieSeries(data, xAxis, chosenCategories)
 
-  return pieSeries
+  let HistogramSeries = CreateHistogramSeries(data, xAxis, chosenCategories)
+
+  return HistogramSeries
 }
 
 // Goes through every data entry,
 // if the value of said data entry for the chosen variable
 // is one of the chosen categories, its entry in the series will be incremented.
-function CreatePieSeries(data, xAxis, chosenCategories) {
+function CreateHistogramSeries(data, xAxis, chosenCategories) {
   let dict = {}
   chosenCategories.forEach((category) => {
     dict[category] = 0
@@ -25,5 +26,6 @@ function CreatePieSeries(data, xAxis, chosenCategories) {
       dict[element[xAxis]] += 1
     }
   })
-  return Object.values(dict)
+
+  return [{ name: 'amount', data: Object.values(dict) }]
 }

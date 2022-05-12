@@ -6,7 +6,7 @@ from api.serializers.user_serializers import UserSerializer
 from django.contrib.auth.models import Group
 
 
-class MedicineViewSet(viewsets.ModelViewSet):
+class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
     # Here we should make the distinction in access level --> change serializer based on access level
 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly] #permissions.IsAuthenticated

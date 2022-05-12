@@ -2,9 +2,8 @@ from django.db import models
 
 
 class Historyauthorisation(models.Model):
-    eunumber = models.OneToOneField(
-        "Medicine", models.CASCADE, db_column="EUNumber", primary_key=True
-    )
+
+    eunumber = models.ForeignKey("Medicine", models.CASCADE, db_column="EUNumber")
     authorisationdate = models.DateField(db_column="AuthorisationDate")
     opiniondate = models.DateField(db_column="OpinionDate", blank=True, null=True)
     decisionauthorisationtype = models.CharField(

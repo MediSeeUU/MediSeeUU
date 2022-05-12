@@ -11,8 +11,8 @@ import {
 } from '@testing-library/react'
 import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
 import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
-import GeneratePieSeries from '../../single_visualization/data_interfaces/PieInterface'
-import PieChart from '../../single_visualization/visualization_types/PieChart'
+import GenerateHistogramSeries from '../../single_visualization/data_interfaces/HistogramInterface'
+import HistogramChart from '../../single_visualization/visualization_types/HistogramChart'
 import ResizeObserver from '../../mocks/observer'
 
 import data from '../../../../testJson/data.json'
@@ -33,7 +33,7 @@ beforeEach(() => {
       categoriesSelectedX: ['United Kingdom'],
     },
   }
-  series = GeneratePieSeries(chartSpecificOptions, data)
+  series = GenerateHistogramSeries(chartSpecificOptions, data)
 })
 
 afterEach(() => {
@@ -43,7 +43,7 @@ afterEach(() => {
 
 test('initial render with usual initialization', () => {
   ReactDOM.render(
-    <PieChart
+    <HistogramChart
       key={1}
       legend={false}
       labels={false}

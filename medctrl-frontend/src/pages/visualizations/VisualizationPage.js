@@ -15,39 +15,44 @@ import { generateSeries } from './single_visualization/SingleVisualization'
 // the component that contains all the visualizations
 function VisualizationPage() {
   const selectedData = useSelectedData()
+
   // event handlers
   const handleAddition = handleAdditionFunc.bind(this)
   const handleRemoval = handleRemovalFunc.bind(this)
   const handleChange = handleChangeFunc.bind(this)
 
-  //get the visualisation contexts
+  // get the visualisation contexts
   var visuals = useVisuals()
   const setVisuals = useVisualsUpdate()
 
-  //get the unique categories for the selected data
+  // get the unique categories for the selected data
   const uniqueCategories =
     selectedData.length > 0 ? GetUniqueCategories(selectedData) : []
 
-  //add some series logic so the controls update
+  // add some series logic so the controls update
   var updateVisuals = false
-  if (visuals.length > 0 && !arrayEquals(visuals[0].data, selectedData)) {
+  if (
+    selectedData.length > 0 &&
+    visuals.length > 0 &&
+    !arrayEquals(visuals[0].data, selectedData)
+  ) {
     visuals = visuals.map((vis) => {
       vis.data = selectedData
       vis.uniqueCategories = uniqueCategories
-      vis.series = generateSeries(vis.chart_type, vis)
+      vis.series = generateSeries(vis.chartType, vis)
       return vis
     })
     updateVisuals = true
   }
 
-  //update visuals after page render, otherwise react can't handle the calls
+  // update visuals after page render, otherwise react can't handle the calls
   useEffect(() => {
     if (updateVisuals) {
       setVisuals(visuals)
     }
   }, [updateVisuals, visuals, setVisuals])
 
-  //check if two arrays are equal, need to be in the same order
+  // check if two arrays are equal, need to be in the same order
   function arrayEquals(a, b) {
     return (
       Array.isArray(a) &&
@@ -59,31 +64,29 @@ function VisualizationPage() {
 
   // EVENT HANDLERS:
 
-  /* 
-	  Adds a new visualization to the array of visualizations.
-    The newAmount will serve as the id of the added visualization.
-	*/
+  // adds a new visualization to the visualizations context
   function handleAdditionFunc() {
     const newVisual = {
       id: visuals.length + 1,
-      chart_type: 'bar',
+      chartType: 'bar',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
         yAxis: 'Rapporteur',
-        categoriesSelected: [],
+        categoriesSelectedY: uniqueCategories['Rapporteur'],
+        categoriesSelectedX: uniqueCategories['DecisionYear'],
       },
-      legend_on: false,
-      labels_on: false,
+      legendOn: false,
+      labelsOn: false,
       data: selectedData,
       series: GenerateBarSeries(
         {
           chartSpecificOptions: {
             xAxis: 'DecisionYear',
             yAxis: 'Rapporteur',
-            categoriesSelected: [],
+            categoriesSelectedY: uniqueCategories['Rapporteur'],
+            categoriesSelectedX: uniqueCategories['DecisionYear'],
           },
         },
-        uniqueCategories,
         selectedData
       ),
       uniqueCategories: uniqueCategories,
@@ -100,6 +103,7 @@ function VisualizationPage() {
     setVisuals(currentItems)
   }
 
+  // handles a change to a visualization
   function handleChangeFunc(settings) {
     var newVisuals = JSON.parse(JSON.stringify(visuals))
     newVisuals = newVisuals.map((item) => {
@@ -113,11 +117,8 @@ function VisualizationPage() {
 
   // GENERAL FUNCTIONS:
 
-  // Creates the visualizations,
-  // gives them a new copy of the data.
-  // This should be changed once a context for the data has been implemented
-  // As the visualizations should not change the data, only read from it
-  function createVisualizations() {
+  // creates the visualizations
+  function renderVisualizations() {
     return visuals.map((visual) => {
       return (
         <Row key={visual.id}>
@@ -133,19 +134,35 @@ function VisualizationPage() {
     })
   }
 
+  // a message to show the user it has selected data points are the data page
+  function renderDataSelectedMessage() {
+    const dataPointAmount = selectedData.length
+    return (
+      <Row>
+        <div className="med-content-container visual-container">
+          <b>
+            You have currently selected {dataPointAmount} datapoint(s).
+            <br />
+            Go to the data page to add/remove datapoint(s).
+            <br />
+            In case some of the functionality is not clear, you can visit the
+            manual on the home page
+          </b>
+        </div>
+      </Row>
+    )
+  }
+
   // RENDERER:
 
-  /*
-	  Renders the visualizations.
-		The id is used as the key, 
-		so React knows which visualizations to show.
-	*/
+  // renders the visualizations
   if (selectedData?.length > 0) {
-    const displayItems = createVisualizations()
-
+    const displayItems = renderVisualizations()
+    const displayDataSelectedMessage = renderDataSelectedMessage()
     return (
       <div>
         <Container>
+          {displayDataSelectedMessage}
           {displayItems}
           <Row>
             <button
@@ -161,7 +178,9 @@ function VisualizationPage() {
     )
   } else {
     return (
-      <h1 className="visualization-no-data">No data selected to display</h1>
+      <h1 className="visualization-no-data">
+        go to the data page to select datapoints to display
+      </h1>
     )
   }
 }

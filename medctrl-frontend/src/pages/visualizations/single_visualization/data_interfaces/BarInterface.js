@@ -1,55 +1,60 @@
 import sortCategoryData from '../utils/SortCategoryData'
 
-/* 
-  generates series for a bar chart,
-  keep in mind that the index of a serie corresponds with the index of the 
-  'xaxis: {categories}' option!  
-*/
-export default function GenerateBarSeries(options, allCategories, data) {
+// Generates series for a bar chart
+export default function GenerateBarSeries(options, data) {
+  // no categories have been selected
+  if (options.chartSpecificOptions.categoriesSelectedX.length === 0) {
+    return []
+  }
   let xAxis = options.chartSpecificOptions.xAxis
   let yAxis = options.chartSpecificOptions.yAxis
-  let categoriesSelectedY = options.chartSpecificOptions.categoriesSelected
-  let sortedxAxis = sortCategoryData(allCategories[xAxis])
+  let categoriesSelectedX = sortCategoryData(
+    options.chartSpecificOptions.categoriesSelectedX
+  )
+  let categoriesSelectedY = sortCategoryData(
+    options.chartSpecificOptions.categoriesSelectedY
+  )
 
   let dict = PollChosenVariable(
     xAxis,
     yAxis,
-    sortedxAxis,
+    categoriesSelectedX,
     categoriesSelectedY,
     data
   )
 
-  let series = CreateSelectedSeries(dict, categoriesSelectedY, sortedxAxis)
+  let series = CreateSelectedSeries(
+    dict,
+    categoriesSelectedY,
+    categoriesSelectedX
+  )
 
   let seriesFormatted = ToSeriesFormat(series)
 
   return seriesFormatted
 }
 
-/*
-  Expects data to be an array of ob objects, 
-	where each object has a value for each variable.
-	It builds a dictionary where the keys are the categories of the x variable,
-	the values themselves are also dictionaries.
-	In this dictionary the keys are categories of the y variable,
-	the values are how often this combination of categories happened.
-*/
-function PollChosenVariable(x_axis, y_axis, categories_x, categories_y, data) {
+// Counts the number of occurrences a given value of the x variable is paired
+// with a given value of the y variable.
+function PollChosenVariable(xAxis, yAxis, categoriesX, categoriesY, data) {
   let dict = {}
 
   // adding a key for each category
-  categories_x.forEach((category) => {
+  categoriesX.forEach((category) => {
     dict[category] = {}
   })
 
   // going through all data entries
   data.forEach((element) => {
-    // only if the value of the y variable is one of the selecte categories
-    if (categories_y.includes(element[y_axis])) {
-      if (dict[element[x_axis]][element[y_axis]] === undefined) {
-        dict[element[x_axis]][element[y_axis]] = 1
+    // only if the value of the x/y variable is one of the selected categories
+    if (
+      categoriesY.includes(element[yAxis]) &&
+      categoriesX.includes(element[xAxis])
+    ) {
+      if (dict[element[xAxis]][element[yAxis]] === undefined) {
+        dict[element[xAxis]][element[yAxis]] = 1
       } else {
-        dict[element[x_axis]][element[y_axis]] += 1
+        dict[element[xAxis]][element[yAxis]] += 1
       }
     }
   })
@@ -57,19 +62,18 @@ function PollChosenVariable(x_axis, y_axis, categories_x, categories_y, data) {
   return dict
 }
 
-/*
-  Creates an array for each selected category of the y variable.
-  If a y category was never combined with an x category,
-	a 0 will be added, otherwise the amount of occurrences.
-*/
-function CreateSelectedSeries(dict, categories_y, categories_x) {
+// Creates an array for each selected category of the y variable.
+// If a y category was never combined with an x category,
+// a 0 will be added, otherwise the amount of occurrences is added.
+function CreateSelectedSeries(dict, categoriesY, categoriesX) {
   let series = {}
-  categories_y.forEach((category) => {
+
+  categoriesY.forEach((category) => {
     series[category] = []
   })
 
-  categories_x.forEach((k) => {
-    categories_y.forEach((category) => {
+  categoriesX.forEach((k) => {
+    categoriesY.forEach((category) => {
       if (dict[k][category] === undefined) {
         series[category].push(0)
       } else {
