@@ -10,6 +10,7 @@ import {
   getByText,
 } from '@testing-library/react'
 import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
+import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
 import GenerateBarSeries from '../../single_visualization/data_interfaces/BarInterface'
 import BarChart from '../../single_visualization/visualization_types/BarChart'
 import ResizeObserver from '../../mocks/observer'
@@ -20,25 +21,26 @@ jest.mock('../../mocks/observer')
 
 let container
 let series
-let uniqueCategories
+let uniqueCategories = GetUniqueCategories(data)
 let options
+let chartSpecificOptions
 
 beforeEach(() => {
   container = document.createElement('div')
   document.body.append(container)
 
-  let chartSpecificOptions = {
+  chartSpecificOptions = {
     chartSpecificOptions: {
       xAxis: 'DecisionYear',
       yAxis: 'Rapporteur',
-      categoriesSelected: ['United Kingdom'],
+      categoriesSelectedX: uniqueCategories['DecisionYear'],
+      categoriesSelectedY: ['United Kingdom'],
     },
   }
-  uniqueCategories = GetUniqueCategories(data)
-  series = GenerateBarSeries(chartSpecificOptions, uniqueCategories, data)
+  series = GenerateBarSeries(chartSpecificOptions, data)
   options = {
     stacked: false,
-    stackType: '',
+    stackType: false,
     horizontal: false,
   }
 })
@@ -56,7 +58,9 @@ test('initial render with usual initialization', () => {
       labels={false}
       id={1}
       series={series}
-      categories={uniqueCategories['DecisionYear']}
+      categories={sortCategoryData(
+        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
+      )}
       options={options}
     />,
     container
@@ -76,7 +80,9 @@ test('initial render with stackType: 100%', () => {
       labels={false}
       id={1}
       series={series}
-      categories={uniqueCategories['DecisionYear']}
+      categories={sortCategoryData(
+        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
+      )}
       options={options}
     />,
     container
@@ -91,7 +97,9 @@ test('error handler test', () => {
       labels={false}
       id={1}
       series={null}
-      categories={uniqueCategories['DecisionYear']}
+      categories={sortCategoryData(
+        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
+      )}
       options={options}
     />,
     container

@@ -11,22 +11,22 @@ import GeneratePieSeries from '../../single_visualization/data_interfaces/PieInt
 
 import data from '../../../../testJson/data.json'
 
-test('no data', () => {
+test('no categories selected', () => {
   const options = {
     chartSpecificOptions: {
-      chosenVariable: 'Rapporteur',
-      categoriesSelected: [],
+      xAxis: 'Rapporteur',
+      categoriesSelectedX: [],
     },
   }
   const series = GeneratePieSeries(options, data)
   expect(series.length).toBe(0)
 })
 
-test('some categories selected', () => {
+test('some categories selected (sorted)', () => {
   const options = {
     chartSpecificOptions: {
-      chosenVariable: 'Rapporteur',
-      categoriesSelected: ['United Kingdom', 'Denmark'],
+      xAxis: 'Rapporteur',
+      categoriesSelectedX: ['United Kingdom', 'Denmark'],
     },
   }
   const series = GeneratePieSeries(options, data)

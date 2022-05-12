@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Chart from 'react-apexcharts'
 
 // pie chart component
-class DonutChart extends Component {
+class PieChart extends Component {
   constructor(props) {
     super(props)
 
@@ -11,7 +11,7 @@ class DonutChart extends Component {
         chart: {
           id: String(this.props.id),
           type: 'pie',
-          toolbar: { show: false },
+          toolbar: { tools: { download: false } },
         },
         dataLabels: {
           enabled: this.props.labels,
@@ -21,9 +21,13 @@ class DonutChart extends Component {
         },
         labels: this.props.categories,
         noData: {
-          text: 'pick your preferred options to create a visualization',
+          text: `You can select the categories to be displayed.
+           Note that creating the graph may take some time`,
         },
         plotOptions: { pie: { expandOnClick: false } },
+        theme: {
+          palette: 'palette3',
+        },
       },
       series: this.props.series,
     }
@@ -49,4 +53,4 @@ class DonutChart extends Component {
   }
 }
 
-export default DonutChart
+export default PieChart
