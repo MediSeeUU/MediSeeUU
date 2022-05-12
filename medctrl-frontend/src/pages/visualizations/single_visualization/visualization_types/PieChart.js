@@ -12,6 +12,12 @@ class PieChart extends Component {
           id: String(this.props.id),
           type: 'pie',
           toolbar: { tools: { download: false } },
+          events: {
+            dataPointSelection: (event, chartContext, config) => {
+              let euNumbers = config.w.config.euNumbers[config.dataPointIndex]
+              this.props.onDataClick(euNumbers)
+            },
+          },
         },
         dataLabels: {
           enabled: this.props.labels,
@@ -28,8 +34,9 @@ class PieChart extends Component {
         theme: {
           palette: 'palette3',
         },
+        euNumbers: this.props.series.euNumbers,
       },
-      series: this.props.series,
+      series: this.props.series.data,
     }
   }
 

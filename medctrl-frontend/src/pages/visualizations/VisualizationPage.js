@@ -1,8 +1,11 @@
 // external imports
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import ReactModal from 'react-modal'
+import SelectedData from '../data/dataComponents/SelectedData'
+import { v4 as uuidv4 } from 'uuid'
 
 // internal imports
 import SingleVisualization from './single_visualization/SingleVisualization'
@@ -16,10 +19,15 @@ import { generateSeries } from './single_visualization/SingleVisualization'
 function VisualizationPage() {
   const selectedData = useSelectedData()
 
+  const [tableData, setTableData] = useState([]) // Data displayed in the modal table
+  const [numbers, setNumbers] = useState([]) // The eu numbers that correspond to the clicked selection
+  const [modal, setModal] = useState(false) // State of modal (open or closed)
+
   // event handlers
   const handleAddition = handleAdditionFunc.bind(this)
   const handleRemoval = handleRemovalFunc.bind(this)
   const handleChange = handleChangeFunc.bind(this)
+  const handleDataClick = handleDataClickFunc.bind(this)
 
   // get the visualisation contexts
   var visuals = useVisuals()
@@ -40,6 +48,7 @@ function VisualizationPage() {
       vis.data = selectedData
       vis.uniqueCategories = uniqueCategories
       vis.series = generateSeries(vis.chartType, vis)
+      vis.key = uuidv4()
       return vis
     })
     updateVisuals = true
@@ -90,7 +99,7 @@ function VisualizationPage() {
         selectedData
       ),
       uniqueCategories: uniqueCategories,
-      changeName: '',
+      key: '',
     }
 
     const newVisuals = [...visuals, newVisual]
@@ -115,6 +124,30 @@ function VisualizationPage() {
     setVisuals(newVisuals)
   }
 
+  // Handler that is called after clicking on a datapoint
+  // It will set the eu numbers state to the eu numbers of the selected datapoint
+  // And opens the pop-up which displays the entries in the table
+  function handleDataClickFunc(numbers) {
+    setNumbers(numbers)
+    if (numbers.length > 0) {
+      setModal(true)
+    }
+  }
+
+  // Updates the states after changes to the selected data or eu numbers
+  // The table data will be all the data with eu numbers that are currently stored in the state
+  useEffect(() => {
+    if (numbers.length > 0 && modal) {
+      let updatedData = selectedData.filter((element) =>
+        numbers.includes(element.EUNoShort)
+      )
+      if (updatedData.length <= 0) {
+        setModal(false)
+      }
+      setTableData(updatedData)
+    }
+  }, [selectedData, numbers, modal])
+
   // GENERAL FUNCTIONS:
 
   // creates the visualizations
@@ -128,6 +161,7 @@ function VisualizationPage() {
             settings={visual}
             onRemoval={handleRemoval}
             onFormChangeFunc={handleChange}
+            onDataClick={handleDataClick}
           />
         </Row>
       )
@@ -161,6 +195,22 @@ function VisualizationPage() {
     const displayDataSelectedMessage = renderDataSelectedMessage()
     return (
       <div>
+        <ReactModal
+          className="visualize-modal"
+          isOpen={modal}
+          onRequestClose={() => setModal(false)}
+          ariaHideApp={false}
+          style={{
+            modal: {},
+            overlay: {
+              background: 'rgba(0, 0, 0, 0.2)',
+              backdropFilter: 'blur(2px)',
+            },
+          }}
+        >
+          <i className="bx bx-x close-icon" onClick={() => setModal(false)}></i>
+          <SelectedData selectedData={tableData} />
+        </ReactModal>
         <Container>
           {displayDataSelectedMessage}
           {displayItems}

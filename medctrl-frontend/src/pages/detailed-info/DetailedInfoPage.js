@@ -143,13 +143,10 @@ export function InfoPage(props) {
             />
           </DetailGroup>
 
-          <DetailGroup title="Reporting Countries">
+          <DetailGroup title="(Co-)Rapporteur">
+            <Detail name="Rapporteur" value={medicineData.info.Rapporteur} />
             <Detail
-              name="Primary Reporter"
-              value={medicineData.info.Rapporteur}
-            />
-            <Detail
-              name="Secondary Reporter"
+              name="Co-Rapporteur"
               value={medicineData.info.CoRapporteur}
             />
           </DetailGroup>
@@ -167,7 +164,6 @@ export function InfoPage(props) {
             <Detail name="CMA" value={medicineData.info.CMA} />
             <Detail name="AEC" value={medicineData.info.CMA} />
             <Detail name="PRIME" value={medicineData.info.PRIME} />
-            <Detail name="NAS" value={medicineData.info.NAS} />
           </DetailGroup>
 
           <DetailGroup title="ATC Code Information">

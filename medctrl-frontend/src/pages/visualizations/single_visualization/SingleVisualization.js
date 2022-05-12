@@ -46,7 +46,7 @@ class SingleVisualization extends Component {
     this.settings.chartSpecificOptions = event.chartSpecificOptions
     this.settings.legendOn = event.legendOn
     this.settings.labelsOn = event.labelsOn
-    this.settings.changeName = event.chartSpecificOptionsName
+    this.settings.key = event.key
 
     this.settings.series = generateSeries(
       this.settings.chartType,
@@ -83,10 +83,8 @@ class SingleVisualization extends Component {
 
   // creating a chart based on the chosen chart type
   renderChart() {
-    const newValue =
-      this.settings.chartSpecificOptions[this.settings.changeName] ??
-      this.settings[this.settings.changeName]
-    const key = `${this.settings.changeName}${newValue}`
+    const key = this.settings.key
+    console.log(key)
     const legendOn = this.settings.legendOn
     const labelsOn = this.settings.labelsOn
     const id = this.props.id
@@ -95,6 +93,7 @@ class SingleVisualization extends Component {
       this.settings.chartSpecificOptions.categoriesSelectedX
     )
     const options = this.settings.chartSpecificOptions
+    const onDataClick = this.props.onDataClick
 
     switch (this.settings.chartType) {
       case 'bar':
@@ -107,6 +106,7 @@ class SingleVisualization extends Component {
             series={series}
             categories={categories}
             options={options}
+            onDataClick={onDataClick}
           />
         )
 
@@ -120,6 +120,7 @@ class SingleVisualization extends Component {
             series={series}
             categories={categories}
             options={options}
+            onDataClick={onDataClick}
           />
         )
 
@@ -133,6 +134,7 @@ class SingleVisualization extends Component {
             series={series}
             categories={categories}
             options={options}
+            onDataClick={onDataClick}
           />
         )
 
@@ -146,6 +148,7 @@ class SingleVisualization extends Component {
             series={series}
             categories={categories}
             options={options}
+            onDataClick={onDataClick}
           />
         )
 
@@ -213,6 +216,7 @@ class SingleVisualization extends Component {
             <Col sm={8}>
               <Row>
                 <input
+                  tour="step-vis-main"
                   type="text"
                   id={'graphName' + this.props.id}
                   className="graph-name med-text-input"

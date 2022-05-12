@@ -37,7 +37,7 @@ beforeEach(() => {
     data: data,
     series: [],
     uniqueCategories: unique,
-    changeName: '',
+    key: '',
   }
 })
 
@@ -100,7 +100,7 @@ test('render with line chart', () => {
     data: data,
     series: [],
     uniqueCategories: unique,
-    changeName: '',
+    key: '',
   }
 
   ReactDOM.render(
@@ -124,7 +124,7 @@ test('render with pie chart', () => {
     data: data,
     series: [],
     uniqueCategories: unique,
-    changeName: '',
+    key: '',
   }
 
   ReactDOM.render(

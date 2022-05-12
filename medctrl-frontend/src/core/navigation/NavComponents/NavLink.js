@@ -22,7 +22,7 @@ function NavLink(props) {
       onClick={() => clicked()}
       data-testid={props.name}
     >
-      <div className="nav-item-content">
+      <div tour={props.tour} className="nav-item-content">
         <i className={props.image} />
         <span className="nav-item-name"> {props.name} </span>
       </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../../../visualizations.css'
 import sortCategoryData from '../../utils/SortCategoryData'
 import CategoryOptions from '../shared/CategoryOptions'
+import { v4 as uuidv4 } from 'uuid'
 
 // the bar part of a form if a bar chart is chosen
 class BarForm extends Component {
@@ -77,7 +78,7 @@ class BarForm extends Component {
       })
     }
     this.setState({ [name]: value }, () => {
-      this.props.onChange([this.state, name])
+      this.props.onChange([this.state, uuidv4()])
     })
   }
 
@@ -85,7 +86,7 @@ class BarForm extends Component {
   // This event handler is passed to the CategoryOptions component.
   handleCategorySelectionXChange(event) {
     this.setState({ categoriesSelectedX: event }, () => {
-      this.props.onChange([this.state, 'categoriesSelectedX'])
+      this.props.onChange([this.state, uuidv4()])
     })
   }
 
@@ -93,7 +94,7 @@ class BarForm extends Component {
   // This event handler is passed to the CategoryOptions component.
   handleCategorySelectionYChange(event) {
     this.setState({ categoriesSelectedY: event }, () => {
-      this.props.onChange([this.state, 'categoriesSelectedY'])
+      this.props.onChange([this.state, uuidv4()])
     })
   }
 
@@ -167,52 +168,56 @@ class BarForm extends Component {
           />
           &nbsp;&nbsp;Horizontal
         </label>
-        <label className="visualization-panel-label">
-          {xAxis}
-          <select
-            className="med-select"
-            value={this.state.xAxis}
-            name="xAxis"
-            onChange={this.handleChange}
-          >
-            {variablesXAxis}
-          </select>
-        </label>
-        <label className="visualization-panel-label">
-          {yAxis}
-          <select
-            className="med-select"
-            value={this.state.yAxis}
-            name="yAxis"
-            onChange={this.handleChange}
-          >
-            {variablesYAxis}
-          </select>
-        </label>
-        <CategoryOptions
-          // We want to reset the component when the axis changes,
-          // so we need to change the key depending on the axis'.
-          key={`${this.state.xAxis}${this.state.yAxis}` + 'X'}
-          className="category-options"
-          onChange={this.handleCategorySelectionXChange}
-          categories={sortCategoryData(
-            this.props.uniqueCategories[this.state.xAxis]
-          )}
-          categoriesSelected={this.state.categoriesSelectedX}
-          settings={this.state}
-        />
-        <CategoryOptions
-          // We want to reset the component when the axis changes,
-          // so we need to change the key depending on the axis'.
-          key={`${this.state.xAxis}${this.state.yAxis}` + 'Y'}
-          className="category-options"
-          onChange={this.handleCategorySelectionYChange}
-          categories={sortCategoryData(
-            this.props.uniqueCategories[this.state.yAxis]
-          )}
-          categoriesSelected={this.state.categoriesSelectedY}
-          settings={this.state}
-        />
+        <div tour="step-vis-vars">
+          <label className="visualization-panel-label">
+            {xAxis}
+            <select
+              className="med-select"
+              value={this.state.xAxis}
+              name="xAxis"
+              onChange={this.handleChange}
+            >
+              {variablesXAxis}
+            </select>
+          </label>
+          <label className="visualization-panel-label">
+            {yAxis}
+            <select
+              className="med-select"
+              value={this.state.yAxis}
+              name="yAxis"
+              onChange={this.handleChange}
+            >
+              {variablesYAxis}
+            </select>
+          </label>
+        </div>
+        <div tour="step-vis-categories">
+          <CategoryOptions
+            // We want to reset the component when the axis changes,
+            // so we need to change the key depending on the axis'.
+            key={`${this.state.xAxis}${this.state.yAxis}X`}
+            className="category-options"
+            onChange={this.handleCategorySelectionXChange}
+            categories={sortCategoryData(
+              this.props.uniqueCategories[this.state.xAxis]
+            )}
+            categoriesSelected={this.state.categoriesSelectedX}
+            settings={this.state}
+          />
+          <CategoryOptions
+            // We want to reset the component when the axis changes,
+            // so we need to change the key depending on the axis'.
+            key={`${this.state.xAxis}${this.state.yAxis}Y`}
+            className="category-options"
+            onChange={this.handleCategorySelectionYChange}
+            categories={sortCategoryData(
+              this.props.uniqueCategories[this.state.yAxis]
+            )}
+            categoriesSelected={this.state.categoriesSelectedY}
+            settings={this.state}
+          />
+        </div>
       </React.Fragment>
     )
   }

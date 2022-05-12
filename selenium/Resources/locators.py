@@ -10,7 +10,7 @@ class HomePageLocators():
 
 class SearchLocators():
   SEARCH_BAR = (By.CLASS_NAME, 'med-text-input')
-  BUTTON = (By.CLASS_NAME, 'med-bx-button')
+  BUTTON = (By.CLASS_NAME, 'search-button')
 
 class TableLocators():
   TABLE = (By.CLASS_NAME, 'med_table')
