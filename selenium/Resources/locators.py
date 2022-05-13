@@ -4,8 +4,7 @@ class BasePageLocators():
   NAV = (By.TAG_NAME, 'nav')
   NAV_ITEM = (By.CLASS_NAME, 'nav-item')
 
-class HomePageLocators():
-  ARTICLE = (By.CLASS_NAME, 'med-content-container')
+class InfoPageLocators():
   LINK = (By.CLASS_NAME, 'institution-link')
 
 class SearchLocators():
