@@ -8,6 +8,7 @@ sys.path.append("..")
 
 from WebDriverSetup import WebDriverSetup
 from Pages.data_page import DataPage
+from Resources.locators import DataPageLocators
 
 class TestDataPage(WebDriverSetup):
   def setUp(self):
@@ -17,7 +18,31 @@ class TestDataPage(WebDriverSetup):
   # test if the page is correctly navigated
   def test_data_url(self):
     assert self.data_page.current_url() == "http://localhost:3000/data"
-  
+
+  # Test if checkboxes and actions on the right of the table remain visible
+  def test_actions_visible(self):
+    right_actions = self.driver.find_element(*DataPageLocators.RIGHT_ACTIONS)
+    checkbox = self.driver.find_element(*DataPageLocators.SELECT)
+
+    # First add a few columns to fill the space
+    for _ in range(3):
+      self.data_page.add_column(0)
+
+    # Any additional columns should not move the actions on the right further
+    prev_x = right_actions.location["x"]
+    for _ in range(5):
+      self.data_page.add_column(0)
+
+      x = right_actions.location["x"]
+      assert x == prev_x, "Actions moved to the right when adding a column"
+      prev_x = x
+
+    checkbox_x = checkbox.location["x"]
+    self.driver.execute_script("document.querySelector('table').scrollBy(1000, 0);")
+    assert checkbox.location['x'] == checkbox_x, "Checkboxes moved to the left when scrolling"
+
+
+
   # check if the amount of results in main table changes
   def test_results_per_page(self):
     self.data_page.change_amount_of_results(100)

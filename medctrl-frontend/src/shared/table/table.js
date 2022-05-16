@@ -107,10 +107,13 @@ function DisplayTable({
               </td>
             )
           })}
-          <InfoboxColumn EUidNumber={entry.EUNoShort} />
-          {!selectTable && !searchTable && (
-            <BinboxColumn onp={handleOnChange.bind(null, entry.EUNumber)} />
-          )}
+          <RightStickyActions
+            EUidNumber={entry.EUNoShort}
+            selectTable={selectTable}
+            searchTable={searchTable}
+            entry={entry}
+            handleOnChange={handleOnChange}
+          />
         </tr>
       )
     })
@@ -175,12 +178,6 @@ function DisplayTable({
               //if selectedTable, add coloredbar to the header
               <td className="med_td smallColumn"></td>
             }
-            {
-              //if selectedTable, add coloredbar to the header
-              !selectTable && !searchTable ? (
-                <td className="med_td smallColumn"></td>
-              ) : null
-            }
           </tr>
         </thead>
         <tbody className="tableBody">{htmlData}</tbody>
@@ -192,7 +189,7 @@ function DisplayTable({
 //logic for the checkboxes
 const CheckboxColumn = ({ value, onChange }) => {
   return (
-    <td className="med_td smallColumn">
+    <td className="med_td smallColumn left">
       <input
         className="tableCheckboxColumn"
         type="checkbox"
@@ -203,19 +200,25 @@ const CheckboxColumn = ({ value, onChange }) => {
   )
 }
 
-//logic for the bin
-function BinboxColumn({ onp }) {
+//Component that holds actions that are always on the right of the table
+function RightStickyActions({
+  EUidNumber,
+  selectTable,
+  searchTable,
+  entry,
+  handleOnChange,
+}) {
   return (
-    <td className="med_td smallColumn">
-      <i className="bx bx-trash icons med-primary-text" onClick={onp}></i>
-    </td>
-  )
-}
+    <td className="med_td smallColumn right">
+      {/* Trash can icon, only visible on certain tables */}
+      {!selectTable && !searchTable && (
+        <i
+          className="bx bx-trash icons med-primary-text"
+          onClick={handleOnChange.bind(null, entry.EUNumber)}
+        ></i>
+      )}
 
-//logic for the information button
-function InfoboxColumn({ EUidNumber }) {
-  return (
-    <td className="med_td smallColumn">
+      {/* Link to details page */}
       <Link to={`/details/${EUidNumber}`}>
         <i
           className="bx bx-info-circle icons med-primary-text"
