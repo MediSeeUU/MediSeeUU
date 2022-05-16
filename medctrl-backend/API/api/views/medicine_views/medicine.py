@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 
 
-class MedicineViewSet(viewsets.ModelViewSet):
+class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
     # Here we should make the distinction in access level --> change serializer based on access level
 
     queryset = Medicine.objects.all()

@@ -4,13 +4,12 @@ class BasePageLocators():
   NAV = (By.TAG_NAME, 'nav')
   NAV_ITEM = (By.CLASS_NAME, 'nav-item')
 
-class HomePageLocators():
-  ARTICLE = (By.CLASS_NAME, 'med-content-container')
+class InfoPageLocators():
   LINK = (By.CLASS_NAME, 'institution-link')
 
 class SearchLocators():
   SEARCH_BAR = (By.CLASS_NAME, 'med-text-input')
-  BUTTON = (By.CLASS_NAME, 'med-bx-button')
+  BUTTON = (By.CLASS_NAME, 'search-button')
 
 class TableLocators():
   TABLE = (By.CLASS_NAME, 'med_table')
@@ -32,6 +31,7 @@ class DataPageLocators():
   NEXT_PAGE = (By.CLASS_NAME, 'bxs-chevron-right')
   PREV_PAGE = (By.CLASS_NAME, 'bxs-chevron-left')
   CLEAR_ALL = (By.CLASS_NAME, 'clear')
+  RIGHT_ACTIONS = (By.CSS_SELECTOR, ".med_td.smallColumn.right")
 
   class MenuLocators():
     FILTER_ITEM = (By.CLASS_NAME, 'filter-item')

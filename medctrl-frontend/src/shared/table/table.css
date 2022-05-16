@@ -4,10 +4,10 @@
   overflow: auto;
   border-spacing: 0;
   width: 98%;
-  height: 441px;
+  max-height: 441px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .tableHeader {
@@ -17,11 +17,14 @@
   border: 0px;
   overflow-x: visible;
   color: var(--med-table-header-text);
+  z-index: 5;
 }
 
 .tableBody {
   display: block;
   overflow: visible;
+  z-index: 0;
+  border-collapse: separate;
 }
 
 .tableHeader tr {
@@ -36,9 +39,15 @@
   background-color: var(--med-table-row-odd-background);
 }
 
-.med_th,
-.med_td {
+.med_td.smallColumn {
   text-align: center;
+}
+
+.med_td div {
+  display: block;
+  text-align: left;
+  width: calc(100% - 20px);
+  margin-inline: 10px;
 }
 
 .med_th {
@@ -68,7 +77,9 @@
 .smallColumn {
   min-width: 50px;
   max-width: 50px;
-  border-right: 1px solid var(--med-table-border);
+  position: sticky;
+  background-color: inherit;
+  z-index: 1;
 }
 
 .icons {
@@ -83,4 +94,14 @@
   margin-right: 5px;
   margin: 15px 0;
   font-size: 40px;
+}
+
+.left {
+  left: 0;
+  border-right: 1px solid var(--med-table-border);
+}
+
+.right {
+  right: 0;
+  border-left: 1px solid var(--med-table-border);
 }

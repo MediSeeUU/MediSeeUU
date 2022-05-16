@@ -10,6 +10,7 @@ import {
   getByText,
 } from '@testing-library/react'
 import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
+import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
 import GeneratePieSeries from '../../single_visualization/data_interfaces/PieInterface'
 import PieChart from '../../single_visualization/visualization_types/PieChart'
 import ResizeObserver from '../../mocks/observer'
@@ -20,20 +21,19 @@ jest.mock('../../mocks/observer')
 
 let container
 let series
-let uniqueCategories
+let chartSpecificOptions
 
 beforeEach(() => {
   container = document.createElement('div')
   document.body.append(container)
 
-  let chartSpecificOptions = {
+  chartSpecificOptions = {
     chartSpecificOptions: {
-      chosenVariable: 'Rapporteur',
-      categoriesSelected: ['United Kingdom'],
+      xAxis: 'Rapporteur',
+      categoriesSelectedX: ['United Kingdom'],
     },
   }
   series = GeneratePieSeries(chartSpecificOptions, data)
-  uniqueCategories = GetUniqueCategories(data)
 })
 
 afterEach(() => {
@@ -49,7 +49,9 @@ test('initial render with usual initialization', () => {
       labels={false}
       id={1}
       series={series}
-      categories={uniqueCategories['Rapporteur']}
+      categories={sortCategoryData(
+        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
+      )}
       options={{}}
     />,
     container

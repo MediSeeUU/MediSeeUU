@@ -111,13 +111,27 @@ class SideNavigation extends React.Component {
           <Toggle expanded={this.state.expanded} parent={this} />
 
           <NavLink
+            tour="step-nav-home"
             name="Home"
             image="bx bx-home-alt-2"
             dest="/"
             parent={this}
           />
-          <NavLink name="Data" image="bx bx-data" dest="/data" parent={this} />
           <NavLink
+            name="Info"
+            image="bx bx-info-circle"
+            dest="/info"
+            parent={this}
+          />
+          <NavLink
+            tour="step-nav-data"
+            name="Data"
+            image="bx bx-data"
+            dest="/data"
+            parent={this}
+          />
+          <NavLink
+            tour="step-nav-vis"
             name="Visualize"
             image="bx bx-bar-chart"
             dest="/visualizations"

@@ -26,29 +26,30 @@ jest.mock('../mocks/observer')
 let container
 let visuals
 let updateVisuals
+let unique = GetUniqueCategories(data)
 function contexts(children, contextData) {
-  var unique = GetUniqueCategories(data)
   visuals = [
     {
       id: 1,
-      chart_type: 'bar',
+      chartType: 'bar',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
         yAxis: 'Rapporteur',
-        categoriesSelected: [],
+        categoriesSelectedX: unique['DecisionYear'],
+        categoriesSelectedY: unique['Rapporteur'],
       },
-      legend_on: true,
-      labels_on: false,
+      legendOn: true,
+      labelsOn: false,
       data: data,
       series: [],
       uniqueCategories: unique,
-      changeName: '',
+      key: '',
     },
   ]
   if (contextData.length <= 0) {
     visuals = []
   } else {
-    visuals[0].series = generateSeries(visuals[0].chart_type, visuals[0])
+    visuals[0].series = generateSeries(visuals[0].chartType, visuals[0])
   }
   updateVisuals = (value) => (visuals = value)
   return (
@@ -107,18 +108,19 @@ test('update visuals when rendering with bar', () => {
   visuals = [
     {
       id: 1,
-      chart_type: 'bar',
+      chartType: 'bar',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
         yAxis: 'Rapporteur',
-        categoriesSelected: ['1995', '1996'],
+        categoriesSelectedX: ['1995', '1996'],
+        categoriesSelectedY: unique['Rapporteur'],
       },
-      legend_on: true,
-      labels_on: false,
+      legendOn: true,
+      labelsOn: false,
       data: [],
       series: [],
       uniqueCategories: [],
-      changeName: '',
+      key: '',
     },
   ]
   const page = (
@@ -143,18 +145,19 @@ test('update visuals when rendering with line', () => {
   visuals = [
     {
       id: 1,
-      chart_type: 'line',
+      chartType: 'line',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
         yAxis: 'Rapporteur',
-        categoriesSelected: ['1995', '1996'],
+        categoriesSelectedX: ['1995', '1996'],
+        categoriesSelectedY: unique['Rapporteur'],
       },
-      legend_on: true,
-      labels_on: false,
+      legendOn: true,
+      labelsOn: false,
       data: [],
       series: [],
       uniqueCategories: [],
-      changeName: '',
+      key: '',
     },
   ]
   const page = (
@@ -176,21 +179,20 @@ test('update visuals when rendering with line', () => {
 
 // update the visual context when rendering the visualization page with pie chart
 test('update visuals when rendering with pie', () => {
-  var unique = GetUniqueCategories(data)
   visuals = [
     {
       id: 1,
-      chart_type: 'pie',
+      chartType: 'pie',
       chartSpecificOptions: {
-        chosenVariable: 'DecisionYear',
-        categoriesSelected: [],
+        xAxis: 'Rapporteur',
+        categoriesSelectedX: unique['Rapporteur'],
       },
-      legend_on: true,
-      labels_on: false,
+      legendOn: true,
+      labelsOn: false,
       data: [],
       series: [],
       uniqueCategories: [],
-      changeName: '',
+      key: '',
     },
   ]
   const page = (

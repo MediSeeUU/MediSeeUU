@@ -13,18 +13,12 @@ import PieForm from '../../../single_visualization/forms/types/PieForm'
 import data from '../../../../../testJson/data.json'
 
 let uniqueCategories
-let graphSetting
+let chartSpecificOptions
 beforeAll(() => {
   uniqueCategories = GetUniqueCategories(data)
-  graphSetting = {
-    xAxis: 'DecisionYear',
-    yAxis: 'Rapporteur',
-    categoriesSelected: [],
-    stacked: false,
-    stackType: false,
-    horizontal: false,
-    selectAllCategories: false,
-    eligibleVariables: [],
+  chartSpecificOptions = {
+    xAxis: 'Rapporteur',
+    categoriesSelectedX: uniqueCategories['Rapporteur'],
   }
 })
 
@@ -34,7 +28,7 @@ test('initial render', () => {
     <PieForm
       uniqueCategories={uniqueCategories}
       onChange={onChange}
-      graphSettings={graphSetting}
+      chartSpecificOptions={chartSpecificOptions}
     />
   )
 })
@@ -45,7 +39,7 @@ test('category change', () => {
     <PieForm
       uniqueCategories={uniqueCategories}
       onChange={onChange}
-      graphSettings={graphSetting}
+      chartSpecificOptions={chartSpecificOptions}
     />
   )
   const target = screen.getByRole('checkbox', { name: /united kingdom/i })
@@ -58,7 +52,7 @@ test('xaxis change', () => {
     <PieForm
       uniqueCategories={uniqueCategories}
       onChange={onChange}
-      graphSettings={graphSetting}
+      chartSpecificOptions={chartSpecificOptions}
     />
   )
   let target = screen.getByRole('combobox', { name: /variable/i })

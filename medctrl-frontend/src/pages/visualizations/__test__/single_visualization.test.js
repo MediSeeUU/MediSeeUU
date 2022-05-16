@@ -19,24 +19,25 @@ jest.mock('../mocks/observer')
 
 let container
 let setting
+let unique = GetUniqueCategories(data)
 beforeEach(() => {
   container = document.createElement('div')
   document.body.append(container)
-  const unique = GetUniqueCategories(data)
   setting = {
     id: 1,
-    chart_type: 'bar',
+    chartType: 'bar',
     chartSpecificOptions: {
       xAxis: 'DecisionYear',
       yAxis: 'Rapporteur',
-      categoriesSelected: [],
+      categoriesSelectedX: unique['DecisionYear'],
+      categoriesSelectedY: unique['Rapporteur'],
     },
-    legend_on: true,
-    labels_on: false,
+    legendOn: true,
+    labelsOn: false,
     data: data,
     series: [],
     uniqueCategories: unique,
-    changeName: '',
+    key: '',
   }
 })
 
@@ -87,18 +88,19 @@ test('render with line chart', () => {
   const unique = GetUniqueCategories(data)
   setting = {
     id: 1,
-    chart_type: 'bar',
+    chartType: 'bar',
     chartSpecificOptions: {
       xAxis: 'DecisionYear',
       yAxis: 'Rapporteur',
-      categoriesSelected: [],
+      categoriesSelectedX: unique['DecisionYear'],
+      categoriesSelectedY: unique['Rapporteur'],
     },
-    legend_on: true,
-    labels_on: false,
+    legendOn: true,
+    labelsOn: false,
     data: data,
     series: [],
     uniqueCategories: unique,
-    changeName: '',
+    key: '',
   }
 
   ReactDOM.render(
@@ -112,17 +114,17 @@ test('render with pie chart', () => {
   const unique = GetUniqueCategories(data)
   setting = {
     id: 1,
-    chart_type: 'pie',
+    chartType: 'pie',
     chartSpecificOptions: {
-      chosenVariables: 'Rapporteur',
-      categoriesSelected: [],
+      xAxis: 'Rapporteur',
+      categoriesSelectedX: unique['Rapporteur'],
     },
-    legend_on: true,
-    labels_on: false,
+    legendOn: true,
+    labelsOn: false,
     data: data,
     series: [],
     uniqueCategories: unique,
-    changeName: '',
+    key: '',
   }
 
   ReactDOM.render(
