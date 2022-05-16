@@ -11,7 +11,6 @@ import { v4 as uuidv4 } from 'uuid'
 import SingleVisualization from './single_visualization/SingleVisualization'
 import { useSelectedData } from '../../shared/contexts/DataContext'
 import GetUniqueCategories from './single_visualization/utils/GetUniqueCategories'
-import GenerateBarSeries from './single_visualization/data_interfaces/BarInterface'
 import { useVisuals, useVisualsUpdate } from '../../shared/contexts/DataContext'
 import { generateSeries } from './single_visualization/SingleVisualization'
 
@@ -23,6 +22,7 @@ function VisualizationPage() {
   const [numbers, setNumbers] = useState([]) // The eu numbers that correspond to the clicked selection
   const [modal, setModal] = useState(false) // State of modal (open or closed)
   const [keys, setKeys] = useState([''])
+  const [series, setSeries] = useState([[]])
 
   // event handlers
   const handleAddition = handleAdditionFunc.bind(this)
@@ -48,7 +48,8 @@ function VisualizationPage() {
     visuals = visuals.map((vis) => {
       vis.data = selectedData
       vis.uniqueCategories = uniqueCategories
-      vis.series = generateSeries(vis.chartType, vis)
+      series[vis.id] = generateSeries(vis.chartType, vis)
+      setSeries(series)
       keys[vis.id] = uuidv4()
       setKeys(keys)
       return vis
@@ -89,21 +90,11 @@ function VisualizationPage() {
       legendOn: false,
       labelsOn: false,
       data: selectedData,
-      series: GenerateBarSeries(
-        {
-          chartSpecificOptions: {
-            xAxis: 'DecisionYear',
-            yAxis: 'Rapporteur',
-            categoriesSelectedY: uniqueCategories['Rapporteur'],
-            categoriesSelectedX: uniqueCategories['DecisionYear'],
-          },
-        },
-        selectedData
-      ),
       uniqueCategories: uniqueCategories,
     }
 
     const newVisuals = [...visuals, newVisual]
+    setSeries([...series, generateSeries('bar', newVisual)])
     setKeys([...keys, uuidv4()])
     setVisuals(newVisuals)
   }
@@ -119,6 +110,8 @@ function VisualizationPage() {
     var newVisuals = JSON.parse(JSON.stringify(visuals))
     newVisuals = newVisuals.map((item) => {
       if (item.id === settings.id) {
+        series[item.id] = generateSeries(settings.chartType, settings)
+        setSeries(series)
         keys[item.id] = uuidv4()
         setKeys(keys)
         return settings
@@ -167,6 +160,7 @@ function VisualizationPage() {
             onFormChangeFunc={handleChange}
             onDataClick={handleDataClick}
             keys={keys}
+            series={series}
           />
         </Row>
       )

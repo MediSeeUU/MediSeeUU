@@ -79,7 +79,6 @@ export function DataProvider({ children }) {
       legendOn: false,
       labelsOn: false,
       data: [],
-      series: [],
       uniqueCategories: [],
     },
   ])
