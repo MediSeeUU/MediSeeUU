@@ -82,11 +82,11 @@ class SingleVisualization extends Component {
 
   // creating a chart based on the chosen chart type
   renderChart() {
-    const key = this.settings.key
-    console.log("RENDER KEY: " + key)
     const legendOn = this.settings.legendOn
     const labelsOn = this.settings.labelsOn
     const id = this.props.id
+    const key = this.props.keys[id]
+    console.log("RENDER KEY: " + key)
     const series = this.settings.series
     const categories = sortCategoryData(
       this.settings.chartSpecificOptions.categoriesSelectedX

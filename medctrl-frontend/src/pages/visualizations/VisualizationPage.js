@@ -22,6 +22,7 @@ function VisualizationPage() {
   const [tableData, setTableData] = useState([]) // Data displayed in the modal table
   const [numbers, setNumbers] = useState([]) // The eu numbers that correspond to the clicked selection
   const [modal, setModal] = useState(false) // State of modal (open or closed)
+  const [keys, setKeys] = useState([''])
 
   // event handlers
   const handleAddition = handleAdditionFunc.bind(this)
@@ -48,11 +49,8 @@ function VisualizationPage() {
       vis.data = selectedData
       vis.uniqueCategories = uniqueCategories
       vis.series = generateSeries(vis.chartType, vis)
-      //let oldKey = vis.key
-      //console.log("OLD: " + oldKey)
-      //let newKey = uuidv4()
-      //console.log("NEW: " + newKey)
-      //vis.key = newKey
+      keys[vis.id] = uuidv4()
+      setKeys(keys)
       return vis
     })
     updateVisuals = true
@@ -80,7 +78,7 @@ function VisualizationPage() {
   // adds a new visualization to the visualizations context
   function handleAdditionFunc() {
     const newVisual = {
-      id: visuals.length + 1,
+      id: visuals.length,
       chartType: 'bar',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
@@ -103,10 +101,10 @@ function VisualizationPage() {
         selectedData
       ),
       uniqueCategories: uniqueCategories,
-      key: uuidv4(),
     }
 
     const newVisuals = [...visuals, newVisual]
+    setKeys([...keys, uuidv4()])
     setVisuals(newVisuals)
   }
 
@@ -121,7 +119,8 @@ function VisualizationPage() {
     var newVisuals = JSON.parse(JSON.stringify(visuals))
     newVisuals = newVisuals.map((item) => {
       if (item.id === settings.id) {
-        settings.key = uuidv4()
+        keys[item.id] = uuidv4()
+        setKeys(keys)
         return settings
       }
       return item
@@ -167,6 +166,7 @@ function VisualizationPage() {
             onRemoval={handleRemoval}
             onFormChangeFunc={handleChange}
             onDataClick={handleDataClick}
+            keys={keys}
           />
         </Row>
       )

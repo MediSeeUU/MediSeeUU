@@ -81,7 +81,6 @@ export function DataProvider({ children }) {
       data: [],
       series: [],
       uniqueCategories: [],
-      key: '',
     },
   ])
 
