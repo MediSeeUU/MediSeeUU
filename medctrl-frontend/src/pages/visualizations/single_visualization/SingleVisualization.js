@@ -81,7 +81,7 @@ class SingleVisualization extends Component {
     const labelsOn = this.settings.labelsOn
     const id = this.props.id
     const key = this.props.keys[id]
-    console.log("RENDER KEY: " + key)
+    console.log('RENDER KEY: ' + key)
     const series = this.props.series[id]
     const categories = sortCategoryData(
       this.settings.chartSpecificOptions.categoriesSelectedX
