@@ -6,9 +6,9 @@ from api.models.medicine_models import Medicine, Authorisation
 from api.serializers.medicine_serializers import MedicineSerializer, AuthorisationSerializer, LookupStatusSerializer
 from api.serializers.medicine_serializers import MedicineFlexVarUpdateSerializer
 from api.models.medicine_models import Procedure
-from api.serializers.medicine_serializers import ProcedureSerializer, AuthorisationFlexVarUpdateSerializer, ProcedureFlexSerializer
-from api.models.medicine_models import Lookupstatus, Lookupactivesubstance, Lookupatccode, Lookuplegalbasis, Lookuplegalscope, Lookupmedicinetype, Lookuprapporteur
-from api.serializers.medicine_serializers import LookupStatusSerializer, LookupActiveSubstanceSerializer, LookupAtccodeSerializer, LookupLegalbasisSerializer, LookupLegalscopeSerializer, LookupMedicinetypeSerializer, LookupRapporteurSerializer
+from api.serializers.medicine_serializers import ProcedureSerializer, AuthorisationFlexVarUpdateSerializer, ProcedureFlexVarUpdateSerializer
+from api.models.medicine_models import Lookupstatus, Lookupactivesubstance, Lookupatccode, Lookuplegalbasis, Lookuplegalscope, Lookupmedicinetype, Lookuprapporteur, Lookupproceduretype
+from api.serializers.medicine_serializers import LookupStatusSerializer, LookupActiveSubstanceSerializer, LookupAtccodeSerializer, LookupLegalbasisSerializer, LookupLegalscopeSerializer, LookupMedicinetypeSerializer, LookupRapporteurSerializer, LookupProceduretypeSerializer
 
 class ScraperMedicine(APIView):
     """
@@ -17,11 +17,7 @@ class ScraperMedicine(APIView):
 
     def post(self, request, format=None):
         # get "medicine" key from request
-        print(request.data)
-
         for medicine in request.data:
-            print(medicine)
-        
             currentMedicine = Medicine.objects.filter(pk=medicine.get("eunumber")).first()
             if currentMedicine:
                 self.updateFlexMedicine(medicine, currentMedicine)
@@ -32,11 +28,10 @@ class ScraperMedicine(APIView):
 
     def updateFlexMedicine(self, data, current):
         currentAuthorisation = Authorisation.objects.filter(pk=data.get("eunumber")).first()
-        print(currentAuthorisation)
         medicineSerializer = MedicineFlexVarUpdateSerializer(current, data=data)
         authorisationSerializer = AuthorisationFlexVarUpdateSerializer(currentAuthorisation, data=data)
-        self.addLookup(Lookupstatus, LookupStatusSerializer(None, data=data), data.get("status"))
-        self.addLookup(Lookupatccode, LookupAtccodeSerializer(None, data=data), data.get("atccode"))
+        addLookup(Lookupstatus, LookupStatusSerializer(None, data=data), data.get("status"))
+        addLookup(Lookupatccode, LookupAtccodeSerializer(None, data=data), data.get("atccode"))
         if (medicineSerializer.is_valid() and authorisationSerializer.is_valid()):
             medicineSerializer.save()
             authorisationSerializer.save()
@@ -44,28 +39,20 @@ class ScraperMedicine(APIView):
     def addMedicine(self, data):
         serializer = MedicineSerializer(None, data=data)
         authorisationSerializer = AuthorisationSerializer(None, data=data)
-        self.addLookup(Lookupstatus, LookupStatusSerializer(None, data=data), data.get("status"))
-        self.addLookup(Lookupactivesubstance, LookupActiveSubstanceSerializer(None, data=data), data.get("activesubstance"))
-        self.addLookup(Lookupatccode, LookupAtccodeSerializer(None, data=data), data.get("atccode"))
-        self.addLookup(Lookuplegalbasis, LookupLegalbasisSerializer(None, data=data), data.get("legalbasis"))
-        self.addLookup(Lookuplegalscope, LookupLegalscopeSerializer(None, data=data), data.get("legalscope"))
-        self.addLookup(Lookupmedicinetype, LookupMedicinetypeSerializer(None, data=data), data.get("medicinetype"))
-        self.addLookup(Lookuprapporteur, LookupRapporteurSerializer(None, data=data), data.get("rapporteur"))
-        self.addLookup(Lookuprapporteur, LookupRapporteurSerializer(None, data={'rapporteur': data.get("corapporteur")}), data.get("corapporteur"))
+        addLookup(Lookupstatus, LookupStatusSerializer(None, data=data), data.get("status"))
+        addLookup(Lookupactivesubstance, LookupActiveSubstanceSerializer(None, data=data), data.get("activesubstance"))
+        addLookup(Lookupatccode, LookupAtccodeSerializer(None, data=data), data.get("atccode"))
+        addLookup(Lookuplegalbasis, LookupLegalbasisSerializer(None, data=data), data.get("legalbasis"))
+        addLookup(Lookuplegalscope, LookupLegalscopeSerializer(None, data=data), data.get("legalscope"))
+        addLookup(Lookupmedicinetype, LookupMedicinetypeSerializer(None, data=data), data.get("medicinetype"))
+        addLookup(Lookuprapporteur, LookupRapporteurSerializer(None, data=data), data.get("rapporteur"))
+        addLookup(Lookuprapporteur, LookupRapporteurSerializer(None, data={'rapporteur': data.get("corapporteur")}), data.get("corapporteur"))
         if serializer.is_valid():
             serializer.save()
         if authorisationSerializer.is_valid():
             authorisationSerializer.save()
 
-    def addLookup(self, model, serializer, item):
-        lookup = model.objects.filter(pk=item).first()
-        print(serializer.is_valid())
-        print(lookup)
-        print(serializer)
-        if not lookup and serializer.is_valid():
-            print(item)
-            print(serializer)
-            serializer.save()
+    
 
 class ScraperProcedure(APIView):
     """
@@ -73,31 +60,31 @@ class ScraperProcedure(APIView):
     """
 
     def post(self, request, format=None):
-        # get "procedure" key from request
-        procedure = request.data.get("procedure")
-        
-        try:
-            allobj = Procedure.objects.all()
-            current = Procedure.objects.get(pk=procedure.get("eunumber"))
-            
-            
-        except:
-            current = None
-        
-        finally:
-            serializer = ProcedureSerializer(current, data=procedure)
-            serializer2 = ProcedureFlexSerializer(current, data=procedure)
-            # if serializer2.is_valid():
-            #     serializer2.save()
-            print(serializer)
-            print(serializer2)
-            print(procedure)
-            print(allobj)
-            print(procedure.get("eunumber"))
-            print(current)
+        for procedure in request.data:
+            currentProcedure = Procedure.objects.filter(eunumber=procedure.get("eunumber")).filter(procedurecount=procedure.get("procedurecount")).first()
+            if currentProcedure:
+                self.updateFlexProcedure(procedure, currentProcedure)
+            else:
+                self.addProcedure(procedure)
 
-            return Response("OK", status=200)
+        return Response("OK", status=200)
+    
+    def updateFlexProcedure(self, data, current):
+        procedureSerializer = ProcedureFlexVarUpdateSerializer(current, data=data)
+        addLookup(Lookupproceduretype, LookupProceduretypeSerializer(None, data=data), data.get("proceduretype"))
+        if (procedureSerializer.is_valid()):
+            procedureSerializer.save()
 
+    def addProcedure(self, data):
+        serializer = ProcedureSerializer(None, data=data)
+        addLookup(Lookupproceduretype, LookupProceduretypeSerializer(None, data=data), data.get("proceduretype"))
+        if serializer.is_valid():
+            serializer.save()
+
+def addLookup(model, serializer, item):
+    lookup = model.objects.filter(pk=item).first()
+    if not lookup and serializer.is_valid():
+        serializer.save()
 
 url_patterns = [
     path("medicine", ScraperMedicine.as_view(), name="medicine"),

@@ -2,7 +2,7 @@ from rest_framework import serializers
 from api.models.medicine_models import Procedure
 
 
-class ProcedureFlexSerializer(serializers.ModelSerializer):
+class ProcedureFlexVarUpdateSerializer(serializers.ModelSerializer):
     """Endpoint procedure serializer"""
 
     class Meta:

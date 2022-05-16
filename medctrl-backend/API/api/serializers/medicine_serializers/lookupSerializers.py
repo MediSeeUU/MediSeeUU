@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models.medicine_models import Lookupactivesubstance, Lookupatccode, Lookuplegalbasis, Lookuplegalscope, Lookupmedicinetype, Lookupstatus, Lookuprapporteur
+from api.models.medicine_models import Lookupactivesubstance, Lookupatccode, Lookuplegalbasis, Lookuplegalscope, Lookupmedicinetype, Lookupstatus, Lookuprapporteur, Lookupproceduretype
 
 class LookupActiveSubstanceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,4 +34,9 @@ class LookupStatusSerializer(serializers.ModelSerializer):
 class LookupRapporteurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lookuprapporteur
+        fields = "__all__"
+
+class LookupProceduretypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Lookupproceduretype
         fields = "__all__"
