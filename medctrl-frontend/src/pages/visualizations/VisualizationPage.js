@@ -48,7 +48,11 @@ function VisualizationPage() {
       vis.data = selectedData
       vis.uniqueCategories = uniqueCategories
       vis.series = generateSeries(vis.chartType, vis)
-      vis.key = uuidv4()
+      //let oldKey = vis.key
+      //console.log("OLD: " + oldKey)
+      //let newKey = uuidv4()
+      //console.log("NEW: " + newKey)
+      //vis.key = newKey
       return vis
     })
     updateVisuals = true
@@ -99,7 +103,7 @@ function VisualizationPage() {
         selectedData
       ),
       uniqueCategories: uniqueCategories,
-      key: '',
+      key: uuidv4(),
     }
 
     const newVisuals = [...visuals, newVisual]
@@ -117,6 +121,7 @@ function VisualizationPage() {
     var newVisuals = JSON.parse(JSON.stringify(visuals))
     newVisuals = newVisuals.map((item) => {
       if (item.id === settings.id) {
+        settings.key = uuidv4()
         return settings
       }
       return item

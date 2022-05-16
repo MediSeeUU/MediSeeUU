@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { v4 as uuidv4 } from 'uuid'
 
 import BarForm from './types/BarForm'
 import LineForm from './types/LineForm'
@@ -20,7 +19,6 @@ class VisualizationForm extends Component {
       legendOn: this.props.settings.legendOn,
       labelsOn: this.props.settings.labelsOn,
       chartSpecificOptions: this.props.settings.chartSpecificOptions,
-      key: this.props.settings.key,
     }
 
     // event handlers
@@ -41,7 +39,6 @@ class VisualizationForm extends Component {
     this.setState(
       {
         [name]: value,
-        key: uuidv4(),
       },
       () => {
         this.props.onChange(this.state)
@@ -56,7 +53,6 @@ class VisualizationForm extends Component {
     this.setState(
       {
         chartSpecificOptions: options[0],
-        key: options[1],
       },
       () => {
         this.props.onChange(this.state)
