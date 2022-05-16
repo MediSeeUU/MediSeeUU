@@ -78,8 +78,10 @@ function VisualizationPage() {
   //   )
   // }
 
+  // Keep a reference of the selected data and update series if it changed
   const dataRef = useRef([])
   if (JSON.stringify(dataRef.current) !== JSON.stringify(selectedData)) {
+    dataRef.current = selectedData
     let newVisuals = visuals.map((vis) => {
       vis.data = selectedData
       vis.uniqueCategories = uniqueCategories
@@ -90,7 +92,6 @@ function VisualizationPage() {
       setKeys(keys)
       return vis
     })
-    dataRef.current = selectedData
     setVisuals(newVisuals)
   }
 
