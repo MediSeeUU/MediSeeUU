@@ -5,14 +5,12 @@ from knox import views as knox_views
 from api.views.medicine_views import (
     ProcedureViewSet,
     MedicineViewSet,
-    AuthenticatedUser,
 )
-from api.views.account_views import RegisterAPI, LoginAPI
+from api.views.account_views import LoginAPI
 
 router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
 router.register(r"procedure/(?P<eunumber>\d+)", ProcedureViewSet, basename="procedure")
-# router.register(r"authenticated", AuthenticatedUser , basename="authenticatedUser") this is giving me errors
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -21,7 +19,6 @@ urlpatterns = [
         "account/",
         include(
             [
-                path("register/", RegisterAPI.as_view(), name="register"),
                 path("login/", LoginAPI.as_view(), name="login"),
                 path("logout/", knox_views.LogoutView.as_view(), name="logout"),
                 path(
