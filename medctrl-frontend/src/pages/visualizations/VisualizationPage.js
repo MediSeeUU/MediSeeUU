@@ -1,5 +1,5 @@
 // external imports
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -39,39 +39,59 @@ function VisualizationPage() {
     selectedData.length > 0 ? GetUniqueCategories(selectedData) : []
 
   // add some series logic so the controls update
-  var updateVisuals = false
-  if (
-    selectedData.length > 0 &&
-    visuals.length > 0 &&
-    !arrayEquals(visuals[0].data, selectedData)
-  ) {
-    visuals = visuals.map((vis) => {
+  // var updateVisuals = false
+  // if (
+  //   selectedData.length > 0 &&
+  //   visuals.length > 0 &&
+  //   !arrayEquals(visuals[0].data, selectedData)
+  // ) {
+  //   visuals = visuals.map((vis) => {
+  //     vis.data = selectedData
+  //     vis.uniqueCategories = uniqueCategories
+  //     let newSeries = generateSeries(vis.chartType, vis)
+  //     if (JSON.stringify(vis.series) !== JSON.stringify(newSeries)) {
+  //       console.log("updating all keys")
+  //       series[vis.id] = newSeries
+  //       setSeries(series)
+  //       keys[vis.id] = uuidv4()
+  //       setKeys(keys)
+  //     }
+  //     return vis
+  //   })
+  //   updateVisuals = true
+  // }
+
+  // // update visuals after page render, otherwise react can't handle the calls
+  // useEffect(() => {
+  //   if (updateVisuals) {
+  //     setVisuals(visuals)
+  //   }
+  // }, [updateVisuals, visuals, setVisuals])
+
+  // // check if two arrays are equal, need to be in the same order
+  // function arrayEquals(a, b) {
+  //   return (
+  //     Array.isArray(a) &&
+  //     Array.isArray(b) &&
+  //     a.length === b.length &&
+  //     a.every((val, index) => val === b[index])
+  //   )
+  // }
+
+  const dataRef = useRef([])
+  if (JSON.stringify(dataRef.current) !== JSON.stringify(selectedData)) {
+    let newVisuals = visuals.map((vis) => {
       vis.data = selectedData
       vis.uniqueCategories = uniqueCategories
-      series[vis.id] = generateSeries(vis.chartType, vis)
+      let newSeries = generateSeries(vis.chartType, vis)
+      series[vis.id] = newSeries
       setSeries(series)
       keys[vis.id] = uuidv4()
       setKeys(keys)
       return vis
     })
-    updateVisuals = true
-  }
-
-  // update visuals after page render, otherwise react can't handle the calls
-  useEffect(() => {
-    if (updateVisuals) {
-      setVisuals(visuals)
-    }
-  }, [updateVisuals, visuals, setVisuals])
-
-  // check if two arrays are equal, need to be in the same order
-  function arrayEquals(a, b) {
-    return (
-      Array.isArray(a) &&
-      Array.isArray(b) &&
-      a.length === b.length &&
-      a.every((val, index) => val === b[index])
-    )
+    dataRef.current = selectedData
+    setVisuals(newVisuals)
   }
 
   // EVENT HANDLERS:
@@ -110,9 +130,11 @@ function VisualizationPage() {
     var newVisuals = JSON.parse(JSON.stringify(visuals))
     newVisuals = newVisuals.map((item) => {
       if (item.id === settings.id) {
-        series[item.id] = generateSeries(settings.chartType, settings)
+        settings.data = selectedData
+        settings.uniqueCategories = uniqueCategories
+        series[settings.id] = generateSeries(settings.chartType, settings)
         setSeries(series)
-        keys[item.id] = uuidv4()
+        keys[settings.id] = uuidv4()
         setKeys(keys)
         return settings
       }
