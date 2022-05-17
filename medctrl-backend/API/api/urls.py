@@ -30,5 +30,5 @@ urlpatterns = [
             ]
         ),
     ),
-    path("data/", Medicine_info.as_view()),
+    path("detailedData/", Medicine_info.as_view()),
 ]
