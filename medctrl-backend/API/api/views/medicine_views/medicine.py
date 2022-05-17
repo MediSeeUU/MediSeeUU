@@ -6,6 +6,7 @@ from api.serializers.medicine_serializers import PublicMedicineSerializer
 from api.models.medicine_models import Medicine
 from rest_framework.response import Response
 from django.core.cache import cache
+from api.update_cache import update_cache
 
 
 class MedicineViewSet(viewsets.ViewSet):
@@ -14,9 +15,7 @@ class MedicineViewSet(viewsets.ViewSet):
     """
 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]  # permissions.IsAuthenticated
-    queryset = Medicine.objects.all()
-    serializer = PublicMedicineSerializer(queryset, many=True)
-    cache.set("medicine_cache", serializer.data, None) # We set cache timeout to none so it never expires
+    update_cache()
 
     def list(self, request):
         cache_medicine = cache.get("medicine_cache")
