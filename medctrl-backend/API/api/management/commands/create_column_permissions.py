@@ -56,16 +56,15 @@ class Command(BaseCommand):
 
             # pylint: disable=protected-access
             for field in model._meta.fields:
-                if not field.is_relation:
-                    name = f"{model.__name__.lower()}.{field.attname}.view"
-                    description = f"Can view {field.name} in {model.__name__}"
+                name = f"{model.__name__.lower()}.{field.name}.view"
+                description = f"Can view {field.name} in {model.__name__}"
 
-                    perm, created = Permission.objects.update_or_create(
-                        codename=name,
-                        name=description,
-                        content_type=content_type,
-                    )
-                    if created:
-                        self.stdout.write(f"Created new permission '{perm}'")
-                    else:
-                        self.stdout.write(f"Permission '{perm}' already exists")
+                perm, created = Permission.objects.update_or_create(
+                    codename=name,
+                    name=description,
+                    content_type=content_type,
+                )
+                if created:
+                    self.stdout.write(f"Created new permission '{perm}'")
+                else:
+                    self.stdout.write(f"Permission '{perm}' already exists")
