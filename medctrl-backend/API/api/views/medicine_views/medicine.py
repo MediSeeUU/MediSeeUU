@@ -6,24 +6,23 @@ from api.serializers.user_serializers import UserSerializer
 from django.contrib.auth.models import Group
 from django.core.exceptions import FieldError
 from rest_framework.response import Response
+from django.core.cache import cache
 
 
-class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
-    # Here we should make the distinction in access level --> change serializer based on access level
+class MedicineViewSet(viewsets.ViewSet):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]  # permissions.IsAuthenticated
+    queryset = Medicine.objects.all()
+    serializer = PublicMedicineSerializer(queryset, many=True)
+    cache.set("medicine_cache", serializer.data, None) # We set cache timeout to none so it never expires
 
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly
-    ]  # permissions.IsAuthenticated
-    serializer_class = PublicMedicineSerializer
+    def list(self, request):
+        cache_medicine = cache.get("medicine_cache")
 
-    def get_queryset(self):
-        serializer_class = UserSerializer
-
-        queryset = Medicine.objects.all()
-        return queryset
-
-    def get_serializer_context(self):
-        context = super(MedicineViewSet, self).get_serializer_context()
+        # if the data is not present in the cache, we just obtain the data from the database
+        if not cache_medicine:
+            queryset = Medicine.objects.all()
+            serializer = PublicMedicineSerializer(queryset, many=True)
+            cache_medicine = serializer.data
 
         user = self.request.user
         if user.is_anonymous:
@@ -34,7 +33,6 @@ class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
             permB = user.get_all_permissions(obj=None)
             perm = [x.split(".")[2] for x in permB if "." in x]
 
-        # Set the permissions in the requests' context so the serializer can use them
-        context.update({"permissions": perm})
+        filtered_medicines = map(lambda obj : { x: y for x, y in obj.items() if x in perm }, cache_medicine)
 
-        return context
+        return Response(filtered_medicines)
