@@ -1,11 +1,9 @@
 from rest_framework import viewsets
+from rest_framework import permissions
+from django.contrib.auth.models import Group
+from api.models import SavedSelection
 from api.serializers.medicine_serializers import PublicMedicineSerializer
 from api.models.medicine_models import Medicine
-from rest_framework import permissions
-from api.serializers.user_serializers import UserSerializer
-from django.contrib.auth.models import Group
-from django.core.exceptions import FieldError
-from rest_framework.response import Response
 
 
 class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
@@ -17,10 +15,16 @@ class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PublicMedicineSerializer
 
     def get_queryset(self):
-        serializer_class = UserSerializer
+        selection = self.request.query_params.get("selection")
 
-        queryset = Medicine.objects.all()
-        return queryset
+        if selection is None:
+            return Medicine.objects.all()
+
+        selection_set = SavedSelection.objects.filter(id=selection).first()
+        if selection_set is None:
+            return Medicine.objects.none()
+
+        return selection_set.eunumbers.all()
 
     def get_serializer_context(self):
         context = super(MedicineViewSet, self).get_serializer_context()
