@@ -11,8 +11,3 @@ class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = Medicine.objects.all()
     serializer_class = PublicMedicineSerializer
-    
-    # possible to use caching in the future: add time in seconds after cache page
-    # @method_decorator(cache_page())
-    # def dispatch(self, request, *args, **kwargs):
-    #     return super().dispatch(request, *args, **kwargs)
