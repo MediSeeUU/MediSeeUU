@@ -5,6 +5,7 @@ from django.core import serializers
 from rest_framework import generics, permissions
 from .medicine_info_json import get_medicine_info
 
+
 class Medicine_info(views.APIView):
     """
     Viewset for the Medicine info
