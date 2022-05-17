@@ -15,7 +15,7 @@ class SavedSelectionViewSet(viewsets.ModelViewSet):
     # Only users with correct permissions can create (or view) SavedSelections
     permission_classes = [CustomObjectPermissions]
 
-    def create(self, request):
+    def create(self, request, *args, **kwargs):
         # set the created_by to the requesting users' ID
         request.data["created_by"] = request.user.id
         return super().create(request)

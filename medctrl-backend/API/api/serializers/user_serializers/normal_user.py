@@ -36,6 +36,8 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ("id", "username", "groups", "selections")
 
     def get_selections(self, user):
-        # Get all the selections that this user has created
+        """
+        Get all the selections that this user has created
+        """
         selections = SavedSelection.objects.filter(created_by=user.id)
         return SavedSelectionSerializer(selections, many=True).data
