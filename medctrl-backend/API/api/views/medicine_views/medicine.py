@@ -28,13 +28,15 @@ class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
         user = self.request.user
         if user.is_anonymous:
             # If user is anonymous, return default permissions for anonymous group
-            permA = Group.objects.get(name="anonymous").permissions.all()
-            perm = [str(x.codename).split(".")[1] for x in permA if "." in x.codename]
+            permissions = Group.objects.get(name="anonymous").permissions.all()
+            permissions = [x.codename.split(".") for x in permissions]
         else:
-            permB = user.get_all_permissions(obj=None)
-            perm = [x.split(".")[2] for x in permB if "." in x]
+            permissions = user.get_all_permissions(obj=None)
+            permissions = [x.split(".") for x in permissions]
+
+        permissions = [x[-2] for x in permissions if len(x) > 2 and x[-1] == "view"]
 
         # Set the permissions in the requests' context so the serializer can use them
-        context.update({"permissions": perm})
+        context.update({"permissions": permissions})
 
         return context
