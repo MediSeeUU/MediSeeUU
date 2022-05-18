@@ -7,6 +7,7 @@ function Search({ update, initial, tour }) {
 
   // Handler that applies the search by updating the query
   const applySearch = () => {
+    // eslint-disable-next-line no-new-wrappers
     update(new String(query)) // new String() is required here to also update with same query string
   }
 
