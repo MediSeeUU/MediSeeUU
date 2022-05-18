@@ -21,9 +21,10 @@ export default function SavedSelections(props) {
           },
         }
       )
-
-      const data = await response.json()
-      setsavedSelections(data)
+      if (response.status === 200) {
+        const json = await response.json()
+        setsavedSelections(json)
+      }
     }
     fetchSavedSelections()
   }, [setsavedSelections])
