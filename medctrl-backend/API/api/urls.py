@@ -8,6 +8,7 @@ from api.views.medicine_views import (
 )
 from api.views.account_views import LoginAPI
 from api.views import SavedSelectionViewSet
+from api.views.other import Medicine_info
 
 router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
@@ -29,4 +30,5 @@ urlpatterns = [
             ]
         ),
     ),
+    path("detailedData/", Medicine_info.as_view()),
 ]
