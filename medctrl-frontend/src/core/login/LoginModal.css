@@ -1,3 +1,13 @@
+.med-login-modal {
+  position: absolute;
+  top: 19%;
+  bottom: 19%;
+  left: 15%;
+  right: 15%;
+  overflow: hidden;
+  outline: none;
+}
+
 .med-login-dialog {
   background-color: var(--core-dialog);
   width: 350px;
