@@ -54,7 +54,7 @@ function ResultsSelector({
 
     if (startPage > 2) {
       pageCount.push(
-        <div key={'.'} className="lb-pageCount med-no-select">
+        <div key={'.'} className="med-table-page-button med-no-select">
           {' '}
           ..{' '}
         </div>
@@ -68,7 +68,7 @@ function ResultsSelector({
 
       if (endpage < pages - 1) {
         pageCount.push(
-          <div key={'..'} className="lb-pageCount med-no-select">
+          <div key={'..'} className="med-table-page-button med-no-select">
             {' '}
             ..{' '}
           </div>
@@ -93,8 +93,8 @@ function ResultsSelector({
         onClick={pageNumber.bind(null, nr)}
         className={
           nr === currPage
-            ? 'lb-pageCount med-no-select lb-pageCount_selected'
-            : 'lb-pageCount med-no-select'
+            ? 'med-table-page-button med-no-select med-page-selected'
+            : 'med-table-page-button med-no-select'
         }
         id={nr}
       >
@@ -136,22 +136,22 @@ function ResultsSelector({
 
   //main body of the page
   return (
-    <div className="bottomOfTableHolder">
+    <div className="med-bottom-container-holder">
       {clearEnabled && (
         <div
-          className="clear med-primary-text"
+          className="med-clear-all-button med-primary-text"
           onClick={removeAllSelected}
           data-testid="clear-all-label"
         >
           Clear All
-          <i className="bx bxs-trash clear-icon"></i>
+          <i className="bx bxs-trash med-clear-icon"></i>
         </div>
       )}
 
-      <div className="dv-pageCount" data-testid="pagination-div">
+      <div className="med-table-pagination-container" data-testid="pagination-div">
         <i
           onClick={() => Back()}
-          className="bx bxs-chevron-left li-pageCount"
+          className="bx bxs-chevron-left med-table-change-page"
           data-testid="prev-page-table"
         />
 
@@ -159,18 +159,18 @@ function ResultsSelector({
 
         <i
           onClick={() => Next()}
-          className="bx bxs-chevron-right li-pageCount"
+          className="bx bxs-chevron-right med-table-change-page"
           data-testid="next-page-table"
         />
       </div>
 
-      <div className="resultsSelector">
+      <div className="med-result-count-selector-container">
         <label>Results per page</label>
         <select
           onChange={(event) => resultsPerPage(event.target.value)}
           name="AmountShown"
           className="med-select"
-          id="topSelector"
+          id="med-result-count-selector"
         >
           {options}
         </select>

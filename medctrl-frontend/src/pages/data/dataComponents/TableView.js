@@ -2,7 +2,7 @@ import Table from '../../../shared/table/table'
 import ResultsSelector from './ResultsSelector'
 
 //if items are selected in the select data table, these will show up here, when nothing is selected a label will be shown
-export default function TableView(
+export default function TableView({
   data,
   resultsPerPage,
   loadedPage,
@@ -11,9 +11,9 @@ export default function TableView(
   select,
   text,
   menu
-) {
+}) {
   if (!data || data.length === 0) {
-    return <label className="lb-tableholder">{text}</label>
+    return <label className="med-table-placeholder-text">{text}</label>
   } else {
     //Maximum amount of pages available
     const amountOfPages = Math.ceil(data.length / resultsPerPage)

@@ -1,4 +1,4 @@
-.login-dialog {
+.med-login-dialog {
   background-color: var(--core-dialog);
   width: 350px;
   border-radius: 15px;
@@ -7,31 +7,18 @@
   display: block;
 }
 
-.login-dialog i {
+.med-login-dialog i {
   font-size: 60px;
 }
 
-.login-dialog .desc {
-  color: var(--med-additional-text);
-  font-weight: 300;
-  font-size: 14px;
+.med-login-dialog .med-error-message {
+  margin-top: 20px;
 }
 
-.login-dialog .error {
-  margin-bottom: 1%;
-  font-weight: 300;
-  font-size: 14px;
-  border-radius: 10px;
-  padding: 5px;
-}
-
-.login-dialog .error-header {
-  font-weight: bold;
-}
 
 /* additional css for the credential input fields */
 
-.credential-input {
+.med-credential-input {
   width: calc(100% - 10px);
   height: 31px;
   margin-top: 5%;
@@ -43,24 +30,19 @@
 
 /* for the dialog buttons */
 
-.login-dialog button {
+.med-login-dialog button {
   border: none;
   width: calc(100% - 10px);
   height: 35px;
   border-radius: 10px;
 }
 
-.login-dialog .button-login {
+.med-login-dialog .med-button-login {
   margin-top: 5%;
 }
 
-.login-dialog .button-cancel {
+.med-login-dialog .med-button-cancel {
   background-color: var(--core-dialog);
-  color: var(--med-text-secondary);
+  color: var(--med-text-primary);
 }
 
-/* for the login dialog errors */
-
-.login-dialog .error {
-  margin-top: 20px;
-}

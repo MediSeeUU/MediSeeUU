@@ -1,15 +1,15 @@
 // function based element, represents a radio button with custom styling
 function RadioElement(props) {
   return (
-    <label className="radio-label">
+    <label className="med-radio-label">
       <input
         onChange={props.onChange}
         type="radio"
         name={props.name}
-        className="radio-input"
+        className="med-radio-input"
         id={props.id}
       />
-      <div className="radio-visual"> </div>
+      <div className="med-radio-visual"> </div>
       <span>{props.value}</span>
       {props.children}
     </label>

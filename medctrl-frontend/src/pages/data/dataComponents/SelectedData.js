@@ -14,16 +14,16 @@ function SelectedData({ selectedData }) {
     <div tour="step-data-selected" className="med-content-container">
       <h1>Selected Data Points</h1>
       <hr className="med-top-separator" />
-      {TableView(
-        selectedData,
-        resultsPerPage,
-        loadedPage,
-        setPage,
-        setResultsPerPage,
-        false,
-        'No data has been selected, select data points in the table above.',
-        <ExportMenu selectedData={selectedData} />
-      )}
+      <TableView
+        data={selectedData}
+        resultsPerPage={resultsPerPage}
+        loadedPage={loadedPage}
+        setPage={setPage}
+        setResultsPerPage={setResultsPerPage}
+        select={false}
+        text={'No data has been selected, select data points in the table above.'}
+        menu={<ExportMenu selectedData={selectedData} />}
+      />
     </div>
   )
 }
