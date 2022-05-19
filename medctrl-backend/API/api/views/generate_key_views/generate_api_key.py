@@ -2,6 +2,7 @@ import datetime
 from django.views.generic import FormView
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from django.contrib import messages
 from knox.models import AuthToken
@@ -22,7 +23,7 @@ class GenerateKeyForm(forms.Form):
     duration.widget.attrs.update({"style": "width: 86px"})
 
 
-class GenerateKeyView(FormView):
+class GenerateKeyView(LoginRequiredMixin, UserPassesTestMixin, FormView):
     """
     Generate view to get key for api user
     """
@@ -44,3 +45,6 @@ class GenerateKeyView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+    def test_func(self):
+        return self.request.user.is_superuser
