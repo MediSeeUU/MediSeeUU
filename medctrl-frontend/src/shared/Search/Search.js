@@ -30,7 +30,7 @@ function Search({ update, initial, tour }) {
         onKeyDown={handlerKeyDown}
       />
       <button
-        className="med-primary-solid med-bx-button search-button"
+        className="med-primary-solid med-bx-button med-search-button"
         onClick={applySearch}
       >
         <i className="bx bx-search med-button-image"></i>Search
