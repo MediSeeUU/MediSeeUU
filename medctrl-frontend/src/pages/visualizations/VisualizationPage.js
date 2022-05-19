@@ -85,6 +85,10 @@ function VisualizationPage() {
     let newVisuals = visuals.map((vis) => {
       vis.data = selectedData
       vis.uniqueCategories = uniqueCategories
+      vis.chartSpecificOptions.categoriesSelectedX =
+        uniqueCategories[vis.chartSpecificOptions.xAxis]
+      vis.chartSpecificOptions.categoriesSelectedY =
+        uniqueCategories[vis.chartSpecificOptions.yAxis]
       let newSeries = generateSeries(vis.chartType, vis)
       series[vis.id] = newSeries
       setSeries(series)
@@ -128,6 +132,7 @@ function VisualizationPage() {
 
   // handles a change to a visualization
   function handleChangeFunc(settings) {
+    console.log('the chart has been changed')
     var newVisuals = JSON.parse(JSON.stringify(visuals))
     newVisuals = newVisuals.map((item) => {
       if (item.id === settings.id) {

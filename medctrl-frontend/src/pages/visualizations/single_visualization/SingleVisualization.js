@@ -1,5 +1,5 @@
 // external imports
-import React, { Component } from 'react'
+import React from 'react'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
@@ -21,75 +21,70 @@ import HandlePNGExport from './exports/HandlePNGExport'
 import sortCategoryData from './utils/SortCategoryData'
 
 // renders the components for a single visualization
-class SingleVisualization extends Component {
-  constructor(props) {
-    // Receives its id, the selected data, the settings and
-    // two event handlers for removing or changing the visualization.
-    super(props)
+function SingleVisualization(props) {
+  // initializing 'state' of the visualization
+  let settings = props.settings
 
-    // initializing 'state' of the visualization
-    this.settings = this.props.settings
-
-    // event handlers
-    this.handleChange = this.handleChange.bind(this)
-    this.handlePNGExport = this.handlePNGExport.bind(this)
-    this.handleSVGExport = this.handleSVGExport.bind(this)
-    this.handleRemoval = this.handleRemoval.bind(this)
-    this.handleNameChange = this.handleNameChange.bind(this)
-  }
+  // event handlers
+  const handleChange = handleChangeFunction.bind(this)
+  const handlePNGExport = handlePNGExportFunction.bind(this)
+  const handleSVGExport = handleSVGExportFunction.bind(this)
+  const handleRemoval = handleRemovalFunction.bind(this)
+  const handleNameChange = handleNameChangeFunction.bind(this)
 
   // EVENT HANDLERS:
 
-  // event handler for the form data
-  handleChange(event) {
-    this.settings.chartType = event.chartType
-    this.settings.chartSpecificOptions = event.chartSpecificOptions
-    this.settings.legendOn = event.legendOn
-    this.settings.labelsOn = event.labelsOn
+  // event handler for the 'form' data
+  function handleChangeFunction(event) {
+    settings.chartType = event.chartType
+    settings.chartSpecificOptions = event.chartSpecificOptions
+    settings.legendOn = event.legendOn
+    settings.labelsOn = event.labelsOn
 
-    this.props.onFormChangeFunc(this.settings)
+    props.onFormChangeFunc(settings)
   }
 
   // handles the png export
-  handlePNGExport(event) {
-    const title = this.settings.title ?? this.renderTitlePlaceHolder()
-    HandlePNGExport(this.props.id, title, ApexCharts)
+  function handlePNGExportFunction(event) {
+    const title = settings.title ?? renderTitlePlaceHolder()
+    HandlePNGExport(props.id, title, ApexCharts)
   }
 
   // handles the svg export
-  handleSVGExport(event) {
-    const title = this.settings.title ?? this.renderTitlePlaceHolder()
-    HandleSVGExport(this.props.id, title, ApexCharts)
+  function handleSVGExportFunction(event) {
+    const title = settings.title ?? renderTitlePlaceHolder()
+    HandleSVGExport(props.id, title, ApexCharts)
   }
 
   // handles the removal of this visualization
-  handleRemoval(event) {
-    this.props.onRemoval(this.props.settings.id, event)
+  function handleRemovalFunction(event) {
+    props.onRemoval(props.settings.id, event)
   }
 
   // handles changing the title of the visualization
-  handleNameChange(event) {
-    this.settings.title = event.target.value
-    this.props.onFormChangeFunc(this.settings)
+  // reacts to every keystroke, which is quite inefficient,
+  // as it redraws the whole visualization
+  function handleNameChangeFunction(event) {
+    settings.title = event.target.value
+    props.onFormChangeFunc(settings)
   }
 
   // GENERAL FUNCTIONS:
 
   // creating a chart based on the chosen chart type
-  renderChart() {
-    const legendOn = this.settings.legendOn
-    const labelsOn = this.settings.labelsOn
-    const id = this.props.id
-    const key = this.props.keys[id]
-    console.log('RENDER KEY: ' + key)
-    const series = this.props.series[id]
+  function renderChart() {
+    const legendOn = settings.legendOn
+    const labelsOn = settings.labelsOn
+    const id = props.id
+    const key = props.keys[id]
+    const series = props.series[id]
     const categories = sortCategoryData(
-      this.settings.chartSpecificOptions.categoriesSelectedX
+      settings.chartSpecificOptions.categoriesSelectedX
     )
-    const options = this.settings.chartSpecificOptions
-    const onDataClick = this.props.onDataClick
+    const options = settings.chartSpecificOptions
+    const onDataClick = props.onDataClick
 
-    switch (this.settings.chartType) {
+    switch (settings.chartType) {
       case 'bar':
         return (
           <BarChart
@@ -148,42 +143,42 @@ class SingleVisualization extends Component {
 
       default:
         throw Error(
-          'visualization settings incorrect settings: {' + this.settings + '}'
+          'visualization settings incorrect settings: {' + settings + '}'
         )
     }
   }
 
   // renders the placeholder for the title depending on the chart type
-  renderTitlePlaceHolder() {
-    const chartType = 'my ' + this.settings.chartType
-    switch (this.settings.chartType) {
+  function renderTitlePlaceHolder() {
+    const chartType = 'my ' + settings.chartType
+    switch (settings.chartType) {
       case 'bar':
         return (
           chartType +
           ' - ' +
-          this.settings.chartSpecificOptions.xAxis +
+          settings.chartSpecificOptions.xAxis +
           ' vs ' +
-          this.settings.chartSpecificOptions.yAxis
+          settings.chartSpecificOptions.yAxis
         )
 
       case 'line':
         return (
           chartType +
           ' - ' +
-          this.settings.chartSpecificOptions.xAxis +
+          settings.chartSpecificOptions.xAxis +
           ' vs ' +
-          this.settings.chartSpecificOptions.yAxis
+          settings.chartSpecificOptions.yAxis
         )
 
       case 'pie':
-        return chartType + ' - ' + this.settings.chartSpecificOptions.xAxis
+        return chartType + ' - ' + settings.chartSpecificOptions.xAxis
 
       case 'histogram':
-        return chartType + ' - ' + this.settings.chartSpecificOptions.xAxis
+        return chartType + ' - ' + settings.chartSpecificOptions.xAxis
 
       default:
         throw Error(
-          'visualization settings incorrect settings: {' + this.settings + '}'
+          'visualization settings incorrect settings: {' + settings + '}'
         )
     }
   }
@@ -192,62 +187,60 @@ class SingleVisualization extends Component {
 
   // Renders a single visualization,
   // based on the layout from the prototype:
-  // divides the visualization in a left part for the form,
+  // divides the visualization in a left part for the 'form',
   // a right-lower part for the visualization and
   // a right-upper part for the filters.
-  render() {
-    return (
-      <div className="med-content-container visual-container">
-        <Container>
-          <Row>
-            <Col className="visualization-panel">
-              <VisualizationForm
-                uniqueCategories={this.settings.uniqueCategories}
-                onChange={this.handleChange}
-                settings={this.settings}
+  return (
+    <div className="med-content-container visual-container">
+      <Container>
+        <Row>
+          <Col className="visualization-panel">
+            <VisualizationForm
+              uniqueCategories={settings.uniqueCategories}
+              onChange={handleChange}
+              settings={settings}
+            />
+          </Col>
+          <Col sm={8}>
+            <Row>
+              <input
+                tour="step-vis-main"
+                type="text"
+                id={'graphName' + props.id}
+                className="graph-name med-text-input"
+                placeholder={renderTitlePlaceHolder()}
+                autoComplete="off"
+                value={settings.title}
+                onChange={handleNameChange}
               />
-            </Col>
-            <Col sm={8}>
-              <Row>
-                <input
-                  tour="step-vis-main"
-                  type="text"
-                  id={'graphName' + this.props.id}
-                  className="graph-name med-text-input"
-                  placeholder={this.renderTitlePlaceHolder()}
-                  autoComplete="off"
-                  value={this.settings.title}
-                  onChange={this.handleNameChange}
-                />
-              </Row>
-              <Row>{this.renderChart()}</Row>
-              <Row>
-                <button
-                  className="med-primary-solid med-bx-button button-export"
-                  onClick={this.handlePNGExport}
-                >
-                  <i className="bx bx-save filter-Icon"></i>Export as PNG
-                </button>
-                <button
-                  className="med-primary-solid med-bx-button button-export"
-                  onClick={this.handleSVGExport}
-                >
-                  <i className="bx bx-save filter-Icon"></i>Export as SVG
-                </button>
-                <button
-                  className="med-primary-solid med-bx-button button-remove"
-                  onClick={this.handleRemoval}
-                  value={this.props.id}
-                >
-                  <i className="bx bx-trash"></i>
-                </button>
-              </Row>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    )
-  }
+            </Row>
+            <Row>{renderChart()}</Row>
+            <Row>
+              <button
+                className="med-primary-solid med-bx-button button-export"
+                onClick={handlePNGExport}
+              >
+                <i className="bx bx-save filter-Icon"></i>Export as PNG
+              </button>
+              <button
+                className="med-primary-solid med-bx-button button-export"
+                onClick={handleSVGExport}
+              >
+                <i className="bx bx-save filter-Icon"></i>Export as SVG
+              </button>
+              <button
+                className="med-primary-solid med-bx-button button-remove"
+                onClick={handleRemoval}
+                value={props.id}
+              >
+                <i className="bx bx-trash"></i>
+              </button>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  )
 }
 
 // Returns series data depending on the chart type,
@@ -269,9 +262,7 @@ export function generateSeries(chartType, options) {
       return GenerateHistogramSeries(options, options.data)
 
     default:
-      throw Error(
-        'visualization settings incorrect settings: {' + this.settings + '}'
-      )
+      throw Error('visualization settings incorrect settings')
   }
 }
 
