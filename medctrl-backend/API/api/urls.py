@@ -7,10 +7,13 @@ from api.views.medicine_views import (
     MedicineViewSet,
 )
 from api.views.account_views import LoginAPI
+from api.views import SavedSelectionViewSet
+from api.views.other import Medicine_info
 
 router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
 router.register(r"procedure/(?P<eunumber>\d+)", ProcedureViewSet, basename="procedure")
+router.register(r"saveselection", SavedSelectionViewSet, basename="saveselection")
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -27,4 +30,5 @@ urlpatterns = [
             ]
         ),
     ),
+    path("detailedData/", Medicine_info.as_view()),
 ]
