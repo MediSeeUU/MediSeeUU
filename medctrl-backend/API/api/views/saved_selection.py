@@ -2,6 +2,7 @@ from rest_framework import viewsets
 from api.permissions import CustomObjectPermissions
 from api.serializers import SavedSelectionSerializer
 from api.models import SavedSelection
+from rest_framework import permissions
 
 
 class SavedSelectionViewSet(viewsets.ModelViewSet):
@@ -10,10 +11,9 @@ class SavedSelectionViewSet(viewsets.ModelViewSet):
     """
 
     serializer_class = SavedSelectionSerializer
-    queryset = SavedSelection.objects.all()
 
     # Only users with correct permissions can create (or view) SavedSelections
-    permission_classes = [CustomObjectPermissions]
+    permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
 
     def create(self, request, *args, **kwargs):
         # set the created_by to the requesting users' ID
@@ -21,4 +21,9 @@ class SavedSelectionViewSet(viewsets.ModelViewSet):
         return super().create(request)
 
     def get_queryset(self):
-        return SavedSelection.objects.filter(created_by=self.request.user.id)
+        pk = self.kwargs.get("pk")
+
+        if pk is None:
+            return SavedSelection.objects.filter(created_by=self.request.user.id)
+
+        return SavedSelection.objects.filter(id=pk)

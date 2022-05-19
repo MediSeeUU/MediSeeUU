@@ -1,15 +1,6 @@
-/* overall */
-
-:local(*) {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
 /* for the navigation bar itself */
 
-.side-nav {
+.med-side-nav {
   position: fixed;
   top: 75px;
   height: calc(100% - 75px);
@@ -20,22 +11,17 @@
   min-height: calc(700px - 75px);
 }
 
-.side-nav.open-nav {
+.med-side-nav.med-open {
   width: 200px;
 }
 
-.side-nav.closed-nav {
+.med-side-nav.med-closed {
   width: 78px;
-}
-
-.nav-separator {
-  margin: 0.5rem 0;
-  background-color: white;
 }
 
 /* for the individual items in the navigation bar */
 
-.nav-item {
+.med-nav-item {
   position: relative;
   height: 50px;
   margin: 8px 0;
@@ -46,7 +32,7 @@
 
 /* for the content of the individual items in the navigation bar */
 
-.nav-item-content {
+.med-nav-item-content {
   display: flex;
   align-items: center;
   transition: all 0.4s;
@@ -56,7 +42,7 @@
   text-overflow: ellipsis;
 }
 
-.nav-item-content i {
+.med-nav-item-content i {
   min-width: 50px;
   color: var(--med-solid-button-text);
   height: 50px;
@@ -69,7 +55,7 @@
     the navigation bar only when the navigation bar in expanded
 */
 
-.nav-item-content .nav-item-name {
+.med-nav-item-name {
   color: var(--med-solid-button-text);
   font-size: 15px;
   font-weight: 400;
@@ -77,11 +63,11 @@
   transition: 0.4s;
 }
 
-.side-nav.closed-nav .nav-item-content .nav-item-name {
+.med-side-nav.med-closed .med-nav-item-name {
   opacity: 0;
 }
 
-.side-nav.open-nav .nav-item-content .nav-item-name {
+.med-side-nav.med-open .med-nav-item-name {
   opacity: 1;
 }
 
@@ -89,7 +75,7 @@
     the navigation bar only when the navigation bar in collapsed 
 */
 
-.nav-tooltip {
+.med-nav-tooltip {
   position: absolute;
   left: calc(100% + 20px);
   top: 7.5px;
@@ -111,33 +97,32 @@
   z-index: 3;
 }
 
-.side-nav.closed-nav .nav-item:hover .nav-tooltip {
+.med-side-nav.med-closed .med-nav-item:hover .med-nav-tooltip {
   opacity: 1;
-  font-family: 'Poppins';
 }
 
 /*  position the lowest navigation item at the bottom of the navigation bar */
 
-.lowest {
-  bottom: 8px;
+.med-nav-lowest {
+  bottom: 6px;
   position: absolute;
   width: calc(100% - 28px);
 }
 
 /* account specific styling */
 
-.nav-item.account {
-  bottom: 75px;
+.med-nav-account {
+  bottom: 64px;
   position: absolute;
   width: calc(100% - 28px);
 }
 
-.side-nav.open-nav .nav-item.account {
+.med-side-nav.med-open .med-nav-account {
   height: 75px;
   padding: 12.5px 0px;
 }
 
-.nav-item-name.user-alt {
+.med-nav-item-alt-name {
   font-size: 14px;
   color: var(--med-additional-text);
 }
