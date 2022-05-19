@@ -378,6 +378,7 @@ class HistoryprimeAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
         "primedate",
     )
 
+
 admin.site.index_template = "adminIndex.html"
 admin.site.register(Medicine, MedicineAdmin)
 admin.site.register(Authorisation, AuthorisationAdmin)

@@ -13,11 +13,13 @@ from api.models.medicine_models import (
     Procedure,
 )
 
+
 class ScraperProcedure(APIView):
     """
     Class which provides an interface for the scraper to interact with the database for procedures.
     """
-    #Permission on this endpoint when user can add procedure
+
+    # Permission on this endpoint when user can add procedure
     permission_classes = [DjangoModelPermissions]
 
     def get_queryset(self):

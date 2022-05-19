@@ -25,8 +25,16 @@ base_url = settings.BASE_URL if "BASE_URL" in dir(settings) else ""
 urlpatterns = [
     path(
         base_url,
-        include([
-            path("admin/generateApiKey", GenerateKeyView.as_view(), name="generate_key"),
-            path("admin/", admin.site.urls), path("", include(api.urls))]),
+        include(
+            [
+                path(
+                    "admin/generateApiKey",
+                    GenerateKeyView.as_view(),
+                    name="generate_key",
+                ),
+                path("admin/", admin.site.urls),
+                path("", include(api.urls)),
+            ]
+        ),
     )
 ]

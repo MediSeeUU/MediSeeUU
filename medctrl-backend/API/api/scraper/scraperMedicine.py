@@ -28,11 +28,13 @@ from api.models.medicine_models import (
     Authorisation,
 )
 
+
 class ScraperMedicine(APIView):
     """
     Class which provides an interface for the scraper to interact with the database models medicine and authorisation.
     """
-    #Permission on this endpoint when user can add medicine
+
+    # Permission on this endpoint when user can add medicine
     permission_classes = [DjangoModelPermissions]
 
     def get_queryset(self):
