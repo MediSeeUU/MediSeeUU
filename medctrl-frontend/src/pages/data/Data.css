@@ -1,18 +1,4 @@
-.filter-Icon,
-.bxs-file-export,
-.bxs-trash {
-  font-size: 25px;
-  margin-left: 10px;
-  float: left;
-}
-
-.addRmCollumn {
-  display: flex;
-  float: right;
-  margin-right: 25px;
-}
-
-.bottomOfTableHolder {
+.med-bottom-container-holder {
   position: sticky;
   top: 100%;
   width: 100%;
@@ -20,20 +6,20 @@
   margin-top: 5px;
 }
 
-.resultsSelector {
+.med-result-count-selector-container {
   position: sticky;
   width: 210px;
   height: 30px;
   left: 100%;
 }
 
-#topSelector {
+#med-result-count-selector {
   width: 55px;
   height: 25px;
   margin: 2px 0px 0px 10px;
 }
 
-.lb-tableholder {
+.med-table-placeholder-text {
   float: none;
   display: block;
   width: 100%;
@@ -42,7 +28,7 @@
   padding: 20px;
 }
 
-.lb-pageCount {
+.med-table-page-button {
   float: none;
   font-weight: bold;
   width: 25px;
@@ -52,18 +38,18 @@
   margin-right: 2px;
 }
 
-.lb-pageCount:hover {
+.med-table-page-button:hover {
   background-color: var(--med-page-count-hover);
   border-radius: 2px;
 }
 
-.lb-pageCount_selected {
+.med-table-page-button.med-page-selected {
   background-color: var(--med-page-count-selected);
   color: white;
   border-radius: 2px;
 }
 
-.dv-pageCount {
+.med-table-pagination-container {
   width: 150px;
   display: flex;
   align-items: center;
@@ -72,24 +58,24 @@
   width: 100%;
 }
 
-.li-pageCount {
+.med-table-change-page {
   font-size: 25px;
   cursor: pointer;
   color: var(--blue-alt);
 }
 
-.clear {
+.med-clear-all-button {
   z-index: 1;
   position: absolute;
   font-size: 15px;
   margin-top: 4px;
 }
 
-.clear:hover {
+.med-clear-all-button:hover {
   cursor: pointer;
 }
 
-.clear-icon {
+.med-clear-icon {
   font-size: 18px;
   margin-top: 1px;
   margin-right: 5px;

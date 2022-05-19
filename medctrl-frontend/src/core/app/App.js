@@ -11,13 +11,13 @@ import React from 'react'
 function App() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <div className="med_page__wrapper">
+      <div className="med-page-wrapper">
         <DashboardTour>
-          <Header className="med_mainLayout" />
-          <SideNavigation className="med_mainLayout" />
+          <Header />
+          <SideNavigation />
 
-          <main className="med_content">
-            <div className="med_content__wrapper">
+          <main className="med-content">
+            <div className="med-content-wrapper">
               <DataProvider>
                 <AllRoutes />
               </DataProvider>

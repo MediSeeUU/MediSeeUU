@@ -5,7 +5,6 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import SideNavigation from '../Navigation'
 import { BrowserRouter } from 'react-router-dom'
 import AccountPage from '../../../pages/account/AccountPage'
-import MessagesPage from '../../../pages/messages/MessagesPage'
 import { DataContext } from '../../../shared/contexts/DataContext'
 import allData from '../../../testJson/data.json'
 import Table from '../../../shared/table/table'
@@ -17,8 +16,6 @@ import {
   ColumnSelectionContextUpdate,
 } from '../../../shared/contexts/DataContext'
 import DataPage from '../../../pages/data/DataPage'
-import { InfoPage } from '../../../pages/detailed-info/DetailedInfoPage'
-import proceduredataTest from '../../../pages/detailed-info/detailed-info-data.json'
 
 test('sidenavigation component renders without crashing', () => {
   const root = document.createElement('div')
@@ -47,16 +44,6 @@ test('render account page without crashing', () => {
   ReactDOM.render(
     <BrowserRouter>
       <AccountPage />
-    </BrowserRouter>,
-    root
-  )
-})
-
-test('render messages page without crashing', () => {
-  const root = document.createElement('div')
-  ReactDOM.render(
-    <BrowserRouter>
-      <MessagesPage />
     </BrowserRouter>,
     root
   )
