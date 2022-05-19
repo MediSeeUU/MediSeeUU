@@ -44,7 +44,7 @@ class ScraperProcedure(APIView):
                     .first()
                 )
                 if current_procedure:
-                    status = self.update_flex_procedure(procedure, currentProcedure)
+                    status = self.update_flex_procedure(procedure, current_procedure)
                 else:
                     status = self.add_procedure(procedure)
 
