@@ -4,10 +4,6 @@ class BasePageLocators():
   NAV = (By.TAG_NAME, 'nav')
   NAV_ITEM = (By.CLASS_NAME, 'nav-item')
 
-class HomePageLocators():
-  TOUR = (By.CLASS_NAME, 'med-tour-button')
-  HEADING = (By.TAG_NAME, 'h1')
-
 class InfoPageLocators():
   LINK = (By.CLASS_NAME, 'institution-link')
 
