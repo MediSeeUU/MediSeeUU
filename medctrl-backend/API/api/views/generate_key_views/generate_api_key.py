@@ -1,14 +1,15 @@
+import datetime
 from django.views.generic import FormView
 from django import forms
 from django.contrib.auth.models import User
-from api.models.medicine_models import Medicine
 from django.db.models import Q
 from django.contrib import messages
 from knox.models import AuthToken
-import datetime
-
 
 class GenerateKeyForm(forms.Form):
+    """
+    Generate form to get key for api user
+    """
     user = forms.ModelChoiceField(
         queryset=User.objects.filter(is_superuser=0)
         .filter(is_staff=0)
@@ -20,6 +21,9 @@ class GenerateKeyForm(forms.Form):
 
 
 class GenerateKeyView(FormView):
+    """
+    Generate view to get key for api user
+    """
     form_class = GenerateKeyForm
     template_name = "generateApiKeyTemplate.html"
     success_url = "/admin/"

@@ -1,6 +1,4 @@
-from django.core import serializers
 from rest_framework.permissions import DjangoModelPermissions
-from rest_framework.decorators import permission_classes
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.serializers.medicine_serializers import (
@@ -31,102 +29,115 @@ from api.models.medicine_models import (
 
 class ScraperMedicine(APIView):
     """
-    Class which provides an interface for the scraper to interact with the database models medicine and authorisation.
+    Class which provides an interface for the scraper to interact 
+    with the database models medicine and authorisation.
     """
 
     # Permission on this endpoint when user can add medicine
     permission_classes = [DjangoModelPermissions]
 
     def get_queryset(self):
+        """
+        Specify queryset for DjangoModelPermissions
+        """
         return Medicine.objects.all()
 
-    def post(self, request, format=None):
+    def post(self, request):
+        """
+        Post endpoint medicine scraper
+        """
         # initialize list to return failed updates/adds, so these can be checked manually
-        failedMedicines = []
+        failed_medicines = []
         # get "medicine" key from request
         for medicine in request.data:
             try:
                 # check if medicine already exists based on eunumber
-                currentMedicine = Medicine.objects.filter(
+                current_medicine = Medicine.objects.filter(
                     pk=medicine.get("eunumber")
                 ).first()
-                # if exists update the medicine otherwise add it, update works only on flexible variables
-                if currentMedicine:
-                    status = self.updateFlexMedicine(medicine, currentMedicine)
+                # if exists update the medicine otherwise add it, 
+                # update works only on flexible variables
+                if current_medicine:
+                    status = self.update_flex_medicine(medicine, current_medicine)
                 else:
-                    status = self.addMedicine(medicine)
+                    status = self.add_medicine(medicine)
                 # if status is failed, add medicine to the failed list
                 if not status:
-                    failedMedicines.append(medicine)
+                    failed_medicines.append(medicine)
             except:
-                failedMedicines.append(medicine)
+                failed_medicines.append(medicine)
 
-        return Response(failedMedicines, status=200)
+        return Response(failed_medicines, status=200)
 
-    # update the flexible variables of medicine and authorisation
-    def updateFlexMedicine(self, data, current):
-        currentAuthorisation = Authorisation.objects.filter(
+    def update_flex_medicine(self, data, current):
+        """
+        Update flexible medicine variables
+        """
+        current_authorisation = Authorisation.objects.filter(
             pk=data.get("eunumber")
         ).first()
-        medicineSerializer = MedicineFlexVarUpdateSerializer(current, data=data)
-        authorisationSerializer = AuthorisationFlexVarUpdateSerializer(
-            currentAuthorisation, data=data
+        medicine_serializer = MedicineFlexVarUpdateSerializer(current, data=data)
+        authorisation_serializer = AuthorisationFlexVarUpdateSerializer(
+            current_authorisation, data=data
         )
         # add variables to lookup table
-        addLookup(
+        add_lookup(
             Lookupstatus, LookupStatusSerializer(None, data=data), data.get("status")
         )
-        addLookup(
+        add_lookup(
             Lookupatccode, LookupAtccodeSerializer(None, data=data), data.get("atccode")
         )
         # if authorisation not exists, add authorisation
-        if not currentAuthorisation:
-            authorisationSerializer = AuthorisationSerializer(None, data=data)
+        if not current_authorisation:
+            authorisation_serializer = authorisation_serializer(None, data=data)
 
         # update medicine and authorisation
-        if medicineSerializer.is_valid() and authorisationSerializer.is_valid():
-            medicineSerializer.save()
-            authorisationSerializer.save()
+        if medicine_serializer.is_valid() and authorisation_serializer.is_valid():
+            medicine_serializer.save()
+            authorisation_serializer.save()
             return True
         return False
 
-    def addMedicine(self, data):
+    def add_medicine(self, data):
+        """
+        add medicine variables
+        """
         # initialise serializers voor addition
         serializer = MedicineSerializer(None, data=data)
-        authorisationSerializer = AuthorisationSerializer(None, data=data)
+        authorisation_serializer = AuthorisationSerializer(None, data=data)
         # add variables to lookup table
-        addLookup(
+        add_lookup(
             Lookupstatus, LookupStatusSerializer(None, data=data), data.get("status")
         )
-        addLookup(
+        add_lookup(
             Lookupactivesubstance,
             LookupActiveSubstanceSerializer(None, data=data),
             data.get("activesubstance"),
         )
-        addLookup(
+        add_lookup(
             Lookupatccode, LookupAtccodeSerializer(None, data=data), data.get("atccode")
         )
-        addLookup(
+        add_lookup(
             Lookuplegalbasis,
             LookupLegalbasisSerializer(None, data=data),
             data.get("legalbasis"),
         )
-        addLookup(
+        add_lookup(
             Lookuplegalscope,
             LookupLegalscopeSerializer(None, data=data),
             data.get("legalscope"),
         )
-        addLookup(
+        add_lookup(
             Lookupmedicinetype,
             LookupMedicinetypeSerializer(None, data=data),
             data.get("medicinetype"),
         )
-        addLookup(
+        add_lookup(
             Lookuprapporteur,
             LookupRapporteurSerializer(None, data=data),
             data.get("rapporteur"),
         )
-        addLookup(
+        add_lookup(
             Lookuprapporteur,
             LookupRapporteurSerializer(
                 None, data={"rapporteur": data.get("corapporteur")}
@@ -138,8 +149,14 @@ class ScraperMedicine(APIView):
             serializer.save()
         else:
             return False
-        if authorisationSerializer.is_valid():
-            authorisationSerializer.save()
+        if authorisation_serializer.is_valid():
+            authorisation_serializer.save()
         else:
             return False
         return True
+
+# if item does not exist in the database (model), add it with the serializer
+def add_lookup(model, serializer, item):
+    lookup = model.objects.filter(pk=item).first()
+    if not lookup and serializer.is_valid():
+        serializer.save()

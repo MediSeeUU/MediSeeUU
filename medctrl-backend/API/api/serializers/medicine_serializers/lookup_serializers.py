@@ -10,57 +10,73 @@ from api.models.medicine_models import (
     Lookupproceduretype,
 )
 
-# serializer for active substance lookup table
 class LookupActiveSubstanceSerializer(serializers.ModelSerializer):
+    """
+    Lookup table active substance serializer for the scraper endpoints
+    """
     class Meta:
         model = Lookupactivesubstance
         fields = "__all__"
 
 
-# serializer for atc code lookup table
 class LookupAtccodeSerializer(serializers.ModelSerializer):
+    """
+    Lookup table atc code serializer for the scraper endpoints
+    """
     class Meta:
         model = Lookupatccode
         fields = "__all__"
 
 
-# serializer for legal basis lookup table
 class LookupLegalbasisSerializer(serializers.ModelSerializer):
+    """
+    Lookup table legal basis serializer for the scraper endpoints
+    """
     class Meta:
         model = Lookuplegalbasis
         fields = "__all__"
 
 
-# serializer for legal scope lookup table
 class LookupLegalscopeSerializer(serializers.ModelSerializer):
+    """
+    Lookup table legal scope serializer for the scraper endpoints
+    """
     class Meta:
         model = Lookuplegalscope
         fields = "__all__"
 
 
-# serializer for medicinetype lookup table
 class LookupMedicinetypeSerializer(serializers.ModelSerializer):
+    """
+    Lookup table medicinetype serializer for the scraper endpoints
+    """
     class Meta:
         model = Lookupmedicinetype
         fields = "__all__"
 
 
-# serializer for status lookup table
 class LookupStatusSerializer(serializers.ModelSerializer):
+    """
+    Lookup table status serializer for the scraper endpoints
+    """
     class Meta:
         model = Lookupstatus
         fields = "__all__"
 
 
-# serializer for rapporteur lookup table
 class LookupRapporteurSerializer(serializers.ModelSerializer):
+    """
+    Lookup table rapporteur serializer for the scraper endpoints
+    """
     class Meta:
         model = Lookuprapporteur
         fields = "__all__"
 
 
-# serializer for proceduretype lookup table
 class LookupProceduretypeSerializer(serializers.ModelSerializer):
+    """
+    Lookup table proceduretype serializer for the scraper endpoints
+    """
     class Meta:
         model = Lookupproceduretype
         fields = "__all__"
