@@ -1,4 +1,4 @@
-.med_main_header {
+.med-main-header {
   height: 75px;
   position: fixed;
 
@@ -20,7 +20,7 @@
 }
 
 /* Makes sure the logo in the header is the right size and */
-.med_main_header img {
+.med-main-header img {
   margin-right: 30px;
   margin-top: 5px;
   height: 65px;
@@ -28,7 +28,7 @@
 }
 
 /* Keeps the text in the header on the left side, ensuring that the logo can be next to it */
-.med_main_header h1 {
+.med-main-header h1 {
   float: left;
   margin: 10px;
   font-size: 2rem;
@@ -40,7 +40,7 @@
 /* Media query: makes sure that when the screen width drops below 1400px (the size where the page content
   fits the entire webbrowser page) the rounded borders on the outside disappear.  */
 @media only screen and (max-width: 1400px) {
-  .med_main_header {
+  .med-main-header {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;

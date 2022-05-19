@@ -18,8 +18,8 @@ function Procedure(props) {
   let decisionURL = props.proc.decisionurl
 
   return (
-    <div className="procedure">
-      <div className="procedure-content">
+    <div className="med-info-procedure">
+      <div className="med-info-procedure-content">
         <ProcedureDetail
           name="Decision Date"
           value={decisionDate}
@@ -37,16 +37,16 @@ function Procedure(props) {
         />
       </div>
 
-      <div className="procedure-files">
+      <div className="med-info-procedure-file-link-container">
         <CustomLink
-          className="procedure-file-link"
+          className="med-info-procedure-file-link"
           name="Annex File"
           image="bx bx-file-blank"
           dest={annexURL}
         />
 
         <CustomLink
-          className="procedure-file-link"
+          className="med-info-procedure-file-link"
           name="Decision File"
           image="bx bx-file-blank"
           dest={decisionURL}

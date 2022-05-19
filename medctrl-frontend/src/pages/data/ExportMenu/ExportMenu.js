@@ -20,7 +20,7 @@ function ExportMenu({ selectedData }) {
       </button>
 
       <ReactModal
-        className="menu-modal"
+        className="med-export-modal"
         isOpen={showModal}
         onRequestClose={closeModal}
         ariaHideApp={false}

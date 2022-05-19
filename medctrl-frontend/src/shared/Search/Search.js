@@ -24,16 +24,16 @@ function Search({ update, initial, tour }) {
       <input
         type="text"
         placeholder="Search"
-        className="content__container__textinput med-text-input"
+        className="med-search-text-input med-text-input"
         onChange={(e) => setQuery(e.target.value)}
         defaultValue={initial}
         onKeyDown={handlerKeyDown}
       />
       <button
-        className="med-primary-solid med-bx-button search-button"
+        className="med-primary-solid med-bx-button med-search-button"
         onClick={applySearch}
       >
-        <i className="bx bx-search search-Icon"></i>Search
+        <i className="bx bx-search med-button-image"></i>Search
       </button>
     </div>
   )
