@@ -193,7 +193,7 @@ const CheckboxColumn = ({ value, onChange }) => {
       <input
         className="tableCheckboxColumn"
         type="checkbox"
-        checked={value}
+        checked={!value ? false : value}
         onChange={onChange}
       />
     </td>

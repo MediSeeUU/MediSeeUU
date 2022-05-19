@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react'
-import allData from '../../testJson/data.json'
+import React, { useContext, useState, useEffect } from 'react'
 import GetUniqueCategories from '../../pages/visualizations/single_visualization/utils/GetUniqueCategories'
 
 export const DataContext = React.createContext()
@@ -44,10 +43,74 @@ export function useVisualsUpdate() {
 }
 
 export function DataProvider({ children }) {
+  // list of all the medicine data points
+  const [allData, setAllData] = useState([])
+
+  // retrieve all medicine data points from the backend
+  useEffect(() => {
+    async function fetchAllData() {
+      const response = await fetch(`${process.env.PUBLIC_URL}/api/medicine/`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      const dataFromServer = await response.json()
+
+      const clean = (value) => {
+        return !value ? 'NA' : value
+      }
+
+      const cleanedData = []
+      for (var i = 0; i < dataFromServer.length; ++i) {
+        const dataPoint = dataFromServer[i]
+        if (dataPoint.eunumber) {
+          cleanedData.push({
+            ApplicationNo: clean(dataPoint.emanumber),
+            EUNumber: 'EMA-' + clean(dataPoint.eunumber),
+            EUNoShort: clean(dataPoint.eunumber),
+            BrandName: clean(dataPoint.brandname),
+            MAH: clean(dataPoint.mah),
+            ActiveSubstance: clean(dataPoint.activesubstance),
+            DecisionDate: clean(dataPoint.decisiondate),
+            DecisionYear: clean(dataPoint.decisiondate).substring(0, 4),
+            Period: 'NA',
+            Rapporteur: clean(dataPoint.rapporteur),
+            CoRapporteur: clean(dataPoint.corapporteur),
+            ATCCodeL2: clean(dataPoint.atccode),
+            ATCCodeL1: 'NA',
+            ATCNameL2: 'NA',
+            LegalSCope: clean(dataPoint.legalscope),
+            ATMP: clean(dataPoint.atmp),
+            OrphanDesignation: clean(dataPoint.orphan),
+            NASQualified: 'NA',
+            CMA: 'NA',
+            AEC: 'NA',
+            LegalType: clean(dataPoint.legalbasis),
+            PRIME: clean(dataPoint.prime),
+            NAS: 'NA',
+            AcceleratedGranted: clean(dataPoint.acceleratedgranted),
+            AcceleratedExecuted: clean(dataPoint.acceleratedmaintained),
+            ActiveTimeElapsed: clean(dataPoint.authorisationactivetime),
+            ClockStopElapsed: clean(dataPoint.authorisationstoppedtime),
+            TotalTimeElapsed: clean(dataPoint.authorisationtotaltime),
+          })
+        }
+      }
+      setAllData(cleanedData)
+    }
+    fetchAllData()
+  }, [setAllData])
+
   //list of checked datapoints
   const [checkedState, setCheckedState] = useState(
     Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: true })))
   )
+
+  // update the checked datapoints state when the allData state is changed
+  useEffect(() => {
+    setCheckedState(
+      Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: true })))
+    )
+  }, [allData])
 
   //selected datalist
   const selectedData = allData.filter((item, index) => {
@@ -63,27 +126,31 @@ export function DataProvider({ children }) {
     'ATCNameL2',
   ])
 
-  let uniqueCategories = GetUniqueCategories(allData)
+  // visualisation context to save the visualisations when navigating the page
+  const [visuals, setVisuals] = useState([])
 
-  //visualisation context to save the visualisations when navigating the page
-  const [visuals, setVisuals] = useState([
-    {
-      id: 1,
-      chartType: 'bar',
-      chartSpecificOptions: {
-        xAxis: 'DecisionYear',
-        yAxis: 'Rapporteur',
-        categoriesSelectedY: uniqueCategories['Rapporteur'],
-        categoriesSelectedX: uniqueCategories['DecisionYear'],
+  // update the visualisation context state when the allData state is changed
+  useEffect(() => {
+    let uniqueCategories = GetUniqueCategories(allData)
+    setVisuals([
+      {
+        id: 1,
+        chartType: 'bar',
+        chartSpecificOptions: {
+          xAxis: 'DecisionYear',
+          yAxis: 'Rapporteur',
+          categoriesSelectedY: uniqueCategories['Rapporteur'],
+          categoriesSelectedX: uniqueCategories['DecisionYear'],
+        },
+        legendOn: false,
+        labelsOn: false,
+        data: [],
+        series: [],
+        uniqueCategories: [],
+        key: '',
       },
-      legendOn: false,
-      labelsOn: false,
-      data: [],
-      series: [],
-      uniqueCategories: [],
-      key: '',
-    },
-  ])
+    ])
+  }, [allData])
 
   return (
     <DataContext.Provider value={allData}>
