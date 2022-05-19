@@ -29,7 +29,7 @@ from api.models.medicine_models import (
 
 class ScraperMedicine(APIView):
     """
-    Class which provides an interface for the scraper to interact 
+    Class which provides an interface for the scraper to interact
     with the database models medicine and authorisation.
     """
 
@@ -55,7 +55,7 @@ class ScraperMedicine(APIView):
                 current_medicine = Medicine.objects.filter(
                     pk=medicine.get("eunumber")
                 ).first()
-                # if exists update the medicine otherwise add it, 
+                # if exists update the medicine otherwise add it,
                 # update works only on flexible variables
                 if current_medicine:
                     status = self.update_flex_medicine(medicine, current_medicine)
@@ -154,6 +154,7 @@ class ScraperMedicine(APIView):
         else:
             return False
         return True
+
 
 # if item does not exist in the database (model), add it with the serializer
 def add_lookup(model, serializer, item):

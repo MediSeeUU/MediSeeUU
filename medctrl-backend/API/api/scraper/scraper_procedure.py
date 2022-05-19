@@ -15,7 +15,7 @@ from api.models.medicine_models import (
 
 class ScraperProcedure(APIView):
     """
-    Class which provides an interface for the scraper 
+    Class which provides an interface for the scraper
     to interact with the database for procedures.
     """
 
@@ -36,7 +36,7 @@ class ScraperProcedure(APIView):
         failed_procedures = []
         for procedure in request.data:
             try:
-                # check if procedure already exists, procedures are 
+                # check if procedure already exists, procedures are
                 # unique on the combination eunumber procedurecount
                 current_procedure = (
                     Procedure.objects.filter(eunumber=procedure.get("eunumber"))
