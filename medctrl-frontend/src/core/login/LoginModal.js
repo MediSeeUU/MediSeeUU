@@ -24,7 +24,7 @@ function LoginModal(props) {
       />
 
       <ReactModal
-        className="menu-modal"
+        className="med-login-modal"
         isOpen={showModal}
         onRequestClose={closeModal}
         ariaHideApp={false}

@@ -51,6 +51,7 @@ function migrate_db {
     export DJANGO_SETTINGS_MODULE=api_settings.settings.deploy_$BUILD_NAME
     print_highlight "Migrating database"
     python manage.py migrate
+    python manage.py create_column_permissions
     python manage.py collectstatic --noinput
     cd ..
 }

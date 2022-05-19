@@ -51,9 +51,7 @@ export function InfoPage({ medData, procData }) {
   // if no medicine data is provided, no meaning full can be displayed
   if (!medData) {
     return (
-      <h1 className="detailedinfopage-unknown-medID">
-        Unknown Medicine ID Number
-      </h1>
+      <h1 className="med-info-unknown-medID">Unknown Medicine ID Number</h1>
     )
   }
 
@@ -81,7 +79,7 @@ export function InfoPage({ medData, procData }) {
 
     procedureContrainer = (
       <div className="med-content-container">
-        <h1 className="title">Procedure Details</h1>
+        <h1>Procedure Details</h1>
         <hr className="med-top-separator" />
         {procedures.map((proc) => {
           return <Procedure proc={proc} key={v4()} />
@@ -91,7 +89,7 @@ export function InfoPage({ medData, procData }) {
 
     timeLineContainer = (
       <div className="med-content-container">
-        <h1 className="title">Medicine Timeline</h1>
+        <h1>Medicine Timeline</h1>
         <hr className="med-top-separator" />
         <TimeLine procs={procedures} />
       </div>
@@ -106,10 +104,10 @@ export function InfoPage({ medData, procData }) {
   return (
     <div>
       <div className="med-content-container">
-        <h1 className="title">{medData.BrandName} Medicine Details</h1>
+        <h1>{medData.BrandName} Medicine Details</h1>
         <hr className="med-top-separator" />
 
-        <div className="flex-columns">
+        <div className="med-flex-columns">
           <DetailGroup title="General Information">
             <Detail name="Brand Name" value={medData.BrandName} />
             <Detail name="Marketing Authorisation Holder" value={medData.MAH} />
@@ -181,26 +179,26 @@ export function InfoPage({ medData, procData }) {
       {procedureContrainer}
 
       <div className="med-content-container">
-        <h1 className="title">Additional Resources</h1>
+        <h1>Additional Resources</h1>
         <hr className="med-top-separator" />
 
         <CustomLink
-          className="external-link"
+          className="med-info-external-link"
           name="EMA Website"
           dest="https://www.ema.europa.eu/en"
         />
         <CustomLink
-          className="external-link"
+          className="med-info-external-link"
           name="EC Website"
           dest="https://ec.europa.eu/info/index_en"
         />
         <CustomLink
-          className="external-link"
+          className="med-info-external-link"
           name="MEB Website"
           dest="https://english.cbg-meb.nl/"
         />
         <CustomLink
-          className="external-link"
+          className="med-info-external-link"
           name="MAH Website"
           dest="https://www.ema.europa.eu/en/glossary/marketing-authorisation-holder"
         />

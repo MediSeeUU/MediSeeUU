@@ -6,12 +6,12 @@ function TimeLineElement(props) {
   let event = props.event
 
   return (
-    <div className="el">
-      <div className="timestamp">
-        <span className="date">{date}</span>
+    <div className="med-info-timeline-element">
+      <div className="med-info-timeline-element-timestamp">
+        <span>{date}</span>
       </div>
-      <div className="decoration" />
-      <div className="event">
+      <div className="med-info-timeline-element-decoration" />
+      <div className="med-info-timeline-element-event">
         <span>{event}</span>
       </div>
     </div>
