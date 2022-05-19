@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-
 import api.urls
+from api.views.generateKey_views import GenerateKeyView
 
 # Set base url if it exists in the settings file
 base_url = settings.BASE_URL if "BASE_URL" in dir(settings) else ""
@@ -25,6 +25,8 @@ base_url = settings.BASE_URL if "BASE_URL" in dir(settings) else ""
 urlpatterns = [
     path(
         base_url,
-        include([path("admin/", admin.site.urls), path("", include(api.urls))]),
+        include([
+            path("admin/generateApiKey", GenerateKeyView.as_view(), name="generate_key"),
+            path("admin/", admin.site.urls), path("", include(api.urls))]),
     )
 ]

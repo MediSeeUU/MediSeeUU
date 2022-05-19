@@ -1,0 +1,31 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a> 
+  <span>›</span>
+  {% trans 'Generate api key' %}
+</div>
+{% endblock %}
+
+{% block content %}<div id="content-main">
+    <form action="/admin/generateApiKey" method="post">
+        {% csrf_token %}
+        <div>
+            <label style="display: inline-block; width: 60px; margin: 10px 0px">User:</label>
+            {{ form.user }}
+        </div>
+        <div>
+            <label style="display: inline-block; width: 60px; margin: 10px 0px">Duration:</label>
+            {{ form.duration }}
+            <label style="display: inline-block; width: 60px; margin: 10px 0px"> days</label>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+    <div>
+
+    </div>
+{% endblock %}

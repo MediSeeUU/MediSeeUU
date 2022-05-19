@@ -1,5 +1,8 @@
 from django.urls import path
 from django.core import serializers
+from knox.auth import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes, authentication_classes
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.serializers.medicine_serializers import (
@@ -147,7 +150,9 @@ class ScraperProcedure(APIView):
     """
     Class which provides an interface for the scraper to interact with the database for procedures.
     """
-
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+    
     def post(self, request, format=None):
         # initialize list to return failed updates/adds, so these can be checked manually
         failedProcedures = []
