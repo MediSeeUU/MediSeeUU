@@ -1,5 +1,5 @@
 // external imports
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -11,7 +11,6 @@ import { v4 as uuidv4 } from 'uuid'
 import SingleVisualization from './single_visualization/SingleVisualization'
 import { useSelectedData } from '../../shared/contexts/DataContext'
 import GetUniqueCategories from './single_visualization/utils/GetUniqueCategories'
-import GenerateBarSeries from './single_visualization/data_interfaces/BarInterface'
 import { useVisuals, useVisualsUpdate } from '../../shared/contexts/DataContext'
 import { generateSeries } from './single_visualization/SingleVisualization'
 
@@ -22,6 +21,8 @@ function VisualizationPage() {
   const [tableData, setTableData] = useState([]) // Data displayed in the modal table
   const [numbers, setNumbers] = useState([]) // The eu numbers that correspond to the clicked selection
   const [modal, setModal] = useState(false) // State of modal (open or closed)
+  const [keys, setKeys] = useState([''])
+  const [series, setSeries] = useState([[]])
 
   // event handlers
   const handleAddition = handleAdditionFunc.bind(this)
@@ -38,37 +39,60 @@ function VisualizationPage() {
     selectedData.length > 0 ? GetUniqueCategories(selectedData) : []
 
   // add some series logic so the controls update
-  var updateVisuals = false
-  if (
-    selectedData.length > 0 &&
-    visuals.length > 0 &&
-    !arrayEquals(visuals[0].data, selectedData)
-  ) {
-    visuals = visuals.map((vis) => {
+  // var updateVisuals = false
+  // if (
+  //   selectedData.length > 0 &&
+  //   visuals.length > 0 &&
+  //   !arrayEquals(visuals[0].data, selectedData)
+  // ) {
+  //   visuals = visuals.map((vis) => {
+  //     vis.data = selectedData
+  //     vis.uniqueCategories = uniqueCategories
+  //     let newSeries = generateSeries(vis.chartType, vis)
+  //     if (JSON.stringify(vis.series) !== JSON.stringify(newSeries)) {
+  //       console.log("updating all keys")
+  //       series[vis.id] = newSeries
+  //       setSeries(series)
+  //       keys[vis.id] = uuidv4()
+  //       setKeys(keys)
+  //     }
+  //     return vis
+  //   })
+  //   updateVisuals = true
+  // }
+
+  // // update visuals after page render, otherwise react can't handle the calls
+  // useEffect(() => {
+  //   if (updateVisuals) {
+  //     setVisuals(visuals)
+  //   }
+  // }, [updateVisuals, visuals, setVisuals])
+
+  // // check if two arrays are equal, need to be in the same order
+  // function arrayEquals(a, b) {
+  //   return (
+  //     Array.isArray(a) &&
+  //     Array.isArray(b) &&
+  //     a.length === b.length &&
+  //     a.every((val, index) => val === b[index])
+  //   )
+  // }
+
+  // Keep a reference of the selected data and update series if it changed
+  const dataRef = useRef([])
+  if (JSON.stringify(dataRef.current) !== JSON.stringify(selectedData)) {
+    dataRef.current = selectedData
+    let newVisuals = visuals.map((vis) => {
       vis.data = selectedData
       vis.uniqueCategories = uniqueCategories
-      vis.series = generateSeries(vis.chartType, vis)
-      vis.key = uuidv4()
+      let newSeries = generateSeries(vis.chartType, vis)
+      series[vis.id] = newSeries
+      setSeries(series)
+      keys[vis.id] = uuidv4()
+      setKeys(keys)
       return vis
     })
-    updateVisuals = true
-  }
-
-  // update visuals after page render, otherwise react can't handle the calls
-  useEffect(() => {
-    if (updateVisuals) {
-      setVisuals(visuals)
-    }
-  }, [updateVisuals, visuals, setVisuals])
-
-  // check if two arrays are equal, need to be in the same order
-  function arrayEquals(a, b) {
-    return (
-      Array.isArray(a) &&
-      Array.isArray(b) &&
-      a.length === b.length &&
-      a.every((val, index) => val === b[index])
-    )
+    setVisuals(newVisuals)
   }
 
   // EVENT HANDLERS:
@@ -76,7 +100,7 @@ function VisualizationPage() {
   // adds a new visualization to the visualizations context
   function handleAdditionFunc() {
     const newVisual = {
-      id: visuals.length + 1,
+      id: visuals.length,
       chartType: 'bar',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
@@ -87,22 +111,12 @@ function VisualizationPage() {
       legendOn: false,
       labelsOn: false,
       data: selectedData,
-      series: GenerateBarSeries(
-        {
-          chartSpecificOptions: {
-            xAxis: 'DecisionYear',
-            yAxis: 'Rapporteur',
-            categoriesSelectedY: uniqueCategories['Rapporteur'],
-            categoriesSelectedX: uniqueCategories['DecisionYear'],
-          },
-        },
-        selectedData
-      ),
       uniqueCategories: uniqueCategories,
-      key: '',
     }
 
     const newVisuals = [...visuals, newVisual]
+    setSeries([...series, generateSeries('bar', newVisual)])
+    setKeys([...keys, uuidv4()])
     setVisuals(newVisuals)
   }
 
@@ -117,6 +131,12 @@ function VisualizationPage() {
     var newVisuals = JSON.parse(JSON.stringify(visuals))
     newVisuals = newVisuals.map((item) => {
       if (item.id === settings.id) {
+        settings.data = selectedData
+        settings.uniqueCategories = uniqueCategories
+        series[settings.id] = generateSeries(settings.chartType, settings)
+        setSeries(series)
+        keys[settings.id] = uuidv4()
+        setKeys(keys)
         return settings
       }
       return item
@@ -162,6 +182,8 @@ function VisualizationPage() {
             onRemoval={handleRemoval}
             onFormChangeFunc={handleChange}
             onDataClick={handleDataClick}
+            keys={keys}
+            series={series}
           />
         </Row>
       )

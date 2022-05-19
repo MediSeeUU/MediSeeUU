@@ -220,7 +220,10 @@ function DashboardTour(props) {
     // be reset and the user redirected to the home page
     if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
       setStep(index + (action === ACTIONS.PREV ? -1 : 1))
-    } else if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+    } else if (
+      [STATUS.FINISHED, STATUS.SKIPPED].includes(status) ||
+      action === ACTIONS.CLOSE
+    ) {
       setRunJoyride(false)
       setStep(0)
       navigate('/')

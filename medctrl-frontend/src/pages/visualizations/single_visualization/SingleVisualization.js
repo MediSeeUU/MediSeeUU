@@ -46,12 +46,6 @@ class SingleVisualization extends Component {
     this.settings.chartSpecificOptions = event.chartSpecificOptions
     this.settings.legendOn = event.legendOn
     this.settings.labelsOn = event.labelsOn
-    this.settings.key = event.key
-
-    this.settings.series = generateSeries(
-      this.settings.chartType,
-      this.settings
-    )
 
     this.props.onFormChangeFunc(this.settings)
   }
@@ -83,12 +77,12 @@ class SingleVisualization extends Component {
 
   // creating a chart based on the chosen chart type
   renderChart() {
-    const key = this.settings.key
-    console.log(key)
     const legendOn = this.settings.legendOn
     const labelsOn = this.settings.labelsOn
     const id = this.props.id
-    const series = this.settings.series
+    const key = this.props.keys[id]
+    console.log('RENDER KEY: ' + key)
+    const series = this.props.series[id]
     const categories = sortCategoryData(
       this.settings.chartSpecificOptions.categoriesSelectedX
     )

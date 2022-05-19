@@ -16,14 +16,6 @@
   margin: 10px;
 }
 
-.med-tour-button {
-  float: right;
-}
-
-.med-tour-paragraph {
-  width: calc(100% - 180px);
-}
-
 .institution-logo {
   width: 400px;
   float: right;
@@ -31,22 +23,6 @@
 
 .institution-info {
   width: calc(100% - 450px);
-}
-
-.example-visualization {
-  width: 500px;
-  float: right;
-  margin: 100px 125px 0px 0px;
-}
-
-.example-visualization-panel {
-  margin: 50px 0px 50px 100px;
-}
-
-.visualization-description {
-  width: calc(100% - 600px);
-  margin: 100px 50px 0px 0px !important;
-  float: right;
 }
 
 .institution-link {

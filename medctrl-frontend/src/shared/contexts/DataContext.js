@@ -68,7 +68,7 @@ export function DataProvider({ children }) {
   //visualisation context to save the visualisations when navigating the page
   const [visuals, setVisuals] = useState([
     {
-      id: 1,
+      id: 0,
       chartType: 'bar',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
@@ -79,9 +79,7 @@ export function DataProvider({ children }) {
       legendOn: false,
       labelsOn: false,
       data: [],
-      series: [],
       uniqueCategories: [],
-      key: '',
     },
   ])
 

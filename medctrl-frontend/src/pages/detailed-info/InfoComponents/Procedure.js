@@ -6,15 +6,19 @@ import CustomLink from './CustomLink'
 // type of the procedure. there are also two links provided to both the annex
 // and the decision file.
 function Procedure(props) {
-  let decisionDate = props.proc.DecisionDate
-  let procedureType = props.proc.ProcType
-  let decisionNumber = props.proc.DecisionNumber
+  const clean = (value) => {
+    return !value ? 'NA' : value
+  }
 
-  let annexURL = props.proc.AnnexURL
-  let decisionURL = props.proc.DecisionURL
+  let decisionDate = clean(props.proc.decisiondate)
+  let procedureType = clean(props.proc.proceduretype)
+  let decisionNumber = clean(props.proc.decisionnumber)
+
+  let annexURL = props.proc.annexurl
+  let decisionURL = props.proc.decisionurl
 
   return (
-    <div className="procedure" key={'proc' + props.id}>
+    <div className="procedure">
       <div className="procedure-content">
         <ProcedureDetail
           name="Decision Date"
