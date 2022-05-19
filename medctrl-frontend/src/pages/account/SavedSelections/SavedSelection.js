@@ -24,24 +24,24 @@ function SavedSelection({ savedSelection }) {
     }
 
     setCheckedState(updatedCheckedState)
-    el.target.classList.add('animatedIcon')
+    el.target.classList.add('med-animated-icon')
     setTimeout(() => {
-      el.target.classList.remove('animatedIcon')
+      el.target.classList.remove('med-animated-icon')
     }, 500)
   }
 
   let date = new Date(savedSelection.created_at)
   return (
-    <tr className="savedSelection">
-      <td className="selection-name">{savedSelection.name}</td>
-      <td className="selection-count">{savedSelection.eunumbers.length}</td>
-      <td className="selection-created">
+    <tr className="med-saved-selection">
+      <td className="med-selection-name">{savedSelection.name}</td>
+      <td className="med-selection-count">{savedSelection.eunumbers.length}</td>
+      <td className="med-selection-created">
         {date.toLocaleDateString()} {date.toLocaleTimeString()}
       </td>
-      <td className="selection-count">
+      <td className="med-selection-count">
         <i
           onClick={useUpdateSelection.bind(null)}
-          className="bx bx-select-multiple icons"
+          className="bx bx-select-multiple med-table-icons"
         ></i>
       </td>
     </tr>

@@ -5,19 +5,19 @@
   }
 }
 
-.tableHeader,
-.tableBody,
-.med_table {
+.med-table-header,
+.med-table-body,
+.med-table {
   display: revert;
   width: 98%;
 }
 
-.animatedIcon {
+.med-animated-icon {
   animation-name: inverted-blink;
   animation-duration: 0.5s;
   border-radius: 10%;
 }
 
-.icons {
+.med-table-icons {
   font-size: 1.5em;
 }

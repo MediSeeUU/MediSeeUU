@@ -33,8 +33,8 @@ export default function SavedSelections(props) {
     <div>
       <DetailGroup title="Saved Selections">
         {savedSelections && savedSelections.length > 0 ? (
-          <table className="med_table">
-            <thead className="tableHeader">
+          <table className="med-table">
+            <thead className="med-table-header">
               <tr>
                 <th>Name</th>
                 <th>Count</th>
@@ -42,7 +42,7 @@ export default function SavedSelections(props) {
                 <th>Select</th>
               </tr>
             </thead>
-            <tbody className="tableBody">
+            <tbody className="med-table-body">
               {savedSelections.map((x) => (
                 <SavedSelection key={x.id} savedSelection={x} />
               ))}
