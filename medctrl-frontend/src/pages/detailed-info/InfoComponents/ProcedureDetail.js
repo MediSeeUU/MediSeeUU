@@ -2,9 +2,9 @@
 // is used by the procedure component to display all the relevant information
 function ProcedureDetail(props) {
   return (
-    <div className={'procedure-detail ' + props.width}>
-      <span className="procedure-label">{props.name}</span> <br />
-      <span className="procedure-value">{props.value}</span>
+    <div className={'med-info-procedure-detail ' + props.width}>
+      <span className="med-info-procedure-detail-label">{props.name}</span> <br />
+      <span className="med-info-procedure-detail-value">{props.value}</span>
     </div>
   )
 }

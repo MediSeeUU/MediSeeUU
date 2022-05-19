@@ -2,9 +2,9 @@
 // preferably resides inside a detail group component
 function Detail(props) {
   return (
-    <div className="detail">
-      <span className="detail-name">{props.name}</span>
-      <span className="detail-value">{props.value}</span>
+    <div className="med-info-detail">
+      <span className="med-info-detail-name">{props.name}</span>
+      <span className="med-info-detail-value">{props.value}</span>
     </div>
   )
 }
