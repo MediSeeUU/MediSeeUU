@@ -1,0 +1,23 @@
+@keyframes inverted-blink {
+  50% {
+    background-color: var(--text-primary);
+    color: var(--core-body);
+  }
+}
+
+.tableHeader,
+.tableBody,
+.med_table {
+  display: revert;
+  width: 98%;
+}
+
+.animatedIcon {
+  animation-name: inverted-blink;
+  animation-duration: 0.5s;
+  border-radius: 10%;
+}
+
+.icons {
+  font-size: 1.5em;
+}
