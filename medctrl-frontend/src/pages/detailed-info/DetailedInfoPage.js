@@ -51,9 +51,7 @@ export function InfoPage({ medData, procData }) {
   // if no medicine data is provided, no meaning full can be displayed
   if (!medData) {
     return (
-      <h1 className="med-info-unknown-medID">
-        Unknown Medicine ID Number
-      </h1>
+      <h1 className="med-info-unknown-medID">Unknown Medicine ID Number</h1>
     )
   }
 

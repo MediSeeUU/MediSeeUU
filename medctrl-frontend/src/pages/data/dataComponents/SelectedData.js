@@ -22,7 +22,7 @@ function SelectedData({ selectedData }) {
         setResultsPerPage: setResultsPerPage,
         select: false,
         text: 'No data to display, please clear your search or filters.',
-        menu: <ExportMenu selectedData={selectedData} />
+        menu: <ExportMenu selectedData={selectedData} />,
       })}
     </div>
   )

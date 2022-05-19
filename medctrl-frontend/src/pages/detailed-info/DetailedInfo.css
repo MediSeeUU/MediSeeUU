@@ -236,10 +236,12 @@
   left: calc(50% - 12.5px);
 }
 
-.med-info-timeline-element:first-child .med-info-timeline-element-decoration:before {
+.med-info-timeline-element:first-child
+  .med-info-timeline-element-decoration:before {
   left: -12.5px;
 }
 
-.med-info-timeline-element:last-child .med-info-timeline-element-decoration:before {
+.med-info-timeline-element:last-child
+  .med-info-timeline-element-decoration:before {
   left: calc(100% - 12.5px);
 }

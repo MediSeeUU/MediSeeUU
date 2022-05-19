@@ -12,13 +12,13 @@ function Footer() {
         <ul className="med-footer-organization-list">
           <li>
             {' '}
-            <a className='med-link' href="https://english.cbg-meb.nl/" >
+            <a className="med-link" href="https://english.cbg-meb.nl/">
               Medicines Evaluation Board
             </a>
           </li>
           <li>
             {' '}
-            <a className='med-link' href="https://www.uu.nl/en">
+            <a className="med-link" href="https://www.uu.nl/en">
               Utrecht University
             </a>
           </li>
@@ -32,7 +32,10 @@ function Footer() {
           dashboard, including the data collection, is maintained by Utrecht
           University and the Dutch Medicines Evaluation Board. For more
           information please visit the{' '}
-          <NavLink className='med-link' to='/info'>info page</NavLink>.
+          <NavLink className="med-link" to="/info">
+            info page
+          </NavLink>
+          .
         </p>
       </section>
     </footer>

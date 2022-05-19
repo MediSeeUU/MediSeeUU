@@ -148,7 +148,10 @@ function ResultsSelector({
         </div>
       )}
 
-      <div className="med-table-pagination-container" data-testid="pagination-div">
+      <div
+        className="med-table-pagination-container"
+        data-testid="pagination-div"
+      >
         <i
           onClick={() => Back()}
           className="bx bxs-chevron-left med-table-change-page"

@@ -186,7 +186,10 @@ class Menu extends React.Component {
           <div className="med-filter-menu">
             <h1 className="med-table-menu-header">Filters</h1>
             <hr className="med-top-separator" />
-            <div className="med-table-menu-add-filter med-primary-text" onClick={this.addFilter}>
+            <div
+              className="med-table-menu-add-filter med-primary-text"
+              onClick={this.addFilter}
+            >
               Add Filter
               <i className="bx bxs-plus-square med-table-menu-add-filter-icon"></i>
             </div>
@@ -212,8 +215,8 @@ class Menu extends React.Component {
               >
                 Apply
               </button>
-              <button 
-                className="med-table-menu-button med-table-menu-secondary-button" 
+              <button
+                className="med-table-menu-button med-table-menu-secondary-button"
                 onClick={this.clear}
               >
                 Clear

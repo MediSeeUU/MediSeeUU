@@ -221,7 +221,10 @@ class ExportDialog extends React.Component {
         >
           Download
         </button>
-        <button className="med-cancel-download-button" onClick={this.closeDialog}>
+        <button
+          className="med-cancel-download-button"
+          onClick={this.closeDialog}
+        >
           Cancel
         </button>
       </div>

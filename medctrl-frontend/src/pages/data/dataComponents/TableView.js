@@ -10,7 +10,7 @@ export default function TableView({
   setResultsPerPage,
   select,
   text,
-  menu
+  menu,
 }) {
   if (!data || data.length === 0) {
     return <label className="med-table-placeholder-text">{text}</label>

@@ -1,8 +1,7 @@
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
 module.exports = function (app) {
-
-  if(process.env.REACT_APP_RDR_DEV) {
+  if (process.env.REACT_APP_RDR_DEV) {
     app.use(
       '/api',
       createProxyMiddleware({
@@ -10,8 +9,7 @@ module.exports = function (app) {
         changeOrigin: true,
       })
     )
-  }
-  else {
+  } else {
     app.use(
       '/api',
       createProxyMiddleware({
@@ -20,6 +18,4 @@ module.exports = function (app) {
       })
     )
   }
-
-
 }
