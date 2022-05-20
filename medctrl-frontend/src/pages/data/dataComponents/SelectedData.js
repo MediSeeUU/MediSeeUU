@@ -1,11 +1,11 @@
-import React, { useState , useRef} from 'react'
+import React, { useState, useRef } from 'react'
 import { useSelectedData } from '../../../shared/contexts/DataContext'
 import TableView from './TableView'
 import ExportMenu from '../ExportMenu/ExportMenu'
-import { useColumnSelection, useData } from '../../../shared/contexts/DataContext'
+import { useColumnSelection } from '../../../shared/contexts/DataContext'
 import updateData from '../Utils/update'
 
-function SelectedData({ selectedData: allSelectedData }) {
+function SelectedData({ allSelectedData }) {
   //amount of databse hits shown per page
   const [resultsPerPage, setResultsPerPage] = useState(25)
 
@@ -16,8 +16,8 @@ function SelectedData({ selectedData: allSelectedData }) {
 
   let columns = useColumnSelection()
   let columnsRef = useRef(columns)
-  const [search, setSearch] = useState('') // Current search
-  const [filters, setFilters] = useState([{ selected: '', input: [''] }]) // Current filters
+  const search = ''
+  const filters = [{ selected: '', input: [''] }] // Current filters
   const [sorters, setSorters] = useState([{ selected: '', order: 'asc' }]) // Current sorters
   const updatedData = updateData(
     allSelectedData,
@@ -26,7 +26,6 @@ function SelectedData({ selectedData: allSelectedData }) {
     sorters,
     columnsRef.current
   )
-
 
   //main body of the page
   return (

@@ -32,7 +32,7 @@ export default function TableView({
           amountPerPage={resultsPerPage}
           selectTable={select}
           menu={menu}
-          setSorters = {setSorters}
+          setSorters={setSorters}
         />
         <ResultsSelector
           data={data}

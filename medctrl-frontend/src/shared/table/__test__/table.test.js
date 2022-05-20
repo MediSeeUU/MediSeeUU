@@ -1,16 +1,19 @@
-import React from 'react'
+import { React } from 'react'
 import ReactDOM from 'react-dom'
 import { render, screen, fireEvent, within } from '@testing-library/react'
 import Table from '../table'
 import DummyData from '../../../testJson/data.json'
 import {
+  DataContext,
+  SelectedContext,
   CheckedContext,
   CheckedContextUpdate,
   ColumnSelectionContext,
   ColumnSelectionContextUpdate,
 } from '../../contexts/DataContext'
 import { BrowserRouter } from 'react-router-dom'
-import { dataToDisplayFormat} from '../../table/table'
+import { dataToDisplayFormat } from '../../table/table'
+import updateData from '../../../pages/data/Utils/update'
 
 test('renders without crashing', () => {
   var columnSelection = [
@@ -385,7 +388,7 @@ test('data put and displayed correctly into table', () => {
     'EUNoShort',
     'BrandName',
     'MAH',
-    'DecisionDate', 
+    'DecisionDate',
     'ATCNameL2',
     'ApplicationNo',
     'ApplicationNo',
@@ -413,22 +416,21 @@ test('data put and displayed correctly into table', () => {
     const propt = select.value
     rows.forEach((row, index2) => {
       const cells = within(row).getAllByRole('cell')
-      const cellValue = cells[index].innerHTML
+      const cellValue = cells[index].textContent
       const entry = DummyData[index2]
       const DisplayedData = dataToDisplayFormat({ entry, propt })
       expect(cellValue).toBe(DisplayedData.toString())
     })
   })
-
 })
 
-test('sorting on EUNoShort columnheader sorts data', ()=>{
-  
+test('sorting on leftmost columnheader sorts data', () => {
+  var data = DummyData
   var columnSelection = [
     'EUNoShort',
     'BrandName',
     'MAH',
-    'DecisionDate', 
+    'DecisionDate',
     'ATCNameL2',
     'ApplicationNo',
     'ApplicationNo',
@@ -437,32 +439,64 @@ test('sorting on EUNoShort columnheader sorts data', ()=>{
   const setColumnSelection = (newColumns) => {
     columnSelection = newColumns
   }
+  let checkedState = Object.assign(
+    {},
+    ...data.map((entry) => ({ [entry.EUNumber]: true }))
+  )
+
+  const selectedData = data.filter((item, index) => {
+    return checkedState[item.EUNumber]
+  })
+
+  const search = '' // Current search
+  const filters = [{ selected: '', input: [''] }] // Current filters
+
+  var sorters = [{ selected: '', order: 'asc' }]
+  const setSorters = (newsorter) => {
+    sorters = newsorter
+  }
+  //updateData(datai, search, filters, sorters, columns)
+  const updatedData = updateData(
+    selectedData,
+    search,
+    filters,
+    sorters,
+    columnSelection
+  )
 
   render(
     <BrowserRouter>
-      <ColumnSelectionContext.Provider value={columnSelection}>
-        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-          <Table data={DummyData} currentPage={1} amountPerPage={10} />
-        </ColumnSelectionContextUpdate.Provider>
-      </ColumnSelectionContext.Provider>
+      <DataContext.Provider value={data}>
+        <SelectedContext.Provider value={selectedData}>
+          <ColumnSelectionContext.Provider value={columnSelection}>
+            <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+              <Table
+                data={updatedData}
+                currentPage={1}
+                amountPerPage={10}
+                setSorters={setSorters}
+              />
+            </ColumnSelectionContextUpdate.Provider>
+          </ColumnSelectionContext.Provider>
+        </SelectedContext.Provider>
+      </DataContext.Provider>
     </BrowserRouter>
   )
 
-  const firstcolumndescsortbutton = screen.getAllByText('v')[0]
+  const firstcolumndescsortbutton = screen.getAllByText('^')[0]
   fireEvent.click(firstcolumndescsortbutton)
-  //table should now be sorted descending on EUNoShort number
+  //table should now be sorted descending on first column attribute value
   const rowgroup = screen.getAllByRole('rowgroup')[1]
   const rows = within(rowgroup).getAllByRole('row')
-  var prevrowvalue = rows[0].cells[0].innerHTML
-  console.log(prevrowvalue)
-    rows.forEach((row) => {
-      const cellValue = row.cells[0].innerHTML
-      console.log(cellValue)
-      expect(parseInt(cellValue)).toBeLessThanOrEqual(parseInt(prevrowvalue))
-      prevrowvalue = cellValue
-    })
-  })
+  var prevrowvalue = rows[0].cells[0].textContent
 
+  rows.forEach((row) => {
+    const cellValue = row.cells[0].textContent
+
+    expect(parseInt(cellValue)).toBeGreaterThanOrEqual(parseInt(prevrowvalue))
+    prevrowvalue = cellValue
+  })
+})
 
 test('column change changes data in row', () => {
   var columnSelection = [

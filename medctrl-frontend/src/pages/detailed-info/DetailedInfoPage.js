@@ -113,7 +113,13 @@ export function InfoPage({ medData, procData }) {
             <Detail name="Brand Name" value={medData.BrandName} />
             <Detail name="Marketing Authorisation Holder" value={medData.MAH} />
             <Detail name="Active Substance" value={medData.ActiveSubstance} />
-            <Detail name="Decision Date" value={dataToDisplayFormat({entry:medData, propt:'DecisionDate'}) } />
+            <Detail
+              name="Decision Date"
+              value={dataToDisplayFormat({
+                entry: medData,
+                propt: 'DecisionDate',
+              })}
+            />
           </DetailGroup>
 
           <DetailGroup title="Identifying Information">
