@@ -43,7 +43,6 @@ export function useVisualsUpdate() {
   return useContext(VisualsUpdateContext)
 }
 
-
 export function DataProvider({ children }) {
   // list of all the medicine data points
   const [medData, setMedData] = useState([])
@@ -61,15 +60,10 @@ export function DataProvider({ children }) {
     fetchAllData()
   }, [setMedData])
 
-  return (
-    <StaticDataProvider allData={medData} > 
-      {children}
-    </StaticDataProvider>
-  )
+  return <StaticDataProvider allData={medData}>{children}</StaticDataProvider>
 }
 
-export function StaticDataProvider({ children, allData}) {
-
+export function StaticDataProvider({ children, allData }) {
   //list of checked datapoints
   const [checkedState, setCheckedState] = useState(
     Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: true })))

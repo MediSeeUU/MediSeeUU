@@ -63,9 +63,7 @@ const mockApi = setupServer(
   }),
   rest.get('/api/procedure/:medID', (req, res, ctx) => {
     // respond using a mocked JSON body
-    return res(
-      ctx.json(sampleProcedureData.procedures)
-    )
+    return res(ctx.json(sampleProcedureData.procedures))
   })
 )
 
