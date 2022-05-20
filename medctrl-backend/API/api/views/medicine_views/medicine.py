@@ -1,9 +1,9 @@
 from rest_framework import viewsets
 from rest_framework import permissions
-from django.contrib.auth.models import Group
 from api.models import SavedSelection
 from api.serializers.medicine_serializers import PublicMedicineSerializer
 from api.models.medicine_models import Medicine
+from api.views.other import permissionFilter
 
 
 class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
@@ -32,15 +32,7 @@ class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
         context = super().get_serializer_context()
 
         user = self.request.user
-        if user.is_anonymous:
-            # If user is anonymous, return default permissions for anonymous group
-            perms = Group.objects.get(name="anonymous").permissions.all()
-            perms = [x.codename.split(".") for x in perms]
-        else:
-            perms = user.get_all_permissions(obj=None)
-            perms = [x.split(".") for x in perms]
-
-        perms = [x[-2] for x in perms if len(x) > 2 and x[-1] == "view"]
+        perms = permissionFilter(user)
 
         # Set the permissions in the requests' context so the serializer can use them
         context.update({"permissions": perms})
