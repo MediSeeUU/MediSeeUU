@@ -116,17 +116,18 @@ function DisplayTable({
           ) : null}
           {columnSelection.map((propt, index2) => {
             return (
-                      <td className="med_td" key={index2}>
-                        {dataToDisplayFormat({entry, propt})}
-                      </td>
-                    )
-           
-            
+              <td className="med-table-body-cell" key={index2}>
+                <div>{dataToDisplayFormat({entry, propt})}</div>
+              </td>
+            )
           })}
-          <InfoboxColumn EUidNumber={entry.EUNoShort} />
-          {!selectTable && !searchTable && (
-            <BinboxColumn onp={handleOnChange.bind(null, entry.EUNumber)} />
-          )}
+          <RightStickyActions
+            EUidNumber={entry.EUNoShort}
+            selectTable={selectTable}
+            searchTable={searchTable}
+            entry={entry}
+            handleOnChange={handleOnChange}
+          />
         </tr>
       )
     })
@@ -134,15 +135,15 @@ function DisplayTable({
   //return table, with a header with the data keywords
   return (
     <>
-      <div className="addRmCollumn">
+      <div className="med-add-remove-button-container">
         <i
-          className="bx-plusMinus bx bxs-plus-square med-primary-text"
+          className="med-add-remove-button bx bxs-plus-square med-primary-text"
           onClick={() => addColumn()}
           data-testid="add-column"
         />
 
         <i
-          className="bx-plusMinus bx bxs-minus-square med-primary-text"
+          className="med-add-remove-button bx bxs-minus-square med-primary-text"
           onClick={() => removeColumn()}
           data-testid="remove-column"
         />
@@ -150,27 +151,27 @@ function DisplayTable({
         {menu}
       </div>
 
-      <table className="med_table">
-        <thead className="tableHeader">
-          <tr className="med_rows">
+      <table className="med-table">
+        <thead className="med-table-header">
+          <tr className="">
             {
               //if selectTable, add check all checkbox to the header
-              selectTable ? (
+              selectTable && (
                 <CheckboxColumn
                   value={allSelected}
                   onChange={handleAllChange}
                   data={LocalTableData}
                 />
-              ) : null
+              )
             }
             {
               //add object keys to the table header
               columnSelection.map((key1, index1) => {
                 return (
-                  <th key={index1} className="med_th">
+                  <th key={index1} className="med-table-header-cell">
                     <select
                       value={key1}
-                      className="med_th_select"
+                      className="med-table-header-select-cell"
                       onChange={(e) =>
                         handleColumnChange(index1, e.target.value)
                       }
@@ -203,17 +204,11 @@ function DisplayTable({
             }
             {
               //if selectedTable, add coloredbar to the header
-              <td className="med_td smallColumn"></td>
-            }
-            {
-              //if selectedTable, add coloredbar to the header
-              !selectTable && !searchTable ? (
-                <td className="med_td smallColumn"></td>
-              ) : null
+              <td className="med-table-body-cell med-table-narrow-column med-column-right"></td>
             }
           </tr>
         </thead>
-        <tbody className="tableBody">{htmlData}</tbody>
+        <tbody className="med-table-body">{htmlData}</tbody>
       </table>
     </>
   )
@@ -244,7 +239,7 @@ function slashDateToStringDate(date)
 //logic for the checkboxes
 const CheckboxColumn = ({ value, onChange }) => {
   return (
-    <td className="med_td smallColumn">
+    <td className="med-table-body-cell med-table-narrow-column med-column-left">
       <input
         className="tableCheckboxColumn"
         type="checkbox"
@@ -255,22 +250,28 @@ const CheckboxColumn = ({ value, onChange }) => {
   )
 }
 
-//logic for the bin
-function BinboxColumn({ onp }) {
+//Component that holds actions that are always on the right of the table
+function RightStickyActions({
+  EUidNumber,
+  selectTable,
+  searchTable,
+  entry,
+  handleOnChange,
+}) {
   return (
-    <td className="med_td smallColumn">
-      <i className="bx bx-trash icons med-primary-text" onClick={onp}></i>
-    </td>
-  )
-}
+    <td className="med-table-body-cell med-table-narrow-column med-column-right">
+      {/* Trash can icon, only visible on certain tables */}
+      {!selectTable && !searchTable && (
+        <i
+          className="bx bx-trash med-table-icons med-primary-text"
+          onClick={handleOnChange.bind(null, entry.EUNumber)}
+        ></i>
+      )}
 
-//logic for the information button
-function InfoboxColumn({ EUidNumber }) {
-  return (
-    <td className="med_td smallColumn">
+      {/* Link to details page */}
       <Link to={`/details/${EUidNumber}`}>
         <i
-          className="bx bx-info-circle icons med-primary-text"
+          className="bx bx-info-circle med-table-icons med-primary-text"
           id={'detailInfo' + EUidNumber}
           testid={'detailInfo' + EUidNumber}
         />

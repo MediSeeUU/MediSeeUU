@@ -53,31 +53,11 @@ class SideNavigation extends React.Component {
   // returns a string representation of the navigation bar state, the navigation
   // bar is either in the open (expanded) or closed (collapsed) state
   getState() {
-    return this.state.expanded ? 'open-nav' : 'closed-nav'
+    return this.state.expanded ? 'med-open' : 'med-closed'
   }
 
   // generates the entire navigation bar component, with all the appropriate elements
   render() {
-    // if a user is logged in and is an admin, display the links to the
-    // messages and settings pages below the other links
-    let Extra = !(this.state.loggedin && this.state.isAdmin) ? null : (
-      <div>
-        <hr className="nav-separator" />
-        <NavLink
-          name="Messages"
-          image="bx bx-chat"
-          dest="/messages"
-          parent={this}
-        />
-        <NavLink
-          name="Settings"
-          image="bx bx-cog"
-          dest="/settings"
-          parent={this}
-        />
-      </div>
-    )
-
     // if the user is logged in, a log out link should be rendered
     // if the user is not logged in, a log in link should be rendered
     let Auth = this.state.loggedin ? (
@@ -107,7 +87,7 @@ class SideNavigation extends React.Component {
     // returns the navigation bar component, with all the appropriate elements
     return (
       <OutsideClickHandler onOutsideClick={this.close.bind(this)}>
-        <nav className={'side-nav ' + this.getState()}>
+        <nav className={'med-side-nav ' + this.getState()}>
           <Toggle expanded={this.state.expanded} parent={this} />
 
           <NavLink
@@ -137,8 +117,13 @@ class SideNavigation extends React.Component {
             dest="/visualizations"
             parent={this}
           />
+          <NavLink
+            name="Settings"
+            image="bx bx-cog"
+            dest="/settings"
+            parent={this}
+          />
 
-          {Extra}
           {Acc}
           {Auth}
         </nav>

@@ -33,17 +33,17 @@ function SelectedData({ selectedData: allSelectedData }) {
     <div tour="step-data-selected" className="med-content-container">
       <h1>Selected Data Points</h1>
       <hr className="med-top-separator" />
-      {TableView(
-        updatedData,
-        resultsPerPage,
-        loadedPage,
-        setPage,
-        setResultsPerPage,
-        setSorters,
-        false,
-        'No data has been selected, select data points in the table above.',
-        <ExportMenu selectedData={allSelectedData} />
-      )}
+      {TableView({
+        data: updatedData,
+        resultsPerPage: resultsPerPage,
+        loadedPage: loadedPage,
+        setPage: setPage,
+        setResultsPerPage: setResultsPerPage,
+        setSorters: setSorters,
+        select: false,
+        text: 'No data to display, please clear your search or filters.',
+        menu: <ExportMenu selectedData={selectedData} />,
+      })}
     </div>
   )
 }

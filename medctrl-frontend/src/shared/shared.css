@@ -54,6 +54,29 @@
   --med-table-row-odd-background: var(--secondary-light);
 }
 
+/*
+  Global scroll bar styling
+*/
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-track {
+  background: var(--secondary-normal);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-normal);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-light);
+}
+
 /* Shared Style Class Definitions */
 
 /* 
@@ -82,6 +105,12 @@
 
   border-radius: 5px;
   border: none;
+}
+
+.med-button-image {
+  font-size: 25px;
+  margin-left: 10px;
+  float: left;
 }
 
 /*
@@ -129,6 +158,14 @@
 .med-error-message {
   background-color: var(--negative-light);
   color: var(--negative-dark);
+  padding: 5px;
+  font-weight: 300;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+.med-error-message-header {
+  font-weight: bold;
 }
 
 /* 
@@ -152,4 +189,27 @@
 
 .med-top-separator {
   margin: 0.5rem 0.5rem;
+}
+
+/*
+  Styling for all links on the dashboard
+*/
+
+.med-link {
+  color: var(--med-textlink-text);
+  text-decoration: none;
+}
+
+.med-link:hover {
+  color: var(--med-textlink-text-hover);
+}
+
+/*
+  Styling for description text element
+*/
+
+.med-description {
+  color: var(--med-additional-text);
+  font-weight: 300;
+  font-size: 14px;
 }

@@ -21,7 +21,7 @@ function TimeLine(props) {
     )
   })
 
-  return <div className="timeline">{allElements}</div>
+  return <div className="med-info-timeline">{allElements}</div>
 }
 
 export default TimeLine

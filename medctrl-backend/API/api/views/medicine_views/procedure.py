@@ -5,6 +5,10 @@ from api.models.medicine_models import Procedure
 
 
 class ProcedureViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Viewset for the Procedure model
+    """
+
     serializer_class = ProcedureSerializer
 
     def get_queryset(self):
