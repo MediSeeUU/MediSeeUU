@@ -63,42 +63,93 @@ export function DataProvider({ children }) {
       for (var i = 0; i < dataFromServer.length; ++i) {
         const dataPoint = dataFromServer[i]
         if (dataPoint.eunumber) {
-          cleanedData.push({
-            ApplicationNo: clean(dataPoint.emanumber),
-            EUNumber: 'EMA-' + clean(dataPoint.eunumber),
-            EUNoShort: clean(dataPoint.eunumber),
-            BrandName: clean(dataPoint.brandname),
-            MAH: clean(dataPoint.mah),
-            ActiveSubstance: clean(dataPoint.activesubstance),
-            DecisionDate: clean(dataPoint.decisiondate),
-            DecisionYear: clean(dataPoint.decisiondate).substring(0, 4),
-            Period: 'NA',
-            Rapporteur: clean(dataPoint.rapporteur),
-            CoRapporteur: clean(dataPoint.corapporteur),
-            ATCCodeL2: clean(dataPoint.atccode),
-            ATCCodeL1: 'NA',
-            ATCNameL2: 'NA',
-            LegalSCope: clean(dataPoint.legalscope),
-            ATMP: clean(dataPoint.atmp),
-            OrphanDesignation: clean(dataPoint.orphan),
-            NASQualified: 'NA',
-            CMA: 'NA',
-            AEC: 'NA',
-            LegalType: clean(dataPoint.legalbasis),
-            PRIME: clean(dataPoint.prime),
-            NAS: 'NA',
-            AcceleratedGranted: clean(dataPoint.acceleratedgranted),
-            AcceleratedExecuted: clean(dataPoint.acceleratedmaintained),
-            ActiveTimeElapsed: clean(dataPoint.authorisationactivetime),
-            ClockStopElapsed: clean(dataPoint.authorisationstoppedtime),
-            TotalTimeElapsed: clean(dataPoint.authorisationtotaltime),
-          })
+          cleanedData.push(
+            maakmooi(dataPoint)
+            
+            
+          
+          )
         }
       }
       setAllData(cleanedData)
     }
     fetchAllData()
   }, [setAllData])
+
+  function maakmooi(dataPoint){
+    const nullReplaceText = "NA"
+    const clean = (value) => {
+      return !value ? 'NA' : value
+    }
+    const bool01tostring = (bool01value) =>{
+      switch(bool01value)
+      {
+          case null:
+          return nullReplaceText
+          case '':
+          case "":
+          case "unknown":
+          case "NA":
+          return nullReplaceText
+          case 0:
+          return "No"
+          case 1:
+          return "Yes"
+          default:
+            if(/^[0-9]+$/.test(bool01value))
+            {return parseInt(bool01value)}
+            else
+            { return bool01value}
+         
+
+      }
+     
+    }
+    // Y-M-D ->  M/D/Y 
+    const reformatDate = (date) =>{
+      if(date === null || date==='NA')
+      {return 'NA'}
+      else
+      {let splitteddate = date.split('-')
+      return splitteddate[1]+'/'+splitteddate[2]+'/'+splitteddate[0]}
+      
+      
+    }
+  // used ?? to filter out NULL values; https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
+    
+    var formattedDatapoint = {
+      ApplicationNo: bool01tostring(dataPoint.emanumber),
+      EUNumber: 'EMA-' + clean(dataPoint.eunumber),  //DELETE
+      EUNoShort: dataPoint.eunumber ?? nullReplaceText,
+      BrandName: bool01tostring( dataPoint.brandname),
+      MAH: bool01tostring(dataPoint.mah),
+      ActiveSubstance: dataPoint.activesubstance ?? nullReplaceText, //
+      DecisionDate:reformatDate(bool01tostring(dataPoint.decisiondate)),
+      DecisionYear:  bool01tostring(dataPoint.decisiondate).substring(0, 4),
+      Period: 'NA', // how calc??
+      Rapporteur: bool01tostring(dataPoint.rapporteur),
+      CoRapporteur: bool01tostring(dataPoint.corapporteur),
+      ATCCodeL2: bool01tostring(dataPoint.atccode),
+      ATCCodeL1: 'NA',
+      ATCNameL2: 'NA',
+      LegalSCope:bool01tostring(dataPoint.legalscope),
+      ATMP: bool01tostring(dataPoint.atmp),//clean(dataPoint.atmp)==='NA' ? 'NA' : booltostring(),
+      OrphanDesignation: bool01tostring(dataPoint.orphan),
+      NASQualified: 'NA',
+      CMA: 'NA',
+      AEC: 'NA', 
+      LegalType: bool01tostring(dataPoint.legalbasis),
+      PRIME: bool01tostring(dataPoint.prime),
+      NAS: 'NA',
+      AcceleratedGranted: bool01tostring(dataPoint.acceleratedgranted), //
+      AcceleratedExecuted:bool01tostring(dataPoint.acceleratedmaintained), //
+      ActiveTimeElapsed: dataPoint.authorisationactivetime ?? nullReplaceText,
+      ClockStopElapsed: dataPoint.authorisationstoppedtime ?? nullReplaceText,
+      TotalTimeElapsed: dataPoint.authorisationtotaltime ?? nullReplaceText,
+    }
+    return formattedDatapoint
+  }
+
 
   //list of checked datapoints
   const [checkedState, setCheckedState] = useState(
