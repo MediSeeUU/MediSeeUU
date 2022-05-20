@@ -14,6 +14,7 @@ import {
 } from '../../../shared/contexts/DataContext'
 import { BrowserRouter } from 'react-router-dom'
 import allData from '../../../testJson/data.json'
+import MockDataProvider from '../../../shared/contexts/MockDataContext.js'
 
 test('DataPage renders without crashing', () => {
   const root = document.createElement('div')
@@ -48,9 +49,9 @@ test('data can be cleared', () => {
   const root = document.createElement('div')
   render(
     <BrowserRouter>
-      <DataProvider>
+      <MockDataProvider>
         <DataPage />
-      </DataProvider>
+      </MockDataProvider>
     </BrowserRouter>,
     root
   )
@@ -67,9 +68,9 @@ test('data can be selected', () => {
   const root = document.createElement('div')
   render(
     <BrowserRouter>
-      <DataProvider>
+      <MockDataProvider>
         <DataPage />
-      </DataProvider>
+      </MockDataProvider>
     </BrowserRouter>,
     root
   )

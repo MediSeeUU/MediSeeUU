@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { render, screen } from '@testing-library/react'
 import DetailedInfoPage, { InfoPage } from '../DetailedInfoPage'
-import { DataProvider } from '../../../shared/contexts/DataContext'
-import DummyData from '../detailed-info-data.json'
+import { act } from 'react-dom/test-utils'
+import MockDataProvider from '../../../shared/contexts/MockDataContext'
 
 // https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
 jest.mock('react-router-dom', () => ({
@@ -16,25 +16,22 @@ jest.mock('react-router-dom', () => ({
 test('detailed info page renders without crashing', () => {
   const root = document.createElement('div')
   ReactDOM.render(
-    <DataProvider>
+    <MockDataProvider>
       <DetailedInfoPage />
-    </DataProvider>,
+    </MockDataProvider>,
     root
   )
 })
 
 test('detailed info page displays correct med and proc data', async () => {
-  let medData = DummyData.info
-  let procData = DummyData.procedures
-
   render(
-    <DataProvider>
-      <InfoPage medData={medData} procData={procData} />
-    </DataProvider>
+    <MockDataProvider>
+      <DetailedInfoPage />
+    </MockDataProvider>
   )
 
   // wait for the procedure data to be retrieved from the server
-  // await act(() => new Promise((resolve) => setTimeout(resolve, 1500)))
+  await act(() => new Promise((resolve) => setTimeout(resolve, 1500)))
 
   const medName = screen.getByText('Comirnaty')
   expect(medName).toBeTruthy()
@@ -45,9 +42,9 @@ test('detailed info page displays correct med and proc data', async () => {
 
 test('detailed info page correctly retrieves medID from url', () => {
   render(
-    <DataProvider>
+    <MockDataProvider>
       <DetailedInfoPage />
-    </DataProvider>
+    </MockDataProvider>
   )
 
   const medName = screen.getByText('Comirnaty')
@@ -56,9 +53,9 @@ test('detailed info page correctly retrieves medID from url', () => {
 
 test('detailed info page shows error for unknown medIDs', () => {
   render(
-    <DataProvider>
+    <MockDataProvider>
       <InfoPage medData={null} procData={null} />
-    </DataProvider>
+    </MockDataProvider>
   )
   const errorMessage = screen.getAllByText('Unknown Medicine ID Number')
   expect(errorMessage).toBeTruthy()
