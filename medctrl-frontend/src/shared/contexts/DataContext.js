@@ -1,8 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react'
 import GetUniqueCategories from '../../pages/visualizations/single_visualization/utils/GetUniqueCategories'
 import cleanFetchedData from './DataParsing'
+import structServerData from './structServer.json'
 
 export const DataContext = React.createContext()
+export const StructureContext = React.createContext()
 export const SelectedContext = React.createContext()
 export const CheckedContext = React.createContext()
 export const CheckedContextUpdate = React.createContext()
@@ -13,6 +15,10 @@ export const VisualsUpdateContext = React.createContext()
 
 export function useData() {
   return useContext(DataContext)
+}
+
+export function useStructure() {
+  return useContext(StructureContext)
 }
 
 export function useSelectedData() {
@@ -47,23 +53,43 @@ export function DataProvider({ children }) {
   // list of all the medicine data points
   const [medData, setMedData] = useState([])
 
+  // json object defining the structure of the fetched medicine data
+  const [structData, setStructData] = useState({})
+
   // retrieve all medicine data points from the backend
   useEffect(() => {
     async function fetchAllData() {
-      const response = await fetch(`${process.env.PUBLIC_URL}/api/medicine/`, {
+      const medResponse = await fetch(`${process.env.PUBLIC_URL}/api/medicine/`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       })
-      const repsonseData = await response.json()
-      setMedData(cleanFetchedData(repsonseData))
+      /*
+      const structResponse = await fetch(`${process.env.PUBLIC_URL}/api/detailedData/`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      const structResponseData = await structResponse.json()
+      */
+      const structResponseData = structServerData
+      const medResponseData = await medResponse.json()
+      
+      setMedData(cleanFetchedData(medResponseData, structResponseData))
+      setStructData(structResponseData)
+      console.log('fetched the data!')
     }
     fetchAllData()
   }, [setMedData])
 
-  return <StaticDataProvider allData={medData}>{children}</StaticDataProvider>
+  return (
+    <StaticDataProvider 
+      allData={medData} 
+      structData={structData}>
+      {children}
+    </StaticDataProvider>
+  )
 }
 
-export function StaticDataProvider({ children, allData }) {
+export function StaticDataProvider({ children, allData, structData }) {
   //list of checked datapoints
   const [checkedState, setCheckedState] = useState(
     Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: true })))
@@ -118,21 +144,23 @@ export function StaticDataProvider({ children, allData }) {
 
   return (
     <DataContext.Provider value={allData}>
-      <SelectedContext.Provider value={selectedData}>
-        <CheckedContext.Provider value={checkedState}>
-          <CheckedContextUpdate.Provider value={setCheckedState}>
-            <ColumnSelectionContext.Provider value={columnSelection}>
-              <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-                <VisualsContext.Provider value={visuals}>
-                  <VisualsUpdateContext.Provider value={setVisuals}>
-                    {children}
-                  </VisualsUpdateContext.Provider>
-                </VisualsContext.Provider>
-              </ColumnSelectionContextUpdate.Provider>
-            </ColumnSelectionContext.Provider>
-          </CheckedContextUpdate.Provider>
-        </CheckedContext.Provider>
-      </SelectedContext.Provider>
+      <StructureContext.Provider value={structData}>
+        <SelectedContext.Provider value={selectedData}>
+          <CheckedContext.Provider value={checkedState}>
+            <CheckedContextUpdate.Provider value={setCheckedState}>
+              <ColumnSelectionContext.Provider value={columnSelection}>
+                <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+                  <VisualsContext.Provider value={visuals}>
+                    <VisualsUpdateContext.Provider value={setVisuals}>
+                      {children}
+                    </VisualsUpdateContext.Provider>
+                  </VisualsContext.Provider>
+                </ColumnSelectionContextUpdate.Provider>
+              </ColumnSelectionContext.Provider>
+            </CheckedContextUpdate.Provider>
+          </CheckedContext.Provider>
+        </SelectedContext.Provider>
+      </StructureContext.Provider>
     </DataContext.Provider>
   )
 }
