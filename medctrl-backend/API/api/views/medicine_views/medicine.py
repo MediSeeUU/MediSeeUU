@@ -25,14 +25,6 @@ class MedicineViewSet(viewsets.ViewSet):
             queryset = Medicine.objects.all()
             serializer = PublicMedicineSerializer(queryset, many=True)
             cache_medicine = serializer.data
-        
-        # selection = self.request.query_params.get("selection")
-
-        # selection_set = SavedSelection.objects.filter(id=selection).first()
-        # if selection_set is None:
-        #     return Medicine.objects.none()
-
-        # return selection_set.eunumbers.all()
 
         user = self.request.user
         if user.is_anonymous:
