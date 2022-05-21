@@ -17,7 +17,8 @@ function cleanFetchedDataPoint(fetchedDataPoint, structData) {
   // format the individual value into the correct format, if the
   // value is null or undefined, a default value is returned 
   const format = (value, def, type) => {
-    if(!value) return def
+    if(value === null || value === undefined) 
+      return def
 
     switch(type) {
       case "number": return parseInt(value)

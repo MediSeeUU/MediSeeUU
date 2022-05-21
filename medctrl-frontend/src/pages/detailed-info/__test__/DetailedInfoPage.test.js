@@ -4,6 +4,8 @@ import { render, screen } from '@testing-library/react'
 import DetailedInfoPage, { InfoPage } from '../DetailedInfoPage'
 import { act } from 'react-dom/test-utils'
 import MockDataProvider from '../../../shared/contexts/MockDataContext'
+import structData from '../../../shared/contexts/structServer.json'
+import { StructureContext } from '../../../shared/contexts/DataContext'
 
 // https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
 jest.mock('react-router-dom', () => ({
@@ -26,7 +28,9 @@ test('detailed info page renders without crashing', () => {
 test('detailed info page displays correct med and proc data', async () => {
   render(
     <MockDataProvider>
-      <DetailedInfoPage />
+      <StructureContext.Provider value={structData}>
+        <DetailedInfoPage />
+      </StructureContext.Provider>
     </MockDataProvider>
   )
 
@@ -43,7 +47,9 @@ test('detailed info page displays correct med and proc data', async () => {
 test('detailed info page correctly retrieves medID from url', () => {
   render(
     <MockDataProvider>
-      <DetailedInfoPage />
+      <StructureContext.Provider value={structData}>
+        <DetailedInfoPage />
+      </StructureContext.Provider>
     </MockDataProvider>
   )
 

@@ -19,7 +19,7 @@ test('renders without crashing', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -47,7 +47,7 @@ test('expected amount of rows in the table', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -80,7 +80,7 @@ test('expected amount of headers in the table', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -120,7 +120,7 @@ test('checkboxes displayed', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -171,7 +171,7 @@ test('row selected, when checkbox clicked', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -223,7 +223,7 @@ test('all rows selected when select all pressed', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -275,7 +275,7 @@ test('throw error when data not defined', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -303,7 +303,7 @@ test('throw error when currentPage not defined', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -331,7 +331,7 @@ test('throw error when amountPerPage not defined', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -359,7 +359,7 @@ test('throw error when current page does not exist', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -481,7 +481,7 @@ test('Add column button adds a column', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -521,7 +521,7 @@ test('Remove column button removes a column', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -562,7 +562,7 @@ test('Amount of columns does not drop below 5', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]

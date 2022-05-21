@@ -6,7 +6,7 @@ import Procedure from './InfoComponents/Procedure'
 import CustomLink from './InfoComponents/CustomLink'
 import TimeLine from './InfoComponents/TimeLine'
 
-import { useData } from '../../shared/contexts/DataContext'
+import { useData, useStructure } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
@@ -48,6 +48,9 @@ export default function DetailedInfoPage() {
 // function based component, which represents the entire detailed information page
 // it display the given medicine and procedure data
 export function InfoPage({ medData, procData }) {
+
+  const variableCategories = useStructure()
+
   // if no medicine data is provided, no meaning full can be displayed
   if (!medData) {
     return (
@@ -95,6 +98,29 @@ export function InfoPage({ medData, procData }) {
       </div>
     )
   }
+  
+  const detailGroups = []
+
+  for (let category in variableCategories) {
+    const details = []
+
+    for (let varIndex in variableCategories[category]) {
+      const variable = variableCategories[category][varIndex]
+      details.push(
+        <Detail 
+          name={variable["data-value"]} 
+          value={medData[variable["data-front-key"]]} 
+          key={v4()} />
+      )
+    }
+
+    detailGroups.push(
+      <DetailGroup title={category} key={v4()}>
+        {details}
+      </DetailGroup>
+    )
+  }
+
 
   // returns the component which discribes the entire detailed information page
   // the page consists of three containers, each holds a specific category of
@@ -108,70 +134,7 @@ export function InfoPage({ medData, procData }) {
         <hr className="med-top-separator" />
 
         <div className="med-flex-columns">
-          <DetailGroup title="General Information">
-            <Detail name="Brand Name" value={medData.BrandName} />
-            <Detail name="Marketing Authorisation Holder" value={medData.MAH} />
-            <Detail name="Active Substance" value={medData.ActiveSubstance} />
-            <Detail name="Decision Date" value={medData.DecisionDate} />
-          </DetailGroup>
-
-          <DetailGroup title="Identifying Information">
-            <Detail name="Application Number" value={medData.ApplicationNo} />
-            <Detail name="EU Number" value={medData.EUNumber} />
-            <Detail name="Short EU Number" value={medData.EUNoShort} />
-          </DetailGroup>
-
-          <DetailGroup title="(Co-)Rapporteur">
-            <Detail name="Rapporteur" value={medData.Rapporteur} />
-            <Detail name="Co-Rapporteur" value={medData.CoRapporteur} />
-          </DetailGroup>
-
-          <DetailGroup title="Medicine Designations">
-            <Detail name="ATMP" value={medData.ATMP} />
-            <Detail
-              name="Orphan Designation"
-              value={medData.OrphanDesignation}
-            />
-
-            <Detail name="NAS Qualified" value={medData.NASQualified} />
-            <Detail name="CMA" value={medData.CMA} />
-            <Detail name="AEC" value={medData.CMA} />
-            <Detail name="PRIME" value={medData.PRIME} />
-          </DetailGroup>
-
-          <DetailGroup title="ATC Code Information">
-            <Detail name="ATC Code Level 1" value={medData.ATCCodeL1} />
-            <Detail name="ATC Code Level 2" value={medData.ATCCodeL2} />
-            <Detail name="ATC Name Level 2" value={medData.ATCNameL2} />
-          </DetailGroup>
-
-          <DetailGroup title="Legal Information">
-            <Detail name="Legal Scope" value={medData.LegalSCope} />
-            <Detail name="Legal Type" value={medData.LegalType} />
-          </DetailGroup>
-
-          <DetailGroup title="Authorisation Timing">
-            <Detail
-              name="Accelerated Granted"
-              value={medData.AcceleratedGranted}
-            />
-            <Detail
-              name="Accelerated Executed"
-              value={medData.AcceleratedExecuted}
-            />
-            <Detail
-              name="Active Time Elapsed (days)"
-              value={medData.ActiveTimeElapsed}
-            />
-            <Detail
-              name="Clock Stop Elapsed (days)"
-              value={medData.ClockStopElapsed}
-            />
-            <Detail
-              name="Total Time Elapsed (days)"
-              value={medData.TotalTimeElapsed}
-            />
-          </DetailGroup>
+          {detailGroups}
         </div>
       </div>
 
