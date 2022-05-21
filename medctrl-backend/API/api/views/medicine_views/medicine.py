@@ -1,12 +1,12 @@
 from rest_framework import viewsets
 from rest_framework import permissions
-from django.contrib.auth.models import Group
 from api.models import SavedSelection
 from api.serializers.medicine_serializers import PublicMedicineSerializer
 from api.models.medicine_models import Medicine
 from rest_framework.response import Response
 from django.core.cache import cache
 from api.update_cache import update_cache
+from api.views.other import permissionFilter
 
 
 class MedicineViewSet(viewsets.ViewSet):
@@ -27,15 +27,7 @@ class MedicineViewSet(viewsets.ViewSet):
             cache_medicine = serializer.data
 
         user = self.request.user
-        if user.is_anonymous:
-            # If user is anonymous, return default permissions for anonymous group
-            perms = Group.objects.get(name="anonymous").permissions.all()
-            perms = [x.codename.split(".") for x in perms]
-        else:
-            perms = user.get_all_permissions(obj=None)
-            perms = [x.split(".") for x in perms]
-
-        perms = [x[-2] for x in perms if len(x) > 2 and x[-1] == "view"]
+        perms = permissionFilter(user)
 
         filtered_medicines = map(lambda obj : { x: y for x, y in obj.items() if x in perms }, cache_medicine)
 

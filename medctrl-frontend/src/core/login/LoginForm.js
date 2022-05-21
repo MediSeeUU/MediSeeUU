@@ -51,10 +51,10 @@ class LoginForm extends React.Component {
     }
 
     return (
-      <div className="login-dialog">
+      <div className="med-login-dialog">
         <i className="bx bxs-log-in" />
         <h1>Login</h1>
-        <span className="desc">
+        <span className="med-description">
           Please fill in your credentials. If you do not have an account yet and
           think you are entitled to one, please contact the administrator.
         </span>
@@ -62,7 +62,7 @@ class LoginForm extends React.Component {
           <input
             type="text"
             id="username"
-            className="credential-input med-text-input"
+            className="med-credential-input med-text-input"
             placeholder="Username"
             minLength={4}
             maxLength={64}
@@ -72,17 +72,17 @@ class LoginForm extends React.Component {
           <input
             type="password"
             id="password"
-            className="credential-input med-text-input"
+            className="med-credential-input med-text-input"
             placeholder="Password"
           />
           {errorMessage}
           <button
             type="submit"
-            className="button-login med-primary-solid med-bx-button"
+            className="med-button-login med-primary-solid med-bx-button"
           >
             Sign in
           </button>
-          <button className="button-cancel" onClick={this.closeDialog}>
+          <button className="med-button-cancel" onClick={this.closeDialog}>
             Cancel
           </button>
         </form>

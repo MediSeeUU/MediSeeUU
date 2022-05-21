@@ -11,10 +11,10 @@ class BasePage():
     return self.driver.current_url
   
   def navbar_is_closed(self):
-    return "closed-nav" in self.navbar.get_attribute('class')
+    return "med-closed" in self.navbar.get_attribute('class')
   
   def navbar_is_open(self):
-    return "open-nav" in self.navbar.get_attribute('class')
+    return "med-open" in self.navbar.get_attribute('class')
   
   def click_expand_collapse(self):
     self.nav_items[0].click()

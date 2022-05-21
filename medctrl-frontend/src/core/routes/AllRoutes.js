@@ -1,7 +1,6 @@
 import HomePage from '../../pages/home/HomePage'
 import InfoPage from '../../pages/info/InfoPage'
 import DataPage from '../../pages/data/DataPage'
-import MessagesPage from '../../pages/messages/MessagesPage'
 import SettingsPage from '../../pages/settings/SettingsPage'
 import AccountPage from '../../pages/account/AccountPage'
 import VisualizationPage from '../../pages/visualizations/VisualizationPage'
@@ -21,7 +20,6 @@ function AllRoutes() {
         path="/visualizations"
         element={<VisualizationPage selectedData={useSelectedData()} />}
       />
-      <Route path="/messages" element={<MessagesPage />} />
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/account" element={<AccountPage />} />
       <Route path="/details/:medID" element={<DetailedInfoPage />} />

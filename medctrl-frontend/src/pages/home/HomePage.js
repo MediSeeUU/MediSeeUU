@@ -9,7 +9,7 @@ function HomePage() {
   const runTour = useTourRun()
   return (
     // Homepage components, contains search bar and article containers
-    <div className="med_home_content">
+    <div className="med-home-content">
       <div className="med-content-container">
         <h1>Dashboard Tour</h1>
         <hr className="med-top-separator" />
@@ -18,7 +18,7 @@ function HomePage() {
           className="med-primary-solid med-bx-button med-tour-button"
           onClick={() => runTour(true)}
         >
-          <i className="bx bx-code-alt search-Icon" />
+          <i className="bx bx-code-alt med-button-image" />
           Start Tour
         </button>
 
@@ -37,7 +37,7 @@ function HomePage() {
         update={(query) => navigate('/data?q=' + query)}
       />
 
-      <div className="med-content-container med_content__container">
+      <div className="med-content-container">
         <h1>Tools</h1>
         <hr className="med-top-separator" />
         <p>
