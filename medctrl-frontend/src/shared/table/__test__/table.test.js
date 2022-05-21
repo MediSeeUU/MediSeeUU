@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom'
 import { render, screen, fireEvent, within } from '@testing-library/react'
 import Table from '../table'
 import DummyData from '../../../testJson/data.json'
+import structData from '../../../shared/contexts/structServer.json'
 import {
   CheckedContext,
   CheckedContextUpdate,
   ColumnSelectionContext,
   ColumnSelectionContextUpdate,
+  StructureContext,
 } from '../../contexts/DataContext'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -379,13 +381,13 @@ test('throw error when current page does not exist', () => {
   expect(renderFunction).toThrow(Error)
 })
 
-test('data put correctly into table', () => {
+test('data put correctly into table', async () => {
   var columnSelection = [
     'EUNoShort',
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -396,11 +398,13 @@ test('data put correctly into table', () => {
 
   render(
     <BrowserRouter>
-      <ColumnSelectionContext.Provider value={columnSelection}>
-        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-          <Table data={DummyData} currentPage={1} amountPerPage={10} />
-        </ColumnSelectionContextUpdate.Provider>
-      </ColumnSelectionContext.Provider>
+      <StructureContext.Provider value={structData}>
+        <ColumnSelectionContext.Provider value={columnSelection}>
+          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+            <Table data={DummyData} currentPage={1} amountPerPage={10} />
+          </ColumnSelectionContextUpdate.Provider>
+        </ColumnSelectionContext.Provider>
+      </StructureContext.Provider>
     </BrowserRouter>
   )
   const headers = screen.getAllByRole('columnheader')
@@ -426,7 +430,7 @@ test('column change changes data in row', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -437,11 +441,13 @@ test('column change changes data in row', () => {
 
   const { rerender } = render(
     <BrowserRouter>
-      <ColumnSelectionContext.Provider value={columnSelection}>
-        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-          <Table data={DummyData} currentPage={1} amountPerPage={10} />
-        </ColumnSelectionContextUpdate.Provider>
-      </ColumnSelectionContext.Provider>
+      <StructureContext.Provider value={structData}>
+        <ColumnSelectionContext.Provider value={columnSelection}>
+          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+            <Table data={DummyData} currentPage={1} amountPerPage={10} />
+          </ColumnSelectionContextUpdate.Provider>
+        </ColumnSelectionContext.Provider>
+      </StructureContext.Provider>
     </BrowserRouter>
   )
   const headers = screen.queryAllByRole('columnheader')
@@ -453,11 +459,13 @@ test('column change changes data in row', () => {
   fireEvent.change(firstSelect, { target: { value: newValue } })
   rerender(
     <BrowserRouter>
-      <ColumnSelectionContext.Provider value={columnSelection}>
-        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-          <Table data={DummyData} currentPage={1} amountPerPage={10} />
-        </ColumnSelectionContextUpdate.Provider>
-      </ColumnSelectionContext.Provider>
+      <StructureContext.Provider value={structData}>
+        <ColumnSelectionContext.Provider value={columnSelection}>
+          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+            <Table data={DummyData} currentPage={1} amountPerPage={10} />
+          </ColumnSelectionContextUpdate.Provider>
+        </ColumnSelectionContext.Provider>
+      </StructureContext.Provider>
     </BrowserRouter>
   )
 

@@ -183,8 +183,8 @@ export function convertSortingAttributeNameToComparisonFunction(
             '10.4',
             'NA',
           ]
-          var a = sortOrder.indexOf(legalnumber1)
-          var b = sortOrder.indexOf(legalnumber2)
+          //var a = sortOrder.indexOf(legalnumber1)
+          //var b = sortOrder.indexOf(legalnumber2)
 
           var sortres =
             sortOrder.indexOf(legalnumber1) - sortOrder.indexOf(legalnumber2)

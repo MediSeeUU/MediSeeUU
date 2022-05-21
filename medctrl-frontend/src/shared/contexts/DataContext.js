@@ -113,7 +113,7 @@ export function StaticDataProvider({ children, allData, structData }) {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
   ])
 
   // visualisation context to save the visualisations when navigating the page

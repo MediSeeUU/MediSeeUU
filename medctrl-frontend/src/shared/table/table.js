@@ -7,6 +7,7 @@ import {
 } from '../contexts/DataContext'
 import './table.css'
 import { Link } from 'react-router-dom'
+import VariableSelect from '../VariableSelect/VariableSelect'
 
 //Function based component, returns table
 function DisplayTable({
@@ -155,21 +156,10 @@ function DisplayTable({
               columnSelection.map((key1, index1) => {
                 return (
                   <th key={index1} className="med-table-header-cell">
-                    <select
-                      value={key1}
-                      className="med-table-header-select-cell"
-                      onChange={(e) =>
-                        handleColumnChange(index1, e.target.value)
-                      }
-                    >
-                      {Object.keys(data[0]).map((key2, index2) => {
-                        return (
-                          <option key={index2} value={key2}>
-                            {key2}
-                          </option>
-                        )
-                      })}
-                    </select>
+                    <VariableSelect
+                      className='med-table-header-select-cell'
+                      onChange={(e) => handleColumnChange(index1, e.target.value)}
+                      defaultValue={key1} />
                   </th>
                 )
               })
