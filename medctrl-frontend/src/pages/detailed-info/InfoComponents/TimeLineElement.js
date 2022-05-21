@@ -1,12 +1,11 @@
 // function based component, which represents a single element on the time line
 // component. is displays both a date and event string, one above a decorative
 // circle, and one below, separated by a line
-function TimeLineElement(props) {
-  let date = props.date
-  let event = props.event
-
+function TimeLineElement({ date, event, specialEvent }) {
+  let topLevelClassName = "med-info-timeline-element"
+  topLevelClassName += (specialEvent) ? " med-info-special" : ""
   return (
-    <div className="med-info-timeline-element">
+    <div className={topLevelClassName}>
       <div className="med-info-timeline-element-timestamp">
         <span>{date}</span>
       </div>

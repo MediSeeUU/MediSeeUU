@@ -5,6 +5,7 @@ import Detail from './InfoComponents/Detail'
 import Procedure from './InfoComponents/Procedure'
 import CustomLink from './InfoComponents/CustomLink'
 import TimeLine from './InfoComponents/TimeLine'
+import ProcSelectModal from './InfoComponents/ProcSelectModal'
 
 import { useData } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
@@ -42,27 +43,38 @@ export default function DetailedInfoPage() {
     fetchProcedureData(medID)
   }, [setProcData, medID])
 
-  return <InfoPage medData={medData} procData={procData} />
+  // retrieve a date from the backend which indicates when the last update
+  // to the procedures in the database was. i.e. the database, and thus the
+  // procedure data on this page is complete up to this date
+  const lastUpdatedDate = undefined
+
+  return (
+    <InfoPage 
+      medData={medData} 
+      procData={procData} 
+      lastUpdatedDate={lastUpdatedDate} />
+    )
 }
 
 // function based component, which represents the entire detailed information page
 // it display the given medicine and procedure data
-export function InfoPage({ medData, procData }) {
+export function InfoPage({ medData, procData, lastUpdatedDate }) {
+
+  // a filter which determines which prodcures to show, and which to omit from
+  // the detailed info page
+  const [procFilter, setProcFilter] = useState([
+    'Centralised - Authorisation',
+    'Centralised - Transfer Marketing Authorisation Holder',
+    'Centralised - Annual reassessment',
+    'Centralised - Annual renewal'
+  ])
+
   // if no medicine data is provided, no meaning full can be displayed
   if (!medData) {
     return (
       <h1 className="med-info-unknown-medID">Unknown Medicine ID Number</h1>
     )
   }
-
-  // a filter which determines which prodcures to show, and which to omit from
-  // the detailed info page
-  let displayProcTypes = [
-    'Centralised - Authorisation',
-    'Centralised - Transfer Marketing Authorisation Holder',
-    'Centralised - Annual reassessment',
-    'Centralised - Annual renewal',
-  ]
 
   // if there is procedure data present, two containers should be added to the page
   // with only the relevant procedure entries (based on the display proc types above)
@@ -73,25 +85,57 @@ export function InfoPage({ medData, procData }) {
   let timeLineContainer = null
 
   if (procData !== null) {
-    let procedures = procData.filter((proc) =>
-      displayProcTypes.includes(proc.proceduretype)
+    const removeDuplicates = (arr) => { 
+      return arr.filter((item, index) => arr.indexOf(item) === index);
+    }
+    const availableProcTypes = removeDuplicates(
+      procData.map((proc) => proc.proceduretype)
+    )
+    const procSelectModal = (
+      <ProcSelectModal 
+        availableProcTypes={availableProcTypes}
+        currentProcFilter={procFilter}
+        setProcFilter={setProcFilter}
+      />
+    )
+
+    const procedures = procData.filter((proc) => 
+      procFilter.includes(proc.proceduretype)
+    )
+
+    const noProcs = procedures.length === 0
+    const noProcMessage = (
+      <p className='med-info-no-proc-message'>
+        There are no procedures to display, make sure that there are procedure types
+        selected for display in the menu in the top right corner of the container.
+      </p>
     )
 
     procedureContrainer = (
-      <div className="med-content-container">
+      <div className="med-content-container med-info-container">
         <h1>Procedure Details</h1>
+        {procSelectModal}
         <hr className="med-top-separator" />
-        {procedures.map((proc) => {
-          return <Procedure proc={proc} key={v4()} />
-        })}
+        {
+          (!noProcs) ? procedures.map((proc) => {
+            return <Procedure proc={proc} key={v4()} />
+          }) : noProcMessage
+        }
       </div>
     )
 
     timeLineContainer = (
-      <div className="med-content-container">
+      <div className="med-content-container med-info-container">
         <h1>Medicine Timeline</h1>
+        {procSelectModal}
         <hr className="med-top-separator" />
-        <TimeLine procs={procedures} />
+        {
+          (!noProcs) ? 
+          (<TimeLine 
+            procedures={procedures} 
+            lastUpdatedDate={lastUpdatedDate} />
+          ) : noProcMessage
+        }
       </div>
     )
   }
