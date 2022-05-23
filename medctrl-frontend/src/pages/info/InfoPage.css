@@ -1,0 +1,22 @@
+/* Content__container rulesets and h1, h2 and p rulesets are for styling the containers placed inside the main page */
+
+.med-info-content h1 {
+  margin: 10px;
+  font-size: 25px;
+}
+.med-info-content h2 {
+  margin: 10px;
+  font-size: 20px;
+}
+.med-info-content p {
+  margin: 10px;
+}
+
+.med-institution-logo {
+  width: 400px;
+  float: right;
+}
+
+.med-institution-info {
+  width: calc(100% - 450px);
+}

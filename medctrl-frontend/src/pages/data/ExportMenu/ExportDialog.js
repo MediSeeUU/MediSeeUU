@@ -165,15 +165,15 @@ class ExportDialog extends React.Component {
     }
 
     return (
-      <div className="export-dialog">
+      <div className="med-export-dialog">
         <i className="bx bxs-download" />
         <h1>Export Selected Data</h1>
-        <span className="desc">
+        <span className="med-description">
           Choose one of the file types below to export the selected data, or
           specify a custom delimited file type.
         </span>
 
-        <div className="option-list">
+        <div className="med-download-option-list">
           <RadioElement
             onChange={this.handleChange}
             name="radio"
@@ -208,7 +208,7 @@ class ExportDialog extends React.Component {
               onChange={this.handleChange}
               type="text"
               id="separator"
-              className="text-input med-text-input"
+              className="med-seperator-input-field med-text-input"
             />
           </RadioElement>
         </div>
@@ -221,7 +221,10 @@ class ExportDialog extends React.Component {
         >
           Download
         </button>
-        <button className="cancel" onClick={this.closeDialog}>
+        <button
+          className="med-cancel-download-button"
+          onClick={this.closeDialog}
+        >
           Cancel
         </button>
       </div>

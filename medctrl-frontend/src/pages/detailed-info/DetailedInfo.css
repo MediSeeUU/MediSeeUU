@@ -1,27 +1,14 @@
-/* custom settings for content wrapper */
-
-.content-container {
-  padding: 10px;
-  font-size: 15px;
-}
-
-.content-container .title {
-  margin: 0;
-  padding: 0;
-  font-size: 25px;
-}
-
 /*  general css for laying out the childern in a layout, consisting of
     two columns, which are filled column first. when the window becomes
     wide enough, three columns instead of two columns are used */
 
-.flex-columns {
+.med-flex-columns {
   column-count: 2;
   column-fill: balance;
 }
 
 @media screen and (min-width: 1200px) {
-  .flex-columns {
+  .med-flex-columns {
     column-count: 3;
     column-fill: balance;
   }
@@ -29,7 +16,7 @@
 
 /* for the detail groups */
 
-.detail-group {
+.med-info-detail-group {
   display: inline-block;
   background-color: var(--med-info-collection-background);
   border-radius: 5px;
@@ -39,28 +26,28 @@
   padding: 3px;
 }
 
-.detail-group-title {
+.med-info-detail-group-title {
   font-size: 17px;
   text-align: center;
 }
 
 /* for the individual details inside */
 
-.detail {
+.med-info-detail {
   background-color: var(--med-info-detail-background);
   margin: 4px;
   border-radius: 3px;
   padding-left: 12px;
 }
 
-.detail-name {
+.med-info-detail-name {
   font-weight: bold;
   display: inline-block;
   width: 44%;
   vertical-align: middle;
 }
 
-.detail-value {
+.med-info-detail-value {
   display: inline-block;
   width: 50%;
   vertical-align: middle;
@@ -69,7 +56,7 @@
 
 /* for the procedures */
 
-.procedure {
+.med-info-procedure {
   background-color: var(--med-info-collection-background);
   border-radius: 4px;
   margin: 3px;
@@ -78,13 +65,13 @@
 
 /* for procedure content */
 
-.procedure-content {
+.med-info-procedure-content {
   display: inline-block;
   width: 82.5%;
   height: calc(100% - 6px);
 }
 
-.procedure-detail {
+.med-info-procedure-detail {
   display: inline-block;
   background-color: var(--med-info-detail-background);
   border-radius: 4px;
@@ -92,43 +79,66 @@
   padding-left: 5px;
 }
 
-.procedure-detail.small-width {
+.med-info-procedure-detail.small-width {
   width: calc(25% - 6px);
 }
 
-.procedure-detail.large-width {
+.med-info-procedure-detail.large-width {
   width: calc(50% - 6px);
 }
 
-/*for procedure file links */
-
-.procedure-files {
-  display: inline-block;
-  width: 17.5%;
+.med-info-procedure-detail-label {
+  font-weight: bold;
 }
 
-.procedure-file-link {
+.med-info-procedure-detail-value {
+  display: inline-block;
+  max-width: 98%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* for procedure file links */
+
+.med-info-procedure-file-link-container {
+  display: inline-block;
+  width: 17.5%;
+  height: calc(100% - 6px);
+}
+
+.med-info-procedure-file-link {
   display: inline-block;
   background-color: var(--med-info-detail-background);
   border-radius: 4px;
   margin: 3px;
   width: calc(100% - 6px);
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   text-decoration: none;
-  color: var(--link-color);
+  color: var(--med-textlink-text);
 }
 
-/* for procedure labels */
+.med-info-procedure-file-link:hover {
+  color: var(--med-textlink-text-hover);
+}
 
-.procedure-label {
-  font-weight: bold;
+.med-info-procedure-file-link.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: var(--med-additional-text);
+}
+
+.med-info-procedure-file-link span {
+  display: inline-block;
+  padding-top: 1.5px;
+  padding-bottom: 1.5px;
 }
 
 /* for the links to external sources */
 
-.external-link {
+.med-info-external-link {
   display: inline-block;
   background-color: var(--med-info-collection-background);
   margin: 4px;
@@ -141,11 +151,97 @@
   width: calc(25% - 8px);
 }
 
-.external-link:hover {
+.med-info-external-link:hover {
   color: var(--med-info-link-color);
 }
 
-.detailedinfopage-unknown-medID {
+/* for when there is a invalid medicine id in the url */
+
+.med-info-unknown-medID {
   padding-top: 30vh;
   text-align: center;
+}
+
+/* for the time line component */
+
+.med-info-timeline {
+  padding: 10px 25px;
+  margin: auto;
+  display: flex;
+  justify-content: left;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* for each time line element */
+
+.med-info-timeline-element {
+  width: 195px;
+  height: 144px;
+}
+
+/* for the date and event associated with a timeline element */
+
+.med-info-timeline-element-timestamp {
+  display: inline-block;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  width: 100%;
+  font-weight: 200;
+  text-align: center;
+}
+
+.med-info-timeline-element-event {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 0 5px;
+  text-align: center;
+}
+
+/* for the decorative line */
+
+.med-info-timeline-element-decoration {
+  width: 100%;
+  height: 2px;
+  background-color: var(--med-timeline-line);
+  position: relative;
+}
+
+.med-info-timeline-element:first-child .med-info-timeline-element-decoration {
+  float: right;
+  width: 50%;
+}
+
+.med-info-timeline-element:last-child .med-info-timeline-element-decoration {
+  float: left;
+  width: 50%;
+}
+
+.med-info-timeline-element:only-child .med-info-timeline-element-decoration {
+  width: 50%;
+  height: 0;
+}
+
+/* for the decorative circle */
+
+.med-info-timeline-element-decoration:before {
+  content: '';
+  width: 25px;
+  height: 25px;
+  background-color: var(--med-timeline-circle);
+  border-radius: 25px;
+  border: 2px solid var(--med-timeline-line);
+  position: absolute;
+  top: -12px;
+  left: calc(50% - 12.5px);
+}
+
+.med-info-timeline-element:first-child
+  .med-info-timeline-element-decoration:before {
+  left: -12.5px;
+}
+
+.med-info-timeline-element:last-child
+  .med-info-timeline-element-decoration:before {
+  left: calc(100% - 12.5px);
 }

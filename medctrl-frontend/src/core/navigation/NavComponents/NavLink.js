@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 function NavLink(props) {
   // if this nav link is supposed to be at the bottom of the
   // navigation bar, an extra css class is required
-  let className = props.lowest ? 'nav-item lowest' : 'nav-item'
+  let className = 'med-nav-item' + (props.lowest ? ' med-nav-lowest' : '')
   let navigate = useNavigate()
   function clicked() {
     props.parent.close()
@@ -22,11 +22,11 @@ function NavLink(props) {
       onClick={() => clicked()}
       data-testid={props.name}
     >
-      <div className="nav-item-content">
+      <div tour={props.tour} className="med-nav-item-content">
         <i className={props.image} />
-        <span className="nav-item-name"> {props.name} </span>
+        <span className="med-nav-item-name"> {props.name} </span>
       </div>
-      <span className="nav-tooltip"> {props.name} </span>
+      <span className="med-nav-tooltip"> {props.name} </span>
     </div>
   )
 }

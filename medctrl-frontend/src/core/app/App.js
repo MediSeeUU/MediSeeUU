@@ -5,22 +5,26 @@ import AllRoutes from '../routes/AllRoutes.js'
 import Header from '../header/Header'
 import Footer from '../footer/Footer'
 import { DataProvider } from '../../shared/contexts/DataContext'
+import DashboardTour from '../tour/DashboardTour'
+import React from 'react'
 
 function App() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <div className="med_page__wrapper">
-        <Header className="med_mainLayout" />
-        <SideNavigation className="med_mainLayout" />
+      <div className="med-page-wrapper">
+        <DashboardTour>
+          <Header />
+          <SideNavigation />
 
-        <main className="med_content">
-          <div className="med_content__wrapper">
-            <DataProvider>
-              <AllRoutes />
-            </DataProvider>
-          </div>
-          <Footer />
-        </main>
+          <main className="med-content">
+            <div className="med-content-wrapper">
+              <DataProvider>
+                <AllRoutes />
+              </DataProvider>
+            </div>
+            <Footer />
+          </main>
+        </DashboardTour>
       </div>
     </BrowserRouter>
   )

@@ -62,20 +62,24 @@ function DataSelect({ initialSearch }) {
   //main body of the page
   return (
     <>
-      <Search update={setSearch} initial={initialSearch} />
-      <div className="med-content-container">
+      <Search
+        tour="step-data-search"
+        update={setSearch}
+        initial={initialSearch}
+      />
+      <div tour="step-data-select" className="med-content-container">
         <h1>Data Selection Table</h1>
         <hr className="med-top-separator" />
-        {TableView(
-          updatedData,
-          resultsPerPage,
-          loadedPage,
-          setPage,
-          setResultsPerPage,
-          true,
-          'No data to display, please clear your search or filters.',
-          menu
-        )}
+        {TableView({
+          data: updatedData,
+          resultsPerPage: resultsPerPage,
+          loadedPage: loadedPage,
+          setPage: setPage,
+          setResultsPerPage: setResultsPerPage,
+          select: true,
+          text: 'No data to display, please clear your search or filters.',
+          menu: menu,
+        })}
       </div>
     </>
   )

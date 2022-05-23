@@ -1,8 +1,8 @@
 /* Main ruleset for the footer, gives its size and general styling */
-.med_footer {
+.med-footer {
   padding: 10px;
   padding-bottom: 30px;
-  height: 160px;
+  height: 130px;
   font-size: 14px;
 
   background-color: var(--med-footer-background);
@@ -13,39 +13,34 @@
   /*margin-left: 2%;*/ /* this rule causes the bug with jira code: V22E-161 */
 }
 
-/* These two rulesets are for the 2 rows of content in the footer, it makes sure that they stay 
-  next to each other instead of on top. */
-#footer__information {
-  width: 50%;
+/* These two rulesets are for the 2 rows of content in the footer, it makes 
+  sure that they stay next to each other instead of on top. */
+#med-footer-information {
+  width: 55%;
   text-align: center;
 }
 
-#footer__organisations {
-  width: 50%;
+#med-footer-organizations {
+  width: 45%;
   text-align: center;
   float: right;
 }
 
-/* For the list of relevant organisations, keeps the list positioned correctly */
-.footer__organisation__list {
+.med-footer-text {
+  margin-top: 2.5%;
+}
+
+/* For the list of relevant organizations, keeps the list positioned correctly */
+.med-footer-organization-list {
   display: inline-block;
   text-align: left;
 }
 
-/* Rulesets for the links under relevant organisations, only does styling and colors */
-#footer__organisations a {
-  color: var(--med-textlink-text);
-  text-decoration: none;
-}
-
-#footer__organisations a:hover {
-  color: var(--med-textlink-text-hover);
-}
-
-/* Media query: makes sure that when the screen width drops below 1400px (the size where the page content
-  fits the entire webbrowser page) the rounded borders on the outside disappear.  */
+/* Media query: makes sure that when the screen width drops below 1400px 
+  (the size where the page content fits the entire webbrowser page) the 
+  rounded borders on the outside disappear. */
 @media only screen and (max-width: 1400px) {
-  .med_footer {
+  .med-footer {
     border-top-right-radius: 0px;
   }
 }
