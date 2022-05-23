@@ -131,11 +131,11 @@ test('render settingspage without crashing', () => {
 })
 
 test('render datapage without crashing', () => {
-  const dataa = allData
+  const data = allData
 
   let checkedState = Object.assign(
     {},
-    ...dataa.map((entry) => ({ [entry.EUNumber]: true }))
+    ...data.map((entry) => ({ [entry.EUNumber]: true }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -154,7 +154,7 @@ test('render datapage without crashing', () => {
   const setColumnSelection = (newColumns) => {
     columnSelection = newColumns
   }
-  const selectedData = dataa.filter((item, index) => {
+  const selectedData = data.filter((item, index) => {
     return checkedState[item.EUNumber]
   })
 

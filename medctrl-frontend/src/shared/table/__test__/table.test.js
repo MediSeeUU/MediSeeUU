@@ -455,7 +455,7 @@ test('sorting on leftmost columnheader sorts data', () => {
   const setSorters = (newsorter) => {
     sorters = newsorter
   }
-  //updateData(datai, search, filters, sorters, columns)
+
   const updatedData = updateData(
     selectedData,
     search,
