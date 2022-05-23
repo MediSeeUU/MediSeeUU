@@ -76,8 +76,6 @@ function CategoryOptions(props) {
 
   // RENDERER:
 
-  // renders checkboxes for each category of the given variable
-  const categories = renderCategoryOptions()
   return (
     <>
       <br />
@@ -85,12 +83,12 @@ function CategoryOptions(props) {
         <input
           type="checkbox"
           name="selectAllCategories"
-          checked={settings.length === categories.length}
+          checked={settings.length === props.categories.length}
           onChange={handleAllCategorySelection}
         />
         &nbsp;&nbsp;Select all categories
       </label>
-      <div className="country-options">{categories}</div>
+      <div className="country-options">{renderCategoryOptions()}</div>
     </>
   )
 }

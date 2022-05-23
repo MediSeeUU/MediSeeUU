@@ -19,7 +19,7 @@ import {
   VisualsUpdateContext,
 } from '../../../shared/contexts/DataContext'
 import GetUniqueCategories from '../single_visualization/utils/GetUniqueCategories'
-import { generateSeries } from '../single_visualization/SingleVisualization'
+import { generateSeries } from '../single_visualization/utils/GenerateSeries'
 
 jest.mock('../mocks/observer')
 
@@ -117,9 +117,9 @@ test('update visuals when rendering with bar', () => {
       },
       legendOn: true,
       labelsOn: false,
-      data: [],
+      data: data,
       series: [],
-      uniqueCategories: [],
+      uniqueCategories: unique,
       key: '',
     },
   ]
@@ -134,7 +134,9 @@ test('update visuals when rendering with bar', () => {
   )
 
   ReactDOM.render(page, container)
+  //screen.logTestingPlaygroundURL()
   //check variable length in visuals
+  //console.log(visuals[0])
   expect(visuals[0].data.length).not.toEqual(0)
   expect(visuals[0].series.length).not.toEqual(0)
   expect(visuals[0].uniqueCategories.length).not.toEqual(0)

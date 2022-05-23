@@ -1,21 +1,22 @@
 import sortCategoryData from '../utils/SortCategoryData'
 
 // creates an array of data for a Histogram chart
-export default function GenerateHistogramSeries(options, data) {
-  let xAxis = options.chartSpecificOptions.xAxis
-  let chosenCategories = sortCategoryData(
+export default function GenerateHistogramSeries(options) {
+  const xAxis = options.chartSpecificOptions.xAxis
+  const data = options.data
+  const chosenCategories = sortCategoryData(
     options.chartSpecificOptions.categoriesSelectedX
   )
 
-  let HistogramSeries = CreateHistogramSeries(data, xAxis, chosenCategories)
+  const histogramSeries = createHistogramSeries(data, xAxis, chosenCategories)
 
-  return HistogramSeries
+  return histogramSeries
 }
 
 // Goes through every data entry,
 // if the value of said data entry for the chosen variable
 // is one of the chosen categories, its entry in the series will be incremented.
-function CreateHistogramSeries(data, xAxis, chosenCategories) {
+function createHistogramSeries(data, xAxis, chosenCategories) {
   let dict = {}
   let euNumbers = {}
   chosenCategories.forEach((category) => {

@@ -12,7 +12,7 @@ import SingleVisualization from './single_visualization/SingleVisualization'
 import { useSelectedData } from '../../shared/contexts/DataContext'
 import GetUniqueCategories from './single_visualization/utils/GetUniqueCategories'
 import { useVisuals, useVisualsUpdate } from '../../shared/contexts/DataContext'
-import { generateSeries } from './single_visualization/SingleVisualization'
+import { generateSeries } from './single_visualization/utils/GenerateSeries'
 
 // the component that contains all the visualizations
 function VisualizationPage() {
@@ -132,7 +132,6 @@ function VisualizationPage() {
 
   // handles a change to a visualization
   function handleChangeFunc(settings) {
-    console.log('the chart has been changed')
     var newVisuals = JSON.parse(JSON.stringify(visuals))
     newVisuals = newVisuals.map((item) => {
       if (item.id === settings.id) {

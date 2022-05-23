@@ -30,7 +30,7 @@ function VisualizationForm(props) {
     const name = target.name
 
     settings[name] = value
-    props.onChange(settings)
+    props.onChange(name, value)
   }
 
   // GENERAL FUNCTIONS
@@ -42,7 +42,7 @@ function VisualizationForm(props) {
         return (
           <BarForm
             uniqueCategories={props.uniqueCategories}
-            onChange={handleChangeFunc}
+            onChange={handleChange}
             chartSpecificOptions={settings.chartSpecificOptions}
           />
         )
@@ -51,7 +51,7 @@ function VisualizationForm(props) {
         return (
           <LineForm
             uniqueCategories={props.uniqueCategories}
-            onChange={handleChangeFunc}
+            onChange={handleChange}
             chartSpecificOptions={settings.chartSpecificOptions}
           />
         )
@@ -60,7 +60,7 @@ function VisualizationForm(props) {
         return (
           <PieForm
             uniqueCategories={props.uniqueCategories}
-            onChange={handleChangeFunc}
+            onChange={handleChange}
             chartSpecificOptions={settings.chartSpecificOptions}
           />
         )
@@ -69,7 +69,7 @@ function VisualizationForm(props) {
         return (
           <HistogramForm
             uniqueCategories={props.uniqueCategories}
-            onChange={handleChangeFunc}
+            onChange={handleChange}
             chartSpecificOptions={settings.chartSpecificOptions}
           />
         )
@@ -98,7 +98,6 @@ function VisualizationForm(props) {
           <option value="histogram">Histogram</option>
         </select>
       </label>
-
       {renderChartOptions(settings.chartType)}
       <label className="visualization-panel-label">
         <input

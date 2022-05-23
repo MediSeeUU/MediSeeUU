@@ -12,10 +12,6 @@ import BarChart from './visualization_types/BarChart'
 import LineChart from './visualization_types/LineChart'
 import PieChart from './visualization_types/PieChart'
 import HistogramChart from './visualization_types/HistogramChart'
-import GenerateBarSeries from './data_interfaces/BarInterface'
-import GenerateLineSeries from './data_interfaces/LineInterface'
-import GeneratePieSeries from './data_interfaces/PieInterface'
-import GenerateHistogramSeries from './data_interfaces/HistogramInterface'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
 import sortCategoryData from './utils/SortCategoryData'
@@ -34,13 +30,11 @@ function SingleVisualization(props) {
 
   // EVENT HANDLERS:
 
-  // event handler for the 'form' data
-  function handleChangeFunction(event) {
-    settings.chartType = event.chartType
-    settings.chartSpecificOptions = event.chartSpecificOptions
-    settings.legendOn = event.legendOn
-    settings.labelsOn = event.labelsOn
-
+  // Event handler for the 'form' data.
+  // Note that it always only registers a single change,
+  // rather than passing around the whole 'state' of the form.
+  function handleChangeFunction(name, value) {
+    settings[name] = value
     props.onFormChangeFunc(settings)
   }
 
@@ -150,36 +144,18 @@ function SingleVisualization(props) {
 
   // renders the placeholder for the title depending on the chart type
   function renderTitlePlaceHolder() {
-    const chartType = 'my ' + settings.chartType
+    const base =
+      'my ' + settings.chartType + ' - ' + settings.chartSpecificOptions.xAxis
+
     switch (settings.chartType) {
       case 'bar':
-        return (
-          chartType +
-          ' - ' +
-          settings.chartSpecificOptions.xAxis +
-          ' vs ' +
-          settings.chartSpecificOptions.yAxis
-        )
+        return base + ' vs ' + settings.chartSpecificOptions.yAxis
 
       case 'line':
-        return (
-          chartType +
-          ' - ' +
-          settings.chartSpecificOptions.xAxis +
-          ' vs ' +
-          settings.chartSpecificOptions.yAxis
-        )
-
-      case 'pie':
-        return chartType + ' - ' + settings.chartSpecificOptions.xAxis
-
-      case 'histogram':
-        return chartType + ' - ' + settings.chartSpecificOptions.xAxis
+        return base + ' vs ' + settings.chartSpecificOptions.yAxis
 
       default:
-        throw Error(
-          'visualization settings incorrect settings: {' + settings + '}'
-        )
+        return base
     }
   }
 
@@ -241,29 +217,6 @@ function SingleVisualization(props) {
       </Container>
     </div>
   )
-}
-
-// Returns series data depending on the chart type,
-// as each chart type expects data in a certain way.
-// For example, a pie chart only expect one variable,
-// whereas a bar chart expect two.
-export function generateSeries(chartType, options) {
-  switch (chartType) {
-    case 'bar':
-      return GenerateBarSeries(options, options.data)
-
-    case 'line':
-      return GenerateLineSeries(options, options.data)
-
-    case 'pie':
-      return GeneratePieSeries(options, options.data)
-
-    case 'histogram':
-      return GenerateHistogramSeries(options, options.data)
-
-    default:
-      throw Error('visualization settings incorrect settings')
-  }
 }
 
 export default SingleVisualization

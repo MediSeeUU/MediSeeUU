@@ -1,18 +1,22 @@
 import sortCategoryData from '../utils/SortCategoryData'
 
 // generates series for a line chart
-export default function GenerateLineSeries(options, data) {
+export default function GenerateLineSeries(settings) {
   // no categories have been selected
-  if (options.chartSpecificOptions.categoriesSelectedX.length === 0) {
+  if (
+    settings.chartSpecificOptions.categoriesSelectedX.length === 0 ||
+    settings.chartSpecificOptions.categoriesSelectedY.length === 0
+  ) {
     return []
   }
-  let xAxis = options.chartSpecificOptions.xAxis
-  let yAxis = options.chartSpecificOptions.yAxis
-  let categoriesSelectedX = sortCategoryData(
-    options.chartSpecificOptions.categoriesSelectedX
+  const xAxis = settings.chartSpecificOptions.xAxis
+  const yAxis = settings.chartSpecificOptions.yAxis
+  const data = settings.data
+  const categoriesSelectedX = sortCategoryData(
+    settings.chartSpecificOptions.categoriesSelectedX
   )
-  let categoriesSelectedY = sortCategoryData(
-    options.chartSpecificOptions.categoriesSelectedY
+  const categoriesSelectedY = sortCategoryData(
+    settings.chartSpecificOptions.categoriesSelectedY
   )
 
   let [dict, euNumbers] = PollChosenVariable(
