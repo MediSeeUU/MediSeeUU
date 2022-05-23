@@ -114,7 +114,7 @@ class SaveDialog extends React.Component {
             type="text"
             id="name"
             className="med-text-input"
-            placeHolder="Selection name"
+            placeholder="Selection name"
           />
         </div>
 
