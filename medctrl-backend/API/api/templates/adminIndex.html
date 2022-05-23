@@ -14,10 +14,12 @@
 {% block generateKey %}{% endblock %}
 
 {% block content %}
-<form action="generateApiKey">
-  <input type="submit" value="Generate scraper key" class="default" style="width: 100%">
-</form>
-<div id="content-main">
+  {% if request.user.is_superuser %}
+    <form action="generateApiKey">
+      <input type="submit" value="Generate scraper key" class="default" style="width: 100%">
+    </form>
+    <div id="content-main">
+  {% endif %}
   {% include "admin/app_list.html" with app_list=app_list show_changelinks=True %}
 </div>
 {% endblock %}
