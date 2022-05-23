@@ -6,6 +6,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from django.contrib import messages
 from knox.models import AuthToken
+from django.conf import settings
+
+base_url = settings.BASE_URL if "BASE_URL" in dir(settings) else "/"
 
 
 class GenerateKeyForm(forms.Form):
@@ -30,8 +33,8 @@ class GenerateKeyView(LoginRequiredMixin, UserPassesTestMixin, FormView):
 
     form_class = GenerateKeyForm
     template_name = "generateApiKeyTemplate.html"
-    success_url = f"generateApiKey"
-    login_url = f"login"
+    success_url = f"/{base_url}admin"
+    login_url = f"{base_url}/admin/login"
 
     def form_valid(self, form):
         duration = form.cleaned_data["duration"]
