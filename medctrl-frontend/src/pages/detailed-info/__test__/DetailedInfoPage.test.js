@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import DetailedInfoPage, { InfoPage } from '../DetailedInfoPage'
 import { act } from 'react-dom/test-utils'
 import MockDataProvider from '../../../shared/contexts/MockDataContext'
@@ -65,4 +65,21 @@ test('detailed info page shows error for unknown medIDs', () => {
   )
   const errorMessage = screen.getAllByText('Unknown Medicine ID Number')
   expect(errorMessage).toBeTruthy()
+})
+
+test('detailed info page proc select dialog behaves correctly', () => {
+  let medData = DummyData.info
+  let procData = DummyData.procedures
+
+  render(
+    <DataProvider>
+      <InfoPage medData={medData} procData={procData} />
+    </DataProvider>
+  )
+
+  const procSelectButton = screen.getAllByText('Select Procedures')[0]
+  fireEvent.click(procSelectButton)
+
+  const applyButton = screen.getByText('Apply')
+  fireEvent.click(applyButton)
 })
