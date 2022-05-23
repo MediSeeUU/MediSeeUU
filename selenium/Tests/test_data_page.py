@@ -116,9 +116,9 @@ class TestDataPage(WebDriverSetup):
   # check if the column change propagates to all tables
   def test_column_change(self):
     column = random.randint(1, self.data_page.amount_of_columns(0))
-    self.data_page.change_column(0, column, "CoRapporteur")
-    assert self.data_page.column_value(0, column) == "CoRapporteur"
-    assert self.data_page.column_value(1, column) == "CoRapporteur"
+    self.data_page.change_column(0, column, "Co-Rapporteur")
+    assert self.data_page.column_value(0, column) == "Co-Rapporteur"
+    assert self.data_page.column_value(1, column) == "Co-Rapporteur"
   
   # check if a new column is added/removed to/from all tables
   def test_column_add_remove(self):

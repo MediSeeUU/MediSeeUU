@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { render, screen, fireEvent, within } from '@testing-library/react'
 import Table from '../table'
 import DummyData from '../../../testJson/data.json'
+import structData from '../../../shared/contexts/structServer.json'
 import {
   DataContext,
   SelectedContext,
@@ -10,6 +11,7 @@ import {
   CheckedContextUpdate,
   ColumnSelectionContext,
   ColumnSelectionContextUpdate,
+  StructureContext,
 } from '../../contexts/DataContext'
 import { BrowserRouter } from 'react-router-dom'
 import { dataToDisplayFormat } from '../../table/table'
@@ -21,7 +23,7 @@ test('renders without crashing', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -49,7 +51,7 @@ test('expected amount of rows in the table', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -82,7 +84,7 @@ test('expected amount of headers in the table', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -122,7 +124,7 @@ test('checkboxes displayed', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -173,7 +175,7 @@ test('row selected, when checkbox clicked', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -225,7 +227,7 @@ test('all rows selected when select all pressed', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -277,7 +279,7 @@ test('throw error when data not defined', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -305,7 +307,7 @@ test('throw error when currentPage not defined', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -333,7 +335,7 @@ test('throw error when amountPerPage not defined', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -361,7 +363,7 @@ test('throw error when current page does not exist', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -389,7 +391,7 @@ test('data put and displayed correctly into table', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -400,11 +402,13 @@ test('data put and displayed correctly into table', () => {
 
   render(
     <BrowserRouter>
-      <ColumnSelectionContext.Provider value={columnSelection}>
-        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-          <Table data={DummyData} currentPage={1} amountPerPage={10} />
-        </ColumnSelectionContextUpdate.Provider>
-      </ColumnSelectionContext.Provider>
+      <StructureContext.Provider value={structData}>
+        <ColumnSelectionContext.Provider value={columnSelection}>
+          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+            <Table data={DummyData} currentPage={1} amountPerPage={10} />
+          </ColumnSelectionContextUpdate.Provider>
+        </ColumnSelectionContext.Provider>
+      </StructureContext.Provider>
     </BrowserRouter>
   )
 
@@ -431,7 +435,7 @@ test('sorting on leftmost columnheader sorts data', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -466,20 +470,22 @@ test('sorting on leftmost columnheader sorts data', () => {
 
   render(
     <BrowserRouter>
-      <DataContext.Provider value={data}>
-        <SelectedContext.Provider value={selectedData}>
-          <ColumnSelectionContext.Provider value={columnSelection}>
-            <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-              <Table
-                data={updatedData}
-                currentPage={1}
-                amountPerPage={10}
-                setSorters={setSorters}
-              />
-            </ColumnSelectionContextUpdate.Provider>
-          </ColumnSelectionContext.Provider>
-        </SelectedContext.Provider>
-      </DataContext.Provider>
+      <StructureContext.Provider value={structData}>
+        <DataContext.Provider value={data}>
+          <SelectedContext.Provider value={selectedData}>
+            <ColumnSelectionContext.Provider value={columnSelection}>
+              <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+                <Table
+                  data={updatedData}
+                  currentPage={1}
+                  amountPerPage={10}
+                  setSorters={setSorters}
+                />
+              </ColumnSelectionContextUpdate.Provider>
+            </ColumnSelectionContext.Provider>
+          </SelectedContext.Provider>
+        </DataContext.Provider>
+      </StructureContext.Provider>
     </BrowserRouter>
   )
 
@@ -504,7 +510,7 @@ test('column change changes data in row', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -515,11 +521,13 @@ test('column change changes data in row', () => {
 
   const { rerender } = render(
     <BrowserRouter>
-      <ColumnSelectionContext.Provider value={columnSelection}>
-        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-          <Table data={DummyData} currentPage={1} amountPerPage={10} />
-        </ColumnSelectionContextUpdate.Provider>
-      </ColumnSelectionContext.Provider>
+      <StructureContext.Provider value={structData}>
+        <ColumnSelectionContext.Provider value={columnSelection}>
+          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+            <Table data={DummyData} currentPage={1} amountPerPage={10} />
+          </ColumnSelectionContextUpdate.Provider>
+        </ColumnSelectionContext.Provider>
+      </StructureContext.Provider>
     </BrowserRouter>
   )
   const headers = screen.queryAllByRole('columnheader')
@@ -531,11 +539,13 @@ test('column change changes data in row', () => {
   fireEvent.change(firstSelect, { target: { value: newValue } })
   rerender(
     <BrowserRouter>
-      <ColumnSelectionContext.Provider value={columnSelection}>
-        <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-          <Table data={DummyData} currentPage={1} amountPerPage={10} />
-        </ColumnSelectionContextUpdate.Provider>
-      </ColumnSelectionContext.Provider>
+      <StructureContext.Provider value={structData}>
+        <ColumnSelectionContext.Provider value={columnSelection}>
+          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+            <Table data={DummyData} currentPage={1} amountPerPage={10} />
+          </ColumnSelectionContextUpdate.Provider>
+        </ColumnSelectionContext.Provider>
+      </StructureContext.Provider>
     </BrowserRouter>
   )
 
@@ -551,7 +561,7 @@ test('Add column button adds a column', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -591,7 +601,7 @@ test('Remove column button removes a column', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -632,7 +642,7 @@ test('Amount of columns does not drop below 5', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
     'ApplicationNo',
     'ApplicationNo',
   ]

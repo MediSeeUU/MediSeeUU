@@ -23,6 +23,7 @@ from api.models.medicine_models import (
     Historyorphan,
     Historyprime,
 )
+from api.update_cache import update_cache
 
 
 def import_foreign_key(field, model):
@@ -50,6 +51,25 @@ class CustomForeignKeyWidget(widgets.ForeignKeyWidget):
         return value
 
 
+class CacheModelAdmin(admin.ModelAdmin):
+    """
+    Admin View class.
+    Every class that will inherit from this will automatically update the cache after data modifications.
+    """
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        update_cache()
+
+    def delete_queryset(self, request, queryset):
+        super().delete_queryset(request, queryset)
+        update_cache()
+
+    def delete_model(self, request, obj):
+        super().delete_model(request, obj)
+        update_cache()
+
+
 class MedicineResource(resources.ModelResource):
     """
     Resource for the Medicine model.
@@ -72,7 +92,7 @@ class MedicineResource(resources.ModelResource):
         import_id_fields = ("eunumber",)
 
 
-class MedicineAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
+class MedicineAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
     Admin View for Medicine
     """
@@ -118,7 +138,7 @@ class AuthorisationResource(resources.ModelResource):
         import_id_fields = ("eunumber",)
 
 
-class AuthorisationAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
+class AuthorisationAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
     Admin View for Authorisation
     """
@@ -158,7 +178,7 @@ class ProcedureResource(resources.ModelResource):
         import_id_fields = ("commisionnumber",)
 
 
-class ProcedureAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
+class ProcedureAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
     Admin View for Procedure
     """
@@ -198,7 +218,7 @@ class HistoryauthorisationResource(resources.ModelResource):
         )
 
 
-class HistoryauthorisationAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
+class HistoryauthorisationAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
     Admin View for Historyauthorisation
     """
@@ -234,7 +254,7 @@ class HistorybrandnameResource(resources.ModelResource):
         )
 
 
-class HistorybrandnameAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
+class HistorybrandnameAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
     Admin View for Historybrandname
     """
@@ -267,7 +287,7 @@ class HistoryindicationResource(resources.ModelResource):
         )
 
 
-class HistoryindicationAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
+class HistoryindicationAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
     Admin View for Historyindication
     """
@@ -300,7 +320,7 @@ class HistorymahResource(resources.ModelResource):
         )
 
 
-class HistorymahAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
+class HistorymahAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
     Admin View for Historymah
     """
@@ -333,7 +353,7 @@ class HistoryorphanResource(resources.ModelResource):
         )
 
 
-class HistoryorphanAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
+class HistoryorphanAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
     Admin View for Historyorphan
     """
@@ -366,7 +386,7 @@ class HistoryprimeResource(resources.ModelResource):
         )
 
 
-class HistoryprimeAdmin(import_admin.ImportExportModelAdmin, admin.ModelAdmin):
+class HistoryprimeAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
     Admin View for Historyprime
     """
