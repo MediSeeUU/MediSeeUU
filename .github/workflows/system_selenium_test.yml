@@ -41,7 +41,7 @@ jobs:
         run: |
           source ../virtualenv/bin/activate
           cd API/
-          python manage.py runserver
+          python manage.py runserver &
         working-directory: "medctrl-backend"
 
 
