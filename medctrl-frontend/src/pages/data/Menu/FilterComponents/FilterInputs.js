@@ -21,7 +21,7 @@ function textFilter(container) {
     <input
     type="text"
     id={container.i + container.props.item.selected}
-    className="filter-input med-text-input"
+    className="med-table-menu-filter-input-field med-text-input"
     defaultValue={container.props.item.input[container.i].var}
     placeholder="Enter value"
     onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}    
@@ -35,7 +35,7 @@ function numFilter(container, filterRange) {
       <input
       type="number"
       id={container.i + container.props.item.selected + 'from'}
-      className="filter-input med-num-input"
+      className="med-table-menu-filter-input-field med-num-input"
       defaultValue={container.props.item.input[container.i].var}
       placeholder="Enter value"
       onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}
@@ -48,7 +48,7 @@ function numFilter(container, filterRange) {
       <input
       type="number"
       id={container.i + container.props.item.selected + 'till'}
-      className="filter-input med-num-input"
+      className="med-table-menu-filter-input-field med-num-input"
       defaultValue={container.props.item.input[container.i].var}
       placeholder="Enter value"
       onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}
@@ -72,7 +72,7 @@ return (
         <input
         type="date"
         id={container.i + container.props.item.selected + 'from'}
-        className="filter-input med-date-input"
+        className="med-table-menu-filter-input-field med-date-input"
         defaultValue={container.props.item.input[container.i].var}
         placeholder="Enter value"
         onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}        
@@ -86,7 +86,7 @@ return (
         <input
         type="date"
         id={container.i  + container.props.item.selected + 'till'}
-        className="filter-input med-date-input"
+        className="med-table-menu-filter-input-field med-date-input"
         defaultValue={container.props.item.input[container.i].var}
         placeholder="Enter value"
         onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}        
@@ -109,9 +109,10 @@ function BoolFilter(container) {
     <div>
       <select
       id={container.i  + container.props.item.selected}
-      className='filter-input med-bool-input'
+      className='med-table-menu-filter-input-field med-bool-input'
       defaultValue={container.props.item.input[container.i].var}
-      onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}>
+      onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}
+      data-testid='filter-input'>
         <option value='yes'>True</option>
         <option value='no'>False</option>
       </select>
