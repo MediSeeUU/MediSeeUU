@@ -25,11 +25,11 @@ function TimeLine({ procedures, lastUpdatedDate }) {
 
   // add a final timeline element the signify the date up to
   // which this timeline is complete
-  if(lastUpdatedDate !== undefined && lastUpdatedDate !== null) {
+  if (lastUpdatedDate !== undefined && lastUpdatedDate !== null) {
     allElements.push(
       <TimeLineElement
         date={clean(lastUpdatedDate)}
-        event={"End of Database"}
+        event={'End of Database'}
         specialEvent={true}
         key={v4()}
       />

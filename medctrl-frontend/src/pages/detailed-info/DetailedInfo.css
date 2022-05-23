@@ -71,7 +71,7 @@
   text-align: center;
   margin: 15px 15%;
   font-weight: 200;
-  color: var(--med-additional-text)
+  color: var(--med-additional-text);
 }
 
 /* for procedure content */
@@ -218,20 +218,17 @@
   position: relative;
 }
 
-.med-info-timeline-element:first-child 
-  .med-info-timeline-element-decoration {
+.med-info-timeline-element:first-child .med-info-timeline-element-decoration {
   float: right;
   width: 50%;
 }
 
-.med-info-timeline-element:last-child 
-  .med-info-timeline-element-decoration {
+.med-info-timeline-element:last-child .med-info-timeline-element-decoration {
   float: left;
   width: 50%;
 }
 
-.med-info-timeline-element:only-child 
-  .med-info-timeline-element-decoration {
+.med-info-timeline-element:only-child .med-info-timeline-element-decoration {
   width: 50%;
   height: 0;
 }
@@ -262,8 +259,7 @@
 
 /* for special (i.e. highlighted) timeline elements */
 
-.med-info-special 
-  .med-info-timeline-element-decoration:before {
+.med-info-special .med-info-timeline-element-decoration:before {
   background-color: var(--med-timeline-line);
 }
 
