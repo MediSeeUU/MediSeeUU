@@ -7,6 +7,7 @@ import {
 } from '../contexts/DataContext'
 import './table.css'
 import { Link } from 'react-router-dom'
+import '../../core/login/connectionServer'
 
 //Function based component, returns table
 function DisplayTable({
@@ -29,6 +30,9 @@ function DisplayTable({
   useEffect(() => {
     setLocalTableData(data)
   }, [data])
+
+  let token = sessionStorage.getItem('token')
+  let loggedin = token != null
 
   const checkedState = useCheckedState()
   const setCheckedState = useCheckedStateUpdate()
@@ -141,15 +145,13 @@ function DisplayTable({
           onClick={() => addColumn()}
           data-testid="add-column"
         />
-
         <i
           className="med-add-remove-button bx bxs-minus-square med-primary-text"
           onClick={() => removeColumn()}
           data-testid="remove-column"
         />
-
         {exportMenu}
-        {saveMenu}
+        {loggedin && saveMenu}
       </div>
 
       <table className="med-table">
