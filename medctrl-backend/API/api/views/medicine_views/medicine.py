@@ -3,10 +3,13 @@ from rest_framework import permissions
 from api.models import SavedSelection
 from api.serializers.medicine_serializers import PublicMedicineSerializer
 from api.models.medicine_models import Medicine
+from rest_framework.response import Response
+from django.core.cache import cache
+from api.update_cache import update_cache
 from api.views.other import permissionFilter
 
 
-class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
+class MedicineViewSet(viewsets.ViewSet):
     """
     Viewset for the Medicine model
     """
@@ -14,27 +17,22 @@ class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
     ]  # permissions.IsAuthenticated
-    serializer_class = PublicMedicineSerializer
+    update_cache()
 
-    def get_queryset(self):
-        selection = self.request.query_params.get("selection")
+    def list(self, request):
+        cache_medicine = cache.get("medicine_cache")
 
-        if selection is None:
-            return Medicine.objects.all()
-
-        selection_set = SavedSelection.objects.filter(id=selection).first()
-        if selection_set is None:
-            return Medicine.objects.none()
-
-        return selection_set.eunumbers.all()
-
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
+        # if the data is not present in the cache, we just obtain the data from the database
+        if not cache_medicine:
+            queryset = Medicine.objects.all()
+            serializer = PublicMedicineSerializer(queryset, many=True)
+            cache_medicine = serializer.data
 
         user = self.request.user
         perms = permissionFilter(user)
 
-        # Set the permissions in the requests' context so the serializer can use them
-        context.update({"permissions": perms})
+        filtered_medicines = map(
+            lambda obj: {x: y for x, y in obj.items() if x in perms}, cache_medicine
+        )
 
-        return context
+        return Response(filtered_medicines)

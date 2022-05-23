@@ -16,7 +16,7 @@ function ExportMenu({ selectedData }) {
         className="med-primary-solid med-bx-button"
         onClick={() => setModalState(true)}
       >
-        <i className="bx bxs-file-export"></i>Export
+        <i className="bx bxs-file-export med-button-image"></i>Export
       </button>
 
       <ReactModal

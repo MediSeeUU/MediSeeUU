@@ -1,8 +1,10 @@
-import React, { useContext, useState } from 'react'
-import allData from '../../testJson/data.json'
+import React, { useContext, useState, useEffect } from 'react'
 import GetUniqueCategories from '../../pages/visualizations/single_visualization/utils/GetUniqueCategories'
+import cleanFetchedData from './DataParsing'
+import structServerData from './structServer.json'
 
 export const DataContext = React.createContext()
+export const StructureContext = React.createContext()
 export const SelectedContext = React.createContext()
 export const CheckedContext = React.createContext()
 export const CheckedContextUpdate = React.createContext()
@@ -13,6 +15,10 @@ export const VisualsUpdateContext = React.createContext()
 
 export function useData() {
   return useContext(DataContext)
+}
+
+export function useStructure() {
+  return useContext(StructureContext)
 }
 
 export function useSelectedData() {
@@ -44,10 +50,59 @@ export function useVisualsUpdate() {
 }
 
 export function DataProvider({ children }) {
+  // list of all the medicine data points
+  const [medData, setMedData] = useState([])
+
+  // json object defining the structure of the fetched medicine data
+  const [structData, setStructData] = useState({})
+
+  // retrieve all medicine data points from the backend
+  useEffect(() => {
+    async function fetchAllData() {
+      const medResponse = await fetch(
+        `${process.env.PUBLIC_URL}/api/medicine/`,
+        {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
+      const structResponse = await fetch(
+        `${process.env.PUBLIC_URL}/api/detailedData/`,
+        {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
+      const structResponseData = await structResponse.json()
+      //const structResponseData = structServerData
+      const medResponseData = await medResponse.json()
+
+      setMedData(cleanFetchedData(medResponseData, structResponseData))
+      setStructData(structResponseData)
+      console.log('fetched the data!')
+    }
+    fetchAllData()
+  }, [setMedData])
+
+  return (
+    <StaticDataProvider allData={medData} structData={structData}>
+      {children}
+    </StaticDataProvider>
+  )
+}
+
+export function StaticDataProvider({ children, allData, structData }) {
   //list of checked datapoints
   const [checkedState, setCheckedState] = useState(
     Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: true })))
   )
+
+  // update the checked datapoints state when the allData state is changed
+  useEffect(() => {
+    setCheckedState(
+      Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: true })))
+    )
+  }, [allData])
 
   //selected datalist
   const selectedData = allData.filter((item, index) => {
@@ -60,48 +115,56 @@ export function DataProvider({ children }) {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
+    'ATCCodeL2',
   ])
 
-  let uniqueCategories = GetUniqueCategories(allData)
+  // visualisation context to save the visualisations when navigating the page
+  const [visuals, setVisuals] = useState([])
 
-  //visualisation context to save the visualisations when navigating the page
-  const [visuals, setVisuals] = useState([
-    {
-      id: 1,
-      chartType: 'bar',
-      chartSpecificOptions: {
-        xAxis: 'DecisionYear',
-        yAxis: 'Rapporteur',
-        categoriesSelectedY: uniqueCategories['Rapporteur'],
-        categoriesSelectedX: uniqueCategories['DecisionYear'],
+  // update the visualisation context state when the allData state is changed
+  useEffect(() => {
+    let uniqueCategories = GetUniqueCategories(allData)
+    setVisuals([
+      {
+        id: 1,
+        chartType: 'bar',
+        chartSpecificOptions: {
+          xAxis: 'DecisionYear',
+          yAxis: 'Rapporteur',
+          categoriesSelectedY: uniqueCategories['Rapporteur'],
+          categoriesSelectedX: uniqueCategories['DecisionYear'],
+        },
+        legendOn: false,
+        labelsOn: false,
+        data: [],
+        series: [],
+        uniqueCategories: [],
+        key: '',
       },
-      legendOn: false,
-      labelsOn: false,
-      data: [],
-      series: [],
-      uniqueCategories: [],
-      key: '',
-    },
-  ])
+    ])
+  }, [allData])
 
   return (
     <DataContext.Provider value={allData}>
-      <SelectedContext.Provider value={selectedData}>
-        <CheckedContext.Provider value={checkedState}>
-          <CheckedContextUpdate.Provider value={setCheckedState}>
-            <ColumnSelectionContext.Provider value={columnSelection}>
-              <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-                <VisualsContext.Provider value={visuals}>
-                  <VisualsUpdateContext.Provider value={setVisuals}>
-                    {children}
-                  </VisualsUpdateContext.Provider>
-                </VisualsContext.Provider>
-              </ColumnSelectionContextUpdate.Provider>
-            </ColumnSelectionContext.Provider>
-          </CheckedContextUpdate.Provider>
-        </CheckedContext.Provider>
-      </SelectedContext.Provider>
+      <StructureContext.Provider value={structData}>
+        <SelectedContext.Provider value={selectedData}>
+          <CheckedContext.Provider value={checkedState}>
+            <CheckedContextUpdate.Provider value={setCheckedState}>
+              <ColumnSelectionContext.Provider value={columnSelection}>
+                <ColumnSelectionContextUpdate.Provider
+                  value={setColumnSelection}
+                >
+                  <VisualsContext.Provider value={visuals}>
+                    <VisualsUpdateContext.Provider value={setVisuals}>
+                      {children}
+                    </VisualsUpdateContext.Provider>
+                  </VisualsContext.Provider>
+                </ColumnSelectionContextUpdate.Provider>
+              </ColumnSelectionContext.Provider>
+            </CheckedContextUpdate.Provider>
+          </CheckedContext.Provider>
+        </SelectedContext.Provider>
+      </StructureContext.Provider>
     </DataContext.Provider>
   )
 }
