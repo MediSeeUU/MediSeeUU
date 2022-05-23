@@ -63,38 +63,40 @@ function numFilter(container, filterRange) {
 }
 
 function dateFilter(container, filterRange) {
-return (
-  <>
-    { filterRange === 'from' &&
-      <div>
-        <input
-        type="date"
-        id={container.i + container.props.item.selected + 'from'}
-        className="med-table-menu-filter-input-field med-date-input"
-        defaultValue={container.props.item.input[container.i].var}
-        placeholder="Enter value"
-        onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}        
-        data-testid="filter-input-date-from"
-        />
-      </div>
-    }
 
-    { filterRange === 'till' &&
-      <div>
-        <input
-        type="date"
-        id={container.i  + container.props.item.selected + 'till'}
-        className="med-table-menu-filter-input-field med-date-input"
-        defaultValue={container.props.item.input[container.i].var}
-        placeholder="Enter value"
-        onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}        
-        data-testid="filter-input-date-till"
-        />
-      </div>
-    }
+  if (filterRange === 'from') {
+    return (
+      <input
+      type="date"
+      id={container.i + container.props.item.selected + 'from'}
+      className="med-table-menu-filter-input-field med-date-input"
+      defaultValue={container.props.item.input[container.i].var}
+      placeholder="Enter value"
+      onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}        
+      data-testid="filter-input-date-from"
+      />
+    ) 
+  }
 
-    </>
-)
+  else if (filterRange === 'till') {
+    return (
+      <input
+      type="date"
+      id={container.i  + container.props.item.selected + 'till'}
+      className="med-table-menu-filter-input-field med-date-input"
+      defaultValue={container.props.item.input[container.i].var}
+      placeholder="Enter value"
+      onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}        
+      data-testid="filter-input-date-till"
+      />
+    )
+  }
+
+  
+  else {
+    console.error('Invalid filter range in FilterInputs')
+    return null
+  }
 }
 
 function BoolFilter(container) {

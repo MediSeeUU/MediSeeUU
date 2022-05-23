@@ -9,6 +9,7 @@ import {
   within,
 } from '@testing-library/react'
 import Filter from '../Filter'
+import FilterInputs from '../FilterComponents/FilterInputs'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')
@@ -121,4 +122,127 @@ test('change input function returns correct ids and value', () => {
   const inputs = screen.getAllByTestId('filter-input-text')
   fireEvent.change(inputs[1], { target: { value: 'can be anything' } })
   fireEvent.focusOut(inputs[1])
+})
+
+test('text filter rendered', () => {
+  const root = document.createElement('div')
+
+  ReactDOM.render(<FilterInputs
+    props={{
+      id: '1',
+      item:{selected: null, input: [{var: 'test', filterRange: 'from'}], filterType: 'text'},
+      options: 'not important'
+      }}
+    i={'0'}
+  />, root)
+})
+
+test('number from filter rendered', () => {
+  const root = document.createElement('div')
+
+  ReactDOM.render(<FilterInputs
+    props={{
+      id: '1',
+      item:{selected: null, input: [{var: '20', filterRange: 'from'}], filterType: 'number'},
+      options: 'not important'
+      }}
+    i={'0'}
+  />, root)
+})
+
+test('number till filter rendered', () => {
+  const root = document.createElement('div')
+
+  ReactDOM.render(<FilterInputs
+    props={{
+      id: '1',
+      item:{selected: null, input: [{var: '20', filterRange: 'till'}], filterType: 'number'},
+      options: 'not important'
+      }}
+    i={'0'}
+  />, root)
+})
+
+test('date from filter rendered', () => {
+  const root = document.createElement('div')
+
+  ReactDOM.render(<FilterInputs
+    props={{
+      id: '1',
+      item:{selected: null, input: [{var: '2012-02-02', filterRange: 'from'}], filterType: 'date'},
+      options: 'not important'
+      }}
+    i={'0'}
+  />, root)
+})
+
+test('date till filter rendered', () => {
+  const root = document.createElement('div')
+
+  ReactDOM.render(<FilterInputs
+    props={{
+      id: '1',
+      item:{selected: null, input: [{var: '2012-02-02', filterRange: 'till'}], filterType: 'date'},
+      options: 'not important'
+      }}
+    i={'0'}
+  />, root)
+})
+
+test('bool filter rendered', () => {
+  const root = document.createElement('div')
+
+  ReactDOM.render(<FilterInputs
+    props={{
+      id: '1',
+      item:{selected: null, input: [{var: 'yes', filterRange: 'from'}], filterType: 'bool'},
+      options: 'not important'
+      }}
+    i={'0'}
+  />, root)
+})
+
+test('adding invalid filtertype throws error', () => {
+  expect(() => {
+    const root = document.createElement('div')
+
+    ReactDOM.render(<FilterInputs
+      props={{
+        id: '1',
+        item:{selected: null, input: [{var: 'yes', filterRange: 'from'}], filterType: 'notAType'},
+        options: 'not important'
+        }}
+      i={'0'}
+    />, root)
+  }).toThrow();
+})
+
+test('invalid filter range in number test', () => {
+  expect(() => {
+    const root = document.createElement('div')
+
+    ReactDOM.render(<FilterInputs
+      props={{
+        id: '1',
+        item:{selected: null, input: [{var: 'yes', filterRange: 'notARange'}], filterType: 'number'},
+        options: 'not important'
+        }}
+      i={'0'}
+    />, root)
+  }).toThrow();
+})
+
+test('invalid filter range in date test', () => {
+  expect(() => {
+    const root = document.createElement('div')
+
+    ReactDOM.render(<FilterInputs
+      props={{
+        id: '1',
+        item:{selected: null, input: [{var: 'yes', filterRange: 'notARange'}], filterType: 'date'},
+        options: 'not important'
+        }}
+      i={'0'}
+    />, root)
+  }).toThrow();
 })
