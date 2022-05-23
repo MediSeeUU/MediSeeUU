@@ -3,24 +3,23 @@ import ReactModal from 'react-modal'
 import { v4 } from 'uuid'
 
 // function based component, represents the procedure selection button, which is inserted
-// in both the procedure and timeline container on the detailed info page. when this button 
+// in both the procedure and timeline container on the detailed info page. when this button
 // is pressed, the procedure selection dialog compontent is shown in a react modal view
 export default function ProcSelectModal({
   availableProcTypes,
   currentProcFilter,
-  setProcFilter
+  setProcFilter,
 }) {
   const [showModal, setModalState] = useState(false)
   const closeModal = () => setModalState(false)
 
   return (
     <>
-      <button 
+      <button
         className="med-proc-select-button med-primary-text"
         onClick={() => setModalState(true)}
       >
-        Select Procedures {' '}
-        <i className='bx bx-filter'/>
+        Select Procedures <i className="bx bx-filter" />
       </button>
 
       <ReactModal
@@ -44,12 +43,12 @@ export default function ProcSelectModal({
           },
         }}
       >
-        <ProcSelectDialog 
+        <ProcSelectDialog
           closeModal={closeModal}
           availableProcTypes={availableProcTypes}
           currentProcFilter={currentProcFilter}
           setProcFilter={setProcFilter}
-          />
+        />
       </ReactModal>
     </>
   )
@@ -59,19 +58,18 @@ export default function ProcSelectModal({
 // medicine and it is given the current selection; which procedure types to shown and which ones
 // to omit, the user can use this dialog to changes this selection. the selection can be saved
 // using the apply button, or discarded using the cancel button
-function ProcSelectDialog({ 
-  closeModal,  
+function ProcSelectDialog({
+  closeModal,
   availableProcTypes,
   currentProcFilter,
-  setProcFilter 
+  setProcFilter,
 }) {
-
   const handleSubmit = (event) => {
     event.preventDefault()
     const newFilter = []
     for (let i = 0; i < availableProcTypes.length; ++i) {
-      if(event.target[i] !== undefined) {
-        if(event.target[i].checked) {
+      if (event.target[i] !== undefined) {
+        if (event.target[i].checked) {
           newFilter.push(event.target[i].id)
         }
       }
@@ -80,40 +78,35 @@ function ProcSelectDialog({
     closeModal()
   }
 
-  const allOptions = availableProcTypes.map((procType) => {return(
-    <label className="med-proc-option" key={v4()}>
-      <input 
-        type="checkbox"
-        defaultChecked={currentProcFilter.includes(procType)}
-        id={procType}
+  const allOptions = availableProcTypes.map((procType) => {
+    return (
+      <label className="med-proc-option" key={v4()}>
+        <input
+          type="checkbox"
+          defaultChecked={currentProcFilter.includes(procType)}
+          id={procType}
         />
-      <span className='med-proc-option-name'>
-        {procType}
-      </span>
-    </label>
-  )})
+        <span className="med-proc-option-name">{procType}</span>
+      </label>
+    )
+  })
 
   return (
-    <div className='med-proc-select-dialog'>
+    <div className="med-proc-select-dialog">
       <form onSubmit={handleSubmit}>
         <h1>Select Desired Procedure Types</h1>
         <span className="med-description">
-          Below, you can select all the procedure types which should be
-          included in the procedure overview and timeline on the page.
+          Below, you can select all the procedure types which should be included
+          in the procedure overview and timeline on the page.
         </span>
 
-        <div className='med-proc-option-list'>
-          {allOptions}
-        </div>
+        <div className="med-proc-option-list">{allOptions}</div>
 
-        <button className="med-primary-solid" type='submit'>
+        <button className="med-primary-solid" type="submit">
           Apply
         </button>
 
-        <button
-          className="med-cancel-download-button"
-          onClick={ closeModal }
-        >
+        <button className="med-cancel-download-button" onClick={closeModal}>
           Cancel
         </button>
       </form>

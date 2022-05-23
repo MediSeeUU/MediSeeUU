@@ -49,24 +49,24 @@ export default function DetailedInfoPage() {
   const lastUpdatedDate = undefined
 
   return (
-    <InfoPage 
-      medData={medData} 
-      procData={procData} 
-      lastUpdatedDate={lastUpdatedDate} />
-    )
+    <InfoPage
+      medData={medData}
+      procData={procData}
+      lastUpdatedDate={lastUpdatedDate}
+    />
+  )
 }
 
 // function based component, which represents the entire detailed information page
 // it display the given medicine and procedure data
 export function InfoPage({ medData, procData, lastUpdatedDate }) {
-
   // a filter which determines which prodcures to show, and which to omit from
   // the detailed info page
   const [procFilter, setProcFilter] = useState([
     'Centralised - Authorisation',
     'Centralised - Transfer Marketing Authorisation Holder',
     'Centralised - Annual reassessment',
-    'Centralised - Annual renewal'
+    'Centralised - Annual renewal',
   ])
 
   // if no medicine data is provided, no meaning full can be displayed
@@ -85,29 +85,30 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
   let timeLineContainer = null
 
   if (procData !== null) {
-    const removeDuplicates = (arr) => { 
-      return arr.filter((item, index) => arr.indexOf(item) === index);
+    const removeDuplicates = (arr) => {
+      return arr.filter((item, index) => arr.indexOf(item) === index)
     }
     const availableProcTypes = removeDuplicates(
       procData.map((proc) => proc.proceduretype)
     )
     const procSelectModal = (
-      <ProcSelectModal 
+      <ProcSelectModal
         availableProcTypes={availableProcTypes}
         currentProcFilter={procFilter}
         setProcFilter={setProcFilter}
       />
     )
 
-    const procedures = procData.filter((proc) => 
+    const procedures = procData.filter((proc) =>
       procFilter.includes(proc.proceduretype)
     )
 
     const noProcs = procedures.length === 0
     const noProcMessage = (
-      <p className='med-info-no-proc-message'>
-        There are no procedures to display, make sure that there are procedure types
-        selected for display in the menu in the top right corner of the container.
+      <p className="med-info-no-proc-message">
+        There are no procedures to display, make sure that there are procedure
+        types selected for display in the menu in the top right corner of the
+        container.
       </p>
     )
 
@@ -116,11 +117,11 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
         <h1>Procedure Details</h1>
         {procSelectModal}
         <hr className="med-top-separator" />
-        {
-          (!noProcs) ? procedures.map((proc) => {
-            return <Procedure proc={proc} key={v4()} />
-          }) : noProcMessage
-        }
+        {!noProcs
+          ? procedures.map((proc) => {
+              return <Procedure proc={proc} key={v4()} />
+            })
+          : noProcMessage}
       </div>
     )
 
@@ -129,13 +130,11 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
         <h1>Medicine Timeline</h1>
         {procSelectModal}
         <hr className="med-top-separator" />
-        {
-          (!noProcs) ? 
-          (<TimeLine 
-            procedures={procedures} 
-            lastUpdatedDate={lastUpdatedDate} />
-          ) : noProcMessage
-        }
+        {!noProcs ? (
+          <TimeLine procedures={procedures} lastUpdatedDate={lastUpdatedDate} />
+        ) : (
+          noProcMessage
+        )}
       </div>
     )
   }

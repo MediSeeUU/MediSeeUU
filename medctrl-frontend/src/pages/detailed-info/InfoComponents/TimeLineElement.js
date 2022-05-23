@@ -2,8 +2,8 @@
 // component. is displays both a date and event string, one above a decorative
 // circle, and one below, separated by a line
 function TimeLineElement({ date, event, specialEvent }) {
-  let topLevelClassName = "med-info-timeline-element"
-  topLevelClassName += (specialEvent) ? " med-info-special" : ""
+  let topLevelClassName = 'med-info-timeline-element'
+  topLevelClassName += specialEvent ? ' med-info-special' : ''
   return (
     <div className={topLevelClassName}>
       <div className="med-info-timeline-element-timestamp">
