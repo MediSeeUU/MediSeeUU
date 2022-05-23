@@ -61,10 +61,14 @@ test('clear button calls update function', () => {
 })
 
 test('clear button resets filters and sorters', () => {
-  const update1 = (filters) =>
-    expect(filters).toEqual([{ selected: '', input: [''] }])
-  const update2 = (sorters) =>
+  const update1 = (filters) => {
+    expect(filters).toEqual([{ selected: '', input: [{var: '', filterRange: 'from'}], filterType: '' }])
+  }
+  const update2 = (sorters) => {
     expect(sorters).toEqual([{ selected: '', order: 'asc' }])
+  }
+  
+
   render(
     <Menu
       filters={[]}
@@ -168,20 +172,20 @@ const list = [
 
 test('saved filters in state', () => {
   render(
-    <Menu filters={[{ selected: '', input: [''] }]} sorters={[]} list={list} />
+    <Menu filters={[{ selected: '', input: [{var: '', filterRange: 'from'}] }]} sorters={[]} list={list} />
   )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   fireEvent.click(screen.getByText(/Add Filter/i))
 
   const select1 = screen.getAllByTestId('filter-select')[0]
   fireEvent.change(select1, { target: { value: 'dummy2' } })
-  const text1 = screen.getAllByTestId('filter-input')[0]
+  const text1 = screen.getAllByTestId('filter-input-text')[0]
   fireEvent.change(text1, { target: { value: 'welcome' } })
   fireEvent.focusOut(text1)
 
   const select2 = screen.getAllByTestId('filter-select')[1]
   fireEvent.change(select2, { target: { value: 'dummy1' } })
-  const text2 = screen.getAllByTestId('filter-input')[1]
+  const text2 = screen.getAllByTestId('filter-input-text')[1]
   fireEvent.change(text2, { target: { value: 'again' } })
   fireEvent.focusOut(text2)
 
@@ -190,8 +194,8 @@ test('saved filters in state', () => {
 
   expect(screen.getAllByTestId('filter-select')[0].value).toBe('dummy2')
   expect(screen.getAllByTestId('filter-select')[1].value).toBe('dummy1')
-  expect(screen.getAllByTestId('filter-input')[0].value).toBe('welcome')
-  expect(screen.getAllByTestId('filter-input')[1].value).toBe('again')
+  expect(screen.getAllByTestId('filter-input-text')[0].value).toBe('welcome')
+  expect(screen.getAllByTestId('filter-input-text')[1].value).toBe('again')
 })
 
 test('saved sorters in state', () => {

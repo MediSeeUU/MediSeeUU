@@ -145,8 +145,8 @@ test('table updated', () => {
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   const select = screen.queryByTestId('filter-select')
   fireEvent.change(select, { target: { value: 'ApplicationNo' } })
-  const textBox = screen.getAllByRole('textbox')[1]
-  fireEvent.change(textBox, { target: { value: '8' } })
+  const textBox = screen.getAllByRole('textbox')[0]
+  fireEvent.change(textBox, { target: { value: '3000' } })
   fireEvent.focusOut(textBox)
   fireEvent.click(screen.getByText(/Apply/i))
 
@@ -160,7 +160,7 @@ test('table updated', () => {
 
   // Check if all collected datapoints abide by the added filter
   updatedData.forEach((element) => {
-    expect(element.ApplicationNo.toString()).toContain('8')
+    expect(element.ApplicationNo).toBeGreaterThan(3000)
   })
 })
 

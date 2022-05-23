@@ -10,7 +10,7 @@ class Menu extends React.Component {
     super(props)
 
     // Default filter object
-    this.filterObject = [{ selected: '', input: [{var: '', filterRange: 'from'}] }]
+    this.filterObject = [{ selected: '', input: [{var: '', filterRange: 'from'}], filterType: '' }]
     this.sortObject = [{ selected: '', order: 'asc' }]
 
     // Set init state
@@ -42,7 +42,6 @@ class Menu extends React.Component {
 
   // Adds new filter item to the menu
   addFilter() {
-    console.log(this.filterObject)
     this.setState((prevState) => ({
       filters: prevState.filters.concat(this.filterObject),
     }))
@@ -211,7 +210,6 @@ class Menu extends React.Component {
                   fil={this.updateFilterInput}
                 />
               ))}
-              {console.log(this.state.filters)}
             </div>
             <div className="med-table-menu-filter-button-container">
               <button

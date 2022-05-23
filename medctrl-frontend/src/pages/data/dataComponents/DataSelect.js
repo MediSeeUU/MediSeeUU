@@ -47,7 +47,6 @@ function DataSelect({ initialSearch }) {
       )
     })
 
-    console.log(list)
   //the menu button to be displayed with the table
   const menu = (
     <Menu

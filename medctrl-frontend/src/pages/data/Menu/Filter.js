@@ -148,7 +148,6 @@ function pickFilter(props, i) {
   )}
 
   else {
-    console.error("Variable doesn't have a filter type set, continuing as text filter")
     props.item.filterType = 'text'
     return (
       <FilterInputs 

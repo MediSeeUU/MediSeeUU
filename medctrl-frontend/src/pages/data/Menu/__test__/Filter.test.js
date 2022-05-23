@@ -98,8 +98,8 @@ test('change selected returns correct id and value', () => {
 
 test('change input function is called', () => {
   const fil = jest.fn()
-  render(<Filter id={10} item={{ selected: null, input: [''] }} fil={fil} />)
-  const input = screen.getByTestId('filter-input')
+  render(<Filter id={10} item={{ selected: null, input: [{var: '', filterRange: 'from'}] }} fil={fil} />)
+  const input = screen.getByTestId('filter-input-text')
   fireEvent.change(input, { target: { value: 'can be anything' } })
   fireEvent.focusOut(input)
   expect(fil).toHaveBeenCalled()
@@ -114,11 +114,11 @@ test('change input function returns correct ids and value', () => {
   render(
     <Filter
       id={52}
-      item={{ selected: null, input: ['hi', 'there', 'again'] }}
+      item={{ selected: null, input: [{var: 'hi'}, {var: 'there'}, {var: 'again'}] }}
       fil={fil}
     />
   )
-  const inputs = screen.getAllByTestId('filter-input')
+  const inputs = screen.getAllByTestId('filter-input-text')
   fireEvent.change(inputs[1], { target: { value: 'can be anything' } })
   fireEvent.focusOut(inputs[1])
 })

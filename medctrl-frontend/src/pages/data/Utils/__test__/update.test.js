@@ -13,7 +13,7 @@ test('applying search, filters and sorters', () => {
   const updatedData = updateData(
     DummyData,
     'cell',
-    [{ selected: 'EUNoShort', input: ['10', '8'] }],
+    [{ selected: 'EUNoShort', input: [{var: '10'}, {var: '8'}], filterType: 'text' }],
     [{ selected: 'Rapporteur', order: 'desc' }],
     columnSelection
   )

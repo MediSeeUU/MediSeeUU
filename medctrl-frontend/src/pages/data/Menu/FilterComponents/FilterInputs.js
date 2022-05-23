@@ -10,8 +10,6 @@ function FilterInputs(container) {
     return dateFilter(container, container.props.item.input[container.i].filterRange)
   case 'bool':
     return BoolFilter(container)
-  case 'option':
-    return optionFilter(container)
   default:
     throw Error("filter type invalid")
 }}
@@ -25,7 +23,7 @@ function textFilter(container) {
     defaultValue={container.props.item.input[container.i].var}
     placeholder="Enter value"
     onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}    
-    data-testid="filter-input"
+    data-testid="filter-input-text"
   />
   )}
 
@@ -39,7 +37,7 @@ function numFilter(container, filterRange) {
       defaultValue={container.props.item.input[container.i].var}
       placeholder="Enter value"
       onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}
-      data-testid="filter-input"
+      data-testid="filter-input-num-from"
       />
     )
   }
@@ -52,7 +50,7 @@ function numFilter(container, filterRange) {
       defaultValue={container.props.item.input[container.i].var}
       placeholder="Enter value"
       onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}
-      data-testid="filter-input"
+      data-testid="filter-input-num-till"
       />
     )
   }
@@ -76,7 +74,7 @@ return (
         defaultValue={container.props.item.input[container.i].var}
         placeholder="Enter value"
         onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}        
-        data-testid="filter-input"
+        data-testid="filter-input-date-from"
         />
       </div>
     }
@@ -90,17 +88,13 @@ return (
         defaultValue={container.props.item.input[container.i].var}
         placeholder="Enter value"
         onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}        
-        data-testid="filter-input"
+        data-testid="filter-input-date-till"
         />
       </div>
     }
 
     </>
 )
-}
-
-function optionFilter() {
-
 }
 
 function BoolFilter(container) {
@@ -112,7 +106,7 @@ function BoolFilter(container) {
       className='med-table-menu-filter-input-field med-bool-input'
       defaultValue={container.props.item.input[container.i].var}
       onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}
-      data-testid='filter-input'>
+      data-testid='filter-input-bool'>
         <option value='yes'>True</option>
         <option value='no'>False</option>
       </select>
