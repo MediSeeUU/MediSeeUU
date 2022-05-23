@@ -67,7 +67,7 @@ class SaveDialog extends React.Component {
   saveData() {
     //const selectedData = this.selectedData
 
-    throw new Error('bad response!')
+    //throw new Error('bad response!')
   }
 
   // when the user updates the input field in the dialog,
@@ -100,7 +100,7 @@ class SaveDialog extends React.Component {
     }
 
     return (
-      <div className="med-export-dialog">
+      <div className="med-save-dialog">
         <i className="bx bxs-save" />
         <h1>Save Selected Data</h1>
         <span className="med-description">
@@ -120,11 +120,8 @@ class SaveDialog extends React.Component {
 
         {errorMessage}
 
-        <button
-          className="med-primary-solid accept"
-          onClick={this.handleSave}
-        >
-          Save
+        <button className="med-primary-solid accept" onClick={this.handleSave}>
+          Save selection
         </button>
         <button className="med-cancel-save-button" onClick={this.closeDialog}>
           Cancel
