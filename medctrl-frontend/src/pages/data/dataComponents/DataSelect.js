@@ -75,6 +75,7 @@ function DataSelect({ initialSearch }) {
           loadedPage: loadedPage,
           setPage: setPage,
           setResultsPerPage: setResultsPerPage,
+          setSorters: setSorters,
           select: true,
           text: 'No data to display, please clear your search or filters.',
           menu: menu,

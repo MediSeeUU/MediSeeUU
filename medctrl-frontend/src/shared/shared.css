@@ -129,6 +129,17 @@
   color: var(--primary-light);
 }
 
+/* Modal cancel button styling */
+
+.med-cancel-download-button {
+  background-color: var(--med-dialog-background);
+  color: var(--med-text-primary);
+}
+
+.med-cancel-download-button:hover {
+  background-color: var(--med-dialog-background);
+}
+
 /*
   Text Input Field Styling
 */
