@@ -9,6 +9,7 @@ from api.views.medicine_views import (
 from api.views.account_views import LoginAPI
 from api.views import SavedSelectionViewSet
 from api.views.other import Medicine_info
+from api.scraper.router import url_patterns as scraper_routes
 
 router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
@@ -30,5 +31,6 @@ urlpatterns = [
             ]
         ),
     ),
+    path("scraper/", include(scraper_routes)),
     path("detailedData/", Medicine_info.as_view()),
 ]
