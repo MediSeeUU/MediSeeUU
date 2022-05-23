@@ -30,8 +30,8 @@ class GenerateKeyView(LoginRequiredMixin, UserPassesTestMixin, FormView):
 
     form_class = GenerateKeyForm
     template_name = "generateApiKeyTemplate.html"
-    success_url = "/admin/"
-    login_url = "/admin/login"
+    success_url = f"generateApiKey"
+    login_url = f"login"
 
     def form_valid(self, form):
         duration = form.cleaned_data["duration"]

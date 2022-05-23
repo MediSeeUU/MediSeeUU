@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}<div id="content-main">
-    <form action="/admin/generateApiKey" method="post">
+    <form action="generateApiKey" method="post">
         {% csrf_token %}
         <div>
             <label style="display: inline-block; width: 60px; margin: 10px 0px">User:</label>
