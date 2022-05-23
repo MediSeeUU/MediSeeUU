@@ -28,7 +28,7 @@ function Search({ update, initial, tour }) {
   return (
     <div tour={tour} className="med-content-container">
       <div className="med-search-container">
-        {query && <i className="bx bx-x med-search-close-icon" onClick={clearSearch}></i>}
+        {query && <i className="bx bx-x med-search-close-icon" onClick={clearSearch} data-testid="search-close-icon"></i>}
         <input
           type="text"
           placeholder="Search"
