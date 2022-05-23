@@ -47,9 +47,11 @@ test('valid selection name should result in UI success message', () => {
   )
   for (let i = 0; i < validNames.length; i++) {
     fireEvent.click(screen.getByText('Save'))
-    const option = screen.getByText(validNames[i])
+    const saveName = screen.getByPlaceholderText('Selection name')
+    fireEvent.change(saveName, {
+      target: { value: validNames[i] },
+    })
     const saveButton = screen.getByText('Save selection')
-    fireEvent.click(option)
     fireEvent.click(saveButton)
     const dialogHeader = screen.getByRole('heading')
     expect(dialogHeader.innerHTML).toBe('Selection Successfully Saved')
@@ -74,9 +76,11 @@ test('invalid selection name should result in UI error message', () => {
   )
   for (let i = 0; i < invalidNames.length; i++) {
     fireEvent.click(screen.getByText('Save'))
-    const option = screen.getByText(invalidNames[i])
+    const saveName = screen.getByPlaceholderText('Selection name')
+    fireEvent.change(saveName, {
+      target: { value: invalidNames[i] },
+    })
     const saveButton = screen.getByText('Save selection')
-    fireEvent.click(option)
     fireEvent.click(saveButton)
     const dialogHeader = screen.getByRole('heading')
     expect(dialogHeader.innerHTML).toBe('Save Selected Data')
