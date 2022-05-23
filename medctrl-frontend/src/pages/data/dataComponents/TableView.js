@@ -10,7 +10,8 @@ export default function TableView({
   setResultsPerPage,
   select,
   text,
-  menu,
+  exportMenu,
+  saveMenu,
 }) {
   if (!data || data.length === 0) {
     return <label className="med-table-placeholder-text">{text}</label>
@@ -30,7 +31,8 @@ export default function TableView({
           currentPage={loadedPage}
           amountPerPage={resultsPerPage}
           selectTable={select}
-          menu={menu}
+          exportMenu={exportMenu}
+          saveMenu={saveMenu}
         />
         <ResultsSelector
           data={data}

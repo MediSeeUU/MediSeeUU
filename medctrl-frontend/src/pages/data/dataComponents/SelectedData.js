@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import TableView from './TableView'
 import ExportMenu from '../ExportMenu/ExportMenu'
+import SaveMenu from '../SaveMenu/SaveMenu'
 
 function SelectedData({ selectedData }) {
   //amount of databse hits shown per page
@@ -22,7 +23,8 @@ function SelectedData({ selectedData }) {
         setResultsPerPage: setResultsPerPage,
         select: false,
         text: 'No data to display, please clear your search or filters.',
-        menu: <ExportMenu selectedData={selectedData} />,
+        exportMenu: <ExportMenu selectedData={selectedData} />,
+        saveMenu: <SaveMenu selectedData={selectedData} />,
       })}
     </div>
   )

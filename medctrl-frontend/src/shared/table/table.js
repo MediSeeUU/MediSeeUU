@@ -15,7 +15,8 @@ function DisplayTable({
   searchTable,
   amountPerPage,
   currentPage,
-  menu,
+  exportMenu,
+  saveMenu,
 }) {
   //throw error if parameters not defined
   if (!data || !amountPerPage || !currentPage) {
@@ -134,7 +135,8 @@ function DisplayTable({
           data-testid="remove-column"
         />
 
-        {menu}
+        {exportMenu}
+        {saveMenu}
       </div>
 
       <table className="med-table">
