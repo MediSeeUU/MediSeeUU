@@ -40,7 +40,7 @@ jobs:
       - name: Run python server
         run: |
           source ../virtualenv/bin/activate
-          cp API/
+          cd API/
           python manage.py runserver
         working-directory: "medctrl-backend"
 
