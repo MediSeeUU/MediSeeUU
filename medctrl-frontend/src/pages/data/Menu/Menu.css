@@ -93,6 +93,11 @@
   height: calc(100% - 160px);
 }
 
+.med-table-menu-sort-container {
+  overflow-y: auto;
+  height: calc(100% - 80px);
+}
+
 .med-able-menu-add-sort-button {
   display: inline-block;
   font-size: 15px;
@@ -101,7 +106,7 @@
   cursor: pointer;
 }
 
-/* Individual Filter and Sort Items*/
+/* Individual Filter and Sort Items */
 
 .med-table-menu-filter-item,
 .med-table-menu-sort-item {

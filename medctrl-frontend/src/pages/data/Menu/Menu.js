@@ -235,25 +235,27 @@ class Menu extends React.Component {
           <div className="med-sort-menu">
             <h1 className="med-table-menu-header">Sort</h1>
             <hr className="med-top-separator" />
-            {this.state.sorters.map((obj, oid) => (
-              <Sort
-                key={uuidv4()}
-                id={oid}
-                item={obj}
-                options={this.props.list}
-                del={this.deleteSort}
-                sel={this.updateSortSelected}
-                order={this.updateSortOrder}
-              />
-            ))}
-            {this.state.showAddSort && (
-              <label
-                className="med-able-menu-add-sort-button med-primary-text"
-                onClick={this.addSort}
-              >
-                Add Sorting option +
-              </label>
-            )}
+            <div className="med-table-menu-sort-container">
+              {this.state.sorters.map((obj, oid) => (
+                <Sort
+                  key={uuidv4()}
+                  id={oid}
+                  item={obj}
+                  options={this.props.list}
+                  del={this.deleteSort}
+                  sel={this.updateSortSelected}
+                  order={this.updateSortOrder}
+                />
+              ))}
+              {this.state.showAddSort && (
+                <label
+                  className="med-able-menu-add-sort-button med-primary-text"
+                  onClick={this.addSort}
+                >
+                  Add Sorting option +
+                </label>
+              )}
+            </div>
           </div>
         </ReactModal>
       </>
