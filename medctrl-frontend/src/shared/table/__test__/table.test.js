@@ -1,10 +1,12 @@
-import React from 'react'
+import { React } from 'react'
 import ReactDOM from 'react-dom'
 import { render, screen, fireEvent, within } from '@testing-library/react'
 import Table from '../table'
 import DummyData from '../../../testJson/data.json'
 import structData from '../../../shared/contexts/structServer.json'
 import {
+  DataContext,
+  SelectedContext,
   CheckedContext,
   CheckedContextUpdate,
   ColumnSelectionContext,
@@ -12,6 +14,8 @@ import {
   StructureContext,
 } from '../../contexts/DataContext'
 import { BrowserRouter } from 'react-router-dom'
+import { dataToDisplayFormat } from '../../table/table'
+import updateData from '../../../pages/data/Utils/update'
 
 test('renders without crashing', () => {
   var columnSelection = [
@@ -381,7 +385,7 @@ test('throw error when current page does not exist', () => {
   expect(renderFunction).toThrow(Error)
 })
 
-test('data put correctly into table', async () => {
+test('data put and displayed correctly into table', () => {
   var columnSelection = [
     'EUNoShort',
     'BrandName',
@@ -407,20 +411,96 @@ test('data put correctly into table', async () => {
       </StructureContext.Provider>
     </BrowserRouter>
   )
+
   const headers = screen.getAllByRole('columnheader')
   const rowgroup = screen.getAllByRole('rowgroup')[1]
   const rows = within(rowgroup).getAllByRole('row')
   headers.forEach((header, index) => {
     const select = within(header).getByRole('combobox')
-    const selectValue = select.value
+    const propt = select.value
     rows.forEach((row, index2) => {
       const cells = within(row).getAllByRole('cell')
-      const cellValue = cells[index].innerHTML
-      const dataElement = DummyData[index2]
-      expect(cellValue).toBe(
-        '<div>' + dataElement[selectValue].toString() + '</div>'
-      )
+      const cellValue = cells[index].textContent
+      const entry = DummyData[index2]
+      const DisplayedData = dataToDisplayFormat({ entry, propt })
+      expect(cellValue).toBe(DisplayedData.toString())
     })
+  })
+})
+
+test('sorting on leftmost columnheader sorts data', () => {
+  var data = DummyData
+  var columnSelection = [
+    'EUNoShort',
+    'BrandName',
+    'MAH',
+    'DecisionDate',
+    'ATCCodeL2',
+    'ApplicationNo',
+    'ApplicationNo',
+  ]
+
+  const setColumnSelection = (newColumns) => {
+    columnSelection = newColumns
+  }
+  let checkedState = Object.assign(
+    {},
+    ...data.map((entry) => ({ [entry.EUNumber]: true }))
+  )
+
+  const selectedData = data.filter((item, index) => {
+    return checkedState[item.EUNumber]
+  })
+
+  const search = '' // Current search
+  const filters = [{ selected: '', input: [''] }] // Current filters
+
+  var sorters = [{ selected: '', order: 'asc' }]
+  const setSorters = (newsorter) => {
+    sorters = newsorter
+  }
+
+  const updatedData = updateData(
+    selectedData,
+    search,
+    filters,
+    sorters,
+    columnSelection
+  )
+
+  render(
+    <BrowserRouter>
+      <StructureContext.Provider value={structData}>
+        <DataContext.Provider value={data}>
+          <SelectedContext.Provider value={selectedData}>
+            <ColumnSelectionContext.Provider value={columnSelection}>
+              <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+                <Table
+                  data={updatedData}
+                  currentPage={1}
+                  amountPerPage={10}
+                  setSorters={setSorters}
+                />
+              </ColumnSelectionContextUpdate.Provider>
+            </ColumnSelectionContext.Provider>
+          </SelectedContext.Provider>
+        </DataContext.Provider>
+      </StructureContext.Provider>
+    </BrowserRouter>
+  )
+
+  const firstcolumndescsortbutton = screen.getAllByText('^')[0]
+  fireEvent.click(firstcolumndescsortbutton)
+  //table should now be sorted descending on first column attribute value
+  const rowgroup = screen.getAllByRole('rowgroup')[1]
+  const rows = within(rowgroup).getAllByRole('row')
+  var prevrowvalue = rows[0].cells[0].textContent
+
+  rows.forEach((row) => {
+    const cellValue = row.cells[0].textContent
+
+    expect(parseInt(cellValue)).toBeGreaterThanOrEqual(parseInt(prevrowvalue))
+    prevrowvalue = cellValue
   })
 })
 

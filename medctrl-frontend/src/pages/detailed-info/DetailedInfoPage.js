@@ -8,6 +8,7 @@ import TimeLine from './InfoComponents/TimeLine'
 
 import { useData, useStructure } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
+import { dataToDisplayFormat } from '../../shared/table/table'
 import { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
 
@@ -48,7 +49,6 @@ export default function DetailedInfoPage() {
 // function based component, which represents the entire detailed information page
 // it display the given medicine and procedure data
 export function InfoPage({ medData, procData }) {
-
   const variableCategories = useStructure()
 
   // if no medicine data is provided, no meaning full can be displayed
@@ -98,7 +98,7 @@ export function InfoPage({ medData, procData }) {
       </div>
     )
   }
-  
+
   const detailGroups = []
 
   for (let category in variableCategories) {
@@ -107,10 +107,11 @@ export function InfoPage({ medData, procData }) {
     for (let varIndex in variableCategories[category]) {
       const variable = variableCategories[category][varIndex]
       details.push(
-        <Detail 
-          name={variable["data-value"]} 
-          value={medData[variable["data-front-key"]]} 
-          key={v4()} />
+        <Detail
+          name={variable['data-value']}
+          value={medData[variable['data-front-key']]}
+          key={v4()}
+        />
       )
     }
 
@@ -120,7 +121,6 @@ export function InfoPage({ medData, procData }) {
       </DetailGroup>
     )
   }
-
 
   // returns the component which discribes the entire detailed information page
   // the page consists of three containers, each holds a specific category of
@@ -133,9 +133,7 @@ export function InfoPage({ medData, procData }) {
         <h1>{medData.BrandName} Medicine Details</h1>
         <hr className="med-top-separator" />
 
-        <div className="med-flex-columns">
-          {detailGroups}
-        </div>
+        <div className="med-flex-columns">{detailGroups}</div>
       </div>
 
       {timeLineContainer}

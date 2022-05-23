@@ -10,6 +10,7 @@ import allData from '../../../testJson/data.json'
 import Table from '../../../shared/table/table'
 import SettingsPage from '../../../pages/settings/SettingsPage'
 import {
+  SelectedContext,
   CheckedContext,
   CheckedContextUpdate,
   ColumnSelectionContext,
@@ -134,7 +135,7 @@ test('render datapage without crashing', () => {
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNumber]: true }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -153,19 +154,24 @@ test('render datapage without crashing', () => {
   const setColumnSelection = (newColumns) => {
     columnSelection = newColumns
   }
+  const selectedData = data.filter((item, index) => {
+    return checkedState[item.EUNumber]
+  })
 
   render(
     <BrowserRouter>
       <DataContext.Provider value={allData}>
-        <ColumnSelectionContext.Provider value={columnSelection}>
-          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-            <CheckedContext.Provider value={checkedState}>
-              <CheckedContextUpdate.Provider value={setCheckedState}>
-                <DataPage />
-              </CheckedContextUpdate.Provider>
-            </CheckedContext.Provider>
-          </ColumnSelectionContextUpdate.Provider>
-        </ColumnSelectionContext.Provider>
+        <SelectedContext.Provider value={selectedData}>
+          <ColumnSelectionContext.Provider value={columnSelection}>
+            <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+              <CheckedContext.Provider value={checkedState}>
+                <CheckedContextUpdate.Provider value={setCheckedState}>
+                  <DataPage />
+                </CheckedContextUpdate.Provider>
+              </CheckedContext.Provider>
+            </ColumnSelectionContextUpdate.Provider>
+          </ColumnSelectionContext.Provider>
+        </SelectedContext.Provider>
       </DataContext.Provider>
     </BrowserRouter>
   )
