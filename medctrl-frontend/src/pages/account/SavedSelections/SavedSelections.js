@@ -30,7 +30,7 @@ export default function SavedSelections(props) {
   }, [setsavedSelections])
 
   return (
-    <div>
+    <div className="med-saved-selection-container">
       <DetailGroup title="Saved Selections">
         {savedSelections && savedSelections.length > 0 ? (
           <table className="med-table">

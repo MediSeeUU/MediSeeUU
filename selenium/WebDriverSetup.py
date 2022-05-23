@@ -3,6 +3,8 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class WebDriverSetup(unittest.TestCase):
   def setUp(self):
@@ -23,6 +25,7 @@ class WebDriverSetup(unittest.TestCase):
 
     self.driver.set_window_size(1920, 1080)
     self.driver.get("http://localhost:3000")
+    self.driver.implicitly_wait(30)
   
   def tearDown(self):
     self.driver.close()
