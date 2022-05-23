@@ -5,7 +5,6 @@ import sortCategoryData from '../../utils/SortCategoryData'
 
 // the histogram part of a form if a histogram chart is chosen
 function HistogramForm(props) {
-
   // The list of eligible variables.
   // If we do not want to include a variable for the histogram chart,
   // it can be removed from here.
@@ -42,7 +41,7 @@ function HistogramForm(props) {
 
   // initialization of the settings
   let settings = props.chartSpecificOptions
-  
+
   // event handlers
   const handleChange = handleChangeFunc.bind(this)
 
@@ -63,13 +62,11 @@ function HistogramForm(props) {
       settings.categoriesSelectedX = []
     }
     settings[name] = value
-    props.onChange(
-      {
-        type: 'dict',
-        value: settings,
-        name: 'chartSpecificOptions'
-      }
-    )
+    props.onChange({
+      type: 'dict',
+      value: settings,
+      name: 'chartSpecificOptions',
+    })
   }
 
   // GENERAL FUNCTIONS:
@@ -110,14 +107,12 @@ function HistogramForm(props) {
         key={`${settings.xAxis}`}
         className="category-options"
         onChange={handleChange}
-        categories={sortCategoryData(
-          props.uniqueCategories[settings.xAxis]
-        )}
+        categories={sortCategoryData(props.uniqueCategories[settings.xAxis])}
         categoriesSelected={settings.categoriesSelectedX}
         settings={settings}
       />
     </>
-  ) 
+  )
 }
 
 export default HistogramForm
