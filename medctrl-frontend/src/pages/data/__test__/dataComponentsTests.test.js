@@ -145,7 +145,7 @@ test('table updated', () => {
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   const select = screen.queryByTestId('filter-select')
   fireEvent.change(select, { target: { value: 'ApplicationNo' } })
-  const textBox = screen.getAllByRole('textbox')[0]
+  const textBox = screen.queryByTestId('filter-input-num-from')
   fireEvent.change(textBox, { target: { value: '3000' } })
   fireEvent.focusOut(textBox)
   fireEvent.click(screen.getByText(/Apply/i))
