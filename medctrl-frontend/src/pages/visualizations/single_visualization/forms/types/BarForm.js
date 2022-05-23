@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../../visualizations.css'
 import sortCategoryData from '../../utils/SortCategoryData'
+import { eligibleVariablesVisualizations } from '../shared/eligibleVariables'
 import CategoryOptions from '../shared/CategoryOptions'
 
 // the bar part of a form if a bar chart is chosen
@@ -8,36 +9,7 @@ function BarForm(props) {
   // The list of eligible variables.
   // If we do not want to include a variable for the bar chart,
   // it can be removed from here.
-  let eligibleVariables = [
-    'ApplicationNo',
-    'EUNumber',
-    'EUNoShort',
-    'BrandName',
-    'MAH',
-    'ActiveSubstance',
-    'DecisionDate',
-    'DecisionYear',
-    'Period',
-    'Rapporteur',
-    'CoRapporteur',
-    'ATCCodeL2',
-    'ATCCodeL1',
-    'ATCNameL2',
-    'LegalSCope',
-    'ATMP',
-    'OrphanDesignation',
-    'NASQualified',
-    'CMA',
-    'AEC',
-    'LegalType',
-    'PRIME',
-    'NAS',
-    'AcceleratedGranted',
-    'AcceleratedExecuted',
-    'ActiveTimeElapsed',
-    'ClockStopElapsed',
-    'TotalTimeElapsed',
-  ]
+  let eligibleVariables = eligibleVariablesVisualizations()
 
   let settings = props.chartSpecificOptions
 
@@ -162,9 +134,6 @@ function BarForm(props) {
       </div>
       <div tour="step-vis-categories">
         <CategoryOptions
-          // We want to reset the component when the axis changes,
-          // so we need to change the key depending on the axis'.
-          key={`${settings.xAxis}${settings.yAxis}X`}
           dimension="X"
           className="category-options"
           onChange={handleChange}
@@ -173,9 +142,6 @@ function BarForm(props) {
           settings={settings}
         />
         <CategoryOptions
-          // We want to reset the component when the axis changes,
-          // so we need to change the key depending on the axis'.
-          key={`${settings.xAxis}${settings.yAxis}Y`}
           dimension="Y"
           className="category-options"
           onChange={handleChange}

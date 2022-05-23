@@ -2,42 +2,14 @@ import React from 'react'
 import '../../../visualizations.css'
 import CategoryOptions from '../shared/CategoryOptions'
 import sortCategoryData from '../../utils/SortCategoryData'
+import { eligibleVariablesVisualizations } from '../shared/eligibleVariables'
 
 // the pie part of a form if a pie chart is chosen
 function PieForm(props) {
   // The list of eligible variables.
   // If we do not want to include a variable for the pie chart,
   // it can be removed from here.
-  const eligibleVariables = [
-    'ApplicationNo',
-    'EUNumber',
-    'EUNoShort',
-    'BrandName',
-    'MAH',
-    'ActiveSubstance',
-    'DecisionDate',
-    'DecisionYear',
-    'Period',
-    'Rapporteur',
-    'CoRapporteur',
-    'ATCCodeL2',
-    'ATCCodeL1',
-    'ATCNameL2',
-    'LegalSCope',
-    'ATMP',
-    'OrphanDesignation',
-    'NASQualified',
-    'CMA',
-    'AEC',
-    'LegalType',
-    'PRIME',
-    'NAS',
-    'AcceleratedGranted',
-    'AcceleratedExecuted',
-    'ActiveTimeElapsed',
-    'ClockStopElapsed',
-    'TotalTimeElapsed',
-  ]
+  const eligibleVariables = eligibleVariablesVisualizations()
 
   // initialization of the settings
   let settings = props.chartSpecificOptions
@@ -87,9 +59,6 @@ function PieForm(props) {
 
   // RENDERER:
 
-  // renders the pie form part of the form
-  const variables = renderVariableDropDown()
-
   return (
     <>
       <label className="visualization-panel-label">
@@ -100,13 +69,10 @@ function PieForm(props) {
           className="med-select"
           onChange={handleChange}
         >
-          {variables}
+          {renderVariableDropDown()}
         </select>
       </label>
       <CategoryOptions
-        // We want to reset the component when the variable changes,
-        // so we need to change the key depending on the axis.
-        key={`${settings.xAxis}`}
         dimension="X"
         className="category-options"
         onChange={handleChange}
