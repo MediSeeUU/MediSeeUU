@@ -6,6 +6,7 @@ import { act } from 'react-dom/test-utils'
 import MockDataProvider from '../../../shared/contexts/MockDataContext'
 import structData from '../../../shared/contexts/structServer.json'
 import { StructureContext } from '../../../shared/contexts/DataContext'
+import DummyData from '../detailed-info-data.json'
 
 // https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
 jest.mock('react-router-dom', () => ({
@@ -72,9 +73,9 @@ test('detailed info page proc select dialog behaves correctly', () => {
   let procData = DummyData.procedures
 
   render(
-    <DataProvider>
+    <MockDataProvider>
       <InfoPage medData={medData} procData={procData} />
-    </DataProvider>
+    </MockDataProvider>
   )
 
   const procSelectButton = screen.getAllByText('Select Procedures')[0]

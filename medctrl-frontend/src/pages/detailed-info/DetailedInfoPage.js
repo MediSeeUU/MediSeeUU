@@ -59,7 +59,7 @@ export default function DetailedInfoPage() {
 }
 
 // function based component, which represents the entire detailed information page
-// it display the given medicine and procedure data  
+// it display the given medicine and procedure data
 export function InfoPage({ medData, procData, lastUpdatedDate }) {
   const variableCategories = useStructure()
 
