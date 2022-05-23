@@ -59,20 +59,24 @@ export function DataProvider({ children }) {
   // retrieve all medicine data points from the backend
   useEffect(() => {
     async function fetchAllData() {
-      const medResponse = await fetch(`${process.env.PUBLIC_URL}/api/medicine/`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      })
-      /*
-      const structResponse = await fetch(`${process.env.PUBLIC_URL}/api/detailedData/`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      const medResponse = await fetch(
+        `${process.env.PUBLIC_URL}/api/medicine/`,
+        {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
+      const structResponse = await fetch(
+        `${process.env.PUBLIC_URL}/api/detailedData/`,
+        {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
       const structResponseData = await structResponse.json()
-      */
-      const structResponseData = structServerData
+      //const structResponseData = structServerData
       const medResponseData = await medResponse.json()
-      
+
       setMedData(cleanFetchedData(medResponseData, structResponseData))
       setStructData(structResponseData)
       console.log('fetched the data!')
@@ -81,9 +85,7 @@ export function DataProvider({ children }) {
   }, [setMedData])
 
   return (
-    <StaticDataProvider 
-      allData={medData} 
-      structData={structData}>
+    <StaticDataProvider allData={medData} structData={structData}>
       {children}
     </StaticDataProvider>
   )
@@ -149,7 +151,9 @@ export function StaticDataProvider({ children, allData, structData }) {
           <CheckedContext.Provider value={checkedState}>
             <CheckedContextUpdate.Provider value={setCheckedState}>
               <ColumnSelectionContext.Provider value={columnSelection}>
-                <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+                <ColumnSelectionContextUpdate.Provider
+                  value={setColumnSelection}
+                >
                   <VisualsContext.Provider value={visuals}>
                     <VisualsUpdateContext.Provider value={setVisuals}>
                       {children}

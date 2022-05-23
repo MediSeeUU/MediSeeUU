@@ -1,4 +1,3 @@
-
 //creates JSON and communicts with server
 async function handleLogin(event, props) {
   var success = false
@@ -30,7 +29,7 @@ async function handleLogin(event, props) {
 // sets session items
 function setSession(res) {
   // force the data context to fetch the most recent data
-  window.location.reload(false);
+  window.location.reload(false)
   sessionStorage.setItem('username', res.user.username)
   let access = res.user.groups.length > 0 ? res.user.groups[0].name : null
   sessionStorage.setItem('access_level', access)

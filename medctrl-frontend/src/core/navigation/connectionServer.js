@@ -1,4 +1,3 @@
-
 //creates JSON and communicts with server
 async function handleLogOut() {
   let Token = sessionStorage.getItem('token')
@@ -21,7 +20,7 @@ async function handleLogOut() {
 
 function setSession() {
   // force the data context to fetch the most recent data
-  window.location.reload(false);
+  window.location.reload(false)
   sessionStorage.removeItem('username')
   sessionStorage.removeItem('access_level')
   sessionStorage.removeItem('token')
