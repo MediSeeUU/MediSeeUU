@@ -16,26 +16,6 @@ test('renders without crashing', () => {
   )
 })
 
-// when the user leaves the name field empty and presses the save button,
-// the user should see an error message on screen
-test('no input should result in UI error message', () => {
-  const view = render(
-    <SelectedContext.Provider value={DummyData}>
-      <SaveMenu />
-    </SelectedContext.Provider>
-  )
-  const saveButton = screen.getByText('Save')
-  fireEvent.click(saveButton)
-  const saveSelectionButton = screen.getByText('Save selection')
-  fireEvent.click(saveSelectionButton)
-  const dialogHeader = screen.getByRole('heading')
-  expect(dialogHeader.innerHTML).toBe('Save Selected Data')
-  const errorContainer = screen.getByText('An Error Occurred')
-  expect(errorContainer).toBeTruthy()
-  const cancelButton = screen.getByText('Cancel')
-  fireEvent.click(cancelButton)
-})
-
 // when the user provides a valid name, the user should be redirected to a
 // success message screen
 test('valid selection name should result in UI success message', () => {
