@@ -10,10 +10,6 @@ on:
 env:
   NODE_VERSION: "16.x"
 
-defaults:
-  run:
-    working-directory: "medctrl-frontend"
-
 jobs:
   build:
     runs-on: selenium-tests
@@ -27,32 +23,47 @@ jobs:
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
 
-      - name: Install dependencies
-        run: |
-          npm install
-
-      - name: Run frontend
-        run: | 
-          npm start &
-
       - name: Setup Python
         run: |
           python3.10 -m pip install --upgrade pip
           python3.10 -m pip install virtualenv
           python3.10 -m virtualenv virtualenv
-        working-directory: "selenium"
+
+
+      - name: Install python dependencies
+        run: |
+          source ../virtualenv/bin/activate
+          cp /etc/medctrl/config/dev_settings.py API/api_settings/settings/
+          pip install -r requirements.txt
+        working-directory: "medctrl-backend"
+
+      - name: Run python server
+        run: |
+          source ../virtualenv/bin/activate
+          cp API/
+          python manage.py runserver
+        working-directory: "medctrl-backend"
+
 
       - name: Install dependencies
         run: |
-          source virtualenv/bin/activate
+          npm install
+        working-directory: "medctrl-frontend"
+
+      - name: Run frontend
+        run: |
+          npm start &
+        working-directory: "medctrl-frontend"
+
+      - name: Install dependencies
+        run: |
+          source ../virtualenv/bin/activate
           pip install -r requirements.txt
         working-directory: "selenium"
 
-      - name: Run Tests  
+      - name: Run Tests
         run: |
-          source virtualenv/bin/activate
+          source ../virtualenv/bin/activate
           cd Tests
           python -m unittest -v
         working-directory: "selenium"
-        
-      
