@@ -10,7 +10,7 @@ class Menu extends React.Component {
     super(props)
 
     // Default filter object
-    this.filterObject = [{ selected: '', input: [''] }]
+    this.filterObject = [{ selected: '', input: [{var: '', filterRange: 'from'}] }]
     this.sortObject = [{ selected: '', order: 'asc' }]
 
     // Set init state
@@ -42,6 +42,7 @@ class Menu extends React.Component {
 
   // Adds new filter item to the menu
   addFilter() {
+    console.log(this.filterObject)
     this.setState((prevState) => ({
       filters: prevState.filters.concat(this.filterObject),
     }))
@@ -82,7 +83,7 @@ class Menu extends React.Component {
   // Adds a new filter input box to a filter item
   addFilterBox = (id) => {
     this.updateElement('filters', id, (obj) => {
-      let newInput = obj.input.concat([''])
+      let newInput = obj.input.concat({var: '', filterRange: 'from'})
       return { ...obj, input: newInput }
     })
   }
@@ -95,7 +96,7 @@ class Menu extends React.Component {
         newInput.splice(bid, 1)
         return { ...obj, input: newInput }
       }
-      return { ...obj, input: [''] }
+      return { ...obj, input: [{var: '', filterRange: 'from'}] }
     })
   }
 
@@ -113,16 +114,16 @@ class Menu extends React.Component {
   // Updates the selected item of the specified filter item
   updateFilterSelected = (id, newSelected) => {
     this.updateElement('filters', id, (obj) => {
-      return { ...obj, selected: newSelected }
+      return { ...obj, selected: newSelected}
     })
   }
 
   // Updates the specified input box value of the specified filter item
   updateFilterInput = (id, index, value) => {
-    console.log("filter updated")
     this.updateElement('filters', id, (obj) => {
       let newInput = [...obj.input]
-      newInput[index] = value
+      newInput[index].var = value
+      
       return { ...obj, input: newInput }
     })
   }
@@ -150,7 +151,7 @@ class Menu extends React.Component {
 
   // Update the (local) filters and sorters which will update the data displayed in the table
   clear() {
-    this.props.updateFilters([{ selected: '', input: [''] }])
+    this.props.updateFilters([{ selected: '', input: [{var: '', filterRange:'from'}], filterType: '' }])
     this.props.updateSorters([{ selected: '', order: 'asc' }])
     this.setState({
       filters: this.filterObject,
@@ -170,6 +171,8 @@ class Menu extends React.Component {
         >
           <i className="bx bx-cog filter-Icon"></i>Filter & Sort
         </button>
+
+
         <ReactModal
           className="menu-modal"
           isOpen={this.state.showModal}
@@ -192,11 +195,12 @@ class Menu extends React.Component {
               <i className="bx bxs-plus-square add-icon"></i>
             </div>
             <div className="filters">
-              {this.state.filters.map((obj, oid) => (
+              {console.log(this.props.list)}
+              {this.state.filters.map((filter, index) => (
                 <Filter
                   key={uuidv4()}
-                  id={oid}
-                  item={obj}
+                  id={index}
+                  item={filter}
                   options={this.props.list}
                   del={this.deleteFilter}
                   box={this.addFilterBox}
@@ -205,6 +209,7 @@ class Menu extends React.Component {
                   fil={this.updateFilterInput}
                 />
               ))}
+              {console.log(this.state.filters)}
             </div>
             <div className="filter-bttn-box">
               <button

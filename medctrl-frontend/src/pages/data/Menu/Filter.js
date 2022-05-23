@@ -75,83 +75,107 @@ const optionVars = ['legalbasis', 'legalscope', 'status']
 
 
 // SECOND SET OF LISTS TO WORK WITH THE DATA FROM JSON TEST FILE
-const tempTextVars = ['ATCNameL2', 'ATCCodeL2', 'Rapporteur', 'CoRapporteur',
- 'BrandName', 'MAH', 'ActiveSubstance' ]
+const tempTextVars = [ 'EUNumber', 'ATCNameL2', 'ATCCodeL2', 'Rapporteur', 'CoRapporteur',
+ 'BrandName', 'MAH', 'ActiveSubstance', 'Period', 'ATCCodeL1', 'LegalSCope', 'LegalType', 'PRIME']
 
-const tempNumVars = ['EUNumber', 'TotalTimeElapsed', 'ClockStopElapsed', 'ActiveTimeElapsed',
+const tempNumVars = ['TotalTimeElapsed', 'ClockStopElapsed', 'ActiveTimeElapsed',
  'EUNoShort', 'DecisionYear', 'ApplicationNo']
 
 const tempDateVars = ['DecisionDate']
 
 const tempBoolVars = ['ATMP', 'AcceleratedExecuted', 'AcceleratedGranted', 'NAS',
- 'OrphanDesignation', 'NASQualified', 'CMA', 'AEC']
+ 'OrphanDesignation', 'NASQualified', 'CMA', 'AEC', 'PRIME']
 
-const tempOptionVars = ['Period', 'ATCCodeL1', 'LegalSCope', 'LegalType', 'PRIME']
+const tempOptionVars = []
 
 // end of variable hardcoding
 
 function pickFilter(props, i) {
   if (textVars.includes(props.item.selected) || tempTextVars.includes(props.item.selected)) {
-    console.log("text type entered")
+    props.item.filterType = 'text'
     return (<FilterInputs 
-      type = {"text"}
       props = {props}
       i = {i} 
     />
   )}
 
   else if (numVars.includes(props.item.selected) || tempNumVars.includes(props.item.selected)) {
-    console.log("number type entered")
+    props.item.filterType = 'number'
+
     return (
-      <FilterInputs 
-        type = {"number"}
-        props = {props}
-        i = {i}
-      />
+      <>
+        <DetermineFilterRange 
+        container = {props}
+        i = {i} 
+        />
+        <FilterInputs 
+          props = {props}
+          i = {i}
+        />
+      </>
   )}
 
   else if (dateVars.includes(props.item.selected) || tempDateVars.includes(props.item.selected)){
-    console.log("date type entered")
+    props.item.filterType = 'date'
+
     return (
-      <FilterInputs 
-        type = {"date"}
-        props = {props}
-        i = {i}
-      />
+      <>
+        <DetermineFilterRange 
+        container = {props}
+        i = {i} 
+        />
+        <FilterInputs 
+          props = {props}
+          i = {i}
+        />
+      </>
   )}
 
   else if (boolVars.includes(props.item.selected) || tempBoolVars.includes(props.item.selected)){
-    console.log("bool type entered")
+    props.item.filterType = 'bool'
     return (
       <FilterInputs 
-        type = {"bool"}
         props = {props}
         i = {i}
       />
   )}
 
   else if (optionVars.includes(props.item.selected) || tempOptionVars.includes(props.item.selected)){
-    console.log("option type entered")
+    props.item.filterType = 'option'
     return (
       <FilterInputs 
-        type = {"option"}
         props = {props}
         i = {i}
       />
   )}
 
   else {
-    console.error("Variable doesn't have a filter type, continuing as text filter")
+    console.error("Variable doesn't have a filter type set, continuing as text filter")
+    props.item.filterType = 'text'
     return (
       <FilterInputs 
-        type = {"text"}
         props = {props}
         i = {i}
       />
   )}
 }
 
-
+function DetermineFilterRange(props) {
+  return (
+    <select 
+      className='filter-range' 
+      onChange={(e) => {
+        props.container.item.input[props.i].filterRange = e.target.value
+        props.container.sel(props.container.id, props.container.item.selected) // Force component rerender
+      }}
+      defaultValue={props.container.item.input[props.i].filterRange}
+      >
+      {/* <option value='range'>Range</option> */}
+      <option value='from'>From</option>
+      <option value='till'>Till</option>
+    </select>
+  )
+}
 
 
 export default DisplayItem

@@ -13,7 +13,12 @@ export default function TableView(
   menu
 ) {
   if (!data || data.length === 0) {
-    return <label className="lb-tableholder">{text}</label>
+    return (
+      <>
+      <label className="lb-tableholder">{text}</label>
+      {menu}
+      </>
+    )
   } else {
     //Maximum amount of pages available
     const amountOfPages = Math.ceil(data.length / resultsPerPage)
