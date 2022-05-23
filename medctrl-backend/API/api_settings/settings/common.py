@@ -23,6 +23,9 @@ ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = ["https://med-ctrl.science.uu.nl"]
 
+# Caching the medicines endpoint
+MEDICINES_CACHING = True
+
 
 # Application definition
 

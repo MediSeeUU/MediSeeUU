@@ -115,9 +115,6 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
     def to_representation(self, obj):
         representation = super().to_representation(obj)
 
-        # Get the permissions that the user has from the requests' context
-        permissions = self.context.get("permissions")
-
         for field in [
             "authorisation",
             "procedure",
@@ -130,9 +127,4 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             for key in field_representation:
                 representation[key] = field_representation[key]
 
-        # Filter the representation to return only fields that the user has permission to view
-        representation_filtered = {
-            x: y for x, y in representation.items() if x in permissions
-        }
-
-        return representation_filtered
+        return representation
