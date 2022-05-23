@@ -69,8 +69,21 @@
   color: var(--med-table-header-text);
   border: 1px solid var(--med-table-header-border);
   border-radius: 4px;
-  min-width: 100%;
-  max-width: 100%;
+  min-width: 60%;
+  max-width: 70%;
+}
+
+.med_th_sort {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: var(--med-table-header-background);
+  color: var(--med-table-header-text);
+  border: 1px solid var(--med-table-header-border);
+  border-radius: 4px;
+  min-width: 10%;
+  max-width: 15%;
 }
 
 .med-table-body-cell {

@@ -1,3 +1,7 @@
+.med-info-container h1 {
+  display: inline-block;
+}
+
 /*  general css for laying out the childern in a layout, consisting of
     two columns, which are filled column first. when the window becomes
     wide enough, three columns instead of two columns are used */
@@ -61,6 +65,13 @@
   border-radius: 4px;
   margin: 3px;
   padding: 3px;
+}
+
+.med-info-no-proc-message {
+  text-align: center;
+  margin: 15px 15%;
+  font-weight: 200;
+  color: var(--med-additional-text);
 }
 
 /* for procedure content */
@@ -244,4 +255,77 @@
 .med-info-timeline-element:last-child
   .med-info-timeline-element-decoration:before {
   left: calc(100% - 12.5px);
+}
+
+/* for special (i.e. highlighted) timeline elements */
+
+.med-info-special .med-info-timeline-element-decoration:before {
+  background-color: var(--med-timeline-line);
+}
+
+/* for the elements used to select different procedure types */
+
+.med-proc-select-button {
+  border: none;
+  float: right;
+  height: 36px;
+  margin: 10px;
+  font-size: 18px;
+}
+
+.med-proc-select-button i {
+  font-size: 30px;
+  vertical-align: middle;
+}
+
+/* for the proc select modal */
+
+.med-proc-select-modal {
+  position: absolute;
+  top: 19%;
+  bottom: 19%;
+  left: 15%;
+  right: 15%;
+  overflow: hidden;
+  outline: none;
+}
+
+/* for the proc select dialog */
+
+.med-proc-select-dialog {
+  background-color: var(--med-dialog-background);
+  width: 350px;
+  border-radius: 15px;
+  text-align: center;
+  padding: 15px;
+  display: block;
+}
+
+/* for the list of procedure type options */
+
+.med-proc-option-list {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.med-proc-option {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.med-proc-option-name {
+  margin-left: 5px;
+}
+
+/* for the two dialog buttons */
+
+.med-proc-select-dialog button {
+  border: none;
+  width: 100%;
+  height: 35px;
+  margin: 2px 0;
+  border-radius: 10px;
 }

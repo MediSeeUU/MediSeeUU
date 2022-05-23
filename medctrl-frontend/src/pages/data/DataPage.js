@@ -16,7 +16,7 @@ function DataPage() {
   return (
     <>
       <DataSelect initialSearch={query} />
-      <SelectedData selectedData={selectedData} />
+      <SelectedData allSelectedData={selectedData} />
     </>
   )
 }
