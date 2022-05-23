@@ -8,6 +8,7 @@ import TimeLine from './InfoComponents/TimeLine'
 
 import { useData } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
+import { dataToDisplayFormat } from '../../shared/table/table'
 import { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
 
@@ -112,7 +113,13 @@ export function InfoPage({ medData, procData }) {
             <Detail name="Brand Name" value={medData.BrandName} />
             <Detail name="Marketing Authorisation Holder" value={medData.MAH} />
             <Detail name="Active Substance" value={medData.ActiveSubstance} />
-            <Detail name="Decision Date" value={medData.DecisionDate} />
+            <Detail
+              name="Decision Date"
+              value={dataToDisplayFormat({
+                entry: medData,
+                propt: 'DecisionDate',
+              })}
+            />
           </DetailGroup>
 
           <DetailGroup title="Identifying Information">
