@@ -14,7 +14,9 @@ class MedicineViewSet(viewsets.ViewSet):
     Viewset for the Medicine model
     """
 
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]  # permissions.IsAuthenticated
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly
+    ]  # permissions.IsAuthenticated
     update_cache()
 
     def list(self, request):
@@ -29,6 +31,8 @@ class MedicineViewSet(viewsets.ViewSet):
         user = self.request.user
         perms = permissionFilter(user)
 
-        filtered_medicines = map(lambda obj : { x: y for x, y in obj.items() if x in perms }, cache_medicine)
+        filtered_medicines = map(
+            lambda obj: {x: y for x, y in obj.items() if x in perms}, cache_medicine
+        )
 
         return Response(filtered_medicines)
