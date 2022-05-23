@@ -4,7 +4,7 @@ import ErrorDialog from './SaveMenuComponents/ErrorDialog'
 import SuccessDialog from './SaveMenuComponents/SuccessDialog'
 import ErrorMessage from './SaveMenuComponents/ErrorMessage'
 
-import { postSavedSelection } from './SaveHandler'
+import postSavedSelection from './SaveHandler'
 
 class SaveDialog extends React.Component {
   // Save Dialog is a class based component. it is passed some series of
@@ -61,7 +61,7 @@ class SaveDialog extends React.Component {
     }
 
     try {
-      this.postSavedSelection(eunumbers, this.state.saveName)
+      postSavedSelection(eunumbers, this.state.saveName)
     } catch {
       this.setState({ dialogState: 'error' })
       return
