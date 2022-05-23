@@ -16,7 +16,7 @@ function SavedSelection({ savedSelection }) {
     for (let key of Object.keys(checkedState)) {
       let match = key.match(/EU\/\d\/\d{2}\/(\d+)/)
       if (match) {
-        // Find the eunumber and select it if it is in the selection
+        // Find the eunumbershort and select it if it is in the selection
         let eunumber = match[1] ? match[1] : match[2]
         let value = parseInt(eunumber)
         updatedCheckedState[key] = selection.has(value)
