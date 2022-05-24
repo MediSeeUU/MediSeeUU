@@ -80,7 +80,7 @@ function DataSelect({ initialSearch }) {
           setSorters: setSorters,
           select: true,
           text: 'No data to display, please clear your search or filters.',
-          menu: menu,
+          baseMenu: menu,
         })}
       </div>
     </>

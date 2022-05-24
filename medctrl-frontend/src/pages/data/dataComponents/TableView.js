@@ -11,13 +11,13 @@ export default function TableView({
   setSorters,
   select,
   text,
-  menu,
+  baseMenu,
+  saveMenu,
 }) {
   if (!data || data.length === 0) {
     return (
       <>
         <label className="lb-tableholder">{text}</label>
-        {menu}
       </>
     )
   } else {
@@ -36,7 +36,8 @@ export default function TableView({
           currentPage={loadedPage}
           amountPerPage={resultsPerPage}
           selectTable={select}
-          menu={menu}
+          baseMenu={baseMenu}
+          saveMenu={saveMenu}
           setSorters={setSorters}
         />
         <ResultsSelector
