@@ -12,7 +12,7 @@ export default function SavedSelections(props) {
       let token = sessionStorage.getItem('token')
 
       const response = await fetch(
-        `${process.env.PUBLIC_URL}/api/saveselection`,
+        `${process.env.PUBLIC_URL}/api/saveselection/`,
         {
           method: 'GET',
           headers: {
@@ -21,7 +21,7 @@ export default function SavedSelections(props) {
           },
         }
       )
-      if (response.status === 200) {
+      if (response.ok) {
         const json = await response.json()
         setsavedSelections(json)
       }
