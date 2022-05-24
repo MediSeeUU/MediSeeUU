@@ -5,7 +5,12 @@ import { v4 } from 'uuid'
 // are subdivided into categories, each option's value is the key at which to access
 // the corresponding data field in the context, but the display name is a more
 // user friendly version of the same name
-export default function VariableSelect({ className, onChange, defaultValue }) {
+export default function VariableSelect({
+  className,
+  onChange,
+  defaultValue,
+  dataTestId,
+}) {
   const variableCategories = useStructure()
   const optGroups = []
 
@@ -29,7 +34,12 @@ export default function VariableSelect({ className, onChange, defaultValue }) {
   }
 
   return (
-    <select className={className} onChange={onChange} value={defaultValue}>
+    <select
+      className={className}
+      onChange={onChange}
+      value={defaultValue}
+      data-testid={dataTestId}
+    >
       {optGroups}
     </select>
   )

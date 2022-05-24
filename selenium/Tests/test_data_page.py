@@ -95,15 +95,15 @@ class TestDataPage(WebDriverSetup):
     self.data_page.input_query("pfizer")
     self.data_page.search()
     self.data_page.open_menu()
-    self.data_page.sort_select(1, "EUNoShort")
+    self.data_page.sort_select(1, "Short EU Number")
     self.data_page.sort_order(1, "Descending")
-    self.data_page.filter_select(1, "EUNoShort")
-    self.data_page.filter_input(1, 1, "10")
+    self.data_page.filter_select(1, "Short EU Number")
+    self.data_page.filter_input(1, 1, "1300")
     self.data_page.apply()
     eu_numbers = []
     for i in range(self.data_page.amount_of_rows(0)):
-      eu_number = self.data_page.table_value(0, i + 1, 1)
-      assert "10" in eu_number
+      eu_number = int(self.data_page.table_value(0, i + 1, 1))
+      assert eu_number >= 10
       eu_numbers.append(int(eu_number))
     assert all(eu_numbers[i] >= eu_numbers[i+1] for i in range(len(eu_numbers) - 1))
     for i in range(self.data_page.amount_of_rows(0)):

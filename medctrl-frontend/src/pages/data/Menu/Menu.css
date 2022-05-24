@@ -93,6 +93,11 @@
   height: calc(100% - 160px);
 }
 
+.med-table-menu-sort-container {
+  overflow-y: auto;
+  height: calc(100% - 80px);
+}
+
 .med-able-menu-add-sort-button {
   display: inline-block;
   font-size: 15px;
@@ -101,7 +106,7 @@
   cursor: pointer;
 }
 
-/* Individual Filter and Sort Items*/
+/* Individual Filter and Sort Items */
 
 .med-table-menu-filter-item,
 .med-table-menu-sort-item {
@@ -157,4 +162,22 @@
   display: inline-block;
   top: 5px;
   right: 5px;
+}
+
+.filter-inputs:nth-child(2) {
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+
+.med-num-input {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.med-select {
+  margin-bottom: 5px;
+}
+
+.med-num-input {
+  margin-top: 5px;
 }
