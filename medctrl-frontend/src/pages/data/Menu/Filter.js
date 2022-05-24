@@ -1,8 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
 import VariableSelect from '../../../shared/VariableSelect/VariableSelect'
 import FilterInputs from './FilterComponents/FilterInputs'
-import { StructureContext } from '../../../shared/contexts/DataContext'
-import structData from '../../../shared/contexts/structServer.json'
+import { useStructure } from '../../../shared/contexts/DataContext'
 
 // Returns all filter input boxes in HTML
 function filtersToHTML(props) {
@@ -12,7 +11,7 @@ function filtersToHTML(props) {
       <div key={uuidv4()} className="filter-picker">
 
         {
-        pickFilter(props, i)
+        PickFilter(props, i)
         }
         <i
           className="bx bxs-minus-circle med-table-menu-remove-filter-option-icon"
@@ -52,7 +51,10 @@ function DisplayItem(props) {
   )
 }
 
-function pickFilter(props, i) {
+function PickFilter(props, i) {
+
+
+  
 
   // console.log(structData['General Information'][0]['data-front-key'])
   var dataType = GetDataType(props.item.selected)
@@ -140,6 +142,8 @@ function DetermineFilterRange(props) {
 }
 
 function GetDataType(selected) {
+  let structData = useStructure()
+
   //Loop over all categories and array entries to find the selected variable
   for (let category in structData) {
     for (var i=0; i < structData[category].length; i++) {
