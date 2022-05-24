@@ -16,8 +16,8 @@ export default function TableView({
   if (!data || data.length === 0) {
     return (
       <>
-      <label className="lb-tableholder">{text}</label>
-      {menu}
+        <label className="lb-tableholder">{text}</label>
+        {menu}
       </>
     )
   } else {

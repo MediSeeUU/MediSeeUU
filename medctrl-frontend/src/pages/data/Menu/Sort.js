@@ -1,10 +1,10 @@
-import VariableSelect from "../../../shared/VariableSelect/VariableSelect"
+import VariableSelect from '../../../shared/VariableSelect/VariableSelect'
 
 // Returns the filter item in HTML
 function displayItem(props) {
   return (
     <div id={props.id} className="med-table-menu-sort-item">
-        <VariableSelect
+      <VariableSelect
         className="med-table-menu-select med-select"
         defaultValue={props.item.selected}
         onChange={(e) => props.sel(props.id, e.target.value)}

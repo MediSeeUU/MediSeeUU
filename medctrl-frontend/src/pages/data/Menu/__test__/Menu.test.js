@@ -64,12 +64,17 @@ test('clear button calls update function', () => {
 
 test('clear button resets filters and sorters', () => {
   const update1 = (filters) => {
-    expect(filters).toEqual([{ selected: '', input: [{var: '', filterRange: 'from'}], filterType: '' }])
+    expect(filters).toEqual([
+      {
+        selected: '',
+        input: [{ var: '', filterRange: 'from' }],
+        filterType: '',
+      },
+    ])
   }
   const update2 = (sorters) => {
     expect(sorters).toEqual([{ selected: '', order: 'asc' }])
   }
-  
 
   render(
     <Menu
@@ -175,7 +180,11 @@ const list = [
 test('saved filters in state', () => {
   render(
     <StructureContext.Provider value={structData}>
-      <Menu filters={[{ selected: '', input: [{var: '', filterRange: 'from'}] }]} sorters={[]} list={list} />
+      <Menu
+        filters={[{ selected: '', input: [{ var: '', filterRange: 'from' }] }]}
+        sorters={[]}
+        list={list}
+      />
     </StructureContext.Provider>
   )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
@@ -196,7 +205,9 @@ test('saved filters in state', () => {
   fireEvent.click(screen.getByText(/Close/i))
   fireEvent.click(screen.getByText(/Filter & Sort/i))
 
-  expect(screen.getAllByTestId('filter-select')[0].value).toBe('ActiveSubstance')
+  expect(screen.getAllByTestId('filter-select')[0].value).toBe(
+    'ActiveSubstance'
+  )
   expect(screen.getAllByTestId('filter-select')[1].value).toBe('ATCCodeL2')
   expect(screen.getAllByTestId('filter-input-text')[0].value).toBe('welcome')
   expect(screen.getAllByTestId('filter-input-text')[1].value).toBe('again')
@@ -205,7 +216,11 @@ test('saved filters in state', () => {
 test('saved sorters in state', () => {
   render(
     <StructureContext.Provider value={structData}>
-      <Menu filters={[]} sorters={[{ selected: '', order: 'asc' }]} list={list} />
+      <Menu
+        filters={[]}
+        sorters={[{ selected: '', order: 'asc' }]}
+        list={list}
+      />
     </StructureContext.Provider>
   )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
@@ -224,7 +239,9 @@ test('saved sorters in state', () => {
   fireEvent.click(screen.getByText(/Close/i))
   fireEvent.click(screen.getByText(/Filter & Sort/i))
 
-  expect(screen.getAllByTestId('sort-select-attr')[0].value).toBe('ActiveSubstance')
+  expect(screen.getAllByTestId('sort-select-attr')[0].value).toBe(
+    'ActiveSubstance'
+  )
   expect(screen.getAllByTestId('sort-select-attr')[1].value).toBe('ATCCodeL2')
   expect(screen.getAllByTestId('sort-select-order')[0].value).toBe('desc')
   expect(screen.getAllByTestId('sort-select-order')[1].value).toBe('asc')

@@ -10,7 +10,13 @@ class Menu extends React.Component {
     super(props)
 
     // Default filter object
-    this.filterObject = [{ selected: '', input: [{var: '', filterRange: 'from'}], filterType: '' }]
+    this.filterObject = [
+      {
+        selected: '',
+        input: [{ var: '', filterRange: 'from' }],
+        filterType: '',
+      },
+    ]
     this.sortObject = [{ selected: '', order: 'asc' }]
 
     // Set init state
@@ -82,7 +88,7 @@ class Menu extends React.Component {
   // Adds a new filter input box to a filter item
   addFilterBox = (id) => {
     this.updateElement('filters', id, (obj) => {
-      let newInput = obj.input.concat({var: '', filterRange: 'from'})
+      let newInput = obj.input.concat({ var: '', filterRange: 'from' })
       return { ...obj, input: newInput }
     })
   }
@@ -95,7 +101,7 @@ class Menu extends React.Component {
         newInput.splice(bid, 1)
         return { ...obj, input: newInput }
       }
-      return { ...obj, input: [{var: '', filterRange: 'from'}] }
+      return { ...obj, input: [{ var: '', filterRange: 'from' }] }
     })
   }
 
@@ -113,7 +119,7 @@ class Menu extends React.Component {
   // Updates the selected item of the specified filter item
   updateFilterSelected = (id, newSelected) => {
     this.updateElement('filters', id, (obj) => {
-      return { ...obj, selected: newSelected}
+      return { ...obj, selected: newSelected }
     })
   }
 
@@ -122,7 +128,7 @@ class Menu extends React.Component {
     this.updateElement('filters', id, (obj) => {
       let newInput = [...obj.input]
       newInput[index].var = value
-      
+
       return { ...obj, input: newInput }
     })
   }
@@ -150,7 +156,13 @@ class Menu extends React.Component {
 
   // Update the (local) filters and sorters which will update the data displayed in the table
   clear() {
-    this.props.updateFilters([{ selected: '', input: [{var: '', filterRange:'from'}], filterType: '' }])
+    this.props.updateFilters([
+      {
+        selected: '',
+        input: [{ var: '', filterRange: 'from' }],
+        filterType: '',
+      },
+    ])
     this.props.updateSorters([{ selected: '', order: 'asc' }])
     this.setState({
       filters: this.filterObject,
@@ -170,7 +182,6 @@ class Menu extends React.Component {
         >
           <i className="bx bx-cog med-button-image"></i>Filter & Sort
         </button>
-
 
         <ReactModal
           className="med-table-menu-modal"

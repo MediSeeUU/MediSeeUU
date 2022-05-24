@@ -13,10 +13,12 @@ import FilterInputs from '../FilterComponents/FilterInputs'
 import structData from '../../../../shared/contexts/structServer.json'
 import { StructureContext } from '../../../../shared/contexts/DataContext'
 
-
 test('renders without crashing', () => {
   const root = document.createElement('div')
-  ReactDOM.render(<Filter item={{ selected: 'BrandName', input: [''] }} />, root)
+  ReactDOM.render(
+    <Filter item={{ selected: 'BrandName', input: [''] }} />,
+    root
+  )
 })
 
 test('delete filter function is called', () => {
@@ -24,7 +26,8 @@ test('delete filter function is called', () => {
   render(
     <StructureContext.Provider value={structData}>
       <Filter id={10} item={{ selected: 'BrandName', input: [''] }} del={del} />
-    </StructureContext.Provider>)
+    </StructureContext.Provider>
+  )
   fireEvent.click(screen.getByTestId('delete-icon'))
   expect(del).toHaveBeenCalled()
 })
@@ -33,13 +36,17 @@ test('delete filter returns correct id', () => {
   const del = (id) => {
     expect(id).toBe(10)
   }
-  render(<Filter id={10} item={{ selected: 'BrandName', input: [''] }} del={del} />)
+  render(
+    <Filter id={10} item={{ selected: 'BrandName', input: [''] }} del={del} />
+  )
   fireEvent.click(screen.getByTestId('delete-icon'))
 })
 
 test('add filter box function is called', () => {
   const box = jest.fn()
-  render(<Filter id={10} item={{ selected: 'BrandName', input: [''] }} box={box} />)
+  render(
+    <Filter id={10} item={{ selected: 'BrandName', input: [''] }} box={box} />
+  )
   fireEvent.click(screen.getByTestId('add-label'))
   expect(box).toHaveBeenCalled()
 })
@@ -48,13 +55,17 @@ test('add filter box returns correct id', () => {
   const box = (id) => {
     expect(id).toBe(7)
   }
-  render(<Filter id={7} item={{ selected: 'BrandName', input: [''] }} box={box} />)
+  render(
+    <Filter id={7} item={{ selected: 'BrandName', input: [''] }} box={box} />
+  )
   fireEvent.click(screen.getByTestId('add-label'))
 })
 
 test('delete filter box function is called', () => {
   const dbox = jest.fn()
-  render(<Filter id={10} item={{ selected: 'BrandName', input: [''] }} dbox={dbox} />)
+  render(
+    <Filter id={10} item={{ selected: 'BrandName', input: [''] }} dbox={dbox} />
+  )
   fireEvent.click(screen.getByTestId('remove-icon'))
   expect(dbox).toHaveBeenCalled()
 })
@@ -79,11 +90,11 @@ test('delete filter box returns correct ids', () => {
 })
 
 test('change selected function is called', () => {
-  const sel = jest.fn() 
+  const sel = jest.fn()
   render(
-  <StructureContext.Provider value={structData}>
-    <Filter id={10} item={{ selected: 'BrandName', input: [''] }} sel={sel} />
-  </StructureContext.Provider>
+    <StructureContext.Provider value={structData}>
+      <Filter id={10} item={{ selected: 'BrandName', input: [''] }} sel={sel} />
+    </StructureContext.Provider>
   )
   const select = screen.getByTestId('filter-select')
   fireEvent.change(select, { target: { value: 'BrandName' } })
@@ -111,7 +122,16 @@ test('change selected returns correct id and value', () => {
 
 test('change input function is called', () => {
   const fil = jest.fn()
-  render(<Filter id={10} item={{ selected: 'BrandName', input: [{var: '', filterRange: 'from'}] }} fil={fil} />)
+  render(
+    <Filter
+      id={10}
+      item={{
+        selected: 'BrandName',
+        input: [{ var: '', filterRange: 'from' }],
+      }}
+      fil={fil}
+    />
+  )
   const input = screen.getByTestId('filter-input-text')
   fireEvent.change(input, { target: { value: 'can be anything' } })
   fireEvent.focusOut(input)
@@ -127,7 +147,10 @@ test('change input function returns correct ids and value', () => {
   render(
     <Filter
       id={52}
-      item={{ selected: 'BrandName', input: [{var: 'hi'}, {var: 'there'}, {var: 'again'}] }}
+      item={{
+        selected: 'BrandName',
+        input: [{ var: 'hi' }, { var: 'there' }, { var: 'again' }],
+      }}
       fil={fil}
     />
   )
@@ -139,122 +162,185 @@ test('change input function returns correct ids and value', () => {
 test('text filter rendered', () => {
   const root = document.createElement('div')
 
-  ReactDOM.render(<FilterInputs
-    props={{
-      id: '1',
-      item:{selected: 'BrandName', input: [{var: 'test', filterRange: 'from'}], filterType: 'text'},
-      options: 'not important'
+  ReactDOM.render(
+    <FilterInputs
+      props={{
+        id: '1',
+        item: {
+          selected: 'BrandName',
+          input: [{ var: 'test', filterRange: 'from' }],
+          filterType: 'text',
+        },
+        options: 'not important',
       }}
-    i={'0'}
-  />, root)
+      i={'0'}
+    />,
+    root
+  )
 })
 
 test('number from filter rendered', () => {
   const root = document.createElement('div')
 
-  ReactDOM.render(<FilterInputs
-    props={{
-      id: '1',
-      item:{selected: 'null', input: [{var: '20', filterRange: 'from'}], filterType: 'number'},
-      options: 'not important'
+  ReactDOM.render(
+    <FilterInputs
+      props={{
+        id: '1',
+        item: {
+          selected: 'null',
+          input: [{ var: '20', filterRange: 'from' }],
+          filterType: 'number',
+        },
+        options: 'not important',
       }}
-    i={'0'}
-  />, root)
+      i={'0'}
+    />,
+    root
+  )
 })
 
 test('number till filter rendered', () => {
   const root = document.createElement('div')
 
-  ReactDOM.render(<FilterInputs
-    props={{
-      id: '1',
-      item:{selected: null, input: [{var: '20', filterRange: 'till'}], filterType: 'number'},
-      options: 'not important'
+  ReactDOM.render(
+    <FilterInputs
+      props={{
+        id: '1',
+        item: {
+          selected: null,
+          input: [{ var: '20', filterRange: 'till' }],
+          filterType: 'number',
+        },
+        options: 'not important',
       }}
-    i={'0'}
-  />, root)
+      i={'0'}
+    />,
+    root
+  )
 })
 
 test('date from filter rendered', () => {
   const root = document.createElement('div')
 
-  ReactDOM.render(<FilterInputs
-    props={{
-      id: '1',
-      item:{selected: null, input: [{var: '2012-02-02', filterRange: 'from'}], filterType: 'date'},
-      options: 'not important'
+  ReactDOM.render(
+    <FilterInputs
+      props={{
+        id: '1',
+        item: {
+          selected: null,
+          input: [{ var: '2012-02-02', filterRange: 'from' }],
+          filterType: 'date',
+        },
+        options: 'not important',
       }}
-    i={'0'}
-  />, root)
+      i={'0'}
+    />,
+    root
+  )
 })
 
 test('date till filter rendered', () => {
   const root = document.createElement('div')
 
-  ReactDOM.render(<FilterInputs
-    props={{
-      id: '1',
-      item:{selected: null, input: [{var: '2012-02-02', filterRange: 'till'}], filterType: 'date'},
-      options: 'not important'
+  ReactDOM.render(
+    <FilterInputs
+      props={{
+        id: '1',
+        item: {
+          selected: null,
+          input: [{ var: '2012-02-02', filterRange: 'till' }],
+          filterType: 'date',
+        },
+        options: 'not important',
       }}
-    i={'0'}
-  />, root)
+      i={'0'}
+    />,
+    root
+  )
 })
 
 test('bool filter rendered', () => {
   const root = document.createElement('div')
 
-  ReactDOM.render(<FilterInputs
-    props={{
-      id: '1',
-      item:{selected: null, input: [{var: 'yes', filterRange: 'from'}], filterType: 'bool'},
-      options: 'not important'
+  ReactDOM.render(
+    <FilterInputs
+      props={{
+        id: '1',
+        item: {
+          selected: null,
+          input: [{ var: 'yes', filterRange: 'from' }],
+          filterType: 'bool',
+        },
+        options: 'not important',
       }}
-    i={'0'}
-  />, root)
+      i={'0'}
+    />,
+    root
+  )
 })
 
 test('adding invalid filtertype throws error', () => {
   expect(() => {
     const root = document.createElement('div')
 
-    ReactDOM.render(<FilterInputs
-      props={{
-        id: '1',
-        item:{selected: null, input: [{var: 'yes', filterRange: 'from'}], filterType: 'notAType'},
-        options: 'not important'
+    ReactDOM.render(
+      <FilterInputs
+        props={{
+          id: '1',
+          item: {
+            selected: null,
+            input: [{ var: 'yes', filterRange: 'from' }],
+            filterType: 'notAType',
+          },
+          options: 'not important',
         }}
-      i={'0'}
-    />, root)
-  }).toThrow();
+        i={'0'}
+      />,
+      root
+    )
+  }).toThrow()
 })
 
 test('invalid filter range in number test', () => {
   expect(() => {
     const root = document.createElement('div')
 
-    ReactDOM.render(<FilterInputs
-      props={{
-        id: '1',
-        item:{selected: null, input: [{var: 'yes', filterRange: 'notARange'}], filterType: 'number'},
-        options: 'not important'
+    ReactDOM.render(
+      <FilterInputs
+        props={{
+          id: '1',
+          item: {
+            selected: null,
+            input: [{ var: 'yes', filterRange: 'notARange' }],
+            filterType: 'number',
+          },
+          options: 'not important',
         }}
-      i={'0'}
-    />, root)
-  }).toThrow();
+        i={'0'}
+      />,
+      root
+    )
+  }).toThrow()
 })
 
 test('invalid filter range in date test', () => {
   expect(() => {
     const root = document.createElement('div')
 
-    ReactDOM.render(<FilterInputs
-      props={{
-        id: '1',
-        item:{selected: null, input: [{var: 'yes', filterRange: 'notARange'}], filterType: 'date'},
-        options: 'not important'
+    ReactDOM.render(
+      <FilterInputs
+        props={{
+          id: '1',
+          item: {
+            selected: null,
+            input: [{ var: 'yes', filterRange: 'notARange' }],
+            filterType: 'date',
+          },
+          options: 'not important',
         }}
-      i={'0'}
-    />, root)
-  }).toThrow();
+        i={'0'}
+      />,
+      root
+    )
+  }).toThrow()
 })

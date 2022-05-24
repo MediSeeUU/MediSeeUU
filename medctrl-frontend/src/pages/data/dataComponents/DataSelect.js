@@ -12,7 +12,9 @@ function DataSelect({ initialSearch }) {
   const [resultsPerPage, setResultsPerPage] = useState(25) // Amount of database hits shown per page
   const [loadedPage, setPage] = useState(1) // Current page
   const [search, setSearch] = useState(initialSearch) // Current search
-  const [filters, setFilters] = useState([{ selected: '', input: [{var: '', filterRange: 'from'}], filterType: '' }]) // Current filters
+  const [filters, setFilters] = useState([
+    { selected: '', input: [{ var: '', filterRange: 'from' }], filterType: '' },
+  ]) // Current filters
   const [sorters, setSorters] = useState([{ selected: '', order: 'asc' }]) // Current sorters
 
   // We need to keep a reference of the columns for ranking the data

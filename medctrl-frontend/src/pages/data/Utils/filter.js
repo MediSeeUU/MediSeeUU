@@ -5,18 +5,18 @@ function filterData(data, filters) {
     switch (item.filterType) {
       case 'text':
         updatedData = textFilter(updatedData, item)
-        break;
+        break
       case 'number':
         updatedData = numFilter(updatedData, item)
-        break;
+        break
       case 'date':
         updatedData = dateFilter(updatedData, item)
-        break;
+        break
       case 'bool':
         updatedData = textFilter(updatedData, item)
-        break;
+        break
       default:
-        break;
+        break
     }
   })
   return updatedData
@@ -45,13 +45,10 @@ function numFilter(data, item) {
       }
       if (x.filterRange === 'till') {
         return x.var >= obj[item.selected]
+      } else {
+        throw new Error('Filter range invalid')
       }
-      else {
-        throw new Error ("Filter range invalid")
-      }
-    } 
-      
-    )
+    })
   })
 }
 
@@ -65,13 +62,11 @@ function dateFilter(data, item) {
       if (x.filterRange === 'from') {
         const xDate = new Date(x.var)
         return xDate <= itemDate
-      }
-      else if (x.filterRange === 'till') {
+      } else if (x.filterRange === 'till') {
         const xDate = new Date(x.var)
         return xDate >= itemDate
-      }
-      else {
-        throw new Error ("Invalid filter type")
+      } else {
+        throw new Error('Invalid filter type')
       }
     })
   })

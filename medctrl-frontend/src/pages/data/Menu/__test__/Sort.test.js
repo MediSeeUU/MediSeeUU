@@ -19,7 +19,9 @@ test('renders without crashing', () => {
 
 test('delete sort function is called', () => {
   const del = jest.fn()
-  render(<Sort id={5} item={{ selected: 'BrandName', order: 'asc' }} del={del} />)
+  render(
+    <Sort id={5} item={{ selected: 'BrandName', order: 'asc' }} del={del} />
+  )
   fireEvent.click(screen.getByTestId('delete-sorting-box'))
   expect(del).toHaveBeenCalled()
 })
@@ -28,13 +30,17 @@ test('delete sort returns correct id', () => {
   const del = (id) => {
     expect(id).toBe(5)
   }
-  render(<Sort id={5} item={{ selected: 'BrandName', order: 'asc' }} del={del} />)
+  render(
+    <Sort id={5} item={{ selected: 'BrandName', order: 'asc' }} del={del} />
+  )
   fireEvent.click(screen.getByTestId('delete-sorting-box'))
 })
 
 test('change selected variable function is called', () => {
   const sel = jest.fn()
-  render(<Sort id={5} item={{ selected: 'BrandName', order: 'asc' }} sel={sel} />)
+  render(
+    <Sort id={5} item={{ selected: 'BrandName', order: 'asc' }} sel={sel} />
+  )
   const select = screen.getByTestId('sort-select-attr')
   fireEvent.change(select, { target: { value: 'can be anything' } })
   expect(sel).toHaveBeenCalled()
@@ -47,12 +53,12 @@ test('change selected variable returns correct id and value', () => {
   }
   render(
     <StructureContext.Provider value={structData}>
-    <Sort
-      id={18}
-      options={<option value="BrandName">this should not matter</option>}
-      item={{ selected: 'BrandName', order: 'asc' }}
-      sel={sel}
-    />
+      <Sort
+        id={18}
+        options={<option value="BrandName">this should not matter</option>}
+        item={{ selected: 'BrandName', order: 'asc' }}
+        sel={sel}
+      />
     </StructureContext.Provider>
   )
   const select = screen.getByTestId('sort-select-attr')
@@ -61,7 +67,13 @@ test('change selected variable returns correct id and value', () => {
 
 test('change selected order function is called', () => {
   const order = jest.fn()
-  render(<Sort id={13} item={{ selected: 'BrandName', order: 'asc' }} order={order} />)
+  render(
+    <Sort
+      id={13}
+      item={{ selected: 'BrandName', order: 'asc' }}
+      order={order}
+    />
+  )
   const select = screen.getByTestId('sort-select-order')
   fireEvent.change(select, { target: { value: 'can be anything' } })
   expect(order).toHaveBeenCalled()

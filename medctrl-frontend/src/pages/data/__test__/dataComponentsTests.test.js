@@ -12,13 +12,12 @@ import {
   ColumnSelectionContextUpdate,
   CheckedContext,
   CheckedContextUpdate,
-  StructureContext
+  StructureContext,
 } from '../../../shared/contexts/DataContext'
 import { BrowserRouter } from 'react-router-dom'
 import allData from '../../../testJson/data.json'
 import MockDataProvider from '../../../shared/contexts/MockDataContext.js'
 import structData from '../../../shared/contexts/structServer.json'
-
 
 test('DataPage renders without crashing', () => {
   const root = document.createElement('div')

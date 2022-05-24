@@ -77,12 +77,12 @@ test('update returns right query on button click', () => {
 
 test('clear button clears query', () => {
   const update = (query) => {
-    expect(query).toBe("")
+    expect(query).toBe('')
   }
   render(<Search update={update} />)
   const input = screen.getByRole('textbox')
   fireEvent.focusIn(input)
   fireEvent.change(input, { target: { value: 'pfizer' } })
-  const clear = screen.getByTestId("search-close-icon")
+  const clear = screen.getByTestId('search-close-icon')
   fireEvent.click(clear)
 })
