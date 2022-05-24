@@ -26,13 +26,6 @@ function PieForm(props) {
     const value = target.value
     const name = target.name
 
-    // The categories depend on which variables you chose,
-    // so if these changes we want the categoriesSelected to re-initialized,
-    // in this case that is just resetting the array,
-    // because some variables have a lot of categories.
-    if (name === 'xAxis') {
-      settings.categoriesSelectedX = []
-    }
     settings[name] = value
     // the new settings is sent to the rest of the programme
     props.onChange({
@@ -72,14 +65,16 @@ function PieForm(props) {
           {renderVariableDropDown()}
         </select>
       </label>
-      <CategoryOptions
-        dimension="X"
-        className="category-options"
-        onChange={handleChange}
-        categories={sortCategoryData(props.uniqueCategories[settings.xAxis])}
-        categoriesSelected={settings.categoriesSelectedX}
-        settings={settings}
-      />
+      <div>
+        <CategoryOptions
+          dimension="X"
+          className="category-options"
+          onChange={handleChange}
+          categories={sortCategoryData(props.uniqueCategories[settings.xAxis])}
+          categoriesSelected={settings.categoriesSelectedX}
+          settings={settings}
+        />
+      </div>
     </>
   )
 }

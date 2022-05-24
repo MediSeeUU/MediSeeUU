@@ -11,7 +11,7 @@ class PieChart extends Component {
         chart: {
           id: String(this.props.id),
           type: 'pie',
-          toolbar: { tools: { download: false } },
+          toolbar: { show: false },
           events: {
             dataPointSelection: (event, chartContext, config) => {
               let euNumbers = config.w.config.euNumbers[config.dataPointIndex]

@@ -25,14 +25,6 @@ function BarForm(props) {
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
 
-    // The categories depend on which variables you chose,
-    // so if these change we want the categoriesSelected to re-initialized,
-    // in this case that is just resetting the array,
-    // because some variables have a lot of categories.
-    if (name === 'xAxis' || name === 'yAxis') {
-      settings.categoriesSelectedX = []
-      settings.categoriesSelectedY = []
-    }
     settings[name] = value
     props.onChange({
       target: {
@@ -106,7 +98,7 @@ function BarForm(props) {
           checked={settings.horizontal}
           onChange={handleChange}
         />
-        &nbsp;&nbsp;Horizontal
+        &nbsp;&nbsp;Switch axes
       </label>
       <div tour="step-vis-vars">
         <label className="visualization-panel-label">

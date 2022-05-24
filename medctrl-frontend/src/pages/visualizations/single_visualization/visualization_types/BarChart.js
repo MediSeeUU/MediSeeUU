@@ -12,9 +12,9 @@ class BarChart extends Component {
         chart: {
           id: String(this.props.id),
           type: 'bar',
+          toolbar: { show: false },
           stacked: this.props.options.stacked,
           stackType: this.props.options.stackType ? '100%' : 'normal',
-          toolbar: { tools: { download: false } },
           events: {
             dataPointSelection: (event, chartContext, config) => {
               let euNumbers =

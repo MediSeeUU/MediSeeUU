@@ -11,7 +11,7 @@ class HistogramChart extends Component {
         chart: {
           id: String(this.props.id),
           type: 'bar',
-          toolbar: { tools: { download: false } },
+          toolbar: { show: false },
           events: {
             dataPointSelection: (event, chartContext, config) => {
               let euNumbers =
@@ -35,7 +35,7 @@ class HistogramChart extends Component {
         },
         yaxis: {
           title: {
-            text: 'amount',
+            text: 'number',
           },
         },
         dataLabels: {

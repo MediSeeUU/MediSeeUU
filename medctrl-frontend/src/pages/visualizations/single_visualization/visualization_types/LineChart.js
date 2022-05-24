@@ -11,7 +11,7 @@ class LineChart extends Component {
         chart: {
           id: String(this.props.id),
           type: 'line',
-          toolbar: { tools: { download: false } },
+          toolbar: { show: false },
           events: {
             dataPointSelection: (event, chartContext, config) => {
               let euNumbers =

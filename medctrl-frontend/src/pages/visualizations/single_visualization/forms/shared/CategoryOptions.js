@@ -15,6 +15,7 @@ function CategoryOptions(props) {
   function handleAllCategorySelectionFunc(event) {
     let newCategoriesSelected =
       settings.length === props.categories.length ? [] : props.categories
+    settings = newCategoriesSelected
     props.onChange({
       target: {
         type: 'array',
@@ -22,7 +23,6 @@ function CategoryOptions(props) {
         name: 'categoriesSelected' + props.dimension,
       },
     })
-    settings = newCategoriesSelected
   }
 
   // Updating what categories have been selected,
@@ -42,7 +42,7 @@ function CategoryOptions(props) {
         newCategoriesSelected = settings.filter((el) => el !== name)
       }
     }
-
+    settings = newCategoriesSelected
     props.onChange({
       target: {
         type: 'array',
@@ -50,7 +50,6 @@ function CategoryOptions(props) {
         name: 'categoriesSelected' + props.dimension,
       },
     })
-    settings = newCategoriesSelected
   }
 
   // GENERAL FUNCTIONS:
@@ -78,6 +77,8 @@ function CategoryOptions(props) {
 
   return (
     <>
+      <br />
+      <b>{props.dimension}-axis</b>
       <br />
       <label>
         <input
