@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
+import VariableSelect from '../../../shared/VariableSelect/VariableSelect'
 import FilterInputs from './FilterComponents/FilterInputs'
 
 // Returns all filter input boxes in HTML
@@ -23,17 +24,12 @@ function filtersToHTML(props) {
 function DisplayItem(props) {
   return (
     <div id={props.id} className="med-table-menu-filter-item">
-      <select
+      <VariableSelect
         className="med-table-menu-select med-select"
         defaultValue={props.item.selected}
         onChange={(e) => props.sel(props.id, e.target.value)}
-        data-testid="filter-select"
-      >
-        <option key="" value="" hidden>
-          Select a variable...
-        </option>
-        {props.options}
-      </select>
+        dataTestId="filter-select"
+      />
       <i
         className="bx bxs-x-circle med-table-menu-delete-button med-primary-text"
         onClick={() => props.del(props.id)}

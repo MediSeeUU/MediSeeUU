@@ -12,10 +12,13 @@ import {
   ColumnSelectionContextUpdate,
   CheckedContext,
   CheckedContextUpdate,
+  StructureContext
 } from '../../../shared/contexts/DataContext'
 import { BrowserRouter } from 'react-router-dom'
 import allData from '../../../testJson/data.json'
 import MockDataProvider from '../../../shared/contexts/MockDataContext.js'
+import structData from '../../../shared/contexts/structServer.json'
+
 
 test('DataPage renders without crashing', () => {
   const root = document.createElement('div')
@@ -177,19 +180,21 @@ test('table updated', () => {
   const root = document.createElement('div')
   render(
     <BrowserRouter>
-      <DataContext.Provider value={allData}>
-        <SelectedContext.Provider value={selectedData}>
-          <ColumnSelectionContext.Provider value={columnSelection}>
-            <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-              <CheckedContext.Provider value={checkedState}>
-                <CheckedContextUpdate.Provider value={setCheckedState}>
-                  <DataPage />
-                </CheckedContextUpdate.Provider>
-              </CheckedContext.Provider>
-            </ColumnSelectionContextUpdate.Provider>
-          </ColumnSelectionContext.Provider>
-        </SelectedContext.Provider>
-      </DataContext.Provider>
+      <StructureContext.Provider value={structData}>
+        <DataContext.Provider value={allData}>
+          <SelectedContext.Provider value={selectedData}>
+            <ColumnSelectionContext.Provider value={columnSelection}>
+              <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+                <CheckedContext.Provider value={checkedState}>
+                  <CheckedContextUpdate.Provider value={setCheckedState}>
+                    <DataPage />
+                  </CheckedContextUpdate.Provider>
+                </CheckedContext.Provider>
+              </ColumnSelectionContextUpdate.Provider>
+            </ColumnSelectionContext.Provider>
+          </SelectedContext.Provider>
+        </DataContext.Provider>
+      </StructureContext.Provider>
     </BrowserRouter>,
     root
   )
