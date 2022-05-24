@@ -1,6 +1,8 @@
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 
+import sampleProcedureData from './pages/detailed-info/detailed-info-data.json'
+
 const mockApi = setupServer(
   // example of a request handler
   rest.get('/api/exampleMockRequest', (req, res, ctx) => {
@@ -58,6 +60,10 @@ const mockApi = setupServer(
         },
       })
     )
+  }),
+  rest.get('/api/procedure/:medID', (req, res, ctx) => {
+    // respond using a mocked JSON body
+    return res(ctx.json(sampleProcedureData.procedures))
   })
 )
 

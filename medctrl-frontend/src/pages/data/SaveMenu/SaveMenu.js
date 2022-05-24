@@ -16,7 +16,7 @@ function SaveMenu({ selectedData }) {
         className="med-primary-solid med-bx-button"
         onClick={() => setModalState(true)}
       >
-        <i className="bx bxs-save"></i>Save
+        <i className="bx bxs-save med-button-image"></i>Save
       </button>
 
       <ReactModal

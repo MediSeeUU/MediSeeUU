@@ -2,7 +2,8 @@ from rest_framework import viewsets
 from api.permissions import CustomObjectPermissions
 from api.serializers import SavedSelectionSerializer
 from api.models import SavedSelection
-from rest_framework import permissions
+from rest_framework import permissions, status
+from rest_framework.response import Response
 
 
 class SavedSelectionViewSet(viewsets.ModelViewSet):
@@ -19,6 +20,15 @@ class SavedSelectionViewSet(viewsets.ModelViewSet):
         # set the created_by to the requesting users' ID
         request.data["created_by"] = request.user.id
         return super().create(request)
+
+    def destroy(self, request, *args, **kwargs):  # Delete the SavedSelection
+        pk = kwargs.get("pk")
+        obj = SavedSelection.objects.filter(created_by=request.user.id, id=pk).first()
+        if obj is None:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        obj.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     def get_queryset(self):
         pk = self.kwargs.get("pk")

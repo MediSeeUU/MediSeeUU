@@ -12,7 +12,7 @@ function ErrorDialog(props) {
           points, please contact the administrator for more information.
         </span>
       </div>
-      <button className="med-cancel-save-button" onClick={props.onClick}>
+      <button className="med-cancel-button" onClick={props.onClick}>
         Done
       </button>
     </div>

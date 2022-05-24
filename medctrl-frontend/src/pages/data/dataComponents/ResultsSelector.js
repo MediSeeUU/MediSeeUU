@@ -129,7 +129,7 @@ function ResultsSelector({
   const removeAllSelected = () => {
     let updatedCheckedState = JSON.parse(JSON.stringify(checkedState))
     for (var element of data) {
-      updatedCheckedState[element.EUNumber] = false
+      updatedCheckedState[element.EUNoShort] = false
     }
     setCheckedState(updatedCheckedState)
   }

@@ -5,9 +5,9 @@
   }
 }
 
-.med-table-header,
-.med-table-body,
-.med-table {
+.med-saved-selection-container .med-table-header,
+.med-saved-selection-container .med-table-body,
+.med-saved-selection-container .med-table {
   display: revert;
   width: 98%;
 }
@@ -18,6 +18,6 @@
   border-radius: 10%;
 }
 
-.med-table-icons {
+.med-saved-selection-container .med-table-icons {
   font-size: 1.5em;
 }

@@ -23,6 +23,9 @@ ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = ["https://med-ctrl.science.uu.nl"]
 
+# Caching the medicines endpoint
+MEDICINES_CACHING = True
+
 
 # Application definition
 
@@ -78,7 +81,7 @@ ROOT_URLCONF = "api_settings.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ["../../templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -134,3 +137,5 @@ STATIC_URL = "django-static/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+SESSION_COOKIE_AGE = 4 * 60 * 60

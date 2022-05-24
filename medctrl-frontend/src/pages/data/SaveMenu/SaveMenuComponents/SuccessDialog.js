@@ -5,7 +5,7 @@ function SuccessDialog(props) {
   return (
     <div className="med-save-dialog">
       <i className="bx bx-check" />
-      <h1>Export Successful</h1>
+      <h1>Selection Successfully Saved</h1>
       <div className="med-success-message">
         <span>
           Saving the selection of {props.num} data points has completed

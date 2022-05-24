@@ -1,8 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import DetailedInfoPage, { InfoPage } from '../DetailedInfoPage'
-import { DataProvider } from '../../../shared/contexts/DataContext'
+import { act } from 'react-dom/test-utils'
+import MockDataProvider from '../../../shared/contexts/MockDataContext'
+import structData from '../../../shared/contexts/structServer.json'
+import { StructureContext } from '../../../shared/contexts/DataContext'
 import DummyData from '../detailed-info-data.json'
 
 // https://stackoverflow.com/questions/58117890/how-to-test-components-using-new-react-router-hooks
@@ -16,25 +19,24 @@ jest.mock('react-router-dom', () => ({
 test('detailed info page renders without crashing', () => {
   const root = document.createElement('div')
   ReactDOM.render(
-    <DataProvider>
+    <MockDataProvider>
       <DetailedInfoPage />
-    </DataProvider>,
+    </MockDataProvider>,
     root
   )
 })
 
 test('detailed info page displays correct med and proc data', async () => {
-  let medData = DummyData.info
-  let procData = DummyData.procedures
-
   render(
-    <DataProvider>
-      <InfoPage medData={medData} procData={procData} />
-    </DataProvider>
+    <MockDataProvider>
+      <StructureContext.Provider value={structData}>
+        <DetailedInfoPage />
+      </StructureContext.Provider>
+    </MockDataProvider>
   )
 
   // wait for the procedure data to be retrieved from the server
-  // await act(() => new Promise((resolve) => setTimeout(resolve, 1500)))
+  await act(() => new Promise((resolve) => setTimeout(resolve, 1500)))
 
   const medName = screen.getByText('Comirnaty')
   expect(medName).toBeTruthy()
@@ -45,9 +47,11 @@ test('detailed info page displays correct med and proc data', async () => {
 
 test('detailed info page correctly retrieves medID from url', () => {
   render(
-    <DataProvider>
-      <DetailedInfoPage />
-    </DataProvider>
+    <MockDataProvider>
+      <StructureContext.Provider value={structData}>
+        <DetailedInfoPage />
+      </StructureContext.Provider>
+    </MockDataProvider>
   )
 
   const medName = screen.getByText('Comirnaty')
@@ -56,10 +60,27 @@ test('detailed info page correctly retrieves medID from url', () => {
 
 test('detailed info page shows error for unknown medIDs', () => {
   render(
-    <DataProvider>
+    <MockDataProvider>
       <InfoPage medData={null} procData={null} />
-    </DataProvider>
+    </MockDataProvider>
   )
   const errorMessage = screen.getAllByText('Unknown Medicine ID Number')
   expect(errorMessage).toBeTruthy()
+})
+
+test('detailed info page proc select dialog behaves correctly', () => {
+  let medData = DummyData.info
+  let procData = DummyData.procedures
+
+  render(
+    <MockDataProvider>
+      <InfoPage medData={medData} procData={procData} />
+    </MockDataProvider>
+  )
+
+  const procSelectButton = screen.getAllByText('Select Procedures')[0]
+  fireEvent.click(procSelectButton)
+
+  const applyButton = screen.getByText('Apply')
+  fireEvent.click(applyButton)
 })

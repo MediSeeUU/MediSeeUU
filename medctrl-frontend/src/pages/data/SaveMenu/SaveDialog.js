@@ -4,6 +4,8 @@ import ErrorDialog from './SaveMenuComponents/ErrorDialog'
 import SuccessDialog from './SaveMenuComponents/SuccessDialog'
 import ErrorMessage from './SaveMenuComponents/ErrorMessage'
 
+import postSavedSelection from './SaveHandler'
+
 class SaveDialog extends React.Component {
   // Save Dialog is a class based component. it is passed some series of
   // data points, and it allows the user to save these points as a selection
@@ -26,7 +28,6 @@ class SaveDialog extends React.Component {
 
     this.closeDialog = this.closeDialog.bind(this)
     this.handleSave = this.handleSave.bind(this)
-    this.saveData = this.saveData.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
@@ -41,33 +42,32 @@ class SaveDialog extends React.Component {
   handleSave(event) {
     event.preventDefault()
 
+    // EUNoShorts of selected data points
+    var eunumbers = []
+    this.selectedData.forEach((dataPoint) =>
+      eunumbers.push(dataPoint.EUNoShort)
+    )
+
+    // check whether the name field has input
     if (this.state.saveName === '') {
       this.setState({ errorMessage: this.noSaveName })
       return
     }
 
+    // check whether only allowed characters are used
     if (!/^[A-Za-z0-9\-_ ]*$/.test(this.state.saveName)) {
       this.setState({ errorMessage: this.invalidName })
       return
     }
 
     try {
-      this.saveData()
+      postSavedSelection(eunumbers, this.state.saveName)
     } catch {
       this.setState({ dialogState: 'error' })
       return
     }
 
     this.setState({ dialogState: 'success' })
-  }
-
-  // saves all the data points contained in this.selectedData as one selection,
-  // according to the given user preference. this method assumes that the given
-  // input is valid
-  saveData() {
-    //const selectedData = this.selectedData
-
-    throw new Error('bad response!')
   }
 
   // when the user updates the input field in the dialog,
@@ -100,12 +100,13 @@ class SaveDialog extends React.Component {
     }
 
     return (
-      <div className="med-export-dialog">
+      <div className="med-save-dialog">
         <i className="bx bxs-save" />
         <h1>Save Selected Data</h1>
         <span className="med-description">
           Give a name to this selection of data points to save the selected
-          data.
+          data. Selection names can only contain Latin characters, digits,
+          dashes (-), underscores (_), and spaces.
         </span>
 
         <div className="med-save-form">
@@ -114,19 +115,16 @@ class SaveDialog extends React.Component {
             type="text"
             id="name"
             className="med-text-input"
-            placeHolder="Selection name"
+            placeholder="Selection name"
           />
         </div>
 
         {errorMessage}
 
-        <button
-          className="med-primary-solid accept"
-          onClick={this.handleSave}
-        >
-          Save
+        <button className="med-primary-solid accept" onClick={this.handleSave}>
+          Save selection
         </button>
-        <button className="med-cancel-save-button" onClick={this.closeDialog}>
+        <button className="med-cancel-button" onClick={this.closeDialog}>
           Cancel
         </button>
       </div>

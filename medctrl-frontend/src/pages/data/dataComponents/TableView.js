@@ -8,6 +8,7 @@ export default function TableView({
   loadedPage,
   setPage,
   setResultsPerPage,
+  setSorters,
   select,
   text,
   baseMenu,
@@ -33,6 +34,7 @@ export default function TableView({
           selectTable={select}
           baseMenu={baseMenu}
           saveMenu={saveMenu}
+          setSorters={setSorters}
         />
         <ResultsSelector
           data={data}

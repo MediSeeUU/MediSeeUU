@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   useCheckedState,
   useCheckedStateUpdate,
@@ -7,6 +7,8 @@ import {
 } from '../contexts/DataContext'
 import './table.css'
 import { Link } from 'react-router-dom'
+import '../../core/login/connectionServer'
+import VariableSelect from '../VariableSelect/VariableSelect'
 
 //Function based component, returns table
 function DisplayTable({
@@ -17,11 +19,21 @@ function DisplayTable({
   currentPage,
   baseMenu,
   saveMenu,
+  setSorters,
 }) {
   //throw error if parameters not defined
   if (!data || !amountPerPage || !currentPage) {
     throw Error('parameters data, amountPerPage and currentPage are mandatory')
   }
+
+  const [LocalTableData, setLocalTableData] = useState(data)
+
+  useEffect(() => {
+    setLocalTableData(data)
+  }, [data])
+
+  let token = sessionStorage.getItem('token')
+  let loggedin = token != null
 
   const checkedState = useCheckedState()
   const setCheckedState = useCheckedStateUpdate()
@@ -44,7 +56,7 @@ function DisplayTable({
   const handleAllChange = () => {
     const updatedCheckedState = JSON.parse(JSON.stringify(checkedState)) //hard copy state
     data.forEach((prop) => {
-      updatedCheckedState[prop.EUNumber] = !allSelected
+      updatedCheckedState[prop.EUNoShort] = !allSelected
     })
     setCheckedState(updatedCheckedState)
   }
@@ -53,7 +65,7 @@ function DisplayTable({
   const lowerBoundDataPage = amountPerPage * (currentPage - 1)
   const higherBoundDataPage = amountPerPage * currentPage
 
-  if (lowerBoundDataPage > data.length) {
+  if (lowerBoundDataPage > LocalTableData.length) {
     throw Error('Pagination too high, data not defined')
   }
 
@@ -64,9 +76,14 @@ function DisplayTable({
     setColumnSelection(newColumnSelection)
   }
 
+  //handler that changes the data sorting order
+  const handleSortingChange = (attributename, value) => {
+    setSorters([{ selected: attributename, order: value }])
+  }
+
   //handler that adds a column
   const addColumn = () => {
-    let allColumnOptions = Object.keys(data[0])
+    let allColumnOptions = Object.keys(LocalTableData[0])
     let availableColumns = allColumnOptions.filter(
       (element) => ![...columnSelection].includes(element)
     )
@@ -89,35 +106,36 @@ function DisplayTable({
   }
 
   //constant with the table body data, for every data entry add a new row
-  const htmlData = data
-    .slice(lowerBoundDataPage, higherBoundDataPage)
-    .map((entry, index1) => {
-      return (
-        <tr key={index1 + lowerBoundDataPage} className="med_rows">
-          {selectTable ? (
-            <CheckboxColumn
-              value={checkedState[entry.EUNumber]}
-              onChange={handleOnChange.bind(null, entry.EUNumber)}
-              data={data}
-            />
-          ) : null}
-          {columnSelection.map((propt, index2) => {
-            return (
-              <td className="med-table-body-cell" key={index2}>
-                <div>{entry[propt]}</div>
-              </td>
-            )
-          })}
-          <RightStickyActions
-            EUidNumber={entry.EUNoShort}
-            selectTable={selectTable}
-            searchTable={searchTable}
-            entry={entry}
-            handleOnChange={handleOnChange}
+  const htmlData = LocalTableData.slice(
+    lowerBoundDataPage,
+    higherBoundDataPage
+  ).map((entry, index1) => {
+    return (
+      <tr key={index1 + lowerBoundDataPage} className="med_rows">
+        {selectTable ? (
+          <CheckboxColumn
+            value={checkedState[entry.EUNoShort]}
+            onChange={handleOnChange.bind(null, entry.EUNoShort)}
+            data={LocalTableData}
           />
-        </tr>
-      )
-    })
+        ) : null}
+        {columnSelection.map((propt, index2) => {
+          return (
+            <td className="med-table-body-cell" key={index2}>
+              <div>{dataToDisplayFormat({ entry, propt })}</div>
+            </td>
+          )
+        })}
+        <RightStickyActions
+          EUidNumber={entry.EUNoShort}
+          selectTable={selectTable}
+          searchTable={searchTable}
+          entry={entry}
+          handleOnChange={handleOnChange}
+        />
+      </tr>
+    )
+  })
 
   //return table, with a header with the data keywords
   return (
@@ -128,7 +146,6 @@ function DisplayTable({
           onClick={() => addColumn()}
           data-testid="add-column"
         />
-
         <i
           className="med-add-remove-button bx bxs-minus-square med-primary-text"
           onClick={() => removeColumn()}
@@ -136,7 +153,7 @@ function DisplayTable({
         />
 
         {baseMenu}
-        {saveMenu}
+        {loggedin && saveMenu}
       </div>
 
       <table className="med-table">
@@ -148,7 +165,7 @@ function DisplayTable({
                 <CheckboxColumn
                   value={allSelected}
                   onChange={handleAllChange}
-                  data={data}
+                  data={LocalTableData}
                 />
               )
             }
@@ -157,21 +174,27 @@ function DisplayTable({
               columnSelection.map((key1, index1) => {
                 return (
                   <th key={index1} className="med-table-header-cell">
-                    <select
-                      value={key1}
+                    <VariableSelect
                       className="med-table-header-select-cell"
                       onChange={(e) =>
                         handleColumnChange(index1, e.target.value)
                       }
+                      defaultValue={key1}
+                    />
+
+                    <button
+                      className="med_th_sort"
+                      onClick={(e) => handleSortingChange(key1, 'asc')}
                     >
-                      {Object.keys(data[0]).map((key2, index2) => {
-                        return (
-                          <option key={index2} value={key2}>
-                            {key2}
-                          </option>
-                        )
-                      })}
-                    </select>
+                      ^
+                    </button>
+
+                    <button
+                      className="med_th_sort"
+                      onClick={(e) => handleSortingChange(key1, 'desc')}
+                    >
+                      v
+                    </button>
                   </th>
                 )
               })
@@ -188,6 +211,42 @@ function DisplayTable({
   )
 }
 
+//backend received data can be reformatted when displayed in the table
+//depeding on the property/variable, different formatting may be applicable
+export const dataToDisplayFormat = ({ entry, propt }) => {
+  switch (propt) {
+    case 'DecisionDate':
+      return slashDateToStringDate(entry[propt])
+    default:
+      return entry[propt]
+  }
+}
+function slashDateToStringDate(date) {
+  const defValue = 'NA'
+  if (date === defValue) {
+    return date
+  }
+  var splitteddate = date.split('/')
+  const day = splitteddate[1].replace(/^0+/, '')
+  const month = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ][parseInt(splitteddate[0].replace(/^0+/, '')) - 1]
+  const year = splitteddate[2]
+  const fullDate = day + ' ' + month + ' ' + year
+  return fullDate
+}
+
 //logic for the checkboxes
 const CheckboxColumn = ({ value, onChange }) => {
   return (
@@ -195,7 +254,7 @@ const CheckboxColumn = ({ value, onChange }) => {
       <input
         className="tableCheckboxColumn"
         type="checkbox"
-        checked={value}
+        checked={!value ? false : value}
         onChange={onChange}
       />
     </td>
@@ -216,7 +275,7 @@ function RightStickyActions({
       {!selectTable && !searchTable && (
         <i
           className="bx bx-trash med-table-icons med-primary-text"
-          onClick={handleOnChange.bind(null, entry.EUNumber)}
+          onClick={handleOnChange.bind(null, entry.EUNoShort)}
         ></i>
       )}
 
