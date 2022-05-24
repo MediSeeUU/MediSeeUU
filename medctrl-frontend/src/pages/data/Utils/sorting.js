@@ -45,6 +45,8 @@ export default function sortData(data, sortingparameters) {
 }
 
 function createComparisonFunction(attr) {
+  const defValue = 'NA'
+
   if (attr === undefined || attr === '') {
     return function baseComparison(jsonObject1, jsonObject2) {
       return String.toString(jsonObject1[0]).localeCompare(
@@ -58,16 +60,16 @@ function createComparisonFunction(attr) {
         typeof jsonobject1[attr] === 'number' &&
         typeof jsonobject2[attr] === 'number'
       ) {
-        if (jsonobject1[attr] === 'NA') {
+        if (jsonobject1[attr] === defValue) {
           return 1
-        } else if (jsonobject2[attr] === 'NA') {
+        } else if (jsonobject2[attr] === defValue) {
           return -1
         } else return jsonobject1[attr] - jsonobject2[attr]
       }
 
-      if (jsonobject1[attr] === 'NA') {
+      if (jsonobject1[attr] === defValue) {
         return 1
-      } else if (jsonobject2[attr] === 'NA') {
+      } else if (jsonobject2[attr] === defValue) {
         return -1
       } else {
         return convertStringToAlphaNumerical(jsonobject1[attr]).localeCompare(
@@ -94,6 +96,8 @@ export function convertSortingAttributeNameToComparisonFunction(
   attributeNameAsString
 ) {
   var sortingFunctionToUse
+  const defValue = 'NA'
+
   switch (attributeNameAsString) {
     case 'asc':
       sortingFunctionToUse = 1
@@ -117,9 +121,9 @@ export function convertSortingAttributeNameToComparisonFunction(
       break
     case 'MAH':
       function MAHcomparison(jsonObject1, jsonObject2) {
-        if (jsonObject1['MAH'] === 'NA') {
+        if (jsonObject1['MAH'] === defValue) {
           return 1
-        } else if (jsonObject2['MAH'] === 'NA') {
+        } else if (jsonObject2['MAH'] === defValue) {
           return -1
         } else {
           return convertStringToAlphaNumerical(
@@ -132,9 +136,9 @@ export function convertSortingAttributeNameToComparisonFunction(
       break
     case 'ActiveSubstance':
       function ActSubComparison(jsonObject1, jsonObject2) {
-        if (jsonObject1['ActiveSubstance'] === 'NA') {
+        if (jsonObject1['ActiveSubstance'] === defValue) {
           return 1
-        } else if (jsonObject2['ActiveSubstance'] === 'NA') {
+        } else if (jsonObject2['ActiveSubstance'] === defValue) {
           return -1
         }
         return convertStringToAlphaNumerical(
@@ -149,9 +153,9 @@ export function convertSortingAttributeNameToComparisonFunction(
 
     case 'ApplicationNo':
       function numberorNAcompare(jsonobject1, jsonobject2) {
-        if (jsonobject1['ApplicationNo'] === 'NA') {
+        if (jsonobject1['ApplicationNo'] === defValue) {
           return 1
-        } else if (jsonobject2['ApplicationNo'] === 'NA') {
+        } else if (jsonobject2['ApplicationNo'] === defValue) {
           return -1
         } else {
           return jsonobject1['ApplicationNo'] - jsonobject2['ApplicationNo']
@@ -163,9 +167,9 @@ export function convertSortingAttributeNameToComparisonFunction(
       break
     case 'LegalType':
       function legaltypecompare(jsonobject1, jsonobject2) {
-        if (jsonobject1['LegalType'] === 'NA') {
+        if (jsonobject1['LegalType'] === defValue) {
           return 1
-        } else if (jsonobject2['LegalType'] === 'NA') {
+        } else if (jsonobject2['LegalType'] === defValue) {
           return -1
         } else {
           var legalnumber1 = jsonobject1['LegalType'].slice(8)
@@ -181,7 +185,7 @@ export function convertSortingAttributeNameToComparisonFunction(
             '10.1',
             '10.3',
             '10.4',
-            'NA',
+            defValue,
           ]
           //var a = sortOrder.indexOf(legalnumber1)
           //var b = sortOrder.indexOf(legalnumber2)

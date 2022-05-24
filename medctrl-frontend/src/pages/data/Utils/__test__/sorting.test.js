@@ -65,13 +65,12 @@ test('single ascending sorter on ActiveSubstance (special case) applied correctl
   }
 })
 
-//test to check if sorting first on ascending CMA and next on asc ActiveSubstance (special sorting case) works
-test('double ascending sorters on 1:CMA 2:Activesubstance (special case) applied correctly', () => {
+test('double ascending sorters on 1:ATMP 2:Activesubstance applied correctly', () => {
   let sortedData = sortData(DummyData, [
-    { selected: 'CMA', order: 'asc' },
+    { selected: 'ATMP', order: 'asc' },
     { selected: 'ActiveSubstance', order: 'asc' },
   ])
-  var compareFunc1 = convertSortingAttributeNameToComparisonFunction('CMA')
+  var compareFunc1 = convertSortingAttributeNameToComparisonFunction('ATMP')
   var compareFunc2 =
     convertSortingAttributeNameToComparisonFunction('ActiveSubstance')
   for (var i = 0; i < Object.keys(sortedData).length - 1; i++) {
@@ -86,13 +85,12 @@ test('double ascending sorters on 1:CMA 2:Activesubstance (special case) applied
   }
 })
 
-//test to check if sorting first on ascending CMA and next on asc ApplicationNo (special sorting case) works
-test('double ascending sorters on 1:CMA 2:ApplicationNo (special case) applied correctly', () => {
+test('double ascending sorters on 1:ATMP 2:ApplicationNo applied correctly', () => {
   let sortedData = sortData(DummyData, [
-    { selected: 'CMA', order: 'asc' },
+    { selected: 'ATMP', order: 'asc' },
     { selected: 'ApplicationNo', order: 'asc' },
   ])
-  var compareFunc1 = convertSortingAttributeNameToComparisonFunction('CMA')
+  var compareFunc1 = convertSortingAttributeNameToComparisonFunction('ATMP')
   var compareFunc2 =
     convertSortingAttributeNameToComparisonFunction('ApplicationNo')
   for (var i = 0; i < Object.keys(sortedData).length - 1; i++) {
@@ -107,8 +105,6 @@ test('double ascending sorters on 1:CMA 2:ApplicationNo (special case) applied c
   }
 })
 
-//test to see error handeling when no attribute to sort on has been selected
-//test to check if sorting ascending on ActiveSubstance (special sorting case) works
 test('single ascending sorter on unselected Attribute error handled correctly', () => {
   let sortedData = sortData(DummyData, [{ selected: '', order: 'asc' }])
   var compareFunc = convertSortingAttributeNameToComparisonFunction('')
