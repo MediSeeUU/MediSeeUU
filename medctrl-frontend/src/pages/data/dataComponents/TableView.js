@@ -18,7 +18,6 @@ export default function TableView({
     return (
       <>
         <label className="lb-tableholder">{text}</label>
-        {menu}
       </>
     )
   } else {
