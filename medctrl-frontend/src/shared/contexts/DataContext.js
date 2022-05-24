@@ -94,19 +94,22 @@ export function DataProvider({ children }) {
 export function StaticDataProvider({ children, allData, structData }) {
   //list of checked datapoints
   const [checkedState, setCheckedState] = useState(
-    Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: true })))
+    Object.assign({}, ...allData.map((entry) => ({ [entry.EUNoShort]: true })))
   )
 
   // update the checked datapoints state when the allData state is changed
   useEffect(() => {
     setCheckedState(
-      Object.assign({}, ...allData.map((entry) => ({ [entry.EUNumber]: true })))
+      Object.assign(
+        {},
+        ...allData.map((entry) => ({ [entry.EUNoShort]: true }))
+      )
     )
   }, [allData])
 
   //selected datalist
   const selectedData = allData.filter((item, index) => {
-    return checkedState[item.EUNumber]
+    return checkedState[item.EUNoShort]
   })
 
   //the column selection state with the default columns on key names

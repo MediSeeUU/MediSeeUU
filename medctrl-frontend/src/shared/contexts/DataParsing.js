@@ -17,7 +17,15 @@ function cleanFetchedDataPoint(fetchedDataPoint, structData) {
   // format the individual value into the correct format, if the
   // value is null or undefined, a default value is returned
   const format = (value, def, type) => {
-    if (value === null || value === undefined) return def
+    if (
+      value === null ||
+      value === undefined ||
+      value === '' ||
+      value === 'unknown' ||
+      value === 'NA'
+    ) {
+      return def
+    }
 
     switch (type) {
       case 'number':
@@ -42,7 +50,7 @@ function cleanFetchedDataPoint(fetchedDataPoint, structData) {
     for (var i = 0; i < structData[category].length; ++i) {
       const backKey = structData[category][i]['data-key']
       const frontKey = structData[category][i]['data-front-key']
-      const defValue = 'NA'
+      var defValue = 'NA'
       const typeValue = structData[category][i]['data-format']
 
       cleanedDataPoint[frontKey] = format(
@@ -53,17 +61,15 @@ function cleanFetchedDataPoint(fetchedDataPoint, structData) {
     }
   }
 
-  // for these datapoints there is no one to one mapping to variables
-  // in the fetched data from the backend. some can be computed but
-  // others need to be removed
-  cleanedDataPoint['EUNumber'] = 'EMA-' + cleanedDataPoint['EUNoShort']
-  cleanedDataPoint['DecisionYear'] = 'NA'
-  cleanedDataPoint['Period'] = 'NA'
-  cleanedDataPoint['ATCCodeL1'] = 'NA'
-  cleanedDataPoint['ATCNameL2'] = 'NA'
-  cleanedDataPoint['CMA'] = 'NA'
-  cleanedDataPoint['AEC'] = 'NA'
-  cleanedDataPoint['NAS'] = 'NA'
+  //the decision year can be derived from the year of the decision date (M/D/Y)
+  let DecisionYear = defValue
+  let DecisionDate = cleanedDataPoint['DecisionDate']
+  if (DecisionDate === defValue) {
+    DecisionYear = defValue
+  } else {
+    DecisionYear = parseInt(DecisionDate.split('/')[2])
+  }
+  cleanedDataPoint['DecisionYear'] = DecisionYear
 
   return cleanedDataPoint
 }
