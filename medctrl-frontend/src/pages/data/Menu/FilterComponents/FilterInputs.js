@@ -37,7 +37,7 @@ function numFilter(container, filterRange) {
       defaultValue={container.props.item.input[container.i].var}
       placeholder="Enter value"
       onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}
-      data-testid="filter-input-num-from"
+      data-testid='filter-input-num-from'
       />
     )
   }
@@ -50,7 +50,6 @@ function numFilter(container, filterRange) {
       defaultValue={container.props.item.input[container.i].var}
       placeholder="Enter value"
       onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}
-      data-testid="filter-input-num-till"
       />
     )
   }
@@ -73,7 +72,6 @@ function dateFilter(container, filterRange) {
       defaultValue={container.props.item.input[container.i].var}
       placeholder="Enter value"
       onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}        
-      data-testid="filter-input-date-from"
       />
     ) 
   }
@@ -87,7 +85,6 @@ function dateFilter(container, filterRange) {
       defaultValue={container.props.item.input[container.i].var}
       placeholder="Enter value"
       onBlur={(e) => container.props.fil(container.props.id, container.i, e.target.value)}        
-      data-testid="filter-input-date-till"
       />
     )
   }

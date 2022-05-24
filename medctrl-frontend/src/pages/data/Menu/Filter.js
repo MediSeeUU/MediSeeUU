@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from 'uuid'
 import VariableSelect from '../../../shared/VariableSelect/VariableSelect'
 import FilterInputs from './FilterComponents/FilterInputs'
+import { StructureContext } from '../../../shared/contexts/DataContext'
+import structData from '../../../shared/contexts/structServer.json'
 
 // Returns all filter input boxes in HTML
 function filtersToHTML(props) {
@@ -8,7 +10,10 @@ function filtersToHTML(props) {
   for (let i = 0; i < props.item.input.length; i++) {
     fields.push(
       <div key={uuidv4()} className="filter-picker">
-        {pickFilter(props, i)}
+
+        {
+        pickFilter(props, i)
+        }
         <i
           className="bx bxs-minus-circle med-table-menu-remove-filter-option-icon"
           onClick={() => props.dbox(props.id, i)}
@@ -47,45 +52,14 @@ function DisplayItem(props) {
   )
 }
 
-// variable type hardcoded for now. eventually change later if time/convenient :)
-
-// TODO: check for changes in var name between versions
-
-// these lists are from the endpoints, second set of lists from the JSON data file for testing.
-// second set of lists can be removed once data is retrieved from DB instead
-// TODO: double check all these names once context is filled from DB instead of test JSON
-const textVars = ['newactivesubstance', 'emaurl', 'ecurl', 'atccode', 'activesubstance', 
-  'medicinetype', 'decisionurl', 'annexurl', 'eparurl', 'rapporteur', 'corapporteur', 'brandname']
-
-const numVars = ['eunumber', 'emanumber', 'authorisationtotaltime', 'authorisationactivetime',
- 'authorisationstoppedtime', 'decisiontime']
-
-const dateVars = ['decisiondate']
-
-const boolVars = ['atmp', 'referral', 'suspension', 'acceleratedgranted',
-  'acceleratedmaintained', 'prime', 'orphan']
-
-const optionVars = ['legalbasis', 'legalscope', 'status']
-
-
-// SECOND SET OF LISTS TO WORK WITH THE DATA FROM JSON TEST FILE
-const tempTextVars = [ 'EUNumber', 'ATCNameL2', 'ATCCodeL2', 'Rapporteur', 'CoRapporteur',
- 'BrandName', 'MAH', 'ActiveSubstance', 'Period', 'ATCCodeL1', 'LegalSCope', 'LegalType', 'PRIME']
-
-const tempNumVars = ['TotalTimeElapsed', 'ClockStopElapsed', 'ActiveTimeElapsed',
- 'EUNoShort', 'DecisionYear', 'ApplicationNo']
-
-const tempDateVars = ['DecisionDate']
-
-const tempBoolVars = ['ATMP', 'AcceleratedExecuted', 'AcceleratedGranted', 'NAS',
- 'OrphanDesignation', 'NASQualified', 'CMA', 'AEC', 'PRIME']
-
-const tempOptionVars = []
-
-// end of variable hardcoding
-
 function pickFilter(props, i) {
-  if (textVars.includes(props.item.selected) || tempTextVars.includes(props.item.selected)) {
+
+  // console.log(structData['General Information'][0]['data-front-key'])
+  var dataType = GetDataType(props.item.selected)
+  console.log(dataType)
+
+  // if (textVars.includes(props.item.selected) || tempTextVars.includes(props.item.selected)) {
+  if (dataType === 'string') {
     props.item.filterType = 'text'
     return (<FilterInputs 
       props = {props}
@@ -93,7 +67,8 @@ function pickFilter(props, i) {
     />
   )}
 
-  else if (numVars.includes(props.item.selected) || tempNumVars.includes(props.item.selected)) {
+  // else if (numVars.includes(props.item.selected) || tempNumVars.includes(props.item.selected)) {
+  else if (dataType === 'number') {
     props.item.filterType = 'number'
 
     return (
@@ -109,7 +84,8 @@ function pickFilter(props, i) {
       </>
   )}
 
-  else if (dateVars.includes(props.item.selected) || tempDateVars.includes(props.item.selected)){
+  // else if (dateVars.includes(props.item.selected) || tempDateVars.includes(props.item.selected)){
+  else if (dataType === 'date') {
     props.item.filterType = 'date'
 
     return (
@@ -125,7 +101,8 @@ function pickFilter(props, i) {
       </>
   )}
 
-  else if (boolVars.includes(props.item.selected) || tempBoolVars.includes(props.item.selected)){
+  // else if (boolVars.includes(props.item.selected) || tempBoolVars.includes(props.item.selected)){
+  else if (dataType === 'bool') {
     props.item.filterType = 'bool'
     return (
       <FilterInputs 
@@ -134,16 +111,8 @@ function pickFilter(props, i) {
       />
   )}
 
-  else if (optionVars.includes(props.item.selected) || tempOptionVars.includes(props.item.selected)){
-    props.item.filterType = 'option'
-    return (
-      <FilterInputs 
-        props = {props}
-        i = {i}
-      />
-  )}
-
   else {
+    console.log("No valid data type, continuing as text filter")
     props.item.filterType = 'text'
     return (
       <FilterInputs 
@@ -170,5 +139,15 @@ function DetermineFilterRange(props) {
   )
 }
 
+function GetDataType(selected) {
+  //Loop over all categories and array entries to find the selected variable
+  for (let category in structData) {
+    for (var i=0; i < structData[category].length; i++) {
+      if (structData[category][i]['data-front-key'] === selected) {
+        return structData[category][i]['data-format']
+      }
+    }
+  }
+}
 
 export default DisplayItem
