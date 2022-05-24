@@ -55,8 +55,8 @@ function DisplayTable({
   //Handle a mouseclick on the checkbox in the header
   const handleAllChange = () => {
     const updatedCheckedState = JSON.parse(JSON.stringify(checkedState)) //hard copy state
-    LocalTableData.forEach((prop) => {
-      updatedCheckedState[prop.EUNumber] = !allSelected
+    data.forEach((prop) => {
+      updatedCheckedState[prop.EUNoShort] = !allSelected
     })
     setCheckedState(updatedCheckedState)
   }
@@ -114,8 +114,8 @@ function DisplayTable({
       <tr key={index1 + lowerBoundDataPage} className="med_rows">
         {selectTable ? (
           <CheckboxColumn
-            value={checkedState[entry.EUNumber]}
-            onChange={handleOnChange.bind(null, entry.EUNumber)}
+            value={checkedState[entry.EUNoShort]}
+            onChange={handleOnChange.bind(null, entry.EUNoShort)}
             data={LocalTableData}
           />
         ) : null}
@@ -221,6 +221,10 @@ export const dataToDisplayFormat = ({ entry, propt }) => {
   }
 }
 function slashDateToStringDate(date) {
+  const defValue = 'NA'
+  if (date === defValue) {
+    return date
+  }
   var splitteddate = date.split('/')
   const day = splitteddate[1].replace(/^0+/, '')
   const month = [
@@ -270,7 +274,7 @@ function RightStickyActions({
       {!selectTable && !searchTable && (
         <i
           className="bx bx-trash med-table-icons med-primary-text"
-          onClick={handleOnChange.bind(null, entry.EUNumber)}
+          onClick={handleOnChange.bind(null, entry.EUNoShort)}
         ></i>
       )}
 

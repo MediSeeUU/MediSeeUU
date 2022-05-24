@@ -113,7 +113,7 @@ test('checkboxes displayed', () => {
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -164,7 +164,7 @@ test('row selected, when checkbox clicked', () => {
   const data = DummyData
   let checkedState = Object.assign(
     {},
-    ...DummyData.map((entry) => ({ [entry.EUNumber]: false }))
+    ...DummyData.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -209,14 +209,14 @@ test('row selected, when checkbox clicked', () => {
   const table = screen.getByRole('table')
   const input = within(table).getAllByRole('checkbox')[1]
   fireEvent.click(input)
-  expect(checkedState[DummyData[10].EUNumber]).toBe(true)
+  expect(checkedState[DummyData[10].EUNoShort]).toBe(true)
 })
 
 test('all rows selected when select all pressed', () => {
   const data = DummyData
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
