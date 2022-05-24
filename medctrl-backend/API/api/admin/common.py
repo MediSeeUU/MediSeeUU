@@ -1,5 +1,5 @@
 from django.contrib import admin
-from import_export import fields, widgets, admin
+from import_export import fields, widgets
 
 
 def import_foreign_key(field, model):

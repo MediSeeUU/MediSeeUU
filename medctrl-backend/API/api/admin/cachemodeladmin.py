@@ -1,6 +1,6 @@
 from django.contrib import admin
-from import_export import admin
 from api.update_cache import update_cache
+
 
 class CacheModelAdmin(admin.ModelAdmin):
     """
