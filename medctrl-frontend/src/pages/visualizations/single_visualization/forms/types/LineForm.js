@@ -26,6 +26,12 @@ function LineForm(props) {
     const value = target.value
     const name = target.name
 
+    if (name === 'xAxis') {
+      settings.categoriesSelectedX = props.uniqueCategories[value]
+    } else if (name === 'yAxis') {
+      settings.categoriesSelectedY = props.uniqueCategories[value]
+    }
+
     settings[name] = value
     props.onChange({
       target: {

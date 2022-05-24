@@ -25,6 +25,12 @@ function BarForm(props) {
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
 
+    if (name === 'xAxis') {
+      settings.categoriesSelectedX = props.uniqueCategories[value]
+    } else if (name === 'yAxis') {
+      settings.categoriesSelectedY = props.uniqueCategories[value]
+    }
+
     settings[name] = value
     props.onChange({
       target: {

@@ -26,6 +26,10 @@ function PieForm(props) {
     const value = target.value
     const name = target.name
 
+    if (name === 'xAxis') {
+      settings.categoriesSelectedX = props.uniqueCategories[value]
+    }
+
     settings[name] = value
     // the new settings is sent to the rest of the programme
     props.onChange({

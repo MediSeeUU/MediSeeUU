@@ -26,6 +26,10 @@ function HistogramForm(props) {
     const value = target.value
     const name = target.name
 
+    if (name === 'xAxis') {
+      settings.categoriesSelectedX = props.uniqueCategories[value]
+    }
+
     settings[name] = value
     props.onChange({
       target: {
