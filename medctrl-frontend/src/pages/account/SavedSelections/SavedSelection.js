@@ -14,7 +14,7 @@ function SavedSelection({ savedSelection }) {
     const updatedCheckedState = JSON.parse(JSON.stringify(checkedState)) //hard copy state
 
     for (let key of Object.keys(checkedState)) {
-      let match = key.match(/EU\/\d\/\d{2}\/(\d+)/)
+      let match = key.match(/EU\/\d\/\d{2}\/(\d+)|(\d+)/)
       if (match) {
         // Find the eunumbershort and select it if it is in the selection
         let eunumber = match[1] ? match[1] : match[2]
