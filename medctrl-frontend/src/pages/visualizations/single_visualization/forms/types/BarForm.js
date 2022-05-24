@@ -9,7 +9,7 @@ function BarForm(props) {
   // The list of eligible variables.
   // If we do not want to include a variable for the bar chart,
   // it can be removed from here.
-  let eligibleVariables = eligibleVariablesVisualizations()
+  const eligibleVariables = eligibleVariablesVisualizations()
 
   let settings = props.chartSpecificOptions
 

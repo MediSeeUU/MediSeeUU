@@ -27,25 +27,27 @@ let container
 let visuals
 let updateVisuals
 let unique = GetUniqueCategories(data)
-function contexts(children, contextData) {
-  visuals = [
-    {
-      id: 1,
-      chartType: 'bar',
-      chartSpecificOptions: {
-        xAxis: 'DecisionYear',
-        yAxis: 'Rapporteur',
-        categoriesSelectedX: unique['DecisionYear'],
-        categoriesSelectedY: unique['Rapporteur'],
-      },
-      legendOn: true,
-      labelsOn: false,
-      data: data,
-      series: [],
-      uniqueCategories: unique,
-      key: '',
+let defaultVisuals = [
+  {
+    id: 1,
+    chartType: 'bar',
+    chartSpecificOptions: {
+      xAxis: 'DecisionYear',
+      yAxis: 'Rapporteur',
+      categoriesSelectedX: unique['DecisionYear'],
+      categoriesSelectedY: unique['Rapporteur'],
     },
-  ]
+    legendOn: true,
+    labelsOn: false,
+    data: data,
+    series: [],
+    uniqueCategories: unique,
+    key: '',
+  },
+]
+
+function contexts(children, contextData, pvisuals) {
+  visuals = pvisuals ?? defaultVisuals
   if (contextData.length <= 0) {
     visuals = []
   } else {
@@ -62,6 +64,7 @@ function contexts(children, contextData) {
     </SelectedContext.Provider>
   )
 }
+
 beforeEach(() => {
   container = document.createElement('div')
   document.body.append(container)
@@ -97,9 +100,8 @@ test('remove a visualization', () => {
   ReactDOM.render(page, container)
   // the removal button is currently the only button with no text
   let target = screen.getByRole('button', { name: '' })
-  // it throws an error that has to do with the ApexCharts library,
-  // we have not found any way around this sadly
   fireEvent.click(target)
+  // initially the page has 1 visualization
   expect(visuals.length).toEqual(0)
 })
 
@@ -107,7 +109,7 @@ test('remove a visualization', () => {
 test('update visuals when rendering with bar', () => {
   visuals = [
     {
-      id: 1,
+      id: 0,
       chartType: 'bar',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
@@ -117,26 +119,17 @@ test('update visuals when rendering with bar', () => {
       },
       legendOn: true,
       labelsOn: false,
-      data: data,
+      data: [],
       series: [],
       uniqueCategories: unique,
       key: '',
     },
   ]
-  const page = (
-    <SelectedContext.Provider value={data}>
-      <VisualsContext.Provider value={visuals}>
-        <VisualsUpdateContext.Provider value={(value) => (visuals = value)}>
-          <VisualizationPage />
-        </VisualsUpdateContext.Provider>
-      </VisualsContext.Provider>
-    </SelectedContext.Provider>
-  )
+
+  let page = contexts(<VisualizationPage />, data, visuals)
 
   ReactDOM.render(page, container)
-  //screen.logTestingPlaygroundURL()
-  //check variable length in visuals
-  //console.log(visuals[0])
+
   expect(visuals[0].data.length).not.toEqual(0)
   expect(visuals[0].series.length).not.toEqual(0)
   expect(visuals[0].uniqueCategories.length).not.toEqual(0)
@@ -162,17 +155,11 @@ test('update visuals when rendering with line', () => {
       key: '',
     },
   ]
-  const page = (
-    <SelectedContext.Provider value={data}>
-      <VisualsContext.Provider value={visuals}>
-        <VisualsUpdateContext.Provider value={(value) => (visuals = value)}>
-          <VisualizationPage />
-        </VisualsUpdateContext.Provider>
-      </VisualsContext.Provider>
-    </SelectedContext.Provider>
-  )
+
+  const page = contexts(<VisualizationPage />, data, visuals)
 
   ReactDOM.render(page, container)
+
   //check variable length in visuals
   expect(visuals[0].data.length).not.toEqual(0)
   expect(visuals[0].series.length).not.toEqual(0)
@@ -197,17 +184,11 @@ test('update visuals when rendering with pie', () => {
       key: '',
     },
   ]
-  const page = (
-    <SelectedContext.Provider value={data}>
-      <VisualsContext.Provider value={visuals}>
-        <VisualsUpdateContext.Provider value={(value) => (visuals = value)}>
-          <VisualizationPage />
-        </VisualsUpdateContext.Provider>
-      </VisualsContext.Provider>
-    </SelectedContext.Provider>
-  )
+
+  const page = contexts(<VisualizationPage />, data, visuals)
 
   ReactDOM.render(page, container)
+
   //check variable length in visuals
   expect(visuals[0].data.length).not.toEqual(0)
   expect(visuals[0].series.length).not.toEqual(0)
