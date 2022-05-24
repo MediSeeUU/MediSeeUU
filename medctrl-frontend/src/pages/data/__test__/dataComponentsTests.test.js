@@ -74,7 +74,6 @@ test('SelectedData renders without crashing', () => {
     return checkedState[item.EUNumber]
   })
 
-  //console.log(selectedData)
   render(
     <BrowserRouter>
       <DataContext.Provider value={allData}>

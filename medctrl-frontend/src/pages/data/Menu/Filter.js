@@ -49,18 +49,12 @@ function DisplayItem(props) {
 }
 
 function PickFilter(props, i) {
-  // console.log(structData['General Information'][0]['data-front-key'])
   var dataType = GetDataType(props.item.selected)
-  console.log(dataType)
 
-  // if (textVars.includes(props.item.selected) || tempTextVars.includes(props.item.selected)) {
   if (dataType === 'string') {
     props.item.filterType = 'text'
     return <FilterInputs props={props} i={i} />
-  }
-
-  // else if (numVars.includes(props.item.selected) || tempNumVars.includes(props.item.selected)) {
-  else if (dataType === 'number') {
+  } else if (dataType === 'number') {
     props.item.filterType = dataType
 
     return (
@@ -69,10 +63,7 @@ function PickFilter(props, i) {
         <FilterInputs props={props} i={i} />
       </>
     )
-  }
-
-  // else if (dateVars.includes(props.item.selected) || tempDateVars.includes(props.item.selected)){
-  else if (dataType === 'date') {
+  } else if (dataType === 'date') {
     props.item.filterType = dataType
 
     return (
@@ -81,10 +72,7 @@ function PickFilter(props, i) {
         <FilterInputs props={props} i={i} />
       </>
     )
-  }
-
-  // else if (boolVars.includes(props.item.selected) || tempBoolVars.includes(props.item.selected)){
-  else if (dataType === 'bool') {
+  } else if (dataType === 'bool') {
     props.item.filterType = dataType
     return <FilterInputs props={props} i={i} />
   } else {
@@ -104,7 +92,6 @@ function DetermineFilterRange(props) {
       }}
       defaultValue={props.container.item.input[props.i].filterRange}
     >
-      {/* <option value='range'>Range</option> */}
       <option value="from">From</option>
       <option value="till">Till</option>
     </select>
