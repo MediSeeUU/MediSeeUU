@@ -9,6 +9,8 @@ import {
   within,
 } from '@testing-library/react'
 import Menu from '../Menu'
+import structData from '../../../../shared/contexts/structServer.json'
+import { StructureContext } from '../../../../shared/contexts/DataContext'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')
@@ -61,10 +63,19 @@ test('clear button calls update function', () => {
 })
 
 test('clear button resets filters and sorters', () => {
-  const update1 = (filters) =>
-    expect(filters).toEqual([{ selected: '', input: [''] }])
-  const update2 = (sorters) =>
+  const update1 = (filters) => {
+    expect(filters).toEqual([
+      {
+        selected: '',
+        input: [{ var: '', filterRange: 'from' }],
+        filterType: '',
+      },
+    ])
+  }
+  const update2 = (sorters) => {
     expect(sorters).toEqual([{ selected: '', order: 'asc' }])
+  }
+
   render(
     <Menu
       filters={[]}
@@ -168,54 +179,70 @@ const list = [
 
 test('saved filters in state', () => {
   render(
-    <Menu filters={[{ selected: '', input: [''] }]} sorters={[]} list={list} />
+    <StructureContext.Provider value={structData}>
+      <Menu
+        filters={[{ selected: '', input: [{ var: '', filterRange: 'from' }] }]}
+        sorters={[]}
+        list={list}
+      />
+    </StructureContext.Provider>
   )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   fireEvent.click(screen.getByText(/Add Filter/i))
 
   const select1 = screen.getAllByTestId('filter-select')[0]
-  fireEvent.change(select1, { target: { value: 'dummy2' } })
-  const text1 = screen.getAllByTestId('filter-input')[0]
+  fireEvent.change(select1, { target: { value: 'ActiveSubstance' } })
+  const text1 = screen.getAllByTestId('filter-input-text')[0]
   fireEvent.change(text1, { target: { value: 'welcome' } })
   fireEvent.focusOut(text1)
 
   const select2 = screen.getAllByTestId('filter-select')[1]
-  fireEvent.change(select2, { target: { value: 'dummy1' } })
-  const text2 = screen.getAllByTestId('filter-input')[1]
+  fireEvent.change(select2, { target: { value: 'ATCCodeL2' } })
+  const text2 = screen.getAllByTestId('filter-input-text')[1]
   fireEvent.change(text2, { target: { value: 'again' } })
   fireEvent.focusOut(text2)
 
   fireEvent.click(screen.getByText(/Close/i))
   fireEvent.click(screen.getByText(/Filter & Sort/i))
 
-  expect(screen.getAllByTestId('filter-select')[0].value).toBe('dummy2')
-  expect(screen.getAllByTestId('filter-select')[1].value).toBe('dummy1')
-  expect(screen.getAllByTestId('filter-input')[0].value).toBe('welcome')
-  expect(screen.getAllByTestId('filter-input')[1].value).toBe('again')
+  expect(screen.getAllByTestId('filter-select')[0].value).toBe(
+    'ActiveSubstance'
+  )
+  expect(screen.getAllByTestId('filter-select')[1].value).toBe('ATCCodeL2')
+  expect(screen.getAllByTestId('filter-input-text')[0].value).toBe('welcome')
+  expect(screen.getAllByTestId('filter-input-text')[1].value).toBe('again')
 })
 
 test('saved sorters in state', () => {
   render(
-    <Menu filters={[]} sorters={[{ selected: '', order: 'asc' }]} list={list} />
+    <StructureContext.Provider value={structData}>
+      <Menu
+        filters={[]}
+        sorters={[{ selected: '', order: 'asc' }]}
+        list={list}
+      />
+    </StructureContext.Provider>
   )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   fireEvent.click(screen.getByText(/Add Sorting option +/i))
 
   const select1 = screen.getAllByTestId('sort-select-attr')[0]
-  fireEvent.change(select1, { target: { value: 'dummy1' } })
+  fireEvent.change(select1, { target: { value: 'ActiveSubstance' } })
   const order1 = screen.getAllByTestId('sort-select-order')[0]
   fireEvent.change(order1, { target: { value: 'desc' } })
 
   const select2 = screen.getAllByTestId('sort-select-attr')[1]
-  fireEvent.change(select2, { target: { value: 'dummy2' } })
+  fireEvent.change(select2, { target: { value: 'ATCCodeL2' } })
   const order2 = screen.getAllByTestId('sort-select-order')[1]
   fireEvent.change(order2, { target: { value: 'asc' } })
 
   fireEvent.click(screen.getByText(/Close/i))
   fireEvent.click(screen.getByText(/Filter & Sort/i))
 
-  expect(screen.getAllByTestId('sort-select-attr')[0].value).toBe('dummy1')
-  expect(screen.getAllByTestId('sort-select-attr')[1].value).toBe('dummy2')
+  expect(screen.getAllByTestId('sort-select-attr')[0].value).toBe(
+    'ActiveSubstance'
+  )
+  expect(screen.getAllByTestId('sort-select-attr')[1].value).toBe('ATCCodeL2')
   expect(screen.getAllByTestId('sort-select-order')[0].value).toBe('desc')
   expect(screen.getAllByTestId('sort-select-order')[1].value).toBe('asc')
 })

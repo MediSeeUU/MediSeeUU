@@ -18,17 +18,32 @@ function Search({ update, initial, tour }) {
     }
   }
 
+  // Handler that clears the search query
+  const clearSearch = () => {
+    setQuery('')
+    update('')
+  }
+
   // The HTML code of the search component
   return (
     <div tour={tour} className="med-content-container">
-      <input
-        type="text"
-        placeholder="Search"
-        className="med-search-text-input med-text-input"
-        onChange={(e) => setQuery(e.target.value)}
-        defaultValue={initial}
-        onKeyDown={handlerKeyDown}
-      />
+      <div className="med-search-container">
+        {query && (
+          <i
+            className="bx bx-x med-search-close-icon"
+            onClick={clearSearch}
+            data-testid="search-close-icon"
+          ></i>
+        )}
+        <input
+          type="text"
+          placeholder="Search"
+          className="med-search-text-input med-text-input"
+          onChange={(e) => setQuery(e.target.value)}
+          value={query || ''}
+          onKeyDown={handlerKeyDown}
+        />
+      </div>
       <button
         className="med-primary-solid med-bx-button med-search-button"
         onClick={applySearch}

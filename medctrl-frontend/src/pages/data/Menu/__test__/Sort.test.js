@@ -9,15 +9,19 @@ import {
   within,
 } from '@testing-library/react'
 import Sort from '../Sort'
+import structData from '../../../../shared/contexts/structServer.json'
+import { StructureContext } from '../../../../shared/contexts/DataContext'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')
-  ReactDOM.render(<Sort item={{ selected: null, order: 'asc' }} />, root)
+  ReactDOM.render(<Sort item={{ selected: 'BrandName', order: 'asc' }} />, root)
 })
 
 test('delete sort function is called', () => {
   const del = jest.fn()
-  render(<Sort id={5} item={{ selected: null, order: 'asc' }} del={del} />)
+  render(
+    <Sort id={5} item={{ selected: 'BrandName', order: 'asc' }} del={del} />
+  )
   fireEvent.click(screen.getByTestId('delete-sorting-box'))
   expect(del).toHaveBeenCalled()
 })
@@ -26,13 +30,17 @@ test('delete sort returns correct id', () => {
   const del = (id) => {
     expect(id).toBe(5)
   }
-  render(<Sort id={5} item={{ selected: null, order: 'asc' }} del={del} />)
+  render(
+    <Sort id={5} item={{ selected: 'BrandName', order: 'asc' }} del={del} />
+  )
   fireEvent.click(screen.getByTestId('delete-sorting-box'))
 })
 
 test('change selected variable function is called', () => {
   const sel = jest.fn()
-  render(<Sort id={5} item={{ selected: null, order: 'asc' }} sel={sel} />)
+  render(
+    <Sort id={5} item={{ selected: 'BrandName', order: 'asc' }} sel={sel} />
+  )
   const select = screen.getByTestId('sort-select-attr')
   fireEvent.change(select, { target: { value: 'can be anything' } })
   expect(sel).toHaveBeenCalled()
@@ -41,23 +49,31 @@ test('change selected variable function is called', () => {
 test('change selected variable returns correct id and value', () => {
   const sel = (id, value) => {
     expect(id).toBe(18)
-    expect(value).toBe('can be anything')
+    expect(value).toBe('BrandName')
   }
   render(
-    <Sort
-      id={18}
-      options={<option value="can be anything">this should not matter</option>}
-      item={{ selected: null, order: 'asc' }}
-      sel={sel}
-    />
+    <StructureContext.Provider value={structData}>
+      <Sort
+        id={18}
+        options={<option value="BrandName">this should not matter</option>}
+        item={{ selected: 'BrandName', order: 'asc' }}
+        sel={sel}
+      />
+    </StructureContext.Provider>
   )
   const select = screen.getByTestId('sort-select-attr')
-  fireEvent.change(select, { target: { value: 'can be anything' } })
+  fireEvent.change(select, { target: { value: 'BrandName' } })
 })
 
 test('change selected order function is called', () => {
   const order = jest.fn()
-  render(<Sort id={13} item={{ selected: null, order: 'asc' }} order={order} />)
+  render(
+    <Sort
+      id={13}
+      item={{ selected: 'BrandName', order: 'asc' }}
+      order={order}
+    />
+  )
   const select = screen.getByTestId('sort-select-order')
   fireEvent.change(select, { target: { value: 'can be anything' } })
   expect(order).toHaveBeenCalled()
@@ -72,7 +88,7 @@ test('change selected order returns correct id and value', () => {
     <Sort
       id={27}
       options={<option value="can be anything">this should not matter</option>}
-      item={{ selected: null, order: 'asc' }}
+      item={{ selected: 'BrandName', order: 'asc' }}
       order={order}
     />
   )

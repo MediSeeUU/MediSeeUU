@@ -1,18 +1,15 @@
+import VariableSelect from '../../../shared/VariableSelect/VariableSelect'
+
 // Returns the filter item in HTML
 function displayItem(props) {
   return (
     <div id={props.id} className="med-table-menu-sort-item">
-      <select
+      <VariableSelect
         className="med-table-menu-select med-select"
         defaultValue={props.item.selected}
         onChange={(e) => props.sel(props.id, e.target.value)}
-        data-testid="sort-select-attr"
-      >
-        <option key="" value="" hidden>
-          Select a variable...
-        </option>
-        {props.options}
-      </select>
+        dataTestId="sort-select-attr"
+      />
       <select
         className="med-table-menu-select med-select"
         defaultValue={props.item.order}
