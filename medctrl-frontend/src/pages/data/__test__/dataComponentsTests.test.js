@@ -154,7 +154,7 @@ test('table updated', () => {
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -165,8 +165,6 @@ test('table updated', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
-    'ApplicationNo',
     'ApplicationNo',
   ]
 
@@ -214,7 +212,7 @@ test('table updated', () => {
   fireEvent.click(selectAll)
 
   // Filter all datapoints to only the selected datapoints
-  var updatedData = allData.filter((entry) => checkedState[entry.EUNumber])
+  var updatedData = allData.filter((entry) => checkedState[entry.EUNoShort])
 
   // Check if all collected datapoints abide by the added filter
   updatedData.forEach((element) => {
@@ -228,7 +226,7 @@ test('available pages lower than current loaded', () => {
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -239,8 +237,6 @@ test('available pages lower than current loaded', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
-    'ApplicationNo',
     'ApplicationNo',
   ]
 
@@ -289,7 +285,7 @@ test('amount of pages is 3', () => {
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -300,8 +296,6 @@ test('amount of pages is 3', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
-    'ApplicationNo',
     'ApplicationNo',
   ]
 
@@ -345,7 +339,7 @@ test('Can go a page forward and backwards', () => {
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -356,8 +350,6 @@ test('Can go a page forward and backwards', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
-    'ApplicationNo',
     'ApplicationNo',
   ]
 

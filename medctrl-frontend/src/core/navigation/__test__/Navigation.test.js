@@ -57,7 +57,7 @@ test('text input in searchbar on searchpage should trigger search functionality'
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -68,7 +68,6 @@ test('text input in searchbar on searchpage should trigger search functionality'
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -135,7 +134,7 @@ test('render datapage without crashing', () => {
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: true }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -146,7 +145,6 @@ test('render datapage without crashing', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
     'ApplicationNo',
     'ApplicationNo',
   ]

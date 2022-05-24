@@ -1,13 +1,7 @@
 import updateData from '../update'
 import DummyData from '../../../../testJson/data.json'
 
-let columnSelection = [
-  'EUNoShort',
-  'BrandName',
-  'MAH',
-  'DecisionDate',
-  'ATCNameL2',
-]
+let columnSelection = ['EUNoShort', 'BrandName', 'MAH', 'DecisionDate']
 
 test('applying search, filters and sorters', () => {
   const updatedData = updateData(
