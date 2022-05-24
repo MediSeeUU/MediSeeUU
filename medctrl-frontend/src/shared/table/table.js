@@ -15,7 +15,7 @@ function DisplayTable({
   searchTable,
   amountPerPage,
   currentPage,
-  exportMenu,
+  baseMenu,
   saveMenu,
 }) {
   //throw error if parameters not defined
@@ -135,7 +135,7 @@ function DisplayTable({
           data-testid="remove-column"
         />
 
-        {exportMenu}
+        {baseMenu}
         {saveMenu}
       </div>
 

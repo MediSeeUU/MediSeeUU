@@ -76,7 +76,7 @@ function DataSelect({ initialSearch }) {
           setResultsPerPage: setResultsPerPage,
           select: true,
           text: 'No data to display, please clear your search or filters.',
-          menu: menu,
+          baseMenu: menu,
         })}
       </div>
     </>

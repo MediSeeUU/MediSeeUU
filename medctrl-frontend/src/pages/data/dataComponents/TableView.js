@@ -10,7 +10,7 @@ export default function TableView({
   setResultsPerPage,
   select,
   text,
-  exportMenu,
+  baseMenu,
   saveMenu,
 }) {
   if (!data || data.length === 0) {
@@ -31,7 +31,7 @@ export default function TableView({
           currentPage={loadedPage}
           amountPerPage={resultsPerPage}
           selectTable={select}
-          exportMenu={exportMenu}
+          baseMenu={baseMenu}
           saveMenu={saveMenu}
         />
         <ResultsSelector
