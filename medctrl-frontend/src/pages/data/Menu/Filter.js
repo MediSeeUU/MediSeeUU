@@ -69,7 +69,7 @@ function pickFilter(props, i) {
 
   // else if (numVars.includes(props.item.selected) || tempNumVars.includes(props.item.selected)) {
   else if (dataType === 'number') {
-    props.item.filterType = 'number'
+    props.item.filterType = dataType
 
     return (
       <>
@@ -86,7 +86,7 @@ function pickFilter(props, i) {
 
   // else if (dateVars.includes(props.item.selected) || tempDateVars.includes(props.item.selected)){
   else if (dataType === 'date') {
-    props.item.filterType = 'date'
+    props.item.filterType = dataType
 
     return (
       <>
@@ -103,7 +103,7 @@ function pickFilter(props, i) {
 
   // else if (boolVars.includes(props.item.selected) || tempBoolVars.includes(props.item.selected)){
   else if (dataType === 'bool') {
-    props.item.filterType = 'bool'
+    props.item.filterType = dataType
     return (
       <FilterInputs 
         props = {props}
