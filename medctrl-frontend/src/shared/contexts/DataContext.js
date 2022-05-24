@@ -121,27 +121,6 @@ export function StaticDataProvider({ children, allData, structData }) {
     'ATCCodeL2',
   ])
 
-<<<<<<< HEAD
-  let uniqueCategories = GetUniqueCategories(allData)
-
-  //visualisation context to save the visualisations when navigating the page
-  const [visuals, setVisuals] = useState([
-    {
-      id: 0,
-      chartType: 'bar',
-      chartSpecificOptions: {
-        xAxis: 'DecisionYear',
-        yAxis: 'Rapporteur',
-        categoriesSelectedY: uniqueCategories['Rapporteur'],
-        categoriesSelectedX: uniqueCategories['DecisionYear'],
-      },
-      legendOn: false,
-      labelsOn: false,
-      data: [],
-      uniqueCategories: [],
-    },
-  ])
-=======
   // visualisation context to save the visualisations when navigating the page
   const [visuals, setVisuals] = useState([])
 
@@ -167,7 +146,6 @@ export function StaticDataProvider({ children, allData, structData }) {
       },
     ])
   }, [allData])
->>>>>>> 073e1701e4b3155d17a74ca6b78b3d441a7e6f3a
 
   return (
     <DataContext.Provider value={allData}>
