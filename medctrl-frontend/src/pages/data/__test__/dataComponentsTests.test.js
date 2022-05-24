@@ -7,13 +7,17 @@ import SelectedData from '../dataComponents/SelectedData'
 import {
   DataProvider,
   DataContext,
+  SelectedContext,
   ColumnSelectionContext,
   ColumnSelectionContextUpdate,
   CheckedContext,
   CheckedContextUpdate,
+  StructureContext,
 } from '../../../shared/contexts/DataContext'
 import { BrowserRouter } from 'react-router-dom'
 import allData from '../../../testJson/data.json'
+import MockDataProvider from '../../../shared/contexts/MockDataContext.js'
+import structData from '../../../shared/contexts/structServer.json'
 
 test('DataPage renders without crashing', () => {
   const root = document.createElement('div')
@@ -40,17 +44,62 @@ test('DataSelect renders without crashing', () => {
 })
 
 test('SelectedData renders without crashing', () => {
-  const root = document.createElement('div')
-  ReactDOM.render(<SelectedData />, root)
+  /* const root = document.createElement('div')
+  ReactDOM.render(<SelectedData />, root) */
+
+  const data = allData
+
+  let checkedState = Object.assign(
+    {},
+    ...data.map((entry) => ({ [entry.EUNumber]: true }))
+  )
+  const setCheckedState = (newState) => {
+    checkedState = newState
+  }
+
+  var columnSelection = [
+    'EUNoShort',
+    'BrandName',
+    'MAH',
+    'DecisionDate',
+    'ATCNameL2',
+    'ApplicationNo',
+    'ApplicationNo',
+  ]
+
+  const setColumnSelection = (newColumns) => {
+    columnSelection = newColumns
+  }
+  const selectedData = data.filter((item, index) => {
+    return checkedState[item.EUNumber]
+  })
+
+  render(
+    <BrowserRouter>
+      <DataContext.Provider value={allData}>
+        <SelectedContext.Provider value={selectedData}>
+          <ColumnSelectionContext.Provider value={columnSelection}>
+            <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+              <CheckedContext.Provider value={checkedState}>
+                <CheckedContextUpdate.Provider value={setCheckedState}>
+                  <SelectedData allSelectedData={selectedData} />
+                </CheckedContextUpdate.Provider>
+              </CheckedContext.Provider>
+            </ColumnSelectionContextUpdate.Provider>
+          </ColumnSelectionContext.Provider>
+        </SelectedContext.Provider>
+      </DataContext.Provider>
+    </BrowserRouter>
+  )
 })
 
 test('data can be cleared', () => {
   const root = document.createElement('div')
   render(
     <BrowserRouter>
-      <DataProvider>
+      <MockDataProvider>
         <DataPage />
-      </DataProvider>
+      </MockDataProvider>
     </BrowserRouter>,
     root
   )
@@ -67,9 +116,9 @@ test('data can be selected', () => {
   const root = document.createElement('div')
   render(
     <BrowserRouter>
-      <DataProvider>
+      <MockDataProvider>
         <DataPage />
-      </DataProvider>
+      </MockDataProvider>
     </BrowserRouter>,
     root
   )
@@ -103,7 +152,7 @@ test('table updated', () => {
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -114,29 +163,34 @@ test('table updated', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
-    'ApplicationNo',
     'ApplicationNo',
   ]
 
   const setColumnSelection = (newColumns) => {
     columnSelection = newColumns
   }
+  const selectedData = data.filter((item, index) => {
+    return checkedState[item.EUNumber]
+  })
 
   const root = document.createElement('div')
   render(
     <BrowserRouter>
-      <DataContext.Provider value={allData}>
-        <ColumnSelectionContext.Provider value={columnSelection}>
-          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-            <CheckedContext.Provider value={checkedState}>
-              <CheckedContextUpdate.Provider value={setCheckedState}>
-                <DataPage />
-              </CheckedContextUpdate.Provider>
-            </CheckedContext.Provider>
-          </ColumnSelectionContextUpdate.Provider>
-        </ColumnSelectionContext.Provider>
-      </DataContext.Provider>
+      <StructureContext.Provider value={structData}>
+        <DataContext.Provider value={allData}>
+          <SelectedContext.Provider value={selectedData}>
+            <ColumnSelectionContext.Provider value={columnSelection}>
+              <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+                <CheckedContext.Provider value={checkedState}>
+                  <CheckedContextUpdate.Provider value={setCheckedState}>
+                    <DataPage />
+                  </CheckedContextUpdate.Provider>
+                </CheckedContext.Provider>
+              </ColumnSelectionContextUpdate.Provider>
+            </ColumnSelectionContext.Provider>
+          </SelectedContext.Provider>
+        </DataContext.Provider>
+      </StructureContext.Provider>
     </BrowserRouter>,
     root
   )
@@ -145,8 +199,8 @@ test('table updated', () => {
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   const select = screen.queryByTestId('filter-select')
   fireEvent.change(select, { target: { value: 'ApplicationNo' } })
-  const textBox = screen.getAllByRole('textbox')[1]
-  fireEvent.change(textBox, { target: { value: '8' } })
+  const textBox = screen.queryByTestId('filter-input-num-from')
+  fireEvent.change(textBox, { target: { value: '3000' } })
   fireEvent.focusOut(textBox)
   fireEvent.click(screen.getByText(/Apply/i))
 
@@ -156,11 +210,11 @@ test('table updated', () => {
   fireEvent.click(selectAll)
 
   // Filter all datapoints to only the selected datapoints
-  var updatedData = allData.filter((entry) => checkedState[entry.EUNumber])
+  var updatedData = allData.filter((entry) => checkedState[entry.EUNoShort])
 
   // Check if all collected datapoints abide by the added filter
   updatedData.forEach((element) => {
-    expect(element.ApplicationNo.toString()).toContain('8')
+    expect(element.ApplicationNo).toBeGreaterThan(3000)
   })
 })
 
@@ -170,7 +224,7 @@ test('available pages lower than current loaded', () => {
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -181,28 +235,31 @@ test('available pages lower than current loaded', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
-    'ApplicationNo',
     'ApplicationNo',
   ]
 
   const setColumnSelection = (newColumns) => {
     columnSelection = newColumns
   }
+  const selectedData = data.filter((item, index) => {
+    return checkedState[item.EUNumber]
+  })
 
   const root = document.createElement('div')
   render(
     <BrowserRouter>
       <DataContext.Provider value={allData}>
-        <ColumnSelectionContext.Provider value={columnSelection}>
-          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-            <CheckedContext.Provider value={checkedState}>
-              <CheckedContextUpdate.Provider value={setCheckedState}>
-                <DataPage />
-              </CheckedContextUpdate.Provider>
-            </CheckedContext.Provider>
-          </ColumnSelectionContextUpdate.Provider>
-        </ColumnSelectionContext.Provider>
+        <SelectedContext.Provider value={selectedData}>
+          <ColumnSelectionContext.Provider value={columnSelection}>
+            <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+              <CheckedContext.Provider value={checkedState}>
+                <CheckedContextUpdate.Provider value={setCheckedState}>
+                  <DataPage />
+                </CheckedContextUpdate.Provider>
+              </CheckedContext.Provider>
+            </ColumnSelectionContextUpdate.Provider>
+          </ColumnSelectionContext.Provider>
+        </SelectedContext.Provider>
       </DataContext.Provider>
     </BrowserRouter>,
     root
@@ -226,7 +283,7 @@ test('amount of pages is 3', () => {
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -237,28 +294,31 @@ test('amount of pages is 3', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
-    'ApplicationNo',
     'ApplicationNo',
   ]
 
   const setColumnSelection = (newColumns) => {
     columnSelection = newColumns
   }
+  const selectedData = data.filter((item, index) => {
+    return checkedState[item.EUNumber]
+  })
 
   const root = document.createElement('div')
   render(
     <BrowserRouter>
       <DataContext.Provider value={data}>
-        <ColumnSelectionContext.Provider value={columnSelection}>
-          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-            <CheckedContext.Provider value={checkedState}>
-              <CheckedContextUpdate.Provider value={setCheckedState}>
-                <DataPage />
-              </CheckedContextUpdate.Provider>
-            </CheckedContext.Provider>
-          </ColumnSelectionContextUpdate.Provider>
-        </ColumnSelectionContext.Provider>
+        <SelectedContext.Provider value={selectedData}>
+          <ColumnSelectionContext.Provider value={columnSelection}>
+            <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+              <CheckedContext.Provider value={checkedState}>
+                <CheckedContextUpdate.Provider value={setCheckedState}>
+                  <DataPage />
+                </CheckedContextUpdate.Provider>
+              </CheckedContext.Provider>
+            </ColumnSelectionContextUpdate.Provider>
+          </ColumnSelectionContext.Provider>
+        </SelectedContext.Provider>
       </DataContext.Provider>
     </BrowserRouter>,
     root
@@ -277,7 +337,7 @@ test('Can go a page forward and backwards', () => {
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -288,28 +348,31 @@ test('Can go a page forward and backwards', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
-    'ApplicationNo',
     'ApplicationNo',
   ]
 
   const setColumnSelection = (newColumns) => {
     columnSelection = newColumns
   }
+  const selectedData = data.filter((item, index) => {
+    return checkedState[item.EUNumber]
+  })
 
   const root = document.createElement('div')
   render(
     <BrowserRouter>
       <DataContext.Provider value={allData}>
-        <ColumnSelectionContext.Provider value={columnSelection}>
-          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-            <CheckedContext.Provider value={checkedState}>
-              <CheckedContextUpdate.Provider value={setCheckedState}>
-                <DataPage />
-              </CheckedContextUpdate.Provider>
-            </CheckedContext.Provider>
-          </ColumnSelectionContextUpdate.Provider>
-        </ColumnSelectionContext.Provider>
+        <SelectedContext.Provider value={selectedData}>
+          <ColumnSelectionContext.Provider value={columnSelection}>
+            <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+              <CheckedContext.Provider value={checkedState}>
+                <CheckedContextUpdate.Provider value={setCheckedState}>
+                  <DataPage />
+                </CheckedContextUpdate.Provider>
+              </CheckedContext.Provider>
+            </ColumnSelectionContextUpdate.Provider>
+          </ColumnSelectionContext.Provider>
+        </SelectedContext.Provider>
       </DataContext.Provider>
     </BrowserRouter>,
     root

@@ -24,7 +24,7 @@ class Table():
     tbody = tables[table].find_element(*TableLocators.BODY)
     row = tbody.find_elements(*TableLocators.ROW)[row - 1]
     info = row.find_element(*TableLocators.INFO)
-    info.click()
+    self.driver.execute_script("arguments[0].click();", info)
   
   def change_column(self, table, column, value):
     tables = self.driver.find_elements(*TableLocators.TABLE)

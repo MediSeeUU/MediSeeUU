@@ -1,4 +1,9 @@
-.content__container__textinput {
+.med-search-container {
+  display: inline;
+  position: relative;
+}
+
+.med-search-text-input {
   margin: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -8,8 +13,11 @@
   height: 31px;
 }
 
-.search-Icon {
-  font-size: 25px;
-  margin-left: 10px;
-  float: left;
+.med-search-close-icon {
+  position: absolute;
+  font-size: 30px;
+  padding-top: 20px;
+  right: 0;
+  margin-right: 10px;
+  cursor: pointer;
 }

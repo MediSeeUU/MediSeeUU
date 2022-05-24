@@ -5,9 +5,11 @@ import Detail from './InfoComponents/Detail'
 import Procedure from './InfoComponents/Procedure'
 import CustomLink from './InfoComponents/CustomLink'
 import TimeLine from './InfoComponents/TimeLine'
+import ProcSelectModal from './InfoComponents/ProcSelectModal'
 
-import { useData } from '../../shared/contexts/DataContext'
+import { useData, useStructure } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
+import { dataToDisplayFormat } from '../../shared/table/table'
 import { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
 
@@ -42,29 +44,40 @@ export default function DetailedInfoPage() {
     fetchProcedureData(medID)
   }, [setProcData, medID])
 
-  return <InfoPage medData={medData} procData={procData} />
+  // retrieve a date from the backend which indicates when the last update
+  // to the procedures in the database was. i.e. the database, and thus the
+  // procedure data on this page is complete up to this date
+  const lastUpdatedDate = undefined
+
+  return (
+    <InfoPage
+      medData={medData}
+      procData={procData}
+      lastUpdatedDate={lastUpdatedDate}
+    />
+  )
 }
 
 // function based component, which represents the entire detailed information page
 // it display the given medicine and procedure data
-export function InfoPage({ medData, procData }) {
-  // if no medicine data is provided, no meaning full can be displayed
-  if (!medData) {
-    return (
-      <h1 className="detailedinfopage-unknown-medID">
-        Unknown Medicine ID Number
-      </h1>
-    )
-  }
+export function InfoPage({ medData, procData, lastUpdatedDate }) {
+  const variableCategories = useStructure()
 
   // a filter which determines which prodcures to show, and which to omit from
   // the detailed info page
-  let displayProcTypes = [
+  const [procFilter, setProcFilter] = useState([
     'Centralised - Authorisation',
     'Centralised - Transfer Marketing Authorisation Holder',
     'Centralised - Annual reassessment',
     'Centralised - Annual renewal',
-  ]
+  ])
+
+  // if no medicine data is provided, no meaning full can be displayed
+  if (!medData) {
+    return (
+      <h1 className="med-info-unknown-medID">Unknown Medicine ID Number</h1>
+    )
+  }
 
   // if there is procedure data present, two containers should be added to the page
   // with only the relevant procedure entries (based on the display proc types above)
@@ -75,26 +88,80 @@ export function InfoPage({ medData, procData }) {
   let timeLineContainer = null
 
   if (procData !== null) {
-    let procedures = procData.filter((proc) =>
-      displayProcTypes.includes(proc.proceduretype)
+    const removeDuplicates = (arr) => {
+      return arr.filter((item, index) => arr.indexOf(item) === index)
+    }
+    const availableProcTypes = removeDuplicates(
+      procData.map((proc) => proc.proceduretype)
+    )
+    const procSelectModal = (
+      <ProcSelectModal
+        availableProcTypes={availableProcTypes}
+        currentProcFilter={procFilter}
+        setProcFilter={setProcFilter}
+      />
+    )
+
+    const procedures = procData.filter((proc) =>
+      procFilter.includes(proc.proceduretype)
+    )
+
+    const noProcs = procedures.length === 0
+    const noProcMessage = (
+      <p className="med-info-no-proc-message">
+        There are no procedures to display, make sure that there are procedure
+        types selected for display in the menu in the top right corner of the
+        container.
+      </p>
     )
 
     procedureContrainer = (
-      <div className="med-content-container">
-        <h1 className="title">Procedure Details</h1>
+      <div className="med-content-container med-info-container">
+        <h1>Procedure Details</h1>
+        {procSelectModal}
         <hr className="med-top-separator" />
-        {procedures.map((proc) => {
-          return <Procedure proc={proc} key={v4()} />
-        })}
+        {!noProcs
+          ? procedures.map((proc) => {
+              return <Procedure proc={proc} key={v4()} />
+            })
+          : noProcMessage}
       </div>
     )
 
     timeLineContainer = (
-      <div className="med-content-container">
-        <h1 className="title">Medicine Timeline</h1>
+      <div className="med-content-container med-info-container">
+        <h1>Medicine Timeline</h1>
+        {procSelectModal}
         <hr className="med-top-separator" />
-        <TimeLine procs={procedures} />
+        {!noProcs ? (
+          <TimeLine procedures={procedures} lastUpdatedDate={lastUpdatedDate} />
+        ) : (
+          noProcMessage
+        )}
       </div>
+    )
+  }
+
+  const detailGroups = []
+
+  for (let category in variableCategories) {
+    const details = []
+
+    for (let varIndex in variableCategories[category]) {
+      const variable = variableCategories[category][varIndex]
+      details.push(
+        <Detail
+          name={variable['data-value']}
+          value={medData[variable['data-front-key']]}
+          key={v4()}
+        />
+      )
+    }
+
+    detailGroups.push(
+      <DetailGroup title={category} key={v4()}>
+        {details}
+      </DetailGroup>
     )
   }
 
@@ -106,101 +173,36 @@ export function InfoPage({ medData, procData }) {
   return (
     <div>
       <div className="med-content-container">
-        <h1 className="title">{medData.BrandName} Medicine Details</h1>
+        <h1>{medData.BrandName} Medicine Details</h1>
         <hr className="med-top-separator" />
 
-        <div className="flex-columns">
-          <DetailGroup title="General Information">
-            <Detail name="Brand Name" value={medData.BrandName} />
-            <Detail name="Marketing Authorisation Holder" value={medData.MAH} />
-            <Detail name="Active Substance" value={medData.ActiveSubstance} />
-            <Detail name="Decision Date" value={medData.DecisionDate} />
-          </DetailGroup>
-
-          <DetailGroup title="Identifying Information">
-            <Detail name="Application Number" value={medData.ApplicationNo} />
-            <Detail name="EU Number" value={medData.EUNumber} />
-            <Detail name="Short EU Number" value={medData.EUNoShort} />
-          </DetailGroup>
-
-          <DetailGroup title="(Co-)Rapporteur">
-            <Detail name="Rapporteur" value={medData.Rapporteur} />
-            <Detail name="Co-Rapporteur" value={medData.CoRapporteur} />
-          </DetailGroup>
-
-          <DetailGroup title="Medicine Designations">
-            <Detail name="ATMP" value={medData.ATMP} />
-            <Detail
-              name="Orphan Designation"
-              value={medData.OrphanDesignation}
-            />
-
-            <Detail name="NAS Qualified" value={medData.NASQualified} />
-            <Detail name="CMA" value={medData.CMA} />
-            <Detail name="AEC" value={medData.CMA} />
-            <Detail name="PRIME" value={medData.PRIME} />
-          </DetailGroup>
-
-          <DetailGroup title="ATC Code Information">
-            <Detail name="ATC Code Level 1" value={medData.ATCCodeL1} />
-            <Detail name="ATC Code Level 2" value={medData.ATCCodeL2} />
-            <Detail name="ATC Name Level 2" value={medData.ATCNameL2} />
-          </DetailGroup>
-
-          <DetailGroup title="Legal Information">
-            <Detail name="Legal Scope" value={medData.LegalSCope} />
-            <Detail name="Legal Type" value={medData.LegalType} />
-          </DetailGroup>
-
-          <DetailGroup title="Authorisation Timing">
-            <Detail
-              name="Accelerated Granted"
-              value={medData.AcceleratedGranted}
-            />
-            <Detail
-              name="Accelerated Executed"
-              value={medData.AcceleratedExecuted}
-            />
-            <Detail
-              name="Active Time Elapsed (days)"
-              value={medData.ActiveTimeElapsed}
-            />
-            <Detail
-              name="Clock Stop Elapsed (days)"
-              value={medData.ClockStopElapsed}
-            />
-            <Detail
-              name="Total Time Elapsed (days)"
-              value={medData.TotalTimeElapsed}
-            />
-          </DetailGroup>
-        </div>
+        <div className="med-flex-columns">{detailGroups}</div>
       </div>
 
       {timeLineContainer}
       {procedureContrainer}
 
       <div className="med-content-container">
-        <h1 className="title">Additional Resources</h1>
+        <h1>Additional Resources</h1>
         <hr className="med-top-separator" />
 
         <CustomLink
-          className="external-link"
+          className="med-info-external-link"
           name="EMA Website"
           dest="https://www.ema.europa.eu/en"
         />
         <CustomLink
-          className="external-link"
+          className="med-info-external-link"
           name="EC Website"
           dest="https://ec.europa.eu/info/index_en"
         />
         <CustomLink
-          className="external-link"
+          className="med-info-external-link"
           name="MEB Website"
           dest="https://english.cbg-meb.nl/"
         />
         <CustomLink
-          className="external-link"
+          className="med-info-external-link"
           name="MAH Website"
           dest="https://www.ema.europa.eu/en/glossary/marketing-authorisation-holder"
         />

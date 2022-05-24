@@ -3,10 +3,10 @@
 // has completed succesfully
 function SuccessDialog(props) {
   return (
-    <div className="export-dialog">
+    <div className="med-export-dialog">
       <i className="bx bx-check" />
       <h1>Export Successfull</h1>
-      <div className="success">
+      <div className="med-success-message">
         <span>
           The export of all {props.num} selected data points has completed
           successfully. The download should start shortly. If the download does

@@ -11,46 +11,98 @@ from api.models.medicine_models import (
 
 
 class AuthorisationSerializer(serializers.ModelSerializer):
+    """
+    Authorisation table serializer for the view endpoint medicine
+    """
+
     class Meta:
+        """
+        Meta information
+        """
+
         model = Authorisation
         exclude = ("eunumber",)
 
 
 class ProcedureSerializer(serializers.ModelSerializer):
+    """
+    Authorisation table serializer for the view endpoint medicine
+    """
+
     class Meta:
+        """
+        Meta information
+        """
+
         model = Procedure
         fields = ("decisiondate",)
 
 
 class BrandnameSerializer(serializers.ModelSerializer):
+    """
+    Authorisation table serializer for the view endpoint medicine
+    """
+
     class Meta:
+        """
+        Meta information
+        """
+
         model = Historybrandname
         fields = ("brandname",)
         ordering = ("brandnamedate",)
 
 
 class MAHSerializer(serializers.ModelSerializer):
+    """
+    Authorisation table serializer for the view endpoint medicine
+    """
+
     class Meta:
+        """
+        Meta information
+        """
+
         model = Historymah
         fields = ("mah",)
         ordering = ("mahdate",)
 
 
 class OrphanSerializer(serializers.ModelSerializer):
+    """
+    Authorisation table serializer for the view endpoint medicine
+    """
+
     class Meta:
+        """
+        Meta information
+        """
+
         model = Historyorphan
         fields = ("orphan",)
         ordering = ("orphandate",)
 
 
 class PRIMESerializer(serializers.ModelSerializer):
+    """
+    Authorisation table serializer for the view endpoint medicine
+    """
+
     class Meta:
+        """
+        Meta information
+        """
+
         model = Historyprime
         fields = ("prime",)
         ordering = ("primedate",)
 
 
 class PublicMedicineSerializer(serializers.ModelSerializer):
+    """
+    view endpoint medicine
+    """
+
     authorisation = serializers.SerializerMethodField()
     procedure = serializers.SerializerMethodField()
     brandname = serializers.SerializerMethodField()
@@ -59,6 +111,10 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
     prime = serializers.SerializerMethodField()
 
     class Meta:
+        """
+        Meta information
+        """
+
         model = Medicine
         fields = "__all__"
 
@@ -114,6 +170,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
     def to_representation(self, obj):
         representation = super().to_representation(obj)
+
         for field in [
             "authorisation",
             "procedure",
@@ -125,4 +182,5 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             field_representation = representation.pop(field)
             for key in field_representation:
                 representation[key] = field_representation[key]
+
         return representation

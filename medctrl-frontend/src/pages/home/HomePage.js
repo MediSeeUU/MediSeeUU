@@ -9,7 +9,7 @@ function HomePage() {
   const runTour = useTourRun()
   return (
     // Homepage components, contains search bar and article containers
-    <div className="med_home_content">
+    <div className="med-home-content">
       <div className="med-content-container">
         <h1>Dashboard Tour</h1>
         <hr className="med-top-separator" />
@@ -18,7 +18,7 @@ function HomePage() {
           className="med-primary-solid med-bx-button med-tour-button"
           onClick={() => runTour(true)}
         >
-          <i className="bx bx-code-alt search-Icon" />
+          <i className="bx bx-code-alt med-button-image" />
           Start Tour
         </button>
 
@@ -27,7 +27,7 @@ function HomePage() {
           around the website by clicking the button. This tour will not take
           long and familiarize you with all the core functionalities that this
           dashboard has to offer. You can end the tour at any time by clicking
-          'end'. When you reach the end of the tour, the tour will automaticly
+          'end'. When you reach the end of the tour, the tour will automatically
           finish.
         </p>
       </div>
@@ -37,14 +37,14 @@ function HomePage() {
         update={(query) => navigate('/data?q=' + query)}
       />
 
-      <div className="med-content-container med_content__container">
+      <div className="med-content-container">
         <h1>Tools</h1>
         <hr className="med-top-separator" />
         <p>
           This dashboard provides tools for looking up, filtering, and
           visualizing data points regarding pharmaceutical policy and
-          regularization. All functionality is split up into two pages:{' '}
-          <i>Data</i> and <i>Visualize</i>.
+          regulation. All functionality is split up into two pages: <i>Data</i>{' '}
+          and <i>Visualize</i>.
         </p>
         <div>
           <h2>Data</h2>
@@ -74,8 +74,10 @@ function HomePage() {
             the latter is chosen, you can also choose to make all bars the same
             length (“Fully stacked”) so that the graph is expressed in relative
             quantities. For line charts and histograms, it is possible to zoom
-            in on a subset of the diagram. The resulting visualization can be
-            exported to a local image file if desired.
+            in on a subset of the diagram. For any diagram, all quantities are
+            clickable, which allows for the export or removal of specific data
+            points. The resulting visualization can be exported to a local image
+            file if desired.
           </p>
         </div>
       </div>

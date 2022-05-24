@@ -235,7 +235,7 @@ function VisualizationPage() {
           }}
         >
           <i className="bx bx-x close-icon" onClick={() => setModal(false)}></i>
-          <SelectedData selectedData={tableData} />
+          <SelectedData allSelectedData={tableData} />
         </ReactModal>
         <Container>
           {displayDataSelectedMessage}

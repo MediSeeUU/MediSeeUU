@@ -5,20 +5,18 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import SideNavigation from '../Navigation'
 import { BrowserRouter } from 'react-router-dom'
 import AccountPage from '../../../pages/account/AccountPage'
-import MessagesPage from '../../../pages/messages/MessagesPage'
 import { DataContext } from '../../../shared/contexts/DataContext'
 import allData from '../../../testJson/data.json'
 import Table from '../../../shared/table/table'
 import SettingsPage from '../../../pages/settings/SettingsPage'
 import {
+  SelectedContext,
   CheckedContext,
   CheckedContextUpdate,
   ColumnSelectionContext,
   ColumnSelectionContextUpdate,
 } from '../../../shared/contexts/DataContext'
 import DataPage from '../../../pages/data/DataPage'
-import { InfoPage } from '../../../pages/detailed-info/DetailedInfoPage'
-import proceduredataTest from '../../../pages/detailed-info/detailed-info-data.json'
 
 test('sidenavigation component renders without crashing', () => {
   const root = document.createElement('div')
@@ -52,16 +50,6 @@ test('render account page without crashing', () => {
   )
 })
 
-test('render messages page without crashing', () => {
-  const root = document.createElement('div')
-  ReactDOM.render(
-    <BrowserRouter>
-      <MessagesPage />
-    </BrowserRouter>,
-    root
-  )
-})
-
 test('text input in searchbar on searchpage should trigger search functionality', () => {
   var test = jest.fn()
 
@@ -69,7 +57,7 @@ test('text input in searchbar on searchpage should trigger search functionality'
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -80,7 +68,6 @@ test('text input in searchbar on searchpage should trigger search functionality'
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -147,7 +134,7 @@ test('render datapage without crashing', () => {
 
   let checkedState = Object.assign(
     {},
-    ...data.map((entry) => ({ [entry.EUNumber]: false }))
+    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
   )
   const setCheckedState = (newState) => {
     checkedState = newState
@@ -158,7 +145,6 @@ test('render datapage without crashing', () => {
     'BrandName',
     'MAH',
     'DecisionDate',
-    'ATCNameL2',
     'ApplicationNo',
     'ApplicationNo',
   ]
@@ -166,19 +152,24 @@ test('render datapage without crashing', () => {
   const setColumnSelection = (newColumns) => {
     columnSelection = newColumns
   }
+  const selectedData = data.filter((item, index) => {
+    return checkedState[item.EUNumber]
+  })
 
   render(
     <BrowserRouter>
       <DataContext.Provider value={allData}>
-        <ColumnSelectionContext.Provider value={columnSelection}>
-          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-            <CheckedContext.Provider value={checkedState}>
-              <CheckedContextUpdate.Provider value={setCheckedState}>
-                <DataPage />
-              </CheckedContextUpdate.Provider>
-            </CheckedContext.Provider>
-          </ColumnSelectionContextUpdate.Provider>
-        </ColumnSelectionContext.Provider>
+        <SelectedContext.Provider value={selectedData}>
+          <ColumnSelectionContext.Provider value={columnSelection}>
+            <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
+              <CheckedContext.Provider value={checkedState}>
+                <CheckedContextUpdate.Provider value={setCheckedState}>
+                  <DataPage />
+                </CheckedContextUpdate.Provider>
+              </CheckedContext.Provider>
+            </ColumnSelectionContextUpdate.Provider>
+          </ColumnSelectionContext.Provider>
+        </SelectedContext.Provider>
       </DataContext.Provider>
     </BrowserRouter>
   )

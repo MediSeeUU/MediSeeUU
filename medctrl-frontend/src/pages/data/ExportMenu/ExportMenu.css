@@ -1,6 +1,16 @@
 /* for the main dialog & the dialog description */
 
-.export-dialog {
+.med-export-modal {
+  position: absolute;
+  top: 19%;
+  bottom: 19%;
+  left: 15%;
+  right: 15%;
+  overflow: hidden;
+  outline: none;
+}
+
+.med-export-dialog {
   background-color: var(--med-dialog-background);
   width: 350px;
   border-radius: 15px;
@@ -9,33 +19,19 @@
   display: block;
 }
 
-.export-dialog i {
+.med-export-dialog i {
   font-size: 60px;
-}
-
-.export-dialog .desc {
-  color: var(--med-additional-text);
-  font-weight: 300;
-  font-size: 14px;
 }
 
 /* for an error message */
 
-.export-dialog .error {
+.med-export-dialog .med-error-message {
   margin-bottom: 20px;
-  font-weight: 300;
-  font-size: 14px;
-  border-radius: 10px;
-  padding: 5px;
-}
-
-.export-dialog .error-header {
-  font-weight: bold;
 }
 
 /* for a success message */
 
-.export-dialog .success {
+.med-export-dialog .med-success-message {
   color: var(--med-positive-message-text);
   margin-bottom: 20px;
   font-weight: 300;
@@ -47,7 +43,7 @@
 
 /* for the list with different options */
 
-.export-dialog .option-list {
+.med-download-option-list {
   width: 100%;
 
   margin: 12px 0;
@@ -66,7 +62,7 @@
     following source: v=5K7JefKDa4s
 */
 
-.export-dialog .radio-label {
+.med-export-dialog .med-radio-label {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
@@ -74,11 +70,11 @@
   font-weight: normal;
 }
 
-.export-dialog .radio-input {
+.med-export-dialog .med-radio-input {
   display: none;
 }
 
-.export-dialog .radio-visual {
+.med-export-dialog .med-radio-visual {
   width: 1.25em;
   height: 1.25em;
   border: 2px solid var(--med-additional-text);
@@ -88,7 +84,7 @@
   padding: 2px;
 }
 
-.export-dialog .radio-visual::after {
+.med-export-dialog .med-radio-visual::after {
   content: '';
   width: 100%;
   height: 100%;
@@ -101,13 +97,13 @@
   transition: all 0.1s;
 }
 
-.export-dialog .radio-input:checked + .radio-visual::after {
+.med-export-dialog .med-radio-input:checked + .med-radio-visual::after {
   transform: scale(1);
 }
 
 /* additional css for the text input field */
 
-.text-input {
+.med-seperator-input-field {
   width: 75px;
   height: 25px;
   margin-left: 10px;
@@ -116,19 +112,10 @@
 
 /* for the two dialog buttons */
 
-.export-dialog button {
+.med-export-dialog button {
   border: none;
   width: 100%;
   height: 35px;
   margin: 2px 0;
   border-radius: 10px;
-}
-
-.export-dialog button.cancel {
-  background-color: var(--med-dialog-background);
-  color: var(--med-text-primary);
-}
-
-.export-dialog button.cancel:hover {
-  background-color: var(--med-dialog-background);
 }

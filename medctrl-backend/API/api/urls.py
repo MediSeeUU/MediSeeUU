@@ -5,14 +5,16 @@ from knox import views as knox_views
 from api.views.medicine_views import (
     ProcedureViewSet,
     MedicineViewSet,
-    AuthenticatedUser,
 )
-from api.views.account_views import RegisterAPI, LoginAPI
+from api.views.account_views import LoginAPI
+from api.views import SavedSelectionViewSet
+from api.views.other import Medicine_info
+from api.scraper.router import url_patterns as scraper_routes
 
 router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
 router.register(r"procedure/(?P<eunumber>\d+)", ProcedureViewSet, basename="procedure")
-# router.register(r"authenticated", AuthenticatedUser , basename="authenticatedUser") this is giving me errors
+router.register(r"saveselection", SavedSelectionViewSet, basename="saveselection")
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -21,7 +23,6 @@ urlpatterns = [
         "account/",
         include(
             [
-                path("register/", RegisterAPI.as_view(), name="register"),
                 path("login/", LoginAPI.as_view(), name="login"),
                 path("logout/", knox_views.LogoutView.as_view(), name="logout"),
                 path(
@@ -30,4 +31,6 @@ urlpatterns = [
             ]
         ),
     ),
+    path("scraper/", include(scraper_routes)),
+    path("detailedData/", Medicine_info.as_view()),
 ]

@@ -3,7 +3,7 @@ async function handleLogOut() {
   let Token = sessionStorage.getItem('token')
   let res = 'Token ' + Token
 
-  // call to server : /api/account/login/
+  // call to server : /api/account/logout/
   const response = await fetch(
     `${process.env.PUBLIC_URL}/api/account/logout/`,
     {
@@ -19,6 +19,8 @@ async function handleLogOut() {
 }
 
 function setSession() {
+  // force the data context to fetch the most recent data
+  window.location.reload(false)
   sessionStorage.removeItem('username')
   sessionStorage.removeItem('access_level')
   sessionStorage.removeItem('token')

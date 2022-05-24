@@ -7,7 +7,7 @@ import mebLogo from '../../images/meb-logo.svg'
 function InfoPage() {
   return (
     // Infopage components, contains article containers
-    <div className="med_home_content">
+    <div className="med-info-content">
       <div className="med-content-container">
         <h1>About This Dashboard</h1>
         <hr className="med-top-separator" />
@@ -29,14 +29,14 @@ function InfoPage() {
         </p>
       </div>
 
-      <div className="med-content-container med_content__container">
+      <div className="med-content-container">
         <h1>About Us</h1>
         <hr className="med-top-separator" />
 
         <div>
           <h2>Utrecht University</h2>
-          <img src={uuLogo} alt="UU logo" className="institution-logo" />
-          <p className="institution-info">
+          <img src={uuLogo} alt="UU logo" className="med-institution-logo" />
+          <p className="med-institution-info">
             The Utrecht University team (Jarno Hoekman and Lourens Bloem)
             comprises a collaboration between the Copernicus Institute of
             Sustainable Development (Hoekman) and the Utrecht Institute for
@@ -52,8 +52,8 @@ function InfoPage() {
 
         <div>
           <h2>Medicine Evaluation Board</h2>
-          <img src={mebLogo} alt="MEB logo" className="institution-logo" />
-          <p className="institution-info">
+          <img src={mebLogo} alt="MEB logo" className="med-institution-logo" />
+          <p className="med-institution-info">
             The MEB is a governmental agency and is under the authority of the
             ministry of Health, Welfare and Sport (Volksgezondheid, Welzijn en
             Sport). The MEB is the responsible authority in the Netherlands for
@@ -65,7 +65,7 @@ function InfoPage() {
               href="https://cbg-meb.nl/"
               target="_blank"
               rel="noreferrer"
-              className="institution-link"
+              className="med-link"
             >
               the MEB website
             </a>{' '}
@@ -76,7 +76,7 @@ function InfoPage() {
         </div>
       </div>
 
-      <div className="med-content-container med_content__container">
+      <div className="med-content-container">
         <h1>Non Affiliated Regulatory Institutions</h1>
         <hr className="med-top-separator" />
         <h2>European Medicines Agency</h2>
@@ -100,7 +100,7 @@ function InfoPage() {
             href="https://www.ema.europa.eu"
             target="_blank"
             rel="noreferrer"
-            className="institution-link"
+            className="med-link"
           >
             the EMA website
           </a>
@@ -121,7 +121,7 @@ function InfoPage() {
             href="https://ec.europa.eu/health/documents/community-register_en"
             target="_blank"
             rel="noreferrer"
-            className="institution-link"
+            className="med-link"
           >
             the Union Register website
           </a>

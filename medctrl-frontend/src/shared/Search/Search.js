@@ -7,6 +7,7 @@ function Search({ update, initial, tour }) {
 
   // Handler that applies the search by updating the query
   const applySearch = () => {
+    // eslint-disable-next-line no-new-wrappers
     update(new String(query)) // new String() is required here to also update with same query string
   }
 
@@ -17,22 +18,37 @@ function Search({ update, initial, tour }) {
     }
   }
 
+  // Handler that clears the search query
+  const clearSearch = () => {
+    setQuery('')
+    update('')
+  }
+
   // The HTML code of the search component
   return (
     <div tour={tour} className="med-content-container">
-      <input
-        type="text"
-        placeholder="Search"
-        className="content__container__textinput med-text-input"
-        onChange={(e) => setQuery(e.target.value)}
-        defaultValue={initial}
-        onKeyDown={handlerKeyDown}
-      />
+      <div className="med-search-container">
+        {query && (
+          <i
+            className="bx bx-x med-search-close-icon"
+            onClick={clearSearch}
+            data-testid="search-close-icon"
+          ></i>
+        )}
+        <input
+          type="text"
+          placeholder="Search"
+          className="med-search-text-input med-text-input"
+          onChange={(e) => setQuery(e.target.value)}
+          value={query || ''}
+          onKeyDown={handlerKeyDown}
+        />
+      </div>
       <button
-        className="med-primary-solid med-bx-button search-button"
+        className="med-primary-solid med-bx-button med-search-button"
         onClick={applySearch}
       >
-        <i className="bx bx-search search-Icon"></i>Search
+        <i className="bx bx-search med-button-image"></i>Search
       </button>
     </div>
   )

@@ -1,5 +1,10 @@
-/* change colors to variables */
-.med_table {
+.med-add-remove-button-container {
+  display: flex;
+  float: right;
+  margin-right: 25px;
+}
+
+.med-table {
   display: block;
   overflow: auto;
   border-spacing: 0;
@@ -10,49 +15,52 @@
   border-radius: 4px;
 }
 
-.tableHeader {
+.med-table-header {
   display: block;
   position: sticky;
   top: 0;
   border: 0px;
   overflow-x: visible;
   color: var(--med-table-header-text);
+  z-index: 5;
 }
 
-.tableBody {
-  display: block;
-  overflow: visible;
-}
-
-.tableHeader tr {
+.med-table-header tr {
   background-color: var(--med-table-header-background);
 }
 
-.tableBody tr:nth-child(even) {
+.med-table-body {
+  display: block;
+  overflow: visible;
+  z-index: 0;
+  border-collapse: separate;
+}
+
+.med-table-body tr:nth-child(even) {
   background-color: var(--med-table-row-even-background);
 }
 
-.tableBody tr:nth-child(odd) {
+.med-table-body tr:nth-child(odd) {
   background-color: var(--med-table-row-odd-background);
 }
 
-.med_td.smallColumn {
+.med-table-narrow-column {
   text-align: center;
 }
 
-.med_td div {
+.med-table-body-cell div {
   display: block;
   text-align: left;
   width: calc(100% - 20px);
   margin-inline: 10px;
 }
 
-.med_th {
+.med-table-header-cell {
   min-width: 223px;
   max-width: 223px;
 }
 
-.med_th_select {
+.med-table-header-select-cell {
   text-align: center;
   padding: 10px 0;
   font-size: 14px;
@@ -61,32 +69,57 @@
   color: var(--med-table-header-text);
   border: 1px solid var(--med-table-header-border);
   border-radius: 4px;
-  min-width: 100%;
-  max-width: 100%;
+  min-width: 60%;
+  max-width: 70%;
 }
 
-.med_td {
+.med_th_sort {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: var(--med-table-header-background);
+  color: var(--med-table-header-text);
+  border: 1px solid var(--med-table-header-border);
+  border-radius: 4px;
+  min-width: 10%;
+  max-width: 15%;
+}
+
+.med-table-body-cell {
   font-size: 13px;
   min-width: 223px;
   max-width: 223px;
 }
 
-.smallColumn {
+.med-table-narrow-column {
   min-width: 50px;
   max-width: 50px;
-  border-right: 1px solid var(--med-table-border);
+  position: sticky;
+  background-color: inherit;
+  z-index: 1;
 }
 
-.icons {
+.med-table-icons {
   font-size: 20px;
   margin-top: 2px;
   cursor: pointer;
 }
 
 /* Column addition/removal button styling */
-.bx-plusMinus {
+.med-add-remove-button {
   cursor: pointer;
   margin-right: 5px;
   margin: 15px 0;
   font-size: 40px;
+}
+
+.med-column-left {
+  left: 0;
+  border-right: 1px solid var(--med-table-border);
+}
+
+.med-column-right {
+  right: 0;
+  border-left: 1px solid var(--med-table-border);
 }

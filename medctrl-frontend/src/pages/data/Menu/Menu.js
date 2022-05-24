@@ -10,7 +10,13 @@ class Menu extends React.Component {
     super(props)
 
     // Default filter object
-    this.filterObject = [{ selected: '', input: [''] }]
+    this.filterObject = [
+      {
+        selected: '',
+        input: [{ var: '', filterRange: 'from' }],
+        filterType: '',
+      },
+    ]
     this.sortObject = [{ selected: '', order: 'asc' }]
 
     // Set init state
@@ -82,7 +88,7 @@ class Menu extends React.Component {
   // Adds a new filter input box to a filter item
   addFilterBox = (id) => {
     this.updateElement('filters', id, (obj) => {
-      let newInput = obj.input.concat([''])
+      let newInput = obj.input.concat({ var: '', filterRange: 'from' })
       return { ...obj, input: newInput }
     })
   }
@@ -95,7 +101,7 @@ class Menu extends React.Component {
         newInput.splice(bid, 1)
         return { ...obj, input: newInput }
       }
-      return { ...obj, input: [''] }
+      return { ...obj, input: [{ var: '', filterRange: 'from' }] }
     })
   }
 
@@ -121,7 +127,8 @@ class Menu extends React.Component {
   updateFilterInput = (id, index, value) => {
     this.updateElement('filters', id, (obj) => {
       let newInput = [...obj.input]
-      newInput[index] = value
+      newInput[index].var = value
+
       return { ...obj, input: newInput }
     })
   }
@@ -149,7 +156,13 @@ class Menu extends React.Component {
 
   // Update the (local) filters and sorters which will update the data displayed in the table
   clear() {
-    this.props.updateFilters([{ selected: '', input: [''] }])
+    this.props.updateFilters([
+      {
+        selected: '',
+        input: [{ var: '', filterRange: 'from' }],
+        filterType: '',
+      },
+    ])
     this.props.updateSorters([{ selected: '', order: 'asc' }])
     this.setState({
       filters: this.filterObject,
@@ -167,10 +180,11 @@ class Menu extends React.Component {
           className="med-primary-solid med-bx-button"
           onClick={this.handleOpenModal}
         >
-          <i className="bx bx-cog filter-Icon"></i>Filter & Sort
+          <i className="bx bx-cog med-button-image"></i>Filter & Sort
         </button>
+
         <ReactModal
-          className="menu-modal"
+          className="med-table-menu-modal"
           isOpen={this.state.showModal}
           onRequestClose={this.handleCloseModal}
           ariaHideApp={false}
@@ -183,19 +197,22 @@ class Menu extends React.Component {
             },
           }}
         >
-          <div className="filter">
-            <h1 className="header">Filters</h1>
+          <div className="med-filter-menu">
+            <h1 className="med-table-menu-header">Filters</h1>
             <hr className="med-top-separator" />
-            <div className="add med-primary-text" onClick={this.addFilter}>
+            <div
+              className="med-table-menu-add-filter med-primary-text"
+              onClick={this.addFilter}
+            >
               Add Filter
-              <i className="bx bxs-plus-square add-icon"></i>
+              <i className="bx bxs-plus-square med-table-menu-add-filter-icon"></i>
             </div>
-            <div className="filters">
-              {this.state.filters.map((obj, oid) => (
+            <div className="med-table-menu-filters-container">
+              {this.state.filters.map((filter, index) => (
                 <Filter
                   key={uuidv4()}
-                  id={oid}
-                  item={obj}
+                  id={index}
+                  item={filter}
                   options={this.props.list}
                   del={this.deleteFilter}
                   box={this.addFilterBox}
@@ -205,46 +222,51 @@ class Menu extends React.Component {
                 />
               ))}
             </div>
-            <div className="filter-bttn-box">
+            <div className="med-table-menu-filter-button-container">
               <button
-                className="menu-button apply med-primary-solid"
+                className="med-table-menu-button med-table-menu-apply-button med-primary-solid"
                 onClick={this.apply}
               >
                 Apply
               </button>
-              <button className="menu-button cl" onClick={this.clear}>
+              <button
+                className="med-table-menu-button med-table-menu-secondary-button"
+                onClick={this.clear}
+              >
                 Clear
               </button>
               <button
-                className="menu-button cl"
+                className="med-table-menu-button med-table-menu-secondary-button"
                 onClick={this.handleCloseModal}
               >
                 Close
               </button>
             </div>
           </div>
-          <div className="sort">
-            <h1 className="header">Sort</h1>
+          <div className="med-sort-menu">
+            <h1 className="med-table-menu-header">Sort</h1>
             <hr className="med-top-separator" />
-            {this.state.sorters.map((obj, oid) => (
-              <Sort
-                key={uuidv4()}
-                id={oid}
-                item={obj}
-                options={this.props.list}
-                del={this.deleteSort}
-                sel={this.updateSortSelected}
-                order={this.updateSortOrder}
-              />
-            ))}
-            {this.state.showAddSort && (
-              <label
-                className="add-sort med-primary-text"
-                onClick={this.addSort}
-              >
-                Add Sorting option +
-              </label>
-            )}
+            <div className="med-table-menu-sort-container">
+              {this.state.sorters.map((obj, oid) => (
+                <Sort
+                  key={uuidv4()}
+                  id={oid}
+                  item={obj}
+                  options={this.props.list}
+                  del={this.deleteSort}
+                  sel={this.updateSortSelected}
+                  order={this.updateSortOrder}
+                />
+              ))}
+              {this.state.showAddSort && (
+                <label
+                  className="med-able-menu-add-sort-button med-primary-text"
+                  onClick={this.addSort}
+                >
+                  Add Sorting option +
+                </label>
+              )}
+            </div>
           </div>
         </ReactModal>
       </>
