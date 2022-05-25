@@ -34,15 +34,21 @@ function CategoryOptions(props) {
 
     let newCategoriesSelected
     if (value) {
-      // add category to the list
-      newCategoriesSelected = [...settings, name]
+      // Adds the selected category to the list.
+      // A filter was added because the data type of name is returned as a string instead of its original datatype,
+      // but it is not a very elegant solution...
+      const addition = props.categories.filter(
+        (el) => String(el) === String(name)
+      )[0]
+      newCategoriesSelected = [...settings, addition]
     } else {
-      // remove if the category was previously on the list
-      if (settings.includes(name)) {
-        newCategoriesSelected = settings.filter((el) => el !== name)
-      }
+      // removed the selected category of the list
+      newCategoriesSelected = settings.filter(
+        (el) => String(el) !== String(name)
+      )
     }
     settings = newCategoriesSelected
+
     props.onChange({
       target: {
         type: 'array',

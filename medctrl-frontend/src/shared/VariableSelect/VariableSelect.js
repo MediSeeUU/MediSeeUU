@@ -10,6 +10,7 @@ export default function VariableSelect({
   onChange,
   defaultValue,
   dataTestId,
+  name,
 }) {
   const variableCategories = useStructure()
   const optGroups = []
@@ -39,6 +40,7 @@ export default function VariableSelect({
       onChange={onChange}
       value={defaultValue}
       data-testid={dataTestId}
+      name={name}
     >
       {optGroups}
     </select>
