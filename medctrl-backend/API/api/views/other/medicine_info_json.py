@@ -29,6 +29,12 @@ def get_medicine_info(perm):
             "data-value": "Decision Date",
         },
         {
+            "data-key": "decisiondate",
+            "data-front-key": "DecisionYear",
+            "data-format": "number",
+            "data-value": "Decision Year",
+        },
+        {
             "data-key": "atccode",
             "data-front-key": "ATCCodeL2",
             "data-format": "string",
