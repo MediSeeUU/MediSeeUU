@@ -104,7 +104,7 @@ function VisualizationPage() {
   // adds a new visualization to the visualizations context
   function handleAdditionFunc() {
     const newVisual = {
-      id: visuals.length,
+      id: visuals.length + 1,
       chartType: 'bar',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
@@ -177,6 +177,7 @@ function VisualizationPage() {
   // creates the visualizations
   function renderVisualizations() {
     return visuals.map((visual) => {
+      console.log(visual)
       return (
         <Row key={visual.id}>
           <SingleVisualization

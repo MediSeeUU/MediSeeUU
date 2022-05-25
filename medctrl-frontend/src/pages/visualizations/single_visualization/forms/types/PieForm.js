@@ -2,15 +2,10 @@ import React from 'react'
 import '../../../visualizations.css'
 import CategoryOptions from '../shared/CategoryOptions'
 import sortCategoryData from '../../utils/SortCategoryData'
-import { eligibleVariablesVisualizations } from '../shared/eligibleVariables'
+import VariableSelect from '../../../../../shared/VariableSelect/VariableSelect'
 
 // the pie part of a form if a pie chart is chosen
 function PieForm(props) {
-  // The list of eligible variables.
-  // If we do not want to include a variable for the pie chart,
-  // it can be removed from here.
-  const eligibleVariables = eligibleVariablesVisualizations()
-
   // initialization of the settings
   let settings = props.chartSpecificOptions
 
@@ -41,33 +36,18 @@ function PieForm(props) {
     })
   }
 
-  // GENERAL FUNCTIONS:
-
-  // creates a drop down menu based on the allowed variables
-  function renderVariableDropDown() {
-    return eligibleVariables.map((variable) => {
-      return (
-        <option key={variable} value={variable}>
-          {variable}
-        </option>
-      )
-    })
-  }
-
   // RENDERER:
 
   return (
     <>
       <label className="visualization-panel-label">
         Variable <br />
-        <select
-          value={settings.xAxis}
+        <VariableSelect
+          className={'med-select'}
+          defaultValue={settings.xAxis}
           name="xAxis"
-          className="med-select"
           onChange={handleChange}
-        >
-          {renderVariableDropDown()}
-        </select>
+        />
       </label>
       <div>
         <CategoryOptions

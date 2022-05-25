@@ -1,16 +1,11 @@
 import React from 'react'
 import '../../../visualizations.css'
 import sortCategoryData from '../../utils/SortCategoryData'
-import { eligibleVariablesVisualizations } from '../shared/eligibleVariables'
 import CategoryOptions from '../shared/CategoryOptions'
+import VariableSelect from '../../../../../shared/VariableSelect/VariableSelect'
 
 // the line part of a form if a line chart is chosen
 function LineForm(props) {
-  // The list of eligible variables.
-  // If we do not want to include a variable for the line chart,
-  // it can be removed from here.
-  const eligibleVariables = eligibleVariablesVisualizations()
-
   // initialization of the state
   let settings = props.chartSpecificOptions
 
@@ -42,19 +37,6 @@ function LineForm(props) {
     })
   }
 
-  // GENERAL FUNCTIONS:
-
-  // creates a drop down menu based on the allowed variables
-  function renderVariableDropDown() {
-    return eligibleVariables.map((variable) => {
-      return (
-        <option key={variable} value={variable}>
-          {variable}
-        </option>
-      )
-    })
-  }
-
   // RENDERER:
 
   // renders the bar form part of the form
@@ -62,25 +44,21 @@ function LineForm(props) {
     <>
       <label className="visualization-panel-label">
         X-axis
-        <select
-          value={settings.xAxis}
+        <VariableSelect
+          className={'med-select'}
+          defaultValue={settings.xAxis}
           name="xAxis"
-          className="med-select"
           onChange={handleChange}
-        >
-          {renderVariableDropDown()}
-        </select>
+        />
       </label>
       <label className="visualization-panel-label">
         Y-axis
-        <select
-          value={settings.yAxis}
+        <VariableSelect
+          className={'med-select'}
+          defaultValue={settings.yAxis}
           name="yAxis"
-          className="med-select"
           onChange={handleChange}
-        >
-          {renderVariableDropDown()}
-        </select>
+        />
       </label>
       <div>
         <CategoryOptions

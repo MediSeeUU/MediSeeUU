@@ -33,7 +33,7 @@ function createHistogramSeries(data, xAxis, chosenCategories) {
 
   return [
     {
-      name: 'amount',
+      name: 'number',
       data: Object.values(dict),
       euNumbers: Object.values(euNumbers),
     },

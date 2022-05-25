@@ -1,16 +1,11 @@
 import React from 'react'
 import '../../../visualizations.css'
 import sortCategoryData from '../../utils/SortCategoryData'
-import { eligibleVariablesVisualizations } from '../shared/eligibleVariables'
 import CategoryOptions from '../shared/CategoryOptions'
+import VariableSelect from '../../../../../shared/VariableSelect/VariableSelect'
 
 // the bar part of a form if a bar chart is chosen
 function BarForm(props) {
-  // The list of eligible variables.
-  // If we do not want to include a variable for the bar chart,
-  // it can be removed from here.
-  const eligibleVariables = eligibleVariablesVisualizations()
-
   let settings = props.chartSpecificOptions
 
   // event handlers
@@ -42,17 +37,6 @@ function BarForm(props) {
   }
 
   // GENERAL FUNCTIONS:
-
-  // creates a drop down menu based on the eligible variables
-  function renderVariableDropDown() {
-    return eligibleVariables.map((variable) => {
-      return (
-        <option key={variable} value={variable}>
-          {variable}
-        </option>
-      )
-    })
-  }
 
   // renders the option to change the stack type
   // only shown when the stacked option has been selected
@@ -109,25 +93,21 @@ function BarForm(props) {
       <div tour="step-vis-vars">
         <label className="visualization-panel-label">
           {xAxis}
-          <select
-            className="med-select"
-            value={settings.xAxis}
+          <VariableSelect
+            className={'med-select'}
+            defaultValue={settings.xAxis}
             name="xAxis"
             onChange={handleChange}
-          >
-            {renderVariableDropDown()}
-          </select>
+          />
         </label>
         <label className="visualization-panel-label">
           {yAxis}
-          <select
-            className="med-select"
-            value={settings.yAxis}
+          <VariableSelect
+            className={'med-select'}
+            defaultValue={settings.yAxis}
             name="yAxis"
             onChange={handleChange}
-          >
-            {renderVariableDropDown()}
-          </select>
+          />
         </label>
       </div>
       <div tour="step-vis-categories">
