@@ -11,8 +11,7 @@ function HistogramChart(props) {
         toolbar: { show: false },
         events: {
           dataPointSelection: (event, chartContext, config) => {
-            let euNumbers =
-              config.w.config.series[config.seriesIndex].euNumbers[
+            let euNumbers = props.series[config.seriesIndex].euNumbers[
                 config.dataPointIndex
               ]
             props.onDataClick(euNumbers)
@@ -45,7 +44,14 @@ function HistogramChart(props) {
         text: `You can select the categories to be displayed.
             Note that creating the graph may take some time`,
       },
-      euNumbers: props.series.euNumbers,
+      states: {
+        active: {
+          allowMultipleDataPointsSelection: false,
+          filter: {
+            type: 'none',
+          }
+        }
+      },
     },
     series: props.series,
   }
