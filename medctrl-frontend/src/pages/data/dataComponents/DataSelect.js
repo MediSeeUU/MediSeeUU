@@ -10,7 +10,7 @@ import {
 } from '../../../shared/contexts/DataContext'
 import updateData from '../Utils/update'
 
-function DataSelect({ initialSearch }) {
+function DataSelect() {
   let utils = useTableUtils()
   let utilsUpdate = useTableUtilsUpdate()
 
@@ -57,7 +57,7 @@ function DataSelect({ initialSearch }) {
       <Search
         tour="step-data-search"
         update={(e) => utilsUpdate({ ...utils, search: e })}
-        initial={initialSearch || queryRef.current}
+        initial={utils.search}
       />
       <div tour="step-data-select" className="med-content-container">
         <h1>Data Selection Table</h1>
