@@ -18,7 +18,7 @@ function HomePage() {
   // Set the query in the utils context and navigate to the datapage
   const search = (query) => {
     utilsUpdate({ ...utils, search: query })
-    navigate('/data?q=' + query)
+    navigate('/data')
   }
 
   return (
