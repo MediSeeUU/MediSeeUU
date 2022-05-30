@@ -21,7 +21,7 @@ function VisualizationForm(props) {
 
   // EVENT HANDLERS:
 
-  // Event handler for updating the settings after a single selection.
+  // Event handler for updating the settings after a single change.
   // Do note that if the chart type changes,
   // we still remember the previous options.
   function handleChangeFunc(event) {
@@ -75,7 +75,7 @@ function VisualizationForm(props) {
         )
 
       default:
-        throw Error('form error: graph type is ineligible: {' + settings + '}')
+        throw Error('form error: chart type is ineligible: {' + settings + '}')
     }
   }
 

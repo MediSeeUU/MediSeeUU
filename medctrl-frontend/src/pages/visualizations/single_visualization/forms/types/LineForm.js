@@ -21,6 +21,7 @@ function LineForm(props) {
     const value = target.value
     const name = target.name
 
+    // when a variable is changed, the available categories have to be changed too
     if (name === 'xAxis') {
       settings.categoriesSelectedX = props.uniqueCategories[value]
     } else if (name === 'yAxis') {

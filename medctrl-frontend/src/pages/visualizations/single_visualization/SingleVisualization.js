@@ -142,7 +142,7 @@ function SingleVisualization(props) {
     }
   }
 
-  // renders the placeholder for the title depending on the chart type
+  // renders the placeholder for the title 
   function renderTitlePlaceHolder() {
     const base =
       'my ' + settings.chartType + ' - ' + settings.chartSpecificOptions.xAxis
