@@ -11,6 +11,7 @@ from api.models.medicine_models import (
     Lookupproceduretype,
     Procedure,
 )
+from api.update_cache import update_cache
 
 
 class ScraperProcedure(APIView):
@@ -54,6 +55,7 @@ class ScraperProcedure(APIView):
             except:
                 failed_procedures.append(procedure)
 
+        update_cache()
         return Response(failed_procedures, status=200)
 
     # update flexible variables for procedure
