@@ -47,18 +47,18 @@ function SingleVisualization(props) {
   // handles the png export
   function handlePNGExportFunction(event) {
     const title = settings.title ?? renderTitlePlaceHolder()
-    HandlePNGExport(props.id, title, ApexCharts)
+    HandlePNGExport(settings.id, title, ApexCharts)
   }
 
   // handles the svg export
   function handleSVGExportFunction(event) {
     const title = settings.title ?? renderTitlePlaceHolder()
-    HandleSVGExport(props.id, title, ApexCharts)
+    HandleSVGExport(settings.id, title, ApexCharts)
   }
 
   // handles the removal of this visualization
   function handleRemovalFunction(event) {
-    props.onRemoval(props.settings.id, event)
+    props.onRemoval(settings.id, event)
   }
 
   // handles changing the title of the visualization
