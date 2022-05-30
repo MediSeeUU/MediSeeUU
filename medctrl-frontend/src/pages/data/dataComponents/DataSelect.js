@@ -5,36 +5,31 @@ import TableView from './TableView'
 import {
   useData,
   useColumnSelection,
+  useTableUtils,
+  useTableUtilsUpdate,
 } from '../../../shared/contexts/DataContext'
 import updateData from '../Utils/update'
 
 function DataSelect({ initialSearch }) {
-  const [resultsPerPage, setResultsPerPage] = useState(25) // Amount of database hits shown per page
-  const [loadedPage, setPage] = useState(1) // Current page
-  const [search, setSearch] = useState(initialSearch) // Current search
-  const [filters, setFilters] = useState([
-    { selected: '', input: [{ var: '', filterRange: 'from' }], filterType: '' },
-  ]) // Current filters
-  const [sorters, setSorters] = useState([{ selected: '', order: 'asc' }]) // Current sorters
+  let utils = useTableUtils()
+  let utilsUpdate = useTableUtilsUpdate()
 
   // We need to keep a reference of the columns for ranking the data
   let columns = useColumnSelection()
   let columnsRef = useRef(columns)
-  let queryRef = useRef(search)
+  let queryRef = useRef(utils.search)
 
   // We update the columns if a new search is initialized
-  if (search !== queryRef.current) {
+  if (utils.search !== queryRef.current) {
     columnsRef.current = columns
-    queryRef.current = search
+    queryRef.current = utils.search
   }
 
   // Current data
   const allData = useData()
   const updatedData = updateData(
     allData,
-    search,
-    filters,
-    sorters,
+    utils,
     columnsRef.current
   )
 
@@ -53,10 +48,10 @@ function DataSelect({ initialSearch }) {
   const menu = (
     <Menu
       list={list}
-      filters={filters}
-      sorters={sorters}
-      updateFilters={setFilters}
-      updateSorters={setSorters}
+      filters={utils.filters}
+      sorters={utils.sorters}
+      updateFilters={(e) => utilsUpdate({...utils, filters: e})}
+      updateSorters={(e) => utilsUpdate({...utils, sorters: e})}
     />
   )
 
@@ -65,7 +60,7 @@ function DataSelect({ initialSearch }) {
     <>
       <Search
         tour="step-data-search"
-        update={setSearch}
+        update={(e) => utilsUpdate({...utils, search: e})}
         initial={initialSearch}
       />
       <div tour="step-data-select" className="med-content-container">
@@ -73,11 +68,7 @@ function DataSelect({ initialSearch }) {
         <hr className="med-top-separator" />
         {TableView({
           data: updatedData,
-          resultsPerPage: resultsPerPage,
-          loadedPage: loadedPage,
-          setPage: setPage,
-          setResultsPerPage: setResultsPerPage,
-          setSorters: setSorters,
+          setSorters: (e) => utilsUpdate({...utils, sorters: e}),
           select: true,
           text: 'No data to display, please clear your search or filters.',
           baseMenu: menu,

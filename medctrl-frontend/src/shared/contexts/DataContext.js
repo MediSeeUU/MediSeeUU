@@ -12,6 +12,8 @@ export const ColumnSelectionContext = React.createContext()
 export const ColumnSelectionContextUpdate = React.createContext()
 export const VisualsContext = React.createContext()
 export const VisualsUpdateContext = React.createContext()
+export const TableUtilsContext = React.createContext()
+export const TableUtilsUpdateContext = React.createContext()
 
 export function useData() {
   return useContext(DataContext)
@@ -47,6 +49,14 @@ export function useVisuals() {
 
 export function useVisualsUpdate() {
   return useContext(VisualsUpdateContext)
+}
+
+export function useTableUtils() {
+  return useContext(TableUtilsContext)
+}
+
+export function useTableUtilsUpdate() {
+  return useContext(TableUtilsUpdateContext)
 }
 
 export function DataProvider({ children }) {
@@ -147,6 +157,12 @@ export function StaticDataProvider({ children, allData, structData }) {
     ])
   }, [allData])
 
+  const [tableUtils, setTableUtils] = useState({
+    search: '',
+    filters: [{ selected: '', input: [{ var: '', filterRange: 'from' }], filterType: '' }],
+    sorters: [{ selected: '', order: 'asc' }]
+  })
+
   return (
     <DataContext.Provider value={allData}>
       <StructureContext.Provider value={structData}>
@@ -159,7 +175,11 @@ export function StaticDataProvider({ children, allData, structData }) {
                 >
                   <VisualsContext.Provider value={visuals}>
                     <VisualsUpdateContext.Provider value={setVisuals}>
-                      {children}
+                      <TableUtilsContext.Provider value={tableUtils}>
+                        <TableUtilsUpdateContext.Provider value={setTableUtils}>
+                          {children}
+                        </TableUtilsUpdateContext.Provider>
+                      </TableUtilsContext.Provider>
                     </VisualsUpdateContext.Provider>
                   </VisualsContext.Provider>
                 </ColumnSelectionContextUpdate.Provider>
