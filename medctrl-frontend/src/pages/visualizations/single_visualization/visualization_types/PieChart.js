@@ -11,7 +11,7 @@ function PieChart(props) {
         toolbar: { show: false },
         events: {
           dataPointSelection: (event, chartContext, config) => {
-            let euNumbers = config.w.config.euNumbers[config.dataPointIndex]
+            let euNumbers = props.series.euNumbers[config.dataPointIndex]
             props.onDataClick(euNumbers)
           },
         },
@@ -31,7 +31,14 @@ function PieChart(props) {
       theme: {
         palette: 'palette3',
       },
-      euNumbers: props.series.euNumbers,
+      states: {
+        active: {
+          allowMultipleDataPointsSelection: false,
+          filter: {
+            type: 'none',
+          }
+        }
+      },
     },
     series: props.series.data,
   }

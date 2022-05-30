@@ -15,11 +15,17 @@ import HistogramChart from './visualization_types/HistogramChart'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
 import sortCategoryData from './utils/SortCategoryData'
+import { generateSeries } from './utils/GenerateSeries'
 
 // renders the components for a single visualization
 function SingleVisualization(props) {
   // initializing 'state' of the visualization
   let settings = props.settings
+
+  // Filter out the selected categories that are not present anymore in the data categories
+  // Selected categories can disappear because of data that is unselected afterwards
+  settings.chartSpecificOptions.categoriesSelectedX = settings.chartSpecificOptions.categoriesSelectedX.filter(e => settings.uniqueCategories[settings.chartSpecificOptions.xAxis].includes(e))
+  settings.chartSpecificOptions.categoriesSelectedY = settings.chartSpecificOptions.categoriesSelectedY.filter(e => settings.uniqueCategories[settings.chartSpecificOptions.yAxis].includes(e))
 
   // event handlers
   const handleChange = handleChangeFunction.bind(this)
@@ -41,18 +47,18 @@ function SingleVisualization(props) {
   // handles the png export
   function handlePNGExportFunction(event) {
     const title = settings.title ?? renderTitlePlaceHolder()
-    HandlePNGExport(props.id, title, ApexCharts)
+    HandlePNGExport(settings.id, title, ApexCharts)
   }
 
   // handles the svg export
   function handleSVGExportFunction(event) {
     const title = settings.title ?? renderTitlePlaceHolder()
-    HandleSVGExport(props.id, title, ApexCharts)
+    HandleSVGExport(settings.id, title, ApexCharts)
   }
 
   // handles the removal of this visualization
   function handleRemovalFunction(event) {
-    props.onRemoval(props.settings.id, event)
+    props.onRemoval(settings.id, event)
   }
 
   // handles changing the title of the visualization
@@ -69,9 +75,8 @@ function SingleVisualization(props) {
   function renderChart() {
     const legendOn = settings.legendOn
     const labelsOn = settings.labelsOn
-    const id = props.id
-    const key = props.keys[id]
-    const series = props.series[id]
+    const id = settings.id
+    const series = generateSeries(settings.chartType, settings)
     const categories = sortCategoryData(
       settings.chartSpecificOptions.categoriesSelectedX
     )
@@ -82,7 +87,6 @@ function SingleVisualization(props) {
       case 'bar':
         return (
           <BarChart
-            key={key}
             legend={legendOn}
             labels={labelsOn}
             id={id}
@@ -96,7 +100,6 @@ function SingleVisualization(props) {
       case 'line':
         return (
           <LineChart
-            key={key}
             legend={legendOn}
             labels={labelsOn}
             id={id}
@@ -110,7 +113,6 @@ function SingleVisualization(props) {
       case 'pie':
         return (
           <PieChart
-            key={key}
             legend={legendOn}
             labels={labelsOn}
             id={id}
@@ -124,7 +126,6 @@ function SingleVisualization(props) {
       case 'histogram':
         return (
           <HistogramChart
-            key={key}
             legend={legendOn}
             labels={labelsOn}
             id={id}
