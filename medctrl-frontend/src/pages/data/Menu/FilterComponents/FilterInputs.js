@@ -1,110 +1,51 @@
 import React from 'react'
 
 function FilterInputs(container) {
+
+  // TODO: if datatype string can be switched to text, this statement can be removed
+  if (container.props.item.filterType === 'string') container.props.item.filterType = 'text'
+
   switch (container.props.item.filterType) {
     case 'text':
-      return textFilter(container)
+      return inputFilter(
+        container, 
+        container.props.item.input[container.i].filterRange)
     case 'number':
-      return numFilter(
+      return inputFilter(
         container,
         container.props.item.input[container.i].filterRange
       )
     case 'date':
-      return dateFilter(
+      return inputFilter(
         container,
         container.props.item.input[container.i].filterRange
       )
     case 'bool':
-      return BoolFilter(container)
+      return boolFilter(container)
     default:
       throw Error('filter type invalid')
   }
 }
 
-function textFilter(container) {
+function inputFilter(container, filterRange) {
   return (
     <input
-      type="text"
-      id={container.i + container.props.item.selected}
-      className="med-table-menu-filter-input-field med-text-input"
-      defaultValue={container.props.item.input[container.i].var}
-      placeholder="Enter value"
-      onBlur={(e) =>
-        container.props.fil(container.props.id, container.i, e.target.value)
-      }
-      data-testid="filter-input-text"
+    type={container.props.item.filterType}
+    id={container.i + container.props.item.selected}
+    className="med-table-menu-filter-input-field med-text-input"
+    defaultValue={container.props.item.input[container.i].var}
+    placeholder="Enter value"
+    onBlur={(e) =>
+      container.props.fil(container.props.id, container.i, e.target.value)
+    }
+    data-testid="filter-input-text"
     />
+    
+
   )
 }
 
-function numFilter(container, filterRange) {
-  if (filterRange === 'from') {
-    return (
-      <input
-        type="number"
-        id={container.i + container.props.item.selected + 'from'}
-        className="med-table-menu-filter-input-field med-num-input"
-        defaultValue={container.props.item.input[container.i].var}
-        placeholder="Enter value"
-        onBlur={(e) =>
-          container.props.fil(container.props.id, container.i, e.target.value)
-        }
-        data-testid="filter-input-num-from"
-      />
-    )
-  } else if (filterRange === 'till') {
-    return (
-      <input
-        type="number"
-        id={container.i + container.props.item.selected + 'till'}
-        className="med-table-menu-filter-input-field med-num-input"
-        defaultValue={container.props.item.input[container.i].var}
-        placeholder="Enter value"
-        onBlur={(e) =>
-          container.props.fil(container.props.id, container.i, e.target.value)
-        }
-      />
-    )
-  } else {
-    console.error('Invalid filter range in FilterInputs')
-    return null
-  }
-}
-
-function dateFilter(container, filterRange) {
-  if (filterRange === 'from') {
-    return (
-      <input
-        type="date"
-        id={container.i + container.props.item.selected + 'from'}
-        className="med-table-menu-filter-input-field med-date-input"
-        defaultValue={container.props.item.input[container.i].var}
-        placeholder="Enter value"
-        onBlur={(e) =>
-          container.props.fil(container.props.id, container.i, e.target.value)
-        }
-      />
-    )
-  } else if (filterRange === 'till') {
-    return (
-      <input
-        type="date"
-        id={container.i + container.props.item.selected + 'till'}
-        className="med-table-menu-filter-input-field med-date-input"
-        defaultValue={container.props.item.input[container.i].var}
-        placeholder="Enter value"
-        onBlur={(e) =>
-          container.props.fil(container.props.id, container.i, e.target.value)
-        }
-      />
-    )
-  } else {
-    console.error('Invalid filter range in FilterInputs')
-    return null
-  }
-}
-
-function BoolFilter(container) {
+function boolFilter(container) {
   if (container.props.item.input[container.i].var !== 'no')
     container.props.item.input[container.i].var = 'yes'
   return (

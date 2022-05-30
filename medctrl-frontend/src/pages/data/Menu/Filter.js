@@ -51,35 +51,21 @@ function DisplayItem(props) {
 function PickFilter(props, i) {
   var dataType = GetDataType(props.item.selected)
 
-  if (dataType === 'string') {
-    props.item.filterType = 'text'
-    return <FilterInputs props={props} i={i} />
-  } else if (dataType === 'number') {
-    props.item.filterType = dataType
+  //TODO: determine the best place to catch any illegal datatypes
+  const possibleTypes = ['number', 'string', 'date', 'bool' ]
 
-    return (
-      <>
-        <DetermineFilterRange container={props} i={i} />
-        <FilterInputs props={props} i={i} />
-      </>
-    )
-  } else if (dataType === 'date') {
-    props.item.filterType = dataType
+  // if data type exists, make filter of correct type. Otherwise use text filter.
+  props.item.filterType = possibleTypes.includes(dataType) ? dataType : 'string'
 
-    return (
-      <>
-        <DetermineFilterRange container={props} i={i} />
-        <FilterInputs props={props} i={i} />
-      </>
-    )
-  } else if (dataType === 'bool') {
-    props.item.filterType = dataType
-    return <FilterInputs props={props} i={i} />
-  } else {
-    console.log('No valid data type, continuing as text filter')
-    props.item.filterType = 'text'
-    return <FilterInputs props={props} i={i} />
-  }
+  // NOTE: if datatype 'string' is called 'text', it can be passed directly to abstract filter function??
+
+  return (
+    <>
+    {/* If number or date, first determine filter range */}
+    {(dataType === 'number' || dataType === 'date') && <DetermineFilterRange container={props} i={i} /> }
+    <FilterInputs props={props} i={i} />
+    </>
+  )
 }
 
 function DetermineFilterRange(props) {
