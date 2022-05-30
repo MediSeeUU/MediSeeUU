@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import Menu from '../Menu/Menu'
 import Search from '../../../shared/Search/Search'
 import TableView from './TableView'
@@ -61,7 +61,7 @@ function DataSelect({ initialSearch }) {
       <Search
         tour="step-data-search"
         update={(e) => utilsUpdate({...utils, search: e})}
-        initial={initialSearch}
+        initial={initialSearch || queryRef.current}
       />
       <div tour="step-data-select" className="med-content-container">
         <h1>Data Selection Table</h1>
