@@ -36,8 +36,8 @@ function PieChart(props) {
           allowMultipleDataPointsSelection: false,
           filter: {
             type: 'none',
-          }
-        }
+          },
+        },
       },
     },
     series: props.series.data,

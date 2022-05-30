@@ -23,9 +23,15 @@ function SingleVisualization(props) {
   let settings = props.settings
 
   // Filter out the selected categories that are not present anymore in the data categories
-  // Selected categories can disappear because of data that is unselected afterwards
-  settings.chartSpecificOptions.categoriesSelectedX = settings.chartSpecificOptions.categoriesSelectedX.filter(e => settings.uniqueCategories[settings.chartSpecificOptions.xAxis].includes(e))
-  settings.chartSpecificOptions.categoriesSelectedY = settings.chartSpecificOptions.categoriesSelectedY.filter(e => settings.uniqueCategories[settings.chartSpecificOptions.yAxis].includes(e))
+  // Selected categories can disappear because of data that is unselected in the popup
+  settings.chartSpecificOptions.categoriesSelectedX =
+    settings.chartSpecificOptions.categoriesSelectedX.filter((e) =>
+      settings.uniqueCategories[settings.chartSpecificOptions.xAxis].includes(e)
+    )
+  settings.chartSpecificOptions.categoriesSelectedY =
+    settings.chartSpecificOptions.categoriesSelectedY.filter((e) =>
+      settings.uniqueCategories[settings.chartSpecificOptions.yAxis].includes(e)
+    )
 
   // event handlers
   const handleChange = handleChangeFunction.bind(this)
@@ -36,9 +42,7 @@ function SingleVisualization(props) {
 
   // EVENT HANDLERS:
 
-  // Event handler for the 'form' data.
-  // Note that it always only registers a single change,
-  // rather than passing around the whole 'state' of the form.
+  // event handler for the 'form' data
   function handleChangeFunction(name, value) {
     settings[name] = value
     props.onFormChangeFunc(settings)
@@ -62,8 +66,6 @@ function SingleVisualization(props) {
   }
 
   // handles changing the title of the visualization
-  // reacts to every keystroke, which is quite inefficient,
-  // as it redraws the whole visualization
   function handleNameChangeFunction(event) {
     settings.title = event.target.value
     props.onFormChangeFunc(settings)
@@ -143,7 +145,7 @@ function SingleVisualization(props) {
     }
   }
 
-  // renders the placeholder for the title 
+  // renders the placeholder for the title
   function renderTitlePlaceHolder() {
     const base =
       'my ' + settings.chartType + ' - ' + settings.chartSpecificOptions.xAxis

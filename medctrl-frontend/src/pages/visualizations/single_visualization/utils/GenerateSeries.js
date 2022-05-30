@@ -17,7 +17,7 @@ export function generateSeries(chartType, settings) {
       return GenerateLineSeries(settings)
 
     case 'pie':
-      return GeneratePieSeries(settings, settings.data)
+      return GeneratePieSeries(settings)
 
     case 'histogram':
       return GenerateHistogramSeries(settings)

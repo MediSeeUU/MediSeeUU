@@ -15,10 +15,11 @@ import { useVisuals, useVisualsUpdate } from '../../shared/contexts/DataContext'
 
 // the component that contains all the visualizations
 function VisualizationPage() {
-  // get selected data context and determine unique categories
+  // get selected data context and determine unique categories of each variable
   const selectedData = useSelectedData()
-  const uniqueCategories = selectedData.length > 0 ? GetUniqueCategories(selectedData) : []
-  
+  const uniqueCategories =
+    selectedData.length > 0 ? GetUniqueCategories(selectedData) : []
+
   // set popup data
   const [popup, setPopup] = useState([])
 
@@ -30,6 +31,8 @@ function VisualizationPage() {
   // get the visualisation contexts
   var visuals = useVisuals()
   const setVisuals = useVisualsUpdate()
+
+  // EVENT HANDLERS:
 
   // adds a new visualization to the visualizations context
   function handleAdditionFunc() {
@@ -113,7 +116,9 @@ function VisualizationPage() {
   if (selectedData?.length > 0) {
     const displayItems = renderVisualizations()
     const displayDataSelectedMessage = renderDataSelectedMessage()
-    const tableData = selectedData.filter((element) => popup.includes(element.EUNoShort))
+    const tableData = selectedData.filter((element) =>
+      popup.includes(element.EUNoShort)
+    )
     return (
       <div>
         <ReactModal

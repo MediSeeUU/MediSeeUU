@@ -15,9 +15,7 @@ function BarChart(props) {
         events: {
           dataPointSelection: (event, chartContext, config) => {
             let euNumbers =
-              props.series[config.seriesIndex].euNumbers[
-                config.dataPointIndex
-              ]
+              props.series[config.seriesIndex].euNumbers[config.dataPointIndex]
             props.onDataClick(euNumbers)
           },
         },
@@ -69,8 +67,8 @@ function BarChart(props) {
           allowMultipleDataPointsSelection: false,
           filter: {
             type: 'none',
-          }
-        }
+          },
+        },
       },
     },
     series: props.series,

@@ -11,9 +11,8 @@ function HistogramChart(props) {
         toolbar: { show: false },
         events: {
           dataPointSelection: (event, chartContext, config) => {
-            let euNumbers = props.series[config.seriesIndex].euNumbers[
-                config.dataPointIndex
-              ]
+            let euNumbers =
+              props.series[config.seriesIndex].euNumbers[config.dataPointIndex]
             props.onDataClick(euNumbers)
           },
         },
@@ -49,8 +48,8 @@ function HistogramChart(props) {
           allowMultipleDataPointsSelection: false,
           filter: {
             type: 'none',
-          }
-        }
+          },
+        },
       },
     },
     series: props.series,

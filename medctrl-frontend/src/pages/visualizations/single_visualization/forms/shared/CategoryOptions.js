@@ -62,7 +62,7 @@ function CategoryOptions(props) {
 
   // create the list of category checkboxes
   function renderCategoryOptions() {
-    // props.categories is already sorted 
+    // props.categories is already sorted
     return props.categories.map((category) => {
       return (
         <React.Fragment key={category}>
