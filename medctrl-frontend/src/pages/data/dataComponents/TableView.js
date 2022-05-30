@@ -13,7 +13,7 @@ export default function TableView({
 }) {
   const [resultsPerPage, setResultsPerPage] = useState(25) // Amount of database hits shown per page
   const [loadedPage, setPage] = useState(1) // Current page
-  
+
   if (!data || data.length === 0) {
     return (
       <>

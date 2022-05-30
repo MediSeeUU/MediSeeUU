@@ -1,15 +1,16 @@
 import React from 'react'
 
 function FilterInputs(container) {
-
   // TODO: if datatype string can be switched to text, this statement can be removed
-  if (container.props.item.filterType === 'string') container.props.item.filterType = 'text'
+  if (container.props.item.filterType === 'string')
+    container.props.item.filterType = 'text'
 
   switch (container.props.item.filterType) {
     case 'text':
       return inputFilter(
-        container, 
-        container.props.item.input[container.i].filterRange)
+        container,
+        container.props.item.input[container.i].filterRange
+      )
     case 'number':
       return inputFilter(
         container,
@@ -30,18 +31,16 @@ function FilterInputs(container) {
 function inputFilter(container, filterRange) {
   return (
     <input
-    type={container.props.item.filterType}
-    id={container.i + container.props.item.selected}
-    className="med-table-menu-filter-input-field med-text-input"
-    defaultValue={container.props.item.input[container.i].var}
-    placeholder="Enter value"
-    onBlur={(e) =>
-      container.props.fil(container.props.id, container.i, e.target.value)
-    }
-    data-testid="filter-input-text"
+      type={container.props.item.filterType}
+      id={container.i + container.props.item.selected}
+      className="med-table-menu-filter-input-field med-text-input"
+      defaultValue={container.props.item.input[container.i].var}
+      placeholder="Enter value"
+      onBlur={(e) =>
+        container.props.fil(container.props.id, container.i, e.target.value)
+      }
+      data-testid="filter-input-text"
     />
-    
-
   )
 }
 

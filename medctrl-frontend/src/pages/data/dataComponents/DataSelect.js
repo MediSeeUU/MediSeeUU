@@ -27,11 +27,7 @@ function DataSelect({ initialSearch }) {
 
   // Current data
   const allData = useData()
-  const updatedData = updateData(
-    allData,
-    utils,
-    columnsRef.current
-  )
+  const updatedData = updateData(allData, utils, columnsRef.current)
 
   // List of variable options
   const list =
@@ -50,8 +46,8 @@ function DataSelect({ initialSearch }) {
       list={list}
       filters={utils.filters}
       sorters={utils.sorters}
-      updateFilters={(e) => utilsUpdate({...utils, filters: e})}
-      updateSorters={(e) => utilsUpdate({...utils, sorters: e})}
+      updateFilters={(e) => utilsUpdate({ ...utils, filters: e })}
+      updateSorters={(e) => utilsUpdate({ ...utils, sorters: e })}
     />
   )
 
@@ -60,7 +56,7 @@ function DataSelect({ initialSearch }) {
     <>
       <Search
         tour="step-data-search"
-        update={(e) => utilsUpdate({...utils, search: e})}
+        update={(e) => utilsUpdate({ ...utils, search: e })}
         initial={initialSearch || queryRef.current}
       />
       <div tour="step-data-select" className="med-content-container">
@@ -68,7 +64,7 @@ function DataSelect({ initialSearch }) {
         <hr className="med-top-separator" />
         {TableView({
           data: updatedData,
-          setSorters: (e) => utilsUpdate({...utils, sorters: e}),
+          setSorters: (e) => utilsUpdate({ ...utils, sorters: e }),
           select: true,
           text: 'No data to display, please clear your search or filters.',
           baseMenu: menu,

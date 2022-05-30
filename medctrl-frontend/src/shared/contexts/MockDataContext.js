@@ -6,6 +6,8 @@ import structServerData from './structServer.json'
 export default function MockDataProvider({ children }) {
   const cleanedData = cleanFetchedData(allServerData, structServerData)
   return (
-    <StaticDataProvider allData={cleanedData} structData={structServerData}>{children}</StaticDataProvider>
+    <StaticDataProvider allData={cleanedData} structData={structServerData}>
+      {children}
+    </StaticDataProvider>
   )
 }

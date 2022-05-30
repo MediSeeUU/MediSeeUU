@@ -15,10 +15,7 @@ function AllRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/info" element={<InfoPage />} />
       <Route path="/data" element={<DataPage />} />
-      <Route
-        path="/visualizations"
-        element={<VisualizationPage />}
-      />
+      <Route path="/visualizations" element={<VisualizationPage />} />
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/account" element={<AccountPage />} />
       <Route path="/details/:medID" element={<DetailedInfoPage />} />

@@ -5,7 +5,10 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import SideNavigation from '../Navigation'
 import { BrowserRouter } from 'react-router-dom'
 import AccountPage from '../../../pages/account/AccountPage'
-import { DataContext, TableUtilsContext } from '../../../shared/contexts/DataContext'
+import {
+  DataContext,
+  TableUtilsContext,
+} from '../../../shared/contexts/DataContext'
 import allData from '../../../testJson/data.json'
 import Table from '../../../shared/table/table'
 import SettingsPage from '../../../pages/settings/SettingsPage'
@@ -164,7 +167,9 @@ test('render datapage without crashing', () => {
             <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
               <CheckedContext.Provider value={checkedState}>
                 <CheckedContextUpdate.Provider value={setCheckedState}>
-                  <TableUtilsContext.Provider value={{search: '', filters: [], sorters: []}}>
+                  <TableUtilsContext.Provider
+                    value={{ search: '', filters: [], sorters: [] }}
+                  >
                     <DataPage />
                   </TableUtilsContext.Provider>
                 </CheckedContextUpdate.Provider>

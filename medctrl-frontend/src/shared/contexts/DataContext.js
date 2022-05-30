@@ -159,8 +159,14 @@ export function StaticDataProvider({ children, allData, structData }) {
 
   const [tableUtils, setTableUtils] = useState({
     search: '',
-    filters: [{ selected: '', input: [{ var: '', filterRange: 'from' }], filterType: '' }],
-    sorters: [{ selected: '', order: 'asc' }]
+    filters: [
+      {
+        selected: '',
+        input: [{ var: '', filterRange: 'from' }],
+        filterType: '',
+      },
+    ],
+    sorters: [{ selected: '', order: 'asc' }],
   })
 
   return (

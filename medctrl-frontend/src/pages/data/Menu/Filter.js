@@ -52,7 +52,7 @@ function PickFilter(props, i) {
   var dataType = GetDataType(props.item.selected)
 
   //TODO: determine the best place to catch any illegal datatypes
-  const possibleTypes = ['number', 'string', 'date', 'bool' ]
+  const possibleTypes = ['number', 'string', 'date', 'bool']
 
   // if data type exists, make filter of correct type. Otherwise use text filter.
   props.item.filterType = possibleTypes.includes(dataType) ? dataType : 'string'
@@ -61,9 +61,11 @@ function PickFilter(props, i) {
 
   return (
     <>
-    {/* If number or date, first determine filter range */}
-    {(dataType === 'number' || dataType === 'date') && <DetermineFilterRange container={props} i={i} /> }
-    <FilterInputs props={props} i={i} />
+      {/* If number or date, first determine filter range */}
+      {(dataType === 'number' || dataType === 'date') && (
+        <DetermineFilterRange container={props} i={i} />
+      )}
+      <FilterInputs props={props} i={i} />
     </>
   )
 }
