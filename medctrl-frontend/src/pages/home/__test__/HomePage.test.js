@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import HomePage from '../HomePage'
 import { fireEvent, screen, render } from '@testing-library/react'
-import { TableUtilsContext, TableUtilsUpdateContext } from '../../../shared/contexts/DataContext'
+import {
+  TableUtilsContext,
+  TableUtilsUpdateContext,
+} from '../../../shared/contexts/DataContext'
 
 test('homepage renders without crashing', () => {
   const root = document.createElement('div')
@@ -21,7 +24,7 @@ test('homepage search bar responds correctly', () => {
   }
   render(
     <BrowserRouter>
-      <TableUtilsContext.Provider value={{search: ''}}>
+      <TableUtilsContext.Provider value={{ search: '' }}>
         <TableUtilsUpdateContext.Provider value={update}>
           <HomePage />
         </TableUtilsUpdateContext.Provider>

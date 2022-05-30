@@ -4,8 +4,8 @@ import Search from '../../shared/Search/Search'
 import { useNavigate } from 'react-router-dom'
 import { useTourRun } from '../../core/tour/DashboardTour'
 import {
- useTableUtils,
- useTableUtilsUpdate,
+  useTableUtils,
+  useTableUtilsUpdate,
 } from '../../shared/contexts/DataContext'
 
 function HomePage() {
@@ -17,8 +17,8 @@ function HomePage() {
 
   // Set the query in the utils context and navigate to the datapage
   const search = (query) => {
-   utilsUpdate({ ...utils, search: query })
-   navigate('/data?q=' + query)
+    utilsUpdate({ ...utils, search: query })
+    navigate('/data?q=' + query)
   }
 
   return (
