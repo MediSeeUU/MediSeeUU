@@ -12,6 +12,7 @@ from api.models.medicine_models import (
     Procedure,
 )
 from api.update_cache import update_cache
+from django.forms.models import model_to_dict
 
 
 class ScraperProcedure(APIView):
@@ -35,7 +36,10 @@ class ScraperProcedure(APIView):
         """
         # initialize list to return failed updates/adds, so these can be checked manually
         failed_procedures = []
-        for procedure in request.data:
+        override = request.data.get("override")
+        procedure_list = request.data.get("data")
+        # get "procedure" key from request
+        for procedure in procedure_list:
             try:
                 # check if procedure already exists, procedures are
                 # unique on the combination eunumber procedurecount
@@ -46,6 +50,7 @@ class ScraperProcedure(APIView):
                 )
                 if current_procedure:
                     status = self.update_flex_procedure(procedure, current_procedure)
+                    self.update_null_values(procedure)
                 else:
                     status = self.add_procedure(procedure)
 
@@ -90,6 +95,26 @@ class ScraperProcedure(APIView):
             serializer.save()
             return True
         return False
+    
+    def update_null_values(self, data):
+        current_procedure = (
+                Procedure.objects.filter(eunumber=data.get("eunumber"))
+                .filter(procedurecount=data.get("procedurecount"))
+                .first()
+            )
+
+        procedure = model_to_dict(current_procedure)
+        newData = {
+            "eunumber": data.get("eunumber"),
+            "procedurecount": data.get("procedurecount")
+        }
+
+        for attr in procedure:
+            if (getattr(current_procedure, attr) is None) and (not (data.get(attr) is None)):
+                newData[attr] = data.get(attr)
+        
+        if len(newData.keys()) > 2:
+            self.add_procedure(newData, current_procedure)
 
 
 # if item does not exist in the database (model), add it with the serializer

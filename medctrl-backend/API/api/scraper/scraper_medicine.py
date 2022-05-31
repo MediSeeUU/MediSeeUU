@@ -26,6 +26,14 @@ from api.models.medicine_models import (
     Authorisation,
 )
 from api.update_cache import update_cache
+from api.serializers.medicine_serializers import (
+    BrandnameSerializer,
+    MAHSerializer,
+    OrphanSerializer,
+    PRIMESerializer,
+)
+from datetime import date
+from django.forms.models import model_to_dict
 
 
 class ScraperMedicine(APIView):
@@ -60,6 +68,7 @@ class ScraperMedicine(APIView):
                 # update works only on flexible variables
                 if current_medicine:
                     status = self.update_flex_medicine(medicine, current_medicine)
+                    self.update_null_values(medicine)
                 else:
                     status = self.add_medicine(medicine)
                 # if status is failed, add medicine to the failed list
@@ -156,6 +165,29 @@ class ScraperMedicine(APIView):
         else:
             return False
         return True
+
+    def update_null_values(self, data):
+        current_medicine = Medicine.objects.filter(pk=data.get("eunumber")).first()
+        current_authorisation = Authorisation.objects.filter(pk=data.get("eunumber")).first()
+
+        medicine = model_to_dict(current_medicine)
+        newData = {
+            "eunumber": data.get("eunumber")
+        }
+
+        for attr in medicine:
+            if (getattr(current_medicine, attr) is None) and (not (data.get(attr) is None)):
+                newData[attr] = data.get(attr)
+        
+        authorisation = model_to_dict(current_authorisation)
+        for attr in authorisation:
+            if (getattr(current_authorisation, attr) is None) and (not (data.get(attr) is None)):
+                newData[attr] = data.get(attr)
+        
+        if len(newData.keys()) > 1:
+            self.add_medicine(newData, current_medicine)
+
+
 
 
 # if item does not exist in the database (model), add it with the serializer

@@ -25,6 +25,12 @@ df['newactivesubstance'] = df['newactivesubstance'].replace({'no':0, 'yes':1})
 #change dataframe to json format (oriented on the rows)
 data = df.to_json(orient='records')
 
+#insert data into scraper endpoint format
+scraper_data = ("{"
+                "\"override\": false,"
+                f"\"data\": {data}"    
+                "}")
+
 #example of post request to scraper endpoints
 import requests
 
