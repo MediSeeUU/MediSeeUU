@@ -462,9 +462,11 @@ test('sorting on leftmost columnheader sorts data', () => {
 
   const updatedData = updateData(
     selectedData,
-    search,
-    filters,
-    sorters,
+    {
+      search: search,
+      filters: filters,
+      sorters: sorters,
+    },
     columnSelection
   )
 

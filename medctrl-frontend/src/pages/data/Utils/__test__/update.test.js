@@ -6,15 +6,17 @@ let columnSelection = ['EUNoShort', 'BrandName', 'MAH', 'DecisionDate']
 test('applying search, filters and sorters', () => {
   const updatedData = updateData(
     DummyData,
-    'cell',
-    [
-      {
-        selected: 'EUNoShort',
-        input: [{ var: '10' }, { var: '8' }],
-        filterType: 'text',
-      },
-    ],
-    [{ selected: 'Rapporteur', order: 'desc' }],
+    {
+      search: 'cell',
+      filters: [
+        {
+          selected: 'EUNoShort',
+          input: [{ var: '10' }, { var: '8' }],
+          filterType: 'text',
+        },
+      ],
+      sorters: [{ selected: 'Rapporteur', order: 'desc' }],
+    },
     columnSelection
   )
   updatedData.forEach((element) => {

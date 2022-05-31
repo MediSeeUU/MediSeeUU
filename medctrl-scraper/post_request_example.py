@@ -25,6 +25,12 @@ df['newactivesubstance'] = df['newactivesubstance'].replace({'no':0, 'yes':1})
 #change dataframe to json format (oriented on the rows)
 data = df.to_json(orient='records')
 
+#insert data into scraper endpoint format
+scraper_data = ("{"
+                "\"override\": \"true\","
+                f"\"data\": {data}"    
+                "}")
+
 #example of post request to scraper endpoints
 import requests
 
@@ -39,7 +45,7 @@ API_HEADERS={
 }
 
 # sending post request and saving response as response object
-r = requests.post(url = API_ENDPOINT, headers= API_HEADERS, data = data)
+r = requests.post(url = API_ENDPOINT, headers= API_HEADERS, data = scraper_data)
 
 #write failed rows to output file, (so this can be checked later)
 with open('failedMedicines.txt', 'w') as f:
