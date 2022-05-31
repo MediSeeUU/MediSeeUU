@@ -44,10 +44,8 @@ function DataSelect() {
   const menu = (
     <Menu
       list={list}
-      filters={utils.filters}
-      sorters={utils.sorters}
-      updateFilters={(e) => utilsUpdate({ ...utils, filters: e })}
-      updateSorters={(e) => utilsUpdate({ ...utils, sorters: e })}
+      utils={utils}
+      update={utilsUpdate}
     />
   )
 
