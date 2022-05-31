@@ -29,5 +29,6 @@ function CreatePieSeries(data, xAxis, chosenCategories) {
       euNumbers[element[xAxis]].push(element.EUNoShort)
     }
   })
+
   return { data: Object.values(dict), euNumbers: Object.values(euNumbers) }
 }

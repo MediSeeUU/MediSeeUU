@@ -68,7 +68,6 @@ function PollChosenVariable(xAxis, yAxis, categoriesX, categoriesY, data) {
     }
   })
 
-  console.log(dict)
   return [dict, euNumbers]
 }
 
@@ -95,8 +94,6 @@ function CreateSelectedSeries(dict, euNumbers, categoriesY, categoriesX) {
       }
     })
   })
-
-  console.log(series)
 
   return [series, euSeries]
 }

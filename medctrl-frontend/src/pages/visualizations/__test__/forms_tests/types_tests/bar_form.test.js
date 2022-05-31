@@ -60,6 +60,6 @@ test('horizontal option on', () => {
       chartSpecificOptions={chartSpecificOptions}
     />
   )
-  const target = screen.getByRole('checkbox', { name: /horizontal/i })
+  const target = screen.getByRole('checkbox', { name: /switch axes/i })
   fireEvent.click(target)
 })
