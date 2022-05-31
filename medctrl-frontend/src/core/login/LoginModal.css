@@ -25,7 +25,7 @@
   margin-top: 20px;
 }
 
-/* additional css for the credential input fields */
+/* Additional css for the credential input fields */
 
 .med-credential-input {
   width: calc(100% - 10px);
@@ -37,7 +37,7 @@
   padding: 0 7px;
 }
 
-/* for the dialog buttons */
+/* For the dialog buttons */
 
 .med-login-dialog button {
   border: none;

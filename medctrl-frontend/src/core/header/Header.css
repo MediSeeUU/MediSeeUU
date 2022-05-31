@@ -38,7 +38,7 @@
 }
 
 /* Media query: makes sure that when the screen width drops below 1400px (the size where the page content
-  fits the entire webbrowser page) the rounded borders on the outside disappear.  */
+  fits the entire webbrowser page) the rounded borders on the outside disappear. */
 @media only screen and (max-width: 1400px) {
   .med-main-header {
     border-top-left-radius: 0px;

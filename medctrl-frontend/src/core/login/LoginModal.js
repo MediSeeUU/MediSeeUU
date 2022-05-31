@@ -4,7 +4,7 @@ import NavLink from '../navigation/NavComponents/NavLink'
 import LoginForm from './LoginForm'
 import './LoginModal.css'
 
-// function based component representing the login button inserted into navbar
+// Function based component representing the login button inserted into the navigation bar
 function LoginModal(props) {
   const [showModal, setModalState] = useState(false)
 
