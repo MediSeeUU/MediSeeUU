@@ -177,7 +177,7 @@ class Menu extends React.Component {
     return (
       <>
         <button
-          className="med-primary-solid med-bx-button"
+          className="med-primary-solid med-bx-button med-data-button"
           onClick={this.handleOpenModal}
         >
           <i className="bx bx-cog med-button-image"></i>Filter & Sort

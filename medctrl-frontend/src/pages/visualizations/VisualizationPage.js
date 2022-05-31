@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ReactModal from 'react-modal'
-import SelectedData from '../data/dataComponents/SelectedData'
+import SelectedData from '../data/SelectedData/SelectedData'
 import { v4 as uuidv4 } from 'uuid'
 
 // internal imports

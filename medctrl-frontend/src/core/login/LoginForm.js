@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import handleLogin from '../handlers/LoginHandler'
-import ErrorMessage from '../../pages/data/ExportMenu/ExportMenuComponents/ErrorMessage'
+import ErrorMessage from '../../pages/data/SelectedData/ExportMenu/ExportMenuComponents/ErrorMessage'
 
 // Function based component which renders the login form
 function LoginForm(props) {

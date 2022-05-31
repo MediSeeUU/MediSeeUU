@@ -1,14 +1,14 @@
 import React, { useRef } from 'react'
-import Menu from '../Menu/Menu'
+import Menu from './Menu/Menu'
 import Search from '../../../shared/Search/Search'
-import TableView from './TableView'
+import TableView from '../shared/TableView'
 import {
   useData,
   useColumnSelection,
   useTableUtils,
   useTableUtilsUpdate,
 } from '../../../shared/contexts/DataContext'
-import updateData from '../Utils/update'
+import updateData from '../utils/update'
 
 function DataSelect() {
   let utils = useTableUtils()
@@ -60,14 +60,14 @@ function DataSelect() {
         initial={utils.search}
       />
       <div tour="step-data-select" className="med-content-container">
-        <h1>Data Selection Table</h1>
+        <h1 className="med-header">Data Selection Table</h1>
+        {menu}
         <hr className="med-top-separator" />
         {TableView({
           data: updatedData,
           setSorters: (e) => utilsUpdate({ ...utils, sorters: e }),
           select: true,
-          text: 'No data to display, please clear your search or filters.',
-          baseMenu: menu,
+          text: 'No data to display, please clear your search or filters.'
         })}
       </div>
     </>

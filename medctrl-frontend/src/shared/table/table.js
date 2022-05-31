@@ -16,8 +16,6 @@ function DisplayTable({
   searchTable,
   amountPerPage,
   currentPage,
-  baseMenu,
-  saveMenu,
   setSorters,
 }) {
   //throw error if parameters not defined
@@ -30,9 +28,6 @@ function DisplayTable({
   useEffect(() => {
     setLocalTableData(data)
   }, [data])
-
-  let token = sessionStorage.getItem('token')
-  let loggedin = token != null
 
   const checkedState = useCheckedState()
   const setCheckedState = useCheckedStateUpdate()
@@ -141,18 +136,15 @@ function DisplayTable({
     <>
       <div className="med-add-remove-button-container">
         <i
-          className="med-add-remove-button bx bxs-plus-square med-primary-text"
-          onClick={() => addColumn()}
-          data-testid="add-column"
-        />
-        <i
           className="med-add-remove-button bx bxs-minus-square med-primary-text"
           onClick={() => removeColumn()}
           data-testid="remove-column"
         />
-
-        {baseMenu}
-        {loggedin && saveMenu}
+        <i
+          className="med-add-remove-button bx bxs-plus-square med-primary-text"
+          onClick={() => addColumn()}
+          data-testid="add-column"
+        />
       </div>
 
       <table className="med-table">

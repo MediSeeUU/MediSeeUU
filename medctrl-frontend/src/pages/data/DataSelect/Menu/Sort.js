@@ -1,4 +1,4 @@
-import VariableSelect from '../../../shared/VariableSelect'
+import VariableSelect from '../../../../shared/VariableSelect'
 
 // Returns the filter item in HTML
 function displayItem(props) {

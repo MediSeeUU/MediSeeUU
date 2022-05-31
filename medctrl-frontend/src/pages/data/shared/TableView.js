@@ -3,22 +3,18 @@ import Table from '../../../shared/table/table'
 import ResultsSelector from './ResultsSelector'
 
 //if items are selected in the select data table, these will show up here, when nothing is selected a label will be shown
-export default function TableView({
+function TableView({
   data,
   setSorters,
   select,
-  text,
-  baseMenu,
-  saveMenu,
+  text
 }) {
   const [resultsPerPage, setResultsPerPage] = useState(25) // Amount of database hits shown per page
   const [loadedPage, setPage] = useState(1) // Current page
 
   if (!data || data.length === 0) {
     return (
-      <>
-        <label className="lb-tableholder">{text}</label>
-      </>
+      <label className="lb-tableholder">{text}</label>
     )
   } else {
     //Maximum amount of pages available
@@ -36,8 +32,6 @@ export default function TableView({
           currentPage={loadedPage}
           amountPerPage={resultsPerPage}
           selectTable={select}
-          baseMenu={baseMenu}
-          saveMenu={saveMenu}
           setSorters={setSorters}
         />
         <ResultsSelector
@@ -52,3 +46,5 @@ export default function TableView({
     )
   }
 }
+
+export default TableView

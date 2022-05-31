@@ -80,3 +80,11 @@
   margin-top: 1px;
   margin-right: 5px;
 }
+
+.med-header {
+  display: inline-block;
+}
+
+.med-data-button {
+  float: right;
+}

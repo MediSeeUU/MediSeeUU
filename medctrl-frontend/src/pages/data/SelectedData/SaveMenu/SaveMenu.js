@@ -13,7 +13,7 @@ function SaveMenu({ selectedData }) {
   return (
     <>
       <button
-        className="med-primary-solid med-bx-button"
+        className="med-primary-solid med-bx-button med-data-button"
         onClick={() => setModalState(true)}
       >
         <i className="bx bxs-save med-button-image"></i>Save
