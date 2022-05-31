@@ -25,65 +25,36 @@ test('opens menu after clicking button', () => {
 })
 
 test('apply button calls update function', () => {
-  const update1 = jest.fn()
-  const update2 = jest.fn()
-  render(
-    <Menu
-      filters={[]}
-      sorters={[]}
-      updateFilters={update1}
-      updateSorters={update2}
-    />
-  )
+  const update = jest.fn()
+  render(<Menu filters={[]} sorters={[]} utils={{}} update={update} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
-  expect(update1).not.toHaveBeenCalled()
-  expect(update2).not.toHaveBeenCalled()
+  expect(update).not.toHaveBeenCalled()
   fireEvent.click(screen.getByText(/Apply/i))
-  expect(update1).toHaveBeenCalled()
-  expect(update2).toHaveBeenCalled()
+  expect(update).toHaveBeenCalled()
 })
 
 test('clear button calls update function', () => {
-  const update1 = jest.fn()
-  const update2 = jest.fn()
-  render(
-    <Menu
-      filters={[]}
-      sorters={[]}
-      updateFilters={update1}
-      updateSorters={update2}
-    />
-  )
+  const update = jest.fn()
+  render(<Menu filters={[]} sorters={[]} utils={{}} update={update} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
-  expect(update1).not.toHaveBeenCalled()
-  expect(update2).not.toHaveBeenCalled()
+  expect(update).not.toHaveBeenCalled()
   fireEvent.click(screen.getByText(/Clear/i))
-  expect(update1).toHaveBeenCalled()
-  expect(update2).toHaveBeenCalled()
+  expect(update).toHaveBeenCalled()
 })
 
 test('clear button resets filters and sorters', () => {
-  const update1 = (filters) => {
-    expect(filters).toEqual([
+  const update = (utils) => {
+    expect(utils.filters).toEqual([
       {
-        selected: '',
+        selected: 'BrandName',
         input: [{ var: '', filterRange: 'from' }],
         filterType: '',
       },
     ])
-  }
-  const update2 = (sorters) => {
-    expect(sorters).toEqual([{ selected: '', order: 'asc' }])
+    expect(utils.sorters).toEqual([{ selected: '', order: 'asc' }])
   }
 
-  render(
-    <Menu
-      filters={[]}
-      sorters={[]}
-      updateFilters={update1}
-      updateSorters={update2}
-    />
-  )
+  render(<Menu filters={[]} sorters={[]} utils={{}} update={update} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   fireEvent.click(screen.getByText(/Clear/i))
 })

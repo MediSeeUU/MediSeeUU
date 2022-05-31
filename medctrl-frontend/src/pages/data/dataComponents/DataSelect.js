@@ -8,7 +8,7 @@ import {
   useTableUtils,
   useTableUtilsUpdate,
 } from '../../../shared/contexts/DataContext'
-import updateData from '../Utils/update'
+import updateData from '../utils/update'
 
 function DataSelect() {
   let utils = useTableUtils()
@@ -41,7 +41,15 @@ function DataSelect() {
     })
 
   //the menu button to be displayed with the table
-  const menu = <Menu list={list} utils={utils} update={utilsUpdate} />
+  const menu = (
+    <Menu
+      list={list}
+      filters={utils.filters}
+      sorters={utils.sorters}
+      utils={utils}
+      update={utilsUpdate}
+    />
+  )
 
   //main body of the page
   return (

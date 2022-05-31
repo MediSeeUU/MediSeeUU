@@ -22,8 +22,8 @@ class Menu extends React.Component {
     // Set init state
     this.state = {
       showModal: false,
-      filters: props.utils.filters,
-      sorters: props.utils.sorters,
+      filters: props.filters,
+      sorters: props.sorters,
       showAddSort: true,
     }
 
@@ -159,14 +159,11 @@ class Menu extends React.Component {
 
   // Update the (local) filters and sorters which will update the data displayed in the table
   clear() {
-    this.props.updateFilters([
-      {
-        selected: '',
-        input: [{ var: '', filterRange: 'from' }],
-        filterType: '',
-      },
-    ])
-    this.props.updateSorters([{ selected: '', order: 'asc' }])
+    this.props.update({
+      ...this.props.utils,
+      filters: this.filterObject,
+      sorters: this.sortObject,
+    })
     this.setState({
       filters: this.filterObject,
       sorters: this.sortObject,
