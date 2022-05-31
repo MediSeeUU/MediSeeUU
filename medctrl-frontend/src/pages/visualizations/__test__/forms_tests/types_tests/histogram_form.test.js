@@ -1,21 +1,16 @@
 import {
-  cleanup,
   render,
   fireEvent,
-  waitFor,
   screen,
-  getByRole,
-  getByText,
 } from '@testing-library/react'
 import GetUniqueCategories from '../../../single_visualization/utils/GetUniqueCategories'
 import HistogramForm from '../../../single_visualization/forms/types/HistogramForm'
 
 import data from '../../../../../testJson/data.json'
 
-let uniqueCategories
+const uniqueCategories = GetUniqueCategories(data)
 let chartSpecificOptions
-beforeAll(() => {
-  uniqueCategories = GetUniqueCategories(data)
+beforeEach(() => {
   chartSpecificOptions = {
     xAxis: 'Rapporteur',
     categoriesSelectedX: uniqueCategories['Rapporteur'],
@@ -23,11 +18,9 @@ beforeAll(() => {
 })
 
 test('initial render', () => {
-  const onChange = jest.fn()
   render(
     <HistogramForm
       uniqueCategories={uniqueCategories}
-      onChange={onChange}
       chartSpecificOptions={chartSpecificOptions}
     />
   )
@@ -57,6 +50,6 @@ test('xaxis change', () => {
   )
   let target = screen.getByRole('combobox', { name: /variable/i })
   fireEvent.change(target, {
-    target: { value: 'Rapporteur', name: 'chosenVariable' },
+    target: { value: 'DecisionYear', name: 'xAxis' },
   })
 })

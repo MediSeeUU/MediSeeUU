@@ -1,21 +1,16 @@
 import {
-  cleanup,
   render,
   fireEvent,
-  waitFor,
   screen,
-  getByRole,
-  getByText,
 } from '@testing-library/react'
 import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
 import VisualizationForm from '../../single_visualization/forms/VisualizationForm'
 
 import data from '../../../../testJson/data.json'
 
-let uniqueCategories
+const uniqueCategories = GetUniqueCategories(data)
 let setting
-beforeAll(() => {
-  uniqueCategories = GetUniqueCategories(data)
+beforeEach(() => {
   setting = {
     id: 1,
     chartType: 'bar',
@@ -25,101 +20,33 @@ beforeAll(() => {
       categoriesSelectedX: uniqueCategories['DecisionYear'],
       categoriesSelectedY: uniqueCategories['Rapporteur'],
     },
-    legenOn: true,
+    legendOn: true,
     labelsOn: false,
     data: data,
-    series: [],
     uniqueCategories: uniqueCategories,
-    key: '',
   }
 })
 
-test('initial render', () => {
-  const onChange = jest.fn()
+test('initial bar chart render', () => {
   render(
     <VisualizationForm
       uniqueCategories={uniqueCategories}
-      onChange={onChange}
       settings={setting}
     />
   )
 })
 
-test('change to line chart type', () => {
+test('trigger default renderChartOptions', () => {
   const onChange = jest.fn()
-  render(
-    <VisualizationForm
-      uniqueCategories={uniqueCategories}
-      onChange={onChange}
-      settings={setting}
-    />
-  )
-  let target = screen.getByRole('combobox', { name: /visualization type/i })
-
-  fireEvent.change(target, {
-    target: {
-      value: 'line',
-      name: 'chartType',
-    },
-  })
-})
-
-test('change to pie chart type', () => {
-  const onChange = jest.fn()
-  render(
-    <VisualizationForm
-      uniqueCategories={uniqueCategories}
-      onChange={onChange}
-      settings={setting}
-    />
-  )
-  let target = screen.getByRole('combobox', { name: /visualization type/i })
-
-  fireEvent.change(target, {
-    target: {
-      value: 'pie',
-      name: 'chartType',
-    },
-  })
-})
-
-test('change to bar chart', () => {
-  const onChange = jest.fn()
-  render(
-    <VisualizationForm
-      uniqueCategories={uniqueCategories}
-      onChange={onChange}
-      settings={setting}
-    />
-  )
-  let target = screen.getByRole('combobox', { name: /visualization type/i })
-
-  fireEvent.change(target, {
-    target: {
-      value: 'bar',
-      name: 'chartType',
-    },
-  })
-})
-
-test('trigger defaults of resetChartSpecifics and renderChartOptions', () => {
-  const onChange = jest.fn()
-  render(
-    <VisualizationForm
-      uniqueCategories={uniqueCategories}
-      onChange={onChange}
-      settings={setting}
-    />
-  )
-  let target = screen.getByRole('combobox', { name: /visualization type/i })
-
+  setting.chartType = 'pi'
   expect(() =>
-    fireEvent.change(target, {
-      target: {
-        value: 'pi',
-        name: 'chartType',
-      },
-    })
+    render(
+      <VisualizationForm
+        uniqueCategories={uniqueCategories}
+        onChange={onChange}
+        settings={setting}
+      />
+    )
   ).toThrow()
 })
 

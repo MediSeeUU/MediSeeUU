@@ -1,21 +1,16 @@
 import {
-  cleanup,
   render,
   fireEvent,
-  waitFor,
   screen,
-  getByRole,
-  getByText,
 } from '@testing-library/react'
 import GetUniqueCategories from '../../../single_visualization/utils/GetUniqueCategories'
 import LineForm from '../../../single_visualization/forms/types/LineForm'
 
 import data from '../../../../../testJson/data.json'
 
-let uniqueCategories
+const uniqueCategories = GetUniqueCategories(data)
 let chartSpecificOptions
-beforeAll(() => {
-  uniqueCategories = GetUniqueCategories(data)
+beforeEach(() => {
   chartSpecificOptions = {
     xAxis: 'DecisionYear',
     yAxis: 'Rapporteur',
@@ -25,11 +20,9 @@ beforeAll(() => {
 })
 
 test('initial render', () => {
-  const onChange = jest.fn()
   render(
     <LineForm
       uniqueCategories={uniqueCategories}
-      onChange={onChange}
       chartSpecificOptions={chartSpecificOptions}
     />
   )
@@ -58,5 +51,18 @@ test('xaxis change', () => {
     />
   )
   let target = screen.getByRole('combobox', { name: /x-axis/i })
-  fireEvent.change(target, { target: { value: 'Rapporteur' } })
+  fireEvent.change(target, { target: { name: 'xAxis', value: 'Rapporteur' } })
+})
+
+test('yaxis change', () => {
+  const onChange = jest.fn()
+  render(
+    <LineForm
+      uniqueCategories={uniqueCategories}
+      onChange={onChange}
+      chartSpecificOptions={chartSpecificOptions}
+    />
+  )
+  let target = screen.getByRole('combobox', { name: /y-axis/i })
+  fireEvent.change(target, { target: { name: 'yAxis', value: 'DecisionYear' } })
 })
