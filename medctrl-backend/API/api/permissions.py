@@ -1,6 +1,6 @@
 from rest_framework import permissions
 
-
+#Creates custom template for 'view' permissions
 class CustomObjectPermissions(permissions.DjangoObjectPermissions):
     """
     Similar to `DjangoObjectPermissions`, but adding 'view' permissions.

@@ -22,7 +22,7 @@ from api.models.medicine_models import (
     Lookupstatus,
 )
 
-
+#creates custom permission levels to view medicines
 class Command(BaseCommand):
     """
     Django admin command that creates permissions for all models in the API.

@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from api.permissions import CustomObjectPermissions
-from api.serializers import SavedSelectionSerializer
-from api.models import SavedSelection
+from api.serializers.other import SavedSelectionSerializer
+from api.models.other import SavedSelection
 from rest_framework import permissions, status
 from rest_framework.response import Response
 

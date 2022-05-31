@@ -4,7 +4,7 @@ from rest_framework.settings import settings
 from api.serializers.medicine_serializers import PublicMedicineSerializer
 from api.models.medicine_models import Medicine
 
-
+#Adds all medicine data to cache
 def update_cache():
     if settings.MEDICINES_CACHING:
         queryset = Medicine.objects.all()

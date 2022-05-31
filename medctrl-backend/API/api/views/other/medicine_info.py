@@ -4,7 +4,7 @@ from .medicine_info_json import get_medicine_info
 from .permissionFilter import permissionFilter
 from rest_framework import permissions
 
-
+#Returns a json file containing all infromation the detailed page and the filters need
 class Medicine_info(views.APIView):
     """
     Viewset for the Medicine info
@@ -12,8 +12,9 @@ class Medicine_info(views.APIView):
 
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
-    ]  # permissions.IsAuthenticated
+    ] 
 
+    #each time a get request is send, this function is executed.
     def get(self, request):
         user = self.request.user
         perm = permissionFilter(user)

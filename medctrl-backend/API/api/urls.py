@@ -7,7 +7,7 @@ from api.views.medicine_views import (
     MedicineViewSet,
 )
 from api.views.account_views import LoginAPI
-from api.views import SavedSelectionViewSet
+from api.views.other import SavedSelectionViewSet
 from api.views.other import Medicine_info
 from api.scraper.router import url_patterns as scraper_routes
 

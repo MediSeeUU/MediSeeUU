@@ -1,8 +1,9 @@
 import json
 
-
+#returns a list of json components dependign on permission level, this list is for the filters and for the detailed information page
 def get_medicine_info(perm):
 
+    #List with dictionaries
     General_Information = [
         {
             "data-key": "brandname",
@@ -42,6 +43,7 @@ def get_medicine_info(perm):
         },
     ]
 
+    #List with dictionaries
     Identifying_Information = [
         {
             "data-key": "emanumber",
@@ -57,6 +59,7 @@ def get_medicine_info(perm):
         },
     ]
 
+    #List with dictionaries
     Co_Rapporteur = [
         {
             "data-key": "rapporteur",
@@ -72,6 +75,7 @@ def get_medicine_info(perm):
         },
     ]
 
+    #List with dictionaries
     Medicine_Designations = [
         {
             "data-key": "atmp",
@@ -99,6 +103,7 @@ def get_medicine_info(perm):
         },
     ]
 
+    #List with dictionaries
     Legal_Information = [
         {
             "data-key": "legalscope",
@@ -114,6 +119,7 @@ def get_medicine_info(perm):
         },
     ]
 
+    #List with dictionaries
     Authorisation_Timing = [
         {
             "data-key": "acceleratedgranted",
@@ -147,6 +153,7 @@ def get_medicine_info(perm):
         },
     ]
 
+    #The Data object constructs the json that will be returned, each item is filterd on the acces level a user has
     data = {
         "General Information": [x for x in General_Information if filterFunc(perm, x)],
         "Identifying Information": [
@@ -164,7 +171,7 @@ def get_medicine_info(perm):
 
     return data
 
-
+#Checks wether the user has permission for this item
 def filterFunc(perm, item):
     for key, value in item.items():
         if value in perm:

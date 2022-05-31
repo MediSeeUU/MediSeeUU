@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from api.models.medicine_models import Medicine
 
-
+#Model for saving dataset to database
 class SavedSelection(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     eunumbers = models.ManyToManyField(Medicine)
