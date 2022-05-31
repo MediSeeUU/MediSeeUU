@@ -27,11 +27,17 @@ from api.models.medicine_models import (
     Historybrandname,
     Historymah,
     Historyorphan,
-    Historyprime
+    Historyprime,
 )
 from api.update_cache import update_cache
-from api.serializers.medicine_serializers import BrandnameSerializer, MAHSerializer, OrphanSerializer, PRIMESerializer
+from api.serializers.medicine_serializers import (
+    BrandnameSerializer,
+    MAHSerializer,
+    OrphanSerializer,
+    PRIMESerializer,
+)
 from datetime import date
+
 
 class ScraperMedicine(APIView):
     """
@@ -65,7 +71,7 @@ class ScraperMedicine(APIView):
                 ).first()
                 # if exists update the medicine otherwise add it,
                 # update works only on flexible variables
-                
+
                 if override:
                     status = self.add_medicine(medicine, current_medicine)
                 elif current_medicine:
@@ -88,7 +94,7 @@ class ScraperMedicine(APIView):
         current_authorisation = Authorisation.objects.filter(
             pk=data.get("eunumber")
         ).first()
-        
+
         medicine_serializer = MedicineFlexVarUpdateSerializer(current, data=data)
         authorisation_serializer = AuthorisationFlexVarUpdateSerializer(
             current_authorisation, data=data
@@ -116,7 +122,7 @@ class ScraperMedicine(APIView):
         """
         add medicine variables
         """
-        if (current):
+        if current:
             current_authorisation = Authorisation.objects.filter(
                 pk=data.get("eunumber")
             ).first()
@@ -125,7 +131,9 @@ class ScraperMedicine(APIView):
 
         # initialise serializers voor addition
         serializer = MedicineSerializer(current, data=data)
-        authorisation_serializer = AuthorisationSerializer(current_authorisation, data=data)
+        authorisation_serializer = AuthorisationSerializer(
+            current_authorisation, data=data
+        )
         # add variables to lookup table
         add_lookup(
             Lookupstatus, LookupStatusSerializer(None, data=data), data.get("status")
@@ -177,23 +185,58 @@ class ScraperMedicine(APIView):
             return False
         return True
 
+
 # if item does not exist in the database (model), add it with the serializer
 def add_lookup(model, serializer, item):
     lookup = model.objects.filter(pk=item).first()
     if not lookup and serializer.is_valid():
         serializer.save()
 
+
 def historyVariables(data):
-    add_or_update_history(Historybrandname, BrandnameSerializer, data.get("brandname"), "brandname", "brandnamedate", data.get("eunumber"))
-    add_or_update_history(Historymah, MAHSerializer, data.get("mah"), "mah", "mahdate", data.get("eunumber"))
-    add_or_update_history(Historyorphan, OrphanSerializer, data.get("orphan"), "orphan", "orphandate", data.get("eunumber"))
-    add_or_update_history(Historyprime, PRIMESerializer, data.get("prime"), "prime", "primedate", data.get("eunumber"))
+    add_or_update_history(
+        Historybrandname,
+        BrandnameSerializer,
+        data.get("brandname"),
+        "brandname",
+        "brandnamedate",
+        data.get("eunumber"),
+    )
+    add_or_update_history(
+        Historymah,
+        MAHSerializer,
+        data.get("mah"),
+        "mah",
+        "mahdate",
+        data.get("eunumber"),
+    )
+    add_or_update_history(
+        Historyorphan,
+        OrphanSerializer,
+        data.get("orphan"),
+        "orphan",
+        "orphandate",
+        data.get("eunumber"),
+    )
+    add_or_update_history(
+        Historyprime,
+        PRIMESerializer,
+        data.get("prime"),
+        "prime",
+        "primedate",
+        data.get("eunumber"),
+    )
+
 
 # currently the history variables do not have a date, this needs to be changed in the future if history is kept track of
 def add_or_update_history(model, serializer, item, name, datename, eunumber):
-    if (not item is None):
-        modelData = model.objects.filter(eunumber=eunumber).order_by(f"-{datename}").first()    
-        if ((not modelData) or item != getattr(modelData, name)):
-            serializer = serializer(None, {name: item, datename: date.today(), "eunumber": eunumber})
+    if not item is None:
+        modelData = (
+            model.objects.filter(eunumber=eunumber).order_by(f"-{datename}").first()
+        )
+        if (not modelData) or item != getattr(modelData, name):
+            serializer = serializer(
+                None, {name: item, datename: date.today(), "eunumber": eunumber}
+            )
             if serializer.is_valid():
                 serializer.save()
