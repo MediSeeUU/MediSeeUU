@@ -38,7 +38,7 @@ function TableView({
           data={data}
           amount={resultsPerPage}
           resultsPerPage={setResultsPerPage}
-          pageNumber={setPage}
+          setPage={setPage}
           currPage={loadedPage}
           clearEnabled={!select}
         />

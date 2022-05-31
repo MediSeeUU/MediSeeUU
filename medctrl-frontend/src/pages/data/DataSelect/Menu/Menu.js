@@ -213,7 +213,6 @@ class Menu extends React.Component {
                   key={uuidv4()}
                   id={index}
                   item={filter}
-                  options={this.props.list}
                   del={this.deleteFilter}
                   box={this.addFilterBox}
                   dbox={this.deleteFilterBox}
@@ -252,7 +251,6 @@ class Menu extends React.Component {
                   key={uuidv4()}
                   id={oid}
                   item={obj}
-                  options={this.props.list}
                   del={this.deleteSort}
                   sel={this.updateSortSelected}
                   order={this.updateSortOrder}

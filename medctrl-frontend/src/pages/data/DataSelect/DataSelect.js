@@ -10,6 +10,7 @@ import {
 } from '../../../shared/contexts/DataContext'
 import updateData from '../utils/update'
 
+// Data select component that displays all the datapoints that can be selected
 function DataSelect() {
   let utils = useTableUtils()
   let utilsUpdate = useTableUtilsUpdate()
@@ -25,31 +26,9 @@ function DataSelect() {
     queryRef.current = utils.search
   }
 
-  // Current data
+  // Update the data based on the search, filters and sorters
   const allData = useData()
   const updatedData = updateData(allData, utils, columnsRef.current)
-
-  // List of variable options
-  const list =
-    allData.length > 0 &&
-    Object.keys(allData[0]).map((item) => {
-      return (
-        <option key={item} value={item}>
-          {item}
-        </option>
-      )
-    })
-
-  //the menu button to be displayed with the table
-  const menu = (
-    <Menu
-      list={list}
-      filters={utils.filters}
-      sorters={utils.sorters}
-      updateFilters={(e) => utilsUpdate({ ...utils, filters: e })}
-      updateSorters={(e) => utilsUpdate({ ...utils, sorters: e })}
-    />
-  )
 
   //main body of the page
   return (
@@ -61,7 +40,12 @@ function DataSelect() {
       />
       <div tour="step-data-select" className="med-content-container">
         <h1 className="med-header">Data Selection Table</h1>
-        {menu}
+        <Menu
+          filters={utils.filters}
+          sorters={utils.sorters}
+          updateFilters={(e) => utilsUpdate({ ...utils, filters: e })}
+          updateSorters={(e) => utilsUpdate({ ...utils, sorters: e })}
+        />
         <hr className="med-top-separator" />
         {TableView({
           data: updatedData,

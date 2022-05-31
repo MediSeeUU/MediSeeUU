@@ -8,7 +8,7 @@ function ResultsSelector({
   data,
   amount,
   resultsPerPage,
-  pageNumber,
+  setPage,
   currPage,
   clearEnabled,
 }) {
@@ -90,7 +90,7 @@ function ResultsSelector({
     pageCount.push(
       <div
         key={'nr' + nr}
-        onClick={pageNumber.bind(null, nr)}
+        onClick={setPage.bind(null, nr)}
         className={
           nr === currPage
             ? 'med-table-page-button med-no-select med-page-selected'
@@ -110,7 +110,7 @@ function ResultsSelector({
       currPage += 1
     }
 
-    pageNumber(currPage)
+    setPage(currPage)
   }
 
   //sets currentpage to last page
@@ -119,7 +119,7 @@ function ResultsSelector({
       currPage -= 1
     }
 
-    pageNumber(currPage)
+    setPage(currPage)
   }
 
   const checkedState = useCheckedState()
