@@ -59,7 +59,7 @@ test('do a chart specific change', () => {
       settings={setting}
     />
   )
-  let target = screen.getByRole('combobox', { name: /x-axis/i })
+  let target = screen.getByRole('combobox', { name: /x\-axis/i })
 
   fireEvent.change(target, {
     target: {

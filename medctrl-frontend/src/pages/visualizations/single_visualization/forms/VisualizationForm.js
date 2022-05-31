@@ -92,10 +92,10 @@ function VisualizationForm(props) {
           className="med-select"
           onChange={handleChange}
         >
-          <option value="bar">Bar chart - Bar chart 2 variables</option>
+          <option value="bar">Bar chart 2 variables</option>
           <option value="line">Line chart</option>
           <option value="pie">Pie chart</option>
-          <option value="histogram">Histogram - Bar chart 1 variable</option>
+          <option value="histogram">Bar chart 1 variable</option>
         </select>
       </label>
       {renderChartOptions(settings.chartType)}

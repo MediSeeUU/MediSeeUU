@@ -19,7 +19,6 @@ import {
   VisualsUpdateContext,
 } from '../../../shared/contexts/DataContext'
 import GetUniqueCategories from '../single_visualization/utils/GetUniqueCategories'
-import { generateSeries } from '../single_visualization/utils/GenerateSeries'
 
 jest.mock('../mocks/observer')
 
@@ -39,22 +38,12 @@ let defaultVisuals = [
     },
     legendOn: true,
     labelsOn: false,
-    data: data,
-    series: [],
     uniqueCategories: unique,
-    key: '',
   },
 ]
 
 function contexts(children, contextData, pvisuals) {
   visuals = pvisuals ?? defaultVisuals
-  /* visuals[0].data = contextData
-  if (contextData.length <= 0) {
-    visuals = []
-  } else {
-    visuals[0].series = generateSeries(visuals[0].chartType, visuals[0])
-  }
-  console.log(visuals[0]) */
   updateVisuals = (value) => (visuals = value)
   return (
     <SelectedContext.Provider value={contextData}>
@@ -77,7 +66,7 @@ afterEach(() => {
   container = null
 })
 
-/* test('no data', () => {
+test('no data', () => {
   var page = contexts(<VisualizationPage />, [])
   ReactDOM.render(page, container)
 })
@@ -106,89 +95,13 @@ test('remove a visualization', () => {
   // initially the page has 1 visualization
   expect(visuals.length).toEqual(0)
 })
- */
+
 // update the visual context when rendering the visualization page with bar chart
-/* test('update visuals when rendering with bar', () => {
-  visuals = [
-    {
-      id: 0,
-      chartType: 'bar',
-      chartSpecificOptions: {
-        xAxis: 'DecisionYear',
-        yAxis: 'Rapporteur',
-        categoriesSelectedX: ['1995', '1996'],
-        categoriesSelectedY: unique['Rapporteur'],
-      },
-      legendOn: true,
-      labelsOn: false,
-      data: [],
-      series: [],
-      uniqueCategories: unique,
-      key: '',
-    },
-  ]
-
-  let page = contexts(<VisualizationPage />, data, visuals)
+test('update a visual', () => {
+  let page = contexts(<VisualizationPage />, data)
 
   ReactDOM.render(page, container)
 
-  expect(visuals[0].data.length).not.toEqual(0)
-  expect(visuals[0].series.length).not.toEqual(0)
-  expect(visuals[0].uniqueCategories.length).not.toEqual(0)
-})
-
-// update the visual context when rendering the visualization page with line chart
-test('update visuals when rendering with line', () => {
-  visuals = [
-    {
-      id: 1,
-      chartType: 'line',
-      chartSpecificOptions: {
-        xAxis: 'DecisionYear',
-        yAxis: 'Rapporteur',
-        categoriesSelectedX: ['1995', '1996'],
-        categoriesSelectedY: unique['Rapporteur'],
-      },
-      legendOn: true,
-      labelsOn: false,
-      data: [],
-      series: [],
-      uniqueCategories: [],
-      key: '',
-    },
-  ]
-
-  const page = contexts(<VisualizationPage />, data, visuals)
-
-  ReactDOM.render(page, container)
-
-  //check variable length in visuals
-  expect(visuals[0].data.length).not.toEqual(0)
-  expect(visuals[0].series.length).not.toEqual(0)
-  expect(visuals[0].uniqueCategories.length).not.toEqual(0)
-}) */
-
-// update the visual context when rendering the visualization page with pie chart
-test('update visuals when rendering with pie', () => {
-  visuals = [
-    {
-      id: 1,
-      chartType: 'pie',
-      chartSpecificOptions: {
-        xAxis: 'Rapporteur',
-        categoriesSelectedX: unique['Rapporteur'],
-      },
-      legendOn: true,
-      labelsOn: false,
-    },
-  ]
-
-  const page = contexts(<VisualizationPage />, data, visuals)
-
-  ReactDOM.render(page, container)
-
-  //check variable length in visuals
-  expect(visuals[0].data.length).not.toEqual(0)
-  expect(visuals[0].series.length).not.toEqual(0)
-  expect(visuals[0].uniqueCategories.length).not.toEqual(0)
-})
+  let t = screen.getByRole('combobox', { name: /visualization type/i })
+  fireEvent.change(t, { target: { name: 'chartType', value: 'line' }})
+}) 

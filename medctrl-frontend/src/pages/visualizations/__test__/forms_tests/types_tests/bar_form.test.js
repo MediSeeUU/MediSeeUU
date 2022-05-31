@@ -73,7 +73,7 @@ test('xaxis change', () => {
       chartSpecificOptions={chartSpecificOptions}
     />
   )
-  let target = screen.getByRole('combobox', { name: /x-axis/i })
+  let target = screen.getByRole('combobox', { name: /x\-axis/i })
   fireEvent.change(target, { target: { name: 'xAxis', value: 'Rapporteur' } })
 })
 
@@ -86,6 +86,6 @@ test('yaxis change', () => {
       chartSpecificOptions={chartSpecificOptions}
     />
   )
-  let target = screen.getByRole('combobox', { name: /y-axis/i })
+  let target = screen.getByRole('combobox', { name: /y\-axis/i })
   fireEvent.change(target, { target: { name: 'yAxis', value: 'DecisionYear' } })
 })

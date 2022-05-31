@@ -1,26 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {
-  cleanup,
-  render,
   fireEvent,
-  waitFor,
   screen,
-  getByRole,
-  getByText,
 } from '@testing-library/react'
 import SingleVisualization from '../single_visualization/SingleVisualization'
 import ResizeObserver from '../mocks/observer'
 
 import data from '../../../testJson/data.json'
 import GetUniqueCategories from '../single_visualization/utils/GetUniqueCategories'
-import generateSeries from '../single_visualization/utils/GenerateSeries'
 
 jest.mock('../mocks/observer')
 
 let container
 let setting
-let unique = GetUniqueCategories(data)
+const unique = GetUniqueCategories(data)
 beforeEach(() => {
   container = document.createElement('div')
   document.body.append(container)
