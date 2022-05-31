@@ -48,11 +48,13 @@ class ScraperProcedure(APIView):
                     .filter(procedurecount=procedure.get("procedurecount"))
                     .first()
                 )
-                if current_procedure:
+                if override:
+                    status = self.add_procedure(procedure, current_procedure)
+                elif current_procedure:
                     status = self.update_flex_procedure(procedure, current_procedure)
                     self.update_null_values(procedure)
                 else:
-                    status = self.add_procedure(procedure)
+                    status = self.add_procedure(procedure, None)
 
                 # if status is failed, add medicine to the failed list
                 if not status:
@@ -78,12 +80,12 @@ class ScraperProcedure(APIView):
             return False
 
     # add procedure to the database
-    def add_procedure(self, data):
+    def add_procedure(self, data, current):
         """
         add variables for procedure
         """
         # initialise serializer
-        serializer = ProcedureSerializer(None, data=data)
+        serializer = ProcedureSerializer(current, data=data)
         # add variable to lookup table
         add_lookup(
             Lookupproceduretype,

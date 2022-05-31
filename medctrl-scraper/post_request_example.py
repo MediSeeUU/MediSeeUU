@@ -45,7 +45,7 @@ API_HEADERS={
 }
 
 # sending post request and saving response as response object
-r = requests.post(url = API_ENDPOINT, headers= API_HEADERS, data = data)
+r = requests.post(url = API_ENDPOINT, headers= API_HEADERS, data = scraper_data)
 
 #write failed rows to output file, (so this can be checked later)
 with open('failedMedicines.txt', 'w') as f:

@@ -1,19 +1,19 @@
+import { useState } from 'react'
 import Table from '../../../shared/table/table'
 import ResultsSelector from './ResultsSelector'
 
 //if items are selected in the select data table, these will show up here, when nothing is selected a label will be shown
 export default function TableView({
   data,
-  resultsPerPage,
-  loadedPage,
-  setPage,
-  setResultsPerPage,
   setSorters,
   select,
   text,
   baseMenu,
   saveMenu,
 }) {
+  const [resultsPerPage, setResultsPerPage] = useState(25) // Amount of database hits shown per page
+  const [loadedPage, setPage] = useState(1) // Current page
+
   if (!data || data.length === 0) {
     return (
       <>

@@ -3,10 +3,24 @@ import '../../shared/shared.css'
 import Search from '../../shared/Search/Search'
 import { useNavigate } from 'react-router-dom'
 import { useTourRun } from '../../core/tour/DashboardTour'
+import {
+  useTableUtils,
+  useTableUtilsUpdate,
+} from '../../shared/contexts/DataContext'
 
 function HomePage() {
   const navigate = useNavigate()
   const runTour = useTourRun()
+
+  let utils = useTableUtils()
+  let utilsUpdate = useTableUtilsUpdate()
+
+  // Set the query in the utils context and navigate to the datapage
+  const search = (query) => {
+    utilsUpdate({ ...utils, search: query })
+    navigate('/data')
+  }
+
   return (
     // Homepage components, contains search bar and article containers
     <div className="med-home-content">
@@ -32,10 +46,7 @@ function HomePage() {
         </p>
       </div>
 
-      <Search
-        tour="step-search"
-        update={(query) => navigate('/data?q=' + query)}
-      />
+      <Search tour="step-search" update={search} />
 
       <div className="med-content-container">
         <h1>Tools</h1>

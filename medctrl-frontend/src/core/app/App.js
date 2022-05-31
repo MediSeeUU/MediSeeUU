@@ -15,7 +15,6 @@ function App() {
         <DashboardTour>
           <Header />
           <SideNavigation />
-
           <main className="med-content">
             <div className="med-content-wrapper">
               <DataProvider>

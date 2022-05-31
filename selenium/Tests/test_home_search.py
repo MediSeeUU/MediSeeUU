@@ -24,18 +24,14 @@ class TestHomeSearch(WebDriverSetup):
   
   # check if the search forwards properly
   def test_search_forward(self):
-    home_page = HomePage(self.driver)
-    home_page.input_query("100")
-    home_page.search()
-    assert home_page.current_url() == "http://localhost:3000/data?q=100"
-    data_page = DataPage(self.driver)
-    self.driver.get("http://localhost:3000/data?q=100")
-    columns = data_page.column_options()
-    for i in range(data_page.amount_of_rows(0)):
+    self.home_page.input_query("100")
+    self.home_page.search()
+    columns = self.home_page.column_options()
+    for i in range(self.home_page.amount_of_rows(0)):
       inText = False
       for column in columns:
-        data_page.change_column(0, 1, column)
-        if ("100" in data_page.table_value(0, i + 1, 1).lower()):
+        self.home_page.change_column(0, 1, column)
+        if ("100" in self.home_page.table_value(0, i + 1, 1).lower()):
           inText = True
           break
       assert inText
