@@ -8,7 +8,7 @@ import {
   useTableUtils,
   useTableUtilsUpdate,
 } from '../../../shared/contexts/DataContext'
-import updateData from '../utils/update'
+import updateData from '../Utils/update'
 
 function DataSelect() {
   let utils = useTableUtils()

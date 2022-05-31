@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import TableView from './TableView'
 import ExportMenu from '../ExportMenu/ExportMenu'
 import SaveMenu from '../SaveMenu/SaveMenu'
-import sortData from '../utils/sorting'
+import sortData from '../Utils/sorting'
 
 function SelectedData({ selectedData }) {
   const [sorters, setSorters] = useState([{ selected: '', order: 'asc' }]) // Current sorters
