@@ -1,7 +1,7 @@
 import { useStructure } from './contexts/DataContext'
 import { v4 } from 'uuid'
 
-// function based component, represents a select element. All of the select options
+// Function based component, represents a select element. All of the select options
 // are subdivided into categories, each option's value is the key at which to access
 // the corresponding data field in the context, but the display name is a more
 // user friendly version of the same name

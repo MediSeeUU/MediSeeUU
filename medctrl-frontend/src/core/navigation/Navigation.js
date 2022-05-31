@@ -10,8 +10,8 @@ import handleLogOut from '../handlers/LogoutHandler'
 // Class based component representing the entire navigation side bar
 class SideNavigation extends React.Component {
   // Initialize the navigation bar in the collapsed position
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     // Get login status from sessionStorage
     let username = sessionStorage.getItem('username')

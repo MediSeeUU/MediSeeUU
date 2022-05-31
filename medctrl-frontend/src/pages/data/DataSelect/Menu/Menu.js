@@ -9,7 +9,7 @@ class Menu extends React.Component {
   constructor(props) {
     super(props)
 
-    // Default filter object
+    // Default filter and sort objects
     this.filterObject = [
       {
         selected: '',
@@ -24,7 +24,6 @@ class Menu extends React.Component {
       showModal: false,
       filters: props.filters,
       sorters: props.sorters,
-      showAddSort: true,
     }
 
     // Binding of functions
@@ -58,9 +57,6 @@ class Menu extends React.Component {
     this.setState((prevState) => ({
       sorters: prevState.sorters.concat(this.sortObject),
     }))
-    if (this.state.sorters.length >= 3) {
-      this.setState({ showAddSort: false })
-    }
   }
 
   // Standard function to update element in state with given id in property
@@ -113,7 +109,6 @@ class Menu extends React.Component {
   // Deletes specified sort item from the menu
   deleteSort = (id) => {
     this.removeElement('sorters', id)
-    this.setState({ showAddSort: true })
   }
 
   // Updates the selected item of the specified filter item
@@ -128,7 +123,6 @@ class Menu extends React.Component {
     this.updateElement('filters', id, (obj) => {
       let newInput = [...obj.input]
       newInput[index].var = value
-
       return { ...obj, input: newInput }
     })
   }
@@ -149,31 +143,21 @@ class Menu extends React.Component {
 
   // Update the filters and sorters which will update the data displayed in the table
   apply() {
-    this.props.updateFilters(this.state.filters)
-    this.props.updateSorters(this.state.sorters)
+    this.props.update(this.state.filters, this.state.sorters)
     this.handleCloseModal()
   }
 
-  // Update the (local) filters and sorters which will update the data displayed in the table
+  // Update the filters and sorters which will update the data displayed in the table
   clear() {
-    this.props.updateFilters([
-      {
-        selected: '',
-        input: [{ var: '', filterRange: 'from' }],
-        filterType: '',
-      },
-    ])
-    this.props.updateSorters([{ selected: '', order: 'asc' }])
+    this.props.update(this.state.filters, this.state.sorters)
     this.setState({
       filters: this.filterObject,
       sorters: this.sortObject,
-      showAddSort: true,
     })
     this.handleCloseModal()
   }
 
   render() {
-    // Returns the menu in HTML
     return (
       <>
         <button
@@ -256,7 +240,7 @@ class Menu extends React.Component {
                   order={this.updateSortOrder}
                 />
               ))}
-              {this.state.showAddSort && (
+              {this.state.sorters.length < 4 && (
                 <label
                   className="med-able-menu-add-sort-button med-primary-text"
                   onClick={this.addSort}

@@ -30,7 +30,15 @@ function DataSelect() {
   const allData = useData()
   const updatedData = updateData(allData, utils, columnsRef.current)
 
-  //main body of the page
+  // Handler that is called after the menu is applied
+  const menuUpdate = (filters, sorters) => {
+    utilsUpdate({
+      ...utils,
+      filters: filters,
+      sorters: sorters
+    })
+  }
+
   return (
     <>
       <Search
@@ -43,8 +51,7 @@ function DataSelect() {
         <Menu
           filters={utils.filters}
           sorters={utils.sorters}
-          updateFilters={(e) => utilsUpdate({ ...utils, filters: e })}
-          updateSorters={(e) => utilsUpdate({ ...utils, sorters: e })}
+          update={menuUpdate}
         />
         <hr className="med-top-separator" />
         {TableView({
