@@ -7,7 +7,6 @@ import {
 } from '../contexts/DataContext'
 import './table.css'
 import { Link } from 'react-router-dom'
-import '../../core/login/connectionServer'
 import VariableSelect from '../VariableSelect/VariableSelect'
 
 //Function based component, returns table

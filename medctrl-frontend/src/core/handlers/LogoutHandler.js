@@ -1,9 +1,10 @@
-//creates JSON and communicts with server
+// Logout handler
 async function handleLogOut() {
+  // Format token string
   let Token = sessionStorage.getItem('token')
   let res = 'Token ' + Token
 
-  // call to server : /api/account/logout/
+  // Call to server: /api/account/logout/
   const response = await fetch(
     `${process.env.PUBLIC_URL}/api/account/logout/`,
     {
@@ -13,14 +14,17 @@ async function handleLogOut() {
     }
   )
 
+  // If the response is ok, remove the session
   if (response.ok || response.status === 401) {
     setSession()
   }
 }
 
+// Remove session items
 function setSession() {
   // force the data context to fetch the most recent data
   window.location.reload(false)
+
   sessionStorage.removeItem('username')
   sessionStorage.removeItem('access_level')
   sessionStorage.removeItem('token')
