@@ -149,7 +149,11 @@ class Menu extends React.Component {
 
   // Update the filters and sorters which will update the data displayed in the table
   apply() {
-    this.props.update({...this.props.utils, filters: this.state.filters, sorters: this.state.sorters})
+    this.props.update({
+      ...this.props.utils,
+      filters: this.state.filters,
+      sorters: this.state.sorters,
+    })
     this.handleCloseModal()
   }
 

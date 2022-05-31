@@ -41,13 +41,7 @@ function DataSelect() {
     })
 
   //the menu button to be displayed with the table
-  const menu = (
-    <Menu
-      list={list}
-      utils={utils}
-      update={utilsUpdate}
-    />
-  )
+  const menu = <Menu list={list} utils={utils} update={utilsUpdate} />
 
   //main body of the page
   return (
