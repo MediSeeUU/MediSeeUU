@@ -1,15 +1,14 @@
-import HomePage from '../../pages/home/HomePage'
-import InfoPage from '../../pages/info/InfoPage'
-import DataPage from '../../pages/data/DataPage'
-import SettingsPage from '../../pages/settings/SettingsPage'
-import AccountPage from '../../pages/account/AccountPage'
-import VisualizationPage from '../../pages/visualizations/VisualizationPage'
-import DetailedInfoPage from '../../pages/detailed-info/DetailedInfoPage'
-import ErrorPage from '../../pages/error/ErrorPage'
-
 import { Routes, Route } from 'react-router-dom'
+import HomePage from '../pages/home/HomePage'
+import InfoPage from '../pages/info/InfoPage'
+import DataPage from '../pages/data/DataPage'
+import SettingsPage from '../pages/settings/SettingsPage'
+import AccountPage from '../pages/account/AccountPage'
+import VisualizationPage from '../pages/visualizations/VisualizationPage'
+import DetailedInfoPage from '../pages/detailed-info/DetailedInfoPage'
+import ErrorPage from '../pages/error/ErrorPage'
 
-function AllRoutes() {
+function Routing() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
@@ -24,4 +23,4 @@ function AllRoutes() {
   )
 }
 
-export default AllRoutes
+export default Routing

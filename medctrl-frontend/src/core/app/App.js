@@ -1,7 +1,7 @@
 import './App.css'
 import { BrowserRouter } from 'react-router-dom'
 import SideNavigation from '../navigation/Navigation'
-import AllRoutes from '../routes/AllRoutes.js'
+import Routing from '../Routing.js'
 import Header from '../header/Header'
 import Footer from '../footer/Footer'
 import { DataProvider } from '../../shared/contexts/DataContext'
@@ -18,7 +18,7 @@ function App() {
           <main className="med-content">
             <div className="med-content-wrapper">
               <DataProvider>
-                <AllRoutes />
+                <Routing />
               </DataProvider>
             </div>
             <Footer />
