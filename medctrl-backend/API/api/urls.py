@@ -11,11 +11,14 @@ from api.views.other import SavedSelectionViewSet
 from api.views.other import Medicine_info
 from api.scraper.router import url_patterns as scraper_routes
 
+
+#Direct routes (viewSets)
 router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
 router.register(r"procedure/(?P<eunumber>\d+)", ProcedureViewSet, basename="procedure")
 router.register(r"saveselection", SavedSelectionViewSet, basename="saveselection")
 
+#indirect routes (../name.as_vieuw)
 urlpatterns = [
     path("", include(router.urls)),
     # Account routes
