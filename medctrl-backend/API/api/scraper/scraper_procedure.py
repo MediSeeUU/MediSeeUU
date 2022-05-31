@@ -34,7 +34,10 @@ class ScraperProcedure(APIView):
         """
         # initialize list to return failed updates/adds, so these can be checked manually
         failed_procedures = []
-        for procedure in request.data:
+        override = request.data.get("override")
+        procedure_list = request.data.get("data")
+        # get "procedure" key from request
+        for procedure in procedure_list:
             try:
                 # check if procedure already exists, procedures are
                 # unique on the combination eunumber procedurecount
@@ -43,10 +46,12 @@ class ScraperProcedure(APIView):
                     .filter(procedurecount=procedure.get("procedurecount"))
                     .first()
                 )
-                if current_procedure:
+                if override:
+                    status = self.add_procedure(procedure, current_procedure)
+                elif current_procedure:
                     status = self.update_flex_procedure(procedure, current_procedure)
                 else:
-                    status = self.add_procedure(procedure)
+                    status = self.add_procedure(procedure, None)
 
                 # if status is failed, add medicine to the failed list
                 if not status:
@@ -71,12 +76,12 @@ class ScraperProcedure(APIView):
             return False
 
     # add procedure to the database
-    def add_procedure(self, data):
+    def add_procedure(self, data, current):
         """
         add variables for procedure
         """
         # initialise serializer
-        serializer = ProcedureSerializer(None, data=data)
+        serializer = ProcedureSerializer(current, data=data)
         # add variable to lookup table
         add_lookup(
             Lookupproceduretype,
