@@ -13,7 +13,7 @@ async function handleLogOut() {
     }
   )
 
-  if (response.ok) {
+  if (response.ok || response.status === 401) {
     setSession()
   }
 }

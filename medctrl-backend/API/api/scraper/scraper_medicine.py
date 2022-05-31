@@ -78,6 +78,7 @@ class ScraperMedicine(APIView):
             except:
                 failed_medicines.append(medicine)
 
+        update_cache()
         return Response(failed_medicines, status=200)
 
     def update_flex_medicine(self, data, current):

@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import { useSelectedData } from '../../../shared/contexts/DataContext'
 import TableView from './TableView'
 import ExportMenu from '../ExportMenu/ExportMenu'
+import SaveMenu from '../SaveMenu/SaveMenu'
 import { useColumnSelection } from '../../../shared/contexts/DataContext'
 import updateData from '../Utils/update'
 
@@ -41,7 +42,8 @@ function SelectedData({ allSelectedData }) {
         setSorters: setSorters,
         select: false,
         text: 'No data to display, please clear your search or filters.',
-        menu: <ExportMenu selectedData={selectedData} />,
+        baseMenu: <ExportMenu selectedData={selectedData} />,
+        saveMenu: <SaveMenu selectedData={selectedData} />,
       })}
     </div>
   )

@@ -7,6 +7,7 @@ import {
 } from '../contexts/DataContext'
 import './table.css'
 import { Link } from 'react-router-dom'
+import '../../core/login/connectionServer'
 import VariableSelect from '../VariableSelect/VariableSelect'
 
 //Function based component, returns table
@@ -16,7 +17,8 @@ function DisplayTable({
   searchTable,
   amountPerPage,
   currentPage,
-  menu,
+  baseMenu,
+  saveMenu,
   setSorters,
 }) {
   //throw error if parameters not defined
@@ -29,6 +31,9 @@ function DisplayTable({
   useEffect(() => {
     setLocalTableData(data)
   }, [data])
+
+  let token = sessionStorage.getItem('token')
+  let loggedin = token != null
 
   const checkedState = useCheckedState()
   const setCheckedState = useCheckedStateUpdate()
@@ -141,14 +146,14 @@ function DisplayTable({
           onClick={() => addColumn()}
           data-testid="add-column"
         />
-
         <i
           className="med-add-remove-button bx bxs-minus-square med-primary-text"
           onClick={() => removeColumn()}
           data-testid="remove-column"
         />
 
-        {menu}
+        {baseMenu}
+        {loggedin && saveMenu}
       </div>
 
       <table className="med-table">
