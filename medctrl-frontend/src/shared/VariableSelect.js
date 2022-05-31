@@ -1,4 +1,4 @@
-import { useStructure } from '../contexts/DataContext'
+import { useStructure } from './contexts/DataContext'
 import { v4 } from 'uuid'
 
 // function based component, represents a select element. All of the select options

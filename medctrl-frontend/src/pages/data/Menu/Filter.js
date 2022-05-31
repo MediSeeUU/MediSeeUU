@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-import VariableSelect from '../../../shared/VariableSelect/VariableSelect'
+import VariableSelect from '../../../shared/VariableSelect'
 import FilterInputs from './FilterComponents/FilterInputs'
 import { useStructure } from '../../../shared/contexts/DataContext'
 

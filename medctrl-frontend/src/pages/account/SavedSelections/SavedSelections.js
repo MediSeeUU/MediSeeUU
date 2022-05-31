@@ -3,14 +3,18 @@ import SavedSelection from './SavedSelection'
 import DetailGroup from '../../detailed-info/InfoComponents/DetailGroup'
 import './SavedSelections.css'
 
-export default function SavedSelections(props) {
-  const [savedSelections, setsavedSelections] = useState(null)
+// List of saved selections
+function SavedSelections() {
+  // Keep a state with the saved selections
+  const [savedSelections, setSavedSelections] = useState(null)
 
+  // While rendering load in the saved selections
   useEffect(() => {
-    // Fetch the saved selections from the server
     async function fetchSavedSelections() {
+      // Obtain token from session storage
       let token = sessionStorage.getItem('token')
 
+      // Fetch the saved selections from the server
       const response = await fetch(
         `${process.env.PUBLIC_URL}/api/saveselection/`,
         {
@@ -21,13 +25,15 @@ export default function SavedSelections(props) {
           },
         }
       )
+
+      // If the response is ok, parse the JSON response and put in state
       if (response.ok) {
         const json = await response.json()
-        setsavedSelections(json)
+        setSavedSelections(json)
       }
     }
     fetchSavedSelections()
-  }, [setsavedSelections])
+  }, [setSavedSelections])
 
   return (
     <div className="med-saved-selection-container">
@@ -55,3 +61,5 @@ export default function SavedSelections(props) {
     </div>
   )
 }
+
+export default SavedSelections

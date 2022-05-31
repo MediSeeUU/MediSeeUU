@@ -8,6 +8,7 @@ import VisualizationPage from '../pages/visualizations/VisualizationPage'
 import DetailedInfoPage from '../pages/detailed-info/DetailedInfoPage'
 import ErrorPage from '../pages/error/ErrorPage'
 
+// Returns the routing information for the navigation
 function Routing() {
   return (
     <Routes>
