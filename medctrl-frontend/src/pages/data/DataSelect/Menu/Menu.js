@@ -149,7 +149,7 @@ class Menu extends React.Component {
 
   // Update the filters and sorters which will update the data displayed in the table
   clear() {
-    this.props.update(this.state.filters, this.state.sorters)
+    this.props.update(this.filterObject, this.sortObject)
     this.setState({
       filters: this.filterObject,
       sorters: this.sortObject,
@@ -166,7 +166,6 @@ class Menu extends React.Component {
         >
           <i className="bx bx-cog med-button-image"></i>Filter & Sort
         </button>
-
         <ReactModal
           className="med-table-menu-modal"
           isOpen={this.state.showModal}
