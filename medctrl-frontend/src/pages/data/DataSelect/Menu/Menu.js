@@ -47,7 +47,7 @@ function Menu({filters, sorters, update}) {
         className="med-primary-solid med-bx-button med-data-button"
         onClick={openModal}
       >
-        <i className="bx bx-cog med-button-image"></i>Filter & Sort
+        <i className="bx bx-cog med-button-image"/>Filter & Sort
       </button>
       <ReactModal
         className="med-table-menu-modal"

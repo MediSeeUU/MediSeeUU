@@ -1,7 +1,7 @@
 import VariableSelect from '../../../../../shared/VariableSelect'
 
-// Returns the filter item in HTML
-function displayItem(props) {
+// Function based component that renders a sort item
+function Sort(props) {
   return (
     <div id={props.id} className="med-table-menu-sort-item">
       <VariableSelect
@@ -32,4 +32,4 @@ function displayItem(props) {
   )
 }
 
-export default displayItem
+export default Sort
