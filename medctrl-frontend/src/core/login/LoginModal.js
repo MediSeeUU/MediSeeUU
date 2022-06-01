@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ReactModal from 'react-modal'
 import MedModal from '../../shared/MedModal/MedModal'
 import NavLink from '../navigation/NavComponents/NavLink'
 import LoginForm from './LoginForm'

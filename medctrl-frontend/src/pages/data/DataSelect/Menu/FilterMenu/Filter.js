@@ -54,7 +54,7 @@ function PickFilter(props, i) {
   //TODO: determine the best place to catch any illegal datatypes
   const possibleTypes = ['number', 'string', 'date', 'bool']
 
-  // if data type exists, make filter of correct type. Otherwise use text filter.
+  // If data type exists, make filter of correct type. Otherwise use text filter.
   props.item.filterType = possibleTypes.includes(dataType) ? dataType : 'string'
 
   // NOTE: if datatype 'string' is called 'text', it can be passed directly to abstract filter function??
@@ -76,7 +76,7 @@ function DetermineFilterRange(props) {
       className="filter-range"
       onChange={(e) => {
         props.container.item.input[props.i].filterRange = e.target.value
-        props.container.sel(props.container.id, props.container.item.selected) // Force component rerender
+        props.container.sel(props.container.id, props.container.item.selected)
       }}
       defaultValue={props.container.item.input[props.i].filterRange}
     >
@@ -86,10 +86,11 @@ function DetermineFilterRange(props) {
   )
 }
 
+// Function that returns the data type of a variable
 function GetDataType(selected) {
   let structData = useStructure()
 
-  //Loop over all categories and array entries to find the selected variable
+  // Iterate over the categories and array entries to find the selected variable
   for (let category in structData) {
     for (var i = 0; i < structData[category].length; i++) {
       if (structData[category][i]['data-front-key'] === selected) {

@@ -43,6 +43,10 @@ input[type='checkbox'] {
   user-select: none;
 }
 
+.ReactModal__Overlay {
+  z-index: 100000;
+}
+
 /* Default Color Definitions */
 
 :root {

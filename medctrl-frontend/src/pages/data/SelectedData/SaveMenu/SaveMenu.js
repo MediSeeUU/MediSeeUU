@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ReactModal from 'react-modal'
 import './SaveMenu.css'
 import SaveDialog from './SaveDialog'
 import MedModal from '../../../../shared/MedModal/MedModal'

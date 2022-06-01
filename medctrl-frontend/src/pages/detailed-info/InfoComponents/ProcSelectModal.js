@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ReactModal from 'react-modal'
 import { v4 } from 'uuid'
 import MedModal from '../../../shared/MedModal/MedModal'
 

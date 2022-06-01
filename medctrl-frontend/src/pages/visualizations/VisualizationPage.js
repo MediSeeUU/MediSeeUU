@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import ReactModal from 'react-modal'
 import SelectedData from '../data/SelectedData/SelectedData'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -14,6 +13,7 @@ import GetUniqueCategories from './single_visualization/utils/GetUniqueCategorie
 import GenerateBarSeries from './single_visualization/data_interfaces/BarInterface'
 import { useVisuals, useVisualsUpdate } from '../../shared/contexts/DataContext'
 import { generateSeries } from './single_visualization/SingleVisualization'
+import MedModal from '../../shared/MedModal/MedModal'
 
 // the component that contains all the visualizations
 function VisualizationPage() {
@@ -195,22 +195,14 @@ function VisualizationPage() {
     const displayDataSelectedMessage = renderDataSelectedMessage()
     return (
       <div>
-        <ReactModal
+        <MedModal
+          showModal={modal}
+          closeModal={() => setModal(false)}
           className="visualize-modal"
-          isOpen={modal}
-          onRequestClose={() => setModal(false)}
-          ariaHideApp={false}
-          style={{
-            modal: {},
-            overlay: {
-              background: 'rgba(0, 0, 0, 0.2)',
-              backdropFilter: 'blur(2px)',
-            },
-          }}
         >
           <i className="bx bx-x close-icon" onClick={() => setModal(false)}></i>
-          <SelectedData allSelectedData={tableData} />
-        </ReactModal>
+          <SelectedData selectedData={tableData} />
+        </MedModal>
         <Container>
           {displayDataSelectedMessage}
           {displayItems}

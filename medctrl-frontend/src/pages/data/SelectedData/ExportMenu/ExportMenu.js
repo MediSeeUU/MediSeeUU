@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ReactModal from 'react-modal'
 import './ExportMenu.css'
 import ExportDialog from './ExportDialog'
 import MedModal from '../../../../shared/MedModal/MedModal'

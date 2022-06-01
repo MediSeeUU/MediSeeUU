@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ReactModal from 'react-modal'
+import MedModal from '../../../../shared/MedModal/MedModal'
 import FilterMenu from './FilterMenu/FilterMenu'
 import './Menu.css'
 import SortMenu from './SortMenu/SortMenu'
@@ -50,19 +50,10 @@ function Menu({ filters, sorters, update }) {
         <i className="bx bx-cog med-button-image" />
         Filter & Sort
       </button>
-      <ReactModal
+      <MedModal
+        showModal={showModal}
+        closeModal={closeModal}
         className="med-table-menu-modal"
-        isOpen={showModal}
-        onRequestClose={closeModal}
-        ariaHideApp={false}
-        contentLabel="Menu"
-        style={{
-          modal: {},
-          overlay: {
-            background: 'rgba(0, 0, 0, 0.2)',
-            backdropFilter: 'blur(2px)',
-          },
-        }}
       >
         <div className="med-filter-menu">
           <FilterMenu
@@ -96,7 +87,7 @@ function Menu({ filters, sorters, update }) {
           setSorters={setSorters}
           defaultObj={sortObject}
         />
-      </ReactModal>
+      </MedModal>
     </>
   )
 }
