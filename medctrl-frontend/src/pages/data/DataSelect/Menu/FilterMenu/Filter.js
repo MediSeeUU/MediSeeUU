@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
-import VariableSelect from '../../../../shared/VariableSelect'
+import VariableSelect from '../../../../../shared/VariableSelect'
 import FilterInputs from './FilterComponents/FilterInputs'
-import { useStructure } from '../../../../shared/contexts/DataContext'
+import { useStructure } from '../../../../../shared/contexts/DataContext'
 
 // Returns all filter input boxes in HTML
 function filtersToHTML(props) {
