@@ -12,7 +12,7 @@ class Menu extends React.Component {
     // Default filter object
     this.filterObject = [
       {
-        selected: '',
+        selected: 'BrandName',
         input: [{ var: '', filterRange: 'from' }],
         filterType: '',
       },
@@ -149,21 +149,21 @@ class Menu extends React.Component {
 
   // Update the filters and sorters which will update the data displayed in the table
   apply() {
-    this.props.updateFilters(this.state.filters)
-    this.props.updateSorters(this.state.sorters)
+    this.props.update({
+      ...this.props.utils,
+      filters: this.state.filters,
+      sorters: this.state.sorters,
+    })
     this.handleCloseModal()
   }
 
   // Update the (local) filters and sorters which will update the data displayed in the table
   clear() {
-    this.props.updateFilters([
-      {
-        selected: '',
-        input: [{ var: '', filterRange: 'from' }],
-        filterType: '',
-      },
-    ])
-    this.props.updateSorters([{ selected: '', order: 'asc' }])
+    this.props.update({
+      ...this.props.utils,
+      filters: this.filterObject,
+      sorters: this.sortObject,
+    })
     this.setState({
       filters: this.filterObject,
       sorters: this.sortObject,

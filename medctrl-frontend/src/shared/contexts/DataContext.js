@@ -161,7 +161,7 @@ export function StaticDataProvider({ children, allData, structData }) {
     search: '',
     filters: [
       {
-        selected: '',
+        selected: 'BrandName',
         input: [{ var: '', filterRange: 'from' }],
         filterType: '',
       },
