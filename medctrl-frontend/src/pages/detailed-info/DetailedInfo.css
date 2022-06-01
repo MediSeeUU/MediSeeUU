@@ -278,18 +278,6 @@
   vertical-align: middle;
 }
 
-/* for the proc select modal */
-
-.med-proc-select-modal {
-  position: absolute;
-  top: 19%;
-  bottom: 19%;
-  left: 15%;
-  right: 15%;
-  overflow: hidden;
-  outline: none;
-}
-
 /* for the proc select dialog */
 
 .med-proc-select-dialog {

@@ -5,7 +5,7 @@ import './Menu.css'
 import SortMenu from './SortMenu/SortMenu'
 
 // Function based component which renders the filter and sort menu
-function Menu({filters, sorters, update}) {
+function Menu({ filters, sorters, update }) {
   // Default filter object
   const filterObject = [
     {
@@ -47,7 +47,8 @@ function Menu({filters, sorters, update}) {
         className="med-primary-solid med-bx-button med-data-button"
         onClick={openModal}
       >
-        <i className="bx bx-cog med-button-image"/>Filter & Sort
+        <i className="bx bx-cog med-button-image" />
+        Filter & Sort
       </button>
       <ReactModal
         className="med-table-menu-modal"
@@ -64,7 +65,11 @@ function Menu({filters, sorters, update}) {
         }}
       >
         <div className="med-filter-menu">
-          <FilterMenu filters={localFilters} setFilters={setFilters} defaultObj={filterObject} />
+          <FilterMenu
+            filters={localFilters}
+            setFilters={setFilters}
+            defaultObj={filterObject}
+          />
           <div className="med-table-menu-filter-button-container">
             <button
               className="med-table-menu-button med-table-menu-apply-button med-primary-solid"
@@ -86,7 +91,11 @@ function Menu({filters, sorters, update}) {
             </button>
           </div>
         </div>
-        <SortMenu sorters={localSorters} setSorters={setSorters} defaultObj={sortObject} /> 
+        <SortMenu
+          sorters={localSorters}
+          setSorters={setSorters}
+          defaultObj={sortObject}
+        />
       </ReactModal>
     </>
   )

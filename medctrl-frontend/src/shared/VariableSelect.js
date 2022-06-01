@@ -15,7 +15,11 @@ export default function VariableSelect({
   const optGroups = []
 
   for (let category in variableCategories) {
-    const options = [<option value="" hidden>Choose a variable...</option>]
+    const options = [
+      <option value="" hidden>
+        Choose a variable...
+      </option>,
+    ]
 
     for (let varIndex in variableCategories[category]) {
       const variable = variableCategories[category][varIndex]

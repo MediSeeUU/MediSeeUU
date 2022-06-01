@@ -1,15 +1,5 @@
 /* for the main dialog & the dialog description */
 
-.med-save-modal {
-  position: absolute;
-  top: 19%;
-  bottom: 19%;
-  left: 15%;
-  right: 15%;
-  overflow: hidden;
-  outline: none;
-}
-
 .med-save-dialog {
   background-color: var(--med-dialog-background);
   width: 350px;

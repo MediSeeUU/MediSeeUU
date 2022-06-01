@@ -26,7 +26,7 @@ function SelectedData({ selectedData }) {
         data: updatedData,
         setSorters: setSorters,
         select: false,
-        text: 'No data to display, please clear your search or filters.'
+        text: 'No data to display, please clear your search or filters.',
       })}
     </div>
   )

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ReactModal from 'react-modal'
 import { v4 } from 'uuid'
+import MedModal from '../../../shared/MedModal/MedModal'
 
 // function based component, represents the procedure selection button, which is inserted
 // in both the procedure and timeline container on the detailed info page. when this button
@@ -22,34 +23,14 @@ export default function ProcSelectModal({
         Select Procedures <i className="bx bx-filter" />
       </button>
 
-      <ReactModal
-        className="med-proc-select-modal"
-        isOpen={showModal}
-        onRequestClose={closeModal}
-        ariaHideApp={false}
-        style={{
-          modal: {},
-          overlay: {
-            background: 'rgba(0, 0, 0, 0.2)',
-            backdropFilter: 'blur(2px)',
-          },
-          content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-          },
-        }}
-      >
+      <MedModal showModal={showModal} closeModal={closeModal}>
         <ProcSelectDialog
           closeModal={closeModal}
           availableProcTypes={availableProcTypes}
           currentProcFilter={currentProcFilter}
           setProcFilter={setProcFilter}
         />
-      </ReactModal>
+      </MedModal>
     </>
   )
 }

@@ -35,7 +35,7 @@ function DataSelect() {
     utilsUpdate({
       ...utils,
       filters: filters,
-      sorters: sorters
+      sorters: sorters,
     })
   }
 
@@ -58,7 +58,7 @@ function DataSelect() {
           data: updatedData,
           setSorters: (e) => utilsUpdate({ ...utils, sorters: e }),
           select: true,
-          text: 'No data to display, please clear your search or filters.'
+          text: 'No data to display, please clear your search or filters.',
         })}
       </div>
     </>

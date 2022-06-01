@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ReactModal from 'react-modal'
 import './ExportMenu.css'
 import ExportDialog from './ExportDialog'
+import MedModal from '../../../../shared/MedModal/MedModal'
 
 // function based component, represents the export button, which is inserted
 // in the selected data table. when this button is pressed, the export dialog
@@ -19,21 +20,9 @@ function ExportMenu({ selectedData }) {
         <i className="bx bxs-file-export med-button-image"></i>Export
       </button>
 
-      <ReactModal
-        className="med-export-modal"
-        isOpen={showModal}
-        onRequestClose={closeModal}
-        ariaHideApp={false}
-        style={{
-          modal: {},
-          overlay: {
-            background: 'rgba(0, 0, 0, 0.2)',
-            backdropFilter: 'blur(2px)',
-          },
-        }}
-      >
+      <MedModal showModal={showModal} closeModal={closeModal}>
         <ExportDialog data={selectedData} onClose={closeModal} />
-      </ReactModal>
+      </MedModal>
     </>
   )
 }

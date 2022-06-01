@@ -1,15 +1,5 @@
 /* for the main dialog & the dialog description */
 
-.med-export-modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
-
 .med-export-dialog {
   background-color: var(--med-dialog-background);
   width: 350px;

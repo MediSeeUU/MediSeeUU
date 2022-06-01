@@ -126,7 +126,6 @@ class SideNavigation extends React.Component {
 
           {account}
           {authenticated}
-
         </nav>
       </OutsideClickHandler>
     )

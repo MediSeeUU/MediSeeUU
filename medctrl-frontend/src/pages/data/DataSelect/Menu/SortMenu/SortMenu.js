@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Sort from './Sort'
 
 // Function based component which renders the sort menu
-function SortMenu({sorters, setSorters, defaultObj}) {
+function SortMenu({ sorters, setSorters, defaultObj }) {
   // Add sort item to the menu
   const addSort = () => setSorters(sorters.concat(defaultObj))
 
@@ -28,14 +28,14 @@ function SortMenu({sorters, setSorters, defaultObj}) {
   // Updates the selected item of the specified sort item
   const updateSortSelected = (id, newSelected) => {
     updateSorter(id, (obj) => {
-      return {...obj, selected: newSelected}
+      return { ...obj, selected: newSelected }
     })
   }
-  
+
   // Updates the sorting order of the specified sort item
   const updateSortOrder = (id, newOrder) => {
     updateSorter(id, (obj) => {
-      return {...obj, order: newOrder}
+      return { ...obj, order: newOrder }
     })
   }
 

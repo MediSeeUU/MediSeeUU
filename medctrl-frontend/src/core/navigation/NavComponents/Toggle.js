@@ -6,7 +6,7 @@ function Toggle(props) {
   // expand or collapse the navigation bar (name of the link and the image)
   const name = props.expanded ? 'Collapse' : 'Expand Menu'
   const image = props.expanded ? 'bx bx-x' : 'bx bx-menu'
-  
+
   return (
     // If the toggle is clicked, the navigation bar should to toggled
     // meaning it is either expanded or collapsed

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ReactModal from 'react-modal'
 import './SaveMenu.css'
 import SaveDialog from './SaveDialog'
+import MedModal from '../../../../shared/MedModal/MedModal'
 
 // function based component, represents the save button, which is inserted
 // in the selected data table. when this button is pressed, the save dialog
@@ -19,29 +20,9 @@ function SaveMenu({ selectedData }) {
         <i className="bx bxs-save med-button-image"></i>Save
       </button>
 
-      <ReactModal
-        className="med-save-modal"
-        isOpen={showModal}
-        onRequestClose={closeModal}
-        ariaHideApp={false}
-        style={{
-          modal: {},
-          overlay: {
-            background: 'rgba(0, 0, 0, 0.2)',
-            backdropFilter: 'blur(2px)',
-          },
-          content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-          },
-        }}
-      >
+      <MedModal showModal={showModal} closeModal={closeModal}>
         <SaveDialog data={selectedData} onClose={closeModal} />
-      </ReactModal>
+      </MedModal>
     </>
   )
 }

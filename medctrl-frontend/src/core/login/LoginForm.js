@@ -26,8 +26,7 @@ function LoginForm(props) {
         userName: username,
         accessLevel: access_level,
       })
-    }
-    else {
+    } else {
       setFail(true)
     }
   }
@@ -58,7 +57,13 @@ function LoginForm(props) {
           className="med-credential-input med-text-input"
           placeholder="Password"
         />
-        {fail && <ErrorMessage message={'Wrong username or password. Please check your credentials and try again.'} />}
+        {fail && (
+          <ErrorMessage
+            message={
+              'Wrong username or password. Please check your credentials and try again.'
+            }
+          />
+        )}
         <button
           type="submit"
           className="med-button-login med-primary-solid med-bx-button"

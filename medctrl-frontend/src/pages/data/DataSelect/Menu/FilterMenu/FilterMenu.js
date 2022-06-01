@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Filter from './Filter'
 
 // Function based component which renders the filter menu
-function FilterMenu({filters, setFilters, defaultObj}) {
+function FilterMenu({ filters, setFilters, defaultObj }) {
   // Add filter item to the menu
   const addFilter = () => setFilters(filters.concat(defaultObj))
 
@@ -22,7 +22,7 @@ function FilterMenu({filters, setFilters, defaultObj}) {
   const addFilterBox = (id) => {
     updateFilter(id, (obj) => {
       const newInput = obj.input.concat({ var: '', filterRange: 'from' })
-      return {...obj, input: newInput}
+      return { ...obj, input: newInput }
     })
   }
 
@@ -48,7 +48,7 @@ function FilterMenu({filters, setFilters, defaultObj}) {
   // Updates the selected item of the specified filter item
   const updateFilterSelected = (id, newSelected) => {
     updateFilter(id, (obj) => {
-      return {...obj, selected: newSelected}
+      return { ...obj, selected: newSelected }
     })
   }
 
@@ -57,7 +57,7 @@ function FilterMenu({filters, setFilters, defaultObj}) {
     updateFilter(id, (obj) => {
       let newInput = [...obj.input]
       newInput[bid].var = newValue
-      return {...obj, input: newInput}
+      return { ...obj, input: newInput }
     })
   }
 
