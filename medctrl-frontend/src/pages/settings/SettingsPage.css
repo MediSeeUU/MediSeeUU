@@ -1,0 +1,46 @@
+.med-color-content p {
+  margin: 10px;
+}
+
+.med-color-container {
+  padding: 5px;
+}
+
+.med-color-group {
+  display: inline-block;
+  background-color: var(--med-info-collection-background);
+  border-radius: 5px;
+  margin: 3px;
+  width: calc(100% - 12px);
+  overflow-wrap: break-word;
+  padding: 3px;
+  padding-bottom: 10px;
+}
+
+.med-color-group-desc {
+  color: var(--text-additional);
+  text-align: center;
+}
+
+.med-color-select-field {
+  padding-left: 10px;
+  height: 25px;
+}
+
+.med-color-picker {
+  background-color: var(--med-info-collection-background);
+  border: none;
+  width: 43%;
+  float: right;
+  margin-right: 10px;
+  height: 25px;
+}
+
+.med-color-group h1 {
+  text-align: center;
+}
+
+.med-color-button-container {
+  margin-left: calc(100% - 330px);
+  padding: 5px;
+}

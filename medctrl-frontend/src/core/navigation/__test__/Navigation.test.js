@@ -11,7 +11,6 @@ import {
 } from '../../../shared/contexts/DataContext'
 import allData from '../../../testJson/data.json'
 import Table from '../../../shared/table/table'
-import SettingsPage from '../../../pages/settings/SettingsPage'
 import {
   SelectedContext,
   CheckedContext,
@@ -120,16 +119,6 @@ test('text input in searchbar on searchpage should trigger search functionality'
   const searchbarComponent = screen.getByRole('textbox')
   fireEvent.change(searchbarComponent, { target: { value: '77' } })
   expect(test).toHaveBeenCalled()
-})
-
-test('render settingspage without crashing', () => {
-  const root = document.createElement('div')
-  ReactDOM.render(
-    <BrowserRouter>
-      <SettingsPage />
-    </BrowserRouter>,
-    root
-  )
 })
 
 test('render datapage without crashing', () => {

@@ -117,12 +117,6 @@ class SideNavigation extends React.Component {
             dest="/visualizations"
             parent={this}
           />
-          <NavLink
-            name="Settings"
-            image="bx bx-cog"
-            dest="/settings"
-            parent={this}
-          />
 
           {Acc}
           {Auth}
