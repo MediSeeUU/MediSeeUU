@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import GetUniqueCategories from '../../pages/visualizations/single_visualization/utils/GetUniqueCategories'
 import cleanFetchedData from './DataParsing'
-import structServerData from './structServer.json'
 
 export const DataContext = React.createContext()
 export const StructureContext = React.createContext()
