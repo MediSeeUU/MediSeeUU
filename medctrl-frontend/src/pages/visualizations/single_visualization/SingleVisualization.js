@@ -3,7 +3,6 @@ import React from 'react'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import ApexCharts from 'apexcharts'
 
 // internal imports
@@ -23,7 +22,7 @@ function SingleVisualization(props) {
   let settings = props.settings
 
   // Filter out the selected categories that are not present anymore in the data categories
-  // Selected categories can disappear because of data that is unselected in the popup
+  // Selected categories can disappear because of data that is deselected in the popup
   settings.chartSpecificOptions.categoriesSelectedX =
     settings.chartSpecificOptions.categoriesSelectedX.filter((e) =>
       settings.uniqueCategories[settings.chartSpecificOptions.xAxis].includes(e)
@@ -56,8 +55,7 @@ function SingleVisualization(props) {
 
   // handles the svg export
   function handleSVGExportFunction(event) {
-    const title = settings.title ?? renderTitlePlaceHolder()
-    HandleSVGExport(settings.id, title, ApexCharts)
+    HandleSVGExport(settings.id, ApexCharts)
   }
 
   // handles the removal of this visualization
@@ -78,15 +76,16 @@ function SingleVisualization(props) {
     const legendOn = settings.legendOn
     const labelsOn = settings.labelsOn
     const id = settings.id
-    const series = generateSeries(settings)
+    const options = settings.chartSpecificOptions
+    const onDataClick = props.onDataClick
+
     // The index of a category in categories needs to correspond with
     // their equivalent in series, so we sort them.
-    // They are sorted in their respective interfaces as well.
+    // The series are sorted in their respective interfaces as well.
+    const series = generateSeries(settings)
     const categories = sortCategoryData(
       settings.chartSpecificOptions.categoriesSelectedX
     )
-    const options = settings.chartSpecificOptions
-    const onDataClick = props.onDataClick
 
     switch (settings.chartType) {
       case 'bar':
@@ -167,11 +166,12 @@ function SingleVisualization(props) {
 
   // RENDERER:
 
-  // Renders a single visualization,
-  // based on the layout from the prototype:
-  // divides the visualization in a left part for the 'form',
-  // a right-lower part for the visualization and
-  // a right-upper part for the filters.
+  // Renders a single visualization
+  // divides the visualization into:
+  // - a left part for the 'form',
+  // - a right-upper part for the title
+  // - a right-middle part for the visualization
+  // - a right-lower part for the exports and a remove button
   return (
     <div className="med-content-container visual-container">
       <Container>

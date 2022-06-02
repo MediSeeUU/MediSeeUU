@@ -3,6 +3,9 @@ import { pollChosenVariable } from './sharedOneDimension/pollChosenVariable'
 
 // creates an array of data for a pie chart
 export default function GeneratePieSeries(settings) {
+  if (settings.chartSpecificOptions.categoriesSelectedX.length === 0) {
+    return []
+  }
   const xAxis = settings.chartSpecificOptions.xAxis
   const data = settings.data
   const chosenCategories = sortCategoryData(

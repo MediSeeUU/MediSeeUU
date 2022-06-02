@@ -28,7 +28,6 @@ const uniqueCategories = GetUniqueCategories(data)
 beforeEach(() => {
   container = document.createElement('div')
   document.body.append(container)
-
   ;(chartSpecificOptions = {
     xAxis: 'DecisionYear',
     yAxis: 'Rapporteur',

@@ -61,9 +61,7 @@ function VisualizationPage() {
 
   // handles a change to a visualization
   function handleChangeFunc(settings) {
-    // seems necessary to create a hard copy for React to notice the difference
-    var newVisuals = JSON.parse(JSON.stringify(visuals))
-    newVisuals = newVisuals.map((item) => {
+    var newVisuals = visuals.map((item) => {
       if (item.id === settings.id) {
         return settings
       }
@@ -77,6 +75,9 @@ function VisualizationPage() {
   // creates the visualizations
   function renderVisualizations() {
     return visuals.map((visual) => {
+      // Give the visualization its data and categories,
+      // as these can change if data points are removed in the pop-up,
+      // without actually reloading the entire component.
       visual.data = selectedData
       visual.uniqueCategories = uniqueCategories
       return (
@@ -92,7 +93,7 @@ function VisualizationPage() {
     })
   }
 
-  // a message to show the user it has selected data points are the data page
+  // a message to show the user it has selected data points from the data page
   function renderDataSelectedMessage() {
     const dataPointAmount = selectedData.length
     return (
