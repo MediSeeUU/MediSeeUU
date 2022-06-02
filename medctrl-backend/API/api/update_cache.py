@@ -11,7 +11,7 @@ def update_cache():
     if not settings.MEDICINES_CACHING:
         return
 
-    if not has_pending_migrations():
+    if not has_pending_migrations() and not has_unapplied_migration():
         queryset = Medicine.objects.all()
         serializer = PublicMedicineSerializer(queryset, many=True)
         cache.set(
@@ -28,3 +28,14 @@ def has_pending_migrations():
     out.seek(0)
     result = out.read()
     return "No changes detected" not in result
+
+
+def has_unapplied_migration():
+    # Execute the showmigrations command and redirect its output to a StringIO object
+    out = io.StringIO()
+    call_command("showmigrations", list=True, no_color=True, stdout=out)
+    out.seek(0)
+
+    unapplied = [1 for line in out.readlines() if "[ ]" in line]
+
+    return len(unapplied) > 0
