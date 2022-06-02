@@ -1,19 +1,22 @@
 import { useState } from 'react'
 import Table from '../../../shared/table/table'
-import ResultsSelector from './ResultsSelector'
+import Paging from './Components/Paging'
+import AmountPerPage from './Components/AmountPerPage'
+import ClearAll from './Components/ClearAll'
 
-//if items are selected in the select data table, these will show up here, when nothing is selected a label will be shown
+// Function based component that renders the table with its modifiers
 function TableView({ data, setSorters, select, text }) {
   const [resultsPerPage, setResultsPerPage] = useState(25) // Amount of database hits shown per page
   const [loadedPage, setPage] = useState(1) // Current page
 
+  // If there is data to display, it will show the table, otherwise a label will be shown
   if (!data || data.length === 0) {
     return <label className="lb-tableholder">{text}</label>
   } else {
-    //Maximum amount of pages available
+    // Maximum amount of pages available
     const amountOfPages = Math.ceil(data.length / resultsPerPage)
 
-    //if less pages are available than the currenly loaded page, loadedPage is set to the highest available page.
+    // If less pages are available than the currently loaded page, loadedPage is set to the highest available page
     if (loadedPage > amountOfPages) {
       setPage(amountOfPages)
     }
@@ -27,14 +30,11 @@ function TableView({ data, setSorters, select, text }) {
           selectTable={select}
           setSorters={setSorters}
         />
-        <ResultsSelector
-          data={data}
-          amount={resultsPerPage}
-          resultsPerPage={setResultsPerPage}
-          setPage={setPage}
-          currPage={loadedPage}
-          clearEnabled={!select}
-        />
+        <div className="med-bottom-container-holder">
+          {!select && <ClearAll data={data} />}
+          <Paging data={data} amount={resultsPerPage} currPage={loadedPage} setPage={setPage} />
+          <AmountPerPage data={data} resultsPerPage={setResultsPerPage} />
+        </div>
       </>
     )
   }

@@ -4,7 +4,7 @@ import SelectedData from './SelectedData/SelectedData'
 import './DataPage.css'
 import { useSelectedData } from '../../shared/contexts/DataContext'
 
-// Data page component that displays the components on the page
+// Data page component that displays the table components on the page
 function DataPage() {
   const selectedData = useSelectedData()
   return (
