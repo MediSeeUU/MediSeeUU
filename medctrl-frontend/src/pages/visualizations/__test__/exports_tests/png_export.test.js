@@ -1,9 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  fireEvent,
-  screen,
-} from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import SingleVisualization from '../../single_visualization/SingleVisualization'
 import ResizeObserver from '../../mocks/observer'
 
@@ -34,13 +31,7 @@ test('export to png', () => {
   let container = document.createElement('div')
   document.body.append(container)
 
-  ReactDOM.render(
-    <SingleVisualization
-      id={1}
-      settings={setting}
-    />,
-    container
-  )
+  ReactDOM.render(<SingleVisualization id={1} settings={setting} />, container)
   let target = screen.getByRole('button', { name: /export as png/i })
   fireEvent.click(target)
 })

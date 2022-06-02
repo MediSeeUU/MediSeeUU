@@ -12,7 +12,7 @@ test('no selected y categories', () => {
       categoriesSelectedX: uniqueCategories['DecisionYear'],
       categoriesSelectedY: [],
     },
-    data: data
+    data: data,
   }
   const series = GenerateBarSeries(options)
   expect(series).toHaveLength(0)
@@ -27,7 +27,7 @@ test('some selected categories (sorted)', () => {
       categoriesSelectedX: uniqueCategories['DecisionYear'],
       categoriesSelectedY: ['United Kingdom', 'Denmark'],
     },
-    data: data
+    data: data,
   }
   const series = GenerateBarSeries(options)
   expect(series).toHaveLength(2)
@@ -44,7 +44,7 @@ test('categories in data', () => {
       categoriesSelectedX: uniqueCategories['DecisionYear'],
       categoriesSelectedY: ['United Kingdom', 'Denmark'],
     },
-    data: data
+    data: data,
   }
   const series = GenerateBarSeries(options)
   series.forEach((element) => {

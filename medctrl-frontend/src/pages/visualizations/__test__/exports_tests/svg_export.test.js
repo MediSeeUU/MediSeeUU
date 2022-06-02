@@ -1,9 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  fireEvent,
-  screen,
-} from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import SingleVisualization from '../../single_visualization/SingleVisualization'
 import ResizeObserver from '../../mocks/observer'
 
@@ -32,14 +29,8 @@ test('export to svg', () => {
   let container = document.createElement('div')
   document.body.append(container)
 
-  URL.createObjectURL = jest.fn();
-  ReactDOM.render(
-    <SingleVisualization 
-      id={1} 
-      settings={setting} 
-    />,
-    container
-  )
+  URL.createObjectURL = jest.fn()
+  ReactDOM.render(<SingleVisualization id={1} settings={setting} />, container)
   let target = screen.getByRole('button', { name: /export as svg/i })
   fireEvent.click(target)
 })

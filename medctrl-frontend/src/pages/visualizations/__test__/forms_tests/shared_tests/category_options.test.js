@@ -1,8 +1,4 @@
-import {
-  render,
-  fireEvent,
-  screen,
-} from '@testing-library/react'
+import { render, fireEvent, screen } from '@testing-library/react'
 import GetUniqueCategories from '../../../single_visualization/utils/GetUniqueCategories'
 import CategoryOptions from '../../../single_visualization/forms/shared/CategoryOptions'
 import sortCategoryData from '../../../single_visualization/utils/SortCategoryData'

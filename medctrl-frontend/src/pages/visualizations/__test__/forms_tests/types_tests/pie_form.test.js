@@ -1,8 +1,4 @@
-import {
-  render,
-  fireEvent,
-  screen,
-} from '@testing-library/react'
+import { render, fireEvent, screen } from '@testing-library/react'
 import GetUniqueCategories from '../../../single_visualization/utils/GetUniqueCategories'
 import PieForm from '../../../single_visualization/forms/types/PieForm'
 

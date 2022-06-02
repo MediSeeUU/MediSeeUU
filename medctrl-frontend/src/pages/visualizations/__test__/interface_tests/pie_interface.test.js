@@ -8,7 +8,7 @@ test('no categories selected', () => {
       xAxis: 'Rapporteur',
       categoriesSelectedX: [],
     },
-    data: data
+    data: data,
   }
   const series = GeneratePieSeries(options)
   expect(series.data).toHaveLength(0)
@@ -21,7 +21,7 @@ test('some categories selected', () => {
       xAxis: 'Rapporteur',
       categoriesSelectedX: ['United Kingdom', 'Denmark'],
     },
-    data: data
+    data: data,
   }
   const series = GeneratePieSeries(options)
   expect(series.data).toHaveLength(2)
@@ -34,7 +34,7 @@ test('categories in data', () => {
       xAxis: 'Rapporteur',
       categoriesSelectedX: ['United Kingdom', 'Denmark'],
     },
-    data: data
+    data: data,
   }
   const series = GeneratePieSeries(options)
   let filteredData = data.filter((element) =>

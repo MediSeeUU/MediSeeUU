@@ -41,9 +41,7 @@ test('initial render with usual initialization', () => {
       labels={false}
       id={1}
       series={series}
-      categories={sortCategoryData(
-        chartSpecificOptions.categoriesSelectedX
-      )}
+      categories={sortCategoryData(chartSpecificOptions.categoriesSelectedX)}
       options={chartSpecificOptions}
     />,
     container

@@ -1,9 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  fireEvent,
-  screen,
-} from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import SingleVisualization from '../single_visualization/SingleVisualization'
 import ResizeObserver from '../mocks/observer'
 
@@ -40,75 +37,39 @@ afterEach(() => {
 })
 
 test('render initial bar chart', () => {
-  ReactDOM.render(
-    <SingleVisualization
-      id={1}
-      settings={setting}
-    />,
-    container
-  )
+  ReactDOM.render(<SingleVisualization id={1} settings={setting} />, container)
   const target = screen.getByRole('combobox', { name: /visualization type/i })
   expect(target.value).toBe('bar')
 })
 
 test('render line chart', () => {
-  setting.chartType = 'line' 
+  setting.chartType = 'line'
 
-  ReactDOM.render(
-    <SingleVisualization 
-      id={1} 
-      settings={setting} 
-    />,
-    container
-  )
+  ReactDOM.render(<SingleVisualization id={1} settings={setting} />, container)
 })
 
 test('render pie chart', () => {
-  setting.chartType = 'pie' 
+  setting.chartType = 'pie'
 
-  ReactDOM.render(
-    <SingleVisualization 
-      id={1} 
-      settings={setting} 
-    />,
-    container
-  )
+  ReactDOM.render(<SingleVisualization id={1} settings={setting} />, container)
 })
 
 test('render histogram chart', () => {
   setting.chartType = 'histogram'
 
-  ReactDOM.render(
-    <SingleVisualization 
-      id={1} 
-      settings={setting} 
-    />,
-    container
-  )
+  ReactDOM.render(<SingleVisualization id={1} settings={setting} />, container)
 })
 
 test('export to svg', () => {
   // Mocking this function,
   // as Jest does not know it.
-  URL.createObjectURL = jest.fn();
-  ReactDOM.render(
-    <SingleVisualization
-      id={1}
-      settings={setting} 
-    />,
-    container
-  )
+  URL.createObjectURL = jest.fn()
+  ReactDOM.render(<SingleVisualization id={1} settings={setting} />, container)
   fireEvent.click(screen.getByRole('button', { name: 'Export as SVG' }))
 })
 
 test('export to png', () => {
-  ReactDOM.render(
-    <SingleVisualization 
-      id={1}
-      settings={setting} 
-    />,
-    container
-  )
+  ReactDOM.render(<SingleVisualization id={1} settings={setting} />, container)
   fireEvent.click(screen.getByRole('button', { name: 'Export as PNG' }))
 })
 
@@ -117,43 +78,34 @@ test('export to png', () => {
 test('remove itself', () => {
   const onRemoval = jest.fn()
   ReactDOM.render(
-    <SingleVisualization
-      id={1}
-      onRemoval={onRemoval}
-      settings={setting}
-    />,
+    <SingleVisualization id={1} onRemoval={onRemoval} settings={setting} />,
     container
   )
   fireEvent.click(screen.getByRole('button', { name: '' }))
 })
 
-// It does not seem to cover the actual error line, 
+// It does not seem to cover the actual error line,
 // because it is already thrown in the generateSeries function.
 test('render with incorrect chart type', () => {
   setting.chartType = 'brrr chart'
 
-  expect(() => ReactDOM.render(
-    <SingleVisualization 
-      id={1} 
-      settings={setting} 
-    />,
-    container
-  )).toThrow()
+  expect(() =>
+    ReactDOM.render(
+      <SingleVisualization id={1} settings={setting} />,
+      container
+    )
+  ).toThrow()
 })
 
 test('change title', () => {
   const mock = jest.fn()
   ReactDOM.render(
-    <SingleVisualization 
-      id={1} 
-      onFormChangeFunc={mock}
-      settings={setting} 
-    />,
+    <SingleVisualization id={1} onFormChangeFunc={mock} settings={setting} />,
     container
   )
   let target = screen.getByRole('textbox')
   fireEvent.change(target, {
-    target: { value: 'example title' }
+    target: { value: 'example title' },
   })
   expect(target.value).toBe('example title')
 })
@@ -162,11 +114,7 @@ test('change title', () => {
 test('update to line chart', () => {
   const mock = jest.fn()
   ReactDOM.render(
-    <SingleVisualization 
-      id={1}
-      onFormChangeFunc={mock}
-      settings={setting} 
-    />,
+    <SingleVisualization id={1} onFormChangeFunc={mock} settings={setting} />,
     container
   )
 
@@ -175,6 +123,6 @@ test('update to line chart', () => {
     target: {
       name: 'chartType',
       value: 'line',
-    }
+    },
   })
 })

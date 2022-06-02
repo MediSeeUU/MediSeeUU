@@ -103,5 +103,5 @@ test('update a visual', () => {
   ReactDOM.render(page, container)
 
   let t = screen.getByRole('combobox', { name: /visualization type/i })
-  fireEvent.change(t, { target: { name: 'chartType', value: 'line' }})
-}) 
+  fireEvent.change(t, { target: { name: 'chartType', value: 'line' } })
+})

@@ -28,7 +28,7 @@ beforeEach(() => {
     horizontal: false,
   }
 
-  settings = {chartSpecificOptions, data}
+  settings = { chartSpecificOptions, data }
   series = GenerateBarSeries(settings)
 })
 
@@ -44,9 +44,7 @@ test('initial render', () => {
       labels={false}
       id={1}
       series={series}
-      categories={sortCategoryData(
-        chartSpecificOptions.categoriesSelectedX
-      )}
+      categories={sortCategoryData(chartSpecificOptions.categoriesSelectedX)}
       options={chartSpecificOptions}
     />,
     container
@@ -62,9 +60,7 @@ test('render with stackType of 100%', () => {
       labels={false}
       id={1}
       series={series}
-      categories={sortCategoryData(
-        chartSpecificOptions.categoriesSelectedX
-      )}
+      categories={sortCategoryData(chartSpecificOptions.categoriesSelectedX)}
       options={chartSpecificOptions}
     />,
     container
@@ -79,9 +75,7 @@ test('render with switched axes', () => {
       labels={false}
       id={1}
       series={series}
-      categories={sortCategoryData(
-        chartSpecificOptions.categoriesSelectedX
-      )}
+      categories={sortCategoryData(chartSpecificOptions.categoriesSelectedX)}
       options={chartSpecificOptions}
     />,
     container

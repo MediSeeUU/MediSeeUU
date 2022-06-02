@@ -79,7 +79,7 @@ function BarChart(props) {
   // renders the bar chart with the given options
 
   // example code for adding a scroll bar to an axis
-  //const dynamicWidth = state.series.length * 100;
+  //const dynamicWidth = settings.series.length * 100;
   //const chartWidth = dynamicWidth < window.innerWidth ? '100%' : dynamicWidth;
   return (
     <div className="chart">

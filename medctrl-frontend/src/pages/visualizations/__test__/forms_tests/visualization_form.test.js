@@ -1,8 +1,4 @@
-import {
-  render,
-  fireEvent,
-  screen,
-} from '@testing-library/react'
+import { render, fireEvent, screen } from '@testing-library/react'
 import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
 import VisualizationForm from '../../single_visualization/forms/VisualizationForm'
 
@@ -29,10 +25,7 @@ beforeEach(() => {
 
 test('initial bar chart render', () => {
   render(
-    <VisualizationForm
-      uniqueCategories={uniqueCategories}
-      settings={setting}
-    />
+    <VisualizationForm uniqueCategories={uniqueCategories} settings={setting} />
   )
 })
 

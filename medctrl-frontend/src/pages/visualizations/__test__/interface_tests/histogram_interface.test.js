@@ -8,7 +8,7 @@ test('no categories selected', () => {
       xAxis: 'Rapporteur',
       categoriesSelectedX: [],
     },
-    data: data
+    data: data,
   }
   const series = GenerateHistogramSeries(options, data)
   expect(series[0].data.length).toBe(0)
@@ -20,7 +20,7 @@ test('some categories selected (sorted)', () => {
       xAxis: 'Rapporteur',
       categoriesSelectedX: ['United Kingdom', 'Denmark'],
     },
-    data: data
+    data: data,
   }
   const series = GenerateHistogramSeries(options, data)
   expect(series[0].data.length).toBe(2)
@@ -32,7 +32,7 @@ test('categories in data', () => {
       xAxis: 'Rapporteur',
       categoriesSelectedX: ['United Kingdom', 'Denmark'],
     },
-    data: data
+    data: data,
   }
   const series = GenerateHistogramSeries(options, data)
   series.forEach((element) => {

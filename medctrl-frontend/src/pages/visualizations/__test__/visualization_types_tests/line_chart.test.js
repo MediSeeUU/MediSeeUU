@@ -29,13 +29,13 @@ beforeEach(() => {
   container = document.createElement('div')
   document.body.append(container)
 
-  chartSpecificOptions = {
+  ;(chartSpecificOptions = {
     xAxis: 'DecisionYear',
     yAxis: 'Rapporteur',
     categoriesSelectedX: uniqueCategories['DecisionYear'],
     categoriesSelectedY: ['United Kingdom'],
-  },
-  settings = { chartSpecificOptions, data }
+  }),
+    (settings = { chartSpecificOptions, data })
 
   series = GenerateLineSeries(settings)
 })
@@ -52,9 +52,7 @@ test('initial render with usual initialization', () => {
       labels={false}
       id={1}
       series={series}
-      categories={sortCategoryData(
-        chartSpecificOptions.categoriesSelectedX
-      )}
+      categories={sortCategoryData(chartSpecificOptions.categoriesSelectedX)}
       options={chartSpecificOptions}
     />,
     container
