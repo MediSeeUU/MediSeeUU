@@ -61,6 +61,7 @@ function VisualizationPage() {
 
   // handles a change to a visualization
   function handleChangeFunc(settings) {
+    // seems necessary to create a hard copy for React to notice the difference
     var newVisuals = JSON.parse(JSON.stringify(visuals))
     newVisuals = newVisuals.map((item) => {
       if (item.id === settings.id) {

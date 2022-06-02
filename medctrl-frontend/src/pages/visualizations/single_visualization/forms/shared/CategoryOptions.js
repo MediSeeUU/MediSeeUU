@@ -42,7 +42,7 @@ function CategoryOptions(props) {
       )[0]
       newCategoriesSelected = [...settings, addition]
     } else {
-      // removed the selected category of the list
+      // removes the selected category of the list
       newCategoriesSelected = settings.filter(
         (el) => String(el) !== String(name)
       )

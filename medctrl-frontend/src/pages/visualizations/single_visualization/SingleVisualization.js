@@ -78,7 +78,10 @@ function SingleVisualization(props) {
     const legendOn = settings.legendOn
     const labelsOn = settings.labelsOn
     const id = settings.id
-    const series = generateSeries(settings.chartType, settings)
+    const series = generateSeries(settings)
+    // The index of a category in categories needs to correspond with
+    // their equivalent in series, so we sort them.
+    // They are sorted in their respective interfaces as well.
     const categories = sortCategoryData(
       settings.chartSpecificOptions.categoriesSelectedX
     )
