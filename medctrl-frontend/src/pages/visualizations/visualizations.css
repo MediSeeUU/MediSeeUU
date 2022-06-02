@@ -104,9 +104,15 @@
 
 .visualize-modal {
   position: relative;
-  margin: 8% 15% 10% 15%;
+  margin: 8% 17% 10% 17%;
   border-radius: 10px;
   outline: none;
+}
+
+
+.visualize-modal .med-data-button {
+  position: absolute;
+  right: 70px;
 }
 
 .close-icon {
