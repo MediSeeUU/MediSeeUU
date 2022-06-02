@@ -212,7 +212,7 @@ export const dataToDisplayFormat = ({ entry, propt }) => {
       return entry[propt]
   }
 }
-function slashDateToStringDate(date) {
+export function slashDateToStringDate(date) {
   const defValue = 'NA'
   if (date === defValue) {
     return date

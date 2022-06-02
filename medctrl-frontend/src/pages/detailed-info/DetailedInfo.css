@@ -159,11 +159,17 @@
   font-weight: bold;
   text-decoration: none;
   color: var(--med-info-link-color);
-  width: calc(25% - 8px);
+  width: calc(50% - 8px);
 }
 
 .med-info-external-link:hover {
   color: var(--med-info-link-color);
+}
+
+.med-info-external-link.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: var(--med-additional-text);
 }
 
 /* for when there is a invalid medicine id in the url */
