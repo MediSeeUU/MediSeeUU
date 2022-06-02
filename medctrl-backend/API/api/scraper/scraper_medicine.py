@@ -37,6 +37,7 @@ from api.serializers.medicine_serializers import (
     PRIMESerializer,
 )
 from datetime import date
+from django.forms.models import model_to_dict
 
 
 class ScraperMedicine(APIView):
@@ -73,15 +74,22 @@ class ScraperMedicine(APIView):
                 # update works only on flexible variables
 
                 if override:
-                    status = self.add_medicine(medicine, current_medicine)
+                    errors = self.add_medicine(medicine, current_medicine)
                 elif current_medicine:
-                    status = self.update_flex_medicine(medicine, current_medicine)
+                    errors = self.update_flex_medicine(medicine, current_medicine)
+                    nullErrors = self.update_null_values(medicine)
+                    if errors:
+                        errors.extend(nullErrors)
+                    else:
+                        errors = nullErrors
                 else:
-                    status = self.add_medicine(medicine, None)
+                    errors = self.add_medicine(medicine, None)
                 # if status is failed, add medicine to the failed list
-                if not status:
+                if errors and (len(errors) > 0):
+                    medicine["errors"] = errors
                     failed_medicines.append(medicine)
-            except:
+            except Exception as e:
+                medicine["errors"] = str(e)
                 failed_medicines.append(medicine)
 
         update_cache()
@@ -115,8 +123,8 @@ class ScraperMedicine(APIView):
         if medicine_serializer.is_valid() and authorisation_serializer.is_valid():
             medicine_serializer.save()
             authorisation_serializer.save()
-            return True
-        return False
+            return []
+        return medicine_serializer.errors
 
     def add_medicine(self, data, current):
         """
@@ -178,12 +186,37 @@ class ScraperMedicine(APIView):
         if serializer.is_valid():
             serializer.save()
         else:
-            return False
+            return serializer.errors
         if authorisation_serializer.is_valid():
             authorisation_serializer.save()
         else:
-            return False
-        return True
+            return authorisation_serializer.errors
+        return []
+
+    def update_null_values(self, data):
+        current_medicine = Medicine.objects.filter(pk=data.get("eunumber")).first()
+        current_authorisation = Authorisation.objects.filter(
+            pk=data.get("eunumber")
+        ).first()
+
+        medicine = model_to_dict(current_medicine)
+        newData = {"eunumber": data.get("eunumber")}
+
+        for attr in medicine:
+            if (getattr(current_medicine, attr) is None) and (
+                not (data.get(attr) is None)
+            ):
+                newData[attr] = data.get(attr)
+
+        authorisation = model_to_dict(current_authorisation)
+        for attr in authorisation:
+            if (getattr(current_authorisation, attr) is None) and (
+                not (data.get(attr) is None)
+            ):
+                newData[attr] = data.get(attr)
+
+        if len(newData.keys()) > 1:
+            return self.add_medicine(newData, current_medicine)
 
 
 # if item does not exist in the database (model), add it with the serializer

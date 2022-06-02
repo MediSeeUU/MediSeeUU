@@ -12,6 +12,7 @@ from api.models.medicine_models import (
     Procedure,
 )
 from api.update_cache import update_cache
+from django.forms.models import model_to_dict
 
 
 class ScraperProcedure(APIView):
@@ -48,16 +49,23 @@ class ScraperProcedure(APIView):
                     .first()
                 )
                 if override:
-                    status = self.add_procedure(procedure, current_procedure)
+                    errors = self.add_procedure(procedure, current_procedure)
                 elif current_procedure:
-                    status = self.update_flex_procedure(procedure, current_procedure)
+                    errors = self.update_flex_procedure(procedure, current_procedure)
+                    nullErrors = self.update_null_values(procedure)
+                    if errors:
+                        errors.extend(nullErrors)
+                    else:
+                        errors = nullErrors
                 else:
-                    status = self.add_procedure(procedure, None)
+                    errors = self.add_procedure(procedure, None)
 
                 # if status is failed, add medicine to the failed list
-                if not status:
+                if errors and (len(errors) > 0):
+                    procedure["errors"] = errors
                     failed_procedures.append(procedure)
-            except:
+            except Exception as e:
+                procedure["errors"] = str(e)
                 failed_procedures.append(procedure)
 
         update_cache()
@@ -73,9 +81,9 @@ class ScraperProcedure(APIView):
         # if serializer is valid update procedure in the database
         if procedure_serializer.is_valid():
             procedure_serializer.save()
-            return True
+            return []
         else:
-            return False
+            return procedure_serializer.errors
 
     # add procedure to the database
     def add_procedure(self, data, current):
@@ -93,8 +101,30 @@ class ScraperProcedure(APIView):
         # if serializer is valid, add procedure to teh database
         if serializer.is_valid():
             serializer.save()
-            return True
-        return False
+            return []
+        return serializer.errors
+
+    def update_null_values(self, data):
+        current_procedure = (
+            Procedure.objects.filter(eunumber=data.get("eunumber"))
+            .filter(procedurecount=data.get("procedurecount"))
+            .first()
+        )
+
+        procedure = model_to_dict(current_procedure)
+        newData = {
+            "eunumber": data.get("eunumber"),
+            "procedurecount": data.get("procedurecount"),
+        }
+
+        for attr in procedure:
+            if (getattr(current_procedure, attr) is None) and (
+                not (data.get(attr) is None)
+            ):
+                newData[attr] = data.get(attr)
+
+        if len(newData.keys()) > 2:
+            return self.add_procedure(newData, current_procedure)
 
 
 # if item does not exist in the database (model), add it with the serializer
