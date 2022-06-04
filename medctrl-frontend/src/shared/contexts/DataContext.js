@@ -6,13 +6,9 @@ export const DataContext = React.createContext()
 export const StructureContext = React.createContext()
 export const SelectedContext = React.createContext()
 export const CheckedContext = React.createContext()
-export const CheckedContextUpdate = React.createContext()
 export const ColumnSelectionContext = React.createContext()
-export const ColumnSelectionContextUpdate = React.createContext()
 export const VisualsContext = React.createContext()
-export const VisualsUpdateContext = React.createContext()
 export const TableUtilsContext = React.createContext()
-export const TableUtilsUpdateContext = React.createContext()
 
 export function useData() {
   return useContext(DataContext)
@@ -30,32 +26,16 @@ export function useCheckedState() {
   return useContext(CheckedContext)
 }
 
-export function useCheckedStateUpdate() {
-  return useContext(CheckedContextUpdate)
-}
-
 export function useColumnSelection() {
   return useContext(ColumnSelectionContext)
-}
-
-export function useColumnSelectionUpdate() {
-  return useContext(ColumnSelectionContextUpdate)
 }
 
 export function useVisuals() {
   return useContext(VisualsContext)
 }
 
-export function useVisualsUpdate() {
-  return useContext(VisualsUpdateContext)
-}
-
 export function useTableUtils() {
   return useContext(TableUtilsContext)
-}
-
-export function useTableUtilsUpdate() {
-  return useContext(TableUtilsUpdateContext)
 }
 
 export function DataProvider({ children }) {
