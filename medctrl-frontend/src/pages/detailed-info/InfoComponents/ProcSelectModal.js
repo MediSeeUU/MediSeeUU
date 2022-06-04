@@ -71,6 +71,15 @@ function ProcSelectDialog({
     )
   })
 
+  let noOptions = null
+  if(availableProcTypes.length === 0) {
+    noOptions = (
+      <div className='med-error-message'>
+        There are no available procedures associated with this medicine at this time.
+      </div>
+    )
+  }
+
   return (
     <div className="med-proc-select-dialog">
       <form onSubmit={handleSubmit}>
@@ -80,7 +89,10 @@ function ProcSelectDialog({
           in the procedure overview and timeline on the page.
         </span>
 
-        <div className="med-proc-option-list">{allOptions}</div>
+        <div className="med-proc-option-list">
+          {allOptions}
+          {noOptions}
+        </div>
 
         <button className="med-primary-solid" type="submit">
           Apply

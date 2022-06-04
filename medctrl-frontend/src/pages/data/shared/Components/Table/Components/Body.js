@@ -6,7 +6,7 @@ import {
 } from '../../../../../../shared/contexts/DataContext'
 import CheckboxColumn from './CheckboxColumn'
 import RightStickyActions from './RightStickyActions'
-import dataToDisplayFormat from '../format'
+import { dataToDisplayFormat } from '../format'
 
 // Function based component that renders the body of the table
 function Body({data, select, amountPerPage, currentPage}) {

@@ -34,6 +34,8 @@ function cleanFetchedDataPoint(fetchedDataPoint, structData) {
         return value === 0 ? 'No' : 'Yes'
       case 'string':
         return value.toString()
+      case 'link':
+        return value.toString()
       case 'date': {
         // Y-M-D ->  M/D/Y
         let splitteddate = value.split('-')

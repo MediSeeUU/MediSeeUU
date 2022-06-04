@@ -1,6 +1,6 @@
 //backend received data can be reformatted when displayed in the table
 //depeding on the property/variable, different formatting may be applicable
-function dataToDisplayFormat({ entry, propt }) {
+export function dataToDisplayFormat({ entry, propt }) {
   switch (propt) {
     case 'DecisionDate':
       return slashDateToStringDate(entry[propt])
@@ -9,7 +9,7 @@ function dataToDisplayFormat({ entry, propt }) {
   }
 }
 
-function slashDateToStringDate(date) {
+export function slashDateToStringDate(date) {
   const defValue = 'NA'
   if (date === defValue) {
     return date
@@ -34,5 +34,3 @@ function slashDateToStringDate(date) {
   const fullDate = day + ' ' + month + ' ' + year
   return fullDate
 }
-
-export default dataToDisplayFormat
