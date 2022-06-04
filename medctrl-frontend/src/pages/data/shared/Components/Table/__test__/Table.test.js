@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { render, screen, fireEvent, within } from '@testing-library/react'
 import Table from '../table'
 import DummyData from '../../../testJson/data.json'
-import structData from '../../../shared/contexts/structServer.json'
+import structData from '../../contexts/structServer.json'
 import {
   DataContext,
   SelectedContext,
@@ -14,7 +14,7 @@ import {
   StructureContext,
 } from '../../contexts/DataContext'
 import { BrowserRouter } from 'react-router-dom'
-import { dataToDisplayFormat } from '../../table/table'
+import { dataToDisplayFormat } from '../format'
 import updateData from '../../../pages/data/Utils/update'
 
 test('renders without crashing', () => {

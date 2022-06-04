@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import Table from '../../../shared/table/table'
+import Table from './Components/Table/Table'
 import Paging from './Components/Paging'
 import AmountPerPage from './Components/AmountPerPage'
 import ClearAll from './Components/ClearAll'
 
 // Function based component that renders the table with its modifiers
-function TableView({ data, setSorters, select, text }) {
+function TableView({ data, sorters, setSorters, select, text }) {
   const [resultsPerPage, setResultsPerPage] = useState(25) // Amount of database hits shown per page
   const [loadedPage, setPage] = useState(1) // Current page
 
@@ -27,12 +27,18 @@ function TableView({ data, setSorters, select, text }) {
           data={data}
           currentPage={loadedPage}
           amountPerPage={resultsPerPage}
-          selectTable={select}
+          select={select}
+          sorters={sorters}
           setSorters={setSorters}
         />
         <div className="med-bottom-container-holder">
           {!select && <ClearAll data={data} />}
-          <Paging data={data} amount={resultsPerPage} currPage={loadedPage} setPage={setPage} />
+          <Paging
+            data={data}
+            amount={resultsPerPage}
+            currPage={loadedPage}
+            setPage={setPage}
+          />
           <AmountPerPage data={data} resultsPerPage={setResultsPerPage} />
         </div>
       </>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './ExportMenu.css'
 import ExportDialog from './ExportDialog'
-import MedModal from '../../../../shared/MedModal/MedModal'
+import MedModal from '../../../../shared/MedModal'
 
 // function based component, represents the export button, which is inserted
 // in the selected data table. when this button is pressed, the export dialog

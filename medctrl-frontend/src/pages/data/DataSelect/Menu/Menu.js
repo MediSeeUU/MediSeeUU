@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import MedModal from '../../../../shared/MedModal/MedModal'
+import MedModal from '../../../../shared/MedModal'
 import FilterMenu from './FilterMenu/FilterMenu'
 import './Menu.css'
 import SortMenu from './SortMenu/SortMenu'
@@ -25,7 +25,11 @@ function Menu({ filters, sorters, update }) {
 
   // Handlers for opening and closing the modal
   const closeModal = () => setModalState(false)
-  const openModal = () => setModalState(true)
+  const openModal = () => {
+    setFilters(filters)
+    setSorters(sorters)
+    setModalState(true)
+  }
 
   // Apply filters and sorters which will update the data displayed in the table
   const apply = () => {

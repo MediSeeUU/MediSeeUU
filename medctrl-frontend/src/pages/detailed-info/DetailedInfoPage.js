@@ -9,7 +9,6 @@ import ProcSelectModal from './InfoComponents/ProcSelectModal'
 
 import { useData, useStructure } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
-import { dataToDisplayFormat } from '../../shared/table/table'
 import { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
 

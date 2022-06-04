@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './SaveMenu.css'
 import SaveDialog from './SaveDialog'
-import MedModal from '../../../../shared/MedModal/MedModal'
+import MedModal from '../../../../shared/MedModal'
 
 // function based component, represents the save button, which is inserted
 // in the selected data table. when this button is pressed, the save dialog

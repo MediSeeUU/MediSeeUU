@@ -24,6 +24,7 @@ function SelectedData({ selectedData }) {
       <hr className="med-top-separator" />
       {TableView({
         data: updatedData,
+        sorters: sorters,
         setSorters: setSorters,
         select: false,
         text: 'No data to display, please clear your search or filters.',

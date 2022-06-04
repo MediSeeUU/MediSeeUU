@@ -56,6 +56,7 @@ function DataSelect() {
         <hr className="med-top-separator" />
         {TableView({
           data: updatedData,
+          sorters: utils.sorters,
           setSorters: (e) => utilsUpdate({ ...utils, sorters: e }),
           select: true,
           text: 'No data to display, please clear your search or filters.',

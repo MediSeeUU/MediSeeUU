@@ -1,5 +1,5 @@
 // Function based component that displays the paging of the table
-function Paging({data, amount, currPage, setPage}) {
+function Paging({ data, amount, currPage, setPage }) {
   // Holds all available pages
   let paging = []
 
@@ -50,7 +50,7 @@ function Paging({data, amount, currPage, setPage}) {
           </div>
         )
       }
-    // If the amount of pages is exactly three, then only add page 2
+      // If the amount of pages is exactly three, then only add page 2
     } else if (pages === 3) {
       addPage(2)
     }

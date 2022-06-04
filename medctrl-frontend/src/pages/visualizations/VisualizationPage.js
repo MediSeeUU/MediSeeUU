@@ -13,7 +13,7 @@ import GetUniqueCategories from './single_visualization/utils/GetUniqueCategorie
 import GenerateBarSeries from './single_visualization/data_interfaces/BarInterface'
 import { useVisuals, useVisualsUpdate } from '../../shared/contexts/DataContext'
 import { generateSeries } from './single_visualization/SingleVisualization'
-import MedModal from '../../shared/MedModal/MedModal'
+import MedModal from '../../shared/MedModal'
 
 // the component that contains all the visualizations
 function VisualizationPage() {

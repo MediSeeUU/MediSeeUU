@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { v4 } from 'uuid'
-import MedModal from '../../../shared/MedModal/MedModal'
+import MedModal from '../../../shared/MedModal'
 
 // function based component, represents the procedure selection button, which is inserted
 // in both the procedure and timeline container on the detailed info page. when this button

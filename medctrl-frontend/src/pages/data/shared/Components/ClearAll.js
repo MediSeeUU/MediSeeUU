@@ -4,7 +4,7 @@ import {
 } from '../../../../shared/contexts/DataContext'
 
 // Function based component that renders a clear all label
-function ClearAll({data}) {
+function ClearAll({ data }) {
   const checkedState = useCheckedState()
   const setCheckedState = useCheckedStateUpdate()
 

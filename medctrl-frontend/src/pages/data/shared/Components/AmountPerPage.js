@@ -1,5 +1,5 @@
 // Function based component that renders the select component with amount of entries per page
-function AmountPerPage({data, resultsPerPage}) {
+function AmountPerPage({ data, resultsPerPage }) {
   // Available options
   let options = []
 
