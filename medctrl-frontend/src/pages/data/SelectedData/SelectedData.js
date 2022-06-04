@@ -19,8 +19,8 @@ function SelectedData({ selectedData }) {
   return (
     <div tour="step-data-selected" className="med-content-container">
       <h1 className="med-header">Selected Data Points</h1>
-      {loggedIn && <SaveMenu selectedData={updatedData} />}
       {updatedData.length > 0 && <ExportMenu selectedData={updatedData} />}
+      {loggedIn && updatedData.length > 0 && <SaveMenu selectedData={updatedData} />}
       <hr className="med-top-separator" />
       <TableView
         data={updatedData}

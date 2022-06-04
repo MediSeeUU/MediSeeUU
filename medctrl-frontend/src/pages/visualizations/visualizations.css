@@ -110,7 +110,7 @@
 }
 
 .visualize-modal .med-data-button {
-  position: absolute;
+  position: relative;
   right: 70px;
 }
 
