@@ -10,8 +10,7 @@ import { v4 as uuidv4 } from 'uuid'
 import SingleVisualization from './single_visualization/SingleVisualization'
 import { useSelectedData } from '../../shared/contexts/DataContext'
 import GetUniqueCategories from './single_visualization/utils/GetUniqueCategories'
-import { useVisuals, useVisualsUpdate } from '../../shared/contexts/DataContext'
-import { generateSeries } from './single_visualization/SingleVisualization'
+import { useVisuals } from '../../shared/contexts/DataContext'
 import MedModal from '../../shared/MedModal'
 
 // the component that contains all the visualizations
@@ -30,8 +29,7 @@ function VisualizationPage() {
   const handleChange = handleChangeFunc.bind(this)
 
   // get the visualisation contexts
-  var visuals = useVisuals()
-  const setVisuals = useVisualsUpdate()
+  const { visuals, setVisuals } = useVisuals()
 
   // EVENT HANDLERS:
 

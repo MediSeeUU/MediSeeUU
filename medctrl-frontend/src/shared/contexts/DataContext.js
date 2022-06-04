@@ -137,18 +137,20 @@ export function StaticDataProvider({ children, allData, structData }) {
   useEffect(() => {
     if (allData.length > 0) {
       let uniqueCategories = GetUniqueCategories(allData)
-      setVisuals([{
-        id: 1,
-        chartType: 'bar',
-        chartSpecificOptions: {
-          xAxis: 'DecisionYear',
-          yAxis: 'Rapporteur',
-          categoriesSelectedY: uniqueCategories['Rapporteur'],
-          categoriesSelectedX: uniqueCategories['DecisionYear'],
+      setVisuals([
+        {
+          id: 1,
+          chartType: 'bar',
+          chartSpecificOptions: {
+            xAxis: 'DecisionYear',
+            yAxis: 'Rapporteur',
+            categoriesSelectedY: uniqueCategories['Rapporteur'],
+            categoriesSelectedX: uniqueCategories['DecisionYear'],
+          },
+          legendOn: false,
+          labelsOn: false,
         },
-        legendOn: false,
-        labelsOn: false,
-      }])
+      ])
     }
   }, [allData])
 
@@ -168,11 +170,15 @@ export function StaticDataProvider({ children, allData, structData }) {
     <DataContext.Provider value={allData}>
       <StructureContext.Provider value={structData}>
         <SelectedContext.Provider value={selectedData}>
-          <CheckedContext.Provider value={{checkedState, setCheckedState}}>
-            <ColumnSelectionContext.Provider value={{columnSelection, setColumnSelection}}>
-              <VisualsContext.Provider value={{visuals, setVisuals}}>
-                <TableUtilsContext.Provider value={{tableUtils, setTableUtils}}>
-                    {children}
+          <CheckedContext.Provider value={{ checkedState, setCheckedState }}>
+            <ColumnSelectionContext.Provider
+              value={{ columnSelection, setColumnSelection }}
+            >
+              <VisualsContext.Provider value={{ visuals, setVisuals }}>
+                <TableUtilsContext.Provider
+                  value={{ tableUtils, setTableUtils }}
+                >
+                  {children}
                 </TableUtilsContext.Provider>
               </VisualsContext.Provider>
             </ColumnSelectionContext.Provider>

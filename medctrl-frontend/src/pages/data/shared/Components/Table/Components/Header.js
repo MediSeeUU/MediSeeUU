@@ -9,7 +9,7 @@ import CheckboxColumn from './CheckboxColumn'
 // Function based component that renders the header of the table
 function Header({ select, sorters, setSorters }) {
   const { columnSelection, setColumnSelection } = useColumnSelection()
-  const { checkedState, setCheckedState} = useCheckedState()
+  const { checkedState, setCheckedState } = useCheckedState()
 
   // Check if all checkboxes are checked, used to check/uncheck the checkbox in the header
   const allSelected = Object.values(checkedState).every((value) => value)

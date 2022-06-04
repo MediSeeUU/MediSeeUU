@@ -149,23 +149,19 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
 
     for (let varIndex in variableCategories[category]) {
       const variable = variableCategories[category][varIndex]
-      if(variable["data-format"] !== "link") {
+      if (variable['data-format'] !== 'link') {
         let value = medData[variable['data-front-key']]
-        if(variable["data-format"] === "date") {
+        if (variable['data-format'] === 'date') {
           value = slashDateToStringDate(value)
         }
 
         details.push(
-          <Detail
-            name={variable['data-value']}
-            value={value}
-            key={v4()}
-          />
+          <Detail name={variable['data-value']} value={value} key={v4()} />
         )
       }
     }
 
-    if(details.length > 0) {
+    if (details.length > 0) {
       detailGroups.push(
         <DetailGroup title={category} key={v4()}>
           {details}
@@ -197,12 +193,12 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
 
         <CustomLink
           className="med-info-external-link"
-          name={"EMA Website for: " + medData.BrandName}
+          name={'EMA Website for: ' + medData.BrandName}
           dest={medData.EMAurl}
         />
         <CustomLink
           className="med-info-external-link"
-          name={"EC Website for: " + medData.BrandName}
+          name={'EC Website for: ' + medData.BrandName}
           dest={medData.ECurl}
         />
       </div>

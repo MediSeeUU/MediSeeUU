@@ -1,6 +1,4 @@
-import {
-  useCheckedState,
-} from '../../../shared/contexts/DataContext'
+import { useCheckedState } from '../../../shared/contexts/DataContext'
 
 // Saved selection item in the saved selections list
 function SavedSelection({ savedSelection }) {

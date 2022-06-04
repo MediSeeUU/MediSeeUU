@@ -8,7 +8,7 @@ import RightStickyActions from './RightStickyActions'
 import { dataToDisplayFormat } from '../format'
 
 // Function based component that renders the body of the table
-function Body({data, select, amountPerPage, currentPage}) {
+function Body({ data, select, amountPerPage, currentPage }) {
   const { checkedState, setCheckedState } = useCheckedState()
 
   const { columnSelection } = useColumnSelection()
@@ -25,41 +25,39 @@ function Body({data, select, amountPerPage, currentPage}) {
   const higherBoundDataPage = amountPerPage * currentPage
 
   // Adds a row for every data entry
-  const htmlData = data.slice(
-    lowerBoundDataPage,
-    higherBoundDataPage
-  ).map((entry, index1) => {
-    // For every column, add the corresponding data element (after formatting)
-    const body = columnSelection.map((propt, index2) => {
+  const htmlData = data
+    .slice(lowerBoundDataPage, higherBoundDataPage)
+    .map((entry, index1) => {
+      // For every column, add the corresponding data element (after formatting)
+      const body = columnSelection.map((propt, index2) => {
+        return (
+          <td className="med-table-body-cell" key={index2}>
+            <div>{dataToDisplayFormat({ entry, propt })}</div>
+          </td>
+        )
+      })
+
+      // Return a row with checkbox (if select table), the data
+      // and the sticky actions at the end
       return (
-        <td className="med-table-body-cell" key={index2}>
-          <div>{dataToDisplayFormat({ entry, propt })}</div>
-        </td>
+        <tr key={index1 + lowerBoundDataPage}>
+          {select && (
+            <CheckboxColumn
+              value={checkedState[entry.EUNoShort]}
+              onChange={handleOnChange.bind(null, entry.EUNoShort)}
+            />
+          )}
+          {body}
+          <RightStickyActions
+            entry={entry}
+            select={select}
+            onChange={handleOnChange}
+          />
+        </tr>
       )
     })
 
-    // Return a row with checkbox (if select table), the data
-    // and the sticky actions at the end
-    return (
-      <tr key={index1 + lowerBoundDataPage}>
-        {select && 
-          <CheckboxColumn
-            value={checkedState[entry.EUNoShort]}
-            onChange={handleOnChange.bind(null, entry.EUNoShort)}
-          />}
-        {body}
-        <RightStickyActions
-          entry={entry}
-          select={select}
-          onChange={handleOnChange}
-        />
-      </tr>
-    )
-  })
-
-  return (
-    <tbody className="med-table-body">{htmlData}</tbody>
-  )
+  return <tbody className="med-table-body">{htmlData}</tbody>
 }
 
 export default Body

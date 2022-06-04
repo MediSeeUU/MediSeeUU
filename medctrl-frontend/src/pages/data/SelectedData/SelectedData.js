@@ -22,13 +22,13 @@ function SelectedData({ selectedData }) {
       {loggedIn && <SaveMenu selectedData={updatedData} />}
       {updatedData.length > 0 && <ExportMenu selectedData={updatedData} />}
       <hr className="med-top-separator" />
-      {TableView({
-        data: updatedData,
-        sorters: sorters,
-        setSorters: setSorters,
-        select: false,
-        text: 'No data to display, please clear your search or filters.',
-      })}
+      <TableView
+        data={updatedData}
+        sorters={sorters}
+        setSorters={setSorters}
+        select={false}
+        text="No data to display, please select datapoints in the table above."
+      />
     </div>
   )
 }

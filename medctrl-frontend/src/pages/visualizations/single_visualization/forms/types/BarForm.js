@@ -2,7 +2,7 @@ import React from 'react'
 import '../../../visualizations.css'
 import sortCategoryData from '../../utils/SortCategoryData'
 import CategoryOptions from '../shared/CategoryOptions'
-import VariableSelect from '../../../../../shared/VariableSelect/VariableSelect'
+import VariableSelect from '../../../../../shared/VariableSelect'
 
 // the bar part of a form if a bar chart is chosen
 function BarForm(props) {

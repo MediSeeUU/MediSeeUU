@@ -72,10 +72,11 @@ function ProcSelectDialog({
   })
 
   let noOptions = null
-  if(availableProcTypes.length === 0) {
+  if (availableProcTypes.length === 0) {
     noOptions = (
-      <div className='med-error-message'>
-        There are no available procedures associated with this medicine at this time.
+      <div className="med-error-message">
+        There are no available procedures associated with this medicine at this
+        time.
       </div>
     )
   }

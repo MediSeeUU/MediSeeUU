@@ -2,7 +2,7 @@ import React from 'react'
 import '../../../visualizations.css'
 import CategoryOptions from '../shared/CategoryOptions'
 import sortCategoryData from '../../utils/SortCategoryData'
-import VariableSelect from '../../../../../shared/VariableSelect/VariableSelect'
+import VariableSelect from '../../../../../shared/VariableSelect'
 
 // the histogram part of a form if a histogram chart is chosen
 function HistogramForm(props) {

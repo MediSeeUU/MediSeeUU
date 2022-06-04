@@ -52,13 +52,13 @@ function DataSelect() {
           update={menuUpdate}
         />
         <hr className="med-top-separator" />
-        {TableView({
-          data: updatedData,
-          sorters: tableUtils.sorters,
-          setSorters: (e) => setTableUtils({ ...tableUtils, sorters: e }),
-          select: true,
-          text: 'No data to display, please clear your search or filters.',
-        })}
+        <TableView
+          data={updatedData}
+          sorters={tableUtils.sorters}
+          setSorters={(e) => setTableUtils({ ...tableUtils, sorters: e })}
+          select={true}
+          text="No data to display, please clear your search or filters."
+        />
       </div>
     </>
   )
