@@ -135,9 +135,9 @@ export function StaticDataProvider({ children, allData, structData }) {
 
   // update the visualisation context state when the allData state is changed
   useEffect(() => {
-    let uniqueCategories = GetUniqueCategories(allData)
-    setVisuals([
-      {
+    if (allData.length > 0) {
+      let uniqueCategories = GetUniqueCategories(allData)
+      setVisuals([{
         id: 1,
         chartType: 'bar',
         chartSpecificOptions: {
@@ -148,12 +148,8 @@ export function StaticDataProvider({ children, allData, structData }) {
         },
         legendOn: false,
         labelsOn: false,
-        data: [],
-        series: [],
-        uniqueCategories: [],
-        key: '',
-      },
-    ])
+      }])
+    }
   }, [allData])
 
   const [tableUtils, setTableUtils] = useState({

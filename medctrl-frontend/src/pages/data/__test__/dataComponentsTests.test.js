@@ -82,7 +82,7 @@ test('SelectedData renders without crashing', () => {
             <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
               <CheckedContext.Provider value={checkedState}>
                 <CheckedContextUpdate.Provider value={setCheckedState}>
-                  <SelectedData allSelectedData={selectedData} />
+                  <SelectedData selectedData={selectedData} />
                 </CheckedContextUpdate.Provider>
               </CheckedContext.Provider>
             </ColumnSelectionContextUpdate.Provider>

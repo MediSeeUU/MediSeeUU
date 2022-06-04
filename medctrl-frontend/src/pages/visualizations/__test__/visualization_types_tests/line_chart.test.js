@@ -21,23 +21,22 @@ jest.mock('../../mocks/observer')
 
 let container
 let series
+let settings
 let chartSpecificOptions
-let uniqueCategories = GetUniqueCategories(data)
+const uniqueCategories = GetUniqueCategories(data)
 
 beforeEach(() => {
   container = document.createElement('div')
   document.body.append(container)
+  ;(chartSpecificOptions = {
+    xAxis: 'DecisionYear',
+    yAxis: 'Rapporteur',
+    categoriesSelectedX: uniqueCategories['DecisionYear'],
+    categoriesSelectedY: ['United Kingdom'],
+  }),
+    (settings = { chartSpecificOptions, data })
 
-  chartSpecificOptions = {
-    chartSpecificOptions: {
-      xAxis: 'DecisionYear',
-      yAxis: 'Rapporteur',
-      categoriesSelectedX: uniqueCategories['DecisionYear'],
-      categoriesSelectedY: ['United Kingdom'],
-    },
-  }
-
-  series = GenerateLineSeries(chartSpecificOptions, data)
+  series = GenerateLineSeries(settings)
 })
 
 afterEach(() => {
@@ -48,36 +47,13 @@ afterEach(() => {
 test('initial render with usual initialization', () => {
   ReactDOM.render(
     <LineChart
-      key={1}
       legend={false}
       labels={false}
       id={1}
       series={series}
-      categories={sortCategoryData(
-        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
-      )}
-      options={{}}
+      categories={sortCategoryData(chartSpecificOptions.categoriesSelectedX)}
+      options={chartSpecificOptions}
     />,
     container
   )
-})
-
-test('error handler test', () => {
-  ReactDOM.render(
-    <LineChart
-      key={1}
-      legend={false}
-      labels={false}
-      id={1}
-      series={null}
-      categories={sortCategoryData(
-        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
-      )}
-      options={{}}
-    />,
-    container
-  )
-  expect(
-    screen.queryByText('An error occurred when drawing the chart')
-  ).not.toBe(null)
 })
