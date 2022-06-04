@@ -2,12 +2,19 @@ import React from 'react'
 import {
   useColumnSelection,
   useColumnSelectionUpdate,
+  useStructure,
 } from '../../../../../../shared/contexts/DataContext'
 
 // Function based component that renders the add and remove buttons for the columns
-function ColumnAmount({ options }) {
+function ColumnAmount() {
   const columnSelection = useColumnSelection()
   const setColumnSelection = useColumnSelectionUpdate()
+
+  // Obtain the options list
+  const variableCategories = useStructure()
+  const flatVars = Object.values(variableCategories).flat()
+  const filteredVars = flatVars.filter((variable) => variable["data-format"] !== "link")
+  const options = filteredVars.map((variable) => variable["data-front-key"])
 
   // Handler that adds a column
   // No more columns than amount of variables can be added

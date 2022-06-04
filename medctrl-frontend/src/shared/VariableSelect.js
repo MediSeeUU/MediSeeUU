@@ -19,7 +19,7 @@ export default function VariableSelect({
 
     for (let varIndex in variableCategories[category]) {
       const variable = variableCategories[category][varIndex]
-      if(variable["data-format"] !== "link") {
+      if (variable["data-format"] !== "link") {
         options.push(
           <option value={variable['data-front-key']} key={v4()}>
             {variable['data-value']}
@@ -28,7 +28,7 @@ export default function VariableSelect({
       }
     }
 
-    if(options.length > 0) {
+    if (options.length > 0) {
       optGroups.push(
         <optgroup label={category} key={v4()}>
           {options}
@@ -47,7 +47,6 @@ export default function VariableSelect({
       <option value="" key={v4()} hidden>
         Choose a variable...
       </option>
-
       {optGroups}
     </select>
   )

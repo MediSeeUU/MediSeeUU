@@ -15,7 +15,7 @@ function Table({
 }) {
   return (
     <>
-      <ColumnAmount options={Object.keys(data[0])} />
+      <ColumnAmount />
       <table className="med-table">
         <Header select={select} sorters={sorters} setSorters={setSorters} />
         <Body
