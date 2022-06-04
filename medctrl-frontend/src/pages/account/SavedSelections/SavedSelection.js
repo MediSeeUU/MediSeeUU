@@ -1,12 +1,10 @@
 import {
   useCheckedState,
-  useCheckedStateUpdate,
 } from '../../../shared/contexts/DataContext'
 
 // Saved selection item in the saved selections list
 function SavedSelection({ savedSelection }) {
-  const checkedState = useCheckedState()
-  const setCheckedState = useCheckedStateUpdate()
+  const { checkedState, setCheckedState } = useCheckedState()
 
   // Create a set with the eunumbers for quicker lookup
   const selection = new Set(savedSelection.eunumbers)
