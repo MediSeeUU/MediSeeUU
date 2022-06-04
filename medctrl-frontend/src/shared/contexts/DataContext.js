@@ -172,24 +172,14 @@ export function StaticDataProvider({ children, allData, structData }) {
     <DataContext.Provider value={allData}>
       <StructureContext.Provider value={structData}>
         <SelectedContext.Provider value={selectedData}>
-          <CheckedContext.Provider value={checkedState}>
-            <CheckedContextUpdate.Provider value={setCheckedState}>
-              <ColumnSelectionContext.Provider value={columnSelection}>
-                <ColumnSelectionContextUpdate.Provider
-                  value={setColumnSelection}
-                >
-                  <VisualsContext.Provider value={visuals}>
-                    <VisualsUpdateContext.Provider value={setVisuals}>
-                      <TableUtilsContext.Provider value={tableUtils}>
-                        <TableUtilsUpdateContext.Provider value={setTableUtils}>
-                          {children}
-                        </TableUtilsUpdateContext.Provider>
-                      </TableUtilsContext.Provider>
-                    </VisualsUpdateContext.Provider>
-                  </VisualsContext.Provider>
-                </ColumnSelectionContextUpdate.Provider>
-              </ColumnSelectionContext.Provider>
-            </CheckedContextUpdate.Provider>
+          <CheckedContext.Provider value={{checkedState, setCheckedState}}>
+            <ColumnSelectionContext.Provider value={{columnSelection, setColumnSelection}}>
+              <VisualsContext.Provider value={{visuals, setVisuals}}>
+                <TableUtilsContext.Provider value={{tableUtils, setTableUtils}}>
+                    {children}
+                </TableUtilsContext.Provider>
+              </VisualsContext.Provider>
+            </ColumnSelectionContext.Provider>
           </CheckedContext.Provider>
         </SelectedContext.Provider>
       </StructureContext.Provider>

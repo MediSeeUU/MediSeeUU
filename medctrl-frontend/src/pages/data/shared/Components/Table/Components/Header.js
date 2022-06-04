@@ -2,19 +2,14 @@ import React from 'react'
 import VariableSelect from '../../../../../../shared/VariableSelect'
 import {
   useCheckedState,
-  useCheckedStateUpdate,
   useColumnSelection,
-  useColumnSelectionUpdate,
 } from '../../../../../../shared/contexts/DataContext'
 import CheckboxColumn from './CheckboxColumn'
 
 // Function based component that renders the header of the table
 function Header({ select, sorters, setSorters }) {
-  const columnSelection = useColumnSelection()
-  const setColumnSelection = useColumnSelectionUpdate()
-
-  const checkedState = useCheckedState()
-  const setCheckedState = useCheckedStateUpdate()
+  const { columnSelection, setColumnSelection } = useColumnSelection()
+  const { checkedState, setCheckedState} = useCheckedState()
 
   // Check if all checkboxes are checked, used to check/uncheck the checkbox in the header
   const allSelected = Object.values(checkedState).every((value) => value)

@@ -1,14 +1,12 @@
 import React from 'react'
 import {
   useColumnSelection,
-  useColumnSelectionUpdate,
   useStructure,
 } from '../../../../../../shared/contexts/DataContext'
 
 // Function based component that renders the add and remove buttons for the columns
 function ColumnAmount() {
-  const columnSelection = useColumnSelection()
-  const setColumnSelection = useColumnSelectionUpdate()
+  const { columnSelection, setColumnSelection } = useColumnSelection()
 
   // Obtain the options list
   const variableCategories = useStructure()

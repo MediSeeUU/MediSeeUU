@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   useCheckedState,
-  useCheckedStateUpdate,
   useColumnSelection,
 } from '../../../../../../shared/contexts/DataContext'
 import CheckboxColumn from './CheckboxColumn'
@@ -10,10 +9,9 @@ import { dataToDisplayFormat } from '../format'
 
 // Function based component that renders the body of the table
 function Body({data, select, amountPerPage, currentPage}) {
-  const checkedState = useCheckedState()
-  const setCheckedState = useCheckedStateUpdate()
+  const { checkedState, setCheckedState } = useCheckedState()
 
-  const columnSelection = useColumnSelection()
+  const { columnSelection } = useColumnSelection()
 
   // Handle a mouseclick on a checkbox in the normal row
   const handleOnChange = (key) => {

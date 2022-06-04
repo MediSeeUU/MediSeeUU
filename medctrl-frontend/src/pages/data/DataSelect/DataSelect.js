@@ -6,34 +6,32 @@ import {
   useData,
   useColumnSelection,
   useTableUtils,
-  useTableUtilsUpdate,
 } from '../../../shared/contexts/DataContext'
 import updateData from '../utils/update'
 
 // Data select component that displays all the datapoints that can be selected
 function DataSelect() {
-  let utils = useTableUtils()
-  let utilsUpdate = useTableUtilsUpdate()
+  const { tableUtils, setTableUtils } = useTableUtils()
 
   // We need to keep a reference of the columns for ranking the data
-  let columns = useColumnSelection()
-  let columnsRef = useRef(columns)
-  let queryRef = useRef(utils.search)
+  const { columnSelection } = useColumnSelection()
+  let columnsRef = useRef(columnSelection)
+  let queryRef = useRef(tableUtils.search)
 
   // We update the columns if a new search is initialized
-  if (utils.search !== queryRef.current) {
-    columnsRef.current = columns
-    queryRef.current = utils.search
+  if (tableUtils.search !== queryRef.current) {
+    columnsRef.current = columnSelection
+    queryRef.current = tableUtils.search
   }
 
   // Update the data based on the search, filters and sorters
   const allData = useData()
-  const updatedData = updateData(allData, utils, columnsRef.current)
+  const updatedData = updateData(allData, tableUtils, columnsRef.current)
 
   // Handler that is called after the menu is applied
   const menuUpdate = (filters, sorters) => {
-    utilsUpdate({
-      ...utils,
+    setTableUtils({
+      ...tableUtils,
       filters: filters,
       sorters: sorters,
     })
@@ -43,21 +41,21 @@ function DataSelect() {
     <>
       <Search
         tour="step-data-search"
-        update={(e) => utilsUpdate({ ...utils, search: e })}
-        initial={utils.search}
+        update={(e) => setTableUtils({ ...tableUtils, search: e })}
+        initial={tableUtils.search}
       />
       <div tour="step-data-select" className="med-content-container">
         <h1 className="med-header">Data Selection Table</h1>
         <Menu
-          filters={utils.filters}
-          sorters={utils.sorters}
+          filters={tableUtils.filters}
+          sorters={tableUtils.sorters}
           update={menuUpdate}
         />
         <hr className="med-top-separator" />
         {TableView({
           data: updatedData,
-          sorters: utils.sorters,
-          setSorters: (e) => utilsUpdate({ ...utils, sorters: e }),
+          sorters: tableUtils.sorters,
+          setSorters: (e) => setTableUtils({ ...tableUtils, sorters: e }),
           select: true,
           text: 'No data to display, please clear your search or filters.',
         })}

@@ -1,12 +1,10 @@
 import {
   useCheckedState,
-  useCheckedStateUpdate,
 } from '../../../../shared/contexts/DataContext'
 
 // Function based component that renders a clear all label
 function ClearAll({ data }) {
-  const checkedState = useCheckedState()
-  const setCheckedState = useCheckedStateUpdate()
+  const { checkedState, setCheckedState } = useCheckedState()
 
   // Handler that removes all selected data points
   const removeAllSelected = () => {
