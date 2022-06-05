@@ -10,7 +10,6 @@
   color: var(--med-footer-text);
 
   border-top-right-radius: 10px;
-  /*margin-left: 2%;*/ /* this rule causes the bug with jira code: V22E-161 */
 }
 
 /* These two rulesets are for the 2 rows of content in the footer, it makes 
