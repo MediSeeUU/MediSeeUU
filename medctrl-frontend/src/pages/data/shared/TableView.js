@@ -11,7 +11,7 @@ function TableView({ data, sorters, setSorters, select, text }) {
 
   // If there is data to display, it will show the table, otherwise a label will be shown
   if (!data || data.length === 0) {
-    return <label className="lb-tableholder">{text}</label>
+    return <label className="med-table-placeholder-text">{text}</label>
   } else {
     // Maximum amount of pages available
     const amountOfPages = Math.ceil(data.length / resultsPerPage)
