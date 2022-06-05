@@ -7,11 +7,12 @@ import CustomLink from './InfoComponents/CustomLink'
 import TimeLine from './InfoComponents/TimeLine'
 import ProcSelectModal from './InfoComponents/ProcSelectModal'
 
-import { useData, useStructure } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
 import { slashDateToStringDate } from '../data/shared/Components/Table/format'
 import { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
+import { useData } from '../../shared/Context/DataContext'
+import { useStructure } from '../../shared/Context/StructureContext'
 
 // function based component, which represents the top level detailed info page
 // component, it collects and fetches all the correct data and then passes this data

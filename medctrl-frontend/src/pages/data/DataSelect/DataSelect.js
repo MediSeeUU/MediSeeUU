@@ -2,12 +2,10 @@ import React, { useRef } from 'react'
 import Menu from './Menu/Menu'
 import Search from '../../../shared/Search/Search'
 import TableView from '../shared/TableView'
-import {
-  useData,
-  useColumnSelection,
-  useTableUtils,
-} from '../../../shared/contexts/DataContext'
 import updateData from '../utils/update'
+import { useTableUtils } from '../../../shared/Context/TableUtilsContext'
+import { useColumnSelection } from '../../../shared/Context/ColumnSelectionContext'
+import { useData } from '../../../shared/Context/DataContext'
 
 // Data select component that displays all the datapoints that can be selected
 function DataSelect() {

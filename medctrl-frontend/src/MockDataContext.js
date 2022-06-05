@@ -1,5 +1,5 @@
-import { StaticDataProvider } from './DataContext'
-import cleanFetchedData from './DataParsing'
+import { StaticDataProvider } from './shared/Context/DataContext'
+import cleanFetchedData from './shared/Context/DataParsing'
 import allServerData from './allServerData.json'
 import structServerData from './structServer.json'
 
