@@ -1,6 +1,6 @@
 import React from 'react'
-import { useCheckedState } from '../../../../../../shared/Context/CheckedContext'
-import { useColumnSelection } from '../../../../../../shared/Context/ColumnSelectionContext'
+import { useCheckedState } from '../../../../../../shared/Contexts/CheckedContext'
+import { useColumnSelection } from '../../../../../../shared/Contexts/ColumnSelectionContext'
 import VariableSelect from '../../../../../../shared/VariableSelect'
 import CheckboxColumn from './CheckboxColumn'
 

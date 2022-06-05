@@ -1,10 +1,10 @@
-import { CheckedProvider } from './Context/CheckedContext'
-import { ColumnSelectionProvider } from './Context/ColumnSelectionContext'
-import { DataProvider } from './Context/DataContext'
-import { SelectedProvider } from './Context/SelectedContext'
-import { StructureProvider } from './Context/StructureContext'
-import { TableUtilsProvider } from './Context/TableUtilsContext'
-import { VisualsProvider } from './Context/VisualsContext'
+import { CheckedProvider } from './Contexts/CheckedContext'
+import { ColumnSelectionProvider } from './Contexts/ColumnSelectionContext'
+import { DataProvider } from './Contexts/DataContext'
+import { SelectedProvider } from './Contexts/SelectedContext'
+import { StructureProvider } from './Contexts/StructureContext'
+import { TableUtilsProvider } from './Contexts/TableUtilsContext'
+import { VisualsProvider } from './Contexts/VisualsContext'
 
 function Provider({ children }) {
   return (

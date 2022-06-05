@@ -10,8 +10,8 @@ import { v4 as uuidv4 } from 'uuid'
 import SingleVisualization from './single_visualization/SingleVisualization'
 import GetUniqueCategories from './single_visualization/utils/GetUniqueCategories'
 import MedModal from '../../shared/MedModal'
-import { useVisuals } from '../../shared/Context/VisualsContext'
-import { useSelectedData } from '../../shared/Context/SelectedContext'
+import { useVisuals } from '../../shared/Contexts/VisualsContext'
+import { useSelectedData } from '../../shared/Contexts/SelectedContext'
 
 // the component that contains all the visualizations
 function VisualizationPage() {

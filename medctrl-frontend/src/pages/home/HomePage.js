@@ -3,7 +3,7 @@ import '../../shared/shared.css'
 import Search from '../../shared/Search/Search'
 import { useNavigate } from 'react-router-dom'
 import { useTourRun } from '../../core/tour/DashboardTour'
-import { useTableUtils } from '../../shared/Context/TableUtilsContext'
+import { useTableUtils } from '../../shared/Contexts/TableUtilsContext'
 
 function HomePage() {
   const navigate = useNavigate()

@@ -1,6 +1,6 @@
 import React from 'react'
-import { useColumnSelection } from '../../../../../../shared/Context/ColumnSelectionContext'
-import { useStructure } from '../../../../../../shared/Context/StructureContext'
+import { useColumnSelection } from '../../../../../../shared/Contexts/ColumnSelectionContext'
+import { useStructure } from '../../../../../../shared/Contexts/StructureContext'
 
 // Function based component that renders the add and remove buttons for the columns
 function ColumnAmount() {

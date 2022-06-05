@@ -3,9 +3,9 @@ import Menu from './Menu/Menu'
 import Search from '../../../shared/Search/Search'
 import TableView from '../shared/TableView'
 import updateData from '../utils/update'
-import { useTableUtils } from '../../../shared/Context/TableUtilsContext'
-import { useColumnSelection } from '../../../shared/Context/ColumnSelectionContext'
-import { useData } from '../../../shared/Context/DataContext'
+import { useTableUtils } from '../../../shared/Contexts/TableUtilsContext'
+import { useColumnSelection } from '../../../shared/Contexts/ColumnSelectionContext'
+import { useData } from '../../../shared/Contexts/DataContext'
 
 // Data select component that displays all the datapoints that can be selected
 function DataSelect() {

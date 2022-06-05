@@ -1,4 +1,4 @@
-import { useCheckedState } from '../../../../shared/Context/CheckedContext'
+import { useCheckedState } from '../../../../shared/Contexts/CheckedContext'
 
 // Function based component that renders a clear all label
 function ClearAll({ data }) {

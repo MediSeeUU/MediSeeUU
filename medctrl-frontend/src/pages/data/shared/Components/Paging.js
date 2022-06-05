@@ -82,24 +82,6 @@ function Paging({ data, amount, currPage, setPage }) {
     )
   }
 
-  // Set current page to next page
-  const next = () => {
-    // Only update current page if it does not go beyond the last page
-    if (currPage + 1 <= pages) {
-      currPage += 1
-    }
-    setPage(currPage)
-  }
-
-  // Set current page to previous page
-  const back = () => {
-    // Only update current page if it does not go lower than one
-    if (currPage - 1 > 0) {
-      currPage -= 1
-    }
-    setPage(currPage)
-  }
-
   return (
     <div
       className="med-table-pagination-container"
@@ -107,7 +89,7 @@ function Paging({ data, amount, currPage, setPage }) {
     >
       {currPage > 1 && (
         <i
-          onClick={back}
+          onClick={() => setPage(--currPage)}
           className="bx bxs-chevron-left med-table-change-page"
           data-testid="prev-page-table"
         />
@@ -115,7 +97,7 @@ function Paging({ data, amount, currPage, setPage }) {
       {pageSelector()}
       {currPage < pages && (
         <i
-          onClick={next}
+          onClick={() => setPage(++currPage)}
           className="bx bxs-chevron-right med-table-change-page"
           data-testid="next-page-table"
         />
