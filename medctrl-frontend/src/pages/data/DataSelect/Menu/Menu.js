@@ -19,8 +19,8 @@ function Menu({ filters, sorters, update }) {
   const sortObject = [{ selected: '', order: 'asc' }]
 
   // Menu state variables
-  const [localFilters, setFilters] = useState(filters)
-  const [localSorters, setSorters] = useState(sorters)
+  const [localFilters, setFilters] = useState(filterObject)
+  const [localSorters, setSorters] = useState(sortObject)
   const [showModal, setModalState] = useState(false)
 
   // Handlers for opening and closing the modal

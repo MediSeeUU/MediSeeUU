@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
 import { useStructure } from '../../../../../shared/Contexts/StructureContext'
 import VariableSelect from '../../../../../shared/VariableSelect'
-import FilterInputs from './FilterComponents/FilterInputs'
+import FilterInputs from './FilterInputs'
 
 // Function based component that renders a filter item
 function Filter(props) {

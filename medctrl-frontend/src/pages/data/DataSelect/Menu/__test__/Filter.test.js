@@ -3,15 +3,11 @@ import ReactDOM from 'react-dom'
 import {
   render,
   fireEvent,
-  waitFor,
   screen,
-  cleanup,
-  within,
 } from '@testing-library/react'
-import Filter from '../Filter'
-import FilterInputs from '../FilterComponents/FilterInputs'
-import structData from '../../../../shared/contexts/structServer.json'
-import { StructureContext } from '../../../../shared/contexts/DataContext'
+import Filter from '../FilterMenu/Filter'
+import FilterInputs from '../FilterMenu/FilterInputs'
+import MockProvider from '../../../../../mocks/mockProvider'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')
@@ -24,9 +20,7 @@ test('renders without crashing', () => {
 test('delete filter function is called', () => {
   const del = jest.fn()
   render(
-    <StructureContext.Provider value={structData}>
-      <Filter id={10} item={{ selected: 'BrandName', input: [''] }} del={del} />
-    </StructureContext.Provider>
+    <Filter id={10} item={{ selected: 'BrandName', input: [''] }} del={del} />
   )
   fireEvent.click(screen.getByTestId('delete-icon'))
   expect(del).toHaveBeenCalled()
@@ -92,9 +86,7 @@ test('delete filter box returns correct ids', () => {
 test('change selected function is called', () => {
   const sel = jest.fn()
   render(
-    <StructureContext.Provider value={structData}>
-      <Filter id={10} item={{ selected: 'BrandName', input: [''] }} sel={sel} />
-    </StructureContext.Provider>
+    <Filter id={10} item={{ selected: 'BrandName', input: [''] }} sel={sel} />
   )
   const select = screen.getByTestId('filter-select')
   fireEvent.change(select, { target: { value: 'BrandName' } })
@@ -107,14 +99,14 @@ test('change selected returns correct id and value', () => {
     expect(value).toBe('BrandName')
   }
   render(
-    <StructureContext.Provider value={structData}>
+    <MockProvider>
       <Filter
         id={12}
         options={<option value="BrandName">this should not matter</option>}
         item={{ selected: 'BrandName', input: [''] }}
         sel={sel}
       />
-    </StructureContext.Provider>
+    </MockProvider>
   )
   const select = screen.getByTestId('filter-select')
   fireEvent.change(select, { target: { value: 'BrandName' } })

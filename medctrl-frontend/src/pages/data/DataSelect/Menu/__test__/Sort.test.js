@@ -3,14 +3,10 @@ import ReactDOM from 'react-dom'
 import {
   render,
   fireEvent,
-  waitFor,
   screen,
-  cleanup,
-  within,
 } from '@testing-library/react'
-import Sort from '../Sort'
-import structData from '../../../../shared/contexts/structServer.json'
-import { StructureContext } from '../../../../shared/contexts/DataContext'
+import Sort from '../SortMenu/Sort'
+import MockProvider from '../../../../../mocks/mockProvider'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')
@@ -52,14 +48,14 @@ test('change selected variable returns correct id and value', () => {
     expect(value).toBe('BrandName')
   }
   render(
-    <StructureContext.Provider value={structData}>
+    <MockProvider>
       <Sort
         id={18}
         options={<option value="BrandName">this should not matter</option>}
         item={{ selected: 'BrandName', order: 'asc' }}
         sel={sel}
       />
-    </StructureContext.Provider>
+    </MockProvider>
   )
   const select = screen.getByTestId('sort-select-attr')
   fireEvent.change(select, { target: { value: 'BrandName' } })

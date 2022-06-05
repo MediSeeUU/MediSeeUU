@@ -1,4 +1,4 @@
-import DummyData from '../../../../testJson/data.json'
+import DummyData from '../../../../json/data.json'
 import sortData, {
   convertSortingAttributeNameToComparisonFunction,
 } from '../sorting'

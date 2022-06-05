@@ -1,5 +1,5 @@
 import filterData from '../filter'
-import DummyData from '../../../../testJson/data.json'
+import DummyData from '../../../../json/data.json'
 
 test('single text filter applied correctly', () => {
   let filteredData = filterData(DummyData, [

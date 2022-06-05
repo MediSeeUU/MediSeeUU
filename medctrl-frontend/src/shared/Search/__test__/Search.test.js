@@ -3,10 +3,7 @@ import ReactDOM from 'react-dom'
 import {
   render,
   fireEvent,
-  waitFor,
   screen,
-  cleanup,
-  within,
 } from '@testing-library/react'
 import Search from '../Search'
 
