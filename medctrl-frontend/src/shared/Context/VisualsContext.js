@@ -36,7 +36,7 @@ export function VisualsProvider({ children }) {
   }, [data])
 
   return (
-    <VisualsContext.Provider value={{visuals, setVisuals}}>
+    <VisualsContext.Provider value={{ visuals, setVisuals }}>
       {children}
     </VisualsContext.Provider>
   )

@@ -1,4 +1,4 @@
-import { useCheckedState } from "../../../shared/Context/CheckedContext"
+import { useCheckedState } from '../../../shared/Context/CheckedContext'
 
 // Saved selection item in the saved selections list
 function SavedSelection({ savedSelection }) {

@@ -24,7 +24,7 @@ export function DataProvider({ children }) {
           headers: { 'Content-Type': 'application/json' },
         }
       )
-      
+
       //const structResponseData = structServerData
       const medResponseData = await medResponse.json()
       setData(cleanFetchedData(medResponseData, structData))
@@ -32,9 +32,5 @@ export function DataProvider({ children }) {
     fetchData()
   }, [structData, setData])
 
-  return (
-    <DataContext.Provider value={data}>
-      {children}
-    </DataContext.Provider>
-  )
+  return <DataContext.Provider value={data}>{children}</DataContext.Provider>
 }

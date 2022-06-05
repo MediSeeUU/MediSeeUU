@@ -105,17 +105,21 @@ function Paging({ data, amount, currPage, setPage }) {
       className="med-table-pagination-container"
       data-testid="pagination-div"
     >
-      <i
-        onClick={back}
-        className="bx bxs-chevron-left med-table-change-page"
-        data-testid="prev-page-table"
-      />
+      {currPage > 1 && (
+        <i
+          onClick={back}
+          className="bx bxs-chevron-left med-table-change-page"
+          data-testid="prev-page-table"
+        />
+      )}
       {pageSelector()}
-      <i
-        onClick={next}
-        className="bx bxs-chevron-right med-table-change-page"
-        data-testid="next-page-table"
-      />
+      {currPage < pages && (
+        <i
+          onClick={next}
+          className="bx bxs-chevron-right med-table-change-page"
+          data-testid="next-page-table"
+        />
+      )}
     </div>
   )
 }

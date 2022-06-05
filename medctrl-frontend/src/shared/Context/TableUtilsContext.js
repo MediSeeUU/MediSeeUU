@@ -20,7 +20,7 @@ export function TableUtilsProvider({ children }) {
   })
 
   return (
-    <TableUtilsContext.Provider value={{tableUtils, setTableUtils}}>
+    <TableUtilsContext.Provider value={{ tableUtils, setTableUtils }}>
       {children}
     </TableUtilsContext.Provider>
   )

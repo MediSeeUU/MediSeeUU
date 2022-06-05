@@ -17,7 +17,9 @@ export function ColumnSelectionProvider({ children }) {
   ])
 
   return (
-    <ColumnSelectionContext.Provider value={{columnSelection, setColumnSelection}}>
+    <ColumnSelectionContext.Provider
+      value={{ columnSelection, setColumnSelection }}
+    >
       {children}
     </ColumnSelectionContext.Provider>
   )

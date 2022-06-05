@@ -18,15 +18,12 @@ export function CheckedProvider({ children }) {
   // update the checked datapoints state when the allData state is changed
   useEffect(() => {
     setCheckedState(
-      Object.assign(
-        {},
-        ...data.map((entry) => ({ [entry.EUNoShort]: true }))
-      )
+      Object.assign({}, ...data.map((entry) => ({ [entry.EUNoShort]: true })))
     )
   }, [data])
 
   return (
-    <CheckedContext.Provider value={{checkedState, setCheckedState}}>
+    <CheckedContext.Provider value={{ checkedState, setCheckedState }}>
       {children}
     </CheckedContext.Provider>
   )
