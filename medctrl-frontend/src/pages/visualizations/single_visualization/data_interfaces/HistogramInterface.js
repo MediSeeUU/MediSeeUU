@@ -3,13 +3,13 @@ import { pollChosenVariable } from './sharedOneDimension/pollChosenVariable'
 
 // creates an array of data for a Histogram chart
 export default function GenerateHistogramSeries(settings) {
-  if (settings.chartSpecificsettings.categoriesSelectedX.length === 0) {
+  if (settings.chartSpecificOptions.categoriesSelectedX.length === 0) {
     return []
   }
-  const xAxis = settings.chartSpecificsettings.xAxis
+  const xAxis = settings.chartSpecificOptions.xAxis
   const data = settings.data
   const chosenCategories = sortCategoryData(
-    settings.chartSpecificsettings.categoriesSelectedX
+    settings.chartSpecificOptions.categoriesSelectedX
   )
 
   let [dict, euNumbers] = pollChosenVariable(data, xAxis, chosenCategories)
