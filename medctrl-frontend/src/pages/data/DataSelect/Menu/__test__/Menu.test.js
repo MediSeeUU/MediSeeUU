@@ -15,9 +15,10 @@ test('renders without crashing', () => {
 
 test('opens menu after clicking button', () => {
   render(<Menu filters={[]} sorters={[]} />)
-  expect(screen.queryByText(/Close/i)).not.toBeInTheDocument()
-  fireEvent.click(screen.getByText(/Filter & Sort/i))
-  expect(screen.getByText(/Close/i)).toBeInTheDocument()
+  const button = screen.getByText(/Filter & Sort/i)
+  expect(fireEvent.click(button)).toBeTruthy()
+  const close = screen.getByText(/Close/i)
+  expect(fireEvent.click(close)).toBeTruthy()
 })
 
 test('apply button calls update function', () => {

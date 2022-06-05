@@ -6,7 +6,7 @@ import GeneratePieSeries from '../../single_visualization/data_interfaces/PieInt
 import PieChart from '../../single_visualization/visualization_types/PieChart'
 import ResizeObserver from '../../mocks/observer'
 
-import data from '../../../../testJson/data.json'
+import data from '../../../../json/data.json'
 
 jest.mock('../../mocks/observer')
 
