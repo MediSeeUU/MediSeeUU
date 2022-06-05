@@ -16,7 +16,7 @@ function filterData(data, query) {
     for (const val of vals) {
       const formattedVal = val.toString().toLowerCase()
       // Query must be included in the table value and not in a url
-      if (formattedVal.includes(query) && !formattedVal.includes("http")) {
+      if (formattedVal.includes(query) && !formattedVal.startsWith("http")) {
         inText = true
         break
       }
