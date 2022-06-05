@@ -6,7 +6,7 @@ import SideNavigation from '../Navigation'
 import AccountPage from '../../../pages/account/AccountPage'
 import SettingsPage from '../../../pages/settings/SettingsPage'
 import DataPage from '../../../pages/data/DataPage'
-import Provider from '../../../shared/Provider'
+import MockProvider from '../../../mocks/mockProvider'
 
 test('sidenavigation component renders without crashing', () => {
   const root = document.createElement('div')
@@ -54,9 +54,9 @@ test('render datapage without crashing', () => {
   const root = document.createElement('div')
   ReactDOM.render(
     <BrowserRouter>
-      <Provider mock={true}>
+      <MockProvider>
         <DataPage />
-      </Provider>
+      </MockProvider>
     </BrowserRouter>,
     root
   )
@@ -74,7 +74,7 @@ test('logout navbarbutton is clickable when logged in', () => {
     </BrowserRouter>
   )
   const loginbutton = screen.getAllByText('Login')[0]
-  expect(fireEvent.click(loginbutton)).toBe(true)
+  expect(fireEvent.click(loginbutton)).toBeTruthy()
 })
 
 test('logout navbarbutton is clickable when logged in2', () => {
@@ -91,5 +91,5 @@ test('logout navbarbutton is clickable when logged in2', () => {
   sessionStorage.clear()
 
   const loginbutton = screen.getAllByTestId('navaccountbutton')[0]
-  expect(fireEvent.click(loginbutton)).toBe(true)
+  expect(fireEvent.click(loginbutton)).toBeTruthy()
 })
