@@ -1,14 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react'
 import cleanFetchedData from './format'
 import { useStructure } from './StructureContext'
+import allServerData from '../../json/allServerData.json'
+import structServerData from '../../json/structServer.json'
 
-export const DataContext = React.createContext()
+const DataContext = React.createContext()
 
 export function useData() {
   return useContext(DataContext)
 }
 
-export function DataProvider({ children }) {
+export function DataProvider({ mock, children }) {
   const structData = useStructure()
 
   // list of all the medicine data points
@@ -29,8 +31,15 @@ export function DataProvider({ children }) {
       const medResponseData = await medResponse.json()
       setData(cleanFetchedData(medResponseData, structData))
     }
-    fetchData()
-  }, [structData, setData])
+
+    if (mock) {
+      setData(cleanFetchedData(allServerData, structServerData))
+    }
+    else if (structData) {
+      fetchData()
+      console.log("fetched medicines data")
+    }
+  }, [structData, setData, mock])
 
   return <DataContext.Provider value={data}>{children}</DataContext.Provider>
 }

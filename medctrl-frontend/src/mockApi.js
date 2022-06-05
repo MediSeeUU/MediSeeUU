@@ -1,7 +1,7 @@
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 
-import sampleProcedureData from './pages/detailed-info/detailed-info-data.json'
+import sampleProcedureData from './json/detailed-info-data.json'
 
 const mockApi = setupServer(
   // example of a request handler

@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
+import structServerData from '../../json/structServer.json'
 
 const StructureContext = React.createContext()
 
@@ -6,7 +7,7 @@ export function useStructure() {
   return useContext(StructureContext)
 }
 
-export function StructureProvider({ children }) {
+export function StructureProvider({ mock, children }) {
   // json object defining the structure of the fetched medicine data
   const [structData, setStructData] = useState(null)
 
@@ -22,8 +23,15 @@ export function StructureProvider({ children }) {
       const structResponseData = await structResponse.json()
       setStructData(structResponseData)
     }
-    fetchData()
-  }, [setStructData])
+
+    if (mock) {
+      setStructData(structServerData)
+    }
+    else {
+      fetchData()
+      console.log("fetched structure data")
+    }
+  }, [setStructData, mock])
 
   return (
     <StructureContext.Provider value={structData}>

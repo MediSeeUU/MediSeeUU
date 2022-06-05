@@ -6,10 +6,10 @@ import { StructureProvider } from './Contexts/StructureContext'
 import { TableUtilsProvider } from './Contexts/TableUtilsContext'
 import { VisualsProvider } from './Contexts/VisualsContext'
 
-function Provider({ children }) {
+function Provider({ mock, children }) {
   return (
-    <StructureProvider>
-      <DataProvider>
+    <StructureProvider mock={mock}>
+      <DataProvider mock={mock}>
         <CheckedProvider>
           <SelectedProvider>
             <ColumnSelectionProvider>
