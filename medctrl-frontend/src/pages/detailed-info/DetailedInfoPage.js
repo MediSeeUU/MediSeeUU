@@ -8,7 +8,7 @@ import TimeLine from './InfoComponents/TimeLine'
 import ProcSelectModal from './InfoComponents/ProcSelectModal'
 
 import { useParams } from 'react-router-dom'
-import { slashDateToStringDate } from '../data/shared/Components/Table/format'
+import { slashDateToStringDate } from '../data/shared/Table/format'
 import { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
 import { useData } from '../../shared/Contexts/DataContext'

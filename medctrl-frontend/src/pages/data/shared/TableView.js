@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Table from './Components/Table/Table'
+import Table from './Table/Table'
 import Paging from './Components/Paging'
 import AmountPerPage from './Components/AmountPerPage'
 import ClearAll from './Components/ClearAll'

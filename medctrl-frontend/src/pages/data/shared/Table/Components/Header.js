@@ -1,7 +1,7 @@
 import React from 'react'
-import { useCheckedState } from '../../../../../../shared/Contexts/CheckedContext'
-import { useColumnSelection } from '../../../../../../shared/Contexts/ColumnSelectionContext'
-import VariableSelect from '../../../../../../shared/VariableSelect'
+import { useCheckedState } from '../../../../../shared/Contexts/CheckedContext'
+import { useColumnSelection } from '../../../../../shared/Contexts/ColumnSelectionContext'
+import VariableSelect from '../../../../../shared/VariableSelect'
 import CheckboxColumn from './CheckboxColumn'
 
 // Function based component that renders the header of the table
