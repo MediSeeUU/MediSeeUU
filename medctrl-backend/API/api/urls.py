@@ -1,6 +1,6 @@
 # This file contains all routes (endpoints) that are accescile 
 # by an user. Each route connects to a 'view', which can be found
-# in the 'view' folder. We distinguish between APIView's and ViewSets. 
+# in the 'views' folder. We distinguish between APIView's and ViewSets. 
 # In 'urlpatterns' paths are specified. APIView's use '.as_view()' as
 # an aditional argument where ViewSets use 'as_viewViewSet' as an aditional
 # argument. ViewSets can also be used in a router, APIView's can not.
