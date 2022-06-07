@@ -16,7 +16,7 @@ function Table({
   return (
     <>
       <ColumnAmount />
-      <table className="med-table">
+      <table className={ !select ? "med-table med-table-select" : "med-table" }>
         <Header select={select} sorters={sorters} setSorters={setSorters} />
         <Body
           data={data}

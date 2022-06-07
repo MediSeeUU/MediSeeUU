@@ -107,6 +107,7 @@
   margin: 8% 17% 10% 17%;
   border-radius: 10px;
   outline: none;
+  min-width: 875px;
 }
 
 .visualize-modal .med-data-button {

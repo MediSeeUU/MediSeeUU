@@ -202,13 +202,13 @@ function SingleVisualization(props) {
                 className="med-primary-solid med-bx-button button-export"
                 onClick={handlePNGExport}
               >
-                <i className="bx bx-save filter-Icon"></i>Export as PNG
+                <i className="bx bx-save med-button-image"></i>Export as PNG
               </button>
               <button
                 className="med-primary-solid med-bx-button button-export"
                 onClick={handleSVGExport}
               >
-                <i className="bx bx-save filter-Icon"></i>Export as SVG
+                <i className="bx bx-save med-button-image"></i>Export as SVG
               </button>
               <button
                 className="med-primary-solid med-bx-button button-remove"

@@ -138,7 +138,7 @@ function VisualizationPage() {
               className="med-primary-solid med-bx-button button-add"
               onClick={handleAddition}
             >
-              <i className="bx bx-plus filter-Icon" />
+              <i className="bx bx-plus med-button-image" />
               Add visualization
             </button>
           </Row>
