@@ -1,12 +1,16 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 // Function based component that returns a nav link component
 function NavLink(props) {
   const navigate = useNavigate()
+  const location = useLocation()
 
   // If this nav link is supposed to be at the bottom of the
   // navigation bar, an extra CSS class is required
   const className = 'med-nav-item' + (props.lowest ? ' med-nav-lowest' : '')
+
+  // If the component is the current page selected add active class
+  const active = location.pathname === props.dest ? ' med-active' : ''
 
   // Click handler that closes the navigation bar
   // and redirects to the specified page
@@ -23,7 +27,7 @@ function NavLink(props) {
 
   return (
     <div
-      className={className + ' med-primary-solid'}
+      className={className + ' med-primary-solid' + active}
       onClick={clicked}
       data-testid={props.name}
     >
