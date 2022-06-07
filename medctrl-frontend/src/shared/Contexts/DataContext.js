@@ -30,7 +30,7 @@ export function DataProvider({ mock, children }) {
       setData(cleanFetchedData(medResponseData, structData))
     }
 
-    if (!mock) {
+    if (!mock && structData) {
       fetchData()
       console.log("fetched medicines data")
     }
