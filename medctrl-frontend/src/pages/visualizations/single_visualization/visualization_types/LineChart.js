@@ -9,6 +9,8 @@ function LineChart(props) {
         id: String(props.id),
         type: 'line',
         toolbar: { show: false },
+        fontFamily: 'Poppins, sans-serif',
+        foreColor: 'var(--text-primary)',
         events: {
           dataPointSelection: (event, chartContext, config) => {
             let euNumbers =
@@ -26,11 +28,21 @@ function LineChart(props) {
         tickPlacement: 'on',
         title: {
           text: props.options.xAxis,
+          style: {
+            fontWeight: '300',
+            fontSize: 'small',
+            color: 'var(--text-primary)',
+          },
         },
       },
       yaxis: {
         title: {
           text: props.options.yAxis,
+          style: {
+            fontWeight: '300',
+            fontSize: 'small',
+            color: 'var(--text-primary)',
+          },
         },
       },
       dataLabels: {

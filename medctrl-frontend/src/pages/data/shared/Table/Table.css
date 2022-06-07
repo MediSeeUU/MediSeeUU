@@ -56,8 +56,13 @@
 }
 
 .med-table-header-cell {
-  min-width: 223px;
-  max-width: 223px;
+  min-width: 226.7px;
+  max-width: 226.7px;
+}
+
+.med-table-select .med-table-header-cell {
+  min-width: calc(236.7px);
+  max-width: calc(236.7px);
 }
 
 .med-table-header-select-cell {
@@ -88,11 +93,17 @@
 
 .med-table-body-cell {
   font-size: 13px;
-  min-width: 223px;
-  max-width: 223px;
+  min-width: 226.7px;
+  max-width: 226.7px;
 }
 
-.med-table-narrow-column {
+.med-table-select .med-table-body-cell {
+  min-width: calc(236.7px);
+  max-width: calc(236.7px);
+}
+
+.med-table-narrow-column,
+.med-table-select .med-table-narrow-column {
   min-width: 50px;
   max-width: 50px;
   position: sticky;
