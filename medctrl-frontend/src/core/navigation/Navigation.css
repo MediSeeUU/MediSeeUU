@@ -126,3 +126,7 @@
   font-size: 14px;
   color: var(--med-additional-text);
 }
+
+.med-active {
+  background-color: var(--primary-ultralight) !important;
+}
