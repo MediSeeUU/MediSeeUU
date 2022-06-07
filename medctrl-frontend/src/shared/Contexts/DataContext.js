@@ -1,8 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import cleanFetchedData from './format'
 import { useStructure } from './StructureContext'
-import allServerData from '../../json/allServerData.json'
-import structServerData from '../../json/structServer.json'
 
 const DataContext = React.createContext()
 
@@ -38,5 +36,5 @@ export function DataProvider({ mock, children }) {
     }
   }, [structData, setData, mock])
 
-  return <DataContext.Provider value={mock ? cleanFetchedData(allServerData, structServerData) : data}>{children}</DataContext.Provider>
+  return <DataContext.Provider value={mock || data}>{children}</DataContext.Provider>
 }

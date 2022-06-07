@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react'
-import structServerData from '../../json/structServer.json'
 
 const StructureContext = React.createContext()
 
@@ -31,7 +30,7 @@ export function StructureProvider({ mock, children }) {
   }, [setStructData, mock])
 
   return (
-    <StructureContext.Provider value={mock ? structServerData : structData}>
+    <StructureContext.Provider value={mock || structData}>
       {children}
     </StructureContext.Provider>
   )

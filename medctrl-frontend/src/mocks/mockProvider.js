@@ -1,8 +1,9 @@
-import Provider from "../shared/Provider"
+import Provider from '../shared/Provider'
+import mockObject from './mockObject'
 
-function MockProvider({ children }) {
+function MockProvider({ mock, children }) {
   return (
-    <Provider mock={true}>
+    <Provider mock={mock || mockObject}>
       {children}
     </Provider>
   )

@@ -8,8 +8,8 @@ import { VisualsProvider } from './Contexts/VisualsContext'
 
 function Provider({ mock, children }) {
   return (
-    <StructureProvider mock={mock}>
-      <DataProvider mock={mock}>
+    <StructureProvider mock={mock ? mock.struct : null}>
+      <DataProvider mock={mock ? mock.data : null}>
         <CheckedProvider>
           <SelectedProvider>
             <ColumnSelectionProvider>

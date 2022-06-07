@@ -75,7 +75,7 @@ test('checkboxes displayed', () => {
 })
 
 test('row selected, when checkbox clicked', () => {
-  const { rerender } = render(
+  render(
     <BrowserRouter>
       <MockProvider>
         <Table
@@ -89,26 +89,16 @@ test('row selected, when checkbox clicked', () => {
     </BrowserRouter>
   )
   const table = screen.getByRole('table')
-  const input = within(table).getAllByRole('checkbox')[1]
-  fireEvent.click(input)
-  rerender(
-    <BrowserRouter>
-      <MockProvider>
-        <Table
-          data={DummyData}
-          select={true}
-          currentPage={2}
-          amountPerPage={10}
-          sorters={[{ selected: '', order: 'asc' }]}
-        />
-      </MockProvider>
-    </BrowserRouter>
-  )
-  expect(input).toBeChecked()
+  const inputs = within(table).getAllByRole('checkbox')
+  fireEvent.click(inputs[0])
+  expect(inputs[0]).not.toBeChecked()
+  expect(inputs[1]).not.toBeChecked()
+  fireEvent.click(inputs[1])
+  expect(inputs[1]).toBeChecked()
 })
 
 test('all rows selected when select all pressed', () => {
-  const { rerender } = render(
+  render(
     <BrowserRouter>
       <MockProvider>
         <Table
@@ -124,19 +114,10 @@ test('all rows selected when select all pressed', () => {
   const table = screen.getByRole('table')
   const inputs = within(table).getAllByRole('checkbox')
   fireEvent.click(inputs[0])
-  rerender(
-    <BrowserRouter>
-      <MockProvider>
-        <Table
-          data={DummyData}
-          select={true}
-          currentPage={2}
-          amountPerPage={DummyData.length + 1}
-          sorters={[{ selected: '', order: 'asc' }]}
-        />
-      </MockProvider>
-    </BrowserRouter>
-  )
+  for (let input of inputs) {
+    expect(input).not.toBeChecked()
+  }
+  fireEvent.click(inputs[0])
   for (let input of inputs) {
     expect(input).toBeChecked()
   }
