@@ -9,6 +9,8 @@ function HistogramChart(props) {
         id: String(props.id),
         type: 'bar',
         toolbar: { show: false },
+        fontFamily: 'Poppins, sans-serif',
+        foreColor: 'var(--text-primary)',
         events: {
           dataPointSelection: (event, chartContext, config) => {
             let euNumbers =
@@ -26,11 +28,21 @@ function HistogramChart(props) {
         tickPlacement: 'on',
         title: {
           text: props.options.xAxis,
+          style: {
+            fontWeight: '300',
+            fontSize: 'small',
+            color: 'var(--text-primary)',
+          },
         },
       },
       yaxis: {
         title: {
-          text: 'number',
+          text: 'Number',
+          style: {
+            fontWeight: '300',
+            fontSize: 'small',
+            color: 'var(--text-primary)',
+          },
         },
       },
       dataLabels: {

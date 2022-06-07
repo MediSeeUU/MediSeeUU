@@ -12,6 +12,8 @@ function BarChart(props) {
         toolbar: { show: false },
         stacked: props.options.stacked,
         stackType: props.options.stackType ? '100%' : 'normal',
+        fontFamily: 'Poppins, sans-serif',
+        foreColor: 'var(--text-primary)',
         events: {
           dataPointSelection: (event, chartContext, config) => {
             let euNumbers =
@@ -40,6 +42,11 @@ function BarChart(props) {
           text: props.options.horizontal
             ? props.options.yAxis
             : props.options.xAxis,
+          style: {
+            fontWeight: '300',
+            fontSize: 'small',
+            color: 'var(--text-primary)',
+          },
         },
       },
       yaxis: {
@@ -47,6 +54,11 @@ function BarChart(props) {
           text: props.options.horizontal
             ? props.options.xAxis
             : props.options.yAxis,
+          style: {
+            fontWeight: '300',
+            fontSize: 'small',
+            color: 'var(--text-primary)',
+          },
         },
       },
       dataLabels: {
