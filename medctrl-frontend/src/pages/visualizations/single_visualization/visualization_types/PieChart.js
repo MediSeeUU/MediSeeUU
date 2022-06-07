@@ -9,6 +9,8 @@ function PieChart(props) {
         id: String(props.id),
         type: 'pie',
         toolbar: { show: false },
+        fontFamily: 'Poppins, sans-serif',
+        foreColor: 'var(--text-primary)',
         events: {
           dataPointSelection: (event, chartContext, config) => {
             let euNumbers = props.series.euNumbers[config.dataPointIndex]
