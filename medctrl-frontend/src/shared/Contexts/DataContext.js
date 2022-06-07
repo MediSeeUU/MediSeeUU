@@ -32,14 +32,11 @@ export function DataProvider({ mock, children }) {
       setData(cleanFetchedData(medResponseData, structData))
     }
 
-    if (mock) {
-      setData(cleanFetchedData(allServerData, structServerData))
-    }
-    else if (structData) {
+    if (!mock) {
       fetchData()
       console.log("fetched medicines data")
     }
   }, [structData, setData, mock])
 
-  return <DataContext.Provider value={data}>{children}</DataContext.Provider>
+  return <DataContext.Provider value={mock ? cleanFetchedData(allServerData, structServerData) : data}>{children}</DataContext.Provider>
 }

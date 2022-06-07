@@ -24,17 +24,14 @@ export function StructureProvider({ mock, children }) {
       setStructData(structResponseData)
     }
 
-    if (mock) {
-      setStructData(structServerData)
-    }
-    else {
+    if (!mock) {
       fetchData()
       console.log("fetched structure data")
     }
   }, [setStructData, mock])
 
   return (
-    <StructureContext.Provider value={structData}>
+    <StructureContext.Provider value={mock ? structServerData : structData}>
       {children}
     </StructureContext.Provider>
   )
