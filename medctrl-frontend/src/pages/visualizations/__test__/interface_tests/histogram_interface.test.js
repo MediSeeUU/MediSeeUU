@@ -11,7 +11,7 @@ test('no categories selected', () => {
     data: data,
   }
   const series = GenerateHistogramSeries(options, data)
-  expect(series[0].data.length).toBe(0)
+  expect(series.length).toBe(0)
 })
 
 test('some categories selected (sorted)', () => {
