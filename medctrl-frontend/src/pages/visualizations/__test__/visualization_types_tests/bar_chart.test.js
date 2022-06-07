@@ -6,7 +6,7 @@ import GenerateBarSeries from '../../single_visualization/data_interfaces/BarInt
 import BarChart from '../../single_visualization/visualization_types/BarChart'
 import ResizeObserver from '../../mocks/observer'
 
-import data from '../../../../testJson/data.json'
+import data from '../../../../json/data.json'
 
 jest.mock('../../mocks/observer')
 

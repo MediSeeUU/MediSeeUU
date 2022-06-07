@@ -1,6 +1,6 @@
 import GeneratePieSeries from '../../single_visualization/data_interfaces/PieInterface'
 
-import data from '../../../../testJson/data.json'
+import data from '../../../../json/data.json'
 
 test('no categories selected', () => {
   const options = {

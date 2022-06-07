@@ -3,7 +3,7 @@ import GetUniqueCategories from '../../../single_visualization/utils/GetUniqueCa
 import CategoryOptions from '../../../single_visualization/forms/shared/CategoryOptions'
 import sortCategoryData from '../../../single_visualization/utils/SortCategoryData'
 
-import data from '../../../../../testJson/data.json'
+import data from '../../../../../json/data.json'
 
 const uniqueCategories = GetUniqueCategories(data)
 

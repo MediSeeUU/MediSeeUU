@@ -10,7 +10,7 @@ import {
 import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
 import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
 
-import data from '../../../../testJson/data.json'
+import data from '../../../../json/data.json'
 
 test('no data', () => {
   const data = []

@@ -1,7 +1,7 @@
 import GenerateBarSeries from '../../single_visualization/data_interfaces/BarInterface'
 import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
 
-import data from '../../../../testJson/data.json'
+import data from '../../../../json/data.json'
 
 test('no selected y categories', () => {
   const uniqueCategories = GetUniqueCategories(data)

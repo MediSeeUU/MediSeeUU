@@ -2,7 +2,7 @@ import { render, fireEvent, screen } from '@testing-library/react'
 import GetUniqueCategories from '../../../single_visualization/utils/GetUniqueCategories'
 import BarForm from '../../../single_visualization/forms/types/BarForm'
 
-import data from '../../../../../testJson/data.json'
+import data from '../../../../../json/data.json'
 
 const uniqueCategories = GetUniqueCategories(data)
 let chartSpecificOptions

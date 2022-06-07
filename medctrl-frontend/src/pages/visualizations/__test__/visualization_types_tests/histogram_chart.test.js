@@ -6,7 +6,7 @@ import GenerateHistogramSeries from '../../single_visualization/data_interfaces/
 import HistogramChart from '../../single_visualization/visualization_types/HistogramChart'
 import ResizeObserver from '../../mocks/observer'
 
-import data from '../../../../testJson/data.json'
+import data from '../../../../json/data.json'
 
 jest.mock('../../mocks/observer')
 

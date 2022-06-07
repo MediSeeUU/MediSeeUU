@@ -1,6 +1,6 @@
 import GenerateHistogramSeries from '../../single_visualization/data_interfaces/HistogramInterface'
 
-import data from '../../../../testJson/data.json'
+import data from '../../../../json/data.json'
 
 test('no categories selected', () => {
   const options = {

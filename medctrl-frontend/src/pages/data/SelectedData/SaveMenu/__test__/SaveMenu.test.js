@@ -2,16 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import SaveMenu from '../SaveMenu'
-import DummyData from '../../../../testJson/small_data.json'
-import { SelectedContext } from '../../../../shared/contexts/DataContext'
+import DummyData from '../../../../../json/small_data.json'
+import MockProvider from '../../../../../mocks/mockProvider'
 
 // the save dialog should render without crashing
 test('renders without crashing', () => {
   const root = document.createElement('div')
   ReactDOM.render(
-    <SelectedContext.Provider value={DummyData}>
-      <SaveMenu />
-    </SelectedContext.Provider>,
+    <MockProvider>
+      <SaveMenu selectedData={DummyData} />
+    </MockProvider>,
     root
   )
 })
@@ -20,10 +20,10 @@ test('renders without crashing', () => {
 // success message screen
 test('valid selection name should result in UI success message', () => {
   const validNames = ['Test', 'COVID-19', 'Special_set', 'Demo selection']
-  const view = render(
-    <SelectedContext.Provider value={DummyData}>
+  render(
+    <MockProvider>
       <SaveMenu selectedData={DummyData} />
-    </SelectedContext.Provider>
+    </MockProvider>
   )
   for (let i = 0; i < validNames.length; i++) {
     fireEvent.click(screen.getByText('Save'))
@@ -49,10 +49,10 @@ test('invalid selection name should result in UI error message', () => {
     '(Special)_set',
     'Demo selection.',
   ]
-  const view = render(
-    <SelectedContext.Provider value={DummyData}>
+  render(
+    <MockProvider>
       <SaveMenu selectedData={DummyData} />
-    </SelectedContext.Provider>
+    </MockProvider>
   )
   for (let i = 0; i < invalidNames.length; i++) {
     fireEvent.click(screen.getByText('Save'))

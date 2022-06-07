@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import ExportMenu from '../ExportMenu'
-import DummyData from '../../../../testJson/small_data.json'
-import { SelectedContext } from '../../../../shared/contexts/DataContext'
+import DummyData from '../../../../../json/small_data.json'
+import MockProvider from '../../../../../mocks/mockProvider'
 
 // this is required to make sure the tests don't crash
 // when the tested components try and download a file
@@ -13,9 +13,9 @@ jest.mock('file-saver', () => ({ saveAs: jest.fn() }))
 test('renders without crashing', () => {
   const root = document.createElement('div')
   ReactDOM.render(
-    <SelectedContext.Provider value={DummyData}>
-      <ExportMenu />
-    </SelectedContext.Provider>,
+    <MockProvider>
+      <ExportMenu selectedData={DummyData} />
+    </MockProvider>,
     root
   )
 })
@@ -23,10 +23,10 @@ test('renders without crashing', () => {
 // when the user does not select any option and presses the download button,
 // the user should see an error message on screen
 test('no selection should result in UI error message', () => {
-  const view = render(
-    <SelectedContext.Provider value={DummyData}>
-      <ExportMenu />
-    </SelectedContext.Provider>
+  render(
+    <MockProvider>
+      <ExportMenu selectedData={DummyData} />
+    </MockProvider>
   )
   fireEvent.click(screen.getByText('Export'))
   const downloadButton = screen.getByText('Download')
@@ -49,10 +49,10 @@ test('valid selection download should result in UI success message', () => {
     'Tab Separeted (.tsv)',
     'Semicolon Separeted (.ssv)',
   ]
-  const view = render(
-    <SelectedContext.Provider value={DummyData}>
+  render(
+    <MockProvider>
       <ExportMenu selectedData={DummyData} />
-    </SelectedContext.Provider>
+    </MockProvider>
   )
   for (let i = 0; i < validOptions.length; i++) {
     fireEvent.click(screen.getByText('Export'))
@@ -70,10 +70,10 @@ test('valid selection download should result in UI success message', () => {
 // when the user selects the custom delimited option, but does not
 // specify a custom separator, the user should see an error message on screen
 test('custom selection without separator should result in UI error message', () => {
-  const view = render(
-    <SelectedContext.Provider value={DummyData}>
+  render(
+    <MockProvider>
       <ExportMenu selectedData={DummyData} />
-    </SelectedContext.Provider>
+    </MockProvider>
   )
   fireEvent.click(screen.getByText('Export'))
   const option = screen.getByText('Custom Separator:')
@@ -91,10 +91,10 @@ test('custom selection without separator should result in UI error message', () 
 // when the user selects the custom delimited option, and specifies a
 // custom separator,the user should be redirected to a succes message screen
 test('custom selection with separator should result in UI success message', () => {
-  const view = render(
-    <SelectedContext.Provider value={DummyData}>
+  render(
+    <MockProvider>
       <ExportMenu selectedData={DummyData} />
-    </SelectedContext.Provider>
+    </MockProvider>
   )
   fireEvent.click(screen.getByText('Export'))
   const option = screen.getByText('Custom Separator:')
@@ -111,10 +111,10 @@ test('custom selection with separator should result in UI success message', () =
 // id, the no file type can corretly be selected and the file export
 // fails, this will be reflected by an error dialog
 test('download attempt with invalid selection should result in error dialog', () => {
-  const view = render(
-    <SelectedContext.Provider value={DummyData}>
+  render(
+    <MockProvider>
       <ExportMenu selectedData={DummyData} />
-    </SelectedContext.Provider>
+    </MockProvider>
   )
   fireEvent.click(screen.getByText('Export'))
   const radio = screen.getAllByRole('radio')[0]

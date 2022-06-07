@@ -1,21 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  cleanup,
-  render,
-  fireEvent,
-  waitFor,
-  screen,
-  getByRole,
-  getByText,
-} from '@testing-library/react'
 import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
 import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
 import GenerateLineSeries from '../../single_visualization/data_interfaces/LineInterface'
 import LineChart from '../../single_visualization/visualization_types/LineChart'
 import ResizeObserver from '../../mocks/observer'
 
-import data from '../../../../testJson/data.json'
+import data from '../../../../json/data.json'
 
 jest.mock('../../mocks/observer')
 
