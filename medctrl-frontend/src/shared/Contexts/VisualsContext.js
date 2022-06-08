@@ -2,38 +2,44 @@ import React, { useContext, useState, useEffect } from 'react'
 import GetUniqueCategories from '../../pages/visualizations/single_visualization/utils/GetUniqueCategories'
 import { useData } from './DataContext'
 
+// Create a new React context for the visualizations data
 const VisualsContext = React.createContext()
 
+// Function that returns the context such that the data can be used in other components
 export function useVisuals() {
   return useContext(VisualsContext)
 }
 
-export function VisualsProvider({ children }) {
+// Provider component that provides the visualizations data in the application
+export function VisualsProvider({ mock, children }) {
+  // The medicines data is necessary to determine the selected categories
   const data = useData()
 
-  // visualisation context to save the visualisations when navigating the page
-  const [visuals, setVisuals] = useState([])
+  // Initialize the visualizations state with one visualization
+  const [visuals, setVisuals] = useState([
+    {
+      id: 1,
+      chartType: 'bar',
+      chartSpecificOptions: {
+        xAxis: 'DecisionYear',
+        yAxis: 'Rapporteur',
+        categoriesSelectedY: [],
+        categoriesSelectedX: [],
+      },
+      legendOn: false,
+      labelsOn: false,
+    },
+  ])
 
-  // update the visualisation context state when the allData state is changed
+  // Update the selected categories if the medicines data is retrieved
   useEffect(() => {
-    if (data.length > 0) {
+    if (!mock && data.length > 0) {
       let uniqueCategories = GetUniqueCategories(data)
-      setVisuals([
-        {
-          id: 1,
-          chartType: 'bar',
-          chartSpecificOptions: {
-            xAxis: 'DecisionYear',
-            yAxis: 'Rapporteur',
-            categoriesSelectedY: uniqueCategories['Rapporteur'],
-            categoriesSelectedX: uniqueCategories['DecisionYear'],
-          },
-          legendOn: false,
-          labelsOn: false,
-        },
-      ])
+      visuals[0].chartSpecificOptions.categoriesSelectedY = uniqueCategories['Rapporteur']
+      visuals[0].chartSpecificOptions.categoriesSelectedX = uniqueCategories['DecisionYear']
+      setVisuals(visuals)
     }
-  }, [data])
+  }, [data, mock, visuals])
 
   return (
     <VisualsContext.Provider value={{ visuals, setVisuals }}>

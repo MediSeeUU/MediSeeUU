@@ -1,13 +1,16 @@
 import React, { useContext, useState } from 'react'
 
+// Create a new React context for the column selection state of the tables
 const ColumnSelectionContext = React.createContext()
 
+// Function that returns the context such that the data can be used in other components
 export function useColumnSelection() {
   return useContext(ColumnSelectionContext)
 }
 
+// Provider component that provides the column selection state in the application
 export function ColumnSelectionProvider({ children }) {
-  //the column selection state with the default columns on key names
+  // Set the default column selection state (in order from left to right)
   const [columnSelection, setColumnSelection] = useState([
     'EUNoShort',
     'BrandName',

@@ -1,9 +1,10 @@
+// Function that cleans the fetched data from the API based on the given structure data
 export default function cleanFetchedData(fetchedData, structData) {
   const cleanedData = []
   for (var i = 0; i < fetchedData.length; ++i) {
     const dataPoint = fetchedData[i]
-    // the datapoint should only be included if it is a valid datapoint,
-    // this is the case when it has a non null eunumber (Short EU Number)
+    // The datapoint should only be included if it is a valid datapoint
+    // This is the case when it has a non null eunumber (Short EU Number)
     if (dataPoint.eunumber && structData) {
       cleanedData.push(cleanFetchedDataPoint(dataPoint, structData))
     }
@@ -11,10 +12,11 @@ export default function cleanFetchedData(fetchedData, structData) {
   return cleanedData
 }
 
+// Function that cleans a single datapoint
 function cleanFetchedDataPoint(fetchedDataPoint, structData) {
   const cleanedDataPoint = {}
 
-  // format the individual value into the correct format, if the
+  // Format the individual value into the correct format, if the
   // value is null or undefined, a default value is returned
   const format = (value, def, type) => {
     if (
@@ -46,8 +48,8 @@ function cleanFetchedDataPoint(fetchedDataPoint, structData) {
     }
   }
 
-  // each of the variable fields retrieved from the backend are mapped to
-  // their respective frontend fields. the data values are formatted accordingly
+  // Each of the variable fields retrieved from the backend are mapped to
+  // their respective frontend fields and the data values are formatted accordingly
   for (let category in structData) {
     for (var i = 0; i < structData[category].length; ++i) {
       const backKey = structData[category][i]['data-key']
@@ -63,7 +65,7 @@ function cleanFetchedDataPoint(fetchedDataPoint, structData) {
     }
   }
 
-  //the decision year can be derived from the year of the decision date (M/D/Y)
+  // The decision year can be derived from the year of the decision date (M/D/Y)
   let DecisionYear = defValue
   let DecisionDate = cleanedDataPoint['DecisionDate']
   if (DecisionDate === defValue) {
