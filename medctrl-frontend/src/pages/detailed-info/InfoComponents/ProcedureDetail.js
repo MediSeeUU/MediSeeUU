@@ -1,3 +1,6 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 // function based component, it represents a single procedure detail, which
 // is used by the procedure component to display all the relevant information
 function ProcedureDetail(props) {

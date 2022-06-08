@@ -1,3 +1,6 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
 # Contains the following variables mined in EPAR PDF files:
 # 1 Legal Basis
 # 2 PRIME: Priority Medicine

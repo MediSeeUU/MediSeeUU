@@ -1,3 +1,6 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
 # Scraper for websites, download files automatically
 # 1. First extract the EC table using extract_ec_table()
 # 2. Second use execute_var_pooling(ec_df) to mine the variables from the EC individual product pages

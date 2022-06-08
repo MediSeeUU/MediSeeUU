@@ -1,3 +1,6 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
 # Contains the following variables to mine in EC Authorisation Decision PDF files
 # 1 Brand name
 # 2 Legal scope
