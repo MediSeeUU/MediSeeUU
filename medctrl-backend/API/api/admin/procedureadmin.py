@@ -47,4 +47,9 @@ class ProcedureAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     )
 
 
+    def save_model(self, request, obj, form, change):
+        obj.manually_updated = True
+        super().save_model(request, obj, form, change)
+
+
 admin.site.register(Procedure, ProcedureAdmin)

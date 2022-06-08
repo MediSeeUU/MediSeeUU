@@ -57,5 +57,9 @@ class MedicineAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
         "ecurl",
     )
 
+    def save_model(self, request, obj, form, change):
+        obj.manually_updated = True
+        super().save_model(request, obj, form, change)
+
 
 admin.site.register(Medicine, MedicineAdmin)
