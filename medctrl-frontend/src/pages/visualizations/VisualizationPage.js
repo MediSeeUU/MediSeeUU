@@ -62,6 +62,7 @@ function VisualizationPage() {
   function handleChangeFunc(settings) {
     var newVisuals = visuals.map((item) => {
       if (item.id === settings.id) {
+        settings.id = uuidv4()
         return settings
       }
       return item
