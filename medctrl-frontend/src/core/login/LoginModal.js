@@ -6,10 +6,12 @@ import './LoginModal.css'
 
 // Function based component representing the login button inserted into the navigation bar
 function LoginModal(props) {
+  // Initialize modal state
   const [showModal, setModalState] = useState(false)
 
-  const closeModal = () => setModalState(false)
+  // Functions to open and close the modal
   const openModal = () => setModalState(true)
+  const closeModal = () => setModalState(false)
 
   return (
     <>

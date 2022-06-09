@@ -37,7 +37,6 @@ export function DataProvider({ mock, children }) {
     // And the provider is not being mocked
     if (structData && !mock) {
       fetchData()
-      console.log('fetched medicines data')
     }
   }, [structData, setData, mock])
 

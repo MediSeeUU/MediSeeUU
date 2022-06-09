@@ -1,8 +1,8 @@
+import React from 'react'
 import Toggle from './NavComponents/Toggle'
 import NavLink from './NavComponents/NavLink'
 import NavAccount from './NavComponents/NavAccount'
 import LoginModal from '../login/LoginModal'
-import React from 'react'
 import OutsideClickHandler from 'react-outside-click-handler'
 import './Navigation.css'
 import handleLogOut from '../handlers/logout'
@@ -89,7 +89,6 @@ class SideNavigation extends React.Component {
       <OutsideClickHandler onOutsideClick={this.close.bind(this)}>
         <nav className={'med-side-nav ' + this.getState()}>
           <Toggle expanded={this.state.expanded} parent={this} />
-
           <NavLink
             tour="step-nav-home"
             name="Home"
@@ -117,7 +116,6 @@ class SideNavigation extends React.Component {
             dest="/visualizations"
             parent={this}
           />
-
           {account}
           {authenticated}
         </nav>

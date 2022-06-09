@@ -1,8 +1,8 @@
 // Logout handler
 async function handleLogOut() {
   // Format token string
-  let Token = sessionStorage.getItem('token')
-  let res = 'Token ' + Token
+  const token = sessionStorage.getItem('token')
+  const res = 'Token ' + token
 
   // Call to server: /api/account/logout/
   const response = await fetch(
