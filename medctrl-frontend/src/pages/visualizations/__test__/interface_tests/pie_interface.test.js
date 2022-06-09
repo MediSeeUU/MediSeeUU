@@ -11,7 +11,8 @@ test('no categories selected', () => {
     data: data,
   }
   const series = GeneratePieSeries(options)
-  expect(series).toHaveLength(0)
+  expect(series.data).toHaveLength(0)
+  expect(series.euNumbers).toHaveLength(0)
 })
 
 test('some categories selected', () => {

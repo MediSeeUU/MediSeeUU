@@ -79,6 +79,12 @@ function VisualizationPage() {
       // without actually reloading the entire component.
       visual.data = selectedData
       visual.uniqueCategories = uniqueCategories
+      visual.chartSpecificOptions.categoriesSelectedX =
+        visual.chartSpecificOptions.categoriesSelectedX ??
+        uniqueCategories['DecisionYear']
+      visual.chartSpecificOptions.categoriesSelectedY =
+        visual.chartSpecificOptions.categoriesSelectedY ??
+        uniqueCategories['Rapporteur']
       return (
         <Row key={visual.id}>
           <SingleVisualization
