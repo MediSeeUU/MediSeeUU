@@ -79,6 +79,22 @@
 
 /* Shared Style Class Definitions */
 
+/*
+  General Modal Styling Definition
+*/
+
+.med-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  outline: none;
+}
+
 /* 
   Primary Solid Button Styling
 
@@ -199,6 +215,7 @@
 */
 
 .med-top-separator {
+  width: calc(100% - 1rem);
   margin: 0.5rem 0.5rem;
 }
 

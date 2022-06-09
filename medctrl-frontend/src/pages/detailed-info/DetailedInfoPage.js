@@ -7,11 +7,12 @@ import CustomLink from './InfoComponents/CustomLink'
 import TimeLine from './InfoComponents/TimeLine'
 import ProcSelectModal from './InfoComponents/ProcSelectModal'
 
-import { useData, useStructure } from '../../shared/contexts/DataContext'
 import { useParams } from 'react-router-dom'
-//import { dataToDisplayFormat } from '../../shared/table/table'
+import { slashDateToStringDate } from '../data/shared/Table/format'
 import { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
+import { useData } from '../../shared/Contexts/DataContext'
+import { useStructure } from '../../shared/Contexts/StructureContext'
 
 // function based component, which represents the top level detailed info page
 // component, it collects and fetches all the correct data and then passes this data
@@ -149,20 +150,25 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
 
     for (let varIndex in variableCategories[category]) {
       const variable = variableCategories[category][varIndex]
-      details.push(
-        <Detail
-          name={variable['data-value']}
-          value={medData[variable['data-front-key']]}
-          key={v4()}
-        />
-      )
+      if (variable['data-format'] !== 'link') {
+        let value = medData[variable['data-front-key']]
+        if (variable['data-format'] === 'date') {
+          value = slashDateToStringDate(value)
+        }
+
+        details.push(
+          <Detail name={variable['data-value']} value={value} key={v4()} />
+        )
+      }
     }
 
-    detailGroups.push(
-      <DetailGroup title={category} key={v4()}>
-        {details}
-      </DetailGroup>
-    )
+    if (details.length > 0) {
+      detailGroups.push(
+        <DetailGroup title={category} key={v4()}>
+          {details}
+        </DetailGroup>
+      )
+    }
   }
 
   // returns the component which discribes the entire detailed information page
@@ -188,23 +194,13 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
 
         <CustomLink
           className="med-info-external-link"
-          name="EMA Website"
-          dest="https://www.ema.europa.eu/en"
+          name={'EMA Website for: ' + medData.BrandName}
+          dest={medData.EMAurl}
         />
         <CustomLink
           className="med-info-external-link"
-          name="EC Website"
-          dest="https://ec.europa.eu/info/index_en"
-        />
-        <CustomLink
-          className="med-info-external-link"
-          name="MEB Website"
-          dest="https://english.cbg-meb.nl/"
-        />
-        <CustomLink
-          className="med-info-external-link"
-          name="MAH Website"
-          dest="https://www.ema.europa.eu/en/glossary/marketing-authorisation-holder"
+          name={'EC Website for: ' + medData.BrandName}
+          dest={medData.ECurl}
         />
       </div>
     </div>

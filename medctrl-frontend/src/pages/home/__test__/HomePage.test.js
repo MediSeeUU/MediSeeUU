@@ -3,35 +3,30 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import HomePage from '../HomePage'
 import { fireEvent, screen, render } from '@testing-library/react'
-import {
-  TableUtilsContext,
-  TableUtilsUpdateContext,
-} from '../../../shared/contexts/DataContext'
+import MockProvider from '../../../mocks/mockProvider'
 
 test('homepage renders without crashing', () => {
   const root = document.createElement('div')
   ReactDOM.render(
     <BrowserRouter>
-      <HomePage />
+      <MockProvider>
+        <HomePage />
+      </MockProvider>
     </BrowserRouter>,
     root
   )
 })
 
 test('homepage search bar responds correctly', () => {
-  const update = (utils) => {
-    expect(utils.search).toStrictEqual(new String('pfizer'))
-  }
   render(
     <BrowserRouter>
-      <TableUtilsContext.Provider value={{ search: '' }}>
-        <TableUtilsUpdateContext.Provider value={update}>
-          <HomePage />
-        </TableUtilsUpdateContext.Provider>
-      </TableUtilsContext.Provider>
+      <MockProvider>
+        <HomePage />
+      </MockProvider>
     </BrowserRouter>
   )
   const input = screen.getByRole('textbox')
   fireEvent.change(input, { target: { value: 'pfizer' } })
-  fireEvent.click(screen.getByText('Search'))
+  const search = screen.getByText('Search')
+  expect(fireEvent.click(search)).toBeTruthy()
 })

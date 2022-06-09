@@ -4,7 +4,7 @@
 function CustomLink(props) {
   let dest = props.dest
   let className = props.className
-  if (!props.dest) {
+  if (!props.dest || props.dest === 'NA') {
     className += ' disabled'
     dest = '#'
   }

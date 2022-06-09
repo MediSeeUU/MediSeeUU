@@ -5,62 +5,62 @@ import LoginModal from '../login/LoginModal'
 import React from 'react'
 import OutsideClickHandler from 'react-outside-click-handler'
 import './Navigation.css'
-import handleLogOut from './connectionServer'
+import handleLogOut from '../handlers/LogoutHandler'
 
-// class based compenent, represents the entire navigation side bar
+// Class based component representing the entire navigation side bar
 class SideNavigation extends React.Component {
-  // initialize the navigation bar in the collapsed position
-  constructor() {
-    super()
+  // Initialize the navigation bar in the collapsed position
+  constructor(props) {
+    super(props)
 
     // Get login status from sessionStorage
     let username = sessionStorage.getItem('username')
     let accessLevel = sessionStorage.getItem('access_level')
     let token = sessionStorage.getItem('token')
-    let loggedin = token != null
+    let loggedIn = token !== null
 
     this.state = {
       expanded: false,
-      loggedin: loggedin,
+      loggedIn: loggedIn,
       isAdmin: false,
       userName: username,
       accessLevel: accessLevel,
     }
   }
 
-  // sets alls parametrs to loged out
+  // Calls logout handler and updates local state
   async logOut() {
     await handleLogOut()
     this.setState({
-      loggedin: false,
+      loggedIn: false,
       isAdmin: false,
       userName: '',
       accessLevel: '',
     })
   }
 
-  // toggles the navigation bar, if the bar is in the expanded position,
+  // Toggles the navigation bar, if the bar is in the expanded position,
   // the navigation bar is collapsed and vice versa
   toggle() {
     this.setState({ expanded: !this.state.expanded })
   }
 
-  // collapses the navigation bar
+  // Collapses the navigation bar
   close() {
     this.setState({ expanded: false })
   }
 
-  // returns a string representation of the navigation bar state, the navigation
+  // Returns a string representation of the navigation bar state, the navigation
   // bar is either in the open (expanded) or closed (collapsed) state
   getState() {
     return this.state.expanded ? 'med-open' : 'med-closed'
   }
 
-  // generates the entire navigation bar component, with all the appropriate elements
+  // Renders the navigation bar
   render() {
-    // if the user is logged in, a log out link should be rendered
-    // if the user is not logged in, a log in link should be rendered
-    let Auth = this.state.loggedin ? (
+    // If the user is logged in, a log out link should be rendered
+    // If the user is not logged in, a log in link should be rendered
+    const authenticated = this.state.loggedIn ? (
       <NavLink
         name="Logout"
         image="bx bx-log-out"
@@ -73,8 +73,8 @@ class SideNavigation extends React.Component {
       <LoginModal parent={this} />
     )
 
-    // only if the user is logged in, a link to the account page should be rendered
-    let Acc = !this.state.loggedin ? null : (
+    // Only if the user is logged in, a link to the account page should be rendered
+    const account = this.state.loggedIn && (
       <NavAccount
         user={{
           userName: this.state.userName,
@@ -84,7 +84,7 @@ class SideNavigation extends React.Component {
       />
     )
 
-    // returns the navigation bar component, with all the appropriate elements
+    // Returns the navigation bar component, with all the appropriate elements
     return (
       <OutsideClickHandler onOutsideClick={this.close.bind(this)}>
         <nav className={'med-side-nav ' + this.getState()}>
@@ -118,8 +118,8 @@ class SideNavigation extends React.Component {
             parent={this}
           />
 
-          {Acc}
-          {Auth}
+          {account}
+          {authenticated}
         </nav>
       </OutsideClickHandler>
     )

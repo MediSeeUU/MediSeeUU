@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import ReactModal from 'react-modal'
+import MedModal from '../../shared/MedModal'
 import NavLink from '../navigation/NavComponents/NavLink'
 import LoginForm from './LoginForm'
 import './LoginModal.css'
 
-// function based component representing the login button inserted into navbar
+// Function based component representing the login button inserted into the navigation bar
 function LoginModal(props) {
   const [showModal, setModalState] = useState(false)
 
@@ -23,29 +23,9 @@ function LoginModal(props) {
         onClick={openModal}
       />
 
-      <ReactModal
-        className="med-login-modal"
-        isOpen={showModal}
-        onRequestClose={closeModal}
-        ariaHideApp={false}
-        style={{
-          modal: {},
-          overlay: {
-            background: 'rgba(0, 0, 0, 0.2)',
-            backdropFilter: 'blur(2px)',
-          },
-          content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-          },
-        }}
-      >
+      <MedModal showModal={showModal} closeModal={closeModal}>
         <LoginForm onClose={closeModal} parent={props.parent} />
-      </ReactModal>
+      </MedModal>
     </>
   )
 }

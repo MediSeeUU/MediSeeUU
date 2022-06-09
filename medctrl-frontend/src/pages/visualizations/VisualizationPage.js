@@ -1,82 +1,42 @@
 // external imports
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import ReactModal from 'react-modal'
-import SelectedData from '../data/dataComponents/SelectedData'
+import SelectedData from '../data/SelectedData/SelectedData'
 import { v4 as uuidv4 } from 'uuid'
 
 // internal imports
 import SingleVisualization from './single_visualization/SingleVisualization'
-import { useSelectedData } from '../../shared/contexts/DataContext'
 import GetUniqueCategories from './single_visualization/utils/GetUniqueCategories'
-import GenerateBarSeries from './single_visualization/data_interfaces/BarInterface'
-import { useVisuals, useVisualsUpdate } from '../../shared/contexts/DataContext'
-import { generateSeries } from './single_visualization/SingleVisualization'
+import MedModal from '../../shared/MedModal'
+import { useVisuals } from '../../shared/Contexts/VisualsContext'
+import { useSelectedData } from '../../shared/Contexts/SelectedContext'
 
 // the component that contains all the visualizations
 function VisualizationPage() {
+  // get selected data context and determine unique categories of each variable
   const selectedData = useSelectedData()
+  const uniqueCategories =
+    selectedData.length > 0 ? GetUniqueCategories(selectedData) : []
 
-  const [tableData, setTableData] = useState([]) // Data displayed in the modal table
-  const [numbers, setNumbers] = useState([]) // The eu numbers that correspond to the clicked selection
-  const [modal, setModal] = useState(false) // State of modal (open or closed)
+  // set popup data
+  const [popup, setPopup] = useState([])
 
   // event handlers
   const handleAddition = handleAdditionFunc.bind(this)
   const handleRemoval = handleRemovalFunc.bind(this)
   const handleChange = handleChangeFunc.bind(this)
-  const handleDataClick = handleDataClickFunc.bind(this)
 
   // get the visualisation contexts
-  var visuals = useVisuals()
-  const setVisuals = useVisualsUpdate()
-
-  // get the unique categories for the selected data
-  const uniqueCategories =
-    selectedData.length > 0 ? GetUniqueCategories(selectedData) : []
-
-  // add some series logic so the controls update
-  var updateVisuals = false
-  if (
-    selectedData.length > 0 &&
-    visuals.length > 0 &&
-    !arrayEquals(visuals[0].data, selectedData)
-  ) {
-    visuals = visuals.map((vis) => {
-      vis.data = selectedData
-      vis.uniqueCategories = uniqueCategories
-      vis.series = generateSeries(vis.chartType, vis)
-      vis.key = uuidv4()
-      return vis
-    })
-    updateVisuals = true
-  }
-
-  // update visuals after page render, otherwise react can't handle the calls
-  useEffect(() => {
-    if (updateVisuals) {
-      setVisuals(visuals)
-    }
-  }, [updateVisuals, visuals, setVisuals])
-
-  // check if two arrays are equal, need to be in the same order
-  function arrayEquals(a, b) {
-    return (
-      Array.isArray(a) &&
-      Array.isArray(b) &&
-      a.length === b.length &&
-      a.every((val, index) => val === b[index])
-    )
-  }
+  const { visuals, setVisuals } = useVisuals()
 
   // EVENT HANDLERS:
 
   // adds a new visualization to the visualizations context
   function handleAdditionFunc() {
     const newVisual = {
-      id: visuals.length + 1,
+      id: uuidv4(),
       chartType: 'bar',
       chartSpecificOptions: {
         xAxis: 'DecisionYear',
@@ -86,20 +46,6 @@ function VisualizationPage() {
       },
       legendOn: false,
       labelsOn: false,
-      data: selectedData,
-      series: GenerateBarSeries(
-        {
-          chartSpecificOptions: {
-            xAxis: 'DecisionYear',
-            yAxis: 'Rapporteur',
-            categoriesSelectedY: uniqueCategories['Rapporteur'],
-            categoriesSelectedX: uniqueCategories['DecisionYear'],
-          },
-        },
-        selectedData
-      ),
-      uniqueCategories: uniqueCategories,
-      key: '',
     }
 
     const newVisuals = [...visuals, newVisual]
@@ -114,8 +60,7 @@ function VisualizationPage() {
 
   // handles a change to a visualization
   function handleChangeFunc(settings) {
-    var newVisuals = JSON.parse(JSON.stringify(visuals))
-    newVisuals = newVisuals.map((item) => {
+    var newVisuals = visuals.map((item) => {
       if (item.id === settings.id) {
         return settings
       }
@@ -124,51 +69,30 @@ function VisualizationPage() {
     setVisuals(newVisuals)
   }
 
-  // Handler that is called after clicking on a datapoint
-  // It will set the eu numbers state to the eu numbers of the selected datapoint
-  // And opens the pop-up which displays the entries in the table
-  function handleDataClickFunc(numbers) {
-    setNumbers(numbers)
-    if (numbers.length > 0) {
-      setModal(true)
-    }
-  }
-
-  // Updates the states after changes to the selected data or eu numbers
-  // The table data will be all the data with eu numbers that are currently stored in the state
-  useEffect(() => {
-    if (numbers.length > 0 && modal) {
-      let updatedData = selectedData.filter((element) =>
-        numbers.includes(element.EUNoShort)
-      )
-      if (updatedData.length <= 0) {
-        setModal(false)
-      }
-      setTableData(updatedData)
-    }
-  }, [selectedData, numbers, modal])
-
   // GENERAL FUNCTIONS:
 
   // creates the visualizations
   function renderVisualizations() {
     return visuals.map((visual) => {
+      // Give the visualization its data and categories,
+      // as these can change if data points are removed in the pop-up,
+      // without actually reloading the entire component.
+      visual.data = selectedData
+      visual.uniqueCategories = uniqueCategories
       return (
         <Row key={visual.id}>
           <SingleVisualization
-            id={visual.id}
-            data={selectedData}
             settings={visual}
             onRemoval={handleRemoval}
             onFormChangeFunc={handleChange}
-            onDataClick={handleDataClick}
+            onDataClick={setPopup}
           />
         </Row>
       )
     })
   }
 
-  // a message to show the user it has selected data points are the data page
+  // a message to show the user it has selected data points from the data page
   function renderDataSelectedMessage() {
     const dataPointAmount = selectedData.length
     return (
@@ -193,24 +117,19 @@ function VisualizationPage() {
   if (selectedData?.length > 0) {
     const displayItems = renderVisualizations()
     const displayDataSelectedMessage = renderDataSelectedMessage()
+    const tableData = selectedData.filter((element) =>
+      popup.includes(element.EUNoShort)
+    )
     return (
       <div>
-        <ReactModal
+        <MedModal
+          showModal={tableData.length > 0}
+          closeModal={() => setPopup([])}
           className="visualize-modal"
-          isOpen={modal}
-          onRequestClose={() => setModal(false)}
-          ariaHideApp={false}
-          style={{
-            modal: {},
-            overlay: {
-              background: 'rgba(0, 0, 0, 0.2)',
-              backdropFilter: 'blur(2px)',
-            },
-          }}
         >
-          <i className="bx bx-x close-icon" onClick={() => setModal(false)}></i>
+          <i className="bx bx-x close-icon" onClick={() => setPopup([])} />
           <SelectedData selectedData={tableData} />
-        </ReactModal>
+        </MedModal>
         <Container>
           {displayDataSelectedMessage}
           {displayItems}
@@ -219,7 +138,7 @@ function VisualizationPage() {
               className="med-primary-solid med-bx-button button-add"
               onClick={handleAddition}
             >
-              <i className="bx bx-plus filter-Icon" />
+              <i className="bx bx-plus med-button-image" />
               Add visualization
             </button>
           </Row>

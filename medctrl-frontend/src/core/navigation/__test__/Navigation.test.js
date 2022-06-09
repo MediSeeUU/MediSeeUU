@@ -1,24 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
-
-import SideNavigation from '../Navigation'
 import { BrowserRouter } from 'react-router-dom'
+import SideNavigation from '../Navigation'
 import AccountPage from '../../../pages/account/AccountPage'
-import {
-  DataContext,
-  TableUtilsContext,
-} from '../../../shared/contexts/DataContext'
-import allData from '../../../testJson/data.json'
-import Table from '../../../shared/table/table'
-import {
-  SelectedContext,
-  CheckedContext,
-  CheckedContextUpdate,
-  ColumnSelectionContext,
-  ColumnSelectionContextUpdate,
-} from '../../../shared/contexts/DataContext'
+import SettingsPage from '../../../pages/settings/SettingsPage'
 import DataPage from '../../../pages/data/DataPage'
+import MockProvider from '../../../mocks/mockProvider'
 
 test('sidenavigation component renders without crashing', () => {
   const root = document.createElement('div')
@@ -30,7 +18,7 @@ test('sidenavigation component renders without crashing', () => {
   )
 })
 
-test('Sidenavigation bar should expand or collapse navbar after toggle', () => {
+test('sidenavigation bar should expand or collapse navbar after toggle', () => {
   render(
     <BrowserRouter>
       <SideNavigation />
@@ -52,122 +40,25 @@ test('render account page without crashing', () => {
   )
 })
 
-test('text input in searchbar on searchpage should trigger search functionality', () => {
-  var test = jest.fn()
-
-  const data = allData
-
-  let checkedState = Object.assign(
-    {},
-    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
-  )
-  const setCheckedState = (newState) => {
-    checkedState = newState
-  }
-
-  var columnSelection = [
-    'EUNoShort',
-    'BrandName',
-    'MAH',
-    'DecisionDate',
-    'ApplicationNo',
-    'ApplicationNo',
-  ]
-
-  const setColumnSelection = (newColumns) => {
-    columnSelection = newColumns
-  }
-
-  render(
+test('render settingspage without crashing', () => {
+  const root = document.createElement('div')
+  ReactDOM.render(
     <BrowserRouter>
-      <DataContext.Provider value={allData}>
-        <ColumnSelectionContext.Provider value={columnSelection}>
-          <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-            <CheckedContext.Provider value={checkedState}>
-              <CheckedContextUpdate.Provider value={setCheckedState}>
-                <div>
-                  <div className="TopTableHolder">
-                    <button className="searchbox__button">
-                      <i className="bx bx-search search-Icon"></i>Search
-                    </button>
-                    <input
-                      type="text"
-                      placeholder="Search"
-                      className="content__container__textinput"
-                      onChange={(e) => test()}
-                    />
-                  </div>
-
-                  <div className="TopTableHolder searchDataTable">
-                    <h1>Results</h1>
-
-                    <Table
-                      data={allData}
-                      currentPage={1}
-                      amountPerPage={50}
-                      searchTable={true}
-                    />
-                  </div>
-                </div>
-              </CheckedContextUpdate.Provider>
-            </CheckedContext.Provider>
-          </ColumnSelectionContextUpdate.Provider>
-        </ColumnSelectionContext.Provider>
-      </DataContext.Provider>
-    </BrowserRouter>
+      <SettingsPage />
+    </BrowserRouter>,
+    root
   )
-  const searchbarComponent = screen.getByRole('textbox')
-  fireEvent.change(searchbarComponent, { target: { value: '77' } })
-  expect(test).toHaveBeenCalled()
 })
 
 test('render datapage without crashing', () => {
-  const data = allData
-
-  let checkedState = Object.assign(
-    {},
-    ...data.map((entry) => ({ [entry.EUNoShort]: false }))
-  )
-  const setCheckedState = (newState) => {
-    checkedState = newState
-  }
-
-  var columnSelection = [
-    'EUNoShort',
-    'BrandName',
-    'MAH',
-    'DecisionDate',
-    'ApplicationNo',
-    'ApplicationNo',
-  ]
-
-  const setColumnSelection = (newColumns) => {
-    columnSelection = newColumns
-  }
-  const selectedData = data.filter((item, index) => {
-    return checkedState[item.EUNumber]
-  })
-
-  render(
+  const root = document.createElement('div')
+  ReactDOM.render(
     <BrowserRouter>
-      <DataContext.Provider value={allData}>
-        <SelectedContext.Provider value={selectedData}>
-          <ColumnSelectionContext.Provider value={columnSelection}>
-            <ColumnSelectionContextUpdate.Provider value={setColumnSelection}>
-              <CheckedContext.Provider value={checkedState}>
-                <CheckedContextUpdate.Provider value={setCheckedState}>
-                  <TableUtilsContext.Provider
-                    value={{ search: '', filters: [], sorters: [] }}
-                  >
-                    <DataPage />
-                  </TableUtilsContext.Provider>
-                </CheckedContextUpdate.Provider>
-              </CheckedContext.Provider>
-            </ColumnSelectionContextUpdate.Provider>
-          </ColumnSelectionContext.Provider>
-        </SelectedContext.Provider>
-      </DataContext.Provider>
-    </BrowserRouter>
+      <MockProvider>
+        <DataPage />
+      </MockProvider>
+    </BrowserRouter>,
+    root
   )
 })
 
@@ -182,8 +73,8 @@ test('logout navbarbutton is clickable when logged in', () => {
       <SideNavigation loggedin={false} user={defUser} />
     </BrowserRouter>
   )
-  var loginbutton = screen.getAllByText('Login')[0]
-  fireEvent.click(loginbutton)
+  const loginbutton = screen.getAllByText('Login')[0]
+  expect(fireEvent.click(loginbutton)).toBeTruthy()
 })
 
 test('logout navbarbutton is clickable when logged in2', () => {
@@ -199,6 +90,6 @@ test('logout navbarbutton is clickable when logged in2', () => {
 
   sessionStorage.clear()
 
-  var loginbutton = screen.getAllByTestId('navaccountbutton')[0]
-  fireEvent.click(loginbutton)
+  const loginbutton = screen.getAllByTestId('navaccountbutton')[0]
+  expect(fireEvent.click(loginbutton)).toBeTruthy()
 })
