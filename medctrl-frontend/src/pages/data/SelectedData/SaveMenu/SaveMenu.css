@@ -58,7 +58,6 @@
 
 .med-save-dialog .med-cancel-button {
   background-color: var(--med-dialog-background);
-  color: var(--med-text-primary);
 }
 
 .med-save-dialog .med-cancel-button:hover {

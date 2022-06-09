@@ -145,11 +145,19 @@
   color: var(--primary-light);
 }
 
+@media (prefers-color-scheme: dark) {
+  .med-primary-text {
+    color: var(--primary-light);
+  }
+  .med-primary-text:hover {
+    color: var(--primary-ultralight);
+  }
+}
+
 /* Modal cancel button styling */
 
 .med-cancel-download-button {
   background-color: var(--med-dialog-background);
-  color: var(--med-text-primary);
 }
 
 .med-cancel-download-button:hover {
