@@ -6,7 +6,7 @@ import SideNavigation from '../Navigation'
 import AccountPage from '../../../pages/account/AccountPage'
 import SettingsPage from '../../../pages/settings/SettingsPage'
 import DataPage from '../../../pages/data/DataPage'
-import MockProvider from '../../../mocks/mockProvider'
+import MockProvider from '../../../mocks/MockProvider'
 
 test('sidenavigation component renders without crashing', () => {
   const root = document.createElement('div')

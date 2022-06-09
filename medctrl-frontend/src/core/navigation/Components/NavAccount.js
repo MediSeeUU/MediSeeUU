@@ -1,9 +1,10 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 // Function based component that returns a nav account component
 // which also displays account info when the navigation is expanded
 function NavAccount(props) {
   const navigate = useNavigate()
+  const location = useLocation()
 
   // Click handler that closes the navigation bar
   // and redirects to the account page
@@ -12,9 +13,11 @@ function NavAccount(props) {
     navigate('/account')
   }
 
+  const active = location.pathname === props.dest ? ' med-active' : ''
+
   return (
     <div
-      className="med-primary-solid med-nav-account med-nav-item"
+      className={'med-primary-solid med-nav-account med-nav-item' + active}
       onClick={clicked}
       data-testid="navaccountbutton"
     >

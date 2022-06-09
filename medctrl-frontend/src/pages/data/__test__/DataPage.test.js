@@ -5,7 +5,7 @@ import DataPage from '../DataPage.js'
 import DataSelect from '../DataSelect/DataSelect.js'
 import SelectedData from '../SelectedData/SelectedData.js'
 import { BrowserRouter } from 'react-router-dom'
-import MockProvider from '../../../mocks/mockProvider'
+import MockProvider from '../../../mocks/MockProvider'
 import mockObject from '../../../mocks/mockObject'
 
 test('DataPage renders without crashing', () => {

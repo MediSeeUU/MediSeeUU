@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import SavedSelection from './SavedSelection'
-import DetailGroup from '../../detailed-info/InfoComponents/DetailGroup'
+import DetailGroup from '../../detailed-info/Components/DetailGroup'
 import './SavedSelections.css'
 
 // List of saved selections

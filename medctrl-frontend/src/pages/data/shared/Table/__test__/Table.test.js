@@ -6,7 +6,7 @@ import serverData from '../../../../../json/allServerData.json'
 import structData from '../../../../../json/structServer.json'
 import { BrowserRouter } from 'react-router-dom'
 import { dataToDisplayFormat } from '../format'
-import MockProvider from '../../../../../mocks/mockProvider'
+import MockProvider from '../../../../../mocks/MockProvider'
 import cleanFetchedData from '../../../../../shared/Contexts/format'
 
 const DummyData = cleanFetchedData(serverData, structData)

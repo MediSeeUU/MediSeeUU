@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import ExportMenu from '../ExportMenu'
 import DummyData from '../../../../../json/small_data.json'
-import MockProvider from '../../../../../mocks/mockProvider'
+import MockProvider from '../../../../../mocks/MockProvider'
 
 // this is required to make sure the tests don't crash
 // when the tested components try and download a file

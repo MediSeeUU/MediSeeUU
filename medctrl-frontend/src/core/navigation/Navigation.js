@@ -1,11 +1,11 @@
-import Toggle from './NavComponents/Toggle'
-import NavLink from './NavComponents/NavLink'
-import NavAccount from './NavComponents/NavAccount'
-import LoginModal from '../login/LoginModal'
 import React from 'react'
+import Toggle from './Components/Toggle'
+import NavLink from './Components/NavLink'
+import NavAccount from './Components/NavAccount'
+import LoginModal from '../login/LoginModal'
 import OutsideClickHandler from 'react-outside-click-handler'
 import './Navigation.css'
-import handleLogOut from '../handlers/LogoutHandler'
+import handleLogOut from '../handlers/logout'
 
 // Class based component representing the entire navigation side bar
 class SideNavigation extends React.Component {
@@ -80,6 +80,7 @@ class SideNavigation extends React.Component {
           userName: this.state.userName,
           accessLevel: this.state.accessLevel,
         }}
+        dest="/account"
         parent={this}
       />
     )
@@ -89,7 +90,6 @@ class SideNavigation extends React.Component {
       <OutsideClickHandler onOutsideClick={this.close.bind(this)}>
         <nav className={'med-side-nav ' + this.getState()}>
           <Toggle expanded={this.state.expanded} parent={this} />
-
           <NavLink
             tour="step-nav-home"
             name="Home"
@@ -117,7 +117,6 @@ class SideNavigation extends React.Component {
             dest="/visualizations"
             parent={this}
           />
-
           {account}
           {authenticated}
         </nav>

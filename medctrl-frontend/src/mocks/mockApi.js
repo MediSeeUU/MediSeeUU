@@ -1,12 +1,13 @@
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
-
 import sampleProcedureData from '../json/detailed-info-data.json'
 
+// Create a mock API
+// This is used to be able to unit test components that need certain data
 const mockApi = setupServer(
-  // example of a request handler
+  // Example of a request handler
   rest.get('/api/exampleMockRequest', (req, res, ctx) => {
-    // respond using a mocked JSON body
+    // Respond using a mocked JSON body
     return res(
       ctx.json({
         example: 'data',
@@ -14,7 +15,7 @@ const mockApi = setupServer(
     )
   }),
   rest.get('/api/saveselection', (req, res, ctx) => {
-    // respond using a mocked JSON body
+    // Respond using a mocked JSON body
     return res(
       ctx.json([
         {
@@ -62,7 +63,7 @@ const mockApi = setupServer(
     )
   }),
   rest.get('/api/procedure/:medID', (req, res, ctx) => {
-    // respond using a mocked JSON body
+    // Respond using a mocked JSON body
     return res(ctx.json(sampleProcedureData.procedures))
   })
 )

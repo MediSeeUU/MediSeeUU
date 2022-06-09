@@ -1,11 +1,11 @@
 import './DetailedInfo.css'
 
-import DetailGroup from './InfoComponents/DetailGroup'
-import Detail from './InfoComponents/Detail'
-import Procedure from './InfoComponents/Procedure'
-import CustomLink from './InfoComponents/CustomLink'
-import TimeLine from './InfoComponents/TimeLine'
-import ProcSelectModal from './InfoComponents/ProcSelectModal'
+import DetailGroup from './Components/DetailGroup'
+import Detail from './Components/Detail'
+import Procedure from './Components/Procedure'
+import CustomLink from './Components/CustomLink'
+import TimeLine from './Components/TimeLine'
+import ProcSelectModal from './Components/ProcSelectModal'
 
 import { useParams } from 'react-router-dom'
 import { slashDateToStringDate } from '../data/shared/Table/format'

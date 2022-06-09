@@ -65,20 +65,11 @@
 }
 
 .med-clear-all-button {
-  z-index: 1;
   position: absolute;
-  font-size: 15px;
-  margin-top: 4px;
-}
-
-.med-clear-all-button:hover {
-  cursor: pointer;
-}
-
-.med-clear-icon {
-  font-size: 18px;
-  margin-top: 1px;
-  margin-right: 5px;
+  z-index: 1;
+  border: none;
+  height: 36px;
+  font-size: 14px;
 }
 
 .med-header {

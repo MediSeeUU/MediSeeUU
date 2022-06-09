@@ -1,10 +1,10 @@
 import { firstBy } from 'thenby'
 import voca from 'voca'
 
-//function requires all Data, given as Array of objects, each object containing key:value; e.g. [ {"id":1, "clr": "red" } , {"id":2, "clr" : "blue"} ]
-//function requires sortingParameters, which is the sorting state object passed from the filtermenu; it is an array containing an object for each active sorting filter.
-//one sorting filter object consists of 2 properties, { selected, order}. With selected being a string containing the name of the attribute to sort on.
-// order contains a string of either "asc" or "desc", for ascending or descending order
+// Function requires all Data, given as Array of objects, each object containing key:value; e.g. [ {"id":1, "clr": "red" } , {"id":2, "clr" : "blue"} ]
+// Function requires sortingParameters, which is the sorting state object passed from the filtermenu; it is an array containing an object for each active sorting filter.
+// One sorting filter object consists of 2 properties, { selected, order}. With selected being a string containing the name of the attribute to sort on.
+// Order contains a string of either "asc" or "desc", for ascending or descending order
 export default function sortData(data, sortingparameters) {
   for (
     var sortparIndex = 0;
@@ -52,7 +52,6 @@ function createComparisonFunction(attr) {
       return String.toString(jsonObject1[0]).localeCompare(
         String.toString(jsonObject2[0])
       )
-      //  jsonObject1[0].toString().localeCompare(jsonObject2[0].toString())
     }
   } else {
     return function alphanumericalcomparison(jsonobject1, jsonobject2) {
@@ -89,9 +88,9 @@ function convertStringToAlphaNumerical(word) {
   )
   return AlphaNumericOnlyLatinizedWord
 }
-//-----------------------------------------------------------------------------------------------------------------------
-//function takes one attributeName as a string, and returns the corresponding comparison function for json objects.
-//use this returned comparison function as an argument to .sort function of an array containing jsonObjects.
+
+// Function takes one attributeName as a string, and returns the corresponding comparison function for json objects.
+// Use this returned comparison function as an argument to .sort function of an array containing jsonObjects.
 export function convertSortingAttributeNameToComparisonFunction(
   attributeNameAsString
 ) {
@@ -187,8 +186,6 @@ export function convertSortingAttributeNameToComparisonFunction(
             '10.4',
             defValue,
           ]
-          //var a = sortOrder.indexOf(legalnumber1)
-          //var b = sortOrder.indexOf(legalnumber2)
 
           var sortres =
             sortOrder.indexOf(legalnumber1) - sortOrder.indexOf(legalnumber2)
