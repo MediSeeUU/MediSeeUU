@@ -106,12 +106,12 @@ class HistogramForm extends Component {
             name="xAxis"
             className="med-select"
             onChange={this.handleChange}
-            tour='step-vis-vars'
+            tour="step-vis-vars"
           >
             {variables}
           </select>
         </label>
-        <div tour='step-vis-categories'>
+        <div tour="step-vis-categories">
           <CategoryOptions
             // We want to reset the component when the variable changes,
             // so we need to change the key depending on the axis.

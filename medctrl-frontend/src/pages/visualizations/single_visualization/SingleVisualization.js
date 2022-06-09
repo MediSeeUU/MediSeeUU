@@ -225,7 +225,7 @@ class SingleVisualization extends Component {
                   onChange={this.handleNameChange}
                 />
               </Row>
-              <div tour='step-vis-plot'>
+              <div tour="step-vis-plot">
                 <Row>{this.renderChart()}</Row>
               </div>
               <Row>

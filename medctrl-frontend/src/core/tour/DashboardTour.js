@@ -67,9 +67,9 @@ const steps = [
     content: (
       <p>
         On the data page, you again find a search bar, use this search bar to
-        look for specific medicines. We can search for 'pfizer' and all medicines 
-        related to pfizer will be displayed in the table below. Let's explore 
-        that table next!
+        look for specific medicines. We can search for 'pfizer' and all
+        medicines related to pfizer will be displayed in the table below. Let's
+        explore that table next!
       </p>
     ),
     title: 'Data Search',
@@ -97,11 +97,11 @@ const steps = [
     target: "[tour='step-data-selected']",
     content: (
       <p>
-        All of the datapoints that you have selected in the table above (in our 
-        case, all medicines by pfizer with a status of 'withdrawn'), will
-        appear here. You can either export these datapoints to a file (using the
-        export button), or use them to create a visualization. Let's see if we can 
-        make an informative visualization using these datapoints.
+        All of the datapoints that you have selected in the table above (in our
+        case, all medicines by pfizer with a status of 'withdrawn'), will appear
+        here. You can either export these datapoints to a file (using the export
+        button), or use them to create a visualization. Let's see if we can make
+        an informative visualization using these datapoints.
       </p>
     ),
     title: 'Selected Data Points',
@@ -141,9 +141,9 @@ const steps = [
       <p>
         First, we need to pick a chart type, for example a bar or line chart. If
         applicable you can select extra modifiers below to further customize the
-        chart, like flipping the chart on its side (using horizontal). Here we select
-        the histogram type, this way we can see how many medicine by pfizer have a 
-        'withdrawn' status per year.
+        chart, like flipping the chart on its side (using horizontal). Here we
+        select the histogram type, this way we can see how many medicine by
+        pfizer have a 'withdrawn' status per year.
       </p>
     ),
     title: 'Chart Type',
@@ -185,10 +185,10 @@ const steps = [
     target: "[tour='step-vis-plot']",
     content: (
       <p>
-        After having configured all of the appropriate settings, we are left with
-        our final result. Here we can see that in 1998, the most medicines by pfizer
-        have a 'withdrawn' status. If we want to download this visualisation, we can 
-        do so using the two buttons below.
+        After having configured all of the appropriate settings, we are left
+        with our final result. Here we can see that in 1998, the most medicines
+        by pfizer have a 'withdrawn' status. If we want to download this
+        visualisation, we can do so using the two buttons below.
       </p>
     ),
     title: 'Final Visualization',
@@ -237,16 +237,18 @@ function DashboardTour(props) {
 
     // if the dashboard tour is not active, we should not update
     // the internal joyride state
-    if (!runJoyride) { return }
+    if (!runJoyride) {
+      return
+    }
 
     // if the tour is starting, make sure that the tour starts on the correct page,
     // and that all of the contexts have the correct values to support the tour
-    if (index === 0 && lifecycle === "init") {
+    if (index === 0 && lifecycle === 'init') {
       navigate(steps[0].page)
 
       // during the tour, we only want to show medicines by pfizers
-      utilsUpdate({ 
-        search: "pfizer",
+      utilsUpdate({
+        search: 'pfizer',
         sorters: [{ selected: 'DecisionDate', order: 'asc' }],
         filters: [
           {
@@ -257,10 +259,12 @@ function DashboardTour(props) {
         ],
       })
 
-      // from all of the medicines by pfizers, only select the ones 
+      // from all of the medicines by pfizers, only select the ones
       // with a 'withdrawn' status
       let newCheckedState = {}
-      const checked = [59, 60, 78, 121, 167, 244, 259, 327, 353, 1100, 1165, 1183, 1421]
+      const checked = [
+        59, 60, 78, 121, 167, 244, 259, 327, 353, 1100, 1165, 1183, 1421,
+      ]
       for (let key in checkedState) {
         newCheckedState[key] = checked.includes(parseInt(key))
       }
@@ -274,13 +278,15 @@ function DashboardTour(props) {
           chartType: 'histogram',
           chartSpecificOptions: {
             xAxis: 'DecisionYear',
-            categoriesSelectedX: [1998, 1999, 2001, 2003, 2006, 2016, 2017, 2020],
-            ...(visualState.chartSpecificOptions)
+            categoriesSelectedX: [
+              1998, 1999, 2001, 2003, 2006, 2016, 2017, 2020,
+            ],
+            ...visualState.chartSpecificOptions,
           },
           legendOn: false,
           labelsOn: true,
           key: v4(),
-          ...visualState
+          ...visualState,
         },
       ])
     }
