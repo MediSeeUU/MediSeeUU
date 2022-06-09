@@ -17,7 +17,7 @@ function NavAccount(props) {
 
   return (
     <div
-      className={"med-primary-solid med-nav-account med-nav-item" + active}
+      className={'med-primary-solid med-nav-account med-nav-item' + active}
       onClick={clicked}
       data-testid="navaccountbutton"
     >

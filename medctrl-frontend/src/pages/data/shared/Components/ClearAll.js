@@ -19,8 +19,7 @@ function ClearAll({ data }) {
       onClick={removeAllSelected}
       data-testid="clear-all-label"
     >
-      Clear All {' '}
-      <i className="bx bxs-trash"></i>
+      Clear All <i className="bx bxs-trash"></i>
     </button>
   )
 }
