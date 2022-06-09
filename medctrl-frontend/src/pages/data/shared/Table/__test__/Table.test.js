@@ -149,7 +149,7 @@ test('data put and displayed correctly into table', () => {
 
 test('sorting on leftmost columnheader sorts data', () => {
   const setSorters = (sorters) => {
-    expect(sorters).toHaveLength(1) // CHECK OF SORT KLOPT MET WAT GESORTEERD WORDT
+    expect(sorters[0].selected).toBe("EUNoShort")
   }
   render(
     <BrowserRouter>
