@@ -39,7 +39,7 @@ test('clear button resets filters and sorters', () => {
   const update = (filters, sorters) => {
     expect(filters).toEqual([
       {
-        selected: 'BrandName',
+        selected: '',
         input: [{ var: '', filterRange: 'from' }],
         filterType: '',
       },
