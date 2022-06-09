@@ -1,9 +1,9 @@
 // Login handler
-async function handleLogin(event, props) {
-  var success = false
+async function handleLogin(event) {
+  let success = false
 
   // Takes form and selects all items needed to send to server
-  var json = {}
+  let json = {}
   event.target.querySelectorAll('input').forEach(function (item) {
     json[item.id] = item.value
   })
@@ -31,7 +31,7 @@ function setSession(res) {
   window.location.reload(false)
 
   sessionStorage.setItem('username', res.user.username)
-  let access = res.user.groups.length > 0 ? res.user.groups[0].name : null
+  const access = res.user.groups.length > 0 ? res.user.groups[0].name : null
   sessionStorage.setItem('access_level', access)
   sessionStorage.setItem('token', res.token)
 }

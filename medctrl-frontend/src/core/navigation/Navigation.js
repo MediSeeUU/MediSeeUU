@@ -5,7 +5,7 @@ import LoginModal from '../login/LoginModal'
 import React from 'react'
 import OutsideClickHandler from 'react-outside-click-handler'
 import './Navigation.css'
-import handleLogOut from '../handlers/LogoutHandler'
+import handleLogOut from '../handlers/logout'
 
 // Class based component representing the entire navigation side bar
 class SideNavigation extends React.Component {

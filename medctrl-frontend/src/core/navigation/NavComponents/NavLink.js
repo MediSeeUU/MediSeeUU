@@ -10,7 +10,8 @@ function NavLink(props) {
   const className = 'med-nav-item' + (props.lowest ? ' med-nav-lowest' : '')
 
   // If the component is the current page selected add active class
-  const active = location.pathname === props.dest ? ' med-active' : ''
+  // Do not do this if it is the lowest navlink (login)
+  const active = location.pathname === props.dest && !props.lowest ? ' med-active' : ''
 
   // Click handler that closes the navigation bar
   // and redirects to the specified page

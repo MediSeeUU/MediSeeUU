@@ -4,14 +4,9 @@ import SideNavigation from '../../navigation/Navigation'
 import { BrowserRouter } from 'react-router-dom'
 
 test('open and close login popup', () => {
-  const defUser = {
-    isAdmin: true,
-    userName: 'Lourens Bloem',
-    accessLevel: 'X',
-  }
   render(
     <BrowserRouter>
-      <SideNavigation loggedin={false} user={defUser} />
+      <SideNavigation />
     </BrowserRouter>
   )
   const loginbutton = screen.getAllByText('Login')[0]
