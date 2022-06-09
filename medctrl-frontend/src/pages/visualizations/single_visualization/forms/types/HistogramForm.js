@@ -47,6 +47,7 @@ function HistogramForm(props) {
           defaultValue={settings.xAxis}
           name="xAxis"
           onChange={handleChange}
+          tour="step-vis-vars"
         />
       </label>
       <div tour="step-vis-categories">

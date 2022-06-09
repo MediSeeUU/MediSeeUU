@@ -35,8 +35,10 @@ export function VisualsProvider({ children }) {
   useEffect(() => {
     if (data.length > 0) {
       let uniqueCategories = GetUniqueCategories(data)
-      visuals[0].chartSpecificOptions.categoriesSelectedY = uniqueCategories['Rapporteur']
-      visuals[0].chartSpecificOptions.categoriesSelectedX = uniqueCategories['DecisionYear']
+      visuals[0].chartSpecificOptions.categoriesSelectedY =
+        uniqueCategories['Rapporteur']
+      visuals[0].chartSpecificOptions.categoriesSelectedX =
+        uniqueCategories['DecisionYear']
       setVisuals(visuals)
     }
   }, [data, visuals])

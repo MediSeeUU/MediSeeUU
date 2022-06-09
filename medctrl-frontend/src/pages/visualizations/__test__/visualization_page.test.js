@@ -36,7 +36,7 @@ const visuals = [
 function contexts(children, contextData, setVisuals) {
   return (
     <SelectedContext.Provider value={contextData}>
-      <VisualsContext.Provider value={{visuals, setVisuals}}>
+      <VisualsContext.Provider value={{ visuals, setVisuals }}>
         {children}
       </VisualsContext.Provider>
     </SelectedContext.Provider>
@@ -65,14 +65,18 @@ test('initial render', () => {
 
 // rendering a visualization page and adding a visualization
 test('add a visualization', () => {
-  const page = contexts(<VisualizationPage />, data, (vis) => expect(vis).toHaveLength(2))
+  const page = contexts(<VisualizationPage />, data, (vis) =>
+    expect(vis).toHaveLength(2)
+  )
   ReactDOM.render(page, container)
   fireEvent.click(screen.getByRole('button', { name: /add visualization/i }))
 })
 
 // rendering a visualization page, then removing the initial visualization
 test('remove a visualization', () => {
-  const page = contexts(<VisualizationPage />, data, (vis) => expect(vis).toHaveLength(0))
+  const page = contexts(<VisualizationPage />, data, (vis) =>
+    expect(vis).toHaveLength(0)
+  )
   ReactDOM.render(page, container)
   // the removal button is currently the only button with no text
   let target = screen.getByRole('button', { name: '' })
@@ -81,7 +85,9 @@ test('remove a visualization', () => {
 
 // update the visual context when rendering the visualization page with bar chart
 test('update a visual', () => {
-  const page = contexts(<VisualizationPage />, data, (vis) => expect(vis[0].chartType).toBe('line'))
+  const page = contexts(<VisualizationPage />, data, (vis) =>
+    expect(vis[0].chartType).toBe('line')
+  )
   ReactDOM.render(page, container)
   let t = screen.getByRole('combobox', { name: /visualization type/i })
   fireEvent.change(t, { target: { name: 'chartType', value: 'line' } })

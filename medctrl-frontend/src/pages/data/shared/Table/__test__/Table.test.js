@@ -16,7 +16,12 @@ test('renders without crashing', () => {
   ReactDOM.render(
     <BrowserRouter>
       <MockProvider>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} sorters={[{ selected: '', order: 'asc' }]} />
+        <Table
+          data={DummyData}
+          currentPage={1}
+          amountPerPage={10}
+          sorters={[{ selected: '', order: 'asc' }]}
+        />
       </MockProvider>
     </BrowserRouter>,
     root
@@ -45,7 +50,12 @@ test('expected amount of headers in the table', () => {
   render(
     <BrowserRouter>
       <MockProvider>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} sorters={[{ selected: '', order: 'asc' }]} />
+        <Table
+          data={DummyData}
+          currentPage={1}
+          amountPerPage={10}
+          sorters={[{ selected: '', order: 'asc' }]}
+        />
       </MockProvider>
     </BrowserRouter>
   )
@@ -127,7 +137,12 @@ test('data put and displayed correctly into table', () => {
   render(
     <BrowserRouter>
       <MockProvider>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} sorters={[{ selected: '', order: 'asc' }]} />
+        <Table
+          data={DummyData}
+          currentPage={1}
+          amountPerPage={10}
+          sorters={[{ selected: '', order: 'asc' }]}
+        />
       </MockProvider>
     </BrowserRouter>
   )
@@ -149,7 +164,7 @@ test('data put and displayed correctly into table', () => {
 
 test('sorting on leftmost columnheader sorts data', () => {
   const setSorters = (sorters) => {
-    expect(sorters[0].selected).toBe("EUNoShort")
+    expect(sorters[0].selected).toBe('EUNoShort')
   }
   render(
     <BrowserRouter>
@@ -164,7 +179,7 @@ test('sorting on leftmost columnheader sorts data', () => {
       </MockProvider>
     </BrowserRouter>
   )
-  const sortButton = screen.getAllByTestId("sort-asc-column")[0]
+  const sortButton = screen.getAllByTestId('sort-asc-column')[0]
   fireEvent.click(sortButton)
 })
 
@@ -172,7 +187,12 @@ test('column change changes data in row', () => {
   render(
     <BrowserRouter>
       <MockProvider>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} sorters={[{ selected: '', order: 'asc' }]} />
+        <Table
+          data={DummyData}
+          currentPage={1}
+          amountPerPage={10}
+          sorters={[{ selected: '', order: 'asc' }]}
+        />
       </MockProvider>
     </BrowserRouter>
   )
@@ -193,13 +213,20 @@ test('add and remove columns', () => {
   render(
     <BrowserRouter>
       <MockProvider>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} sorters={[{ selected: '', order: 'asc' }]} />
+        <Table
+          data={DummyData}
+          currentPage={1}
+          amountPerPage={10}
+          sorters={[{ selected: '', order: 'asc' }]}
+        />
       </MockProvider>
     </BrowserRouter>
   )
   const initHeaderLength = screen.queryAllByRole('columnheader').length
   fireEvent.click(screen.getByTestId('add-column'))
-  expect(screen.queryAllByRole('columnheader')).toHaveLength(initHeaderLength + 1)
+  expect(screen.queryAllByRole('columnheader')).toHaveLength(
+    initHeaderLength + 1
+  )
   fireEvent.click(screen.getByTestId('remove-column'))
   expect(screen.queryAllByRole('columnheader')).toHaveLength(initHeaderLength)
 })
@@ -208,7 +235,12 @@ test('remove button appearing', () => {
   render(
     <BrowserRouter>
       <MockProvider>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} sorters={[{ selected: '', order: 'asc' }]} />
+        <Table
+          data={DummyData}
+          currentPage={1}
+          amountPerPage={10}
+          sorters={[{ selected: '', order: 'asc' }]}
+        />
       </MockProvider>
     </BrowserRouter>
   )
@@ -221,7 +253,12 @@ test('add column button adds unique variable columns', () => {
   render(
     <BrowserRouter>
       <MockProvider>
-        <Table data={DummyData} currentPage={1} amountPerPage={10} sorters={[{ selected: '', order: 'asc' }]} />
+        <Table
+          data={DummyData}
+          currentPage={1}
+          amountPerPage={10}
+          sorters={[{ selected: '', order: 'asc' }]}
+        />
       </MockProvider>
     </BrowserRouter>
   )

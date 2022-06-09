@@ -1,10 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  render,
-  fireEvent,
-  screen,
-} from '@testing-library/react'
+import { render, fireEvent, screen } from '@testing-library/react'
 import Menu from '../Menu'
 import MockProvider from '../../../../../mocks/mockProvider'
 
@@ -23,13 +19,7 @@ test('opens menu after clicking button', () => {
 
 test('apply button calls update function', () => {
   const update = jest.fn()
-  render(
-    <Menu
-      filters={[]}
-      sorters={[]}
-      update={update}
-    />
-  )
+  render(<Menu filters={[]} sorters={[]} update={update} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   expect(update).not.toHaveBeenCalled()
   fireEvent.click(screen.getByText(/Apply/i))
@@ -38,13 +28,7 @@ test('apply button calls update function', () => {
 
 test('clear button calls update function', () => {
   const update = jest.fn()
-  render(
-    <Menu
-      filters={[]}
-      sorters={[]}
-      update={update}
-    />
-  )
+  render(<Menu filters={[]} sorters={[]} update={update} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   expect(update).not.toHaveBeenCalled()
   fireEvent.click(screen.getByText(/Clear/i))
@@ -62,13 +46,7 @@ test('clear button resets filters and sorters', () => {
     ])
     expect(sorters).toEqual([{ selected: '', order: 'asc' }])
   }
-  render(
-    <Menu
-      filters={[]}
-      sorters={[]}
-      update={update}
-    />
-  )
+  render(<Menu filters={[]} sorters={[]} update={update} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   fireEvent.click(screen.getByText(/Clear/i))
 })
@@ -155,7 +133,13 @@ test('remove filter', () => {
 
 test('filters and sorters applied correctly in state', () => {
   const update = (filters, sorters) => {
-    expect(filters).toStrictEqual([{ filterType: 'text', selected: 'ActiveSubstance', input: [{ var: 'welcome', filterRange: 'from' }] }])
+    expect(filters).toStrictEqual([
+      {
+        filterType: 'text',
+        selected: 'ActiveSubstance',
+        input: [{ var: 'welcome', filterRange: 'from' }],
+      },
+    ])
     expect(sorters).toStrictEqual([{ selected: 'ATCCodeL2', order: 'desc' }])
   }
   render(

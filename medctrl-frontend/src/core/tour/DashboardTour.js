@@ -1,14 +1,9 @@
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {
-  useCheckedState,
-  useCheckedStateUpdate,
-  useTableUtilsUpdate,
-  useVisuals,
-  useVisualsUpdate,
-} from '../../shared/contexts/DataContext'
-import { v4 } from 'uuid'
+import { useTableUtils } from '../../shared/Contexts/TableUtilsContext'
+import { useCheckedState } from '../../shared/Contexts/CheckedContext'
+import { useVisuals } from '../../shared/Contexts/VisualsContext'
 
 // A data context which allows the 'start tour' button on the home
 // page to actually start a tour
@@ -222,13 +217,11 @@ function DashboardTour(props) {
 
   let navigate = useNavigate()
 
-  let utilsUpdate = useTableUtilsUpdate()
+  let { setTableUtils } = useTableUtils()
 
-  let checkedState = useCheckedState()
-  let checkedStateUpdate = useCheckedStateUpdate()
+  let { checkedState, setCheckedState } = useCheckedState()
 
-  let visualState = useVisuals()
-  let updateVisualState = useVisualsUpdate()
+  let { setVisuals } = useVisuals()
 
   // function to handle a update to the tour, i.e. when the user wants to
   // view the next step in the tour
@@ -247,7 +240,7 @@ function DashboardTour(props) {
       navigate(steps[0].page)
 
       // during the tour, we only want to show medicines by pfizers
-      utilsUpdate({
+      setTableUtils({
         search: 'pfizer',
         sorters: [{ selected: 'DecisionDate', order: 'asc' }],
         filters: [
@@ -268,25 +261,24 @@ function DashboardTour(props) {
       for (let key in checkedState) {
         newCheckedState[key] = checked.includes(parseInt(key))
       }
-      checkedStateUpdate(newCheckedState)
+      setCheckedState(newCheckedState)
 
       // for the visualization, we want to see how many medicines by pfizers have
       // a 'withdrawn' status, plotted against the year that they were first approved
-      updateVisualState([
+      setVisuals([
         {
           id: 1,
           chartType: 'histogram',
           chartSpecificOptions: {
             xAxis: 'DecisionYear',
+            yAxis: 'Rapporteur',
+            categoriesSelectedY: [],
             categoriesSelectedX: [
               1998, 1999, 2001, 2003, 2006, 2016, 2017, 2020,
             ],
-            ...visualState.chartSpecificOptions,
           },
           legendOn: false,
           labelsOn: true,
-          key: v4(),
-          ...visualState,
         },
       ])
     }

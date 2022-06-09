@@ -37,10 +37,12 @@ export function DataProvider({ mock, children }) {
     // And the provider is not being mocked
     if (structData && !mock) {
       fetchData()
-      console.log("fetched medicines data")
+      console.log('fetched medicines data')
     }
   }, [structData, setData, mock])
 
   // Provide the mock data if this is given, otherwise the obtained medicines data
-  return <DataContext.Provider value={mock || data}>{children}</DataContext.Provider>
+  return (
+    <DataContext.Provider value={mock || data}>{children}</DataContext.Provider>
+  )
 }

@@ -11,6 +11,7 @@ export default function VariableSelect({
   defaultValue,
   dataTestId,
   name,
+  tour,
 }) {
   const variableCategories = useStructure()
   const optGroups = []
@@ -45,6 +46,7 @@ export default function VariableSelect({
       value={defaultValue}
       data-testid={dataTestId}
       name={name}
+      tour={tour}
     >
       <option value="" key={v4()} hidden>
         Choose a variable...

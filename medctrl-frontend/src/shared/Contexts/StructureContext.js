@@ -32,7 +32,7 @@ export function StructureProvider({ mock, children }) {
     // The update will only happen if the provider is not being mocked
     if (!mock) {
       fetchData()
-      console.log("fetched structure data")
+      console.log('fetched structure data')
     }
   }, [setStructData, mock])
 

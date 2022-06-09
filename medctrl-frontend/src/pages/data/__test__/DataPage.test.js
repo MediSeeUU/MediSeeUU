@@ -114,7 +114,7 @@ test('available pages lower than current loaded', () => {
 })
 
 test('amount of pages is 3', () => {
-  const mock = {...mockObject, data: mockObject.data.slice(0, 70)}
+  const mock = { ...mockObject, data: mockObject.data.slice(0, 70) }
   render(
     <BrowserRouter>
       <MockProvider mock={mock}>
@@ -158,4 +158,3 @@ test('Can go a page forward and backwards', () => {
   // clicking the previous page button once should bring the current page to 6
   expect(paginationDiv.childNodes[4].textContent.trim()).toBe('6')
 })
-
