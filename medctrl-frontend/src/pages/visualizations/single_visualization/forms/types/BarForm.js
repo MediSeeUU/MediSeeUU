@@ -110,24 +110,22 @@ function BarForm(props) {
           />
         </label>
       </div>
-      <div tour="step-vis-categories">
-        <CategoryOptions
-          dimension="X"
-          className="category-options"
-          onChange={handleChange}
-          categories={sortCategoryData(props.uniqueCategories[settings.xAxis])}
-          categoriesSelected={settings.categoriesSelectedX}
-          settings={settings}
-        />
-        <CategoryOptions
-          dimension="Y"
-          className="category-options"
-          onChange={handleChange}
-          categories={sortCategoryData(props.uniqueCategories[settings.yAxis])}
-          categoriesSelected={settings.categoriesSelectedY}
-          settings={settings}
-        />
-      </div>
+      <CategoryOptions
+        dimension="X"
+        className="category-options"
+        onChange={handleChange}
+        categories={sortCategoryData(props.uniqueCategories[settings.xAxis])}
+        categoriesSelected={settings.categoriesSelectedX}
+        settings={settings}
+      />
+      <CategoryOptions
+        dimension="Y"
+        className="category-options"
+        onChange={handleChange}
+        categories={sortCategoryData(props.uniqueCategories[settings.yAxis])}
+        categoriesSelected={settings.categoriesSelectedY}
+        settings={settings}
+      />
     </>
   )
 }

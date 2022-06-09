@@ -1,0 +1,139 @@
+{
+  "Core Dashboard Colors": {
+    "Description": "The core dashboard colors are the basis colors of the dashboard, these include the background of the content containers, header and footer",
+    "Colors": [
+      {
+        "Variable": "--core-body",
+        "Display Name": "Main Background"
+      },
+      {
+        "Variable": "--core-header",
+        "Display Name": "Header Background"
+      },
+      {
+        "Variable": "--core-footer",
+        "Display Name": "Footer Background"
+      },
+      {
+        "Variable": "--core-border",
+        "Display Name": "Content Border"
+      },
+      {
+        "Variable": "--core-shadow",
+        "Display Name": "Shadow"
+      },
+      {
+        "Variable": "--core-content",
+        "Display Name": "Content Background"
+      },
+      {
+        "Variable": "--core-dialog",
+        "Display Name": "Dialog Background"
+      }
+    ]
+  },
+
+  "Text Colors": {
+    "Description": "Text colors are all the colors that are used for text on the dashboard, from this text to the text on all the buttons.",
+    "Colors": [
+      {
+        "Variable": "--text-primary",
+        "Display Name": "Primary Text"
+      },
+      {
+        "Variable": "--text-secondary",
+        "Display Name": "Secondary Text"
+      },
+      {
+        "Variable": "--text-additional",
+        "Display Name": "Additional Text"
+      }
+    ]
+  },
+
+  "Primary Colors": {
+    "Description": "The primary colors are used in all sorts of locations on the dashboard, from the navigation bar to most of the buttons.",
+    "Colors": [
+      {
+        "Variable": "--primary-dark",
+        "Display Name": "Primary (Dark)"
+      },
+      {
+        "Variable": "--primary-normal",
+        "Display Name": "Primary (Normal)"
+      },
+      {
+        "Variable": "--primary-light",
+        "Display Name": "Primary (Light)"
+      }
+    ]
+  },
+
+  "Secondary Colors": {
+    "Description": "The secondary colors are used in all locations when color is appropriate, but the primary color is already used or not compatible.",
+    "Colors": [
+      {
+        "Variable": "--secondary-dark",
+        "Display Name": "Secondary (Dark)"
+      },
+      {
+        "Variable": "--secondary-normal",
+        "Display Name": "Secondary (Normal)"
+      },
+      {
+        "Variable": "--secondary-light",
+        "Display Name": "Secondary (Light)"
+      }
+    ]
+  },
+
+  "Positive Colors": {
+    "Description": "The positive colors are used when an element represents a positive message, like a success message or some text indicating an action was successful.",
+    "Colors": [
+      {
+        "Variable": "--positive-dark",
+        "Display Name": "Positive (Dark)"
+      },
+      {
+        "Variable": "--positive-normal",
+        "Display Name": "Positive (Normal)"
+      },
+      {
+        "Variable": "--positive-light",
+        "Display Name": "Positive (Light)"
+      }
+    ]
+  },
+
+  "Negative Colors": {
+    "Description": "The negative colors are used when an element represents a negative message, like a failure message or some text indicating an action was unsuccessful.",
+    "Colors": [
+      {
+        "Variable": "--negative-dark",
+        "Display Name": "Negative (Dark)"
+      },
+      {
+        "Variable": "--negative-normal",
+        "Display Name": "Negative (Normal)"
+      },
+      {
+        "Variable": "--negative-light",
+        "Display Name": "Negative (Light)"
+      }
+    ]
+  },
+
+  "Accent Colors": {
+    "Description": "The accent colors are used when an element should be highlighted, for example links.",
+    "Colors": [
+      {
+        "Variable": "--accent-dark",
+        "Display Name": "Accent (Dark)"
+      },
+      {
+        "Variable": "--accent-light",
+        "Display Name": "Accent (Light)"
+      }
+    ]
+  }
+}

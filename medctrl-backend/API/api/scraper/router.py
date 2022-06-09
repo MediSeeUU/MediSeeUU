@@ -4,6 +4,6 @@ from .scraper_procedure import ScraperProcedure
 
 # url patterns for the scraper endpoints
 url_patterns = [
-    path("medicine", ScraperMedicine.as_view(), name="medicine"),
-    path("procedure", ScraperProcedure.as_view(), name="procedure"),
+    path("medicine/", ScraperMedicine.as_view(), name="medicine"),
+    path("procedure/", ScraperProcedure.as_view(), name="procedure"),
 ]

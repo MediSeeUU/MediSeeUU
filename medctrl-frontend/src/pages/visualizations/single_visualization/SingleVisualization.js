@@ -196,7 +196,9 @@ function SingleVisualization(props) {
                 onBlur={handleNameChange}
               />
             </Row>
-            <Row>{renderChart()}</Row>
+            <div tour="step-vis-plot">
+              <Row>{renderChart()}</Row>
+            </div>
             <Row>
               <button
                 className="med-primary-solid med-bx-button button-export"

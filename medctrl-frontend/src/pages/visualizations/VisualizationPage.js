@@ -127,7 +127,7 @@ function VisualizationPage() {
           closeModal={() => setPopup([])}
           className="visualize-modal"
         >
-          <i className="bx bx-x close-icon" onClick={() => setPopup([])}></i>
+          <i className="bx bx-x close-icon" onClick={() => setPopup([])} />
           <SelectedData selectedData={tableData} />
         </MedModal>
         <Container>

@@ -15,3 +15,9 @@ from .lookup_serializers import (
     LookupRapporteurSerializer,
     LookupProceduretypeSerializer,
 )
+from .history_serializers import (
+    MAHSerializer,
+    OrphanSerializer,
+    PRIMESerializer,
+    BrandnameSerializer,
+)

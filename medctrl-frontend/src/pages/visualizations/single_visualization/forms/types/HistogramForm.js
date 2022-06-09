@@ -49,7 +49,7 @@ function HistogramForm(props) {
           onChange={handleChange}
         />
       </label>
-      <div>
+      <div tour="step-vis-categories">
         <CategoryOptions
           dimension="X"
           className="category-options"
