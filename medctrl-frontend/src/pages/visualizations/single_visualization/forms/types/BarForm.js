@@ -161,7 +161,7 @@ class BarForm extends Component {
           />
           &nbsp;&nbsp;Horizontal
         </label>
-        <div tour="step-vis-vars">
+        <div>
           <label className="visualization-panel-label">
             {xAxis}
             <select
@@ -185,7 +185,7 @@ class BarForm extends Component {
             </select>
           </label>
         </div>
-        <div tour="step-vis-categories">
+        <div>
           <CategoryOptions
             // We want to reset the component when the axis changes,
             // so we need to change the key depending on the axis'.

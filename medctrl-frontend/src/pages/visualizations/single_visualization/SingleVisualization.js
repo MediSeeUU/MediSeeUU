@@ -225,7 +225,9 @@ class SingleVisualization extends Component {
                   onChange={this.handleNameChange}
                 />
               </Row>
-              <Row>{this.renderChart()}</Row>
+              <div tour='step-vis-plot'>
+                <Row>{this.renderChart()}</Row>
+              </div>
               <Row>
                 <button
                   className="med-primary-solid med-bx-button button-export"

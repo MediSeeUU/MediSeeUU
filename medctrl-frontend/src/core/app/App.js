@@ -12,18 +12,18 @@ function App() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div className="med-page-wrapper">
-        <DashboardTour>
-          <Header />
-          <SideNavigation />
-          <main className="med-content">
-            <div className="med-content-wrapper">
-              <DataProvider>
+        <Header />
+        <SideNavigation />
+        <main className="med-content">
+          <div className="med-content-wrapper">
+            <DataProvider>
+              <DashboardTour>
                 <AllRoutes />
-              </DataProvider>
-            </div>
-            <Footer />
-          </main>
-        </DashboardTour>
+              </DashboardTour>
+            </DataProvider>
+          </div>
+          <Footer />
+        </main>
       </div>
     </BrowserRouter>
   )
