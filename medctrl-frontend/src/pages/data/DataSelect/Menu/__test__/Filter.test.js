@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { render, fireEvent, screen } from '@testing-library/react'
 import Filter from '../FilterMenu/Filter'
 import FilterInputs from '../FilterMenu/FilterInputs'
-import MockProvider from '../../../../../mocks/mockProvider'
+import MockProvider from '../../../../../mocks/MockProvider'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')
