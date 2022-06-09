@@ -14,14 +14,14 @@ function ClearAll({ data }) {
   }
 
   return (
-    <div
+    <button
       className="med-clear-all-button med-primary-text"
       onClick={removeAllSelected}
       data-testid="clear-all-label"
     >
-      Clear All
-      <i className="bx bxs-trash med-clear-icon"></i>
-    </div>
+      Clear All {' '}
+      <i className="bx bxs-trash"></i>
+    </button>
   )
 }
 

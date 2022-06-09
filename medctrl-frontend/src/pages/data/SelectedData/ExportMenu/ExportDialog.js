@@ -2,10 +2,10 @@ import React from 'react'
 import * as XLSX from 'xlsx'
 import FileSaver from 'file-saver'
 
-import ErrorDialog from './ExportMenuComponents/ErrorDialog'
-import SuccessDialog from './ExportMenuComponents/SuccessDialog'
-import ErrorMessage from './ExportMenuComponents/ErrorMessage'
-import RadioElement from './ExportMenuComponents/RadioElement'
+import ErrorDialog from './Components/ErrorDialog'
+import SuccessDialog from './Components/SuccessDialog'
+import ErrorMessage from './Components/ErrorMessage'
+import RadioElement from './Components/RadioElement'
 
 class ExportDialog extends React.Component {
   // Export Dialog is a class based component. it is passed some series of

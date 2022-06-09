@@ -1,8 +1,8 @@
 import React from 'react'
 
-import ErrorDialog from './SaveMenuComponents/ErrorDialog'
-import SuccessDialog from './SaveMenuComponents/SuccessDialog'
-import ErrorMessage from './SaveMenuComponents/ErrorMessage'
+import ErrorDialog from './Components/ErrorDialog'
+import SuccessDialog from './Components/SuccessDialog'
+import ErrorMessage from './Components/ErrorMessage'
 
 import postSavedSelection from './SaveHandler'
 
