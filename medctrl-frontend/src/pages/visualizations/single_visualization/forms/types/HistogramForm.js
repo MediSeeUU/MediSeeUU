@@ -106,22 +106,25 @@ class HistogramForm extends Component {
             name="xAxis"
             className="med-select"
             onChange={this.handleChange}
+            tour="step-vis-vars"
           >
             {variables}
           </select>
         </label>
-        <CategoryOptions
-          // We want to reset the component when the variable changes,
-          // so we need to change the key depending on the axis.
-          key={`${this.state.xAxis}`}
-          className="category-options"
-          onChange={this.handleCategorySelectionChange}
-          categories={sortCategoryData(
-            this.props.uniqueCategories[this.state.xAxis]
-          )}
-          categoriesSelected={this.state.categoriesSelectedX}
-          settings={this.state}
-        />
+        <div tour="step-vis-categories">
+          <CategoryOptions
+            // We want to reset the component when the variable changes,
+            // so we need to change the key depending on the axis.
+            key={`${this.state.xAxis}`}
+            className="category-options"
+            onChange={this.handleCategorySelectionChange}
+            categories={sortCategoryData(
+              this.props.uniqueCategories[this.state.xAxis]
+            )}
+            categoriesSelected={this.state.categoriesSelectedX}
+            settings={this.state}
+          />
+        </div>
       </React.Fragment>
     )
   }

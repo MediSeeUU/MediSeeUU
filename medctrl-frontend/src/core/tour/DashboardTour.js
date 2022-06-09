@@ -1,6 +1,14 @@
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import {
+  useCheckedState,
+  useCheckedStateUpdate,
+  useTableUtilsUpdate,
+  useVisuals,
+  useVisualsUpdate,
+} from '../../shared/contexts/DataContext'
+import { v4 } from 'uuid'
 
 // A data context which allows the 'start tour' button on the home
 // page to actually start a tour
@@ -46,7 +54,7 @@ const steps = [
       <p>
         Use this link to access the data page, on this page you can view, select
         and export all the datapoints available to you. Let's navigate to the
-        data page!
+        data page and start selecting some datapoints!
       </p>
     ),
     title: 'Data Page',
@@ -59,8 +67,9 @@ const steps = [
     content: (
       <p>
         On the data page, you again find a search bar, use this search bar to
-        look for specific medicines. The results to your query will be displayed
-        in the table below. Let's explore that table next!
+        look for specific medicines. We can search for 'pfizer' and all
+        medicines related to pfizer will be displayed in the table below. Let's
+        explore that table next!
       </p>
     ),
     title: 'Data Search',
@@ -75,7 +84,8 @@ const steps = [
         In this table you can select individual datapoints using the checkmark
         on the left and view more information using the 'i' on the right. Use
         the filter and sort button to filter and sort the data points which are
-        displayed in the table.
+        displayed in the table. Here we can select all the medicines which have
+        a status of 'withdrawn'.
       </p>
     ),
     title: 'Data Selection Table',
@@ -87,9 +97,11 @@ const steps = [
     target: "[tour='step-data-selected']",
     content: (
       <p>
-        All of the datapoints that you have selected in the table above, will
-        appear here. You can either export these datapoints to a file (using the
-        export button), or use them to create a visualization.
+        All of the datapoints that you have selected in the table above (in our
+        case, all medicines by pfizer with a status of 'withdrawn'), will appear
+        here. You can either export these datapoints to a file (using the export
+        button), or use them to create a visualization. Let's see if we can make
+        an informative visualization using these datapoints.
       </p>
     ),
     title: 'Selected Data Points',
@@ -101,8 +113,8 @@ const steps = [
     target: "[tour='step-nav-vis']",
     content: (
       <p>
-        If we want to create a visualization, we first need to navigate to the
-        visualization page. We can use this link to do this.
+        To create a visualization, we first need to navigate to the
+        visualization page. We can use this link to accomplish this.
       </p>
     ),
     title: 'Visualizations Page',
@@ -115,8 +127,7 @@ const steps = [
     content: (
       <p>
         On the visualization page, we are greeted by a single visualization. But
-        to make it ours, we still need to adjust some of its parameters. And
-        when we are done, we can download it with the buttons below.
+        to make it ours, we still need to adjust some of its parameters.
       </p>
     ),
     title: 'Visualization',
@@ -130,7 +141,9 @@ const steps = [
       <p>
         First, we need to pick a chart type, for example a bar or line chart. If
         applicable you can select extra modifiers below to further customize the
-        chart, like flipping the chart on its side (using horizontal).
+        chart, like flipping the chart on its side (using horizontal). Here we
+        select the histogram type, this way we can see how many medicine by
+        pfizer have a 'withdrawn' status per year.
       </p>
     ),
     title: 'Chart Type',
@@ -144,7 +157,9 @@ const steps = [
       <p>
         Next we need to decide what variables we want to visualize. For bar and
         line charts we need to select two variables, but for a pie chart one is
-        more than enough.
+        more than enough. For a histogram we only need to select one variable,
+        since we want to plot against time, we select the decision year variable
+        here.
       </p>
     ),
     title: 'Variables',
@@ -157,10 +172,26 @@ const steps = [
     content: (
       <p>
         Finally, we can select certain categories, for both the X-axis and the
-        Y-axis variables to be included or excluded from the visualization.
+        Y-axis variables to be included or excluded from the visualization. For
+        our example we are interested in all of the categories.
       </p>
     ),
     title: 'Categories',
+    placement: 'auto',
+    disableBeacon: true,
+    page: '/visualizations',
+  },
+  {
+    target: "[tour='step-vis-plot']",
+    content: (
+      <p>
+        After having configured all of the appropriate settings, we are left
+        with our final result. Here we can see that in 1998, the most medicines
+        by pfizer have a 'withdrawn' status. If we want to download this
+        visualisation, we can do so using the two buttons below.
+      </p>
+    ),
+    title: 'Final Visualization',
     placement: 'auto',
     disableBeacon: true,
     page: '/visualizations',
@@ -188,17 +219,76 @@ function DashboardTour(props) {
   // and what the current step of the tour is (if it is currently taking place)
   const [runJoyride, setRunJoyride] = useState(false)
   const [step, setStep] = useState(0)
+
   let navigate = useNavigate()
+
+  let utilsUpdate = useTableUtilsUpdate()
+
+  let checkedState = useCheckedState()
+  let checkedStateUpdate = useCheckedStateUpdate()
+
+  let visualState = useVisuals()
+  let updateVisualState = useVisualsUpdate()
 
   // function to handle a update to the tour, i.e. when the user wants to
   // view the next step in the tour
   const handleCallback = (data) => {
-    const { action, index, status, type } = data
+    const { action, index, lifecycle, status, type } = data
 
-    // if the tour is starting, navigate to the page where the first step
-    // is meant to take place
-    if (index === 0) {
+    // if the dashboard tour is not active, we should not update
+    // the internal joyride state
+    if (!runJoyride) {
+      return
+    }
+
+    // if the tour is starting, make sure that the tour starts on the correct page,
+    // and that all of the contexts have the correct values to support the tour
+    if (index === 0 && lifecycle === 'init') {
       navigate(steps[0].page)
+
+      // during the tour, we only want to show medicines by pfizers
+      utilsUpdate({
+        search: 'pfizer',
+        sorters: [{ selected: 'DecisionDate', order: 'asc' }],
+        filters: [
+          {
+            selected: 'BrandName',
+            input: [{ var: '', filterRange: 'from' }],
+            filterType: '',
+          },
+        ],
+      })
+
+      // from all of the medicines by pfizers, only select the ones
+      // with a 'withdrawn' status
+      let newCheckedState = {}
+      const checked = [
+        59, 60, 78, 121, 167, 244, 259, 327, 353, 1100, 1165, 1183, 1421,
+      ]
+      for (let key in checkedState) {
+        newCheckedState[key] = checked.includes(parseInt(key))
+      }
+      checkedStateUpdate(newCheckedState)
+
+      // for the visualization, we want to see how many medicines by pfizers have
+      // a 'withdrawn' status, plotted against the year that they were first approved
+      updateVisualState([
+        {
+          id: 1,
+          chartType: 'histogram',
+          chartSpecificOptions: {
+            xAxis: 'DecisionYear',
+            categoriesSelectedX: [
+              1998, 1999, 2001, 2003, 2006, 2016, 2017, 2020,
+            ],
+            ...visualState.chartSpecificOptions,
+          },
+          legendOn: false,
+          labelsOn: true,
+          key: v4(),
+          ...visualState,
+        },
+      ])
     }
 
     // if the user wants to progress the tour a step, but the next step
@@ -244,6 +334,8 @@ function DashboardTour(props) {
           continuous={true}
           showSkipButton={true}
           disableScrolling={true}
+          disableCloseOnEsc={true}
+          disableOverlayClose={true}
           locale={{
             back: 'Back',
             close: 'Close',
