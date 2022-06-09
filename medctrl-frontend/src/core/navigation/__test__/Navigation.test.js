@@ -63,14 +63,9 @@ test('render datapage without crashing', () => {
 })
 
 test('logout navbarbutton is clickable when logged in', () => {
-  const defUser = {
-    isAdmin: true,
-    userName: 'Lourens Bloem',
-    accessLevel: 'X',
-  }
   render(
     <BrowserRouter>
-      <SideNavigation loggedin={false} user={defUser} />
+      <SideNavigation />
     </BrowserRouter>
   )
   const loginbutton = screen.getAllByText('Login')[0]
