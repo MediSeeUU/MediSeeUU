@@ -3,7 +3,7 @@ import GetUniqueCategories from '../../pages/visualizations/single_visualization
 import { useData } from './DataContext'
 
 // Create a new React context for the visualizations data
-const VisualsContext = React.createContext()
+export const VisualsContext = React.createContext()
 
 // Function that returns the context such that the data can be used in other components
 export function useVisuals() {
@@ -11,7 +11,7 @@ export function useVisuals() {
 }
 
 // Provider component that provides the visualizations data in the application
-export function VisualsProvider({ mock, children }) {
+export function VisualsProvider({ children }) {
   // The medicines data is necessary to determine the selected categories
   const data = useData()
 
@@ -33,13 +33,13 @@ export function VisualsProvider({ mock, children }) {
 
   // Update the selected categories if the medicines data is retrieved
   useEffect(() => {
-    if (!mock && data.length > 0) {
+    if (data.length > 0) {
       let uniqueCategories = GetUniqueCategories(data)
       visuals[0].chartSpecificOptions.categoriesSelectedY = uniqueCategories['Rapporteur']
       visuals[0].chartSpecificOptions.categoriesSelectedX = uniqueCategories['DecisionYear']
       setVisuals(visuals)
     }
-  }, [data, mock, visuals])
+  }, [data, visuals])
 
   return (
     <VisualsContext.Provider value={{ visuals, setVisuals }}>

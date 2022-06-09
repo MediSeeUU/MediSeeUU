@@ -4,7 +4,7 @@ import { useData } from './DataContext'
 
 // Create a new React context for the selected medicines data
 // The application uses this data to visualize the selected datapoints in the table and charts
-const SelectedContext = React.createContext()
+export const SelectedContext = React.createContext()
 
 // Function that returns the context such that the data can be used in other components
 export function useSelectedData() {

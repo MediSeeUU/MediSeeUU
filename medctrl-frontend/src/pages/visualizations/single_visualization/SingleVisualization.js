@@ -192,8 +192,8 @@ function SingleVisualization(props) {
                 className="graph-name med-text-input"
                 placeholder={renderTitlePlaceHolder()}
                 autoComplete="off"
-                value={settings.title}
-                onChange={handleNameChange}
+                defaultValue={settings.title || ""}
+                onBlur={handleNameChange}
               />
             </Row>
             <Row>{renderChart()}</Row>

@@ -15,7 +15,7 @@ function Provider({ mock, children }) {
           <SelectedProvider>
             <ColumnSelectionProvider>
               <TableUtilsProvider>
-                <VisualsProvider mock={mock}>{children}</VisualsProvider>
+                <VisualsProvider>{children}</VisualsProvider>
               </TableUtilsProvider>
             </ColumnSelectionProvider>
           </SelectedProvider>
