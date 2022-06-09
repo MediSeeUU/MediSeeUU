@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { render, fireEvent, screen } from '@testing-library/react'
 import Sort from '../SortMenu/Sort'
-import MockProvider from '../../../../../mocks/mockProvider'
+import MockProvider from '../../../../../mocks/MockProvider'
 
 test('renders without crashing', () => {
   const root = document.createElement('div')

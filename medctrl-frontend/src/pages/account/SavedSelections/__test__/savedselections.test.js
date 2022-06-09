@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen, within } from '@testing-library/react'
 import SavedSelections from '../SavedSelections'
-import MockProvider from '../../../../mocks/mockProvider'
+import MockProvider from '../../../../mocks/MockProvider'
 
 test('Component has correct number of rows', async () => {
   let value = await fetch('/api/saveselection').then((x) => x.json())

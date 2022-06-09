@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import HomePage from '../HomePage'
 import { fireEvent, screen, render } from '@testing-library/react'
-import MockProvider from '../../../mocks/mockProvider'
+import MockProvider from '../../../mocks/MockProvider'
 
 test('homepage renders without crashing', () => {
   const root = document.createElement('div')

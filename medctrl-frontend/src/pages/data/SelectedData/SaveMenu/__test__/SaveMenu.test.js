@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import SaveMenu from '../SaveMenu'
 import DummyData from '../../../../../json/small_data.json'
-import MockProvider from '../../../../../mocks/mockProvider'
+import MockProvider from '../../../../../mocks/MockProvider'
 
 // the save dialog should render without crashing
 test('renders without crashing', () => {
