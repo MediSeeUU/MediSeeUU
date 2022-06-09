@@ -80,6 +80,7 @@ class SideNavigation extends React.Component {
           userName: this.state.userName,
           accessLevel: this.state.accessLevel,
         }}
+        dest="/account"
         parent={this}
       />
     )
