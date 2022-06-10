@@ -1,4 +1,4 @@
-// A mock necessary for testing, 
+// A mock necessary for testing,
 // in particular when a chart is drawn.
 class ResizeObserver {
   observe() {

@@ -10,7 +10,7 @@ export default function generateHistogramSeries(settings) {
 
   const xAxis = settings.chartSpecificOptions.xAxis
   const data = settings.data
-  
+
   const chosenCategories = sortCategoryData(
     settings.chartSpecificOptions.categoriesSelectedX
   )

@@ -21,7 +21,7 @@ function VisualizationPage() {
 
   // Set popup data.
   // The popup appears when a category of a chart is clicked,
-  // e.g. a slice of a pie chart. 
+  // e.g. a slice of a pie chart.
   const [popup, setPopup] = useState([])
 
   // event handlers

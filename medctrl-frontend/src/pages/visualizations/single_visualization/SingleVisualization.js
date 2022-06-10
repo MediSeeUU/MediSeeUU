@@ -72,7 +72,7 @@ function SingleVisualization(props) {
   // Handles changing the title of the visualization.
   // Currently the title is not added when a visualization is exported,
   // this would require the title to be propagated to the chart options.
-  // It would also require the text input to be put in the form, 
+  // It would also require the text input to be put in the form,
   // otherwise 2 titles would be placed below each other.
   function handleTitleChangeFunction(event) {
     settings.title = event.target.value
