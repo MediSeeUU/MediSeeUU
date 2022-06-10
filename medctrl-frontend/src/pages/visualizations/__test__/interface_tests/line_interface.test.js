@@ -14,7 +14,7 @@ test('no selected y categories', () => {
     },
     data: data,
   }
-  const series = GenerateLineSeries(options)
+  const series = generateLineSeries(options)
   expect(series).toHaveLength(0)
 })
 
@@ -29,7 +29,7 @@ test('some selected categories (sorted)', () => {
     },
     data: data,
   }
-  const series = GenerateLineSeries(options)
+  const series = generateLineSeries(options)
   expect(series).toHaveLength(2)
   expect(series[0].name).toBe('Denmark')
   expect(series[1].name).toBe('United Kingdom')
@@ -46,7 +46,7 @@ test('categories in data', () => {
     },
     data: data,
   }
-  const series = GenerateLineSeries(options)
+  const series = generateLineSeries(options)
   series.forEach((element) => {
     let filteredData = data.filter((datael) =>
       element.euNumbers.flat().includes(datael.EUNoShort)

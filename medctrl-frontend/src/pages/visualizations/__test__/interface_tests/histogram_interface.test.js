@@ -1,4 +1,4 @@
-import GenerateHistogramSeries from '../../single_visualization/data_interfaces/generateHistogramSeries'
+import generateHistogramSeries from '../../single_visualization/data_interfaces/generateHistogramSeries'
 
 import data from '../../../../json/data.json'
 
