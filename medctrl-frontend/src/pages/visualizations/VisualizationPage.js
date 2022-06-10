@@ -63,6 +63,9 @@ function VisualizationPage() {
   function handleChangeFunc(settings) {
     var newVisuals = visuals.map((item) => {
       if (item.id === settings.id) {
+        // Resetting the id.
+        // Needed when a bar chart, with stacked and stack fully turned on,
+        // needs to force a rerender with the stack fully option turned off.
         settings.id = uuidv4()
         return settings
       }
