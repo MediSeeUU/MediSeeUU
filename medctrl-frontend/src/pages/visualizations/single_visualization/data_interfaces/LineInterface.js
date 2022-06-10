@@ -1,7 +1,7 @@
 import sortCategoryData from '../utils/sortCategoryData'
-import { pollChosenVariable } from './sharedTwoDimensions/pollChosenVariable'
-import { createSelectedSeries } from './sharedTwoDimensions/createSelectedSeries'
-import { toSeriesFormat } from './sharedTwoDimensions/toSeriesFormat'
+import pollChosenVariable from './sharedTwoDimensions/pollChosenVariable'
+import createSelectedSeries from './sharedTwoDimensions/createSelectedSeries'
+import toSeriesFormat from './sharedTwoDimensions/toSeriesFormat'
 
 // generates series for a line chart
 export default function GenerateLineSeries(settings) {
@@ -12,9 +12,11 @@ export default function GenerateLineSeries(settings) {
   ) {
     return []
   }
+
   const xAxis = settings.chartSpecificOptions.xAxis
   const yAxis = settings.chartSpecificOptions.yAxis
   const data = settings.data
+
   const categoriesSelectedX = sortCategoryData(
     settings.chartSpecificOptions.categoriesSelectedX
   )
