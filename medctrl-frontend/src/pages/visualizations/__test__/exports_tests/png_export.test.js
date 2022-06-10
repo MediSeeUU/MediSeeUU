@@ -5,14 +5,14 @@ import SingleVisualization from '../../single_visualization/SingleVisualization'
 import ResizeObserver from '../../mocks/observer'
 
 import data from '../../../../json/data.json'
-import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
+import getUniqueCategories from '../../single_visualization/utils/getUniqueCategories'
 
 jest.mock('../../mocks/observer')
 
 // Does not seem to go beyond the dataURI function,
 // may take too long?
 test('export to png', () => {
-  const unique = GetUniqueCategories(data)
+  const unique = getUniqueCategories(data)
   let setting = {
     id: 1,
     chartType: 'bar',

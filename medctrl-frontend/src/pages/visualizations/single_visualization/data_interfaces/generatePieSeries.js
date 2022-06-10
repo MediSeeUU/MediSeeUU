@@ -2,7 +2,7 @@ import sortCategoryData from '../utils/sortCategoryData'
 import pollChosenVariable from './sharedOneDimension/pollChosenVariable'
 
 // creates an array of data for a pie chart
-export default function GeneratePieSeries(settings) {
+export default function generatePieSeries(settings) {
   // no categories have been selected
   if (settings.chartSpecificOptions.categoriesSelectedX.length === 0) {
     return { data: [], euNumbers: [] }

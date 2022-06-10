@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
-import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
-import GenerateLineSeries from '../../single_visualization/data_interfaces/LineInterface'
+import getUniqueCategories from '../../single_visualization/utils/getUniqueCategories'
+import sortCategoryData from '../../single_visualization/utils/sortCategoryData'
+import generateLineSeries from '../../single_visualization/data_interfaces/generateLineSeries'
 import LineChart from '../../single_visualization/visualization_types/LineChart'
 import ResizeObserver from '../../mocks/observer'
 
@@ -14,7 +14,7 @@ let container
 let series
 let settings
 let chartSpecificOptions
-const uniqueCategories = GetUniqueCategories(data)
+const uniqueCategories = getUniqueCategories(data)
 
 beforeEach(() => {
   container = document.createElement('div')
@@ -27,7 +27,7 @@ beforeEach(() => {
   }),
     (settings = { chartSpecificOptions, data })
 
-  series = GenerateLineSeries(settings)
+  series = generateLineSeries(settings)
 })
 
 afterEach(() => {

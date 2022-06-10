@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
-import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
-import GenerateBarSeries from '../../single_visualization/data_interfaces/BarInterface'
+import getUniqueCategories from '../../single_visualization/utils/getUniqueCategories'
+import sortCategoryData from '../../single_visualization/utils/sortCategoryData'
+import generateBarSeries from '../../single_visualization/data_interfaces/generateBarSeries'
 import BarChart from '../../single_visualization/visualization_types/BarChart'
 import ResizeObserver from '../../mocks/observer'
 
@@ -12,7 +12,7 @@ jest.mock('../../mocks/observer')
 
 let container
 let series
-const uniqueCategories = GetUniqueCategories(data)
+const uniqueCategories = getUniqueCategories(data)
 let settings
 let chartSpecificOptions
 beforeEach(() => {
@@ -29,7 +29,7 @@ beforeEach(() => {
   }
 
   settings = { chartSpecificOptions, data }
-  series = GenerateBarSeries(settings)
+  series = generateBarSeries(settings)
 })
 
 afterEach(() => {

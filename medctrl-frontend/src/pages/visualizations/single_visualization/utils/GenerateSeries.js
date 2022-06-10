@@ -1,8 +1,8 @@
 // internal imports
-import GenerateBarSeries from '../data_interfaces/BarInterface'
-import GenerateLineSeries from '../data_interfaces/LineInterface'
-import GeneratePieSeries from '../data_interfaces/PieInterface'
-import GenerateHistogramSeries from '../data_interfaces/HistogramInterface'
+import generateBarSeries from '../data_interfaces/generateBarSeries'
+import generateLineSeries from '../data_interfaces/generateLineSeries'
+import generatePieSeries from '../data_interfaces/generatePieSeries'
+import generateHistogramSeries from '../data_interfaces/generateHistogramSeries'
 
 // Returns series data depending on the chart type,
 // as each chart type expects data in a certain way.
@@ -11,16 +11,16 @@ import GenerateHistogramSeries from '../data_interfaces/HistogramInterface'
 export default function generateSeries(settings) {
   switch (settings.chartType) {
     case 'bar':
-      return GenerateBarSeries(settings)
+      return generateBarSeries(settings)
 
     case 'line':
-      return GenerateLineSeries(settings)
+      return generateLineSeries(settings)
 
     case 'pie':
-      return GeneratePieSeries(settings)
+      return generatePieSeries(settings)
 
     case 'histogram':
-      return GenerateHistogramSeries(settings)
+      return generateHistogramSeries(settings)
 
     default:
       throw Error('visualization settings incorrect settings')

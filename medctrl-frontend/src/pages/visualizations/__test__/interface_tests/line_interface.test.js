@@ -1,10 +1,10 @@
-import GenerateLineSeries from '../../single_visualization/data_interfaces/LineInterface'
-import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
+import generateLineSeries from '../../single_visualization/data_interfaces/generateLineSeries'
+import getUniqueCategories from '../../single_visualization/utils/getUniqueCategories'
 
 import data from '../../../../json/data.json'
 
 test('no selected y categories', () => {
-  const uniqueCategories = GetUniqueCategories(data)
+  const uniqueCategories = getUniqueCategories(data)
   const options = {
     chartSpecificOptions: {
       xAxis: 'DecisionYear',
@@ -19,7 +19,7 @@ test('no selected y categories', () => {
 })
 
 test('some selected categories (sorted)', () => {
-  const uniqueCategories = GetUniqueCategories(data)
+  const uniqueCategories = getUniqueCategories(data)
   const options = {
     chartSpecificOptions: {
       xAxis: 'DecisionYear',
@@ -36,7 +36,7 @@ test('some selected categories (sorted)', () => {
 })
 
 test('categories in data', () => {
-  const uniqueCategories = GetUniqueCategories(data)
+  const uniqueCategories = getUniqueCategories(data)
   const options = {
     chartSpecificOptions: {
       xAxis: 'DecisionYear',

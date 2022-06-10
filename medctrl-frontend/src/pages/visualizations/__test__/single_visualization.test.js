@@ -5,13 +5,13 @@ import SingleVisualization from '../single_visualization/SingleVisualization'
 import ResizeObserver from '../mocks/observer'
 
 import data from '../../../json/data.json'
-import GetUniqueCategories from '../single_visualization/utils/GetUniqueCategories'
+import getUniqueCategories from '../single_visualization/utils/getUniqueCategories'
 
 jest.mock('../mocks/observer')
 
 let container
 let setting
-const unique = GetUniqueCategories(data)
+const unique = getUniqueCategories(data)
 beforeEach(() => {
   container = document.createElement('div')
   document.body.append(container)

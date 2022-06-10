@@ -4,7 +4,7 @@ import createSelectedSeries from './sharedTwoDimensions/createSelectedSeries'
 import toSeriesFormat from './sharedTwoDimensions/toSeriesFormat'
 
 // generates series for a bar chart
-export default function GenerateBarSeries(settings) {
+export default function generateBarSeries(settings) {
   // no categories have been selected
   if (
     settings.chartSpecificOptions.categoriesSelectedX.length === 0 ||
