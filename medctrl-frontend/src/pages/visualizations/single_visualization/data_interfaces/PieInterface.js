@@ -1,4 +1,4 @@
-import sortCategoryData from '../utils/SortCategoryData'
+import sortCategoryData from '../utils/sortCategoryData'
 import { pollChosenVariable } from './sharedOneDimension/pollChosenVariable'
 
 // creates an array of data for a pie chart

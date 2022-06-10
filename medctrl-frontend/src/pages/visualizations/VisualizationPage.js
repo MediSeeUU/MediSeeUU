@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 // internal imports
 import SingleVisualization from './single_visualization/SingleVisualization'
-import GetUniqueCategories from './single_visualization/utils/GetUniqueCategories'
+import getUniqueCategories from './single_visualization/utils/getUniqueCategories'
 import MedModal from '../../shared/MedModal'
 import { useVisuals } from '../../shared/Contexts/VisualsContext'
 import { useSelectedData } from '../../shared/Contexts/SelectedContext'
@@ -17,7 +17,7 @@ function VisualizationPage() {
   // get selected data context and determine unique categories of each variable
   const selectedData = useSelectedData()
   const uniqueCategories =
-    selectedData.length > 0 ? GetUniqueCategories(selectedData) : []
+    selectedData.length > 0 ? getUniqueCategories(selectedData) : []
 
   // Set popup data.
   // The popup appears when a category of a chart is clicked,
@@ -79,11 +79,13 @@ function VisualizationPage() {
   // creates the visualizations
   function renderVisualizations() {
     return visuals.map((visual) => {
-      // Give the visualization its data and (selected) categories,
+      // Give the visualization its data and categories,
       // as these can change if data points are removed in the pop-up,
       // without actually reloading the entire component.
       visual.data = selectedData
       visual.uniqueCategories = uniqueCategories
+      // These are not included in the initialization of the first visualization,
+      // due to the data not being available yet, so they are initialized here.
       visual.chartSpecificOptions.categoriesSelectedX =
         visual.chartSpecificOptions.categoriesSelectedX ??
         uniqueCategories['DecisionYear']

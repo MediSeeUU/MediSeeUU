@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../../visualizations.css'
-import sortCategoryData from '../../utils/SortCategoryData'
+import sortCategoryData from '../../utils/sortCategoryData'
 import CategoryOptions from '../shared/CategoryOptions'
 import VariableSelect from '../../../../../shared/VariableSelect'
 

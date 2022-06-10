@@ -8,7 +8,7 @@ import GenerateHistogramSeries from '../data_interfaces/HistogramInterface'
 // as each chart type expects data in a certain way.
 // For example, a pie chart only expect one variable,
 // whereas a bar chart expect two.
-export function generateSeries(settings) {
+export default function generateSeries(settings) {
   switch (settings.chartType) {
     case 'bar':
       return GenerateBarSeries(settings)

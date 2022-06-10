@@ -13,8 +13,8 @@ import PieChart from './visualization_types/PieChart'
 import HistogramChart from './visualization_types/HistogramChart'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
-import sortCategoryData from './utils/SortCategoryData'
-import { generateSeries } from './utils/GenerateSeries'
+import sortCategoryData from './utils/sortCategoryData'
+import generateSeries from './utils/generateSeries'
 
 // Renders the components for a single visualization.
 // There are multiple chart types, which can have different options.

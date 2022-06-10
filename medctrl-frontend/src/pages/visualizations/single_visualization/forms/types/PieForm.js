@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../../visualizations.css'
 import CategoryOptions from '../shared/CategoryOptions'
-import sortCategoryData from '../../utils/SortCategoryData'
+import sortCategoryData from '../../utils/sortCategoryData'
 import VariableSelect from '../../../../../shared/VariableSelect'
 
 // the pie part of a form if a pie chart is chosen

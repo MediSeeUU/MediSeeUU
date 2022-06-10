@@ -1,4 +1,4 @@
-import sortCategoryData from '../utils/SortCategoryData'
+import sortCategoryData from '../utils/sortCategoryData'
 import { pollChosenVariable } from './sharedTwoDimensions/pollChosenVariable'
 import { createSelectedSeries } from './sharedTwoDimensions/createSelectedSeries'
 import { toSeriesFormat } from './sharedTwoDimensions/toSeriesFormat'
