@@ -20,6 +20,7 @@ function BarForm(props) {
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
 
+    // if we change a variable, we also need to show new categories to be selected
     if (name === 'xAxis') {
       settings.categoriesSelectedX = props.uniqueCategories[value]
     } else if (name === 'yAxis') {
@@ -38,8 +39,8 @@ function BarForm(props) {
 
   // GENERAL FUNCTIONS:
 
-  // renders the option to change the stack type
-  // only shown when the stacked option has been selected
+  // Renders the option to change the stack type,
+  // only shown when the stacked option has been selected.
   function renderStackType() {
     return (
       <label className="visualization-panel-label">
