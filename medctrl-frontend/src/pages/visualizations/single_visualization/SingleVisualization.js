@@ -27,6 +27,17 @@ function SingleVisualization(props) {
   // Although keys or certain lifetime methods can also be used.
   let settings = props.settings
 
+  // Filter out the selected categories that are not present anymore in the data categories
+  // Selected categories can disappear because of data that is deselected in the popup
+  settings.chartSpecificOptions.categoriesSelectedX =
+    settings.chartSpecificOptions.categoriesSelectedX.filter((e) =>
+      settings.uniqueCategories[settings.chartSpecificOptions.xAxis].includes(e)
+    )
+  settings.chartSpecificOptions.categoriesSelectedY =
+    settings.chartSpecificOptions.categoriesSelectedY.filter((e) =>
+      settings.uniqueCategories[settings.chartSpecificOptions.yAxis].includes(e)
+    )
+
   // event handlers
   const handleChange = handleChangeFunction.bind(this)
   const handlePNGExport = handlePNGExportFunction.bind(this)
