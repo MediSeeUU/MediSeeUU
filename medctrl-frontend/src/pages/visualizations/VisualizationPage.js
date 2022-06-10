@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import SelectedData from '../data/SelectedData/SelectedData'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -87,7 +86,7 @@ function VisualizationPage() {
       visual.chartSpecificOptions.categoriesSelectedY =
         visual.chartSpecificOptions.categoriesSelectedY ??
         uniqueCategories['Rapporteur']
-        
+
       return (
         <Row key={visual.id}>
           <SingleVisualization
