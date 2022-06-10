@@ -20,7 +20,9 @@ function VisualizationPage() {
   const uniqueCategories =
     selectedData.length > 0 ? GetUniqueCategories(selectedData) : []
 
-  // set popup data
+  // Set popup data.
+  // The popup appears when a category of a chart is clicked,
+  // e.g. a slice of a pie chart. 
   const [popup, setPopup] = useState([])
 
   // event handlers
@@ -74,7 +76,7 @@ function VisualizationPage() {
   // creates the visualizations
   function renderVisualizations() {
     return visuals.map((visual) => {
-      // Give the visualization its data and categories,
+      // Give the visualization its data and (selected) categories,
       // as these can change if data points are removed in the pop-up,
       // without actually reloading the entire component.
       visual.data = selectedData
@@ -85,6 +87,7 @@ function VisualizationPage() {
       visual.chartSpecificOptions.categoriesSelectedY =
         visual.chartSpecificOptions.categoriesSelectedY ??
         uniqueCategories['Rapporteur']
+        
       return (
         <Row key={visual.id}>
           <SingleVisualization
