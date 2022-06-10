@@ -85,10 +85,10 @@ function VisualizationPage() {
       visual.data = selectedData
       visual.uniqueCategories = uniqueCategories
       visual.chartSpecificOptions.categoriesSelectedX =
-        visual.chartSpecificOptions.categoriesSelectedX ??
+        uniqueCategories[visual.chartSpecificOptions.xAxis] ??
         uniqueCategories['DecisionYear']
       visual.chartSpecificOptions.categoriesSelectedY =
-        visual.chartSpecificOptions.categoriesSelectedY ??
+        uniqueCategories[visual.chartSpecificOptions.yAxis] ??
         uniqueCategories['Rapporteur']
 
       return (
