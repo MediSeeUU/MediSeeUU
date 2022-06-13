@@ -10,10 +10,11 @@ from WebDriverSetup import WebDriverSetup
 from Pages.data_page import DataPage
 from Resources.locators import DataPageLocators
 
-# tests cases that are specifically located on the data page
+# test cases that are specifically located on the data page
 class TestDataPage(WebDriverSetup):
   def setUp(self):
     super().setUp()
+    # initialize the data page
     self.data_page = DataPage(self.driver)
   
   # test if the page is correct
@@ -146,6 +147,7 @@ class TestDataPage(WebDriverSetup):
         # if the query is somewhere located in the text, the search has been applied properly on this row
         if ("pfizer" in self.data_page.table_value(0, i + 1, 1).lower()):
           inText = True
+          break
       assert inText
   
   # check if the column change changes the data
@@ -229,7 +231,6 @@ class TestDataPage(WebDriverSetup):
       data.append(self.data_page.table_value(0, i + 1, 2).lower())
     # check if the data is descendingly sorted
     assert all(data[i] >= data[i+1] for i in range(len(data) - 1))
-
 
 if __name__ == '__main__':
   unittest.main()

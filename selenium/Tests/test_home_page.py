@@ -8,9 +8,11 @@ sys.path.append("..")
 from WebDriverSetup import WebDriverSetup
 from Pages.home_page import HomePage
 
+# test cases that are specifically located on the home page
 class TestHomePage(WebDriverSetup):
   def setUp(self):
     super().setUp()
+    # initialize the home page
     self.home_page = HomePage(self.driver)
 
   # test if the page is correct
@@ -24,7 +26,6 @@ class TestHomePage(WebDriverSetup):
     assert self.home_page.navbar_is_open() and not self.home_page.navbar_is_closed()
     self.home_page.click_expand_collapse()
     assert self.home_page.navbar_is_closed() and not self.home_page.navbar_is_open()
-
 
 if __name__ == '__main__':
   unittest.main()

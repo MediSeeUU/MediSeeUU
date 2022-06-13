@@ -8,9 +8,11 @@ sys.path.append("..")
 from WebDriverSetup import WebDriverSetup
 from Pages.info_page import InfoPage
 
+# test cases for the info page
 class TestInfoPage(WebDriverSetup):
   def setUp(self):
     super().setUp()
+    # navigate to info page
     self.info_page = InfoPage(self.driver)
   
   # test if the page is correct
@@ -22,7 +24,6 @@ class TestInfoPage(WebDriverSetup):
     assert self.info_page.get_link(0) == "https://cbg-meb.nl/"
     assert self.info_page.get_link(1) == "https://www.ema.europa.eu/"
     assert self.info_page.get_link(2) == "https://ec.europa.eu/health/documents/community-register_en"
-
 
 if __name__ == '__main__':
   unittest.main()
