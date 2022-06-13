@@ -7,7 +7,7 @@ import sampleProcedureData from '../json/detailed-info-data.json'
 const mockApi = setupServer(
   // Example of a request handler
   rest.get('/api/exampleMockRequest', (req, res, ctx) => {
-    // Respond using a mocked JSON body
+    // Respond using mocked JSON
     return res(
       ctx.json({
         example: 'data',
