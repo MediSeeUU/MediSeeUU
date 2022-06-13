@@ -69,6 +69,9 @@ function VisualizationPage() {
         // because of a bug in apex charts
         if (settings.chartSpecificOptions.stacked) {
           settings.id = uuidv4()
+        } else if (settings.chartSpecificOptions.stackType) {
+          settings.chartSpecificOptions.stackType = false
+          settings.id = uuidv4()
         }
         return settings
       }
