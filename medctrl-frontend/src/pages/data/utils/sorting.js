@@ -60,16 +60,16 @@ function createComparisonFunction(attr) {
         typeof jsonobject2[attr] === 'number'
       ) {
         if (jsonobject1[attr] === defValue) {
-          return 1
+          return 0
         } else if (jsonobject2[attr] === defValue) {
-          return -1
+          return 1
         } else return jsonobject1[attr] - jsonobject2[attr]
       }
 
       if (jsonobject1[attr] === defValue) {
-        return 1
+        return 0
       } else if (jsonobject2[attr] === defValue) {
-        return -1
+        return 1
       } else {
         return convertStringToAlphaNumerical(jsonobject1[attr]).localeCompare(
           convertStringToAlphaNumerical(jsonobject2[attr])
@@ -108,11 +108,17 @@ export function convertSortingAttributeNameToComparisonFunction(
       //format:  month/day/year -> day/month/year
 
       function CompareDateFunction(jsonObject1, jsonObject2) {
-        var splittedDate1 = jsonObject1['DecisionDate'].split('/')
-        var rightDatum1 = splittedDate1[2] + splittedDate1[0] + splittedDate1[1]
-        var splittedDate2 = jsonObject2['DecisionDate'].split('/')
-        var rightDatum2 = splittedDate2[2] + splittedDate2[0] + splittedDate2[1]
-        return rightDatum1.localeCompare(rightDatum2)
+        if (jsonObject1['DecisionDate'] === defValue) {
+          return 0
+        } else if (jsonObject2['DecisionDate'] === defValue) {
+          return 1
+        } else {
+          var splittedDate1 = jsonObject1['DecisionDate'].split('/')
+          var rightDatum1 = splittedDate1[2] + splittedDate1[0] + splittedDate1[1]
+          var splittedDate2 = jsonObject2['DecisionDate'].split('/')
+          var rightDatum2 = splittedDate2[2] + splittedDate2[0] + splittedDate2[1]
+          return rightDatum1.localeCompare(rightDatum2)
+        }
       }
 
       sortingFunctionToUse = CompareDateFunction
@@ -121,9 +127,9 @@ export function convertSortingAttributeNameToComparisonFunction(
     case 'MAH':
       function MAHcomparison(jsonObject1, jsonObject2) {
         if (jsonObject1['MAH'] === defValue) {
-          return 1
+          return 0
         } else if (jsonObject2['MAH'] === defValue) {
-          return -1
+          return 1
         } else {
           return convertStringToAlphaNumerical(
             jsonObject1['MAH']
@@ -136,9 +142,9 @@ export function convertSortingAttributeNameToComparisonFunction(
     case 'ActiveSubstance':
       function ActSubComparison(jsonObject1, jsonObject2) {
         if (jsonObject1['ActiveSubstance'] === defValue) {
-          return 1
+          return 0
         } else if (jsonObject2['ActiveSubstance'] === defValue) {
-          return -1
+          return 1
         }
         return convertStringToAlphaNumerical(
           jsonObject1['ActiveSubstance']
@@ -153,9 +159,9 @@ export function convertSortingAttributeNameToComparisonFunction(
     case 'ApplicationNo':
       function numberorNAcompare(jsonobject1, jsonobject2) {
         if (jsonobject1['ApplicationNo'] === defValue) {
-          return 1
+          return 0
         } else if (jsonobject2['ApplicationNo'] === defValue) {
-          return -1
+          return 1
         } else {
           return jsonobject1['ApplicationNo'] - jsonobject2['ApplicationNo']
         }
@@ -167,9 +173,9 @@ export function convertSortingAttributeNameToComparisonFunction(
     case 'LegalType':
       function legaltypecompare(jsonobject1, jsonobject2) {
         if (jsonobject1['LegalType'] === defValue) {
-          return 1
+          return 0
         } else if (jsonobject2['LegalType'] === defValue) {
-          return -1
+          return 1
         } else {
           var legalnumber1 = jsonobject1['LegalType'].slice(8)
           var legalnumber2 = jsonobject2['LegalType'].slice(8)

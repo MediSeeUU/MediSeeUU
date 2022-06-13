@@ -12,36 +12,17 @@ class DataPage(BasePage, Table, Search):
     self.default_rows = self.amount_of_rows(0)
     self.default_columns = self.amount_of_columns(0)
   
-  def current_table_page(self, table):
-    return self.driver.find_elements(*DataPageLocators.SELECTED_PAGE)[table].text
-  
-  def next_table_page(self, table):
-    next_page = self.driver.find_elements(*DataPageLocators.NEXT_PAGE)[table]
-    self.driver.execute_script("arguments[0].click();", next_page)
-  
-  def prev_table_page(self, table):
-    prev_page = self.driver.find_elements(*DataPageLocators.PREV_PAGE)[table]
-    self.driver.execute_script("arguments[0].click();", prev_page)
-  
-  def select_all(self):
-    selects = self.driver.find_elements(*DataPageLocators.SELECT)
-    selects[0].click()
-  
-  def select(self, id):
-    selects = self.driver.find_elements(*DataPageLocators.SELECT)
-    self.driver.execute_script("arguments[0].click();", selects[id])
-  
   def change_amount_of_results(self, value):
     results = self.driver.find_element(*DataPageLocators.RESULTS_PER_PAGE)
     results.send_keys(value)
   
   def open_menu(self):
     table_buttons = self.driver.find_elements(*DataPageLocators.BUTTON)
-    table_buttons[1].click()
+    self.driver.execute_script("arguments[0].click();", table_buttons[1])
   
   def add_filter(self):
     add = self.driver.find_element(*DataPageLocators.MenuLocators.ADD_FILTER)
-    add.click()
+    self.driver.execute_script("arguments[0].click();", add)
   
   def filter_select(self, id, value):
     filter_item = self.driver.find_elements(*DataPageLocators.MenuLocators.FILTER_ITEM)[id - 1]
@@ -65,12 +46,31 @@ class DataPage(BasePage, Table, Search):
   
   def apply(self):
     apply = self.driver.find_element(*DataPageLocators.MenuLocators.APPLY)
-    apply.click()
+    self.driver.execute_script("arguments[0].click();", apply)
   
   def clear_all(self):
     clear_all = self.driver.find_element(*DataPageLocators.CLEAR_ALL)
     self.driver.execute_script("arguments[0].click();", clear_all)
   
+  def select(self, id):
+    selects = self.driver.find_elements(*DataPageLocators.SELECT)
+    self.driver.execute_script("arguments[0].click();", selects[id])
+  
   def selected_visible(self):
     tables = self.driver.find_elements(*TableLocators.TABLE)
     return len(tables) > 1
+  
+  def current_page(self, table):
+    return self.driver.find_elements(*DataPageLocators.SELECTED_PAGE)[table].text
+  
+  def last_page(self, table):
+    bottom_holder = self.driver.find_elements(*DataPageLocators.BOTTOM_HOLDER)[table]
+    return bottom_holder.find_elements(*DataPageLocators.PAGES)[-1].text
+  
+  def next_page(self, table):
+    next_page = self.driver.find_elements(*DataPageLocators.NEXT_PAGE)[table]
+    self.driver.execute_script("arguments[0].click();", next_page)
+  
+  def prev_page(self, table):
+    prev_page = self.driver.find_elements(*DataPageLocators.PREV_PAGE)[table]
+    self.driver.execute_script("arguments[0].click();", prev_page)

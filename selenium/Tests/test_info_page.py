@@ -12,8 +12,12 @@ class TestInfoPage(WebDriverSetup):
   def setUp(self):
     super().setUp()
     self.info_page = InfoPage(self.driver)
+  
+  # test if the page is correct
+  def test_info_url(self):
+    assert self.info_page.current_url() == "http://localhost:3000/info"
 
-  # check if the infopage contains 3 articles and that the links are correct
+  # check if the infopage contains the 3 links with additional information
   def test_content(self):
     assert self.info_page.get_link(0) == "https://cbg-meb.nl/"
     assert self.info_page.get_link(1) == "https://www.ema.europa.eu/"

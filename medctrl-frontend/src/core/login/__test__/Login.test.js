@@ -9,7 +9,7 @@ test('open and close login popup', () => {
       <SideNavigation />
     </BrowserRouter>
   )
-  const loginbutton = screen.getAllByText('Login')[0]
+  const loginbutton = screen.getByText('Login')[0]
   expect(fireEvent.click(loginbutton)).toBeTruthy()
   const cancelbutton = screen.getByText('Cancel')
   expect(fireEvent.click(cancelbutton)).toBeTruthy()

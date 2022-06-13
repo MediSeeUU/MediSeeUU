@@ -22,16 +22,19 @@ class TableLocators():
   INFO = (By.TAG_NAME, 'i')
   ADD_COLUMN = (By.CLASS_NAME, 'bxs-plus-square')
   REMOVE_COLUMN = (By.CLASS_NAME, 'bxs-minus-square')
+  SORT_COLUMN = (By.CLASS_NAME, 'med-table-header-sort')
 
 class DataPageLocators():
   BUTTON = (By.CLASS_NAME, 'med-bx-button')
   SELECT = (By.CLASS_NAME, 'tableCheckboxColumn')
   RESULTS_PER_PAGE = (By.ID, 'med-result-count-selector')
-  SELECTED_PAGE = (By.CLASS_NAME, 'med-page-selected')
-  NEXT_PAGE = (By.CLASS_NAME, 'bxs-chevron-right')
-  PREV_PAGE = (By.CLASS_NAME, 'bxs-chevron-left')
   CLEAR_ALL = (By.CLASS_NAME, 'med-clear-all-button')
   RIGHT_ACTIONS = (By.CSS_SELECTOR, ".med-table-body-cell.med-table-narrow-column.med-column-right")
+  NEXT_PAGE = (By.CLASS_NAME, 'bxs-chevron-right')
+  PREV_PAGE = (By.CLASS_NAME, 'bxs-chevron-left')
+  SELECTED_PAGE = (By.CLASS_NAME, 'med-page-selected')
+  PAGES = (By.CLASS_NAME, 'med-no-select')
+  BOTTOM_HOLDER = (By.CLASS_NAME, 'med-bottom-container-holder')
 
   class MenuLocators():
     FILTER_ITEM = (By.CLASS_NAME, 'med-table-menu-filter-item')

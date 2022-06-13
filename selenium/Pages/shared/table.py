@@ -48,11 +48,11 @@ class Table():
   
   def add_column(self, table):
     add = self.driver.find_elements(*TableLocators.ADD_COLUMN)[table]
-    add.click()
+    self.driver.execute_script("arguments[0].click();", add)
   
   def remove_column(self, table):
     remove = self.driver.find_elements(*TableLocators.REMOVE_COLUMN)[table]
-    remove.click()
+    self.driver.execute_script("arguments[0].click();", remove)
   
   def column_options(self):
     tables = self.driver.find_elements(*TableLocators.TABLE)
@@ -61,3 +61,7 @@ class Table():
     select = Select(columns[0].find_element(*TableLocators.COLUMN_SELECT))
     return list(map(lambda option: option.text, select.options))
 
+  def sort_column(self, table, column):
+    tables = self.driver.find_elements(*TableLocators.TABLE)
+    sort = tables[table].find_elements(*TableLocators.SORT_COLUMN)[column]
+    self.driver.execute_script("arguments[0].click();", sort)

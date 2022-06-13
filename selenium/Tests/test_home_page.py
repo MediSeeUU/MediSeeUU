@@ -9,10 +9,14 @@ from WebDriverSetup import WebDriverSetup
 from Pages.home_page import HomePage
 from Pages.data_page import DataPage
 
-class TestHomeSearch(WebDriverSetup):
+class TestHomePage(WebDriverSetup):
   def setUp(self):
     super().setUp()
     self.home_page = HomePage(self.driver)
+
+  # test if the page is correct
+  def test_home_url(self):
+    assert self.home_page.current_url() == "http://localhost:3000/"
 
   # check if navigation bar opens and closes properly
   def test_navbar(self):
