@@ -1,11 +1,13 @@
 import { firstBy } from 'thenby'
 import voca from 'voca'
 
-// Function requires all Data, given as Array of objects, each object containing key:value; e.g. [ {"id":1, "clr": "red" } , {"id":2, "clr" : "blue"} ]
-// Function requires sortingParameters, which is the sorting state object passed from the filtermenu; it is an array containing an object for each active sorting filter.
-// One sorting filter object consists of 2 properties, { selected, order}. With selected being a string containing the name of the attribute to sort on.
-// Order contains a string of either "asc" or "desc", for ascending or descending order
+// Sorting function is called for any sorting call in the table. Sorts the data on one or more attributes, in ascending or descending order.
+// This sorting function requires data, given as an array of objects, each object containing key:value pairs for the variables; 
+//          e.g. data = [ {"eunumber":1, "brandname": "GONAL-f" } , {"eunumber":2, "brandname" : "Taxotere"} ]
+// Function requires sortingParameters, which is the sorting state object passed from the filtermenu; it is an array containing an object for each active sorting filter; 
+//          e.g. sortingparameters = [ {"selected":"eunumber", "order":"asc"}, {"selected":"legaltype", "order":"desc"}]
 export default function sortData(data, sortingparameters) {
+  //remove sorting parameters which have unspecified sorting categories
   for (
     var sortparIndex = 0;
     sortparIndex < sortingparameters.length;
@@ -15,61 +17,67 @@ export default function sortData(data, sortingparameters) {
       sortingparameters.splice(sortparIndex, 1)
     }
   }
-
+  //if no sorting parameters are given, do not sort
   if (sortingparameters.length === 0) {
     return data
   }
-
+  
+  //determine the primary variable to sort on and its sorting order(asc or desc)
   let initialComparisonFunction =
     convertSortingAttributeNameToComparisonFunction(
-      sortingparameters[0].selected
+      sortingparameters[0].selected, sortingparameters[0].order
     )
-  let initialOrder = convertSortingAttributeNameToComparisonFunction(
-    sortingparameters[0].order
-  )
-  let dezefunc = firstBy(initialComparisonFunction, initialOrder)
+  let initialOrder = (sortingparameters[0].order==='asc') ? 1:-1
+  
+  //Create a multi-level sorting function; first sort on one variable,
+  //then sort equal values on another variable, etc. 
+  let compositeSortingFunction = firstBy(initialComparisonFunction, initialOrder)
   for (let i = 1; i < sortingparameters.length; i++) {
-    dezefunc = dezefunc.thenBy(
+    compositeSortingFunction = compositeSortingFunction.thenBy(
       convertSortingAttributeNameToComparisonFunction(
-        sortingparameters[i].selected
+        sortingparameters[i].selected, sortingparameters[i].order
       ),
-      convertSortingAttributeNameToComparisonFunction(
-        sortingparameters[i].order
-      )
+      (sortingparameters[i].order==='asc') ? 1:-1
     )
   }
-
-  data.sort(dezefunc)
+  
+  //sort the data using the composite sorting function
+  data.sort(compositeSortingFunction)
 
   return data
 }
 
-function createComparisonFunction(attr) {
-  const defValue = 'NA'
+//function which creates a sorting function for general attributes
+function createComparisonFunction(attr, sortingorder) {
+  const NAvalues = ['NA', 'unknown', 'na', 'null']
 
+  //in case the attribute is unspecified, return a default comparison function
   if (attr === undefined || attr === '') {
     return function baseComparison(jsonObject1, jsonObject2) {
       return String.toString(jsonObject1[0]).localeCompare(
         String.toString(jsonObject2[0])
       )
     }
-  } else {
+  } 
+  //otherwise, create either a numerical or alphanumerical sorting function,
+  //depending on wether the variable values contain numbers and/or letters
+  else {
     return function alphanumericalcomparison(jsonobject1, jsonobject2) {
       if (
         typeof jsonobject1[attr] === 'number' &&
         typeof jsonobject2[attr] === 'number'
       ) {
-        if (jsonobject1[attr] === defValue) {
-          return 0
-        } else if (jsonobject2[attr] === defValue) {
-          return 1
+        if (NAvalues.includes(jsonobject1[attr])) {
+          return (sortingorder === 'asc') ? (1) : (-1)
+        } else if (NAvalues.includes(jsonobject2[attr])) {
+          return (sortingorder === 'asc') ? (-1) : (1)
         } else return jsonobject1[attr] - jsonobject2[attr]
       }
 
-      if (jsonobject1[attr] === defValue) {
-        return 0
-      } else if (jsonobject2[attr] === defValue) {
-        return 1
+      if (NAvalues.includes(jsonobject1[attr])) {
+        return (sortingorder === 'asc') ? (1) : (-1)
+      } else if (NAvalues.includes(jsonobject2[attr])) {
+        return (sortingorder === 'asc') ? (-1) : (1)
       } else {
         return convertStringToAlphaNumerical(jsonobject1[attr]).localeCompare(
           convertStringToAlphaNumerical(jsonobject2[attr])
@@ -78,6 +86,8 @@ function createComparisonFunction(attr) {
     }
   }
 }
+
+//helper function which preprocesses strings before sorting
 function convertStringToAlphaNumerical(word) {
   var lowercaselatinizedWord = voca.decapitalize(
     voca.latinise(word.toString().toLowerCase())
@@ -89,29 +99,24 @@ function convertStringToAlphaNumerical(word) {
   return AlphaNumericOnlyLatinizedWord
 }
 
-// Function takes one attributeName as a string, and returns the corresponding comparison function for json objects.
-// Use this returned comparison function as an argument to .sort function of an array containing jsonObjects.
+// Some attributes require a special sorting function to sort their values.
+// additionally, "asc" or "desc" specified sorting orders need to be converted to "1" and "-1" values to be used in multi level sorting. 
+// This function takes one sorting attribute as a string, and returns the corresponding comparison function for json objects (or sorting order in numerical form).
+// Use this returned comparison function as an argument to a sort function, like the multilevel ThenBy sort. 
 export function convertSortingAttributeNameToComparisonFunction(
-  attributeNameAsString
+  attributeNameAsString, sortingorder
 ) {
   var sortingFunctionToUse
-  const defValue = 'NA'
+  const NAvalues = ['NA', 'unknown', 'na', 'null']
 
   switch (attributeNameAsString) {
-    case 'asc':
-      sortingFunctionToUse = 1
-      break
-    case 'desc':
-      sortingFunctionToUse = -1
-      break
     case 'DecisionDate':
-      //format:  month/day/year -> day/month/year
-
+      //reformat date from  month/day/year  to  day/month/year
       function CompareDateFunction(jsonObject1, jsonObject2) {
-        if (jsonObject1['DecisionDate'] === defValue) {
-          return 0
-        } else if (jsonObject2['DecisionDate'] === defValue) {
-          return 1
+        if (NAvalues.includes(jsonObject1['DecisionDate'])) {
+          return (sortingorder === 'asc') ? (1) : (-1)
+        } else if (NAvalues.includes(jsonObject2['DecisionDate'])) {
+          return (sortingorder === 'asc') ? (-1) : (1)
         } else {
           var splittedDate1 = jsonObject1['DecisionDate'].split('/')
           var rightDatum1 = splittedDate1[2] + splittedDate1[0] + splittedDate1[1]
@@ -120,16 +125,14 @@ export function convertSortingAttributeNameToComparisonFunction(
           return rightDatum1.localeCompare(rightDatum2)
         }
       }
-
       sortingFunctionToUse = CompareDateFunction
-
       break
     case 'MAH':
       function MAHcomparison(jsonObject1, jsonObject2) {
-        if (jsonObject1['MAH'] === defValue) {
-          return 0
-        } else if (jsonObject2['MAH'] === defValue) {
-          return 1
+        if (NAvalues.includes(jsonObject1['MAH'])) {
+          return (sortingorder === 'asc') ? (1) : (-1)
+        } else if (NAvalues.includes(jsonObject2['MAH'])) {
+          return (sortingorder === 'asc') ? (-1) : (1)
         } else {
           return convertStringToAlphaNumerical(
             jsonObject1['MAH']
@@ -141,10 +144,10 @@ export function convertSortingAttributeNameToComparisonFunction(
       break
     case 'ActiveSubstance':
       function ActSubComparison(jsonObject1, jsonObject2) {
-        if (jsonObject1['ActiveSubstance'] === defValue) {
-          return 0
-        } else if (jsonObject2['ActiveSubstance'] === defValue) {
-          return 1
+        if (NAvalues.includes(jsonObject1['ActiveSubstance'])) {
+          return (sortingorder === 'asc') ? (1) : (-1)
+        } else if (NAvalues.includes(jsonObject2['ActiveSubstance'])) {
+          return (sortingorder === 'asc') ? (-1) : (1)
         }
         return convertStringToAlphaNumerical(
           jsonObject1['ActiveSubstance']
@@ -158,25 +161,29 @@ export function convertSortingAttributeNameToComparisonFunction(
 
     case 'ApplicationNo':
       function numberorNAcompare(jsonobject1, jsonobject2) {
-        if (jsonobject1['ApplicationNo'] === defValue) {
-          return 0
-        } else if (jsonobject2['ApplicationNo'] === defValue) {
-          return 1
+        if (NAvalues.includes(jsonobject1['ApplicationNo'])) {
+          return (sortingorder === 'asc') ? (1) : (-1)
+        } else if (NAvalues.includes(jsonobject2['ApplicationNo'])) {
+          return (sortingorder === 'asc') ? (-1) : (1)
         } else {
           return jsonobject1['ApplicationNo'] - jsonobject2['ApplicationNo']
         }
       }
-
       sortingFunctionToUse = numberorNAcompare
-
       break
     case 'LegalType':
       function legaltypecompare(jsonobject1, jsonobject2) {
-        if (jsonobject1['LegalType'] === defValue) {
-          return 0
-        } else if (jsonobject2['LegalType'] === defValue) {
-          return 1
+        
+        if (NAvalues.includes(jsonobject1['LegalType'])) {
+          return (sortingorder === 'asc') ? (1):(-1)
+        } else if (NAvalues.includes(jsonobject2['LegalType'])) { 
+          return (sortingorder === 'asc') ? (-1):(1)
         } else {
+          if(jsonobject1['LegalType'].slice(0,7) !== "article" || jsonobject2['LegalType'].slice(0,7) !== "article")
+          {
+            console.log("sorting error: unknown article format. Please specify sorting order for this legaltype comparison; '"+ jsonobject1['LegalType'] + "' compared to '"+ jsonobject2['LegalType']+"'")
+            return 0
+          }
           var legalnumber1 = jsonobject1['LegalType'].slice(8)
           var legalnumber2 = jsonobject2['LegalType'].slice(8)
           var sortOrder = [
@@ -190,9 +197,19 @@ export function convertSortingAttributeNameToComparisonFunction(
             '10.1',
             '10.3',
             '10.4',
-            defValue,
+            'NA'
           ]
-
+          if(!sortOrder.includes(legalnumber1))
+          {
+            console.log("article number '"+legalnumber1+"' is not specified in the legaltype articles sorting order, please specifiy this article number's order in the sorting array 'sortOrder' in the file 'sorting.js'")
+            return 0;
+          }
+          if(!sortOrder.includes(legalnumber2))
+          {
+            console.log("article number '"+legalnumber2+"' is not specified in the legaltype articles sorting order, please specifiy this article number's order in the sorting array 'sortOrder' in the file 'sorting.js'")
+            return 0;
+          }
+          
           var sortres =
             sortOrder.indexOf(legalnumber1) - sortOrder.indexOf(legalnumber2)
           if (sortres === 0) {
@@ -209,7 +226,7 @@ export function convertSortingAttributeNameToComparisonFunction(
       }
       return legaltypecompare
     default:
-      sortingFunctionToUse = createComparisonFunction(attributeNameAsString)
+      sortingFunctionToUse = createComparisonFunction(attributeNameAsString, sortingorder)
   }
 
   return sortingFunctionToUse
