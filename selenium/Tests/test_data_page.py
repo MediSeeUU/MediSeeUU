@@ -164,5 +164,6 @@ class TestDataPage(WebDriverSetup):
       data.append(self.data_page.table_value(0, i + 1, 2).lower())
     assert all(data[i] >= data[i+1] for i in range(len(data) - 1))
 
+
 if __name__ == '__main__':
   unittest.main()

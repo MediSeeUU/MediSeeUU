@@ -47,3 +47,8 @@ class DataPageLocators():
 class VisualizePageLocators():
   OPTIONS = (By.CLASS_NAME, 'country-options')
   LABEL = (By.TAG_NAME, 'label')
+
+class DetailedPageLocators():
+  DETAIL_ITEM = (By.CLASS_NAME, 'med-info-detail')
+  DETAIL_NAME = (By.CLASS_NAME, 'med-info-detail-name')
+  DETAIL_VALUE = (By.CLASS_NAME, 'med-info-detail-value')

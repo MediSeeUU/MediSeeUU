@@ -22,6 +22,7 @@ class TestInfoPage(WebDriverSetup):
     assert self.info_page.get_link(0) == "https://cbg-meb.nl/"
     assert self.info_page.get_link(1) == "https://www.ema.europa.eu/"
     assert self.info_page.get_link(2) == "https://ec.europa.eu/health/documents/community-register_en"
-    
+
+
 if __name__ == '__main__':
   unittest.main()
