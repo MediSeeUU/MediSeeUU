@@ -65,8 +65,11 @@ function VisualizationPage() {
       if (item.id === settings.id) {
         // Resetting the id.
         // Needed when a bar chart, with stacked and stack fully turned on,
-        // needs to force a rerender with the stack fully option turned off.
-        settings.id = uuidv4()
+        // needs to force a rerender with the stack fully option turned off
+        // because of a bug in apex charts
+        if (settings.chartSpecificOptions.stacked) {
+          settings.id = uuidv4()
+        }
         return settings
       }
       return item
