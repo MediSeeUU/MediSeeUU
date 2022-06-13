@@ -42,3 +42,17 @@ class BasePage():
   def go_visualize(self):
     self.nav_items[4].click()
   
+  def go_account(self):
+    account = self.driver.find_element(*BasePageLocators.ACCOUNT_NAV)
+    self.driver.execute_script("arguments[0].click();", account)
+  
+  # opens login pop-up and performs login action
+  def login(self, username, password):
+    login = self.driver.find_element(*BasePageLocators.LOGIN_NAV)
+    login.click()
+    inputs = self.driver.find_elements(*BasePageLocators.LOGIN_INPUT)
+    inputs[0].send_keys(username)
+    inputs[1].send_keys(password)
+    button = self.driver.find_element(*BasePageLocators.LOGIN_BUTTON)
+    button.click()
+    self.driver.find_element(*BasePageLocators.ACCOUNT_NAV)

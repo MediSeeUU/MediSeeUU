@@ -22,8 +22,8 @@ class DataPage(BasePage, Table, Search):
   
   # opens the sort and filter menu
   def open_menu(self):
-    table_buttons = self.driver.find_elements(*DataPageLocators.BUTTON)
-    self.driver.execute_script("arguments[0].click();", table_buttons[1])
+    buttons = self.driver.find_elements(*DataPageLocators.BUTTON)
+    self.driver.execute_script("arguments[0].click();", buttons[1])
   
   # adds a filter item in the menu
   def add_filter(self):
@@ -92,3 +92,17 @@ class DataPage(BasePage, Table, Search):
   def prev_page(self, table):
     prev_page = self.driver.find_elements(*DataPageLocators.PREV_PAGE)[table]
     self.driver.execute_script("arguments[0].click();", prev_page)
+  
+  # opens save menu
+  def open_save_menu(self):
+    buttons = self.driver.find_elements(*DataPageLocators.BUTTON)
+    self.driver.execute_script("arguments[0].click();", buttons[3])
+  
+  # change save input
+  def save_input(self, value):
+    input_item = self.driver.find_elements(*DataPageLocators.SaveLocators.SAVE_INPUT)[1]
+    input_item.send_keys(value)
+  
+  def save(self):
+    button = self.driver.find_element(*DataPageLocators.SaveLocators.SAVE_BUTTON)
+    self.driver.execute_script("arguments[0].click();", button)

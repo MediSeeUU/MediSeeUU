@@ -6,6 +6,10 @@ from selenium.webdriver.common.by import By
 class BasePageLocators():
   NAV = (By.TAG_NAME, 'nav')
   NAV_ITEM = (By.CLASS_NAME, 'med-nav-item')
+  LOGIN_NAV = (By.CLASS_NAME, 'med-nav-lowest')
+  LOGIN_INPUT = (By.CLASS_NAME, 'med-credential-input')
+  LOGIN_BUTTON = (By.CLASS_NAME, 'med-button-login')
+  ACCOUNT_NAV = (By.CLASS_NAME, 'med-nav-account')
 
 class InfoPageLocators():
   LINK = (By.CLASS_NAME, 'med-link')
@@ -46,6 +50,10 @@ class DataPageLocators():
     INPUT = (By.TAG_NAME, 'input')
     SORT_ITEM = (By.CLASS_NAME, 'med-table-menu-sort-item')
     APPLY = (By.CLASS_NAME, 'med-table-menu-apply-button')
+  
+  class SaveLocators():
+    SAVE_INPUT = (By.CLASS_NAME, 'med-text-input')
+    SAVE_BUTTON = (By.CLASS_NAME, 'accept')
 
 class VisualizePageLocators():
   OPTIONS = (By.CLASS_NAME, 'country-options')
@@ -55,3 +63,9 @@ class DetailedPageLocators():
   DETAIL_ITEM = (By.CLASS_NAME, 'med-info-detail')
   DETAIL_NAME = (By.CLASS_NAME, 'med-info-detail-name')
   DETAIL_VALUE = (By.CLASS_NAME, 'med-info-detail-value')
+
+class AccountPageLocators():
+  SAVED_SELECTION = (By.CLASS_NAME, 'med-saved-selection')
+  SAVED_NAME = (By.CLASS_NAME, 'med-selection-name')
+  SAVED_COUNT = (By.CLASS_NAME, 'med-selection-count')
+  SAVED_SELECT = (By.CLASS_NAME, 'med-selection-select')
