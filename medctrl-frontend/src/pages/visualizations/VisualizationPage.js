@@ -67,7 +67,7 @@ function VisualizationPage() {
         // Needed when a bar chart, with stacked and stack fully turned on,
         // needs to force a rerender with the stack fully option turned off
         // because of a bug in apex charts
-        if(settings.chartSpecificOptions.stacked){
+        if (settings.chartSpecificOptions.stacked) {
           settings.id = uuidv4()
         }
         return settings
