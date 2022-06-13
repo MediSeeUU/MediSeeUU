@@ -47,7 +47,13 @@ class ProcedureAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        obj.manually_updated = True
+        # Get reference to the old procedure object
+        proc = Procedure.objects.filter(commisionnumber=obj.commisionnumber).first()
+
+        # Check if the manually updated checkbox has been unchecked
+        if not proc.manually_updated:
+            obj.manually_updated = True
+
         super().save_model(request, obj, form, change)
 
 
