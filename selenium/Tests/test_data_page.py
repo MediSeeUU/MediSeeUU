@@ -148,15 +148,24 @@ class TestDataPage(WebDriverSetup):
           inText = True
       assert inText
   
-  # check if the column change propagates to all tables
+  # check if the column change changes the data
   def test_column_change(self):
     # pick a random column and new value
     column = random.randint(1, self.data_page.amount_of_columns(0))
+    current_column = self.data_page.column_value(0, column)
     columns = self.data_page.column_options()
-    print(columns[0])
+    columns.remove(current_column)
     new_column_value = columns[random.randint(1, len(columns) - 1)]
-    # set the column to the new value
+    # store the data before the change
+    data = []
+    for i in range(self.data_page.amount_of_rows(0)):
+      data.append(self.data_page.table_value(0, i + 1, column))
+    # set the column to the new value and check if the data has changed
     self.data_page.change_column(0, column, new_column_value)
+    for i in range(self.data_page.amount_of_rows(0)):
+      new_value = self.data_page.table_value(0, i + 1, column)
+      print(new_value)
+      assert new_value not in data
     # check if the change has been applied everywhere
     assert self.data_page.column_value(0, column) == new_column_value
     assert self.data_page.column_value(1, column) == new_column_value
