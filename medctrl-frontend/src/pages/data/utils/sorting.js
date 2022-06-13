@@ -49,7 +49,7 @@ export default function sortData(data, sortingparameters) {
 
 //function which creates a sorting function for general attributes
 function createComparisonFunction(attr, sortingorder) {
-  const defValue = 'NA'
+  const NAvalues = ['NA', 'unknown', 'na', 'null']
 
   //in case the attribute is unspecified, return a default comparison function
   if (attr === undefined || attr === '') {
@@ -67,29 +67,17 @@ function createComparisonFunction(attr, sortingorder) {
         typeof jsonobject1[attr] === 'number' &&
         typeof jsonobject2[attr] === 'number'
       ) {
-        if (jsonobject1[attr] === defValue) {
-          if(sortingorder === 'asc')
-          {return 1}
-          else
-          {return -1}
-        } else if (jsonobject2[attr] === defValue) {
-          if(sortingorder === 'asc')
-          {return -1}
-          else
-          {return 1}
+        if (NAvalues.includes(jsonobject1[attr])) {
+          return (sortingorder === 'asc') ? (1) : (-1)
+        } else if (NAvalues.includes(jsonobject2[attr])) {
+          return (sortingorder === 'asc') ? (-1) : (1)
         } else return jsonobject1[attr] - jsonobject2[attr]
       }
 
-      if (jsonobject1[attr] === defValue) {
-        if(sortingorder === 'asc')
-          {return 1}
-        else
-          {return -1}
-      } else if (jsonobject2[attr] === defValue) {
-        if(sortingorder === 'asc')
-          {return -1}
-        else
-          {return 1}
+      if (NAvalues.includes(jsonobject1[attr])) {
+        return (sortingorder === 'asc') ? (1) : (-1)
+      } else if (NAvalues.includes(jsonobject2[attr])) {
+        return (sortingorder === 'asc') ? (-1) : (1)
       } else {
         return convertStringToAlphaNumerical(jsonobject1[attr]).localeCompare(
           convertStringToAlphaNumerical(jsonobject2[attr])
@@ -119,22 +107,16 @@ export function convertSortingAttributeNameToComparisonFunction(
   attributeNameAsString, sortingorder
 ) {
   var sortingFunctionToUse
-  const defValue = 'NA'
+  const NAvalues = ['NA', 'unknown', 'na', 'null']
 
   switch (attributeNameAsString) {
     case 'DecisionDate':
       //reformat date from  month/day/year  to  day/month/year
       function CompareDateFunction(jsonObject1, jsonObject2) {
-        if (jsonObject1['DecisionDate'] === defValue) {
-          if(sortingorder === 'asc')
-          {return 1}
-          else
-          {return -1}
-        } else if (jsonObject2['DecisionDate'] === defValue) {
-          if(sortingorder === 'asc')
-          {return -1}
-          else
-          {return 1}
+        if (NAvalues.includes(jsonObject1['DecisionDate'])) {
+          return (sortingorder === 'asc') ? (1) : (-1)
+        } else if (NAvalues.includes(jsonObject2['DecisionDate'])) {
+          return (sortingorder === 'asc') ? (-1) : (1)
         } else {
           var splittedDate1 = jsonObject1['DecisionDate'].split('/')
           var rightDatum1 = splittedDate1[2] + splittedDate1[0] + splittedDate1[1]
@@ -147,16 +129,10 @@ export function convertSortingAttributeNameToComparisonFunction(
       break
     case 'MAH':
       function MAHcomparison(jsonObject1, jsonObject2) {
-        if (jsonObject1['MAH'] === defValue) {
-          if(sortingorder === 'asc')
-          {return 1}
-          else
-          {return -1}
-        } else if (jsonObject2['MAH'] === defValue) {
-          if(sortingorder === 'asc')
-          {return -1}
-          else
-          {return 1}
+        if (NAvalues.includes(jsonObject1['MAH'])) {
+          return (sortingorder === 'asc') ? (1) : (-1)
+        } else if (NAvalues.includes(jsonObject2['MAH'])) {
+          return (sortingorder === 'asc') ? (-1) : (1)
         } else {
           return convertStringToAlphaNumerical(
             jsonObject1['MAH']
@@ -168,16 +144,10 @@ export function convertSortingAttributeNameToComparisonFunction(
       break
     case 'ActiveSubstance':
       function ActSubComparison(jsonObject1, jsonObject2) {
-        if (jsonObject1['ActiveSubstance'] === defValue) {
-          if(sortingorder === 'asc')
-          {return 1}
-          else
-          {return -1}
-        } else if (jsonObject2['ActiveSubstance'] === defValue) {
-          if(sortingorder === 'asc')
-          {return -1}
-          else
-          {return 1}
+        if (NAvalues.includes(jsonObject1['ActiveSubstance'])) {
+          return (sortingorder === 'asc') ? (1) : (-1)
+        } else if (NAvalues.includes(jsonObject2['ActiveSubstance'])) {
+          return (sortingorder === 'asc') ? (-1) : (1)
         }
         return convertStringToAlphaNumerical(
           jsonObject1['ActiveSubstance']
@@ -191,16 +161,10 @@ export function convertSortingAttributeNameToComparisonFunction(
 
     case 'ApplicationNo':
       function numberorNAcompare(jsonobject1, jsonobject2) {
-        if (jsonobject1['ApplicationNo'] === defValue) {
-          if(sortingorder === 'asc')
-          {return 1}
-          else
-          {return -1}
-        } else if (jsonobject2['ApplicationNo'] === defValue) {
-          if(sortingorder === 'asc')
-          {return -1}
-          else
-          {return 1}
+        if (NAvalues.includes(jsonobject1['ApplicationNo'])) {
+          return (sortingorder === 'asc') ? (1) : (-1)
+        } else if (NAvalues.includes(jsonobject2['ApplicationNo'])) {
+          return (sortingorder === 'asc') ? (-1) : (1)
         } else {
           return jsonobject1['ApplicationNo'] - jsonobject2['ApplicationNo']
         }
@@ -210,21 +174,14 @@ export function convertSortingAttributeNameToComparisonFunction(
     case 'LegalType':
       function legaltypecompare(jsonobject1, jsonobject2) {
         
-        if (jsonobject1['LegalType'] === defValue) {
-          if(sortingorder === 'asc')
-          {return 1}
-          else
-          {return -1}
-        } else if (jsonobject2['LegalType'] === defValue) {
-          
-          if(sortingorder === 'asc')
-          {return -1}
-          else
-          {return 1}
+        if (NAvalues.includes(jsonobject1['LegalType'])) {
+          return (sortingorder === 'asc') ? (1):(-1)
+        } else if (NAvalues.includes(jsonobject2['LegalType'])) { 
+          return (sortingorder === 'asc') ? (-1):(1)
         } else {
           if(jsonobject1['LegalType'].slice(0,7) !== "article" || jsonobject2['LegalType'].slice(0,7) !== "article")
           {
-            console.log("sorting error: unknown article format. Please specify sorting order for this legaltype comparison; "+ jsonobject1['LegalType'] + " compared to "+ jsonobject2['LegalType'])
+            console.log("sorting error: unknown article format. Please specify sorting order for this legaltype comparison; '"+ jsonobject1['LegalType'] + "' compared to '"+ jsonobject2['LegalType']+"'")
             return 0
           }
           var legalnumber1 = jsonobject1['LegalType'].slice(8)
@@ -240,7 +197,7 @@ export function convertSortingAttributeNameToComparisonFunction(
             '10.1',
             '10.3',
             '10.4',
-            defValue,
+            'NA'
           ]
           if(!sortOrder.includes(legalnumber1))
           {
