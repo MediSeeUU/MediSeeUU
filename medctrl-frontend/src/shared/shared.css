@@ -79,6 +79,22 @@
 
 /* Shared Style Class Definitions */
 
+/*
+  General Modal Styling Definition
+*/
+
+.med-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  outline: none;
+}
+
 /* 
   Primary Solid Button Styling
 
@@ -129,11 +145,19 @@
   color: var(--primary-light);
 }
 
+@media (prefers-color-scheme: dark) {
+  .med-primary-text {
+    color: var(--primary-light);
+  }
+  .med-primary-text:hover {
+    color: var(--primary-ultralight);
+  }
+}
+
 /* Modal cancel button styling */
 
 .med-cancel-download-button {
   background-color: var(--med-dialog-background);
-  color: var(--med-text-primary);
 }
 
 .med-cancel-download-button:hover {
@@ -199,6 +223,7 @@
 */
 
 .med-top-separator {
+  width: calc(100% - 1rem);
   margin: 0.5rem 0.5rem;
 }
 

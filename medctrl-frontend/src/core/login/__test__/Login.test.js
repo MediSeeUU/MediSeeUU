@@ -4,18 +4,13 @@ import SideNavigation from '../../navigation/Navigation'
 import { BrowserRouter } from 'react-router-dom'
 
 test('open and close login popup', () => {
-  const defUser = {
-    isAdmin: true,
-    userName: 'Lourens Bloem',
-    accessLevel: 'X',
-  }
   render(
     <BrowserRouter>
-      <SideNavigation loggedin={false} user={defUser} />
+      <SideNavigation />
     </BrowserRouter>
   )
-  var loginbutton = screen.getAllByText('Login')[0]
-  fireEvent.click(loginbutton)
-  var cancelbutton = screen.getByText('Cancel')
-  fireEvent.click(cancelbutton)
+  const loginbutton = screen.getAllByText('Login')[0]
+  expect(fireEvent.click(loginbutton)).toBeTruthy()
+  const cancelbutton = screen.getByText('Cancel')
+  expect(fireEvent.click(cancelbutton)).toBeTruthy()
 })

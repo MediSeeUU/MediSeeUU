@@ -27,7 +27,7 @@ data = df.to_json(orient='records')
 
 #insert data into scraper endpoint format
 scraper_data = ("{"
-                "\"override\": \"true\","
+                "\"override\": false,"
                 f"\"data\": {data}"    
                 "}")
 

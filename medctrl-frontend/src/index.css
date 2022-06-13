@@ -43,6 +43,10 @@ input[type='checkbox'] {
   user-select: none;
 }
 
+.ReactModal__Overlay {
+  z-index: 100000;
+}
+
 /* Default Color Definitions */
 
 :root {
@@ -61,6 +65,7 @@ input[type='checkbox'] {
   --primary-dark: #114b5f;
   --primary-normal: #38576b;
   --primary-light: #607e92;
+  --primary-ultralight: #819fb3;
 
   --secondary-dark: #d3d3d3;
   --secondary-normal: #dde6f0;
@@ -97,6 +102,7 @@ input[type='checkbox'] {
     --primary-dark: #0d3a49;
     --primary-normal: #304a5c;
     --primary-light: #526c7e;
+    --primary-ultralight: #758d9f;
 
     --secondary-dark: #1b1b1b;
     --secondary-normal: #1f2027;

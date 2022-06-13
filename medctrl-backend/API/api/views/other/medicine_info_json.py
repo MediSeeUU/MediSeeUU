@@ -41,6 +41,12 @@ def get_medicine_info(perm):
             "data-format": "string",
             "data-value": "ATC Code",
         },
+        {
+            "data-key": "status",
+            "data-front-key": "Status",
+            "data-format": "string",
+            "data-value": "Status",
+        },
     ]
 
     #List with dictionaries
@@ -153,6 +159,22 @@ def get_medicine_info(perm):
         },
     ]
 
+ 
+    Additional_Resources = [
+        {
+            "data-key": "emaurl",
+            "data-front-key": "EMAurl",
+            "data-format": "link",
+            "data-value": "EMA url",
+        },
+        {
+            "data-key": "ecurl",
+            "data-front-key": "ECurl",
+            "data-format": "link",
+            "data-value": "EC url",
+        },
+    ]
+
     #The Data object constructs the json that will be returned, each item is filterd on the acces level a user has
     data = {
         "General Information": [x for x in General_Information if filterFunc(perm, x)],
@@ -166,6 +188,9 @@ def get_medicine_info(perm):
         "Legal Information": [x for x in Legal_Information if filterFunc(perm, x)],
         "Authorisation Timing": [
             x for x in Authorisation_Timing if filterFunc(perm, x)
+        ],
+        "Additional Resources": [
+            x for x in Additional_Resources if filterFunc(perm, x)
         ],
     }
 

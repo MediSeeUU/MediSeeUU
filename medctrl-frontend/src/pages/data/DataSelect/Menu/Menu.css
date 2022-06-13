@@ -1,0 +1,180 @@
+.med-table-menu-modal {
+  position: absolute;
+  top: 19%;
+  bottom: 19%;
+  left: 15%;
+  right: 15%;
+  overflow: hidden;
+  outline: none;
+  min-width: 875px;
+}
+
+.med-filter-menu,
+.med-sort-menu {
+  position: absolute;
+  border-radius: 10px;
+  height: 100%;
+  background-color: var(--med-dialog-background);
+}
+
+.med-filter-menu {
+  width: 80%;
+}
+
+.med-sort-menu {
+  float: right;
+  width: 19.5%;
+  top: 0;
+  right: 0;
+}
+
+.med-table-menu-button {
+  margin-left: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+  float: right;
+  font-weight: 600;
+  width: 15%;
+  height: 35px;
+  border: 1px solid var(--med-secondary-modal-button-hover);
+  border-radius: 5px;
+}
+
+.med-table-menu-secondary-button {
+  background-color: var(--med-secondary-modal-button-background);
+  color: var(--med-secondary-modal-button-text);
+}
+
+.med-table-menu-secondary-button:hover {
+  background-color: var(--med-secondary-modal-button-hover);
+}
+
+.med-table-menu-filter-button-container {
+  position: absolute;
+  float: right;
+  bottom: 5px;
+  width: 100%;
+  height: 75px;
+}
+
+.med-table-menu-apply-button {
+  margin-right: 2%;
+}
+
+.med-table-menu-add-filter {
+  font-weight: bold;
+  font-size: 20px;
+  padding-right: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.med-table-menu-add-filter-icon {
+  font-size: 30px;
+  position: absolute;
+  padding-left: 10px;
+}
+
+.med-table-menu-header {
+  color: var(--med-header-text);
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.med-table-menu-filters-container {
+  overflow-y: auto;
+  height: calc(100% - 160px);
+}
+
+.med-table-menu-sort-container {
+  overflow-y: auto;
+  height: calc(100% - 80px);
+}
+
+.med-able-menu-add-sort-button {
+  display: inline-block;
+  font-size: 15px;
+  padding-left: 12px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* Individual Filter and Sort Items */
+
+.med-table-menu-filter-item,
+.med-table-menu-sort-item {
+  background-color: var(--med-content-background);
+  border: 2px solid var(--med-content-border);
+  border-radius: 10px;
+  position: relative;
+  vertical-align: top;
+  box-sizing: content-box;
+  padding: 10px;
+}
+
+.med-table-menu-filter-item {
+  width: 19%;
+  margin: 19px;
+  display: inline-block;
+}
+
+.med-table-menu-sort-item {
+  width: 80%;
+  margin: auto;
+  margin-top: 25px;
+}
+
+.med-table-menu-select {
+  display: inline-block;
+  width: 85%;
+  margin-top: 5px;
+}
+
+.med-table-menu-filter-input-field {
+  display: inline-block;
+  width: 85%;
+  margin-top: 10px;
+}
+
+.med-table-menu-add-filter-option-button {
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.med-table-menu-remove-filter-option-icon {
+  font-size: 75%;
+  cursor: pointer;
+  padding-left: 5px;
+  color: var(--med-filter-remove-icon);
+}
+
+.med-table-menu-delete-button {
+  position: absolute;
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-block;
+  top: 5px;
+  right: 5px;
+}
+
+.filter-inputs:nth-child(2) {
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+
+.med-num-input {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.med-select {
+  margin-bottom: 5px;
+}
+
+.med-num-input {
+  margin-top: 5px;
+}

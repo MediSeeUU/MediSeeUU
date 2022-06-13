@@ -1,21 +1,12 @@
-import {
-  cleanup,
-  render,
-  fireEvent,
-  waitFor,
-  screen,
-  getByRole,
-  getByText,
-} from '@testing-library/react'
-import GetUniqueCategories from '../../../single_visualization/utils/GetUniqueCategories'
+import { render, fireEvent, screen } from '@testing-library/react'
+import getUniqueCategories from '../../../single_visualization/utils/getUniqueCategories'
 import BarForm from '../../../single_visualization/forms/types/BarForm'
 
-import data from '../../../../../testJson/data.json'
+import data from '../../../../../json/data.json'
 
-let uniqueCategories
+const uniqueCategories = getUniqueCategories(data)
 let chartSpecificOptions
-beforeAll(() => {
-  uniqueCategories = GetUniqueCategories(data)
+beforeEach(() => {
   chartSpecificOptions = {
     xAxis: 'DecisionYear',
     yAxis: 'Rapporteur',
@@ -28,22 +19,20 @@ beforeAll(() => {
 })
 
 test('initial render', () => {
-  const onChange = jest.fn()
   render(
     <BarForm
       uniqueCategories={uniqueCategories}
-      onChange={onChange}
       chartSpecificOptions={chartSpecificOptions}
     />
   )
 })
 
 test('category change', () => {
-  const onChange = jest.fn()
-  var test = render(
+  const mock = jest.fn()
+  render(
     <BarForm
       uniqueCategories={uniqueCategories}
-      onChange={onChange}
+      onChange={mock}
       chartSpecificOptions={chartSpecificOptions}
     />
   )
@@ -51,7 +40,27 @@ test('category change', () => {
   fireEvent.click(target)
 })
 
-test('horizontal option on', () => {
+test('horizontal option on (switch axes)', () => {
+  chartSpecificOptions.horizontal = true
+  render(
+    <BarForm
+      uniqueCategories={uniqueCategories}
+      chartSpecificOptions={chartSpecificOptions}
+    />
+  )
+})
+
+test('stacked option on', () => {
+  chartSpecificOptions.stacked = true
+  render(
+    <BarForm
+      uniqueCategories={uniqueCategories}
+      chartSpecificOptions={chartSpecificOptions}
+    />
+  )
+})
+
+test('xaxis change', () => {
   const onChange = jest.fn()
   render(
     <BarForm
@@ -60,6 +69,19 @@ test('horizontal option on', () => {
       chartSpecificOptions={chartSpecificOptions}
     />
   )
-  const target = screen.getByRole('checkbox', { name: /horizontal/i })
-  fireEvent.click(target)
+  let target = screen.getByRole('combobox', { name: /x\-axis/i })
+  fireEvent.change(target, { target: { name: 'xAxis', value: 'Rapporteur' } })
+})
+
+test('yaxis change', () => {
+  const onChange = jest.fn()
+  render(
+    <BarForm
+      uniqueCategories={uniqueCategories}
+      onChange={onChange}
+      chartSpecificOptions={chartSpecificOptions}
+    />
+  )
+  let target = screen.getByRole('combobox', { name: /y\-axis/i })
+  fireEvent.change(target, { target: { name: 'yAxis', value: 'DecisionYear' } })
 })

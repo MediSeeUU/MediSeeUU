@@ -1,13 +1,12 @@
 import React from 'react'
-import DataSelect from './dataComponents/DataSelect'
-import SelectedData from './dataComponents/SelectedData'
-import './Data.css'
-import { useSelectedData } from '../../shared/contexts/DataContext'
+import DataSelect from './DataSelect/DataSelect'
+import SelectedData from './SelectedData/SelectedData'
+import './DataPage.css'
+import { useSelectedData } from '../../shared/Contexts/SelectedContext'
 
+// Data page component that displays the table components on the page
 function DataPage() {
   const selectedData = useSelectedData()
-
-  //main body of the page
   return (
     <>
       <DataSelect />

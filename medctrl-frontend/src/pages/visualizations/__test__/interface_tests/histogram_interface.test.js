@@ -1,15 +1,6 @@
-import {
-  cleanup,
-  render,
-  fireEvent,
-  waitFor,
-  screen,
-  getByRole,
-  getByText,
-} from '@testing-library/react'
-import GenerateHistogramSeries from '../../single_visualization/data_interfaces/HistogramInterface'
+import generateHistogramSeries from '../../single_visualization/data_interfaces/generateHistogramSeries'
 
-import data from '../../../../testJson/data.json'
+import data from '../../../../json/data.json'
 
 test('no categories selected', () => {
   const options = {
@@ -17,9 +8,10 @@ test('no categories selected', () => {
       xAxis: 'Rapporteur',
       categoriesSelectedX: [],
     },
+    data: data,
   }
-  const series = GenerateHistogramSeries(options, data)
-  expect(series[0].data.length).toBe(0)
+  const series = generateHistogramSeries(options, data)
+  expect(series.length).toBe(0)
 })
 
 test('some categories selected (sorted)', () => {
@@ -28,8 +20,9 @@ test('some categories selected (sorted)', () => {
       xAxis: 'Rapporteur',
       categoriesSelectedX: ['United Kingdom', 'Denmark'],
     },
+    data: data,
   }
-  const series = GenerateHistogramSeries(options, data)
+  const series = generateHistogramSeries(options, data)
   expect(series[0].data.length).toBe(2)
 })
 
@@ -39,8 +32,9 @@ test('categories in data', () => {
       xAxis: 'Rapporteur',
       categoriesSelectedX: ['United Kingdom', 'Denmark'],
     },
+    data: data,
   }
-  const series = GenerateHistogramSeries(options, data)
+  const series = generateHistogramSeries(options, data)
   series.forEach((element) => {
     let filteredData = data.filter((datael) =>
       element.euNumbers.flat().includes(datael.EUNoShort)

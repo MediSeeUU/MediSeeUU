@@ -159,11 +159,17 @@
   font-weight: bold;
   text-decoration: none;
   color: var(--med-info-link-color);
-  width: calc(25% - 8px);
+  width: calc(50% - 8px);
 }
 
 .med-info-external-link:hover {
   color: var(--med-info-link-color);
+}
+
+.med-info-external-link.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: var(--med-additional-text);
 }
 
 /* for when there is a invalid medicine id in the url */
@@ -276,18 +282,6 @@
 .med-proc-select-button i {
   font-size: 30px;
   vertical-align: middle;
-}
-
-/* for the proc select modal */
-
-.med-proc-select-modal {
-  position: absolute;
-  top: 19%;
-  bottom: 19%;
-  left: 15%;
-  right: 15%;
-  overflow: hidden;
-  outline: none;
 }
 
 /* for the proc select dialog */

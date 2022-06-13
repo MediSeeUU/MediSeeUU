@@ -7,14 +7,14 @@ import {
   getByRole,
   getByText,
 } from '@testing-library/react'
-import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
-import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
+import sortCategoryData from '../../single_visualization/utils/sortCategoryData'
+import getUniqueCategories from '../../single_visualization/utils/getUniqueCategories'
 
-import data from '../../../../testJson/data.json'
+import data from '../../../../json/data.json'
 
 test('no data', () => {
   const data = []
-  const uniqueCategories = GetUniqueCategories(data)
+  const uniqueCategories = getUniqueCategories(data)
   const expectedDict = {}
   expect(uniqueCategories).toStrictEqual(expectedDict)
   expect(() => sortCategoryData(uniqueCategories['Rapporteur'])).toThrow()
@@ -22,7 +22,7 @@ test('no data', () => {
 
 test('some elements', () => {
   const dataSubset = data.slice(0, 20)
-  const uniqueCategories = GetUniqueCategories(dataSubset)
+  const uniqueCategories = getUniqueCategories(dataSubset)
   expect(Object.keys(uniqueCategories)).toHaveLength(28)
   const sortedCategory = sortCategoryData(uniqueCategories['Rapporteur'])
   expect(sortedCategory).toHaveLength(8)
