@@ -12,8 +12,6 @@ from Pages.base_page import BasePage
 from Pages.data_page import DataPage
 from Pages.account_page import AccountPage
 
-import time
-
 # generates a random string of specified length
 def randomword(length):
    letters = string.ascii_lowercase
