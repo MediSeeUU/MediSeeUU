@@ -16,6 +16,6 @@ jobs:
       - uses: actions/checkout@v2
 
   build_deploy:
-    uses: Rutgerdj/med-ctrl/.github/workflows/backend_deploy_reusable.yml@master
+    uses: Rutgerdj/med-ctrl/.github/workflows/backend_deploy_reusable.yml@development
     with:
       build_name: development
