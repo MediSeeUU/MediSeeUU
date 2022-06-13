@@ -22,20 +22,17 @@ export default function sortData(data, sortingparameters) {
 
   let initialComparisonFunction =
     convertSortingAttributeNameToComparisonFunction(
-      sortingparameters[0].selected
+      sortingparameters[0].selected, sortingparameters[0].order
     )
-  let initialOrder = convertSortingAttributeNameToComparisonFunction(
-    sortingparameters[0].order
-  )
+  let initialOrder = (sortingparameters[0].order==='asc') ? 1:-1
+  
   let dezefunc = firstBy(initialComparisonFunction, initialOrder)
   for (let i = 1; i < sortingparameters.length; i++) {
     dezefunc = dezefunc.thenBy(
       convertSortingAttributeNameToComparisonFunction(
-        sortingparameters[i].selected
+        sortingparameters[i].selected, sortingparameters[i].order
       ),
-      convertSortingAttributeNameToComparisonFunction(
-        sortingparameters[i].order
-      )
+      (sortingparameters[i].order==='asc') ? 1:-1
     )
   }
 
@@ -44,7 +41,7 @@ export default function sortData(data, sortingparameters) {
   return data
 }
 
-function createComparisonFunction(attr) {
+function createComparisonFunction(attr, sortingorder) {
   const defValue = 'NA'
 
   if (attr === undefined || attr === '') {
@@ -60,16 +57,28 @@ function createComparisonFunction(attr) {
         typeof jsonobject2[attr] === 'number'
       ) {
         if (jsonobject1[attr] === defValue) {
-          return 0
+          if(sortingorder === 'asc')
+          {return 1}
+          else
+          {return -1}
         } else if (jsonobject2[attr] === defValue) {
-          return 1
+          if(sortingorder === 'asc')
+          {return -1}
+          else
+          {return 1}
         } else return jsonobject1[attr] - jsonobject2[attr]
       }
 
       if (jsonobject1[attr] === defValue) {
-        return 0
+        if(sortingorder === 'asc')
+          {return 1}
+        else
+          {return -1}
       } else if (jsonobject2[attr] === defValue) {
-        return 1
+        if(sortingorder === 'asc')
+          {return -1}
+        else
+          {return 1}
       } else {
         return convertStringToAlphaNumerical(jsonobject1[attr]).localeCompare(
           convertStringToAlphaNumerical(jsonobject2[attr])
@@ -92,26 +101,26 @@ function convertStringToAlphaNumerical(word) {
 // Function takes one attributeName as a string, and returns the corresponding comparison function for json objects.
 // Use this returned comparison function as an argument to .sort function of an array containing jsonObjects.
 export function convertSortingAttributeNameToComparisonFunction(
-  attributeNameAsString
+  attributeNameAsString, sortingorder
 ) {
   var sortingFunctionToUse
   const defValue = 'NA'
 
   switch (attributeNameAsString) {
-    case 'asc':
-      sortingFunctionToUse = 1
-      break
-    case 'desc':
-      sortingFunctionToUse = -1
-      break
     case 'DecisionDate':
       //format:  month/day/year -> day/month/year
 
       function CompareDateFunction(jsonObject1, jsonObject2) {
         if (jsonObject1['DecisionDate'] === defValue) {
-          return 0
+          if(sortingorder === 'asc')
+          {return 1}
+          else
+          {return -1}
         } else if (jsonObject2['DecisionDate'] === defValue) {
-          return 1
+          if(sortingorder === 'asc')
+          {return -1}
+          else
+          {return 1}
         } else {
           var splittedDate1 = jsonObject1['DecisionDate'].split('/')
           var rightDatum1 = splittedDate1[2] + splittedDate1[0] + splittedDate1[1]
@@ -127,9 +136,15 @@ export function convertSortingAttributeNameToComparisonFunction(
     case 'MAH':
       function MAHcomparison(jsonObject1, jsonObject2) {
         if (jsonObject1['MAH'] === defValue) {
-          return 0
+          if(sortingorder === 'asc')
+          {return 1}
+          else
+          {return -1}
         } else if (jsonObject2['MAH'] === defValue) {
-          return 1
+          if(sortingorder === 'asc')
+          {return -1}
+          else
+          {return 1}
         } else {
           return convertStringToAlphaNumerical(
             jsonObject1['MAH']
@@ -142,9 +157,15 @@ export function convertSortingAttributeNameToComparisonFunction(
     case 'ActiveSubstance':
       function ActSubComparison(jsonObject1, jsonObject2) {
         if (jsonObject1['ActiveSubstance'] === defValue) {
-          return 0
+          if(sortingorder === 'asc')
+          {return 1}
+          else
+          {return -1}
         } else if (jsonObject2['ActiveSubstance'] === defValue) {
-          return 1
+          if(sortingorder === 'asc')
+          {return -1}
+          else
+          {return 1}
         }
         return convertStringToAlphaNumerical(
           jsonObject1['ActiveSubstance']
@@ -159,9 +180,15 @@ export function convertSortingAttributeNameToComparisonFunction(
     case 'ApplicationNo':
       function numberorNAcompare(jsonobject1, jsonobject2) {
         if (jsonobject1['ApplicationNo'] === defValue) {
-          return 0
+          if(sortingorder === 'asc')
+          {return 1}
+          else
+          {return -1}
         } else if (jsonobject2['ApplicationNo'] === defValue) {
-          return 1
+          if(sortingorder === 'asc')
+          {return -1}
+          else
+          {return 1}
         } else {
           return jsonobject1['ApplicationNo'] - jsonobject2['ApplicationNo']
         }
@@ -173,9 +200,16 @@ export function convertSortingAttributeNameToComparisonFunction(
     case 'LegalType':
       function legaltypecompare(jsonobject1, jsonobject2) {
         if (jsonobject1['LegalType'] === defValue) {
-          return 0
+          if(sortingorder === 'asc')
+          {return 1}
+          else
+          {return -1}
         } else if (jsonobject2['LegalType'] === defValue) {
-          return 1
+          
+          if(sortingorder === 'asc')
+          {return -1}
+          else
+          {return 1}
         } else {
           var legalnumber1 = jsonobject1['LegalType'].slice(8)
           var legalnumber2 = jsonobject2['LegalType'].slice(8)
@@ -209,7 +243,7 @@ export function convertSortingAttributeNameToComparisonFunction(
       }
       return legaltypecompare
     default:
-      sortingFunctionToUse = createComparisonFunction(attributeNameAsString)
+      sortingFunctionToUse = createComparisonFunction(attributeNameAsString, sortingorder)
   }
 
   return sortingFunctionToUse
