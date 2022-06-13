@@ -1,6 +1,6 @@
 // Takes the (JSON) data and gets the categories for each variable.
 // For example, the data set of [1,2,2,3] has the unique categories 1, 2 and 3.
-export default function GetUniqueCategories(data) {
+export default function getUniqueCategories(data) {
   let dict = {}
 
   // element is a single 'database entry'

@@ -2,13 +2,12 @@
 import React, { useState } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import SelectedData from '../data/SelectedData/SelectedData'
 import { v4 as uuidv4 } from 'uuid'
 
 // internal imports
 import SingleVisualization from './single_visualization/SingleVisualization'
-import GetUniqueCategories from './single_visualization/utils/GetUniqueCategories'
+import getUniqueCategories from './single_visualization/utils/getUniqueCategories'
 import MedModal from '../../shared/MedModal'
 import { useVisuals } from '../../shared/Contexts/VisualsContext'
 import { useSelectedData } from '../../shared/Contexts/SelectedContext'
@@ -18,9 +17,11 @@ function VisualizationPage() {
   // get selected data context and determine unique categories of each variable
   const selectedData = useSelectedData()
   const uniqueCategories =
-    selectedData.length > 0 ? GetUniqueCategories(selectedData) : []
+    selectedData.length > 0 ? getUniqueCategories(selectedData) : []
 
-  // set popup data
+  // Set popup data.
+  // The popup appears when a category of a chart is clicked,
+  // e.g. a slice of a pie chart.
   const [popup, setPopup] = useState([])
 
   // event handlers
@@ -62,6 +63,9 @@ function VisualizationPage() {
   function handleChangeFunc(settings) {
     var newVisuals = visuals.map((item) => {
       if (item.id === settings.id) {
+        // Resetting the id.
+        // Needed when a bar chart, with stacked and stack fully turned on,
+        // needs to force a rerender with the stack fully option turned off.
         settings.id = uuidv4()
         return settings
       }
@@ -80,12 +84,15 @@ function VisualizationPage() {
       // without actually reloading the entire component.
       visual.data = selectedData
       visual.uniqueCategories = uniqueCategories
+      // These are not included in the initialization of the first visualization,
+      // due to the data not being available yet, so they are initialized here.
       visual.chartSpecificOptions.categoriesSelectedX =
         visual.chartSpecificOptions.categoriesSelectedX ??
         uniqueCategories['DecisionYear']
       visual.chartSpecificOptions.categoriesSelectedY =
         visual.chartSpecificOptions.categoriesSelectedY ??
         uniqueCategories['Rapporteur']
+
       return (
         <Row key={visual.id}>
           <SingleVisualization

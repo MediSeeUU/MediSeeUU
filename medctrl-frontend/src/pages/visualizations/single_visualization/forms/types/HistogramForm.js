@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../../visualizations.css'
 import CategoryOptions from '../shared/CategoryOptions'
-import sortCategoryData from '../../utils/SortCategoryData'
+import sortCategoryData from '../../utils/sortCategoryData'
 import VariableSelect from '../../../../../shared/VariableSelect'
 
 // the histogram part of a form if a histogram chart is chosen
@@ -21,6 +21,7 @@ function HistogramForm(props) {
     const value = target.value
     const name = target.name
 
+    // if we change a variable, we also need to show new categories to be selected
     if (name === 'xAxis') {
       settings.categoriesSelectedX = props.uniqueCategories[value]
     }

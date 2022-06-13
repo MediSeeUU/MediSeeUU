@@ -13,12 +13,18 @@ import PieChart from './visualization_types/PieChart'
 import HistogramChart from './visualization_types/HistogramChart'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
-import sortCategoryData from './utils/SortCategoryData'
-import { generateSeries } from './utils/GenerateSeries'
+import sortCategoryData from './utils/sortCategoryData'
+import generateSeries from './utils/generateSeries'
 
-// renders the components for a single visualization
+// Renders the components for a single visualization.
+// There are multiple chart types, which can have different options.
+// Therefore there are separate components for forms and interfaces.
+// Currently there tends not to be huge differences though.
 function SingleVisualization(props) {
-  // initializing 'state' of the visualization
+  // Initializing 'state' of the visualization.
+  // A normal variable was preferred over state,
+  // as state cannot ordinarily be re-initialized when new props have been sent
+  // Although keys or certain lifetime methods can also be used.
   let settings = props.settings
 
   // Filter out the selected categories that are not present anymore in the data categories
@@ -37,7 +43,7 @@ function SingleVisualization(props) {
   const handlePNGExport = handlePNGExportFunction.bind(this)
   const handleSVGExport = handleSVGExportFunction.bind(this)
   const handleRemoval = handleRemovalFunction.bind(this)
-  const handleNameChange = handleNameChangeFunction.bind(this)
+  const handleTitleChange = handleTitleChangeFunction.bind(this)
 
   // EVENT HANDLERS:
 
@@ -63,8 +69,12 @@ function SingleVisualization(props) {
     props.onRemoval(settings.id, event)
   }
 
-  // handles changing the title of the visualization
-  function handleNameChangeFunction(event) {
+  // Handles changing the title of the visualization.
+  // Currently the title is not added when a visualization is exported,
+  // this would require the title to be propagated to the chart options.
+  // It would also require the text input to be put in the form,
+  // otherwise 2 titles would be placed below each other.
+  function handleTitleChangeFunction(event) {
     settings.title = event.target.value
     props.onFormChangeFunc(settings)
   }
@@ -193,7 +203,7 @@ function SingleVisualization(props) {
                 placeholder={renderTitlePlaceHolder()}
                 autoComplete="off"
                 defaultValue={settings.title || ''}
-                onBlur={handleNameChange}
+                onBlur={handleTitleChange}
               />
             </Row>
             <div tour="step-vis-plot">

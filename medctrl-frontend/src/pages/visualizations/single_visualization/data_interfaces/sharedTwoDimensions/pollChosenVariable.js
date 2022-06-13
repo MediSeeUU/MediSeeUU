@@ -1,6 +1,6 @@
 // Counts the number of occurrences a given value of the x variable is paired
 // with a given value of the y variable.
-export function pollChosenVariable(
+export default function pollChosenVariable(
   xAxis,
   yAxis,
   categoriesSelectedX,
@@ -24,6 +24,7 @@ export function pollChosenVariable(
       categoriesSelectedX.includes(element[xAxis])
     ) {
       if (dict[element[xAxis]][element[yAxis]] === undefined) {
+        // 'initializing' the entry
         dict[element[xAxis]][element[yAxis]] = 1
         euNumbers[element[xAxis]][element[yAxis]] = [element.EUNoShort]
       } else {

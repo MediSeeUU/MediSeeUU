@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../../visualizations.css'
 import CategoryOptions from '../shared/CategoryOptions'
-import sortCategoryData from '../../utils/SortCategoryData'
+import sortCategoryData from '../../utils/sortCategoryData'
 import VariableSelect from '../../../../../shared/VariableSelect'
 
 // the pie part of a form if a pie chart is chosen
@@ -21,12 +21,12 @@ function PieForm(props) {
     const value = target.value
     const name = target.name
 
+    // if we change a variable, we also need to show new categories to be selected
     if (name === 'xAxis') {
       settings.categoriesSelectedX = props.uniqueCategories[value]
     }
 
     settings[name] = value
-    // the new settings is sent to the rest of the programme
     props.onChange({
       target: {
         type: 'dict',

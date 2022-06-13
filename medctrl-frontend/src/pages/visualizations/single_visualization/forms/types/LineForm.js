@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../../visualizations.css'
-import sortCategoryData from '../../utils/SortCategoryData'
+import sortCategoryData from '../../utils/sortCategoryData'
 import CategoryOptions from '../shared/CategoryOptions'
 import VariableSelect from '../../../../../shared/VariableSelect'
 
@@ -21,7 +21,7 @@ function LineForm(props) {
     const value = target.value
     const name = target.name
 
-    // when a variable is changed, the available categories have to be changed too
+    // if we change a variable, we also need to show new categories to be selected
     if (name === 'xAxis') {
       settings.categoriesSelectedX = props.uniqueCategories[value]
     } else if (name === 'yAxis') {
