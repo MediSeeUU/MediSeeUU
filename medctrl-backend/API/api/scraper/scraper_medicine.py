@@ -78,6 +78,8 @@ class ScraperMedicine(APIView):
                 elif current_medicine:
                     # skip this medicine if it has been manually edited
                     if current_medicine.manually_updated and not override:
+                        medicine["errors"] = "Medicine has been manually updated"
+                        failed_medicines.append(medicine)
                         continue
 
                     errors = self.update_flex_medicine(medicine, current_medicine)

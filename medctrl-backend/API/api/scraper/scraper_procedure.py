@@ -54,6 +54,8 @@ class ScraperProcedure(APIView):
 
                     # Skip this procedure if it has been manually edited
                     if current_procedure.manually_updated and not override:
+                        procedure["errors"] = "Procedure already manually updated"
+                        failed_procedures.append(procedure)
                         continue
 
                     errors = self.update_flex_procedure(procedure, current_procedure)
