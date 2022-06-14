@@ -27,7 +27,7 @@ class WebDriverSetup(unittest.TestCase):
     # set window size, initial site location and an implicit wait for the data
     self.driver.set_window_size(1920, 1080)
     self.driver.get("http://localhost:3000")
-    self.driver.implicitly_wait(30)
+    self.driver.implicitly_wait(10)
   
   # tear down tests
   def tearDown(self):
