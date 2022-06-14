@@ -22,6 +22,8 @@ function VisualizationForm(props) {
   // EVENT HANDLERS:
 
   // Event handler for updating the settings after a single change.
+  // This event can be a real event or just data passed from a child,
+  // as this function is given as prop to form types.
   // Do note that if the chart type changes,
   // we still remember the previous options.
   function handleChangeFunc(event) {

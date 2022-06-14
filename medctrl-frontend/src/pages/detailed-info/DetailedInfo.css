@@ -284,17 +284,6 @@
   vertical-align: middle;
 }
 
-/* for the proc select dialog */
-
-.med-proc-select-dialog {
-  background-color: var(--med-dialog-background);
-  width: 350px;
-  border-radius: 15px;
-  text-align: center;
-  padding: 15px;
-  display: block;
-}
-
 /* for the list of procedure type options */
 
 .med-proc-option-list {
@@ -312,14 +301,4 @@
 
 .med-proc-option-name {
   margin-left: 5px;
-}
-
-/* for the two dialog buttons */
-
-.med-proc-select-dialog button {
-  border: none;
-  width: 100%;
-  height: 35px;
-  margin: 2px 0;
-  border-radius: 10px;
 }

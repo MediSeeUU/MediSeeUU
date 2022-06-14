@@ -1,7 +1,8 @@
 import { useCheckedState } from '../../../shared/Contexts/CheckedContext'
+import { fetchDeleteSelections } from '../SavedSelections/savedSelectionHandlers'
 
 // Saved selection item in the saved selections list
-function SavedSelection({ savedSelection }) {
+function SavedSelection({ savedSelection, setSavedSelection }) {
   const { checkedState, setCheckedState } = useCheckedState()
 
   // Create a set with the eunumbers for quicker lookup
@@ -44,6 +45,16 @@ function SavedSelection({ savedSelection }) {
       </td>
       <td className="med-selection-select" onClick={updateSelection}>
         <i className="bx bx-select-multiple med-table-icons"></i>
+      </td>
+      <td className="med-selection-delete">
+        <i
+          onClick={fetchDeleteSelections.bind(
+            null,
+            savedSelection.id,
+            setSavedSelection
+          )}
+          className="bx bx-trash med-table-icons"
+        ></i>
       </td>
     </tr>
   )

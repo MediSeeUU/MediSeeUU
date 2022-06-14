@@ -1,4 +1,4 @@
-import GeneratePieSeries from '../../single_visualization/data_interfaces/PieInterface'
+import generatePieSeries from '../../single_visualization/data_interfaces/generatePieSeries'
 
 import data from '../../../../json/data.json'
 
@@ -10,7 +10,7 @@ test('no categories selected', () => {
     },
     data: data,
   }
-  const series = GeneratePieSeries(options)
+  const series = generatePieSeries(options)
   expect(series.data).toHaveLength(0)
   expect(series.euNumbers).toHaveLength(0)
 })
@@ -23,7 +23,7 @@ test('some categories selected', () => {
     },
     data: data,
   }
-  const series = GeneratePieSeries(options)
+  const series = generatePieSeries(options)
   expect(series.data).toHaveLength(2)
   expect(series.euNumbers).toHaveLength(2)
 })
@@ -36,7 +36,7 @@ test('categories in data', () => {
     },
     data: data,
   }
-  const series = GeneratePieSeries(options)
+  const series = generatePieSeries(options)
   let filteredData = data.filter((element) =>
     series.euNumbers.flat().includes(element.EUNoShort)
   )

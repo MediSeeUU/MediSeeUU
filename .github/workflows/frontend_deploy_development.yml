@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
 
   deploy:
-    uses: Rutgerdj/med-ctrl/.github/workflows/frontend_deploy_reusable.yml@master
+    uses: Rutgerdj/med-ctrl/.github/workflows/frontend_deploy_reusable.yml@development
     with:
       public_url: /dev
       deploy_path: /var/www/medctrl/dev

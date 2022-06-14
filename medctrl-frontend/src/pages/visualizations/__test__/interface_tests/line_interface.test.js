@@ -1,10 +1,10 @@
-import GenerateLineSeries from '../../single_visualization/data_interfaces/LineInterface'
-import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
+import generateLineSeries from '../../single_visualization/data_interfaces/generateLineSeries'
+import getUniqueCategories from '../../single_visualization/utils/getUniqueCategories'
 
 import data from '../../../../json/data.json'
 
 test('no selected y categories', () => {
-  const uniqueCategories = GetUniqueCategories(data)
+  const uniqueCategories = getUniqueCategories(data)
   const options = {
     chartSpecificOptions: {
       xAxis: 'DecisionYear',
@@ -14,12 +14,12 @@ test('no selected y categories', () => {
     },
     data: data,
   }
-  const series = GenerateLineSeries(options)
+  const series = generateLineSeries(options)
   expect(series).toHaveLength(0)
 })
 
 test('some selected categories (sorted)', () => {
-  const uniqueCategories = GetUniqueCategories(data)
+  const uniqueCategories = getUniqueCategories(data)
   const options = {
     chartSpecificOptions: {
       xAxis: 'DecisionYear',
@@ -29,14 +29,14 @@ test('some selected categories (sorted)', () => {
     },
     data: data,
   }
-  const series = GenerateLineSeries(options)
+  const series = generateLineSeries(options)
   expect(series).toHaveLength(2)
   expect(series[0].name).toBe('Denmark')
   expect(series[1].name).toBe('United Kingdom')
 })
 
 test('categories in data', () => {
-  const uniqueCategories = GetUniqueCategories(data)
+  const uniqueCategories = getUniqueCategories(data)
   const options = {
     chartSpecificOptions: {
       xAxis: 'DecisionYear',
@@ -46,7 +46,7 @@ test('categories in data', () => {
     },
     data: data,
   }
-  const series = GenerateLineSeries(options)
+  const series = generateLineSeries(options)
   series.forEach((element) => {
     let filteredData = data.filter((datael) =>
       element.euNumbers.flat().includes(datael.EUNoShort)

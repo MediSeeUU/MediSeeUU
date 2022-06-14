@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import SavedSelection from './SavedSelection'
 import DetailGroup from '../../detailed-info/Components/DetailGroup'
 import './SavedSelections.css'
+import { fetchSavedSelections } from './savedSelectionHandlers'
 
 // List of saved selections
 function SavedSelections() {
@@ -10,29 +11,7 @@ function SavedSelections() {
 
   // While rendering load in the saved selections
   useEffect(() => {
-    async function fetchSavedSelections() {
-      // Obtain token from session storage
-      let token = sessionStorage.getItem('token')
-
-      // Fetch the saved selections from the server
-      const response = await fetch(
-        `${process.env.PUBLIC_URL}/api/saveselection/`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Token ${token}`,
-          },
-        }
-      )
-
-      // If the response is ok, parse the JSON response and put in state
-      if (response.ok) {
-        const json = await response.json()
-        setSavedSelections(json)
-      }
-    }
-    fetchSavedSelections()
+    fetchSavedSelections(setSavedSelections)
   }, [setSavedSelections])
 
   return (
@@ -46,11 +25,16 @@ function SavedSelections() {
                 <th>Count</th>
                 <th>Created at</th>
                 <th>Select</th>
+                <th>Remove</th>
               </tr>
             </thead>
             <tbody className="med-table-body">
               {savedSelections.map((x) => (
-                <SavedSelection key={x.id} savedSelection={x} />
+                <SavedSelection
+                  key={x.id}
+                  savedSelection={x}
+                  setSavedSelection={setSavedSelections}
+                />
               ))}
             </tbody>
           </table>

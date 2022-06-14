@@ -1,10 +1,10 @@
 import { render, fireEvent, screen } from '@testing-library/react'
-import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
+import getUniqueCategories from '../../single_visualization/utils/getUniqueCategories'
 import VisualizationForm from '../../single_visualization/forms/VisualizationForm'
 
 import data from '../../../../json/data.json'
 
-const uniqueCategories = GetUniqueCategories(data)
+const uniqueCategories = getUniqueCategories(data)
 let setting
 beforeEach(() => {
   setting = {

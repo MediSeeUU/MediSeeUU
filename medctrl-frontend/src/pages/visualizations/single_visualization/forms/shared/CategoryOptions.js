@@ -13,7 +13,9 @@ function CategoryOptions(props) {
 
   // allows user to deselect/select all categories
   function handleAllCategorySelectionFunc(event) {
-    let newCategoriesSelected =
+    // Check if the amount of categories currently selected
+    // equals the total amount of categories available.
+    const newCategoriesSelected =
       settings.length === props.categories.length ? [] : props.categories
     settings = newCategoriesSelected
     props.onChange({

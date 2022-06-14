@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
-import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
-import GenerateHistogramSeries from '../../single_visualization/data_interfaces/HistogramInterface'
+import getUniqueCategories from '../../single_visualization/utils/getUniqueCategories'
+import sortCategoryData from '../../single_visualization/utils/sortCategoryData'
+import generateHistogramSeries from '../../single_visualization/data_interfaces/generateHistogramSeries'
 import HistogramChart from '../../single_visualization/visualization_types/HistogramChart'
 import ResizeObserver from '../../mocks/observer'
 
@@ -11,7 +11,7 @@ import data from '../../../../json/data.json'
 jest.mock('../../mocks/observer')
 
 let container
-const unique = GetUniqueCategories(data)
+const unique = getUniqueCategories(data)
 let series
 let settings
 let chartSpecificOptions
@@ -30,7 +30,7 @@ beforeEach(() => {
     data,
   }
 
-  series = GenerateHistogramSeries(settings)
+  series = generateHistogramSeries(settings)
 })
 
 afterEach(() => {
