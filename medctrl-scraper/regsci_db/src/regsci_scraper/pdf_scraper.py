@@ -1,6 +1,3 @@
-# This program has been developed by students from the bachelor Computer Science at
-# Utrecht University within the Software Project course.
-# © Copyright Utrecht University (Department of Information and Computing Sciences)
 import PyPDF4  # for reading text in PDF
 from PyPDF4 import PdfFileReader
 import fitz  # PyMuPDF for extracting images from PDF
