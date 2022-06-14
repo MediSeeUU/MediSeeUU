@@ -3,7 +3,7 @@
 // error has occurred during the save process
 function ErrorDialog(props) {
   return (
-    <div className="med-save-dialog">
+    <div className="med-dialog">
       <i className="bx bxs-error" />
       <h1>An Error Occurred</h1>
       <div className="med-error-message">

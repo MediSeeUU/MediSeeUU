@@ -33,7 +33,7 @@ function LoginForm(props) {
 
   // Render the login form
   return (
-    <div className="med-login-dialog">
+    <div className="med-dialog">
       <i className="bx bxs-log-in" />
       <h1>Login</h1>
       <span className="med-description">
@@ -70,7 +70,7 @@ function LoginForm(props) {
         >
           Sign in
         </button>
-        <button className="med-button-cancel" onClick={closeDialog}>
+        <button className="med-cancel-button" onClick={closeDialog}>
           Cancel
         </button>
       </form>

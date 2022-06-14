@@ -18,7 +18,7 @@ test('renders without crashing', () => {
 
 // when the user provides a valid name, the user should be redirected to a
 // success message screen
-test('valid selection name should result in UI success message', () => {
+test('valid selection name should result in UI no error message', () => {
   const validNames = ['Test', 'COVID-19', 'Special_set', 'Demo selection']
   render(
     <MockProvider>
@@ -34,8 +34,9 @@ test('valid selection name should result in UI success message', () => {
     const saveButton = screen.getByText('Save selection')
     fireEvent.click(saveButton)
     const dialogHeader = screen.getByRole('heading')
-    expect(dialogHeader.innerHTML).toBe('Selection Successfully Saved')
-    const doneButton = screen.getByText('Done')
+    expect(dialogHeader.innerHTML).toBe('Save Selected Data')
+    expect(screen.queryByText('An Error Occurred')).toBeNull()
+    const doneButton = screen.getByText('Cancel')
     fireEvent.click(doneButton)
   }
 })

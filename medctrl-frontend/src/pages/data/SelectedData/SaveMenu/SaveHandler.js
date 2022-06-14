@@ -18,7 +18,7 @@ export default async function postSavedSelection(eunumbers, saveName) {
     }),
   })
 
-  if (response.status === 200) {
+  if (response.ok) {
     success = true
   }
 

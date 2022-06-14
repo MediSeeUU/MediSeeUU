@@ -39,7 +39,7 @@ class SaveDialog extends React.Component {
   // method used for handling when the user presses the save button
   // first it is checked if the current dialog state is valid, if so the
   // data is saved, otherwise an error is displayed
-  handleSave(event) {
+  async handleSave(event) {
     event.preventDefault()
 
     // EUNoShorts of selected data points
@@ -60,14 +60,12 @@ class SaveDialog extends React.Component {
       return
     }
 
-    try {
-      postSavedSelection(eunumbers, this.state.saveName)
-    } catch {
+    const succes = await postSavedSelection(eunumbers, this.state.saveName)
+    if (succes) {
+      this.setState({ dialogState: 'success' })
+    } else {
       this.setState({ dialogState: 'error' })
-      return
     }
-
-    this.setState({ dialogState: 'success' })
   }
 
   // when the user updates the input field in the dialog,
@@ -100,7 +98,7 @@ class SaveDialog extends React.Component {
     }
 
     return (
-      <div className="med-save-dialog">
+      <div className="med-dialog">
         <i className="bx bxs-save" />
         <h1>Save Selected Data</h1>
         <span className="med-description">

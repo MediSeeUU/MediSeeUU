@@ -154,14 +154,58 @@
   }
 }
 
-/* Modal cancel button styling */
+/* for the main dialog & the dialog description */
 
-.med-cancel-download-button {
+.med-dialog {
   background-color: var(--med-dialog-background);
+  width: 350px;
+  border-radius: 15px;
+  text-align: center;
+  padding: 15px;
+  display: block;
 }
 
-.med-cancel-download-button:hover {
+.med-dialog i {
+  font-size: 60px;
+}
+
+/* for an error message */
+
+.med-dialog .med-error-message {
+  margin-bottom: 20px;
+}
+
+/* for a success message */
+
+.med-dialog .med-success-message {
+  color: var(--med-positive-message-text);
+  margin-bottom: 20px;
+  font-weight: 300;
+  font-size: 14px;
+  background-color: var(--med-positive-message-background);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+/* for the two dialog buttons */
+
+.med-dialog button {
+  border: none;
+  width: 100%;
+  height: 35px;
+  margin: 2px 0;
+  border-radius: 10px;
+}
+
+/* Modal cancel button styling */
+
+.med-cancel-button {
   background-color: var(--med-dialog-background);
+  color: var(--text-primary);
+}
+
+.med-cancel-button:hover {
+  background-color: var(--core-content);
 }
 
 /*
