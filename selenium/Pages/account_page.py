@@ -7,32 +7,37 @@ class AccountPage(BasePage):
     super().__init__(driver)
     # navigate to account page
     self.go_account()
-    
+  
+  def obtain_selections(self):
     # find all saved selections and store info in dictionary
-    selection_items = driver.find_elements(*AccountPageLocators.SAVED_SELECTION)
-    self.saved_selections = dict()
+    selection_items = self.driver.find_elements(*AccountPageLocators.SAVED_SELECTION)
+    saved_selections = dict()
     for selection in selection_items:
       name = selection.find_element(*AccountPageLocators.SAVED_NAME).text
       count = selection.find_element(*AccountPageLocators.SAVED_COUNT).text
       select = selection.find_element(*AccountPageLocators.SAVED_SELECT)
       delete = selection.find_element(*AccountPageLocators.SAVED_DELETE)
       value = { "count": count, "select": select, "delete": delete }
-      self.saved_selections[name] = value
+      saved_selections[name] = value
+    return saved_selections
 
   # checks if the given name occurs in the saved selections list
   def name_in_selection(self, value):
-    return value in self.saved_selections
+    return value in self.obtain_selections()
   
   # returns the amount of selected points in the selection
   def selection_count(self, value):
-    return int(self.saved_selections[value]["count"])
+    saved_selections = self.obtain_selections()
+    return int(saved_selections[value]["count"])
   
   # applies the selection
   def apply_selection(self, value):
-    button = self.saved_selections[value]["select"]
+    saved_selections = self.obtain_selections()
+    button = saved_selections[value]["select"]
     self.driver.execute_script("arguments[0].click();", button)
   
   # removes the selection
   def delete_selection(self, value):
-    button = self.saved_selections[value]["delete"]
+    saved_selections = self.obtain_selections()
+    button = saved_selections[value]["delete"]
     self.driver.execute_script("arguments[0].click();", button)

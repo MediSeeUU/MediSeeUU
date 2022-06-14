@@ -79,9 +79,10 @@ class TestSaveSelection(WebDriverSetup):
     # go back to the account page and delete the selection
     data_page.go_account()
     account_page.delete_selection(name)
+    account_page.go_data()
+    data_page.go_account()
     # finally check if the selection is removed again
     assert not account_page.name_in_selection(name)
-
 
 if __name__ == '__main__':
   unittest.main()
