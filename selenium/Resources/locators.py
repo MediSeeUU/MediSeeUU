@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 # this file contains the locators of all pages
-# these are needed to find the elements on the page
+# these are needed to find the elements on the specific page
 
 class BasePageLocators():
   NAV = (By.TAG_NAME, 'nav')
