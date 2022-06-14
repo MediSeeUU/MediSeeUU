@@ -62,7 +62,7 @@ The account page shows a logged in user all of the data selections the user has 
 _To do_
 
 ### `pages/detailed_info`
-The detailed info page shows all the available information regarding one single medicine. The page is devided in four main parts. First, the medicine details, which are rendered using the `Detail` and `DetailGroup` components. Second, the time line visual, which is created using the `TimeLineElement` and `TimeLine` components. Third, a list of all the selected procedures (selection is handled by the `ProcSelectModal` component), which are rendered using the `Procedure` and `ProcedureDetail` components. Finally, a few useful links are included at the end (using the `CustomLink` component).
+The detailed info page shows all the available information regarding one single medicine. The page is devided in four main parts. First, the medicine details, which are rendered using the `Detail` and `DetailGroup` components. Second, the time line visual, which is created using the `TimeLineElement` and `TimeLine` components. Third, a list of all the selected procedures (selection is handled by the `ProcSelectModal` component), which are rendered using the `Procedure` and `ProcedureDetail` components. Finally, a few useful links are included at the end (using the `CustomLink` component). All of the componens mentioned above are located in the `./components/` directory.
 
 ### `pages/error`
 The error page is the default page which is displayed when an invalid URL is requested.
