@@ -1,3 +1,7 @@
+# This file conatins all serializers concerning the lookup tables
+# in the database.
+#-------------------------------------------------------
+
 from rest_framework import serializers
 from api.models.medicine_models import (
     Lookupactivesubstance,
