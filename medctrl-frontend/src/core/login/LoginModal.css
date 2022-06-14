@@ -1,20 +1,3 @@
-.med-login-dialog {
-  background-color: var(--core-dialog);
-  width: 350px;
-  border-radius: 15px;
-  text-align: center;
-  padding: 15px;
-  display: block;
-}
-
-.med-login-dialog i {
-  font-size: 60px;
-}
-
-.med-login-dialog .med-error-message {
-  margin-top: 20px;
-}
-
 /* Additional css for the credential input fields */
 
 .med-credential-input {
@@ -27,19 +10,8 @@
   padding: 0 7px;
 }
 
-/* For the dialog buttons */
+/* For the login dialog button */
 
-.med-login-dialog button {
-  border: none;
-  width: calc(100% - 10px);
-  height: 35px;
-  border-radius: 10px;
-}
-
-.med-login-dialog .med-button-login {
+.med-dialog .med-button-login {
   margin-top: 5%;
-}
-
-.med-login-dialog .med-button-cancel {
-  background-color: var(--core-dialog);
 }

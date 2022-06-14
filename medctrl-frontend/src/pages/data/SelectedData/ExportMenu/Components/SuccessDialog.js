@@ -3,7 +3,7 @@
 // has completed succesfully
 function SuccessDialog(props) {
   return (
-    <div className="med-export-dialog">
+    <div className="med-export-dialog med-dialog">
       <i className="bx bx-check" />
       <h1>Export Successfull</h1>
       <div className="med-success-message">
@@ -13,7 +13,7 @@ function SuccessDialog(props) {
           not start, please contact the administrator for more information.
         </span>
       </div>
-      <button className="cancel" onClick={props.onClick}>
+      <button className="med-cancel-button" onClick={props.onClick}>
         Done
       </button>
     </div>

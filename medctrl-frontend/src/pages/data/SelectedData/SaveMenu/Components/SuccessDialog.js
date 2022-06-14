@@ -3,7 +3,7 @@
 // process has completed successfully
 function SuccessDialog(props) {
   return (
-    <div className="med-save-dialog">
+    <div className="med-dialog">
       <i className="bx bx-check" />
       <h1>Selection Successfully Saved</h1>
       <div className="med-success-message">
@@ -12,7 +12,7 @@ function SuccessDialog(props) {
           successfully.
         </span>
       </div>
-      <button className="cancel" onClick={props.onClick}>
+      <button className="med-cancel-button" onClick={props.onClick}>
         Done
       </button>
     </div>
