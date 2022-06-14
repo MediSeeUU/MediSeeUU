@@ -6,21 +6,16 @@ import '../../shared/shared.css'
 import Search from '../../shared/Search/Search'
 import { useNavigate } from 'react-router-dom'
 import { useTourRun } from '../../core/tour/DashboardTour'
-import {
-  useTableUtils,
-  useTableUtilsUpdate,
-} from '../../shared/contexts/DataContext'
+import { useTableUtils } from '../../shared/Contexts/TableUtilsContext'
 
 function HomePage() {
   const navigate = useNavigate()
   const runTour = useTourRun()
-
-  let utils = useTableUtils()
-  let utilsUpdate = useTableUtilsUpdate()
+  const { tableUtils, setTableUtils } = useTableUtils()
 
   // Set the query in the utils context and navigate to the datapage
   const search = (query) => {
-    utilsUpdate({ ...utils, search: query })
+    setTableUtils({ ...tableUtils, search: query })
     navigate('/data')
   }
 

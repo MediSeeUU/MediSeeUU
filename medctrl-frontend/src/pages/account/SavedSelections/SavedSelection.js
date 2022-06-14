@@ -1,39 +1,44 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
-import {
-  useCheckedState,
-  useCheckedStateUpdate,
-} from '../../../shared/contexts/DataContext'
+import { useCheckedState } from '../../../shared/Contexts/CheckedContext'
+import { fetchDeleteSelections } from '../SavedSelections/savedSelectionHandlers'
 
-function SavedSelection({ savedSelection }) {
-  const checkedState = useCheckedState()
-  const setCheckedState = useCheckedStateUpdate()
+// Saved selection item in the saved selections list
+function SavedSelection({ savedSelection, setSavedSelection }) {
+  const { checkedState, setCheckedState } = useCheckedState()
 
   // Create a set with the eunumbers for quicker lookup
   const selection = new Set(savedSelection.eunumbers)
 
-  const useUpdateSelection = (el) => {
-    const updatedCheckedState = JSON.parse(JSON.stringify(checkedState)) //hard copy state
+  // Handler that updates the selection after clicking on a selection
+  const updateSelection = (el) => {
+    // Hard copy the checked state to re-render the selected data
+    const updatedCheckedState = JSON.parse(JSON.stringify(checkedState))
 
+    // Iterate over the eunumbers in the checked state
     for (let key of Object.keys(checkedState)) {
+      // Determine if there is a match
       let match = key.match(/EU\/\d\/\d{2}\/(\d+)|(\d+)/)
       if (match) {
         // Find the eunumbershort and select it if it is in the selection
-        let eunumber = match[1] ? match[1] : match[2]
-        let value = parseInt(eunumber)
+        const eunumber = match[1] ? match[1] : match[2]
+        const value = parseInt(eunumber)
         updatedCheckedState[key] = selection.has(value)
       }
     }
 
+    // Update the checked state
     setCheckedState(updatedCheckedState)
+
+    // Set animation to select icon
     el.target.classList.add('med-animated-icon')
     setTimeout(() => {
       el.target.classList.remove('med-animated-icon')
     }, 500)
   }
 
-  let date = new Date(savedSelection.created_at)
+  const date = new Date(savedSelection.created_at)
   return (
     <tr className="med-saved-selection">
       <td className="med-selection-name">{savedSelection.name}</td>
@@ -43,8 +48,18 @@ function SavedSelection({ savedSelection }) {
       </td>
       <td className="med-selection-count">
         <i
-          onClick={useUpdateSelection.bind(null)}
+          onClick={updateSelection}
           className="bx bx-select-multiple med-table-icons"
+        ></i>
+      </td>
+      <td className="med-selection-delete">
+        <i
+          onClick={fetchDeleteSelections.bind(
+            null,
+            savedSelection.id,
+            setSavedSelection
+          )}
+          className="bx bx-trash med-table-icons"
         ></i>
       </td>
     </tr>

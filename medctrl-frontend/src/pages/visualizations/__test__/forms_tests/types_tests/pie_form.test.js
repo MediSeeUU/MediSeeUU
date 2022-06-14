@@ -1,24 +1,15 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
-import {
-  cleanup,
-  render,
-  fireEvent,
-  waitFor,
-  screen,
-  getByRole,
-  getByText,
-} from '@testing-library/react'
-import GetUniqueCategories from '../../../single_visualization/utils/GetUniqueCategories'
+import { render, fireEvent, screen } from '@testing-library/react'
+import getUniqueCategories from '../../../single_visualization/utils/getUniqueCategories'
 import PieForm from '../../../single_visualization/forms/types/PieForm'
 
-import data from '../../../../../testJson/data.json'
+import data from '../../../../../json/data.json'
 
-let uniqueCategories
+const uniqueCategories = getUniqueCategories(data)
 let chartSpecificOptions
-beforeAll(() => {
-  uniqueCategories = GetUniqueCategories(data)
+beforeEach(() => {
   chartSpecificOptions = {
     xAxis: 'Rapporteur',
     categoriesSelectedX: uniqueCategories['Rapporteur'],
@@ -26,11 +17,9 @@ beforeAll(() => {
 })
 
 test('initial render', () => {
-  const onChange = jest.fn()
   render(
     <PieForm
       uniqueCategories={uniqueCategories}
-      onChange={onChange}
       chartSpecificOptions={chartSpecificOptions}
     />
   )
@@ -60,6 +49,6 @@ test('xaxis change', () => {
   )
   let target = screen.getByRole('combobox', { name: /variable/i })
   fireEvent.change(target, {
-    target: { value: 'Rapporteur', name: 'chosenVariable' },
+    target: { value: 'Rapporteur', name: 'xAxis' },
   })
 })

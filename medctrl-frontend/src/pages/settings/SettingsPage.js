@@ -3,7 +3,7 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import './SettingsPage.css'
 import ColorData from './ColorSettingData.json'
-import ColorSelectGroup from './SettingsComponents/ColorSelectGroup'
+import ColorSelectGroup from './Components/ColorSelectGroup'
 import { v4 } from 'uuid'
 
 // function based component, represents the entire settings page. On this page

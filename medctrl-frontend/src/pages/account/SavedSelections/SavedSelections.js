@@ -3,34 +3,19 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import { useEffect, useState } from 'react'
 import SavedSelection from './SavedSelection'
-import DetailGroup from '../../detailed-info/InfoComponents/DetailGroup'
+import DetailGroup from '../../detailed-info/Components/DetailGroup'
 import './SavedSelections.css'
+import { fetchSavedSelections } from './savedSelectionHandlers'
 
-export default function SavedSelections(props) {
-  const [savedSelections, setsavedSelections] = useState(null)
+// List of saved selections
+function SavedSelections() {
+  // Keep a state with the saved selections
+  const [savedSelections, setSavedSelections] = useState(null)
 
+  // While rendering load in the saved selections
   useEffect(() => {
-    // Fetch the saved selections from the server
-    async function fetchSavedSelections() {
-      let token = sessionStorage.getItem('token')
-
-      const response = await fetch(
-        `${process.env.PUBLIC_URL}/api/saveselection/`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Token ${token}`,
-          },
-        }
-      )
-      if (response.ok) {
-        const json = await response.json()
-        setsavedSelections(json)
-      }
-    }
-    fetchSavedSelections()
-  }, [setsavedSelections])
+    fetchSavedSelections(setSavedSelections)
+  }, [setSavedSelections])
 
   return (
     <div className="med-saved-selection-container">
@@ -43,11 +28,16 @@ export default function SavedSelections(props) {
                 <th>Count</th>
                 <th>Created at</th>
                 <th>Select</th>
+                <th>Remove</th>
               </tr>
             </thead>
             <tbody className="med-table-body">
               {savedSelections.map((x) => (
-                <SavedSelection key={x.id} savedSelection={x} />
+                <SavedSelection
+                  key={x.id}
+                  savedSelection={x}
+                  setSavedSelection={setSavedSelections}
+                />
               ))}
             </tbody>
           </table>
@@ -58,3 +48,5 @@ export default function SavedSelections(props) {
     </div>
   )
 }
+
+export default SavedSelections

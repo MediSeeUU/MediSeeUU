@@ -2,6 +2,7 @@
 Utrecht University within the Software Project course.
 © Copyright Utrecht University (Department of Information and Computing Sciences) */
 .med-error-page {
+  margin: 2%;
   padding-top: 30vh;
   text-align: center;
 }

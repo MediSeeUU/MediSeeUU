@@ -3,14 +3,7 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  render,
-  fireEvent,
-  waitFor,
-  screen,
-  cleanup,
-  within,
-} from '@testing-library/react'
+import { render, fireEvent, screen } from '@testing-library/react'
 import Search from '../Search'
 
 test('renders without crashing', () => {

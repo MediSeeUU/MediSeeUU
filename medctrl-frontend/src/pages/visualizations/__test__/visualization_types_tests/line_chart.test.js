@@ -3,44 +3,34 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  cleanup,
-  render,
-  fireEvent,
-  waitFor,
-  screen,
-  getByRole,
-  getByText,
-} from '@testing-library/react'
-import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
-import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
-import GenerateLineSeries from '../../single_visualization/data_interfaces/LineInterface'
+import getUniqueCategories from '../../single_visualization/utils/getUniqueCategories'
+import sortCategoryData from '../../single_visualization/utils/sortCategoryData'
+import generateLineSeries from '../../single_visualization/data_interfaces/generateLineSeries'
 import LineChart from '../../single_visualization/visualization_types/LineChart'
 import ResizeObserver from '../../mocks/observer'
 
-import data from '../../../../testJson/data.json'
+import data from '../../../../json/data.json'
 
 jest.mock('../../mocks/observer')
 
 let container
 let series
+let settings
 let chartSpecificOptions
-let uniqueCategories = GetUniqueCategories(data)
+const uniqueCategories = getUniqueCategories(data)
 
 beforeEach(() => {
   container = document.createElement('div')
   document.body.append(container)
+  ;(chartSpecificOptions = {
+    xAxis: 'DecisionYear',
+    yAxis: 'Rapporteur',
+    categoriesSelectedX: uniqueCategories['DecisionYear'],
+    categoriesSelectedY: ['United Kingdom'],
+  }),
+    (settings = { chartSpecificOptions, data })
 
-  chartSpecificOptions = {
-    chartSpecificOptions: {
-      xAxis: 'DecisionYear',
-      yAxis: 'Rapporteur',
-      categoriesSelectedX: uniqueCategories['DecisionYear'],
-      categoriesSelectedY: ['United Kingdom'],
-    },
-  }
-
-  series = GenerateLineSeries(chartSpecificOptions, data)
+  series = generateLineSeries(settings)
 })
 
 afterEach(() => {
@@ -51,36 +41,13 @@ afterEach(() => {
 test('initial render with usual initialization', () => {
   ReactDOM.render(
     <LineChart
-      key={1}
       legend={false}
       labels={false}
       id={1}
       series={series}
-      categories={sortCategoryData(
-        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
-      )}
-      options={{}}
+      categories={sortCategoryData(chartSpecificOptions.categoriesSelectedX)}
+      options={chartSpecificOptions}
     />,
     container
   )
-})
-
-test('error handler test', () => {
-  ReactDOM.render(
-    <LineChart
-      key={1}
-      legend={false}
-      labels={false}
-      id={1}
-      series={null}
-      categories={sortCategoryData(
-        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
-      )}
-      options={{}}
-    />,
-    container
-  )
-  expect(
-    screen.queryByText('An error occurred when drawing the chart')
-  ).not.toBe(null)
 })

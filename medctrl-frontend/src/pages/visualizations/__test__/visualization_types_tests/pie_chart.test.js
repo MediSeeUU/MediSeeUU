@@ -3,27 +3,20 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  cleanup,
-  render,
-  fireEvent,
-  waitFor,
-  screen,
-  getByRole,
-  getByText,
-} from '@testing-library/react'
-import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
-import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
-import GeneratePieSeries from '../../single_visualization/data_interfaces/PieInterface'
+import getUniqueCategories from '../../single_visualization/utils/getUniqueCategories'
+import sortCategoryData from '../../single_visualization/utils/sortCategoryData'
+import generatePieSeries from '../../single_visualization/data_interfaces/generatePieSeries'
 import PieChart from '../../single_visualization/visualization_types/PieChart'
 import ResizeObserver from '../../mocks/observer'
 
-import data from '../../../../testJson/data.json'
+import data from '../../../../json/data.json'
 
 jest.mock('../../mocks/observer')
 
 let container
+const unique = getUniqueCategories(data)
 let series
+let settings
 let chartSpecificOptions
 
 beforeEach(() => {
@@ -31,12 +24,12 @@ beforeEach(() => {
   document.body.append(container)
 
   chartSpecificOptions = {
-    chartSpecificOptions: {
-      xAxis: 'Rapporteur',
-      categoriesSelectedX: ['United Kingdom'],
-    },
+    xAxis: 'Rapporteur',
+    categoriesSelectedX: unique['Rapporteur'],
   }
-  series = GeneratePieSeries(chartSpecificOptions, data)
+  settings = { chartSpecificOptions, data }
+
+  series = generatePieSeries(settings)
 })
 
 afterEach(() => {
@@ -47,15 +40,12 @@ afterEach(() => {
 test('initial render with usual initialization', () => {
   ReactDOM.render(
     <PieChart
-      key={1}
       legend={false}
       labels={false}
       id={1}
       series={series}
-      categories={sortCategoryData(
-        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
-      )}
-      options={{}}
+      categories={sortCategoryData(chartSpecificOptions.categoriesSelectedX)}
+      options={chartSpecificOptions}
     />,
     container
   )

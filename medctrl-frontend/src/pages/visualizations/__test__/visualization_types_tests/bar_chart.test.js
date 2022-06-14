@@ -3,49 +3,36 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  cleanup,
-  render,
-  fireEvent,
-  waitFor,
-  screen,
-  getByRole,
-  getByText,
-} from '@testing-library/react'
-import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
-import sortCategoryData from '../../single_visualization/utils/SortCategoryData'
-import GenerateBarSeries from '../../single_visualization/data_interfaces/BarInterface'
+import getUniqueCategories from '../../single_visualization/utils/getUniqueCategories'
+import sortCategoryData from '../../single_visualization/utils/sortCategoryData'
+import generateBarSeries from '../../single_visualization/data_interfaces/generateBarSeries'
 import BarChart from '../../single_visualization/visualization_types/BarChart'
 import ResizeObserver from '../../mocks/observer'
 
-import data from '../../../../testJson/data.json'
+import data from '../../../../json/data.json'
 
 jest.mock('../../mocks/observer')
 
 let container
 let series
-let uniqueCategories = GetUniqueCategories(data)
-let options
+const uniqueCategories = getUniqueCategories(data)
+let settings
 let chartSpecificOptions
-
 beforeEach(() => {
   container = document.createElement('div')
   document.body.append(container)
-
   chartSpecificOptions = {
-    chartSpecificOptions: {
-      xAxis: 'DecisionYear',
-      yAxis: 'Rapporteur',
-      categoriesSelectedX: uniqueCategories['DecisionYear'],
-      categoriesSelectedY: ['United Kingdom'],
-    },
-  }
-  series = GenerateBarSeries(chartSpecificOptions, data)
-  options = {
+    xAxis: 'DecisionYear',
+    yAxis: 'Rapporteur',
+    categoriesSelectedX: uniqueCategories['DecisionYear'],
+    categoriesSelectedY: uniqueCategories['Rapporteur'],
     stacked: false,
     stackType: false,
     horizontal: false,
   }
+
+  settings = { chartSpecificOptions, data }
+  series = generateBarSeries(settings)
 })
 
 afterEach(() => {
@@ -53,61 +40,47 @@ afterEach(() => {
   container = null
 })
 
-test('initial render with usual initialization', () => {
+test('initial render', () => {
   ReactDOM.render(
     <BarChart
-      key={1}
       legend={false}
       labels={false}
       id={1}
       series={series}
-      categories={sortCategoryData(
-        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
-      )}
-      options={options}
+      categories={sortCategoryData(chartSpecificOptions.categoriesSelectedX)}
+      options={chartSpecificOptions}
     />,
     container
   )
 })
 
-test('initial render with stackType: 100%', () => {
-  options = {
-    stacked: false,
-    stackType: '100%',
-    horizontal: false,
-  }
+test('render with stackType of 100%', () => {
+  settings.stacked = true
+  settings.stackType = true
   ReactDOM.render(
     <BarChart
-      key={1}
       legend={false}
       labels={false}
       id={1}
       series={series}
-      categories={sortCategoryData(
-        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
-      )}
-      options={options}
+      categories={sortCategoryData(chartSpecificOptions.categoriesSelectedX)}
+      options={chartSpecificOptions}
     />,
     container
   )
 })
 
-test('error handler test', () => {
+test('render with switched axes', () => {
+  settings.horizontal = true
   ReactDOM.render(
     <BarChart
-      key={1}
       legend={false}
       labels={false}
       id={1}
-      series={null}
-      categories={sortCategoryData(
-        chartSpecificOptions.chartSpecificOptions.categoriesSelectedX
-      )}
-      options={options}
+      series={series}
+      categories={sortCategoryData(chartSpecificOptions.categoriesSelectedX)}
+      options={chartSpecificOptions}
     />,
     container
   )
-  expect(
-    screen.queryByText('An error occurred when drawing the chart')
-  ).not.toBe(null)
 })

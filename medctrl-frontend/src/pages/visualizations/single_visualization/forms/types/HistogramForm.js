@@ -1,133 +1,71 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
-import React, { Component } from 'react'
+import React from 'react'
 import '../../../visualizations.css'
 import CategoryOptions from '../shared/CategoryOptions'
-import sortCategoryData from '../../utils/SortCategoryData'
-import { v4 as uuidv4 } from 'uuid'
+import sortCategoryData from '../../utils/sortCategoryData'
+import VariableSelect from '../../../../../shared/VariableSelect'
 
 // the histogram part of a form if a histogram chart is chosen
-class HistogramForm extends Component {
-  constructor(props) {
-    // Receives the categories of all variables,
-    // also gets the event handler for passing data back to the general form.
-    super(props)
+function HistogramForm(props) {
+  // initialization of the settings
+  let settings = props.chartSpecificOptions
 
-    // The list of eligible variables.
-    // If we do not want to include a variable for the histogram chart,
-    // it can be removed from here.
-    const eligibleVariables = [
-      'BrandName',
-      'MAH',
-      'ActiveSubstance',
-      'DecisionDate',
-      'DecisionYear',
-      'ATCCodeL2',
-      'ApplicationNo',
-      'EUNoShort',
-      'Rapporteur',
-      'CoRapporteur',
-      'ATMP',
-      'OrphanDesignation',
-      'NASQualified',
-      'PRIME',
-      'LegalSCope',
-      'LegalType',
-      'AcceleratedGranted',
-      'AcceleratedExecuted',
-      'ActiveTimeElapsed',
-      'ClockStopElapsed',
-      'TotalTimeElapsed',
-    ]
-
-    // initialization of the state
-    this.state = this.props.chartSpecificOptions
-    this.state.eligibleVariables = eligibleVariables
-
-    // event handlers
-    this.handleChange = this.handleChange.bind(this)
-    this.handleCategorySelectionChange =
-      this.handleCategorySelectionChange.bind(this)
-  }
+  // event handlers
+  const handleChange = handleChangeFunc.bind(this)
 
   // EVENT HANDLERS:
 
-  // Updates the state,
+  // Updates the settings,
   // then passes it to the general form.
-  handleChange(event) {
+  function handleChangeFunc(event) {
     const target = event.target
     const value = target.value
     const name = target.name
 
-    // The categories depend on which variables you chose,
-    // so if these changes we want the categoriesSelected to re-initialized,
-    // in this case that is just resetting the array,
-    // because some variables have a lot of categories.
+    // if we change a variable, we also need to show new categories to be selected
     if (name === 'xAxis') {
-      this.setState({ categoriesSelectedX: [] })
+      settings.categoriesSelectedX = props.uniqueCategories[value]
     }
-    this.setState({ [name]: value }, () => {
-      this.props.onChange([this.state, name])
-    })
-  }
 
-  // Updates the categoriesSelected based on the new selection.
-  // This event is passed to the CategoryOptions component.
-  handleCategorySelectionChange(event) {
-    this.setState({ categoriesSelectedX: event }, () => {
-      this.props.onChange([this.state, uuidv4()])
-    })
-  }
-
-  // GENERAL FUNCTIONS:
-
-  // creates a drop down menu based on the allowed variables
-  renderVariableDropDown() {
-    return this.state.eligibleVariables.map((variable) => {
-      return (
-        <option key={variable} value={variable}>
-          {variable}
-        </option>
-      )
+    settings[name] = value
+    props.onChange({
+      target: {
+        type: 'array',
+        value: settings,
+        name: 'chartSpecificOptions',
+      },
     })
   }
 
   // RENDERER:
 
   // renders the histogram form part of the form
-  render() {
-    // building drop down menus
-    const variables = this.renderVariableDropDown()
-
-    return (
-      <React.Fragment>
-        <label className="visualization-panel-label">
-          Variable <br />
-          <select
-            value={this.state.xAxis}
-            name="xAxis"
-            className="med-select"
-            onChange={this.handleChange}
-          >
-            {variables}
-          </select>
-        </label>
-        <CategoryOptions
-          // We want to reset the component when the variable changes,
-          // so we need to change the key depending on the axis.
-          key={`${this.state.xAxis}`}
-          className="category-options"
-          onChange={this.handleCategorySelectionChange}
-          categories={sortCategoryData(
-            this.props.uniqueCategories[this.state.xAxis]
-          )}
-          categoriesSelected={this.state.categoriesSelectedX}
-          settings={this.state}
+  return (
+    <>
+      <label className="visualization-panel-label">
+        Variable <br />
+        <VariableSelect
+          className={'med-select'}
+          defaultValue={settings.xAxis}
+          name="xAxis"
+          onChange={handleChange}
+          tour="step-vis-vars"
         />
-      </React.Fragment>
-    )
-  }
+      </label>
+      <div tour="step-vis-categories">
+        <CategoryOptions
+          dimension="X"
+          className="category-options"
+          onChange={handleChange}
+          categories={sortCategoryData(props.uniqueCategories[settings.xAxis])}
+          categoriesSelected={settings.categoriesSelectedX}
+          settings={settings}
+        />
+      </div>
+    </>
+  )
 }
 
 export default HistogramForm

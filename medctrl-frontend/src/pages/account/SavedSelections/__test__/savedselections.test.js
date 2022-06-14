@@ -4,10 +4,15 @@
 import React from 'react'
 import { render, screen, within } from '@testing-library/react'
 import SavedSelections from '../SavedSelections'
+import MockProvider from '../../../../mocks/MockProvider'
 
 test('Component has correct number of rows', async () => {
   let value = await fetch('/api/saveselection').then((x) => x.json())
-  render(<SavedSelections />)
+  render(
+    <MockProvider>
+      <SavedSelections />
+    </MockProvider>
+  )
 
   let r = await screen.findByRole('table')
   const rows = within(r).getAllByRole('row')

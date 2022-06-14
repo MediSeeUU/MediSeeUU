@@ -103,13 +103,19 @@ Utrecht University within the Software Project course.
   overflow: auto;
 }
 
-/* Modal */
+/* Popup */
 
 .visualize-modal {
   position: relative;
-  margin: 8% 15% 10% 15%;
+  margin: 8% 17% 10% 17%;
   border-radius: 10px;
   outline: none;
+  min-width: 875px;
+}
+
+.visualize-modal .med-data-button {
+  position: relative;
+  right: 70px;
 }
 
 .close-icon {
@@ -119,4 +125,8 @@ Utrecht University within the Software Project course.
   right: 0;
   margin-top: 5px;
   margin-right: 20px;
+}
+
+.apexcharts-tooltip {
+  color: #000000;
 }

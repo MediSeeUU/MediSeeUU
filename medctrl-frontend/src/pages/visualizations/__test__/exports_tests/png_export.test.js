@@ -3,29 +3,20 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  cleanup,
-  render,
-  fireEvent,
-  waitFor,
-  screen,
-  getByRole,
-  getByText,
-} from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import SingleVisualization from '../../single_visualization/SingleVisualization'
-import HandlePNGExport from '../../single_visualization/exports/HandlePNGExport'
-import ApexCharts from 'apexcharts'
 import ResizeObserver from '../../mocks/observer'
 
-import data from '../../../../testJson/data.json'
-import { generateSeries } from '../../single_visualization/SingleVisualization'
-import GetUniqueCategories from '../../single_visualization/utils/GetUniqueCategories'
+import data from '../../../../json/data.json'
+import getUniqueCategories from '../../single_visualization/utils/getUniqueCategories'
 
 jest.mock('../../mocks/observer')
 
+// Does not seem to go beyond the dataURI function,
+// may take too long?
 test('export to png', () => {
-  const unique = GetUniqueCategories(data)
-  var setting = {
+  const unique = getUniqueCategories(data)
+  let setting = {
     id: 1,
     chartType: 'bar',
     chartSpecificOptions: {
@@ -37,16 +28,13 @@ test('export to png', () => {
     legendOn: true,
     labelsOn: false,
     data: data,
-    series: [],
     uniqueCategories: unique,
-    key: '',
   }
-  setting.series = generateSeries('bar', setting)
 
-  const root = document.createElement('div')
-  const vis = ReactDOM.render(
-    <SingleVisualization id={1} data={data} settings={setting} />,
-    root
-  )
-  HandlePNGExport(1, 'example title', ApexCharts)
+  let container = document.createElement('div')
+  document.body.append(container)
+
+  ReactDOM.render(<SingleVisualization id={1} settings={setting} />, container)
+  let target = screen.getByRole('button', { name: /export as png/i })
+  fireEvent.click(target)
 })

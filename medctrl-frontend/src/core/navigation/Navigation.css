@@ -1,7 +1,7 @@
 /* This program has been developed by students from the bachelor Computer Science at
 Utrecht University within the Software Project course.
 © Copyright Utrecht University (Department of Information and Computing Sciences) */
-/* for the navigation bar itself */
+/* For the navigation bar itself */
 
 .med-side-nav {
   position: fixed;
@@ -22,7 +22,7 @@ Utrecht University within the Software Project course.
   width: 78px;
 }
 
-/* for the individual items in the navigation bar */
+/* For the individual items in the navigation bar */
 
 .med-nav-item {
   position: relative;
@@ -33,7 +33,7 @@ Utrecht University within the Software Project course.
   transition: 0.2s;
 }
 
-/* for the content of the individual items in the navigation bar */
+/* For the content of the individual items in the navigation bar */
 
 .med-nav-item-content {
   display: flex;
@@ -54,7 +54,7 @@ Utrecht University within the Software Project course.
   text-align: center;
 }
 
-/*  show the names corresponding to the different individual items in 
+/*  Show the names corresponding to the different individual items in 
     the navigation bar only when the navigation bar in expanded
 */
 
@@ -74,7 +74,7 @@ Utrecht University within the Software Project course.
   opacity: 1;
 }
 
-/*  show the tooltip boxes corresponding to the different individual items in
+/*  Show the tooltip boxes corresponding to the different individual items in
     the navigation bar only when the navigation bar in collapsed 
 */
 
@@ -104,7 +104,7 @@ Utrecht University within the Software Project course.
   opacity: 1;
 }
 
-/*  position the lowest navigation item at the bottom of the navigation bar */
+/* Position the lowest navigation item at the bottom of the navigation bar */
 
 .med-nav-lowest {
   bottom: 6px;
@@ -112,7 +112,7 @@ Utrecht University within the Software Project course.
   width: calc(100% - 28px);
 }
 
-/* account specific styling */
+/* Account specific styling */
 
 .med-nav-account {
   bottom: 64px;
@@ -128,4 +128,8 @@ Utrecht University within the Software Project course.
 .med-nav-item-alt-name {
   font-size: 14px;
   color: var(--med-additional-text);
+}
+
+.med-active {
+  background-color: var(--primary-ultralight) !important;
 }

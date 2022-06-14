@@ -1,0 +1,139 @@
+/* This program has been developed by students from the bachelor Computer Science at
+Utrecht University within the Software Project course.
+© Copyright Utrecht University (Department of Information and Computing Sciences) */
+.med-add-remove-button-container {
+  display: flex;
+  float: right;
+  margin-right: 25px;
+}
+
+.med-table {
+  display: block;
+  overflow: auto;
+  border-spacing: 0;
+  width: 98%;
+  max-height: 441px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
+}
+
+.med-table-header {
+  display: block;
+  position: sticky;
+  top: 0;
+  border: 0px;
+  overflow-x: visible;
+  color: var(--med-table-header-text);
+  z-index: 5;
+}
+
+.med-table-header tr {
+  background-color: var(--med-table-header-background);
+}
+
+.med-table-body {
+  display: block;
+  overflow: visible;
+  z-index: 0;
+  border-collapse: separate;
+}
+
+.med-table-body tr:nth-child(even) {
+  background-color: var(--med-table-row-even-background);
+}
+
+.med-table-body tr:nth-child(odd) {
+  background-color: var(--med-table-row-odd-background);
+}
+
+.med-table-narrow-column {
+  text-align: center;
+}
+
+.med-table-body-cell div {
+  display: block;
+  text-align: left;
+  width: calc(100% - 20px);
+  margin-inline: 10px;
+}
+
+.med-table-header-cell {
+  min-width: 226.7px;
+  max-width: 226.7px;
+}
+
+.med-table-select .med-table-header-cell {
+  min-width: calc(236.7px);
+  max-width: calc(236.7px);
+}
+
+.med-table-header-select-cell {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: var(--med-table-header-background);
+  color: var(--med-table-header-text);
+  border: 1px solid var(--med-table-header-border);
+  border-radius: 4px;
+  min-width: 78%;
+  max-width: 88%;
+}
+
+.med-table-header-sort {
+  cursor: pointer;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 17px 0 15px 0;
+  background-color: var(--med-table-header-background);
+  color: var(--med-table-header-text);
+  border: 1px solid var(--med-table-header-border);
+  border-radius: 4px;
+  width: 12%;
+}
+
+.med-table-body-cell {
+  font-size: 13px;
+  min-width: 226.7px;
+  max-width: 226.7px;
+}
+
+.med-table-select .med-table-body-cell {
+  min-width: calc(236.7px);
+  max-width: calc(236.7px);
+}
+
+.med-table-narrow-column,
+.med-table-select .med-table-narrow-column {
+  min-width: 50px;
+  max-width: 50px;
+  position: sticky;
+  background-color: inherit;
+  z-index: 1;
+}
+
+.med-table-icons {
+  font-size: 20px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+/* Column addition/removal button styling */
+.med-add-remove-button {
+  cursor: pointer;
+  margin-right: 5px;
+  margin: 15px 0;
+  font-size: 40px;
+}
+
+.med-column-left {
+  left: 0;
+  border-right: 1px solid var(--med-table-border);
+}
+
+.med-column-right {
+  right: 0;
+  border-left: 1px solid var(--med-table-border);
+}

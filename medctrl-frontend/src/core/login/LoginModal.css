@@ -1,34 +1,7 @@
 /* This program has been developed by students from the bachelor Computer Science at
 Utrecht University within the Software Project course.
 © Copyright Utrecht University (Department of Information and Computing Sciences) */
-.med-login-modal {
-  position: absolute;
-  top: 19%;
-  bottom: 19%;
-  left: 15%;
-  right: 15%;
-  overflow: hidden;
-  outline: none;
-}
-
-.med-login-dialog {
-  background-color: var(--core-dialog);
-  width: 350px;
-  border-radius: 15px;
-  text-align: center;
-  padding: 15px;
-  display: block;
-}
-
-.med-login-dialog i {
-  font-size: 60px;
-}
-
-.med-login-dialog .med-error-message {
-  margin-top: 20px;
-}
-
-/* additional css for the credential input fields */
+/* Additional css for the credential input fields */
 
 .med-credential-input {
   width: calc(100% - 10px);
@@ -40,20 +13,8 @@ Utrecht University within the Software Project course.
   padding: 0 7px;
 }
 
-/* for the dialog buttons */
+/* For the login dialog button */
 
-.med-login-dialog button {
-  border: none;
-  width: calc(100% - 10px);
-  height: 35px;
-  border-radius: 10px;
-}
-
-.med-login-dialog .med-button-login {
+.med-dialog .med-button-login {
   margin-top: 5%;
-}
-
-.med-login-dialog .med-button-cancel {
-  background-color: var(--core-dialog);
-  color: var(--med-text-primary);
 }

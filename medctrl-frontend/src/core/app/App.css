@@ -7,11 +7,15 @@ Utrecht University within the Software Project course.
 }
 
 .med-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
   padding-left: 78px;
   padding-top: 75px;
   z-index: 50;
 }
 
 .med-content-wrapper {
-  min-height: 75vh;
+  background-color: inherit;
 }

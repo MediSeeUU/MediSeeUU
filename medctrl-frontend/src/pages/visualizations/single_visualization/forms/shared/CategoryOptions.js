@@ -4,74 +4,79 @@
 import React from 'react'
 
 // a component for showing and selecting categories for a variable
-class CategoryOptions extends React.Component {
-  constructor(props) {
-    // Receives a key, a list of categories of the selected variable and
-    // a function to send the state back to the form.
-    super(props)
+function CategoryOptions(props) {
+  // the settings contains a list with the names of the selected categories
+  let settings = props.categoriesSelected
 
-    // the state contains a list with the names of the selected categories
-    this.state = { categoriesSelected: this.props.categoriesSelected }
-
-    // event handlers
-    this.handleAllCategorySelection = this.handleAllCategorySelection.bind(this)
-    this.handleCategorySelection = this.handleCategorySelection.bind(this)
-  }
+  // event handlers
+  const handleAllCategorySelection = handleAllCategorySelectionFunc.bind(this)
+  const handleCategorySelection = handleCategorySelectionFunc.bind(this)
 
   // EVENT HANDLERS:
 
   // allows user to deselect/select all categories
-  handleAllCategorySelection(event) {
-    if (this.state.categoriesSelected.length === this.props.categories.length) {
-      this.setState({ categoriesSelected: [] }, () => {
-        this.props.onChange(this.state.categoriesSelected)
-      })
-    } else {
-      this.setState({ categoriesSelected: this.props.categories }, () => {
-        this.props.onChange(this.props.categories)
-      })
-    }
+  function handleAllCategorySelectionFunc(event) {
+    // Check if the amount of categories currently selected
+    // equals the total amount of categories available.
+    const newCategoriesSelected =
+      settings.length === props.categories.length ? [] : props.categories
+    settings = newCategoriesSelected
+    props.onChange({
+      target: {
+        type: 'array',
+        value: newCategoriesSelected,
+        name: 'categoriesSelected' + props.dimension,
+      },
+    })
   }
 
   // Updating what categories have been selected,
   // then passes it to the general form.
-  handleCategorySelection(event) {
+  function handleCategorySelectionFunc(event) {
     const target = event.target
     const value = target.checked
     const name = target.name
 
+    let newCategoriesSelected
     if (value) {
-      // add category to the list
-      const newCategories = [...this.state.categoriesSelected, name]
-      this.setState({ categoriesSelected: newCategories }, () => {
-        this.props.onChange(newCategories)
-      })
+      // Adds the selected category to the list.
+      // A filter was added because the data type of name is returned as a string instead of its original datatype,
+      // but it is not a very elegant solution...
+      const addition = props.categories.filter(
+        (el) => String(el) === String(name)
+      )[0]
+      newCategoriesSelected = [...settings, addition]
     } else {
-      // remove if the category was previously on the list
-      if (this.state.categoriesSelected.includes(name)) {
-        const newCategories = this.state.categoriesSelected.filter(
-          (el) => el !== name
-        )
-        this.setState({ categoriesSelected: newCategories }, () => {
-          this.props.onChange(this.state.categoriesSelected)
-        })
-      }
+      // removes the selected category of the list
+      newCategoriesSelected = settings.filter(
+        (el) => String(el) !== String(name)
+      )
     }
+    settings = newCategoriesSelected
+
+    props.onChange({
+      target: {
+        type: 'array',
+        value: newCategoriesSelected,
+        name: 'categoriesSelected' + props.dimension,
+      },
+    })
   }
 
   // GENERAL FUNCTIONS:
 
   // create the list of category checkboxes
-  renderCategoryOptions() {
-    return this.props.categories.map((category) => {
+  function renderCategoryOptions() {
+    // props.categories is already sorted
+    return props.categories.map((category) => {
       return (
         <React.Fragment key={category}>
           <label>
             <input
               type="checkbox"
               name={category}
-              checked={this.state.categoriesSelected.includes(category)}
-              onChange={this.handleCategorySelection}
+              checked={settings.includes(category)}
+              onChange={handleCategorySelection}
             />
             &nbsp;&nbsp;{category}
           </label>
@@ -82,25 +87,23 @@ class CategoryOptions extends React.Component {
 
   // RENDERER:
 
-  // renders checkboxes for each category of the given variable
-  render() {
-    const categories = this.renderCategoryOptions()
-    return (
-      <React.Fragment>
-        <br />
-        <label>
-          <input
-            type="checkbox"
-            name="selectAllCategories"
-            checked={this.state.categoriesSelected.length === categories.length}
-            onChange={this.handleAllCategorySelection}
-          />
-          &nbsp;&nbsp;Select all categories
-        </label>
-        <div className="country-options">{categories}</div>
-      </React.Fragment>
-    )
-  }
+  return (
+    <>
+      <br />
+      <b>{props.dimension}-axis</b>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          name="selectAllCategories"
+          checked={settings.length === props.categories.length}
+          onChange={handleAllCategorySelection}
+        />
+        &nbsp;&nbsp;Select all categories
+      </label>
+      <div className="country-options">{renderCategoryOptions()}</div>
+    </>
+  )
 }
 
 export default CategoryOptions

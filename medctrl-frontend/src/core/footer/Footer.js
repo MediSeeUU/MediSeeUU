@@ -6,8 +6,8 @@ import './Footer.css'
 
 function Footer() {
   return (
-    //Footer components, gives the information to be placed in the footer in two sections placed
-    //next to each other.
+    // Footer components, gives the information to be placed in the footer in two sections placed
+    // next to each other.
     <footer className="med-footer">
       <section id="med-footer-organizations">
         <h2>Relevant Organizations</h2>

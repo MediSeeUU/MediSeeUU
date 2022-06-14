@@ -1,0 +1,14 @@
+/* for the save selection form */
+
+.med-save-form {
+  width: 100%;
+
+  margin: 12px 0;
+  border-radius: 10px;
+  text-align: left;
+
+  padding: 10px 15px;
+
+  display: flex;
+  flex-direction: column;
+}
