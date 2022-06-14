@@ -75,6 +75,11 @@ class ScraperMedicine(APIView):
 
                 if override:
                     errors = self.add_medicine(medicine, current_medicine)
+
+                    # Reset manually updated status
+                    current_medicine.manually_updated = False
+                    current_medicine.save()
+
                 elif current_medicine:
                     # skip this medicine if it has been manually edited
                     if current_medicine.manually_updated and not override:

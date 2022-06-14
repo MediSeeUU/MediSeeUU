@@ -50,6 +50,11 @@ class ScraperProcedure(APIView):
                 )
                 if override:
                     errors = self.add_procedure(procedure, current_procedure)
+
+                    # Reset manually updated status
+                    current_procedure.manually_updated = False
+                    current_procedure.save()
+
                 elif current_procedure:
 
                     # Skip this procedure if it has been manually edited
