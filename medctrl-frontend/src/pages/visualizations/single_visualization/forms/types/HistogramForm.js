@@ -41,7 +41,7 @@ function HistogramForm(props) {
   // renders the histogram form part of the form
   return (
     <>
-      <label className="visualization-panel-label">
+      <label className="med-vis-settings-panel-label">
         Variable <br />
         <VariableSelect
           className={'med-select'}
@@ -54,7 +54,6 @@ function HistogramForm(props) {
       <div tour="step-vis-categories">
         <CategoryOptions
           dimension="X"
-          className="category-options"
           onChange={handleChange}
           categories={sortCategoryData(props.uniqueCategories[settings.xAxis])}
           categoriesSelected={settings.categoriesSelectedX}

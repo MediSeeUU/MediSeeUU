@@ -1,36 +1,38 @@
-/* Page elements */
-.visual-container {
+/* The main visualization content container */
+
+.med-vis-content-container {
   margin: 2%;
   width: 97%;
   padding: 0 12px;
   font-size: 16px;
 }
 
-/* Panel elements */
-.visualization-panel {
+
+/* Elements that make up the settings panel on the left of each visualization */
+
+.med-vis-settings-panel {
   background-color: inherit;
   margin: 1% 0% 1% 0%;
   border-right: 1px solid var(--med-visualization-vertical-border);
 }
 
-.visualization-panel select {
+.med-vis-settings-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.med-vis-settings-panel select {
   width: 100%;
 }
 
-.visualization-panel-label {
+.med-vis-settings-panel-label {
   width: 100%;
   margin-top: 8px;
   font-weight: bold;
   user-select: none;
 }
 
-.country-options label {
-  width: 95%;
-  margin: 0px 0px 5px 5px;
-  font-weight: normal;
-}
-
-.country-options {
+.med-vis-category-options {
   background-color: var(--med-visualization-cagetory-menu-background);
   height: 230px;
   margin-top: 3%;
@@ -38,71 +40,73 @@
   overflow-y: scroll;
 }
 
-.med_visualization_form {
-  display: flex;
-  flex-direction: column;
+.med-vis-category-options label {
+  width: 95%;
+  margin: 0px 0px 5px 5px;
+  font-weight: normal;
 }
 
-/* Buttons */
-.button-update {
-  width: 100%;
-  margin-top: 3.6%;
-  margin-left: 0;
-  margin-right: 0;
-  background-color: var(--med-positive-button-background);
-}
 
-.button-remove {
+/* Buttons for visualization addition, removal and export */
+
+.med-button-remove-vis {
   width: 14%;
   font-size: 20px;
   background: var(--med-negative-button-background);
   margin: 1.8% 0% 2% 2%;
 }
 
-.button-export {
+.med-button-remove-vis:hover {
+  background-color: var(--med-negative-button-hover);
+}
+
+.med-button-export-vis {
   width: 40%;
   margin: 1.8% 0% 2% 2%;
 }
 
-.button-add {
+.med-button-add-vis {
   margin: 0% 2% 7.5% 2%;
-  width: 98%;
+  width: 97%;
   height: 50px;
 }
 
-.button-update:hover {
-  background-color: var(--med-positive-button-hover);
-}
-
-.button-remove:hover {
+.med-button-remove-vis:hover {
   background-color: var(--med-negative-button-hover);
 }
 
-/* Title */
-.graph-name {
+
+/* The title of each visualization */
+
+.med-vis-graph-title {
   margin: 2% 5% 2% 5%;
   height: 40px;
   width: 93%;
   font-size: 30px;
 }
 
-.graph-name:not(:placeholder-shown) {
+.med-vis-graph-title:not(:placeholder-shown) {
   border: none;
 }
 
-.visualization-no-data {
+
+/* No data to use for visualization message */
+
+.med-vis-no-data {
   padding-top: 30vh;
   text-align: center;
 }
 
-/* Graph, part of the example code for adding scroll bars to an axis */
-.chart {
+
+/* Bar chart, part of the example code for adding scroll bars to an axis */
+
+.med-vis-chart {
   overflow: auto;
 }
 
-/* Popup */
+/* The interactive popup which shows the datapoints in the clicked chart element */
 
-.visualize-modal {
+.med-vis-interactive-data-modal {
   position: relative;
   margin: 8% 17% 10% 17%;
   border-radius: 10px;
@@ -110,12 +114,12 @@
   min-width: 875px;
 }
 
-.visualize-modal .med-data-button {
+.med-vis-interactive-data-modal .med-data-button {
   position: relative;
   right: 70px;
 }
 
-.close-icon {
+.med-close-modal-icon {
   cursor: pointer;
   font-size: 30px;
   position: absolute;
@@ -123,6 +127,8 @@
   margin-top: 5px;
   margin-right: 20px;
 }
+
+/* Make sure that the tooltip text is always readable */
 
 .apexcharts-tooltip {
   color: #000000;
