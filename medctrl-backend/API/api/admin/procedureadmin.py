@@ -46,5 +46,15 @@ class ProcedureAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
         "annexurl",
     )
 
+    def save_model(self, request, obj, form, change):
+        # Get reference to the old procedure object
+        proc = Procedure.objects.filter(commisionnumber=obj.commisionnumber).first()
+
+        # Check if the manually updated checkbox has been unchecked
+        if not proc.manually_updated:
+            obj.manually_updated = True
+
+        super().save_model(request, obj, form, change)
+
 
 admin.site.register(Procedure, ProcedureAdmin)
