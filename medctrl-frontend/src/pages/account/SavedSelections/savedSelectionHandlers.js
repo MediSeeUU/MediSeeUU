@@ -26,7 +26,7 @@ export async function fetchDeleteSelections(id, setSavedSelections) {
 
   // Fetch the saved selections from the server
   const response = await fetch(
-    `${process.env.PUBLIC_URL}/api/saveselection/${id}`,
+    `${process.env.PUBLIC_URL}/api/saveselection/${id}/`,
     {
       method: 'Delete',
       headers: {
