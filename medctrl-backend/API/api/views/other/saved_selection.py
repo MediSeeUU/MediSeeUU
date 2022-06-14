@@ -1,5 +1,5 @@
 # This file contains all functions that are used for
-# storing data selections of a authenticated users and 
+# storing data selections of an authenticated users and 
 # fetching the data when necesarry.
 #--------------------------------------------------------
 

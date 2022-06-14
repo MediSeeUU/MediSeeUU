@@ -2,7 +2,7 @@
 # database that are used in the frontend. Because the data is send 
 # to the frontend in JSON format it is necesarry to send over aditional information
 # concerning each field. This aditional data is used in the filter fuction 
-# and aditional medicine informaytion page among others.
+# and aditional medicine information page among others.
 #----------------------------------------------------------------------------
 
 import json

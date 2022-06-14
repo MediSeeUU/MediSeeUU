@@ -1,4 +1,4 @@
-# This file constains the view for the endpoint that
+# This file contains the view for the endpoint that
 # is concerned with aditonal information about all 
 # fields in the database.
 #---------------------------------------------------------

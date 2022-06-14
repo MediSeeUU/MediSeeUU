@@ -1,5 +1,5 @@
 # This file contains the serilizer for the 'saved data'
-# of a user. 
+# of an user. 
 #------------------------------------------------------
 
 from rest_framework import serializers

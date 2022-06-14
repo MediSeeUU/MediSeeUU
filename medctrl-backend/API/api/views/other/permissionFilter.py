@@ -1,5 +1,5 @@
-# This file conatins the function that is used to fetch 
-# the permissions apointed to a user.
+# This file conatains the function that is used to fetch 
+# the permissions apointed to an user.
 #---------------------------------------------------------
 
 from django.contrib.auth.models import Group

@@ -1,5 +1,5 @@
 # This file contains all the logic for signing in on the webpage
-# It Checks wether a user has valid login credenials using the knox authentication framework
+# It Checks wether an user has valid login credenials using the knox authentication framework
 # The 'login' function is a default funcion in the django framework used for validating 
 # an user and creating a token.
 #------------------------------------------------------------------
