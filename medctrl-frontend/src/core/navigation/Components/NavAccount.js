@@ -31,7 +31,7 @@ function NavAccount(props) {
           </span>
         </div>
       </div>
-      <span className="med-nav-tooltip">Account Info</span>
+      <span className="med-nav-tooltip">View Selections</span>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import SavedSelections from './SavedSelections/SavedSelections'
 function AccountPage() {
   return (
     <div className="med-content-container">
-      <h1>Account Information</h1>
+      <h1>Saved Data Selections</h1>
       <hr className="med-top-separator" />
       <SavedSelections />
     </div>

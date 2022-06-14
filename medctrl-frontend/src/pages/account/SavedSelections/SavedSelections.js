@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import SavedSelection from './SavedSelection'
-import DetailGroup from '../../detailed-info/Components/DetailGroup'
 import './SavedSelections.css'
 import { fetchSavedSelections } from './savedSelectionHandlers'
 
@@ -16,32 +15,30 @@ function SavedSelections() {
 
   return (
     <div className="med-saved-selection-container">
-      <DetailGroup title="Saved Selections">
-        {savedSelections && savedSelections.length > 0 ? (
-          <table className="med-table">
-            <thead className="med-table-header">
-              <tr>
-                <th>Name</th>
-                <th>Count</th>
-                <th>Created at</th>
-                <th>Select</th>
-                <th>Remove</th>
-              </tr>
-            </thead>
-            <tbody className="med-table-body">
-              {savedSelections.map((x) => (
-                <SavedSelection
-                  key={x.id}
-                  savedSelection={x}
-                  setSavedSelection={setSavedSelections}
-                />
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <h2>No saved selections</h2>
-        )}
-      </DetailGroup>
+      {savedSelections && savedSelections.length > 0 ? (
+        <table className="med-table">
+          <thead className="med-table-header">
+            <tr>
+              <th>Name</th>
+              <th>Count</th>
+              <th>Created at</th>
+              <th>Select</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody className="med-table-body">
+            {savedSelections.map((x) => (
+              <SavedSelection
+                key={x.id}
+                savedSelection={x}
+                setSavedSelection={setSavedSelections}
+              />
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <h2>No saved selections</h2>
+      )}
     </div>
   )
 }
