@@ -46,14 +46,15 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
       <td className="med-selection-select" onClick={updateSelection}>
         <i className="bx bx-select-multiple med-table-icons"></i>
       </td>
-      <td className="med-selection-delete" onClick={fetchDeleteSelections.bind(
-            null,
-            savedSelection.id,
-            setSavedSelection
-          )}>
-        <i
-          className="bx bx-trash med-table-icons"
-        ></i>
+      <td
+        className="med-selection-delete"
+        onClick={fetchDeleteSelections.bind(
+          null,
+          savedSelection.id,
+          setSavedSelection
+        )}
+      >
+        <i className="bx bx-trash med-table-icons"></i>
       </td>
     </tr>
   )

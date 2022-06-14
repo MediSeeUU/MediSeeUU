@@ -8,8 +8,10 @@ test('single ascending sorter on ApplicationNo applied correctly', () => {
   let sortedData = sortData(DummyData, [
     { selected: 'ApplicationNo', order: 'asc' },
   ])
-  var compareFunc =
-    convertSortingAttributeNameToComparisonFunction('ApplicationNo', 'asc')
+  var compareFunc = convertSortingAttributeNameToComparisonFunction(
+    'ApplicationNo',
+    'asc'
+  )
   for (var i = 0; i < Object.keys(sortedData).length - 1; i++) {
     var comparisonvalue = compareFunc(sortedData[i], sortedData[i + 1])
     expect(comparisonvalue).toBeLessThanOrEqual(0)
@@ -22,16 +24,22 @@ test('single ascending sorter onLegalType applied correctly', () => {
     { selected: 'LegalType', order: 'asc' },
   ])
   const NAvalues = ['NA', 'unknown', 'na', 'null']
-  var compareFunc =
-    convertSortingAttributeNameToComparisonFunction('LegalType', 'asc')
+  var compareFunc = convertSortingAttributeNameToComparisonFunction(
+    'LegalType',
+    'asc'
+  )
   for (var i = 0; i < Object.keys(sortedData).length - 1; i++) {
     var comparisonvalue = 0
-    //escape hatch; if value of attribute is in NAvalues, sortingfunction will always return 1 (if asc order), 
-    // or -1 (if desc order), to ensure NA values are always placed last. 
-    if(NAvalues.includes(sortedData[i]['LegalType']) || NAvalues.includes(sortedData[i+1]['LegalType']))
-    {comparisonvalue = 0}
-    else
-    {comparisonvalue = compareFunc(sortedData[i], sortedData[i + 1])}
+    //escape hatch; if value of attribute is in NAvalues, sortingfunction will always return 1 (if asc order),
+    // or -1 (if desc order), to ensure NA values are always placed last.
+    if (
+      NAvalues.includes(sortedData[i]['LegalType']) ||
+      NAvalues.includes(sortedData[i + 1]['LegalType'])
+    ) {
+      comparisonvalue = 0
+    } else {
+      comparisonvalue = compareFunc(sortedData[i], sortedData[i + 1])
+    }
     expect(comparisonvalue).toBeLessThanOrEqual(0)
   }
 })
@@ -41,8 +49,10 @@ test('single descending sorter on ApplicationNo applied correctly', () => {
   let sortedData = sortData(DummyData, [
     { selected: 'ApplicationNo', order: 'desc' },
   ])
-  var compareFunc =
-    convertSortingAttributeNameToComparisonFunction('ApplicationNo', 'desc')
+  var compareFunc = convertSortingAttributeNameToComparisonFunction(
+    'ApplicationNo',
+    'desc'
+  )
   for (var i = 0; i < Object.keys(sortedData).length - 1; i++) {
     var comparisonvalue = compareFunc(sortedData[i], sortedData[i + 1])
     expect(comparisonvalue).toBeGreaterThanOrEqual(0)
@@ -54,8 +64,10 @@ test('single ascending sorter on DecisionDate applied correctly', () => {
   let sortedData = sortData(DummyData, [
     { selected: 'DecisionDate', order: 'asc' },
   ])
-  var compareFunc =
-    convertSortingAttributeNameToComparisonFunction('DecisionDate', 'asc')
+  var compareFunc = convertSortingAttributeNameToComparisonFunction(
+    'DecisionDate',
+    'asc'
+  )
   for (var i = 0; i < Object.keys(sortedData).length - 1; i++) {
     var comparisonvalue = compareFunc(sortedData[i], sortedData[i + 1])
     expect(comparisonvalue).toBeLessThanOrEqual(0)
@@ -65,7 +77,10 @@ test('single ascending sorter on DecisionDate applied correctly', () => {
 //test to check if sorting ascending on MAH (special sorting case) works
 test('single ascending sorter on MAH applied correctly', () => {
   let sortedData = sortData(DummyData, [{ selected: 'MAH', order: 'asc' }])
-  var compareFunc = convertSortingAttributeNameToComparisonFunction('MAH', 'asc')
+  var compareFunc = convertSortingAttributeNameToComparisonFunction(
+    'MAH',
+    'asc'
+  )
   for (var i = 0; i < Object.keys(sortedData).length - 1; i++) {
     var comparisonvalue = compareFunc(sortedData[i], sortedData[i + 1])
     expect(comparisonvalue).toBeLessThanOrEqual(0)
@@ -77,8 +92,10 @@ test('single ascending sorter on ActiveSubstance (special case) applied correctl
   let sortedData = sortData(DummyData, [
     { selected: 'ActiveSubstance', order: 'asc' },
   ])
-  var compareFunc =
-    convertSortingAttributeNameToComparisonFunction('ActiveSubstance', 'asc')
+  var compareFunc = convertSortingAttributeNameToComparisonFunction(
+    'ActiveSubstance',
+    'asc'
+  )
   for (var i = 0; i < Object.keys(sortedData).length - 1; i++) {
     var comparisonvalue = compareFunc(sortedData[i], sortedData[i + 1])
     expect(comparisonvalue).toBeLessThanOrEqual(0)
@@ -91,9 +108,14 @@ test('double ascending sorters on 1:ATMP 2:Activesubstance applied correctly', (
     { selected: 'ATMP', order: 'asc' },
     { selected: 'ActiveSubstance', order: 'asc' },
   ])
-  var compareFunc1 = convertSortingAttributeNameToComparisonFunction('ATMP', 'asc')
-  var compareFunc2 =
-    convertSortingAttributeNameToComparisonFunction('ActiveSubstance', 'asc')
+  var compareFunc1 = convertSortingAttributeNameToComparisonFunction(
+    'ATMP',
+    'asc'
+  )
+  var compareFunc2 = convertSortingAttributeNameToComparisonFunction(
+    'ActiveSubstance',
+    'asc'
+  )
   for (var i = 0; i < Object.keys(sortedData).length - 1; i++) {
     var comparisonvalue1 = compareFunc1(sortedData[i], sortedData[i + 1])
     expect(comparisonvalue1).toBeLessThanOrEqual(0)
@@ -112,9 +134,14 @@ test('double ascending sorters on 1:ATMP 2:ApplicationNo applied correctly', () 
     { selected: 'ATMP', order: 'asc' },
     { selected: 'ApplicationNo', order: 'asc' },
   ])
-  var compareFunc1 = convertSortingAttributeNameToComparisonFunction('ATMP', 'asc')
-  var compareFunc2 =
-    convertSortingAttributeNameToComparisonFunction('ApplicationNo', 'asc')
+  var compareFunc1 = convertSortingAttributeNameToComparisonFunction(
+    'ATMP',
+    'asc'
+  )
+  var compareFunc2 = convertSortingAttributeNameToComparisonFunction(
+    'ApplicationNo',
+    'asc'
+  )
   for (var i = 0; i < Object.keys(sortedData).length - 1; i++) {
     var comparisonvalue1 = compareFunc1(sortedData[i], sortedData[i + 1])
     expect(comparisonvalue1).toBeLessThanOrEqual(0)
