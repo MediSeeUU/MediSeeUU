@@ -50,5 +50,7 @@ class Medicine(models.Model):
     emaurl = models.CharField(db_column="EMAURL", max_length=320, blank=True, null=True)
     ecurl = models.CharField(db_column="ECURL", max_length=320, blank=True, null=True)
 
+    manually_updated = models.BooleanField(default=False)
+
     class Meta:
         db_table = "medicine"

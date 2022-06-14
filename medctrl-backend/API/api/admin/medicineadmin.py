@@ -60,5 +60,14 @@ class MedicineAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
         "ecurl",
     )
 
+    def save_model(self, request, obj, form, change):
+        # Get reference to previous object
+        med = Medicine.objects.filter(eunumber=obj.eunumber).first()
+
+        # Check if the manually updated checkbox has been unchecked
+        if not med.manually_updated:
+            obj.manually_updated = True
+        super().save_model(request, obj, form, change)
+
 
 admin.site.register(Medicine, MedicineAdmin)

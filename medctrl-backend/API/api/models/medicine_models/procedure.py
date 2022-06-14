@@ -34,6 +34,8 @@ class Procedure(models.Model):
         db_column="AnnexURL", max_length=255, blank=True, null=True
     )
 
+    manually_updated = models.BooleanField(default=False)
+
     class Meta:
         db_table = "procedure"
         unique_together = (("eunumber", "procedurecount"),)
