@@ -1,4 +1,7 @@
 # This file contains all the logic for signing in on the webpage
+# It Checks wether a user has valid login credenials using the knox authentication framework
+# The 'login' function is a default funcion in the django framework used for validating 
+# an user and creating a token.
 #------------------------------------------------------------------
 
 from django.contrib.auth import login
@@ -6,9 +9,7 @@ from rest_framework import permissions
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
 
-# Checks wether a user has valid login credenials using the knox authentication framework
-# The 'login' function is a default funcion in the django framework used for validating 
-# an user and creating a token.
+#Class used for loging in an user
 class LoginAPI(KnoxLoginView):
     """Login API View"""
 

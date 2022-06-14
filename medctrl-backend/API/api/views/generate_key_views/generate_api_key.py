@@ -1,3 +1,9 @@
+# This file contains all functions that create a custom template for
+# the django backend. This custom templete extends the default django admin 
+# panel templat with the means to crate a token that a scraper can use to 
+# access the backend.
+#-------------------------------------------------------------------
+
 import datetime
 from django.views.generic import FormView
 from django import forms
@@ -16,7 +22,7 @@ class GenerateKeyForm(forms.Form):
     Generate form to get key for api user
     """
 
-    #creates a dropdown menu with specified users, filtered from the entie user base
+    #creates a dropdown menu with specified users, filtered from the entire user base
     user = forms.ModelChoiceField(
         queryset=User.objects.filter(is_superuser=0)
         .filter(is_staff=0)
