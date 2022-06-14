@@ -41,8 +41,6 @@ Simply run all tests by the following command:
 
 `Tests`: This directory contains all the test cases divided over multiple files.
 
-`DataTests`: This directory contains test cases that manipulate data. The reason for keeping this separate of the other test cases is that you may have to setup the backend locally if you do not want the data on the actual server to be touched.
-
 `Pages`: This directory contains for each page a seperate file with methods to interact in the browser.
 - `shared`: This directory contains shared component files of the pages.
 
