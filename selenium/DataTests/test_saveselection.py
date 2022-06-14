@@ -22,7 +22,7 @@ class TestSaveSelection(WebDriverSetup):
   def setUp(self):
     super().setUp()
   
-  # test if a selection is saved and can be loaded again
+  # test if a selection is saved and can be loaded in and removed again
   def test_saveselection(self):
     # perform login action
     base_page = BasePage(self.driver)
@@ -46,7 +46,7 @@ class TestSaveSelection(WebDriverSetup):
       count += amount
       # navigate to the next page
       data_page.next_page(0)
-    # save selection
+    # save selection with a random name of length 10
     data_page.open_save_menu()
     name = randomword(10)
     data_page.save_input(name)
@@ -74,8 +74,14 @@ class TestSaveSelection(WebDriverSetup):
         data_page.next_page(1)
       else:
         break
-    # finally check if the counts are correct again
+    # check if the counts are correct again
     assert count == count_select
+    # go back to the account page and delete the selection
+    data_page.go_account()
+    account_page.delete_selection(name)
+    # finally check if the selection is removed again
+    assert not account_page.name_in_selection(name)
+
 
 if __name__ == '__main__':
   unittest.main()

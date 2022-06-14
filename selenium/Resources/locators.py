@@ -69,3 +69,4 @@ class AccountPageLocators():
   SAVED_NAME = (By.CLASS_NAME, 'med-selection-name')
   SAVED_COUNT = (By.CLASS_NAME, 'med-selection-count')
   SAVED_SELECT = (By.CLASS_NAME, 'med-selection-select')
+  SAVED_DELETE = (By.CLASS_NAME, 'med-selection-delete')
