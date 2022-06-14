@@ -1,3 +1,7 @@
+# This file contains the serilizer for the 'saved data'
+# of a user. 
+#------------------------------------------------------
+
 from rest_framework import serializers
 from api.models.other import SavedSelection
 

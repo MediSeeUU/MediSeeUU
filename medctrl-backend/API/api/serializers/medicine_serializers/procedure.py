@@ -1,3 +1,6 @@
+# This file serializes all procudure data
+#--------------------------------------------
+
 from rest_framework import serializers
 from api.models.medicine_models import Procedure
 

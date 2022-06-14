@@ -1,3 +1,10 @@
+# This serializer is responsible for serializing all
+# medicine data. The medicine data is spread out over 
+# several tables in the database and therefore this
+# serializer file has to access all different tables
+# and merge all this data in an onedimensional object.
+#---------------------------------------------------
+
 from rest_framework import serializers
 from api.models.medicine_models import (
     Medicine,

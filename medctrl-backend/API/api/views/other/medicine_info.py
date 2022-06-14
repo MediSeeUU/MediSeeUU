@@ -1,3 +1,8 @@
+# This file constains the view for the endpoint that
+# is concerned with aditonal information about all 
+# fields in the database.
+#---------------------------------------------------------
+
 from rest_framework import views
 from rest_framework.response import Response
 from .medicine_info_json import get_medicine_info

@@ -1,3 +1,7 @@
+# This file conatins the function that is used to fetch 
+# the permissions apointed to a user.
+#---------------------------------------------------------
+
 from django.contrib.auth.models import Group
 
 #Gets all permissions of a user

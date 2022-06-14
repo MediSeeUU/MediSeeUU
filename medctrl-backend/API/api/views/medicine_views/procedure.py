@@ -1,5 +1,7 @@
-from rest_framework import viewsets
+# This file contains the 'view' concerning the Procedue data.
+#-----------------------------------------------------------
 
+from rest_framework import viewsets
 from api.serializers.medicine_serializers import ProcedureSerializer
 from api.models.medicine_models import Procedure
 

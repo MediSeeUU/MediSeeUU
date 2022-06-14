@@ -1,6 +1,11 @@
+# This serializer file is responsible for serializing all
+# data concerning an user. Because the permissions we use
+# are partly determined by the group(s) an user belongs to, 
+# the group serializer is included in this file.
+#--------------------------------------------------------
+
 from rest_framework import serializers
 from django.contrib.auth.models import User, Group
-
 from api.models import SavedSelection
 from api.serializers import SavedSelectionSerializer
 

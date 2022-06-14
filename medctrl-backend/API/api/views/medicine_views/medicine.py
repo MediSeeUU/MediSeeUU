@@ -1,3 +1,8 @@
+# This file contains all functions for the 'medicine view' endpoint. 
+# All data is fetched form the cache and filtered on the access level
+# of the user. 
+#------------------------------------------------------------------------------
+
 from rest_framework import viewsets
 from rest_framework import permissions
 from api.models.other import SavedSelection

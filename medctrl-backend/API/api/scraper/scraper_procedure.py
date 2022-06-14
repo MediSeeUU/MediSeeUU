@@ -1,3 +1,10 @@
+# This file can be accesed by the scraper via the procudure enpoint.
+# When the scraper scrapes infromation about procudures, that data
+# is posted to the procudure endpoint from where the data is 
+# processed in this file. If the new data is validated, it will
+# be updated in the database.
+#-------------------------------------------------------------
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import DjangoModelPermissions

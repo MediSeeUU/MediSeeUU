@@ -1,3 +1,7 @@
+# This model (table in database) stores
+# all 'saved data' selections of users.
+#-------------------------------------
+
 import uuid
 from django.db import models
 from django.contrib.auth.models import User

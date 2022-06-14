@@ -1,3 +1,10 @@
+# This file contains all necesary information about the fields in the 
+# database that are used in the frontend. Because the data is send 
+# to the frontend in JSON format it is necesarry to send over aditional information
+# concerning each field. This aditional data is used in the filter fuction 
+# and aditional medicine informaytion page among others.
+#----------------------------------------------------------------------------
+
 import json
 
 #returns a list of json components dependign on permission level, this list is for the filters and for the detailed information page
