@@ -9,6 +9,7 @@ import { useVisuals } from '../../shared/Contexts/VisualsContext'
 // a specific target which that step should highlight, the title and
 // content fields are the actually informative fields for the user
 import steps from './TourSteps.json'
+import { useColumnSelection } from '../../shared/Contexts/ColumnSelectionContext'
 
 // A data context which allows the 'start tour' button on the home
 // page to actually start a tour
@@ -32,6 +33,8 @@ function DashboardTour(props) {
   let { checkedState, setCheckedState } = useCheckedState()
 
   let { setVisuals } = useVisuals()
+
+  let { columnSelection, setColumnSelection } = useColumnSelection()
 
   // Function to handle a update to the tour, i.e. when the user wants to
   // view the next step in the tour
@@ -90,6 +93,17 @@ function DashboardTour(props) {
           legendOn: false,
           labelsOn: true,
         },
+      ])
+
+      // When displaying the datapoints on the data page, we are referring to all
+      // medicines which have a withdrawn status, we want to make sure that the
+      // status variable is visible in the selection table
+      setColumnSelection([
+        'EUNoShort',
+        'BrandName',
+        'MAH',
+        'DecisionDate',
+        'Status',
       ])
     }
 
