@@ -82,7 +82,7 @@ function ProcSelectDialog({
   }
 
   return (
-    <div className="med-proc-select-dialog">
+    <div className="med-dialog">
       <form onSubmit={handleSubmit}>
         <h1>Select Desired Procedure Types</h1>
         <span className="med-description">
@@ -99,7 +99,7 @@ function ProcSelectDialog({
           Apply
         </button>
 
-        <button className="med-cancel-download-button" onClick={closeModal}>
+        <button className="med-cancel-button" onClick={closeModal}>
           Cancel
         </button>
       </form>

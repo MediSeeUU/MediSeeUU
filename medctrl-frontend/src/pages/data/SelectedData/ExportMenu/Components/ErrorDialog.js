@@ -3,7 +3,7 @@
 // error has ocurred during the export process
 function ErrorDialog(props) {
   return (
-    <div className="med-export-dialog">
+    <div className="med-export-dialog med-dialog">
       <i className="bx bxs-error" />
       <h1>An Error Occurred</h1>
       <div className="med-error-message">
@@ -12,7 +12,7 @@ function ErrorDialog(props) {
           datapoints, please contact the administrator for more information.
         </span>
       </div>
-      <button className="med-cancel-download-button" onClick={props.onClick}>
+      <button className="med-cancel-button" onClick={props.onClick}>
         Done
       </button>
     </div>
