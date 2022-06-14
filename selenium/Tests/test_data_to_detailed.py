@@ -35,6 +35,5 @@ class TestDataToDetailed(WebDriverSetup):
     for key in data:
       assert data[key] == detailed_page.get_value(key)
 
-
 if __name__ == '__main__':
   unittest.main()

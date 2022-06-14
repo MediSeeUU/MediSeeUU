@@ -166,7 +166,6 @@ class TestDataPage(WebDriverSetup):
     self.data_page.change_column(0, column, new_column_value)
     for i in range(self.data_page.amount_of_rows(0)):
       new_value = self.data_page.table_value(0, i + 1, column)
-      print(new_value)
       assert new_value not in data
     # check if the change has been applied everywhere
     assert self.data_page.column_value(0, column) == new_column_value

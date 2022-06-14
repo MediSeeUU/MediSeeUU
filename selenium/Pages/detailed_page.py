@@ -11,7 +11,7 @@ class DetailedPage(BasePage):
     # store the detailed info displayed on the page
     detailed_items = driver.find_elements(*DetailedPageLocators.DETAIL_ITEM)
     self.detailed_info = dict()
-    for item in self.detailed_items:
+    for item in detailed_items:
       name = item.find_element(*DetailedPageLocators.DETAIL_NAME).text
       value = item.find_element(*DetailedPageLocators.DETAIL_VALUE).text
       self.detailed_info[name] = value
