@@ -27,7 +27,7 @@ This software development project is a collaboration between Utrecht University 
 
 7. Finally, use `$ npm start` to start the application, you can now visit the local version at `localhost:3000`.
 
-# Used Technolgies
+# Used Techonolgies
 
 This dasboard is built using the following technolgies:
 * ReactJS framework 17.0.2
