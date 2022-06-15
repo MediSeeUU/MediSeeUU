@@ -38,7 +38,7 @@ This dasboard is built using the following technolgies:
 
 In the root directory of this project, config files can be found for git, eslint and prettier, as well as the npm dependency information for this project. The `public` directory contains the base html file for the dashboard and the dashboard logo and favicon.
 
-All of the source files are containted in the `src` directory. Mos of the source files are subdived into sub directories, which will be covered below. The files which reside in the `src` directory itself are files critical for the dashabord like `index.js` and `index.css` which provide an entry point for the application.  
+All of the source files are contained in the `src` directory. Most of the source files are subdived into sub directories, which will be covered below. The files which reside in the `src` directory itself are files critical for the dashabord like `index.js` and `index.css` which provide an entry point for the application.  
 
 ## `core`
 This directory contains all of the components which are always present on the dashboard (for example the header, footer and navigation), as well as the logic for logging in and out users. This is also the directory where the `App` component resides, which represents the main component and the whole dashboard.
@@ -53,7 +53,7 @@ This directory contains all the json files with data used for mocking and testin
 This directory contains all of the javascript files and logic used for the mocking of specific functionalities during unit testing.
 
 ## `pages`
-For each of the different pages, a sub directory holds all of the specific files and folder required for that page to correclty and fully function. Each page consists of one 'top level' component which describes the whole page, and can be build using multiple smaller components. All of these sub components are usually stored in a folder `components` or a named folder.
+For each of the different pages, a sub directory holds all of the specific files and folders required for that page to correctly and fully function. Each page consists of one 'top level' component which describes the whole page and can be build using multiple smaller components. All of these sub components are usually stored in a folder `components` or a named folder.
 
 ### `pages/account`
 The account page shows a logged in user all of the data selections the user has made in the past and allows for the creation of new selections and the deletion of existing selections.
@@ -74,7 +74,17 @@ The home page is a simple page, which gives a short overview of the dashboards f
 The home page is a simple page, which gives additional information about this dashboard and the orginations behind the development of this dashboard.
 
 ### `pages/visualizations`
-_To do_
+On the visualizations page visualizations can be made based on the selected data. A single visualization consists roughly of a chart part and a form part.
+The exact form shown depends on the chosen chart type.
+
+#### `Visualizations`
+Multiple visualizations can be made (and subsequently removed), all of them use the same data. There can be chosen between bar charts (with either 1 or 2 variables), line charts and pie charts. Each chart type can have their own options. All chart types have the ‘show labels’ and ‘show legend’ option. For each chart type you can choose any combination between variables, although some may not make much sense. You can choose which categories of the chosen variables you wish to include. The bar chart with 2 variables has 3 extra options. It can switch its axes, make it stack and, if stacked, choose whether the stacking is relative. A title can be added, but currently it is not included when the chart is exported.
+
+#### `Interactivity`
+A visualization can be hovered over, showing information about the categories. In the line charts and single variable bar charts you can zoom in on the chart. When clicking on a category in a chart, a popup is shown. This popup is essentially a shortcut to the selected data table of the data page, but only showing the data points of the selected category. In this popup data entries can be exported or removed. When data entries are removed, all visualizations will be rerendered, because the selected data has been changed.
+
+#### `Exports`
+A visualization can be exported to either .svg or .png.
 
 ## `shared`
 The `shared` directory contains all of the components that are used by multiple pages on the dashboard, these include:
