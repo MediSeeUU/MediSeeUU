@@ -10,9 +10,11 @@ sys.path.append("..")
 from WebDriverSetup import WebDriverSetup
 from Pages.visualize_page import VisualizePage
 
+# test cases for the visualization page
 class TestVisualizePage(WebDriverSetup):
   def setUp(self):
     super().setUp()
+    # navigate to visualization page
     self.visualize_page = VisualizePage(self.driver)
   
   # test if the page is correct
