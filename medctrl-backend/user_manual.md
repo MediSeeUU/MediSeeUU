@@ -1,0 +1,285 @@
+# Backend User Manual
+
+* [ Development set-up ](#devsetup)
+* [ Endpoints ](#endpoints)
+* [ Admin panel ](#adminpanel)
+
+
+<a name="devsetup"></a>
+## Development set-up
+
+This setup guide is written with Ubuntu 20.04 in mind. Most of the steps will be the same for other operating systems.
+There are a few prerequisites that we assume are already setup. These include:
+
+* A Python3.10 install
+* Access to a MySQL database
+
+If the prerequisites are installed you can follow the guide below to get started. 
+
+In all the snippets below the current directory is `medctrl-backend/` unless specified otherwise.
+
+### Install dependencies
+
+0. Create and activate Python virtual environment.
+```sh
+python3 -m virtualenv venv
+source venv/bin/activate
+```
+1. Install requirements.
+    ```sh
+    pip install -r requirements.txt
+    ```
+    During the installation of `mysqlclient` an error might occur because some libraries are not yet installed. These can be installed with the following command:
+    ```sh
+    sudo apt install python3-dev default-libmysqlclient-dev build-essential
+    ```
+
+
+### Setup Configuration
+
+The configuration files for the software should be placed in  `medctrl-backend/API/api_settings/settings/`. There already is a settings file (`common.py`) with general settings that are the same for every deployment.\
+In addition to these settings you will need some extra configuration values, for example database login credentials. For development you should create a file named `dev_settings.py` in the `settings/` directory. \
+Below is an example configuration which you can use as a template.
+
+```py
+# Import all common settings
+from api_settings.settings.common import *
+
+# Secret key that Django uses for generating hashes
+SECRET_KEY = "random secret key"
+
+# Whether to run Django in Debug mode
+DEBUG = True
+
+# Root path where the API will be listening on
+BASE_URL = "api/"
+
+# Database connnection settings
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": DB_NAME,
+        "USER": DB_USERNAME,
+        "PASSWORD": DB_PASSWORD,
+        "HOST": DB_HOST,
+        "PORT": DB_PORT,
+    }
+}
+
+# Where to put static files for django. Not needed for development
+STATIC_ROOT = "django-static"
+```
+
+### MedCtrl Setup
+
+1. Migrate database and create Django permission levels
+```sh
+# in directory medctrl-backend/API
+python manage.py migrate
+python manage.py create_column_permissions
+```
+2. Create a Django admin user and anonymous group
+```sh
+# in directory medctrl-backend/API
+# this command will give some prompts for username and password
+python manage.py createsuperuser
+python manage.py init_setup
+```
+3. Run the backend
+```sh
+# in directory medctrl-backend/API
+# Django will start on port 8000
+python manage.py runserver 8000
+```
+
+<a name="endpoints"></a>
+## Endpoints
+
+* `/medicine`\
+This endpoint is used to retrieve the medicine data. A GET request to this endpoint will return all the data that the (anonymous) user has access to.
+
+* `/procedure/{eunumber}`
+This endpoint is used to retrieve all the procedures that are connected to the medicine with the given eunumber.
+
+* `/saveselection` \
+    This endpoint is used to create, retrieve and delete selected selections.
+
+    * Creating a saved selection \
+        POST with following body:
+        ```json
+        {
+            "name": "Name of selection",
+            "eunumbers": [1, 2, 3] // list of selected medicines
+        }
+        ```
+        ->
+        ```json
+        {
+            "id": "12fb0250-a725-462d-8b06-92762194a2af", // id of the saved selection
+            "name": "test",
+            "created_at": "2022-06-15T11:11:59.466733Z",
+            "created_by": "<username>",
+            "eunumbers": [
+                1,
+                2,
+                3
+            ]
+        }
+        ```
+    * Retrieving a single saved selection \
+        GET on `/saveselection/<selectionid>`\
+        ->
+        ```json
+        {
+            "id": "12fb0250-a725-462d-8b06-92762194a2af", // id of the saved selection
+            "name": "test",
+            "created_at": "2022-06-15T11:11:59.466733Z",
+            "created_by": "<username>",
+            "eunumbers": [
+                1,
+                2,
+                3
+            ]
+        }
+        ```
+    * Retrieving all saved selection for the current user \
+        GET on `/savedselection` \
+        ->
+        ```json
+        [
+            {
+                "id": "12fb0250-a725-462d-8b06-92762194a2af", // id of the saved selection
+                "name": "test",
+                "created_at": "2022-06-15T11:11:59.466733Z",
+                "created_by": "<username>",
+                "eunumbers": [
+                    1,
+                    2,
+                    3
+                ]
+            }
+        ]
+        ```
+    * Deleting a saved selection \
+        DELETE on `/saveselection/<selectionid>`
+
+
+* `/detailedData` \
+    This endpoint returns details about the types of variables that are in the database. This data is, among other things, used to determine how to filter/sort the medicine data.
+
+* `/account/login`
+    Used to login a user. POST with following body:\
+    ```json
+    {
+        "username": "username",
+        "password": "password"
+    }
+    ```
+    ->
+    ```json
+    {
+        "expiry": "2022-06-15T21:11:51.454234Z",
+        "token": "1c5cd1a9cacb2a883059d1b835378eee71adb3112f61cf38fb88252cbdcdd026",
+        "user": {
+            "id": 2,
+            "username": "username",
+            "groups": [
+                {
+                    "name": "group1",
+                    "id": 1
+                }
+            ], // list of groups that the user is in
+            "selections": [] // list of saved selection
+        }
+    }
+    ```
+
+
+* `/account/logout`, `/account/logoutAll` \
+    These endpoints are used to logout the user. The `logoutAll` will end all active sessions of the given user.
+    To logout, send a POST request with an empty body to one of these URLs.
+
+
+* `/scraper/medicine`
+    This endpoint can be used to programatically (for example via the scraper) update the medicine data in de database.
+
+    Updates can be done by sending a POST request with the following body\
+    ```json
+    {
+        "override": true, // Whether to override manually updated values
+        "data": [
+            {
+                "eunumber": 1,
+                ...
+            } // A list of medicine objects that will be updated
+              // For a complete list of variables that can be updated
+              // See the domain model
+        ]
+    }
+    ```
+
+* `/scraper/procedure`
+    This endpoint can be used to programatically (for example via the scraper) update the procedure data in de database.
+
+    Updates can be done by sending a POST request with the following body\
+    ```json
+    {
+        "override": true, // Whether to override manually updated values
+        "data": [
+            {
+                "eunumber": 1, 
+                "procedurecount": 1,
+                ...
+            } // A list of procedure objects that will be updated
+              // For a complete list of variables that can be updated
+              // See the domain model
+        ]
+    }
+    ```
+
+<a name="adminpanel"></a>
+## Admin panel
+
+The Django admin panel is accessible via the `<ROOT_URL>/admin/` endpoint. 
+
+![Django admin panel index](img/admin_index.png)
+
+### Scraper API keys
+In the admin panel you can generate an API key for the scraper. You can specify how many days the API key should be valid for and upon clicking generate you will be given the token which can be copied to the scraper.
+
+![Django admin genreate scraper key](img/admin_scraper_key.png)
+![Generate key success](img/admin_scraper_generated.png)
+
+### Manually update model values
+
+It is possible to update individual objects values in the admin panel by following the links in the overview.
+
+![Admin update objects](img/admin_overview_update.png)
+
+You will then be presented with an overview of all the objects that are in the database.
+
+![Admin medicine objects list](img/admin_med_objects.png)
+
+Clicking on a medicine object will give options to edit or delete the object.
+
+![Admin edit individual medicine](img/admin_med_edit.png)
+
+### Group management
+
+We use groups to manage permissions. Groups can be managed via the admin panel.
+
+![Admin group and user management](img/admin_group_users.png)
+
+By default the initial setup script will create an anonymous group. If someone who is not logged in sends a request, the anonymous groups' permissions will be used to determine what data to send back. \
+In the edit menu for a group you can specify which variables of a medicine a specific group has access to.
+
+![edit group permissions](img/admin_group_permissions.png)
+
+It is possible to create as many new groups as needed. On the users' page you can assign groups to users.
+
+![Assign groups to user](img/admin_user_group.png)
+
+
+It is also possible to assign permissions to individual users.
+
+![User permissions](img/admin_user_permissions.png)
