@@ -27,6 +27,7 @@ urlpatterns = [
         base_url,
         include(
             [
+                path("admin/doc/", include("django.contrib.admindocs.urls")),
                 path(
                     "admin/generateApiKey",
                     GenerateKeyView.as_view(),

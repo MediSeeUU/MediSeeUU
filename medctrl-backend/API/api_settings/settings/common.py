@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "knox",
     "guardian",
     "import_export",
+    "django.contrib.admindocs",
 ]
 
 
