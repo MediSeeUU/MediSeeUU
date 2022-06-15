@@ -15,7 +15,7 @@ To install all the necessary packages at once, the following command should be r
   pip install -r requirements.txt
 ```
 
-Simply run all tests by the following command:
+Make sure that the frontend server is running (on default port 3000). Then simply run all tests by the following command:
 
 ```bash
   py TestRunner.py
