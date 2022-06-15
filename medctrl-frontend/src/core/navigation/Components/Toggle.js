@@ -1,3 +1,6 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 // Function based component that returns the toggle component
 // which is used to expand or collapse the navigation bar
 function Toggle(props) {

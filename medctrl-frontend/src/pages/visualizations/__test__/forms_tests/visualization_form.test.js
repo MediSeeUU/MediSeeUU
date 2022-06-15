@@ -1,3 +1,6 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 import { render, fireEvent, screen } from '@testing-library/react'
 import getUniqueCategories from '../../single_visualization/utils/getUniqueCategories'
 import VisualizationForm from '../../single_visualization/forms/VisualizationForm'

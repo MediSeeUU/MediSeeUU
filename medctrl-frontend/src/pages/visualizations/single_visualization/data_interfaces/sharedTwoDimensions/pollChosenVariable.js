@@ -1,3 +1,6 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 // Counts the number of occurrences a given value of the x variable is paired
 // with a given value of the y variable.
 export default function pollChosenVariable(
