@@ -1,9 +1,15 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 # This file contains all necesary information about the fields in the 
 # database that are used in the frontend. Because the data is send 
 # to the frontend in JSON format it is necesarry to send over aditional information
 # concerning each field. This aditional data is used in the filter fuction 
 # and aditional medicine information page among others.
 #----------------------------------------------------------------------------
+
+import json
 
 import json
 

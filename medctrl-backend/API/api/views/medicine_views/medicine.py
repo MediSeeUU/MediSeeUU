@@ -1,3 +1,7 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 # This file contains all functions for the 'medicine view' endpoint. 
 # All data is fetched form the cache and filtered on the access level
 # of the user. 

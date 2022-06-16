@@ -1,3 +1,7 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 # This file contains the view for the endpoint that
 # is concerned with aditonal information about all 
 # fields in the database.

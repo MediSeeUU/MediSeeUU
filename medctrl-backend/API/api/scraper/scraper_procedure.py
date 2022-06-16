@@ -1,3 +1,7 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 # This file can be accesed by the scraper via the procudure enpoint.
 # When the scraper scrapes infromation about procudures, that data
 # is posted to the procudure endpoint from where the data is 

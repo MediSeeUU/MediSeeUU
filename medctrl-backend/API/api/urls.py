@@ -1,3 +1,7 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 # This file contains all routes (endpoints) that are accescile 
 # by an user. Each route connects to a 'view', which can be found
 # in the 'views' folder. We distinguish between APIView's and ViewSets. 

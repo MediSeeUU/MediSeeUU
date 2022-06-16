@@ -1,3 +1,6 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 // Function that cleans the fetched data from the API based on the given structure data
 export default function cleanFetchedData(fetchedData, structData) {
   const cleanedData = []

@@ -1,3 +1,7 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 # This serializer file is responsible for serializing all
 # data concerning an user. Because the permissions we use
 # are partly determined by the group(s) an user belongs to, 

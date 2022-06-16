@@ -1,5 +1,11 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 # This file contains the 'view' concerning the Procedue data.
 #-----------------------------------------------------------
+
+from rest_framework import viewsets
 
 from rest_framework import viewsets
 from api.serializers.medicine_serializers import ProcedureSerializer

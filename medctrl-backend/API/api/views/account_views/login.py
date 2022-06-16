@@ -1,3 +1,7 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 # This file contains all the logic for signing in on the webpage
 # It Checks wether an user has valid login credenials using the knox authentication framework
 # The 'login' function is a default funcion in the django framework used for validating 

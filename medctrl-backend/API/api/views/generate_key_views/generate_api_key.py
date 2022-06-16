@@ -1,3 +1,7 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 # This file contains all functions that create a custom template for
 # the django backend. This custom templete extends the default django admin 
 # panel templat with the means to crate a token that a scraper can use to 
