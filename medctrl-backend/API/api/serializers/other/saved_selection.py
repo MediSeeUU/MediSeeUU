@@ -5,10 +5,6 @@
 # This file contains the serilizer for the 'saved data'
 # of an user. 
 #------------------------------------------------------
-
-from rest_framework import serializers
-from api.models import SavedSelection
-
 from rest_framework import serializers
 from api.models.other import SavedSelection
 
