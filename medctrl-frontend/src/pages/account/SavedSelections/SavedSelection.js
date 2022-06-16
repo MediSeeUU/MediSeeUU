@@ -46,7 +46,7 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
       <td className="med-selection-created">
         {date.toLocaleDateString()} {date.toLocaleTimeString()}
       </td>
-      <td className="med-selection-select" onClick={updateSelection}>
+      <td className="med-selection-select" onClick={updateSelection} data-testid="update-select">
         <i className="bx bx-select-multiple med-table-icons"></i>
       </td>
       <td
@@ -56,6 +56,7 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
           savedSelection.id,
           setSavedSelection
         )}
+        data-testid="delete-select"
       >
         <i className="bx bx-trash med-table-icons"></i>
       </td>
