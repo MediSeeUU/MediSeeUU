@@ -13,7 +13,7 @@ This software development project is a collaboration between Utrecht University 
 
 # Setup
 
-1. Download and install the node package manager installer using the following link: https://nodejs.org/en/download/. During the install process, the default settings will be sufficient.
+1. Download and install the node package manager installer using the following link: https://nodejs.org/en/download/. During the installation process, the default settings will be sufficient.
 
 2. If you do not use a compatible IDE already and wish to continue developing the software, you can download and open Visual Studio Code editor. (You can download VSCode using the following via the website: https://code.visualstudio.com/).
 
