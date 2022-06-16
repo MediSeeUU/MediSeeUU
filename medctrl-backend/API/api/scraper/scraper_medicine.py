@@ -4,10 +4,10 @@
 
 # This file can be accesed by the scraper via the medicine enpoint.
 # When the scraper scrapes infromation about medicines, that data
-# is posted to the medicine endpoint from where the data is 
+# is posted to the medicine endpoint from where the data is
 # processed in this file. If the new data is validated, it will
 # be updated in the database.
-#-------------------------------------------------------------
+# -------------------------------------------------------------
 
 from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.views import APIView

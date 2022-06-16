@@ -3,12 +3,12 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 # This file contains the serilizer for the 'saved data'
-# of an user. 
-#------------------------------------------------------
+# of an user.
+# ------------------------------------------------------
 from rest_framework import serializers
 from api.models.other import SavedSelection
 
-#Gets all data slections that a user saved
+# Gets all data slections that a user saved
 class SavedSelectionSerializer(serializers.ModelSerializer):
     """
     Serializer for the SavedSelection model

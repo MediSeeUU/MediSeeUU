@@ -4,16 +4,16 @@
 
 # This serializer file is responsible for serializing all
 # data concerning an user. Because the permissions we use
-# are partly determined by the group(s) an user belongs to, 
+# are partly determined by the group(s) an user belongs to,
 # the group serializer is included in this file.
-#--------------------------------------------------------
+# --------------------------------------------------------
 
 from rest_framework import serializers
 from django.contrib.auth.models import User, Group
 from api.models import SavedSelection
 from api.serializers import SavedSelectionSerializer
 
-#Serialises all groups provided by the Userserializer
+# Serialises all groups provided by the Userserializer
 class GroupSerializer(serializers.ModelSerializer):
     """
     Serializer class for the Group model
@@ -27,13 +27,14 @@ class GroupSerializer(serializers.ModelSerializer):
         model = Group
         fields = ("name", "id")
 
-#serializes all informations concerning a authenticated user
+
+# serializes all informations concerning a authenticated user
 class UserSerializer(serializers.ModelSerializer):
     """
     Serializer class for the User model
     """
 
-    groups = GroupSerializer(many=True) #adds all groups a user belongs to
+    groups = GroupSerializer(many=True)  # adds all groups a user belongs to
     selections = serializers.SerializerMethodField()
 
     class Meta:
@@ -42,9 +43,14 @@ class UserSerializer(serializers.ModelSerializer):
         """
 
         model = User
-        fields = ("id", "username", "groups", "selections") #all fields that will be serialized and returned
+        fields = (
+            "id",
+            "username",
+            "groups",
+            "selections",
+        )  # all fields that will be serialized and returned
 
-    #gets all data selections that a user has saved
+    # gets all data selections that a user has saved
     def get_selections(self, user):
         """
         Get all the selections that this user has created

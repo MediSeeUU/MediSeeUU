@@ -4,7 +4,7 @@
 
 # This file contains all serializers concerning
 # the history of the medicine data of the database.
-#---------------------------------------------
+# ---------------------------------------------
 
 from rest_framework import serializers
 from api.models.medicine_models import (

@@ -2,9 +2,9 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-# This file is responsible for creating all custom 
+# This file is responsible for creating all custom
 # permissiosn that are used in this project.
-#------------------------------------------------------
+# ------------------------------------------------------
 
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
@@ -30,7 +30,7 @@ from api.models.medicine_models import (
     Lookupstatus,
 )
 
-#creates custom permission levels to view medicines
+# creates custom permission levels to view medicines
 class Command(BaseCommand):
     """
     Django admin command that creates permissions for all models in the API.

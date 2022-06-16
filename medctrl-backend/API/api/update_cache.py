@@ -2,10 +2,10 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-# For each user all data is fetched from the database when opening 
+# For each user all data is fetched from the database when opening
 # the dashboard and strored in memory cache.
 # This improves the peformance of the 'Get' requests by serval seconds.
-#-------------------------------------------------------------------
+# -------------------------------------------------------------------
 
 import io
 from django.core.cache import cache

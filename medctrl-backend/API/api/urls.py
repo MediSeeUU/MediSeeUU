@@ -2,13 +2,13 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-# This file contains all routes (endpoints) that are accescile 
+# This file contains all routes (endpoints) that are accescile
 # by an user. Each route connects to a 'view', which can be found
-# in the 'views' folder. We distinguish between APIView's and ViewSets. 
+# in the 'views' folder. We distinguish between APIView's and ViewSets.
 # In 'urlpatterns' paths are specified. APIView's use '.as_view()' as
 # an aditional argument where ViewSets use 'as_viewViewSet' as an aditional
 # argument. ViewSets can also be used in a router, APIView's can not.
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
@@ -25,7 +25,7 @@ from api.scraper.router import url_patterns as scraper_routes
 
 
 # Only viewSets can be registerd at a router.
-# The router is used for better organization of the code. 
+# The router is used for better organization of the code.
 router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
 router.register(r"procedure/(?P<eunumber>\d+)", ProcedureViewSet, basename="procedure")
@@ -33,8 +33,7 @@ router.register(r"saveselection", SavedSelectionViewSet, basename="saveselection
 
 # urlpatterns is the default way of adding routes (endpoints).
 urlpatterns = [
-    path("", include(router.urls)), # Includes all router paths as patterns
-    
+    path("", include(router.urls)),  # Includes all router paths as patterns
     # Account routes (../acount/#PATH)
     path(
         "account/",
@@ -48,7 +47,6 @@ urlpatterns = [
             ]
         ),
     ),
-    
     # Other routes
     path("scraper/", include(scraper_routes)),
     path("detailedData/", Medicine_info.as_view()),

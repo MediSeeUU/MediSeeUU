@@ -3,9 +3,9 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 # This file contains all functions that are used for
-# storing data selections of an authenticated users and 
+# storing data selections of an authenticated users and
 # fetching the data when necesarry.
-#--------------------------------------------------------
+# --------------------------------------------------------
 
 from rest_framework import viewsets
 from api.serializers.other import SavedSelectionSerializer
@@ -38,7 +38,7 @@ class SavedSelectionViewSet(viewsets.ModelViewSet):
         obj.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def get_queryset(self): # fetching all stored data selections
+    def get_queryset(self):  # fetching all stored data selections
         pk = self.kwargs.get("pk")
 
         if pk is None:

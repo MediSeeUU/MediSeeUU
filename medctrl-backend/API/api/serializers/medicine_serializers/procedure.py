@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 # This file serializes all procudure data
-#--------------------------------------------
+# --------------------------------------------
 
 from rest_framework import serializers
 from api.models.medicine_models import Procedure

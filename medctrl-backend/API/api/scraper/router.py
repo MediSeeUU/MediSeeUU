@@ -4,7 +4,7 @@
 
 # This file contains all url paths (endpoints)
 # that the scarper uses for updating the database.
-#--------------------------------------------------
+# --------------------------------------------------
 
 from django.urls import path
 from .scraper_medicine import ScraperMedicine
