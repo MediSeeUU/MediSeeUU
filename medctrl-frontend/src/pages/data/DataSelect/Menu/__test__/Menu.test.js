@@ -101,11 +101,11 @@ test('max 4 filters', () => {
 })
 
 test('add filterbox', () => {
-  render(<Menu filters={[{ selected: '', input: [''] }]} sorters={[]} />)
+  render(<Menu filters={[{ selected: '', input: [''] }, { selected: '', input: [''] }]} sorters={[]} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
-  expect(screen.getAllByRole('textbox')).toHaveLength(1)
-  fireEvent.click(screen.getByText('+ Add'))
   expect(screen.getAllByRole('textbox')).toHaveLength(2)
+  fireEvent.click(screen.getAllByText('+ Add')[1])
+  expect(screen.getAllByRole('textbox')).toHaveLength(3)
 })
 
 test('remove filterbox', () => {
@@ -143,13 +143,13 @@ test('filters and sorters applied correctly in state', () => {
         input: [{ var: 'welcome', filterRange: 'from' }],
       },
     ])
-    expect(sorters).toStrictEqual([{ selected: 'ATCCodeL2', order: 'desc' }])
+    expect(sorters).toStrictEqual([{ selected: '', order: 'asc' }, { selected: 'ATCCodeL2', order: 'desc' }])
   }
   render(
     <MockProvider>
       <Menu
         filters={[{ selected: '', input: [{ var: '', filterRange: 'from' }] }]}
-        sorters={[{ selected: '', order: 'asc' }]}
+        sorters={[{ selected: '', order: 'asc' }, { selected: '', order: 'asc' }]}
         update={update}
       />
     </MockProvider>
@@ -162,9 +162,9 @@ test('filters and sorters applied correctly in state', () => {
   fireEvent.change(text1, { target: { value: 'welcome' } })
   fireEvent.focusOut(text1)
 
-  const select2 = screen.getAllByTestId('sort-select-attr')[0]
+  const select2 = screen.getAllByTestId('sort-select-attr')[1]
   fireEvent.change(select2, { target: { value: 'ATCCodeL2' } })
-  const order2 = screen.getAllByTestId('sort-select-order')[0]
+  const order2 = screen.getAllByTestId('sort-select-order')[1]
   fireEvent.change(order2, { target: { value: 'desc' } })
 
   fireEvent.click(screen.getByText(/Apply/i))

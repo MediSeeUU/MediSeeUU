@@ -36,7 +36,20 @@ const mockApi = setupServer(
       ])
     )
   }),
+  rest.post('/api/saveselection', (req, res, ctx) => {
+    return res(
+      ctx.json({"id":"3028cdec-ee8e-4c25-af19-19087ef4f64e","name":"mooie selectie","created_at":"2022-06-20T10:30:53.081142Z","created_by":"admin","eunumbers":[1,2,3]})
+    )
+  }),
   rest.post('/api/account/login', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        username: "test",
+        password: "test",
+      })
+    )
+  }),
+  rest.get('/api/account/login', (req, res, ctx) => {
     return res(
       ctx.json({
         expiry: '2022-05-18T22:27:47.764171Z',

@@ -13,7 +13,6 @@ function searchData(data, query, columns) {
 
 // Filter data on query
 function filterData(data, query) {
-  console.log(query)
   return data.filter((obj) => {
     // Get a list of all the values in the datapoint and preprocess it by tokenizing
     const vals = Object.values(obj)

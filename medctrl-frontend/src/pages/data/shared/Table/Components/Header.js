@@ -62,6 +62,7 @@ function Header({ data, select, sorters, setSorters }) {
           <i
             className="bx bxs-up-arrow med-table-header-sort"
             onClick={(e) => handleSortingChange(key, 'desc')}
+            data-testid="sort-desc-column"
           />
         )}
       </th>
