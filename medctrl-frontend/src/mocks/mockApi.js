@@ -8,15 +8,6 @@ import sampleProcedureData from '../json/detailed-info-data.json'
 // Create a mock API
 // This is used to be able to unit test components that need certain data
 const mockApi = setupServer(
-  // Example of a request handler
-  rest.get('/api/exampleMockRequest', (req, res, ctx) => {
-    // Respond using mocked JSON
-    return res(
-      ctx.json({
-        example: 'data',
-      })
-    )
-  }),
   rest.get('/api/saveselection', (req, res, ctx) => {
     // Respond using a mocked JSON body
     return res(

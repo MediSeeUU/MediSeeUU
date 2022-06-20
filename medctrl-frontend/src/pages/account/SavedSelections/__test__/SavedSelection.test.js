@@ -12,7 +12,7 @@ const selection = {
   name: 'test1',
   created_at: '2022-05-17T11:16:47.141360Z',
   created_by: 'admin',
-  eunumbers: [ 1, 2, 3 ]
+  eunumbers: [1, 2, 3],
 }
 
 test('SavedSelections renders without crashing', () => {
