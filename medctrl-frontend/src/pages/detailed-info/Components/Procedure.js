@@ -4,9 +4,9 @@
 import ProcedureDetail from './ProcedureDetail'
 import CustomLink from './CustomLink'
 
-// function based component, represents a single procedure and displays the
+// Function based component, represents a single procedure and displays the
 // following relevant information: the decision date and number, as well as the
-// type of the procedure. there are also two links provided to both the annex
+// type of the procedure. There are also two links provided to both the annex
 // and the decision file.
 function Procedure(props) {
   const clean = (value) => {

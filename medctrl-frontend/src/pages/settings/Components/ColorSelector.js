@@ -3,7 +3,7 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import { cssVar } from '../SettingsPage'
 
-// function based component, represents a single color selector
+// Function based component, represents a single color selector
 // it display the human friendly variable name and a color input
 // field for the user to change the current color value
 export default function ColorSelector({ variable, name }) {

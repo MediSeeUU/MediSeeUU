@@ -4,7 +4,7 @@
 import TimeLineElement from './TimeLineElement'
 import { v4 } from 'uuid'
 
-// function based element, which represents a visual timeline that includes
+// Function based element, which represents a visual timeline that includes
 // all of the procedures which are passed to this component as a prop. Each
 // element displays both the date and the type of the procedure, if any of
 // these fields are unavailable, 'NA' is displayed
@@ -13,7 +13,7 @@ function TimeLine({ procedures, lastUpdatedDate }) {
     return !value ? 'NA' : value
   }
 
-  // for each of the given procedures, create a timeline element
+  // For each of the given procedures, create a timeline element
   // and add each element to an array for temporary storage
   let allElements = procedures.map((proc) => {
     return (
@@ -26,7 +26,7 @@ function TimeLine({ procedures, lastUpdatedDate }) {
     )
   })
 
-  // add a final timeline element the signify the date up to
+  // Add a final timeline element the signify the date up to
   // which this timeline is complete
   if (lastUpdatedDate !== undefined && lastUpdatedDate !== null) {
     allElements.push(
