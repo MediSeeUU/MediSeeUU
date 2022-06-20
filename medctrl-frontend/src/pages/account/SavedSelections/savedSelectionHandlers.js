@@ -31,7 +31,7 @@ export async function fetchDeleteSelections(id, setSavedSelections) {
   const response = await fetch(
     `${process.env.PUBLIC_URL}/api/saveselection/${id}/`,
     {
-      method: 'Delete',
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Token ${token}`,

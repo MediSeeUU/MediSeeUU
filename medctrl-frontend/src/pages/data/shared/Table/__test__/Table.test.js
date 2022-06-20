@@ -23,7 +23,7 @@ test('renders without crashing', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: '', order: 'asc' }]}
+          sorters={[{ selected: 'EUNoShort', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>,
@@ -39,7 +39,7 @@ test('expected amount of rows in the table', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={DummyData.length + 10}
-          sorters={[{ selected: '', order: 'asc' }]}
+          sorters={[{ selected: 'EUNoShort', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -57,7 +57,7 @@ test('expected amount of headers in the table', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: '', order: 'asc' }]}
+          sorters={[{ selected: 'EUNoShort', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -77,7 +77,7 @@ test('checkboxes displayed', () => {
           select={true}
           currentPage={2}
           amountPerPage={10}
-          sorters={[{ selected: '', order: 'asc' }]}
+          sorters={[{ selected: 'EUNoShort', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -96,7 +96,7 @@ test('row selected, when checkbox clicked', () => {
           select={true}
           currentPage={2}
           amountPerPage={10}
-          sorters={[{ selected: '', order: 'asc' }]}
+          sorters={[{ selected: 'EUNoShort', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -119,7 +119,7 @@ test('all rows selected when select all pressed', () => {
           select={true}
           currentPage={2}
           amountPerPage={DummyData.length + 1}
-          sorters={[{ selected: '', order: 'asc' }]}
+          sorters={[{ selected: 'EUNoShort', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -144,7 +144,7 @@ test('data put and displayed correctly into table', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: '', order: 'asc' }]}
+          sorters={[{ selected: 'EUNoShort', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -165,9 +165,14 @@ test('data put and displayed correctly into table', () => {
   })
 })
 
-test('sorting on leftmost columnheader sorts data', () => {
+test('sorting on leftmost columnheader sorts data ascendingly', () => {
   const setSorters = (sorters) => {
-    expect(sorters[0].selected).toBe('EUNoShort')
+    expect(sorters).toStrictEqual([
+      {
+        selected: 'EUNoShort',
+        order: 'asc',
+      },
+    ])
   }
   render(
     <BrowserRouter>
@@ -186,6 +191,32 @@ test('sorting on leftmost columnheader sorts data', () => {
   fireEvent.click(sortButton)
 })
 
+test('sorting on leftmost columnheader sorts data descendingly', () => {
+  const setSorters = (sorters) => {
+    expect(sorters).toStrictEqual([
+      {
+        selected: 'EUNoShort',
+        order: 'desc',
+      },
+    ])
+  }
+  render(
+    <BrowserRouter>
+      <MockProvider>
+        <Table
+          data={DummyData}
+          currentPage={1}
+          amountPerPage={10}
+          setSorters={setSorters}
+          sorters={[{ selected: 'EUNoShort', order: 'asc' }]}
+        />
+      </MockProvider>
+    </BrowserRouter>
+  )
+  const sortButton = screen.getAllByTestId('sort-desc-column')[0]
+  fireEvent.click(sortButton)
+})
+
 test('column change changes data in row', () => {
   render(
     <BrowserRouter>
@@ -194,7 +225,7 @@ test('column change changes data in row', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: '', order: 'asc' }]}
+          sorters={[{ selected: 'EUNoShort', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -220,7 +251,7 @@ test('add and remove columns', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: '', order: 'asc' }]}
+          sorters={[{ selected: 'EUNoShort', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -242,7 +273,7 @@ test('remove button appearing', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: '', order: 'asc' }]}
+          sorters={[{ selected: 'EUNoShort', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -260,7 +291,7 @@ test('add column button adds unique variable columns', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: '', order: 'asc' }]}
+          sorters={[{ selected: 'EUNoShort', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>

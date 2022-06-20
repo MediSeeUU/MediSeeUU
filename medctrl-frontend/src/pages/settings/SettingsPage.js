@@ -6,7 +6,7 @@ import ColorData from './ColorSettingData.json'
 import ColorSelectGroup from './Components/ColorSelectGroup'
 import { v4 } from 'uuid'
 
-// function based component, represents the entire settings page. On this page
+// Function based component, represents the entire settings page. On this page
 // all the colors used on the dashboard are displayed and can be changed by the
 // user. All of the actual color information is read from a json file
 export default function SettingsPage() {

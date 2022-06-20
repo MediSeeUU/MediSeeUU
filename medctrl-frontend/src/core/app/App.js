@@ -11,6 +11,7 @@ import Provider from '../../shared/Provider'
 import DashboardTour from '../tour/DashboardTour'
 import React from 'react'
 
+// Function based component rendering the application and its components
 function App() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>

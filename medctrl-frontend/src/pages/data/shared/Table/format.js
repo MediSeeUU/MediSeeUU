@@ -14,7 +14,7 @@ export function dataToDisplayFormat({ entry, propt }) {
 
 export function slashDateToStringDate(date) {
   const defValue = 'NA'
-  if (date === defValue) {
+  if (!date || date === defValue) {
     return date
   }
   var splitteddate = date.split('/')

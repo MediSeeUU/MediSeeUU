@@ -3,6 +3,7 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import ReactModal from 'react-modal'
 
+// Function based component that renders a modal
 export default function MedModal({
   children,
   showModal,

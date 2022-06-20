@@ -3,6 +3,8 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import './ErrorPage.css'
 
+// Function based component rendering a simple error page
+// This page is displayed when a user visits an invalid resource
 function ErrorPage() {
   return <h1 className="med-error-page">Page not found</h1>
 }

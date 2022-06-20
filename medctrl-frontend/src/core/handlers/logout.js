@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 // Logout handler
 async function handleLogOut() {
   // Format token string
@@ -25,7 +26,7 @@ async function handleLogOut() {
 
 // Remove session items
 function setSession() {
-  // force the data context to fetch the most recent data
+  // Force the data context to fetch the most recent data
   window.location.reload(false)
 
   sessionStorage.removeItem('username')

@@ -4,6 +4,7 @@
 import { NavLink } from 'react-router-dom'
 import './Footer.css'
 
+// Function based component rendering the footer
 function Footer() {
   return (
     // Footer components, gives the information to be placed in the footer in two sections placed
