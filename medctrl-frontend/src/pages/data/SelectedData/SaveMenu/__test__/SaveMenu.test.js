@@ -78,8 +78,5 @@ test('invalid selection name should result in UI error message', () => {
 
 test('ErrorDialog renders correctly', () => {
   const root = document.createElement('div')
-  ReactDOM.render(
-    <ErrorDialog />,
-    root
-  )
+  ReactDOM.render(<ErrorDialog />, root)
 })

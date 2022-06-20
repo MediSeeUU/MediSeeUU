@@ -167,10 +167,12 @@ test('data put and displayed correctly into table', () => {
 
 test('sorting on leftmost columnheader sorts data ascendingly', () => {
   const setSorters = (sorters) => {
-    expect(sorters).toStrictEqual([{
-      selected: 'EUNoShort',
-      order: 'asc',
-    }])
+    expect(sorters).toStrictEqual([
+      {
+        selected: 'EUNoShort',
+        order: 'asc',
+      },
+    ])
   }
   render(
     <BrowserRouter>
@@ -191,10 +193,12 @@ test('sorting on leftmost columnheader sorts data ascendingly', () => {
 
 test('sorting on leftmost columnheader sorts data descendingly', () => {
   const setSorters = (sorters) => {
-    expect(sorters).toStrictEqual([{
-      selected: 'EUNoShort',
-      order: 'desc',
-    }])
+    expect(sorters).toStrictEqual([
+      {
+        selected: 'EUNoShort',
+        order: 'desc',
+      },
+    ])
   }
   render(
     <BrowserRouter>

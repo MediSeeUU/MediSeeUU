@@ -101,7 +101,15 @@ test('max 4 filters', () => {
 })
 
 test('add filterbox', () => {
-  render(<Menu filters={[{ selected: '', input: [''] }, { selected: '', input: [''] }]} sorters={[]} />)
+  render(
+    <Menu
+      filters={[
+        { selected: '', input: [''] },
+        { selected: '', input: [''] },
+      ]}
+      sorters={[]}
+    />
+  )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   expect(screen.getAllByRole('textbox')).toHaveLength(2)
   fireEvent.click(screen.getAllByText('+ Add')[1])
@@ -143,13 +151,19 @@ test('filters and sorters applied correctly in state', () => {
         input: [{ var: 'welcome', filterRange: 'from' }],
       },
     ])
-    expect(sorters).toStrictEqual([{ selected: '', order: 'asc' }, { selected: 'ATCCodeL2', order: 'desc' }])
+    expect(sorters).toStrictEqual([
+      { selected: '', order: 'asc' },
+      { selected: 'ATCCodeL2', order: 'desc' },
+    ])
   }
   render(
     <MockProvider>
       <Menu
         filters={[{ selected: '', input: [{ var: '', filterRange: 'from' }] }]}
-        sorters={[{ selected: '', order: 'asc' }, { selected: '', order: 'asc' }]}
+        sorters={[
+          { selected: '', order: 'asc' },
+          { selected: '', order: 'asc' },
+        ]}
         update={update}
       />
     </MockProvider>
