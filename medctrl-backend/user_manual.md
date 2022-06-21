@@ -245,6 +245,17 @@ The Django admin panel is accessible via the `<ROOT_URL>/admin/` endpoint.
 
 ![Django admin panel index](img/admin_index.png)
 
+### Importing data from existing Excel sheets
+
+We have curated the initial dataset into Excel files that can be imported to the system. \
+The data files can be found at `medctrl-backend/curated_data/`.
+Clicking on a model in the Admin panel will show import and export options in the top-right:
+![Django admin panel import export](img/admin_upload_file.png)
+
+After submitting a file you will get an overview of the data that will be imported. You can then click confirm to actually import the data. \
+Please note that importing the Procedures can take quite some time because it is a lot of data.
+
+
 ### Scraper API keys
 In the admin panel you can generate an API key for the scraper. You can specify how many days the API key should be valid for and upon clicking generate you will be given the token which can be copied to the scraper.
 
