@@ -2,7 +2,7 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import sortCategoryData from '../utils/sortCategoryData'
-import pollChosenVariable from './sharedOneDimension/pollChosenVariable'
+import pollChosenVariable from './shared_one_dimension/pollChosenVariable'
 
 // creates an array of data for a Histogram chart
 export default function generateHistogramSeries(settings) {

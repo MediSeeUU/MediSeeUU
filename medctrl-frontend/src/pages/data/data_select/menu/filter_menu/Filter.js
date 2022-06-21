@@ -2,7 +2,7 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import { v4 as uuidv4 } from 'uuid'
-import { useStructure } from '../../../../../shared/Contexts/StructureContext'
+import { useStructure } from '../../../../../shared/contexts/StructureContext'
 import VariableSelect from '../../../../../shared/VariableSelect'
 import FilterInputs from './FilterInputs'
 

@@ -3,10 +3,10 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import './HomePage.css'
 import '../../shared/shared.css'
-import Search from '../../shared/Search/Search'
+import Search from '../../shared/search/Search'
 import { useNavigate } from 'react-router-dom'
 import { useTourRun } from '../../core/tour/DashboardTour'
-import { useTableUtils } from '../../shared/Contexts/TableUtilsContext'
+import { useTableUtils } from '../../shared/contexts/TableUtilsContext'
 
 // Function based component rendering the home page
 function HomePage() {

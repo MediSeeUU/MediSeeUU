@@ -3,9 +3,9 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React, { useState } from 'react'
 import MedModal from '../../../../shared/MedModal'
-import FilterMenu from './FilterMenu/FilterMenu'
+import FilterMenu from './filter_menu/FilterMenu'
 import './Menu.css'
-import SortMenu from './SortMenu/SortMenu'
+import SortMenu from './sort_menu/SortMenu'
 
 // Function based component which renders the filter and sort menu
 function Menu({ filters, sorters, update }) {

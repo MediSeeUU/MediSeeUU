@@ -3,8 +3,8 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React, { useState } from 'react'
 import TableView from '../shared/TableView'
-import ExportMenu from './ExportMenu/ExportMenu'
-import SaveMenu from './SaveMenu/SaveMenu'
+import ExportMenu from './export_menu/ExportMenu'
+import SaveMenu from './save_menu/SaveMenu'
 import sortData from '../utils/sorting'
 
 // Selected data component that displays the selected datapoints

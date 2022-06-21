@@ -5,8 +5,8 @@ import React from 'react'
 import CheckboxColumn from './CheckboxColumn'
 import RightStickyActions from './RightStickyActions'
 import { dataToDisplayFormat } from '../format'
-import { useCheckedState } from '../../../../../shared/Contexts/CheckedContext'
-import { useColumnSelection } from '../../../../../shared/Contexts/ColumnSelectionContext'
+import { useCheckedState } from '../../../../../shared/contexts/CheckedContext'
+import { useColumnSelection } from '../../../../../shared/contexts/ColumnSelectionContext'
 
 // Function based component that renders the body of the table
 function Body({ data, select, amountPerPage, currentPage }) {

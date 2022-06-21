@@ -4,8 +4,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { render, fireEvent, screen } from '@testing-library/react'
-import Filter from '../FilterMenu/Filter'
-import FilterInputs from '../FilterMenu/FilterInputs'
+import Filter from '../filter_menu/Filter'
+import FilterInputs from '../filter_menu/FilterInputs'
 import MockProvider from '../../../../../mocks/MockProvider'
 
 test('renders without crashing', () => {

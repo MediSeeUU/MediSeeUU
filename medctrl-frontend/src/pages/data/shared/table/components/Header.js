@@ -2,8 +2,8 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
-import { useCheckedState } from '../../../../../shared/Contexts/CheckedContext'
-import { useColumnSelection } from '../../../../../shared/Contexts/ColumnSelectionContext'
+import { useCheckedState } from '../../../../../shared/contexts/CheckedContext'
+import { useColumnSelection } from '../../../../../shared/contexts/ColumnSelectionContext'
 import VariableSelect from '../../../../../shared/VariableSelect'
 import CheckboxColumn from './CheckboxColumn'
 

@@ -2,8 +2,8 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
-import { useColumnSelection } from '../../../../../shared/Contexts/ColumnSelectionContext'
-import { useStructure } from '../../../../../shared/Contexts/StructureContext'
+import { useColumnSelection } from '../../../../../shared/contexts/ColumnSelectionContext'
+import { useStructure } from '../../../../../shared/contexts/StructureContext'
 
 // Function based component that renders the add and remove buttons for the columns
 function ColumnAmount() {

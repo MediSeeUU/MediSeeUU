@@ -3,19 +3,19 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import './DetailedInfo.css'
 
-import DetailGroup from './Components/DetailGroup'
-import Detail from './Components/Detail'
-import Procedure from './Components/Procedure'
-import CustomLink from './Components/CustomLink'
-import TimeLine from './Components/TimeLine'
-import ProcSelectModal from './Components/ProcSelectModal'
+import DetailGroup from './components/DetailGroup'
+import Detail from './components/Detail'
+import Procedure from './components/Procedure'
+import CustomLink from './components/CustomLink'
+import TimeLine from './components/TimeLine'
+import ProcSelectModal from './components/ProcSelectModal'
 
 import { useParams } from 'react-router-dom'
-import { slashDateToStringDate } from '../data/shared/Table/format'
+import { slashDateToStringDate } from '../data/shared/table/format'
 import { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
-import { useData } from '../../shared/Contexts/DataContext'
-import { useStructure } from '../../shared/Contexts/StructureContext'
+import { useData } from '../../shared/contexts/DataContext'
+import { useStructure } from '../../shared/contexts/StructureContext'
 
 // Function based component, which represents the top level detailed info page
 // component, it collects and fetches all the correct data and then passes this data

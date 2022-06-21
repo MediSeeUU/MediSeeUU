@@ -4,15 +4,15 @@
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride'
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useTableUtils } from '../../shared/Contexts/TableUtilsContext'
-import { useCheckedState } from '../../shared/Contexts/CheckedContext'
-import { useVisuals } from '../../shared/Contexts/VisualsContext'
+import { useTableUtils } from '../../shared/contexts/TableUtilsContext'
+import { useCheckedState } from '../../shared/contexts/CheckedContext'
+import { useVisuals } from '../../shared/contexts/VisualsContext'
 
 // This array holds all of the steps that the tour will take, each has
 // a specific target which that step should highlight, the title and
 // content fields are the actually informative fields for the user
 import steps from './TourSteps.json'
-import { useColumnSelection } from '../../shared/Contexts/ColumnSelectionContext'
+import { useColumnSelection } from '../../shared/contexts/ColumnSelectionContext'
 
 // A data context which allows the 'start tour' button on the home
 // page to actually start a tour

@@ -7,7 +7,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import SaveMenu from '../SaveMenu'
 import DummyData from '../../../../../json/small_data.json'
 import MockProvider from '../../../../../mocks/MockProvider'
-import ErrorDialog from '../Components/ErrorDialog'
+import ErrorDialog from '../components/ErrorDialog'
 
 // the save dialog should render without crashing
 test('renders without crashing', () => {

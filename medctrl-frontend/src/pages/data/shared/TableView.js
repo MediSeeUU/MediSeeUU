@@ -2,10 +2,10 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import { useState } from 'react'
-import Table from './Table/Table'
-import Paging from './Components/Paging'
-import AmountPerPage from './Components/AmountPerPage'
-import ClearAll from './Components/ClearAll'
+import Table from './table/Table'
+import Paging from './components/Paging'
+import AmountPerPage from './components/AmountPerPage'
+import ClearAll from './components/ClearAll'
 
 // Function based component that renders the table with its modifiers
 function TableView({ data, sorters, setSorters, select, text }) {

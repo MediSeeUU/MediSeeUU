@@ -3,9 +3,9 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
 import './Table.css'
-import Header from './Components/Header'
-import ColumnAmount from './Components/ColumnAmount'
-import Body from './Components/Body'
+import Header from './components/Header'
+import ColumnAmount from './components/ColumnAmount'
+import Body from './components/Body'
 
 // Function based component which renders the table
 function Table({

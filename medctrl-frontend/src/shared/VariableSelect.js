@@ -2,7 +2,7 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import { v4 } from 'uuid'
-import { useStructure } from './Contexts/StructureContext'
+import { useStructure } from './contexts/StructureContext'
 
 // Function based component, represents a select element. All of the select options
 // are subdivided into categories, each option's value is the key at which to access

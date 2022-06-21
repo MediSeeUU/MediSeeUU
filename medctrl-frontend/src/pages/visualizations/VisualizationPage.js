@@ -5,15 +5,15 @@
 import React, { useState } from 'react'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
-import SelectedData from '../data/SelectedData/SelectedData'
+import SelectedData from '../data/selected_data/SelectedData'
 import { v4 as uuidv4 } from 'uuid'
 
 // internal imports
 import SingleVisualization from './single_visualization/SingleVisualization'
 import getUniqueCategories from './single_visualization/utils/getUniqueCategories'
 import MedModal from '../../shared/MedModal'
-import { useVisuals } from '../../shared/Contexts/VisualsContext'
-import { useSelectedData } from '../../shared/Contexts/SelectedContext'
+import { useVisuals } from '../../shared/contexts/VisualsContext'
+import { useSelectedData } from '../../shared/contexts/SelectedContext'
 
 // the component that contains all the visualizations
 function VisualizationPage() {
