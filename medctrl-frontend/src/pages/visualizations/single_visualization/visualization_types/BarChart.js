@@ -97,7 +97,7 @@ function BarChart(props) {
   //const dynamicWidth = settings.series.length * 100;
   //const chartWidth = dynamicWidth < window.innerWidth ? '100%' : dynamicWidth;
   return (
-    <div className="chart">
+    <div className="med-vis-chart">
       <Chart
         options={settings.options}
         series={settings.series}

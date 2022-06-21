@@ -59,7 +59,7 @@ class DataPageLocators():
     SAVE_BUTTON = (By.CLASS_NAME, 'accept')
 
 class VisualizePageLocators():
-  OPTIONS = (By.CLASS_NAME, 'country-options')
+  OPTIONS = (By.CLASS_NAME, 'med-vis-category-options')
   LABEL = (By.TAG_NAME, 'label')
 
 class DetailedPageLocators():

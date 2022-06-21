@@ -186,10 +186,10 @@ function SingleVisualization(props) {
   // - a right-middle part for the visualization
   // - a right-lower part for the exports and a remove button
   return (
-    <div className="med-content-container visual-container">
+    <div className="med-content-container med-vis-content-container">
       <Container>
         <Row>
-          <Col className="visualization-panel">
+          <Col className="med-vis-settings-panel">
             <VisualizationForm
               uniqueCategories={settings.uniqueCategories}
               onChange={handleChange}
@@ -202,7 +202,7 @@ function SingleVisualization(props) {
                 tour="step-vis-main"
                 type="text"
                 id={'graphName' + props.id}
-                className="graph-name med-text-input"
+                className="med-vis-graph-title med-text-input"
                 placeholder={renderTitlePlaceHolder()}
                 autoComplete="off"
                 defaultValue={settings.title || ''}
@@ -214,19 +214,19 @@ function SingleVisualization(props) {
             </div>
             <Row>
               <button
-                className="med-primary-solid med-bx-button button-export"
+                className="med-primary-solid med-bx-button med-button-export-vis"
                 onClick={handlePNGExport}
               >
                 <i className="bx bx-save med-button-image"></i>Export as PNG
               </button>
               <button
-                className="med-primary-solid med-bx-button button-export"
+                className="med-primary-solid med-bx-button med-button-export-vis"
                 onClick={handleSVGExport}
               >
                 <i className="bx bx-save med-button-image"></i>Export as SVG
               </button>
               <button
-                className="med-primary-solid med-bx-button button-remove"
+                className="med-primary-solid med-bx-button med-button-remove-vis"
                 onClick={handleRemoval}
                 value={props.id}
               >

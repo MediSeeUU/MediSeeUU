@@ -88,8 +88,8 @@ function VisualizationForm(props) {
 
   // render method for the form
   return (
-    <div className="med_visualization_form">
-      <label tour="step-vis-type" className="visualization-panel-label">
+    <div className="med-vis-settings-form">
+      <label tour="step-vis-type" className="med-vis-settings-panel-label">
         Visualization type
         <select
           value={settings.chartType}
@@ -104,7 +104,7 @@ function VisualizationForm(props) {
         </select>
       </label>
       {renderChartOptions(settings.chartType)}
-      <label className="visualization-panel-label">
+      <label className="med-vis-settings-panel-label">
         <input
           type="checkbox"
           name="legendOn"
@@ -113,7 +113,7 @@ function VisualizationForm(props) {
         />
         &nbsp;&nbsp;Show legend
       </label>
-      <label className="visualization-panel-label">
+      <label className="med-vis-settings-panel-label">
         <input
           type="checkbox"
           name="labelsOn"

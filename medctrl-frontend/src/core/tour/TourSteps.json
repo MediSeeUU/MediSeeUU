@@ -89,7 +89,7 @@
   },
   {
     "target": "[tour='step-vis-plot']",
-    "content": "After having configured all of the appropriate settings, we are left with our final result. Here we can see that in 1998, the most medicines by pfizer have a 'withdrawn' status. If we want to download this visualisation, we can do so using the two buttons below.",
+    "content": "After having configured all of the appropriate settings, we are left with our final result. Here we can see for each year how many medicines by pfizer have a 'withdrawn' status. If we want to download this visualisation, we can do so using the two buttons below.",
     "title": "Final Visualization",
     "placement": "auto",
     "disableBeacon": true,

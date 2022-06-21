@@ -15,6 +15,14 @@ Utrecht University within the Software Project course.
   width: 98%;
 }
 
+.med-saved-selection-container .med-table {
+  border-radius: 10px;
+}
+
+.med-selection-select.med-selected {
+  color: var(--positive-dark);
+}
+
 .med-animated-icon {
   animation-name: inverted-blink;
   animation-duration: 0.5s;

@@ -46,7 +46,7 @@ function BarForm(props) {
   // only shown when the stacked option has been selected.
   function renderStackType() {
     return (
-      <label className="visualization-panel-label">
+      <label className="med-vis-settings-panel-label">
         <input
           type="checkbox"
           name="stackType"
@@ -75,7 +75,7 @@ function BarForm(props) {
   // renders the bar form part of the form
   return (
     <>
-      <label className="visualization-panel-label">
+      <label className="med-vis-settings-panel-label">
         <input
           type="checkbox"
           name="stacked"
@@ -85,7 +85,7 @@ function BarForm(props) {
         &nbsp;&nbsp;Stacked
       </label>
       {settings.stacked && renderStackType()}
-      <label className="visualization-panel-label">
+      <label className="med-vis-settings-panel-label">
         <input
           type="checkbox"
           name="horizontal"
@@ -95,7 +95,7 @@ function BarForm(props) {
         &nbsp;&nbsp;Switch axes
       </label>
       <div tour="step-vis-vars">
-        <label className="visualization-panel-label">
+        <label className="med-vis-settings-panel-label">
           {xAxis}
           <VariableSelect
             className={'med-select'}
@@ -104,7 +104,7 @@ function BarForm(props) {
             onChange={handleChange}
           />
         </label>
-        <label className="visualization-panel-label">
+        <label className="med-vis-settings-panel-label">
           {yAxis}
           <VariableSelect
             className={'med-select'}
@@ -117,7 +117,6 @@ function BarForm(props) {
       <div>
         <CategoryOptions
           dimension="X"
-          className="category-options"
           onChange={handleChange}
           categories={sortCategoryData(props.uniqueCategories[settings.xAxis])}
           categoriesSelected={settings.categoriesSelectedX}
@@ -125,7 +124,6 @@ function BarForm(props) {
         />
         <CategoryOptions
           dimension="Y"
-          className="category-options"
           onChange={handleChange}
           categories={sortCategoryData(props.uniqueCategories[settings.yAxis])}
           categoriesSelected={settings.categoriesSelectedY}

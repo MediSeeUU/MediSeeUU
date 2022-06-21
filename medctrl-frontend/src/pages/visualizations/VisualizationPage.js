@@ -120,7 +120,7 @@ function VisualizationPage() {
     const dataPointAmount = selectedData.length
     return (
       <Row>
-        <div className="med-content-container visual-container">
+        <div className="med-content-container med-vis-content-container">
           <b>
             You have currently selected {dataPointAmount} datapoint(s).
             <br />
@@ -148,9 +148,12 @@ function VisualizationPage() {
         <MedModal
           showModal={tableData.length > 0}
           closeModal={() => setPopup([])}
-          className="visualize-modal"
+          className="med-vis-interactive-data-modal"
         >
-          <i className="bx bx-x close-icon" onClick={() => setPopup([])} />
+          <i
+            className="bx bx-x med-close-modal-icon"
+            onClick={() => setPopup([])}
+          />
           <SelectedData selectedData={tableData} />
         </MedModal>
         <Container>
@@ -158,7 +161,7 @@ function VisualizationPage() {
           {displayItems}
           <Row>
             <button
-              className="med-primary-solid med-bx-button button-add"
+              className="med-primary-solid med-bx-button med-button-add-vis"
               onClick={handleAddition}
             >
               <i className="bx bx-plus med-button-image" />
@@ -170,7 +173,7 @@ function VisualizationPage() {
     )
   } else {
     return (
-      <h1 className="visualization-no-data">
+      <h1 className="med-vis-no-data">
         go to the data page to select datapoints to display
       </h1>
     )

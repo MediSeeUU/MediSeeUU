@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+import { useEffect, useState } from 'react'
 import { useCheckedState } from '../../../shared/Contexts/CheckedContext'
 import { fetchDeleteSelections } from '../SavedSelections/savedSelectionHandlers'
 
@@ -10,6 +11,10 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
 
   // Create a set with the eunumbers for quicker lookup
   const selection = new Set(savedSelection.eunumbers)
+
+  // A state which discribes if this savedSelection is current selected
+  // in the checkedState
+  const [isCurrent, setIsCurrent] = useState(false)
 
   // Handler that updates the selection after clicking on a selection
   const updateSelection = (el) => {
@@ -38,6 +43,35 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
     }, 500)
   }
 
+  // Determines if the given json object is an empty json object
+  const isEmptyObject = (obj) => {
+    return (
+      obj &&
+      Object.keys(obj).length === 0 &&
+      Object.getPrototypeOf(obj) === Object.prototype
+    )
+  }
+
+  // When either the checkedState or the savedSelection changes, it needs
+  // to be determined is the savedSelection contains the same data points
+  // as the current checkedState
+  useEffect(() => {
+    let match = !isEmptyObject(checkedState)
+    for (let key in checkedState) {
+      const isChecked = checkedState[parseInt(key)]
+      const isInSelection = savedSelection.eunumbers.includes(parseInt(key))
+
+      if (isChecked !== isInSelection) {
+        match = false
+      }
+    }
+    setIsCurrent(match)
+  }, [checkedState, savedSelection])
+
+  // Describes the class name for the 'select this selection' button
+  const selectClassName =
+    'med-selection-select' + (isCurrent ? ' med-selected' : '')
+
   const date = new Date(savedSelection.created_at)
   return (
     <tr className="med-saved-selection">
@@ -47,7 +81,7 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
         {date.toLocaleDateString()} {date.toLocaleTimeString()}
       </td>
       <td
-        className="med-selection-select"
+        className={selectClassName}
         onClick={updateSelection}
         data-testid="update-select"
       >

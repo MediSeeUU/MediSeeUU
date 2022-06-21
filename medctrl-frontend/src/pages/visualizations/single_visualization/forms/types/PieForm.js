@@ -43,7 +43,7 @@ function PieForm(props) {
 
   return (
     <>
-      <label className="visualization-panel-label">
+      <label className="med-vis-settings-panel-label">
         Variable <br />
         <VariableSelect
           className={'med-select'}
@@ -55,7 +55,6 @@ function PieForm(props) {
       <div>
         <CategoryOptions
           dimension="X"
-          className="category-options"
           onChange={handleChange}
           categories={sortCategoryData(props.uniqueCategories[settings.xAxis])}
           categoriesSelected={settings.categoriesSelectedX}

@@ -46,7 +46,7 @@ function LineForm(props) {
   // renders the bar form part of the form
   return (
     <>
-      <label className="visualization-panel-label">
+      <label className="med-vis-settings-panel-label">
         X-axis
         <VariableSelect
           className={'med-select'}
@@ -55,7 +55,7 @@ function LineForm(props) {
           onChange={handleChange}
         />
       </label>
-      <label className="visualization-panel-label">
+      <label className="med-vis-settings-panel-label">
         Y-axis
         <VariableSelect
           className={'med-select'}

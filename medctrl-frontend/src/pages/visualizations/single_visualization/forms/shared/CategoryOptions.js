@@ -101,7 +101,7 @@ function CategoryOptions(props) {
         />
         &nbsp;&nbsp;Select all categories
       </label>
-      <div className="country-options">{renderCategoryOptions()}</div>
+      <div className="med-vis-category-options">{renderCategoryOptions()}</div>
     </>
   )
 }
