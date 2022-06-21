@@ -22,10 +22,10 @@ In all the snippets below the current directory is `medctrl-backend/` unless spe
 ### Install dependencies
 
 0. Create and activate Python virtual environment.
-```sh
-python3 -m virtualenv venv
-source venv/bin/activate
-```
+    ```sh
+    python3 -m virtualenv venv
+    source venv/bin/activate
+    ```
 1. Install requirements.
     ```sh
     pip install -r requirements.txt
