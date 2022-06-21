@@ -34,7 +34,7 @@ source venv/bin/activate
     ```sh
     sudo apt install python3-dev default-libmysqlclient-dev build-essential
     ```
-
+<div style="page-break-after: always;"></div>
 
 ### Setup Configuration
 
@@ -70,6 +70,7 @@ DATABASES = {
 # Where to put static files for django. Not needed for development
 STATIC_ROOT = "django-static"
 ```
+<div style="page-break-after: always;"></div>
 
 ### MedCtrl Setup
 
@@ -92,6 +93,7 @@ python manage.py init_setup
 # Django will start on port 8000
 python manage.py runserver 8000
 ```
+<div style="page-break-after: always;"></div>
 
 <a name="endpoints"></a>
 ## Endpoints
@@ -127,10 +129,30 @@ This endpoint is used to retrieve all the procedures that are connected to the m
             ]
         }
         ```
-    * Retrieving a single saved selection \
-        GET on `/saveselection/<selectionid>`\
-        ->
-        ```json
+
+<div style="page-break-after: always;"></div>
+
+* Retrieving a single saved selection \
+    GET on `/saveselection/<selectionid>`\
+    ->
+    ```json
+    {
+        "id": "12fb0250-a725-462d-8b06-92762194a2af", // id of the saved selection
+        "name": "test",
+        "created_at": "2022-06-15T11:11:59.466733Z",
+        "created_by": "<username>",
+        "eunumbers": [
+            1,
+            2,
+            3
+        ]
+    }
+    ```
+* Retrieving all saved selection for the current user \
+    GET on `/savedselection` \
+    ->
+    ```json
+    [
         {
             "id": "12fb0250-a725-462d-8b06-92762194a2af", // id of the saved selection
             "name": "test",
@@ -142,27 +164,11 @@ This endpoint is used to retrieve all the procedures that are connected to the m
                 3
             ]
         }
-        ```
-    * Retrieving all saved selection for the current user \
-        GET on `/savedselection` \
-        ->
-        ```json
-        [
-            {
-                "id": "12fb0250-a725-462d-8b06-92762194a2af", // id of the saved selection
-                "name": "test",
-                "created_at": "2022-06-15T11:11:59.466733Z",
-                "created_by": "<username>",
-                "eunumbers": [
-                    1,
-                    2,
-                    3
-                ]
-            }
-        ]
-        ```
-    * Deleting a saved selection \
-        DELETE on `/saveselection/<selectionid>`
+    ]
+    ```
+* Deleting a saved selection \
+    DELETE on `/saveselection/<selectionid>`
+<div style="page-break-after: always;"></div>
 
 
 * `/detailedData` \
@@ -199,6 +205,7 @@ This endpoint is used to retrieve all the procedures that are connected to the m
 * `/account/logout`, `/account/logoutAll` \
     These endpoints are used to logout the user. The `logoutAll` will end all active sessions of the given user.
     To logout, send a POST request with an empty body to one of these URLs.
+<div style="page-break-after: always;"></div>
 
 
 * `/scraper/medicine`
@@ -237,6 +244,7 @@ This endpoint is used to retrieve all the procedures that are connected to the m
         ]
     }
     ```
+<div style="page-break-after: always;"></div>
 
 <a name="adminpanel"></a>
 ## Admin panel
@@ -244,6 +252,8 @@ This endpoint is used to retrieve all the procedures that are connected to the m
 The Django admin panel is accessible via the `<ROOT_URL>/admin/` endpoint. 
 
 ![Django admin panel index](img/admin_index.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Importing data from existing Excel sheets
 
@@ -261,6 +271,7 @@ In the admin panel you can generate an API key for the scraper. You can specify 
 
 ![Django admin genreate scraper key](img/admin_scraper_key.png)
 ![Generate key success](img/admin_scraper_generated.png)
+<div style="page-break-after: always;"></div>
 
 ### Manually update model values
 
@@ -272,6 +283,7 @@ You will then be presented with an overview of all the objects that are in the d
 
 ![Admin medicine objects list](img/admin_med_objects.png)
 
+<div style="page-break-after: always;"></div>
 Clicking on a medicine object will give options to edit or delete the object.
 
 ![Admin edit individual medicine](img/admin_med_edit.png)
@@ -291,7 +303,7 @@ It is possible to create as many new groups as needed. On the users' page you ca
 
 ![Assign groups to user](img/admin_user_group.png)
 
-
+<div style="page-break-after: always;"></div>
 It is also possible to assign permissions to individual users.
 
 ![User permissions](img/admin_user_permissions.png)
