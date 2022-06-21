@@ -6,8 +6,9 @@ from django.db import models
 
 class Authorisation(models.Model):
     """
-    Model class for the authorisation table. As the abstract functionality for all model classes is nearly identical, information about them has been moved to an external readme. 
+    Model class for the authorisation table. As the abstract functionality for all model classes is nearly identical, information about them has been moved to an external readme.
     """
+
     eunumber = models.OneToOneField(
         "Medicine", models.CASCADE, db_column="EUNumber", primary_key=True
     )
