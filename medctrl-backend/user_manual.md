@@ -3,6 +3,7 @@
 * [ Development set-up ](#devsetup)
 * [ Endpoints ](#endpoints)
 * [ Admin panel ](#adminpanel)
+* [ Adding variables ](#addvariable)
 
 
 <a name="devsetup"></a>
@@ -283,3 +284,26 @@ It is possible to create as many new groups as needed. On the users' page you ca
 It is also possible to assign permissions to individual users.
 
 ![User permissions](img/admin_user_permissions.png)
+
+<a name="addvariable"></a>
+## Adding variables
+
+To add a new variable to the system there are a few things that need to be done:
+
+* Add a new column to the appropriate model: \
+    models are located in the `API/api/models/` folder.\
+    To add a variable with name `X` to medicine for example you need to add a field `X` to the the `Medicine` model class in `medicine.py`.
+    For more details on what types or relations are available please see the [Django documentation](https://docs.djangoproject.com/en/4.0/ref/models/fields/)
+
+* Add an entry to `API/views/other/medicine_info_json.py` \
+    In here you should specify what type the variable has and what the displayname should be. This is, among other things, used by the frontend to determine how to sort on this variable.
+
+* Create a new migration and migrate the database \
+    Run the following commands to migrate the new changes:
+    ```sh
+    # in directory medctrl-backend/API
+    python manage.py makemigrations
+    python manage.py migrate
+    python manage.py create_column_permissions
+    ```
+
