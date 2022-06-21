@@ -20,7 +20,12 @@ function Table({
     <>
       <ColumnAmount />
       <table className={!select ? 'med-table med-table-select' : 'med-table'}>
-        <Header select={select} sorters={sorters} setSorters={setSorters} />
+        <Header
+          data={data}
+          select={select}
+          sorters={sorters}
+          setSorters={setSorters}
+        />
         <Body
           data={data}
           select={select}

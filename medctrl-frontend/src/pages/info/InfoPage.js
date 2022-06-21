@@ -7,6 +7,7 @@ import '../../shared/shared.css'
 import uuLogo from '../../images/uu-logo.svg'
 import mebLogo from '../../images/meb-logo.svg'
 
+// Function based component rendering the info page
 function InfoPage() {
   return (
     // Infopage components, contains article containers

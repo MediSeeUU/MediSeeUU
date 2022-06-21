@@ -4,7 +4,7 @@
 import ColorSelector from './ColorSelector'
 import { v4 } from 'uuid'
 
-// function based component, represents a single group of color
+// Function based component, represents a single group of color
 // selectors. Each group has a title, a small description, followed
 // by all the individual color selectors
 export default function ColorSelectGroup({ colors, name, desc }) {

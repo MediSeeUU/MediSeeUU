@@ -11,16 +11,18 @@ export function useColumnSelection() {
   return useContext(ColumnSelectionContext)
 }
 
+export const defaultColumns = [
+  'EUNoShort',
+  'BrandName',
+  'MAH',
+  'DecisionDate',
+  'ATCCodeL2',
+]
+
 // Provider component that provides the column selection state in the application
 export function ColumnSelectionProvider({ children }) {
   // Set the default column selection state (in order from left to right)
-  const [columnSelection, setColumnSelection] = useState([
-    'EUNoShort',
-    'BrandName',
-    'MAH',
-    'DecisionDate',
-    'ATCCodeL2',
-  ])
+  const [columnSelection, setColumnSelection] = useState(defaultColumns)
 
   return (
     <ColumnSelectionContext.Provider

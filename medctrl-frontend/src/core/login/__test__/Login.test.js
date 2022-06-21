@@ -6,7 +6,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import SideNavigation from '../../navigation/Navigation'
 import { BrowserRouter } from 'react-router-dom'
 
-test('open and close login popup', () => {
+test('open and close login popup', async () => {
   render(
     <BrowserRouter>
       <SideNavigation />
@@ -14,6 +14,7 @@ test('open and close login popup', () => {
   )
   const loginbutton = screen.getAllByText('Login')[0]
   expect(fireEvent.click(loginbutton)).toBeTruthy()
+  await fetch('/api/account/login')
   const cancelbutton = screen.getByText('Cancel')
   expect(fireEvent.click(cancelbutton)).toBeTruthy()
 })

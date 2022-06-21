@@ -233,6 +233,18 @@ class TestDataPage(WebDriverSetup):
       data.append(self.data_page.table_value(0, i + 1, 2).lower())
     # check if the data is descendingly sorted
     assert all(data[i] >= data[i+1] for i in range(len(data) - 1))
+  
+  # test if select all applied on a subset of the data is correct
+  def test_subset_select_all(self):
+    # deselect all the datapoints in the table
+    self.data_page.select(0)
+    # search to get a subset of the data
+    self.data_page.input_query("pfizer")
+    self.data_page.search()
+    # select all datapoints in the table
+    self.data_page.select(0)
+    # then the amount of pages must be equal
+    assert self.data_page.last_page(0) == self.data_page.last_page(1)
 
 if __name__ == '__main__':
   unittest.main()

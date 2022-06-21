@@ -1,6 +1,8 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+import { defaultColumns } from './ColumnSelectionContext'
+
 // Function that cleans the fetched data from the API based on the given structure data
 export default function cleanFetchedData(fetchedData, structData) {
   const cleanedData = []
@@ -73,10 +75,17 @@ function cleanFetchedDataPoint(fetchedDataPoint, structData) {
   let DecisionDate = cleanedDataPoint['DecisionDate']
   if (DecisionDate === defValue) {
     DecisionYear = defValue
-  } else {
+    cleanedDataPoint['DecisionYear'] = DecisionYear
+  } else if (DecisionDate) {
     DecisionYear = parseInt(DecisionDate.split('/')[2])
+    cleanedDataPoint['DecisionYear'] = DecisionYear
   }
-  cleanedDataPoint['DecisionYear'] = DecisionYear
+
+  defaultColumns.forEach((key) => {
+    if (cleanedDataPoint[key] === null || cleanedDataPoint[key] === undefined) {
+      throw new Error('Invalid data, default column data not given')
+    }
+  })
 
   return cleanedDataPoint
 }

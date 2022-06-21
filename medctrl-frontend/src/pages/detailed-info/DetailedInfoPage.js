@@ -17,22 +17,22 @@ import { v4 } from 'uuid'
 import { useData } from '../../shared/Contexts/DataContext'
 import { useStructure } from '../../shared/Contexts/StructureContext'
 
-// function based component, which represents the top level detailed info page
+// Function based component, which represents the top level detailed info page
 // component, it collects and fetches all the correct data and then passes this data
 // to the info page component and returns that component
 export default function DetailedInfoPage() {
   const { medID } = useParams()
   const [procData, setProcData] = useState(null)
 
-  // all information of all medicines is retrieved and the correct entry
+  // All information of all medicines is retrieved and the correct entry
   // corresponding to the desired medicine is extracted from the array
   const alldata = useData()
   let medData = alldata.find(
     (element) => element.EUNoShort.toString() === medID.toString()
   )
 
-  // all of the procedure data related to the desired medicine is asynchronously
-  // retrieved from the server. the result is stored in a state
+  // All of the procedure data related to the desired medicine is asynchronously
+  // retrieved from the server. The result is stored in a state
   useEffect(() => {
     async function fetchProcedureData(medID) {
       const response = await fetch(
@@ -48,7 +48,7 @@ export default function DetailedInfoPage() {
     fetchProcedureData(medID)
   }, [setProcData, medID])
 
-  // retrieve a date from the backend which indicates when the last update
+  // Retrieve a date from the backend which indicates when the last update
   // to the procedures in the database was. i.e. the database, and thus the
   // procedure data on this page is complete up to this date
   const lastUpdatedDate = undefined
@@ -62,12 +62,12 @@ export default function DetailedInfoPage() {
   )
 }
 
-// function based component, which represents the entire detailed information page
+// Function based component, which represents the entire detailed information page
 // it display the given medicine and procedure data
 export function InfoPage({ medData, procData, lastUpdatedDate }) {
   const variableCategories = useStructure()
 
-  // a filter which determines which prodcures to show, and which to omit from
+  // A filter which determines which prodcures to show, and which to omit from
   // the detailed info page
   const [procFilter, setProcFilter] = useState([
     'Centralised - Authorisation',
@@ -76,14 +76,14 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
     'Centralised - Annual renewal',
   ])
 
-  // if no medicine data is provided, no meaning full can be displayed
+  // If no medicine data is provided, no meaning full can be displayed
   if (!medData) {
     return (
       <h1 className="med-info-unknown-medID">Unknown Medicine ID Number</h1>
     )
   }
 
-  // if there is procedure data present, two containers should be added to the page
+  // If there is procedure data present, two containers should be added to the page
   // with only the relevant procedure entries (based on the display proc types above)
   // one container should display the procedures in text form, and the other should
   // visually display them as a timeline. if no procedure data is present, both
@@ -174,7 +174,7 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
     }
   }
 
-  // returns the component which discribes the entire detailed information page
+  // Returns the component which discribes the entire detailed information page
   // the page consists of three containers, each holds a specific category of
   // information pertaining to the current medicine. this first holds general
   // information, the next procedure related information, and the last holds some

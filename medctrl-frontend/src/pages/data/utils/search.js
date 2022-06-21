@@ -6,7 +6,7 @@ import { firstBy } from 'thenby'
 // Search data based on the given query by first filtering and then applying a ranking
 function searchData(data, query, columns) {
   let updatedData = [...data]
-  updatedData = filterData(updatedData, query.toLowerCase())
+  updatedData = filterData(updatedData, query.toLowerCase().split(' '))
   updatedData = rankData(updatedData, query.toLowerCase(), columns)
   return updatedData
 }
@@ -14,17 +14,19 @@ function searchData(data, query, columns) {
 // Filter data on query
 function filterData(data, query) {
   return data.filter((obj) => {
-    let inText = false
-    let vals = Object.values(obj)
-    for (const val of vals) {
-      const formattedVal = val.toString().toLowerCase()
-      // Query must be included in the table value and not in a url
-      if (formattedVal.includes(query) && !formattedVal.startsWith('http')) {
-        inText = true
-        break
-      }
-    }
-    return inText
+    // Get a list of all the values in the datapoint and preprocess it by tokenizing
+    const vals = Object.values(obj)
+      .map((val) => val.toString().toLowerCase().split(' '))
+      .flat()
+    // Every query term should be occuring somewhere in the values (urls not included)
+    return query.every((val1) =>
+      vals.some(
+        (val2) =>
+          !val2.startsWith('http://') &&
+          !val2.startsWith('https://') &&
+          val2.includes(val1)
+      )
+    )
   })
 }
 
@@ -58,7 +60,7 @@ function rankData(data, query, columns) {
           }
         }
         // This will be returned in the object data
-        return { ...obj, rank: rank, count: count }
+        return { data: obj, rank: rank, count: count }
       })
       // Then we first sort on rank and then on amount of occurences
       .sort(
@@ -66,9 +68,7 @@ function rankData(data, query, columns) {
       )
       // These properties will then again be deleted from the object after sorting
       .map((obj) => {
-        delete obj.rank
-        delete obj.count
-        return obj
+        return obj.data
       })
   )
 }
