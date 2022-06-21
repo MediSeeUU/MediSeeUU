@@ -1,10 +1,15 @@
 # This program has been developed by students from the bachelor Computer Science at
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+# This file contains all functions that are used for
+# storing data selections of an authenticated users and
+# fetching the data when necesarry.
+# --------------------------------------------------------
+
 from rest_framework import viewsets
-from api.permissions import CustomObjectPermissions
-from api.serializers import SavedSelectionSerializer
-from api.models import SavedSelection
+from api.serializers.other import SavedSelectionSerializer
+from api.models.other import SavedSelection
 from rest_framework import permissions, status
 from rest_framework.response import Response
 
@@ -33,7 +38,7 @@ class SavedSelectionViewSet(viewsets.ModelViewSet):
         obj.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def get_queryset(self):
+    def get_queryset(self):  # fetching all stored data selections
         pk = self.kwargs.get("pk")
 
         if pk is None:

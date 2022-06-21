@@ -1,9 +1,16 @@
 # This program has been developed by students from the bachelor Computer Science at
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+# This file conatains the function that is used to fetch
+# the permissions apointed to an user.
+# ---------------------------------------------------------
+
 from django.contrib.auth.models import Group
 
+from django.contrib.auth.models import Group
 
+# Gets all permissions of a user
 def permissionFilter(user):
     if user.is_anonymous:
         # If user is anonymous, return default permissions for anonymous group

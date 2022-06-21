@@ -1,6 +1,13 @@
 # This program has been developed by students from the bachelor Computer Science at
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+# This file contains all functions that create a custom template for
+# the django backend. This custom templete extends the default django admin
+# panel templat with the means to crate a token that a scraper can use to
+# access the backend.
+# -------------------------------------------------------------------
+
 import datetime
 from django.views.generic import FormView
 from django import forms
@@ -13,12 +20,13 @@ from django.conf import settings
 
 base_url = settings.BASE_URL if "BASE_URL" in dir(settings) else ""
 
-
+# Creats form on django admin panel
 class GenerateKeyForm(forms.Form):
     """
     Generate form to get key for api user
     """
 
+    # creates a dropdown menu with specified users, filtered from the entire user base
     user = forms.ModelChoiceField(
         queryset=User.objects.filter(is_superuser=0)
         .filter(is_staff=0)
@@ -29,6 +37,7 @@ class GenerateKeyForm(forms.Form):
     duration.widget.attrs.update({"style": "width: 86px"})
 
 
+# Creates view for for the django admin page
 class GenerateKeyView(LoginRequiredMixin, UserPassesTestMixin, FormView):
     """
     Generate view to get key for api user
@@ -39,6 +48,7 @@ class GenerateKeyView(LoginRequiredMixin, UserPassesTestMixin, FormView):
     success_url = f"/{base_url}admin"
     login_url = f"/{base_url}admin/login/"
 
+    # Creates a token when form is submitted via the django admin panel
     def form_valid(self, form):
         duration = form.cleaned_data["duration"]
         user = form.cleaned_data["user"]
@@ -49,9 +59,11 @@ class GenerateKeyView(LoginRequiredMixin, UserPassesTestMixin, FormView):
         messages.success(self.request, "The generated api key is: " + str(token))
         return super().form_valid(form)
 
+    # gets the context in which the data should be used in the serializer
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
 
+    # Returs bolean value true if superuser
     def test_func(self):
         return self.request.user.is_superuser

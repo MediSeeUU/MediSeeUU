@@ -1,6 +1,14 @@
 # This program has been developed by students from the bachelor Computer Science at
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+# This serializer is responsible for serializing all
+# medicine data. The medicine data is spread out over
+# several tables in the database and therefore this
+# serializer file has to access all different tables
+# and merge all this data in an onedimensional object.
+# ---------------------------------------------------
+
 from rest_framework import serializers
 from api.models.medicine_models import (
     Medicine,
@@ -12,7 +20,7 @@ from api.models.medicine_models import (
     Historyprime,
 )
 
-
+# serialises authorization data
 class AuthorisationSerializer(serializers.ModelSerializer):
     """
     Authorisation table serializer for the view endpoint medicine
@@ -27,6 +35,7 @@ class AuthorisationSerializer(serializers.ModelSerializer):
         exclude = ("eunumber",)
 
 
+# serialises procudure data
 class ProcedureSerializer(serializers.ModelSerializer):
     """
     Authorisation table serializer for the view endpoint medicine
@@ -41,6 +50,7 @@ class ProcedureSerializer(serializers.ModelSerializer):
         fields = ("decisiondate",)
 
 
+# serialises brandname data
 class BrandnameSerializer(serializers.ModelSerializer):
     """
     Authorisation table serializer for the view endpoint medicine
@@ -56,6 +66,7 @@ class BrandnameSerializer(serializers.ModelSerializer):
         ordering = ("brandnamedate",)
 
 
+# serialises MAH horization data
 class MAHSerializer(serializers.ModelSerializer):
     """
     Authorisation table serializer for the view endpoint medicine
@@ -71,6 +82,7 @@ class MAHSerializer(serializers.ModelSerializer):
         ordering = ("mahdate",)
 
 
+# serialises orphan designation data
 class OrphanSerializer(serializers.ModelSerializer):
     """
     Authorisation table serializer for the view endpoint medicine
@@ -86,6 +98,7 @@ class OrphanSerializer(serializers.ModelSerializer):
         ordering = ("orphandate",)
 
 
+# serialises PRIME data
 class PRIMESerializer(serializers.ModelSerializer):
     """
     Authorisation table serializer for the view endpoint medicine
@@ -101,6 +114,7 @@ class PRIMESerializer(serializers.ModelSerializer):
         ordering = ("primedate",)
 
 
+# Creates medicine object per medicine
 class PublicMedicineSerializer(serializers.ModelSerializer):
     """
     view endpoint medicine
@@ -121,6 +135,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         model = Medicine
         fields = "__all__"
 
+    # retrieves authorization from data base for each medicie
     def get_authorisation(self, authorisation):
         queryset = Authorisation.objects.filter(eunumber=authorisation.eunumber)
         try:
@@ -129,6 +144,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return AuthorisationSerializer(instance=queryset, read_only=True).data
 
+    # retrieves procedure from data base for each medicie
     def get_procedure(self, procedure):
         queryset = Procedure.objects.filter(
             procedurecount=1, eunumber=procedure.eunumber
@@ -139,6 +155,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return ProcedureSerializer(instance=queryset, read_only=True).data
 
+    # retrieves brandname from data base for each medicie
     def get_brandname(self, brandname):
         queryset = Historybrandname.objects.filter(eunumber=brandname.eunumber)
         try:
@@ -147,6 +164,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return BrandnameSerializer(instance=queryset, read_only=True).data
 
+    # retrieves mah from data base for each medicie
     def get_mah(self, mah):
         queryset = Historymah.objects.filter(eunumber=mah.eunumber)
         try:
@@ -155,6 +173,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return MAHSerializer(instance=queryset, read_only=True).data
 
+    # retrieves orphan designation from data base for each medicie
     def get_orphan(self, orphan):
         queryset = Historyorphan.objects.filter(eunumber=orphan.eunumber)
         try:
@@ -163,6 +182,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return OrphanSerializer(instance=queryset, read_only=True).data
 
+    # retrieves primenuber from data base for each medicie
     def get_prime(self, prime):
         queryset = Historyprime.objects.filter(eunumber=prime.eunumber)
         try:
@@ -171,6 +191,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return PRIMESerializer(instance=queryset, read_only=True).data
 
+    # creates one dimensional object from multiple dimenssions
     def to_representation(self, obj):
         representation = super().to_representation(obj)
 

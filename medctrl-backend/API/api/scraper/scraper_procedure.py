@@ -1,6 +1,14 @@
 # This program has been developed by students from the bachelor Computer Science at
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+# This file can be accesed by the scraper via the procudure enpoint.
+# When the scraper scrapes infromation about procudures, that data
+# is posted to the procudure endpoint from where the data is
+# processed in this file. If the new data is validated, it will
+# be updated in the database.
+# -------------------------------------------------------------
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import DjangoModelPermissions

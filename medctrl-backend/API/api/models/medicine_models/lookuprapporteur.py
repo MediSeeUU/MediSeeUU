@@ -5,6 +5,10 @@ from django.db import models
 
 
 class Lookuprapporteur(models.Model):
+    """
+    Model class for the rapporteur lookup table. As the abstract functionality for all model classes is nearly identical, information about them has been moved to an external readme.
+    """
+
     rapporteur = models.CharField(
         db_column="Rapporteur", primary_key=True, max_length=45
     )

@@ -53,3 +53,10 @@ To check for errors using Pylint run the following command:
 * On Windows: # TODO
 
 Most editors have support for Black and Pylint built in.
+
+
+## Copyright statement
+
+This program has been developed by students from the bachelor Computer Science at Utrecht University within the Software Project course.
+
+© Copyright Utrecht University (Department of Information and Computing Sciences)
