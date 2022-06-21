@@ -9,7 +9,7 @@ This repository has two significant branches: *development* and *master*. When a
 The repository consists of four crucial folders:
 * *medctrl-backend*, with the backend API and database code, including documentation
 * *medctrl-frontend*, with the code for all node modules, pages, public files, and mocks, including unit tests and documentation
-* *medctrl-scraper*, with the scraper including supplementary files
+* *medctrl-scraper*, with the scraper including supplementary files, in this folder a file can be found with an example how to connect the scraper to the backend
 * *selenium*, where the system tests are defined and handled
 
 ## Copyright statement
