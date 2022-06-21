@@ -2,8 +2,8 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import { useEffect, useState } from 'react'
-import { useCheckedState } from '../../../shared/Contexts/CheckedContext'
-import { fetchDeleteSelections } from '../SavedSelections/savedSelectionHandlers'
+import { useCheckedState } from '../../../shared/contexts/CheckedContext'
+import { fetchDeleteSelections } from './/savedSelectionHandlers'
 
 // Saved selection item in the saved selections list
 function SavedSelection({ savedSelection, setSavedSelection }) {

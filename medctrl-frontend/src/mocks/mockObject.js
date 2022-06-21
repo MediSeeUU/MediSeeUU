@@ -3,7 +3,7 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import allServerData from '../json/allServerData.json'
 import structServerData from '../json/structServer.json'
-import cleanFetchedData from '../shared/Contexts/format'
+import cleanFetchedData from '../shared/contexts/format'
 
 // Create an object that contains the mocked medicines and structure data
 const mockObj = {

@@ -3,7 +3,7 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React, { useState } from 'react'
 import handleLogin from '../handlers/login'
-import ErrorMessage from '../../pages/data/SelectedData/ExportMenu/Components/ErrorMessage'
+import ErrorMessage from '../../pages/data/selected_data/export_menu/components/ErrorMessage'
 
 // Function based component which renders the login form
 function LoginForm(props) {

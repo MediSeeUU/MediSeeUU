@@ -2,9 +2,9 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import sortCategoryData from '../utils/sortCategoryData'
-import pollChosenVariable from './sharedTwoDimensions/pollChosenVariable'
-import createSelectedSeries from './sharedTwoDimensions/createSelectedSeries'
-import toSeriesFormat from './sharedTwoDimensions/toSeriesFormat'
+import pollChosenVariable from './shared_two_dimensions/pollChosenVariable'
+import createSelectedSeries from './shared_two_dimensions/createSelectedSeries'
+import toSeriesFormat from './shared_two_dimensions/toSeriesFormat'
 
 // generates series for a bar chart
 export default function generateBarSeries(settings) {

@@ -2,9 +2,9 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
-import Toggle from './Components/Toggle'
-import NavLink from './Components/NavLink'
-import NavAccount from './Components/NavAccount'
+import Toggle from './components/Toggle'
+import NavLink from './components/NavLink'
+import NavAccount from './components/NavAccount'
 import LoginModal from '../login/LoginModal'
 import OutsideClickHandler from 'react-outside-click-handler'
 import './Navigation.css'

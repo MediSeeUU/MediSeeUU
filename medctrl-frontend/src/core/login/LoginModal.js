@@ -3,7 +3,7 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React, { useState } from 'react'
 import MedModal from '../../shared/MedModal'
-import NavLink from '../navigation/Components/NavLink'
+import NavLink from '../navigation/components/NavLink'
 import LoginForm from './LoginForm'
 import './LoginModal.css'
 

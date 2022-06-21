@@ -3,9 +3,9 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
 
-import ErrorDialog from './Components/ErrorDialog'
-import SuccessDialog from './Components/SuccessDialog'
-import ErrorMessage from './Components/ErrorMessage'
+import ErrorDialog from './components/ErrorDialog'
+import SuccessDialog from './components/SuccessDialog'
+import ErrorMessage from './components/ErrorMessage'
 
 import postSavedSelection from './SaveHandler'
 

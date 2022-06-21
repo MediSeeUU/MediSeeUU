@@ -2,10 +2,10 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
-import DataSelect from './DataSelect/DataSelect'
-import SelectedData from './SelectedData/SelectedData'
+import DataSelect from './data_select/DataSelect'
+import SelectedData from './selected_data/SelectedData'
 import './DataPage.css'
-import { useSelectedData } from '../../shared/Contexts/SelectedContext'
+import { useSelectedData } from '../../shared/contexts/SelectedContext'
 
 // Data page component that displays the table components on the page
 function DataPage() {

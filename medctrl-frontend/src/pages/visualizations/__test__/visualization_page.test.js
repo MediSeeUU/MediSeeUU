@@ -15,8 +15,8 @@ import {
 import VisualizationPage from '../VisualizationPage'
 import ResizeObserver from '../mocks/observer'
 import data from '../../../json/data.json'
-import { SelectedContext } from '../../../shared/Contexts/SelectedContext'
-import { VisualsContext } from '../../../shared/Contexts/VisualsContext'
+import { SelectedContext } from '../../../shared/contexts/SelectedContext'
+import { VisualsContext } from '../../../shared/contexts/VisualsContext'
 
 jest.mock('../mocks/observer')
 

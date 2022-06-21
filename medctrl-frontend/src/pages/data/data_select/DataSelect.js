@@ -2,13 +2,13 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React, { useRef } from 'react'
-import Menu from './Menu/Menu'
-import Search from '../../../shared/Search/Search'
+import Menu from './menu/Menu'
+import Search from '../../../shared/search/Search'
 import TableView from '../shared/TableView'
 import updateData from '../utils/update'
-import { useTableUtils } from '../../../shared/Contexts/TableUtilsContext'
-import { useColumnSelection } from '../../../shared/Contexts/ColumnSelectionContext'
-import { useData } from '../../../shared/Contexts/DataContext'
+import { useTableUtils } from '../../../shared/contexts/TableUtilsContext'
+import { useColumnSelection } from '../../../shared/contexts/ColumnSelectionContext'
+import { useData } from '../../../shared/contexts/DataContext'
 
 // Data select component that displays all the datapoints that can be selected
 function DataSelect() {
