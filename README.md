@@ -6,7 +6,7 @@ Medicine evaluation boards across Europe evaluate medicines for European market 
 
 This repository has two significant branches: *development* and *master*. When a contributor has finished their work, the temporary branch will be pushed into the development branch. Once the development branch is stable, it will be pushed into the master branch. When the master branch is updated, the new changes will be deployed on the environment where the program is installed.
 
-The repository consists of four crucial folders:
+The repository consists of four crucial folders, each folder has a readme with more explanation:
 * *medctrl-backend*, with the backend API and database code, including documentation
 * *medctrl-frontend*, with the code for all node modules, pages, public files, and mocks, including unit tests and documentation
 * *medctrl-scraper*, with the scraper including supplementary files, in this folder a file can be found with an example how to connect the scraper to the backend
