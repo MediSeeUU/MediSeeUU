@@ -35,7 +35,7 @@ function setSession(res) {
   window.location.reload(false)
 
   sessionStorage.setItem('username', res.user.username)
-  const access = res.user.groups.length > 0 ? res.user.groups[0].name : null
+  const access = res.user.groups.length > 0 ? res.user.groups[0].id : null
   sessionStorage.setItem('access_level', access)
   sessionStorage.setItem('token', res.token)
 }
