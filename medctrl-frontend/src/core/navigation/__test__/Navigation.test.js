@@ -7,7 +7,6 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import SideNavigation from '../Navigation'
 import AccountPage from '../../../pages/account/AccountPage'
-import SettingsPage from '../../../pages/settings/SettingsPage'
 import DataPage from '../../../pages/data/DataPage'
 import MockProvider from '../../../mocks/MockProvider'
 
@@ -38,16 +37,6 @@ test('render account page without crashing', () => {
   ReactDOM.render(
     <BrowserRouter>
       <AccountPage />
-    </BrowserRouter>,
-    root
-  )
-})
-
-test('render settingspage without crashing', () => {
-  const root = document.createElement('div')
-  ReactDOM.render(
-    <BrowserRouter>
-      <SettingsPage />
     </BrowserRouter>,
     root
   )
