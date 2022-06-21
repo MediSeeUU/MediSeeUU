@@ -34,3 +34,9 @@ Using powershell is recomened when working on a local machine.
 3. run the following command: ```py manage.py runserver```
 
 All valid urls can now be accessed via the browser at 'http://#HOST:PORT/PATH' -> example: 'http://127.0.0.1:8000/account/login/'.
+
+## Copyright statement
+
+This program has been developed by students from the bachelor Computer Science at Utrecht University within the Software Project course.
+
+© Copyright Utrecht University (Department of Information and Computing Sciences)
