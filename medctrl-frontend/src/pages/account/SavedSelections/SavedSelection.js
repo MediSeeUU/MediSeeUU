@@ -81,7 +81,7 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
         {date.toLocaleDateString()} {date.toLocaleTimeString()}
       </td>
       <td
-        className="med-selection-select"
+        className={selectClassName}
         onClick={updateSelection}
         data-testid="update-select"
       >
