@@ -1,3 +1,6 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from knox import views as knox_views

@@ -1,3 +1,6 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
 from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -75,7 +78,18 @@ class ScraperMedicine(APIView):
 
                 if override:
                     errors = self.add_medicine(medicine, current_medicine)
+
+                    # Reset manually updated status
+                    current_medicine.manually_updated = False
+                    current_medicine.save()
+
                 elif current_medicine:
+                    # skip this medicine if it has been manually edited
+                    if current_medicine.manually_updated and not override:
+                        medicine["errors"] = "Medicine has been manually updated"
+                        failed_medicines.append(medicine)
+                        continue
+
                     errors = self.update_flex_medicine(medicine, current_medicine)
                     nullErrors = self.update_null_values(medicine)
                     if errors:
@@ -84,6 +98,7 @@ class ScraperMedicine(APIView):
                         errors = nullErrors
                 else:
                     errors = self.add_medicine(medicine, None)
+
                 # if status is failed, add medicine to the failed list
                 if errors and (len(errors) > 0):
                     medicine["errors"] = errors

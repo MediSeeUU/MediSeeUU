@@ -1,3 +1,6 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 import './HomePage.css'
 import '../../shared/shared.css'
 import Search from '../../shared/Search/Search'
@@ -5,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { useTourRun } from '../../core/tour/DashboardTour'
 import { useTableUtils } from '../../shared/Contexts/TableUtilsContext'
 
+// Function based component rendering the home page
 function HomePage() {
   const navigate = useNavigate()
   const runTour = useTourRun()

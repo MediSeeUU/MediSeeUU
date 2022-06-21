@@ -1,9 +1,12 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React, { useState } from 'react'
 import { v4 } from 'uuid'
 import MedModal from '../../../shared/MedModal'
 
-// function based component, represents the procedure selection button, which is inserted
-// in both the procedure and timeline container on the detailed info page. when this button
+// Function based component, represents the procedure selection button, which is inserted
+// in both the procedure and timeline container on the detailed info page. When this button
 // is pressed, the procedure selection dialog compontent is shown in a react modal view
 export default function ProcSelectModal({
   availableProcTypes,
@@ -34,7 +37,7 @@ export default function ProcSelectModal({
   )
 }
 
-// function based component, it is given all the procedure types which are available for some
+// Function based component, it is given all the procedure types which are available for some
 // medicine and it is given the current selection; which procedure types to shown and which ones
 // to omit, the user can use this dialog to changes this selection. the selection can be saved
 // using the apply button, or discarded using the cancel button

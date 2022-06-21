@@ -1,3 +1,6 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 import { useEffect, useState } from 'react'
 import { useCheckedState } from '../../../shared/Contexts/CheckedContext'
 import { fetchDeleteSelections } from '../SavedSelections/savedSelectionHandlers'
@@ -77,21 +80,23 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
       <td className="med-selection-created">
         {date.toLocaleDateString()} {date.toLocaleTimeString()}
       </td>
-      <td className={selectClassName}>
-        <i
-          onClick={updateSelection}
-          className="bx bx-select-multiple med-table-icons"
-        ></i>
+      <td
+        className="med-selection-select"
+        onClick={updateSelection}
+        data-testid="update-select"
+      >
+        <i className="bx bx-select-multiple med-table-icons"></i>
       </td>
-      <td className="med-selection-delete">
-        <i
-          onClick={fetchDeleteSelections.bind(
-            null,
-            savedSelection.id,
-            setSavedSelection
-          )}
-          className="bx bx-trash med-table-icons"
-        ></i>
+      <td
+        className="med-selection-delete"
+        onClick={fetchDeleteSelections.bind(
+          null,
+          savedSelection.id,
+          setSavedSelection
+        )}
+        data-testid="delete-select"
+      >
+        <i className="bx bx-trash med-table-icons"></i>
       </td>
     </tr>
   )

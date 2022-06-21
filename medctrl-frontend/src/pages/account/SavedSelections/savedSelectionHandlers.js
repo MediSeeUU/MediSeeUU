@@ -1,3 +1,6 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 //get the current saved selections
 export async function fetchSavedSelections(setSavedSelections) {
   // Obtain token from session storage
@@ -26,9 +29,9 @@ export async function fetchDeleteSelections(id, setSavedSelections) {
 
   // Fetch the saved selections from the server
   const response = await fetch(
-    `${process.env.PUBLIC_URL}/api/saveselection/${id}`,
+    `${process.env.PUBLIC_URL}/api/saveselection/${id}/`,
     {
-      method: 'Delete',
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Token ${token}`,

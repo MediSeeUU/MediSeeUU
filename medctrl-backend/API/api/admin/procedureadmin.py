@@ -1,3 +1,6 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.contrib import admin
 from import_export import resources, admin as import_admin
 from api.models.medicine_models import (
@@ -45,6 +48,16 @@ class ProcedureAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
         "decisionurl",
         "annexurl",
     )
+
+    def save_model(self, request, obj, form, change):
+        # Get reference to the old procedure object
+        proc = Procedure.objects.filter(commisionnumber=obj.commisionnumber).first()
+
+        # Check if the manually updated checkbox has been unchecked
+        if not proc.manually_updated:
+            obj.manually_updated = True
+
+        super().save_model(request, obj, form, change)
 
 
 admin.site.register(Procedure, ProcedureAdmin)

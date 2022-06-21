@@ -1,3 +1,6 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import DjangoModelPermissions
@@ -50,7 +53,19 @@ class ScraperProcedure(APIView):
                 )
                 if override:
                     errors = self.add_procedure(procedure, current_procedure)
+
+                    # Reset manually updated status
+                    current_procedure.manually_updated = False
+                    current_procedure.save()
+
                 elif current_procedure:
+
+                    # Skip this procedure if it has been manually edited
+                    if current_procedure.manually_updated and not override:
+                        procedure["errors"] = "Procedure already manually updated"
+                        failed_procedures.append(procedure)
+                        continue
+
                     errors = self.update_flex_procedure(procedure, current_procedure)
                     nullErrors = self.update_null_values(procedure)
                     if errors:

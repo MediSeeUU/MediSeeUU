@@ -1,3 +1,6 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicine import Medicine
 from .lookupproceduretype import Lookupproceduretype
@@ -30,6 +33,8 @@ class Procedure(models.Model):
     annexurl = models.CharField(
         db_column="AnnexURL", max_length=255, blank=True, null=True
     )
+
+    manually_updated = models.BooleanField(default=False)
 
     class Meta:
         db_table = "procedure"

@@ -1,3 +1,6 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .lookupactivesubstance import Lookupactivesubstance
 from .lookupatccode import Lookupatccode
@@ -46,6 +49,8 @@ class Medicine(models.Model):
     suspension = models.IntegerField(db_column="Suspension", blank=True, null=True)
     emaurl = models.CharField(db_column="EMAURL", max_length=320, blank=True, null=True)
     ecurl = models.CharField(db_column="ECURL", max_length=320, blank=True, null=True)
+
+    manually_updated = models.BooleanField(default=False)
 
     class Meta:
         db_table = "medicine"

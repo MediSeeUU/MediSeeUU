@@ -1,9 +1,12 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 import ProcedureDetail from './ProcedureDetail'
 import CustomLink from './CustomLink'
 
-// function based component, represents a single procedure and displays the
+// Function based component, represents a single procedure and displays the
 // following relevant information: the decision date and number, as well as the
-// type of the procedure. there are also two links provided to both the annex
+// type of the procedure. There are also two links provided to both the annex
 // and the decision file.
 function Procedure(props) {
   const clean = (value) => {

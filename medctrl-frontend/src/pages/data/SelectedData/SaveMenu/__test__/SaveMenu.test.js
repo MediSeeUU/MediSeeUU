@@ -1,9 +1,13 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import SaveMenu from '../SaveMenu'
 import DummyData from '../../../../../json/small_data.json'
 import MockProvider from '../../../../../mocks/MockProvider'
+import ErrorDialog from '../Components/ErrorDialog'
 
 // the save dialog should render without crashing
 test('renders without crashing', () => {
@@ -18,7 +22,7 @@ test('renders without crashing', () => {
 
 // when the user provides a valid name, the user should be redirected to a
 // success message screen
-test('valid selection name should result in UI no error message', () => {
+test('valid selection name should result in UI no error message', async () => {
   const validNames = ['Test', 'COVID-19', 'Special_set', 'Demo selection']
   render(
     <MockProvider>
@@ -33,11 +37,10 @@ test('valid selection name should result in UI no error message', () => {
     })
     const saveButton = screen.getByText('Save selection')
     fireEvent.click(saveButton)
+    await fetch('/api/saveselection')
     const dialogHeader = screen.getByRole('heading')
-    expect(dialogHeader.innerHTML).toBe('Save Selected Data')
-    expect(screen.queryByText('An Error Occurred')).toBeNull()
-    const doneButton = screen.getByText('Cancel')
-    fireEvent.click(doneButton)
+    expect(dialogHeader.innerHTML).toBe('Selection Successfully Saved')
+    fireEvent.click(screen.getByText('Done'))
   }
 })
 
@@ -45,6 +48,7 @@ test('valid selection name should result in UI no error message', () => {
 // error message screen
 test('invalid selection name should result in UI error message', () => {
   const invalidNames = [
+    '',
     'Test!',
     'COVID-19,',
     '(Special)_set',
@@ -70,4 +74,9 @@ test('invalid selection name should result in UI error message', () => {
     const cancelButton = screen.getByText('Cancel')
     fireEvent.click(cancelButton)
   }
+})
+
+test('ErrorDialog renders correctly', () => {
+  const root = document.createElement('div')
+  ReactDOM.render(<ErrorDialog />, root)
 })

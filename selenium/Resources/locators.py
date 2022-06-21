@@ -1,8 +1,18 @@
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
 from selenium.webdriver.common.by import By
+
+# this file contains the locators of all pages
+# these are needed to find the elements on the specific page
 
 class BasePageLocators():
   NAV = (By.TAG_NAME, 'nav')
   NAV_ITEM = (By.CLASS_NAME, 'med-nav-item')
+  LOGIN_NAV = (By.CLASS_NAME, 'med-nav-lowest')
+  LOGIN_INPUT = (By.CLASS_NAME, 'med-credential-input')
+  LOGIN_BUTTON = (By.CLASS_NAME, 'med-button-login')
+  ACCOUNT_NAV = (By.CLASS_NAME, 'med-nav-account')
 
 class InfoPageLocators():
   LINK = (By.CLASS_NAME, 'med-link')
@@ -22,16 +32,19 @@ class TableLocators():
   INFO = (By.TAG_NAME, 'i')
   ADD_COLUMN = (By.CLASS_NAME, 'bxs-plus-square')
   REMOVE_COLUMN = (By.CLASS_NAME, 'bxs-minus-square')
+  SORT_COLUMN = (By.CLASS_NAME, 'med-table-header-sort')
 
 class DataPageLocators():
   BUTTON = (By.CLASS_NAME, 'med-bx-button')
   SELECT = (By.CLASS_NAME, 'tableCheckboxColumn')
   RESULTS_PER_PAGE = (By.ID, 'med-result-count-selector')
-  SELECTED_PAGE = (By.CLASS_NAME, 'med-page-selected')
-  NEXT_PAGE = (By.CLASS_NAME, 'bxs-chevron-right')
-  PREV_PAGE = (By.CLASS_NAME, 'bxs-chevron-left')
   CLEAR_ALL = (By.CLASS_NAME, 'med-clear-all-button')
   RIGHT_ACTIONS = (By.CSS_SELECTOR, ".med-table-body-cell.med-table-narrow-column.med-column-right")
+  NEXT_PAGE = (By.CLASS_NAME, 'bxs-chevron-right')
+  PREV_PAGE = (By.CLASS_NAME, 'bxs-chevron-left')
+  SELECTED_PAGE = (By.CLASS_NAME, 'med-page-selected')
+  PAGES = (By.CLASS_NAME, 'med-no-select')
+  BOTTOM_HOLDER = (By.CLASS_NAME, 'med-bottom-container-holder')
 
   class MenuLocators():
     FILTER_ITEM = (By.CLASS_NAME, 'med-table-menu-filter-item')
@@ -40,7 +53,23 @@ class DataPageLocators():
     INPUT = (By.TAG_NAME, 'input')
     SORT_ITEM = (By.CLASS_NAME, 'med-table-menu-sort-item')
     APPLY = (By.CLASS_NAME, 'med-table-menu-apply-button')
+  
+  class SaveLocators():
+    SAVE_INPUT = (By.CLASS_NAME, 'med-text-input')
+    SAVE_BUTTON = (By.CLASS_NAME, 'accept')
 
 class VisualizePageLocators():
   OPTIONS = (By.CLASS_NAME, 'country-options')
   LABEL = (By.TAG_NAME, 'label')
+
+class DetailedPageLocators():
+  DETAIL_ITEM = (By.CLASS_NAME, 'med-info-detail')
+  DETAIL_NAME = (By.CLASS_NAME, 'med-info-detail-name')
+  DETAIL_VALUE = (By.CLASS_NAME, 'med-info-detail-value')
+
+class AccountPageLocators():
+  SAVED_SELECTION = (By.CLASS_NAME, 'med-saved-selection')
+  SAVED_NAME = (By.CLASS_NAME, 'med-selection-name')
+  SAVED_COUNT = (By.CLASS_NAME, 'med-selection-count')
+  SAVED_SELECT = (By.CLASS_NAME, 'med-selection-select')
+  SAVED_DELETE = (By.CLASS_NAME, 'med-selection-delete')

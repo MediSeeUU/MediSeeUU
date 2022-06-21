@@ -1,3 +1,6 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
 import { useCheckedState } from '../../../../../shared/Contexts/CheckedContext'
 import { useColumnSelection } from '../../../../../shared/Contexts/ColumnSelectionContext'
@@ -5,12 +8,12 @@ import VariableSelect from '../../../../../shared/VariableSelect'
 import CheckboxColumn from './CheckboxColumn'
 
 // Function based component that renders the header of the table
-function Header({ select, sorters, setSorters }) {
+function Header({ data, select, sorters, setSorters }) {
   const { columnSelection, setColumnSelection } = useColumnSelection()
   const { checkedState, setCheckedState } = useCheckedState()
 
   // Check if all checkboxes are checked, used to check/uncheck the checkbox in the header
-  const allSelected = Object.values(checkedState).every((value) => value)
+  const allSelected = data.every((element) => checkedState[element.EUNoShort])
 
   // Handler that changes the column based on the target value
   const handleColumnChange = (id, value) => {
@@ -34,8 +37,8 @@ function Header({ select, sorters, setSorters }) {
   // Handle a mouseclick on the checkbox in the header
   const handleAllChange = () => {
     let updatedCheckedState = JSON.parse(JSON.stringify(checkedState))
-    Object.keys(updatedCheckedState).forEach((key) => {
-      updatedCheckedState[key] = !allSelected
+    data.forEach((element) => {
+      updatedCheckedState[element.EUNoShort] = !allSelected
     })
     setCheckedState(updatedCheckedState)
   }
@@ -59,6 +62,7 @@ function Header({ select, sorters, setSorters }) {
           <i
             className="bx bxs-up-arrow med-table-header-sort"
             onClick={(e) => handleSortingChange(key, 'desc')}
+            data-testid="sort-desc-column"
           />
         )}
       </th>

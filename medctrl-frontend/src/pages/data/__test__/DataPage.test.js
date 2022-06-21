@@ -1,3 +1,6 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { render, fireEvent, screen, within } from '@testing-library/react'
@@ -157,4 +160,44 @@ test('Can go a page forward and backwards', () => {
 
   // clicking the previous page button once should bring the current page to 6
   expect(paginationDiv.childNodes[4].textContent.trim()).toBe('6')
+})
+
+test('search button pressed', () => {
+  render(
+    <BrowserRouter>
+      <MockProvider>
+        <DataPage />
+      </MockProvider>
+    </BrowserRouter>
+  )
+  const input = screen.getByRole('textbox')
+  fireEvent.change(input, { target: { value: 'pfizer' } })
+  const button = screen.getByText(/Search/i)
+  expect(fireEvent.click(button)).toBeTruthy()
+})
+
+test('menu apply is pressed', () => {
+  render(
+    <BrowserRouter>
+      <MockProvider>
+        <DataPage />
+      </MockProvider>
+    </BrowserRouter>
+  )
+  const button = screen.getByText(/Filter & Sort/i)
+  fireEvent.click(button)
+  const apply = screen.getByText(/Apply/i)
+  expect(fireEvent.click(apply)).toBeTruthy()
+})
+
+test('sort button is pressed', () => {
+  render(
+    <BrowserRouter>
+      <MockProvider>
+        <DataPage />
+      </MockProvider>
+    </BrowserRouter>
+  )
+  const button = screen.getAllByTestId('sort-asc-column')[0]
+  expect(fireEvent.click(button)).toBeTruthy()
 })

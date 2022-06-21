@@ -1,9 +1,13 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 import './InfoPage.css'
 import '../../shared/shared.css'
 
 import uuLogo from '../../images/uu-logo.svg'
 import mebLogo from '../../images/meb-logo.svg'
 
+// Function based component rendering the info page
 function InfoPage() {
   return (
     // Infopage components, contains article containers

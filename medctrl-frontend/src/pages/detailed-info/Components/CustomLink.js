@@ -1,4 +1,8 @@
-// function based component, represents a link to an external
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+// Function based component, represents a link to an external
 // address, the link is opened in a new tab, and via the class,
 // this link can have a custom appearance
 function CustomLink(props) {

@@ -1,3 +1,6 @@
+// This program has been developed by students from the bachelor Computer Science at
+// Utrecht University within the Software Project course.
+// © Copyright Utrecht University (Department of Information and Computing Sciences)
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import sampleProcedureData from '../json/detailed-info-data.json'
@@ -5,15 +8,6 @@ import sampleProcedureData from '../json/detailed-info-data.json'
 // Create a mock API
 // This is used to be able to unit test components that need certain data
 const mockApi = setupServer(
-  // Example of a request handler
-  rest.get('/api/exampleMockRequest', (req, res, ctx) => {
-    // Respond using mocked JSON
-    return res(
-      ctx.json({
-        example: 'data',
-      })
-    )
-  }),
   rest.get('/api/saveselection', (req, res, ctx) => {
     // Respond using a mocked JSON body
     return res(
@@ -42,7 +36,26 @@ const mockApi = setupServer(
       ])
     )
   }),
+  rest.post('/api/saveselection', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        id: '3028cdec-ee8e-4c25-af19-19087ef4f64e',
+        name: 'mooie selectie',
+        created_at: '2022-06-20T10:30:53.081142Z',
+        created_by: 'admin',
+        eunumbers: [1, 2, 3],
+      })
+    )
+  }),
   rest.post('/api/account/login', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        username: 'test',
+        password: 'test',
+      })
+    )
+  }),
+  rest.get('/api/account/login', (req, res, ctx) => {
     return res(
       ctx.json({
         expiry: '2022-05-18T22:27:47.764171Z',
