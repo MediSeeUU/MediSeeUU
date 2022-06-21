@@ -17,7 +17,7 @@
 }
 
 .med-selection-select.med-selected {
-  color: var(--positive-dark)
+  color: var(--positive-dark);
 }
 
 .med-animated-icon {

@@ -43,9 +43,9 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
   // Determines if the given json object is an empty json object
   const isEmptyObject = (obj) => {
     return (
-      obj
-      && Object.keys(obj).length === 0
-      && Object.getPrototypeOf(obj) === Object.prototype
+      obj &&
+      Object.keys(obj).length === 0 &&
+      Object.getPrototypeOf(obj) === Object.prototype
     )
   }
 
@@ -58,13 +58,16 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
       const isChecked = checkedState[parseInt(key)]
       const isInSelection = savedSelection.eunumbers.includes(parseInt(key))
 
-      if(isChecked !== isInSelection) {match = false}
+      if (isChecked !== isInSelection) {
+        match = false
+      }
     }
     setIsCurrent(match)
   }, [checkedState, savedSelection])
 
   // Describes the class name for the 'select this selection' button
-  const selectClassName = "med-selection-select" + (isCurrent ? " med-selected" : "")
+  const selectClassName =
+    'med-selection-select' + (isCurrent ? ' med-selected' : '')
 
   const date = new Date(savedSelection.created_at)
   return (

@@ -7,7 +7,6 @@
   font-size: 16px;
 }
 
-
 /* Elements that make up the settings panel on the left of each visualization */
 
 .med-vis-settings-panel {
@@ -46,7 +45,6 @@
   font-weight: normal;
 }
 
-
 /* Buttons for visualization addition, removal and export */
 
 .med-button-remove-vis {
@@ -75,7 +73,6 @@
   background-color: var(--med-negative-button-hover);
 }
 
-
 /* The title of each visualization */
 
 .med-vis-graph-title {
@@ -89,14 +86,12 @@
   border: none;
 }
 
-
 /* No data to use for visualization message */
 
 .med-vis-no-data {
   padding-top: 30vh;
   text-align: center;
 }
-
 
 /* Bar chart, part of the example code for adding scroll bars to an axis */
 

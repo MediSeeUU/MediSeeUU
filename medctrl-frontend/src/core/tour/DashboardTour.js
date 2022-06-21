@@ -34,7 +34,7 @@ function DashboardTour(props) {
 
   let { setVisuals } = useVisuals()
 
-  let { columnSelection, setColumnSelection } = useColumnSelection()
+  let { setColumnSelection } = useColumnSelection()
 
   // Function to handle a update to the tour, i.e. when the user wants to
   // view the next step in the tour

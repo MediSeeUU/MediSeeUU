@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom'
 import HomePage from '../pages/home/HomePage'
 import InfoPage from '../pages/info/InfoPage'
 import DataPage from '../pages/data/DataPage'
-import SettingsPage from '../pages/settings/SettingsPage'
 import AccountPage from '../pages/account/AccountPage'
 import VisualizationPage from '../pages/visualizations/VisualizationPage'
 import DetailedInfoPage from '../pages/detailed-info/DetailedInfoPage'
@@ -16,7 +15,6 @@ function Routing() {
       <Route path="/info" element={<InfoPage />} />
       <Route path="/data" element={<DataPage />} />
       <Route path="/visualizations" element={<VisualizationPage />} />
-      <Route path="/colors" element={<SettingsPage />} />
       <Route path="/account" element={<AccountPage />} />
       <Route path="/details/:medID" element={<DetailedInfoPage />} />
       <Route path="/*" element={<ErrorPage />} />
