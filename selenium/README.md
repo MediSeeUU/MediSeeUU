@@ -12,7 +12,7 @@ This project is initialized to automatically test the application on both the in
 
 The tests are written in `Python 3.10` together with the `selenium` and `webdriver_manager` packages. Because the `selenium` package itself does not provide a testing framework, the `unittest` module was used to write the actual test cases. The `webdriver_manager` package is used to retrieve and cache the WebDriver in memory to prevent further external installations to be done. The WebDriver implementation used is Chrome. Since the project was developed on a Windows machine, we will be providing a guide to install it on a similar machine.
 
-To install all the necessary packages at once, the following command should be run:
+To install all the necessary packages at once, run the following command:
 
 ```bash
   pip install -r requirements.txt
@@ -25,7 +25,7 @@ Make sure that the frontend server is running (on default port 3000). Then simpl
 ```
 
 ## Contents
-The project adheres the Page Object Model (POM) to make the tests more readable and allow reusable code that can be shared across multiple test cases.
+The project adheres to the Page Object Model (POM) to make the tests more readable and allow reusable code that can be shared across multiple test cases.
 
 The specific content is as follows:
 
@@ -35,7 +35,7 @@ The specific content is as follows:
 
 * `Tests`: This directory contains all the test cases divided over multiple files.
 
-* `Pages`: This directory contains for each page a seperate file with methods to interact in the browser.
+* `Pages`: This directory contains for each page a separate file with methods to interact in the browser.
   * `shared`: This directory contains shared component files of the pages.
 
 * `Resources`: This directory contains all resource definitions of the application.
