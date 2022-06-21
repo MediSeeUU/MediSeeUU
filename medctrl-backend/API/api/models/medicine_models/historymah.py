@@ -5,6 +5,9 @@ from django.db import models
 
 
 class Historymah(models.Model):
+    """
+    Model class for the MAH history table. As the abstract functionality for all model classes is nearly identical, information about them has been moved to an external readme. 
+    """
     eunumber = models.ForeignKey("Medicine", models.CASCADE, db_column="EUNumber")
     mah = models.CharField(db_column="MAH", max_length=255)
     mahdate = models.DateField(db_column="MAHDate", blank=True, null=True)
