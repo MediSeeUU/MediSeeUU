@@ -17,7 +17,7 @@ from django.core.cache import cache
 from api.update_cache import update_cache
 from api.views.other import permissionFilter
 
-# Returns a list of mediciens acording to the acces level of the user
+# Returns a list of medicines acording to the access level of the user
 class MedicineViewSet(viewsets.ViewSet):
     """
     Viewset for the Medicine model
@@ -38,7 +38,7 @@ class MedicineViewSet(viewsets.ViewSet):
         user = self.request.user
         perms = permissionFilter(user)
 
-        # filters medicines acording to acces level of the user
+        # filters medicines according to access level of the user
         filtered_medicines = map(
             lambda obj: {x: y for x, y in obj.items() if x in perms}, cache_medicine
         )
