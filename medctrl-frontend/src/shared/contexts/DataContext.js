@@ -4,6 +4,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import cleanFetchedData from './format'
 import { useStructure } from './StructureContext'
+import { fetchWithToken } from '../api'
 
 // Create a new React context for the medicines data
 const DataContext = React.createContext()
@@ -24,7 +25,7 @@ export function DataProvider({ mock, children }) {
   // Update the state if the medicines data is fetched from the API
   useEffect(() => {
     async function fetchData() {
-      const medResponse = await fetch(
+      const medResponse = await fetchWithToken(
         `${process.env.PUBLIC_URL}/api/medicine/`,
         {
           method: 'GET',
