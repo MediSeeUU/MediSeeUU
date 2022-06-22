@@ -32,7 +32,7 @@ async function handleLogin(event) {
 // Set session items
 function setSession(res) {
   sessionStorage.setItem('username', res.user.username)
-  const access = res.user.groups.length > 0 ? res.user.groups[0].name : null
+  const access = res.user.groups.length > 0 ? res.user.groups[0].id : 0
   sessionStorage.setItem('access_level', access)
   sessionStorage.setItem('token', res.token)
   sessionStorage.setItem('token_expiry', res.expiry)

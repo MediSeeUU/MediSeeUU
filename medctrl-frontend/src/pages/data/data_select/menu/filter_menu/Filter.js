@@ -36,47 +36,47 @@ function Filter(props) {
 // Function that returns all filter input boxes
 function filterInputs(props) {
   const fields = []
+  // Iterate over de inputs
   for (let i = 0; i < props.item.input.length; i++) {
-    fields.push(
-      <div key={uuidv4()} className="filter-picker">
-        {PickFilter(props, i)}
-        <i
-          className="bx bxs-minus-circle med-table-menu-remove-filter-option-icon"
-          onClick={() => props.dbox(props.id, i)}
-          data-testid="remove-icon"
-        ></i>
-      </div>
-    )
+    // Add an input box and its delete icon
+    fields.push(PickFilter(props, i))
   }
   return fields
 }
 
+// Function that returns the specific filter inputs based on the variable type
 function PickFilter(props, i) {
-  var dataType = GetDataType(props.item.selected)
+  // First get the datatype of the selected variable
+  const dataType = GetDataType(props.item.selected)
 
-  //TODO: determine the best place to catch any illegal datatypes
+  // Define the legal types
   const possibleTypes = ['number', 'string', 'date', 'bool']
 
-  // If data type exists, make filter of correct type. Otherwise use text filter.
+  // The filter type is equal to the type of the variable (if not an illegal type, then we just use string)
   props.item.filterType = possibleTypes.includes(dataType) ? dataType : 'string'
 
-  // NOTE: if datatype 'string' is called 'text', it can be passed directly to abstract filter function??
-
   return (
-    <>
+    <div key={uuidv4()}>
       {/* If number or date, first determine filter range */}
       {(dataType === 'number' || dataType === 'date') && (
         <DetermineFilterRange container={props} i={i} />
       )}
       <FilterInputs props={props} i={i} />
-    </>
+      <i
+        className="bx bxs-minus-circle med-table-menu-remove-filter-option-icon"
+        onClick={() => props.dbox(props.id, i)}
+        data-testid="remove-icon"
+      ></i>
+    </div>
   )
 }
 
+// Function that returns the a filter range select
+// The options are: 'From' and 'Till'
 function DetermineFilterRange(props) {
   return (
     <select
-      className="filter-range"
+      className="med-table-menu-filter-input-field med-text-input"
       onChange={(e) => {
         props.container.item.input[props.i].filterRange = e.target.value
         props.container.sel(props.container.id, props.container.item.selected)
@@ -91,9 +91,10 @@ function DetermineFilterRange(props) {
 
 // Function that returns the data type of a variable
 function GetDataType(selected) {
-  let structData = useStructure()
+  const structData = useStructure()
 
   // Iterate over the categories and array entries to find the selected variable
+  // Then return the type of that variable
   for (let category in structData) {
     for (var i = 0; i < structData[category].length; i++) {
       if (structData[category][i]['data-front-key'] === selected) {

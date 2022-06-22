@@ -269,25 +269,3 @@ test('bool filter rendered', () => {
     root
   )
 })
-
-test('adding invalid filtertype throws error', () => {
-  expect(() => {
-    const root = document.createElement('div')
-
-    ReactDOM.render(
-      <FilterInputs
-        props={{
-          id: '1',
-          item: {
-            selected: null,
-            input: [{ var: 'yes', filterRange: 'from' }],
-            filterType: 'notAType',
-          },
-          options: 'not important',
-        }}
-        i={'0'}
-      />,
-      root
-    )
-  }).toThrow()
-})
