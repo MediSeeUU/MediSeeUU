@@ -4,6 +4,9 @@ from django.core.management.base import BaseCommand
 
 from api.models.medicine_models import Medicine, Procedure
 
+# This file is responsible for setting up some initial
+# groups and users in the system.
+# ------------------------------------------------------
 
 def get_action(created):
     """
