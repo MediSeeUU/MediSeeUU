@@ -6,7 +6,7 @@ function filterData(data, filters) {
   let updatedData = [...data]
   filters.forEach((item) => {
     switch (item.filterType) {
-      case 'text':
+      case 'string':
         updatedData = textFilter(updatedData, item)
         break
       case 'number':

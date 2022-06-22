@@ -29,18 +29,20 @@ function Menu({ filters, sorters, update }) {
   // Handlers for opening and closing the modal
   const closeModal = () => setModalState(false)
   const openModal = () => {
+    // Set applied filters and sorters in the menu state
     setFilters(filters)
     setSorters(sorters)
+
     setModalState(true)
   }
 
-  // Apply filters and sorters which will update the data displayed in the table
+  // Apply filters and sorters which will update the data displayed in the table and close modal
   const apply = () => {
     update(localFilters, localSorters)
     closeModal()
   }
 
-  // Clear filters and sorters which will update the data displayed in the table
+  // Clear filters and sorters which will update the data displayed in the table and close modal
   const clear = () => {
     setFilters(filterObject)
     setSorters(sortObject)

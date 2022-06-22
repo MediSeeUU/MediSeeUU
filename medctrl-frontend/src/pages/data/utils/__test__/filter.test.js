@@ -6,7 +6,7 @@ import DummyData from '../../../../json/data.json'
 
 test('single text filter applied correctly', () => {
   let filteredData = filterData(DummyData, [
-    { selected: 'ApplicationNo', input: [{ var: '8' }], filterType: 'text' },
+    { selected: 'ApplicationNo', input: [{ var: '8' }], filterType: 'string' },
   ])
   filteredData.forEach((element) => {
     expect(element.ApplicationNo.toString()).toContain('8')
@@ -15,8 +15,12 @@ test('single text filter applied correctly', () => {
 
 test('two text filters applied correctly', () => {
   let filteredData = filterData(DummyData, [
-    { selected: 'ApplicationNo', input: [{ var: '7' }], filterType: 'text' },
-    { selected: 'DecisionYear', input: [{ var: '2001' }], filterType: 'text' },
+    { selected: 'ApplicationNo', input: [{ var: '7' }], filterType: 'string' },
+    {
+      selected: 'DecisionYear',
+      input: [{ var: '2001' }],
+      filterType: 'string',
+    },
   ])
   filteredData.forEach((element) => {
     expect(element.ApplicationNo.toString()).toContain('7')
@@ -29,7 +33,7 @@ test('multiple values in text filter applied correctly', () => {
     {
       selected: 'DecisionYear',
       input: [{ var: '1997' }, { var: '2001' }],
-      filterType: 'text',
+      filterType: 'string',
     },
   ])
   filteredData.forEach((element) => {
@@ -134,7 +138,7 @@ test('multiple values in date filter applied correctly', () => {
         { var: '2000-03-20', filterRange: 'from' },
         { var: '2012-03-20', filterRange: 'till' },
       ],
-      filterType: 'text',
+      filterType: 'string',
     },
   ])
   filteredData.forEach((element) => {
