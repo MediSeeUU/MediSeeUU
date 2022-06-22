@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
 import { useData } from '../../shared/contexts/DataContext'
 import { useStructure } from '../../shared/contexts/StructureContext'
+import { fetchWithToken } from '../../shared/api'
 
 // Function based component, which represents the top level detailed info page
 // component, it collects and fetches all the correct data and then passes this data
@@ -35,7 +36,7 @@ export default function DetailedInfoPage() {
   // retrieved from the server. The result is stored in a state
   useEffect(() => {
     async function fetchProcedureData(medID) {
-      const response = await fetch(
+      const response = await fetchWithToken(
         `${process.env.PUBLIC_URL}/api/procedure/` + medID + '/',
         {
           method: 'GET',

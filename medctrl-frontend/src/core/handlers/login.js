@@ -31,13 +31,14 @@ async function handleLogin(event) {
 
 // Set session items
 function setSession(res) {
-  // Force the data context to fetch the most recent data by refreshing the application
-  window.location.reload(false)
-
   sessionStorage.setItem('username', res.user.username)
   const access = res.user.groups.length > 0 ? res.user.groups[0].name : null
   sessionStorage.setItem('access_level', access)
   sessionStorage.setItem('token', res.token)
+  sessionStorage.setItem('token_expiry', res.expiry)
+
+  // Force the data context to fetch the most recent data by refreshing the application
+  window.location.reload(false)
 }
 
 export default handleLogin

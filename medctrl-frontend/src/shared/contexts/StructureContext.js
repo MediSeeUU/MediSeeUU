@@ -2,6 +2,7 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React, { useContext, useState, useEffect } from 'react'
+import { fetchWithToken } from '../api'
 
 // Create a new React context for the structure data
 // The structure is used to determine the variables that can be selected
@@ -21,7 +22,7 @@ export function StructureProvider({ mock, children }) {
   // Update the state if the structure data is retrieved from the API
   useEffect(() => {
     async function fetchData() {
-      const structResponse = await fetch(
+      const structResponse = await fetchWithToken(
         `${process.env.PUBLIC_URL}/api/detailedData/`,
         {
           method: 'GET',
