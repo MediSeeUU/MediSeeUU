@@ -15,7 +15,7 @@ test('applying search, filters and sorters', () => {
         {
           selected: 'EUNoShort',
           input: [{ var: '10' }, { var: '8' }],
-          filterType: 'text',
+          filterType: 'string',
         },
       ],
       sorters: [{ selected: 'Rapporteur', order: 'desc' }],

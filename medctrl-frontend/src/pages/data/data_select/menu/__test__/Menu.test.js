@@ -146,7 +146,7 @@ test('filters and sorters applied correctly in state', () => {
   const update = (filters, sorters) => {
     expect(filters).toStrictEqual([
       {
-        filterType: 'text',
+        filterType: 'string',
         selected: 'ActiveSubstance',
         input: [{ var: 'welcome', filterRange: 'from' }],
       },
