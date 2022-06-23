@@ -2,8 +2,8 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-# This file conatains the function that is used to fetch
-# the permissions apointed to an user.
+# This file contains the function that is used to fetch
+# the permissions appointed to an user.
 # ---------------------------------------------------------
 
 from django.contrib.auth.models import Group

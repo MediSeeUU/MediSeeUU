@@ -2,8 +2,8 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-# This file can be accesed by the scraper via the medicine enpoint.
-# When the scraper scrapes infromation about medicines, that data
+# This file can be accessed by the scraper via the medicine endpoint.
+# When the scraper scrapes information about medicines, that data
 # is posted to the medicine endpoint from where the data is
 # processed in this file. If the new data is validated, it will
 # be updated in the database.

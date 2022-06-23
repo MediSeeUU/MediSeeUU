@@ -2,18 +2,16 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-# This file contains all necesary information about the fields in the
+# This file contains all necessary information about the fields in the
 # database that are used in the frontend. Because the data is send
-# to the frontend in JSON format it is necesarry to send over aditional information
-# concerning each field. This aditional data is used in the filter fuction
-# and aditional medicine information page among others.
+# to the frontend in JSON format it is necessary to send over additional information
+# concerning each field. This additional data is used in the filter function
+# and additional medicine information page among others.
 # ----------------------------------------------------------------------------
 
 import json
 
-import json
-
-# returns a list of json components dependign on permission level, this list is for the filters and for the detailed information page
+# returns a list of json components depending on permission level, this list is for the filters and for the detailed information page
 def get_medicine_info(perm):
 
     # List with dictionaries

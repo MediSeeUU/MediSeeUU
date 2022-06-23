@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-# This file contains the 'view' concerning the Procedue data.
+# This file contains the 'view' concerning the Procedure data.
 # -----------------------------------------------------------
 
 from rest_framework import viewsets

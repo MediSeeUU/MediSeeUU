@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 # This file is responsible for creating all custom
-# permissiosn that are used in this project.
+# permissions that are used in this project.
 # ------------------------------------------------------
 
 from django.contrib.auth.models import Permission

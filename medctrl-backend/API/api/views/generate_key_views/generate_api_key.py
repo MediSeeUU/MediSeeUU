@@ -3,8 +3,8 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 # This file contains all functions that create a custom template for
-# the django backend. This custom templete extends the default django admin
-# panel templat with the means to crate a token that a scraper can use to
+# the django backend. This custom template extends the default django admin
+# panel template with the means to crate a token that a scraper can use to
 # access the backend.
 # -------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ from django.conf import settings
 
 base_url = settings.BASE_URL if "BASE_URL" in dir(settings) else ""
 
-# Creats form on django admin panel
+# Create form on django admin panel
 class GenerateKeyForm(forms.Form):
     """
     Generate form to get key for api user
@@ -64,6 +64,6 @@ class GenerateKeyView(LoginRequiredMixin, UserPassesTestMixin, FormView):
         context = super().get_context_data(**kwargs)
         return context
 
-    # Returs bolean value true if superuser
+    # Returns boolean value true if superuser
     def test_func(self):
         return self.request.user.is_superuser

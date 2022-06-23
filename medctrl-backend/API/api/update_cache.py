@@ -3,8 +3,8 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 # For each user all data is fetched from the database when opening
-# the dashboard and strored in memory cache.
-# This improves the peformance of the 'Get' requests by serval seconds.
+# the dashboard and stored in memory cache.
+# This improves the performance of the GET requests by several seconds.
 # -------------------------------------------------------------------
 
 import io
@@ -15,7 +15,7 @@ from rest_framework.settings import settings
 from api.serializers.medicine_serializers import PublicMedicineSerializer
 from api.models.medicine_models import Medicine
 
-# Adds all medicine data to cache memeory of the server
+# Adds all medicine data to cache memory of the server
 def update_cache():
     if not settings.MEDICINES_CACHING:
         return

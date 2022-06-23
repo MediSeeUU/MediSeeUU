@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 # This file contains the view for the endpoint that
-# is concerned with aditonal information about all
+# is concerned with additional information about all
 # fields in the database.
 # ---------------------------------------------------------
 
@@ -13,7 +13,7 @@ from .medicine_info_json import get_medicine_info
 from .permissionFilter import permissionFilter
 from rest_framework import permissions
 
-# Returns a json file containing all infromation the detailed page and the filters need
+# Returns a json file containing all information the detailed page and the filters need
 class Medicine_info(views.APIView):
     """
     Viewset for the Medicine info

@@ -6,7 +6,7 @@ from django.db import models
 
 class Lookupproceduretype(models.Model):
     """
-    Model class for the procedure type lookup table. As the abstract functionality for all model classes is nearly identical, information about them has been moved to an external readme.
+    Model class for the procedure type lookup table.
     """
 
     proceduretype = models.CharField(
