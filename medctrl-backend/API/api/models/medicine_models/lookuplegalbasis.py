@@ -7,8 +7,6 @@ from django.db import models
 class Lookuplegalbasis(models.Model):
     """
     Model class for the legal basis lookup table.
-    As the abstract functionality for all model classes is nearly identical,
-    information about them has been moved to an external readme.
     """
 
     legalbasis = models.CharField(
