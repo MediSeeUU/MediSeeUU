@@ -39,7 +39,7 @@ function InfoPage() {
 
         <div>
           <h2>Utrecht University</h2>
-          <img src={uuLogo} alt="UU logo" className="med-institution-logo" />
+          <img src={uuLogo} alt="Logo of the University of Utrecht" className="med-institution-logo" />
           <p className="med-institution-info">
             The Utrecht University team (Jarno Hoekman and Lourens Bloem)
             comprises a collaboration between the Copernicus Institute of
@@ -56,7 +56,7 @@ function InfoPage() {
 
         <div>
           <h2>Medicine Evaluation Board</h2>
-          <img src={mebLogo} alt="MEB logo" className="med-institution-logo" />
+          <img src={mebLogo} alt="Logo of the Medicines Evaluation Board" className="med-institution-logo" />
           <p className="med-institution-info">
             The MEB is a governmental agency and is under the authority of the
             ministry of Health, Welfare and Sport (Volksgezondheid, Welzijn en
