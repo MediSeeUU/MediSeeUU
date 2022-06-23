@@ -160,13 +160,13 @@ Utrecht University within the Software Project course.
   padding: 3px;
   text-align: center;
   font-weight: bold;
-  text-decoration: none;
+  text-decoration: underline;
   color: var(--med-info-link-color);
   width: calc(50% - 8px);
 }
 
 .med-info-external-link:hover {
-  color: var(--med-info-link-color);
+  color: var(--med-info-link-color-hover);
 }
 
 .med-info-external-link.disabled {
