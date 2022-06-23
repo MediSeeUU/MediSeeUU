@@ -7,8 +7,6 @@ from django.db import models
 class Historyauthorisation(models.Model):
     """
     Model class for the authorisation history table.
-    As the abstract functionality for all model classes is nearly identical,
-    information about them has been moved to an external readme.
     """
 
     eunumber = models.ForeignKey("Medicine", models.CASCADE, db_column="EUNumber")
