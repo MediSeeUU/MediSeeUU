@@ -8,6 +8,7 @@ from api.models.medicine_models import Medicine, Procedure
 # groups and users in the system.
 # ------------------------------------------------------
 
+
 def get_action(created):
     """
     Returns the action that has been performed on the model
