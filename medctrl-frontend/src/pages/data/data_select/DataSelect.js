@@ -40,7 +40,7 @@ function DataSelect() {
   }
 
   // Store the categories of each variable (which are used in the filter options)
-  const [categories, setCategories] = useState({})
+  const [categories, setCategories] = useState(null)
   useEffect(() => {
     setCategories(getUniqueCategories(allData))
   }, [allData])
