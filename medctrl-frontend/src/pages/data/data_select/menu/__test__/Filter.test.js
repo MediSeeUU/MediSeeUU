@@ -117,37 +117,39 @@ test('change input function is called', () => {
     <Filter
       id={10}
       item={{
-        selected: 'BrandName',
+        selected: 'Rapporteur',
         input: [{ var: '', filterRange: 'from', custom: true }],
       }}
       fil={fil}
     />
   )
-  const input = screen.getByTestId('filter-input-text')
+  const input = screen.getByTestId('input-select')
   fireEvent.change(input, { target: { value: 'can be anything' } })
-  fireEvent.focusOut(input)
   expect(fil).toHaveBeenCalled()
 })
 
 test('change input function returns correct ids and value', () => {
+  const categories = {
+    Rapporteur: ['Netherlands', 'Belgium', 'Germany']
+  }
   const fil = (id, index, value) => {
     expect(id).toBe(52)
     expect(index).toBe(1)
-    expect(value).toBe('can be anything')
+    expect(value).toBe('Belgium')
   }
   render(
     <Filter
       id={52}
       item={{
-        selected: 'BrandName',
+        selected: 'Rapporteur',
         input: [{ var: 'hi', custom: true }, { var: 'there', custom: true }, { var: 'again', custom: true }],
       }}
       fil={fil}
+      cats={categories}
     />
   )
-  const inputs = screen.getAllByTestId('filter-input-text')
-  fireEvent.change(inputs[1], { target: { value: 'can be anything' } })
-  fireEvent.focusOut(inputs[1])
+  const inputs = screen.getAllByTestId('input-select')
+  fireEvent.change(inputs[1], { target: { value: 'Belgium' } })
 })
 
 test('text filter rendered', () => {

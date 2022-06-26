@@ -26,9 +26,9 @@ function InputFilter(container) {
       className="med-table-menu-filter-input-field med-text-input"
       defaultValue={container.props.item.input[container.i].var}
       placeholder="Enter value"
-      onBlur={(e) =>
-        container.props.fil(container.props.id, container.i, e.target.value)
-      }
+      onBlur={(e) => {
+        container.props.item.input[container.i].var = e.target.value
+      }}
       data-testid="filter-input-text"
     />
   )
@@ -56,6 +56,7 @@ function StringFilter(container) {
         className="med-table-menu-filter-input-field med-text-input"
         defaultValue={container.props.item.input[container.i].var}
         onChange={updateSelected}
+        data-testid="input-select"
       >
         <option value="">Custom</option>
         {/* Show all options for the selected variable */}
@@ -76,9 +77,9 @@ function BoolFilter(container) {
       id={container.i + container.props.item.selected}
       className="med-table-menu-filter-input-field med-text-input"
       defaultValue={container.props.item.input[container.i].var}
-      onBlur={(e) =>
-        container.props.fil(container.props.id, container.i, e.target.value)
-      }
+      onBlur={(e) => {
+        container.props.item.input[container.i].var = e.target.value
+      }}
       data-testid="filter-input-bool"
     >
       <option value="yes">True</option>
