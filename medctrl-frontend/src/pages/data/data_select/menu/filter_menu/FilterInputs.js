@@ -3,6 +3,7 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import sortCategoryData from '../../../../visualizations/single_visualization/utils/sortCategoryData'
 
 // Function based component returning the specific filter input box
 function FilterInputs(container) {
@@ -58,7 +59,7 @@ function StringFilter(container) {
       >
         <option value="">Custom</option>
         {/* Show all options for the selected variable */}
-        {container.props.item.selected && container.props.cats && container.props.cats[container.props.item.selected] && container.props.cats[container.props.item.selected].map((cat) => <option key={uuidv4()} value={cat}>{cat}</option>)}
+        {container.props.item.selected && container.props.cats && container.props.cats[container.props.item.selected] && sortCategoryData(container.props.cats[container.props.item.selected]).map((cat) => <option key={uuidv4()} value={cat}>{cat}</option>)}
       </select>
       {/* Only show the input box if the user chose custom input */}
       {container.props.item.input[container.i].custom && InputFilter(container)}

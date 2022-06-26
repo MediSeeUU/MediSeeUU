@@ -51,8 +51,8 @@ function FilterMenu({ filters, setFilters, defaultObj, categories }) {
 
   // Updates the selected item of the specified filter item
   const updateFilterSelected = (id, newSelected) => {
-    updateFilter(id, (obj) => {
-      return { ...obj, selected: newSelected }
+    updateFilter(id, (_) => {
+      return { ...defaultObj[0], selected: newSelected }
     })
   }
 
