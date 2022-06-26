@@ -43,7 +43,7 @@ test('clear button resets filters and sorters', () => {
     expect(filters).toEqual([
       {
         selected: '',
-        input: [{ var: '', filterRange: 'from' }],
+        input: [{ var: '', filterRange: 'from', custom: true }],
         filterType: '',
       },
     ])
@@ -90,7 +90,7 @@ test('remove sorting option removes sorting item', () => {
   expect(screen.queryAllByTestId('sort-select-attr')).toHaveLength(1)
 })
 
-test('max 4 filters', () => {
+test('max 4 sorters', () => {
   render(<Menu filters={[]} sorters={[{ selected: '', order: 'asc' }]} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   const addSort = screen.getByText(/Add Sorting option +/i)
@@ -104,8 +104,8 @@ test('add filterbox', () => {
   render(
     <Menu
       filters={[
-        { selected: '', input: [''] },
-        { selected: '', input: [''] },
+        { selected: '', input: [{ var: '', filterRange: 'from', custom: true }] },
+        { selected: '', input: [{ var: '', filterRange: 'from', custom: true }] },
       ]}
       sorters={[]}
     />
@@ -117,7 +117,7 @@ test('add filterbox', () => {
 })
 
 test('remove filterbox', () => {
-  render(<Menu filters={[{ selected: '', input: [''] }]} sorters={[]} />)
+  render(<Menu filters={[{ selected: '', input: [{ var: '', filterRange: 'from', custom: true }] }]} sorters={[]} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   fireEvent.click(screen.getByText('+ Add'))
   expect(screen.getAllByRole('textbox')).toHaveLength(2)
@@ -126,7 +126,7 @@ test('remove filterbox', () => {
 })
 
 test('always have one filterbox', () => {
-  render(<Menu filters={[{ selected: '', input: [''] }]} sorters={[]} />)
+  render(<Menu filters={[{ selected: '', input: [{ var: '', filterRange: 'from', custom: true }] }]} sorters={[]} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   expect(screen.getAllByRole('textbox')).toHaveLength(1)
   fireEvent.click(screen.getByTestId('remove-icon'))
@@ -134,7 +134,7 @@ test('always have one filterbox', () => {
 })
 
 test('remove filter', () => {
-  render(<Menu filters={[{ selected: '', input: [''] }]} sorters={[]} />)
+  render(<Menu filters={[{ selected: '', input: [{ var: '', filterRange: 'from', custom: true }] }]} sorters={[]} />)
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   fireEvent.click(screen.getByText(/Add Filter/i))
   expect(screen.queryAllByTestId('filter-select')).toHaveLength(2)
@@ -148,7 +148,7 @@ test('filters and sorters applied correctly in state', () => {
       {
         filterType: 'string',
         selected: 'ActiveSubstance',
-        input: [{ var: 'welcome', filterRange: 'from' }],
+        input: [{ var: 'welcome', filterRange: 'from', custom: true }],
       },
     ])
     expect(sorters).toStrictEqual([
@@ -159,7 +159,7 @@ test('filters and sorters applied correctly in state', () => {
   render(
     <MockProvider>
       <Menu
-        filters={[{ selected: '', input: [{ var: '', filterRange: 'from' }] }]}
+        filters={[{ selected: '', input: [{ var: '', filterRange: 'from', custom: true }] }]}
         sorters={[
           { selected: '', order: 'asc' },
           { selected: '', order: 'asc' },

@@ -118,7 +118,7 @@ test('change input function is called', () => {
       id={10}
       item={{
         selected: 'BrandName',
-        input: [{ var: '', filterRange: 'from' }],
+        input: [{ var: '', filterRange: 'from', custom: true }],
       }}
       fil={fil}
     />
@@ -140,7 +140,7 @@ test('change input function returns correct ids and value', () => {
       id={52}
       item={{
         selected: 'BrandName',
-        input: [{ var: 'hi' }, { var: 'there' }, { var: 'again' }],
+        input: [{ var: 'hi', custom: true }, { var: 'there', custom: true }, { var: 'again', custom: true }],
       }}
       fil={fil}
     />
@@ -159,7 +159,7 @@ test('text filter rendered', () => {
         id: '1',
         item: {
           selected: 'BrandName',
-          input: [{ var: 'test', filterRange: 'from' }],
+          input: [{ var: 'test', filterRange: 'from', custom: true }],
           filterType: 'text',
         },
         options: 'not important',
@@ -179,7 +179,7 @@ test('number from filter rendered', () => {
         id: '1',
         item: {
           selected: 'null',
-          input: [{ var: '20', filterRange: 'from' }],
+          input: [{ var: '20', filterRange: 'from', custom: true }],
           filterType: 'number',
         },
         options: 'not important',
@@ -199,7 +199,7 @@ test('number till filter rendered', () => {
         id: '1',
         item: {
           selected: null,
-          input: [{ var: '20', filterRange: 'till' }],
+          input: [{ var: '20', filterRange: 'till', custom: true }],
           filterType: 'number',
         },
         options: 'not important',
@@ -219,7 +219,7 @@ test('date from filter rendered', () => {
         id: '1',
         item: {
           selected: null,
-          input: [{ var: '2012-02-02', filterRange: 'from' }],
+          input: [{ var: '2012-02-02', filterRange: 'from', custom: true }],
           filterType: 'date',
         },
         options: 'not important',
@@ -239,7 +239,7 @@ test('date till filter rendered', () => {
         id: '1',
         item: {
           selected: null,
-          input: [{ var: '2012-02-02', filterRange: 'till' }],
+          input: [{ var: '2012-02-02', filterRange: 'till', custom: true }],
           filterType: 'date',
         },
         options: 'not important',
@@ -259,7 +259,7 @@ test('bool filter rendered', () => {
         id: '1',
         item: {
           selected: null,
-          input: [{ var: 'yes', filterRange: 'from' }],
+          input: [{ var: 'yes', filterRange: 'from', custom: true }],
           filterType: 'bool',
         },
         options: 'not important',

@@ -1,11 +1,12 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import Filter from './Filter'
 
 // Function based component which renders the filter menu
-function FilterMenu({ filters, setFilters, defaultObj }) {
+function FilterMenu({ filters, setFilters, defaultObj, categories }) {
   // Add filter item to the menu
   const addFilter = () => setFilters(filters.concat(defaultObj))
 
@@ -24,7 +25,7 @@ function FilterMenu({ filters, setFilters, defaultObj }) {
   // Add a filter box to the specified filter item
   const addFilterBox = (id) => {
     updateFilter(id, (obj) => {
-      const newInput = obj.input.concat({ var: '', filterRange: 'from' })
+      const newInput = obj.input.concat({ var: '', filterRange: 'from', custom: true })
       return { ...obj, input: newInput }
     })
   }
@@ -37,7 +38,7 @@ function FilterMenu({ filters, setFilters, defaultObj }) {
         newInput.splice(bid, 1)
         return { ...obj, input: newInput }
       }
-      return { ...obj, input: [{ var: '', filterRange: 'from' }] }
+      return { ...obj, input: [{ var: '', filterRange: 'from', custom: true }] }
     })
   }
 
@@ -86,6 +87,7 @@ function FilterMenu({ filters, setFilters, defaultObj }) {
             dbox={deleteFilterBox}
             sel={updateFilterSelected}
             fil={updateFilterInput}
+            cats={categories}
           />
         ))}
       </div>

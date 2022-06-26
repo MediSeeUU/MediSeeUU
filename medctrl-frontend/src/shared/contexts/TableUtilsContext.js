@@ -20,7 +20,7 @@ export function TableUtilsProvider({ children }) {
     filters: [
       {
         selected: '',
-        input: [{ var: '', filterRange: 'from' }],
+        input: [{ var: '', filterRange: 'from', custom: true }],
         filterType: '',
       },
     ],

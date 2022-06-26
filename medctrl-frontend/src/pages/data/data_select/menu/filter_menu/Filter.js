@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useStructure } from '../../../../../shared/contexts/StructureContext'
 import VariableSelect from '../../../../../shared/VariableSelect'
@@ -58,9 +59,9 @@ function PickFilter(props, i) {
   return (
     <div key={uuidv4()}>
       {/* If number or date, first determine filter range */}
-      {(dataType === 'number' || dataType === 'date') && (
+      {((dataType === 'number' || dataType === 'date') && (
         <DetermineFilterRange container={props} i={i} />
-      )}
+      ))}
       <FilterInputs props={props} i={i} />
       <i
         className="bx bxs-minus-circle med-table-menu-remove-filter-option-icon"
