@@ -1,7 +1,8 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
-// function based component, represents the dialog which is shown to
+
+// Function based component, represents the dialog which is shown to
 // the user, after the user presses the save button, and the saving
 // process has completed successfully
 function SuccessDialog(props) {

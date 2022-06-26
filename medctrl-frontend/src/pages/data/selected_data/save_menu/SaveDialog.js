@@ -1,18 +1,18 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
-import React from 'react'
 
+import React from 'react'
 import ErrorDialog from './components/ErrorDialog'
 import SuccessDialog from './components/SuccessDialog'
 import ErrorMessage from './components/ErrorMessage'
-
 import postSavedSelection from './SaveHandler'
 
+// Class based component which renders the save dialog.
+// It is passed some series of data points, and it allows
+// the user to save these points as a selection with a name.
+// A class is used instead of a function because of the extensive state.
 class SaveDialog extends React.Component {
-  // Save Dialog is a class based component. it is passed some series of
-  // data points, and it allows the user to save these points as a selection
-  // with a name
   constructor(props) {
     super(props)
     this.state = {
@@ -34,36 +34,39 @@ class SaveDialog extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  // method used for the handling the closing of the save dialog
+  // Handler to close the dialog
   closeDialog() {
     this.state.onClose()
   }
 
-  // method used for handling when the user presses the save button
+  // Method used for handling when the user presses the save button
   // first it is checked if the current dialog state is valid, if so the
   // data is saved, otherwise an error is displayed
   async handleSave(event) {
     event.preventDefault()
 
-    // EUNoShorts of selected data points
+    // eunumbers of selected data points
     var eunumbers = []
     this.selectedData.forEach((dataPoint) =>
       eunumbers.push(dataPoint.EUNoShort)
     )
 
-    // check whether the name field has input
+    // Check whether the name field has actual input
     if (this.state.saveName === '') {
       this.setState({ errorMessage: this.noSaveName })
       return
     }
 
-    // check whether only allowed characters are used
+    // Check whether only allowed characters are used
     if (!/^[A-Za-z0-9\-_ ]*$/.test(this.state.saveName)) {
       this.setState({ errorMessage: this.invalidName })
       return
     }
 
+    // Send the saved selections to the server
     const succes = await postSavedSelection(eunumbers, this.state.saveName)
+
+    // Update dialog state based on the status returned by the server
     if (succes) {
       this.setState({ dialogState: 'success' })
     } else {
@@ -71,17 +74,17 @@ class SaveDialog extends React.Component {
     }
   }
 
-  // when the user updates the input field in the dialog,
+  // When the user updates the input field in the dialog,
   // this method is used to update the current state of the dialog
   // to reflect this user interaction
   handleChange(event) {
     this.setState({ saveName: event.target.value })
   }
 
-  // depending on the state of the dialog, a specific dialog is rendered
+  // Depending on the state of the dialog, a specific dialog is rendered
   // if the user has given a valid name, the selection is saved
-  // (success) or an error has occurred (error). if any error messages need
-  // to be displayed in the default view these are added dynamically
+  // (success) or an error has occurred (error). If any error messages need
+  // to be displayed in the default view these are added dynamically.
   render() {
     const dialogState = this.state.dialogState
     if (dialogState === 'success')

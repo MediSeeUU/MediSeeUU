@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import React, { useState } from 'react'
 import MedModal from '../../../../shared/MedModal'
 import FilterMenu from './filter_menu/FilterMenu'
@@ -29,7 +30,7 @@ function Menu({ filters, sorters, update }) {
   // Handlers for opening and closing the modal
   const closeModal = () => setModalState(false)
   const openModal = () => {
-    // Set applied filters and sorters in the menu state
+    // Set current applied filters and sorters in the menu state
     setFilters(filters)
     setSorters(sorters)
 

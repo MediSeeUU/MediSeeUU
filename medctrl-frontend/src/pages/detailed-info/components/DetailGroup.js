@@ -2,6 +2,8 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 
+import React from 'react'
+
 // Function based component, represents detail group component which
 // preferably holds individual detail components, which are included as childern
 function DetailGroup(props) {

@@ -1,6 +1,8 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import Filter from './Filter'
 
@@ -76,7 +78,9 @@ function FilterMenu({ filters, setFilters, defaultObj }) {
         <i className="bx bxs-plus-square med-table-menu-add-filter-icon"></i>
       </div>
       <div className="med-table-menu-filters-container">
-        {filters.map((filter, index) => (
+        { /* Render a Filter component for each filter in the current state
+             Every filter component will receive all the functions as props to update the state */
+        filters.map((filter, index) => (
           <Filter
             key={uuidv4()}
             id={index}

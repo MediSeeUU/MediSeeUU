@@ -1,6 +1,8 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './Footer.css'
 
@@ -8,7 +10,7 @@ import './Footer.css'
 function Footer() {
   return (
     // Footer components, gives the information to be placed in the footer in two sections placed
-    // next to each other.
+    // next to each other
     <footer className="med-footer">
       <section id="med-footer-organizations">
         <h2>Relevant Organizations</h2>

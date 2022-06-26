@@ -1,6 +1,9 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+import React from 'react'
+
 // Function based component that displays the paging of the table
 function Paging({ data, amount, currPage, setPage }) {
   // Holds all available pages
@@ -90,7 +93,8 @@ function Paging({ data, amount, currPage, setPage }) {
       className="med-table-pagination-container"
       data-testid="pagination-div"
     >
-      {currPage > 1 && (
+      { /* Only display the next page button if the current page is not the first page */
+      currPage > 1 && (
         <i
           onClick={() => setPage(--currPage)}
           className="bx bxs-chevron-left med-table-change-page"
@@ -98,7 +102,8 @@ function Paging({ data, amount, currPage, setPage }) {
         />
       )}
       {pageSelector()}
-      {currPage < pages && (
+      { /* Only display the previous page button if the current page is not the last page */
+      currPage < pages && (
         <i
           onClick={() => setPage(++currPage)}
           className="bx bxs-chevron-right med-table-change-page"

@@ -1,16 +1,20 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import React, { useState } from 'react'
 import './ExportMenu.css'
 import ExportDialog from './ExportDialog'
 import MedModal from '../../../../shared/MedModal'
 
-// function based component, represents the export button, which is inserted
-// in the selected data table. when this button is pressed, the export dialog
+// Function based component, represents the export button, which is inserted
+// in the selected data table. When this button is pressed, the export dialog
 // compontent is shown in a react modal view
 function ExportMenu({ selectedData }) {
+  // Initialize the modal state
   const [showModal, setModalState] = useState(false)
+
+  // Handler to close the modal
   const closeModal = () => setModalState(false)
 
   return (
@@ -21,7 +25,6 @@ function ExportMenu({ selectedData }) {
       >
         <i className="bx bxs-file-export med-button-image"></i>Export
       </button>
-
       <MedModal showModal={showModal} closeModal={closeModal}>
         <ExportDialog data={selectedData} onClose={closeModal} />
       </MedModal>

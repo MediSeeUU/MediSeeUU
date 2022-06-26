@@ -1,19 +1,20 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import React from 'react'
 import * as XLSX from 'xlsx'
 import FileSaver from 'file-saver'
-
 import ErrorDialog from './components/ErrorDialog'
 import SuccessDialog from './components/SuccessDialog'
 import ErrorMessage from './components/ErrorMessage'
 import RadioElement from './components/RadioElement'
 
+// Class based component which renders the export dialog
+// It is passed some series of datapoints, and it allows the user
+// to export these points in any of the available file types.
+// A class is used instead of a function because of the extensive state.
 class ExportDialog extends React.Component {
-  // Export Dialog is a class based component. it is passed some series of
-  // datapoints, and it allowes the user to export these point in any of the
-  // available file types
   constructor(props) {
     super(props)
     this.state = {
@@ -27,9 +28,9 @@ class ExportDialog extends React.Component {
     this.selectedData = props.data
 
     this.noExportType =
-      'No file type selected. Please select on of the above spefied file types, to be able to export the selected data.'
+      'No file type selected. Please select one of the above specified file types to be able to export the selected data.'
     this.noSeparator =
-      'No separator given. Please specify a separator to be used in the custom delimited file format, to be able to export the selected data.'
+      'No separator given. Please specify a separator to be used in the custom delimited file format to be able to export the selected data.'
 
     this.closeDialog = this.closeDialog.bind(this)
     this.handleDownload = this.handleDownload.bind(this)
@@ -37,14 +38,14 @@ class ExportDialog extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  // method used for the handling the closing of the export dialog
+  // Handler to close the dialog
   closeDialog() {
     this.state.onClose()
   }
 
-  // method used for handling when the user pressess the download button
-  // first it is checked if the current dialog state is valid, if so the
-  // data is exported and downloaded, otherwise an error is displayed
+  // Method used for handling when the user pressess the download button.
+  // First it is checked if the current dialog state is valid, if so the
+  // data is exported and downloaded, otherwise an error is displayed.
   handleDownload(event) {
     event.preventDefault()
 
@@ -70,22 +71,22 @@ class ExportDialog extends React.Component {
     this.setState({ dialogState: 'success' })
   }
 
-  // exports all the datapoints contained in this.selectedData, according to
-  // the given user preference. this methd assumes that the current state of
+  // Exports all the datapoints contained in the selected data, according to
+  // the given user preference. It assumes that the current state of
   // user preference is valid
   exportData() {
     const selectedData = this.selectedData
     const exportType = this.state.exportType
 
-    // first convert the selected data points to a worksheet object
+    // First convert the selected data points to a worksheet object
     const ws = XLSX.utils.json_to_sheet(selectedData)
 
-    // - the actual data object which contains the formatted data points
-    // - the final file extension in string format
+    // - The actual data object which contains the formatted data points
+    // - The final file extension in string format
     var data
     var extension
 
-    // the worksheet object should be exported to an excel format
+    // The worksheet object should be exported to an excel format
     if (exportType === 'xlsx') {
       const wb = { Sheets: { data: ws }, SheetNames: ['data'] }
       const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' })
@@ -95,32 +96,32 @@ class ExportDialog extends React.Component {
       extension = '.xlsx'
     }
 
-    // the worksheet object should be exported to a custom delimited format
+    // The worksheet object should be exported to a custom delimited format
     else if (exportType === 'custom') {
       const separator = this.state.customSeparator
       data = new Blob([XLSX.utils.sheet_to_csv(ws, { FS: separator })])
       extension = '.txt'
     }
 
-    // the worksheet object should be exported to a comma delimited format
+    // The worksheet object should be exported to a comma delimited format
     else if (exportType === 'csv') {
       data = new Blob([XLSX.utils.sheet_to_csv(ws, { FS: ',' })])
       extension = '.csv'
     }
 
-    // the worksheet object should be exported to a tab delimited format
+    // The worksheet object should be exported to a tab delimited format
     else if (exportType === 'tsv') {
       data = new Blob([XLSX.utils.sheet_to_csv(ws, { FS: '\t' })])
       extension = '.tsv'
     }
 
-    // the worksheet object should be exported to a semicolon delimited format
+    // The worksheet object should be exported to a semicolon delimited format
     else if (exportType === 'ssv') {
       data = new Blob([XLSX.utils.sheet_to_csv(ws, { FS: ';' })])
       extension = '.ssv'
     }
 
-    // if something has gone wrong somewhere, an error will be displayed
+    // If something has gone wrong somewhere, an error will be displayed
     else {
       throw new Error('export type is not valid!')
     }
@@ -128,7 +129,7 @@ class ExportDialog extends React.Component {
     FileSaver.saveAs(data, 'exported-medicine-data' + extension)
   }
 
-  // when the user updates one of the input fields in the dialog,
+  // When the user updates one of the input fields in the dialog,
   // this method is used to update the current state of the dialog
   // to reflect this user interaction
   handleChange(event) {
@@ -145,10 +146,10 @@ class ExportDialog extends React.Component {
     }
   }
 
-  // depending on the state of the dialog, a specific dialog is rendered
+  // Depending on the state of the dialog, a specific dialog is rendered
   // if the user is giving a preference (default), the download is commencing
-  // (success) or an error has occurred (error). if any error messages need
-  // to be displayed in the default view these are added dynamically
+  // (success) or an error has occurred (error). If any error messages need
+  // to be displayed in the default view these are added dynamically.
   render() {
     const dialogState = this.state.dialogState
     if (dialogState === 'success')

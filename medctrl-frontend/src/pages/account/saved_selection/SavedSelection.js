@@ -1,19 +1,19 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
-import { useEffect, useState } from 'react'
+
+import React, { useEffect, useState } from 'react'
 import { useCheckedState } from '../../../shared/contexts/CheckedContext'
 import { fetchDeleteSelections } from './/savedSelectionHandlers'
 
-// Saved selection item in the saved selections list
+// Function based component rendering a saved selection row
 function SavedSelection({ savedSelection, setSavedSelection }) {
   const { checkedState, setCheckedState } = useCheckedState()
 
   // Create a set with the eunumbers for quicker lookup
   const selection = new Set(savedSelection.eunumbers)
 
-  // A state which discribes if this savedSelection is current selected
-  // in the checkedState
+  // A state which describes if this saved selection is currently selected
   const [isCurrent, setIsCurrent] = useState(false)
 
   // Handler that updates the selection after clicking on a selection
@@ -26,7 +26,7 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
       // Determine if there is a match
       let match = key.match(/EU\/\d\/\d{2}\/(\d+)|(\d+)/)
       if (match) {
-        // Find the eunumbershort and select it if it is in the selection
+        // Find the eunumber and select it if it is in the selection
         const eunumber = match[1] ? match[1] : match[2]
         const value = parseInt(eunumber)
         updatedCheckedState[key] = selection.has(value)
@@ -52,8 +52,8 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
     )
   }
 
-  // When either the checkedState or the savedSelection changes, it needs
-  // to be determined is the savedSelection contains the same data points
+  // When either the checkedState or the savedSelection changes, an evaluation
+  // must be done to check if the savedSelection contains the same data points
   // as the current checkedState
   useEffect(() => {
     let match = !isEmptyObject(checkedState)

@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import React from 'react'
 import Toggle from './components/Toggle'
 import NavLink from './components/NavLink'
@@ -10,18 +11,20 @@ import OutsideClickHandler from 'react-outside-click-handler'
 import './Navigation.css'
 import handleLogOut from '../handlers/logout'
 
-// Class based component representing the entire navigation side bar
+// Class based component rendering the entire navigation side bar
+// Because of the extensive state, we use a class instead of a function based component here
 class SideNavigation extends React.Component {
   // Initialize the navigation bar in the collapsed position
   constructor(props) {
     super(props)
 
-    // Get login status from sessionStorage
+    // Get login status from session storage
     let username = sessionStorage.getItem('username')
     let accessLevel = sessionStorage.getItem('access_level')
     let token = sessionStorage.getItem('token')
     let loggedIn = token !== null
 
+    // Set the default state
     this.state = {
       expanded: false,
       loggedIn: loggedIn,

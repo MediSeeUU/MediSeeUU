@@ -1,6 +1,8 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useStructure } from '../../../../../shared/contexts/StructureContext'
 import VariableSelect from '../../../../../shared/VariableSelect'
@@ -10,18 +12,22 @@ import FilterInputs from './FilterInputs'
 function Filter(props) {
   return (
     <div id={props.id} className="med-table-menu-filter-item">
+      {/* Render the variable select */}
       <VariableSelect
         className="med-table-menu-select med-select"
         defaultValue={props.item.selected}
         onChange={(e) => props.sel(props.id, e.target.value)}
         dataTestId="filter-select"
       />
+      {/* Render delete icon on the top-right */}
       <i
         className="bx bxs-x-circle med-table-menu-delete-button med-primary-text"
         onClick={() => props.del(props.id)}
         data-testid="delete-icon"
       ></i>
-      {filterInputs(props)}
+      { /* Render all the filter inputs */
+      filterInputs(props)}
+      {/* Render an add label to add more filter inputs */}
       <label
         className="med-table-menu-add-filter-option-button med-primary-text"
         onClick={() => props.box(props.id)}
@@ -44,7 +50,7 @@ function filterInputs(props) {
   return fields
 }
 
-// Function that returns the specific filter inputs based on the variable type
+// Function based component that returns the specific filter inputs based on the variable type
 function PickFilter(props, i) {
   // First get the datatype of the selected variable
   const dataType = GetDataType(props.item.selected)
@@ -61,7 +67,9 @@ function PickFilter(props, i) {
       {(dataType === 'number' || dataType === 'date') && (
         <DetermineFilterRange container={props} i={i} />
       )}
+      {/* Render input box */}
       <FilterInputs props={props} i={i} />
+      {/* Render remove icon to remove the input box */}
       <i
         className="bx bxs-minus-circle med-table-menu-remove-filter-option-icon"
         onClick={() => props.dbox(props.id, i)}

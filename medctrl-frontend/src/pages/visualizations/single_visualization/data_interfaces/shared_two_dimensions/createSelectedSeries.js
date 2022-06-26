@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 // Creates an array for each selected category of the y variable.
 // If a y category was never combined with an x category,
 // a 0 will be added, otherwise the amount of occurrences is added.

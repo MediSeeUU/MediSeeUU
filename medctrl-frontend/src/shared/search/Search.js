@@ -1,9 +1,11 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
-import './Search.css'
-import React, { useState } from 'react'
 
+import React, { useState } from 'react'
+import './Search.css'
+
+// Function based component rendering the search bar and button
 function Search({ update, initial, tour }) {
   // We need a separate state for saving the query given in the textbox
   const [query, setQuery] = useState(initial)
@@ -27,11 +29,11 @@ function Search({ update, initial, tour }) {
     update('')
   }
 
-  // The HTML code of the search component
   return (
     <div tour={tour} className="med-content-container">
       <div className="med-search-container">
-        {query && (
+        { /* Only show the X if there is actual input in the search bar */
+        query && (
           <i
             className="bx bx-x med-search-close-icon"
             onClick={clearSearch}

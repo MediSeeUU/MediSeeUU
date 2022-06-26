@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 // Filter data based on the given filters
 function filterData(data, filters) {
   let updatedData = [...data]
@@ -25,7 +26,7 @@ function filterData(data, filters) {
   return updatedData
 }
 
-// Function that applies one filter item to the data
+// Text filter
 function textFilter(data, item) {
   if (!item.selected) {
     return data
@@ -37,6 +38,7 @@ function textFilter(data, item) {
   })
 }
 
+// Numerical filter
 function numFilter(data, item) {
   if (!item.selected) {
     return data
@@ -55,6 +57,7 @@ function numFilter(data, item) {
   })
 }
 
+// Date filter
 function dateFilter(data, item) {
   if (!item.selected) {
     return data

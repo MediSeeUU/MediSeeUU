@@ -1,13 +1,15 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+import React from 'react'
 import TimeLineElement from './TimeLineElement'
 import { v4 } from 'uuid'
 
 // Function based element, which represents a visual timeline that includes
 // all of the procedures which are passed to this component as a prop. Each
 // element displays both the date and the type of the procedure, if any of
-// these fields are unavailable, 'NA' is displayed
+// these fields are unavailable, 'NA' is displayed.
 function TimeLine({ procedures, lastUpdatedDate }) {
   const clean = (value) => {
     return !value ? 'NA' : value

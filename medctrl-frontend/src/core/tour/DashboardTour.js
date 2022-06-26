@@ -1,8 +1,9 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
-import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride'
+
 import React, { useContext, useState } from 'react'
+import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride'
 import { useNavigate } from 'react-router-dom'
 import { useTableUtils } from '../../shared/contexts/TableUtilsContext'
 import { useCheckedState } from '../../shared/contexts/CheckedContext'
