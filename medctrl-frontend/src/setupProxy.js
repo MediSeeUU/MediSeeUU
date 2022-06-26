@@ -15,7 +15,7 @@ module.exports = function (app) {
         changeOrigin: true,
       })
     )
-  // Otherwise communicate with the local server
+    // Otherwise communicate with the local server
   } else {
     app.use(
       '/api',

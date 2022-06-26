@@ -93,23 +93,27 @@ function Paging({ data, amount, currPage, setPage }) {
       className="med-table-pagination-container"
       data-testid="pagination-div"
     >
-      { /* Only display the next page button if the current page is not the first page */
-      currPage > 1 && (
-        <i
-          onClick={() => setPage(--currPage)}
-          className="bx bxs-chevron-left med-table-change-page"
-          data-testid="prev-page-table"
-        />
-      )}
+      {
+        /* Only display the next page button if the current page is not the first page */
+        currPage > 1 && (
+          <i
+            onClick={() => setPage(--currPage)}
+            className="bx bxs-chevron-left med-table-change-page"
+            data-testid="prev-page-table"
+          />
+        )
+      }
       {pageSelector()}
-      { /* Only display the previous page button if the current page is not the last page */
-      currPage < pages && (
-        <i
-          onClick={() => setPage(++currPage)}
-          className="bx bxs-chevron-right med-table-change-page"
-          data-testid="next-page-table"
-        />
-      )}
+      {
+        /* Only display the previous page button if the current page is not the last page */
+        currPage < pages && (
+          <i
+            onClick={() => setPage(++currPage)}
+            className="bx bxs-chevron-right med-table-change-page"
+            data-testid="next-page-table"
+          />
+        )
+      }
     </div>
   )
 }

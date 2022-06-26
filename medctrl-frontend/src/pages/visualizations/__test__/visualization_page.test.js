@@ -4,10 +4,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  fireEvent,
-  screen,
-} from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import VisualizationPage from '../VisualizationPage'
 import ResizeObserver from '../mocks/observer'
 import data from '../../../json/data.json'

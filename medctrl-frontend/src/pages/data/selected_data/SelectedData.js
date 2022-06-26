@@ -23,12 +23,16 @@ function SelectedData({ selectedData }) {
   return (
     <div tour="step-data-selected" className="med-content-container">
       <h1 className="med-header">Selected Data Points</h1>
-      { /* Only display the export menu if there is data displayed */
-      updatedData.length > 0 && <ExportMenu selectedData={updatedData} />}
-      { /* Only display the save menu if the user is logged in and there is data displayed */
-      loggedIn && updatedData.length > 0 && (
-        <SaveMenu selectedData={updatedData} />
-      )}
+      {
+        /* Only display the export menu if there is data displayed */
+        updatedData.length > 0 && <ExportMenu selectedData={updatedData} />
+      }
+      {
+        /* Only display the save menu if the user is logged in and there is data displayed */
+        loggedIn && updatedData.length > 0 && (
+          <SaveMenu selectedData={updatedData} />
+        )
+      }
       <hr className="med-top-separator" />
       <TableView
         data={updatedData}

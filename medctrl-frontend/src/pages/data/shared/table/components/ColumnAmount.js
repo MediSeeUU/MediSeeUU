@@ -37,22 +37,26 @@ function ColumnAmount() {
 
   return (
     <div className="med-add-remove-button-container">
-      { /* Only render the column remove button if there are currently more than 5 columns */
-      columnSelection.length > 5 && (
-        <i
-          className="med-add-remove-button bx bxs-minus-square med-primary-text"
-          onClick={removeColumn}
-          data-testid="remove-column"
-        />
-      )}
-      { /* Only render the column add button if the current amount of columns is less than the amount of variables */
-      columnSelection.length < options.length && (
-        <i
-          className="med-add-remove-button bx bxs-plus-square med-primary-text"
-          onClick={addColumn}
-          data-testid="add-column"
-        />
-      )}
+      {
+        /* Only render the column remove button if there are currently more than 5 columns */
+        columnSelection.length > 5 && (
+          <i
+            className="med-add-remove-button bx bxs-minus-square med-primary-text"
+            onClick={removeColumn}
+            data-testid="remove-column"
+          />
+        )
+      }
+      {
+        /* Only render the column add button if the current amount of columns is less than the amount of variables */
+        columnSelection.length < options.length && (
+          <i
+            className="med-add-remove-button bx bxs-plus-square med-primary-text"
+            onClick={addColumn}
+            data-testid="add-column"
+          />
+        )
+      }
     </div>
   )
 }

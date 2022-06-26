@@ -41,13 +41,15 @@ function Body({ data, select, amountPerPage, currentPage }) {
       // Render the whole row with the checkbox (if applicable), data and actions
       return (
         <tr key={index1 + lowerBoundDataPage}>
-          { /* Only add a checkbox if we are rendering a table with selected datapoints */
-          select && (
-            <CheckboxColumn
-              value={checkedState[entry.EUNoShort]}
-              onChange={handleOnChange.bind(null, entry.EUNoShort)}
-            />
-          )}
+          {
+            /* Only add a checkbox if we are rendering a table with selected datapoints */
+            select && (
+              <CheckboxColumn
+                value={checkedState[entry.EUNoShort]}
+                onChange={handleOnChange.bind(null, entry.EUNoShort)}
+              />
+            )
+          }
           {body}
           <RightStickyActions
             entry={entry}

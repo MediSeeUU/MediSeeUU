@@ -54,20 +54,22 @@ function Header({ data, select, sorters, setSorters }) {
           onChange={(e) => handleColumnChange(index, e.target.value)}
           defaultValue={key}
         />
-        { /* Renders an arrow up or down based on the current applied sorters */
-        !isSorted(key) ? (
-          <i
-            className="bx bxs-down-arrow med-table-header-sort"
-            onClick={(e) => handleSortingChange(key, 'asc')}
-            data-testid="sort-asc-column"
-          />
-        ) : (
-          <i
-            className="bx bxs-up-arrow med-table-header-sort"
-            onClick={(e) => handleSortingChange(key, 'desc')}
-            data-testid="sort-desc-column"
-          />
-        )}
+        {
+          /* Renders an arrow up or down based on the current applied sorters */
+          !isSorted(key) ? (
+            <i
+              className="bx bxs-down-arrow med-table-header-sort"
+              onClick={(e) => handleSortingChange(key, 'asc')}
+              data-testid="sort-asc-column"
+            />
+          ) : (
+            <i
+              className="bx bxs-up-arrow med-table-header-sort"
+              onClick={(e) => handleSortingChange(key, 'desc')}
+              data-testid="sort-desc-column"
+            />
+          )
+        }
       </th>
     )
   })
@@ -75,10 +77,12 @@ function Header({ data, select, sorters, setSorters }) {
   return (
     <thead className="med-table-header">
       <tr className="">
-        { /* Only render a checkbox if the table displays the selected datapoints */
-        select && (
-          <CheckboxColumn value={allSelected} onChange={handleAllChange} />
-        )}
+        {
+          /* Only render a checkbox if the table displays the selected datapoints */
+          select && (
+            <CheckboxColumn value={allSelected} onChange={handleAllChange} />
+          )
+        }
         {columns}
         <td className="med-table-body-cell med-table-narrow-column med-column-right"></td>
       </tr>

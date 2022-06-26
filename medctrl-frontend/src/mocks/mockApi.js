@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import sampleProcedureData from '../json/detailed-info-data.json'
@@ -40,7 +41,7 @@ const mockApi = setupServer(
     return res(
       ctx.json({
         id: '3028cdec-ee8e-4c25-af19-19087ef4f64e',
-        name: 'mooie selectie',
+        name: 'great selection',
         created_at: '2022-06-20T10:30:53.081142Z',
         created_by: 'admin',
         eunumbers: [1, 2, 3],

@@ -32,14 +32,16 @@ function Search({ update, initial, tour }) {
   return (
     <div tour={tour} className="med-content-container">
       <div className="med-search-container">
-        { /* Only show the X if there is actual input in the search bar */
-        query && (
-          <i
-            className="bx bx-x med-search-close-icon"
-            onClick={clearSearch}
-            data-testid="search-close-icon"
-          ></i>
-        )}
+        {
+          /* Only show the X if there is actual input in the search bar */
+          query && (
+            <i
+              className="bx bx-x med-search-close-icon"
+              onClick={clearSearch}
+              data-testid="search-close-icon"
+            ></i>
+          )
+        }
         <input
           type="text"
           placeholder="Search"

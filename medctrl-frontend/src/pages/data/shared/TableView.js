@@ -36,8 +36,10 @@ function TableView({ data, sorters, setSorters, select, text }) {
           setSorters={setSorters}
         />
         <div className="med-bottom-container-holder">
-          { /* Only show the clear all icon if it is a table with selected datapoints */
-          !select && <ClearAll data={data} />}
+          {
+            /* Only show the clear all icon if it is a table with selected datapoints */
+            !select && <ClearAll data={data} />
+          }
           <Paging
             data={data}
             amount={resultsPerPage}

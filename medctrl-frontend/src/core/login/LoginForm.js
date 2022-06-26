@@ -33,7 +33,7 @@ function LoginForm(props) {
         userName: username,
         accessLevel: access_level,
       })
-    // If login failed, set fail state to true which renders the error message
+      // If login failed, set fail state to true which renders the error message
     } else {
       setFail(true)
     }

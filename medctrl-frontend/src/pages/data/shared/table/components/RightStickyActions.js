@@ -9,13 +9,15 @@ import { Link } from 'react-router-dom'
 function RightStickyActions({ entry, select, onChange }) {
   return (
     <td className="med-table-body-cell med-table-narrow-column med-column-right">
-      { /* Only render the delete icon if the table displays all the datapoints (not only the selected) */
-      !select && (
-        <i
-          className="bx bx-trash med-table-icons med-primary-text"
-          onClick={onChange.bind(null, entry.EUNoShort)}
-        ></i>
-      )}
+      {
+        /* Only render the delete icon if the table displays all the datapoints (not only the selected) */
+        !select && (
+          <i
+            className="bx bx-trash med-table-icons med-primary-text"
+            onClick={onChange.bind(null, entry.EUNoShort)}
+          ></i>
+        )
+      }
       <Link to={`/details/${entry.EUNoShort}`}>
         <i
           className="bx bx-info-circle med-table-icons med-primary-text"

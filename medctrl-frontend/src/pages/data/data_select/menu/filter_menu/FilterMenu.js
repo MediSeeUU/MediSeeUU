@@ -78,20 +78,22 @@ function FilterMenu({ filters, setFilters, defaultObj }) {
         <i className="bx bxs-plus-square med-table-menu-add-filter-icon"></i>
       </div>
       <div className="med-table-menu-filters-container">
-        { /* Render a Filter component for each filter in the current state
+        {
+          /* Render a Filter component for each filter in the current state
              Every filter component will receive all the functions as props to update the state */
-        filters.map((filter, index) => (
-          <Filter
-            key={uuidv4()}
-            id={index}
-            item={filter}
-            del={deleteFilter}
-            box={addFilterBox}
-            dbox={deleteFilterBox}
-            sel={updateFilterSelected}
-            fil={updateFilterInput}
-          />
-        ))}
+          filters.map((filter, index) => (
+            <Filter
+              key={uuidv4()}
+              id={index}
+              item={filter}
+              del={deleteFilter}
+              box={addFilterBox}
+              dbox={deleteFilterBox}
+              sel={updateFilterSelected}
+              fil={updateFilterInput}
+            />
+          ))
+        }
       </div>
     </>
   )
