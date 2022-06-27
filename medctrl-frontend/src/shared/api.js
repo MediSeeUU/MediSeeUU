@@ -1,3 +1,4 @@
+// Fetches a resource from the server that needs user authentication
 export function fetchWithToken(url, options) {
   // Check if user token has expired
   checkExpiry()
@@ -12,6 +13,7 @@ export function fetchWithToken(url, options) {
   return fetch(url, options)
 }
 
+// Checks if the user token has expired and removes the session storage items
 function checkExpiry() {
   let exp = sessionStorage.getItem('token_expiry')
   if (exp) {

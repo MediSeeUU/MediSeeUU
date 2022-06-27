@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
@@ -8,11 +9,11 @@ import ExportMenu from '../ExportMenu'
 import DummyData from '../../../../../json/small_data.json'
 import MockProvider from '../../../../../mocks/MockProvider'
 
-// this is required to make sure the tests don't crash
+// This is required to make sure the tests don't crash
 // when the tested components try and download a file
 jest.mock('file-saver', () => ({ saveAs: jest.fn() }))
 
-// the export dialog should render without crashing
+// The export dialog should render without crashing
 test('renders without crashing', () => {
   const root = document.createElement('div')
   ReactDOM.render(
@@ -23,7 +24,7 @@ test('renders without crashing', () => {
   )
 })
 
-// when the user does not select any option and presses the download button,
+// When the user does not select any option and presses the download button,
 // the user should see an error message on screen
 test('no selection should result in UI error message', () => {
   render(
@@ -42,7 +43,7 @@ test('no selection should result in UI error message', () => {
   fireEvent.click(cancelButton)
 })
 
-// when the user selects any of the first four possible export
+// When the user selects any of the first four possible export
 // file types and presses the download button, the user should
 // be redirected to a succes message screen
 test('valid selection download should result in UI success message', () => {
@@ -70,7 +71,7 @@ test('valid selection download should result in UI success message', () => {
   }
 })
 
-// when the user selects the custom delimited option, but does not
+// When the user selects the custom delimited option, but does not
 // specify a custom separator, the user should see an error message on screen
 test('custom selection without separator should result in UI error message', () => {
   render(
@@ -91,7 +92,7 @@ test('custom selection without separator should result in UI error message', () 
   fireEvent.click(cancelButton)
 })
 
-// when the user selects the custom delimited option, and specifies a
+// When the user selects the custom delimited option, and specifies a
 // custom separator,the user should be redirected to a succes message screen
 test('custom selection with separator should result in UI success message', () => {
   render(
@@ -110,7 +111,7 @@ test('custom selection with separator should result in UI success message', () =
   expect(dialogHeader.innerHTML).toBe('Export Successfull')
 })
 
-// when one of the radio buttons is manipulated to contain an incorrect
+// When one of the radio buttons is manipulated to contain an incorrect
 // id, the no file type can corretly be selected and the file export
 // fails, this will be reflected by an error dialog
 test('download attempt with invalid selection should result in error dialog', () => {

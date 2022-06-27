@@ -1,7 +1,8 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
-import React, { useRef } from 'react'
+
+import React, { useRef, useEffect, useState } from 'react'
 import Menu from './menu/Menu'
 import Search from '../../../shared/search/Search'
 import TableView from '../shared/TableView'
@@ -9,12 +10,14 @@ import updateData from '../utils/update'
 import { useTableUtils } from '../../../shared/contexts/TableUtilsContext'
 import { useColumnSelection } from '../../../shared/contexts/ColumnSelectionContext'
 import { useData } from '../../../shared/contexts/DataContext'
+import getUniqueCategories from '../../visualizations/single_visualization/utils/getUniqueCategories'
 
-// Data select component that displays all the datapoints that can be selected
+// Function based component that displays the search bar and table with all the datapoints that can be selected
 function DataSelect() {
   const { tableUtils, setTableUtils } = useTableUtils()
 
-  // We need to keep a reference of the columns for ranking the data
+  // We need to keep a reference of the columns
+  // Used in ranking the data when applying a search
   const { columnSelection } = useColumnSelection()
   let columnsRef = useRef(columnSelection)
   let queryRef = useRef(tableUtils.search)
@@ -26,17 +29,26 @@ function DataSelect() {
   }
 
   // Update the data based on the search, filters and sorters
+  // The search, filters and sorters are all located in the tableUtils context
+  // Also rank the data based on the current selected columns
   const allData = useData()
   const updatedData = updateData(allData, tableUtils, columnsRef.current)
 
-  // Handler that is called after the menu is applied
+  // Handler that is called after the filters and sorters in the menu are applied
   const menuUpdate = (filters, sorters) => {
+    // Update the filters and sorters context with the ones applied in the menu
     setTableUtils({
       ...tableUtils,
       filters: filters,
       sorters: sorters,
     })
   }
+
+  // Store the categories of each variable (which are used in the filter options)
+  const [categories, setCategories] = useState(null)
+  useEffect(() => {
+    setCategories(getUniqueCategories(allData))
+  }, [allData])
 
   return (
     <>
@@ -51,6 +63,7 @@ function DataSelect() {
           filters={tableUtils.filters}
           sorters={tableUtils.sorters}
           update={menuUpdate}
+          categories={categories}
         />
         <hr className="med-top-separator" />
         <TableView

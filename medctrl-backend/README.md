@@ -28,10 +28,11 @@ The Url files contain all valid Paths that can be accessed using a URL. When a  
 ## Local deployment
 Using powershell is recomened when working on a local machine. 
 
-1. naviagte to the '\medctrl-backend\API\' folder
+1. naviagte to the '\medctrl-backend' folder
 2. run the following command: ```venv/scripts/activate```
-3. run the following command: ```py manage.py migrate```
-3. run the following command: ```py manage.py runserver```
+3. naviagte to the '\medctrl-backend\API' folder
+4. run the following command: ```py manage.py migrate```
+5. run the following command: ```py manage.py runserver```
 
 All valid urls can now be accessed via the browser at 'http://#HOST:PORT/PATH' -> example: 'http://127.0.0.1:8000/account/login/'.
 

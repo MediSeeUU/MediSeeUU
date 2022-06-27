@@ -2,11 +2,11 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-# This file contains all routes (endpoints) that are accescile
-# by an user. Each route connects to a 'view', which can be found
+# This file contains all routes (endpoints) that are accessible
+# by a user. Each route connects to a 'view', which can be found
 # in the 'views' folder. We distinguish between APIView's and ViewSets.
 # In 'urlpatterns' paths are specified. APIView's use '.as_view()' as
-# an aditional argument where ViewSets use 'as_viewViewSet' as an aditional
+# an additional argument where ViewSets use 'as_viewViewSet' as an additional
 # argument. ViewSets can also be used in a router, APIView's can not.
 # -----------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ from api.views.other import Medicine_info
 from api.scraper.router import url_patterns as scraper_routes
 
 
-# Only viewSets can be registerd at a router.
+# Only viewSets can be registered at a router.
 # The router is used for better organization of the code.
 router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
@@ -34,7 +34,7 @@ router.register(r"saveselection", SavedSelectionViewSet, basename="saveselection
 # urlpatterns is the default way of adding routes (endpoints).
 urlpatterns = [
     path("", include(router.urls)),  # Includes all router paths as patterns
-    # Account routes (../acount/#PATH)
+    # Account routes (../account/#PATH)
     path(
         "account/",
         include(

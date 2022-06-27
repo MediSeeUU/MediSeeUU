@@ -1,13 +1,14 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import React, { useState } from 'react'
 import handleLogin from '../handlers/login'
 import ErrorMessage from '../../pages/data/selected_data/export_menu/components/ErrorMessage'
 
-// Function based component which renders the login form
+// Function based component rendering the login form
 function LoginForm(props) {
-  // State that keeps track whether the login has failed
+  // State that keeps track whether the login has failed (by default false)
   const [fail, setFail] = useState(false)
 
   // Handler for closing the dialog
@@ -15,11 +16,14 @@ function LoginForm(props) {
     props.onClose()
   }
 
-  // Login action: if successful, then store the user data locally
+  // Handler for logging in the user
   const connection = async (event) => {
     event.preventDefault()
+
+    // Call the login handler
     const success = await handleLogin(event, props.state)
 
+    // If login was successful, then set the username and access level in the navigation bar
     if (success) {
       let username = sessionStorage.getItem('username')
       let access_level = sessionStorage.getItem('access_level')
@@ -29,12 +33,13 @@ function LoginForm(props) {
         userName: username,
         accessLevel: access_level,
       })
+      // If login failed, set fail state to true which renders the error message
     } else {
       setFail(true)
     }
   }
 
-  // Render the login form
+  // Render all the components of the login form
   return (
     <div className="med-dialog">
       <i className="bx bxs-log-in" />
@@ -60,6 +65,7 @@ function LoginForm(props) {
           className="med-credential-input med-text-input"
           placeholder="Password"
         />
+        {/* Render error message if fail state is true */}
         {fail && (
           <ErrorMessage
             message={

@@ -1,11 +1,11 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import { render, fireEvent, screen } from '@testing-library/react'
 import getUniqueCategories from '../../../single_visualization/utils/getUniqueCategories'
 import CategoryOptions from '../../../single_visualization/forms/shared/CategoryOptions'
 import sortCategoryData from '../../../single_visualization/utils/sortCategoryData'
-
 import data from '../../../../../json/data.json'
 
 const uniqueCategories = getUniqueCategories(data)

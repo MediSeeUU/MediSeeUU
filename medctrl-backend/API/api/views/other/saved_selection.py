@@ -4,7 +4,7 @@
 
 # This file contains all functions that are used for
 # storing data selections of an authenticated users and
-# fetching the data when necesarry.
+# fetching the data when necessary.
 # --------------------------------------------------------
 
 from rest_framework import viewsets

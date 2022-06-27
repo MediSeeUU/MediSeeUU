@@ -1,11 +1,13 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import Filter from './Filter'
 
 // Function based component which renders the filter menu
-function FilterMenu({ filters, setFilters, defaultObj }) {
+function FilterMenu({ filters, setFilters, defaultObj, categories }) {
   // Add filter item to the menu
   const addFilter = () => setFilters(filters.concat(defaultObj))
 
@@ -24,7 +26,11 @@ function FilterMenu({ filters, setFilters, defaultObj }) {
   // Add a filter box to the specified filter item
   const addFilterBox = (id) => {
     updateFilter(id, (obj) => {
-      const newInput = obj.input.concat({ var: '', filterRange: 'from' })
+      const newInput = obj.input.concat({
+        var: '',
+        filterRange: 'from',
+        custom: true,
+      })
       return { ...obj, input: newInput }
     })
   }
@@ -37,7 +43,7 @@ function FilterMenu({ filters, setFilters, defaultObj }) {
         newInput.splice(bid, 1)
         return { ...obj, input: newInput }
       }
-      return { ...obj, input: [{ var: '', filterRange: 'from' }] }
+      return { ...obj, input: [{ var: '', filterRange: 'from', custom: true }] }
     })
   }
 
@@ -50,8 +56,8 @@ function FilterMenu({ filters, setFilters, defaultObj }) {
 
   // Updates the selected item of the specified filter item
   const updateFilterSelected = (id, newSelected) => {
-    updateFilter(id, (obj) => {
-      return { ...obj, selected: newSelected }
+    updateFilter(id, (_) => {
+      return { ...defaultObj[0], selected: newSelected }
     })
   }
 
@@ -79,18 +85,23 @@ function FilterMenu({ filters, setFilters, defaultObj }) {
         <i className="bx bxs-plus-square med-table-menu-add-filter-icon"></i>
       </div>
       <div className="med-table-menu-filters-container">
-        {filters.map((filter, index) => (
-          <Filter
-            key={uuidv4()}
-            id={index}
-            item={filter}
-            del={deleteFilter}
-            box={addFilterBox}
-            dbox={deleteFilterBox}
-            sel={updateFilterSelected}
-            fil={updateFilterInput}
-          />
-        ))}
+        {
+          /* Render a Filter component for each filter in the current state
+             Every filter component will receive all the functions as props to update the state */
+          filters.map((filter, index) => (
+            <Filter
+              key={uuidv4()}
+              id={index}
+              item={filter}
+              del={deleteFilter}
+              box={addFilterBox}
+              dbox={deleteFilterBox}
+              sel={updateFilterSelected}
+              fil={updateFilterInput}
+              cats={categories}
+            />
+          ))
+        }
       </div>
     </>
   )

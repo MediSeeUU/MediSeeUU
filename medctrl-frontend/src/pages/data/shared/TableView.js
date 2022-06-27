@@ -1,7 +1,8 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
-import { useState } from 'react'
+
+import React, { useState } from 'react'
 import Table from './table/Table'
 import Paging from './components/Paging'
 import AmountPerPage from './components/AmountPerPage'
@@ -35,7 +36,10 @@ function TableView({ data, sorters, setSorters, select, text }) {
           setSorters={setSorters}
         />
         <div className="med-bottom-container-holder">
-          {!select && <ClearAll data={data} />}
+          {
+            /* Only show the clear all icon if it is a table with selected datapoints */
+            !select && <ClearAll data={data} />
+          }
           <Paging
             data={data}
             amount={resultsPerPage}

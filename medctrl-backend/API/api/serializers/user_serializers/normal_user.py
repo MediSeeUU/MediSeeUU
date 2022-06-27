@@ -13,7 +13,7 @@ from django.contrib.auth.models import User, Group
 from api.models import SavedSelection
 from api.serializers import SavedSelectionSerializer
 
-# Serialises all groups provided by the Userserializer
+# Serializes all groups provided by the Userserializer
 class GroupSerializer(serializers.ModelSerializer):
     """
     Serializer class for the Group model
@@ -28,7 +28,7 @@ class GroupSerializer(serializers.ModelSerializer):
         fields = ("name", "id")
 
 
-# serializes all informations concerning a authenticated user
+# serializes all information concerning a authenticated user
 class UserSerializer(serializers.ModelSerializer):
     """
     Serializer class for the User model

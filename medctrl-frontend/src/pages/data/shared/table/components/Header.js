@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import React from 'react'
 import { useCheckedState } from '../../../../../shared/contexts/CheckedContext'
 import { useColumnSelection } from '../../../../../shared/contexts/ColumnSelectionContext'
@@ -47,30 +48,34 @@ function Header({ data, select, sorters, setSorters }) {
   const columns = columnSelection.map((key, index) => {
     return (
       <th key={index} className="med-table-header-cell">
+        {/* Render a variable options select to change the variables displayed in the table */}
         <VariableSelect
           className="med-table-header-select-cell"
           onChange={(e) => handleColumnChange(index, e.target.value)}
           defaultValue={key}
         />
-        {!isSorted(key) ? (
-          <i
-            className="bx bxs-down-arrow med-table-header-sort"
-            onClick={(e) => handleSortingChange(key, 'asc')}
-            data-testid="sort-asc-column"
-            role={"button"}
-            tabIndex={"0"}
-            onKeyPress= {(e) => {if (e.key === "Enter") handleSortingChange(key, 'asc') }}
-          />
-        ) : (
-          <i
-            className="bx bxs-up-arrow med-table-header-sort"
-            onClick={(e) => handleSortingChange(key, 'desc')}
-            data-testid="sort-desc-column"
-            role={"button"}
-            tabIndex={"0"}
-            onKeyPress= {(e) => {if (e.key === "Enter") handleSortingChange(key, 'desc') }}
-          />
-        )}
+        {
+          /* Renders an arrow up or down based on the current applied sorters */
+          !isSorted(key) ? (
+            <i
+              className="bx bxs-down-arrow med-table-header-sort"
+              onClick={(e) => handleSortingChange(key, 'asc')}
+              data-testid="sort-asc-column"
+              role={"button"}
+              tabIndex={"0"}
+              onKeyPress= {(e) => {if (e.key === "Enter") handleSortingChange(key, 'asc') }}
+            />
+          ) : (
+            <i
+              className="bx bxs-up-arrow med-table-header-sort"
+              onClick={(e) => handleSortingChange(key, 'desc')}
+              data-testid="sort-desc-column"
+              role={"button"}
+              tabIndex={"0"}
+              onKeyPress= {(e) => {if (e.key === "Enter") handleSortingChange(key, 'desc') }}
+            />
+          )
+        }
       </th>
     )
   })
@@ -78,9 +83,12 @@ function Header({ data, select, sorters, setSorters }) {
   return (
     <thead className="med-table-header">
       <tr className="">
-        {select && (
-          <CheckboxColumn value={allSelected} onChange={handleAllChange} />
-        )}
+        {
+          /* Only render a checkbox if the table displays the selected datapoints */
+          select && (
+            <CheckboxColumn value={allSelected} onChange={handleAllChange} />
+          )
+        }
         {columns}
         <td className="med-table-body-cell med-table-narrow-column med-column-right"></td>
       </tr>

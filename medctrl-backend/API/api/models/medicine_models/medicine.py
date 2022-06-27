@@ -12,7 +12,7 @@ from .lookupstatus import Lookupstatus
 
 class Medicine(models.Model):
     """
-    Model class for the medicine table. As the abstract functionality for all model classes is nearly identical, information about them has been moved to an external readme.
+    Model class for the medicine table.
     """
 
     eunumber = models.IntegerField(db_column="EUNumber", primary_key=True)

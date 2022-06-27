@@ -1,15 +1,14 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
-// this method assumes that the given input is valid
 
 import { fetchWithToken } from '../../../../shared/api'
 
-// creates JSON and posts the selection to the server
+// Handler that creates the JSON and posts the selection to the server
 export default async function postSavedSelection(eunumbers, saveName) {
   var success = false
 
-  // call to server : /api/saveselection
+  // Call to server: /api/saveselection
   const response = await fetchWithToken(
     `${process.env.PUBLIC_URL}/api/saveselection/`,
     {
@@ -24,6 +23,8 @@ export default async function postSavedSelection(eunumbers, saveName) {
     }
   )
 
+  // If the response returns ok, then saving the selection
+  // was successful
   if (response.ok) {
     success = true
   }

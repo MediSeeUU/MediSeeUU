@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 # This file contains all url paths (endpoints)
-# that the scarper uses for updating the database.
+# that the scraper uses for updating the database.
 # --------------------------------------------------
 
 from django.urls import path

@@ -1,6 +1,8 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 // Function based component that returns a nav account component
@@ -16,6 +18,7 @@ function NavAccount(props) {
     navigate('/account')
   }
 
+  // Give the nav component an active state if the application is navigated to this page
   const active = location.pathname === props.dest ? ' med-active' : ''
 
   return (

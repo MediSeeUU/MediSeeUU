@@ -29,6 +29,7 @@ function setSession() {
   // Force the data context to fetch the most recent data
   window.location.reload(false)
 
+  // Remove username, access level and token from session storage
   sessionStorage.removeItem('username')
   sessionStorage.removeItem('access_level')
   sessionStorage.removeItem('token')

@@ -2,9 +2,9 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-# This file can be accesed by the scraper via the procudure enpoint.
-# When the scraper scrapes infromation about procudures, that data
-# is posted to the procudure endpoint from where the data is
+# This file can be accessed by the scraper via the procedure endpoint.
+# When the scraper scrapes information about procedures, that data
+# is posted to the procedure endpoint from where the data is
 # processed in this file. If the new data is validated, it will
 # be updated in the database.
 # -------------------------------------------------------------

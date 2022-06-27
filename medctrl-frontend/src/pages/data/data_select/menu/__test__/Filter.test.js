@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { render, fireEvent, screen } from '@testing-library/react'
@@ -117,37 +118,43 @@ test('change input function is called', () => {
     <Filter
       id={10}
       item={{
-        selected: 'BrandName',
-        input: [{ var: '', filterRange: 'from' }],
+        selected: 'Rapporteur',
+        input: [{ var: '', filterRange: 'from', custom: true }],
       }}
       fil={fil}
     />
   )
-  const input = screen.getByTestId('filter-input-text')
+  const input = screen.getByTestId('input-select')
   fireEvent.change(input, { target: { value: 'can be anything' } })
-  fireEvent.focusOut(input)
   expect(fil).toHaveBeenCalled()
 })
 
 test('change input function returns correct ids and value', () => {
+  const categories = {
+    Rapporteur: ['Netherlands', 'Belgium', 'Germany'],
+  }
   const fil = (id, index, value) => {
     expect(id).toBe(52)
     expect(index).toBe(1)
-    expect(value).toBe('can be anything')
+    expect(value).toBe('Belgium')
   }
   render(
     <Filter
       id={52}
       item={{
-        selected: 'BrandName',
-        input: [{ var: 'hi' }, { var: 'there' }, { var: 'again' }],
+        selected: 'Rapporteur',
+        input: [
+          { var: 'hi', custom: true },
+          { var: 'there', custom: true },
+          { var: 'again', custom: true },
+        ],
       }}
       fil={fil}
+      cats={categories}
     />
   )
-  const inputs = screen.getAllByTestId('filter-input-text')
-  fireEvent.change(inputs[1], { target: { value: 'can be anything' } })
-  fireEvent.focusOut(inputs[1])
+  const inputs = screen.getAllByTestId('input-select')
+  fireEvent.change(inputs[1], { target: { value: 'Belgium' } })
 })
 
 test('text filter rendered', () => {
@@ -159,7 +166,7 @@ test('text filter rendered', () => {
         id: '1',
         item: {
           selected: 'BrandName',
-          input: [{ var: 'test', filterRange: 'from' }],
+          input: [{ var: 'test', filterRange: 'from', custom: true }],
           filterType: 'text',
         },
         options: 'not important',
@@ -179,7 +186,7 @@ test('number from filter rendered', () => {
         id: '1',
         item: {
           selected: 'null',
-          input: [{ var: '20', filterRange: 'from' }],
+          input: [{ var: '20', filterRange: 'from', custom: true }],
           filterType: 'number',
         },
         options: 'not important',
@@ -199,7 +206,7 @@ test('number till filter rendered', () => {
         id: '1',
         item: {
           selected: null,
-          input: [{ var: '20', filterRange: 'till' }],
+          input: [{ var: '20', filterRange: 'till', custom: true }],
           filterType: 'number',
         },
         options: 'not important',
@@ -219,7 +226,7 @@ test('date from filter rendered', () => {
         id: '1',
         item: {
           selected: null,
-          input: [{ var: '2012-02-02', filterRange: 'from' }],
+          input: [{ var: '2012-02-02', filterRange: 'from', custom: true }],
           filterType: 'date',
         },
         options: 'not important',
@@ -239,7 +246,7 @@ test('date till filter rendered', () => {
         id: '1',
         item: {
           selected: null,
-          input: [{ var: '2012-02-02', filterRange: 'till' }],
+          input: [{ var: '2012-02-02', filterRange: 'till', custom: true }],
           filterType: 'date',
         },
         options: 'not important',
@@ -259,7 +266,7 @@ test('bool filter rendered', () => {
         id: '1',
         item: {
           selected: null,
-          input: [{ var: 'yes', filterRange: 'from' }],
+          input: [{ var: 'yes', filterRange: 'from', custom: true }],
           filterType: 'bool',
         },
         options: 'not important',

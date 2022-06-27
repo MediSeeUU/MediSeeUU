@@ -1,9 +1,10 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import { fetchWithToken } from '../../../shared/api'
 
-//get the current saved selections
+// Fetch and store the current saved selections
 export async function fetchSavedSelections(setSavedSelections) {
   // Fetch the saved selections from the server
   const response = await fetchWithToken(
@@ -23,9 +24,9 @@ export async function fetchSavedSelections(setSavedSelections) {
   }
 }
 
-//delete the selections and fetch the current selections
+// Delete the specified selection and set the new state
 export async function fetchDeleteSelections(id, setSavedSelections) {
-  // Fetch the saved selections from the server
+  // Fetch the new saved selections from the server
   const response = await fetchWithToken(
     `${process.env.PUBLIC_URL}/api/saveselection/${id}/`,
     {
