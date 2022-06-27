@@ -2,7 +2,7 @@
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-import React, { useRef } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import Menu from './menu/Menu'
 import Search from '../../../shared/search/Search'
 import TableView from '../shared/TableView'
@@ -10,6 +10,7 @@ import updateData from '../utils/update'
 import { useTableUtils } from '../../../shared/contexts/TableUtilsContext'
 import { useColumnSelection } from '../../../shared/contexts/ColumnSelectionContext'
 import { useData } from '../../../shared/contexts/DataContext'
+import getUniqueCategories from '../../visualizations/single_visualization/utils/getUniqueCategories'
 
 // Function based component that displays the search bar and table with all the datapoints that can be selected
 function DataSelect() {
@@ -43,6 +44,12 @@ function DataSelect() {
     })
   }
 
+  // Store the categories of each variable (which are used in the filter options)
+  const [categories, setCategories] = useState(null)
+  useEffect(() => {
+    setCategories(getUniqueCategories(allData))
+  }, [allData])
+
   return (
     <>
       <Search
@@ -56,6 +63,7 @@ function DataSelect() {
           filters={tableUtils.filters}
           sorters={tableUtils.sorters}
           update={menuUpdate}
+          categories={categories}
         />
         <hr className="med-top-separator" />
         <TableView

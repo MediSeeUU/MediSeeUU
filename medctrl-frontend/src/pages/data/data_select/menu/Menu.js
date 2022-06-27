@@ -9,12 +9,12 @@ import './Menu.css'
 import SortMenu from './sort_menu/SortMenu'
 
 // Function based component which renders the filter and sort menu
-function Menu({ filters, sorters, update }) {
+function Menu({ filters, sorters, update, categories }) {
   // Default filter object
   const filterObject = [
     {
       selected: '',
-      input: [{ var: '', filterRange: 'from' }],
+      input: [{ var: '', filterRange: 'from', custom: true }],
       filterType: '',
     },
   ]
@@ -70,6 +70,7 @@ function Menu({ filters, sorters, update }) {
             filters={localFilters}
             setFilters={setFilters}
             defaultObj={filterObject}
+            categories={categories}
           />
           <div className="med-table-menu-filter-button-container">
             <button

@@ -63,10 +63,9 @@ function PickFilter(props, i) {
   return (
     <div key={uuidv4()}>
       {/* If number or date, first determine filter range */}
-      {(dataType === 'number' || dataType === 'date') && (
+      {((dataType === 'number' || dataType === 'date') && (
         <DetermineFilterRange container={props} i={i} />
-      )}
-      {/* Render input box */}
+      ))}
       <FilterInputs props={props} i={i} />
       {/* Render remove icon to remove the input box */}
       <i
