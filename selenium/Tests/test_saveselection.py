@@ -27,11 +27,11 @@ class TestSaveSelection(WebDriverSetup):
   
   # test if a selection is saved and can be loaded in and removed again
   def test_saveselection(self):
-    # navigate to data page and login
-    data_page = DataPage(self.driver)
     # perform login action
     base_page = BasePage(self.driver)
     base_page.login("selenium", "fullcoverage")
+    # navigate to data page and login
+    data_page = DataPage(self.driver)
     # deselect all datapoints
     data_page.select(0)
     # store all eu numbers of the selection
