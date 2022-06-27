@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import React, { useState } from 'react'
 import MedModal from '../../../../shared/MedModal'
 import FilterMenu from './filter_menu/FilterMenu'
@@ -8,12 +9,12 @@ import './Menu.css'
 import SortMenu from './sort_menu/SortMenu'
 
 // Function based component which renders the filter and sort menu
-function Menu({ filters, sorters, update }) {
+function Menu({ filters, sorters, update, categories }) {
   // Default filter object
   const filterObject = [
     {
       selected: '',
-      input: [{ var: '', filterRange: 'from' }],
+      input: [{ var: '', filterRange: 'from', custom: true }],
       filterType: '',
     },
   ]
@@ -29,7 +30,7 @@ function Menu({ filters, sorters, update }) {
   // Handlers for opening and closing the modal
   const closeModal = () => setModalState(false)
   const openModal = () => {
-    // Set applied filters and sorters in the menu state
+    // Set current applied filters and sorters in the menu state
     setFilters(filters)
     setSorters(sorters)
 
@@ -69,6 +70,7 @@ function Menu({ filters, sorters, update }) {
             filters={localFilters}
             setFilters={setFilters}
             defaultObj={filterObject}
+            categories={categories}
           />
           <div className="med-table-menu-filter-button-container">
             <button

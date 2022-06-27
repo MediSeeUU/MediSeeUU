@@ -26,11 +26,13 @@ async function handleLogin(event) {
     success = true
   }
 
+  // Returns whether the login succeeded or not
   return success
 }
 
 // Set session items
 function setSession(res) {
+  // Set username, access level and token in session storage
   sessionStorage.setItem('username', res.user.username)
   const access = res.user.groups.length > 0 ? res.user.groups[0].id : 0
   sessionStorage.setItem('access_level', access)

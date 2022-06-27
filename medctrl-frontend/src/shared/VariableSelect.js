@@ -1,13 +1,15 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+import React from 'react'
 import { v4 } from 'uuid'
 import { useStructure } from './contexts/StructureContext'
 
 // Function based component, represents a select element. All of the select options
 // are subdivided into categories, each option's value is the key at which to access
 // the corresponding data field in the context, but the display name is a more
-// user friendly version of the same name
+// user friendly version of the same name.
 export default function VariableSelect({
   className,
   onChange,

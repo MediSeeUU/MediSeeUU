@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import { firstBy } from 'thenby'
 
 // Search data based on the given query by first filtering and then applying a ranking

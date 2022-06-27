@@ -1,22 +1,22 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
-import './DetailedInfo.css'
 
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { slashDateToStringDate } from '../data/shared/table/format'
+import { v4 } from 'uuid'
+import { useData } from '../../shared/contexts/DataContext'
+import { useStructure } from '../../shared/contexts/StructureContext'
+import { fetchWithToken } from '../../shared/api'
+
+import './DetailedInfo.css'
 import DetailGroup from './components/DetailGroup'
 import Detail from './components/Detail'
 import Procedure from './components/Procedure'
 import CustomLink from './components/CustomLink'
 import TimeLine from './components/TimeLine'
 import ProcSelectModal from './components/ProcSelectModal'
-
-import { useParams } from 'react-router-dom'
-import { slashDateToStringDate } from '../data/shared/table/format'
-import { useEffect, useState } from 'react'
-import { v4 } from 'uuid'
-import { useData } from '../../shared/contexts/DataContext'
-import { useStructure } from '../../shared/contexts/StructureContext'
-import { fetchWithToken } from '../../shared/api'
 
 // Function based component, which represents the top level detailed info page
 // component, it collects and fetches all the correct data and then passes this data
@@ -33,7 +33,7 @@ export default function DetailedInfoPage() {
   )
 
   // All of the procedure data related to the desired medicine is asynchronously
-  // retrieved from the server. The result is stored in a state
+  // retrieved from the server. The result is stored in a state.
   useEffect(() => {
     async function fetchProcedureData(medID) {
       const response = await fetchWithToken(
@@ -87,8 +87,8 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
   // If there is procedure data present, two containers should be added to the page
   // with only the relevant procedure entries (based on the display proc types above)
   // one container should display the procedures in text form, and the other should
-  // visually display them as a timeline. if no procedure data is present, both
-  // containers should not be displayed
+  // visually display them as a timeline. If no procedure data is present, both
+  // containers should not be displayed.
   let procedureContrainer = null
   let timeLineContainer = null
 
@@ -177,9 +177,9 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
 
   // Returns the component which discribes the entire detailed information page
   // the page consists of three containers, each holds a specific category of
-  // information pertaining to the current medicine. this first holds general
+  // information pertaining to the current medicine. This first holds general
   // information, the next procedure related information, and the last holds some
-  // links to external website which could be usefull
+  // links to external website which could be useful.
   return (
     <div>
       <div className="med-content-container">

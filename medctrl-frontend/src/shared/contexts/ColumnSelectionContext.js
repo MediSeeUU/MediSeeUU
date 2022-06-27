@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import React, { useContext, useState } from 'react'
 
 // Create a new React context for the column selection state of the tables
@@ -11,6 +12,7 @@ export function useColumnSelection() {
   return useContext(ColumnSelectionContext)
 }
 
+// Represents the default column selection
 export const defaultColumns = [
   'EUNoShort',
   'BrandName',

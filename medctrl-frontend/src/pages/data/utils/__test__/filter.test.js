@@ -1,12 +1,26 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import filterData from '../filter'
 import DummyData from '../../../../json/data.json'
 
 test('single text filter applied correctly', () => {
   let filteredData = filterData(DummyData, [
     { selected: 'ApplicationNo', input: [{ var: '8' }], filterType: 'string' },
+  ])
+  filteredData.forEach((element) => {
+    expect(element.ApplicationNo.toString()).toContain('8')
+  })
+})
+
+test('single text filter applied correctly with category', () => {
+  let filteredData = filterData(DummyData, [
+    {
+      selected: 'ApplicationNo',
+      input: [{ var: '8', custom: true }],
+      filterType: 'string',
+    },
   ])
   filteredData.forEach((element) => {
     expect(element.ApplicationNo.toString()).toContain('8')

@@ -126,8 +126,6 @@ class TestDataPage(WebDriverSetup):
     self.data_page.filter_select(1, "Short EU Number")
     self.data_page.filter_input(1, 1, "1300")
     self.data_page.sort_select(1, "Short EU Number")
-    # need to do this twice to actually perform the select update
-    self.data_page.sort_select(1, "Short EU Number")
     self.data_page.sort_order(1, "Descending")
     self.data_page.apply()
     # store the eu numbers (as they have been filtered and sorted)

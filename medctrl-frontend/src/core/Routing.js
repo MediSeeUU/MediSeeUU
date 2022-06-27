@@ -1,6 +1,8 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import HomePage from '../pages/home/HomePage'
 import InfoPage from '../pages/info/InfoPage'
@@ -10,7 +12,7 @@ import VisualizationPage from '../pages/visualizations/VisualizationPage'
 import DetailedInfoPage from '../pages/detailed-info/DetailedInfoPage'
 import ErrorPage from '../pages/error/ErrorPage'
 
-// Returns the routing information for the navigation
+// Returns the routing information to be able to navigate to different pages
 function Routing() {
   return (
     <Routes>

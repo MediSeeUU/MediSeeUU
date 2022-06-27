@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
@@ -9,7 +10,7 @@ import DummyData from '../../../../../json/small_data.json'
 import MockProvider from '../../../../../mocks/MockProvider'
 import ErrorDialog from '../components/ErrorDialog'
 
-// the save dialog should render without crashing
+// The save dialog should render without crashing
 test('renders without crashing', () => {
   const root = document.createElement('div')
   ReactDOM.render(
@@ -20,7 +21,7 @@ test('renders without crashing', () => {
   )
 })
 
-// when the user provides a valid name, the user should be redirected to a
+// When the user provides a valid name, the user should be redirected to a
 // success message screen
 test('valid selection name should result in UI no error message', async () => {
   const validNames = ['Test', 'COVID-19', 'Special_set', 'Demo selection']
@@ -44,7 +45,7 @@ test('valid selection name should result in UI no error message', async () => {
   }
 })
 
-// when the user provides an invalid name, the user should be redirected to an
+// When the user provides an invalid name, the user should be redirected to an
 // error message screen
 test('invalid selection name should result in UI error message', () => {
   const invalidNames = [

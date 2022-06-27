@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 // Goes through every data entry,
 // if the value of said data entry for the chosen variable is one of the chosen categories,
 // its entry in the series will be incremented.

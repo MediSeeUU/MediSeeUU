@@ -1,6 +1,8 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+import React from 'react'
 import './App.css'
 import { BrowserRouter } from 'react-router-dom'
 import SideNavigation from '../navigation/Navigation'
@@ -9,7 +11,6 @@ import Header from '../header/Header'
 import Footer from '../footer/Footer'
 import Provider from '../../shared/Provider'
 import DashboardTour from '../tour/DashboardTour'
-import React from 'react'
 
 // Function based component rendering the application and its components
 function App() {

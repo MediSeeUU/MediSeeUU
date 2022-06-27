@@ -1,6 +1,8 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import Sort from './Sort'
 
@@ -47,24 +49,31 @@ function SortMenu({ sorters, setSorters, defaultObj }) {
       <h1 className="med-table-menu-header">Sort</h1>
       <hr className="med-top-separator" />
       <div className="med-table-menu-sort-container">
-        {sorters.map((obj, oid) => (
-          <Sort
-            key={uuidv4()}
-            id={oid}
-            item={obj}
-            del={deleteSort}
-            sel={updateSortSelected}
-            order={updateSortOrder}
-          />
-        ))}
-        {sorters.length < 4 && (
-          <label
-            className="med-able-menu-add-sort-button med-primary-text"
-            onClick={addSort}
-          >
-            Add Sorting option +
-          </label>
-        )}
+        {
+          /* Render a Sort component for each sorter in the current state
+            Every sorter component will receive all the functions as props to update the state */
+          sorters.map((obj, oid) => (
+            <Sort
+              key={uuidv4()}
+              id={oid}
+              item={obj}
+              del={deleteSort}
+              sel={updateSortSelected}
+              order={updateSortOrder}
+            />
+          ))
+        }
+        {
+          /* Only render an add sort option if there are at most 3 sorters */
+          sorters.length < 4 && (
+            <label
+              className="med-able-menu-add-sort-button med-primary-text"
+              onClick={addSort}
+            >
+              Add Sorting option +
+            </label>
+          )
+        }
       </div>
     </div>
   )

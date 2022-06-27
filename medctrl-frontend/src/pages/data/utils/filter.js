@@ -1,6 +1,7 @@
 // This program has been developed by students from the bachelor Computer Science at
 // Utrecht University within the Software Project course.
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
+
 // Filter data based on the given filters
 function filterData(data, filters) {
   let updatedData = [...data]
@@ -25,23 +26,35 @@ function filterData(data, filters) {
   return updatedData
 }
 
-// Function that applies one filter item to the data
+// Text filter
 function textFilter(data, item) {
+  // If no item is selected, then just return the data
   if (!item.selected) {
     return data
   }
   return data.filter((obj) => {
-    return item.input.some((x) =>
-      obj[item.selected].toString().toLowerCase().includes(x.var.toLowerCase())
-    )
+    return item.input.some((x) => {
+      // If custom input is given, then the filter is only partial
+      if (x.custom) {
+        return obj[item.selected]
+          .toString()
+          .toLowerCase()
+          .includes(x.var.toLowerCase())
+      }
+      // Otherwise they must match exactly
+      return obj[item.selected].toString().toLowerCase() === x.var.toLowerCase()
+    })
   })
 }
 
+// Numerical filter
 function numFilter(data, item) {
+  // If no item is selected, then just return the data
   if (!item.selected) {
     return data
   }
   return data.filter((obj) => {
+    // Filter the data based on the given numerical range
     return item.input.every((x) => {
       if (x.filterRange === 'from') {
         return x.var <= obj[item.selected]
@@ -55,10 +68,13 @@ function numFilter(data, item) {
   })
 }
 
+// Date filter
 function dateFilter(data, item) {
+  // If no item is selected, then just return the data
   if (!item.selected) {
     return data
   }
+  // Filter the data based on the given date range
   return data.filter((obj) => {
     const itemDate = new Date(obj[item.selected])
     return item.input.every((x) => {
