@@ -105,8 +105,14 @@ test('add filterbox', () => {
   render(
     <Menu
       filters={[
-        { selected: '', input: [{ var: '', filterRange: 'from', custom: true }] },
-        { selected: '', input: [{ var: '', filterRange: 'from', custom: true }] },
+        {
+          selected: '',
+          input: [{ var: '', filterRange: 'from', custom: true }],
+        },
+        {
+          selected: '',
+          input: [{ var: '', filterRange: 'from', custom: true }],
+        },
       ]}
       sorters={[]}
     />
@@ -118,7 +124,17 @@ test('add filterbox', () => {
 })
 
 test('remove filterbox', () => {
-  render(<Menu filters={[{ selected: '', input: [{ var: '', filterRange: 'from', custom: true }] }]} sorters={[]} />)
+  render(
+    <Menu
+      filters={[
+        {
+          selected: '',
+          input: [{ var: '', filterRange: 'from', custom: true }],
+        },
+      ]}
+      sorters={[]}
+    />
+  )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   fireEvent.click(screen.getByText('+ Add'))
   expect(screen.getAllByRole('textbox')).toHaveLength(2)
@@ -127,7 +143,17 @@ test('remove filterbox', () => {
 })
 
 test('always have one filterbox', () => {
-  render(<Menu filters={[{ selected: '', input: [{ var: '', filterRange: 'from', custom: true }] }]} sorters={[]} />)
+  render(
+    <Menu
+      filters={[
+        {
+          selected: '',
+          input: [{ var: '', filterRange: 'from', custom: true }],
+        },
+      ]}
+      sorters={[]}
+    />
+  )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   expect(screen.getAllByRole('textbox')).toHaveLength(1)
   fireEvent.click(screen.getByTestId('remove-icon'))
@@ -135,7 +161,17 @@ test('always have one filterbox', () => {
 })
 
 test('remove filter', () => {
-  render(<Menu filters={[{ selected: '', input: [{ var: '', filterRange: 'from', custom: true }] }]} sorters={[]} />)
+  render(
+    <Menu
+      filters={[
+        {
+          selected: '',
+          input: [{ var: '', filterRange: 'from', custom: true }],
+        },
+      ]}
+      sorters={[]}
+    />
+  )
   fireEvent.click(screen.getByText(/Filter & Sort/i))
   fireEvent.click(screen.getByText(/Add Filter/i))
   expect(screen.queryAllByTestId('filter-select')).toHaveLength(2)
@@ -160,7 +196,12 @@ test('filters and sorters applied correctly in state', () => {
   render(
     <MockProvider>
       <Menu
-        filters={[{ selected: '', input: [{ var: '', filterRange: 'from', custom: true }] }]}
+        filters={[
+          {
+            selected: '',
+            input: [{ var: '', filterRange: 'from', custom: true }],
+          },
+        ]}
         sorters={[
           { selected: '', order: 'asc' },
           { selected: '', order: 'asc' },

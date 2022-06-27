@@ -36,12 +36,14 @@ function textFilter(data, item) {
     return item.input.some((x) => {
       // If custom input is given, then the filter is only partial
       if (x.custom) {
-        return  obj[item.selected].toString().toLowerCase().includes(x.var.toLowerCase())
+        return obj[item.selected]
+          .toString()
+          .toLowerCase()
+          .includes(x.var.toLowerCase())
       }
       // Otherwise they must match exactly
       return obj[item.selected].toString().toLowerCase() === x.var.toLowerCase()
-    }
-    )
+    })
   })
 }
 

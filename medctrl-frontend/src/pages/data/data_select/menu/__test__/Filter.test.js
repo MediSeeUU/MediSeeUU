@@ -131,7 +131,7 @@ test('change input function is called', () => {
 
 test('change input function returns correct ids and value', () => {
   const categories = {
-    Rapporteur: ['Netherlands', 'Belgium', 'Germany']
+    Rapporteur: ['Netherlands', 'Belgium', 'Germany'],
   }
   const fil = (id, index, value) => {
     expect(id).toBe(52)
@@ -143,7 +143,11 @@ test('change input function returns correct ids and value', () => {
       id={52}
       item={{
         selected: 'Rapporteur',
-        input: [{ var: 'hi', custom: true }, { var: 'there', custom: true }, { var: 'again', custom: true }],
+        input: [
+          { var: 'hi', custom: true },
+          { var: 'there', custom: true },
+          { var: 'again', custom: true },
+        ],
       }}
       fil={fil}
       cats={categories}

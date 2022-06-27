@@ -16,7 +16,11 @@ test('single text filter applied correctly', () => {
 
 test('single text filter applied correctly with category', () => {
   let filteredData = filterData(DummyData, [
-    { selected: 'ApplicationNo', input: [{ var: '8', custom: true }], filterType: 'string' },
+    {
+      selected: 'ApplicationNo',
+      input: [{ var: '8', custom: true }],
+      filterType: 'string',
+    },
   ])
   filteredData.forEach((element) => {
     expect(element.ApplicationNo.toString()).toContain('8')
