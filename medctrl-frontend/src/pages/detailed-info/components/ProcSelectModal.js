@@ -75,7 +75,6 @@ function ProcSelectDialog({
     )
   })
 
-
   let noOptions = null
   if (availableProcTypes.length === 0) {
     noOptions = (
@@ -91,12 +90,11 @@ function ProcSelectDialog({
       <h1>Select Desired Procedure Types</h1>
 
       <span className="med-description">
-          Below, you can select all the procedure types which should be included
-          in the procedure overview and timeline on the page.
+        Below, you can select all the procedure types which should be included
+        in the procedure overview and timeline on the page.
       </span>
 
       <form onSubmit={handleSubmit}>
-
         <div className="med-proc-option-list">
           {allOptions}
           {noOptions}

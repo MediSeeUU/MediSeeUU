@@ -44,9 +44,11 @@ function ColumnAmount() {
             className="med-add-remove-button bx bxs-minus-square med-primary-text"
             onClick={removeColumn}
             data-testid="remove-column"
-            role={"button"}
-            tabIndex={"0"}
-            onKeyPress= {(e) => {if (e.key === "Enter") removeColumn()}}
+            role={'button'}
+            tabIndex={'0'}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') removeColumn()
+            }}
           />
         )
       }
@@ -57,9 +59,11 @@ function ColumnAmount() {
             className="med-add-remove-button bx bxs-plus-square med-primary-text"
             onClick={addColumn}
             data-testid="add-column"
-            role={"button"}
-            tabIndex={"0"}
-            onKeyPress= {(e) => {if (e.key === "Enter") addColumn()}}
+            role={'button'}
+            tabIndex={'0'}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') addColumn()
+            }}
           />
         )
       }

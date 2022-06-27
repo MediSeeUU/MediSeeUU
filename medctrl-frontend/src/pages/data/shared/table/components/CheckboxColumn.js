@@ -13,7 +13,9 @@ function CheckboxColumn({ value, onChange }) {
         type="checkbox"
         checked={value || false}
         onChange={onChange}
-        onKeyPress= {(e) => {if (e.key === "Enter") onChange() }}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') onChange()
+        }}
       />
     </td>
   )

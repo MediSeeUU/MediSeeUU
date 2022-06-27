@@ -77,9 +77,11 @@ function FilterMenu({ filters, setFilters, defaultObj, categories }) {
       <div
         className="med-table-menu-add-filter med-primary-text"
         onClick={addFilter}
-        role={"button"}
-        tabIndex={"0"}
-        onKeyPress= {(e) => {if (e.key === "Enter") addFilter()}}
+        role={'button'}
+        tabIndex={'0'}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') addFilter()
+        }}
       >
         Add Filter
         <i className="bx bxs-plus-square med-table-menu-add-filter-icon"></i>

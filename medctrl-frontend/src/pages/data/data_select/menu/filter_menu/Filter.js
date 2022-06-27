@@ -10,7 +10,6 @@ import FilterInputs from './FilterInputs'
 
 // Function based component that renders a filter item
 function Filter(props) {
-
   return (
     <div id={props.id} className="med-table-menu-filter-item">
       {/* Render the variable select */}
@@ -25,9 +24,11 @@ function Filter(props) {
         className="bx bxs-x-circle med-table-menu-delete-button med-primary-text"
         onClick={() => props.del(props.id)}
         data-testid="delete-icon"
-        role={"button"}
-        tabIndex={"0"}
-        onKeyPress= {(e) => {if (e.key === "Enter") props.del(props.id)}}
+        role={'button'}
+        tabIndex={'0'}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') props.del(props.id)
+        }}
       ></i>
       {/* Render all the filter inputs */ filterInputs(props)}
       {/* Render an add label to add more filter inputs */}

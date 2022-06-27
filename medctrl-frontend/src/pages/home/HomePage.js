@@ -72,7 +72,7 @@ function HomePage() {
             visualization or exported to a local file if desired.
           </p>
         </article>
-        
+
         <article>
           <h2>Visualize</h2>
           <p>

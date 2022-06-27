@@ -61,18 +61,22 @@ function Header({ data, select, sorters, setSorters }) {
               className="bx bxs-down-arrow med-table-header-sort"
               onClick={(e) => handleSortingChange(key, 'asc')}
               data-testid="sort-asc-column"
-              role={"button"}
-              tabIndex={"0"}
-              onKeyPress= {(e) => {if (e.key === "Enter") handleSortingChange(key, 'asc') }}
+              role={'button'}
+              tabIndex={'0'}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') handleSortingChange(key, 'asc')
+              }}
             />
           ) : (
             <i
               className="bx bxs-up-arrow med-table-header-sort"
               onClick={(e) => handleSortingChange(key, 'desc')}
               data-testid="sort-desc-column"
-              role={"button"}
-              tabIndex={"0"}
-              onKeyPress= {(e) => {if (e.key === "Enter") handleSortingChange(key, 'desc') }}
+              role={'button'}
+              tabIndex={'0'}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') handleSortingChange(key, 'desc')
+              }}
             />
           )
         }

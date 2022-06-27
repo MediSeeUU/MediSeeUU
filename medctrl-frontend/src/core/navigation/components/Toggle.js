@@ -20,9 +20,11 @@ function Toggle(props) {
       className="med-nav-item med-primary-solid"
       onClick={() => props.parent.toggle()}
       data-testid="navbartogglebutton"
-      role={"button"}
-      tabIndex={"0"}
-      onKeyPress= {(e) => {if (e.key === "Enter") props.parent.toggle()}}
+      role={'button'}
+      tabIndex={'0'}
+      onKeyPress={(e) => {
+        if (e.key === 'Enter') props.parent.toggle()
+      }}
     >
       <div className="med-nav-item-content">
         <i className={image} />
