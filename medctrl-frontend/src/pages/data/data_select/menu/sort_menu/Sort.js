@@ -30,6 +30,9 @@ function Sort(props) {
         className="bx bxs-x-circle med-table-menu-delete-button med-primary-text"
         data-testid="delete-sorting-box"
         onClick={() => props.del(props.id)}
+        role={"button"}
+        tabIndex={"0"}
+        onKeyPress= {(e) => {if (e.key === "Enter") props.del(props.id)}}        
       ></i>
     </div>
   )
