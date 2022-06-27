@@ -338,6 +338,7 @@ It is possible to create as many new groups as needed. On the users' page you ca
 It is also possible to assign permissions to individual users.
 
 ![User permissions](img/admin_user_permissions.png)
+<div style="page-break-after: always;"></div>
 
 <a name="addvariable"></a>
 
@@ -372,6 +373,7 @@ To add a new variable to the system there are a few things that need to be done:
     python manage.py migrate
     python manage.py create_column_permissions
     ```
+<div style="page-break-after: always;"></div>
 
 ## User management
 
