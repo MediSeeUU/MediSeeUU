@@ -237,7 +237,7 @@ export function useYour() {
 
 // Replace "YourProvider" with the name of your context, e.g. "DataProvider"
 export function YourProvider({ children }) {
-  // Some variables here
+  // Some variables and/or functions here
   return (
     // Replace "YourContext" with the name of your context specified in the constant
     // Replace "InsertDataHere" with the variable that contains the data you want to pass
