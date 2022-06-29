@@ -220,7 +220,7 @@ If you now enter your path in the url of the application, your new page should a
 Now the dashboard fully supports this new page.
 
 ## Contexts
-The application uses contexts to provide components with data. Data is regularly passed as properties in a component, but in some cases, the same data is used in multiple (non-related) components which makes it inconvenient to pass them constantly as properties to each other.
+The application uses contexts to provide components with data. Data is regularly passed as properties in a component, but in some cases, the same data is used in multiple (non-related) components which makes it inconvenient to pass them constantly as properties to each other. It also allows to keep the state consistent while navigating to different pages.
 
 To add a context, first navigate to the `src\shared\contexts` directory. This directory contains all the separate contexts of the application. Create a new file in this directory (which also ends with Context). The structure of this file is as follows:
 
