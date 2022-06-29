@@ -3,7 +3,7 @@
 ## General
 We have tried to make the dashboard as dynamic as possible by making it depend on the backend, meaning we do not have many hardcoded components. Therefore, for tasks like adding a new variable, we refer to the backend guide. If a new variable is added on the backend, then the frontend instantly supports this new variable.
 
-If you want to write unit tests that use new variables, the only things you need to do is replace the `structServer` json file, which is located in the `src\json`, with the new structure data retrieved from the respective endpoint of the backend. This file essentially translates the backend key to a frontend version and includes some information like the data type. The same must be done for the `allServerData` json file, which is located in the same directory, but then should be replaced with the updated medicines data retrieved from the respective endpoint again of the backend. All files in this directory are used to mock the backend server which allows to unit test certain components that normally need these data from the server.
+If you want to write unit tests that use new variables, the only things you need to do is replace the `structServer` json file, which is located in the `src\json` folder, with the new structure data retrieved from the respective endpoint of the backend. This file essentially translates the backend key to a frontend version and includes some information like the data type. The same must be done for the `allServerData` json file, which is located in the same directory, but then should be replaced with the updated medicines data retrieved from the respective endpoint again of the backend. All files in this directory are used to mock the backend server which allows to unit test certain components that normally need these data from the server.
 
 ## Text
 Text on e.g. the information and home page can easily be changed as well. They are all located in their respective page files, e.g. `HomePage` in `src\pages\home`. The text in the header is located in the `src\core\header` directory in the `Header` file. Analogously, the text in the footer is located in the `src\core\footer` directory in the `Footer` file.
@@ -126,7 +126,7 @@ case 'charttype':
 ```
 
 ### forms
-The `forms` directory contains the file `VisualizationForm` which is a function-based component that renders the main form of the visualizations page. The directory also contains the directories `types` and `shared`. The `shared` directory contains the `CategoryOptions` file. This file holds a function-based component rendering the categories list where categories can be selected based on the selected variable. This component is currently used in the forms of all the chart types, which explains why this is placed in the `shared` directory. The `types` directory contains a separate file for each chart type. This file contains a function-based component that renders all the options on the form, e.g. "stacked" and "switch axes" for a bar chart, the dropdowns for the variables and the category options.
+The `forms` directory contains the file `VisualizationForm` which is a function-based component that renders the main form of the visualizations page. The directory also contains the directories `types` and `shared`. The `shared` directory contains the `CategoryOptions` file. This file holds a function-based component rendering the category list, where categories can be selected based on the selected variable. This component is currently used in the forms of all the chart types. The `types` directory contains a separate file for each chart type. This file contains a function-based component that renders all the options on the form, e.g. "stacked" and "switch axes" for a bar chart, the dropdowns for the variables and the category options.
 
 To add support for a new chart, a new file must be created in the `types` directory with similar content to the content of the other files. Based on what options this new chart has, you can build the modifiers in this new file. The options of a chart can be found again at [the documentation of ApexCharts](https://apexcharts.com/docs). When you have created such a new file, you should also add a new case to the switch statement in the `renderChartOptions` function in the `VisualizationForm` file:
 
@@ -151,7 +151,7 @@ To make the new chart visible to the "Visualization type" dropdown, you should a
 ```
 
 ### Add render
-If you performed all the previous steps correctly, you should now be able to add the chart to the renderer. To do this, go back to the `single_visualization` directory. This contains the `SingleVisualization` file which holds a function-based component that renders the chosen visualization type and the export and remove buttons. Add a new case to the switch statement in the `renderChart` function:
+If you performed all the previous steps correctly, you should now be able to add the chart to the renderer. To do this, go back to the `single_visualization` directory. This contains the `SingleVisualization` file which holds a function-based component that renders the chosen visualization type and the export and remove buttons. Import the chart file you added in the `visualization_types` folder before and add a new case to the switch statement in the `renderChart` function:
 
 ```jsx
 // Replace "charttype" with the name of the new chart type, e.g. "bar"
@@ -170,6 +170,7 @@ case 'charttype':
   )
 ```
 
+You may also want to add an extra case to the `renderTitlePlaceHolder` function in the `SingleVisualization` file to customize the title placeholder.
 The dashboard should now have support for your new visualization type.
 
 ## Pages
@@ -248,7 +249,7 @@ export function YourProvider({ children }) {
 }
 ```
 
-What remains is adding this individual provider to the chain of providers. Navigate to the `src\shared` directory. This directory contains a `Provider` file which represents the chain of providers. You can add your provider somehwere between those other providers. It does not matter where you put it in general, but if you need data from one of other providers in your context, then you should put your provider as a child of this provider.
+What remains is adding this individual provider to the chain of providers. Navigate to the `src\shared` directory. This directory contains a `Provider` file which represents the chain of providers. You can add your provider somewhere between those other providers. It does not matter where you put it in general, but if you need data from one of other providers in your context, then you should put your provider as a child of this provider.
 
 Now you can get this data anywhere in the application if you call the following statement:
 
