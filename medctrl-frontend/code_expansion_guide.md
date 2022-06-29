@@ -1,17 +1,21 @@
 # Code expansion guide
 
 ## General
+
 We have tried to make the dashboard as dynamic as possible by making it depend on the backend, meaning we do not have many hardcoded components. Therefore, for tasks like adding a new variable, we refer to the backend guide. If a new variable is added on the backend, then the frontend instantly supports this new variable.
 
 If you want to write unit tests that use new variables, the only things you need to do is replace the `structServer` json file, which is located in the `src\json` folder, with the new structure data retrieved from the respective endpoint of the backend. This file essentially translates the backend key to a frontend version and includes some information like the data type. The same must be done for the `allServerData` json file, which is located in the same directory, but then should be replaced with the updated medicines data retrieved from the respective endpoint again of the backend. All files in this directory are used to mock the backend server which allows to unit test certain components that normally need these data from the server.
 
 ## Text
+
 Text on e.g. the information and home page can easily be changed as well. They are all located in their respective page files, e.g. `HomePage` in `src\pages\home`. The text in the header is located in the `src\core\header` directory in the `Header` file. Analogously, the text in the footer is located in the `src\core\footer` directory in the `Footer` file.
 
 ## Visualizations
+
 There are a variety of visualization types, each having its own options or properties in their display. To keep the visualizations modular and therefore extensible, a visualization is built of 3 individual components: visualization_type, data_interface and form. These are all located in the `src\pages\visualizations\single_visualization` directory. We will discuss each of them more in-depth.
 
 ### visualization_types
+
 The `visualization_types` directory contains a separate file for each chart. This file holds a function-based component which initializes the settings of the chart and renders the chart. To add a new chart, a new file must be created in this directory. The structure of such a file is as follows:
 
 ```jsx
@@ -46,6 +50,7 @@ function SomeChart(props) {
 The series, stored in the settings variable, is the data that will be displayed in the chart. This is constructed with the data_interface corresponding to the specific chart. More on that later. For information on which specific options are available for each chart type, visit [the documentation of ApexCharts](https://apexcharts.com/docs).
 
 ### data_interfaces
+
 We can not blindly pass the medicines data retrieved from the API to display the data in the chart. Some sort of processing of this data must be done beforehand. This is where the data_interface comes into play.
 
 The `data_interfaces` directory contains a separate file for each chart type. This file holds a JavaScript function that calculates the series for the specific chart. The parameter `settings` passed to this function must contain the settings specified by the user in the form and the complete medicines data.
@@ -60,17 +65,17 @@ The `shared_one_dimension` directory only contains the file `pollChosenVariable`
 
 // Maps categories to frequencies
 dict = {
-  1995: 3
+  1995: 3,
 }
 
 // Maps categories to their eu numbers
 // So the data with eu numbers 1, 2 and 3 have Decision Year 1995
 euNumbers = {
-  1995: [1, 2, 3]
+  1995: [1, 2, 3],
 }
 ```
 
-The `shared_two_dimensions` directory contains multiple files. To calculate the series, first the `pollChosenVariable` function is used. It is very similar to the one in the `shared_one_dimension`, however, a chosen y-axis  and the chosen categories on the y-axis must be passed this time as well. It calculates the frequency again of the chosen categories on the x-axis, but it also makes a distinction between the chosen categories on the y-axis now. An example of those dictionaries:
+The `shared_two_dimensions` directory contains multiple files. To calculate the series, first the `pollChosenVariable` function is used. It is very similar to the one in the `shared_one_dimension`, however, a chosen y-axis and the chosen categories on the y-axis must be passed this time as well. It calculates the frequency again of the chosen categories on the x-axis, but it also makes a distinction between the chosen categories on the y-axis now. An example of those dictionaries:
 
 ```jsx
 // X-axis: Decision Year
@@ -80,16 +85,16 @@ The `shared_two_dimensions` directory contains multiple files. To calculate the 
 
 dict = {
   1995: {
-    "United Kingdom": 2,
-    "France": 1
-  }
+    'United Kingdom': 2,
+    France: 1,
+  },
 }
 
 euNumbers = {
   1995: {
-    "United Kingdom": [1, 3],
-    "France": [2]
-  }
+    'United Kingdom': [1, 3],
+    France: [2],
+  },
 }
 ```
 
@@ -102,13 +107,17 @@ However, this format is not the expected format of the library yet. It expects a
 // Chosen categories y-axis: Belgium and Ireland
 
 series = {
-  "Belgium": [1, 3, 3],
-  "Ireland": [2, 2, 2]
+  Belgium: [1, 3, 3],
+  Ireland: [2, 2, 2],
 }
 
 euSeries = {
-  "Belgium": [[270], [299, 301, 302], [325, 330, 333]],
-  "Denmark": [[284, 286], [306, 307], [354, 361]]
+  Belgium: [[270], [299, 301, 302], [325, 330, 333]],
+  Denmark: [
+    [284, 286],
+    [306, 307],
+    [354, 361],
+  ],
 }
 ```
 
@@ -126,6 +135,7 @@ case 'charttype':
 ```
 
 ### forms
+
 The `forms` directory contains the file `VisualizationForm` which is a function-based component that renders the main form of the visualizations page. The directory also contains the directories `types` and `shared`. The `shared` directory contains the `CategoryOptions` file. This file holds a function-based component rendering the category list, where categories can be selected based on the selected variable. This component is currently used in the forms of all the chart types. The `types` directory contains a separate file for each chart type. This file contains a function-based component that renders all the options on the form, e.g. "stacked" and "switch axes" for a bar chart, the dropdowns for the variables and the category options.
 
 To add support for a new chart, a new file must be created in the `types` directory with similar content to the content of the other files. Based on what options this new chart has, you can build the modifiers in this new file. The options of a chart can be found again at [the documentation of ApexCharts](https://apexcharts.com/docs). When you have created such a new file, you should also add a new case to the switch statement in the `renderChartOptions` function in the `VisualizationForm` file:
@@ -151,6 +161,7 @@ To make the new chart visible to the "Visualization type" dropdown, you should a
 ```
 
 ### Add render
+
 If you performed all the previous steps correctly, you should now be able to add the chart to the renderer. To do this, go back to the `single_visualization` directory. This contains the `SingleVisualization` file which holds a function-based component that renders the chosen visualization type and the export and remove buttons. Import the chart file you added in the `visualization_types` folder before and add a new case to the switch statement in the `renderChart` function:
 
 ```jsx
@@ -174,6 +185,7 @@ You may also want to add an extra case to the `renderTitlePlaceHolder` function 
 The dashboard should now have support for your new visualization type.
 
 ## Pages
+
 Adding more pages to the dashboard is also possible. First, you should create a new directory in the `src\pages` directory with the name of your new page, e.g. `data`. In your new directory, a JavaScript file should be created with the appropriate name, e.g. `DataPage`. You can also create CSS file with the same name if you want to apply styling. The JavaScript file will hold a function-based component that renders your new page. It has the following structure:
 
 ```jsx
@@ -220,6 +232,7 @@ If you now enter your path in the url of the application, your new page should a
 Now the dashboard fully supports this new page.
 
 ## Contexts
+
 The application uses contexts to provide components with data. Data is regularly passed as properties in a component, but in some cases, the same data is used in multiple (non-related) components which makes it inconvenient to pass them constantly as properties to each other. It also allows to keep the state consistent while navigating to different pages.
 
 To add a context, first navigate to the `src\shared\contexts` directory. This directory contains all the separate contexts of the application. Create a new file in this directory (which also ends with Context). The structure of this file is as follows:
