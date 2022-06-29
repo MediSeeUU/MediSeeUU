@@ -15,6 +15,11 @@ function RightStickyActions({ entry, select, onChange }) {
           <i
             className="bx bx-trash med-table-icons med-primary-text"
             onClick={onChange.bind(null, entry.EUNoShort)}
+            role={'button'}
+            tabIndex={'0'}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') onChange(entry.EUNoShort)
+            }}
           ></i>
         )
       }

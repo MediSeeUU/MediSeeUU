@@ -22,6 +22,10 @@ Utrecht University within the Software Project course.
   --med-timeline-line: var(--primary-light);
   --med-timeline-circle: var(--primary-dark);
 
+  /* colors for links for the detailed info pages */
+  --med-info-link-color: var(---text-primary);
+  --med-info-link-color-hover: var(--text-additional);
+
   /* colors for the tooltip component (nav only) */
   --med-tooltip-background: var(--core-content);
   --med-tooltip-text: var(--text-primary);
@@ -281,7 +285,6 @@ Utrecht University within the Software Project course.
 
 .med-link {
   color: var(--med-textlink-text);
-  text-decoration: none;
 }
 
 .med-link:hover {

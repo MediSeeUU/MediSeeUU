@@ -198,12 +198,12 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
 
         <CustomLink
           className="med-info-external-link"
-          name={'EMA Website for: ' + medData.BrandName}
+          name={'EMA Website for ' + medData.BrandName}
           dest={medData.EMAurl}
         />
         <CustomLink
           className="med-info-external-link"
-          name={'EC Website for: ' + medData.BrandName}
+          name={'EC Website for ' + medData.BrandName}
           dest={medData.ECurl}
         />
       </div>

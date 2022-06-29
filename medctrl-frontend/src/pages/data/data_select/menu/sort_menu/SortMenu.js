@@ -69,6 +69,11 @@ function SortMenu({ sorters, setSorters, defaultObj }) {
             <label
               className="med-able-menu-add-sort-button med-primary-text"
               onClick={addSort}
+              role={'button'}
+              tabIndex={'0'}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') addSort()
+              }}
             >
               Add Sorting option +
             </label>

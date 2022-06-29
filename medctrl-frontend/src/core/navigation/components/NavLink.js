@@ -37,6 +37,11 @@ function NavLink(props) {
       className={className + ' med-primary-solid' + active}
       onClick={clicked}
       data-testid={props.name}
+      role={'button'}
+      tabIndex={'0'}
+      onKeyPress={(e) => {
+        if (e.key === 'Enter') clicked()
+      }}
     >
       <div tour={props.tour} className="med-nav-item-content">
         <i className={props.image} />

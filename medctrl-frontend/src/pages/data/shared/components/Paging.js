@@ -80,6 +80,11 @@ function Paging({ data, amount, currPage, setPage }) {
             ? 'med-table-page-button med-no-select med-page-selected'
             : 'med-table-page-button med-no-select'
         }
+        role={'button'}
+        tabIndex={'0'}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') setPage(page)
+        }}
         id={page}
       >
         {' '}
@@ -100,6 +105,11 @@ function Paging({ data, amount, currPage, setPage }) {
             onClick={() => setPage(--currPage)}
             className="bx bxs-chevron-left med-table-change-page"
             data-testid="prev-page-table"
+            role={'button'}
+            tabIndex={'0'}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') setPage(--currPage)
+            }}
           />
         )
       }
@@ -111,6 +121,11 @@ function Paging({ data, amount, currPage, setPage }) {
             onClick={() => setPage(++currPage)}
             className="bx bxs-chevron-right med-table-change-page"
             data-testid="next-page-table"
+            role={'button'}
+            tabIndex={'0'}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') setPage(++currPage)
+            }}
           />
         )
       }

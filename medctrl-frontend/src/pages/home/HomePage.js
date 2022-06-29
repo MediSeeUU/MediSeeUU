@@ -25,7 +25,7 @@ function HomePage() {
   return (
     // Homepage components, contains search bar and article containers
     <div className="med-home-content">
-      <div className="med-content-container">
+      <section className="med-content-container">
         <h1>Dashboard Tour</h1>
         <hr className="med-top-separator" />
 
@@ -45,20 +45,22 @@ function HomePage() {
           'end'. When you reach the end of the tour, the tour will automatically
           finish.
         </p>
-      </div>
+      </section>
 
       <Search tour="step-search" update={search} />
 
-      <div className="med-content-container">
+      <section className="med-content-container">
         <h1>Tools</h1>
         <hr className="med-top-separator" />
+
         <p>
           This dashboard provides tools for looking up, filtering, and
           visualizing data points regarding pharmaceutical policy and
           regulation. All functionality is split up into two pages: <i>Data</i>{' '}
           and <i>Visualize</i>.
         </p>
-        <div>
+
+        <article>
           <h2>Data</h2>
           <p>
             The data page is optimized to find data points quickly. Searching
@@ -69,8 +71,9 @@ function HomePage() {
             made manually from the remaining data points, which can be used for
             visualization or exported to a local file if desired.
           </p>
-        </div>
-        <div>
+        </article>
+
+        <article>
           <h2>Visualize</h2>
           <p>
             The data points selected on the data page can be displayed
@@ -91,8 +94,8 @@ function HomePage() {
             points. The resulting visualization can be exported to a local image
             file if desired.
           </p>
-        </div>
-      </div>
+        </article>
+      </section>
     </div>
   )
 }
