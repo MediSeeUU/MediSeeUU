@@ -50,7 +50,7 @@ The script will run in the following order:
 7. Merge all data to the `ec_df` attribute of the `RegSciDB` class.
 
 ## Contents
-`src`: This directory contains the `regsci_scraper` package (and a `setup.py` and `__init__.py` for setup). 
+`src`: This directory contains the `regsci_scraper` package (and a `setup.py` and `__init__.py` for setup).
 The package contains the following scripts:
 - `utils.py`: Script containing general functions used by the other scripts mentioned below.
 - `pdf_scraper.py`: __Main script__. Uses the `website_scraper.py` and scripts in `file_scrapers` to create the DB.
