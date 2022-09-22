@@ -10,6 +10,8 @@ mycursor = mydb.cursor()
 
 mycursor.execute("CREATE DATABASE IF NOT EXISTS PharmaDB")
 
+mydb.close()
+
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
