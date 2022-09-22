@@ -1,0 +1,8 @@
+1. in git bash cd naar pharmavisual
+
+
+
+
+
+Commands:
+git status
