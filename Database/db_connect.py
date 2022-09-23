@@ -16,3 +16,5 @@ mycursor.execute("SHOW TABLES")
 
 for x in mycursor:
   print(x)
+
+  # dikke willie
