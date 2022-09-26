@@ -24,15 +24,22 @@ def getTableEC(pdf):
     #content
     (content,rem) = PDFhelper.findBetweenFormat('COMMISSION','Whereas:',rem,True)
     table['body']['main_text'] = PDFhelper.filterFont([],[],content)
-
-    (content,rem) = PDFhelper.findBetweenFormat('(1)','(2)',rem,False)
-    table['body']['P1'] = PDFhelper.filterFont([],[],content)
-
-    (content,rem) = PDFhelper.findBetweenFormat('(2)','(3)',rem,False)
-    table['body']['P2'] = PDFhelper.filterFont([],[],content)
-
-    (content,rem) = PDFhelper.findBetweenFormat('(3)','HAS ADOPTED THIS DECISION:',rem,False)
-    table['body']['P3'] = PDFhelper.filterFont([],[],content)
+ 
+    
+    #bullet points as one chunck
+    (bulletpoints,rem) = PDFhelper.findBetweenFormat('','HAS ADOPTED THIS DECISION:',rem,False)
+    
+    zoeken = True
+    bullet_count = 1
+    while zoeken:
+        #finds section from start till next bullet point
+        (bp_content,bulletpoints) = PDFhelper.findBetweenFormat('','(' + str(bullet_count+1) +')',bulletpoints,False) 
+        table['body']['P' + str(bullet_count)] = PDFhelper.filterFont([],[],bp_content)
+        
+        #nothing more to be found or stuck in loop
+        if bulletpoints == [] or bullet_count > 15:
+            zoeken = False
+        bullet_count += 1
 
     #decision
     (content,rem) = PDFhelper.findBetweenFormat('HAS ADOPTED THIS DECISION:','Article 1',rem,False)
@@ -67,5 +74,23 @@ def tableEC_getName(table):
     section = table['intro']['front_page']
     for txt in section:
         if '\"' in txt:
-            return(re.search('"([^"]*)"',txt)[0])
-    return "Name Not Found"
+            section = re.search('"([^"]*)"',txt)[0]
+            section = section.replace('"','')
+            #gets only first section
+            return section.split('-')[0].strip()
+    return "Product name Not Found"
+
+#active substance
+def tableEC_getAS(table):
+    section = table['intro']['front_page']
+    for txt in section:
+        if '\"' in txt:
+            section = re.search('"([^"]*)"',txt)[0]
+            section = section.replace('"','')
+            #gets only second section if present
+            try:
+                res = section.split('-')[1].strip()
+            except:
+                res = ('No active substance in product name')
+            return res
+    return "Active substance Not Found"

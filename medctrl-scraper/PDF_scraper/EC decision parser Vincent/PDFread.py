@@ -2,15 +2,23 @@
 #import PyPDF2 replaces with PyMuPDF
 import fitz
 import json
+import os #to get all file names in folder
 
 import ECparse
 
-pdf = fitz.open('test_xenon.pdf')  # open document
+for filename in os.listdir('decision_files'):
+    pdf = fitz.open(filename)  # open document
 
-table = ECparse.getTableEC(pdf)  #get formated dictionary
+    table = ECparse.getTableEC(pdf)  #get formated dictionary
 
-pdf.close() #close document
+    pdf.close() #close document
 
-print(ECparse.tableEC_getDate(table))
-print(ECparse.tableEC_getName(table))
-print(json.dumps(table, indent=3))
+    res = [filename]
+
+    res.append(ECparse.tableEC_getDate(table))
+    res.append(ECparse.tableEC_getName(table))
+    res.append(ECparse.tableEC_getAS(table))
+    
+    print(res)
+    #print(json.dumps(table, indent=3))
+    

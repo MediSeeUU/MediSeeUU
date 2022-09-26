@@ -77,15 +77,16 @@ def findBetweenFormat (start, stop, form, inclusive):
         if save:    
             results.append((txt, size, font))
         index += 1
+    #stop not found    
     return (results,[])
 
+#counts for every text CONTAINING the search string
 def countStr(string, searchFont, section):
     count = 0
     for (txt, size, font) in section:
         if string in txt and font == searchFont:
             count += 1
     return count
-        
         
     
    
