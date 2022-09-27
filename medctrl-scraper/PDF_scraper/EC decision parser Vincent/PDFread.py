@@ -31,7 +31,8 @@ import ECparse
 
 # PARSE WHOLE MAP
 counter = 0
-f = open('results.txt', 'w') 
+f = open('results.txt', 'w')
+
 for filename in os.listdir('decisions'):
     
     
