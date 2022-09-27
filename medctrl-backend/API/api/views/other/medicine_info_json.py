@@ -209,7 +209,7 @@ def get_medicine_info(perm):
 
 # Checks wether the user has permission for this item
 def filterFunc(perm, item):
-    for key, value in item.items():
+    for _, value in item.items():
         if value in perm:
             return True
     return False
