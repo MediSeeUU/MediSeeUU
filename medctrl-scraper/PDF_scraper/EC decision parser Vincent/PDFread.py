@@ -7,11 +7,14 @@ import os #to get all file names in folder
 import ECparse
 
 
-#filename = 'test_website.pdf'
+# filename = 'decisions/h001_dec_2830.pdf'
 
 # pdf = fitz.open(filename)  # open document
 
 # table = ECparse.getTableEC(pdf)  #get formated dictionary
+
+# if table['intro']['front_page'] == []:
+#     print(str(filename) + ' has no text')
 
 # pdf.close() #close document
 
@@ -44,6 +47,13 @@ for filename in os.listdir('decisions'):
         
     try:
         table = ECparse.getTableEC(pdf)  #get formated dictionary
+        
+        #check if table front page is empty (indicating image/unreadable)
+        if table['intro']['front_page'] == []:
+            f.writelines(str(filename) + ' has no text')
+            f.write('\n')
+            continue
+            
     
         pdf.close() #close document
     

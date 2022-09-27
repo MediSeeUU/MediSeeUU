@@ -11,7 +11,7 @@ h001_dec_140283.pdf;2018-01-03 00:00:00;GONAL-f;Follitropin alfa
 h001_dec_142126.pdf;2018-06-08 00:00:00;GONAL;f
 h001_dec_150019.pdf;2020-11-24 00:00:00;GONAL-f;Follitropin alfa
 h001_dec_21694.pdf;2007-03-21 00:00:00;GONAL;f
-h001_dec_2830.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h001_dec_2830.pdf has no text
 h001_dec_2831.pdf;1996-07-11 00:00:00;Gonal;F
 h001_dec_2832.pdf;1980-01-01 00:00:00;Gonal;F
 h001_dec_2833.pdf;1980-01-01 00:00:00;GONAL-F;Follitropin alpha
@@ -218,7 +218,7 @@ h006_dec_153172.pdf;2021-09-29 00:00:00;NovoSeven;Eptacog alfa (activated)
 h006_dec_155729.pdf;2022-05-24 00:00:00;NovoSeven;Eptacog alfa (activated)
 h006_dec_17828.pdf;2007-04-01 00:00:00;NovoSeven;Eptacog alfa (activated)
 h006_dec_20692.pdf;2007-05-03 00:00:00;NovoSeven;Eptacog alfa (activated)
-h006_dec_2878.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h006_dec_2878.pdf has no text
 h006_dec_2879.pdf;1997-04-12 00:00:00;NOVOSEVEN;Eptacog alfa (activated)
 h006_dec_2880.pdf;1998-07-17 00:00:00;NOVOSEVEN;Eptacog alfa (activated)
 h006_dec_2881.pdf;1998-11-19 00:00:00;NOVOSEVEN;Eptacog alfa (activated)
@@ -627,7 +627,7 @@ h026_dec_14990.pdf;2006-11-10 00:00:00;Invirase;Saquinavir
 h026_dec_17730.pdf;2007-03-01 00:00:00;Invirase;Saquinavir
 h026_dec_18909.pdf;2007-11-01 00:00:00;Invirase;Saquinavir
 h026_dec_22250.pdf;2007-03-29 00:00:00;Invirase;Saquinavir
-h026_dec_23308.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h026_dec_23308.pdf has no text
 h026_dec_32348.pdf;2007-10-19 00:00:00;Invirase;Saquinavir
 h026_dec_3314.pdf;1980-01-01 00:00:00;INVIRASE;Saquinavir
 h026_dec_3315.pdf;1980-01-01 00:00:00;INVIRASE;Saquinavir
@@ -891,12 +891,12 @@ h046_dec_11351.pdf;2006-09-01 00:00:00;Aprovel;Irbesartan
 h046_dec_11577.pdf;2006-05-31 00:00:00;Aprovel;Irbesartan
 h046_dec_124550.pdf;2012-10-10 00:00:00;Aprovel;Irbesartan
 h046_dec_126402.pdf;2013-07-31 00:00:00;Aprovel;Irbesartan
-h046_dec_129434.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h046_dec_129434.pdf;2014-04-09 00:00:00;Aprovel;Irbesartan"
 h046_dec_135097.pdf;2016-06-24 00:00:00;Aprovel;Irbesartan
 h046_dec_142010.pdf;2018-07-30 00:00:00;Aprovel;Irbesartan
-h046_dec_144231.pdf;2019-11-04 00:00:00;Product name Not Found;Active substance Not Found
+h046_dec_144231.pdf;2019-11-04 00:00:00;Aprovel;Irbesartan"
 h046_dec_146448.pdf;2019-11-11 00:00:00;Aprovel;Irbesartan
-h046_dec_150496.pdf;2021-02-19 00:00:00;Product name Not Found;Active substance Not Found
+h046_dec_150496.pdf;2021-02-19 00:00:00;Aprovel;Irbesartan"
 h046_dec_151624.pdf;2021-10-05 00:00:00;Aprovel;Irbesartan
 h046_dec_15548.pdf;2006-05-31 00:00:00;Aprovel;Irbesartan
 h046_dec_156861.pdf;2022-02-09 00:00:00;Aprovel;Irbesartan
@@ -959,7 +959,7 @@ h047_dec_41648.pdf;2007-07-30 00:00:00;BeneFIX;Nonacog alfa
 h047_dec_41649.pdf;2007-07-08 00:00:00;BeneFIX;Nonacog alfa
 h047_dec_4165.pdf;2001-04-23 00:00:00;;BENEFIX – nonacog alfa
 h047_dec_4349.pdf;2001-04-23 00:00:00;;BENEFIX – nonacog alfa
-h047_dec_4779.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h047_dec_4779.pdf has no text
 h047_dec_4811.pdf;2002-05-02 00:00:00;BeneFIX;Nonacog alfa
 h047_dec_54119.pdf;2009-02-23 00:00:00;BeneFIX;Nonacog alfa
 h047_dec_58309.pdf;2009-04-22 00:00:00;BeneFIX;Nonacog alfa
@@ -980,10 +980,10 @@ h049_dec_11632.pdf;2006-08-06 00:00:00;Karvea;Irbesartan
 h049_dec_124560.pdf;2012-10-10 00:00:00;Karvea;Irbesartan
 h049_dec_125491.pdf;2013-02-18 00:00:00;Karvea;Irbesartan
 h049_dec_126398.pdf;2013-07-31 00:00:00;Karvea;Irbesartan
-h049_dec_129100.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h049_dec_129100.pdf;2014-04-09 00:00:00;Karvea;Irbesartan"
 h049_dec_135032.pdf;2016-06-21 00:00:00;Karvea;Irbesartan
 h049_dec_141861.pdf;2018-07-13 00:00:00;Karvea;Irbesartan
-h049_dec_144190.pdf;2019-02-04 00:00:00;Product name Not Found;Active substance Not Found
+h049_dec_144190.pdf;2019-02-04 00:00:00;Karvea;Irbesartan"
 h049_dec_150367.pdf;2021-12-02 00:00:00;;Karvea – Irbesartan
 h049_dec_151820.pdf;2021-10-05 00:00:00;Karvea;Irbesartan
 h049_dec_156923.pdf;2022-09-13 00:00:00;Karvea;Irbesartan
@@ -1153,7 +1153,7 @@ h055_dec_49509.pdf;2008-02-09 00:00:00;Viramune;nevirapine
 h055_dec_54108.pdf;2009-01-27 00:00:00;Viramune;nevirapine
 h055_dec_5510.pdf;2002-11-07 00:00:00;Viramune;nevirapine
 h055_dec_58270.pdf;2009-07-05 00:00:00;Viramune;nevirapine
-h055_dec_60048.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h055_dec_60048.pdf has no text
 h055_dec_6035.pdf;2002-05-12 00:00:00;Viramune;nevirapine
 h055_dec_6173.pdf;2003-02-17 00:00:00;Viramune;nevirapine
 h055_dec_6570.pdf;2003-05-19 00:00:00;Viramune;nevirapine
@@ -1339,9 +1339,9 @@ h067_dec_19189.pdf;2007-12-01 00:00:00;Mabthera;Rituximab
 h067_dec_22608.pdf;2007-03-27 00:00:00;Mabthera;Rituximab
 h067_dec_29829.pdf;2007-03-09 00:00:00;Mabthera;Rituximab
 h067_dec_3208.pdf;1998-02-06 00:00:00;MABTHERA;Rituximab
-h067_dec_3209.pdf;1999-06-18 00:00:00;MABTHERA rituximab;Active substance Not Found
-h067_dec_3210.pdf;1980-01-01 00:00:00;MABTHERA rituximab;Active substance Not Found
-h067_dec_3424.pdf;1980-01-01 00:00:00;MABTHERA rituximab;Active substance Not Found
+h067_dec_3209.pdf;1999-06-18 00:00:00;MABTHERA rituximab;Annex III B (package leaflet) is replaced by Annex III to this Decision. Article 2 "
+h067_dec_3210.pdf;1980-01-01 00:00:00;MABTHERA rituximab;Annex III B (package leaflet) is replaced by Annex 2 to this Decision. Article 2 "
+h067_dec_3424.pdf;1980-01-01 00:00:00;MABTHERA rituximab;Annex III B (package leaflet) is replaced by Annex 2 to this Decision. Article 2 "
 h067_dec_34708.pdf;2007-11-19 00:00:00;Mabthera;Rituximab
 h067_dec_3591.pdf;1980-01-01 00:00:00;MABTHERA rituximab;Active substance Not Found
 h067_dec_38649.pdf;2008-01-18 00:00:00;Mabthera;Rituximab
@@ -1689,11 +1689,11 @@ h085_dec_11245.pdf;2006-03-20 00:00:00;Karvezide;Irbesartan/hydrochlorothiazide
 h085_dec_123525.pdf;2012-06-27 00:00:00;Karvezide;Irbesartan / hydrochlorothiazide
 h085_dec_125620.pdf;2013-02-18 00:00:00;Karvezide;Irbesartan / hydrochlorothiazide
 h085_dec_126399.pdf;2013-07-31 00:00:00;Karvezide;Irbesartan / hydrochlorothiazide
-h085_dec_129118.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h085_dec_129118.pdf;2014-04-09 00:00:00;Karvezide;Irbesartan / hydrochlorothiazide"
 h085_dec_13028.pdf;2006-08-28 00:00:00;Karvezide;Irbesartan/hydrochlorothiazide
 h085_dec_138533.pdf;2017-08-24 00:00:00;Karvezide;Irbesartan / hydrochlorothiazide
 h085_dec_142464.pdf;2018-09-20 00:00:00;Karvezide;Irbesartan / hydrochlorothiazide
-h085_dec_144191.pdf;2019-02-04 00:00:00;Product name Not Found;Active substance Not Found
+h085_dec_144191.pdf;2019-02-04 00:00:00;Karvezide;Irbesartan / hydrochlorothiazide"
 h085_dec_150369.pdf;2021-12-02 00:00:00;Karvezide;Irbesartan / hydrochlorothiazide
 h085_dec_151830.pdf;2021-10-05 00:00:00;Karvezide;Irbesartan / hydrochlorothiazide
 h085_dec_156926.pdf;2022-09-13 00:00:00;Karvezide;Irbesartan / hydrochlorothiazide
@@ -1738,13 +1738,13 @@ h086_dec_11244.pdf;2006-03-20 00:00:00;CoAprovel;Irbesartan/hydrochlorothiazide
 h086_dec_121609.pdf;2012-10-05 00:00:00;CoAprovel;Irbesartan / hydrochlorothiazide
 h086_dec_123519.pdf;2012-06-28 00:00:00;CoAprovel;Irbesartan / hydrochlorothiazide
 h086_dec_126403.pdf;2013-07-31 00:00:00;CoAprovel;Irbesartan / hydrochlorothiazide
-h086_dec_129207.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h086_dec_129207.pdf;2014-04-09 00:00:00;CoAprovel;Irbesartan / hydrochlorothiazide"
 h086_dec_13008.pdf;2006-08-28 00:00:00;CoAprovel;Irbesartan/hydrochlorothiazide
 h086_dec_138581.pdf;2017-08-22 00:00:00;CoAprovel;Irbesartan / hydrochlorothiazide
 h086_dec_142593.pdf;2018-09-28 00:00:00;CoAprovel;Irbesartan / hydrochlorothiazide
-h086_dec_144230.pdf;2019-11-04 00:00:00;Product name Not Found;Active substance Not Found
+h086_dec_144230.pdf;2019-11-04 00:00:00;CoAprovel;Irbesartan / hydrochlorothiazide"
 h086_dec_146449.pdf;2019-11-11 00:00:00;CoAprovel;Irbesartan / hydrochlorothiazide
-h086_dec_150499.pdf;2021-02-19 00:00:00;Product name Not Found;Active substance Not Found
+h086_dec_150499.pdf;2021-02-19 00:00:00;CoAprovel;Irbesartan / hydrochlorothiazide"
 h086_dec_151756.pdf;2021-10-05 00:00:00;CoAprovel;Irbesartan / hydrochlorothiazide
 h086_dec_156862.pdf;2022-02-09 00:00:00;CoAprovel;Irbesartan / hydrochlorothiazide
 h086_dec_18068.pdf;2007-11-01 00:00:00;CoAprovel;Irbesartan/hydrochlorothiazide
@@ -1783,7 +1783,7 @@ h089_dec_119711.pdf;2012-08-03 00:00:00;Pritor;telmisartan
 h089_dec_123297.pdf;2012-05-25 00:00:00;Pritor;telmisartan
 h089_dec_125097.pdf;2012-12-18 00:00:00;Pritor;telmisartan
 h089_dec_126094.pdf;2013-05-29 00:00:00;Pritor;telmisartan
-h089_dec_129160.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h089_dec_129160.pdf;2014-04-09 00:00:00;Pritor;telmisartan"
 h089_dec_140757.pdf;2018-04-13 00:00:00;Pritor;telmisartan
 h089_dec_15230.pdf;2006-10-27 00:00:00;Pritor;telmisartan
 h089_dec_153929.pdf;2021-11-26 00:00:00;Pritor;telmisartan
@@ -1815,7 +1815,7 @@ h090_dec_11808.pdf;2006-06-26 00:00:00;Micardis;telmisartan
 h090_dec_123359.pdf;2012-05-25 00:00:00;;Micardis -telmisartan
 h090_dec_125108.pdf;2012-12-20 00:00:00;;Micardis -telmisartan
 h090_dec_126132.pdf;2013-05-30 00:00:00;;Micardis -telmisartan
-h090_dec_129124.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h090_dec_129124.pdf;2014-04-09 00:00:00;Micardis;telmisartan"
 h090_dec_142730.pdf;2018-10-23 00:00:00;Micardis;telmisartan
 h090_dec_154229.pdf;2021-12-13 00:00:00;Micardis;telmisartan
 h090_dec_17928.pdf;2007-04-01 00:00:00;Micardis;telmisartan
@@ -1848,7 +1848,7 @@ h091_dec_121129.pdf;2012-03-30 00:00:00;Kinzalmono;telmisartan
 h091_dec_123354.pdf;2012-05-25 00:00:00;Kinzalmono;telmisartan
 h091_dec_125102.pdf;2012-12-20 00:00:00;Kinzalmono;telmisartan
 h091_dec_126131.pdf;2013-05-30 00:00:00;Kinzalmono;telmisartan
-h091_dec_129109.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h091_dec_129109.pdf;2014-04-09 00:00:00;Kinzalmono;telmisartan"
 h091_dec_140615.pdf;2018-04-04 00:00:00;Kinzalmono;telmisartan
 h091_dec_154227.pdf;2021-12-13 00:00:00;Kinzalmono;telmisartan
 h091_dec_17909.pdf;2007-04-01 00:00:00;Kinzalmono;telmisartan
@@ -1998,7 +1998,7 @@ h1002_dec_153921.pdf;2021-11-26 00:00:00;Lenvima;lenvatinib
 h1003_dec_131888.pdf;2015-05-27 00:00:00;Synjardy;empagliflozin / metformin
 h1003_dec_134558.pdf;2016-04-28 00:00:00;Synjardy;empagliflozin / metformin
 h1003_dec_135246.pdf;2016-07-15 00:00:00;Synjardy;empagliflozin / metformin
-h1003_dec_136463.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
+h1003_dec_136463.pdf;2016-12-12 00:00:00;Synjardy;empagliflozin / metformin"
 h1003_dec_137157.pdf;2017-03-03 00:00:00;Synjardy;empagliflozin / metformin
 h1003_dec_137398.pdf;2017-04-20 00:00:00;Synjardy;empagliflozin / metformin
 h1003_dec_138304.pdf;2017-07-19 00:00:00;Synjardy;empagliflozin / metformin
@@ -2021,7 +2021,7 @@ h1005_dec_143964.pdf;2019-02-14 00:00:00;Aripiprazole Mylan Pharma;aripiprazole
 h1005_dec_147132.pdf;2020-02-25 00:00:00;Aripiprazole Mylan Pharma;aripiprazole
 h1005_dec_153902.pdf;2021-11-19 00:00:00;Aripiprazole Mylan Pharma;aripiprazole
 h1005_dec_153903.pdf;2021-11-18 00:00:00;Aripiprazole Mylan Pharma;aripiprazole
-h1006_dec_132594.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h1006_dec_132594.pdf has no text
 h1006_dec_138038.pdf;2017-05-22 00:00:00;Respreeza;human alpha1-proteinase inhibitor
 h1006_dec_143767.pdf;2019-01-31 00:00:00;Respreeza;human alpha1-proteinase inhibitor
 h1006_dec_147622.pdf;2020-04-23 00:00:00;Respreeza;human alpha1
@@ -2314,7 +2314,7 @@ h103_dec_124527.pdf;2012-10-24 00:00:00;ReFacto AF;Moroctocog alfa
 h103_dec_127052.pdf;2013-11-13 00:00:00;ReFacto AF;Moroctocog alfa
 h103_dec_131612.pdf;2015-08-04 00:00:00;ReFacto AF;Moroctocog alfa 
 h103_dec_135468.pdf;2016-07-29 00:00:00;ReFacto AF;Moroctocog alfa 
-h103_dec_139163.pdf;2017-11-15 00:00:00;Product name Not Found;Active substance Not Found
+h103_dec_139163.pdf;2017-11-15 00:00:00;ReFacto AF;Moroctocog alfa "
 h103_dec_142055.pdf;2018-02-08 00:00:00;ReFacto AF;Moroctocog alfa
 h103_dec_149351.pdf;2020-09-30 00:00:00;ReFacto AF;Moroctocog alfa 
 h103_dec_153322.pdf;2021-11-10 00:00:00;ReFacto AF;Moroctocog alfa 
@@ -2371,7 +2371,7 @@ h1045_dec_149042.pdf;2020-09-30 00:00:00;Aripiprazole Accord;aripiprazole
 h1046_dec_133329.pdf;2015-11-19 00:00:00;Elocta;efmoroctocog alfa
 h1046_dec_134509.pdf;2016-03-23 00:00:00;Elocta;efmoroctocog alfa
 h1046_dec_138053.pdf;2017-05-31 00:00:00;Elocta;efmoroctocog alfa
-h1046_dec_139270.pdf;2017-11-16 00:00:00;Product name Not Found;Active substance Not Found
+h1046_dec_139270.pdf;2017-11-16 00:00:00;Elocta;efmoroctocog alfa"
 h1046_dec_142864.pdf;2018-07-12 00:00:00;Elocta;efmoroctocog alfa
 h1046_dec_145319.pdf;2019-09-07 00:00:00;Elocta;efmoroctocog alfa
 h1046_dec_148788.pdf;2020-08-19 00:00:00;Elocta;efmoroctocog alfa
@@ -2400,7 +2400,7 @@ h1049_dec_139801.pdf;2018-11-01 00:00:00;Cystadrops;mercaptamine
 h1049_dec_148024.pdf;2020-04-05 00:00:00;Cystadrops;mercaptamine
 h1049_dec_152817.pdf;2021-09-15 00:00:00;Cystadrops;mercaptamine
 h1051_dec_133282.pdf;2015-11-16 00:00:00;Ebymect;dapagliflozin / metfomin
-h1051_dec_136450.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
+h1051_dec_136450.pdf;2016-12-12 00:00:00;Ebymect;dapagliflozin / metformin"
 h1051_dec_137433.pdf;2017-04-05 00:00:00;Ebymect;dapagliflozin / metformin
 h1051_dec_139683.pdf;2017-12-20 00:00:00;Ebymect;dapagliflozin / metformin
 h1051_dec_142636.pdf;2018-12-11 00:00:00;Ebymect;dapagliflozin / metformin
@@ -2455,7 +2455,7 @@ h1058_dec_133232.pdf;2015-11-19 00:00:00;Entresto;sacubitril / valsartan
 h1058_dec_136859.pdf;2017-11-01 00:00:00;Entresto;sacubitril / valsartan
 h1058_dec_140310.pdf;2018-04-23 00:00:00;Entresto;sacubitril / valsartan
 h1058_dec_140795.pdf;2018-04-30 00:00:00;Entresto;sacubitril / valsartan
-h1058_dec_144247.pdf;2019-04-15 00:00:00;Product name Not Found;Active substance Not Found
+h1058_dec_144247.pdf;2019-04-15 00:00:00;Entresto;sacubitril / valsartan"
 h1058_dec_148285.pdf;2020-06-25 00:00:00;Entresto;sacubitril / valsartan
 h1058_dec_150525.pdf;2020-06-25 00:00:00;Entresto;sacubitril / valsartan
 h1058_dec_151470.pdf;2021-05-19 00:00:00;Entresto;sacubitril / valsartan
@@ -2584,7 +2584,7 @@ h1075_dec_149640.pdf;2020-11-25 00:00:00;Feraccru;ferric maltol
 h1075_dec_155926.pdf;2022-06-13 00:00:00;Feraccru;ferric maltol
 h1076_dec_133968.pdf;2016-02-18 00:00:00;Kovaltry;octocog alfa
 h1076_dec_137660.pdf;2017-11-04 00:00:00;Kovaltry;octocog alfa
-h1076_dec_139152.pdf;2017-10-11 00:00:00;Product name Not Found;Active substance Not Found
+h1076_dec_139152.pdf;2017-10-11 00:00:00;Kovaltry;octocog alfa"
 h1076_dec_145934.pdf;2019-09-09 00:00:00;Kovaltry;octocog alfa
 h1076_dec_149046.pdf;2020-09-17 00:00:00;Kovaltry;octocog alfa
 h1078_dec_137423.pdf;2017-04-24 00:00:00;Natpar;parathyroid hormone
@@ -2739,7 +2739,7 @@ h1091_dec_153075.pdf;2021-09-29 00:00:00;Atazanavir Mylan;atazanavir
 h1092_dec_134205.pdf;2016-03-22 00:00:00;Amlodipine/Valsartan Mylan;amlodipine/valsartan
 h1092_dec_139172.pdf;2017-10-13 00:00:00;Amlodipine/Valsartan Mylan;amlodipine/valsartan
 h1092_dec_143834.pdf;2019-02-25 00:00:00;Amlodipine/Valsartan Mylan;amlodipine/valsartan
-h1092_dec_144165.pdf;2019-04-17 00:00:00;Product name Not Found;Active substance Not Found
+h1092_dec_144165.pdf;2019-04-17 00:00:00;Amlodipine/Valsartan Mylan;amlodipine/valsartan"
 h1092_dec_150196.pdf;2021-01-14 00:00:00;Amlodipine/Valsartan Mylan;amlodipine/valsartan
 h1092_dec_150373.pdf;2021-12-02 00:00:00;Amlodipine/Valsartan Mylan;amlodipine/valsartan
 h1092_dec_152897.pdf;2021-09-15 00:00:00;Amlodipine/Valsartan Mylan;amlodipine/valsartan
@@ -2832,10 +2832,10 @@ h1103_dec_134747.pdf;2016-05-26 00:00:00;Neparvis;sacubitril / valsartan
 h1103_dec_138790.pdf;2017-11-09 00:00:00;Neparvis;sacubitril / valsartan
 h1103_dec_140227.pdf;2018-01-03 00:00:00;Neparvis;sacubitril / valsartan
 h1103_dec_140646.pdf;2018-12-04 00:00:00;Neparvis;sacubitril / valsartan
-h1103_dec_144243.pdf;2019-11-04 00:00:00;Product name Not Found;Active substance Not Found
+h1103_dec_144243.pdf;2019-11-04 00:00:00;Neparvis;sacubitril / valsartan"
 h1103_dec_149382.pdf;2020-09-30 00:00:00;Neparvis;sacubitril / valsartan
 h1103_dec_150384.pdf;2021-11-02 00:00:00;Neparvis;sacubitril / valsartan
-h1103_dec_150501.pdf;2021-02-19 00:00:00;Product name Not Found;Active substance Not Found
+h1103_dec_150501.pdf;2021-02-19 00:00:00;Neparvis;sacubitril / valsartan"
 h1103_dec_151469.pdf;2021-05-19 00:00:00;Neparvis;sacubitril / valsartan
 h1103_dec_156320.pdf;2022-01-07 00:00:00;Neparvis;sacubitril / valsartan
 h1104_dec_134834.pdf;2016-05-26 00:00:00;Palonosetron Accord;palonosetron
@@ -3031,7 +3031,7 @@ h1124_dec_138701.pdf;2017-07-08 00:00:00;Nordimet;methotrexate
 h1124_dec_140676.pdf;2018-05-16 00:00:00;Nordimet;methotrexate
 h1124_dec_144431.pdf;2019-03-25 00:00:00;Nordimet;methotrexate
 h1124_dec_145482.pdf;2019-08-23 00:00:00;Nordimet;methotrexate
-h1124_dec_145949.pdf;2019-10-17 00:00:00;Product name Not Found;Active substance Not Found
+h1124_dec_145949.pdf;2019-10-17 00:00:00;Nordimet;methotrexate"
 h1124_dec_148496.pdf;2020-07-23 00:00:00;Nordimet;methotrexate
 h1124_dec_150459.pdf;2021-01-21 00:00:00;Nordimet;methotrexate
 h1124_dec_151814.pdf;2021-06-21 00:00:00;Nordimet;methotrexate
@@ -3434,7 +3434,7 @@ h1172_dec_140839.pdf;2018-05-22 00:00:00;Jylamvo;methotrexate
 h1172_dec_144511.pdf;2019-03-29 00:00:00;Jylamvo;methotrexate
 h1172_dec_144513.pdf;2019-03-28 00:00:00;Jylamvo;methotrexate
 h1172_dec_145557.pdf;2019-08-26 00:00:00;Jylamvo;methotrexate
-h1172_dec_145951.pdf;2019-10-21 00:00:00;Product name Not Found;Active substance Not Found
+h1172_dec_145951.pdf;2019-10-21 00:00:00;Jylamvo;methotrexate"
 h1172_dec_148594.pdf;2020-10-08 00:00:00;Jylamvo;methotrexate
 h1172_dec_153833.pdf;2021-11-22 00:00:00;Jylamvo;methotrexate
 h1173_dec_137333.pdf;2018-03-22 00:00:00;Lokelma;sodium zirconium cyclosilicate
@@ -3722,10 +3722,10 @@ h120_dec_106448.pdf;2011-07-07 00:00:00;Ammonaps;Sodium phenylbutyrate
 h120_dec_109973.pdf;2011-09-13 00:00:00;Ammonaps;Sodium phenylbutyrate
 h120_dec_11452.pdf;2006-04-24 00:00:00;Ammonaps;Sodium phenylbutyrate
 h120_dec_131516.pdf;2015-08-04 00:00:00;Ammonaps;Sodium phenylbutyrate
-h120_dec_136232.pdf;2016-11-29 00:00:00;Product name Not Found;Active substance Not Found
+h120_dec_136232.pdf;2016-11-29 00:00:00;Ammonaps;Sodium phenylbutyrate"
 h120_dec_141410.pdf;2018-06-07 00:00:00;Ammonaps;Sodium phenylbutyrate
 h120_dec_143451.pdf;2019-06-02 00:00:00;Ammonaps;Sodium phenylbutyrate
-h120_dec_145105.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h120_dec_145105.pdf has no text
 h120_dec_145422.pdf;2019-11-07 00:00:00;Ammonaps;Sodium phenylbutyrate
 h120_dec_153224.pdf;2021-10-19 00:00:00;Ammonaps;Sodium phenylbutyrate
 h120_dec_20232.pdf;2007-02-20 00:00:00;Ammonaps;Sodium phenylbutyrate
@@ -4144,7 +4144,7 @@ h1262_dec_146623.pdf;2019-12-16 00:00:00;CRYSVITA;Burosumab
 h1262_dec_146625.pdf;2019-12-16 00:00:00;CRYSVITA;Burosumab
 h1262_dec_149106.pdf;2020-09-30 00:00:00;CRYSVITA;Burosumab
 h1262_dec_149775.pdf;2021-11-01 00:00:00;CRYSVITA;Burosumab
-h1262_dec_151155.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h1262_dec_151155.pdf has no text
 h1262_dec_153846.pdf;2022-06-01 00:00:00;CRYSVITA;Burosumab
 h1262_dec_156556.pdf;2022-07-25 00:00:00;CRYSVITA;Burosumab
 h1263_dec_139851.pdf;2018-08-02 00:00:00;Efavirenz/Emtricitabine/Tenofovir disoproxil Krka;efavirenz / emtricitabine / tenofovir disoproxil
@@ -4831,7 +4831,7 @@ h1397_dec_156499.pdf;2022-07-18 00:00:00;Bortezomib Fresenius Kabi;bortezomib
 h1398_dec_146216.pdf;2019-11-14 00:00:00;Arsenic Trioxide Accord;arsenic trioxide
 h1398_dec_152275.pdf;2021-06-21 00:00:00;Arsenic Trioxide Accord;arsenic trioxide
 h1399_dec_146187.pdf;2019-10-24 00:00:00;Xospata;gilteritinib
-h1399_dec_154035.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h1399_dec_154035.pdf has no text
 h1400_dec_146231.pdf;2019-11-19 00:00:00;Rhokiinsa;netarsudil
 h1400_dec_154752.pdf;2022-01-31 00:00:00;Rhokiinsa;netarsudil
 h1403_dec_147454.pdf;2020-03-04 00:00:00;Budesonide/Formoterol Teva Pharma B.V.;budesonide / formoterol fumarate dihydrate
@@ -5028,7 +5028,7 @@ h143_dec_124674.pdf;2012-10-23 00:00:00;Kogenate Bayer;Recombinant coagulation f
 h143_dec_12508.pdf;2006-07-08 00:00:00;KOGENATE Bayer;Recombinant coagulation factor VIII (octocog alfa)
 h143_dec_127788.pdf;2014-02-20 00:00:00;KOGENATE Bayer;Recombinant coagulation factor VIII (octocog alfa)
 h143_dec_137599.pdf;2017-11-04 00:00:00;KOGENATE Bayer;Recombinant coagulation factor VIII (octocog alfa)
-h143_dec_139273.pdf;2017-11-16 00:00:00;Product name Not Found;Active substance Not Found
+h143_dec_139273.pdf;2017-11-16 00:00:00;KOGENATE Bayer;Recombinant coagulation factor VIII (octocog alfa)"
 h143_dec_19628.pdf;2007-01-29 00:00:00;KOGENATE Bayer;Recombinant coagulation factor VIII (octocog alfa)
 h143_dec_28611.pdf;2007-07-24 00:00:00;KOGENATE Bayer;Recombinant coagulation factor VIII (octocog alfa)
 h143_dec_33508.pdf;2007-10-30 00:00:00;KOGENATE Bayer;Recombinant coagulation factor VIII (octocog alfa)
@@ -5276,7 +5276,7 @@ h149_dec_10585.pdf;2005-11-17 00:00:00;Panretin;alitretinoin
 h149_dec_124053.pdf;2012-08-23 00:00:00;Panretin;alitretinoin
 h149_dec_129587.pdf;2014-08-19 00:00:00;;Panretin -alitretinoin
 h149_dec_135899.pdf;2016-08-09 00:00:00;Panretin;alitretinoin
-h149_dec_140688.pdf;2018-06-21 00:00:00;Product name Not Found;Active substance Not Found
+h149_dec_140688.pdf;2018-06-21 00:00:00;Panretin;alitretinoin"
 h149_dec_143389.pdf;2018-12-20 00:00:00;Panretin;alitretinoin
 h149_dec_147151.pdf;2020-01-31 00:00:00;Panretin;alitretinoin
 h149_dec_148905.pdf;2020-06-08 00:00:00;Panretin;alitretinoin
@@ -5565,7 +5565,7 @@ h156_dec_126090.pdf;2013-05-23 00:00:00;Trizivir;abacavir, lamivudine, zidovudin
 h156_dec_132023.pdf;2015-05-13 00:00:00;Trizivir;abacavir, lamivudine, zidovudine
 h156_dec_134790.pdf;2016-04-25 00:00:00;Trizivir;abacavir, lamivudine, zidovudine
 h156_dec_138257.pdf;2017-06-16 00:00:00;Trizivir;abacavir, lamivudine, zidovudine
-h156_dec_142517.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h156_dec_142517.pdf has no text
 h156_dec_146342.pdf;2019-10-24 00:00:00;Trizivir;abacavir, lamivudine, zidovudine
 h156_dec_151124.pdf;2021-09-03 00:00:00;Trizivir;abacavir, lamivudine, zidovudine
 h156_dec_152801.pdf;2021-08-20 00:00:00;Trizivir;abacavir, lamivudine, zidovudine
@@ -5791,7 +5791,7 @@ h163_dec_138351.pdf;2017-10-07 00:00:00;Xeloda;capecitabine
 h163_dec_140505.pdf;2018-03-16 00:00:00;Xeloda;capecitabine
 h163_dec_143999.pdf;2019-03-28 00:00:00;Xeloda;capecitabine
 h163_dec_144993.pdf;2019-05-27 00:00:00;Xeloda;capecitabine
-h163_dec_148219.pdf;2020-03-07 00:00:00;Product name Not Found;Active substance Not Found
+h163_dec_148219.pdf;2020-03-07 00:00:00;Xeloda;capecitabine"
 h163_dec_151980.pdf;2021-05-27 00:00:00;Xeloda;capecitabine
 h163_dec_156373.pdf;2022-08-07 00:00:00;Xeloda;capecitabine
 h163_dec_22012.pdf;2007-03-28 00:00:00;Xeloda;capecitabine
@@ -6115,7 +6115,7 @@ h177_dec_96132.pdf;2011-01-24 00:00:00;SonoVue;sulphur hexafluoride
 h178_dec_11243.pdf;2006-04-24 00:00:00;TARGRETIN;bexarotene
 h178_dec_131663.pdf;2015-04-13 00:00:00;Targretin;bexarotene
 h178_dec_131763.pdf;2015-05-27 00:00:00;Targretin;bexarotene
-h178_dec_140858.pdf;2018-06-21 00:00:00;Product name Not Found;Active substance Not Found
+h178_dec_140858.pdf;2018-06-21 00:00:00;Targretin;bexarotene"
 h178_dec_142405.pdf;2018-09-17 00:00:00;Targretin;bexarotene
 h178_dec_146475.pdf;2019-07-11 00:00:00;Targretin;bexarotene
 h178_dec_152193.pdf;2021-06-21 00:00:00;Targretin;bexarotene
@@ -6679,7 +6679,7 @@ h213_dec_123352.pdf;2012-05-25 00:00:00;MicardisPlus;Telmisartan / hydrochloroth
 h213_dec_123655.pdf;2012-03-07 00:00:00;MicardisPlus;Telmisartan / hydrochlorothiazide
 h213_dec_124679.pdf;2012-10-24 00:00:00;MicardisPlus;Telmisartan / hydrochlorothiazide
 h213_dec_126125.pdf;2013-05-30 00:00:00;MicardisPlus;Telmisartan / hydrochlorothiazide
-h213_dec_129131.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h213_dec_129131.pdf;2014-04-09 00:00:00;MicardisPlus;Telmisartan / hydrochlorothiazide"
 h213_dec_140420.pdf;2018-12-03 00:00:00;MicardisPlus;Telmisartan / hydrochlorothiazide
 h213_dec_146387.pdf;2019-10-24 00:00:00;MicardisPlus;Telmisartan / hydrochlorothiazide
 h213_dec_151261.pdf;2021-03-22 00:00:00;MicardisPlus;Telmisartan / hydrochlorothiazide
@@ -6708,7 +6708,7 @@ h214_dec_123351.pdf;2012-05-25 00:00:00;Kinzalkomb;Telmisartan / hydrochlorothia
 h214_dec_123656.pdf;2012-03-07 00:00:00;Kinzalkomb;Telmisartan / hydrochlorothiazide
 h214_dec_124689.pdf;2012-10-24 00:00:00;Kinzalkomb;Telmisartan / hydrochlorothiazide
 h214_dec_126128.pdf;2013-05-30 00:00:00;Kinzalkomb;Telmisartan / hydrochlorothiazide
-h214_dec_129115.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h214_dec_129115.pdf;2014-04-09 00:00:00;Kinzalkomb;Telmisartan / hydrochlorothiazide"
 h214_dec_140497.pdf;2018-03-16 00:00:00;Kinzalkomb;Telmisartan / hydrochlorothiazide
 h214_dec_140619.pdf;2018-12-04 00:00:00;Kinzalkomb;Telmisartan / hydrochlorothiazide
 h214_dec_146376.pdf;2019-10-24 00:00:00;Kinzalkomb;Telmisartan / hydrochlorothiazide
@@ -6738,7 +6738,7 @@ h215_dec_123309.pdf;2012-05-25 00:00:00;PritorPlus;Telmisartan / hydrochlorothia
 h215_dec_123633.pdf;2012-06-28 00:00:00;PritorPlus;Telmisartan / hydrochlorothiazide
 h215_dec_124630.pdf;2012-10-24 00:00:00;PritorPlus;Telmisartan / hydrochlorothiazide
 h215_dec_126095.pdf;2013-05-29 00:00:00;PritorPlus;Telmisartan / hydrochlorothiazide
-h215_dec_129170.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h215_dec_129170.pdf;2014-04-09 00:00:00;PritorPlus;Telmisartan / hydrochlorothiazide"
 h215_dec_140354.pdf;2018-07-03 00:00:00;PritorPlus;Telmisartan / hydrochlorothiazide
 h215_dec_140759.pdf;2018-04-13 00:00:00;PritorPlus;Telmisartan / hydrochlorothiazide
 h215_dec_146411.pdf;2019-04-11 00:00:00;PritorPlus;Telmisartan / hydrochlorothiazide
@@ -6794,7 +6794,7 @@ h217_dec_153825.pdf;2021-11-18 00:00:00;Opatanol;Olopatadine
 h217_dec_23717.pdf;2007-05-22 00:00:00;Opatanol;Olopatadine
 h217_dec_29509.pdf;2007-08-21 00:00:00;Opatanol;Olopatadine
 h217_dec_48629.pdf;2007-08-21 00:00:00;Opatanol;Olopatadine
-h217_dec_5233.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h217_dec_5233.pdf has no text
 h217_dec_6398.pdf;2003-09-04 00:00:00;Opatanol;Olopatadine
 h218_dec_10660.pdf;2005-11-15 00:00:00;Axura;Memantine
 h218_dec_111510.pdf;2011-10-27 00:00:00;Axura;Memantine
@@ -6856,7 +6856,7 @@ h220_dec_125008.pdf;2012-11-22 00:00:00;Tracleer;bosentan
 h220_dec_12540.pdf;2006-10-08 00:00:00;Tracleer;Bosentan
 h220_dec_127570.pdf;2013-12-13 00:00:00;Tracleer;bosentan
 h220_dec_130400.pdf;2015-12-01 00:00:00;Tracleer;bosentan
-h220_dec_130893.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h220_dec_130893.pdf has no text
 h220_dec_132528.pdf;2015-08-20 00:00:00;Tracleer;bosentan
 h220_dec_135758.pdf;2016-08-18 00:00:00;Tracleer;bosentan
 h220_dec_135759.pdf;2016-09-09 00:00:00;Tracleer;bosentan
@@ -6971,10 +6971,10 @@ h222_dec_8725.pdf;2004-11-16 00:00:00;Tamiflu;Oseltamivir
 h222_dec_9317.pdf;2005-02-23 00:00:00;Tamiflu;Oseltamivir
 h222_dec_93568.pdf;2010-11-26 00:00:00;Tamiflu;Oseltamivir
 h222_dec_94428.pdf;2010-12-20 00:00:00;Tamiflu;Oseltamivir
-h222_dec_98328.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h222_dec_98328.pdf has no text
 h223_dec_118229.pdf;2012-02-21 00:00:00;Evra;Norelgestromin/Ethinyl estradiol
 h223_dec_123349.pdf;2012-06-15 00:00:00;Evra;Norelgestromin / Ethinyl estradiol
-h223_dec_127609.pdf;2014-01-16 00:00:00;Product name Not Found;Active substance Not Found
+h223_dec_127609.pdf;2014-01-16 00:00:00;Evra;Norelgestromin / Ethinyl estradiol"
 h223_dec_134590.pdf;2016-03-30 00:00:00;Evra;Norelgestromin / Ethinyl estradiol
 h223_dec_137590.pdf;2017-06-04 00:00:00;Evra;Norelgestromin / Ethinyl estradiol
 h223_dec_138293.pdf;2017-06-23 00:00:00;Evra;Norelgestromin / Ethinyl estradiol
@@ -7377,7 +7377,7 @@ h252_dec_29830.pdf;2007-02-10 00:00:00;Fuzeon;Enfuvirtide
 h252_dec_33188.pdf;2007-08-30 00:00:00;Fuzeon;Enfuvirtide
 h252_dec_33848.pdf;2007-10-31 00:00:00;Fuzeon;Enfuvirtide
 h252_dec_46790.pdf;2008-08-07 00:00:00;Fuzeon;Enfuvirtide
-h252_dec_50934.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h252_dec_50934.pdf has no text
 h252_dec_6520.pdf;2003-05-27 00:00:00;Fuzeon;Enfuvirtide
 h252_dec_76648.pdf;2010-03-22 00:00:00;Fuzeon;Enfuvirtide
 h252_dec_78752.pdf;2010-04-27 00:00:00;Fuzeon;Enfuvirtide
@@ -7716,7 +7716,7 @@ h271_dec_124237.pdf;2012-10-09 00:00:00;Advate;octocog alfa
 h271_dec_127346.pdf;2013-12-20 00:00:00;Advate;octocog alfa
 h271_dec_130681.pdf;2015-01-15 00:00:00;Advate;octocog alfa
 h271_dec_135319.pdf;2016-06-24 00:00:00;Advate;octocog alfa
-h271_dec_139130.pdf;2017-11-24 00:00:00;Product name Not Found;Active substance Not Found
+h271_dec_139130.pdf;2017-11-24 00:00:00;Advate;octocog alfa"
 h271_dec_145062.pdf;2019-06-06 00:00:00;Advate;octocog alfa
 h271_dec_147643.pdf;2020-01-04 00:00:00;Advate;octocog alfa
 h271_dec_155071.pdf;2022-02-24 00:00:00;ADVATE;octocog alfa
@@ -7900,7 +7900,7 @@ h279_dec_64609.pdf;2009-07-08 00:00:00;Lyrica;pregabalin
 h279_dec_65248.pdf;2009-08-20 00:00:00;Lyrica;pregabalin
 h279_dec_66508.pdf;2009-09-14 00:00:00;Lyrica;pregabalin
 h279_dec_71469.pdf;2009-12-21 00:00:00;Lyrica;pregabalin
-h279_dec_76570.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h279_dec_76570.pdf has no text
 h279_dec_78708.pdf;2010-08-06 00:00:00;Lyrica;pregabalin
 h279_dec_8015.pdf;2004-06-07 00:00:00;Lyrica;pregabalin
 h279_dec_80208.pdf;2010-06-14 00:00:00;Lyrica;pregabalin
@@ -8027,7 +8027,7 @@ h286_dec_134973.pdf;2016-05-17 00:00:00;Wilzin;Zinc acetate dihydrate
 h286_dec_140220.pdf;2018-02-19 00:00:00;Wilzin;Zinc acetate dihydrate
 h286_dec_148124.pdf;2020-04-05 00:00:00;Wilzin;Zinc acetate dihydrate
 h286_dec_41856.pdf;2008-04-22 00:00:00;Wilzin;Zinc acetate dihydrate
-h286_dec_65529.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h286_dec_65529.pdf has no text
 h286_dec_8255.pdf;2004-10-13 00:00:00;Wilzin;Zinc acetate dihydrate
 h290_dec_10934.pdf;2006-01-30 00:00:00;Alimta;pemetrexed
 h290_dec_111589.pdf;2011-10-24 00:00:00;Alimta;pemetrexed
@@ -8302,7 +8302,7 @@ h305_dec_49078.pdf;2008-08-29 00:00:00;Truvada;emtricitabine / tenofovir disopro
 h305_dec_52949.pdf;2008-12-22 00:00:00;Truvada;emtricitabine / tenofovir disoproxil fumarate
 h305_dec_71188.pdf;2009-10-12 00:00:00;Truvada;emtricitabine / tenofovir disoproxil fumarate
 h305_dec_71548.pdf;2010-01-20 00:00:00;Truvada;emtricitabine / tenofovir disoproxil fumarate
-h305_dec_87288.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h305_dec_87288.pdf has no text
 h305_dec_8994.pdf;2005-02-21 00:00:00;Truvada;Emtricitabine / Tenofovir Disoproxil
 h305_dec_90468.pdf;2010-11-26 00:00:00;Truvada;emtricitabine / tenofovir disoproxil fumarate
 h306_dec_118412.pdf;2012-02-21 00:00:00;Aloxi;Palonosetron
@@ -8767,7 +8767,7 @@ h334_dec_131063.pdf;2015-03-16 00:00:00;Evoltra;clofarabine
 h334_dec_132770.pdf;2015-09-18 00:00:00;Evoltra;clofarabine
 h334_dec_133653.pdf;2016-01-14 00:00:00;Evoltra;clofarabine
 h334_dec_135692.pdf;2016-09-15 00:00:00;Evoltra;clofarabine
-h334_dec_142750.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h334_dec_142750.pdf has no text
 h334_dec_142908.pdf;2018-12-12 00:00:00;Evoltra;clofarabine
 h334_dec_146602.pdf;2019-11-14 00:00:00;Evoltra;clofarabine
 h334_dec_149045.pdf;2020-09-24 00:00:00;Evoltra;clofarabine
@@ -9035,7 +9035,7 @@ h354_dec_126932.pdf;2013-11-13 00:00:00;Competact;Pioglitazone / metformin
 h354_dec_132447.pdf;2015-03-07 00:00:00;Competact;Pioglitazone / metformin
 h354_dec_134560.pdf;2016-04-25 00:00:00;Competact;Pioglitazone / metformin
 h354_dec_134828.pdf;2016-05-26 00:00:00;Competact;Pioglitazone / metformin
-h354_dec_136449.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
+h354_dec_136449.pdf;2016-12-12 00:00:00;Competact;Pioglitazone / metformin"
 h354_dec_139387.pdf;2017-10-30 00:00:00;Competact;Pioglitazone / metformin
 h354_dec_144689.pdf;2019-05-22 00:00:00;Competact;Pioglitazone / metformin
 h354_dec_152228.pdf;2021-06-21 00:00:00;Competact;Pioglitazone / metformin
@@ -9295,17 +9295,17 @@ h370_dec_123544.pdf;2012-06-28 00:00:00;Exforge;amlodipine / valsartan
 h370_dec_124241.pdf;2012-08-30 00:00:00;Exforge;amlodipine / valsartan
 h370_dec_124842.pdf;2012-10-29 00:00:00;Exforge;amlodipine / valsartan
 h370_dec_126411.pdf;2013-07-31 00:00:00;Exforge;amlodipine / valsartan
-h370_dec_129133.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h370_dec_129133.pdf;2014-04-09 00:00:00;Exforge;amlodipine / valsartan"
 h370_dec_131914.pdf;2015-05-05 00:00:00;Exforge;amlodipine / valsartan
 h370_dec_134550.pdf;2016-03-22 00:00:00;Exforge;amlodipine / valsartan
 h370_dec_140064.pdf;2018-08-02 00:00:00;Exforge;amlodipine / valsartan
 h370_dec_141608.pdf;2018-06-25 00:00:00;Exforge;amlodipine / valsartan
-h370_dec_144241.pdf;2019-11-04 00:00:00;Product name Not Found;Active substance Not Found
+h370_dec_144241.pdf;2019-11-04 00:00:00;Exforge;amlodipine / valsartan"
 h370_dec_148585.pdf;2020-03-07 00:00:00;Exforge;amlodipine / valsartan
-h370_dec_150498.pdf;2021-02-19 00:00:00;Product name Not Found;Active substance Not Found
+h370_dec_150498.pdf;2021-02-19 00:00:00;Exforge;amlodipine / valsartan"
 h370_dec_153321.pdf;2021-11-10 00:00:00;Exforge;amlodipine / valsartan
 h370_dec_18270.pdf;2007-01-17 00:00:00;Exforge;amlodipine / valsartan
-h370_dec_46088.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h370_dec_46088.pdf has no text
 h370_dec_46773.pdf;2008-10-06 00:00:00;Exforge;amlodipine / valsartan
 h370_dec_54644.pdf;2009-02-13 00:00:00;Exforge;amlodipine / valsartan
 h370_dec_56829.pdf;2009-03-27 00:00:00;Exforge;amlodipine / valsartan
@@ -9319,12 +9319,12 @@ h371_dec_123534.pdf;2012-06-28 00:00:00;Dafiro;amlodipine / valsartan
 h371_dec_124049.pdf;2012-08-23 00:00:00;Dafiro;amlodipine / valsartan
 h371_dec_124711.pdf;2012-10-25 00:00:00;Dafiro;amlodipine / valsartan
 h371_dec_126394.pdf;2013-07-31 00:00:00;Dafiro;amlodipine / valsartan
-h371_dec_129120.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h371_dec_129120.pdf;2014-04-09 00:00:00;Dafiro;amlodipine / valsartan"
 h371_dec_131884.pdf;2015-05-05 00:00:00;Dafiro;amlodipine / valsartan
 h371_dec_134353.pdf;2016-02-03 00:00:00;Dafiro;amlodipine / valsartan
 h371_dec_139980.pdf;2018-01-30 00:00:00;Dafiro;amlodipine / valsartan
 h371_dec_141311.pdf;2018-07-06 00:00:00;Dafiro;amlodipine / valsartan
-h371_dec_144176.pdf;2019-02-04 00:00:00;Product name Not Found;Active substance Not Found
+h371_dec_144176.pdf;2019-02-04 00:00:00;Dafiro;amlodipine / valsartan"
 h371_dec_148556.pdf;2020-06-26 00:00:00;Dafiro;amlodipine / valsartan
 h371_dec_150357.pdf;2021-12-02 00:00:00;Dafiro;amlodipine / valsartan
 h371_dec_153373.pdf;2021-11-10 00:00:00;Dafiro;amlodipine / valsartan
@@ -9344,12 +9344,12 @@ h372_dec_123538.pdf;2012-06-28 00:00:00;Copalia;amlodipine / valsartan
 h372_dec_124029.pdf;2012-08-23 00:00:00;Copalia;amlodipine / valsartan
 h372_dec_124710.pdf;2012-10-25 00:00:00;Copalia;amlodipine / valsartan
 h372_dec_126396.pdf;2013-07-31 00:00:00;Copalia;amlodipine / valsartan
-h372_dec_129121.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h372_dec_129121.pdf;2014-04-09 00:00:00;Copalia;amlodipine / valsartan"
 h372_dec_131882.pdf;2015-05-05 00:00:00;Copalia;amlodipine / valsartan
 h372_dec_134352.pdf;2016-02-03 00:00:00;Copalia;amlodipine / valsartan
 h372_dec_139978.pdf;2018-01-30 00:00:00;Copalia;amlodipine / valsartan
 h372_dec_141268.pdf;2018-04-06 00:00:00;Copalia;amlodipine / valsartan
-h372_dec_144168.pdf;2019-02-04 00:00:00;Product name Not Found;Active substance Not Found
+h372_dec_144168.pdf;2019-02-04 00:00:00;Copalia;amlodipine / valsartan"
 h372_dec_148545.pdf;2020-06-26 00:00:00;Copalia;amlodipine / valsartan
 h372_dec_150352.pdf;2021-12-02 00:00:00;Copalia;amlodipine / valsartan
 h372_dec_153361.pdf;2021-11-10 00:00:00;Copalia;amlodipine / valsartan
@@ -9390,18 +9390,18 @@ h374_dec_64908.pdf;2009-06-08 00:00:00;Lucentis;ranibizumab
 h374_dec_77628.pdf;2010-03-30 00:00:00;Lucentis;ranibizumab
 h374_dec_93730.pdf;2011-06-01 00:00:00;Lucentis;ranibizumab
 h374_dec_93748.pdf;2011-06-01 00:00:00;Lucentis;ranibizumab
-h376_dec_104488.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h376_dec_104488.pdf has no text
 h376_dec_106328.pdf;2011-05-07 00:00:00;Irbesartan Winthrop;Irbesartan
 h376_dec_114729.pdf;2012-01-20 00:00:00;Irbesartan Winthrop;Irbesartan
 h376_dec_124247.pdf;2012-08-30 00:00:00;Irbesartan Zentiva;Irbesartan
 h376_dec_124438.pdf;2012-09-28 00:00:00;Irbesartan Zentiva;Irbesartan
 h376_dec_125615.pdf;2012-08-30 00:00:00;Irbesartan Zentiva;Irbesartan
 h376_dec_126509.pdf;2013-07-31 00:00:00;Irbesartan Zentiva;Irbesartan
-h376_dec_129158.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h376_dec_129158.pdf;2014-04-09 00:00:00;Irbesartan Zentiva;Irbesartan"
 h376_dec_135067.pdf;2016-06-21 00:00:00;Irbesartan Zentiva;Irbesartan
 h376_dec_141907.pdf;2018-07-19 00:00:00;Irbesartan Zentiva;Irbesartan
 h376_dec_142588.pdf;2018-10-10 00:00:00;Irbesartan Zentiva;Irbesartan
-h376_dec_144147.pdf;2019-02-04 00:00:00;Product name Not Found;Active substance Not Found
+h376_dec_144147.pdf;2019-02-04 00:00:00;Irbesartan Zentiva;Irbesartan"
 h376_dec_150375.pdf;2021-02-19 00:00:00;;Irbesartan Zentiva – Irbesartan
 h376_dec_151981.pdf;2021-07-16 00:00:00;Irbesartan Zentiva;Irbesartan
 h376_dec_156443.pdf;2022-07-18 00:00:00;Irbesartan Zentiva;Irbesartan
@@ -9420,11 +9420,11 @@ h377_dec_117949.pdf;2012-02-27 00:00:00;Irbesartan HCT Winthrop;irbesartan / hyd
 h377_dec_123541.pdf;2012-06-27 00:00:00;Irbesartan HCT Zentiva (Ex-Winthrop);irbesartan / hydrochlorothiazide
 h377_dec_124565.pdf;2012-12-11 00:00:00;Irbesartan HCT Zentiva;irbesartan / hydrochlorothiazide
 h377_dec_126511.pdf;2013-07-31 00:00:00;Irbesartan HCT Zentiva;irbesartan / hydrochlorothiazide
-h377_dec_129208.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h377_dec_129208.pdf;2014-04-09 00:00:00;Irbesartan HCT Zentiva;irbesartan / hydrochlorothiazide"
 h377_dec_138604.pdf;2017-08-28 00:00:00;Irbesartan HCT Zentiva;irbesartan / hydrochlorothiazide
 h377_dec_142612.pdf;2018-08-11 00:00:00;Irbesartan HCT Zentiva;irbesartan / hydrochlorothiazide
-h377_dec_144197.pdf;2019-04-15 00:00:00;Product name Not Found;Active substance Not Found
-h377_dec_150573.pdf;2021-02-19 00:00:00;Product name Not Found;Active substance Not Found
+h377_dec_144197.pdf;2019-04-15 00:00:00;Irbesartan HCT Zentiva;irbesartan / hydrochlorothiazide"
+h377_dec_150573.pdf;2021-02-19 00:00:00;Irbesartan HCT Zentiva;irbesartan / hydrochlorothiazide"
 h377_dec_151960.pdf;2021-04-06 00:00:00;Irbesartan HCT Zentiva;irbesartan / hydrochlorothiazide
 h377_dec_155934.pdf;2022-07-06 00:00:00;Irbesartan HCT Zentiva;irbesartan / hydrochlorothiazide
 h377_dec_18508.pdf;2007-01-19 00:00:00;Irbesartan Hydrochlorothiazide Winthrop;irbesartan / hydrochlorothiazide
@@ -9523,7 +9523,7 @@ h382_dec_40729.pdf;2008-02-26 00:00:00;Xelevia;sitagliptin
 h382_dec_59349.pdf;2009-05-29 00:00:00;Xelevia;sitagliptin
 h382_dec_63308.pdf;2009-07-23 00:00:00;Xelevia;sitagliptin
 h382_dec_66561.pdf;2009-08-28 00:00:00;Xelevia;sitagliptin
-h382_dec_68410.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h382_dec_68410.pdf has no text
 h382_dec_83869.pdf;2010-06-08 00:00:00;Xelevia;sitagliptin
 h382_dec_90788.pdf;2010-03-11 00:00:00;Xelevia;sitagliptin
 h382_dec_92569.pdf;2010-11-26 00:00:00;Xelevia;sitagliptin
@@ -9860,7 +9860,7 @@ h405_dec_126213.pdf;2013-06-27 00:00:00;Rasilez;aliskiren
 h405_dec_126447.pdf;2013-07-26 00:00:00;Rasilez;aliskiren
 h405_dec_127314.pdf;2013-03-12 00:00:00;Rasilez;aliskiren
 h405_dec_128918.pdf;2014-06-27 00:00:00;Rasilez;aliskiren
-h405_dec_129164.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h405_dec_129164.pdf;2014-04-09 00:00:00;Rasilez;aliskiren"
 h405_dec_132025.pdf;2015-06-19 00:00:00;Rasilez;aliskiren
 h405_dec_135189.pdf;2016-06-24 00:00:00;Rasilez;aliskiren
 h405_dec_137676.pdf;2017-05-22 00:00:00;Rasilez;aliskiren
@@ -10171,7 +10171,7 @@ h425_dec_124690.pdf;2012-10-25 00:00:00;Eucreas;vildagliptin / metformin hydroch
 h425_dec_126468.pdf;2013-07-26 00:00:00;Eucreas;vildagliptin / metformin hydrochloride
 h425_dec_131658.pdf;2015-09-04 00:00:00;Eucreas;vildagliptin / metformin hydrochloride
 h425_dec_133436.pdf;2015-12-16 00:00:00;Eucreas;vildagliptin / metformin hydrochloride
-h425_dec_136451.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
+h425_dec_136451.pdf;2016-12-12 00:00:00;Eucreas;vildagliptin / metformin hydrochloride"
 h425_dec_140266.pdf;2018-02-22 00:00:00;Eucreas;vildagliptin / metformin hydrochloride
 h425_dec_140805.pdf;2018-04-23 00:00:00;Eucreas;vildagliptin / metformin hydrochloride
 h425_dec_149537.pdf;2020-10-19 00:00:00;Eucreas;vildagliptin / metformin hydrochloride
@@ -10636,7 +10636,7 @@ h455_dec_125539.pdf;2013-03-13 00:00:00;Janumet;sitagliptin / metformin hydrochl
 h455_dec_128934.pdf;2014-03-06 00:00:00;;Janumet -sitagliptin / metformin hydrochloride
 h455_dec_132045.pdf;2015-05-13 00:00:00;;Janumet -sitagliptin / metformin hydrochloride
 h455_dec_135386.pdf;2016-06-30 00:00:00;;Janumet -sitagliptin / metformin hydrochloride
-h455_dec_136389.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
+h455_dec_136389.pdf;2016-12-12 00:00:00;Janumet;sitagliptin / metformin hydrochloride"
 h455_dec_139636.pdf;2017-12-15 00:00:00;;Janumet -sitagliptin / metformin hydrochloride
 h455_dec_140846.pdf;2018-05-22 00:00:00;Janumet;sitagliptin / metformin hydrochloride
 h455_dec_141615.pdf;2018-06-29 00:00:00;Janumet;sitagliptin / metformin hydrochloride
@@ -10658,7 +10658,7 @@ h456_dec_125525.pdf;2013-03-13 00:00:00;Velmetia;sitagliptin / metformin hydroch
 h456_dec_128937.pdf;2014-03-06 00:00:00;;Velmetia -sitagliptin / metformin hydrochloride
 h456_dec_132041.pdf;2015-05-13 00:00:00;;Velmetia -sitagliptin / metformin hydrochloride
 h456_dec_135388.pdf;2016-06-30 00:00:00;;Velmetia -sitagliptin / metformin hydrochloride
-h456_dec_136391.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
+h456_dec_136391.pdf;2016-12-12 00:00:00;Velmetia;sitagliptin / metformin hydrochloride"
 h456_dec_139637.pdf;2017-12-15 00:00:00;;Velmetia -sitagliptin / metformin hydrochloride
 h456_dec_140848.pdf;2018-05-22 00:00:00;Velmetia;sitagliptin / metformin hydrochloride
 h456_dec_141616.pdf;2018-06-29 00:00:00;Velmetia;sitagliptin / metformin hydrochloride
@@ -10680,7 +10680,7 @@ h457_dec_125501.pdf;2013-03-13 00:00:00;Efficib;sitagliptin / metformin hydrochl
 h457_dec_128935.pdf;2014-03-06 00:00:00;Efficib;sitagliptin / metformin hydrochloride
 h457_dec_132047.pdf;2015-05-13 00:00:00;Efficib;sitagliptin / metformin hydrochloride
 h457_dec_135373.pdf;2016-06-30 00:00:00;Efficib;sitagliptin / metformin hydrochloride
-h457_dec_136387.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
+h457_dec_136387.pdf;2016-12-12 00:00:00;Efficib;sitagliptin / metformin hydrochloride"
 h457_dec_139635.pdf;2017-12-15 00:00:00;Efficib;sitagliptin / metformin hydrochloride
 h457_dec_140844.pdf;2018-05-22 00:00:00;Efficib;sitagliptin / metformin hydrochloride
 h457_dec_141614.pdf;2018-06-29 00:00:00;Efficib;sitagliptin / metformin hydrochloride
@@ -10961,12 +10961,12 @@ h479_dec_88008.pdf;2010-01-09 00:00:00;Zypadhera;Olanzapine
 h480_dec_110089.pdf;2011-09-19 00:00:00;;Ifirmasta -Irbesartan
 h480_dec_124902.pdf;2012-10-31 00:00:00;;Ifirmasta -Irbesartan
 h480_dec_126501.pdf;2013-08-26 00:00:00;Ifirmasta;Irbesartan
-h480_dec_129191.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h480_dec_129191.pdf;2014-04-09 00:00:00;Ifirmasta;Irbesartan"
 h480_dec_133741.pdf;2015-10-12 00:00:00;Ifirmasta;Irbesartan
 h480_dec_138896.pdf;2017-09-14 00:00:00;Ifirmasta;Irbesartan
-h480_dec_144248.pdf;2019-04-15 00:00:00;Product name Not Found;Active substance Not Found
+h480_dec_144248.pdf;2019-04-15 00:00:00;Ifirmasta;Irbesartan"
 h480_dec_149618.pdf;2020-10-19 00:00:00;Ifirmasta;Irbesartan
-h480_dec_150526.pdf;2021-02-19 00:00:00;Product name Not Found;Active substance Not Found
+h480_dec_150526.pdf;2021-02-19 00:00:00;Ifirmasta;Irbesartan"
 h480_dec_155056.pdf;2022-04-03 00:00:00;Ifirmasta;Irbesartan
 h480_dec_50617.pdf;2008-01-12 00:00:00;Irbesartan Krka;Irbesartan
 h480_dec_66470.pdf;2009-08-28 00:00:00;Irbesartan Krka;Irbesartan
@@ -11004,7 +11004,7 @@ h483_dec_126255.pdf;2013-07-31 00:00:00;;Zomarist -vildagliptin / metformin hydr
 h483_dec_126496.pdf;2013-05-08 00:00:00;;Zomarist -vildagliptin / metformin hydrochloride
 h483_dec_131615.pdf;2015-04-13 00:00:00;;Zomarist -vildagliptin / metformin hydrochloride
 h483_dec_133461.pdf;2015-12-16 00:00:00;;Zomarist -vildagliptin / metformin hydrochloride
-h483_dec_136465.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
+h483_dec_136465.pdf;2016-12-12 00:00:00;Zomarist;vildagliptin / metformin hydrochloride"
 h483_dec_140170.pdf;2018-03-16 00:00:00;Zomarist;vildagliptin / metformin hydrochloride
 h483_dec_140788.pdf;2018-12-04 00:00:00;Zomarist;vildagliptin / metformin hydrochloride
 h483_dec_149323.pdf;2020-09-30 00:00:00;Zomarist;vildagliptin / metformin hydrochloride
@@ -11022,7 +11022,7 @@ h484_dec_126256.pdf;2013-07-31 00:00:00;Icandra;vildagliptin / metformin hydroch
 h484_dec_126498.pdf;2013-05-08 00:00:00;Icandra;vildagliptin / metformin hydrochloride
 h484_dec_131576.pdf;2015-04-13 00:00:00;Icandra;vildagliptin / metformin hydrochloride
 h484_dec_133463.pdf;2015-12-16 00:00:00;Icandra;vildagliptin / metformin hydrochloride
-h484_dec_136460.pdf;2016-08-12 00:00:00;Product name Not Found;Active substance Not Found
+h484_dec_136460.pdf;2016-08-12 00:00:00;Icandra;vildagliptin / metformin hydrochloride"
 h484_dec_140019.pdf;2018-02-19 00:00:00;Icandra;vildagliptin / metformin hydrochloride
 h484_dec_140786.pdf;2018-12-04 00:00:00;Icandra;vildagliptin / metformin hydrochloride
 h484_dec_149321.pdf;2020-09-30 00:00:00;Icandra;vildagliptin / metformin hydrochloride
@@ -11381,7 +11381,7 @@ h522_dec_113049.pdf;2011-10-11 00:00:00;ellaOne;ulipristal acetate
 h522_dec_123757.pdf;2012-06-28 00:00:00;ellaOne;ulipristal acetate
 h522_dec_127697.pdf;2013-12-20 00:00:00;ellaOne;ulipristal acetate
 h522_dec_128029.pdf;2014-03-21 00:00:00;ellaOne;ulipristal acetate
-h522_dec_129545.pdf;2014-01-10 00:00:00;Product name Not Found;Active substance Not Found
+h522_dec_129545.pdf;2014-01-10 00:00:00;ellaOne;ulipristal acetate"
 h522_dec_130448.pdf;2015-07-01 00:00:00;ellaOne;ulipristal acetate
 h522_dec_134849.pdf;2016-02-05 00:00:00;ellaOne;ulipristal acetate
 h522_dec_138177.pdf;2017-08-06 00:00:00;ellaOne;ulipristal acetate
@@ -11706,7 +11706,7 @@ h556_dec_153556.pdf;2021-10-28 00:00:00;Clopidogrel Krka;Clopidogrel
 h556_dec_63708.pdf;2009-09-23 00:00:00;Clopidogrel Krka;Clopidogrel
 h556_dec_75635.pdf;2010-03-23 00:00:00;Clopidogrel Krka;Clopidogrel
 h556_dec_97969.pdf;2011-11-02 00:00:00;Clopidogrel Krka;Clopidogrel
-h558_dec_112730.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h558_dec_112730.pdf has no text
 h558_dec_128571.pdf;2014-08-05 00:00:00;Zylagren;Clopidogrel
 h558_dec_129609.pdf;2014-08-27 00:00:00;Clopidogrel BGR;Clopidogrel
 h558_dec_135125.pdf;2016-02-06 00:00:00;Clopidogrel BGR;Clopidogrel
@@ -11750,7 +11750,7 @@ h562_dec_75828.pdf;2010-11-03 00:00:00;Zopya;Clopidogrel
 h564_dec_101130.pdf;2011-03-31 00:00:00;Ilaris;canakinumab
 h564_dec_108468.pdf;2011-09-16 00:00:00;Ilaris;canakinumab
 h564_dec_115689.pdf;2012-01-13 00:00:00;Ilaris;canakinumab
-h564_dec_125160.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h564_dec_125160.pdf has no text
 h564_dec_125393.pdf;2013-01-24 00:00:00;Ilaris;Canakinumab
 h564_dec_125490.pdf;2013-02-18 00:00:00;Ilaris;Canakinumab
 h564_dec_126686.pdf;2013-08-26 00:00:00;Ilaris;Canakinumab
@@ -11808,12 +11808,12 @@ h569_dec_124054.pdf;2012-08-23 00:00:00;Exforge HCT;amlodipine besylate / valsar
 h569_dec_124712.pdf;2012-10-25 00:00:00;Exforge HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h569_dec_126392.pdf;2013-07-31 00:00:00;Exforge HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h569_dec_128757.pdf;2014-06-30 00:00:00;Exforge HCT;amlodipine besylate / valsartan / hydrochlorothiazide
-h569_dec_129122.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h569_dec_129122.pdf;2014-04-09 00:00:00;Exforge HCT;amlodipine besylate / valsartan / hydrochlorothiazide"
 h569_dec_131708.pdf;2015-05-05 00:00:00;Exforge HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h569_dec_134413.pdf;2016-02-03 00:00:00;Exforge HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h569_dec_139987.pdf;2018-01-30 00:00:00;Exforge HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h569_dec_141329.pdf;2018-07-06 00:00:00;Exforge HCT;amlodipine besylate / valsartan / hydrochlorothiazide
-h569_dec_144187.pdf;2019-02-04 00:00:00;Product name Not Found;Active substance Not Found
+h569_dec_144187.pdf;2019-02-04 00:00:00;Exforge HCT;amlodipine besylate / valsartan / hydrochlorothiazide"
 h569_dec_148438.pdf;2020-06-17 00:00:00;Exforge HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h569_dec_150362.pdf;2021-12-02 00:00:00;Exforge HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h569_dec_152201.pdf;2021-06-17 00:00:00;Exforge HCT;amlodipine besylate / valsartan / hydrochlorothiazide
@@ -11858,14 +11858,14 @@ h574_dec_124252.pdf;2012-08-30 00:00:00;Dafiro HCT;amlodipine besylate / valsart
 h574_dec_124889.pdf;2012-10-31 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h574_dec_126435.pdf;2013-07-31 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h574_dec_128848.pdf;2014-04-07 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide
-h574_dec_129211.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h574_dec_129211.pdf;2014-04-09 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide"
 h574_dec_131929.pdf;2015-05-05 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h574_dec_134612.pdf;2016-07-04 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h574_dec_139962.pdf;2018-01-30 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h574_dec_141606.pdf;2018-06-25 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide
-h574_dec_144226.pdf;2019-11-04 00:00:00;Product name Not Found;Active substance Not Found
+h574_dec_144226.pdf;2019-11-04 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide"
 h574_dec_148426.pdf;2020-06-18 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide
-h574_dec_150472.pdf;2021-02-19 00:00:00;Product name Not Found;Active substance Not Found
+h574_dec_150472.pdf;2021-02-19 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide"
 h574_dec_152152.pdf;2021-06-17 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h574_dec_156864.pdf;2022-02-09 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h574_dec_65428.pdf;2009-04-11 00:00:00;Dafiro HCT;amlodipine besylate / valsartan / hydrochlorothiazide
@@ -11876,14 +11876,14 @@ h575_dec_124246.pdf;2012-08-30 00:00:00;Copalia HCT;amlodipine besylate / valsar
 h575_dec_124882.pdf;2012-10-31 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h575_dec_126434.pdf;2013-07-31 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h575_dec_128850.pdf;2014-04-07 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide
-h575_dec_129212.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h575_dec_129212.pdf;2014-04-09 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide"
 h575_dec_131916.pdf;2015-05-05 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h575_dec_134552.pdf;2016-03-22 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h575_dec_139958.pdf;2018-01-30 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h575_dec_141607.pdf;2018-06-25 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide
-h575_dec_144225.pdf;2019-11-04 00:00:00;Product name Not Found;Active substance Not Found
+h575_dec_144225.pdf;2019-11-04 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide"
 h575_dec_148425.pdf;2020-06-18 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide
-h575_dec_150497.pdf;2021-02-19 00:00:00;Product name Not Found;Active substance Not Found
+h575_dec_150497.pdf;2021-02-19 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide"
 h575_dec_152151.pdf;2021-06-17 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h575_dec_156863.pdf;2022-02-09 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide
 h575_dec_65408.pdf;2009-04-11 00:00:00;Copalia HCT;amlodipine besylate / valsartan / hydrochlorothiazide
@@ -11891,11 +11891,11 @@ h575_dec_77349.pdf;2010-03-23 00:00:00;Copalia HCT;amlodipine besylate / valsart
 h576_dec_122931.pdf;2012-05-25 00:00:00;Irbesartan Teva;Irbesartan
 h576_dec_124802.pdf;2012-10-25 00:00:00;Irbesartan Teva;Irbesartan
 h576_dec_129067.pdf;2014-07-18 00:00:00;Irbesartan Teva;Irbesartan
-h576_dec_129171.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h576_dec_129171.pdf;2014-04-09 00:00:00;Irbesartan Teva;Irbesartan"
 h576_dec_130312.pdf;2014-01-12 00:00:00;Irbesartan Teva;Irbesartan
 h576_dec_133975.pdf;2016-08-02 00:00:00;Irbesartan Teva;Irbesartan
 h576_dec_137558.pdf;2017-12-06 00:00:00;Irbesartan Teva;Irbesartan
-h576_dec_144242.pdf;2019-11-04 00:00:00;Product name Not Found;Active substance Not Found
+h576_dec_144242.pdf;2019-11-04 00:00:00;Irbesartan Teva;Irbesartan"
 h576_dec_149844.pdf;2020-11-24 00:00:00;Irbesartan Teva;Irbesartan
 h576_dec_150500.pdf;2021-02-19 00:00:00;;Irbesartan Teva – Irbesartan
 h576_dec_154896.pdf;2022-02-24 00:00:00;Irbesartan Teva;Irbesartan
@@ -11947,12 +11947,12 @@ h581_dec_95668.pdf;2011-06-01 00:00:00;Resolor;prucalopride
 h583_dec_122609.pdf;2012-10-05 00:00:00;Irbesartan / Hydrochlorothiazide Teva;irbesartan / hydrochlorothiazide
 h583_dec_124840.pdf;2012-10-29 00:00:00;Irbesartan / Hydrochlorothiazide Teva;irbesartan / hydrochlorothiazide
 h583_dec_127543.pdf;2013-12-13 00:00:00;Irbesartan / Hydrochlorothiazide Teva;irbesartan / hydrochlorothiazide
-h583_dec_129132.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h583_dec_129132.pdf;2014-04-09 00:00:00;Irbesartan / Hydrochlorothiazide Teva;irbesartan / hydrochlorothiazide"
 h583_dec_129372.pdf;2014-07-11 00:00:00;Irbesartan / Hydrochlorothiazide Teva;irbesartan / hydrochlorothiazide
 h583_dec_131863.pdf;2015-05-05 00:00:00;Irbesartan / Hydrochlorothiazide Teva;irbesartan / hydrochlorothiazide
 h583_dec_137141.pdf;2017-02-16 00:00:00;Irbesartan / Hydrochlorothiazide Teva;irbesartan / hydrochlorothiazide
 h583_dec_142718.pdf;2018-10-18 00:00:00;Irbesartan / Hydrochlorothiazide Teva;irbesartan / hydrochlorothiazide
-h583_dec_144235.pdf;2019-11-04 00:00:00;Product name Not Found;Active substance Not Found
+h583_dec_144235.pdf;2019-11-04 00:00:00;Irbesartan / Hydrochlorothiazide Teva;irbesartan / hydrochlorothiazide"
 h583_dec_150474.pdf;2021-02-19 00:00:00;Irbesartan / Hydrochlorothiazide Teva;irbesartan / hydrochlorothiazide
 h583_dec_156228.pdf;2022-01-07 00:00:00;Irbesartan / Hydrochlorothiazide Teva;irbesartan / hydrochlorothiazide
 h583_dec_68728.pdf;2009-11-26 00:00:00;Irbesartan / Hydrochlorothiazide Teva;irbesartan / hydrochlorothiazide
@@ -12336,7 +12336,7 @@ h620_dec_125172.pdf;2012-12-18 00:00:00;Ristfor;sitagliptin / metformin hydrochl
 h620_dec_128936.pdf;2014-03-06 00:00:00;Ristfor;sitagliptin / metformin hydrochloride
 h620_dec_130271.pdf;2014-12-16 00:00:00;Ristfor;sitagliptin / metformin hydrochloride
 h620_dec_133425.pdf;2015-11-11 00:00:00;Ristfor;sitagliptin / metformin hydrochloride
-h620_dec_136390.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
+h620_dec_136390.pdf;2016-12-12 00:00:00;Ristfor;sitagliptin / metformin hydrochloride"
 h620_dec_139638.pdf;2017-12-15 00:00:00;Ristfor;sitagliptin / metformin hydrochloride
 h620_dec_140847.pdf;2018-05-22 00:00:00;Ristfor;sitagliptin / metformin hydrochloride
 h620_dec_141617.pdf;2018-06-29 00:00:00;Ristfor;sitagliptin / metformin hydrochloride
@@ -12421,7 +12421,7 @@ h631_dec_78570.pdf;2010-08-06 00:00:00;Nivestim;Filgrastim
 h631_dec_97551.pdf;2011-01-02 00:00:00;Nivestim;Filgrastim
 h632_dec_102330.pdf;2011-04-20 00:00:00;Tolura;telmisartan 
 h632_dec_124897.pdf;2012-10-31 00:00:00;Tolura;telmisartan
-h632_dec_129184.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h632_dec_129184.pdf;2014-04-09 00:00:00;Tolura;telmisartan"
 h632_dec_131027.pdf;2015-03-19 00:00:00;Tolura;telmisartan
 h632_dec_135315.pdf;2016-06-24 00:00:00;Tolura;telmisartan
 h632_dec_145936.pdf;2019-09-23 00:00:00;Tolura;telmisartan
@@ -12494,7 +12494,7 @@ h638_dec_81549.pdf;2010-07-27 00:00:00;Ozurdex;Dexamethasone
 h638_dec_81690.pdf;2010-07-27 00:00:00;Ozurdex;Dexamethasone
 h639_dec_123055.pdf;2012-10-05 00:00:00;Telmisartan Actavis;telmisartan
 h639_dec_124881.pdf;2012-10-29 00:00:00;Telmisartan Actavis;telmisartan
-h639_dec_129163.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h639_dec_129163.pdf;2014-04-09 00:00:00;Telmisartan Actavis;telmisartan"
 h639_dec_132065.pdf;2015-06-19 00:00:00;Telmisartan Actavis;telmisartan
 h639_dec_153053.pdf;2021-09-22 00:00:00;Telmisartan Actavis;telmisartan
 h639_dec_83488.pdf;2010-09-30 00:00:00;Telmisartan Actavis;telmisartan
@@ -12605,7 +12605,7 @@ h648_dec_123326.pdf;2012-05-25 00:00:00;Twynsta;telmisartan / amlodipine
 h648_dec_124743.pdf;2012-10-25 00:00:00;Twynsta;telmisartan / amlodipine
 h648_dec_126252.pdf;2013-12-08 00:00:00;Twynsta;telmisartan / amlodipine
 h648_dec_127659.pdf;2014-02-13 00:00:00;Twynsta;telmisartan / amlodipine
-h648_dec_129156.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h648_dec_129156.pdf;2014-04-09 00:00:00;Twynsta;telmisartan / amlodipine"
 h648_dec_132658.pdf;2015-08-20 00:00:00;Twynsta;telmisartan / amlodipine
 h648_dec_137190.pdf;2017-02-16 00:00:00;Twynsta;telmisartan / amlodipine
 h648_dec_141223.pdf;2018-05-31 00:00:00;Twynsta;telmisartan / amlodipine
@@ -12710,7 +12710,7 @@ h669_dec_136083.pdf;2016-11-11 00:00:00;Teysuno;Tegafur / gimeracil / oteracil
 h669_dec_139138.pdf;2017-10-11 00:00:00;Teysuno;Tegafur / gimeracil / oteracil
 h669_dec_143817.pdf;2019-07-02 00:00:00;Teysuno;Tegafur / gimeracil / oteracil
 h669_dec_145739.pdf;2019-08-08 00:00:00;Teysuno;Tegafur / gimeracil / oteracil
-h669_dec_148229.pdf;2020-03-07 00:00:00;Product name Not Found;Active substance Not Found
+h669_dec_148229.pdf;2020-03-07 00:00:00;Teysuno;Tegafur / gimeracil / oteracil"
 h669_dec_154674.pdf;2022-01-24 00:00:00;Teysuno;Tegafur / gimeracil / oteracil
 h669_dec_97328.pdf;2011-03-14 00:00:00;Teysuno;Tegafur/gimeracil/oteracil
 h672_dec_111069.pdf;2011-12-10 00:00:00;Xeplion;paliperidone
@@ -12725,10 +12725,10 @@ h672_dec_144963.pdf;2019-05-16 00:00:00;Xeplion;paliperidone
 h672_dec_155938.pdf;2022-07-06 00:00:00;Xeplion;paliperidone
 h672_dec_97289.pdf;2011-04-03 00:00:00;Xeplion;paliperidone
 h673_dec_124856.pdf;2012-10-29 00:00:00;Ifirmacombi;Irbesartan / hydrochlorothiazide
-h673_dec_129172.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h673_dec_129172.pdf;2014-04-09 00:00:00;Ifirmacombi;Irbesartan / hydrochlorothiazide"
 h673_dec_133342.pdf;2015-11-19 00:00:00;Ifirmacombi;Irbesartan / hydrochlorothiazide
 h673_dec_141699.pdf;2018-02-07 00:00:00;Ifirmacombi;Irbesartan / hydrochlorothiazide
-h673_dec_144223.pdf;2019-09-04 00:00:00;Product name Not Found;Active substance Not Found
+h673_dec_144223.pdf;2019-09-04 00:00:00;Ifirmacombi;Irbesartan / hydrochlorothiazide"
 h673_dec_149674.pdf;2020-10-28 00:00:00;Ifirmacombi;Irbesartan / hydrochlorothiazide
 h673_dec_150390.pdf;2021-02-18 00:00:00;Ifirmacombi;Irbesartan / hydrochlorothiazide
 h673_dec_155981.pdf;2022-07-06 00:00:00;Ifirmacombi;Irbesartan / hydrochlorothiazide
@@ -12835,7 +12835,7 @@ h690_dec_112629.pdf;2011-10-11 00:00:00;Zoely;nomegestrol/estradiol
 h690_dec_121350.pdf;2012-04-20 00:00:00;Zoely;nomegestrol/estradiol
 h690_dec_124861.pdf;2012-10-29 00:00:00;Zoely;nomegestrol / estradiol
 h690_dec_125859.pdf;2013-11-06 00:00:00;Zoely;nomegestrol / estradiol
-h690_dec_127664.pdf;2014-01-16 00:00:00;Product name Not Found;Active substance Not Found
+h690_dec_127664.pdf;2014-01-16 00:00:00;Zoely;nomegestrol / estradiol"
 h690_dec_129716.pdf;2014-01-09 00:00:00;Zoely;nomegestrol / estradiol
 h690_dec_134586.pdf;2016-04-21 00:00:00;Zoely;nomegestrol / estradiol
 h690_dec_138999.pdf;2017-03-10 00:00:00;Zoely;nomegestrol / estradiol
@@ -13143,7 +13143,7 @@ h718_dec_155955.pdf;2022-08-07 00:00:00;Dexdor;dexmedetomidine
 h719_dec_108890.pdf;2011-03-10 00:00:00;Telmisartan Teva Pharma;telmisartan
 h719_dec_124823.pdf;2012-10-29 00:00:00;Telmisartan Teva Pharma;telmisartan
 h719_dec_128933.pdf;2014-06-06 00:00:00;Telmisartan Teva Pharma;telmisartan
-h719_dec_129162.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h719_dec_129162.pdf;2014-04-09 00:00:00;Telmisartan Teva Pharma;telmisartan"
 h719_dec_131039.pdf;2015-10-02 00:00:00;Telmisartan Teva Pharma;telmisartan
 h719_dec_134965.pdf;2016-09-06 00:00:00;Telmisartan Teva Pharma;telmisartan
 h719_dec_145623.pdf;2019-07-25 00:00:00;Telmisartan Teva Pharma;telmisartan
@@ -13172,8 +13172,8 @@ h731_dec_125466.pdf;2013-02-18 00:00:00;Komboglyze;saxagliptin / metformin
 h731_dec_129952.pdf;2014-10-15 00:00:00;Komboglyze;saxagliptin / metformin
 h731_dec_132518.pdf;2015-08-14 00:00:00;Komboglyze;saxagliptin / metformin
 h731_dec_135226.pdf;2016-07-15 00:00:00;Komboglyze;saxagliptin / metformin
-h731_dec_136444.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
-h731_dec_136997.pdf;2017-10-03 00:00:00;Product name Not Found;Active substance Not Found
+h731_dec_136444.pdf;2016-12-12 00:00:00;Komboglyze;saxagliptin / metformin"
+h731_dec_136997.pdf;2017-10-03 00:00:00;Komboglyze;saxagliptin / metformin"
 h731_dec_138180.pdf;2017-06-26 00:00:00;Komboglyze;saxagliptin / metformin
 h731_dec_142148.pdf;2018-08-13 00:00:00;Komboglyze;saxagliptin / metformin
 h731_dec_151140.pdf;2021-09-03 00:00:00;Komboglyze;saxagliptin / metformin
@@ -13204,7 +13204,7 @@ h734_dec_112169.pdf;2011-07-12 00:00:00;Edarbi;azilsartan medoxomil
 h734_dec_123790.pdf;2012-12-07 00:00:00;Edarbi;azilsartan medoxomil
 h734_dec_126967.pdf;2013-11-11 00:00:00;Edarbi;azilsartan medoxomil
 h734_dec_128662.pdf;2014-06-06 00:00:00;Edarbi;azilsartan medoxomil
-h734_dec_129167.pdf;2014-09-09 00:00:00;Product name Not Found;Active substance Not Found
+h734_dec_129167.pdf;2014-09-09 00:00:00;Edarbi;azilsartan medoxomil"
 h734_dec_136265.pdf;2016-11-14 00:00:00;Edarbi;azilsartan medoxomil
 h734_dec_144333.pdf;2019-03-25 00:00:00;Edarbi;azilsartan medoxomil
 h734_dec_154707.pdf;2022-03-02 00:00:00;Edarbi;azilsartan medoxomil
@@ -13296,7 +13296,7 @@ h746_dec_155547.pdf;2022-05-30 00:00:00;Desloratadine ratiopharm;desloratadine
 h747_dec_115611.pdf;2012-02-13 00:00:00;Colobreathe;Colistimethate sodium
 h747_dec_115612.pdf;2012-02-17 00:00:00;Colobreathe;Colistimethate sodium
 h747_dec_129415.pdf;2014-07-31 00:00:00;Colobreathe;Colistimethate sodium
-h747_dec_131070.pdf;2015-11-03 00:00:00;Product name Not Found;Active substance Not Found
+h747_dec_131070.pdf;2015-11-03 00:00:00;Colobreathe;Colistimethate sodium"
 h747_dec_133537.pdf;2015-11-19 00:00:00;Colobreathe;Colistimethate sodium
 h747_dec_135752.pdf;2016-09-26 00:00:00;Colobreathe;Colistimethate sodium
 h747_dec_136683.pdf;2016-12-12 00:00:00;Colobreathe;Colistimethate sodium
@@ -13364,7 +13364,7 @@ h755_dec_136255.pdf;2016-11-14 00:00:00;Pioglitazone Actavis;pioglitazone
 h755_dec_152136.pdf;2021-06-24 00:00:00;Pioglitazone Actavis;pioglitazone
 h757_dec_118789.pdf;2012-03-26 00:00:00;Pioglitazone Teva;Pioglitazone
 h757_dec_118790.pdf;2012-03-26 00:00:00;Pioglitazone Teva;Pioglitazone
-h757_dec_130256.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h757_dec_130256.pdf has no text
 h757_dec_130896.pdf;2015-01-30 00:00:00;Pioglitazone Teva;pioglitazone
 h757_dec_136362.pdf;2016-11-14 00:00:00;Pioglitazone Teva;pioglitazone
 h757_dec_136906.pdf;2017-02-17 00:00:00;Pioglitazone Teva;pioglitazone
@@ -13394,7 +13394,7 @@ h761_dec_130276.pdf;2014-11-21 00:00:00;Capecitabine Teva;capecitabine
 h761_dec_134513.pdf;2016-03-31 00:00:00;Capecitabine Teva;capecitabine
 h761_dec_136606.pdf;2017-09-01 00:00:00;Capecitabine Teva;capecitabine
 h761_dec_146196.pdf;2019-10-17 00:00:00;Capecitabine Teva;capecitabine
-h761_dec_148242.pdf;2020-03-07 00:00:00;Product name Not Found;Active substance Not Found
+h761_dec_148242.pdf;2020-03-07 00:00:00;Capecitabine Teva;capecitabine"
 h761_dec_148523.pdf;2020-07-17 00:00:00;Capecitabine Teva;capecitabine
 h761_dec_155175.pdf;2022-03-22 00:00:00;Capecitabine Teva;capecitabine
 h762_dec_119969.pdf;2012-04-20 00:00:00;Capecitabine Accord;capecitabine
@@ -13405,7 +13405,7 @@ h762_dec_135124.pdf;2016-02-06 00:00:00;Capecitabine Accord;capecitabine
 h762_dec_136605.pdf;2017-09-01 00:00:00;Capecitabine Accord;capecitabine
 h762_dec_144056.pdf;2019-02-25 00:00:00;Capecitabine Accord;capecitabine
 h762_dec_144072.pdf;2019-02-04 00:00:00;Capecitabine Accord;capecitabine
-h762_dec_148241.pdf;2020-03-07 00:00:00;Product name Not Found;Active substance Not Found
+h762_dec_148241.pdf;2020-03-07 00:00:00;Capecitabine Accord;capecitabine"
 h762_dec_148653.pdf;2020-07-17 00:00:00;Capecitabine Accord;capecitabine
 h762_dec_155342.pdf;2022-04-04 00:00:00;Capecitabine Accord;capecitabine
 h763_dec_119970.pdf;2012-04-20 00:00:00;Capecitabine Krka;capecitabine
@@ -13415,7 +13415,7 @@ h763_dec_131577.pdf;2015-04-13 00:00:00;Ecansya;capecitabine
 h763_dec_134580.pdf;2016-03-31 00:00:00;Ecansya;capecitabine
 h763_dec_136341.pdf;2016-09-12 00:00:00;Ecansya;capecitabine
 h763_dec_144196.pdf;2019-04-15 00:00:00;Ecansya;capecitabine
-h763_dec_148243.pdf;2020-03-07 00:00:00;Product name Not Found;Active substance Not Found
+h763_dec_148243.pdf;2020-03-07 00:00:00;Ecansya;capecitabine"
 h763_dec_155597.pdf;2022-04-29 00:00:00;Ecansya;capecitabine
 h764_dec_120091.pdf;2012-10-05 00:00:00;Pixuvri;Pixantrone
 h764_dec_124768.pdf;2012-10-29 00:00:00;Pixuvri;pixantrone
@@ -13556,7 +13556,7 @@ h780_dec_127836.pdf;2014-01-24 00:00:00;Jentadueto;linagliptin/metformin hydroch
 h780_dec_132044.pdf;2015-05-27 00:00:00;Jentadueto;linagliptin/metformin hydrochloride
 h780_dec_133988.pdf;2016-02-03 00:00:00;Jentadueto;linagliptin/metformin hydrochloride
 h780_dec_134354.pdf;2016-02-26 00:00:00;Jentadueto;linagliptin/metformin hydrochloride
-h780_dec_136461.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
+h780_dec_136461.pdf;2016-12-12 00:00:00;Jentadueto;linagliptin/metformin hydrochloride"
 h780_dec_136988.pdf;2017-01-27 00:00:00;Jentadueto;linagliptin/metformin hydrochloride
 h780_dec_137059.pdf;2017-03-22 00:00:00;Jentadueto;linagliptin/metformin hydrochloride
 h780_dec_140357.pdf;2018-03-16 00:00:00;Jentadueto;linagliptin/metformin hydrochloride
@@ -13788,9 +13788,9 @@ h802_dec_131594.pdf;2015-09-04 00:00:00;Capecitabine medac;capecitabine
 h802_dec_135069.pdf;2016-05-26 00:00:00;Capecitabine medac;capecitabine
 h802_dec_137948.pdf;2017-06-16 00:00:00;Capecitabine medac;capecitabine
 h802_dec_144064.pdf;2019-08-04 00:00:00;Capecitabine medac;capecitabine
-h802_dec_148247.pdf;2020-06-07 00:00:00;Product name Not Found;Active substance Not Found
+h802_dec_148247.pdf;2020-06-07 00:00:00;Capecitabine medac;capecitabine"
 h802_dec_148504.pdf;2020-07-16 00:00:00;Capecitabine medac;capecitabine
-h802_dec_149304.pdf;2020-11-18 00:00:00;Product name Not Found;Active substance Not Found
+h802_dec_149304.pdf;2020-11-18 00:00:00;Capecitabine medac;capecitabine"
 h802_dec_155203.pdf;2022-03-24 00:00:00;Capecitabine medac;capecitabine
 h803_dec_124770.pdf;2012-12-18 00:00:00;NexoBrid;Concentrate of proteolytic enzymes enriched in bromelain
 h803_dec_126740.pdf;2013-09-19 00:00:00;NexoBrid;Concentrate of proteolytic enzymes enriched in bromelain
@@ -13868,7 +13868,7 @@ h812_dec_152279.pdf;2021-01-07 00:00:00;Bexsero;Meningococcal group B Vaccine (r
 h813_dec_125329.pdf;2013-04-03 00:00:00;Perjeta;pertuzumab
 h813_dec_129157.pdf;2014-06-30 00:00:00;Perjeta;pertuzumab
 h813_dec_132501.pdf;2015-08-07 00:00:00;Perjeta;pertuzumab
-h813_dec_132547.pdf;1980-01-01 00:00:00;Product name Not Found;Active substance Not Found
+h813_dec_132547.pdf has no text
 h813_dec_132865.pdf;2015-09-18 00:00:00;Perjeta;pertuzumab
 h813_dec_135380.pdf;2016-08-08 00:00:00;Perjeta;pertuzumab
 h813_dec_136303.pdf;2016-10-27 00:00:00;Perjeta;pertuzumab
@@ -13897,7 +13897,7 @@ h815_dec_142711.pdf;2018-11-20 00:00:00;Selincro;nalmefene
 h815_dec_147509.pdf;2020-09-03 00:00:00;Selincro;nalmefene
 h815_dec_153913.pdf;2021-12-20 00:00:00;Selincro;nalmefene
 h817_dec_125426.pdf;2013-03-13 00:00:00;Actelsar HCT;telmisartan / hydrochlorothiazide
-h817_dec_129119.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h817_dec_129119.pdf;2014-04-09 00:00:00;Actelsar HCT;telmisartan / hydrochlorothiazide"
 h817_dec_139389.pdf;2017-12-15 00:00:00;Actelsar HCT;telmisartan / hydrochlorothiazide
 h817_dec_146586.pdf;2019-11-14 00:00:00;Actelsar HCT;telmisartan / hydrochlorothiazide
 h817_dec_151983.pdf;2021-05-27 00:00:00;Actelsar HCT;telmisartan / hydrochlorothiazide
@@ -13936,7 +13936,7 @@ h820_dec_139411.pdf;2018-01-18 00:00:00;Marixino;Memantine
 h820_dec_140628.pdf;2018-04-04 00:00:00;Marixino;Memantine
 h820_dec_153668.pdf;2021-11-18 00:00:00;Marixino;Memantine
 h821_dec_125462.pdf;2013-03-13 00:00:00;Tolucombi;telmisartan/hydrochlorothiazide
-h821_dec_129210.pdf;2014-04-09 00:00:00;Product name Not Found;Active substance Not Found
+h821_dec_129210.pdf;2014-04-09 00:00:00;Tolucombi;telmisartan/hydrochlorothiazide"
 h821_dec_132040.pdf;2015-05-27 00:00:00;Tolucombi;telmisartan/hydrochlorothiazide
 h821_dec_136999.pdf;2017-06-02 00:00:00;Tolucombi;telmisartan/hydrochlorothiazide
 h821_dec_139648.pdf;2018-08-01 00:00:00;Tolucombi;telmisartan/hydrochlorothiazide
@@ -14108,7 +14108,7 @@ h842_dec_150162.pdf;2021-07-01 00:00:00;Incresync;alogliptin / pioglitazone
 h842_dec_155364.pdf;2022-04-04 00:00:00;Incresync;alogliptin / pioglitazone
 h843_dec_126719.pdf;2013-09-19 00:00:00;Vipdomet;alogliptin / metformin
 h843_dec_130398.pdf;2015-01-15 00:00:00;Vipdomet;alogliptin / metformin
-h843_dec_136464.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
+h843_dec_136464.pdf;2016-12-12 00:00:00;Vipdomet;alogliptin / metformin"
 h843_dec_140780.pdf;2018-05-24 00:00:00;Vipdomet;alogliptin / metformin
 h843_dec_150163.pdf;2021-07-01 00:00:00;Vipdomet;alogliptin / metformin
 h843_dec_155338.pdf;2022-04-04 00:00:00;Vipdomet;alogliptin / metformin
@@ -14236,7 +14236,7 @@ h857_dec_126338.pdf;2013-12-08 00:00:00;Voncento;human coagulation factor VIII /
 h857_dec_131917.pdf;2015-05-05 00:00:00;Voncento;human coagulation factor VIII / human von Willebrand factor
 h857_dec_132563.pdf;2015-07-31 00:00:00;Voncento;human coagulation factor VIII / human von Willebrand factor
 h857_dec_138443.pdf;2017-07-25 00:00:00;Voncento;human coagulation factor VIII / human von Willebrand factor
-h857_dec_139156.pdf;2017-11-15 00:00:00;Product name Not Found;Active substance Not Found
+h857_dec_139156.pdf;2017-11-15 00:00:00;Voncento;human coagulation factor VIII / human von Willebrand factor"
 h857_dec_140449.pdf;2018-04-26 00:00:00;Voncento;human coagulation factor VIII / human von Willebrand factor
 h857_dec_147409.pdf;2020-02-28 00:00:00;Voncento;human coagulation factor VIII / human von Willebrand factor
 h858_dec_126574.pdf;2013-08-26 00:00:00;Stivarga;regorafenib
@@ -14453,7 +14453,7 @@ h885_dec_156239.pdf;2022-08-07 00:00:00;Kadcyla;Trastuzumab emtansine
 h886_dec_127002.pdf;2013-11-13 00:00:00;Relvar Elllipta;fluticasone furoate/vilanterol trifenatate
 h886_dec_128674.pdf;2013-11-13 00:00:00;Relvar Ellipta;fluticasone furoate/vilanterol trifenatate
 h886_dec_133423.pdf;2015-06-11 00:00:00;Relvar Ellipta;fluticasone furoate/vilanterol trifenatate
-h886_dec_135095.pdf;2016-06-24 00:00:00;Product name Not Found;Active substance Not Found
+h886_dec_135095.pdf;2016-06-24 00:00:00;Relvar Ellipta;fluticasone furoate/vilanterol trifenatate"
 h886_dec_138954.pdf;2017-09-21 00:00:00;Relvar Ellipta;fluticasone furoate/vilanterol trifenatate
 h886_dec_140142.pdf;2018-05-03 00:00:00;Relvar Ellipta;fluticasone furoate/vilanterol trifenatate
 h886_dec_141482.pdf;2018-07-26 00:00:00;Relvar Ellipta;fluticasone furoate/vilanterol
@@ -14476,7 +14476,7 @@ h887_dec_152590.pdf;2021-07-23 00:00:00;Fluenz Tetra;influenza vaccine (live att
 h887_dec_156569.pdf;2022-07-27 00:00:00;Fluenz Tetra;influenza vaccine (live attenuated, nasal)
 h888_dec_127003.pdf;2013-11-13 00:00:00;NovoEight;turoctocog alfa
 h888_dec_134337.pdf;2016-12-05 00:00:00;NovoEight;turoctocog alfa
-h888_dec_139164.pdf;2017-11-15 00:00:00;Product name Not Found;Active substance Not Found
+h888_dec_139164.pdf;2017-11-15 00:00:00;NovoEight;turoctocog alfa"
 h888_dec_141594.pdf;2018-07-26 00:00:00;NovoEight;turoctocog alfa
 h888_dec_141601.pdf;2018-07-30 00:00:00;NovoEight;turoctocog alfa
 h888_dec_146366.pdf;2019-10-24 00:00:00;NovoEight;turoctocog alfa
@@ -14586,7 +14586,7 @@ h900_dec_127559.pdf;2014-01-16 00:00:00;Xigduo;dapagliflozin/metformin
 h900_dec_129909.pdf;2014-03-10 00:00:00;Xigduo;dapagliflozin/metformin
 h900_dec_134118.pdf;2016-11-02 00:00:00;Xigduo;dapagliflozin/metformin
 h900_dec_134602.pdf;2016-04-28 00:00:00;Xigduo;dapagliflozin/metformin
-h900_dec_136462.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
+h900_dec_136462.pdf;2016-12-12 00:00:00;Xigduo;dapagliflozin/metformin"
 h900_dec_137362.pdf;2017-04-20 00:00:00;Xigduo;dapagliflozin/metformin
 h900_dec_139732.pdf;2017-12-20 00:00:00;Xigduo;dapagliflozin/metformin
 h900_dec_142255.pdf;2018-09-28 00:00:00;Xigduo;dapagliflozin/metformin
@@ -14707,7 +14707,7 @@ h918_dec_128355.pdf;2014-04-23 00:00:00;Vokanamet;canagliflozin / metformin hydr
 h918_dec_132661.pdf;2015-08-20 00:00:00;Vokanamet;canagliflozin / metformin hydrochloride
 h918_dec_133513.pdf;2015-12-16 00:00:00;Vokanamet;canagliflozin / metformin hydrochloride
 h918_dec_134548.pdf;2016-04-28 00:00:00;Vokanamet;canagliflozin / metformin hydrochloride
-h918_dec_136392.pdf;2016-12-12 00:00:00;Product name Not Found;Active substance Not Found
+h918_dec_136392.pdf;2016-12-12 00:00:00;Vokanamet;canagliflozin / metformin hydrochloride"
 h918_dec_137461.pdf;2017-04-20 00:00:00;Vokanamet;canagliflozin / metformin hydrochloride
 h918_dec_137779.pdf;2017-04-28 00:00:00;Vokanamet;canagliflozin / metformin hydrochloride
 h918_dec_141076.pdf;2018-05-28 00:00:00;Vokanamet;canagliflozin / metformin hydrochloride
@@ -14724,14 +14724,14 @@ h919_dec_149883.pdf;2020-11-18 00:00:00;Hemangiol;propranolol
 h920_dec_128314.pdf;2014-04-28 00:00:00;DuoResp Spiromax;budesonide / formoterol
 h920_dec_129817.pdf is an HTML
 h920_dec_132495.pdf;2015-08-07 00:00:00;DuoResp Spiromax;budesonide / formoterol
-h920_dec_135030.pdf;2016-04-07 00:00:00;Product name Not Found;Active substance Not Found
+h920_dec_135030.pdf;2016-04-07 00:00:00;DuoResp Spiromax;budesonide / formoterol"
 h920_dec_140425.pdf;2018-12-03 00:00:00;DuoResp Spiromax;budesonide / formoterol
 h920_dec_143977.pdf;2019-08-04 00:00:00;DuoResp Spiromax;budesonide / formoterol
 h920_dec_147418.pdf;2020-09-03 00:00:00;DuoResp Spiromax;budesonide / formoterol
 h920_dec_148441.pdf;2020-07-13 00:00:00;DuoResp Spiromax;budesonide / formoterol
 h920_dec_151915.pdf;2021-05-21 00:00:00;DuoResp Spiromax;budesonide / formoterol
 h921_dec_128315.pdf;2014-04-28 00:00:00;BiResp Spiromax;budesonide / formoterol
-h921_dec_135028.pdf;2016-04-07 00:00:00;Product name Not Found;Active substance Not Found
+h921_dec_135028.pdf;2016-04-07 00:00:00;BiResp Spiromax;budesonide / formoterol"
 h921_dec_140275.pdf;2018-01-03 00:00:00;BiResp Spiromax;budesonide / formoterol
 h921_dec_143925.pdf;2019-08-04 00:00:00;BiResp Spiromax;budesonide / formoterol
 h921_dec_147417.pdf;2020-09-03 00:00:00;BiResp Spiromax;budesonide / formoterol
@@ -14769,7 +14769,7 @@ h928_dec_145853.pdf;2019-03-09 00:00:00;Sylvant;siltuximab
 h928_dec_155599.pdf;2022-04-29 00:00:00;Sylvant;siltuximab
 h929_dec_128499.pdf;2014-02-05 00:00:00;Revinty Ellipta;fluticasone furoate / vilanterol trifenatate
 h929_dec_133579.pdf;2015-11-27 00:00:00;Revinty Ellipta;fluticasone furoate / vilanterol trifenatate
-h929_dec_135094.pdf;2016-06-24 00:00:00;Product name Not Found;Active substance Not Found
+h929_dec_135094.pdf;2016-06-24 00:00:00;Revinty Ellipta;fluticasone furoate / vilanterol trifenatate"
 h929_dec_138960.pdf;2017-09-21 00:00:00;Revinty Ellipta;fluticasone furoate / vilanterol trifenatate
 h929_dec_140147.pdf;2018-07-03 00:00:00;Revinty Ellipta;fluticasone furoate / vilanterol trifenatate
 h929_dec_141494.pdf;2018-07-26 00:00:00;Revinty Ellipta;fluticasone furoate / vilanterol
@@ -14832,7 +14832,7 @@ h936_dec_129048.pdf;2014-07-22 00:00:00;Nuwiq;simoctocog alfa
 h936_dec_129718.pdf;2014-07-22 00:00:00;Nuwiq;simoctocog alfa
 h936_dec_130464.pdf is an HTML
 h936_dec_135967.pdf;2016-09-26 00:00:00;Nuwiq;simoctocog alfa
-h936_dec_139267.pdf;2017-11-24 00:00:00;Product name Not Found;Active substance Not Found
+h936_dec_139267.pdf;2017-11-24 00:00:00;Nuwiq;simoctocog alfa"
 h936_dec_140146.pdf;2018-03-23 00:00:00;Nuwiq;simoctocog alfa
 h936_dec_144491.pdf;2019-04-26 00:00:00;Nuwiq;simoctocog alfa
 h936_dec_148759.pdf;2020-07-27 00:00:00;Nuwiq;simoctocog alfa
@@ -15009,7 +15009,7 @@ h960_dec_146210.pdf;2019-11-11 00:00:00;DUAVIVE;oestrogens conjugated / bazedoxi
 h960_dec_151729.pdf;2021-10-05 00:00:00;DUAVIVE;oestrogens conjugated / bazedoxifene
 h961_dec_130016.pdf;2014-11-21 00:00:00;Tadalafil Mylan;tadalafil
 h961_dec_133590.pdf;2015-02-12 00:00:00;Tadalafil Mylan;tadalafil
-h961_dec_137751.pdf;2017-06-23 00:00:00;Product name Not Found;Active substance Not Found
+h961_dec_137751.pdf;2017-06-23 00:00:00;Tadalafil Mylan;tadalafil"
 h961_dec_140561.pdf;2018-12-04 00:00:00;Tadalafil Mylan;tadalafil
 h961_dec_142134.pdf;2018-03-08 00:00:00;Tadalafil Mylan;tadalafil
 h961_dec_145350.pdf;2019-07-31 00:00:00;Tadalafil Mylan;tadalafil
@@ -15089,7 +15089,7 @@ h973_dec_132987.pdf;2015-09-14 00:00:00;Quinsair;levofloxacin
 h973_dec_133592.pdf;2015-11-27 00:00:00;Quinsair;levofloxacin
 h973_dec_137119.pdf;2017-02-16 00:00:00;Quinsair;levofloxacin
 h973_dec_141361.pdf;2018-07-06 00:00:00;Quinsair;levofloxacin
-h973_dec_143313.pdf;2019-02-14 00:00:00;Product name Not Found;Active substance Not Found
+h973_dec_143313.pdf;2019-02-14 00:00:00;Quinsair;levofloxacin"
 h973_dec_147001.pdf;2020-02-13 00:00:00;Quinsair;levofloxacin
 h973_dec_151936.pdf;2021-05-21 00:00:00;Quinsair;levofloxacin
 h973_dec_156312.pdf;2022-08-07 00:00:00;Quinsair;levofloxacin

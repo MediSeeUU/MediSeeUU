@@ -8,7 +8,7 @@ import PDFhelper
 #Scans and ordens EC orphan designation pdfs
 def getTableEC(pdf):
     table = {'intro': dict.fromkeys(['front_page']),
-             'body' : dict.fromkeys(['main_text','P1','P2','P3']),
+             'body' : dict.fromkeys(['main_text','P1']),
              'decision' : dict.fromkeys(['dec_text']),
              'remaining' : []}
 
@@ -95,7 +95,17 @@ def tableEC_getName(table):
             section = section.replace('”','')
             return section
         except:
-            pass
+            #this is repetitive and should be cleaned
+            try:
+                section = re.search('“(.+?)"', temp)[0]
+                section = section.split(' - ')
+                section.pop()
+                section = ''.join(section)
+                section = section.replace('“','')
+                section = section.replace('”','')
+                return section
+            except:
+                pass
     return "Product name Not Found"
 
 #active substance
@@ -128,5 +138,12 @@ def tableEC_getAS(table):
             section = section.replace('”','')
             return section
         except:
-            pass
+            try:
+                section = re.search('“(.+?)"', temp)[0].split(' - ').pop()
+                section = ''.join(section)
+                section = section.replace('“','')
+                section = section.replace('”','')
+                return section
+            except:
+                pass
     return "Active substance Not Found"
