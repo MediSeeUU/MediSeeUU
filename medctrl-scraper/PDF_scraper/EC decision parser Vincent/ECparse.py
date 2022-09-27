@@ -3,7 +3,7 @@ import re
 import helper
 import PDFhelper 
 
-#EC document 
+#EC Decision document 
 
 #Scans and ordens EC orphan designation pdfs
 def getTableEC(pdf):
