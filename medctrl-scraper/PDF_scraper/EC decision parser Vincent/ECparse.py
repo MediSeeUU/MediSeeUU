@@ -34,7 +34,7 @@ def getTableEC(pdf):
     while zoeken:
         #finds section from start till next bullet point
         (bp_content,bulletpoints) = PDFhelper.findBetweenFormat('','(' + str(bullet_count+1) +')',bulletpoints,False) 
-        table['body']['P' + str(bullet_count)] = PDFhelper.filterFont([],[],bp_content)
+        table['body']['P' + str(bullet_count)] = PDFhelper.filterFont([12],[],bp_content)
         
         #nothing more to be found or stuck in loop
         if bulletpoints == [] or bullet_count > 15:
@@ -74,10 +74,13 @@ def tableEC_getName(table):
     section = table['intro']['front_page']
     for txt in section:
         if '\"' in txt:
-            section = re.search('"([^"]*)"',txt)[0]
-            section = section.replace('"','')
-            #gets only first section
-            return section.split('-')[0].strip()
+            try:
+                section = re.search('"([^"]*)"',txt)[0]
+                section = section.replace('"','')
+                #gets only first section
+                return section.split('-')[0].strip()
+            except:
+                continue
     return "Product name Not Found"
 
 #active substance
@@ -85,12 +88,15 @@ def tableEC_getAS(table):
     section = table['intro']['front_page']
     for txt in section:
         if '\"' in txt:
-            section = re.search('"([^"]*)"',txt)[0]
-            section = section.replace('"','')
-            #gets only second section if present
             try:
-                res = section.split('-')[1].strip()
+                section = re.search('"([^"]*)"',txt)[0]
+                section = section.replace('"','')
+                #gets only second section if present
+                try:
+                    res = section.split('-')[1].strip()
+                except:
+                    res = ('No active substance in product name')
+                return res
             except:
-                res = ('No active substance in product name')
-            return res
+                continue
     return "Active substance Not Found"
