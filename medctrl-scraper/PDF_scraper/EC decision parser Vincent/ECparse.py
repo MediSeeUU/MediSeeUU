@@ -72,31 +72,61 @@ def tableEC_getDate(table):
 
 def tableEC_getName(table):
     section = table['intro']['front_page']
+    
+    temp = ''
     for txt in section:
-        if '\"' in txt:
-            try:
-                section = re.search('"([^"]*)"',txt)[0]
-                section = section.replace('"','')
-                #gets only first section
-                return section.split('-')[0].strip()
-            except:
-                continue
+        temp += txt
+        
+    if '\"' in temp:
+        try:
+            section = re.search('"([^"]*)"',temp)[0]
+            section = section.replace('"','')
+            #gets only first section
+            return section.split('-')[0].strip()
+        except:
+            pass
+    if '“' in temp:
+        try:
+            section = re.search('“(.+?)”', temp)[0]
+            section = section.split(' - ')
+            section.pop()
+            section = ''.join(section)
+            section = section.replace('“','')
+            section = section.replace('”','')
+            return section
+        except:
+            pass
     return "Product name Not Found"
 
 #active substance
 def tableEC_getAS(table):
     section = table['intro']['front_page']
+    
+    temp = ''
     for txt in section:
-        if '\"' in txt:
+        temp += txt
+        
+    #find normal quotes
+    if '\"' in temp:
+        try:
+            section = re.search('"([^"]*)"',temp)[0]
+            section = section.replace('"','')
+            #gets only second section if present
             try:
-                section = re.search('"([^"]*)"',txt)[0]
-                section = section.replace('"','')
-                #gets only second section if present
-                try:
-                    res = section.split('-')[1].strip()
-                except:
-                    res = ('No active substance in product name')
-                return res
+                return section.split('-')[1].strip()
             except:
-                continue
+                pass
+        except:
+            pass
+        
+    #finds unicode quote
+    if '“' in temp:
+        try:
+            section = re.search('“(.+?)”', temp)[0].split(' - ').pop()
+            section = ''.join(section)
+            section = section.replace('“','')
+            section = section.replace('”','')
+            return section
+        except:
+            pass
     return "Active substance Not Found"
