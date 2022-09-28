@@ -7,7 +7,7 @@ from api.models.medicine_models import (
     Medicine,
     Authorisation
 )
-from .common import CustomForeignKeyWidget, import_foreign_key
+from .common import import_foreign_key
 from .cachemodeladmin import CacheModelAdmin
 
 
@@ -18,11 +18,6 @@ class AuthorisationResource(resources.ModelResource):
     """
 
     eunumber = import_foreign_key("eunumber", Medicine)
-    corapporteur = fields.Field(
-        column_name="corapporteur",
-        attribute="corapporteur",
-        widget=CustomForeignKeyWidget(Medicine, "rapporteur"),
-    )
 
     class Meta:
         """
