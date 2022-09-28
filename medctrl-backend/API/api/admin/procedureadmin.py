@@ -18,7 +18,6 @@ class ProcedureResource(resources.ModelResource):
     """
 
     eunumber = import_foreign_key("eunumber", Medicine)
-    proceduretype = import_foreign_key("proceduretype", Medicine)
 
     class Meta:
         """
@@ -26,7 +25,7 @@ class ProcedureResource(resources.ModelResource):
         """
 
         model = Procedure
-        import_id_fields = ("commisionnumber",)
+        import_id_fields = ("commisionnumber")
 
 
 class ProcedureAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):

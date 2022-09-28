@@ -18,7 +18,6 @@ class AuthorisationResource(resources.ModelResource):
     """
 
     eunumber = import_foreign_key("eunumber", Medicine)
-    rapporteur = import_foreign_key("rapporteur", Medicine)
     corapporteur = fields.Field(
         column_name="corapporteur",
         attribute="corapporteur",
