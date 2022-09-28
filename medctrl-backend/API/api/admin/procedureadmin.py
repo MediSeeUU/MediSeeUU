@@ -5,8 +5,7 @@ from django.contrib import admin
 from import_export import resources, admin as import_admin
 from api.models.medicine_models import (
     Medicine,
-    Procedure,
-    Lookupproceduretype,
+    Procedure
 )
 from .common import import_foreign_key
 from .cachemodeladmin import CacheModelAdmin
@@ -19,7 +18,7 @@ class ProcedureResource(resources.ModelResource):
     """
 
     eunumber = import_foreign_key("eunumber", Medicine)
-    proceduretype = import_foreign_key("proceduretype", Lookupproceduretype)
+    proceduretype = import_foreign_key("proceduretype", Medicine)
 
     class Meta:
         """

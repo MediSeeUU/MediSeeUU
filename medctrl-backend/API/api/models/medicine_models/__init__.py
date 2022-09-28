@@ -8,13 +8,5 @@ from .historyindication import Historyindication
 from .historymah import Historymah
 from .historyorphan import Historyorphan
 from .historyprime import Historyprime
-from .lookupactivesubstance import Lookupactivesubstance
-from .lookupatccode import Lookupatccode
-from .lookuplegalbasis import Lookuplegalbasis
-from .lookuplegalscope import Lookuplegalscope
-from .lookupmedicinetype import Lookupmedicinetype
-from .lookupproceduretype import Lookupproceduretype
-from .lookuprapporteur import Lookuprapporteur
-from .lookupstatus import Lookupstatus
 from .medicine import Medicine
 from .procedure import Procedure

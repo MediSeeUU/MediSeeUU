@@ -13,7 +13,7 @@ class Authorisation(models.Model):
         "Medicine", models.CASCADE, db_column="EUNumber", primary_key=True
     )
     rapporteur = models.ForeignKey(
-        "Lookuprapporteur",
+        "Medicine",
         models.CASCADE,
         db_column="Rapporteur",
         blank=True,
@@ -21,7 +21,7 @@ class Authorisation(models.Model):
         related_name="rapporteur_related",
     )
     corapporteur = models.ForeignKey(
-        "Lookuprapporteur",
+        "Medicine",
         models.CASCADE,
         db_column="CoRapporteur",
         blank=True,

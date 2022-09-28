@@ -16,10 +16,8 @@ from rest_framework.decorators import permission_classes
 from api.serializers.medicine_serializers import (
     ProcedureSerializer,
     ProcedureFlexVarUpdateSerializer,
-    LookupProceduretypeSerializer,
 )
 from api.models.medicine_models import (
-    Lookupproceduretype,
     Procedure,
 )
 from api.update_cache import update_cache
@@ -115,12 +113,7 @@ class ScraperProcedure(APIView):
         """
         # initialise serializer
         serializer = ProcedureSerializer(current, data=data)
-        # add variable to lookup table
-        add_lookup(
-            Lookupproceduretype,
-            LookupProceduretypeSerializer(None, data=data),
-            data.get("proceduretype"),
-        )
+        
         # if serializer is valid, add procedure to teh database
         if serializer.is_valid():
             serializer.save()

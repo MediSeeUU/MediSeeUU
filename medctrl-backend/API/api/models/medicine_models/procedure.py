@@ -3,7 +3,6 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicine import Medicine
-from .lookupproceduretype import Lookupproceduretype
 
 
 class Procedure(models.Model):
@@ -20,13 +19,10 @@ class Procedure(models.Model):
         db_column="EMANumber", max_length=128, blank=True, null=True
     )
     proceduredate = models.DateField(db_column="ProcedureDate", blank=True, null=True)
-    proceduretype = models.ForeignKey(
-        Lookupproceduretype,
-        models.CASCADE,
-        db_column="ProcedureType",
-        blank=True,
-        null=True,
+    proceduretype = models.CharField(
+        db_column="ProcedureType", max_length=128, null=True
     )
+
     decisiondate = models.DateField(db_column="DecisionDate", blank=True, null=True)
     decisionnumber = models.CharField(
         db_column="DecisionNumber", max_length=45, blank=True, null=True

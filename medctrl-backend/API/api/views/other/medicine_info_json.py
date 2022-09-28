@@ -10,12 +10,19 @@
 # ----------------------------------------------------------------------------
 
 import json
+import logging
 
 # returns a list of json components depending on permission level, this list is for the filters and for the detailed information page
 def get_medicine_info(perm):
 
     # List with dictionaries
     General_Information = [
+        {
+            "data-key": "test",
+            "data-front-key": "test",
+            "data-format": "string",
+            "data-value": "test",
+        },
         {
             "data-key": "brandname",
             "data-front-key": "BrandName",
@@ -204,12 +211,18 @@ def get_medicine_info(perm):
         ],
     }
 
+    #for x in perm:
+        #logging.getLogger("mylogger").info(x)
+
     return data
 
 
 # Checks wether the user has permission for this item
 def filterFunc(perm, item):
     for _, value in item.items():
+        #logging.getLogger("mylogger").info(value)
         if value in perm:
             return True
+    #logging.getLogger("mylogger").info(item)
     return False
+    

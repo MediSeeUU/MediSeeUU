@@ -16,23 +16,9 @@ from api.serializers.medicine_serializers import (
     AuthorisationFlexVarUpdateSerializer,
     MedicineFlexVarUpdateSerializer,
     MedicineSerializer,
-    AuthorisationSerializer,
-    LookupStatusSerializer,
-    LookupActiveSubstanceSerializer,
-    LookupAtccodeSerializer,
-    LookupLegalbasisSerializer,
-    LookupLegalscopeSerializer,
-    LookupMedicinetypeSerializer,
-    LookupRapporteurSerializer,
+    AuthorisationSerializer
 )
 from api.models.medicine_models import (
-    Lookupstatus,
-    Lookupactivesubstance,
-    Lookupatccode,
-    Lookuplegalbasis,
-    Lookuplegalscope,
-    Lookupmedicinetype,
-    Lookuprapporteur,
     Medicine,
     Authorisation,
     Historybrandname,
@@ -130,13 +116,7 @@ class ScraperMedicine(APIView):
         authorisation_serializer = AuthorisationFlexVarUpdateSerializer(
             current_authorisation, data=data
         )
-        # add variables to lookup table
-        add_lookup(
-            Lookupstatus, LookupStatusSerializer(None, data=data), data.get("status")
-        )
-        add_lookup(
-            Lookupatccode, LookupAtccodeSerializer(None, data=data), data.get("atccode")
-        )
+        
         # if authorisation not exists, add authorisation
         if not current_authorisation:
             authorisation_serializer = authorisation_serializer(None, data=data)
@@ -165,45 +145,8 @@ class ScraperMedicine(APIView):
         authorisation_serializer = AuthorisationSerializer(
             current_authorisation, data=data
         )
-        # add variables to lookup table
-        add_lookup(
-            Lookupstatus, LookupStatusSerializer(None, data=data), data.get("status")
-        )
-        add_lookup(
-            Lookupactivesubstance,
-            LookupActiveSubstanceSerializer(None, data=data),
-            data.get("activesubstance"),
-        )
-        add_lookup(
-            Lookupatccode, LookupAtccodeSerializer(None, data=data), data.get("atccode")
-        )
-        add_lookup(
-            Lookuplegalbasis,
-            LookupLegalbasisSerializer(None, data=data),
-            data.get("legalbasis"),
-        )
-        add_lookup(
-            Lookuplegalscope,
-            LookupLegalscopeSerializer(None, data=data),
-            data.get("legalscope"),
-        )
-        add_lookup(
-            Lookupmedicinetype,
-            LookupMedicinetypeSerializer(None, data=data),
-            data.get("medicinetype"),
-        )
-        add_lookup(
-            Lookuprapporteur,
-            LookupRapporteurSerializer(None, data=data),
-            data.get("rapporteur"),
-        )
-        add_lookup(
-            Lookuprapporteur,
-            LookupRapporteurSerializer(
-                None, data={"rapporteur": data.get("corapporteur")}
-            ),
-            data.get("corapporteur"),
-        )
+       
+       
         # add medicine and authorisation
         historyVariables(data)
         if serializer.is_valid():
@@ -240,13 +183,6 @@ class ScraperMedicine(APIView):
 
         if len(newData.keys()) > 1:
             return self.add_medicine(newData, current_medicine)
-
-
-# if item does not exist in the database (model), add it with the serializer
-def add_lookup(model, serializer, item):
-    lookup = model.objects.filter(pk=item).first()
-    if not lookup and serializer.is_valid():
-        serializer.save()
 
 
 def historyVariables(data):
