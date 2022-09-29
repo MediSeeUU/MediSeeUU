@@ -1,3 +1,4 @@
 venv/
 .vscode/
 medctrl-scraper/PDF_scraper/EC decision parser Vincent/decisions/
+.idea
