@@ -20,8 +20,8 @@ export function VisualsProvider({ children }) {
       id: 1,
       chartType: 'bar',
       chartSpecificOptions: {
-        xAxis: 'DecisionYear',
-        yAxis: 'Rapporteur',
+        xAxis: 'decisionyear',
+        yAxis: 'rapporteur',
       },
       legendOn: false,
       labelsOn: false,

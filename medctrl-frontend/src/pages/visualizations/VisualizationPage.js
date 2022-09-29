@@ -44,10 +44,10 @@ function VisualizationPage() {
       id: uuidv4(),
       chartType: 'bar',
       chartSpecificOptions: {
-        xAxis: 'DecisionYear',
-        yAxis: 'Rapporteur',
-        categoriesSelectedY: uniqueCategories['Rapporteur'],
-        categoriesSelectedX: uniqueCategories['DecisionYear'],
+        xAxis: 'decisionyear',
+        yAxis: 'rapporteur',
+        categoriesSelectedY: uniqueCategories['rapporteur'],
+        categoriesSelectedX: uniqueCategories['decisionyear'],
       },
       legendOn: false,
       labelsOn: false,
@@ -98,10 +98,10 @@ function VisualizationPage() {
       // due to the data not being available yet, so they are initialized here.
       visual.chartSpecificOptions.categoriesSelectedX =
         visual.chartSpecificOptions.categoriesSelectedX ??
-        uniqueCategories['DecisionYear']
+        uniqueCategories['decisionyear']
       visual.chartSpecificOptions.categoriesSelectedY =
         visual.chartSpecificOptions.categoriesSelectedY ??
-        uniqueCategories['Rapporteur']
+        uniqueCategories['rapporteur']
 
       return (
         <Row key={visual.id}>

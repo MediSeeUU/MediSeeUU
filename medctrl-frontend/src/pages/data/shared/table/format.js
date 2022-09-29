@@ -18,7 +18,7 @@ export function slashDateToStringDate(date) {
   if (!date || date === defValue) {
     return date
   }
-  console.log(date)
+
   var splitteddate = date.split('/')
   const day = splitteddate[1].replace(/^0+/, '')
   const month = [
