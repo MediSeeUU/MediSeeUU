@@ -10,12 +10,22 @@
 # ----------------------------------------------------------------------------
 
 import json
+from ...models.medicine_models.medicine import Medicine
+from ...models.medicine_models.procedure import Procedure
+from ...models.medicine_models.authorisation import Authorisation
+
 
 # returns a list of json components depending on permission level, this list is for the filters and for the detailed information page
 def get_medicine_info(perm):
 
     # List with dictionaries
     General_Information = [
+        {
+            "data-key": "test",
+            "data-front-key": "test",
+            "data-format": "string",
+            "data-value": "test",
+        },
         {
             "data-key": "brandname",
             "data-front-key": "BrandName",
@@ -187,29 +197,13 @@ def get_medicine_info(perm):
 
     # The Data object constructs the json that will be returned, each item is filterd on the acces level a user has
     data = {
-        "General Information": [x for x in General_Information if filterFunc(perm, x)],
-        "Identifying Information": [
-            x for x in Identifying_Information if filterFunc(perm, x)
-        ],
-        "(Co-)Rapporteur": [x for x in Co_Rapporteur if filterFunc(perm, x)],
-        "Medicine Designations": [
-            x for x in Medicine_Designations if filterFunc(perm, x)
-        ],
-        "Legal Information": [x for x in Legal_Information if filterFunc(perm, x)],
-        "Authorisation Timing": [
-            x for x in Authorisation_Timing if filterFunc(perm, x)
-        ],
-        "Additional Resources": [
-            x for x in Additional_Resources if filterFunc(perm, x)
-        ],
+        "General Information": General_Information,
+        "Identifying Information": Identifying_Information,
+        "(Co-)Rapporteur": Co_Rapporteur,
+        "Medicine Designations": Medicine_Designations,
+        "Legal Information": Legal_Information,
+        "Authorisation Timing": Authorisation_Timing,
+        "Additional Resources": Additional_Resources
     }
 
     return data
-
-
-# Checks wether the user has permission for this item
-def filterFunc(perm, item):
-    for key, value in item.items():
-        if value in perm:
-            return True
-    return False

@@ -12,21 +12,11 @@ class Authorisation(models.Model):
     eunumber = models.OneToOneField(
         "Medicine", models.CASCADE, db_column="EUNumber", primary_key=True
     )
-    rapporteur = models.ForeignKey(
-        "Lookuprapporteur",
-        models.CASCADE,
-        db_column="Rapporteur",
-        blank=True,
-        null=True,
-        related_name="rapporteur_related",
+    rapporteur = models.CharField(
+        db_column="Rapporteur", max_length=45, blank=True, null=True
     )
-    corapporteur = models.ForeignKey(
-        "Lookuprapporteur",
-        models.CASCADE,
-        db_column="CoRapporteur",
-        blank=True,
-        null=True,
-        related_name="corapporteur_related",
+    corapporteur = models.CharField(
+        db_column="CoRapporteur", max_length=45, blank=True, null=True
     )
     acceleratedgranted = models.IntegerField(
         db_column="AcceleratedGranted", blank=True, null=True

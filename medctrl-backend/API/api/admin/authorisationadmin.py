@@ -5,10 +5,9 @@ from django.contrib import admin
 from import_export import fields, resources, admin as import_admin
 from api.models.medicine_models import (
     Medicine,
-    Authorisation,
-    Lookuprapporteur,
+    Authorisation
 )
-from .common import CustomForeignKeyWidget, import_foreign_key
+from .common import import_foreign_key
 from .cachemodeladmin import CacheModelAdmin
 
 
@@ -19,12 +18,6 @@ class AuthorisationResource(resources.ModelResource):
     """
 
     eunumber = import_foreign_key("eunumber", Medicine)
-    rapporteur = import_foreign_key("rapporteur", Lookuprapporteur)
-    corapporteur = fields.Field(
-        column_name="corapporteur",
-        attribute="corapporteur",
-        widget=CustomForeignKeyWidget(Lookuprapporteur, "rapporteur"),
-    )
 
     class Meta:
         """

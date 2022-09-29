@@ -8,8 +8,6 @@
 
 from django.contrib.auth.models import Group
 
-from django.contrib.auth.models import Group
-
 # Gets all permissions of a user
 def permissionFilter(user):
     if user.is_anonymous:
