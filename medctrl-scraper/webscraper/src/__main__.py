@@ -7,7 +7,7 @@ from pathlib import Path
 import pandas as pd
 from joblib import Parallel, delayed
 
-import ec_scraper
+from . import ec_scraper
 
 # Create the data dir.
 # The ' exist_ok' option ensures no errors thrown if this is not the first time the code runs.
@@ -47,7 +47,7 @@ def get_urls(medicine):
                 writer = csv.writer(f)
                 writer.writerow([medicine, ema_list])
             success = True
-        except:
+        except Exception:
             attempts += 1
             if attempts == max_attempts:
                 break
@@ -70,7 +70,7 @@ def download_pdfs(med_id, pdf_type, type_dict):
                 print(url[1:-1])
                 ec_scraper.download_pdf_from_url(med_id, url[1:-1], pdf_type)
             success = True
-        except:
+        except Exception:
             attempts += 1
             if attempts == max_attempts:
                 break
@@ -87,9 +87,13 @@ def read_csv_files():
 # Store the result of the csv converting into dictionaries
 decisions, annexes, ema_urls = read_csv_files()
 
-# Download the decision files, parallel
-Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "dec", decisions) for medicine in decisions)
-print("Done with decisions")
-# Download the annexes files, parallel
-Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "anx", annexes) for medicine in annexes)
-print("Done with Annexes")
+
+def run_parallel():
+    # Download the decision files, parallel
+    Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "dec", decisions) for medicine in decisions)
+    print("Done with decisions")
+    # Download the annexes files, parallel
+    Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "anx", annexes) for medicine in annexes)
+    print("Done with Annexes")
+
+# run_parallel()
