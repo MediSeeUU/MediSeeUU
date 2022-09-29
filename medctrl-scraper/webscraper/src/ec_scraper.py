@@ -80,6 +80,7 @@ def getURLsForPDFAndEMA(url: str):
 
     print(f"Starting with {url}")
 
+    #define lists to save the urls
     dec_url_list = []
     anx_url_list = []
 
@@ -92,35 +93,19 @@ def getURLsForPDFAndEMA(url: str):
         decision_id   = row["id"]
     
         if row["files_dec"]:
-            pdf_url_dec = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""    
-            downloadDecPDFfromURL(url, pdf_url_dec, decision_id)
-
+            pdf_url_dec = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""  
             #add url to decision pdf to list
-            dec_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
-            
-            # In the end the string will look like: https://ec.europa.eu/health/documents/community-register/2004/200404287648/dec_7648_en.pdf
-            # TODO: Graceful failure on failed request
-            # TODO: Retry on failed request
-
-            #Old download code:
-            # downloaded_file = requests.get("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
-            # with open(f"./data/authorisation_decisions/{url}_dec_{decision_id}.pdf", "wb") as file:
-            #     file.write(downloaded_file.content)
-            #     print(f"  Downloaded {decision_id} decision")
-                
+            dec_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)  
+            #NOTE: if you want to download the PDFs immediately while getting the URLs:
+            #downloadDecPDFfromURL(url, pdf_url_dec, decision_id)
                 
         if row["files_anx"]:
             pdf_url_anx = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""
-            downloadAnnPDFfromURL(url, pdf_url_anx, decision_id)
-
             #add url to annexes pdf to list
             anx_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
+            #NOTE: if you want to download the PDFs immediately while getting the URLs:
+            #downloadAnnPDFfromURL(url, pdf_url_anx, decision_id)
             
-            # downloaded_file = requests.get("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
-            # with open(f"./data/authorisation_decisions/{url}_anx_{decision_id}.pdf", "wb") as file:
-            #     file.write(downloaded_file.content)
-            #     print(f"  Downloaded {decision_id} annex")
-            #    
     # TODO: Proper logging here
     print(f"Finished with {url}")
     sys.stdout = original_stdout 
@@ -129,15 +114,32 @@ def getURLsForPDFAndEMA(url: str):
 
 # TODO: download PDFs from an URL. Maybe different methods for the different files? Decision/Anx and EMA pdfs
 
-def downloadDecPDFfromURL(url: str, pdf_url_dec: str, decision_id):
-    downloaded_file = requests.get("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
-    with open(f"./data/authorisation_decisions/{url}_dec_{decision_id}.pdf", "wb") as file:
-            file.write(downloaded_file.content)
-            print(f"  Downloaded {decision_id} decision")
+# In the end the string will look like: https://ec.europa.eu/health/documents/community-register/2004/200404287648/dec_7648_en.pdf
+# TODO: Graceful failure on failed request
+# TODO: Retry on failed request
 
-def downloadAnnPDFfromURL(url: str, pdf_url_anx: str, decision_id):
-    downloaded_file = requests.get("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
-    with open(f"./data/annexes/{url}_anx_{decision_id}.pdf", "wb") as file:
-        file.write(downloaded_file.content)
-        print(f"  Downloaded {decision_id} annex")
+def download_PDF_from_URL(med_id: str, url:str, type: str):
+    downloaded_file = requests.get(url)
+    dec_id = re.findall(rf"(?<={type}_)\d+", url)[0]
+    if type == "dec":
+        with open(f"./data/authorisation_decisions/{med_id}_dec_{dec_id}.pdf","wb") as file:
+            file.write(downloaded_file.content)
+            # print(f"  Downloaded {dec_id} decision")
+    elif type == "anx":
+        with open(f"./data/annexes/{med_id}_anx_{dec_id}.pdf", "wb") as file:
+            file.write(downloaded_file.content)
+            # print(f"  Downloaded {dec_id} annex")
+
+#NOTE: Below the old download code:               
+# def downloadDecPDFfromURL(url: str, pdf_url_dec: str, decision_id):
+#     downloaded_file = requests.get("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
+#     with open(f"./data/authorisation_decisions/{url}_dec_{decision_id}.pdf", "wb") as file:
+#             file.write(downloaded_file.content)
+#             print(f"  Downloaded {decision_id} decision")
+
+# def downloadAnnPDFfromURL(url: str, pdf_url_anx: str, decision_id):
+#     downloaded_file = requests.get("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
+#     with open(f"./data/annexes/{url}_anx_{decision_id}.pdf", "wb") as file:
+#         file.write(downloaded_file.content)
+#         print(f"  Downloaded {decision_id} annex")
 
