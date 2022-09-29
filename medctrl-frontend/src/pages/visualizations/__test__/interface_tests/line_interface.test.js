@@ -52,7 +52,7 @@ test('categories in data', () => {
   const series = generateLineSeries(options)
   series.forEach((element) => {
     let filteredData = data.filter((datael) =>
-      element.euNumbers.flat().includes(datael.EUNoShort)
+      element.euNumbers.flat().includes(datael.eunumber)
     )
     filteredData.forEach((datael) => {
       expect(element.name).toBe(datael.Rapporteur)

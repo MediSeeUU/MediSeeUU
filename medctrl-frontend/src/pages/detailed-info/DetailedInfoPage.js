@@ -29,7 +29,7 @@ export default function DetailedInfoPage() {
   // corresponding to the desired medicine is extracted from the array
   const alldata = useData()
   let medData = alldata.find(
-    (element) => element.EUNoShort.toString() === medID.toString()
+    (element) => element.eunumber.toString() === medID.toString()
   )
 
   // All of the procedure data related to the desired medicine is asynchronously
@@ -155,7 +155,7 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
     for (let varIndex in variableCategories[category]) {
       const variable = variableCategories[category][varIndex]
       if (variable['data-format'] !== 'link') {
-        let value = medData[variable['data-front-key']]
+        let value = medData[variable['data-key']]
         if (variable['data-format'] === 'date') {
           value = slashDateToStringDate(value)
         }

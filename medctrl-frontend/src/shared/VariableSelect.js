@@ -28,7 +28,7 @@ export default function VariableSelect({
       const variable = variableCategories[category][varIndex]
       if (variable['data-format'] !== 'link') {
         options.push(
-          <option value={variable['data-front-key']} key={v4()}>
+          <option value={variable['data-key']} key={v4()}>
             {variable['data-value']}
           </option>
         )

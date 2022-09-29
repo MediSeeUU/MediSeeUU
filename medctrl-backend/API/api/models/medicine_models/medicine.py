@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-
+from .common import createField, Headers
 
 class Medicine(models.Model):
     """

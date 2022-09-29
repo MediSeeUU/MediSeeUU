@@ -142,7 +142,7 @@ function VisualizationPage() {
     const displayItems = renderVisualizations()
     const displayDataSelectedMessage = renderDataSelectedMessage()
     const tableData = selectedData.filter((element) =>
-      popup.includes(element.EUNoShort)
+      popup.includes(element.eunumber)
     )
     return (
       <div>
