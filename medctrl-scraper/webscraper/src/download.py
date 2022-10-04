@@ -48,7 +48,7 @@ def download_pdfs(med_id, pdf_type, type_dict):
         try:
             for url in list(type_dict[med_id].strip("[]").split(", ")):  # parse csv input
                 if pdf_type == "epar":
-                    download_epar_from_url(med_id, url[1:-1])
+                    download_epar_from_url(med_id, url)
                 else:
                     download_pdf_from_url(med_id, url[1:-1], pdf_type)
             success = True

@@ -93,9 +93,10 @@ def get_urls_ema(medicine, url: str):
 # Parallel(n_jobs=12)(delayed(get_urls_ec)(medicine) for medicine in medicine_codes)
 print("Done with URL getting for EC")
 
-ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0, squeeze=True).to_dict()
-
-Parallel(n_jobs=12)(delayed(get_urls_ema)(url[0], url[1]) for url in ema.items())
+# NOTE: Use the lines of code below to fill epar.csv
+# epar.csv will contain the links to the epar pdfs.
+# ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0, squeeze=True).to_dict()
+# Parallel(n_jobs=12)(delayed(get_urls_ema)(url[0], url[1]) for url in ema.items())
 
 print("Done with URL getting for EMA")
 
