@@ -5,12 +5,16 @@ import csv
 from pathlib import Path
 
 import pandas as pd
+import json
 from joblib import Parallel, delayed
 
 import sys
+import logging
 import os
 
 import ec_scraper
+import download
+import ema_scraper
 
 # Create the data dir.
 # The ' exist_ok' option ensures no errors thrown if this is not the first time the code runs.
@@ -29,9 +33,13 @@ path_csv.mkdir(exist_ok=True)
 medicine_codes = ec_scraper.scrape_medicine_urls(
     "https://ec.europa.eu/health/documents/community-register/html/reg_hum_act.htm")
 
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+
+logging.basicConfig(filename='webscraper.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s')
 
 # Paralleled function for getting the URL codes. They are written to a CSV file
-def get_urls(medicine):
+def get_urls_ec(medicine):
     attempts = 0
     max_attempts = 4
     success = False
@@ -53,48 +61,43 @@ def get_urls(medicine):
         except Exception:
             attempts += 1
             if attempts == max_attempts:
+                print(f"failed dec/anx/ema url getting for {medicine}")
                 break
 
 
-# NOTE: Use the line of code below to fill all the CSV files.
-# If you have complete CSV file, this line of code below is not needed.
-# Parallel(n_jobs=12)(delayed(get_urls)(medicine) for medicine in medicine_codes)
-print("Done with URL getting")
-
-
-# Download pdfs using the dictionaries created from the CSV files
-def download_pdfs(med_id, pdf_type, type_dict):
+def get_urls_ema(medicine, url: str):
     attempts = 0
     max_attempts = 4
     success = False
     while attempts < max_attempts and not success:
         try:
-            for url in list(type_dict[med_id].strip("[]").split(", ")):  # parse csv input
-                print(url[1:-1])
-                ec_scraper.download_pdf_from_url(med_id, url[1:-1], pdf_type)
+            if url != "[]":
+                url = json.loads(url.replace('\'', '"'))[0]
+            else:
+                url = ''
+            pdf_url = ema_scraper.pdf_links_from_url(url)
+            with open("../data/CSV/epar.csv", 'a') as f:
+                writer = csv.writer(f)
+                writer.writerow([medicine, pdf_url])
             success = True
         except Exception:
             attempts += 1
             if attempts == max_attempts:
+                logging.error(f"failed ema_pdf url getting for {medicine, url}")
+                # print(f"failed ema_pdf url getting for {medicine, url}")
                 break
 
 
-# Function for reading the CSV contents back into dictionaries that can be used for downloading.
-def read_csv_files():
-    dec = pd.read_csv('../data/CSV/decision.csv', header=None, index_col=0, squeeze=True).to_dict()
-    anx = pd.read_csv('../data/CSV/annexes.csv', header=None, index_col=0, squeeze=True).to_dict()
-    ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0, squeeze=True).to_dict()
-    return dec, anx, ema
+# NOTE: Use the line of code below to fill all the CSV files.
+# If you have a complete CSV file, this line of code below is not needed.
+# Parallel(n_jobs=12)(delayed(get_urls_ec)(medicine) for medicine in medicine_codes)
+print("Done with URL getting for EC")
 
+ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0, squeeze=True).to_dict()
 
-def run_parallel():
-    # Store the result of the csv converting into dictionaries
-    decisions, annexes, ema_urls = read_csv_files()
-    # Download the decision files, parallel
-    Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "dec", decisions) for medicine in decisions)
-    print("Done with decisions")
-    # Download the annexes files, parallel
-    Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "anx", annexes) for medicine in annexes)
-    print("Done with Annexes")
+Parallel(n_jobs=12)(delayed(get_urls_ema)(url[0], url[1]) for url in ema.items())
 
-# run_parallel()
+print("Done with URL getting for EMA")
+
+# NOTE: Use the line of code below to download all files.
+# download.run_parallel()

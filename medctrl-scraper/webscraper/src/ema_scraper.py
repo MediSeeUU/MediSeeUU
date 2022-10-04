@@ -45,4 +45,4 @@ def pdf_links_from_url(url: str):
     raise Exception(f"No valid URLs found for {medicine_name}. Found URLs are listed below.\n" + "\n".join(link_list))
 
 
-print(pdf_links_from_url("https://www.ema.europa.eu/en/medicines/human/EPAR/faslodex"))
+# print(pdf_links_from_url(""))

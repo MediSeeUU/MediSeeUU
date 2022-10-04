@@ -7,6 +7,7 @@ import bs4
 import regex as re
 import requests
 
+
 def scrape_medicine_urls(url: str):
     # Links acquired from "https://ec.europa.eu/health/documents/community-register/html/index_en.htm"
     # "reg_hum_act.htm" directs to "Union Register of medicinal products for human use" | "Alphabetical"
@@ -118,18 +119,6 @@ def get_urls_for_pdf_and_ema(url: str):
 # https://ec.europa.eu/health/documents/community-register/2004/200404287648/dec_7648_en.pdf
 # TODO: Graceful failure on failed request
 # TODO: Retry on failed request
-
-def download_pdf_from_url(med_id: str, url: str, pdf_type: str):
-    downloaded_file = requests.get(url)
-    dec_id = re.findall(rf"(?<={pdf_type}_)\d+", url)[0]
-    if pdf_type == "dec":
-        with open(f"./data/authorisation_decisions/{med_id}_dec_{dec_id}.pdf", "wb") as file:
-            file.write(downloaded_file.content)
-            # print(f"  Downloaded {dec_id} decision")
-    elif pdf_type == "anx":
-        with open(f"./data/annexes/{med_id}_anx_{dec_id}.pdf", "wb") as file:
-            file.write(downloaded_file.content)
-            # print(f"  Downloaded {dec_id} annex")
 
 # NOTE: Below the old download code:
 # def downloadDecPDFfromURL(url: str, pdf_url_dec: str, decision_id):
