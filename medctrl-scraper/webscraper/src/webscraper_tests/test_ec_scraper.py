@@ -2,12 +2,19 @@ from unittest import TestCase, mock
 from requests.exceptions import Timeout
 from .. import ec_scraper
 
+import regex as re
+
 
 class TestEcScraper(TestCase):
-    # NOTE: only tests if it returns a non-empty list, not if it is filled correctly.
     def test_scrape_medicine_urls(self):
         url_list = ec_scraper.scrape_medicine_urls("https://ec.europa.eu/health/documents/community-register/html/reg_hum_act.htm")
         self.assertIsNotNone(url_list, msg="url list is empty")
+        first_url = url_list[0]
+        check = re.findall(r"h\d+", first_url)[0]
+        self.assertEqual(check, first_url, msg="first url not in correct format")
+        last_url = url_list[-1]
+        check = re.findall(r"h\d+", last_url)[0]
+        self.assertEqual(check, last_url, msg="last url not in correct format")
 
     # NOTE: only tests one case.
     def test_get_urls_for_pdf_and_ema(self):

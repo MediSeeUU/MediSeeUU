@@ -1,11 +1,11 @@
 import json
 import sys
+import os
 from datetime import datetime
 
 import bs4
 import regex as re
 import requests
-
 
 def scrape_medicine_urls(url: str):
     # Links acquired from "https://ec.europa.eu/health/documents/community-register/html/index_en.htm"

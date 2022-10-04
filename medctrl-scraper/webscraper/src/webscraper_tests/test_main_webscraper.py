@@ -1,11 +1,18 @@
-from unittest import TestCase
-from .. import __main__
+from unittest import TestCase, mock
+from pathlib import Path
+import sys
+
+sys.path.append(".")
+
 
 
 # TODO: write tests for __main__.py
 class Test(TestCase):
+    # TODO: find a way to mock the writing to the file
     def test_get_urls(self):
-        self.fail()
+        path = Path("./data/CSV/annexes.csv")
+        self.assertTrue(path.is_file())
+        self.assertTrue(path.parent.is_dir())
 
     def test_download_pdfs(self):
         self.fail()

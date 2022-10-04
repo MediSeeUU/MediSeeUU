@@ -7,15 +7,18 @@ from pathlib import Path
 import pandas as pd
 from joblib import Parallel, delayed
 
-from . import ec_scraper
+import sys
+import os
+
+import ec_scraper
 
 # Create the data dir.
 # The ' exist_ok' option ensures no errors thrown if this is not the first time the code runs.
-path_auth_descis = Path("./data/authorisation_decisions")
-path_smpcs = Path("./data/smpcs")
-path_epars = Path("./data/epars")
-path_annexes = Path("./data/annexes")
-path_csv = Path("./data/CSV")
+path_auth_descis = Path("../data/authorisation_decisions")
+path_smpcs = Path("../data/smpcs")
+path_epars = Path("../data/epars")
+path_annexes = Path("../data/annexes")
+path_csv = Path("../data/CSV")
 
 path_auth_descis.mkdir(parents=True, exist_ok=True)
 path_smpcs.mkdir(exist_ok=True)
@@ -37,13 +40,13 @@ def get_urls(medicine):
             # getURLsForPDFAndEMA returns per medicine the urls for the decision and annexes files and for the ema
             # website.
             dec_list, anx_list, ema_list = ec_scraper.get_urls_for_pdf_and_ema(medicine)
-            with open("./data/CSV/decision.csv", 'a') as f:
+            with open("../data/CSV/decision.csv", 'a') as f:
                 writer = csv.writer(f)
                 writer.writerow([medicine, dec_list])
-            with open("./data/CSV/annexes.csv", 'a') as f:
+            with open("../data/CSV/annexes.csv", 'a') as f:
                 writer = csv.writer(f)
                 writer.writerow([medicine, anx_list])
-            with open("./data/CSV/ema_urls.csv", 'a') as f:
+            with open("../data/CSV/ema_urls.csv", 'a') as f:
                 writer = csv.writer(f)
                 writer.writerow([medicine, ema_list])
             success = True
@@ -55,7 +58,7 @@ def get_urls(medicine):
 
 # NOTE: Use the line of code below to fill all the CSV files.
 # If you have complete CSV file, this line of code below is not needed.
-# Parallel(n_jobs=12)(delayed(getURLs)(medicine) for medicine in medicine_codes)
+# Parallel(n_jobs=12)(delayed(get_urls)(medicine) for medicine in medicine_codes)
 print("Done with URL getting")
 
 
@@ -78,17 +81,15 @@ def download_pdfs(med_id, pdf_type, type_dict):
 
 # Function for reading the CSV contents back into dictionaries that can be used for downloading.
 def read_csv_files():
-    dec = pd.read_csv('./data/CSV/decision.csv', header=None, index_col=0, squeeze=True).to_dict()
-    anx = pd.read_csv('./data/CSV/annexes.csv', header=None, index_col=0, squeeze=True).to_dict()
-    ema = pd.read_csv('./data/CSV/ema_urls.csv', header=None, index_col=0, squeeze=True).to_dict()
+    dec = pd.read_csv('../data/CSV/decision.csv', header=None, index_col=0, squeeze=True).to_dict()
+    anx = pd.read_csv('../data/CSV/annexes.csv', header=None, index_col=0, squeeze=True).to_dict()
+    ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0, squeeze=True).to_dict()
     return dec, anx, ema
 
 
-# Store the result of the csv converting into dictionaries
-decisions, annexes, ema_urls = read_csv_files()
-
-
 def run_parallel():
+    # Store the result of the csv converting into dictionaries
+    decisions, annexes, ema_urls = read_csv_files()
     # Download the decision files, parallel
     Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "dec", decisions) for medicine in decisions)
     print("Done with decisions")
