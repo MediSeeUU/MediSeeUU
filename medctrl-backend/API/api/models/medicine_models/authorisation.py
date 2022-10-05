@@ -2,6 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
+from .common import create_dashboard_column, Category
 
 
 class Authorisation(models.Model):
@@ -12,26 +13,35 @@ class Authorisation(models.Model):
     eunumber = models.OneToOneField(
         "Medicine", models.CASCADE, db_column="EUNumber", primary_key=True
     )
-    rapporteur = models.CharField(
-        db_column="Rapporteur", max_length=45, blank=True, null=True
+
+    rapporteur = create_dashboard_column(
+         models.CharField(db_column="Rapporteur", max_length=45, blank=True, null=True),
+        Category.Co_Rapporteur,
+        "string",
+        "Rapporteur"
     )
-    corapporteur = models.CharField(
-        db_column="CoRapporteur", max_length=45, blank=True, null=True
+
+    corapporteur = create_dashboard_column(
+        models.CharField(db_column="CoRapporteur", max_length=45, blank=True, null=True),
+        Category.Co_Rapporteur,
+        "string",
+        "Co-Rapporteur"
     )
+
     acceleratedgranted = models.IntegerField(
         db_column="AcceleratedGranted", blank=True, null=True
     )
     acceleratedmaintained = models.IntegerField(
         db_column="AcceleratedMaintained", blank=True, null=True
     )
-    authorisationtotaltime = models.IntegerField(
-        db_column="AuthorisationTotalTime", blank=True, null=True
-    )
     authorisationactivetime = models.IntegerField(
         db_column="AuthorisationActiveTime", blank=True, null=True
     )
     authorisationstoppedtime = models.IntegerField(
         db_column="AuthorisationStoppedTime", blank=True, null=True
+    )
+    authorisationtotaltime = models.IntegerField(
+        db_column="AuthorisationTotalTime", blank=True, null=True
     )
     decisiontime = models.IntegerField(db_column="DecisionTime", blank=True, null=True)
     decisionurl = models.CharField(

@@ -3,6 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicine import Medicine
+from .common import create_dashboard_column, Category
 
 
 class Procedure(models.Model):
@@ -23,7 +24,13 @@ class Procedure(models.Model):
         db_column="ProcedureType", max_length=128, null=True
     )
 
-    decisiondate = models.DateField(db_column="DecisionDate", blank=True, null=True)
+    decisiondate = create_dashboard_column(
+        models.DateField(db_column="DecisionDate", blank=True, null=True),
+        Category.General_Information,
+        "date",
+        "Decision Date"
+    )
+
     decisionnumber = models.CharField(
         db_column="DecisionNumber", max_length=45, blank=True, null=True
     )

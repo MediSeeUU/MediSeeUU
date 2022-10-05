@@ -26,7 +26,7 @@ export default function VariableSelect({
 
     for (let varIndex in variableCategories[category]) {
       const variable = variableCategories[category][varIndex]
-      if (variable['data-format'] !== 'link') {
+      if (variable['data-format']) {
         options.push(
           <option value={variable['data-key']} key={v4()}>
             {variable['data-value']}
