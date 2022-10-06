@@ -99,3 +99,16 @@ def table_getLegalBasis(table):
         elif 'legal basis for' in txt:
             found = True
     return ''
+
+
+# eu_legal_basis
+def table_getprime(table):
+    # section = table['background']['main_text']
+    # found = False
+    # regex_legal = re.compile(r'article [^ ]+')
+    # for txt in section:
+    #     if found and regex_legal.search(txt):
+    #         return re.search(r'article [^ ]+', txt)[0]
+    #     elif 'legal basis for' in txt:
+    #         found = True
+    # return ''

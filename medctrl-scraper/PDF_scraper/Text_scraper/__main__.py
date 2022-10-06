@@ -7,8 +7,8 @@ import EPARparse
 
 # Main file to run all parsers
 
-PDFr.parseFolder(ECparse, 'dec_human')
-PDFr.parseFolder(ECparse, 'dec_orphan')
+#PDFr.parseFolder(ECparse, 'dec_human')
+#PDFr.parseFolder(ECparse, 'dec_orphan')
 PDFr.parseFolder(EPARparse, 'epars')
 
 # To add: Xiao yi SMPC Parser
