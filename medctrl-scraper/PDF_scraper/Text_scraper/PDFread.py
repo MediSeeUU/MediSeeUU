@@ -22,7 +22,7 @@ def writeData(outputFile, filedata):
 # Asks for the class of the PDF that you want to parse [IE 'ECparse']
 def parseTestFile(filetype):
     # filename = 'decisions/h081_dec_140667.pdf'
-    filename = 'dec_human/h460_dec_103508.pdf'
+    filename = 'dec_human/h008_dec_121029.pdf'
 
     pdf = fitz.open(filename)  # open document
 
@@ -125,6 +125,6 @@ def parseFolder(filetype, folder_name):
     print('Done')
 
 
-parseFolder(ECparse, 'dec_orphan')
+#parseFolder(ECparse, 'dec_orphan')
 #parseFolder(EPARparse, 'epars')
-#parseTestFile(ECparse)
+parseTestFile(ECparse)

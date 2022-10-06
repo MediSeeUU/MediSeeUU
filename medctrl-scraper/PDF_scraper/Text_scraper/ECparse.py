@@ -249,13 +249,15 @@ def table_getMAH(table):
         #gets part after submitted by line
         mah = mahlines.split(" by ",1)[1]
         #remove part after MAH
-        mah = mah.split(" on",1)[0]
+        mah = mah.split(" on ",1)[0]
         #different format
-        mah = mah.split(" under",1)[0]
+        mah = mah.split(" under ",1)[0]
+        
+        mah = mah.split('  (the marketing authorisation holder)')[0]
         #remove comma if there was comma before on
         if mah[-1] == ',':
             mah = mah[:-1]
-        return mah
+        return mah.strip()
 
 
 def table_getOrphanDesignation(table):
