@@ -21,7 +21,7 @@ from api.models.medicine_models import (
 )
 
 # returns a list of json components, this list is for the filters and for the detailed information page
-def get_medicine_info():
+def get_medicine_info(perm):
 
     models = [
         Medicine, 
@@ -42,7 +42,7 @@ def get_medicine_info():
         models_fields += model._meta.get_fields()
 
     for field in models_fields:
-        if hasattr(field, "category") and hasattr(field, "data_format") and hasattr(field, "data_value"):
+        if hasattr(field, "category") and hasattr(field, "data_format") and hasattr(field, "data_value") and has_permission(perm, field):
             data[field.category].append({
                 "data-key": field.name,
                 "data-format": field.data_format,
@@ -50,4 +50,7 @@ def get_medicine_info():
                 })
 
     return data
+    
+def has_permission(perm, field):
+    return field.name in perm
     

@@ -19,6 +19,10 @@ class Medicine_info(views.APIView):
     Viewset for the Medicine info
     """
     
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
     # each time a get request is send, this function is executed.
     def get(self, request):
-        return Response(get_medicine_info())
+        user = self.request.user
+        perm = permissionFilter(user)
+        return Response(get_medicine_info(perm))
