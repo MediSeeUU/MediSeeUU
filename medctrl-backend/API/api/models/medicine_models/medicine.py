@@ -95,7 +95,36 @@ class Medicine(models.Model):
     )
 
     medicinetype = models.CharField(
-        db_column="MedicineType", max_length=45, null=True
+        db_column="MedicineType",
+        max_length=45,
+        null=True
+    )
+    status = models.CharField(
+        db_column="Status",
+        max_length=45,
+        null=True
+    )
+    referral = models.IntegerField(
+        db_column="Referral",
+        blank=True,
+        null=True
+    )
+    suspension = models.IntegerField(
+        db_column="Suspension",
+        blank=True,
+        null=True
+    )
+    emaurl = models.CharField(
+        db_column="EMAURL",
+        max_length=320,
+        blank=True,
+        null=True
+    )
+    ecurl = models.CharField(
+        db_column="ECURL",
+        max_length=320,
+        blank=True,
+        null=True
     )
 
     referral = models.IntegerField(db_column="Referral", blank=True, null=True)
