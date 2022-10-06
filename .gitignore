@@ -1,3 +1,4 @@
 medctrl-scraper/PDF_scraper/EC decision parser Vincent/decisions/
 .idea/
 medctrl-scraper/PDF_scraper/EC decision parser Vincent/epars/
+*.pdf

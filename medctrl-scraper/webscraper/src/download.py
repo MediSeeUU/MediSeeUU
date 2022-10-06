@@ -59,9 +59,9 @@ def download_pdfs(med_id, pdf_type, type_dict):
 
 # Function for reading the CSV contents back into dictionaries that can be used for downloading.
 def read_csv_files():
-    dec = pd.read_csv('../data/CSV/decision.csv', header=None, index_col=0, squeeze=True).to_dict()
-    anx = pd.read_csv('../data/CSV/annexes.csv', header=None, index_col=0, squeeze=True).to_dict()
-    epar = pd.read_csv('../data/CSV/epar.csv', header=None, index_col=0, squeeze=True).to_dict()
+    dec = pd.read_csv('../data/CSV/decision.csv', header=None, index_col=0).squeeze().to_dict()
+    anx = pd.read_csv('../data/CSV/annexes.csv', header=None, index_col=0).squeeze().to_dict()
+    epar = pd.read_csv('../data/CSV/epar.csv', header=None, index_col=0).squeeze().to_dict()
     return dec, anx, epar
 
 
@@ -69,10 +69,10 @@ def run_parallel():
     # Store the result of the csv converting into dictionaries
     decisions, annexes, epar = read_csv_files()
     # Download the decision files, parallel
-    Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "dec", decisions) for medicine in decisions)
+    # Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "dec", decisions) for medicine in decisions)
     print("Done with decisions")
     # Download the annexes files, parallel
-    Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "anx", annexes) for medicine in annexes)
+    # Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "anx", annexes) for medicine in annexes)
     print("Done with Annexes")
     # Download the epar files, parallel
     Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "epar", epar) for medicine in epar)
