@@ -11,4 +11,5 @@ PDFr.parseFolder(ECparse, 'dec_human')
 PDFr.parseFolder(ECparse, 'dec_orphan')
 PDFr.parseFolder(EPARparse, 'epars')
 
-# To add: Xiao yi EC Parser
+# To add: Xiao yi SMPC Parser
+# To add: Elio's OMAR Parser

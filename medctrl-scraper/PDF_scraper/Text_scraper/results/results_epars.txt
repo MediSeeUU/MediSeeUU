@@ -1,11 +1,2 @@
-abiraterone-krka-epar-public-assessment-report_en.pdf@29 june 2020@22 april 2021@article 10(1)@Parsed
-abraxane-epar-public-assessment-report_en.pdf@25 august 2006@18 october 2007@article 8.3@Parsed
-h065_procedural_steps.pdf@Not parsed@Not parsed@Not parsed
 h065_procedural_steps.pdf.xml@Not parsed@Not parsed@Not parsed
-h233_procedural_steps.pdf@Not parsed@Not parsed@Not parsed
-h370_procedural_steps.pdf@8 february 2006@16 november 2006@article 10(b)@Parsed
-h400_procedural_steps.pdf@25 april 2006@24 may 2007@article 8.3@Parsed
-h404_procedural_steps.pdf@05 september 2006@21 june 2007@article 6(3)@Parsed
-h420_procedural_steps.pdf@29 november 2006@20 september 2007@article 8(3)@Parsed
-vydura-epar-public-assessment-report_en.pdf@8 february 2021@24 february 2022@article 8.3@Parsed
 vydura-epar-public-assessment-report_en.pdf.xml@Not parsed@Not parsed@Not parsed

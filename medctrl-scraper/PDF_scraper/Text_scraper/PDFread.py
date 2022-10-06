@@ -123,8 +123,3 @@ def parseFolder(filetype, folder_name):
         pass
     f.close()  # close output file.
     print('Done')
-
-
-#parseFolder(ECparse, 'dec_orphan')
-#parseFolder(EPARparse, 'epars')
-parseTestFile(ECparse)
