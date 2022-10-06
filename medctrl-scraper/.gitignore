@@ -12,6 +12,6 @@ output/
 .RDataFiles/
 archive/
 
-log/
+*.log
 regsci_db/data/*/
 **/__pycache__
