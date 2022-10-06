@@ -1,13 +1,12 @@
 import json
 from datetime import datetime
-from typing import *
 
 import regex as re
 import bs4
 import requests
 
 
-def scrape_medicines_list(url: str) -> List[str]:
+def scrape_medicines_list(url: str) -> list[str]:
     # Links acquired from "https://ec.europa.eu/health/documents/community-register/html/index_en.htm"
     # "reg_hum_act.htm" directs to "Union Register of medicinal products for human use" | "Alphabetical"
     html_active = requests.get(url)
@@ -42,7 +41,7 @@ def scrape_medicines_list(url: str) -> List[str]:
     return url_list
 
 
-def scrape_medicine_page(url: str) -> (List[str], List[str], List[str]):
+def scrape_medicine_page(url: str) -> (list[str], list[str], list[str]):
     html_active = requests.get(f"https://ec.europa.eu/health/documents/community-register/html/{url}.htm")
 
     # If an http error occurred, throw error
@@ -79,9 +78,9 @@ def scrape_medicine_page(url: str) -> (List[str], List[str], List[str]):
     print(f"Starting with {url}")
 
     # define lists to save the urls
-    ema_url_list: List[str] = []
-    dec_url_list: List[str] = []
-    anx_url_list: List[str] = []
+    ema_url_list: list[str] = []
+    dec_url_list: list[str] = []
+    anx_url_list: list[str] = []
 
     # In the Json object from the EC, the URLs are saved in the last item in the array.
     # We still go through all lines to insure we get the right item.
