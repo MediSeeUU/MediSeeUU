@@ -2,17 +2,14 @@
 import json
 import fitz  # part of pip install PyMuPDF
 import os  # to get all file names in folder
-<<<<<<< Updated upstream:medctrl-scraper/PDF_scraper/Text_scraper/PDFread.py
 # external files for debug
 #import ECparse
 #import EPARparse
-=======
 import json
 
 # external files
 import ECparse
 import EPARparse
->>>>>>> Stashed changes:medctrl-scraper/PDF_scraper/EC decision parser Vincent/PDFread.py
 
 
 def writeData(outputFile, filedata):
@@ -25,11 +22,7 @@ def writeData(outputFile, filedata):
 # Asks for the class of the PDF that you want to parse [IE 'ECparse']
 def parseTestFile(filetype):
     # filename = 'decisions/h081_dec_140667.pdf'
-<<<<<<< Updated upstream:medctrl-scraper/PDF_scraper/Text_scraper/PDFread.py
-    filename = 'epars/h065_procedural_steps.pdf'
-=======
     filename = 'dec_human/h460_dec_103508.pdf'
->>>>>>> Stashed changes:medctrl-scraper/PDF_scraper/EC decision parser Vincent/PDFread.py
 
     pdf = fitz.open(filename)  # open document
 
@@ -130,11 +123,8 @@ def parseFolder(filetype, folder_name):
         pass
     f.close()  # close output file.
     print('Done')
-<<<<<<< Updated upstream:medctrl-scraper/PDF_scraper/Text_scraper/PDFread.py
-=======
 
 
 parseFolder(ECparse, 'dec_orphan')
 #parseFolder(EPARparse, 'epars')
 #parseTestFile(ECparse)
->>>>>>> Stashed changes:medctrl-scraper/PDF_scraper/EC decision parser Vincent/PDFread.py
