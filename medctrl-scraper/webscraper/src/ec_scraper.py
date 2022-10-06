@@ -1,14 +1,13 @@
 import json
-import sys
-import os
 from datetime import datetime
+from typing import *
 
-import bs4
 import regex as re
+import bs4
 import requests
 
 
-def scrape_medicine_urls(url: str):
+def scrape_medicines_list(url: str) -> List[str]:
     # Links acquired from "https://ec.europa.eu/health/documents/community-register/html/index_en.htm"
     # "reg_hum_act.htm" directs to "Union Register of medicinal products for human use" | "Alphabetical"
     html_active = requests.get(url)
@@ -26,7 +25,8 @@ def scrape_medicine_urls(url: str):
 
     # Regex r"\[.*\]" matches '[', all items in between, and ']'
     # TODO: Check if script tags include other lists, make more robust.
-    plaintext_json: str = re.findall(r"\[.*\]", script_tag.text, re.DOTALL)[0]
+    # TODO: Make generic helper function?
+    plaintext_json: str = re.findall(r"\[.*\]", script_tag.string, re.DOTALL)[0]
     plaintext_json = plaintext_json.replace("\r", "").replace("\n", "")  # Remove newlines
 
     parsed_json = json.loads(plaintext_json)
@@ -42,7 +42,7 @@ def scrape_medicine_urls(url: str):
     return url_list
 
 
-def get_urls_for_pdf_and_ema(url: str):
+def scrape_medicine_page(url: str) -> (List[str], List[str], List[str]):
     html_active = requests.get(f"https://ec.europa.eu/health/documents/community-register/html/{url}.htm")
 
     # If an http error occurred, throw error
@@ -62,35 +62,41 @@ def get_urls_for_pdf_and_ema(url: str):
     # In this code, we are interested in the dataSet_proc.
     # However, it is possible that we are interested in the other JSON object in the future.
 
-    # Regex r"(?<=var .+?)\[.+?\](?=;)" checks if 
+    # Regex "var .+?\K\[.+?\](?=;)" checks if
     #   the data is lead by 'var ', and 
     #   matches '[', all items in between, and ']'
-    #   and if it is closed with a ;
+    #   and if it is closed with ;
     #   which returns the values of the two JSON objects "dataSet_product_information" and "dataSet_proc"
-    plaintext_json = re.findall(r"(?<=var .+?)\[.+?\](?=;)", script_tag.text, re.DOTALL)
+    plaintext_json = re.findall(r"var .+?\K\[.*?\](?=;)", script_tag.string, re.DOTALL)
     for match in plaintext_json:
-        match = match.replace("\r", "").replace("\n", "")  # Remove newlines
+        match.replace("\r", "").replace("\n", "")
 
     # get the url linking to the EMA website, where the EPAR + OMAR files can be found. Sometimes there are two URLS
     # to the EMA website.
-    ema_url_list = (re.findall(r"\w+:\/\/[-a-zA-Z0-9:@;?&=\/%\+\.\*!'\(\),\$_\{\}\^~\[\]`#|]+", plaintext_json[0]))
+    medicine_json = json.loads(plaintext_json[0])
     procedures_json = json.loads(plaintext_json[1])
-
-    # save prints to file
-    original_stdout = sys.stdout
-    sys.stdout = open('log.txt', 'w')
 
     print(f"Starting with {url}")
 
     # define lists to save the urls
-    dec_url_list = []
-    anx_url_list = []
+    ema_url_list: List[str] = []
+    dec_url_list: List[str] = []
+    anx_url_list: List[str] = []
+
+    # In the Json object from the EC, the URLs are saved in the last item in the array.
+    # We still go through all lines to insure we get the right item.
+    # The meta-object contains the url we are interested in.
+    for row in medicine_json:
+        if row["type"] == "ema_links":
+            for json_obj in row["meta"]:
+                ema_url_list.append(json_obj["url"])
 
     # for each row in the json file of each medicine, get the urls for the pdfs of the decision and annexes.
     for row in procedures_json:
         if row["files_dec"] is None and row["files_anx"] is None:
             continue
 
+        # Parse the date, formatted as %Y-%m-%d, which looks like 1970-01-01
         decision_date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
         decision_id = row["id"]
 
@@ -98,37 +104,13 @@ def get_urls_for_pdf_and_ema(url: str):
             pdf_url_dec = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""
             # add url to decision pdf to list
             dec_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
-            # NOTE: if you want to download the PDFs immediately while getting the URLs:
-            # downloadDecPDFfromURL(url, pdf_url_dec, decision_id)
 
         if row["files_anx"]:
             pdf_url_anx = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""
             # add url to annexes pdf to list
             anx_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
-            # NOTE: if you want to download the PDFs immediately while getting the URLs:
-            # downloadAnnPDFfromURL(url, pdf_url_anx, decision_id)
 
     # TODO: Proper logging here
     print(f"Finished with {url}")
-    sys.stdout = original_stdout
     # return the urls per medicine
     return dec_url_list, anx_url_list, ema_url_list
-
-
-# In the end the string will look like:
-# https://ec.europa.eu/health/documents/community-register/2004/200404287648/dec_7648_en.pdf
-# TODO: Graceful failure on failed request
-# TODO: Retry on failed request
-
-# NOTE: Below the old download code:
-# def downloadDecPDFfromURL(url: str, pdf_url_dec: str, decision_id):
-#     downloaded_file = requests.get("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
-#     with open(f"./data/authorisation_decisions/{url}_dec_{decision_id}.pdf", "wb") as file:
-#             file.write(downloaded_file.content)
-#             print(f"  Downloaded {decision_id} decision")
-
-# def downloadAnnPDFfromURL(url: str, pdf_url_anx: str, decision_id):
-#     downloaded_file = requests.get("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
-#     with open(f"./data/annexes/{url}_anx_{decision_id}.pdf", "wb") as file:
-#         file.write(downloaded_file.content)
-#         print(f"  Downloaded {decision_id} annex")

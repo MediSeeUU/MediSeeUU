@@ -30,13 +30,14 @@ path_epars.mkdir(exist_ok=True)
 path_annexes.mkdir(exist_ok=True)
 path_csv.mkdir(exist_ok=True)
 
-medicine_codes = ec_scraper.scrape_medicine_urls(
+medicine_codes = ec_scraper.scrape_medicines_list(
     "https://ec.europa.eu/health/documents/community-register/html/reg_hum_act.htm")
 
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
 
 logging.basicConfig(filename='webscraper.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s')
+
 
 # Paralleled function for getting the URL codes. They are written to a CSV file
 def get_urls_ec(medicine):
@@ -47,7 +48,7 @@ def get_urls_ec(medicine):
         try:
             # getURLsForPDFAndEMA returns per medicine the urls for the decision and annexes files and for the ema
             # website.
-            dec_list, anx_list, ema_list = ec_scraper.get_urls_for_pdf_and_ema(medicine)
+            dec_list, anx_list, ema_list = ec_scraper.scrape_medicine_page(medicine)
             with open("../data/CSV/decision.csv", 'a') as f:
                 writer = csv.writer(f)
                 writer.writerow([medicine, dec_list])

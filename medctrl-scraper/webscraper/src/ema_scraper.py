@@ -1,6 +1,7 @@
+from typing import *
+
 import requests
 import bs4
-import re
 
 
 def pdf_links_from_url(url: str):
@@ -9,7 +10,7 @@ def pdf_links_from_url(url: str):
     html_obj = requests.get(url)
 
     # Last part of the url, contains the medicine name
-    medicine_name = url.split('/')[-1]
+    medicine_name: str = url.split('/')[-1]
 
     # If an http error occurred, throw error
     # TODO: Graceful handling
@@ -28,7 +29,7 @@ def pdf_links_from_url(url: str):
     link_tags = specific_soup.find_all('a')
 
     # Get all links to pdf files from the
-    link_list: [str] = list(map(lambda a: a["href"], link_tags))
+    url_list: List[str] = list(map(lambda a: a["href"], link_tags))
 
     # TEMP: https://www.ema.europa.eu/documents/assessment-report/faslodex-epar-public-assessment-report_en.pdf
     # TEMP: https://www.ema.europa.eu/documents/scientific-discussion/ambirix-epar-scientific-discussion_en.pdf
@@ -37,12 +38,12 @@ def pdf_links_from_url(url: str):
 
     # Go through all links, try to find the document that is the highest on the priority list first.
     for type_of_report in priority_list:
-        for item in link_list:
-            if type_of_report in item:
-                return item
+        for pdf_url in url_list:
+            if type_of_report in pdf_url:
+                return pdf_url
 
     # If nothing is found, we throw an exception. This also passes all found URLs on newlines
-    raise Exception(f"No valid URLs found for {medicine_name}. Found URLs are listed below.\n" + "\n".join(link_list))
+    raise Exception(f"No valid URLs found for {medicine_name}. Found URLs are listed below.\n" + "\n".join(url_list))
 
 
 # print(pdf_links_from_url(""))
