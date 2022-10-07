@@ -30,7 +30,7 @@ def getTable(pdf):
              'background': dict.fromkeys(['main_text']),
              'discussion': dict.fromkeys(['dis_text'])}
 
-    pdf_format = PDFhelper.getTextFormatLower(pdf)
+    pdf_format = PDFhelper.getTextFormat(pdf, True)
 
     # Front page - find first occurrence of 'Assessment report', not yet used
     (content, rem) = PDFhelper.findBetweenFormat('assessment report', 'table of contents', pdf_format, False)

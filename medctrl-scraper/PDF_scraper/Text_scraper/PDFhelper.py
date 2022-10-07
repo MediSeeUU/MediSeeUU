@@ -1,7 +1,19 @@
 # pdf helper functions
 
 # Returns the textsize and font of every line in a pdf.
-def getTextFormat(pdf):
+
+def get_text(data, results, lower):
+    for lines in data:
+        text = lines['text']
+        size = lines['size']
+        font = lines['font']
+        if lower:
+            results.append(text.lower(), size, font)
+        else:
+            results.append(text, size, font)
+
+
+def getTextFormat(pdf, lower=False):
     results = []
     for page in pdf:
         dict = page.get_text("dict")
@@ -11,23 +23,7 @@ def getTextFormat(pdf):
                 spans = block['lines']
                 for span in spans:
                     data = span['spans']
-                    for lines in data:
-                        results.append((lines['text'], lines['size'], lines['font']))
-    return results
-
-
-def getTextFormatLower(pdf):
-    results = []
-    for page in pdf:
-        dict = page.get_text("dict")
-        blocks = dict["blocks"]
-        for block in blocks:
-            if "lines" in block.keys():
-                spans = block['lines']
-                for span in spans:
-                    data = span['spans']
-                    for lines in data:
-                        results.append((lines['text'].lower(), lines['size'], lines['font']))
+                    get_text(data, results, lower)
     return results
 
 

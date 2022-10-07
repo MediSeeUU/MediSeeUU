@@ -3,7 +3,7 @@ from typing import List
 
 xml_section_tag = "section"
 xml_head_tag = "head"
-xml_paragraph_tag =  "paragraph"
+xml_paragraph_tag =  "p"
 
 def section_contains_head_substring(substring: str, section: ET.Element):
     substringFound = False
