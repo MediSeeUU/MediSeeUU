@@ -1,5 +1,3 @@
-from typing import *
-
 import requests
 import bs4
 
@@ -29,7 +27,7 @@ def pdf_links_from_url(url: str):
     link_tags = specific_soup.find_all('a')
 
     # Get all links to pdf files from the
-    url_list: List[str] = list(map(lambda a: a["href"], link_tags))
+    url_list: list[str] = list(map(lambda a: a["href"], link_tags))
 
     # TEMP: https://www.ema.europa.eu/documents/assessment-report/faslodex-epar-public-assessment-report_en.pdf
     # TEMP: https://www.ema.europa.eu/documents/scientific-discussion/ambirix-epar-scientific-discussion_en.pdf

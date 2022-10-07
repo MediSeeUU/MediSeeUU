@@ -5,13 +5,13 @@ src/build/
 src/dist/
 **/*.egg-info/
 .idea/
-data/**/
+data/
 test/
 output/
 .Rhistory/
 .RDataFiles/
 archive/
 
-*.log
+.log
 regsci_db/data/*/
 **/__pycache__
