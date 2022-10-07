@@ -82,10 +82,10 @@ def scrape_medicine_page(url: str):  # -> (list[str], list[str], list[str]):
     dec_url_list: list[str] = []
     anx_url_list: list[str] = []
 
-    # Gets all the necessary information from the medicine_json object
+    # Gets all the necessary information from the medicine_json and procedures_json objects
     atc_code, active_substance, eu_pnumber, eu_aut_status, eu_brand_name_current, eu_mah_current, ema_url_list = get_data_from_medicine_json(medicine_json, ema_url_list)
-
-    # for each row in the json file of each medicine, get the urls for the pdfs of the decision and annexes.
+    dec_url_list, anx_url_list = get_data_from_procedures_json(procedures_json, dec_url_list, anx_url_list)
+    
     for row in procedures_json:
         if row["files_dec"] is None and row["files_anx"] is None:
             continue
@@ -110,7 +110,7 @@ def scrape_medicine_page(url: str):  # -> (list[str], list[str], list[str]):
     return dec_url_list, anx_url_list, ema_url_list
 
 
-# The medicine_json object from the EC contains most of the important information that needs to be scraped
+# The medicine_json object from the EC contains some imortant information that needs to be scraped
 # It loops through the JSON object and finds all the attributes, so that they can be used and stored
 def get_data_from_medicine_json(medicine_json, ema_url_list: list[str]):
     for row in medicine_json:
@@ -139,5 +139,29 @@ def get_data_from_medicine_json(medicine_json, ema_url_list: list[str]):
                     ema_url_list.append(json_obj["url"])
 
     return atc_code, active_substance, eu_pnumber, eu_aut_status, eu_brand_name_current, eu_mah_current, ema_url_list
+
+# TODO: Change this function so that it not only gets the dec and anx urls, but other data as well
+def get_data_from_procedures_json(procedures_json, dec_url_list: list[str], anx_url_list: list[str]):
+
+    # for each row in the json file of each medicine, get the urls for the pdfs of the decision and annexes.
+    for row in procedures_json:
+        if row["files_dec"] is None and row["files_anx"] is None:
+            continue
+
+        # Parse the date, formatted as %Y-%m-%d, which looks like 1970-01-01
+        decision_date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
+        decision_id = row["id"]
+
+        if row["files_dec"]:
+            pdf_url_dec = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""
+            # add url to decision pdf to list
+            dec_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
+
+        if row["files_anx"]:
+            pdf_url_anx = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""
+            # add url to annexes pdf to list
+            anx_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
+
+    return dec_url_list, anx_url_list    
 
 scrape_medicine_page("h412")
