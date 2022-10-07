@@ -9,7 +9,7 @@ import EPARparse
 
 # PDFr.parseFolder(ECparse, 'dec_human')
 # PDFr.parseFolder(ECparse, 'dec_orphan')
-PDFr.parseFolder(EPARparse, 'epars')
+PDFr.parse_folder(EPARparse, 'epars')
 
 # To add: Xiao yi SMPC Parser
 # To add: Elio's OMAR Parser

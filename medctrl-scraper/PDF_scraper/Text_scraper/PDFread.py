@@ -1,24 +1,19 @@
 # importing all the required modules
-import json
 import fitz  # part of pip install PyMuPDF
 import os  # to get all file names in folder
+import json
 # external files for debug
 # import ECparse
-# import EPARparse
-import json
-
-import joblib
-from joblib import delayed, Parallel
-
-# external files
-import ECparse
 import EPARparse
 
+from joblib import delayed, Parallel
 
 # Asks for the class of the PDF that you want to parse [IE 'ECparse']
-def parseTestFile(filetype):
+
+
+def parse_test_file(filetype):
     # filename = 'decisions/h081_dec_140667.pdf'
-    filename = 'epars/h1009_epar.pdf'
+    filename = 'epars/h1578_epar.pdf'
 
     pdf = fitz.open(filename)  # open document
 
@@ -37,7 +32,7 @@ def parseTestFile(filetype):
     # print(pdf_format)
 
 
-def parseFolder(filetype, folder_name):
+def parse_folder(filetype, folder_name):
     # PARSE WHOLE Folder
 
     # debug to indicate progress
@@ -121,4 +116,4 @@ def scrape_pdf(filename, counter, filetype, folder_name, pdfCount):
         else:
             return filedata
 
-parseTestFile(EPARparse)
+parse_test_file(EPARparse)

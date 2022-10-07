@@ -12,6 +12,7 @@ def remove_all_substring(substring: str, text: str):
 
     return text
 
+
 def flags_decomposer(flags):
     """Make font flags human readable."""
     l = []
@@ -34,21 +35,22 @@ def flags_decomposer(flags):
 
 def convert_pdf_to_xml(source_filepath: str, output_filepath: str, is_epar: bool):
     document = fitz.open(source_filepath)
-    text_format_lower = ph.getTextFormat(document, True)
+    text_format_lower = ph.get_text_format(document, True)
     clean_lines = cleanup_lines(text_format_lower, is_epar)
     paragraphs = get_marked_paragraphs(clean_lines)
     # paragraphs = preprocess_paragraphs(paragraphs)
     print_xml(paragraphs, output_filepath)
 
+
 def cleanup_lines(text_format_lower: str, is_epar: bool):
-    # skip inital pages until table of content
+    # skip initial pages until table of content
     if is_epar:
         while "table of content" not in text_format_lower[0][0]:
             del text_format_lower[0]
-        
+
             if len(text_format_lower) == 0:
                 break
-    
+
     lines = []
     index = 0
     while index < len(text_format_lower) - 3:
@@ -57,7 +59,8 @@ def cleanup_lines(text_format_lower: str, is_epar: bool):
         font_size = line[1]
         font_type = line[2]
         font_type_header_text = text_format_lower[index + 2][2]
-        is_chapter_number = all(character.isnumeric() or character == "." for character in text.strip()) and "Bold" in font_type and "Bold" in font_type_header_text
+        is_chapter_number = all(character.isnumeric() or character == "." for character in
+                                text.strip()) and "Bold" in font_type and "Bold" in font_type_header_text
 
         if is_chapter_number:
             chapter_number = text.strip()
@@ -75,6 +78,7 @@ def cleanup_lines(text_format_lower: str, is_epar: bool):
         print(line)
 
     return lines
+
 
 def get_marked_paragraphs(lines: str):
     # concatinate list of lines into list of paragraphs and mark bolded lines
@@ -96,6 +100,7 @@ def get_marked_paragraphs(lines: str):
 
     return paragraphs
 
+
 def insert_splits(paragraphs: list[str]):
     # group header with paragraphs for each section and mark splitting points per xml element
     # index = 1
@@ -114,7 +119,6 @@ def insert_splits(paragraphs: list[str]):
 
     #     else:
     #         index += 1
-
 
     return paragraphs
 

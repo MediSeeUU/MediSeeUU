@@ -1,6 +1,6 @@
 # pdf helper functions
 
-# Returns the textsize and font of every line in a pdf.
+# Returns the text size and font of every line in a pdf.
 
 def append_text(text, size, font, results, lower):
     if lower:
@@ -10,52 +10,55 @@ def append_text(text, size, font, results, lower):
 
 
 # Combine text with same size and font, combine headers, and add them to results
-def get_text(spans, results, lower):
+def get_text(blocks, results, lower):
     old_text = old_font = ''
     old_size = 0
-    for i, span in enumerate(spans):
-        data = span['spans']
-        for lines in data:
-            text = lines['text']
-            size = lines['size']
-            font = lines['font']
-            # Combine text that has the same size and font
-            if round(old_size) == round(size) and old_font == font:
-                old_text += text
-                old_size = size
-                old_font = font
-            # Combine headers
-            elif round(old_size) == round(size) and 'Bold' in old_font and 'Bold' in font:
-                old_text += text
-                old_size = size
-                old_font = font
-            # Old text becomes new text to be added in a next iteration
-            elif old_text == '':
-                old_text = text
-                old_size = size
-                old_font = font
-            # Text is different format, add old_text to results and replace it with new text
-            else:
-                append_text(old_text, old_size, old_font, results, lower)
-                old_text = text
-                old_size = size
-                old_font = font
+    for block in blocks:
+        if "lines" in block.keys():
+            spans = block['lines']
+            for span in spans:
+                data = span['spans']
+                for lines in data:
+                    text = lines['text']
+                    size = lines['size']
+                    font = lines['font']
+                    # Combine text that has the same size and font
+                    if round(old_size) == round(size) and old_font == font:
+                        old_text += text
+                        old_size = size
+                        old_font = font
+                    # Combine headers
+                    elif round(old_size) == round(size) and 'Bold' in old_font and 'Bold' in font:
+                        old_text += text
+                        old_size = size
+                        old_font = font
+                    # Old text becomes new text to be added in a next iteration
+                    elif old_text == '':
+                        old_text = text
+                        old_size = size
+                        old_font = font
+                    # Text is different format, add old_text to results and replace it with new text
+                    else:
+                        append_text(old_text, old_size, old_font, results, lower)
+                        old_text = text
+                        old_size = size
+                        old_font = font
     append_text(old_text, old_size, old_font, results, lower)
 
 
-def getTextFormat(pdf, lower=False):
+# returns formatted text from PDF document, optionally lowered
+def get_text_format(pdf, lower=False):
     results = []
     for page in pdf:
-        dict = page.get_text("dict")
-        blocks = dict["blocks"]
-        for block in blocks:
-            if "lines" in block.keys():
-                spans = block['lines']
-                get_text(spans, results, lower)
+        dict_ = page.get_text("dict")
+        blocks = dict_["blocks"]
+        get_text(blocks, results, lower)
     return results
 
 
-def GetSection(pdf, start, stop, fontSize, fonts):
+# gets a section from a PDF document with a start and end string, optionally
+# constrained by certain fonts or font sizes
+def get_section(pdf, start, stop, fontSize, fonts):
     section = findBetween(start, stop, pdf)
     clean = filterFont(fontSize, fonts, section)
 
@@ -67,6 +70,8 @@ def GetSection(pdf, start, stop, fontSize, fonts):
     return text
 
 
+# filters text on certain fonts or font types
+# returns all text when empty font lists are given
 def filterFont(fontSize, fontList, section):
     res = []
     for (txt, size, font) in section:
@@ -85,8 +90,8 @@ def findBetween(start, stop, pdf):
     results = []
     save = False
     for page in pdf:
-        dict = page.get_text("dict")
-        blocks = dict["blocks"]
+        dict_ = page.get_text("dict_")
+        blocks = dict_["blocks"]
         for block in blocks:
             if "lines" in block.keys():
                 spans = block['lines']
@@ -105,12 +110,12 @@ def findBetween(start, stop, pdf):
 # returns all lines from and including start till stop for a given format
 def findBetweenFormat(start, stop, form, inclusive):
     results = []
-    save = False
+    save = save_last_true = False
     index = 0
     for (txt, size, font) in form:
         if start in txt or start == '':
             save = True
-        if stop in txt and save:
+        if stop in txt and save_last_true:
             if inclusive:
                 # includes stop as tail, remainder is without stop
                 results.append((txt, size, font))
@@ -118,14 +123,42 @@ def findBetweenFormat(start, stop, form, inclusive):
                 index -= 1  # returns stop as header for remainder
             return results, form[index + 1:]
         if save:
+            save_last_true = True
+        if save_last_true:
             results.append((txt, size, font))
         index += 1
     # stop not found
     return results, []
 
 
+# returns all lines from and including start till stop for a given format
+# with a minimum_size for both start and stop values
+def findBetweenFormatSize(start, stop, form, inclusive, minimum_size):
+    results = []
+    save = save_last_true = False
+    index = 0
+    for (txt, size, font) in form:
+        if start in txt and size > minimum_size or start == '':
+            save = True
+        if stop in txt and save_last_true and size > minimum_size:
+            if inclusive:
+                # includes stop as tail, remainder is without stop
+                results.append((txt, size, font))
+            else:
+                index -= 1  # returns stop as header for remainder
+            return results, form[index + 1:]
+        if save:
+            save_last_true = True
+        if save_last_true:
+            results.append((txt, size, font))
+        index += 1
+    # stop not found
+    return results, []
+
+
+# returns all lines from and including start till the end of the format
 def findFromFormat(start, form, inclusive):
-    findBetweenFormat(start, 'something_that_will_never_be_found', form, inclusive)
+    return findBetweenFormat(start, 'something_that_will_never_be_found', form, inclusive)
 
 
 # counts for every text CONTAINING the search string

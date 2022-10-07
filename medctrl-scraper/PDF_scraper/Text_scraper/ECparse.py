@@ -14,7 +14,7 @@ def getAllTest(filename, table, pdf_format):
 
 
 def getAll(filedata, table, pdf_format):
-    #filedata['status'] = table_checkValid(table)
+    # filedata['status'] = table_checkValid(table)
     filedata['DecisionDate'] = table_getDate(table)
     filedata['BrandName'] = table_getPN(table)
     filedata['ActiveSubstance'] = table_getAS2(table)
@@ -48,7 +48,7 @@ def getTable(pdf):
              'decision': dict.fromkeys(['dec_text']),
              'remaining': []}
 
-    pdf_format = PDFhelper.getTextFormat(pdf)
+    pdf_format = PDFhelper.get_text_format(pdf)
 
     # intro
     (content, rem) = PDFhelper.findBetweenFormat('DECISION', 'AUTHENTIC', pdf_format, True)
@@ -82,10 +82,9 @@ def getTable(pdf):
     table['decision']['dec_text'] = PDFhelper.filterFont([], [], content)
 
     article_count = PDFhelper.countStr('Article', 'TimesNewRoman,Italic', rem)
-    #older docs use different font
+    # older docs use different font
     if article_count == 0:
         article_count = PDFhelper.countStr('Article', 'TimesNewRomanPS-ItalicMT', rem)
-        
 
     for arc in range(article_count):
         arc_num = arc + 1
@@ -107,6 +106,7 @@ def getTable(pdf):
 def unreadable(table):
     return not table['intro']['front_page']
 
+
 # def table_checkValid(table):
 #     for txt in table['decision']['dec_text']:
 #         if 'HAS ADOPTED THIS DECISION' in txt:
@@ -114,18 +114,18 @@ def unreadable(table):
 #     return 'Not valid'
 
 def get_name_section(txt):
-    #to make sure no commas from pdf format itself, split at date.
-    #try since this only works on default english documents.
-    
+    # to make sure no commas from pdf format itself, split at date.
+    # try since this only works on default english documents.
+
     try:
         txt = txt.split('of ')
-        txt = ' '.join(txt[1:]) #to remove part before date
+        txt = ' '.join(txt[1:])  # to remove part before date
     except:
         pass
-    
+
     section = ''
-    
-    #try multiple quotation combinations
+
+    # try multiple quotation combinations
     try:
         section = re.search('"([^"]*)"', txt)[0]
         section = section.replace('"', '')
@@ -146,20 +146,21 @@ def get_name_section(txt):
                     section = section.replace('\'', '')
                 except:
                     pass
-                
+
     if section == None:
         section = ''
     return section
 
+
 def table_getPN(table):
     section = table['intro']['front_page']
-    
+
     txt = ''
     for line in section:
         txt += line
 
     section = get_name_section(txt)
-    
+
     if section != '':
         # takes everything before split operator
         if ' - ' in section:
@@ -170,10 +171,10 @@ def table_getPN(table):
             res = section.split(' – ')[:-1]
             res = ''.join(res)
             return res.strip()
-        #no active substace, so return whole name
+        # no active substace, so return whole name
         return section
-    
-    #for orphan structure
+
+    # for orphan structure
     try:
         res = txt.split('relating to the designation of medicinal product')[1]
         res = res.split('as an orphan medicinal')[0]
@@ -184,18 +185,19 @@ def table_getPN(table):
         return res
     except:
         pass
-    
+
     return 'Product name Not Found'
+
 
 def table_getAS2(table):
     section = table['intro']['front_page']
-    
+
     txt = ''
     for line in section:
         txt += line
-    
+
     section = get_name_section(txt)
-    
+
     try:
         if section != '':
             # takes last element after split operator
@@ -206,13 +208,10 @@ def table_getAS2(table):
     except:
         pass
     return 'Active Substance Not Found'
-    
-    
 
-    
-    
+
 def table_getDecisionType(table):
-    txt = get_section_text(table,'body',True)
+    txt = get_section_text(table, 'body', True)
     excep = re.search(r"article\s+14\W8", txt.lower())  # exceptional: Article 14(8) or alt. (e.g. Article 14.8)
 
     # conditional
@@ -224,44 +223,45 @@ def table_getDecisionType(table):
         return "exceptional"
     else:
         return "CMA Not Found"
-    
+
+
 def table_getMAH(table):
     section = table['body']['main_text']
-    
+
     mahlines = ''
     found = False
     for line in section:
-        #finds first line
-        identifiers = ['the notification submitted','the application submitted','the application(s) submitted']
+        # finds first line
+        identifiers = ['the notification submitted', 'the application submitted', 'the application(s) submitted']
         if any(iden in line.lower() for iden in identifiers):
             mahlines += line
             found = True
             continue
-        #gets second line    
+        # gets second line
         if found:
             mahlines += line
             break
     if mahlines == '':
         return 'MAH Not Found'
-    
-    #format found lines
+
+    # format found lines
     else:
-        #gets part after submitted by line
-        mah = mahlines.split(" by ",1)[1]
-        #remove part after MAH
-        mah = mah.split(" on ",1)[0]
-        #different format
-        mah = mah.split(" under ",1)[0]
-        
+        # gets part after submitted by line
+        mah = mahlines.split(" by ", 1)[1]
+        # remove part after MAH
+        mah = mah.split(" on ", 1)[0]
+        # different format
+        mah = mah.split(" under ", 1)[0]
+
         mah = mah.split('  (the marketing authorisation holder)')[0]
-        #remove comma if there was comma before on
+        # remove comma if there was comma before on
         if mah[-1] == ',':
             mah = mah[:-1]
         return mah.strip()
 
 
 def table_getOrphanDesignation(table):
-    txt = get_section_text(table,'decision',True)
+    txt = get_section_text(table, 'decision', True)
     if 'orphan medicinal product' in txt.lower() and 'has adopted this decision' in txt.lower():
         return 'adopted'
     return 'appointed'
@@ -294,10 +294,11 @@ def table_getATMP(_, pdf_format):
 
 # new active substance bool
 def table_getNAS(table):
-    txt = get_section_text(table,'body',False)
+    txt = get_section_text(table, 'body', False)
     if "committee for medicinal products for human use" in txt.lower() and "a new active substance" in txt.lower():
         return True
     return False
+
 
 def get_section_text(table, section, inclusive):
     iterPoints = iter(table[section])
@@ -309,9 +310,7 @@ def get_section_text(table, section, inclusive):
             temp += txt
     return temp
 
-
-
-#OLD NAME AND ACTIVE SUBSTANCE FUNCTIONS
+# OLD NAME AND ACTIVE SUBSTANCE FUNCTIONS
 # def table_getName(table):
 #     section = table['intro']['front_page']
 
@@ -447,6 +446,3 @@ def get_section_text(table, section, inclusive):
 #     #     return section
 
 #     return "Active Substance Not Found"
-
-
-
