@@ -119,13 +119,13 @@ def get_data_from_medicine_json(medicine_json, ema_url_list: list[str]):
                 json_obj = (row["meta"])
                 eu_aut_status = json_obj["status_name"]
                 eu_brand_name_current = row["value"]
-                print(eu_brand_name_current)
             case "eu_num":
                 eu_pnumber = row["value"]
-                pass
             case "inn":
                 active_substance = row["value"]
             case "indication":
+                # If at any point in the future, information about the indication needs to be stored,
+                # you can do that by adding code in this section
                 pass
             case "mah":
                 eu_mah_current = row["value"]
