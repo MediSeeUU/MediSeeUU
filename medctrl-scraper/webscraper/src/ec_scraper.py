@@ -41,7 +41,7 @@ def scrape_medicines_list(url: str) -> list[str]:
     return url_list
 
 
-def scrape_medicine_page(url: str) -> (list[str], list[str], list[str]):
+def scrape_medicine_page(url: str): #-> (list[str], list[str], list[str]):
     html_active = requests.get(f"https://ec.europa.eu/health/documents/community-register/html/{url}.htm")
 
     # If an http error occurred, throw error
@@ -85,7 +85,31 @@ def scrape_medicine_page(url: str) -> (list[str], list[str], list[str]):
     # In the Json object from the EC, the URLs are saved in the last item in the array.
     # We still go through all lines to insure we get the right item.
     # The meta-object contains the url we are interested in.
+    # TODO: find ATC codes
+
+    atc_code = ""
+
     for row in medicine_json:
+        match row["type"]:
+            case "name":
+                pass
+            case "eu_num":
+                pass
+            case "inn":
+                pass
+            case "indication":
+                pass
+            case "mah":
+                pass
+            case "atc":
+                for json_obj in row["meta"]:
+                    json_atc_name = json_obj[4]
+                    print(json_atc_name["code"])
+            case "ema_links":
+                for json_obj in row["meta"]:
+                    ema_url_list.append(json_obj["url"])
+            
+
         if row["type"] == "ema_links":
             for json_obj in row["meta"]:
                 ema_url_list.append(json_obj["url"])
@@ -113,3 +137,6 @@ def scrape_medicine_page(url: str) -> (list[str], list[str], list[str]):
     print(f"Finished with {url}")
     # return the urls per medicine
     return dec_url_list, anx_url_list, ema_url_list
+
+# scrape_medicine_page("h412")
+
