@@ -34,7 +34,7 @@ def flags_decomposer(flags):
 
 def convert_pdf_to_xml(source_filepath: str, output_filepath: str, is_epar: bool):
     document = fitz.open(source_filepath)
-    text_format_lower = ph.getTextFormatLower(document)
+    text_format_lower = ph.getTextFormat(document, True)
     clean_lines = cleanup_lines(text_format_lower, is_epar)
     paragraphs = get_marked_paragraphs(clean_lines)
     # paragraphs = preprocess_paragraphs(paragraphs)
