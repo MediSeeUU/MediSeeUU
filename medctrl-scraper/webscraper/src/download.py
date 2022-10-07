@@ -8,33 +8,35 @@ import os
 
 
 # individual pdf download function
-def download_pdf_from_url(med_id: str, url: str, pdf_type: str):
+def download_pdf_from_url(medicine: str, url: str, pdf_type: str):
+    eu_n, med_id = medicine
     downloaded_file = requests.get(url)
     dec_id = re.findall(rf"(?<={pdf_type}_)\d+", url)[0]
     if pdf_type == "dec":
-        with open(f"../data/authorisation_decisions/{med_id}_dec_{dec_id}.pdf", "wb") as file:
+        with open(f"../data/authorisation_decisions/{eu_n}_dec_{dec_id}.pdf", "wb") as file:
             file.write(downloaded_file.content)
             # print(f"  Downloaded {dec_id} decision")
     elif pdf_type == "anx":
-        with open(f"../data/annexes/{med_id}_anx_{dec_id}.pdf", "wb") as file:
+        with open(f"../data/annexes/{eu_n}_anx_{dec_id}.pdf", "wb") as file:
             file.write(downloaded_file.content)
             # print(f"  Downloaded {dec_id} annex")
 
 
 def download_epar_from_url(med_id: str, url:str):
+    eu_n, medicine = med_id
     downloaded_file = requests.get(url)
     epar_type = re.findall(r"(?<=epar-)\w+", url)[0]
     if epar_type == "public":
-        with open(f"../data/epars/{med_id}_epar.pdf", "wb") as file:
-            print(f"download public assessment report from {med_id}")
+        with open(f"../data/epars/{eu_n}_epar.pdf", "wb") as file:
+            print(f"download public assessment report from {eu_n}")
             file.write(downloaded_file.content)
     elif epar_type == "scientific":
-        with open(f"../data/epars/{med_id}_scientific_discussion.pdf", "wb") as file:
-            print(f"download scientific discussion from {med_id}")
+        with open(f"../data/epars/{eu_n}_scientific_discussion.pdf", "wb") as file:
+            print(f"download scientific discussion from {eu_n}")
             file.write(downloaded_file.content)
     elif epar_type == "procedural":
-        with open(f"../data/epars/{med_id}_procedural_steps.pdf", "wb") as file:
-            print(f"download procedural steps from {med_id}")
+        with open(f"../data/epars/{eu_n}_procedural_steps.pdf", "wb") as file:
+            print(f"download procedural steps from {eu_n}")
             file.write(downloaded_file.content)
 
 
@@ -59,9 +61,9 @@ def download_pdfs(med_id, pdf_type, type_dict):
 
 # Function for reading the CSV contents back into dictionaries that can be used for downloading.
 def read_csv_files():
-    dec = pd.read_csv('../data/CSV/decision.csv', header=None, index_col=0).squeeze().to_dict()
-    anx = pd.read_csv('../data/CSV/annexes.csv', header=None, index_col=0).squeeze().to_dict()
-    epar = pd.read_csv('../data/CSV/epar.csv', header=None, index_col=0).squeeze().to_dict()
+    dec = pd.read_csv('../data/CSV/decision.csv', header=None, index_col=(0, 1)).squeeze().to_dict()
+    anx = pd.read_csv('../data/CSV/annexes.csv', header=None, index_col=(0, 1)).squeeze().to_dict()
+    epar = pd.read_csv('../data/CSV/epar.csv', header=None, index_col=(0, 1)).squeeze().to_dict()
     return dec, anx, epar
 
 

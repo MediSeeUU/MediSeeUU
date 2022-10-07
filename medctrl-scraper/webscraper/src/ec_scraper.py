@@ -36,7 +36,8 @@ def scrape_medicines_list(url: str) -> list[str]:
     # The URL on the EC website uses the pre and id
     for row in parsed_json:
         string_url = row['eu_num']['pre'] + row['eu_num']['id']
-        url_list.append(string_url)
+        string_eu_n = (row['eu_num']['display']).replace("/", "-")
+        url_list.append((string_url, string_eu_n))
 
     return url_list
 
