@@ -1,12 +1,11 @@
 from unittest import TestCase, mock
-from requests.exceptions import Timeout
-from .. import ec_scraper
-
+import sys
 import regex as re
+from ...src import ec_scraper
 
 
 class TestEcScraper(TestCase):
-    def test_scrape_medicine_urls(self):
+    def test_scrape_medicine_list(self):
         url_list = ec_scraper.scrape_medicines_list("https://ec.europa.eu/health/documents/community-register/html/reg_hum_act.htm")
         self.assertIsNotNone(url_list, msg="url list is empty")
         first_url = url_list[0]
@@ -17,7 +16,7 @@ class TestEcScraper(TestCase):
         self.assertEqual(check, last_url, msg="last url not in correct format")
 
     # NOTE: only tests one case.
-    def test_get_urls_for_pdf_and_ema(self):
+    def test_scrape_medicine_page(self):
         url = 'h273'
         ema = ['http://www.ema.europa.eu/ema/index.jsp?curl=pages/medicines/human/medicines/000521/human_med_000895'
                '.jsp&murl=menus/medicines/medicines.jsp&mid=WC0b01ac058001d124',
@@ -30,13 +29,6 @@ class TestEcScraper(TestCase):
         self.assertEqual(decision, dec_result, "incorrect decision result")
         self.assertEqual(annex, anx_result, "incorrect annex result")
 
-    # Does not handle exceptions (yet)
-    def test_download_pdf_from_url(self):
-        url = 'https://ec.europa.eu/health/documents/community-register/2004/200404287648/anx_7648_en.pdf'
-        with mock.patch('src.ec_scraper.requests') as mock_requests:
-            mock_requests.get.side_effect = Timeout
-            with self.assertRaises(Timeout):
-                ec_scraper.download_pdf_from_url('h273', url, 'anx')
-                mock_requests.get.assert_called_once()
+
 
 
