@@ -111,4 +111,4 @@ def table_getprime(table):
     #         return re.search(r'article [^ ]+', txt)[0]
     #     elif 'legal basis for' in txt:
     #         found = True
-    # return ''
+    return ''
