@@ -38,6 +38,8 @@ def getTable(pdf):
     if font > 10.5:
         table['intro']['front_page'] = PDFhelper.filterFont([], [], content)
 
+    print(pdf_format)
+
     # filter table of contents
     (content_table, rem) = PDFhelper.findBetweenFormat('table of contents', 'scientific discussion', rem, True)
     if not content_table:

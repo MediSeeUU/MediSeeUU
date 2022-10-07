@@ -2,15 +2,45 @@
 
 # Returns the textsize and font of every line in a pdf.
 
-def get_text(data, results, lower):
-    for lines in data:
-        text = lines['text']
-        size = lines['size']
-        font = lines['font']
-        if lower:
-            results.append(text.lower(), size, font)
-        else:
-            results.append(text, size, font)
+def append_text(text, size, font, results, lower):
+    if lower:
+        results.append((text.lower(), size, font))
+    else:
+        results.append((text, size, font))
+
+
+# Combine text with same size and font, combine headers, and add them to results
+def get_text(spans, results, lower):
+    old_text = old_font = ''
+    old_size = 0
+    for i, span in enumerate(spans):
+        data = span['spans']
+        for lines in data:
+            text = lines['text']
+            size = lines['size']
+            font = lines['font']
+            # Combine text that has the same size and font
+            if round(old_size) == round(size) and old_font == font:
+                old_text += text
+                old_size = size
+                old_font = font
+            # Combine headers
+            elif round(old_size) == round(size) and 'Bold' in old_font and 'Bold' in font:
+                old_text += text
+                old_size = size
+                old_font = font
+            # Old text becomes new text to be added in a next iteration
+            elif old_text == '':
+                old_text = text
+                old_size = size
+                old_font = font
+            # Text is different format, add old_text to results and replace it with new text
+            else:
+                append_text(old_text, old_size, old_font, results, lower)
+                old_text = text
+                old_size = size
+                old_font = font
+    append_text(old_text, old_size, old_font, results, lower)
 
 
 def getTextFormat(pdf, lower=False):
@@ -21,9 +51,7 @@ def getTextFormat(pdf, lower=False):
         for block in blocks:
             if "lines" in block.keys():
                 spans = block['lines']
-                for span in spans:
-                    data = span['spans']
-                    get_text(data, results, lower)
+                get_text(spans, results, lower)
     return results
 
 

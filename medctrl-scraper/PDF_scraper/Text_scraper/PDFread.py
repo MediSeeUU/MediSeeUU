@@ -14,14 +14,11 @@ from joblib import delayed, Parallel
 import ECparse
 import EPARparse
 
-def writeData(filedata):
-    all_data.append(filedata)
-
 
 # Asks for the class of the PDF that you want to parse [IE 'ECparse']
 def parseTestFile(filetype):
     # filename = 'decisions/h081_dec_140667.pdf'
-    filename = 'dec_human/h008_dec_121029.pdf'
+    filename = 'epars/h1009_epar.pdf'
 
     pdf = fitz.open(filename)  # open document
 
@@ -35,8 +32,8 @@ def parseTestFile(filetype):
     res = filetype.getAllTest(filename, table, pdf_format)
 
     # print found attributes and formatted table
-    # print(res)
-    print(json.dumps(table, indent=3))
+    print(res)
+    # print(json.dumps(table, indent=3))
     # print(pdf_format)
 
 
@@ -123,3 +120,5 @@ def scrape_pdf(filename, counter, filetype, folder_name, pdfCount):
         # other parse error (uses default 'Failure unknown reason')
         else:
             return filedata
+
+parseTestFile(EPARparse)
