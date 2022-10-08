@@ -59,29 +59,21 @@ def scrape_medicine_page(url: str):  # -> (list[str], list[str], list[str]):
     atc_code, active_substance, eu_pnumber, eu_aut_status, eu_brand_name_current, eu_mah_current, ema_url_list = get_data_from_medicine_json(medicine_json, ema_url_list)
     dec_url_list, anx_url_list = get_data_from_procedures_json(procedures_json, dec_url_list, anx_url_list)
 
-    for row in procedures_json:
-        if row["files_dec"] is None and row["files_anx"] is None:
-            continue
-
-        # Parse the date, formatted as %Y-%m-%d, which looks like 1970-01-01
-        decision_date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
-        decision_id = row["id"]
-
-        if row["files_dec"]:
-            pdf_url_dec = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""
-            # add url to decision pdf to list
-            dec_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
-
-        if row["files_anx"]:
-            pdf_url_anx = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""
-            # add url to annexes pdf to list
-            anx_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
+    # prints the retrieved data
+    # can be removed in the final product
+    print(atc_code)
+    print(active_substance)
+    print(eu_pnumber)
+    print(eu_aut_status)
+    print(eu_brand_name_current)
+    print(eu_mah_current)
 
     # TODO: Proper logging here
     print(f"Finished with {url}")
     # return the urls per medicine
     return dec_url_list, anx_url_list, ema_url_list
 
+# Fetches the html from the EC website for a certain medicine
 def get_ec_html(url:str):
     html_active = requests.get(f"https://ec.europa.eu/health/documents/community-register/html/{url}.htm")
 
@@ -91,6 +83,7 @@ def get_ec_html(url:str):
 
     return html_active
 
+# Gets the JSON object that contain all the data, links to the EMA website and links to the pdfs
 def get_ec_json_objects(html_active):
     soup = bs4.BeautifulSoup(html_active.text, "html.parser")
 
@@ -123,6 +116,16 @@ def get_ec_json_objects(html_active):
 # The medicine_json object from the EC contains some important information that needs to be scraped
 # It loops through the JSON object and finds all the attributes, so that they can be used and stored
 def get_data_from_medicine_json(medicine_json, ema_url_list: list[str]):
+    # set some predefined values. Whenever this function doesn't find the data
+    # it makes sure it doesn't cause an error
+    # TODO: propper error handling
+    eu_aut_status = "null"
+    eu_brand_name_current = "null"
+    eu_pnumber = "null"
+    active_substance = "null"
+    eu_mah_current = "null"
+    atc_code = "null"
+
     for row in medicine_json:
         match row["type"]:
             case "name":
@@ -139,7 +142,6 @@ def get_data_from_medicine_json(medicine_json, ema_url_list: list[str]):
                 pass
             case "mah":
                 eu_mah_current = row["value"]
-                print(eu_mah_current)
             case "atc":
                 for json_obj in row["meta"]:
                     json_atc_name = json_obj[4]
@@ -175,4 +177,5 @@ def get_data_from_procedures_json(procedures_json, dec_url_list: list[str], anx_
 
     return dec_url_list, anx_url_list
 
-scrape_medicine_page("h412")
+# uncomment this when you want to test if data is retrieved for a certain medicine
+#scrape_medicine_page("h145")
