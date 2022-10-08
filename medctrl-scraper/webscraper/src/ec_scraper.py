@@ -42,38 +42,11 @@ def scrape_medicines_list(url: str) -> list[str]:
 
 
 def scrape_medicine_page(url: str):  # -> (list[str], list[str], list[str]):
-    html_active = requests.get(f"https://ec.europa.eu/health/documents/community-register/html/{url}.htm")
 
-    # If an http error occurred, throw error
-    # TODO: Graceful handling
-    html_active.raise_for_status()
-
-    soup = bs4.BeautifulSoup(html_active.text, "html.parser")
-
-    # The data we are looking for is contained in a script tag. A JSON object containing called 'dataSet_proc'
-    # We find all script tags, and isolate the one that contains the data we want.
-    # We use regex, because matching on a string directly will only return *exact* matches.
-    script_tag = soup.find("script", string=re.compile(r"dataSet_proc"))
-
-    # NOTE:
-    # The website for specific medicines contains two JSON objects in the script tag.
-    # "dataSet_product_information" and "dataSet_proc"
-    # In this code, we are interested in the dataSet_proc.
-    # However, it is possible that we are interested in the other JSON object in the future.
-
-    # Regex "var .+?\K\[.+?\](?=;)" checks if
-    #   the data is lead by 'var ', and 
-    #   matches '[', all items in between, and ']'
-    #   and if it is closed with ;
-    #   which returns the values of the two JSON objects "dataSet_product_information" and "dataSet_proc"
-    plaintext_json = re.findall(r"var .+?\K\[.*?\](?=;)", script_tag.string, re.DOTALL)
-    for match in plaintext_json:
-        match.replace("\r", "").replace("\n", "")
-
-    # get the url linking to the EMA website, where the EPAR + OMAR files can be found. Sometimes there are two URLS
-    # to the EMA website.
-    medicine_json = json.loads(plaintext_json[0])
-    procedures_json = json.loads(plaintext_json[1])
+    # Retrieves the html from the European Commission product page
+    html_active = get_ec_html(url)
+    # Looks for the necessary JSON objects that contain most of the important information
+    medicine_json, procedures_json = get_ec_json_objects(html_active)
 
     print(f"Starting with {url}")
 
@@ -85,7 +58,7 @@ def scrape_medicine_page(url: str):  # -> (list[str], list[str], list[str]):
     # Gets all the necessary information from the medicine_json and procedures_json objects
     atc_code, active_substance, eu_pnumber, eu_aut_status, eu_brand_name_current, eu_mah_current, ema_url_list = get_data_from_medicine_json(medicine_json, ema_url_list)
     dec_url_list, anx_url_list = get_data_from_procedures_json(procedures_json, dec_url_list, anx_url_list)
-    
+
     for row in procedures_json:
         if row["files_dec"] is None and row["files_anx"] is None:
             continue
@@ -109,8 +82,45 @@ def scrape_medicine_page(url: str):  # -> (list[str], list[str], list[str]):
     # return the urls per medicine
     return dec_url_list, anx_url_list, ema_url_list
 
+def get_ec_html(url:str):
+    html_active = requests.get(f"https://ec.europa.eu/health/documents/community-register/html/{url}.htm")
 
-# The medicine_json object from the EC contains some imortant information that needs to be scraped
+    # If an http error occurred, throw error
+    # TODO: Graceful handling
+    html_active.raise_for_status()
+
+    return html_active
+
+def get_ec_json_objects(html_active):
+    soup = bs4.BeautifulSoup(html_active.text, "html.parser")
+
+    # The data we are looking for is contained in a script tag. A JSON object containing called 'dataSet_proc'
+    # We find all script tags, and isolate the one that contains the data we want.
+    # We use regex, because matching on a string directly will only return *exact* matches.
+    script_tag = soup.find("script", string=re.compile(r"dataSet_proc"))
+
+    # NOTE:
+    # The website for specific medicines contains two JSON objects in the script tag.
+    # "dataSet_product_information" and "dataSet_proc"
+    # In this code, we are interested in the dataSet_proc.
+    # However, it is possible that we are interested in the other JSON object in the future.
+
+    # Regex "var .+?\K\[.+?\](?=;)" checks if
+    #   the data is lead by 'var ', and
+    #   matches '[', all items in between, and ']'
+    #   and if it is closed with ;
+    #   which returns the values of the two JSON objects "dataSet_product_information" and "dataSet_proc"
+    plaintext_json = re.findall(r"var .+?\K\[.*?\](?=;)", script_tag.string, re.DOTALL)
+    for match in plaintext_json:
+        match.replace("\r", "").replace("\n", "")
+
+    # get the url linking to the EMA website, where the EPAR + OMAR files can be found. Sometimes there are two URLS
+    # to the EMA website.
+    medicine_json = json.loads(plaintext_json[0])
+    procedures_json = json.loads(plaintext_json[1])
+    return medicine_json, procedures_json
+
+# The medicine_json object from the EC contains some important information that needs to be scraped
 # It loops through the JSON object and finds all the attributes, so that they can be used and stored
 def get_data_from_medicine_json(medicine_json, ema_url_list: list[str]):
     for row in medicine_json:
@@ -134,6 +144,7 @@ def get_data_from_medicine_json(medicine_json, ema_url_list: list[str]):
                 for json_obj in row["meta"]:
                     json_atc_name = json_obj[4]
                     atc_code = json_atc_name["code"]
+
             case "ema_links":
                 for json_obj in row["meta"]:
                     ema_url_list.append(json_obj["url"])
@@ -162,6 +173,6 @@ def get_data_from_procedures_json(procedures_json, dec_url_list: list[str], anx_
             # add url to annexes pdf to list
             anx_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
 
-    return dec_url_list, anx_url_list    
+    return dec_url_list, anx_url_list
 
 scrape_medicine_page("h412")
