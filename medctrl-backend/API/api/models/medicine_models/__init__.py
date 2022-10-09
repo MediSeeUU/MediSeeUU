@@ -9,4 +9,5 @@ from .historymah import Historymah
 from .historyorphan import Historyorphan
 from .historyprime import Historyprime
 from .medicine import Medicine
+from .medisee import Medisee
 from .procedure import Procedure
