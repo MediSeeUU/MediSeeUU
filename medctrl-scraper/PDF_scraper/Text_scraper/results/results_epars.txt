@@ -13,7 +13,7 @@ h1010_epar.pdf@18 august 2014@9 april 2015@article 10(1)@Parsed
 h1011_epar.pdf@9 july 2014@13 april 2015@article 10(1)@Parsed
 h1012_epar.pdf@9 july 2014@26 may 2015@article 10(1)@Parsed
 h1013_epar.pdf@5 december 2013@5 december 2013@article 10(a)@Parsed
-h1014_epar.pdf@2 september 2014@23 april 2015@article 8.3@Parsed
+h1014_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1015_epar.pdf@1 june 2014@25 june 2015@article 8.3@Parsed
 h1016_epar.pdf@29 august 2014@12 may 2015@article 8.3@Parsed
 h1018_epar.pdf@6 september 2013@28 january 2015@article 8.3@Parsed
@@ -72,10 +72,10 @@ h1079_epar.pdf@17 december 2014@03 december 2015@article 8.3@Parsed
 h1082_epar.pdf@2 june 2015@17 december 2015@article 8.3@Parsed
 h1083_epar.pdf@1 december 2014@24 february 2016@article 8.3@Parsed
 h1085_epar.pdf@23 april 2015@10 february 2016@article 8.3@Parsed
-h1086_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1086_epar.pdf@5 june 2015@17 december 2015@article 8.3@Parsed
 h1087_epar.pdf@6 may 2015@22 january 2016@article 8.3@Parsed
 h1088_epar.pdf@3 july 2015@21 january 2016@article 8.3@Parsed
-h1089_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1089_epar.pdf@5 march 2015@17 march 2016@article 8(3)@Parsed
 h1090_epar.pdf@25 february 2015@6 january 2016@article 10(1)@Parsed
 h1091_epar.pdf@23 december 2014@23 june 2016@article 10(1)@Parsed
 h1092_epar.pdf@20 january 2015@25 february 2015@article 10(1)@Parsed
@@ -85,7 +85,7 @@ h1095_epar.pdf@9 march 2015@11 february 2016@article 8.3@Parsed
 h1096_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1097_epar.pdf@1 may 2015@1 april 2016@article 8.3@Parsed
 h1098_epar.pdf@4 june 2015@25 february 2016@article 8.3@Parsed
-h1099_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1099_epar.pdf@21 april 2015@25 february 2016@article 8.3@Parsed
 h1101_epar.pdf@9 september 2015@1 april 2016@article 8.3@Parsed
 h1102_epar.pdf@2 march 2015@26 may 2016@article 10(1)@Parsed
 h1103_epar.pdf@@@none@Parsed
@@ -113,7 +113,7 @@ h1135_epar.pdf@28 november 2014@4 may 2016@article 10(a)@Parsed
 h1136_epar.pdf@8 january 2016@20 june 2016@article 8.3@Parsed
 h1137_epar.pdf@9 november 2015@15 september 2016@article 10(1)@Parsed
 h1138_epar.pdf@13 november 2015@13 september 2016@article 8.3@Parsed
-h1139_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1139_epar.pdf@8 june 2015@13 october 2016@article 8.3@Parsed
 h1140_epar.pdf@31 july 2015@10 november 2016@article 10(1)@Parsed
 h1141_epar.pdf@8 october 2015@11 october 2016@article 10(a)@Parsed
 h1142_epar.pdf@2 september 2015@1 september 2016@article 8.3@Parsed
@@ -127,15 +127,15 @@ h1152_epar.pdf@10 august 2016@24 january 2017@article 10(c)@Parsed
 h1153_epar.pdf@21 december 2015@10 november 2016@article 10(1)@Parsed
 h1154_epar.pdf@27 january 2016@10 november 2016@article 8.3@Parsed
 h1155_epar.pdf@13 november 2015@9 march 2017@article 8.3@Parsed
-h1156_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1156_epar.pdf@17 november 2015@7 july 2016@article 8.3@Parsed
 h1157_epar.pdf@3 march 2016@10 november 2016@article 10(b)@Parsed
 h1158_epar.pdf@4 december 2015@2 september 2016@article 8.3@Parsed
 h1159_epar.pdf@27 november 2015@10 november 2016@article 10(4)@Parsed
 h1160_epar.pdf@4 december 2015@2 september 2016@article 8.3@Parsed
 h1161_epar.pdf@30 november 2015@10 november 2016@article 10(4)@Parsed
-h1164_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1164_epar.pdf@3 december 2015@26 january 2017@article 10(4)@Parsed
 h1166_epar.pdf@29 april 2016@15 december 2016@article 10(1)@Parsed
-h1167_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1167_epar.pdf@9 october 2015@2 december 2016@article 10(4)@Parsed
 h1168_epar.pdf@28 september 2016@15 december 2016@article 10(c)@Parsed
 h1169_epar.pdf@8 september 2015@15 july 2016@article 8.3@Parsed
 h1170_epar.pdf@22 january 2016@1 december 2016@article 8.3@Parsed
@@ -148,7 +148,7 @@ h1176_epar.pdf@6 march 2015@26 january 2017@article 10(1)@Parsed
 h1177_epar.pdf@2 november 2016@24 january 2017@article 10(c)@Parsed
 h1178_epar.pdf@3 march 2016@1 december 2016@article 8.3@Parsed
 h1179_epar.pdf@15 april 2016@9 february 2017@article 8.3@Parsed
-h1181_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1181_epar.pdf@3 december 2012@18 may 2017@article 8.3@Parsed
 h1182_epar.pdf@1 december 2016@23 february 2017@article 10(1)@Parsed
 h1184_epar.pdf@9 december 2016@21 april 2017@article 10(4)@Parsed
 h1185_epar.pdf@11 april 2016@21 april 2017@article 10(4)@Parsed
@@ -159,7 +159,7 @@ h1189_epar.pdf@4 february 2016@27 october 2016@article 10(a)@Parsed
 h1190_epar.pdf@9 november 2015@23 march 2017@article 10(1)@Parsed
 h1191_epar.pdf@6 may 2015@22 march 2017@article 8.3@Parsed
 h1192_epar.pdf@27 may 2016@28 october 2016@article 8.3@Parsed
-h1193_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1193_epar.pdf@7 january 2016@23 march 2017@article 8.3@Parsed
 h1194_epar.pdf@26 april 2016@21 april 2017@article 10(1)@Parsed
 h1195_epar.pdf@11 november 2015@23 february 2017@article 10(4)@Parsed
 h1196_epar.pdf@24 june 2016@9 february 2017@article 8.3@Parsed
@@ -169,47 +169,47 @@ h1200_epar.pdf@14 april 2016@23 february 2017@article 8.3@Parsed
 h1201_epar.pdf@2 december 2015@21 april 2017@article 8(3)@Parsed
 h1202_epar.pdf@25 april 2016@21 april 2017@article 10(1)@Parsed
 h1203_epar.pdf@7 september 2016@06 april 2017@article 10(4)@Parsed
-h1205_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1205_epar.pdf@06 march 2017@06 march 2017@article 10(4)@Parsed
 h1208_epar.pdf@30 september 2016@5 may 2017@article 10(b)@Parsed
-h1209_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1209_epar.pdf@2 march 2016@7 july 2016@article 8.3@Parsed
 h1210_epar.pdf@8 june 2016@18 may 2017@article 10(1)@Parsed
 h1211_epar.pdf@1 july 2016@20 july 2017@article 10(1)@Parsed
 h1212_epar.pdf@23 june 2016@8 june 2017@article 8.3@Parsed
 h1213_epar.pdf@21 december 2016@18 may 2017@article 8.3@Parsed
-h1214_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1214_epar.pdf@6 october 2016@22 june 2017@article 8.3@Parsed
 h1215_epar.pdf@29 february 2016@12 january 2017@article 8.3@Parsed
 h1216_epar.pdf@21 june 2016@22 june 2017@article 10(4)@Parsed
 h1217_epar.pdf@4 march 2016@22 june 2017@article 10(1)@Parsed
 h1218_epar.pdf@22 july 2016@23 may 2017@article 8.3@Parsed
 h1219_epar.pdf@16 december 2016@28 february 2017@article 8.3@Parsed
-h1220_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1220_epar.pdf@26 april 2016@20 july 2017@article 8.3@Parsed
 h1221_epar.pdf@5 september 2016@16 june 2017@article 8.3@Parsed
 h1222_epar.pdf@29 july 2016@22 june 2017@article 10(1)@Parsed
-h1223_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1224_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1223_epar.pdf@16 december 2016@18 may 2017@article 8.3@Parsed
+h1224_epar.pdf@22 june 2016@20 july 2017@article 8.3@Parsed
 h1225_epar.pdf@9 september 2016@5 may 2017@article 10(b)@Parsed
 h1226_epar.pdf@26 april 2016@18 may 2017@article 8.3@Parsed
 h1227_epar.pdf@29 june 2016@20 july 2017@article 10(1)@Parsed
 h1228_epar.pdf@7 january 2016@14 september 2017@article 8.3@Parsed
 h1229_epar.pdf@4 november 2016@20 july 2017@article 8.3@Parsed
 h1230_epar.pdf@09 september 2016@21 june 2017@article 10(1)@Parsed
-h1231_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1231_epar.pdf@25 april 2016@26 october 2017@article 8.3@Parsed
 h1232_epar.pdf@4 july 2016@14 september 2017@article 10(1)@Parsed
 h1233_epar.pdf@3 october 2016@23 february 2017@article 10(3)@Parsed
 h1234_epar.pdf@23 november 2016@14 september 2017@article 8.3@Parsed
-h1235_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1235_epar.pdf@4 october 2016@9 june 2017@article 8.3@Parsed
 h1236_epar.pdf@2 december 2016@9 july 2017@article 10(b)@Parsed
 h1237_epar.pdf@2 december 2016@9 july 2017@article 10(b)@Parsed
-h1238_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1238_epar.pdf@1 november 2016@15 august 2017@article 10(3)@Parsed
 h1239_epar.pdf@28 november 2016@14 september 2017@article 8.3@Parsed
-h1241_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1241_epar.pdf@30 august 2016@6 july 2017@article 10(4)@Parsed
 h1242_epar.pdf@5 december 2016@14 september 2017@article 10(1)@Parsed
 h1244_epar.pdf@6 december 2016@12 october 2017@article 10(1)@Parsed
 h1245_epar.pdf@31 march 2017@28 september 2017@article 8.3@Parsed
 h1246_epar.pdf@1 december 2016@9 november 2017@article 10(4)@Parsed
 h1247_epar.pdf@1 march 2016@25 october 2017@article 8.3@Parsed
 h1249_epar.pdf@7 november 2016@9 november 2017@article 10(1)@Parsed
-h1250_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1250_epar.pdf@1 november 2016@22 march 2018@article 8.3@Parsed
 h1251_epar.pdf@5 december 2016@25 october 2017@article 8.3@Parsed
 h1252_epar.pdf@24 november 2016@21 april 2017@article 8.3@Parsed
 h1253_epar.pdf@25 november 2016@9 november 2017@article 10(1)@Parsed
@@ -233,7 +233,7 @@ h1273_epar.pdf@27 april 2017@22 march 2018@article 10(1)@Parsed
 h1274_epar.pdf@24 november 2017@24 november 2017@article 10(c)@Parsed
 h1275_epar.pdf@24 november 2017@24 november 2017@article 10(c)@Parsed
 h1276_epar.pdf@21 december 2016@18 may 2018@article 8.3@Parsed
-h1277_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1277_epar.pdf@1 december 2016@30 november 2017@article 8.3@Parsed
 h1278_epar.pdf@6 may 2016@26 april 2018@article 10(1)@Parsed
 h1279_epar.pdf@6 october 2016@7 february 2018@article 10(3)@Parsed
 h1280_epar.pdf@21 april 2017@8 february 2018@article 10(4)@Parsed
@@ -241,36 +241,36 @@ h1281_epar.pdf@1 march 2017@16 october 2017@article 10(4)@Parsed
 h1282_epar.pdf@23 may 2017@08 january 2018@article 10(b)@Parsed
 h1283_epar.pdf@24 may 2017@22 march 2018@article 10(1)@Parsed
 h1284_epar.pdf@2 march 2017@26 april 2018@article 10(3)@Parsed
-h1286_epar.pdf@24 april 2017@31 may 2018@article 10(4)@Parsed
+h1286_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1287_epar.pdf@23 november 2017@11 april 2018@article 10(4)@Parsed
 h1289_epar.pdf@21 june 2017@26 april 2018@article 8.3@Parsed
 h1290_epar.pdf@5 february 2017@31 may 2018@article 10(1)@Parsed
 h1291_epar.pdf@1 march 2017@13 december 2018@article 8.3@Parsed
-h1292_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1292_epar.pdf@5 february 2016@14 september 2017@article 8.3@Parsed
 h1293_epar.pdf@23 may 2017@18 may 2018@article 8.3@Parsed
 h1294_epar.pdf@28 february 2017@28 february 2017@article 8.3@Parsed
 h1295_epar.pdf@27 june 2017@9 november 2017@article 10(4)@Parsed
 h1296_epar.pdf@3 november 2017@8 february 2018@article 8.3@Parsed
-h1297_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1297_epar.pdf@2 november 2017@8 march 2018@article 8.3@Parsed
 h1298_epar.pdf@22 may 2017@28 february 2018@article 8.3@Parsed
 h1299_epar.pdf@29 july 2017@23 may 2018@article 8(3)@Parsed
 h1301_epar.pdf@30 march 2017@28 june 2018@article 8(3)@Parsed
 h1302_epar.pdf@29 may 2017@25 may 2018@article 10(3)@Parsed
 h1305_epar.pdf@3 february 2017@14 june 2018@article 8.3@Parsed
-h1306_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1306_epar.pdf@25 july 2017@20 october 2017@article 8.3@Parsed
 h1307_epar.pdf@27 july 2017@25 june 2018@article 8.3@Parsed
 h1308_epar.pdf@@03 february 2020@none@Parsed
 h1310_epar.pdf@2 june 2017@13 july 2018@article 10(1)@Parsed
-h1311_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1312_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1313_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1311_epar.pdf@23 june 2016@7 march 2018@article 8.3@Parsed
+h1312_epar.pdf@21 july 2017@25 june 2018@article 8.3@Parsed
+h1313_epar.pdf@27 april 2017@3 april 2018@article 10(4)@Parsed
 h1314_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1315_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1316_epar.pdf@29 july 2017@28 march 2018@article 10(1)@Parsed
 h1317_epar.pdf@28 july 2017@31 january 2019@article 10(1)@Parsed
 h1318_epar.pdf@3 january 2017@3 january 2017@article 8.3@Parsed
 h1319_epar.pdf@25 april 2017@03 april 2018@article 10(4)@Parsed
-h1320_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1320_epar.pdf@18 december 2017@17 may 2018@article 8.3@Parsed
 h1321_epar.pdf@24 july 2017@11 july 2018@article 10(1)@Parsed
 h1322_epar.pdf@1 september 2017@17 may 2018@article 8.3@Parsed
 h1323_epar.pdf@6 march 2017@11 september 2017@article 8.3@Parsed
@@ -279,60 +279,60 @@ h1326_epar.pdf@31 october 2017@18 october 2018@article 8.3@Parsed
 h1327_epar.pdf@6 october 2017@18 february 2018@article 10(4)@Parsed
 h1328_epar.pdf@8 september 2017@14 august 2018@article 10(4)@Parsed
 h1331_epar.pdf@29 july 2017@14 september 2018@article 8.3@Parsed
-h1332_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1333_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1334_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1332_epar.pdf@3 november 2017@17 august 2018@article 8.3@Parsed
+h1333_epar.pdf@3 november 2017@17 august 2018@article 8.3@Parsed
+h1334_epar.pdf@21 april 2017@31 july 2018@article 8.3@Parsed
 h1335_epar.pdf@6 october 2017@20 september 2018@article 8.3@Parsed
 h1336_epar.pdf@27 july 2017@29 december 2015@article 10(3)@Parsed
 h1337_epar.pdf@26 october 2017@26 october 2017@article 8.3@Parsed
 h1338_epar.pdf@2 march 2016@23 march 2017@article 8.3@Parsed
-h1339_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1339_epar.pdf@16 june 2017@16 june 2017@article 10(b)@Parsed
 h1340_epar.pdf@12 march 2018@06 september 2018@article 8.3@Parsed
-h1341_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1341_epar.pdf@3 november 2017@3 november 2017@article 10(4)@Parsed
 h1342_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1343_epar.pdf@10 april 2018@10 april 2018@article 10(1)@Parsed
 h1344_epar.pdf@1 february 2018@15 november 2018@article 10(4)@Parsed
-h1345_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1345_epar.pdf@1 august 2016@14 december 2018@article 8.3@Parsed
 h1346_epar.pdf@8 march 2018@15 august 2018@article 10(1)@Parsed
 h1347_epar.pdf@23 april 2018@13 december 2018@article 10(1)@Parsed
 h1348_epar.pdf@12 january 2018@12 january 2018@article 8.3@Parsed
 h1349_epar.pdf@21 november 2017@21 january 2019@article 8.3@Parsed
 h1350_epar.pdf@31 july 2018@13 december 2018@article 10(3)@Parsed
-h1351_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1351_epar.pdf@12 december 2017@7 may 2018@article 8.3@Parsed
 h1352_epar.pdf@2 february 2017@15 november 2018@article 8.3@Parsed
 h1353_epar.pdf@8 march 2018@8 march 2018@article 10(1)@Parsed
-h1354_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1355_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1354_epar.pdf@9 february 2018@31 january 2019@article 8.3@Parsed
+h1355_epar.pdf@9 january 2018@16 april 2018@article 8.3@Parsed
 h1356_epar.pdf@25 october 2017@10 september 2018@article 10(4)@Parsed
-h1358_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1358_epar.pdf@12 january 2018@12 january 2018@article 8.3@Parsed
 h1359_epar.pdf@27 august 2018@16 may 2019@article 8.3@Parsed
 h1360_epar.pdf@26 july 2017@26 april 2018@article 8.3@Parsed
-h1361_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1362_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1361_epar.pdf@26 april 2018@14 january 2019@article 8.3@Parsed
+h1362_epar.pdf@6 march 2018@28 february 2019@article 8.3@Parsed
 h1364_epar.pdf@22 june 2017@02 february 2018@article 8.3@Parsed
 h1365_epar.pdf@8 february 2018@15 may 2019@article 8.3@Parsed
 h1366_epar.pdf@9 february 2018@9 february 2018@article 10(3)@Parsed
 h1368_epar.pdf@30 april 2018@26 april 2019@article 10(1)@Parsed
 h1369_epar.pdf@6 november 2017@22 march 2018@article 8.3@Parsed
 h1370_epar.pdf@13 september 2018@11 february 2019@article 10(b)@Parsed
-h1371_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1371_epar.pdf@27 june 2018@12 february 2019@article 8.3@Parsed
 h1372_epar.pdf@2 may 2018@14 february 2019@article 10(1)@Parsed
-h1373_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1373_epar.pdf@30 april 2018@30 november 2018@article 8.3@Parsed
 h1374_epar.pdf@27 february 2018@18 april 2019@article 8.3@Parsed
 h1375_epar.pdf@6 november 2017@3 december 2018@article 10(4)@Parsed
-h1376_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1376_epar.pdf@6 march 2018@13 march 2019@article 8.3@Parsed
 h1377_epar.pdf@27 april 2018@26 march 2019@article 8.3@Parsed
 h1380_epar.pdf@2 june 2018@4 march 2019@article 10(1)@Parsed
 h1381_epar.pdf@1 june 2018@25 september 2018@article 10(a)@Parsed
 h1383_epar.pdf@2 april 2019@2 april 2019@article 10(c)@Parsed
-h1384_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1384_epar.pdf@30 may 2018@6 march 2019@article 8.3@Parsed
 h1385_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1386_epar.pdf@29 june 2018@29 march 2019@article 10(1)@Parsed
 h1387_epar.pdf@3 may 2019@3 may 2019@article 10(c)@Parsed
 h1388_epar.pdf@20 december 2018@11 july 2019@article 8(3)@Parsed
-h1389_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1392_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1393_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1389_epar.pdf@21 december 2017@27 april 2017@article 8.3@Parsed
+h1392_epar.pdf@31 january 2019@12 september 2019@article 8.3@Parsed
+h1393_epar.pdf@6 march 2018@19 september 2019@article 8.3@Parsed
 h1395_epar.pdf@14 september 2018@7 november 2019@article 10(1)@Parsed
 h1396_epar.pdf@17 september 2018@17 september 2018@article 10(1)@Parsed
 h1397_epar.pdf@17 september 2018@27 june 2019@article 10(1)@Parsed
@@ -340,13 +340,13 @@ h1398_epar.pdf@26 november 2018@19 september 2019@article 10(1)@Parsed
 h1399_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1400_epar.pdf@12 september 2018@24 april 2019@article 8.3@Parsed
 h1403_epar.pdf@30 july 2019@03 october 2019@article 10(3)@Parsed
-h1404_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1405_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1406_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1404_epar.pdf@18 december 2018@17 october 2019@article 8.3@Parsed
+h1405_epar.pdf@17 september 2018@17 september 2018@article 8.3@Parsed
+h1406_epar.pdf@19 july 2018@25 july 2019@article 8.3@Parsed
 h1407_epar.pdf@9 november 2018@14 november 2019@article 8.3@Parsed
 h1408_epar.pdf@8 november 2018@01 july 2019@article 8.3@Parsed
 h1409_epar.pdf@30 july 2019@30 july 2019@article 10(4)@Parsed
-h1410_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1410_epar.pdf@10 october 2018@21 november 2019@article 8.3@Parsed
 h1411_epar.pdf@21 november 2017@27 june 2019@article 8.3@Parsed
 h1412_epar.pdf@3 november 2018@14 november 2019@article 10(1)@Parsed
 h1413_epar.pdf@12 january 2019@22 october 2019@article 10(1)@Parsed
@@ -356,9 +356,9 @@ h1416_epar.pdf@9 january 2019@3 january 2020@article 10(1)@Parsed
 h1417_epar.pdf@6 february 2019@6 february 2019@article 8.3@Parsed
 h1418_epar.pdf@23 november 2018@19 september 2019@article 10(1)@Parsed
 h1419_epar.pdf@8 february 2019@12 december 2019@article 10(3)@Parsed
-h1420_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1420_epar.pdf@9 november 2018@10 october 2019@article 8.3@Parsed
 h1421_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1422_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1422_epar.pdf@8 march 2019@8 march 2019@article 8.3@Parsed
 h1423_epar.pdf@11 january 2019@23 september 2019@article 8.3@Parsed
 h1424_epar.pdf@12 february 2019@12 february 2019@article 8.3@Parsed
 h1425_epar.pdf@12 february 2019@13 september 2019@article 8.3@Parsed
@@ -368,17 +368,17 @@ h1428_epar.pdf@28 june 2019@20 september 2019@article 7@Parsed
 h1429_epar.pdf@10 january 2019@23 december 2019@article 10(1)@Parsed
 h1430_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1431_epar.pdf@25 july 2018@25 july 2018@article 10(4)@Parsed
-h1432_epar.pdf@7 march 2019@12 september 2019@article 8.3@Parsed
-h1433_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1434_epar.pdf@7 march 2019@25 june 2019@article 8.3@Parsed
+h1432_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1433_epar.pdf@5 march 2019@04 march 2020@article 8.3@Parsed
+h1434_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1435_epar.pdf@30 april 2019@10 october 2019@article 8.3@Parsed
 h1436_epar.pdf@30 april 2018@12 march 2020@article 10(4)@Parsed
 h1437_epar.pdf@11 march 2019@17 june 2019@article 8.3@Parsed
 h1438_epar.pdf@3 may 2019@23 january 2020@article 10(b)@Parsed
 h1439_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1440_epar.pdf@8 november 2019@26 march 2020@article 10(b)@Parsed
-h1441_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1442_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1441_epar.pdf@3 may 2019@18 march 2020@article 10(b)@Parsed
+h1442_epar.pdf@6 march 2019@31 october 2019@article 8.3@Parsed
 h1443_epar.pdf@9 october 2018@06 december 2019@article 7@Parsed
 h1444_epar.pdf@19 september 2019@6 november 2019@article 8.3@Parsed
 h1445_epar.pdf@19 september 2019@6 november 2019@article 8.3@Parsed
@@ -386,16 +386,16 @@ h1446_epar.pdf@10 october 2019@20 may 2020@article 8.3@Parsed
 h1447_epar.pdf@29 may 2019@29 may 2019@article 10(4)@Parsed
 h1448_epar.pdf@25 march 2019@07 april 2020@article 10(3)@Parsed
 h1450_epar.pdf@4 may 2019@3 february 2020@article 10(1)@Parsed
-h1451_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1452_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1451_epar.pdf@29 april 2019@27 february 2020@article 8.3@Parsed
+h1452_epar.pdf@26 april 2019@31 march 2020@article 8.3@Parsed
 h1453_epar.pdf@7 february 2020@7 february 2020@article 10(c)@Parsed
 h1454_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1455_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1456_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1457_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1455_epar.pdf@19 december 2018@27 february 2020@article 8.3@Parsed
+h1456_epar.pdf@29 may 2019@28 may 2020@article 10(4)@Parsed
+h1457_epar.pdf@1 may 2019@27 april 2020@article 8.3@Parsed
 h1458_epar.pdf@1 june 2019@1 june 2019@article 10(1)@Parsed
 h1459_epar.pdf@15 may 2020@15 may 2020@article 8.3@Parsed
-h1460_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1460_epar.pdf@7 january 2019@29 may 2019@article 8.3@Parsed
 h1462_epar.pdf@6 may 2019@7 august 2019@article 10(4)@Parsed
 h1465_epar.pdf@12 october 2019@10 june 2020@article 10(3)@Parsed
 h1468_epar.pdf@14 october 2019@28 november 2019@article 8.3@Parsed
@@ -403,41 +403,41 @@ h1469_epar.pdf@1 july 2019@25 june 2020@article 8.3@Parsed
 h1470_epar.pdf@7 february 2019@08 june 2020@article 10(3)@Parsed
 h1471_epar.pdf@5 february 2019@10 june 2020@article 8.3@Parsed
 h1473_epar.pdf@1 july 2019@1 july 2019@article 8.3@Parsed
-h1474_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1474_epar.pdf@18 december 2019@28 april 2020@article 8.3@Parsed
 h1475_epar.pdf@26 july 2019@28 may 2020@article 10(1)@Parsed
 h1476_epar.pdf@29 may 2019@3 february 2020@article 8.3@Parsed
 h1477_epar.pdf@29 july 2019@23 june 2020@article 10(1)@Parsed
-h1478_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1479_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1478_epar.pdf@8 march 2019@30 april 2020@article 10(b)@Parsed
+h1479_epar.pdf@14 october 2019@27 february 2020@article 8.3@Parsed
 h1480_epar.pdf@24 july 2019@23 july 2020@article 8.3@Parsed
-h1481_epar.pdf@26 july 2019@26 july 2019@article 8.3@Parsed
-h1482_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1481_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1482_epar.pdf@26 july 2019@26 july 2019@article 8.3@Parsed
 h1483_epar.pdf@4 october 2019@23 july 2020@article 8.3@Parsed
 h1484_epar.pdf@4 october 2019@5 august 2020@article 8.3@Parsed
-h1485_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1485_epar.pdf@3 june 2019@17 october 2019@article 8.3@Parsed
 h1486_epar.pdf@12 september 2019@12 september 2019@article 10(4)@Parsed
-h1487_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1487_epar.pdf@11 march 2019@3 september 2020@article 10(3)@Parsed
 h1488_epar.pdf@29 july 2019@29 july 2019@article 10(1)@Parsed
 h1489_epar.pdf@24 may 2019@9 september 2019@article 8.3@Parsed
 h1490_epar.pdf@13 september 2019@8 october 2020@article 10(1)@Parsed
 h1491_epar.pdf@5 february 2019@22 september 2020@article 8.3@Parsed
 h1492_epar.pdf@12 december 2019@15 october 2020@article 8.3@Parsed
-h1493_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1493_epar.pdf@08 november 2019@7 october 2020@article 8.3@Parsed
 h1494_epar.pdf@9 january 2020@9 january 2020@article 8.3@Parsed
 h1495_epar.pdf@27 june 2019@27 june 2019@article 8.3@Parsed
-h1496_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1497_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1496_epar.pdf@31 march 2020@11 september 2020@article 8.3@Parsed
+h1497_epar.pdf@9 january 2020@9 january 2020@article 10(b)@Parsed
 h1498_epar.pdf@22 november 2018@16 january 2020@article 10(b)@Parsed
 h1499_epar.pdf@24 august 2020@29 october 2020@article 10(4)@Parsed
-h1500_epar.pdf@6 november 2019@3 march 2020@article 8.3@Parsed
+h1500_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1501_epar.pdf@11 september 2019@21 january 2021@article 8.3@Parsed
 h1502_epar.pdf@25 november 2019@25 november 2019@article 10(b)@Parsed
 h1503_epar.pdf@11 march 2019@2 october 2019@article 7@Parsed
-h1504_epar.pdf@7 january 2019@23 july 2020@article 8.3@Parsed
-h1505_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1504_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1505_epar.pdf@20 november 2019@15 january 2021@article 8.3@Parsed
 h1506_epar.pdf@11 october 2019@10 december 2020@article 10(4)@Parsed
 h1507_epar.pdf@@30 december 2020@article 8.3@Parsed
-h1508_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1508_epar.pdf@22 may 2020@18 august 2020@article 8.3@Parsed
 h1509_epar.pdf@9 january 2020@10 december 2020@article 10(4)@Parsed
 h1510_epar.pdf@9 january 2020@10 december 2020@article 10(4)@Parsed
 h1511_epar.pdf@14 october 2019@10 november 2020@article 10(1)@Parsed
@@ -445,7 +445,7 @@ h1512_epar.pdf@12 september 2019@02 february 2021@article 10(1)@Parsed
 h1513_epar.pdf@6 march 2020@17 june 2020@article 10(4)@Parsed
 h1514_epar.pdf@20 december 2019@13 august 2020@article 8.3@Parsed
 h1515_epar.pdf@20 february 2020@10 february 2021@article 10(4)@Parsed
-h1517_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1517_epar.pdf@9 november 2019@24 february 2020@article 10(b)@Parsed
 h1518_epar.pdf@14 november 2019@02 june 2020@article 8.3@Parsed
 h1519_epar.pdf@13 january 2020@1 october 2020@article 10(1)@Parsed
 h1520_epar.pdf@29 june 2020@29 june 2020@article 10(1)@Parsed
@@ -453,24 +453,24 @@ h1521_epar.pdf@29 june 2020@10 december 2020@article 10(1)@Parsed
 h1523_epar.pdf@21 november 2019@3 december 2020@article 10(3)@Parsed
 h1524_epar.pdf@8 november 2019@30 december 2020@article 8.3@Parsed
 h1525_epar.pdf@@11 march 2021@article 8.3@Parsed
-h1526_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1527_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1526_epar.pdf@9 january 2020@25 november 2020@article 8.3@Parsed
+h1527_epar.pdf@20 december 2019@12 may 2020@article 8.3@Parsed
 h1528_epar.pdf@@21 december 2020@article 8.3@Parsed
 h1529_epar.pdf@@29 january 2021@article 8.3@Parsed
 h1530_epar.pdf@9 march 2020@9 march 2020@article 8.3@Parsed
-h1531_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1531_epar.pdf@21 july 2020@23 january 2021@article 8.3@Parsed
 h1532_epar.pdf@9 january 2020@9 january 2020@article 8.3@Parsed
 h1533_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1534_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1535_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1534_epar.pdf@14 october 2019@15 october 2020@article 8.3@Parsed
+h1535_epar.pdf@21 november 2019@28 january 2021@article 8.3@Parsed
 h1536_epar.pdf@16 march 2020@16 november 2020@article 10(1)@Parsed
 h1537_epar.pdf@9 january 2019@04 january 2021@article 8.3@Parsed
-h1538_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1538_epar.pdf@6 march 2020@11 june 2020@article 8.3@Parsed
 h1539_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1540_epar.pdf@3 june 2019@21 january 2022@article 10(1)@Parsed
 h1541_epar.pdf@3 june 2019@21 january 2022@article 10(1)@Parsed
-h1542_epar.pdf@25 november 2019@6 april 2020@article 8.3@Parsed
-h1544_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1542_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1544_epar.pdf@9 march 2020@26 november 2020@article 8.3@Parsed
 h1546_epar.pdf@8 november 2019@14 may 2021@article 8.3@Parsed
 h1547_epar.pdf@24 january 2020@19 march 2021@article 8.3@Parsed
 h1548_epar.pdf@24 january 2020@19 march 2021@article 8.3@Parsed
@@ -490,15 +490,15 @@ h1565_epar.pdf@6 march 2020@06 may 2021@article 8.3@Parsed
 h1566_epar.pdf@6 november 2020@07 may 2021@article 8.3@Parsed
 h1567_epar.pdf@24 july 2020@26 april 2021@article 10(1)@Parsed
 h1568_epar.pdf@26 june 2020@24 june 2021@article 10(3)@Parsed
-h1569_epar.pdf@12 september 2020@24 june 2021@article 8.3@Parsed
+h1569_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1570_epar.pdf@30 april 2020@30 april 2020@article 8.3@Parsed
 h1571_epar.pdf@9 march 2020@23 july 2020@article 10(1)@Parsed
-h1572_epar.pdf@10 september 2020@18 march 2021@article 10(4)@Parsed
+h1572_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1573_epar.pdf@5 november 2020@31 may 2021@article 10(1)@Parsed
 h1574_epar.pdf@12 april 2020@04 september 2020@article 8.3@Parsed
 h1575_epar.pdf@15 july 2020@29 march 2021@article 8.3@Parsed
-h1576_epar.pdf@28 may 2020@15 september 2020@article 8.3@Parsed
-h1577_epar.pdf@23 july 2020@13 august 2020@article 8.3@Parsed
+h1576_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1577_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1578_epar.pdf@28 april 2021@28 april 2021@article 10(c)@Parsed
 h1579_epar.pdf@11 september 2020@23 july 2021@article 8.3@Parsed
 h1582_epar.pdf@14 september 2020@10 june 2021@article 8.3@Parsed
@@ -510,19 +510,19 @@ h1589_epar.pdf@11 september 2020@21 december 2020@article 10(4)@Parsed
 h1590_epar.pdf@11 september 2020@21 december 2020@article 10(4)@Parsed
 h1591_epar.pdf@19 november 2020@19 november 2020@article 8.3@Parsed
 h1592_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h1593_epar.pdf@28 august 2020@28 august 2020@article 8.3@Parsed
-h1594_epar.pdf@23 december 2020@29 september 2021@article 8.3@Parsed
+h1593_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1594_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1595_epar.pdf@10 september 2020@22 december 2020@article 8.3@Parsed
 h1596_epar.pdf@5 november 2020@16 december 2021@article 8.3@Parsed
-h1597_epar.pdf@12 january 2021@03 november 2021@article 8.3@Parsed
+h1597_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1598_epar.pdf@9 november 2020@9 november 2020@article 10(1)@Parsed
-h1599_epar.pdf@16 november 2020@11 november 2021@article 8.3@Parsed
-h1600_epar.pdf@24 july 2020@24 july 2020@article 8.3@Parsed
+h1599_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1600_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1601_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1602_epar.pdf@23 november 2020@11 november 2021@article 8.3@Parsed
 h1603_epar.pdf@18 december 2020@21 january 2021@article 8.3@Parsed
 h1604_epar.pdf@19 august 2021@19 august 2021@article 10(c)@Parsed
-h1605_epar.pdf@9 october 2020@9 october 2020@article 8.3@Parsed
+h1605_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1606_epar.pdf@20 november 2020@16 december 2021@article 8.3@Parsed
 h1607_epar.pdf@8 september 2020@02 september 2021@article 8.3@Parsed
 h1608_epar.pdf@17 december 2020@16 july 2021@article 8.3@Parsed
@@ -535,8 +535,8 @@ h1618_epar.pdf@@04 january 2022@article 8.3@Parsed
 h1619_epar.pdf@4 november 2020@4 november 2020@article 10(1)@Parsed
 h1620_epar.pdf@4 january 2021@4 january 2021@article 10(1)@Parsed
 h1621_epar.pdf@27 december 2019@06 november 2021@article 10(3)@Parsed
-h1622_epar.pdf@23 december 2020@13 november 2021@article 8.3@Parsed
-h1623_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1622_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h1623_epar.pdf@8 october 2020@09 december 2021@article 8.3@Parsed
 h1624_epar.pdf@17 february 2022@17 june 2022@article 8.3@Parsed
 h1625_epar.pdf@6 july 2021@27 january 2022@article 8.3@Parsed
 h1628_epar.pdf@5 march 2021@12 january 2022@article 10(4)@Parsed
@@ -559,7 +559,7 @@ h1645_epar.pdf@8 february 2021@18 october 2021@article 8.3@Parsed
 h1646_epar.pdf@29 april 2021@24 march 2022@article 10(1)@Parsed
 h1647_epar.pdf@6 march 2020@6 march 2020@article 10(3)@Parsed
 h1648_epar.pdf@29 april 2021@4 march 2022@article 8.3@Parsed
-h1649_epar.pdf@10 september 2021@22 april 2022@article 8.3@Parsed
+h1649_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
 h1651_epar.pdf@@15 march 2022@article 8.3@Parsed
 h1652_epar.pdf@8 march 2021@17 march 2022@article 8.3@Parsed
 h1653_epar.pdf@12 january 2020@13 may 2022@article 8.3@Parsed
@@ -580,7 +580,6 @@ h400_procedural_steps.pdf@@@none@Parsed
 h404_procedural_steps.pdf@@@none@Parsed
 h420_procedural_steps.pdf@@@none@Parsed
 h428_epar.pdf@25 august 2006@18 october 2007@none@Parsed
-h435_epar.pdf@3 september 2007@15 november 2007@none@Parsed
 h437_epar.pdf@3 may 2006@15 november 2007@article 6(3)@Parsed
 h438_epar.pdf@16 june 2007@13 december 2007@none@Parsed
 h439_epar.pdf@16 june 2007@13 december 2007@none@Parsed
@@ -814,7 +813,7 @@ h768_epar.pdf@28 november 2011@16 february 2012@article 10(c)@Parsed
 h769_epar.pdf@31 may 2011@24 february 2012@article 10(1)@Parsed
 h770_epar.pdf@31 may 2011@31 may 2011@article 10(1)@Parsed
 h771_epar.pdf@6 may 2011@22 september 2011@article 10(1)@Parsed
-h773_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h773_epar.pdf@@2 february 2021@none@Parsed
 h775_epar.pdf@3 may 2011@24 may 2012@article 8.3@Parsed
 h776_epar.pdf@24 may 2011@24 may 2012@article 7@Parsed
 h777_epar.pdf@@@none@Parsed
@@ -939,8 +938,8 @@ h918_epar.pdf@4 march 2013@25 november 2013@article 8.3@Parsed
 h919_epar.pdf@6 march 2013@12 december 2013@article 8.3@Parsed
 h920_epar.pdf@29 january 2013@29 january 2013@none@Parsed
 h921_epar.pdf@30 september 2013@30 september 2013@none@Parsed
-h922_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
-h923_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h922_epar.pdf@25 april 2013@6 february 2014@article 8.3@Parsed
+h923_epar.pdf@6 march 2013@29 november 2013@article 8.3@Parsed
 h928_epar.pdf@29 august 2013@14 march 2014@article 8.3@Parsed
 h929_epar.pdf@24 december 2013@20 march 2014@article 10(c)@Parsed
 h930_epar.pdf@5 march 2013@26 november 2013@article 8.3@Parsed
@@ -972,7 +971,7 @@ h962_epar.pdf@26 august 2013@11 september 2014@article 8.3@Parsed
 h963_epar.pdf@5 february 2014@11 september 2014@article 10(b)@Parsed
 h964_epar.pdf@24 october 2013@11 september 2014@article 10(b)@Parsed
 h965_epar.pdf@5 february 2014@5 february 2014@article 10(a)@Parsed
-h967_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h967_epar.pdf@2 october 2013@2 october 2013@article 10(b)@Parsed
 h969_epar.pdf@3 february 2012@9 october 2014@article 8.3@Parsed
 h970_epar.pdf@28 october 2013@09 october 2014@article 8.3@Parsed
 h972_epar.pdf@7 may 2014@7 may 2014@article 10(c)@Parsed
@@ -982,7 +981,7 @@ h975_epar.pdf@2 july 2014@18 december 2014@article 10(1)@Parsed
 h977_epar.pdf@28 august 2014@20 november 2014@article 10(c)@Parsed
 h978_epar.pdf@5 march 2013@24 july 2014@article 8.3@Parsed
 h979_epar.pdf@25 april 2014@24 july 2014@article 8.3@Parsed
-h980_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h980_epar.pdf@23 october 2013@6 november 2014@article 8.3@Parsed
 h981_epar.pdf@2 december 2013@28 october 2014@article 8.3@Parsed
 h982_epar.pdf@6 may 2014@6 november 2014@article 8.3@Parsed
 h983_epar.pdf@6 may 2014@6 may 2014@article 8.3@Parsed
@@ -994,7 +993,7 @@ h989_epar.pdf@4 february 2014@08 january 2015@article 8.3@Parsed
 h990_epar.pdf@2 december 2013@22 january 2015@article 8.3@Parsed
 h991_epar.pdf@31 january 2014@7 january 2015@article 8.3@Parsed
 h992_epar.pdf@20 december 2013@11 february 2015@article 8.3@Parsed
-h993_epar.pdf@Not parsed@Not parsed@Not parsed@Image/No text
+h993_epar.pdf@7 january 2014@20 february 2015@article 8.3@Parsed
 h994_epar.pdf@4 december 2013@22 january 2014@article 8.3@Parsed
 h997_epar.pdf@9 july 2014@13 april 2015@article 10(1)@Parsed
 h999_epar.pdf@4 march 2014@12 february 2015@article 8.3@Parsed

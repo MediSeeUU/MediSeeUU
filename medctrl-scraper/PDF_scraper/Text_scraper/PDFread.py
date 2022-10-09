@@ -2,9 +2,9 @@
 import fitz  # part of pip install PyMuPDF
 import os  # to get all file names in folder
 import json
-# external files for debug
+# external classes for debug using parse_test_file
 # import ECparse
-import EPARparse
+# import EPARparse
 
 from joblib import delayed, Parallel
 
@@ -12,7 +12,6 @@ from joblib import delayed, Parallel
 
 
 def parse_test_file(filetype):
-    # filename = 'decisions/h081_dec_140667.pdf'
     filename = 'epars/h1578_epar.pdf'
 
     pdf = fitz.open(filename)  # open document
@@ -28,8 +27,7 @@ def parse_test_file(filetype):
 
     # print found attributes and formatted table
     print(res)
-    # print(json.dumps(table, indent=3))
-    # print(pdf_format)
+    print(json.dumps(table, indent=3))
 
 
 def parse_folder(filetype, folder_name):
@@ -41,30 +39,29 @@ def parse_folder(filetype, folder_name):
 
     f = open('results/results_' + folder_name + '.txt', 'w', encoding="utf-8")  # open/clean output file
 
-    pdfCount = len(os.listdir(folder_name))
-    all_data = Parallel(n_jobs=4)(delayed(scrape_pdf)(filename, counter, filetype, folder_name, pdfCount) for filename in os.listdir(folder_name))
+    pdf_count = len(os.listdir(folder_name))
+    all_data = Parallel(n_jobs=4)(delayed(scrape_pdf)(filename, counter, filetype, folder_name, pdf_count) for filename in os.listdir(folder_name))
 
+    # Combine attributes from PDFs, separate them using @, write lines to results_{filetype}.txt
+    # where filetype is the type of PDF scraped
     for pdfdata in all_data:
         values = list(pdfdata.values())
         output = '@'.join(map(str, values))
         f.writelines(output)
         f.writelines('\n')
-    # for filename in os.listdir(folder_name):
-    #    scrape_pdf(filename, counter, filetype, folder_name, pdfCount)
 
-    # write date here
     f.close()  # close output file.
     print('Done')
 
 
-def scrape_pdf(filename, counter, filetype, folder_name, pdfCount):
+def scrape_pdf(filename, counter, filetype, folder_name, pdf_count):
     # default values
     filedata = filetype.get_default(filename)
 
     # debug keep track of progress
     counter += 1
     if (counter % 500) == 0:
-        print(f"{counter}/{pdfCount} - {str(round(((counter / pdfCount) * 100), 2))}% ")
+        print(f"{counter}/{pdf_count} - {str(round(((counter / pdf_count) * 100), 2))}% ")
 
     corrupt = False
 
@@ -116,4 +113,4 @@ def scrape_pdf(filename, counter, filetype, folder_name, pdfCount):
         else:
             return filedata
 
-parse_test_file(EPARparse)
+# parse_test_file(EPARparse)
