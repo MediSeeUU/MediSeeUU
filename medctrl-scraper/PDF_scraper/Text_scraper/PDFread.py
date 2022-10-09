@@ -17,14 +17,14 @@ def parse_test_file(filetype):
 
     pdf = fitz.open(filename)  # open document
 
-    (table, pdf_format) = filetype.getTable(pdf)  # get formatted dictionary
+    (table, pdf_format) = filetype.get_table(pdf)  # get formatted dictionary
 
     if filetype.unreadable(table):
         print(str(filename) + ' has no text')
 
     pdf.close()  # close document
 
-    res = filetype.getAllTest(filename, table, pdf_format)
+    res = filetype.get_all_test(filename, table, pdf_format)
 
     # print found attributes and formatted table
     print(res)
@@ -59,7 +59,7 @@ def parse_folder(filetype, folder_name):
 
 def scrape_pdf(filename, counter, filetype, folder_name, pdfCount):
     # default values
-    filedata = filetype.getDefault(filename)
+    filedata = filetype.get_default(filename)
 
     # debug keep track of progress
     counter += 1
@@ -75,7 +75,7 @@ def scrape_pdf(filename, counter, filetype, folder_name, pdfCount):
         corrupt = True
 
     try:
-        (table, pdf_format) = filetype.getTable(pdf)  # get formatted dictionary
+        (table, pdf_format) = filetype.get_table(pdf)  # get formatted dictionary
 
         pdf.close()  # close document
 
@@ -84,7 +84,7 @@ def scrape_pdf(filename, counter, filetype, folder_name, pdfCount):
             filedata['status'] = 'Image/No text'
             return filedata
 
-        filedata = filetype.getAll(filedata, table, pdf_format)
+        filedata = filetype.get_all(filedata, table, pdf_format)
 
         # if filedata['status'] == 'Failure unknown reason':
         filedata['status'] = 'Parsed'

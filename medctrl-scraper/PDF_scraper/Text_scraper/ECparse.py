@@ -6,43 +6,43 @@ import PDFhelper
 
 # EC Decision document
 
-# Creates ordened string with all relevant data for EC decision document
-def getAllTest(filename, table, pdf_format):
-    res = [filename, table_getDate(table), table_getPN(table), table_getAS2(table), table_getNAS(table),
-           table_getATMP(table, pdf_format), table_getOrphanDesignation(table)]
+# Creates ordered string with all relevant data for EC decision document
+def get_all_test(filename, table, pdf_format):
+    res = [filename, table_get_date(table), table_get_pn(table), table_get_as2(table), table_get_nas(table),
+           table_get_atmp(table, pdf_format), table_get_orphan_designation(table)]
     return res
 
 
-def getAll(filedata, table, pdf_format):
-    # filedata['status'] = table_checkValid(table)
-    filedata['DecisionDate'] = table_getDate(table)
-    filedata['BrandName'] = table_getPN(table)
-    filedata['ActiveSubstance'] = table_getAS2(table)
-    filedata['NAS'] = table_getNAS(table)
-    filedata['ATMP'] = table_getATMP(table, pdf_format)
-    filedata['OD'] = table_getOrphanDesignation(table)
-    filedata['MAH'] = table_getMAH(table)
-    filedata['CMA'] = table_getDecisionType(table)
+def get_all(filedata, table, pdf_format):
+    filedata['DecisionDate'] = table_get_date(table)
+    filedata['BrandName'] = table_get_pn(table)
+    filedata['ActiveSubstance'] = table_get_as2(table)
+    filedata['NAS'] = table_get_nas(table)
+    filedata['ATMP'] = table_get_atmp(table, pdf_format)
+    filedata['OD'] = table_get_orphan_designation(table)
+    filedata['MAH'] = table_get_mah(table)
+    filedata['CMA'] = table_get_decision_type(table)
 
     return filedata
 
 
-def getDefault(filename):
+def get_default(filename):
+    default = 'Not parsed'
     return {'filename': filename,
-            'DecisionDate': 'Not parsed',
-            'BrandName': 'Not parsed',
-            'ActiveSubstance': 'Not parsed',
-            'NAS': 'Not parsed',
-            'ATMP': 'Not parsed',
-            'OD': 'Not parsed',
-            'MAH': 'Not parsed',
-            'CMA': 'Not parsed',
+            'DecisionDate': default,
+            'BrandName': default,
+            'ActiveSubstance': default,
+            'NAS': default,
+            'ATMP': default,
+            'OD': default,
+            'MAH': default,
+            'CMA': default,
             'status': 'Failure unknown reason'
             }
 
 
 # Scans and ordens EC orphan designation pdfs
-def getTable(pdf):
+def get_table(pdf):
     table = {'intro': dict.fromkeys(['front_page']),
              'body': dict.fromkeys(['main_text', 'P1']),
              'decision': dict.fromkeys(['dec_text']),
@@ -152,7 +152,7 @@ def get_name_section(txt):
     return section
 
 
-def table_getPN(table):
+def table_get_pn(table):
     section = table['intro']['front_page']
 
     txt = ''
@@ -189,7 +189,7 @@ def table_getPN(table):
     return 'Product name Not Found'
 
 
-def table_getAS2(table):
+def table_get_as2(table):
     section = table['intro']['front_page']
 
     txt = ''
@@ -210,7 +210,7 @@ def table_getAS2(table):
     return 'Active Substance Not Found'
 
 
-def table_getDecisionType(table):
+def table_get_decision_type(table):
     txt = get_section_text(table, 'body', True)
     excep = re.search(r"article\s+14\W8", txt.lower())  # exceptional: Article 14(8) or alt. (e.g. Article 14.8)
 
@@ -225,7 +225,7 @@ def table_getDecisionType(table):
         return "CMA Not Found"
 
 
-def table_getMAH(table):
+def table_get_mah(table):
     section = table['body']['main_text']
 
     mahlines = ''
@@ -260,14 +260,14 @@ def table_getMAH(table):
         return mah.strip()
 
 
-def table_getOrphanDesignation(table):
+def table_get_orphan_designation(table):
     txt = get_section_text(table, 'decision', True)
     if 'orphan medicinal product' in txt.lower() and 'has adopted this decision' in txt.lower():
         return 'adopted'
     return 'appointed'
 
 
-def table_getDate(table):
+def table_get_date(table):
     section = table['intro']['front_page']
     for txt in section:
         if 'of ' in txt:
@@ -278,7 +278,7 @@ def table_getDate(table):
 
 
 # NOT OPTIMISED YET
-def table_getATMP(_, pdf_format):
+def table_get_atmp(_, pdf_format):
     lines = PDFhelper.filterFont([], [], pdf_format)
     txt = ''.join(lines)
     txt = txt.lower()
@@ -293,7 +293,7 @@ def table_getATMP(_, pdf_format):
 
 
 # new active substance bool
-def table_getNAS(table):
+def table_get_nas(table):
     txt = get_section_text(table, 'body', False)
     if "committee for medicinal products for human use" in txt.lower() and "a new active substance" in txt.lower():
         return True
