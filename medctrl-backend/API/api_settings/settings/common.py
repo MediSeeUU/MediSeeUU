@@ -35,18 +35,23 @@ MEDICINES_CACHING = True
 
 INSTALLED_APPS = [
     "django.contrib.admin",
+    "django.contrib.admindocs",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "api.apps.ApiConfig",
+
+    # third party
+    "import_export",
     "rest_framework",
     "corsheaders",
     "knox",
     "guardian",
-    "import_export",
-    "django.contrib.admindocs",
+
+    # local
+    "api.apps.ApiConfig",
+
 ]
 
 
