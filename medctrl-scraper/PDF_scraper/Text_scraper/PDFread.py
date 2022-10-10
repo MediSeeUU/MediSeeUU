@@ -3,20 +3,19 @@ import json
 import fitz  # part of pip install PyMuPDF
 import os  # to get all file names in folder
 # external files for debug
-#import ECparse
-#import EPARparse
+# import ECparse
+# import EPARparse
 import json
+
+import joblib
+from joblib import delayed, Parallel
 
 # external files
 import ECparse
 import EPARparse
 
-
-def writeData(outputFile, filedata):
-    values = list(filedata.values())
-    output = '@'.join(map(str, values))
-    outputFile.writelines(output)
-    outputFile.writelines('\n')
+def writeData(filedata):
+    all_data.append(filedata)
 
 
 # Asks for the class of the PDF that you want to parse [IE 'ECparse']
@@ -50,76 +49,77 @@ def parseFolder(filetype, folder_name):
 
     f = open('results/results_' + folder_name + '.txt', 'w', encoding="utf-8")  # open/clean output file
 
-    # to make sure f is always closed if scrape is interrupted.
-    try:
-        pdfCount = len(os.listdir(folder_name))
+    pdfCount = len(os.listdir(folder_name))
+    all_data = Parallel(n_jobs=4)(delayed(scrape_pdf)(filename, counter, filetype, folder_name, pdfCount) for filename in os.listdir(folder_name))
 
-        for filename in os.listdir(folder_name):
+    for pdfdata in all_data:
+        values = list(pdfdata.values())
+        output = '@'.join(map(str, values))
+        f.writelines(output)
+        f.writelines('\n')
+    # for filename in os.listdir(folder_name):
+    #    scrape_pdf(filename, counter, filetype, folder_name, pdfCount)
 
-            # default values
-            filedata = filetype.getDefault(filename)
-
-            # debug keep track of progress
-            counter += 1
-            if (counter % 500) == 0:
-                print(f"{counter}/{pdfCount} - {str(round(((counter / pdfCount) * 100), 2))}% ")
-
-            corrupt = False
-
-            # try to open
-            try:
-                pdf = fitz.open(folder_name + "/" + filename)  # open document
-            except:
-                corrupt = True
-
-            try:
-                (table, pdf_format) = filetype.getTable(pdf)  # get formatted dictionary
-
-                pdf.close()  # close document
-
-                # check if pdf is readable
-                if filetype.unreadable(table):
-                    filedata['status'] = 'Image/No text'
-                    writeData(f, filedata)
-                    continue
-
-                filedata = filetype.getAll(filedata, table, pdf_format)
-
-                # if filedata['status'] == 'Failure unknown reason':
-                filedata['status'] = 'Parsed'
-
-                writeData(f, filedata)
-
-            # could not parse
-            except:
-                # check if html
-                try:
-                    # open file to check first line
-                    f2 = open(str(folder_name + "/" + filename), 'r', encoding="utf8")
-                    firstline = f2.readline()
-
-                    if 'html' in firstline.lower():
-                        filedata['status'] = 'HTML'
-                        writeData(f, filedata)
-                        f2.close()
-                        continue
-                    f2.close()  # close opened file
-                except:
-                    pass
-
-                # check if could not open PDF
-                if corrupt:
-                    filedata['status'] = 'corrupt/could not open'
-                    writeData(f, filedata)
-                    continue
-
-                # other parse error (uses default 'Failure unknown reason')
-                else:
-                    writeData(f, filedata)
-                    continue
-
-
-    except:
-        pass
+    # write date here
     f.close()  # close output file.
     print('Done')
+
+
+def scrape_pdf(filename, counter, filetype, folder_name, pdfCount):
+    # default values
+    filedata = filetype.getDefault(filename)
+
+    # debug keep track of progress
+    counter += 1
+    if (counter % 500) == 0:
+        print(f"{counter}/{pdfCount} - {str(round(((counter / pdfCount) * 100), 2))}% ")
+
+    corrupt = False
+
+    # try to open
+    try:
+        pdf = fitz.open(folder_name + "/" + filename)  # open document
+    except:
+        corrupt = True
+
+    try:
+        (table, pdf_format) = filetype.getTable(pdf)  # get formatted dictionary
+
+        pdf.close()  # close document
+
+        # check if pdf is readable
+        if filetype.unreadable(table):
+            filedata['status'] = 'Image/No text'
+            return filedata
+
+        filedata = filetype.getAll(filedata, table, pdf_format)
+
+        # if filedata['status'] == 'Failure unknown reason':
+        filedata['status'] = 'Parsed'
+
+        return filedata
+
+    # could not parse
+    except:
+        # check if html
+        try:
+            # open file to check first line
+            f2 = open(str(folder_name + "/" + filename), 'r', encoding="utf8")
+            firstline = f2.readline()
+
+            if 'html' in firstline.lower():
+                filedata['status'] = 'HTML'
+                f2.close()
+                return filedata
+            f2.close()  # close opened file
+        except:
+            pass
+
+        # check if could not open PDF
+        if corrupt:
+            filedata['status'] = 'corrupt/could not open'
+            return filedata
+
+        # other parse error (uses default 'Failure unknown reason')
+        else:
+            return filedata
