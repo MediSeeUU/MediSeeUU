@@ -185,7 +185,7 @@ def get_medicine_info(perm):
         },
     ]
 
-    # The Data object constructs the json that will be returned, each item is filterd on the acces level a user has
+    # The data object constructs the json that will be returned, each item is filterd on the acces level a user has
     data = {
         "General Information": [x for x in General_Information if filterFunc(perm, x)],
         "Identifying Information": [

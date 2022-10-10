@@ -56,20 +56,6 @@ def get_text_format(pdf, lower=False):
     return results
 
 
-# gets a section from a PDF document with a start and end string, optionally
-# constrained by certain fonts or font sizes
-def get_section(pdf, start, stop, fontSize, fonts):
-    section = findBetween(start, stop, pdf)
-    clean = filterFont(fontSize, fonts, section)
-
-    text = ""
-    for line in clean:
-        text += line + "\n"
-        continue
-
-    return text
-
-
 # filters text on certain fonts or font types
 # returns all text when empty font lists are given
 def filterFont(fontSize, fontList, section):
@@ -83,28 +69,6 @@ def filterFont(fontSize, fontList, section):
             if font in fontList or fontList == []:
                 res.append(txt)
     return res
-
-
-# returns all lines from and including start till stop for a given pdf
-def findBetween(start, stop, pdf):
-    results = []
-    save = False
-    for page in pdf:
-        dict_ = page.get_text("dict_")
-        blocks = dict_["blocks"]
-        for block in blocks:
-            if "lines" in block.keys():
-                spans = block['lines']
-                for span in spans:
-                    data = span['spans']
-                    for lines in data:
-                        if start in lines['text']:
-                            save = True
-                        if save:
-                            results.append((lines['text'], lines['size'], lines['font']))
-                        if stop in lines['text'] and save:
-                            return results
-    return results
 
 
 # returns all lines from and including start till stop for a given format

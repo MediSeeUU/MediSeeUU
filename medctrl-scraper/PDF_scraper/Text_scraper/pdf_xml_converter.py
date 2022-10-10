@@ -1,6 +1,6 @@
 import sys
 import fitz
-import PDFhelper as ph
+import pdf_helper as ph
 
 header_indicator = "|-HEADER-|"
 split_indicator = "|-SPLIT-|"

@@ -69,12 +69,12 @@ def run_parallel():
     # Store the result of the csv converting into dictionaries
     decisions, annexes, epar = read_csv_files()
     # Download the decision files, parallel
-    # Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "dec", decisions) for medicine in decisions)
+    Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "dec", decisions) for medicine in decisions)
     print("Done with decisions")
     # Download the annexes files, parallel
     # Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "anx", annexes) for medicine in annexes)
     print("Done with Annexes")
     # Download the epar files, parallel
-    Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "epar", epar) for medicine in epar)
+    # Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "epar", epar) for medicine in epar)
     print("Done with epars")
 

@@ -17,7 +17,7 @@ def parse_smpc_file(filepath: str):
         print(section_header.text)
 
         if Utils.section_contains_header_number("1.1", section):
-            APF.scrape_medicine_name()
+            string = APF.scrape_medicine_name()
 
 
 #testing

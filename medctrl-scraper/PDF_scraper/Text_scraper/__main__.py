@@ -1,14 +1,17 @@
-import PDFread as PDFr
+import pdf_read as PDFr
 
 # external files
-import ECparse
-import EPARparse
+import parsers.ec_parse as ec_parse
+import parsers.epar_parse as epar_parse
 
 # Main file to run all parsers
 
-PDFr.parse_folder(ECparse, 'dec_human')
-PDFr.parse_folder(ECparse, 'dec_orphan')
-PDFr.parse_folder(EPARparse, 'epars')
+# TODO: Create dictionary per medicine
+#datum toevoegen
 
-# To add: Xiao yi SMPC Parser
-# To add: Elio's OMAR Parser
+PDFr.parse_folder(ec_parse, 'dec_human')
+PDFr.parse_folder(ec_parse, 'dec_orphan')
+PDFr.parse_folder(epar_parse, 'epars')
+
+# To add: Xiao yi SMPC parsers
+# To add: Elio's OMAR parsers

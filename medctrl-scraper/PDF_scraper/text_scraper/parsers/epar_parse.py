@@ -1,4 +1,4 @@
-# EPAR Parser
+# EPAR parsers
 import re
 import PDFhelper
 
@@ -35,7 +35,7 @@ def get_table(pdf):
              'discussion': dict.fromkeys(['dis_text'])}
 
     pdf_format = PDFhelper.get_text_format(pdf, True)
-
+    print(pdf_format)
     # Front page - find first occurrence of 'Assessment report', not yet used
     get_front_page(pdf_format, table)
     # filter table of contents
