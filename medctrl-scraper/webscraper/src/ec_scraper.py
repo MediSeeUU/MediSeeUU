@@ -1,5 +1,6 @@
 import json
-from datetime import datetime
+from datetime import date, datetime
+from typing import Type
 
 import regex as re
 import bs4
@@ -61,12 +62,12 @@ def scrape_medicine_page(url: str):  # -> (list[str], list[str], list[str]):
 
     # prints the retrieved data
     # can be removed in the final product
-    print(atc_code)
-    print(active_substance)
-    print(eu_pnumber)
-    print(eu_aut_status)
-    print(eu_brand_name_current)
-    print(eu_mah_current)
+    # print(atc_code)
+    # print(active_substance)
+    # print(eu_pnumber)
+    # print(eu_aut_status)
+    # print(eu_brand_name_current)
+    # print(eu_mah_current)
 
     # TODO: Proper logging here
     print(f"Finished with {url}")
@@ -155,11 +156,43 @@ def get_data_from_medicine_json(medicine_json, ema_url_list: list[str]):
 
 # TODO: Change this function so that it not only gets the dec and anx urls, but other data as well
 def get_data_from_procedures_json(procedures_json, dec_url_list: list[str], anx_url_list: list[str]):
+    # set some predefined values. Whenever this function doesn't find the data
+    # it makes sure it doesn't cause an error
+    # TODO: propper error handling
+
+    try:
+        eu_aut_date: date = datetime.strptime(procedures_json[0]["decision"]["date"], f"%Y-%m-%d").date()
+        eu_aut_year: int = eu_aut_date.year
+        print(eu_aut_year)
+    except TypeError:
+        print("This medicine does't have any procedures")
+    except:
+        print("something went wrong with fetching the authorization date")
+
+    eu_aut_type_initial = None    # TODO: vragen of zowel exceptional als conditonal mogelijk is
+
+    # Checks if the last procedure contains Annual Reassesment or Annual Renewal in its name, and decides the authorization type accordingly
+    eu_aut_type_current = decide_aut_type(eu_aut_year, True if "Annual Reassesment" in procedures_json[-1]["type"] else False, True if "Annual Renewal" in procedures_json[-1]["type"] else False)
+    ema_number = None             # TODO: nachecken of het echt het meest voorkomende nummer moet zijn, of gewoon het laatst voorkomende
+    ema_number_certainty: float = None
+
+    # Variables for checking the eu_aut_type_initial
+    isConditional: bool = False
+    isExceptional: bool = False
 
     # for each row in the json file of each medicine, get the urls for the pdfs of the decision and annexes.
+    # it also checks whether each procedure row has some information about its authorization type
     for row in procedures_json:
+
         if row["files_dec"] is None and row["files_anx"] is None:
             continue
+
+        # Checks whether the medicine has 
+        if "Annual Reassesment" in row["type"].lower():
+            isExceptional = True
+
+        if "annual renewal" in row["type"].lower():
+            isConditional = True
 
         # Parse the date, formatted as %Y-%m-%d, which looks like 1970-01-01
         decision_date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
@@ -175,7 +208,22 @@ def get_data_from_procedures_json(procedures_json, dec_url_list: list[str], anx_
             # add url to annexes pdf to list
             anx_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
 
+    eu_aut_type_initial = decide_aut_type(eu_aut_year, isExceptional, isConditional)
+    print(eu_aut_type_initial)
+
     return dec_url_list, anx_url_list
 
+# Determines whether a medicine is exceptional, conditional or standard, based on the procedures
+def decide_aut_type(year: int, isExceptional: bool, isConditional: bool) -> str:
+    if year < 2006:
+        return "pre2006"
+    if isExceptional and isConditional:
+        return "exceptionalAndConditional"
+    if isExceptional:
+        return "exceptional"
+    if isConditional:
+        return "conditional"
+    return "standard"
+
 # uncomment this when you want to test if data is retrieved for a certain medicine
-#scrape_medicine_page("h145")
+scrape_medicine_page("h1169")
