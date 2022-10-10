@@ -1,6 +1,6 @@
 # EPAR parsers
 import re
-import PDFhelper
+from .. import pdf_helper
 
 date_pattern: str = r'\d{1,2} \w+ \d{4}'
 procedure_info = 'information on the procedure'
@@ -34,7 +34,7 @@ def get_table(pdf):
              'background': dict.fromkeys(['main_text']),
              'discussion': dict.fromkeys(['dis_text'])}
 
-    pdf_format = PDFhelper.get_text_format(pdf, True)
+    pdf_format = pdf_helper.get_text_format(pdf, True)
     print(pdf_format)
     # Front page - find first occurrence of 'Assessment report', not yet used
     get_front_page(pdf_format, table)
@@ -43,35 +43,35 @@ def get_table(pdf):
     # background information on the procedure
     rem1 = get_background_info(rem, table)
     # scientific discussion
-    table['discussion']['dis_text'] = PDFhelper.filterFont([], [], rem1)
+    table['discussion']['dis_text'] = pdf_helper.filter_font([], [], rem1)
 
     return table, pdf_format
 
 
 def filter_table_of_content(pdf_format):
-    (content_table, rem) = PDFhelper.findBetweenFormat(procedure_info, procedure_info,
-                                                       pdf_format, False)
+    (content_table, rem) = pdf_helper.find_between_format(procedure_info, procedure_info,
+                                                          pdf_format, False)
     return rem
 
 
 def get_background_info(rem, table):
-    (content, rem1) = PDFhelper.findBetweenFormatSize(procedure_info, 'scientific discussion',
-                                                      rem, True, 10)
-    table['background']['main_text'] = PDFhelper.filterFont([], [], content)
+    (content, rem1) = pdf_helper.find_between_format(procedure_info, 'scientific discussion',
+                                                     rem, True, 10)
+    table['background']['main_text'] = pdf_helper.filter_font([], [], content)
     return rem1
 
 
 def get_front_page(pdf_format, table):
-    (content, rem) = PDFhelper.findBetweenFormat('assessment report', 'table of contents', pdf_format, False)
+    (content, rem) = pdf_helper.find_between_format('assessment report', 'table of contents', pdf_format, False)
     table['intro']['front_page'] = []
     if content:
         (_, font, _) = content[0]
         if font > 10.5:
-            table['intro']['front_page'] = PDFhelper.filterFont([], [], content)
+            table['intro']['front_page'] = pdf_helper.filter_font([], [], content)
     if not rem:
-        (content, _) = PDFhelper.findBetweenFormat('assessment report', 'background information on the procedure',
-                                                   pdf_format, False)
-        table['intro']['front_page'] = PDFhelper.filterFont([], [], content)
+        (content, _) = pdf_helper.find_between_format('assessment report', 'background information on the procedure',
+                                                      pdf_format, False)
+        table['intro']['front_page'] = pdf_helper.filter_font([], [], content)
 
 
 # check if table front page is empty (indicating image/unreadable)

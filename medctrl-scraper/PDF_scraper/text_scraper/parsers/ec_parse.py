@@ -1,7 +1,7 @@
 # EC parser
 import re
-import helper
-import PDFhelper
+from .. import helper
+from .. import pdf_helper
 
 
 # EC Decision document
@@ -48,29 +48,29 @@ def get_table(pdf):
              'decision': dict.fromkeys(['dec_text']),
              'remaining': []}
 
-    pdf_format = PDFhelper.get_text_format(pdf)
+    pdf_format = pdf_helper.get_text_format(pdf)
 
     # intro
-    (content, rem) = PDFhelper.findBetweenFormat('DECISION', 'AUTHENTIC', pdf_format, True)
-    table['intro']['front_page'] = PDFhelper.filterFont([], [], content)
+    (content, rem) = pdf_helper.find_between_format('DECISION', 'AUTHENTIC', pdf_format, True)
+    table['intro']['front_page'] = pdf_helper.filter_font([], [], content)
 
     # filter second intro message
-    (_, rem) = PDFhelper.findBetweenFormat('DECISION', 'COMMISSION', rem, False)
+    (_, rem) = pdf_helper.find_between_format('DECISION', 'COMMISSION', rem, False)
 
     # content
-    (content, rem) = PDFhelper.findBetweenFormat('COMMISSION', 'Whereas:', rem, True)
-    table['body']['main_text'] = PDFhelper.filterFont([], [], content)
+    (content, rem) = pdf_helper.find_between_format('COMMISSION', 'Whereas:', rem, True)
+    table['body']['main_text'] = pdf_helper.filter_font([], [], content)
 
     # bullet points as one chunck
-    (bulletpoints, rem) = PDFhelper.findBetweenFormat('', 'HAS ADOPTED THIS DECISION:', rem, False)
+    (bulletpoints, rem) = pdf_helper.find_between_format('', 'HAS ADOPTED THIS DECISION:', rem, False)
 
     zoeken = True
     bullet_count = 1
     while zoeken:
         # finds section from start till next bullet point
-        (bp_content, bulletpoints) = PDFhelper.findBetweenFormat('', '(' + str(bullet_count + 1) + ')', bulletpoints,
-                                                                 False)
-        table['body']['P' + str(bullet_count)] = PDFhelper.filterFont([12], [], bp_content)
+        (bp_content, bulletpoints) = pdf_helper.find_between_format('', '(' + str(bullet_count + 1) + ')', bulletpoints,
+                                                                   False)
+        table['body']['P' + str(bullet_count)] = pdf_helper.filter_font([12], [], bp_content)
 
         # nothing more to be found or stuck in loop
         if bulletpoints == [] or bullet_count > 15:
@@ -78,26 +78,26 @@ def get_table(pdf):
         bullet_count += 1
 
     # decision
-    (content, rem) = PDFhelper.findBetweenFormat('HAS ADOPTED THIS DECISION:', 'Article 1', rem, False)
-    table['decision']['dec_text'] = PDFhelper.filterFont([], [], content)
+    (content, rem) = pdf_helper.find_between_format('HAS ADOPTED THIS DECISION:', 'Article 1', rem, False)
+    table['decision']['dec_text'] = pdf_helper.filter_font([], [], content)
 
-    article_count = PDFhelper.countStr('Article', 'TimesNewRoman,Italic', rem)
+    article_count = pdf_helper.count_str('Article', 'TimesNewRoman,Italic', rem)
     # older docs use different font
     if article_count == 0:
-        article_count = PDFhelper.countStr('Article', 'TimesNewRomanPS-ItalicMT', rem)
+        article_count = pdf_helper.count_str('Article', 'TimesNewRomanPS-ItalicMT', rem)
 
     for arc in range(article_count):
         arc_num = arc + 1
 
         if arc_num == article_count:
-            (content, rem) = PDFhelper.findBetweenFormat('Article ' + str(arc_num), 'Done at', rem, False)
-            table['decision']['A' + str(arc_num)] = PDFhelper.filterFont([12], [], content)
+            (content, rem) = pdf_helper.find_between_format('Article ' + str(arc_num), 'Done at', rem, False)
+            table['decision']['A' + str(arc_num)] = pdf_helper.filter_font([12], [], content)
         else:
-            (content, rem) = PDFhelper.findBetweenFormat('Article ' + str(arc_num), 'Article ' + str(arc_num + 1), rem,
-                                                         False)
-            table['decision']['A' + str(arc_num)] = PDFhelper.filterFont([12], [], content)
+            (content, rem) = pdf_helper.find_between_format('Article ' + str(arc_num), 'Article ' + str(arc_num + 1), rem,
+                                                           False)
+            table['decision']['A' + str(arc_num)] = pdf_helper.filter_font([12], [], content)
 
-    table['remaining'] = PDFhelper.filterFont([12], [], rem)
+    table['remaining'] = pdf_helper.filter_font([12], [], rem)
 
     return table, pdf_format
 
@@ -279,7 +279,7 @@ def table_get_date(table):
 
 # NOT OPTIMISED YET
 def table_get_atmp(_, pdf_format):
-    lines = PDFhelper.filterFont([], [], pdf_format)
+    lines = pdf_helper.filter_font([], [], pdf_format)
     txt = ''.join(lines)
     txt = txt.lower()
     regulation = "Regulation (EC) No 1394/2007"
@@ -301,11 +301,11 @@ def table_get_nas(table):
 
 
 def get_section_text(table, section, inclusive):
-    iterPoints = iter(table[section])
+    iter_points = iter(table[section])
     if not inclusive:
-        next(iterPoints)  # to skip main_text
+        next(iter_points)  # to skip main_text
     temp = ''
-    for point in iterPoints:
+    for point in iter_points:
         for txt in table[section][point]:
             temp += txt
     return temp

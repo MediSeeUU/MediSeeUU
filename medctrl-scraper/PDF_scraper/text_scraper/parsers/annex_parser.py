@@ -1,9 +1,9 @@
-import pdf_xml_converter as xmlc
+from .. import pdf_xml_converter as xmlc
 import xml.etree.ElementTree as ET
-import parsed_info_struct as PIS
-import xml_parsing_utils as Utils
+from .. import parsedinfostruct as PIS
+from .. import xml_parsing_utils as Utils
 import annex_parsing_functions as APF
-import PDFhelper as ph
+# from .. import pdf_helper as ph
 
 
 def parse_smpc_file(filepath: str):
