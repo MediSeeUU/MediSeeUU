@@ -37,13 +37,16 @@ def scrape_medicines_list(url: str) -> list[str]:
     for row in parsed_json:
         string_url = row['eu_num']['pre'] + row['eu_num']['id']
         string_eu_n = (row['eu_num']['display']).replace("/", "-")
-        url_list.append((string_url, string_eu_n))
+        url_list.append(string_eu_n)
 
     return url_list
 
 
 def scrape_medicine_page(url: str):  # -> (list[str], list[str], list[str]):
 
+    # Convert EU number to download URL
+    url_r = re.findall(r"\d+", url)
+    url = url_r[0].replace("1", "h").replace("3", "o") + url_r[2]
     # Retrieves the html from the European Commission product page
     html_active = get_ec_html(url)
     # Looks for the necessary JSON objects that contain most of the important information
@@ -55,24 +58,26 @@ def scrape_medicine_page(url: str):  # -> (list[str], list[str], list[str]):
     ema_url_list: list[str] = []
     dec_url_list: list[str] = []
     anx_url_list: list[str] = []
+    filenames_list: list[str] = []
 
     # Gets all the necessary information from the medicine_json and procedures_json objects
-    atc_code, active_substance, eu_pnumber, eu_aut_status, eu_brand_name_current, eu_mah_current, ema_url_list = get_data_from_medicine_json(medicine_json, ema_url_list)
+    atc_code, active_substance, eu_pnumber, eu_aut_status, eu_brand_name_current, eu_mah_current, ema_url_list, orphan_status, active_status = get_data_from_medicine_json(medicine_json, ema_url_list)
     dec_url_list, anx_url_list = get_data_from_procedures_json(procedures_json, dec_url_list, anx_url_list)
-
+    filenames_list.extend([orphan_status, active_status])
     # prints the retrieved data
     # can be removed in the final product
-    print(atc_code)
-    print(active_substance)
-    print(eu_pnumber)
-    print(eu_aut_status)
-    print(eu_brand_name_current)
-    print(eu_mah_current)
+    # print(atc_code)
+    # print(active_substance)
+    # print(eu_pnumber)
+    # print(eu_aut_status)
+    # print(eu_brand_name_current)
+    # print(eu_mah_current)
 
     # TODO: Proper logging here
     print(f"Finished with {url}")
     # return the urls per medicine
-    return dec_url_list, anx_url_list, ema_url_list
+    return dec_url_list, anx_url_list, ema_url_list, filenames_list
+
 
 # Fetches the html from the EC website for a certain medicine
 def get_ec_html(url:str):
@@ -83,6 +88,7 @@ def get_ec_html(url:str):
     html_active.raise_for_status()
 
     return html_active
+
 
 # Gets the JSON object that contain all the data, links to the EMA website and links to the pdfs
 def get_ec_json_objects(html_active):
@@ -114,6 +120,7 @@ def get_ec_json_objects(html_active):
     procedures_json = json.loads(plaintext_json[1])
     return medicine_json, procedures_json
 
+
 # The medicine_json object from the EC contains some important information that needs to be scraped
 # It loops through the JSON object and finds all the attributes, so that they can be used and stored
 def get_data_from_medicine_json(medicine_json, ema_url_list: list[str]):
@@ -132,6 +139,8 @@ def get_data_from_medicine_json(medicine_json, ema_url_list: list[str]):
             case "name":
                 json_obj = (row["meta"])
                 eu_aut_status = json_obj["status_name"]
+                eu_aut_status_type = json_obj["status_type"]
+                orphan_status = json_obj["pre"]
                 eu_brand_name_current = row["value"]
             case "eu_num":
                 eu_pnumber = row["value"]
@@ -152,7 +161,9 @@ def get_data_from_medicine_json(medicine_json, ema_url_list: list[str]):
                 for json_obj in row["meta"]:
                     ema_url_list.append(json_obj["url"])
 
-    return atc_code, active_substance, eu_pnumber, eu_aut_status, eu_brand_name_current, eu_mah_current, ema_url_list
+    eu_aut_status_type = eu_aut_status_type.replace("r", "w").replace("g", "a")
+    return atc_code, active_substance, eu_pnumber, eu_aut_status, eu_brand_name_current, eu_mah_current, ema_url_list, orphan_status, eu_aut_status_type
+
 
 # TODO: Change this function so that it not only gets the dec and anx urls, but other data as well
 def get_data_from_procedures_json(procedures_json, dec_url_list: list[str], anx_url_list: list[str]):

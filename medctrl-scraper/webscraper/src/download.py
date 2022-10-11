@@ -27,11 +27,12 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
 
 
 # Download pdfs using the dictionaries created from the CSV files
-def download_pdfs(med_id: str, pdf_type: str, type_dict: str):
+def download_pdfs(eu_n: str, pdf_type: str, type_dict: str, filenames):
     attempts = 0
     max_attempts = 4
     success = False
     # TODO: Rework with new download method
+    # TODO: Add file_number and pdf_type to filenames list.
     """
     while attempts < max_attempts and not success:
         try:
@@ -48,17 +49,20 @@ def download_pdfs(med_id: str, pdf_type: str, type_dict: str):
 
 # Function for reading the CSV contents back into dictionaries that can be used for downloading.
 def read_csv_files():
-    dec = pd.read_csv('../data/CSV/decision.csv', header=None, index_col=(0, 1)).squeeze().to_dict()
-    anx = pd.read_csv('../data/CSV/annexes.csv', header=None, index_col=(0, 1)).squeeze().to_dict()
-    epar = pd.read_csv('../data/CSV/epar.csv', header=None, index_col=(0, 1)).squeeze().to_dict()
-    return dec, anx, epar
+    dec = pd.read_csv('../data/CSV/decision.csv', header=None, index_col=0).squeeze().to_dict()
+    anx = pd.read_csv('../data/CSV/annexes.csv', header=None, index_col=0).squeeze().to_dict()
+    epar = pd.read_csv('../data/CSV/epar.csv', header=None, index_col=0).squeeze().to_dict()
+    fnames = pd.read_csv('../data/CSV/filenames.csv', header=None, index_col=0).squeeze().to_dict()
+    return dec, anx, epar, fnames
+
+#dec, anx, epar, fnames = read_csv_files()
 
 
 def run_parallel():
     # Store the result of the csv converting into dictionaries
-    decisions, annexes, epar = read_csv_files()
+    decisions, annexes, epar, fnames = read_csv_files()
     # Download the decision files, parallel
-    # Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "dec", decisions) for medicine in decisions)
+    Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "dec", decisions, fnames[medicine]) for medicine in decisions)
     print("Done with decisions")
     # Download the annexes files, parallel
     # Parallel(n_jobs=12)(delayed(download_pdfs)(medicine, "anx", annexes) for medicine in annexes)
