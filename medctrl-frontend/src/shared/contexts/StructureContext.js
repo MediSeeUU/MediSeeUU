@@ -24,7 +24,7 @@ export function StructureProvider({ mock, children }) {
   useEffect(() => {
     async function fetchData() {
       const structResponse = await fetchWithToken(
-        `${process.env.PUBLIC_URL}/api/detailedData/`,
+        `${process.env.PUBLIC_URL}/api/structureData/`,
         {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },

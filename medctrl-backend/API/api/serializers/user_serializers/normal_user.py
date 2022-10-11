@@ -10,7 +10,7 @@
 
 from rest_framework import serializers
 from django.contrib.auth.models import User, Group
-from api.models import SavedSelection
+from api.models.other import SavedSelection
 from api.serializers import SavedSelectionSerializer
 
 # Serializes all groups provided by the Userserializer

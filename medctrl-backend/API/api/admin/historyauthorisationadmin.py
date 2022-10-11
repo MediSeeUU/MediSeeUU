@@ -7,8 +7,8 @@ from api.models.medicine_models import (
     Medicine,
     Historyauthorisation,
 )
-from .common import import_foreign_key
-from .cachemodeladmin import CacheModelAdmin
+from api.admin.common import import_foreign_key
+from api.admin.cachemodeladmin import CacheModelAdmin
 
 
 class HistoryauthorisationResource(resources.ModelResource):

@@ -4,7 +4,7 @@
 from django.contrib import admin
 from import_export import resources, admin as import_admin
 from api.models.medicine_models import Medicine
-from .cachemodeladmin import CacheModelAdmin
+from api.admin.cachemodeladmin import CacheModelAdmin
 
 
 class MedicineResource(resources.ModelResource):
