@@ -11,8 +11,8 @@ import parsers.epar_parse as epar_parse
 
 
 #pdf_r.parse_folder(ec_parse, 'data/dec_human')
-pdf_r.parse_folder(ec_parse, 'data/dec_orphan')
-#pdf_r.parse_folder(epar_parse, 'data/epars')
+#pdf_r.parse_folder(ec_parse, 'data/dec_orphan')
+pdf_r.parse_folder(epar_parse, 'data/epars')
 
 # To add: Xiao yi SMPC parsers
 # To add: Elio's OMAR parsers

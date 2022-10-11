@@ -1,4 +1,6 @@
 # importing all the required modules
+import json
+
 import fitz  # part of pip install PyMuPDF
 import os  # to get all file names in folder
 # external classes for debug using parse_test_file
@@ -59,7 +61,6 @@ def parse_folder(filetype, folder_name):
 def scrape_pdf(filename, filetype, folder_name, pdf_count):
     # default values
     filedata = filetype.get_default(filename)
-    corrupt = False
 
     # try to open
     try:
@@ -69,7 +70,6 @@ def scrape_pdf(filename, filetype, folder_name, pdf_count):
         pdf.close()  # close document
         filedata = filetype.get_all(filedata, table, pdf_format)
         filedata['status'] = 'Parsed'
-
         return filedata
 
     # could not parse
@@ -79,4 +79,4 @@ def scrape_pdf(filename, filetype, folder_name, pdf_count):
         return filedata
 
 
-#parse_test_file(epar_parse)
+# parse_test_file(epar_parse)

@@ -27,25 +27,37 @@ def combine_text(lines, lower, old_font, old_size, old_text, results):
     text = lines['text']
     size = lines['size']
     font = lines['font']
+    # Start new line when a header number is found after
+    # another header number with text behind it
+    if header_split_check(old_text, text):
+        append_text(old_text, old_size, old_font, results, lower)
+        old_font, old_size, old_text = font, size, text
     # Combine text that has the same size and font
     # Also combine text that has the same size and is Bold
-    if round(old_size) == round(size) and \
+    elif round(old_size) == round(size) and \
             (old_font == font or 'Bold' in old_font and 'Bold' in font):
         old_text += text
-        old_size = size
-        old_font = font
+        old_size, old_font = size, font
+    # Add all spaces at the end
+    # Sometimes, spaces are of a different font randomly
+    elif text.isspace():
+        old_text += text
     # Old text becomes new text to be added in a next iteration
     elif old_text == '':
-        old_text = text
-        old_size = size
-        old_font = font
+        old_font, old_size, old_text = font, size, text
     # Text is different format, add old_text to results and replace it with new text
     else:
         append_text(old_text, old_size, old_font, results, lower)
-        old_text = text
-        old_size = size
-        old_font = font
+        old_font, old_size, old_text = font, size, text
     return old_font, old_size, old_text
+
+
+def header_split_check(old_text, text):
+    if old_text.strip() != "" and text.strip() != "" and len(old_text.split()) > 1:
+        return all((n.isdigit() or n == '.') for n in old_text.split()[0]) and \
+               all((n.isdigit() or n == '.') for n in text.split()[0]) and \
+               not old_text.split()[1][0].isdigit()
+    return False
 
 
 # returns formatted text from PDF document, optionally lowered
