@@ -70,18 +70,11 @@ def get_text_format(pdf, lower=False):
     return results
 
 
-# filters text on certain fonts or font types
-# returns all text when empty font lists are given
-def filter_font(font_size, font_list, section):
-    res = []
+#converts a formatted text to normal string.
+def format_to_string(section):
+    res = ''
     for (txt, size, font) in section:
-        # remove empty txt or only spaces
-        if txt == " " or txt.count(' ') == len(txt):
-            continue
-
-        if round(size, 1) in font_size or font_size == []:
-            if font in font_list or font_list == []:
-                res.append(txt)
+        res += txt     
     return res
 
 

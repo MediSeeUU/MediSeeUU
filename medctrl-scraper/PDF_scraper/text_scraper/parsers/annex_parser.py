@@ -1,9 +1,7 @@
-from .. import pdf_xml_converter as xmlc
+import pdf_xml_converter as xmlc
 import xml.etree.ElementTree as ET
-from .. import parsedinfostruct as PIS
-from .. import xml_parsing_utils as Utils
-import annex_parsing_functions as APF
-# from .. import pdf_helper as ph
+import xml_parsing_utils as Utils
+import parsers.annex_parsing_functions as APF
 
 
 def parse_smpc_file(filepath: str):
@@ -14,11 +12,7 @@ def parse_smpc_file(filepath: str):
 
     for section in xml_body:
         section_header = section[0]
-        print(section_header.text)
+        # print(section_header.text)
 
         if Utils.section_contains_header_number("1.1", section):
             string = APF.scrape_medicine_name()
-
-
-#testing
-#parse_smpc_file("../EC decision parser Vincent/annexs/anx_156445_en.pdf")
