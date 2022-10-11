@@ -5,7 +5,7 @@ from django.db import models
 from .common import create_dashboard_column, Category
 
 
-class Historybrandname(models.Model):
+class HistoryBrandName(models.Model):
     """
     Model class for the brand name history table.
     """
