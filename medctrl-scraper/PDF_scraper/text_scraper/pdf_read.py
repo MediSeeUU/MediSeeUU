@@ -35,11 +35,13 @@ def parse_folder(filetype, folder_name):
 
     # debug to indicate progress
     counter = 0
-    print(f'Starting... on {folder_name}')
+    pdf_type = folder_name.split('/')[1]
+    print(f'Starting... on {pdf_type}')
 
-    f = open('results/results_' + folder_name + '.txt', 'w', encoding="utf-8")  # open/clean output file
-
+    f = open('results/results_' + pdf_type + '.txt', 'w', encoding="utf-8")  # open/clean output file
     pdf_count = len(os.listdir(folder_name))
+
+    # Get all attributes of each pdf file
     all_data = Parallel(n_jobs=4)(
         delayed(scrape_pdf)(filename, counter, filetype, folder_name, pdf_count) for filename in
         os.listdir(folder_name))
@@ -79,4 +81,4 @@ def scrape_pdf(filename, counter, filetype, folder_name, pdf_count):
         return filedata
 
 
-parse_test_file(epar_parse)
+#parse_test_file(epar_parse)

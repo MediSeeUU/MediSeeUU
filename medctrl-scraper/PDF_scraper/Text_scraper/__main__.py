@@ -10,9 +10,9 @@ import parsers.epar_parse as epar_parse
 # datum toevoegen
 
 
-pdf_r.parse_folder(ec_parse, 'dec_human')
-pdf_r.parse_folder(ec_parse, 'dec_orphan')
-pdf_r.parse_folder(epar_parse, 'epars')
+#pdf_r.parse_folder(ec_parse, 'data/dec_human')
+#pdf_r.parse_folder(ec_parse, 'data/dec_orphan')
+pdf_r.parse_folder(epar_parse, 'data/epars')
 
 # To add: Xiao yi SMPC parsers
 # To add: Elio's OMAR parsers

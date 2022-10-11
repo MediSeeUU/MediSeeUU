@@ -16,10 +16,9 @@ import os
 def filter_all_pdfs():
     print(f'Filtering all PDF files...')
     f = open('retry.txt', 'w', encoding="utf-8")  # open/clean output file
-    # data_dir = 'PDF_scraper/text_scraper/data'
-    data_dir = 'PDF_scraper/text_scraper/epars'
+    data_dir = 'PDF_scraper/text_scraper/data'
 
-    all_data = Parallel(n_jobs=4)(
+    all_data = Parallel(n_jobs=8)(
         delayed(filter_pdf)(filename, data_dir) for filename in
         os.listdir(data_dir))
 
@@ -60,37 +59,41 @@ def filter_pdf(filename, data_dir):
         corrupt = True
 
     try:
-        # Check if PDF is readable
-        no_text = check_for_text(pdf)
-        pdf.close()  # close document
-
-        # Text is not readable
-        if no_text:
-            return filename + '@no_text'
-        # Text is readable
-        return filename + '@parsed'
+        return check_readable(filename, pdf)
     # could not parse
     except:
         # Check if html
         try:
-            # open file to check first line
-            f2 = open(str(file_path), 'r', encoding="utf8")
-            firstline = f2.readline()
-
+            firstline = get_utf8_line(file_path)
             if 'html' in firstline.lower():
-                f2.close()
                 return filename + '@html'
-            f2.close()  # close opened file
         except:
             pass
 
         # check if could not open PDF
         if corrupt:
             return filename + '@corrupt'
-
         # other parse error (uses default 'Failure unknown reason')
         else:
             return filename + '@unknown'
 
 
-filter_all_pdfs()
+def get_utf8_line(file_path):
+    # open file to check first line
+    f2 = open(str(file_path), 'r', encoding="utf8")
+    firstline = f2.readline()
+    f2.close()  # close opened file
+    return firstline
+
+
+def check_readable(filename, pdf):
+    # Check if PDF is readable
+    no_text = check_for_text(pdf)
+    pdf.close()  # close document
+    # Text is not readable
+    if no_text:
+        return filename + '@no_text'
+    # Text is readable
+    return filename + '@parsed'
+
+# filter_all_pdfs()

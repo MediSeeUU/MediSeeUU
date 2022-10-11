@@ -1,7 +1,7 @@
 # EC parser
 import re
-from .. import helper
-from .. import pdf_helper
+import helper
+import pdf_helper
 
 
 # EC Decision document
