@@ -74,7 +74,7 @@ def getDate(txt):
         pass
 
     try:
-        tempdate = convert_roman_numbers(txt)
+        tempdate = convert_months(txt)
         return dateutil.parser.parse(tempdate, fuzzy=True)
     except:
         pass
