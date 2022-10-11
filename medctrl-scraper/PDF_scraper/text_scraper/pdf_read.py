@@ -3,7 +3,8 @@ import fitz  # part of pip install PyMuPDF
 import os  # to get all file names in folder
 # external classes for debug using parse_test_file
 # import ECparse
-from parsers import epar_parse
+import ec_parse
+#from parsers.epar_parse import epar_parse
 
 from joblib import delayed, Parallel
 
@@ -12,21 +13,18 @@ from joblib import delayed, Parallel
 
 
 def parse_test_file(filetype):
-    filename = 'epars/h468_epar.pdf'
+    filename = 'dec_orphan/o1060_dec_124808.pdf'
 
     pdf = fitz.open(filename)  # open document
 
-    (table, pdf_format) = filetype.get_table(pdf)  # get formatted dictionary
-
-    if filetype.unreadable(table):
-        print(str(filename) + ' has no text')
+    table = filetype.get_table(pdf)  # get formatted dictionary
 
     pdf.close()  # close document
 
-    res = filetype.get_all_test(filename, table, pdf_format)
+    res = filetype.get_all_test(filename, table)
 
     # print found attributes and formatted table
-    # print(res)
+    print(res)
     # print(json.dumps(table, indent=3))
 
 
@@ -59,15 +57,13 @@ def parse_folder(filetype, folder_name):
 def scrape_pdf(filename, counter, filetype, folder_name, pdf_count):
     # default values
     filedata = filetype.get_default(filename)
-    corrupt = False
-
     # try to open
     try:
         pdf = fitz.open(folder_name + "/" + filename)  # open document
-        (table, pdf_format) = filetype.get_table(pdf)  # get formatted dictionary
+        table = filetype.get_table(pdf)  # get formatted dictionary
 
         pdf.close()  # close document
-        filedata = filetype.get_all(filedata, table, pdf_format)
+        filedata = filetype.get_all(filedata, table)
         filedata['status'] = 'Parsed'
 
         return filedata
@@ -75,8 +71,9 @@ def scrape_pdf(filename, counter, filetype, folder_name, pdf_count):
     # could not parse
     # TODO: Add exception type
     except:
-        filedata['status'] = 'corrupt'
+        filedata['status'] = 'could not parse'
         return filedata
 
-
-parse_test_file(epar_parse)
+res = scrape_pdf('h001_dec_2831.pdf',1,ec_parse,'dec_human',3)
+print(res)
+#parse_test_file(ec_parse)
