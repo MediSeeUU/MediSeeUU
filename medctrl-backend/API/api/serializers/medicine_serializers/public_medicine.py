@@ -12,106 +12,25 @@
 from rest_framework import serializers
 from api.models.medicine_models import (
     Medicine,
-    Authorisation,
-    Procedure,
-    Historybrandname,
-    Historymah,
-    Historyorphan,
-    Historyprime,
+    history_atc_code,
+    history_authorisation_status,
+    history_authorisation_type,
+    history_brand_name,
+    history_mah,
+    history_number_check,
+    history_od,
+    history_prime,
 )
-
-# serialises authorization data
-class AuthorisationSerializer(serializers.ModelSerializer):
-    """
-    Authorisation table serializer for the view endpoint medicine
-    """
-
-    class Meta:
-        """
-        Meta information
-        """
-
-        model = Authorisation
-        exclude = ("eunumber",)
-
-
-# serialises procudure data
-class ProcedureSerializer(serializers.ModelSerializer):
-    """
-    Authorisation table serializer for the view endpoint medicine
-    """
-
-    class Meta:
-        """
-        Meta information
-        """
-
-        model = Procedure
-        fields = ("decisiondate",)
-
-
-# serialises brandname data
-class BrandnameSerializer(serializers.ModelSerializer):
-    """
-    Authorisation table serializer for the view endpoint medicine
-    """
-
-    class Meta:
-        """
-        Meta information
-        """
-
-        model = Historybrandname
-        fields = ("brandname",)
-        ordering = ("brandnamedate",)
-
-
-# serialises MAH horization data
-class MAHSerializer(serializers.ModelSerializer):
-    """
-    Authorisation table serializer for the view endpoint medicine
-    """
-
-    class Meta:
-        """
-        Meta information
-        """
-
-        model = Historymah
-        fields = ("mah",)
-        ordering = ("mahdate",)
-
-
-# serialises orphan designation data
-class OrphanSerializer(serializers.ModelSerializer):
-    """
-    Authorisation table serializer for the view endpoint medicine
-    """
-
-    class Meta:
-        """
-        Meta information
-        """
-
-        model = Historyorphan
-        fields = ("orphan",)
-        ordering = ("orphandate",)
-
-
-# serialises PRIME data
-class PRIMESerializer(serializers.ModelSerializer):
-    """
-    Authorisation table serializer for the view endpoint medicine
-    """
-
-    class Meta:
-        """
-        Meta information
-        """
-
-        model = Historyprime
-        fields = ("prime",)
-        ordering = ("primedate",)
+from api.serializers.medicine_serializers.history_serializers import (
+    ATCCodeSerializer,
+    AuthorisationStatusSerializer,
+    AuthorisationTypeSerializer,
+    BrandNameSerializer,
+    MAHSerializer,
+    NumberCheckSerializer,
+    OrphanDesignationSerializer,
+    PrimeSerializer,
+)
 
 
 # Creates medicine object per medicine
@@ -120,11 +39,13 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
     view endpoint medicine
     """
 
-    authorisation = serializers.SerializerMethodField()
-    procedure = serializers.SerializerMethodField()
-    brandname = serializers.SerializerMethodField()
+    atc_code = serializers.SerializerMethodField()
+    authorisation_status = serializers.SerializerMethodField()
+    authorisation_type = serializers.SerializerMethodField()
+    brand_name = serializers.SerializerMethodField()
     mah = serializers.SerializerMethodField()
-    orphan = serializers.SerializerMethodField()
+    number_check = serializers.SerializerMethodField()
+    orphan_designation = serializers.SerializerMethodField()
     prime = serializers.SerializerMethodField()
 
     class Meta:
@@ -135,72 +56,90 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         model = Medicine
         fields = "__all__"
 
-    # retrieves authorization from data base for each medicie
-    def get_authorisation(self, authorisation):
-        queryset = Authorisation.objects.filter(eunumber=authorisation.eunumber)
-        try:
-            queryset = queryset[0]
-        except:
-            queryset = None
-        return AuthorisationSerializer(instance=queryset, read_only=True).data
-
-    # retrieves procedure from data base for each medicie
-    def get_procedure(self, procedure):
-        queryset = Procedure.objects.filter(
-            procedurecount=1, eunumber=procedure.eunumber
-        )
-        try:
-            queryset = queryset[0]
-        except:
-            queryset = None
-        return ProcedureSerializer(instance=queryset, read_only=True).data
-
-    # retrieves brandname from data base for each medicie
-    def get_brandname(self, brandname):
-        queryset = Historybrandname.objects.filter(eunumber=brandname.eunumber)
+    # retrieves atc code from database for each medicine
+    def get_atc_code(self, atc_code):
+        queryset = history_atc_code.objects.filter(eunumber=atc_code.eunumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
             queryset = None
-        return BrandnameSerializer(instance=queryset, read_only=True).data
+        return ATCCodeSerializer(instance=queryset, read_only=True).data
 
-    # retrieves mah from data base for each medicie
+    # retrieves authorisation status from database for each medicine
+    def get_authorisation_status(self, authorisation_status):
+        queryset = history_brand_name.objects.filter(eunumber=authorisation_status.eunumber)
+        try:
+            queryset = queryset[len(queryset) - 1]
+        except:
+            queryset = None
+        return AuthorisationStatusSerializer(instance=queryset, read_only=True).data
+
+    # retrieves authorisation type from database for each medicine
+    def get_authorisation_type(self, authorisation_type):
+        queryset = history_authorisation_type.objects.filter(eunumber=authorisation_type.eunumber)
+        try:
+            queryset = queryset[len(queryset) - 1]
+        except:
+            queryset = None
+        return AuthorisationTypeSerializer(instance=queryset, read_only=True).data
+
+    # retrieves brand name from database for each medicine
+    def get_brand_name(self, brand_name):
+        queryset = history_brand_name.objects.filter(eunumber=brand_name.eunumber)
+        try:
+            queryset = queryset[len(queryset) - 1]
+        except:
+            queryset = None
+        return BrandNameSerializer(instance=queryset, read_only=True).data
+
+    # retrieves mah from data base for each medicine
     def get_mah(self, mah):
-        queryset = Historymah.objects.filter(eunumber=mah.eunumber)
+        queryset = history_mah.objects.filter(eunumber=mah.eunumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
             queryset = None
         return MAHSerializer(instance=queryset, read_only=True).data
 
-    # retrieves orphan designation from data base for each medicie
-    def get_orphan(self, orphan):
-        queryset = Historyorphan.objects.filter(eunumber=orphan.eunumber)
+    # retrieves number check from database for each medicine
+    def get_number_check(self, number_check):
+        queryset = history_number_check.objects.filter(eunumber=number_check.eunumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
             queryset = None
-        return OrphanSerializer(instance=queryset, read_only=True).data
+        return NumberCheckSerializer(instance=queryset, read_only=True).data
 
-    # retrieves primenuber from data base for each medicie
-    def get_prime(self, prime):
-        queryset = Historyprime.objects.filter(eunumber=prime.eunumber)
+    # retrieves orphan designation from data base for each medicine
+    def get_orphan_designation(self, orphan_designation):
+        queryset = history_od.objects.filter(eunumber=orphan_designation.eunumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
             queryset = None
-        return PRIMESerializer(instance=queryset, read_only=True).data
+        return OrphanDesignationSerializer(instance=queryset, read_only=True).data
+
+    # retrieves primenumber from data base for each medicine
+    def get_prime(self, prime):
+        queryset = history_prime.objects.filter(eunumber=prime.eunumber)
+        try:
+            queryset = queryset[len(queryset) - 1]
+        except:
+            queryset = None
+        return PrimeSerializer(instance=queryset, read_only=True).data
 
     # creates one dimensional object from multiple dimenssions
     def to_representation(self, obj):
         representation = super().to_representation(obj)
 
         for field in [
-            "authorisation",
-            "procedure",
-            "brandname",
+            "atc_code",
+            "authorisation_status",
+            "authorisation_type",
+            "brand_name",
             "mah",
-            "orphan",
+            "number_check",
+            "orphan_designation",
             "prime",
         ]:
             field_representation = representation.pop(field)
