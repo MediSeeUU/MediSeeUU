@@ -2,7 +2,7 @@ import requests
 import bs4
 
 
-def pdf_links_from_url(url: str):
+def pdf_links_from_url(url: str) -> str:
     # Expecting a link scraped from the EC website. Link should look like this
     # https://www.ema.europa.eu/en/medicines/human/EPAR/tandemact
     html_obj = requests.get(url)

@@ -25,17 +25,8 @@ log.info(f"=== NEW LOG {datetime.today()} ===")
 
 # Create the data dir.
 # The ' exist_ok' option ensures no errors thrown if this is not the first time the code runs.
-path_auth_descis = Path("../data/authorisation_decisions")
-path_smpcs = Path("../data/smpcs")
-path_epars = Path("../data/epars")
-path_annexes = Path("../data/annexes")
-path_csv = Path("../data/CSV")
-
-path_auth_descis.mkdir(parents=True, exist_ok=True)
-path_smpcs.mkdir(exist_ok=True)
-path_epars.mkdir(exist_ok=True)
-path_annexes.mkdir(exist_ok=True)
-path_csv.mkdir(exist_ok=True)
+Path("../data/CSV").mkdir(exist_ok=True, parents=True)
+Path("../data/medicines").mkdir(exist_ok=True)
 
 log.info("SUCCESS on Generating directories")
 
@@ -44,8 +35,9 @@ medicine_codes = ec_scraper.scrape_medicines_list(
 
 log.info("SUCCESS on scraping all medicine URLs of EC")
 
+
 # Paralleled function for getting the URL codes. They are written to a CSV file
-def get_urls_ec(medicine):
+def get_urls_ec(medicine, eu_n):
     attempts = 0
     max_attempts = 4
     success = False
@@ -53,25 +45,26 @@ def get_urls_ec(medicine):
         try:
             # getURLsForPDFAndEMA returns per medicine the urls for the decision and annexes files and for the ema
             # website.
-            dec_list, anx_list, ema_list = ec_scraper.scrape_medicine_page(medicine)
+            dec_list, anx_list, ema_list, _ = ec_scraper.scrape_medicine_page(medicine)
             with open("../data/CSV/decision.csv", 'a') as f:
                 writer = csv.writer(f)
-                writer.writerow([medicine, dec_list])
+                writer.writerow([eu_n, medicine, dec_list])
             with open("../data/CSV/annexes.csv", 'a') as f:
                 writer = csv.writer(f)
-                writer.writerow([medicine, anx_list])
+                writer.writerow([eu_n, medicine, anx_list])
             with open("../data/CSV/ema_urls.csv", 'a') as f:
                 writer = csv.writer(f)
-                writer.writerow([medicine, ema_list])
+                writer.writerow([eu_n, medicine, ema_list])
             success = True
         except Exception:
             attempts += 1
             if attempts == max_attempts:
-                print(f"failed dec/anx/ema url getting for {medicine}")
+                print(f"failed dec/anx/ema url getting for {medicine, eu_n}")
                 break
 
 
-def get_urls_ema(medicine, url: str):
+def get_urls_ema(key, url: str):
+    eu_n, medicine = key
     attempts = 0
     max_attempts = 4
     success = False
@@ -84,27 +77,36 @@ def get_urls_ema(medicine, url: str):
             pdf_url = ema_scraper.pdf_links_from_url(url)
             with open("../data/CSV/epar.csv", 'a') as f:
                 writer = csv.writer(f)
-                writer.writerow([medicine, pdf_url])
+                writer.writerow([eu_n, medicine, pdf_url])
             success = True
         except Exception:
             attempts += 1
             if attempts == max_attempts:
-                log.error(f"failed ema_pdf url getting for {medicine, url}")
+                log.error(f"failed ema_pdf url getting for {eu_n, url}")
                 # print(f"failed ema_pdf url getting for {medicine, url}")
                 break
 
 
-# NOTE: Use the line of code below to fill all the CSV files.
+# TODO: These variables are for debugging, remove in final
+# NOTE: Use the lines of code below to fill all the CSV files.
 # If you have a complete CSV file, this line of code below is not needed.
-Parallel(n_jobs=12)(delayed(get_urls_ec)(medicine) for medicine in medicine_codes)
-log.info("SUCCESS on scraping all individual medicine pages of EC")
+scrape_ec: bool = True
 
 # NOTE: Use the lines of code below to fill epar.csv
 # epar.csv will contain the links to the epar pdfs.
-ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0).squeeze().to_dict()
-Parallel(n_jobs=12)(delayed(get_urls_ema)(url[0], url[1]) for url in ema.items())
-log.info("SUCCESS on scraping all individual medicine pages of EMA")
-
+scrape_ema: bool = False
 
 # NOTE: Use the line of code below to download all files.
-# download.run_parallel()
+download_files: bool = False
+
+if scrape_ec:
+    log.info("Scraping all medicines on the EC website")
+    Parallel(n_jobs=12)(delayed(get_urls_ec)(medicine, eu_n) for medicine, eu_n in medicine_codes)
+
+if scrape_ema:
+    ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=(0, 1)).squeeze().to_dict()
+    Parallel(n_jobs=12)(delayed(get_urls_ema)(url[0], url[1]) for url in ema.items())
+    log.info("SUCCESS on scraping all individual medicine pages of EMA")
+
+if download_files:
+    download.run_parallel()
