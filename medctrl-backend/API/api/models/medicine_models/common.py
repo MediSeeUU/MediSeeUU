@@ -17,7 +17,7 @@ class Category(Enum):
     Additional_Resources = "Additional Resources"
 
 
-def create_dashboard_column(field, header: Category, data_format, display_name: str):
+def create_dashboard_column(field, header: Category, data_format: str, display_name: str):
     """
     Sets attributes on a model field that's used in medicine_info_json
     """
