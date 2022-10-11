@@ -210,6 +210,7 @@ def get_data_from_procedures_json(procedures_json, dec_url_list: list[str], anx_
 
     eu_aut_type_initial = decide_aut_type(eu_aut_date.year, isExceptional, isConditional)
 
+    # Filters out all empty ema numbers
     ema_numbers = [x for x in ema_numbers if x != None]
 
     for x in ema_numbers:
