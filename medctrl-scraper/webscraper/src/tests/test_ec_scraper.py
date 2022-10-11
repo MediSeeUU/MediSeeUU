@@ -21,4 +21,3 @@ def test_get_data_from_medicine_json(url, exp_atc_code, exp_active_substance, ex
     assert eu_mah_current == exp_eu_mah_current
     # assert ema_url_list == exp_ema_url_list
 
-
