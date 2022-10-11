@@ -25,17 +25,11 @@ log.info(f"=== NEW LOG {datetime.today()} ===")
 
 # Create the data dir.
 # The ' exist_ok' option ensures no errors thrown if this is not the first time the code runs.
-path_auth_descis = Path("../data/authorisation_decisions")
-path_smpcs = Path("../data/smpcs")
-path_epars = Path("../data/epars")
-path_annexes = Path("../data/annexes")
 path_csv = Path("../data/CSV")
+path_medicines = Path("../data/medicines")
 
-path_auth_descis.mkdir(parents=True, exist_ok=True)
-path_smpcs.mkdir(exist_ok=True)
-path_epars.mkdir(exist_ok=True)
-path_annexes.mkdir(exist_ok=True)
-path_csv.mkdir(exist_ok=True)
+path_csv.mkdir(exist_ok=True, parents=True)
+path_medicines.mkdir(exist_ok=True)
 
 log.info("SUCCESS on Generating directories")
 
@@ -98,7 +92,7 @@ def get_urls_ema(key, url: str):
 
 # NOTE: Use the line of code below to fill all the CSV files.
 # If you have a complete CSV file, this line of code below is not needed.
-# Parallel(n_jobs=12)(delayed(get_urls_ec)(medicine, eu_n) for medicine, eu_n in medicine_codes)
+Parallel(n_jobs=12)(delayed(get_urls_ec)(medicine, eu_n) for medicine, eu_n in medicine_codes)
 log.info("SUCCESS on scraping all individual medicine pages of EC")
 
 # NOTE: Use the lines of code below to fill epar.csv
