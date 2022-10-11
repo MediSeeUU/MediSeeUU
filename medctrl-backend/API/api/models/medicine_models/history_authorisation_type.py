@@ -4,6 +4,7 @@
 from django.db import models
 from .common import create_dashboard_column, Category, AutTypes
 
+
 class HistoryAuthorisationType(models.Model):
     """
     Model class for the authorisation history table.
