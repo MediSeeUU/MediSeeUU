@@ -32,7 +32,7 @@ def filter_all_pdfs():
     print('Done filtering files')
 
 
-def check_for_text(pdf):
+def check_for_no_text(pdf):
     for page in pdf:
         dict_ = page.get_text("dict")
         blocks = dict_["blocks"]
@@ -88,7 +88,7 @@ def get_utf8_line(file_path):
 
 def check_readable(filename, pdf):
     # Check if PDF is readable
-    no_text = check_for_text(pdf)
+    no_text = check_for_no_text(pdf)
     pdf.close()  # close document
     # Text is not readable
     if no_text:

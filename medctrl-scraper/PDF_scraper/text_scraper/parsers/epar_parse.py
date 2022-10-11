@@ -35,7 +35,6 @@ def get_table(pdf):
              'discussion': dict.fromkeys(['dis_text'])}
 
     pdf_format = pdf_helper.get_text_format(pdf, True)
-
     # Front page - find first occurrence of 'Assessment report', not yet used
     get_front_page(pdf_format, table)
     # filter table of contents
