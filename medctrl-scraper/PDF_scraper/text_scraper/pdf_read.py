@@ -74,6 +74,6 @@ def scrape_pdf(filename, filetype, folder_name, pdf_count):
         filedata['status'] = 'could not parse'
         return filedata
 
-res = scrape_pdf('h001_dec_2831.pdf',1,ec_parse,'dec_human',3)
+res = scrape_pdf('h001_dec_2831.pdf',ec_parse,'dec_human',3)
 print(res)
 #parse_test_file(ec_parse)

@@ -2,7 +2,7 @@
 import re
 import helper
 import pdf_helper
-
+import datetime
 
 # EC Decision document
 
@@ -20,8 +20,7 @@ def get_all(filedata, table):
     filedata['ATMP']            = table_get_atmp(table)
     filedata['OD']              = table_get_orphan_designation(table)
     filedata['MAH']             = table_get_mah(table)
-    filedata['CMA']             = table_get_decision_type(table)
-
+    filedata['CMA']             = table_get_decision_type(table, filedata['DecisionDate'])
     return filedata
 
 
@@ -131,7 +130,10 @@ def table_get_as2(txt):
     return 'Active Substance Not Found'
 
 
-def table_get_decision_type(txt):
+def table_get_decision_type(txt, date):
+    if date < datetime.datetime(2006, 1, 1):
+        return "CMA not available before 2006"
+    
     excep = re.search(r"article\s+14\W8", txt.lower())  # exceptional: Article 14(8) or alt. (e.g. Article 14.8)
     # conditional
     if "507/2006" in txt or "conditional marketing authorisation" in txt.lower():
