@@ -21,7 +21,7 @@ def create_dashboard_column(field, header: Category, data_format, display_name: 
     """
     Sets attributes on a model field that's used in medicine_info_json
     """
-    setattr(field, "category", header.value)
+    setattr(field, "category", header)
     setattr(field, "data_format", data_format)
     setattr(field, "data_value", display_name)
     return field

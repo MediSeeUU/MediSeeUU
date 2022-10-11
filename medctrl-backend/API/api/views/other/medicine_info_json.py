@@ -23,34 +23,38 @@ from api.models.medicine_models import (
 
 # returns a list of json components using medicine_models,
 # this list is for the filters and for the detailed information page
-def get_medicine_info(perm):
-
-    # place all models here
-    models = [
-        Medicine,
-        Authorisation,
-        Procedure,
-        Historybrandname,
-        Historymah,
-        Historyorphan,
-        Historyprime,
-    ]
+def get_medicine_info(perm, mock=None):
 
     # make a JSON list for every category in medicine_models.common.Category
     data = {}
     for category in Category:
         data[category.value] = []
 
-    # make a list containing all the fields from all the models
     models_fields = []
-    for model in models:
-        models_fields += model._meta.get_fields()
+
+    if mock is None:
+        # place all models here
+        models = [
+            Medicine,
+            Authorisation,
+            Procedure,
+            Historybrandname,
+            Historymah,
+            Historyorphan,
+            Historyprime,
+        ]
+
+        # make a list containing all the fields from all the models
+        for model in models:
+            models_fields += model._meta.get_fields()
+    else:
+        models_fields = mock
 
     # for every field created with create_dashboard_column(), add it to the correct category in JSON
     for field in models_fields:
         if hasattr(field, "category") and hasattr(field, "data_format") \
                 and hasattr(field, "data_value") and has_permission(perm, field):
-            data[field.category].append({
+            data[field.category.value].append({
                 "data-key": field.name,
                 "data-format": field.data_format,
                 "data-value": field.data_value,
