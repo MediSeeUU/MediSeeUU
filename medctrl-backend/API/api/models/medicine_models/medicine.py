@@ -8,129 +8,89 @@ class Medicine(models.Model):
     """
     Model class for the medicine table.
     """
-    
-    test = create_dashboard_column(
-        models.CharField(db_column="test", max_length=45, blank=True, null=True), 
+    eu_pnumber = create_dashboard_column(
+        models.CharField(db_column="eu_pnumber", max_length=255, primary_key=True, null=False),
         Category.General_Information,
         "string",
-        "test"
+        "EU Product Number"
     )
 
-    activesubstance = create_dashboard_column(
-        models.CharField(db_column="ActiveSubstance", max_length=255, null=True),
+    active_substance = create_dashboard_column(
+        models.TextField(db_column="active_substance", null=False),
         Category.General_Information,
         "string",
         "Active Substance"
     )
 
-    atccode = create_dashboard_column(
-        models.CharField(db_column="ATCCode", max_length=7, null=True),
+    eu_nas = create_dashboard_column(
+        models.BooleanField(db_column="eu_nas", null=True),
+        Category.General_Information,
+        "bool",
+        "EU New Active Substance"
+    )
+
+    ema_procedure_start_initial = create_dashboard_column(
+        models.DateField(db_column="ema_procedure_start_initial", null=False),
+        Category.General_Information,
+        "date",
+        "Initial EMA Procedure Start Date"
+    )
+
+    chmp_opinion_date = create_dashboard_column(
+        models.DateField(db_column="chmp_opinion_date", null=False),
+        Category.General_Information,
+        "date",
+        "Initial EMA (CHMP) Opinion Date"
+    )
+
+    eu_aut_date = create_dashboard_column(
+        models.DateField(db_column="eu_aut_date", null=False),
+        Category.General_Information,
+        "date",
+        "Initial EU Authorisation Date"
+    )
+
+    eu_legal_basis = create_dashboard_column(
+        models.CharField(db_column="eu_legal_basis", max_length=14, choices=LegalBases.choices),
         Category.General_Information,
         "string",
-        "ATC Code"
+        "EU Legal Basis"
     )
 
-    status = create_dashboard_column(
-        models.CharField(db_column="Status", max_length=45, null=True),
+    ema_url = create_dashboard_column(
+        models.URLField(db_column="ema_url", null=False),
+        Category.General_Information,
+        "link",
+        "EMA Product Page Link"
+    )
+
+    ec_url = create_dashboard_column(
+        models.URLField(db_column="ec_url", null=False),
+        Category.General_Information,
+        "link",
+        "EC Product Page Link"
+    )
+
+    ema_number = create_dashboard_column(
+        models.CharField(db_column="ema_number", max_length=255, null=False),
         Category.General_Information,
         "string",
-        "Status"
+        "EMA Application Number"
     )
 
-
-    eunumber = create_dashboard_column(
-        models.IntegerField(db_column="EUNumber", primary_key=True),
-        Category.Identifying_Information,
-        "number",
-        "Short EU Number"
-    )
-
-    emanumber = create_dashboard_column(
-        models.CharField(db_column="EMANumber", max_length=45, blank=True, null=True),
-        Category.Identifying_Information,
-        "number",
-        "Application Number"
-    )
-
-    atmp = create_dashboard_column(
-        models.IntegerField(db_column="ATMP", blank=True, null=True),
-        Category.Medicine_Designations,
-        "bool",
-        "ATMP"
-    )
-
-    newactivesubstance = create_dashboard_column(
-        models.IntegerField(db_column="NewActiveSubstance", blank=True, null=True),
-        Category.Medicine_Designations,
-        "bool",
-        "NAS Qualified"
-    )
-
-    legalscope = create_dashboard_column(
-        models.CharField(db_column="LegalScope", max_length=45, null=True),
-        Category.Legal_Information,
+    eu_med_type = create_dashboard_column(
+        models.TextField(db_column="eu_med_type", null=False),
+        Category.General_Information,
         "string",
-        "Legal Scope"
+        "EU Medicine Type"
     )
 
-    legalbasis = create_dashboard_column(
-        models.CharField(db_column="LegalBasis", max_length=45, null=True),
-        Category.Legal_Information,
-        "string",
-        "Legal Type"
+    eu_atmp = create_dashboard_column(
+        models.BooleanField(db_column="eu_atmp", null=True),
+        Category.General_Information,
+        "bool",
+        "EU ATMP"
     )
-
-    emaurl = create_dashboard_column(
-        models.CharField(db_column="EMAURL", max_length=320, blank=True, null=True),
-        Category.Additional_Resources,
-        "link",
-        "EMA url"
-    )
-
-    ecurl = create_dashboard_column(
-        models.CharField(db_column="ECURL", max_length=320, blank=True, null=True),
-        Category.Additional_Resources,
-        "link",
-        "EC url"
-    )
-
-    medicinetype = models.CharField(
-        db_column="MedicineType",
-        max_length=45,
-        null=True
-    )
-    status = models.CharField(
-        db_column="Status",
-        max_length=45,
-        null=True
-    )
-    referral = models.IntegerField(
-        db_column="Referral",
-        blank=True,
-        null=True
-    )
-    suspension = models.IntegerField(
-        db_column="Suspension",
-        blank=True,
-        null=True
-    )
-    emaurl = models.CharField(
-        db_column="EMAURL",
-        max_length=320,
-        blank=True,
-        null=True
-    )
-    ecurl = models.CharField(
-        db_column="ECURL",
-        max_length=320,
-        blank=True,
-        null=True
-    )
-
-    referral = models.IntegerField(db_column="Referral", blank=True, null=True)
-    suspension = models.IntegerField(db_column="Suspension", blank=True, null=True)
-
-    manually_updated = models.BooleanField(default=False)
 
     class Meta:
         db_table = "medicine"

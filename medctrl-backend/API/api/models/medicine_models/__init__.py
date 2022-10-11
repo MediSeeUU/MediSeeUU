@@ -2,12 +2,12 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from .authorisation import Authorisation
-from .historyauthorisation import Historyauthorisation
-from .historybrandname import Historybrandname
-from .historyindication import Historyindication
-from .historymah import Historymah
-from .historyorphan import Historyorphan
-from .historyprime import Historyprime
+from .history_authorisation_type import HistoryAuthorisationType
+from .history_brand_name import Historybrandname
+from .history_number_check import HistoryEMANumberCheck
+from .history_mah import Historymah
+from .history_od import HistoryOD
+from .history_prime import HistoryPrime
 from .medicine import Medicine
 from .medisee import Medisee
 from .procedure import Procedure

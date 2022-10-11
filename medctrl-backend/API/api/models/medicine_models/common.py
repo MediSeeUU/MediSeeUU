@@ -36,11 +36,20 @@ Series of choice fields for certain categorical attributes
 
 class AutTypes(models.TextChoices):
     """
-    Choice types for eu_aut_type_initial
+    Choice types for eu_aut_type
     """
-    CONDITIONAL = 'C',
-    EXCEPTIONAL = 'E',
-    STANDARD = 'S'
+    CONDITIONAL = "CONDITIONAL",
+    EXCEPTIONAL = "EXCEPTIONAL",
+    STANDARD = "STANDARD"
+
+
+class AutStatus(models.TextChoices):
+    """
+    Choice types for eu_aut_status
+    """
+    ACTIVE = "ACTIVE",
+    WITHDRAWAL = "WITHDRAWAL",
+    REFUSALS = "REFUSALS"
 
 
 class LegalBases(models.TextChoices):
