@@ -53,7 +53,7 @@ class Medisee(models.Model):
     eu_aut_type_initial = create_dashboard_column(
         NotVarCharField(db_column="eu_aut_type_initial", max_length=1, choices=AutTypes.choices),
         Category.General_Information,
-        "char",
+        "string",
         "Initial type of EU authorisation"
     )
 
@@ -74,7 +74,7 @@ class Medisee(models.Model):
     eu_pnumber_id = create_dashboard_column(
         models.PositiveSmallIntegerField(db_column="eu_pnumber_id", null=False),
         Category.General_Information,
-        "integer",
+        "number",
         "EU product number ID"
     )
 
@@ -88,21 +88,21 @@ class Medisee(models.Model):
     aut_url = create_dashboard_column(
         models.URLField(db_column="aut_url", null=False),
         Category.General_Information,
-        "string",
+        "link",
         "URL to EU authorisation decision"
     )
 
     smpc_url = create_dashboard_column(
         models.URLField(db_column="smpc_url", null=False),
         Category.General_Information,
-        "string",
+        "link",
         "URL to EU authorisation annex"
     )
 
     epar_url = create_dashboard_column(
         models.URLField(db_column="epar_url", null=False),
         Category.General_Information,
-        "string",
+        "link",
         "URL to EMA initial authorisation EPAR"
     )
 
@@ -146,14 +146,14 @@ class Medisee(models.Model):
     ema_number_id = create_dashboard_column(
         models.PositiveSmallIntegerField(db_column="ema_number_id", null=False),
         Category.General_Information,
-        "integer",
+        "number",
         "EMA application number ID"
     )
 
     ema_number_certainty = create_dashboard_column(
         models.FloatField(db_column="ema_number_certainty", null=False),
         Category.General_Information,
-        "float",
+        "number",
         "EMA application number certainty"
     )
 
@@ -190,14 +190,14 @@ class Medisee(models.Model):
     ema_url = create_dashboard_column(
         models.URLField(db_column="ema_url", null=False),
         Category.General_Information,
-        "string",
+        "link",
         "URL to EMA medicinal product page"
     )
 
     ec_url = create_dashboard_column(
         models.URLField(db_column="ec_url", null=False),
         Category.General_Information,
-        "string",
+        "link",
         "URL to EC medicinal product page"
     )
     class Meta:
