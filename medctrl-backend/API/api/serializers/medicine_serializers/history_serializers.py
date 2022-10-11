@@ -8,14 +8,18 @@
 
 from rest_framework import serializers
 from api.models.medicine_models import (
-    Historybrandname,
-    Historymah,
-    Historyorphan,
-    Historyprime,
+    history_atc_code,
+    history_authorisation_status,
+    history_authorisation_type,
+    history_brand_name,
+    history_mah,
+    history_number_check,
+    history_od,
+    history_prime,
 )
 
 
-class BrandnameSerializer(serializers.ModelSerializer):
+class ATCCodeSerializer(serializers.ModelSerializer):
     """
     Authorisation table serializer for the view endpoint medicine
     """
@@ -25,7 +29,49 @@ class BrandnameSerializer(serializers.ModelSerializer):
         Meta information
         """
 
-        model = Historybrandname
+        model = history_atc_code
+        fields = "__all__"
+
+
+class AuthorisationStatusSerializer(serializers.ModelSerializer):
+    """
+    Authorisation table serializer for the view endpoint medicine
+    """
+
+    class Meta:
+        """
+        Meta information
+        """
+
+        model = history_authorisation_status
+        fields = "__all__"
+
+
+class AuthorisationTypeSerializer(serializers.ModelSerializer):
+    """
+    Authorisation table serializer for the view endpoint medicine
+    """
+
+    class Meta:
+        """
+        Meta information
+        """
+
+        model = history_authorisation_type
+        fields = "__all__"
+
+
+class BrandNameSerializer(serializers.ModelSerializer):
+    """
+    Authorisation table serializer for the view endpoint medicine
+    """
+
+    class Meta:
+        """
+        Meta information
+        """
+
+        model = history_brand_name
         fields = "__all__"
 
 
@@ -39,11 +85,11 @@ class MAHSerializer(serializers.ModelSerializer):
         Meta information
         """
 
-        model = Historymah
+        model = history_mah
         fields = "__all__"
 
 
-class OrphanSerializer(serializers.ModelSerializer):
+class NumberCheckSerializer(serializers.ModelSerializer):
     """
     Authorisation table serializer for the view endpoint medicine
     """
@@ -53,11 +99,11 @@ class OrphanSerializer(serializers.ModelSerializer):
         Meta information
         """
 
-        model = Historyorphan
+        model = history_number_check
         fields = "__all__"
 
 
-class PRIMESerializer(serializers.ModelSerializer):
+class OrphanDesignationSerializer(serializers.ModelSerializer):
     """
     Authorisation table serializer for the view endpoint medicine
     """
@@ -67,5 +113,19 @@ class PRIMESerializer(serializers.ModelSerializer):
         Meta information
         """
 
-        model = Historyprime
+        model = history_od
+        fields = "__all__"
+
+
+class PrimeSerializer(serializers.ModelSerializer):
+    """
+    Authorisation table serializer for the view endpoint medicine
+    """
+
+    class Meta:
+        """
+        Meta information
+        """
+
+        model = history_prime
         fields = "__all__"
