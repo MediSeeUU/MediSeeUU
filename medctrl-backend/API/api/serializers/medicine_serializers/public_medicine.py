@@ -67,7 +67,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
     # retrieves authorisation status from database for each medicine
     def get_authorisation_status(self, authorisation_status):
-        queryset = history_brand_name.objects.filter(eunumber=authorisation_status.eunumber)
+        queryset = history_authorisation_status.objects.filter(eunumber=authorisation_status.eunumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
