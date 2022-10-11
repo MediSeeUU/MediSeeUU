@@ -4,6 +4,7 @@
 from django.db import models
 from .common import create_dashboard_column, Category
 
+
 class HistoryPrime(models.Model):
     """
     Model class for the prime designation history table.
@@ -38,4 +39,3 @@ class HistoryPrime(models.Model):
 
     class Meta:
         db_table = "history_prime"
-

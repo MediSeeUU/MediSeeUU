@@ -4,6 +4,7 @@
 from django.db import models
 from .common import create_dashboard_column, Category
 
+
 class HistoryOD(models.Model):
     """
     Model class for the orphan designation history table.

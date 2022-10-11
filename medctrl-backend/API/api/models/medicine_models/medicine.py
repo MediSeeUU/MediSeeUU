@@ -4,6 +4,7 @@
 from django.db import models
 from .common import create_dashboard_column, Category
 
+
 class Medicine(models.Model):
     """
     Model class for the medicine table.

@@ -4,6 +4,7 @@
 from django.db import models
 from .common import create_dashboard_column, Category
 
+
 class HistoryEMANumberCheck(models.Model):
     """
     Model class for the identication history table.
