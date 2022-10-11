@@ -33,8 +33,6 @@ def parse_test_file(filetype):
 def parse_folder(filetype, folder_name):
     # PARSE WHOLE Folder
 
-    # debug to indicate progress
-    counter = 0
     pdf_type = folder_name.split('/')[1]
     print(f'Starting... on {pdf_type}')
 
@@ -43,7 +41,7 @@ def parse_folder(filetype, folder_name):
 
     # Get all attributes of each pdf file
     all_data = Parallel(n_jobs=4)(
-        delayed(scrape_pdf)(filename, counter, filetype, folder_name, pdf_count) for filename in
+        delayed(scrape_pdf)(filename, filetype, folder_name, pdf_count) for filename in
         os.listdir(folder_name))
 
     # Combine attributes from PDFs, separate them using @, write lines to results_{filetype}.txt
@@ -58,7 +56,7 @@ def parse_folder(filetype, folder_name):
     print('Done')
 
 
-def scrape_pdf(filename, counter, filetype, folder_name, pdf_count):
+def scrape_pdf(filename, filetype, folder_name, pdf_count):
     # default values
     filedata = filetype.get_default(filename)
     corrupt = False
