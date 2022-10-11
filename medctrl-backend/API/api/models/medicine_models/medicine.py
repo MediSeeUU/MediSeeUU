@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from .common import create_dashboard_column, Category
+from .common import create_dashboard_column, Category, LegalBases
 
 
 class Medicine(models.Model):
