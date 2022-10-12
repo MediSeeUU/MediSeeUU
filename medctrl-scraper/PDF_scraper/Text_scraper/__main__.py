@@ -11,18 +11,21 @@ import pdf_xml_converter as xml_converter
 import parsers.ec_parse as ec_parse
 import parsers.epar_parse as epar_parse
 
+
 # Main file to run all parsers
 
 # TODO: Create dictionary per medicine
 # datum toevoegen
 
-#TODO: stub parse, fake function until other parsers are reworked
+# TODO: stub parse, fake function until other parsers are reworked
 def parse_file(filename: str, medicine_struct: pis.parsed_info_struct):
     return medicine_struct
+
 
 def datetime_serializer(date: pis.datetime.datetime):
     if isinstance(date, pis.datetime.datetime):
         return date.__str__()
+
 
 def parse_pdf_folder(directory: str):
     # get foldername with platform check for slash type
@@ -34,7 +37,7 @@ def parse_pdf_folder(directory: str):
     else:
         folder_name = directory.split("/")[-1]
         filepath_splitter = "/"
-
+    print(listdir(directory))
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing
     medicine_struct = pis.parsed_info_struct(folder_name)
     medicine_struct.eu_number = folder_name
@@ -43,7 +46,7 @@ def parse_pdf_folder(directory: str):
 
     for pdf in directory_files:
         if "dec" not in pdf:
-            xml_converter.convert_pdf_to_xml(pdf, pdf + ".xml", "epar" in pdf)
+            xml_converter.convert_pdf_to_xml(join(directory, pdf), join(directory, pdf + ".xml"), "epar" in pdf)
 
     decision_files = [file for file in directory_files if "dec" in file and ".xml" in file]
     annex_files = [file for file in directory_files if "anx" in file and ".xml" in file]
@@ -52,16 +55,15 @@ def parse_pdf_folder(directory: str):
 
     for file in decision_files:
         medicine_struct = parse_file(file, medicine_struct)
-        
+
     for file in annex_files:
         medicine_struct = parse_file(file, medicine_struct)
-        
+
     for file in epar_files:
         medicine_struct = epar_parse.parse_file(file, medicine_struct)
-        
+
     for file in omar_files:
         medicine_struct = parse_file(file, medicine_struct)
-
 
     json_file = open(directory + filepath_splitter + folder_name + "_pdf_parser.json", "w")
     medicine_struct_json = json.dumps(pis.asdict(medicine_struct), default=datetime_serializer)
@@ -69,10 +71,10 @@ def parse_pdf_folder(directory: str):
     json_file.close()
 
 
-parse_pdf_folder("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
+parse_pdf_folder("data\\epars")
 # pdf_r.parse_folder(ec_parse, 'dec_human')
-#pdf_r.parse_folder(ec_parse, 'dec_orphan')
-#pdf_r.parse_folder(epar_parse, 'epars')
+# pdf_r.parse_folder(ec_parse, 'dec_orphan')
+# pdf_r.parse_folder(epar_parse, 'epars')
 # ap.parse_smpc_file("parsers/test_data/vydura-epar-public-assessment-report_en.pdf")
 
 # To add: Xiao yi SMPC parsers

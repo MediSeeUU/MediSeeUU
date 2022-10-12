@@ -1,6 +1,6 @@
 # EPAR parsers
 import re
-import pdf_helperl
+import pdf_helper
 import helper
 
 date_pattern: str = r'\d{1,2} \w+ \d{4}'
@@ -27,6 +27,10 @@ def get_default(filename):
             'chmp_opinion_date': default,
             'eu_legal_basis': default
             }
+
+
+def parse_file(filename, medicine_struct):
+    print(medicine_struct)
 
 
 # Scans and orders EPAR document
