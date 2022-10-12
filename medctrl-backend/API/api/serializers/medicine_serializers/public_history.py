@@ -22,7 +22,7 @@ class ATCCodeSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryATCCode
-        fields = "atc_code"
+        fields = ("atc_code",)
 
 
 class AuthorisationStatusSerializer(serializers.ModelSerializer):
@@ -36,7 +36,7 @@ class AuthorisationStatusSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryAuthorisationStatus
-        fields = "eu_aut_type"
+        fields = ("eu_aut_status",)
 
 
 class AuthorisationTypeSerializer(serializers.ModelSerializer):
@@ -50,7 +50,7 @@ class AuthorisationTypeSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryAuthorisationType
-        fields = "eu_aut_status"
+        fields = ("eu_aut_type",)
 
 
 class BrandNameSerializer(serializers.ModelSerializer):
@@ -64,7 +64,7 @@ class BrandNameSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryBrandName
-        fields = "eu_brand_name"
+        fields = ("eu_brand_name",)
 
 
 class MAHSerializer(serializers.ModelSerializer):
@@ -78,7 +78,7 @@ class MAHSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryMAH
-        fields = "eu_mah"
+        fields = ("eu_mah",)
 
 
 class NumberCheckSerializer(serializers.ModelSerializer):
@@ -92,7 +92,7 @@ class NumberCheckSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryEMANumberCheck
-        fields = "ema_number_check"
+        fields = ("ema_number_check",)
 
 
 class OrphanDesignationSerializer(serializers.ModelSerializer):
@@ -106,7 +106,7 @@ class OrphanDesignationSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryOD
-        fields = "eu_od"
+        fields = ("eu_od",)
 
 
 class PrimeSerializer(serializers.ModelSerializer):
@@ -120,4 +120,4 @@ class PrimeSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryPrime
-        fields = "eu_prime"
+        fields = ("eu_prime",)
