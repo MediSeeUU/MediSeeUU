@@ -67,7 +67,7 @@ def parse_folder(directory: str, folder_name):
         medicine_struct = parse_file(file, medicine_struct)
 
     for file in epar_files:
-        medicine_struct = epar_parse.parse_file(file, medicine_struct, file)
+        medicine_struct = epar_parse.parse_file(file, medicine_struct)
         medicine_struct = parse_file(file, medicine_struct)
 
     for file in omar_files:
