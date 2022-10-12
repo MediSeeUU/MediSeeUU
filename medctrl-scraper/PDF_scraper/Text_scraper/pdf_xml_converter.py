@@ -17,7 +17,7 @@ def convert_pdf_to_xml(source_filepath: str, output_filepath: str, is_epar: bool
 
 def cleanup_lines(text_format_lower: list[(str, float, str)], is_epar: bool) -> list[(str, float, str)]:
     # skip initial pages until table of content
-    if is_epar:
+    if is_epar and len(text_format_lower) != 0:
         while "table of content" not in text_format_lower[0][0]:
             del text_format_lower[0]
 
@@ -80,7 +80,7 @@ def replace_special_xml_characters(string: str) -> str:
 def print_xml(sections: list[(str, str)], output_filepath: str):
     # start printing xml file
     console_out = sys.stdout
-    xml = open(output_filepath, "w", encoding="utf8")
+    xml = open(output_filepath, "w", encoding="utf-8")
     sys.stdout = xml
 
     print("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
@@ -113,7 +113,7 @@ def print_xml(sections: list[(str, str)], output_filepath: str):
         for section_paragraph in section_paragraphs:
             if section_paragraph.strip() != "":
                 print("<p>")
-                print(section_paragraph.strip())
+                print(section_paragraph.rstrip().encode('utf-8', 'ignore'))
                 print("</p>")
 
         print("</section>")
