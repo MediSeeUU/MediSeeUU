@@ -36,28 +36,22 @@ def get_date(xml):
     regex_date = re.compile(date_pattern)
     regex_ema = re.compile(r'the application was received by the em\w+ on')
     regex_ema2 = re.compile(r'the procedure started on')
-    for section in xml:
-        if xpu.section_contains_head_substring('steps taken for the assessment', section[0]):
-            for txt in section:
-                txt = txt.text
-                if found and regex_date.search(txt):
-                    return re.search(date_pattern, txt)[0]
-                elif regex_ema.search(txt) or regex_ema2.search(txt):
-                    found = True
-                    if regex_date.search(txt):
-                        return re.search(date_pattern, txt)[0]
+    for p in xpu.get_paragraphs_by_header('steps taken for the assessment', xml):
+        if found and regex_date.search(p):
+            return re.search(date_pattern, p)[0]
+        elif regex_ema.search(p) or regex_ema2.search(p):
+            found = True
+            if regex_date.search(p):
+                return re.search(date_pattern, p)[0]
     return 'no_date_found'
 
 
 # chmp_opinion_date
 def get_opinion_date(xml):
-    for section in xml:
-        if xpu.section_contains_head_substring('steps taken for the assessment', section[0]):
-            for txt in reversed(section):
-                txt = txt.text
-                if re.findall(date_pattern, txt):
-                    return re.findall(date_pattern, txt)[-1]
-    return ''
+    for p in xpu.get_paragraphs_by_header('steps taken for the assessment', xml):
+        if re.findall(date_pattern, p):
+            return re.findall(date_pattern, p)[-1]
+    return 'no_chmp_found'
 
 
 # eu_legal_basis
