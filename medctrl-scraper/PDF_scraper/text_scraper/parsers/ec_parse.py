@@ -13,7 +13,6 @@ def get_all_test(filename, table):
 
 # Given a dictionary, fills in all attributes for EC decisions
 def get_all(filedata, table):
-    print('test')
     filedata['DecisionDate']    = dec_get_date(table)
     filedata['BrandName']       = dec_get_bn(table)
     filedata['ActiveSubstance'] = dec_get_as(table)
@@ -59,18 +58,18 @@ def dec_get_date(txt):
     return helper.getDate('')
 
 def dec_get_bn(txt):
+    #returns a section containing just the brandname (and potentially the active substance)
+    section = get_name_section(txt)
+
     #use advance regex to find brandname
     regres = None
     try:
-        regres = re.search(r'"(\w+[\s\w®/\.,"]*)\s?[-–]\s?\w+.*"', txt)
+        regres = re.search(r'"(\w+[\s\w®/\.,"]*)\s?[-–]\s?\w+.*"', section)
     except:
         pass
 
-    if regres != None:
-        return regres
-
-    #returns a section containing just the brandname (and potentially the active substance)
-    section = get_name_section(txt)
+    if regres is not None:
+        return regres.group(0)
 
     if section != '':
         # takes everything before split operator, to remove active substance.
