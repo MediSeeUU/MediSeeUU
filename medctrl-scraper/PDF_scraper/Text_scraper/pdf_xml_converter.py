@@ -79,15 +79,15 @@ def replace_special_xml_characters(string: str) -> str:
 
 def print_xml(sections: list[(str, str)], output_filepath: str):
     # start printing xml file
-    console_out = sys.stdout
-    xml = open(output_filepath, "w", encoding="utf8")
-    sys.stdout = xml
+    # console_out = sys.stdout
+    xml_file = open(output_filepath, "w", encoding="utf8")
+    # sys.stdout = xml_file
 
-    print("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
-    print("<xml>")
-    print("<header>")
-    print("</header>")
-    print("<body>")
+    xml_file.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n")
+    xml_file.write("<xml>\n")
+    xml_file.write("<header>\n")
+    xml_file.write("</header>\n")
+    xml_file.write("<body>\n")
 
     for section in sections:
         section_header = replace_special_xml_characters(section[0])
@@ -104,20 +104,21 @@ def print_xml(sections: list[(str, str)], output_filepath: str):
 
             header_attribute = " n=\"" + chapter_number_attribute + "\""
 
-        # print the section from xml_elements taking sections and subsections into account
-        print("<section>")
-        print("<header" + header_attribute + ">")
-        print(section_header.strip())
-        print("</header>")
+        # xml_file.write the section to xml file taking header number into account
+        xml_file.write("<section>\n")
+        xml_file.write("<header" + header_attribute + ">\n")
+        xml_file.write(section_header.strip() + "\n")
+        xml_file.write("</header>\n")
 
         for section_paragraph in section_paragraphs:
             if section_paragraph.strip() != "":
-                print("<p>")
-                print(section_paragraph.strip())
-                print("</p>")
+                xml_file.write("<p>\n")
+                xml_file.write(section_paragraph.strip() + "\n")
+                xml_file.write("</p>\n")
 
-        print("</section>")
+        xml_file.write("</section>\n")
 
-    print("</body>")
-    print("</xml>")
-    sys.stdout = console_out
+    xml_file.write("</body>\n")
+    xml_file.write("</xml>\n")
+    xml_file.close()
+    # sys.stdout = console_out
