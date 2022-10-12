@@ -52,7 +52,18 @@ def dec_get_date(txt):
     try:
         section = re.split('of ',txt,1)[1]
         section = section[:15]
-        return helper.getDate(section)
+        #check if there are digits on first page
+        if bool(re.search(r'\d', section)):
+            return helper.getDate(section)
+        #there are few cases where date on first page is missing
+        #retry on second page before giving up.
+        try:
+            next_page = re.split('commission decision',txt.lower())[2]
+            section = re.split('of ',next_page,1)[1]
+            section = section[:15]
+            return helper.getDate(section)
+        except:
+            pass
     except:
         pass
     return helper.getDate('')

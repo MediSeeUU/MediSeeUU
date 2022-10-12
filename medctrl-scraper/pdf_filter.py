@@ -1,6 +1,7 @@
 from joblib import Parallel, delayed
 import fitz
 import os
+import re
 
 
 # This program scans all PDF files in the given directory.
@@ -16,7 +17,7 @@ import os
 def filter_all_pdfs():
     print(f'Filtering all PDF files...')
     f = open('retry.txt', 'w', encoding="utf-8")  # open/clean output file
-    data_dir = 'PDF_scraper/text_scraper/data/epars'
+    data_dir = 'Text_scraper/data/dec_initial'
 
     all_data = Parallel(n_jobs=8)(
         delayed(filter_pdf)(filename, data_dir) for filename in
@@ -58,11 +59,19 @@ def filter_pdf(filename, data_dir):
     except:
         corrupt = True
 
+    # check if file is readable
     try:
-        return check_readable(filename, pdf)
+        #when readable check if its type matches
+        if check_readable(pdf):
+            if 'dec' in filename:
+                return check_decision(filename, pdf)
+        #file not readable
+        else: 
+            return filename + '@no_text'
+
     # could not parse
     except:
-        # Check if html
+        # check if html
         try:
             firstline = get_utf8_line(file_path)
             if 'html' in firstline.lower():
@@ -86,14 +95,26 @@ def get_utf8_line(file_path):
     return firstline
 
 
-def check_readable(filename, pdf):
+def check_readable(pdf):
     # Check if PDF is readable
     no_text = check_for_no_text(pdf)
     pdf.close()  # close document
     # Text is not readable
     if no_text:
-        return filename + '@no_text'
+        return False
     # Text is readable
-    return filename + '@parsed'
+    return True
+
+def check_decision(filename, pdf):
+    try:
+        #gets text of second page
+        second_page = pdf[1]
+        txt = second_page.get_text()
+        #checks if it is a decision file
+        if bool(re.search(r'commission decision', txt.lower())):
+            return filename + '@valid'
+    except:
+        pass
+    return filename + '@wrong_doctype'
 
 filter_all_pdfs()
