@@ -13,7 +13,7 @@ def get_all_test(filename, table, _):
     return res
 
 
-def get_all(filedata, table, _):
+def get_all(filedata, xml_data):
     filedata['ema_procedure_start_initial'] = table_get_date(table)
     filedata['chmp_opinion_date'] = table_get_opinion_date(table)
     filedata['eu_legal_basis'] = table_get_legal_basis(table)
@@ -29,8 +29,12 @@ def get_default(filename):
             }
 
 
-def parse_file(filename, medicine_struct):
-    print(medicine_struct)
+def parse_file(filename, medicine_struct, xml_data):
+    filedata = get_default(filename)
+    print(xml_data)
+    filedata = get_all(filedata, xml_data)
+    medicine_struct.epars = filedata
+    return medicine_struct
 
 
 # Scans and orders EPAR document
