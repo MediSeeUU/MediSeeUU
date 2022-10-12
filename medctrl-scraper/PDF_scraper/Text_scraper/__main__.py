@@ -67,7 +67,7 @@ def parse_folder(directory: str, folder_name):
         medicine_struct = parse_file(file, medicine_struct)
 
     for file in epar_files:
-        medicine_struct = epar_parse.parse_file(path.join(directory, file), medicine_struct)
+        medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
         medicine_struct = parse_file(file, medicine_struct)
 
     for file in omar_files:
@@ -75,6 +75,9 @@ def parse_folder(directory: str, folder_name):
 
     # dump json result to medicine folder directory
     json_file = open(path.join(directory, folder_name) + "_pdf_parser.json", "w")
+
+    print(medicine_struct)
+    print(pis.asdict(medicine_struct))
     medicine_struct_json = json.dumps(pis.asdict(medicine_struct), default=datetime_serializer)
     json_file.write(medicine_struct_json)
     json_file.close()

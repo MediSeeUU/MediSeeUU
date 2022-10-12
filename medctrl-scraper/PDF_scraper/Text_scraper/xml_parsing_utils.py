@@ -8,9 +8,8 @@ xml_paragraph_tag = "p"
 
 def section_contains_head_substring(substring: str, section: ET.Element):
     substring_found = False
-    for head in section.findall(xml_head_tag):
-        if substring.lower() in head.text.lower():
-            substring_found |= True
+    if substring.lower() in section.text:
+        substring_found |= True
 
     return substring_found
 
