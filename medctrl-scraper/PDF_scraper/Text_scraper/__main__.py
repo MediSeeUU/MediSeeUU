@@ -14,20 +14,25 @@ import parsers.epar_parse as epar_parse
 
 # Main file to run all parsers
 
-#TODO: replace this stub parse, fake function until other parsers are reworked
+# TODO: replace this stub parse, fake function until other parsers are reworked
 def parse_file(filename: str, medicine_struct: pis.parsed_info_struct):
     return medicine_struct
+
 
 # datetime to string serializer for json dumping
 def datetime_serializer(date: pis.datetime.datetime):
     if isinstance(date, pis.datetime.datetime):
         return date.__str__()
 
+
 def pdf_parser(directory: str):
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
 
-    # 4 concurrent threads to maximize use of all hyperthreads/SMT threads in case one is stalled
-    joblib.Parallel(n_jobs=4, require=None)(joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in directory_folders)
+    # 4 concurrent threads to maximize use of all hyper-threads/SMT threads in case one is stalled
+    joblib.Parallel(n_jobs=4, require=None)(
+        joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
+        directory_folders)
+
 
 # scraping on medicine folder level
 def parse_folder(directory: str, folder_name):
@@ -38,7 +43,8 @@ def parse_folder(directory: str, folder_name):
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
     for file in directory_files:
         if "dec" not in file and ".xml" not in file and ".pdf" in file:
-            xml_converter.convert_pdf_to_xml(path.join(directory, file), path.join(directory, file) + ".xml", "epar" in file)
+            xml_converter.convert_pdf_to_xml(path.join(directory, file), path.join(directory, file) + ".xml",
+                                             "epar" in file)
 
     # update list of files and filter out relevant files for each parser
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
@@ -57,7 +63,7 @@ def parse_folder(directory: str, folder_name):
     for file in epar_files:
         # medicine_struct = epar_parse.parse_file(file, medicine_struct)
         medicine_struct = parse_file(file, medicine_struct)
-        
+
     for file in omar_files:
         medicine_struct = parse_file(file, medicine_struct)
 
@@ -67,10 +73,11 @@ def parse_folder(directory: str, folder_name):
     json_file.write(medicine_struct_json)
     json_file.close()
 
+
 # pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
 # parse_folder("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
 
-# parse_pdf_folder("data\\epars")
+pdf_parser("testdata")
 # pdf_r.parse_folder(ec_parse, 'dec_human')
 # pdf_r.parse_folder(ec_parse, 'dec_orphan')
 # pdf_r.parse_folder(epar_parse, 'epars')
