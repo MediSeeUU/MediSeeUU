@@ -1,13 +1,13 @@
 from rest_framework import serializers
 from api.models.medicine_models import (
-    history_atc_code,
-    history_authorisation_status,
-    history_authorisation_type,
-    history_brand_name,
-    history_mah,
-    history_number_check,
-    history_od,
-    history_prime,
+    HistoryATCCode,
+    HistoryAuthorisationStatus,
+    HistoryAuthorisationType,
+    HistoryBrandName,
+    HistoryMAH,
+    HistoryEMANumberCheck,
+    HistoryOD,
+    HistoryPrime,
 )
 
 
@@ -21,7 +21,7 @@ class ATCCodeSerializer(serializers.ModelSerializer):
         Meta information
         """
 
-        model = history_atc_code
+        model = HistoryATCCode
         fields = "atc_code"
 
 
@@ -35,7 +35,7 @@ class AuthorisationStatusSerializer(serializers.ModelSerializer):
         Meta information
         """
 
-        model = history_authorisation_status
+        model = HistoryAuthorisationStatus
         fields = "eu_aut_type"
 
 
@@ -49,7 +49,7 @@ class AuthorisationTypeSerializer(serializers.ModelSerializer):
         Meta information
         """
 
-        model = history_authorisation_type
+        model = HistoryAuthorisationType
         fields = "eu_aut_status"
 
 
@@ -63,7 +63,7 @@ class BrandNameSerializer(serializers.ModelSerializer):
         Meta information
         """
 
-        model = history_brand_name
+        model = HistoryBrandName
         fields = "eu_brand_name"
 
 
@@ -77,7 +77,7 @@ class MAHSerializer(serializers.ModelSerializer):
         Meta information
         """
 
-        model = history_mah
+        model = HistoryMAH
         fields = "eu_mah"
 
 
@@ -91,7 +91,7 @@ class NumberCheckSerializer(serializers.ModelSerializer):
         Meta information
         """
 
-        model = history_number_check
+        model = HistoryEMANumberCheck
         fields = "ema_number_check"
 
 
@@ -105,7 +105,7 @@ class OrphanDesignationSerializer(serializers.ModelSerializer):
         Meta information
         """
 
-        model = history_od
+        model = HistoryOD
         fields = "eu_od"
 
 
@@ -119,5 +119,5 @@ class PrimeSerializer(serializers.ModelSerializer):
         Meta information
         """
 
-        model = history_prime
+        model = HistoryPrime
         fields = "eu_prime"

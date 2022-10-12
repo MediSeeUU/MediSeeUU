@@ -16,9 +16,8 @@ class HistoryAuthorisationStatus(models.Model):
         "EU Authorisation Status ID"
     )
 
-    eu_pnumber = create_dashboard_column(
-        models.ForeignKey("Medicine", models.CASCADE, null=False)
-    )
+    eu_pnumber = models.ForeignKey("Medicine", models.CASCADE, null=False)
+
 
     change_date = create_dashboard_column(
         models.DateField(db_column="change_date", null=True),

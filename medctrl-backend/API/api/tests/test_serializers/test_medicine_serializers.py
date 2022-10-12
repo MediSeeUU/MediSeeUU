@@ -1,7 +1,7 @@
 from django.test import TestCase
 from api.serializers.medicine_serializers.public_medicine import PublicMedicineSerializer
 
-class PublicMedicineSerializerTestCase(TestCase)
+class PublicMedicineSerializerTestCase(TestCase):
     def setUp(self):
         self.atc_code = {
             'eu_pnumber': "1",

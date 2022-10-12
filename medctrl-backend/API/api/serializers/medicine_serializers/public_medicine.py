@@ -12,14 +12,14 @@
 from rest_framework import serializers
 from api.models.medicine_models import (
     Medicine,
-    history_atc_code,
-    history_authorisation_status,
-    history_authorisation_type,
-    history_brand_name,
-    history_mah,
-    history_number_check,
-    history_od,
-    history_prime,
+    HistoryATCCode,
+    HistoryAuthorisationStatus,
+    HistoryAuthorisationType,
+    HistoryBrandName,
+    HistoryMAH,
+    HistoryEMANumberCheck,
+    HistoryOD,
+    HistoryPrime,
 )
 from api.serializers.medicine_serializers.public_history import (
     ATCCodeSerializer,
@@ -58,7 +58,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
     # retrieves atc code from database for each medicine
     def get_atc_code(self, atc_code):
-        queryset = history_atc_code.objects.filter(eu_pnumber=atc_code.eu_pnumber)
+        queryset = HistoryATCCode.objects.filter(eu_pnumber=atc_code.eu_pnumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
@@ -67,7 +67,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
     # retrieves authorisation status from database for each medicine
     def get_eu_aut_status(self, authorisation_status):
-        queryset = history_authorisation_status.objects.filter(eu_pnumber=authorisation_status.eu_pnumber)
+        queryset = HistoryAuthorisationStatus.objects.filter(eu_pnumber=authorisation_status.eu_pnumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
@@ -76,7 +76,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
     # retrieves authorisation type from database for each medicine
     def get_eu_aut_type(self, authorisation_type):
-        queryset = history_authorisation_type.objects.filter(eu_pnumber=authorisation_type.eu_pnumber)
+        queryset = HistoryAuthorisationType.objects.filter(eu_pnumber=authorisation_type.eu_pnumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
@@ -85,7 +85,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
     # retrieves brand name from database for each medicine
     def get_eu_brand_name(self, brand_name):
-        queryset = history_brand_name.objects.filter(eu_pnumber=brand_name.eu_pnumber)
+        queryset = HistoryBrandName.objects.filter(eu_pnumber=brand_name.eu_pnumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
@@ -94,7 +94,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
     # retrieves mah from database for each medicine
     def get_eu_mah(self, mah):
-        queryset = history_mah.objects.filter(eu_pnumber=mah.eu_pnumber)
+        queryset = HistoryMAH.objects.filter(eu_pnumber=mah.eu_pnumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
@@ -103,7 +103,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
     # retrieves number check from database for each medicine
     def get_ema_number_check(self, number_check):
-        queryset = history_number_check.objects.filter(eu_pnumber=number_check.eu_pnumber)
+        queryset = HistoryEMANumberCheck.objects.filter(eu_pnumber=number_check.eu_pnumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
@@ -112,7 +112,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
     # retrieves orphan designation from database for each medicine
     def get_eu_od(self, orphan_designation):
-        queryset = history_od.objects.filter(eu_pnumber=orphan_designation.eu_pnumber)
+        queryset = HistoryOD.objects.filter(eu_pnumber=orphan_designation.eu_pnumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
@@ -121,7 +121,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
     # retrieves primenumber from database for each medicine
     def get_eu_prime(self, prime):
-        queryset = history_prime.objects.filter(eu_pnumber=prime.eu_pnumber)
+        queryset = HistoryPrime.objects.filter(eu_pnumber=prime.eu_pnumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
@@ -134,13 +134,14 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
         for field in [
             "atc_code",
-            "authorisation_status",
-            "authorisation_type",
-            "brand_name",
-            "mah",
-            "number_check",
-            "orphan_designation",
-            "prime",
+            "eu_aut_status",
+            "eu_aut_type",
+            "eu_brand_name",
+            "eu_mah",
+            "ema_number_check",
+            "eu_od",
+            "eu_prime",
+
         ]:
             field_representation = representation.pop(field)
             for key in field_representation:
