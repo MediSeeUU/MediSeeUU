@@ -111,4 +111,4 @@ if scrape_ema:
     log.info("SUCCESS on scraping all individual medicine pages of EMA")
 
 if download_files:
-    download.run_parallel()
+    download.download_all(parallel=True)
