@@ -196,7 +196,7 @@ This endpoint is used to retrieve all the procedures that are connected to the m
 
 <div style="page-break-after: always;"></div>
 
-* GET `/detailedData` \
+* GET `/structureData` \
     This endpoint returns details about the types of variables that are in the database. This data is, among other things, used to determine how to filter/sort the medicine data.
 
 * POST `/account/login`

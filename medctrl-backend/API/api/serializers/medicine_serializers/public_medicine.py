@@ -92,7 +92,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return BrandNameSerializer(instance=queryset, read_only=True).data
 
-    # retrieves mah from data base for each medicine
+    # retrieves mah from database for each medicine
     def get_mah(self, mah):
         queryset = history_mah.objects.filter(eu_pnumber=mah.eu_pnumber)
         try:
@@ -110,7 +110,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return NumberCheckSerializer(instance=queryset, read_only=True).data
 
-    # retrieves orphan designation from data base for each medicine
+    # retrieves orphan designation from database for each medicine
     def get_orphan_designation(self, orphan_designation):
         queryset = history_od.objects.filter(eu_pnumber=orphan_designation.eu_pnumber)
         try:
@@ -119,7 +119,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return OrphanDesignationSerializer(instance=queryset, read_only=True).data
 
-    # retrieves primenumber from data base for each medicine
+    # retrieves primenumber from database for each medicine
     def get_prime(self, prime):
         queryset = history_prime.objects.filter(eu_pnumber=prime.eu_pnumber)
         try:

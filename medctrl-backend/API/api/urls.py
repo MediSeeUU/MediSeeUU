@@ -49,5 +49,5 @@ urlpatterns = [
     ),
     # Other routes
     path("scraper/", include(scraper_routes)),
-    path("detailedData/", Medicine_info.as_view()),
+    path("structureData/", Medicine_info.as_view()),
 ]
