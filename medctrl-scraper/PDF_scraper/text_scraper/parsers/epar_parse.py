@@ -1,6 +1,6 @@
 # EPAR parsers
 import re
-import pdf_helperl
+import pdf_helper
 import helper
 
 date_pattern: str = r'\d{1,2} \w+ \d{4}'
