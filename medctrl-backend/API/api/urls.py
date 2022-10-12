@@ -21,7 +21,7 @@ from api.views.medicine_views import (
 from api.views.account_views import LoginAPI
 from api.views.other import SavedSelectionViewSet
 from api.views.other import Medicine_info
-from api.scraper.router import url_patterns as scraper_routes
+# from api.scraper.router import url_patterns as scraper_routes
 
 
 # Only viewSets can be registered at a router.
@@ -48,6 +48,6 @@ urlpatterns = [
         ),
     ),
     # Other routes
-    path("scraper/", include(scraper_routes)),
+    # path("scraper/", include(scraper_routes)),
     path("structureData/", Medicine_info.as_view()),
 ]
