@@ -93,5 +93,26 @@ class Medicine(models.Model):
         "EU ATMP"
     )
 
+    aut_url = create_dashboard_column(
+        models.URLField(db_column="aut_url", null=False),
+        Category.General_Information,
+        "link",
+        "Authorisation Decision Link"
+    )
+
+    smpc_url = create_dashboard_column(
+        models.URLField(db_column="smpc_url", null=False),
+        Category.General_Information,
+        "link",
+        "Authorisation Annex Link"
+    )
+
+    epar_url = create_dashboard_column(
+        models.URLField(db_column="epar_url", null=False),
+        Category.General_Information,
+        "link",
+        "Initial Authorisation EPAR Link"
+    )
+
     class Meta:
         db_table = "medicine"

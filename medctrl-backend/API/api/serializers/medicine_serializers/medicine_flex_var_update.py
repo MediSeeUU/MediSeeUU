@@ -14,4 +14,4 @@ class MedicineFlexVarUpdateSerializer(serializers.ModelSerializer):
         """Metadata"""
 
         model = Medicine
-        fields = ["ema_url", "ec_url"]
+        fields = ["ema_url", "ec_url", "aut_url", "smpc_url", "epar_url",]

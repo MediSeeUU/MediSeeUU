@@ -23,6 +23,7 @@ class ATCCodeSerializer(serializers.ModelSerializer):
 
         model = HistoryATCCode
         fields = ("atc_code",)
+        ordering = ("change_date",)
 
 
 class AuthorisationStatusSerializer(serializers.ModelSerializer):
@@ -37,6 +38,7 @@ class AuthorisationStatusSerializer(serializers.ModelSerializer):
 
         model = HistoryAuthorisationStatus
         fields = ("eu_aut_status",)
+        ordering = ("change_date",)
 
 
 class AuthorisationTypeSerializer(serializers.ModelSerializer):
@@ -51,6 +53,7 @@ class AuthorisationTypeSerializer(serializers.ModelSerializer):
 
         model = HistoryAuthorisationType
         fields = ("eu_aut_type",)
+        ordering = ("change_date",)
 
 
 class BrandNameSerializer(serializers.ModelSerializer):
@@ -65,6 +68,7 @@ class BrandNameSerializer(serializers.ModelSerializer):
 
         model = HistoryBrandName
         fields = ("eu_brand_name",)
+        ordering = ("change_date",)
 
 
 class MAHSerializer(serializers.ModelSerializer):
@@ -79,6 +83,7 @@ class MAHSerializer(serializers.ModelSerializer):
 
         model = HistoryMAH
         fields = ("eu_mah",)
+        ordering = ("change_date",)
 
 
 class NumberCheckSerializer(serializers.ModelSerializer):
@@ -93,6 +98,7 @@ class NumberCheckSerializer(serializers.ModelSerializer):
 
         model = HistoryEMANumberCheck
         fields = ("ema_number_check",)
+        ordering = ("change_date",)
 
 
 class OrphanDesignationSerializer(serializers.ModelSerializer):
@@ -107,6 +113,7 @@ class OrphanDesignationSerializer(serializers.ModelSerializer):
 
         model = HistoryOD
         fields = ("eu_od",)
+        ordering = ("change_date",)
 
 
 class PrimeSerializer(serializers.ModelSerializer):
@@ -121,3 +128,4 @@ class PrimeSerializer(serializers.ModelSerializer):
 
         model = HistoryPrime
         fields = ("eu_prime",)
+        ordering = ("change_date",)

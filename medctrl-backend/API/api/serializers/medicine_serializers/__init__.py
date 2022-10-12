@@ -24,3 +24,5 @@ from .public_history import (
     OrphanDesignationSerializer,
     PrimeSerializer,
 )
+
+from .urls import UrlsSerializer
