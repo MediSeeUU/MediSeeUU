@@ -11,6 +11,7 @@ import joblib
 import parsers.ec_parse as ec_parse
 import parsers.epar_parse as epar_parse
 
+
 # Main file to run all parsers
 
 #TODO: replace this stub parse, fake function until other parsers are reworked
@@ -49,10 +50,10 @@ def parse_folder(directory: str, folder_name):
     # call parsers on correct files and update medicine struct
     for file in decision_files:
         medicine_struct = parse_file(file, medicine_struct)
-        
+
     for file in annex_files:
         medicine_struct = parse_file(file, medicine_struct)
-        
+
     for file in epar_files:
         # medicine_struct = epar_parse.parse_file(file, medicine_struct)
         medicine_struct = parse_file(file, medicine_struct)
@@ -66,11 +67,13 @@ def parse_folder(directory: str, folder_name):
     json_file.write(medicine_struct_json)
     json_file.close()
 
-pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
+# pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
 # parse_folder("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
+
+# parse_pdf_folder("data\\epars")
 # pdf_r.parse_folder(ec_parse, 'dec_human')
-#pdf_r.parse_folder(ec_parse, 'dec_orphan')
-#pdf_r.parse_folder(epar_parse, 'epars')
+# pdf_r.parse_folder(ec_parse, 'dec_orphan')
+# pdf_r.parse_folder(epar_parse, 'epars')
 # ap.parse_smpc_file("parsers/test_data/vydura-epar-public-assessment-report_en.pdf")
 
 # To add: Xiao yi SMPC parsers

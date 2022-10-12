@@ -29,6 +29,10 @@ def get_default(filename):
             }
 
 
+def parse_file(filename, medicine_struct):
+    print(medicine_struct)
+
+
 # Scans and orders EPAR document
 def get_table(pdf):
     table = {'intro': dict.fromkeys(['front_page']),

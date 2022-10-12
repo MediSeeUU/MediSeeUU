@@ -5,6 +5,7 @@ import pdf_helper as ph
 header_indicator = "|-HEADER-|"
 split_indicator = "|-SPLIT-|"
 
+
 def convert_pdf_to_xml(source_filepath: str, output_filepath: str, is_epar: bool):
     document = fitz.open(source_filepath)
     text_format_lower = ph.get_text_format(document, True)
@@ -46,6 +47,7 @@ def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
 
     return paragraphs
 
+
 def split_paragraphs(paragraphs: list[str]) -> list[(str, str)]:
     sections = []
 
@@ -59,10 +61,11 @@ def split_paragraphs(paragraphs: list[str]) -> list[(str, str)]:
 
         if len(paragraph_split) > 1:
             paragraph_text = paragraph_split[1]
-        
+
         sections.append((header_text, paragraph_text))
 
     return sections
+
 
 def replace_special_xml_characters(string: str) -> str:
     string = string.replace("&", "&amp;")
@@ -72,6 +75,7 @@ def replace_special_xml_characters(string: str) -> str:
     string = string.replace(">", "&gt;")
 
     return string
+
 
 def print_xml(sections: list[(str, str)], output_filepath: str):
     # start printing xml file
