@@ -12,12 +12,14 @@
 from api.models.medicine_models.common import Category
 from api.models.medicine_models import (
     Medicine,
-    Authorisation,
-    Procedure,
-    Historybrandname,
-    Historymah,
-    Historyorphan,
-    Historyprime,
+    history_atc_code,
+    history_authorisation_status,
+    history_authorisation_type,
+    history_brand_name,
+    history_mah,
+    history_number_check,
+    history_od,
+    history_prime,
 )
 
 
@@ -36,12 +38,14 @@ def get_medicine_info(perm, mock=None):
         # place all models here
         models = [
             Medicine,
-            Authorisation,
-            Procedure,
-            Historybrandname,
-            Historymah,
-            Historyorphan,
-            Historyprime,
+            history_atc_code,
+            history_authorisation_status,
+            history_authorisation_type,
+            history_brand_name,
+            history_mah,
+            history_number_check,
+            history_od,
+            history_prime,
         ]
 
         # make a list containing all the fields from all the models

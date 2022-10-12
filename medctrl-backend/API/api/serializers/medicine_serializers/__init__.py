@@ -14,3 +14,13 @@ from .history_serializers import (
     OrphanDesignationSerializer,
     PrimeSerializer,
 )
+from .public_history import (
+    ATCCodeSerializer,
+    AuthorisationStatusSerializer,
+    AuthorisationTypeSerializer,
+    BrandNameSerializer,
+    MAHSerializer,
+    NumberCheckSerializer,
+    OrphanDesignationSerializer,
+    PrimeSerializer,
+)

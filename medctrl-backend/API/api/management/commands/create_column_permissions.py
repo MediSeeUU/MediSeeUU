@@ -12,14 +12,14 @@ from django.core.management.base import BaseCommand
 
 from api.models.medicine_models import (
     Medicine,
-    Authorisation,
-    Procedure,
-    Historyauthorisation,
-    Historybrandname,
-    Historyindication,
-    Historymah,
-    Historyprime,
-    Historyorphan,
+    history_atc_code,
+    history_authorisation_status,
+    history_authorisation_type,
+    history_brand_name,
+    history_mah,
+    history_number_check,
+    history_od,
+    history_prime,
 )
 
 # creates custom permission levels to view medicines
@@ -35,14 +35,14 @@ class Command(BaseCommand):
 
         for model in [
             Medicine,
-            Authorisation,
-            Procedure,
-            Historyauthorisation,
-            Historybrandname,
-            Historyindication,
-            Historymah,
-            Historyprime,
-            Historyorphan,
+            history_atc_code,
+            history_authorisation_status,
+            history_authorisation_type,
+            history_brand_name,
+            history_mah,
+            history_number_check,
+            history_od,
+            history_prime,
         ]:
             content_type = ContentType.objects.filter(model=model.__name__).first()
 
