@@ -15,7 +15,7 @@ class MedicineResource(resources.ModelResource):
         """
 
         model = Medicine
-        import_id_fields = ("eunumber",)
+        import_id_fields = ("eu_pnumber",)
 
 
 class MedicineAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
@@ -25,24 +25,23 @@ class MedicineAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
 
     resource_class = MedicineResource
     list = (
-        "eunumber",
-        "emanumber",
-        "atccode",
-        "activesubstance",
-        "newactivesubstance",
-        "legalbasis",
-        "legalscope",
-        "atmp",
-        "status",
-        "referral",
-        "suspension",
-        "emaurl",
-        "ecurl",
+        "eu_pnumber",
+        "active_substance",
+        "eu_nas",
+        "ema_procedure_start_initial",
+        "chmp_opinion_date",
+        "eu_aut_date",
+        "eu_legal_basis",
+        "ema_url",
+        "ec_url",
+        "ema_number",
+        "eu_med_type",
+        "eu_atmp"
     )
 
     def save_model(self, request, obj, form, change):
         # Get reference to previous object
-        med = Medicine.objects.filter(eunumber=obj.eunumber).first()
+        med = Medicine.objects.filter(eu_pnumber=obj.eu_pnumber).first()
 
         # Check if the manually updated checkbox has been unchecked
         if not med.manually_updated:

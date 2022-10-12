@@ -15,6 +15,7 @@ from rest_framework.settings import settings
 from api.serializers.medicine_serializers import PublicMedicineSerializer
 from api.models.medicine_models import Medicine
 
+
 # Adds all medicine data to cache memory of the server
 def update_cache():
     if not settings.MEDICINES_CACHING:
