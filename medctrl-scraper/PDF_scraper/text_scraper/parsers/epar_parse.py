@@ -1,7 +1,7 @@
 # EPAR parsers
 import re
 import pdf_helper
-import helper
+import helper as h
 import xml_parsing_utils as xpu
 import xml.etree.ElementTree as ET
 import os.path as path
@@ -38,11 +38,11 @@ def get_date(xml):
     regex_ema2 = re.compile(r'the procedure started on')
     for p in xpu.get_paragraphs_by_header('steps taken for the assessment', xml):
         if found and regex_date.search(p):
-            return re.search(date_pattern, p)[0]
+            return h.convert_months(re.search(date_pattern, p)[0])
         elif regex_ema.search(p) or regex_ema2.search(p):
             found = True
             if regex_date.search(p):
-                return re.search(date_pattern, p)[0]
+                return h.convert_months(re.search(date_pattern, p)[0])
     return 'no_date_found'
 
 
@@ -50,7 +50,7 @@ def get_date(xml):
 def get_opinion_date(xml):
     for p in xpu.get_paragraphs_by_header('steps taken for the assessment', xml):
         if re.findall(date_pattern, p):
-            return re.findall(date_pattern, p)[-1]
+            return h.convert_months(re.findall(date_pattern, p)[-1])
     return 'no_chmp_found'
 
 
