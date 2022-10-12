@@ -5,7 +5,7 @@ from django.contrib import admin
 from import_export import resources, admin as import_admin
 from api.models.medicine_models import (
     Medicine,
-    HistoryNumberCheck,
+    HistoryEMANumberCheck,
 )
 from api.admin.common import import_foreign_key
 from api.admin.cachemodeladmin import CacheModelAdmin
@@ -24,7 +24,7 @@ class HistoryNumberCheckResource(resources.ModelResource):
         Meta class for HistoryNumberCheckResource
         """
 
-        model = HistoryNumberCheck
+        model = HistoryEMANumberCheck
         import_id_fields = (
             "eu_pnumber",
         )
@@ -44,4 +44,4 @@ class HistoryNumberCheckAdmin(import_admin.ImportExportModelAdmin, CacheModelAdm
     )
 
 
-admin.site.register(HistoryNumberCheck, HistoryNumberCheckAdmin)
+admin.site.register(HistoryEMANumberCheck, HistoryNumberCheckAdmin)

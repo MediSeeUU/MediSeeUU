@@ -44,4 +44,4 @@ class HistoryAuthorisationTypeAdmin(import_admin.ImportExportModelAdmin, CacheMo
     )
 
 
-admin.site.register(HistoryAuthorisationTypeResource, HistoryAuthorisationTypeAdmin)
+admin.site.register(HistoryAuthorisationType, HistoryAuthorisationTypeAdmin)
