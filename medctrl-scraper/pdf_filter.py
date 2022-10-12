@@ -16,7 +16,7 @@ import os
 def filter_all_pdfs():
     print(f'Filtering all PDF files...')
     f = open('retry.txt', 'w', encoding="utf-8")  # open/clean output file
-    data_dir = 'PDF_scraper/text_scraper/data'
+    data_dir = 'PDF_scraper/text_scraper/data/epars'
 
     all_data = Parallel(n_jobs=8)(
         delayed(filter_pdf)(filename, data_dir) for filename in
@@ -96,4 +96,4 @@ def check_readable(filename, pdf):
     # Text is readable
     return filename + '@parsed'
 
-# filter_all_pdfs()
+filter_all_pdfs()

@@ -21,6 +21,8 @@ class TestFilter:
         print(pdf)
         if status.strip() == 'no_text':
             assert (pdf_filter.check_for_no_text(pdf))
+            print
+
         else:
             assert not (pdf_filter.check_for_no_text(pdf))
         print("Testing pdf filter")

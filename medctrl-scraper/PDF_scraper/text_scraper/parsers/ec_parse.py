@@ -78,7 +78,7 @@ def get_name_section(txt):
                 except:
                     pass
 
-    if section == None:
+    if section is None:
         section = ''
     return section
 

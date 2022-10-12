@@ -5,6 +5,7 @@ from os import listdir
 from os.path import isfile, join
 from sys import platform
 import json
+import pdf_xml_converter as xml_converter
 
 # external files
 import parsers.ec_parse as ec_parse
@@ -39,10 +40,15 @@ def parse_pdf_folder(directory: str):
     medicine_struct.eu_number = folder_name
 
     directory_files = [file for file in listdir(directory) if isfile(join(directory, file))]
-    decision_files = [file for file in directory_files if "dec" in file]
-    annex_files = [file for file in directory_files if "anx" in file]
-    epar_files = [file for file in directory_files if "epar" in file]
-    omar_files = [file for file in directory_files if "omar" in file]
+
+    for pdf in directory_files:
+        if "dec" not in pdf:
+            xml_converter.convert_pdf_to_xml(pdf, pdf + ".xml", "epar" in pdf)
+
+    decision_files = [file for file in directory_files if "dec" in file and ".xml" in file]
+    annex_files = [file for file in directory_files if "anx" in file and ".xml" in file]
+    epar_files = [file for file in directory_files if "epar" in file and ".xml" in file]
+    omar_files = [file for file in directory_files if "omar" in file and ".xml" in file]
 
     for file in decision_files:
         medicine_struct = parse_file(file, medicine_struct)
@@ -51,7 +57,7 @@ def parse_pdf_folder(directory: str):
         medicine_struct = parse_file(file, medicine_struct)
         
     for file in epar_files:
-        medicine_struct = parse_file(file, medicine_struct)
+        medicine_struct = epar_parse.parse_file(file, medicine_struct)
         
     for file in omar_files:
         medicine_struct = parse_file(file, medicine_struct)

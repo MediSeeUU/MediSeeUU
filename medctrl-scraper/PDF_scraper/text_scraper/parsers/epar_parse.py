@@ -1,6 +1,7 @@
 # EPAR parsers
 import re
-import pdf_helper
+import pdf_helperl
+import helper
 
 date_pattern: str = r'\d{1,2} \w+ \d{4}'
 procedure_info = 'information on the procedure'
@@ -86,11 +87,11 @@ def table_get_date(table):
     regex_ema = re.compile(r'the application was received by the em\w+ on')
     for txt in section:
         if found and regex_date.search(txt):
-            return re.search(date_pattern, txt)[0]
+            return convert_month(re.search(date_pattern, txt)[0])
         elif regex_ema.search(txt):
             found = True
             if regex_date.search(txt):
-                return re.search(date_pattern, txt)[0]
+                return convert_month(re.search(date_pattern, txt)[0])
     return ''
 
 
