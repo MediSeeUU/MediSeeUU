@@ -47,7 +47,7 @@ class Command(BaseCommand):
             content_type = ContentType.objects.filter(model=model.__name__).first()
 
             # pylint: disable=protected-access
-            for field in model._meta.fields:
+            for field in model._meta.get_fields():
                 name = f"{model.__name__.lower()}.{field.name}.view"
                 description = f"Can view {field.name} in {model.__name__}"
 
