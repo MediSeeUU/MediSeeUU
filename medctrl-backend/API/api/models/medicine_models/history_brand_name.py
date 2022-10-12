@@ -39,4 +39,3 @@ class HistoryBrandName(models.Model):
 
     class Meta:
         db_table = "history_brand_name"
-

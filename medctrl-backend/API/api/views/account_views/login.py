@@ -13,6 +13,7 @@ from rest_framework import permissions
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
 
+
 # Class used for logging in a user
 class LoginAPI(KnoxLoginView):
     """Login API View"""

@@ -15,7 +15,7 @@ class Authorisation(models.Model):
     )
 
     rapporteur = create_dashboard_column(
-         models.CharField(db_column="Rapporteur", max_length=45, blank=True, null=True),
+        models.CharField(db_column="Rapporteur", max_length=45, blank=True, null=True),
         Category.Co_Rapporteur,
         "string",
         "Rapporteur"

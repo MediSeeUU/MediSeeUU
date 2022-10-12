@@ -20,6 +20,7 @@ from django.conf import settings
 
 base_url = settings.BASE_URL if "BASE_URL" in dir(settings) else ""
 
+
 # Create form on django admin panel
 class GenerateKeyForm(forms.Form):
     """

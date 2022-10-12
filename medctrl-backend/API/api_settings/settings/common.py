@@ -19,7 +19,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -29,7 +28,6 @@ CSRF_TRUSTED_ORIGINS = ["https://med-ctrl.science.uu.nl"]
 
 # Caching the medicines endpoint
 MEDICINES_CACHING = True
-
 
 # Application definition
 
@@ -53,7 +51,6 @@ INSTALLED_APPS = [
     "api.apps.ApiConfig",
 
 ]
-
 
 # Use sessionauthentication instead of Basic
 REST_FRAMEWORK = {
@@ -106,7 +103,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "api_settings.wsgi.application"
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -125,7 +121,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -136,7 +131,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -149,7 +143,6 @@ STATIC_URL = "django-static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 SESSION_COOKIE_AGE = 4 * 60 * 60
-
 
 LOGGING = {
     'version': 1,

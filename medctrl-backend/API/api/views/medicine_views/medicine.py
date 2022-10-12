@@ -17,6 +17,7 @@ from django.core.cache import cache
 from api.update_cache import update_cache
 from api.views.other import permissionFilter
 
+
 # Returns a list of medicines acording to the access level of the user
 class MedicineViewSet(viewsets.ViewSet):
     """
@@ -35,7 +36,7 @@ class MedicineViewSet(viewsets.ViewSet):
             queryset = Medicine.objects.all()
             serializer = PublicMedicineSerializer(queryset, many=True)
             cache_medicine = serializer.data
-        
+
         user = self.request.user
         perms = permissionFilter(user)
 

@@ -26,7 +26,6 @@ from api.models.medicine_models import (
 # returns a list of json components using medicine_models,
 # this list is for the filters and for the detailed information page
 def get_medicine_info(perm, mock=None):
-
     # make a JSON list for every category in medicine_models.common.Category
     data = {}
     for category in Category:
