@@ -17,9 +17,11 @@ from django.db.models import Q
 from django.contrib import messages
 from knox.models import AuthToken
 from django.conf import settings
+import logging
 
 base_url = settings.BASE_URL if "BASE_URL" in dir(settings) else ""
 
+logger = logging.getLogger(__name__)
 
 # Create form on django admin panel
 class GenerateKeyForm(forms.Form):
@@ -57,6 +59,11 @@ class GenerateKeyView(LoginRequiredMixin, UserPassesTestMixin, FormView):
         instance, token = AuthToken.objects.create(
             user, datetime.timedelta(days=duration)
         )
+
+        logger.debug("This is a debug message.")
+        logger.info("API Key generated xx: " + str(token))
+        logger.warning("HILFE!!!!")
+
         messages.success(self.request, "The generated api key is: " + str(token))
         return super().form_valid(form)
 
