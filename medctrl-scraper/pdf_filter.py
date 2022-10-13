@@ -18,7 +18,7 @@ import re
 def filter_all_pdfs():
     print(f'Filtering all PDF files...')
     f = open('retry.txt', 'w', encoding="utf-8")  # open/clean output file
-    data_dir = 'Text_scraper/data/dec_initial'
+    data_dir = 'text_scraper/data/dec_initial'
 
     all_data = Parallel(n_jobs=8)(
         delayed(filter_pdf)(filename, data_dir) for filename in
