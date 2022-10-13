@@ -46,16 +46,16 @@ def get_urls_ec(medicine_url, eu_n):
             # getURLsForPDFAndEMA returns per medicine the urls for the decision and annexes files and for the ema
             # website.
             dec_list, anx_list, ema_list, med_dict = ec_scraper.scrape_medicine_page(medicine_url)
-            with open("../data/CSV/decision.csv", 'a') as f:
+            with open("../data/CSV/decision.csv", 'a', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow([eu_n, dec_list])
-            with open("../data/CSV/annexes.csv", 'a') as f:
+            with open("../data/CSV/annexes.csv", 'a', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow([eu_n, anx_list])
-            with open("../data/CSV/ema_urls.csv", 'a') as f:
+            with open("../data/CSV/ema_urls.csv", 'a', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow([eu_n, ema_list])
-            with open("../data/CSV/med_dict.csv", 'a') as f:
+            with open("../data/CSV/med_dict.csv", 'a', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow([eu_n, med_dict])
             success = True
@@ -77,7 +77,7 @@ def get_urls_ema(medicine, url: str):
             else:
                 url = ''
             pdf_url = ema_scraper.pdf_links_from_url(url)
-            with open("../data/CSV/epar.csv", 'a') as f:
+            with open("../data/CSV/epar.csv", 'a', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow([medicine, pdf_url])
             success = True
