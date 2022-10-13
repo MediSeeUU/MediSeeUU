@@ -11,10 +11,12 @@ procedure_info = 'information on the procedure'
 
 
 def get_all(filename, xml_data):
-    epar = ['filename:' + filename,
-            'ema_procedure_start_initial:' + get_date(xml_data),
-            'chmp_opinion_date:' + get_opinion_date(xml_data),
-            'eu_legal_basis:' + get_legal_basis(xml_data)]
+    epar = {'filename': filename[:len(filename) - 4],  # remove extension
+            'ema_procedure_start_initial': get_date(xml_data),
+            'chmp_opinion_date': get_opinion_date(xml_data),
+            'eu_legal_basis': get_legal_basis(xml_data),
+            'eu_prime_initial': get_prime(xml_data)}
+    print("Parsing: " + filename)
     return epar
 
 
@@ -52,17 +54,22 @@ def get_opinion_date(xml):
 
 # eu_legal_basis
 def get_legal_basis(xml):
-    regex_legal = re.compile(r'article [^ ]+')
+    regex_legal = r'article [^ ]+'
     found = False
-    for p in xpu.get_paragraphs_by_header('steps taken for the assessment', xml):
+    for p in xpu.get_paragraphs_by_header('legal basis for', xml):
         if re.findall(regex_legal, p):
-            if found and re.search(regex_legal, p):
-                return re.search(r'article [^ ]+', p)[0]
-            elif 'legal basis for' in p:
-                found = True
-    return 'none'
+            return h.convert_article(re.findall(regex_legal, p)[0])
+    for p in xpu.get_paragraphs_by_header('submission of the dossier', xml):
+        if found and re.findall(regex_legal, p):
+            return h.convert_article(re.findall(regex_legal, p)[0])
+        elif 'legal basis for' in p:
+            found = True
+    return 'no_legal_basis'
 
 
-# eu_legal_basis
-def table_get_prime(xml):
-    return xml
+# eu_prime_initial
+def get_prime(xml):
+    for p in xpu.get_paragraphs_by_header('submission of the dossier', xml):
+        if re.findall(r"prime", p):
+            return 'True'
+    return 'False'

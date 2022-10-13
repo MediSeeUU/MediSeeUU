@@ -61,6 +61,19 @@ def convert_roman_numbers(date: str):
     return date
 
 
+def convert_article(article: str):
+    num = article.split(' ')[1]
+    newnum = ""
+    for c in num:
+        if c == '(':
+            newnum += '.'
+        elif c == ')':
+            continue
+        else:
+            newnum += c
+    return 'article ' + newnum
+
+
 def getDate(txt):
     if txt != '':
         txt = txt.lower()
@@ -68,7 +81,6 @@ def getDate(txt):
             return dateutil.parser.parse(txt, fuzzy=True)
         except:
             pass
-
         try:
             tempdate = convert_roman_numbers(txt)
             return dateutil.parser.parse(tempdate, fuzzy=True)

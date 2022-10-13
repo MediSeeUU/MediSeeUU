@@ -17,12 +17,12 @@ def convert_pdf_to_xml(source_filepath: str, output_filepath: str, is_epar: bool
 
 def cleanup_lines(text_format_lower: list[(str, float, str)], is_epar: bool) -> list[(str, float, str)]:
     # skip initial pages until table of content
-    if is_epar and len(text_format_lower) != 0:
-        while "table of content" not in text_format_lower[0][0]:
-            del text_format_lower[0]
-
-            if len(text_format_lower) == 0:
-                break
+    # if is_epar and len(text_format_lower) != 0:
+    #     while "table of content" not in text_format_lower[0][0]:
+    #         del text_format_lower[0]
+    #
+    #         if len(text_format_lower) == 0:
+    #             break
 
     return text_format_lower
 

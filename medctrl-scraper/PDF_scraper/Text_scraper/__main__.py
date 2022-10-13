@@ -1,4 +1,3 @@
-# import pdf_read as pdf_r
 import parsers.annex_parser as ap
 import parsedinfostruct as pis
 from os import listdir
@@ -15,7 +14,7 @@ import parsers.epar_parse as epar_parse
 # Main file to run all parsers
 
 # TODO: replace this stub parse, fake function until other parsers are reworked
-def parse_file(filename: str, medicine_struct: pis.ParsedInfoStruct):
+def parse_file(_: str, medicine_struct: pis.ParsedInfoStruct):
     return medicine_struct
 
 
@@ -29,11 +28,10 @@ def pdf_parser(directory: str):
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
 
     # 4 concurrent threads to maximize use of all hyper-threads/SMT threads in case one is stalled
-    # joblib.Parallel(n_jobs=4, require=None)(
-    #     joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
-    #     directory_folders)
-    parse_folder(path.join(directory, directory_folders[0]), directory_folders[0])
-
+    joblib.Parallel(n_jobs=4, require=None)(
+        joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
+        directory_folders)
+    # parse_folder(path.join(directory, directory_folders[0]), directory_folders[0])
 
 
 # scraping on medicine folder level
@@ -75,22 +73,9 @@ def parse_folder(directory: str, folder_name):
 
     # dump json result to medicine folder directory
     json_file = open(path.join(directory, folder_name) + "_pdf_parser.json", "w")
-
-    print(medicine_struct)
-    print(pis.asdict(medicine_struct))
     medicine_struct_json = json.dumps(pis.asdict(medicine_struct), default=datetime_serializer)
     json_file.write(medicine_struct_json)
     json_file.close()
 
 
-# pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
-# parse_folder("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
-
 pdf_parser("testdata")
-# pdf_r.parse_folder(ec_parse, 'dec_human')
-# pdf_r.parse_folder(ec_parse, 'dec_orphan')
-# pdf_r.parse_folder(epar_parse, 'epars')
-# ap.parse_smpc_file("parsers/test_data/vydura-epar-public-assessment-report_en.pdf")
-
-# To add: Xiao yi SMPC parsers
-# To add: Elio's OMAR parsers
