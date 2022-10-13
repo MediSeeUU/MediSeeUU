@@ -1,5 +1,5 @@
 import parsers.annex_parser as ap
-import parsedinfostruct as pis
+import parsed_info_struct as pis
 from os import listdir
 import os.path as path
 import json
@@ -14,7 +14,7 @@ import parsers.epar_parse as epar_parse
 # Main file to run all parsers
 
 # TODO: replace this stub parse, fake function until other parsers are reworked
-def parse_file(_: str, medicine_struct: pis.ParsedInfoStruct):
+def parse_file(_: str, medicine_struct: pis.parsed_info_struct):
     return medicine_struct
 
 
@@ -37,7 +37,7 @@ def pdf_parser(directory: str):
 # scraping on medicine folder level
 def parse_folder(directory: str, folder_name):
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing
-    medicine_struct = pis.ParsedInfoStruct(folder_name)
+    medicine_struct = pis.parsed_info_struct(folder_name)
 
     # do xml conversion on annex, epar and omar files
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
@@ -45,8 +45,8 @@ def parse_folder(directory: str, folder_name):
         if "dec" in file or ".xml" in file or ".pdf" not in file:
             continue
         # Skip file if XML is already created (temporary)
-        if file[:len(file) - 4] + ".xml" in directory_files:
-            continue
+        # if file[:len(file) - 4] + ".xml" in directory_files:
+        #     continue
         file_path = path.join(directory, file)
         xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
@@ -57,8 +57,6 @@ def parse_folder(directory: str, folder_name):
     epar_files = [file for file in directory_files if "epar" in file and ".xml" in file]
     omar_files = [file for file in directory_files if "omar" in file and ".xml" in file]
 
-    print("annex_files")
-    print(annex_files)
     # call parsers on correct files and update medicine struct
     for file in decision_files:
         medicine_struct = parse_file(file, medicine_struct)
@@ -81,4 +79,5 @@ def parse_folder(directory: str, folder_name):
     json_file.close()
 
 
-pdf_parser("testdata")
+# pdf_parser("test_data")
+pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")

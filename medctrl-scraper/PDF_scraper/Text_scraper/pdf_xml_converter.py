@@ -10,15 +10,10 @@ split_indicator = "|-SPLIT-|"
 
 def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
     document = fitz.open(source_filepath)
-    # document_creation_date = document.metadata["creationDate"]
-    # document_modification_date= document.metadata["modDate"]
-    # print(type(document_creation_date))
-    # print(document_modification_date)
-    # print(document)
     text_format_lower = ph.get_text_format(document, True)
     paragraphs = get_marked_paragraphs(text_format_lower)
     sections = split_paragraphs(paragraphs)
-    print_xml(sections, output_filepath)
+    print_xml(sections, output_filepath, document.metadata["creationDate"], document.metadata["modDate"])
 
 
 def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
@@ -71,7 +66,7 @@ def replace_special_xml_characters(string: str) -> str:
     return string
 
 
-def print_xml(sections: list[(str, str)], output_filepath: str):
+def print_xml(sections: list[(str, str)], output_filepath: str, document_creation_date: str, document_modification_date: str):
     # start printing xml file
     console_out = sys.stdout
     xml = open(output_filepath, "w", encoding="utf-8")
@@ -81,15 +76,23 @@ def print_xml(sections: list[(str, str)], output_filepath: str):
     print("<xml>")
     print("<header>")
 
+    print("<creationDate>")
+    print(document_creation_date)
+    print("</creationDate>")
+
+    print("<modificationDate>")
+    print(document_modification_date)
+    print("</modificationDate>")
+
     # whether the original pdf was an initial authorization file
     print("<initial>")
     is_initial_file = output_filepath.split(".")[0].split("_")[-1] == "0"
-    print(str(is_initial_file) + "")
+    print(str(is_initial_file))
     print("</initial>")
 
     # original pdf name
     print("<pdf>")
-    print(path.basename(output_filepath).split(".")[0] + ".pdf")
+    print(path.basename(output_filepath).split(".")[0].strip() + ".pdf")
     print("</pdf>")
 
     print("</header>")

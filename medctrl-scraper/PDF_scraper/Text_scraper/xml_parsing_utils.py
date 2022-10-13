@@ -9,7 +9,6 @@ xml_pdf_tag = "pdf"
 
 def file_is_initial(xml_header: ET.Element) -> bool:
     initialElement = xml_header.findall(xml_initial_tag)[0]
-    print(initialElement.text)
     return initialElement.text.strip() == 'True'
 
 def file_pdf_name(xml_header: ET.Element) -> str:
