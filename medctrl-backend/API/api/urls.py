@@ -15,14 +15,14 @@ from rest_framework.routers import DefaultRouter
 from knox import views as knox_views
 
 from api.views.medicine_views import (
-    # ProcedureViewSet,
     MedicineViewSet,
 )
 from api.views.account_views import LoginAPI
+from api.views.scraper_views import UrlsViewSet
 from api.views.other import SavedSelectionViewSet
 from api.views.other import Medicine_info
 
-# from api.scraper.router import url_patterns as scraper_routes
+from api.scraper.router import url_patterns as scraper_routes
 
 
 # Only viewSets can be registered at a router.
@@ -31,6 +31,7 @@ router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
 # router.register(r"procedure/(?P<eunumber>\d+)", ProcedureViewSet, basename="procedure")
 router.register(r"saveselection", SavedSelectionViewSet, basename="saveselection")
+router.register(r"scraper/urls", UrlsViewSet, basename="scraped_urls")
 
 # urlpatterns is the default way of adding routes (endpoints).
 urlpatterns = [
@@ -49,6 +50,6 @@ urlpatterns = [
         ),
     ),
     # Other routes
-    # path("scraper/", include(scraper_routes)),
+    path("scraper/", include(scraper_routes)),
     path("structureData/", Medicine_info.as_view()),
 ]
