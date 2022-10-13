@@ -1,5 +1,6 @@
 from joblib import Parallel, delayed
 import fitz
+import PyMuPDF
 import os
 import re
 

@@ -2,18 +2,18 @@ import datetime
 import dateutil.parser
 
 roman_numbers = {
-    "I": "1",
-    "II": "2",
-    "III": "3",
-    "IV": "4",
-    "V": "5",
-    "VI": "6",
-    "VII": "7",
-    "VIII": "8",
-    "IX": "9",
-    "X": "10",
-    "XI": "11",
-    "XII": "12"
+    "i": "1",
+    "ii": "2",
+    "iii": "3",
+    "iv": "4",
+    "v": "5",
+    "vi": "6",
+    "vii": "7",
+    "viii": "8",
+    "ix": "9",
+    "x": "10",
+    "xi": "11",
+    "xii": "12"
 }
 
 months = {
@@ -62,21 +62,16 @@ def convert_roman_numbers(date: str):
 
 
 def getDate(txt):
-    try:
+    txt = txt.lower()
+    if bool(dateutil.parser.parse(txt, fuzzy=True)):
         return dateutil.parser.parse(txt, fuzzy=True)
-    except:
-        pass
 
-    try:
-        tempdate = convert_roman_numbers(txt)
-        return dateutil.parser.parse(tempdate, fuzzy=True)
-    except:
-        pass
+    tempdate = convert_roman_numbers(txt)
+    if bool(dateutil.parser.parse(tempdate, fuzzy=True)):
+        return dateutil.parser.parse(tempdate, fuzzy=True))
 
-    try:
-        tempdate = convert_months(txt)
+    tempdate = convert_months(txt)
+    if bool(dateutil.parser.parse(tempdate, fuzzy=True)):
         return dateutil.parser.parse(tempdate, fuzzy=True)
-    except:
-        pass
 
     return datetime.datetime(1980, 1, 1, 0, 0)
