@@ -52,6 +52,8 @@ def dec_get_date(txt):
     try:
         section = re.split('of ',txt,1)[1]
         section = section[:15]
+        if '...' in section:
+            return 'Date is blank'
         #check if there are digits on first page
         if bool(re.search(r'\d', section)):
             return helper.getDate(section)
@@ -146,7 +148,7 @@ def dec_get_mah(txt):
     mahline = ''
     try:
         #get text after one of the following indicators.
-        mahline = re.split(r'(( the notification submitted)|( the application submitted)|( the application\(s\) submitted))', txt)[5]
+        mahline = re.split(r'(( the notification submitted)|( the applicatio\w+ submitted)|( the application\(s\) submitted))', txt)[5]
         
         # gets part after submitted by line
         mah = mahline.split(" by ", 1)[1]

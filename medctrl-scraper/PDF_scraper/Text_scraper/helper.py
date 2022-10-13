@@ -62,16 +62,23 @@ def convert_roman_numbers(date: str):
 
 
 def getDate(txt):
-    txt = txt.lower()
-    if bool(dateutil.parser.parse(txt, fuzzy=True)):
-        return dateutil.parser.parse(txt, fuzzy=True)
+    if txt != '':
+        txt = txt.lower()
+        try:
+            return dateutil.parser.parse(txt, fuzzy=True)
+        except:
+            pass
 
-    tempdate = convert_roman_numbers(txt)
-    if bool(dateutil.parser.parse(tempdate, fuzzy=True)):
-        return dateutil.parser.parse(tempdate, fuzzy=True))
+        try:
+            tempdate = convert_roman_numbers(txt)
+            return dateutil.parser.parse(tempdate, fuzzy=True)
+        except:
+            pass
 
-    tempdate = convert_months(txt)
-    if bool(dateutil.parser.parse(tempdate, fuzzy=True)):
-        return dateutil.parser.parse(tempdate, fuzzy=True)
+        try:
+            tempdate = convert_months(txt)
+            return dateutil.parser.parse(tempdate, fuzzy=True)
+        except:
+            pass
 
     return datetime.datetime(1980, 1, 1, 0, 0)

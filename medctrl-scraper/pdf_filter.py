@@ -107,12 +107,18 @@ def check_readable(pdf):
 def check_decision(filename, pdf):
     try:
         #gets text of second page
-        second_page = pdf[1]
-        txt = second_page.get_text()
-        pdf.close()
+        first_page = pdf[0]
+        txt = first_page.get_text()
         #checks if it is a decision file
-        if bool(re.search(r'commission decision', txt.lower())):
+        if bool(re.search(r'commission \w{0,}\s{0,1}decision', txt.lower())):
             return filename + '@valid'
+        else:
+            #try second page
+            second_page = pdf[1]
+            txt = second_page.get_text()
+            if bool(re.search(r'commission \w{0,}\s{0,1}decision', txt.lower())):
+                pdf.close()
+                return filename + '@valid'
     except:
         pass
     return filename + '@wrong_doctype'
