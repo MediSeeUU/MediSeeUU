@@ -27,6 +27,7 @@ class UrlsSerializerTestCase(TestCase):
     def test_urls_serializer(self):
         data = UrlsSerializer(self.medicine).data
         expected = {
+            "eu_pnumber": "1",
             "ema_url": "emaurl.com",
             "ec_url": "ecurl.com",
             "aut_url": "auturl.com",

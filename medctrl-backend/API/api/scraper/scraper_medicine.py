@@ -1,234 +1,234 @@
-# # This program has been developed by students from the bachelor Computer Science at
-# # Utrecht University within the Software Project course.
-# # © Copyright Utrecht University (Department of Information and Computing Sciences)
-#
-# # This file can be accessed by the scraper via the medicine endpoint.
-# # When the scraper scrapes information about medicines, that data
-# # is posted to the medicine endpoint from where the data is
-# # processed in this file. If the new data is validated, it will
-# # be updated in the database.
-# # -------------------------------------------------------------
-#
-# from rest_framework.permissions import DjangoModelPermissions
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
-# from api.serializers.medicine_serializers import (
-#     AuthorisationFlexVarUpdateSerializer,
-#     MedicineFlexVarUpdateSerializer,
-#     MedicineSerializer,
-#     AuthorisationSerializer
-# )
-# from api.models.medicine_models import (
-#     Medicine,
-#     Authorisation,
-#     Historybrandname,
-#     Historymah,
-#     Historyorphan,
-#     Historyprime,
-# )
-# from api.update_cache import update_cache
-# from api.serializers.medicine_serializers import (
-#     BrandnameSerializer,
-#     MAHSerializer,
-#     OrphanSerializer,
-#     PRIMESerializer,
-# )
-# from datetime import date
-# from django.forms.models import model_to_dict
-#
-#
-# class ScraperMedicine(APIView):
-#     """
-#     Class which provides an interface for the scraper to interact
-#     with the database models medicine and authorisation.
-#     """
-#
-#     # Permission on this endpoint when user can add medicine
-#     permission_classes = [DjangoModelPermissions]
-#
-#     def get_queryset(self):
-#         """
-#         Specify queryset for DjangoModelPermissions
-#         """
-#         return Medicine.objects.all()
-#
-#     def post(self, request):
-#         """
-#         Post endpoint medicine scraper
-#         """
-#         # initialize list to return failed updates/adds, so these can be checked manually
-#         failed_medicines = []
-#         override = request.data.get("override")
-#         medicine_list = request.data.get("data")
-#         # get "medicine" key from request
-#         for medicine in medicine_list:
-#             try:
-#                 # check if medicine already exists based on eunumber
-#                 current_medicine = Medicine.objects.filter(
-#                     pk=medicine.get("eunumber")
-#                 ).first()
-#                 # if exists update the medicine otherwise add it,
-#                 # update works only on flexible variables
-#
-#                 if override:
-#                     errors = self.add_medicine(medicine, current_medicine)
-#
-#                     # Reset manually updated status
-#                     current_medicine.manually_updated = False
-#                     current_medicine.save()
-#
-#                 elif current_medicine:
-#                     # skip this medicine if it has been manually edited
-#                     if current_medicine.manually_updated and not override:
-#                         medicine["errors"] = "Medicine has been manually updated"
-#                         failed_medicines.append(medicine)
-#                         continue
-#
-#                     errors = self.update_flex_medicine(medicine, current_medicine)
-#                     nullErrors = self.update_null_values(medicine)
-#                     if errors:
-#                         errors.extend(nullErrors)
-#                     else:
-#                         errors = nullErrors
-#                 else:
-#                     errors = self.add_medicine(medicine, None)
-#
-#                 # if status is failed, add medicine to the failed list
-#                 if errors and (len(errors) > 0):
-#                     medicine["errors"] = errors
-#                     failed_medicines.append(medicine)
-#             except Exception as e:
-#                 medicine["errors"] = str(e)
-#                 failed_medicines.append(medicine)
-#
-#         update_cache()
-#         return Response(failed_medicines, status=200)
-#
-#     def update_flex_medicine(self, data, current):
-#         """
-#         Update flexible medicine variables
-#         """
-#         current_authorisation = Authorisation.objects.filter(
-#             pk=data.get("eunumber")
-#         ).first()
-#
-#         medicine_serializer = MedicineFlexVarUpdateSerializer(current, data=data)
-#         authorisation_serializer = AuthorisationFlexVarUpdateSerializer(
-#             current_authorisation, data=data
-#         )
-#
-#         # if authorisation not exists, add authorisation
-#         if not current_authorisation:
-#             authorisation_serializer = authorisation_serializer(None, data=data)
-#
-#         historyVariables(data)
-#         # update medicine and authorisation
-#         if medicine_serializer.is_valid() and authorisation_serializer.is_valid():
-#             medicine_serializer.save()
-#             authorisation_serializer.save()
-#             return []
-#         return medicine_serializer.errors
-#
-#     def add_medicine(self, data, current):
-#         """
-#         add medicine variables
-#         """
-#         if current:
-#             current_authorisation = Authorisation.objects.filter(
-#                 pk=data.get("eunumber")
-#             ).first()
-#         else:
-#             current_authorisation = None
-#
-#         # initialise serializers voor addition
-#         serializer = MedicineSerializer(current, data=data)
-#         authorisation_serializer = AuthorisationSerializer(
-#             current_authorisation, data=data
-#         )
-#
-#
-#         # add medicine and authorisation
-#         historyVariables(data)
-#         if serializer.is_valid():
-#             serializer.save()
-#         else:
-#             return serializer.errors
-#         if authorisation_serializer.is_valid():
-#             authorisation_serializer.save()
-#         else:
-#             return authorisation_serializer.errors
-#         return []
-#
-#     def update_null_values(self, data):
-#         current_medicine = Medicine.objects.filter(pk=data.get("eunumber")).first()
-#         current_authorisation = Authorisation.objects.filter(
-#             pk=data.get("eunumber")
-#         ).first()
-#
-#         medicine = model_to_dict(current_medicine)
-#         newData = {"eunumber": data.get("eunumber")}
-#
-#         for attr in medicine:
-#             if (getattr(current_medicine, attr) is None) and (
-#                 not (data.get(attr) is None)
-#             ):
-#                 newData[attr] = data.get(attr)
-#
-#         authorisation = model_to_dict(current_authorisation)
-#         for attr in authorisation:
-#             if (getattr(current_authorisation, attr) is None) and (
-#                 not (data.get(attr) is None)
-#             ):
-#                 newData[attr] = data.get(attr)
-#
-#         if len(newData.keys()) > 1:
-#             return self.add_medicine(newData, current_medicine)
-#
-#
-# def historyVariables(data):
-#     add_or_update_history(
-#         Historybrandname,
-#         BrandnameSerializer,
-#         data.get("brandname"),
-#         "brandname",
-#         "brandnamedate",
-#         data.get("eunumber"),
-#     )
-#     add_or_update_history(
-#         Historymah,
-#         MAHSerializer,
-#         data.get("mah"),
-#         "mah",
-#         "mahdate",
-#         data.get("eunumber"),
-#     )
-#     add_or_update_history(
-#         Historyorphan,
-#         OrphanSerializer,
-#         data.get("orphan"),
-#         "orphan",
-#         "orphandate",
-#         data.get("eunumber"),
-#     )
-#     add_or_update_history(
-#         Historyprime,
-#         PRIMESerializer,
-#         data.get("prime"),
-#         "prime",
-#         "primedate",
-#         data.get("eunumber"),
-#     )
-#
-#
-# # currently the history variables do not have a date, this needs to be changed in the future if history is kept track of
-# def add_or_update_history(model, serializer, item, name, datename, eunumber):
-#     if not item is None:
-#         modelData = (
-#             model.objects.filter(eunumber=eunumber).order_by(f"-{datename}").first()
-#         )
-#         if (not modelData) or item != getattr(modelData, name):
-#             serializer = serializer(
-#                 None, {name: item, datename: date.today(), "eunumber": eunumber}
-#             )
-#             if serializer.is_valid():
-#                 serializer.save()
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)
+
+# This file can be accessed by the scraper via the medicine endpoint.
+# When the scraper scrapes information about medicines, that data
+# is posted to the medicine endpoint from where the data is
+# processed in this file. If the new data is validated, it will
+# be updated in the database.
+# -------------------------------------------------------------
+
+from rest_framework.permissions import DjangoModelPermissions
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from api.serializers.medicine_serializers import (
+    AuthorisationFlexVarUpdateSerializer,
+    MedicineFlexVarUpdateSerializer,
+    MedicineSerializer,
+    AuthorisationSerializer
+)
+from api.models.medicine_models import (
+    Medicine,
+    Authorisation,
+    Historybrandname,
+    Historymah,
+    Historyorphan,
+    Historyprime,
+)
+from api.update_cache import update_cache
+from api.serializers.medicine_serializers import (
+    BrandnameSerializer,
+    MAHSerializer,
+    OrphanSerializer,
+    PRIMESerializer,
+)
+from datetime import date
+from django.forms.models import model_to_dict
+
+
+class ScraperMedicine(APIView):
+    """
+    Class which provides an interface for the scraper to interact
+    with the database models medicine and authorisation.
+    """
+
+    # Permission on this endpoint when user can add medicine
+    permission_classes = [DjangoModelPermissions]
+
+    def get_queryset(self):
+        """
+        Specify queryset for DjangoModelPermissions
+        """
+        return Medicine.objects.all()
+
+    def post(self, request):
+        """
+        Post endpoint medicine scraper
+        """
+        # initialize list to return failed updates/adds, so these can be checked manually
+        failed_medicines = []
+        override = request.data.get("override")
+        medicine_list = request.data.get("data")
+        # get "medicine" key from request
+        for medicine in medicine_list:
+            try:
+                # check if medicine already exists based on eunumber
+                current_medicine = Medicine.objects.filter(
+                    pk=medicine.get("eunumber")
+                ).first()
+                # if exists update the medicine otherwise add it,
+                # update works only on flexible variables
+
+                if override:
+                    errors = self.add_medicine(medicine, current_medicine)
+
+                    # Reset manually updated status
+                    current_medicine.manually_updated = False
+                    current_medicine.save()
+
+                elif current_medicine:
+                    # skip this medicine if it has been manually edited
+                    if current_medicine.manually_updated and not override:
+                        medicine["errors"] = "Medicine has been manually updated"
+                        failed_medicines.append(medicine)
+                        continue
+
+                    errors = self.update_flex_medicine(medicine, current_medicine)
+                    nullErrors = self.update_null_values(medicine)
+                    if errors:
+                        errors.extend(nullErrors)
+                    else:
+                        errors = nullErrors
+                else:
+                    errors = self.add_medicine(medicine, None)
+
+                # if status is failed, add medicine to the failed list
+                if errors and (len(errors) > 0):
+                    medicine["errors"] = errors
+                    failed_medicines.append(medicine)
+            except Exception as e:
+                medicine["errors"] = str(e)
+                failed_medicines.append(medicine)
+
+        update_cache()
+        return Response(failed_medicines, status=200)
+
+    def update_flex_medicine(self, data, current):
+        """
+        Update flexible medicine variables
+        """
+        current_authorisation = Authorisation.objects.filter(
+            pk=data.get("eunumber")
+        ).first()
+
+        medicine_serializer = MedicineFlexVarUpdateSerializer(current, data=data)
+        authorisation_serializer = AuthorisationFlexVarUpdateSerializer(
+            current_authorisation, data=data
+        )
+
+        # if authorisation not exists, add authorisation
+        if not current_authorisation:
+            authorisation_serializer = authorisation_serializer(None, data=data)
+
+        historyVariables(data)
+        # update medicine and authorisation
+        if medicine_serializer.is_valid() and authorisation_serializer.is_valid():
+            medicine_serializer.save()
+            authorisation_serializer.save()
+            return []
+        return medicine_serializer.errors
+
+    def add_medicine(self, data, current):
+        """
+        add medicine variables
+        """
+        if current:
+            current_authorisation = Authorisation.objects.filter(
+                pk=data.get("eunumber")
+            ).first()
+        else:
+            current_authorisation = None
+
+        # initialise serializers voor addition
+        serializer = MedicineSerializer(current, data=data)
+        authorisation_serializer = AuthorisationSerializer(
+            current_authorisation, data=data
+        )
+
+
+        # add medicine and authorisation
+        historyVariables(data)
+        if serializer.is_valid():
+            serializer.save()
+        else:
+            return serializer.errors
+        if authorisation_serializer.is_valid():
+            authorisation_serializer.save()
+        else:
+            return authorisation_serializer.errors
+        return []
+
+    def update_null_values(self, data):
+        current_medicine = Medicine.objects.filter(pk=data.get("eunumber")).first()
+        current_authorisation = Authorisation.objects.filter(
+            pk=data.get("eunumber")
+        ).first()
+
+        medicine = model_to_dict(current_medicine)
+        newData = {"eunumber": data.get("eunumber")}
+
+        for attr in medicine:
+            if (getattr(current_medicine, attr) is None) and (
+                not (data.get(attr) is None)
+            ):
+                newData[attr] = data.get(attr)
+
+        authorisation = model_to_dict(current_authorisation)
+        for attr in authorisation:
+            if (getattr(current_authorisation, attr) is None) and (
+                not (data.get(attr) is None)
+            ):
+                newData[attr] = data.get(attr)
+
+        if len(newData.keys()) > 1:
+            return self.add_medicine(newData, current_medicine)
+
+
+def historyVariables(data):
+    add_or_update_history(
+        Historybrandname,
+        BrandnameSerializer,
+        data.get("brandname"),
+        "brandname",
+        "brandnamedate",
+        data.get("eunumber"),
+    )
+    add_or_update_history(
+        Historymah,
+        MAHSerializer,
+        data.get("mah"),
+        "mah",
+        "mahdate",
+        data.get("eunumber"),
+    )
+    add_or_update_history(
+        Historyorphan,
+        OrphanSerializer,
+        data.get("orphan"),
+        "orphan",
+        "orphandate",
+        data.get("eunumber"),
+    )
+    add_or_update_history(
+        Historyprime,
+        PRIMESerializer,
+        data.get("prime"),
+        "prime",
+        "primedate",
+        data.get("eunumber"),
+    )
+
+
+# currently the history variables do not have a date, this needs to be changed in the future if history is kept track of
+def add_or_update_history(model, serializer, item, name, datename, eunumber):
+    if not item is None:
+        modelData = (
+            model.objects.filter(eunumber=eunumber).order_by(f"-{datename}").first()
+        )
+        if (not modelData) or item != getattr(modelData, name):
+            serializer = serializer(
+                None, {name: item, datename: date.today(), "eunumber": eunumber}
+            )
+            if serializer.is_valid():
+                serializer.save()

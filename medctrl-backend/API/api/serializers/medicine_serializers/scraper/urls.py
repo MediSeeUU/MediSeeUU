@@ -15,4 +15,4 @@ class UrlsSerializer(serializers.ModelSerializer):
         """
 
         model = Medicine
-        fields = ("ema_url", "ec_url", "aut_url", "smpc_url", "epar_url",)
+        fields = ("eu_pnumber", "ema_url", "ec_url", "aut_url", "smpc_url", "epar_url",)
