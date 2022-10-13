@@ -16,8 +16,12 @@ from rest_framework.response import Response
 from django.core.cache import cache
 from api.update_cache import update_cache
 from api.views.other import permissionFilter
+import logging
 
-# Returns a list of medicines acording to the access level of the user
+logger = logging.getLogger(__name__)
+
+
+# Returns a list of medicines according to the access level of the user
 class MedicineViewSet(viewsets.ViewSet):
     """
     View set for the Medicine model
@@ -43,5 +47,7 @@ class MedicineViewSet(viewsets.ViewSet):
         filtered_medicines = map(
             lambda obj: {x: y for x, y in obj.items() if x in perms}, cache_medicine
         )
+
+        logger.info("Medicines filtered on access level.")
 
         return Response(filtered_medicines)

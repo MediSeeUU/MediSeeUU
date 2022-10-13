@@ -157,12 +157,34 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'filters': ['require_debug_true'],
         },
+        'debugHandler': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+            'formatter': 'simple'
+        },
+        'restHandler': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'api_log.log',
+            'formatter': 'verbose'
+        }
     },
     'loggers': {
-        'mylogger': {
-            'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        '': {
+            'handlers': ['debugHandler', 'restHandler'],
+            'level': 'DEBUG', # os.getenv('DJANGO_LOG_LEVEL', ''''),
             'propagate': True,
         },
     },
+    'formatters': {
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+        'verbose': {
+            'format': '{name} {levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+    }
 }
