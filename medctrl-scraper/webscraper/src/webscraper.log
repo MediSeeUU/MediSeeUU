@@ -26,3 +26,6 @@ INFO:__main__:SUCCESS on Generating directories
 INFO:__main__:SUCCESS on scraping all medicine URLs of EC
 INFO:__main__:SUCCESS on scraping all individual medicine pages of EC
 INFO:__main__:SUCCESS on scraping all individual medicine pages of EMA
+INFO:__main__:=== NEW LOG 2022-10-13 10:58:30.326636 ===
+INFO:__main__:SUCCESS on Generating directories
+INFO:__main__:SUCCESS on scraping all medicine URLs of EC
