@@ -17,9 +17,8 @@ def file_pdf_name(xml_header: ET.Element) -> str:
 
 def section_contains_head_substring(substring: str, section: ET.Element):
     substring_found = False
-    for head in section.findall(xml_head_tag):
-        if substring.lower() in head.text.lower():
-            substring_found |= True
+    if substring.lower() in section.text:
+        substring_found |= True
 
     return substring_found
 
@@ -41,7 +40,7 @@ def section_contains_header_number(number: str, head: ET.Element):
     return head.attrib["n"] == number
 
 
-def paragraph_contains_substring(substring: str, paragraph: ET.Element):
+def graph_contains_substring(substring: str, paragraph: ET.Element):
     return substring.lower() in paragraph.text.lower()
 
 
@@ -55,6 +54,16 @@ def section_append_paragraphs(section: ET.Element):
 
 def section_get_paragraph_index(index: int, section: ET.Element):
     return section.findall(xml_paragraph_tag)[index]
+
+
+def get_paragraphs_by_header(header: str, xml):
+    res = []
+    for section in xml:
+        if section_contains_head_substring(header, section[0]):
+            for txt in reversed(section):
+                txt = txt.text
+                res.append(txt)
+    return res
 
 
 def text_contains_substrings(substring: str, text: str):

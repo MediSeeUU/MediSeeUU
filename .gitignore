@@ -135,5 +135,7 @@ fabric.properties
 # idea folder
 .idea
 
-# all PDFs
+# all PDFs & xmls
 *.pdf
+medctrl-scraper/PDF_scraper/text_scraper/testdata/
+medctrl-scraper/PDF_scraper/text_scraper/data/

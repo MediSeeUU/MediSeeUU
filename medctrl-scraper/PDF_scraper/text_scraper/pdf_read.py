@@ -14,7 +14,7 @@ from joblib import delayed, Parallel
 
 
 def parse_test_file(filetype):
-    filename = 'dec_orphan/o1393_dec_137892.pdf'
+    filename = 'data/dec_initial/EU-1-03-263_h_a_dec_0.pdf'
 
     pdf = fitz.open(filename)  # open document
 
@@ -79,5 +79,5 @@ def scrape_pdf(filename, filetype, folder_name, pdf_count):
 # parse_test_file(epar_parse)
 # res = scrape_pdf('h001_dec_2831.pdf',ec_parse,'dec_human',3)
 # print(res)
-#parse_test_file(ec_parse)
-parse_folder(ec_parse, 'data/dec_human')
+# parse_test_file(ec_parse)
+parse_folder(ec_parse, 'data/dec_initial')

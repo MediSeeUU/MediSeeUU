@@ -38,7 +38,6 @@ def get_default(filename):
             'status': 'Failure unknown reason'
             }
 
-
 # Given a pdf, returns one long string of text, called a table. 
 # Different parsers may use different structures to find text
 # Decision files use plain text.
@@ -48,14 +47,29 @@ def get_table(pdf):
 
 #FUNCTIONS FOR EACH ATTRIBUTE
 
+
 def dec_get_date(txt):
     try:
         section = re.split('of ',txt,1)[1]
         section = section[:15]
-        return helper.getDate(section)
+        if '...' in section:
+            return 'Date is blank'
+        #check if there are digits on first page
+        if bool(re.search(r'\d', section)):
+            return helper.getDate(section)
+        #there are few cases where date on first page is missing
+        #retry on second page before giving up.
+        try:
+            next_page = re.split('commission decision',txt.lower())[2]
+            section = re.split('of ',next_page,1)[1]
+            section = section[:15]
+            return helper.getDate(section)
+        except:
+            pass
     except:
         pass
     return helper.getDate('')
+
 
 def dec_get_bn(txt):
     #returns a section containing just the brandname (and potentially the active substance)
@@ -73,12 +87,12 @@ def dec_get_bn(txt):
 
     if section != '':
         # takes everything before split operator, to remove active substance.
-        if ' - ' in section:
-            res = section.split(' - ')[:-1]
+        if ' -' in section:
+            res = section.split(' -')[:-1]
             res = ''.join(res)
             return res.strip()
-        if ' – ' in section:
-            res = section.split(' – ')[:-1]
+        if ' –' in section:
+            res = section.split(' –')[:-1]
             res = ''.join(res)
             return res.strip()
         # no active substace, so return whole name
@@ -135,7 +149,7 @@ def dec_get_mah(txt):
     mahline = ''
     try:
         #get text after one of the following indicators.
-        mahline = re.split(r'(( the notification submitted)|( the application submitted)|( the application\(s\) submitted))', txt)[5]
+        mahline = re.split(r'(( the notification submitted)|( the applicatio\w+ submitted)|( the application\(s\) submitted))', txt)[5]
         
         # gets part after submitted by line
         mah = mahline.split(" by ", 1)[1]
@@ -157,6 +171,7 @@ def dec_get_od(txt):
         return 'adopted'
     return 'appointed'
 
+
 def dec_get_atmp(txt):
     regulation = "Regulation (EC) No 1394/2007"
     fn_idx = txt.find("regulation as last amended by")  # sometimes regulation is mentioned in footnote
@@ -166,6 +181,7 @@ def dec_get_atmp(txt):
         return True
     else:
         return False
+
 
 def dec_get_nas(txt):
     if "committee for medicinal products for human use" in txt.lower() and "a new active substance" in txt.lower():
