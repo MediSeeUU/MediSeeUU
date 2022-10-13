@@ -21,7 +21,7 @@ from api.serializers.medicine_serializers.public import PublicMedicineSerializer
 
 class PublicMedicineSerializerTestCase(TestCase):
     def setUp(self):
-        medicine = Medicine(
+        self.medicine = Medicine(
             eu_pnumber=1,
             active_substance="ACTIVE SUBSTANCE",
             eu_nas=True,
@@ -38,53 +38,52 @@ class PublicMedicineSerializerTestCase(TestCase):
             smpc_url="smpcurl.com",
             epar_url="eparurl.com"
         )
-        medicine.save()
-        self.medicine = medicine
+        self.medicine.save()
         HistoryATCCode.objects.create(
             atc_code_id=1,
-            eu_pnumber=medicine,
+            eu_pnumber=self.medicine,
             change_date="2022-01-01",
             atc_code="C03CA01",
         )
         HistoryAuthorisationType.objects.create(
             eu_aut_type_id=1,
-            eu_pnumber=medicine,
+            eu_pnumber=self.medicine,
             change_date="2022-01-02",
-            eu_aut_type="12345678910",
+            eu_aut_type=AutTypes.STANDARD,
         )
         HistoryAuthorisationStatus.objects.create(
             eu_aut_status_id=1,
-            eu_pnumber=medicine,
+            eu_pnumber=self.medicine,
             change_date="2022-01-03",
             eu_aut_status=AutStatus.ACTIVE,
         )
         HistoryBrandName.objects.create(
             eu_brand_name_id=1,
-            eu_pnumber=medicine,
+            eu_pnumber=self.medicine,
             change_date="2022-01-04",
             eu_brand_name="Brand Name",
         )
         HistoryOD.objects.create(
             eu_od_id=1,
-            eu_pnumber=medicine,
+            eu_pnumber=self.medicine,
             change_date="2022-01-05",
             eu_od=True,
         )
         HistoryPrime.objects.create(
             eu_prime_id=1,
-            eu_pnumber=medicine,
+            eu_pnumber=self.medicine,
             change_date="2022-01-06",
             eu_prime=False,
         )
         HistoryMAH.objects.create(
             eu_mah_id=1,
-            eu_pnumber=medicine,
+            eu_pnumber=self.medicine,
             change_date="2022-01-07",
             eu_mah="MAH",
         )
         HistoryEMANumberCheck.objects.create(
             ema_number_check_id=1,
-            eu_pnumber=medicine,
+            eu_pnumber=self.medicine,
             change_date="2022-01-08",
             ema_number_check=True,
         )
@@ -109,7 +108,7 @@ class PublicMedicineSerializerTestCase(TestCase):
             "epar_url": "eparurl.com",
             "atc_code": "C03CA01",
             "eu_aut_status": "ACTIVE",
-            "eu_aut_type": "12345678910",
+            "eu_aut_type": "STANDARD",
             "eu_brand_name": "Brand Name",
             "eu_mah": "MAH",
             "ema_number_check": True,
