@@ -36,7 +36,7 @@ def scrape_medicine_page(url: str) -> (list[str], list[str], list[str], dict[str
     medicine_dict, ema_url_list = get_data_from_medicine_json(medicine_json)
     procedures_dict, dec_url_list, anx_url_list = get_data_from_procedures_json(procedures_json)
 
-    return dec_url_list, anx_url_list, ema_url_list, medicine_dict
+    return dec_url_list, anx_url_list, ema_url_list, medicine_dict, procedures_dict
 
 
 # Fetches the html from the EC website for a certain medicine
@@ -79,10 +79,6 @@ def get_ec_json_objects(html_active: requests.Response) -> list[json]:
 # The medicine_json object from the EC contains some important information that needs to be scraped
 # It loops through the JSON object and finds all the attributes, so that they can be used and stored
 def get_data_from_medicine_json(medicine_json: json) -> (dict[str, str], list[str]):
-    # set some predefined values. Whenever this function doesn't find the data
-    # it makes sure it doesn't cause an error
-    # TODO: proper error handling
-
     medicine_dict: dict[str, str] = {}
     ema_url_list: list[str] = []
 
