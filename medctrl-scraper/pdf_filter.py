@@ -109,7 +109,6 @@ def check_decision(filename, pdf):
         #gets text of second page
         second_page = pdf[1]
         txt = second_page.get_text()
-        print(txt)
         pdf.close()
         #checks if it is a decision file
         if bool(re.search(r'commission decision', txt.lower())):
