@@ -12,6 +12,7 @@ from .scraper import (
     NumberCheckSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
+    UrlsSerializer,
 )
 from .public import (
     PublicMedicineSerializer,
@@ -24,5 +25,3 @@ from .public import (
     OrphanDesignationSerializer,
     PrimeSerializer,
 )
-
-from .urls import UrlsSerializer

@@ -10,3 +10,4 @@ from .history_serializers import (
 )
 from .medicine_flex_var_update import MedicineFlexVarUpdateSerializer
 from .medicine import MedicineSerializer
+from .urls import UrlsSerializer
