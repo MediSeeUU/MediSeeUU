@@ -25,8 +25,6 @@ class UrlsViewSet(viewsets.ViewSet):
 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    update_cache()
-
     def list(self, request):
         cache_urls = cache.get("urls_cache")
 
@@ -35,6 +33,9 @@ class UrlsViewSet(viewsets.ViewSet):
             queryset = Medicine.objects.all()
             serializer = UrlsSerializer(queryset, many=True)
             cache_urls = serializer.data
+            cache.set(
+                "urls_cache", cache_urls, None
+            )  # We set cache timeout to none so it never expires
 
         user = self.request.user
         perms = permissionFilter(user)

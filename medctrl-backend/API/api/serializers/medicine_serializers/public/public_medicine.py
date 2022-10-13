@@ -21,7 +21,7 @@ from api.models.medicine_models import (
     HistoryOD,
     HistoryPrime,
 )
-from api.serializers.medicine_serializers.public_history import (
+from api.serializers.medicine_serializers.public import (
     ATCCodeSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
