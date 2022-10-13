@@ -82,14 +82,17 @@ def get_data_from_medicine_json(medicine_json: json) -> (dict[str, str], list[st
     medicine_dict: dict[str, str] = {}
     ema_url_list: list[str] = []
 
+    # Orphan medicine don't always have ATC codes, therefore it is set to a standard value
+    medicine_dict["atc_code"] = None
+
     for row in medicine_json:
         match row["type"]:
             case "name":
-                medicine_dict["status"] = row["meta"]["status_name"]
-                medicine_dict["name"] = row["value"]
+                medicine_dict["eu_aut_status"] = row["meta"]["status_name"]
+                medicine_dict["eu_brand_name_current"] = row["value"]
 
             case "eu_num":
-                medicine_dict["eu_num"] = row["value"]
+                medicine_dict["eu_pnumber"] = row["value"]
 
             case "inn":
                 medicine_dict["active_substance"] = row["value"]
@@ -100,7 +103,7 @@ def get_data_from_medicine_json(medicine_json: json) -> (dict[str, str], list[st
                 pass
 
             case "mah":
-                medicine_dict["market_auth_holder"] = row["value"]
+                medicine_dict["eu_mah_current"] = row["value"]
 
             case "atc":
                 meta_obj = row["meta"][0]
