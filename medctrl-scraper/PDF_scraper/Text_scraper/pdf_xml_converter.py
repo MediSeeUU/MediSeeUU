@@ -6,25 +6,12 @@ header_indicator = "|-HEADER-|"
 split_indicator = "|-SPLIT-|"
 
 
-def convert_pdf_to_xml(source_filepath: str, output_filepath: str, is_epar: bool):
+def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
     document = fitz.open(source_filepath)
     text_format_lower = ph.get_text_format(document, True)
-    clean_lines = cleanup_lines(text_format_lower, is_epar)
-    paragraphs = get_marked_paragraphs(clean_lines)
+    paragraphs = get_marked_paragraphs(text_format_lower)
     sections = split_paragraphs(paragraphs)
     print_xml(sections, output_filepath)
-
-
-def cleanup_lines(text_format_lower: list[(str, float, str)], is_epar: bool) -> list[(str, float, str)]:
-    # skip initial pages until table of content
-    # if is_epar and len(text_format_lower) != 0:
-    #     while "table of content" not in text_format_lower[0][0]:
-    #         del text_format_lower[0]
-    #
-    #         if len(text_format_lower) == 0:
-    #             break
-
-    return text_format_lower
 
 
 def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:

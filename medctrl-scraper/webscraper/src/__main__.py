@@ -44,6 +44,7 @@ medicine_codes = ec_scraper.scrape_medicines_list(
 
 log.info("SUCCESS on scraping all medicine URLs of EC")
 
+
 # Paralleled function for getting the URL codes. They are written to a CSV file
 def get_urls_ec(medicine):
     attempts = 0
@@ -104,7 +105,6 @@ log.info("SUCCESS on scraping all individual medicine pages of EC")
 ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0).squeeze().to_dict()
 Parallel(n_jobs=12)(delayed(get_urls_ema)(url[0], url[1]) for url in ema.items())
 log.info("SUCCESS on scraping all individual medicine pages of EMA")
-
 
 # NOTE: Use the line of code below to download all files.
 download.run_parallel()
