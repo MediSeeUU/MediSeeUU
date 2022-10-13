@@ -17,11 +17,10 @@ from django.core.cache import cache
 from api.update_cache import update_cache
 from api.views.other import permissionFilter
 
-
 # Returns a list of medicines acording to the access level of the user
 class MedicineViewSet(viewsets.ViewSet):
     """
-    Viewset for the Medicine model
+    View set for the Medicine model
     """
 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]

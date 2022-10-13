@@ -16,7 +16,6 @@ from django.core.cache import cache
 from api.update_cache import update_cache
 from api.views.other import permissionFilter
 
-
 # Returns a list of urls according to the access level of the user
 class UrlsViewSet(viewsets.ViewSet):
     """
@@ -33,9 +32,6 @@ class UrlsViewSet(viewsets.ViewSet):
             queryset = Medicine.objects.all()
             serializer = UrlsSerializer(queryset, many=True)
             cache_urls = serializer.data
-            cache.set(
-                "urls_cache", cache_urls, None
-            )  # We set cache timeout to none so it never expires
 
         user = self.request.user
         perms = permissionFilter(user)
@@ -47,7 +43,8 @@ class UrlsViewSet(viewsets.ViewSet):
 
         response = {}
         for urls in filtered_urls:
-            eunumber = urls["eu_pnumber"]
+            eu_number = urls["eu_pnumber"]
             del urls["eu_pnumber"]
-            response[eunumber] = urls
+            response[eu_number] = urls
+
         return Response(response)

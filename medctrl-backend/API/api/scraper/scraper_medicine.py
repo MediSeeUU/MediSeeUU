@@ -12,26 +12,29 @@
 from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from api.serializers.medicine_serializers import (
-    AuthorisationFlexVarUpdateSerializer,
-    MedicineFlexVarUpdateSerializer,
-    MedicineSerializer,
-    AuthorisationSerializer
-)
 from api.models.medicine_models import (
     Medicine,
-    Authorisation,
-    Historybrandname,
-    Historymah,
-    Historyorphan,
-    Historyprime,
+    HistoryATCCode,
+    HistoryAuthorisationStatus,
+    HistoryAuthorisationType,
+    HistoryBrandName,
+    HistoryMAH,
+    HistoryEMANumberCheck,
+    HistoryOD,
+    HistoryPrime,
 )
 from api.update_cache import update_cache
-from api.serializers.medicine_serializers import (
-    BrandnameSerializer,
+from api.serializers.medicine_serializers.scraper import (
+    MedicineSerializer,
+    MedicineFlexVarUpdateSerializer,
+    ATCCodeSerializer,
+    AuthorisationStatusSerializer,
+    AuthorisationTypeSerializer,
+    BrandNameSerializer,
     MAHSerializer,
-    OrphanSerializer,
-    PRIMESerializer,
+    NumberCheckSerializer,
+    OrphanDesignationSerializer,
+    PrimeSerializer,
 )
 from datetime import date
 from django.forms.models import model_to_dict
@@ -58,32 +61,18 @@ class ScraperMedicine(APIView):
         """
         # initialize list to return failed updates/adds, so these can be checked manually
         failed_medicines = []
-        override = request.data.get("override")
         medicine_list = request.data.get("data")
         # get "medicine" key from request
         for medicine in medicine_list:
             try:
                 # check if medicine already exists based on eunumber
                 current_medicine = Medicine.objects.filter(
-                    pk=medicine.get("eunumber")
+                    pk=medicine.get("eu_pnumber")
                 ).first()
                 # if exists update the medicine otherwise add it,
                 # update works only on flexible variables
 
-                if override:
-                    errors = self.add_medicine(medicine, current_medicine)
-
-                    # Reset manually updated status
-                    current_medicine.manually_updated = False
-                    current_medicine.save()
-
-                elif current_medicine:
-                    # skip this medicine if it has been manually edited
-                    if current_medicine.manually_updated and not override:
-                        medicine["errors"] = "Medicine has been manually updated"
-                        failed_medicines.append(medicine)
-                        continue
-
+                if current_medicine:
                     errors = self.update_flex_medicine(medicine, current_medicine)
                     nullErrors = self.update_null_values(medicine)
                     if errors:
@@ -108,24 +97,14 @@ class ScraperMedicine(APIView):
         """
         Update flexible medicine variables
         """
-        current_authorisation = Authorisation.objects.filter(
-            pk=data.get("eunumber")
-        ).first()
 
         medicine_serializer = MedicineFlexVarUpdateSerializer(current, data=data)
-        authorisation_serializer = AuthorisationFlexVarUpdateSerializer(
-            current_authorisation, data=data
-        )
 
-        # if authorisation not exists, add authorisation
-        if not current_authorisation:
-            authorisation_serializer = authorisation_serializer(None, data=data)
+        history_variables(data)
 
-        historyVariables(data)
-        # update medicine and authorisation
-        if medicine_serializer.is_valid() and authorisation_serializer.is_valid():
+        # update medicine
+        if medicine_serializer.is_valid():
             medicine_serializer.save()
-            authorisation_serializer.save()
             return []
         return medicine_serializer.errors
 
@@ -133,102 +112,78 @@ class ScraperMedicine(APIView):
         """
         add medicine variables
         """
-        if current:
-            current_authorisation = Authorisation.objects.filter(
-                pk=data.get("eunumber")
-            ).first()
-        else:
-            current_authorisation = None
 
-        # initialise serializers voor addition
+        # initialise serializers for addition
         serializer = MedicineSerializer(current, data=data)
-        authorisation_serializer = AuthorisationSerializer(
-            current_authorisation, data=data
-        )
-
 
         # add medicine and authorisation
-        historyVariables(data)
+        history_variables(data)
         if serializer.is_valid():
             serializer.save()
         else:
             return serializer.errors
-        if authorisation_serializer.is_valid():
-            authorisation_serializer.save()
-        else:
-            return authorisation_serializer.errors
         return []
 
     def update_null_values(self, data):
-        current_medicine = Medicine.objects.filter(pk=data.get("eunumber")).first()
-        current_authorisation = Authorisation.objects.filter(
-            pk=data.get("eunumber")
-        ).first()
+        current_medicine = Medicine.objects.filter(pk=data.get("eu_pnumber")).first()
 
         medicine = model_to_dict(current_medicine)
-        newData = {"eunumber": data.get("eunumber")}
+        new_data = {"eu_pnumber": data.get("eu_pnumber")}
 
         for attr in medicine:
             if (getattr(current_medicine, attr) is None) and (
-                not (data.get(attr) is None)
+                    not (data.get(attr) is None)
             ):
-                newData[attr] = data.get(attr)
+                new_data[attr] = data.get(attr)
 
-        authorisation = model_to_dict(current_authorisation)
-        for attr in authorisation:
-            if (getattr(current_authorisation, attr) is None) and (
-                not (data.get(attr) is None)
-            ):
-                newData[attr] = data.get(attr)
-
-        if len(newData.keys()) > 1:
-            return self.add_medicine(newData, current_medicine)
+        if len(new_data.keys()) > 1:
+            return self.add_medicine(new_data, current_medicine)
 
 
-def historyVariables(data):
+def history_variables(data):
+    eu_pnumber = data.get("eu_pnumber")
     add_or_update_history(
-        Historybrandname,
-        BrandnameSerializer,
-        data.get("brandname"),
+        HistoryBrandName,
+        BrandNameSerializer,
         "brandname",
-        "brandnamedate",
-        data.get("eunumber"),
+        data.get("brandname"),
+        data.get("change_date"),
+        eu_pnumber,
     )
     add_or_update_history(
-        Historymah,
+        HistoryMAH,
         MAHSerializer,
-        data.get("mah"),
         "mah",
-        "mahdate",
-        data.get("eunumber"),
+        data.get("mah"),
+        data.get("change_date"),
+        eu_pnumber,
     )
-    add_or_update_history(
-        Historyorphan,
-        OrphanSerializer,
-        data.get("orphan"),
-        "orphan",
-        "orphandate",
-        data.get("eunumber"),
-    )
-    add_or_update_history(
-        Historyprime,
-        PRIMESerializer,
-        data.get("prime"),
-        "prime",
-        "primedate",
-        data.get("eunumber"),
-    )
+    # add_or_update_history(
+    #     Historyorphan,
+    #     OrphanSerializer,
+    #     data.get("orphan"),
+    #     "orphan",
+    #     "orphandate",
+    #     data.get("eunumber"),
+    # )
+    # add_or_update_history(
+    #     Historyprime,
+    #     PRIMESerializer,
+    #     data.get("prime"),
+    #     "prime",
+    #     "primedate",
+    #     data.get("eunumber"),
+    # )
 
 
-# currently the history variables do not have a date, this needs to be changed in the future if history is kept track of
-def add_or_update_history(model, serializer, item, name, datename, eunumber):
-    if not item is None:
-        modelData = (
-            model.objects.filter(eunumber=eunumber).order_by(f"-{datename}").first()
+def add_or_update_history(model, serializer, name, item, date, eu_pnumber):
+    if item is not None:
+        model_data = (
+            model.objects.filter(eu_pnumber=eu_pnumber).order_by("change_date").first()
         )
-        if (not modelData) or item != getattr(modelData, name):
+        if (not model_data) or item != getattr(model_data, name):
             serializer = serializer(
-                None, {name: item, datename: date.today(), "eunumber": eunumber}
+                None, {name: item, "change_date": date, "eu_pnumber": eu_pnumber}
             )
             if serializer.is_valid():
                 serializer.save()
