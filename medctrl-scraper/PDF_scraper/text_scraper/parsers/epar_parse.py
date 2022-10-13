@@ -53,6 +53,7 @@ def get_opinion_date(xml):
 
 
 # eu_legal_basis
+# TODO: Add multiple legal bases in the paragrpah
 def get_legal_basis(xml):
     regex_legal = r'article [^ ]+'
     found = False
@@ -70,6 +71,8 @@ def get_legal_basis(xml):
 # eu_prime_initial
 def get_prime(xml):
     for p in xpu.get_paragraphs_by_header('submission of the dossier', xml):
-        if re.findall(r"prime", p):
-            return 'True'
-    return 'False'
+        if re.findall(r" prime ", p):
+            return 'yes'
+        if re.findall(r"priority medicine", p):
+            return 'yes'
+    return 'no'
