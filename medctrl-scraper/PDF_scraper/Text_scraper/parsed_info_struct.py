@@ -1,10 +1,9 @@
 import datetime
-import typing
 from dataclasses import dataclass, field, asdict
-
+import typing
 
 @dataclass
-class ParsedInfoStruct:
+class parsed_info_struct:
     eu_number: str = field(default_factory=str)
     parse_date: datetime.datetime = datetime.datetime.now()
 
