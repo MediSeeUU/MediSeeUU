@@ -38,7 +38,6 @@ def get_default(filename):
             'status': 'Failure unknown reason'
             }
 
-
 # Given a pdf, returns one long string of text, called a table. 
 # Different parsers may use different structures to find text
 # Decision files use plain text.
@@ -47,6 +46,7 @@ def get_table(pdf):
     return pdf_helper.format_to_string(pdf_format)
 
 #FUNCTIONS FOR EACH ATTRIBUTE
+
 
 def dec_get_date(txt):
     try:
@@ -70,6 +70,7 @@ def dec_get_date(txt):
         pass
     return helper.getDate('')
 
+
 def dec_get_bn(txt):
     #returns a section containing just the brandname (and potentially the active substance)
     section = get_name_section(txt)
@@ -86,12 +87,12 @@ def dec_get_bn(txt):
 
     if section != '':
         # takes everything before split operator, to remove active substance.
-        if ' - ' in section:
-            res = section.split(' - ')[:-1]
+        if ' -' in section:
+            res = section.split(' -')[:-1]
             res = ''.join(res)
             return res.strip()
-        if ' – ' in section:
-            res = section.split(' – ')[:-1]
+        if ' –' in section:
+            res = section.split(' –')[:-1]
             res = ''.join(res)
             return res.strip()
         # no active substace, so return whole name
@@ -170,6 +171,7 @@ def dec_get_od(txt):
         return 'adopted'
     return 'appointed'
 
+
 def dec_get_atmp(txt):
     regulation = "Regulation (EC) No 1394/2007"
     fn_idx = txt.find("regulation as last amended by")  # sometimes regulation is mentioned in footnote
@@ -179,6 +181,7 @@ def dec_get_atmp(txt):
         return True
     else:
         return False
+
 
 def dec_get_nas(txt):
     if "committee for medicinal products for human use" in txt.lower() and "a new active substance" in txt.lower():

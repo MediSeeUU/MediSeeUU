@@ -1258,7 +1258,7 @@ EU-1-96-027_h_a_dec_0.pdf@1996-12-11 00:00:00@HYCAMTIN@Topotecan hydrochloride@F
 EU-1-97-029_h_a_dec_0.pdf@0199-02-10 00:00:00@TWINRIX Paediatric@Hepatitis A and Hepatitis B vaccine@False@False@appointed@SmithKline Beecham Biologicals S.A.@CMA not available before 2006@Parsed
 EU-1-97-030_h_a_dec_0.pdf@0199-02-21 00:00:00@INSUMAN@Insulin human@False@False@appointed@HOECHST AG@CMA not available before 2006@Parsed
 EU-1-97-031_h_a_dec_0.pdf@1993-07-22 00:00:00@NEORECORMON@Epoetin beta@False@False@appointed@Boehringer Mannheim GmbH@CMA not available before 2006@Parsed
-EU-1-97-033_h_a_dec_0.pdf@1997-03-13 00:00:00@AvonexInterferon Beta@1a@False@False@appointed@Biogen France S.A.@CMA not available before 2006@Parsed
+EU-1-97-033_h_a_dec_0.pdf@1997-03-13 00:00:00@Avonex Interferon Beta@1a@False@False@appointed@Biogen France S.A.@CMA not available before 2006@Parsed
 EU-1-97-039_h_a_dec_0.pdf@1997-06-23 00:00:00@CYSTAGON@Mercaptamine bitartrate@False@False@appointed@Orphan Europe SARL@CMA not available before 2006@Parsed
 EU-1-97-044_h_a_dec_0.pdf@1997-08-27 00:00:00@Tasmar@Tolcapone@False@False@appointed@Roche Registration Ltd.@CMA not available before 2006@Parsed
 EU-1-97-045_h_a_dec_0.pdf@1997-08-14 00:00:00@HELICOBACTER test INFAI@13C-urea@False@False@appointed@INFAI@CMA not available before 2006@Parsed
