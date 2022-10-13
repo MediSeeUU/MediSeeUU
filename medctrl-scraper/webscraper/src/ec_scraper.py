@@ -71,7 +71,7 @@ def get_ec_json_objects(html_active: requests.Response) -> list[json]:
     #   which returns the values of the two JSON objects "dataSet_product_information" and "dataSet_proc"
     plaintext_jsons = re.findall(r"var .+?\K\[.*?\](?=;)", script_tag.string, re.DOTALL)
 
-    parsed_jsons: list[json] = list(map(lambda plaintext: json.loads(plaintext), plaintext_jsons))
+    parsed_jsons: list[json] = list(map(lambda plaintext: json.loads(plaintext, strict=False), plaintext_jsons))
     return parsed_jsons
 
 
