@@ -1,6 +1,5 @@
 from joblib import Parallel, delayed
 import fitz
-import PyMuPDF
 import os
 import re
 
@@ -68,8 +67,8 @@ def filter_pdf(filename, data_dir):
                 return check_decision(filename, pdf)
         #file not readable
         else: 
+            pdf.close()
             return filename + '@no_text'
-
     # could not parse
     except:
         # check if html
@@ -99,7 +98,6 @@ def get_utf8_line(file_path):
 def check_readable(pdf):
     # Check if PDF is readable
     no_text = check_for_no_text(pdf)
-    pdf.close()  # close document
     # Text is not readable
     if no_text:
         return False
@@ -111,6 +109,8 @@ def check_decision(filename, pdf):
         #gets text of second page
         second_page = pdf[1]
         txt = second_page.get_text()
+        print(txt)
+        pdf.close()
         #checks if it is a decision file
         if bool(re.search(r'commission decision', txt.lower())):
             return filename + '@valid'
