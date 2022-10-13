@@ -6,19 +6,15 @@ import xml_parsing_utils as xpu
 import xml.etree.ElementTree as ET
 import os.path as path
 
-
 date_pattern: str = r'\d{1,2} \w+ \d{4}'
 procedure_info = 'information on the procedure'
 
 
 def get_all(filename, xml_data):
-    epar = []
-    epar.append('filename:' + filename)
-    epar.append('ema_procedure_start_initial:' + get_date(xml_data))
-    epar.append('chmp_opinion_date:' + get_opinion_date(xml_data))
-    #epar.append(get_legal_basis(xml_data))
-    #filedata.chmp_opinion_date = get_opinion_date(xml_data)
-    #filedata.eu_legal_basis = get_legal_basis(xml_data)
+    epar = ['filename:' + filename,
+            'ema_procedure_start_initial:' + get_date(xml_data),
+            'chmp_opinion_date:' + get_opinion_date(xml_data),
+            'eu_legal_basis:' + get_legal_basis(xml_data)]
     return epar
 
 
@@ -55,15 +51,15 @@ def get_opinion_date(xml):
 
 
 # eu_legal_basis
-def get_legal_basis(xml: object) -> object:
-    section = xml['background']['main_text']
-    found = False
+def get_legal_basis(xml):
     regex_legal = re.compile(r'article [^ ]+')
-    for txt in section:
-        if found and regex_legal.search(txt):
-            return re.search(r'article [^ ]+', txt)[0]
-        elif 'legal basis for' in txt:
-            found = True
+    found = False
+    for p in xpu.get_paragraphs_by_header('steps taken for the assessment', xml):
+        if re.findall(regex_legal, p):
+            if found and re.search(regex_legal, p):
+                return re.search(r'article [^ ]+', p)[0]
+            elif 'legal basis for' in p:
+                found = True
     return 'none'
 
 

@@ -96,13 +96,13 @@ def get_urls_ema(medicine, url: str):
 
 # NOTE: Use the line of code below to fill all the CSV files.
 # If you have a complete CSV file, this line of code below is not needed.
-#Parallel(n_jobs=12)(delayed(get_urls_ec)(medicine) for medicine in medicine_codes)
+Parallel(n_jobs=12)(delayed(get_urls_ec)(medicine) for medicine in medicine_codes)
 log.info("SUCCESS on scraping all individual medicine pages of EC")
 
 # NOTE: Use the lines of code below to fill epar.csv
 # epar.csv will contain the links to the epar pdfs.
-#ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0).squeeze().to_dict()
-#Parallel(n_jobs=12)(delayed(get_urls_ema)(url[0], url[1]) for url in ema.items())
+ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0).squeeze().to_dict()
+Parallel(n_jobs=12)(delayed(get_urls_ema)(url[0], url[1]) for url in ema.items())
 log.info("SUCCESS on scraping all individual medicine pages of EMA")
 
 
