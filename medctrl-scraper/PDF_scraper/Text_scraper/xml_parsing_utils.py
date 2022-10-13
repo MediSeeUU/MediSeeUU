@@ -6,13 +6,25 @@ xml_head_tag = "head"
 xml_paragraph_tag = "p"
 xml_initial_tag = "initial"
 xml_pdf_tag = "pdf"
+xml_creation_date_tag = "creation_date"
+xml_modification_date_tag = "modification_date"
 
 def file_is_initial(xml_header: ET.Element) -> bool:
     initialElement = xml_header.findall(xml_initial_tag)[0]
     return initialElement.text.strip() == 'True'
 
-def file_pdf_name(xml_header: ET.Element) -> str:
-    return xml_header.findall(xml_pdf_tag)[0].text
+
+def file_get_name_pdf(xml_header: ET.Element) -> str:
+    return xml_header.findall(xml_pdf_tag)[0].text.strip()
+
+
+def file_get_creation_date(xml_header: ET.Element) -> str:
+    return xml_header.findall(xml_creation_date_tag)[0].text.strip()
+
+
+def file_get_modification_date(xml_header: ET.Element) -> str:
+    return xml_header.findall(xml_modification_date_tag)[0].text.strip()
+
 
 def section_contains_head_substring(substring: str, section: ET.Element):
     substring_found = False

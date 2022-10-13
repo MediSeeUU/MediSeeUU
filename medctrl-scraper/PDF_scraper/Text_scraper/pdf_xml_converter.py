@@ -76,13 +76,13 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
     print("<xml>")
     print("<header>")
 
-    print("<creationDate>")
+    print("<creation_date>")
     print(document_creation_date)
-    print("</creationDate>")
+    print("</creation_date>")
 
-    print("<modificationDate>")
+    print("<modification_date>")
     print(document_modification_date)
-    print("</modificationDate>")
+    print("</modification_date>")
 
     # whether the original pdf was an initial authorization file
     print("<initial>")
