@@ -4,7 +4,16 @@ from typing import List
 xml_section_tag = "section"
 xml_head_tag = "head"
 xml_paragraph_tag = "p"
+xml_initial_tag = "initial"
+xml_pdf_tag = "pdf"
 
+def file_is_initial(xml_header: ET.Element) -> bool:
+    initialElement = xml_header.findall(xml_initial_tag)[0]
+    print(initialElement.text)
+    return initialElement.text.strip() == 'True'
+
+def file_pdf_name(xml_header: ET.Element) -> str:
+    return xml_header.findall(xml_pdf_tag)[0].text
 
 def section_contains_head_substring(substring: str, section: ET.Element):
     substring_found = False

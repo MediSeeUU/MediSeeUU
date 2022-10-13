@@ -43,16 +43,19 @@ def parse_folder(directory: str, folder_name):
     # update list of files and filter out relevant files for each parser
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
     decision_files = [file for file in directory_files if "dec" in file and not ".xml" in file]
-    annex_files = [file for file in directory_files if "anx" in file and ".xml" in file]
+    annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
     epar_files = [file for file in directory_files if "epar" in file and ".xml" in file]
     omar_files = [file for file in directory_files if "omar" in file and ".xml" in file]
 
+    print("annex_files")
+    print(annex_files)
     # call parsers on correct files and update medicine struct
     for file in decision_files:
         medicine_struct = parse_file(file, medicine_struct)
 
     for file in annex_files:
-        medicine_struct = parse_file(file, medicine_struct)
+        # medicine_struct = parse_file(file, medicine_struct)
+        medicine_struct = ap.parse_file(file, medicine_struct)
 
     for file in epar_files:
         # medicine_struct = epar_parse.parse_file(file, medicine_struct)

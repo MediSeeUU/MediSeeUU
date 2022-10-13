@@ -1,6 +1,8 @@
+from pydoc import doc
 import sys
 import fitz
 import pdf_helper as ph
+from os import path
 
 header_indicator = "|-HEADER-|"
 split_indicator = "|-SPLIT-|"
@@ -8,6 +10,11 @@ split_indicator = "|-SPLIT-|"
 
 def convert_pdf_to_xml(source_filepath: str, output_filepath: str, is_epar: bool):
     document = fitz.open(source_filepath)
+    # document_creation_date = document.metadata["creationDate"]
+    # document_modification_date= document.metadata["modDate"]
+    # print(type(document_creation_date))
+    # print(document_modification_date)
+    # print(document)
     text_format_lower = ph.get_text_format(document, True)
     clean_lines = cleanup_lines(text_format_lower, is_epar)
     paragraphs = get_marked_paragraphs(clean_lines)
@@ -86,7 +93,18 @@ def print_xml(sections: list[(str, str)], output_filepath: str):
     xml_file.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n")
     xml_file.write("<xml>\n")
     xml_file.write("<header>\n")
+
+    xml_file.write("<initial>\n")
+    is_initial_file = output_filepath.split(".")[0].split("_")[-1] == "0"
+    xml_file.write(str(is_initial_file) + "\n")
+    xml_file.write("</initial>\n")
+
+    xml_file.write("<pdf>\n")
+    xml_file.write(path.basename(output_filepath).split(".")[0] + ".pdf\n")
+    xml_file.write("</pdf>\n")
+
     xml_file.write("</header>\n")
+
     xml_file.write("<body>\n")
 
     for section in sections:
