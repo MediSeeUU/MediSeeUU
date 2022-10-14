@@ -17,15 +17,16 @@ roman_numbers = {
 }
 
 months = {
-    "january": "1",
-    "february": "2",
-    "march": "3",
-    "april": "4",
-    "may": "5",
-    "june": "6",
-    "july": "7",
-    "august": "8",
-    "september": "9",
+    "january": "01",
+    "february": "02",
+    "march": "03",
+    "april": "04",
+    "may": "05",
+    "june": "06",
+    "july": "07",
+    "august": "08",
+    "september": "09",
+    "sept": "09",
     "october": "10",
     "november": "11",
     "december": "12"
