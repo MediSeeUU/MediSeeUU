@@ -20,14 +20,6 @@ from api.models.medicine_models import (
     Historymah,
     Historyprime,
     Historyorphan,
-    Lookupactivesubstance,
-    Lookupatccode,
-    Lookuplegalbasis,
-    Lookuplegalscope,
-    Lookupmedicinetype,
-    Lookupproceduretype,
-    Lookuprapporteur,
-    Lookupstatus,
 )
 
 # creates custom permission levels to view medicines
@@ -51,14 +43,6 @@ class Command(BaseCommand):
             Historymah,
             Historyprime,
             Historyorphan,
-            Lookupactivesubstance,
-            Lookupatccode,
-            Lookuplegalbasis,
-            Lookuplegalscope,
-            Lookupmedicinetype,
-            Lookupproceduretype,
-            Lookuprapporteur,
-            Lookupstatus,
         ]:
             content_type = ContentType.objects.filter(model=model.__name__).first()
 

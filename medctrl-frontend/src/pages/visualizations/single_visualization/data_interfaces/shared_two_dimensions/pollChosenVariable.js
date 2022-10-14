@@ -30,10 +30,10 @@ export default function pollChosenVariable(
       if (dict[element[xAxis]][element[yAxis]] === undefined) {
         // 'initializing' the entry
         dict[element[xAxis]][element[yAxis]] = 1
-        euNumbers[element[xAxis]][element[yAxis]] = [element.EUNoShort]
+        euNumbers[element[xAxis]][element[yAxis]] = [element.eunumber]
       } else {
         dict[element[xAxis]][element[yAxis]] += 1
-        euNumbers[element[xAxis]][element[yAxis]].push(element.EUNoShort)
+        euNumbers[element[xAxis]][element[yAxis]].push(element.eunumber)
       }
     }
   })

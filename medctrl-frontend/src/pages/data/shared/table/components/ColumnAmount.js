@@ -16,7 +16,7 @@ function ColumnAmount() {
   const filteredVars = flatVars.filter(
     (variable) => variable['data-format'] !== 'link'
   )
-  const options = filteredVars.map((variable) => variable['data-front-key'])
+  const options = filteredVars.map((variable) => variable['data-key'])
 
   // Handler that adds a column
   const addColumn = () => {

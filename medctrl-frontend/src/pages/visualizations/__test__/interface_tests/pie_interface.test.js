@@ -41,7 +41,7 @@ test('categories in data', () => {
   }
   const series = generatePieSeries(options)
   let filteredData = data.filter((element) =>
-    series.euNumbers.flat().includes(element.EUNoShort)
+    series.euNumbers.flat().includes(element.eunumber)
   )
   filteredData.forEach((element) => {
     expect(element.Rapporteur).toMatch(/(United Kingdom|Denmark)/i)

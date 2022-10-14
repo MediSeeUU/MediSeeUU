@@ -54,16 +54,16 @@ function cleanFetchedDataPoint(fetchedDataPoint, structData) {
     }
   }
 
+  const defValue = 'NA'
+
   // Each of the variable fields retrieved from the backend are mapped to
   // their respective frontend fields and the data values are formatted accordingly
   for (let category in structData) {
     for (var i = 0; i < structData[category].length; ++i) {
       const backKey = structData[category][i]['data-key']
-      const frontKey = structData[category][i]['data-front-key']
-      var defValue = 'NA'
       const typeValue = structData[category][i]['data-format']
 
-      cleanedDataPoint[frontKey] = format(
+      cleanedDataPoint[backKey] = format(
         fetchedDataPoint[backKey],
         defValue,
         typeValue
@@ -73,13 +73,13 @@ function cleanFetchedDataPoint(fetchedDataPoint, structData) {
 
   // The decision year can be derived from the year of the decision date (M/D/Y)
   let DecisionYear = defValue
-  let DecisionDate = cleanedDataPoint['DecisionDate']
+  let DecisionDate = cleanedDataPoint['decisiondate']
   if (DecisionDate === defValue) {
     DecisionYear = defValue
-    cleanedDataPoint['DecisionYear'] = DecisionYear
+    cleanedDataPoint['decisionyear'] = DecisionYear
   } else if (DecisionDate) {
     DecisionYear = parseInt(DecisionDate.split('/')[2])
-    cleanedDataPoint['DecisionYear'] = DecisionYear
+    cleanedDataPoint['decisionyear'] = DecisionYear
   }
 
   defaultColumns.forEach((key) => {

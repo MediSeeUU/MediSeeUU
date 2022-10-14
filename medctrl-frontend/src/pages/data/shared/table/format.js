@@ -6,7 +6,7 @@
 // Depending on the property/variable, different formatting may be applicable
 export function dataToDisplayFormat({ entry, propt }) {
   switch (propt) {
-    case 'DecisionDate':
+    case 'decisiondate':
       return slashDateToStringDate(entry[propt])
     default:
       return entry[propt]
@@ -18,6 +18,7 @@ export function slashDateToStringDate(date) {
   if (!date || date === defValue) {
     return date
   }
+
   var splitteddate = date.split('/')
   const day = splitteddate[1].replace(/^0+/, '')
   const month = [

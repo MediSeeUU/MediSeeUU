@@ -1,3 +1,7 @@
+venv/
+.vscode/
+medctrl-scraper/PDF_scraper/EC decision parser Vincent/decisions/
+.idea
 # generic python gitignore taken from github
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template

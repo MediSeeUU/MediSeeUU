@@ -18,7 +18,7 @@ class Medicine_info(views.APIView):
     """
     Viewset for the Medicine info
     """
-
+    
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     # each time a get request is send, this function is executed.

@@ -24,6 +24,7 @@ class MedicineViewSet(viewsets.ViewSet):
     """
 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
     update_cache()
 
     def list(self, request):
@@ -34,7 +35,7 @@ class MedicineViewSet(viewsets.ViewSet):
             queryset = Medicine.objects.all()
             serializer = PublicMedicineSerializer(queryset, many=True)
             cache_medicine = serializer.data
-
+        
         user = self.request.user
         perms = permissionFilter(user)
 
