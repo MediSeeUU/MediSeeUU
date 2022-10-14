@@ -62,7 +62,6 @@ def parse_folder(directory: str, folder_name):
         medicine_struct = parse_file(file, medicine_struct)
 
     for file in annex_files:
-        # medicine_struct = parse_file(file, medicine_struct)
         medicine_struct = ap.parse_file(file, medicine_struct)
 
     for file in epar_files:
@@ -80,4 +79,4 @@ def parse_folder(directory: str, folder_name):
 
 
 # pdf_parser("test_data")
-pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
+# pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
