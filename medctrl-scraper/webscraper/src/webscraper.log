@@ -1,0 +1,31 @@
+INFO:__main__:=== NEW LOG 2022-10-07 12:27:35.521526 ===
+INFO:__main__:SUCCESS on Generating directories
+INFO:__main__:SUCCESS on scraping all medicine URLs of EC
+ERROR:concurrent.futures:exception calling callback for <Future at 0x1a28706bf40 state=finished raised TerminatedWorkerError>
+Traceback (most recent call last):
+  File "C:\Users\Tim Kragten\AppData\Roaming\Python\Python310\site-packages\joblib\externals\loky\_base.py", line 26, in _invoke_callbacks
+    callback(self)
+  File "C:\Users\Tim Kragten\AppData\Roaming\Python\Python310\site-packages\joblib\parallel.py", line 385, in __call__
+    self.parallel.dispatch_next()
+  File "C:\Users\Tim Kragten\AppData\Roaming\Python\Python310\site-packages\joblib\parallel.py", line 834, in dispatch_next
+    if not self.dispatch_one_batch(self._original_iterator):
+  File "C:\Users\Tim Kragten\AppData\Roaming\Python\Python310\site-packages\joblib\parallel.py", line 901, in dispatch_one_batch
+    self._dispatch(tasks)
+  File "C:\Users\Tim Kragten\AppData\Roaming\Python\Python310\site-packages\joblib\parallel.py", line 819, in _dispatch
+    job = self._backend.apply_async(batch, callback=cb)
+  File "C:\Users\Tim Kragten\AppData\Roaming\Python\Python310\site-packages\joblib\_parallel_backends.py", line 556, in apply_async
+    future = self._workers.submit(SafeFunction(func))
+  File "C:\Users\Tim Kragten\AppData\Roaming\Python\Python310\site-packages\joblib\externals\loky\reusable_executor.py", line 176, in submit
+    return super().submit(fn, *args, **kwargs)
+  File "C:\Users\Tim Kragten\AppData\Roaming\Python\Python310\site-packages\joblib\externals\loky\process_executor.py", line 1129, in submit
+    raise self._flags.broken
+joblib.externals.loky.process_executor.TerminatedWorkerError: A worker process managed by the executor was unexpectedly terminated. This could be caused by a segmentation fault while calling the function or by an excessive memory usage causing the Operating System to kill the worker.
+
+INFO:__main__:=== NEW LOG 2022-10-10 16:04:20.147046 ===
+INFO:__main__:SUCCESS on Generating directories
+INFO:__main__:SUCCESS on scraping all medicine URLs of EC
+INFO:__main__:SUCCESS on scraping all individual medicine pages of EC
+INFO:__main__:SUCCESS on scraping all individual medicine pages of EMA
+INFO:__main__:=== NEW LOG 2022-10-13 10:58:30.326636 ===
+INFO:__main__:SUCCESS on Generating directories
+INFO:__main__:SUCCESS on scraping all medicine URLs of EC
