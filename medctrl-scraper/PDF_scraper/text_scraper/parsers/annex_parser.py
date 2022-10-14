@@ -28,25 +28,27 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
         annex_attributes["initial_type_of_eu_authorization"] = "standard"
         annex_attributes["eu_type_of_medicine"] = "small molecule"
 
+    # loop through sections and parse section if conditions met
     for section in xml_body:
-        section_header = section[0]
+        # section_header = section[0]
         # print(section_header.text)
 
         # scrape attributes specific to authorization annexes
         if is_initial_file:
             # initial type of eu authorization
-            # override default value of "standard" if "specific obligation" is present in text
-            if Utils.section_contains_head_substring("specific obligation", section):
+            # override default value of "standard" if "specific obligation" is present anywhere in text
+            if Utils.section_contains_substring("specific obligation", section) and annex_attributes["initial_type_of_eu_authorization"] is not "conditional":
                 annex_attributes["initial_type_of_eu_authorization"] = "exceptional or conditional"
             
-            # definately conditional if "conditional approval" in text
-            if Utils.section_contains_head_substring("conditional approval", section):
+            # definately conditional if "conditional approval" anywhere in text
+            if Utils.section_contains_substring("conditional approval", section):
                 annex_attributes["initial_type_of_eu_authorization"] = "conditional"
 
-            # eu type of medicine
+            # EU type of medicine
             # override default value of "small molecule" if traceability header is present
-            if Utils.section_contains_head_substring("traceability", section):
+            if Utils.section_contains_header_substring("traceability", section):
                 annex_attributes["eu_type_of_medicine"] = "biologicals"
+
 
         #TODO: to add attributes, initial EU conditions and current EU conditions, 50 and 51 in bible
 

@@ -1,7 +1,9 @@
+from email import header
 from pydoc import doc
 import sys
 import fitz
 import pdf_helper as ph
+import xml_tags as tags
 from os import path
 
 header_indicator = "|-HEADER-|"
@@ -66,6 +68,14 @@ def replace_special_xml_characters(string: str) -> str:
     return string
 
 
+def print_xml_tag_open(xml_tag: str, attributes: str = ""):
+    print("<" + xml_tag + attributes + ">")
+
+
+def print_xml_tag_close(xml_tag: str):
+    print("</" + xml_tag + ">")
+
+
 def print_xml(sections: list[(str, str)], output_filepath: str, document_creation_date: str, document_modification_date: str):
     # start printing xml file
     console_out = sys.stdout
@@ -73,30 +83,30 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
     sys.stdout = xml
 
     print("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
-    print("<xml>")
-    print("<head>")
+    print_xml_tag_open(tags.xml)
+    print_xml_tag_open(tags.head)
 
-    print("<creation_date>")
+    print_xml_tag_open(tags.creation_date)
     print(document_creation_date)
-    print("</creation_date>")
+    print_xml_tag_close(tags.creation_date)
 
-    print("<modification_date>")
+    print_xml_tag_open(tags.modification_date)
     print(document_modification_date)
-    print("</modification_date>")
+    print_xml_tag_close(tags.modification_date)
 
     # whether the original pdf was an initial authorization file
-    print("<initial_authorization>")
+    print_xml_tag_open(tags.initial_authorization)
     is_initial_file = output_filepath.split(".")[0].split("_")[-1] == "0"
     print(str(is_initial_file))
-    print("</initial_authorization>")
+    print_xml_tag_close(tags.initial_authorization)
 
     # original pdf name
-    print("<pdf_file>")
+    print_xml_tag_open(tags.pdf_file)
     print(path.basename(output_filepath).split(".")[0].strip() + ".pdf")
-    print("</pdf_file>")
+    print_xml_tag_close(tags.pdf_file)
 
-    print("</head>")
-    print("<body>")
+    print_xml_tag_close(tags.head)
+    print_xml_tag_open(tags.body)
 
     for section in sections:
         section_header = replace_special_xml_characters(section[0])
@@ -114,19 +124,19 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
             header_attribute = " n=\"" + chapter_number_attribute + "\""
 
         # print the section from xml_elements taking sections and subsections into account
-        print("<section>")
-        print("<header" + header_attribute + ">")
+        print_xml_tag_open(tags.section)
+        print_xml_tag_open(tags.header, header_attribute)
         print(section_header.strip())
-        print("</header>")
+        print_xml_tag_close(tags.header)
 
         for section_paragraph in section_paragraphs:
             if section_paragraph.strip() != "":
-                print("<p>")
+                print_xml_tag_open(tags.paragraph)
                 print(section_paragraph.rstrip().encode('utf-8', 'ignore'))
-                print("</p>")
+                print_xml_tag_close(tags.paragraph)
 
-        print("</section>")
+        print_xml_tag_close(tags.section)
 
-    print("</body>")
-    print("</xml>")
+    print_xml_tag_close(tags.body)
+    print_xml_tag_close(tags.xml)
     sys.stdout = console_out
