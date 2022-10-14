@@ -37,7 +37,7 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
         if is_initial_file:
             # initial type of eu authorization
             # override default value of "standard" if "specific obligation" is present anywhere in text
-            if Utils.section_contains_substring("specific obligation", section) and annex_attributes["initial_type_of_eu_authorization"] is not "conditional":
+            if Utils.section_contains_substring("specific obligation", section) and annex_attributes["initial_type_of_eu_authorization"] != "conditional":
                 annex_attributes["initial_type_of_eu_authorization"] = "exceptional or conditional"
             
             # definately conditional if "conditional approval" anywhere in text

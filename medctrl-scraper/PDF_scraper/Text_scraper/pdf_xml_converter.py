@@ -1,5 +1,3 @@
-from email import header
-from pydoc import doc
 import sys
 import fitz
 import pdf_helper as ph
@@ -19,7 +17,7 @@ def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
 
 
 def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
-    # concatinate list of lines into list of paragraphs and mark bolded lines
+    # concatenate list of lines into list of paragraphs and mark bolded lines
     paragraphs = []
     for line in lines:
         text = line[0]

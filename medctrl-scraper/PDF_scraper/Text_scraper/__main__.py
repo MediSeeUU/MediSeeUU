@@ -5,6 +5,7 @@ import os.path as path
 import json
 import pdf_xml_converter as xml_converter
 import joblib
+import multiprocessing
 
 # external files
 import parsers.ec_parse as ec_parse
@@ -26,9 +27,8 @@ def datetime_serializer(date: pis.datetime.datetime):
 
 def pdf_parser(directory: str):
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
-
-    # 4 concurrent threads to maximize use of all hyper-threads/SMT threads in case one is stalled
-    joblib.Parallel(n_jobs=4, require=None)(
+    # Use all the system's threads to maximize use of all hyper-threads
+    joblib.Parallel(n_jobs=multiprocessing.cpu_count(), require=None)(
         joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
         directory_folders)
     # parse_folder(path.join(directory, directory_folders[0]), directory_folders[0])
@@ -45,8 +45,8 @@ def parse_folder(directory: str, folder_name):
         if "dec" in file or ".xml" in file or ".pdf" not in file:
             continue
         # Skip file if XML is already created (temporary)
-        # if file[:len(file) - 4] + ".xml" in directory_files:
-        #     continue
+        if file[:len(file) - 4] + ".xml" in directory_files:
+            continue
         file_path = path.join(directory, file)
         xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
@@ -78,5 +78,5 @@ def parse_folder(directory: str, folder_name):
     json_file.close()
 
 
-# pdf_parser("test_data")
+pdf_parser("test_data")
 # pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")

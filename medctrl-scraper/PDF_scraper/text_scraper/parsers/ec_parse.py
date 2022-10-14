@@ -56,19 +56,19 @@ def dec_get_date(txt):
             return 'Date is blank'
         #check if there are digits on first page
         if bool(re.search(r'\d', section)):
-            return helper.getDate(section)
+            return helper.get_date(section)
         #there are few cases where date on first page is missing
         #retry on second page before giving up.
         try:
             next_page = re.split('commission decision',txt.lower())[2]
             section = re.split('of ',next_page,1)[1]
             section = section[:15]
-            return helper.getDate(section)
+            return helper.get_date(section)
         except:
             pass
     except:
         pass
-    return helper.getDate('')
+    return helper.get_date('')
 
 
 def dec_get_bn(txt):

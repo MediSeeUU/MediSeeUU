@@ -1,6 +1,5 @@
 # EPAR parsers
 import re
-import pdf_helper
 import helper as h
 import xml_parsing_utils as xpu
 import xml.etree.ElementTree as ET
@@ -53,16 +52,16 @@ def get_opinion_date(xml):
 
 
 # eu_legal_basis
-# TODO: Add multiple legal bases in the paragrpah
+# TODO: Add multiple legal bases in the paragraph
 def get_legal_basis(xml):
     regex_legal = r'article [^ ]+'
     found = False
     for p in xpu.get_paragraphs_by_header('legal basis for', xml):
         if re.findall(regex_legal, p):
-            return h.convert_article(re.findall(regex_legal, p)[0])
+            return h.convert_articles(list(re.findall(regex_legal, p)))
     for p in xpu.get_paragraphs_by_header('submission of the dossier', xml):
         if found and re.findall(regex_legal, p):
-            return h.convert_article(re.findall(regex_legal, p)[0])
+            return h.convert_articles(list(re.findall(regex_legal, p)))
         elif 'legal basis for' in p:
             found = True
     return 'no_legal_basis'

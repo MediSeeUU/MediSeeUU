@@ -61,20 +61,23 @@ def convert_roman_numbers(date: str):
     return date
 
 
-def convert_article(article: str):
-    num = article.split(' ')[1]
-    newnum = ""
-    for c in num:
-        if c == '(':
-            newnum += '.'
-        elif c == ')':
-            continue
-        else:
-            newnum += c
-    return 'article ' + newnum
+def convert_articles(articles: [str]):
+    res = []
+    for article in articles:
+        num = article.split(' ')[1]
+        newnum = ""
+        for c in num:
+            if c == '(':
+                newnum += '.'
+            elif c == ')':
+                continue
+            else:
+                newnum += c
+        res.append('article ' + newnum)
+    return res
 
 
-def getDate(txt):
+def get_date(txt):
     if txt != '':
         txt = txt.lower()
         try:
