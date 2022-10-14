@@ -74,7 +74,7 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
 
     print("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
     print("<xml>")
-    print("<header>")
+    print("<head>")
 
     print("<creation_date>")
     print(document_creation_date)
@@ -85,17 +85,17 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
     print("</modification_date>")
 
     # whether the original pdf was an initial authorization file
-    print("<initial>")
+    print("<initial_authorization>")
     is_initial_file = output_filepath.split(".")[0].split("_")[-1] == "0"
     print(str(is_initial_file))
-    print("</initial>")
+    print("</initial_authorization>")
 
     # original pdf name
-    print("<pdf>")
+    print("<pdf_file>")
     print(path.basename(output_filepath).split(".")[0].strip() + ".pdf")
-    print("</pdf>")
+    print("</pdf_file>")
 
-    print("</header>")
+    print("</head>")
     print("<body>")
 
     for section in sections:
