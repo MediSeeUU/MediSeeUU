@@ -123,6 +123,9 @@ cmake-build-*/
 # IntelliJ
 out/
 
+# VS Code
+.vscode/
+
 # JIRA plugin
 atlassian-ide-plugin.xml
 
@@ -135,5 +138,7 @@ fabric.properties
 # idea folder
 .idea
 
-# all PDFs
+# all PDFs & test data
 *.pdf
+medctrl-scraper/PDF_scraper/text_scraper/data/
+medctrl-scraper/PDF_scraper/text_scraper/test_data/
