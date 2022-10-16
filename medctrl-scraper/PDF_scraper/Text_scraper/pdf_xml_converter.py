@@ -9,11 +9,15 @@ split_indicator = "|-SPLIT-|"
 
 
 def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
-    document = fitz.open(source_filepath)
-    text_format_lower = ph.get_text_format(document, True)
-    paragraphs = get_marked_paragraphs(text_format_lower)
-    sections = split_paragraphs(paragraphs)
-    print_xml(sections, output_filepath, document.metadata["creationDate"], document.metadata["modDate"])
+    document = []
+    try:
+        document = fitz.open(source_filepath)
+        text_format_lower = ph.get_text_format(document, True)
+        paragraphs = get_marked_paragraphs(text_format_lower)
+        sections = split_paragraphs(paragraphs)
+        print_xml(sections, output_filepath, document.metadata["creationDate"], document.metadata["modDate"])
+    except fitz.FileDataError:
+        print(source_filepath)
 
 
 def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:

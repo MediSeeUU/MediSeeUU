@@ -6,8 +6,9 @@ import json
 import pdf_xml_converter as xml_converter
 import joblib
 import multiprocessing
+import cProfile
 
-# external files
+# external parsers
 import parsers.ec_parse as ec_parse
 import parsers.epar_parse as epar_parse
 
@@ -31,7 +32,8 @@ def pdf_parser(directory: str):
     joblib.Parallel(n_jobs=multiprocessing.cpu_count(), require=None)(
         joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
         directory_folders)
-    # parse_folder(path.join(directory, directory_folders[0]), directory_folders[0])
+    # for folder in directory_folders:
+    #     parse_folder(path.join(directory, folder), folder)
 
 
 # scraping on medicine folder level
@@ -62,7 +64,10 @@ def parse_folder(directory: str, folder_name):
         medicine_struct = parse_file(file, medicine_struct)
 
     for file in annex_files:
-        medicine_struct = ap.parse_file(file, medicine_struct)
+        try:
+            medicine_struct = ap.parse_file(file, medicine_struct)
+        except:
+            print(file)
 
     for file in epar_files:
         medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
@@ -78,5 +83,5 @@ def parse_folder(directory: str, folder_name):
     json_file.close()
 
 
-pdf_parser("test_data")
+cProfile.run('pdf_parser("data")')
 # pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
