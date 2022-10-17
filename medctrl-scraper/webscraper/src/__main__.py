@@ -55,7 +55,7 @@ def get_urls_ec(medicine_url, eu_n):
             with open("../data/CSV/ema_urls.csv", 'a', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow([eu_n, ema_list])
-            with open("../data/CSV/med_dict.csv", 'a', newline='') as f:
+            with open("../data/CSV/med_dict.csv", 'a', newline='', encoding='utf-8') as f:
                 writer = csv.writer(f)
                 writer.writerow([eu_n, med_dict])
             success = True
@@ -101,13 +101,25 @@ scrape_ema: bool = False
 # NOTE: Use the line of code below to download all files.
 download_files: bool = True
 
+# NOTE: Use the line of code below to fill CSV files parallel:
+# for windows users: set to 'False'
+parallel: bool = False
+
 if scrape_ec:
     log.info("Scraping all medicines on the EC website")
-    Parallel(n_jobs=12)(delayed(get_urls_ec)(medicine_url, eu_n) for (medicine_url, eu_n) in medicine_codes)
+    if parallel:
+        Parallel(n_jobs=12)(delayed(get_urls_ec)(medicine_url, eu_n) for (medicine_url, eu_n) in medicine_codes)
+    else: 
+        for (medicine_url, eu_n) in medicine_codes:
+            get_urls_ec(medicine_url, eu_n) 
 
 if scrape_ema:
     ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0).squeeze().to_dict()
-    Parallel(n_jobs=12)(delayed(get_urls_ema)(url[0], url[1]) for url in ema.items())
+    if parallel:
+        Parallel(n_jobs=12)(delayed(get_urls_ema)(url[0], url[1]) for url in ema.items())
+    else:
+        for url in ema.items():
+            get_urls_ema(url[0], url[1])
     log.info("SUCCESS on scraping all individual medicine pages of EMA")
 
 if download_files:

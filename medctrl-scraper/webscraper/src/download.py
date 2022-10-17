@@ -50,7 +50,7 @@ def read_csv_files():
     dec = pd.read_csv('../data/CSV/decision.csv', header=None, index_col=0, lineterminator='\n').squeeze().to_dict()
     anx = pd.read_csv('../data/CSV/annexes.csv', header=None, index_col=0, lineterminator='\n').squeeze().to_dict()
     epar = pd.read_csv('../data/CSV/epar.csv', header=None, index_col=0, lineterminator='\n').squeeze().to_dict()
-    med_dict = pd.read_csv('../data/CSV/med_dict.csv', header=None, index_col=0, lineterminator='\n').squeeze().to_dict()
+    med_dict = pd.read_csv('../data/CSV/med_dict.csv', header=None, index_col=0, encoding = "utf-8").squeeze().to_dict()
     return dec, anx, epar, med_dict
 
 
