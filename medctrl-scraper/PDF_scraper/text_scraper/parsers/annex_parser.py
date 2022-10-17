@@ -7,7 +7,16 @@ import os
 
 
 def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
-    xml_tree = ET.parse(filepath)
+    try:
+        xml_tree = ET.parse(filepath)
+    except:
+        print("ANNEX PARSER: failed to open xml file " + filepath)
+        return medicine_struct
+
+    if medicine_struct is None:
+        print("ANNEX PARSER: medicine_struct is none at "  + filepath)
+        return
+
     xml_root = xml_tree.getroot()
     xml_header = xml_root[0]
     xml_body = xml_root[1]
