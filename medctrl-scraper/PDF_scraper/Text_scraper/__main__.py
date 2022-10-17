@@ -29,7 +29,7 @@ def pdf_parser(directory: str):
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
 
     # Use all the system's threads to maximize use of all hyper-threads
-    joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1, 1)), require=None)(
+    joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
         joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
         directory_folders)
 
@@ -88,7 +88,7 @@ def parse_folder(directory: str, folder_name):
 
 
 # pdf_parser("test_data")
-# pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
+pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
 # cProfile.run('pdf_parser("data")')
 # pdf_parser("data")
 # pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
