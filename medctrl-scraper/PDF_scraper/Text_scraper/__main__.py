@@ -62,7 +62,7 @@ def parse_folder(directory: str, folder_name):
 
     # call parsers on correct files and update medicine struct
     for file in decision_files:
-        medicine_struct = parse_file(file, medicine_struct)
+        medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
 
     for file in annex_files:
         try:
