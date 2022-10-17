@@ -1,6 +1,7 @@
 from email import header
 from pydoc import doc
 import sys
+from typing import TextIO
 import fitz
 import pdf_helper as ph
 import xml_tags as tags
@@ -19,7 +20,7 @@ def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
 
 
 def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
-    # concatinate list of lines into list of paragraphs and mark bolded lines
+    # concatenate list of lines into list of paragraphs and mark bolded lines
     paragraphs = []
     for line in lines:
         text = line[0]
@@ -68,45 +69,44 @@ def replace_special_xml_characters(string: str) -> str:
     return string
 
 
-def print_xml_tag_open(xml_tag: str, attributes: str = ""):
-    print("<" + xml_tag + attributes + ">")
+def print_xml_tag_open(xml_tag: str, file: TextIO, attributes: str = ""):
+    file.write("<" + xml_tag + attributes + ">")
 
 
-def print_xml_tag_close(xml_tag: str):
-    print("</" + xml_tag + ">")
+def print_xml_tag_close(xml_tag: str, file: TextIO):
+    file.write("</" + xml_tag + ">")
 
 
 def print_xml(sections: list[(str, str)], output_filepath: str, document_creation_date: str, document_modification_date: str):
     # start printing xml file
     console_out = sys.stdout
-    xml = open(output_filepath, "w", encoding="utf-8")
-    sys.stdout = xml
+    xml_file = open(output_filepath, "w", encoding="utf-8")
 
-    print("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
-    print_xml_tag_open(tags.xml)
-    print_xml_tag_open(tags.head)
+    xml_file.write("<?xml version=\"1.1\" encoding=\"UTF-8\" standalone=\"yes\"?>")
+    print_xml_tag_open(tags.xml, xml_file)
+    print_xml_tag_open(tags.head, xml_file)
 
-    print_xml_tag_open(tags.creation_date)
-    print(document_creation_date)
-    print_xml_tag_close(tags.creation_date)
+    print_xml_tag_open(tags.creation_date, xml_file)
+    xml_file.write(document_creation_date)
+    print_xml_tag_close(tags.creation_date, xml_file)
 
-    print_xml_tag_open(tags.modification_date)
-    print(document_modification_date)
-    print_xml_tag_close(tags.modification_date)
+    print_xml_tag_open(tags.modification_date, xml_file)
+    xml_file.write(document_modification_date)
+    print_xml_tag_close(tags.modification_date, xml_file)
 
     # whether the original pdf was an initial authorization file
-    print_xml_tag_open(tags.initial_authorization)
+    print_xml_tag_open(tags.initial_authorization, xml_file)
     is_initial_file = output_filepath.split(".")[0].split("_")[-1] == "0"
-    print(str(is_initial_file))
-    print_xml_tag_close(tags.initial_authorization)
+    xml_file.write(str(is_initial_file))
+    print_xml_tag_close(tags.initial_authorization, xml_file)
 
     # original pdf name
-    print_xml_tag_open(tags.pdf_file)
-    print(path.basename(output_filepath).split(".")[0].strip() + ".pdf")
-    print_xml_tag_close(tags.pdf_file)
+    print_xml_tag_open(tags.pdf_file, xml_file)
+    xml_file.write(path.basename(output_filepath).split(".")[0].strip() + ".pdf")
+    print_xml_tag_close(tags.pdf_file, xml_file)
 
-    print_xml_tag_close(tags.head)
-    print_xml_tag_open(tags.body)
+    print_xml_tag_close(tags.head, xml_file)
+    print_xml_tag_open(tags.body, xml_file)
 
     for section in sections:
         section_header = replace_special_xml_characters(section[0])
@@ -124,19 +124,19 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
             header_attribute = " n=\"" + chapter_number_attribute + "\""
 
         # print the section from xml_elements taking sections and subsections into account
-        print_xml_tag_open(tags.section)
-        print_xml_tag_open(tags.header, header_attribute)
-        print(section_header.strip())
-        print_xml_tag_close(tags.header)
+        print_xml_tag_open(tags.section, xml_file)
+        print_xml_tag_open(tags.header, xml_file, header_attribute)
+        xml_file.write(section_header.strip().encode("utf-8", "ignore").decode("utf-8", "ignore"))
+        print_xml_tag_close(tags.header, xml_file)
 
         for section_paragraph in section_paragraphs:
             if section_paragraph.strip() != "":
-                print_xml_tag_open(tags.paragraph)
-                print(section_paragraph.rstrip().encode('utf-8', 'ignore'))
-                print_xml_tag_close(tags.paragraph)
+                print_xml_tag_open(tags.paragraph, xml_file)
+                xml_file.write(section_paragraph.rstrip().encode("utf-8", "ignore").decode("utf-8", "ignore"))
+                print_xml_tag_close(tags.paragraph, xml_file)
 
-        print_xml_tag_close(tags.section)
+        print_xml_tag_close(tags.section, xml_file)
 
-    print_xml_tag_close(tags.body)
-    print_xml_tag_close(tags.xml)
-    sys.stdout = console_out
+    print_xml_tag_close(tags.body, xml_file)
+    print_xml_tag_close(tags.xml, xml_file)
+    xml_file.close()
