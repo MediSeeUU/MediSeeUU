@@ -28,14 +28,20 @@ def scrape_medicines_list(url: str) -> list[(str, str)]:
     return url_list
 
 
+def get_eu_num(url: str) -> str:
+    return url.split('/')[-1].replace(".htm", "")
+    
+
 def scrape_medicine_page(url: str) -> (list[str], list[str], list[str], dict[str, str]):
     # Retrieves the html from the European Commission product page
     html_active = get_ec_html(url)
     medicine_json, procedures_json, *_ = get_ec_json_objects(html_active)
 
+    eu_num = get_eu_num(url)
+
     # Gets all the necessary information from the medicine_json and procedures_json objects
-    medicine_dict, ema_url_list = get_data_from_medicine_json(medicine_json)
-    procedures_dict, dec_url_list, anx_url_list = get_data_from_procedures_json(procedures_json)
+    medicine_dict, ema_url_list = get_data_from_medicine_json(medicine_json, eu_num)
+    procedures_dict, dec_url_list, anx_url_list = get_data_from_procedures_json(procedures_json, eu_num)
 
     return dec_url_list, anx_url_list, ema_url_list, medicine_dict, procedures_dict
 
@@ -79,7 +85,7 @@ def get_ec_json_objects(html_active: requests.Response) -> list[json]:
 
 # The medicine_json object from the EC contains some important information that needs to be scraped
 # It loops through the JSON object and finds all the attributes, so that they can be used and stored
-def get_data_from_medicine_json(medicine_json: json) -> (dict[str, str], list[str]):
+def get_data_from_medicine_json(medicine_json: json, eu_num: str) -> (json, list[str]):
     medicine_dict: dict[str, str] = {}
     ema_url_list: list[str] = []
 
@@ -98,7 +104,6 @@ def get_data_from_medicine_json(medicine_json: json) -> (dict[str, str], list[st
             case "inn":
                 # Sometimes the active substance is written with italics, therefore it is removed with a regex
                 medicine_dict["active_substance"] = re.sub(re.compile('<.*?>'), '', row["value"])
-                print(medicine_dict["active_substance"])
 
             case "indication":
                 # If at any point in the future, information about the indication needs to be stored,
@@ -116,11 +121,11 @@ def get_data_from_medicine_json(medicine_json: json) -> (dict[str, str], list[st
                 for json_obj in row["meta"]:
                     ema_url_list.append(json_obj["url"])
 
-    return medicine_dict, ema_url_list
+    return json.dumps(medicine_dict, indent = 4), ema_url_list
 
 
 # TODO: Change this function so that it not only gets the dec and anx urls, but other data as well
-def get_data_from_procedures_json(procedures_json: json) -> (list[str, str], list[str], list[str]):
+def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (json, list[str], list[str]):
     # The necessary urls and other data will be saved in these lists and dictionary
     dec_url_list: list[str] = []
     anx_url_list: list[str] = []
@@ -132,7 +137,11 @@ def get_data_from_procedures_json(procedures_json: json) -> (list[str, str], lis
     is_conditional: bool = False
     # This information is needed to determine what the current authorization type is
     last_decision_types: list[str] = []
-    last_decision_date: datetime = datetime.strptime(procedures_json[-1]["decision"]["date"], f"%Y-%m-%d").date()
+
+    for row in reversed(procedures_json):
+        if row["decision"]["date"] is not None:
+            last_decision_date: date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
+            break
 
     # for each row in the json file of each medicine, get the urls for the pdfs of the decision and annexes.
     # it also checks whether each procedure row has some information about its authorization type
@@ -172,19 +181,38 @@ def get_data_from_procedures_json(procedures_json: json) -> (list[str, str], lis
             anx_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
 
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
-    eu_aut_date: datetime = datetime.strptime(procedures_json[0]["decision"]["date"], '%Y-%m-%d')
+    try: 
+        eu_aut_datetime: datetime = datetime.strptime(procedures_json[0]["decision"]["date"], '%Y-%m-%d')
+        eu_aut_date: str = datetime.strftime(eu_aut_datetime, '%m-%d-%Y')
+    except:
+        print("test")
 
     # From the list of EMA numbers, the right one is chosen and its certainty determined
     ema_number, ema_number_certainty = determine_ema_number(ema_numbers)
 
     # All the attribute values are put in the dictionary
-    procedures_dict["eu_aut_date"] = datetime.strftime(eu_aut_date, f"%d-%m-%Y")
-    procedures_dict["eu_aut_type_initial"] = determine_aut_type(eu_aut_date.year, is_exceptional, is_conditional)
-    procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
-    procedures_dict["ema_number"] = ema_number
-    procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
+    try:
+        procedures_dict["eu_aut_date"] = eu_aut_date
+    except:
+        print(eu_num + ": couldn't find authorization date")
+    try:
+        procedures_dict["eu_aut_type_initial"] = determine_aut_type(eu_aut_datetime.year, is_exceptional, is_conditional)
+    except:
+        print(eu_num + ": couldn't find initial authorization type")
+    try:
+        procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
+    except:
+        print(eu_num + ": couldn't find current authorization type")
+    try:
+        procedures_dict["ema_number"] = ema_number
+    except:
+        print(eu_num + ": couldn't find ema number")
+    try:
+        procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
+    except:
+        print(eu_num + ": couldn't find ema number certainty")
 
-    return procedures_dict, dec_url_list, anx_url_list
+    return json.dumps(procedures_dict, indent = 4), dec_url_list, anx_url_list
 
 
 # Determines the current authorization type
@@ -219,15 +247,18 @@ def format_ema_number(ema_number: str) -> list[str]:
     ema_numbers_formatted: list[str] = []
 
     for en in ema_numbers:
-        # REGEX that gets only the relevant part of the EMA numbers
-        ema_number_formatted = re.findall(r"EME?A\/(?:H\/(?:C|\w*-\w*)\/\w*|OD\/\w*(?:\/\w*)?)", en, re.DOTALL)[0]
-        ema_numbers_formatted.append(ema_number_formatted)
-
+        
+        try:
+            # REGEX that gets only the relevant part of the EMA numbers
+            ema_number_formatted = re.findall(r"EME?A\/(?:H\/(?:C|\w*-\w*)\/\w*|OD\/\w*(?:\/\w*)?)", en, re.DOTALL)[0]
+            ema_numbers_formatted.append(ema_number_formatted)
+        except IndexError:
+            continue
+        
     return ema_numbers_formatted
 
 
 # Determines the right EMA number from the list of procedures
-# TODO: implement this function
 def determine_ema_number(ema_numbers: list[str]) -> (str, float):
     # gets the most frequent element in a list
     # code retrieved from https://www.geeksforgeeks.org/python-find-most-frequent-element-in-a-list/
@@ -251,4 +282,4 @@ def test_code(eu_num_short: str):
 
 
 # uncomment this when you want to test if data is retrieved for a certain medicine
-test_code("o2104")
+test_code("h544")

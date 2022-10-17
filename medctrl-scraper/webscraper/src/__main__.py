@@ -45,7 +45,7 @@ def get_urls_ec(medicine, eu_n):
         try:
             # getURLsForPDFAndEMA returns per medicine the urls for the decision and annexes files and for the ema
             # website.
-            dec_list, anx_list, ema_list, medicine_dict, procedures_dict = ec_scraper.scrape_medicine_page(medicine)
+            dec_list, anx_list, ema_list, medicine_json, procedures_json = ec_scraper.scrape_medicine_page(medicine)
             with open("../data/CSV/decision.csv", 'a') as f:
                 writer = csv.writer(f)
                 writer.writerow([eu_n, medicine, dec_list])
