@@ -1,5 +1,6 @@
 import json
 from datetime import date, datetime
+from re import DOTALL
 from typing import Type
 
 import regex as re
@@ -135,11 +136,14 @@ def get_data_from_procedures_json(procedures_json: json) -> (list[str, str], lis
         if "annual renewal" in row["type"].lower():
             is_conditional = True
 
+        # Gets the EMA number(s) per row and puts it/them in a list
+        if row["ema_number"] is not None:
+            ema_numbers_row = format_ema_number(row["ema_number"])
+            for en in ema_numbers_row:
+                ema_numbers.append(en)
+
         if row["files_dec"] is None and row["files_anx"] is None:
             continue
-
-        # Gets the EMA number per row and puts it in a list
-        ema_numbers.append(row["ema_number"])
 
         # Parse the date, formatted as %Y-%m-%d, which looks like 1970-01-01
         decision_date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
@@ -183,11 +187,36 @@ def determine_aut_type(year: int, is_exceptional: bool, is_conditional: bool) ->
         return "conditional"
     return "standard"
 
+# EMA numbers are formatted, so that only the relevant part of the EMA number remains
+# Sometimes, there are two ema numbers in one column, therefore we return a list of strings 
+def format_ema_number(ema_number: str) -> list[str]:
+    ema_numbers: list[str]= ema_number.split(", ")
+    ema_numbers_formatted: list[str] = []
+
+    for en in ema_numbers:
+        # REGEX that gets only the relevant part of the EMA numbers
+        ema_number_formatted = re.findall(r"EME?A\/(?:H\/(?:C|\w*-\w*)\/\w*|OD\/\w*(?:\/\w*)?)", en, re.DOTALL)[0]
+        ema_numbers_formatted.append(ema_number_formatted)
+
+    return ema_numbers_formatted
 
 # Determines the right EMA number from the list of procedures
 # TODO: implement this function
 def determine_ema_number(ema_numbers: list[str]) -> (str, float):
-    return "Hello", 0.0
+    # gets the most frequent element in a list
+    # code retrieved from https://www.geeksforgeeks.org/python-find-most-frequent-element-in-a-list/
+    ema_numbers_dict: dict[str, int] = {}
+    count: int = 0
+    most_occurring_item: str = ""
+    for item in reversed(ema_numbers):
+        ema_numbers_dict[item] = ema_numbers_dict.get(item, 0) + 1
+        if ema_numbers_dict[item] >= count:
+            count, most_occurring_item = ema_numbers_dict[item], item
+
+    # Calculates the fraction that have this EMA number
+    fraction: float = ema_numbers_dict.get(most_occurring_item) / len(ema_numbers)
+
+    return most_occurring_item, fraction
 
 
 def test_code(eu_num_short):
@@ -196,4 +225,4 @@ def test_code(eu_num_short):
 
 
 # uncomment this when you want to test if data is retrieved for a certain medicine
-test_code("h477")
+test_code("h1367")
