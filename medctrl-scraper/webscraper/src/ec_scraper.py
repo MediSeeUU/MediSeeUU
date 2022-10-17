@@ -1,5 +1,5 @@
 import json
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from re import DOTALL
 from typing import Type
 
@@ -96,7 +96,9 @@ def get_data_from_medicine_json(medicine_json: json) -> (dict[str, str], list[st
                 medicine_dict["eu_pnumber"] = row["value"]
 
             case "inn":
-                medicine_dict["active_substance"] = row["value"]
+                # Sometimes the active substance is written with italics, therefore it is removed with a regex
+                medicine_dict["active_substance"] = re.sub(re.compile('<.*?>'), '', row["value"])
+                print(medicine_dict["active_substance"])
 
             case "indication":
                 # If at any point in the future, information about the indication needs to be stored,
@@ -119,12 +121,18 @@ def get_data_from_medicine_json(medicine_json: json) -> (dict[str, str], list[st
 
 # TODO: Change this function so that it not only gets the dec and anx urls, but other data as well
 def get_data_from_procedures_json(procedures_json: json) -> (list[str, str], list[str], list[str]):
+    # The necessary urls and other data will be saved in these lists and dictionary
     dec_url_list: list[str] = []
     anx_url_list: list[str] = []
     procedures_dict: list[str, str] = {}
+    # The list of ema numbers will be saved, so that the right EMA number can be chosen
+    ema_numbers: list[str] = []
+    # This information is needed to determine the initial authorization type
     is_exceptional: bool = False
     is_conditional: bool = False
-    ema_numbers: list[str] = []
+    # This information is needed to determine what the current authorization type is
+    last_decision_types: list[str] = []
+    last_decision_date: datetime = datetime.strptime(procedures_json[-1]["decision"]["date"], f"%Y-%m-%d").date()
 
     # for each row in the json file of each medicine, get the urls for the pdfs of the decision and annexes.
     # it also checks whether each procedure row has some information about its authorization type
@@ -146,8 +154,12 @@ def get_data_from_procedures_json(procedures_json: json) -> (list[str, str], lis
             continue
 
         # Parse the date, formatted as %Y-%m-%d, which looks like 1970-01-01
-        decision_date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
+        decision_date: datetime = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
         decision_id = row["id"]
+
+        # Puts all the decions from the last one and a half year in a list, to determine the current authorization type
+        if last_decision_date - decision_date < timedelta(days=548):
+            last_decision_types.append(row["type"])
 
         if row["files_dec"]:
             pdf_url_dec = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""
@@ -168,12 +180,22 @@ def get_data_from_procedures_json(procedures_json: json) -> (list[str, str], lis
     # All the attribute values are put in the dictionary
     procedures_dict["eu_aut_date"] = datetime.strftime(eu_aut_date, f"%d-%m-%Y")
     procedures_dict["eu_aut_type_initial"] = determine_aut_type(eu_aut_date.year, is_exceptional, is_conditional)
-    # procedures_dict["eu_aut_type_current"] TODO: Ask in data meeting
+    procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
     procedures_dict["ema_number"] = ema_number
     procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
 
     return procedures_dict, dec_url_list, anx_url_list
 
+# Determines the current authorization type
+def determine_current_aut_type(last_decision_types: list[str]) -> str:
+    
+    for decision_type in last_decision_types:
+        if "annual reassessment" in decision_type.lower():
+            return "exceptional"
+        if "annual renewal" in decision_type.lower():
+            return "conditional"
+
+    return "standard"
 
 # Determines whether a medicine is exceptional, conditional or standard, based on the procedures
 def determine_aut_type(year: int, is_exceptional: bool, is_conditional: bool) -> str:
@@ -225,4 +247,4 @@ def test_code(eu_num_short):
 
 
 # uncomment this when you want to test if data is retrieved for a certain medicine
-test_code("h1367")
+test_code("o2104")
