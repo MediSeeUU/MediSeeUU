@@ -10,7 +10,6 @@ from .history_authorisation_status_admin import HistoryAuthorisationStatusResour
 from .history_authorisation_type_admin import HistoryAuthorisationTypeResource, HistoryAuthorisationTypeAdmin
 from .history_brand_name_admin import HistoryBrandNameResource, HistoryBrandNameAdmin
 from .history_mah_admin import HistoryMAHResource, HistoryMAHAdmin
-from .history_number_check_admin import HistoryNumberCheckResource, HistoryNumberCheckAdmin
 from .history_od_admin import HistoryODResource, HistoryODAdmin
 from .history_prime_admin import HistoryPrimeResource, HistoryPrimeAdmin
 from .medicine_admin import MedicineResource, MedicineAdmin

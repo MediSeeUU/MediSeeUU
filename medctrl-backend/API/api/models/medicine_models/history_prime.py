@@ -9,26 +9,11 @@ class HistoryPrime(models.Model):
     """
     Model class for the prime designation history table.
     """
-    eu_prime_id = create_dashboard_column(
-        models.IntegerField(db_column="eu_prime_id", primary_key=True, null=False),
-        Category.General_Information,
-        "number",
-        "EU Priority Medicine ID"
-    )
+    eu_prime_id = models.IntegerField(db_column="eu_prime_id", primary_key=True, null=False)
 
-    eu_pnumber = create_dashboard_column(
-        models.ForeignKey("Medicine", models.CASCADE, db_column="eu_pnumber", null=False),
-        Category.General_Information,
-        "number",
-        "EU Product Number"
-    )
+    eu_pnumber = models.ForeignKey("Medicine", models.CASCADE, db_column="eu_pnumber", null=False)
 
-    change_date = create_dashboard_column(
-        models.DateField(db_column="change_date", null=True),
-        Category.General_Information,
-        "date",
-        "Change Date"
-    )
+    change_date = models.DateField(db_column="change_date", null=True)
 
     eu_prime = create_dashboard_column(
         models.BooleanField(db_column="eu_prime", null=True),

@@ -17,7 +17,6 @@ from api.models.medicine_models import (
     HistoryAuthorisationType,
     HistoryBrandName,
     HistoryMAH,
-    HistoryEMANumberCheck,
     HistoryOD,
     HistoryPrime,
 )
@@ -40,7 +39,6 @@ class Command(BaseCommand):
             HistoryAuthorisationType,
             HistoryBrandName,
             HistoryMAH,
-            HistoryEMANumberCheck,
             HistoryOD,
             HistoryPrime,
         ]:

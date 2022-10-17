@@ -2,7 +2,6 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from rest_framework import serializers
-
 from api.models.medicine_models import Medicine
 
 
@@ -14,4 +13,4 @@ class MedicineFlexVarUpdateSerializer(serializers.ModelSerializer):
         """Metadata"""
 
         model = Medicine
-        fields = ["ema_url", "ec_url", "aut_url", "smpc_url", "epar_url",]
+        fields = ["ema_number_check", "ema_url", "ec_url", "aut_url", "smpc_url", "epar_url",]

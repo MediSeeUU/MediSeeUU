@@ -5,7 +5,6 @@ from api.models.medicine_models import (
     HistoryAuthorisationType,
     HistoryBrandName,
     HistoryMAH,
-    HistoryEMANumberCheck,
     HistoryOD,
     HistoryPrime,
 )
@@ -83,21 +82,6 @@ class MAHSerializer(serializers.ModelSerializer):
 
         model = HistoryMAH
         fields = ("eu_mah",)
-        ordering = ("change_date",)
-
-
-class NumberCheckSerializer(serializers.ModelSerializer):
-    """
-    Authorisation table serializer for the view endpoint medicine
-    """
-
-    class Meta:
-        """
-        Meta information
-        """
-
-        model = HistoryEMANumberCheck
-        fields = ("ema_number_check",)
         ordering = ("change_date",)
 
 

@@ -4,7 +4,6 @@ from .public_history import (
     AuthorisationTypeSerializer,
     BrandNameSerializer,
     MAHSerializer,
-    NumberCheckSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
 )

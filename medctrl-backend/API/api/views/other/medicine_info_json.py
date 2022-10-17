@@ -17,7 +17,6 @@ from api.models.medicine_models import (
     HistoryAuthorisationType,
     HistoryBrandName,
     HistoryMAH,
-    HistoryEMANumberCheck,
     HistoryOD,
     HistoryPrime,
 )
@@ -42,7 +41,6 @@ def get_medicine_info(perm, mock=None):
             HistoryAuthorisationType,
             HistoryBrandName,
             HistoryMAH,
-            HistoryEMANumberCheck,
             HistoryOD,
             HistoryPrime,
         ]

@@ -9,7 +9,6 @@ from .scraper import (
     AuthorisationTypeSerializer,
     BrandNameSerializer,
     MAHSerializer,
-    NumberCheckSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
     UrlsSerializer,
@@ -21,7 +20,6 @@ from .public import (
     AuthorisationTypeSerializer,
     BrandNameSerializer,
     MAHSerializer,
-    NumberCheckSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
 )

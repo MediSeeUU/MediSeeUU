@@ -17,7 +17,6 @@ from api.models.medicine_models import (
     HistoryAuthorisationType,
     HistoryBrandName,
     HistoryMAH,
-    HistoryEMANumberCheck,
     HistoryOD,
     HistoryPrime,
 )
@@ -27,7 +26,6 @@ from api.serializers.medicine_serializers.public import (
     AuthorisationTypeSerializer,
     BrandNameSerializer,
     MAHSerializer,
-    NumberCheckSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
 )
@@ -44,7 +42,6 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
     eu_aut_type = serializers.SerializerMethodField()
     eu_brand_name = serializers.SerializerMethodField()
     eu_mah = serializers.SerializerMethodField()
-    ema_number_check = serializers.SerializerMethodField()
     eu_od = serializers.SerializerMethodField()
     eu_prime = serializers.SerializerMethodField()
 
@@ -101,15 +98,6 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return MAHSerializer(instance=queryset, read_only=True).data
 
-    # retrieves number check from database for each medicine
-    def get_ema_number_check(self, number_check):
-        queryset = HistoryEMANumberCheck.objects.filter(eu_pnumber=number_check.eu_pnumber)
-        try:
-            queryset = queryset[len(queryset) - 1]
-        except:
-            queryset = None
-        return NumberCheckSerializer(instance=queryset, read_only=True).data
-
     # retrieves orphan designation from database for each medicine
     def get_eu_od(self, orphan_designation):
         queryset = HistoryOD.objects.filter(eu_pnumber=orphan_designation.eu_pnumber)
@@ -138,7 +126,6 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             "eu_aut_type",
             "eu_brand_name",
             "eu_mah",
-            "ema_number_check",
             "eu_od",
             "eu_prime",
 

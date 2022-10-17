@@ -93,6 +93,13 @@ class Medicine(models.Model):
         "EU ATMP"
     )
 
+    ema_number_check = create_dashboard_column(
+        models.BooleanField(db_column="eu_number_check", null=True),
+        Category.General_Information,
+        "bool",
+        "EMA Number Check"
+    )
+
     aut_url = create_dashboard_column(
         models.URLField(db_column="aut_url", null=False),
         Category.General_Information,
