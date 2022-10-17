@@ -141,5 +141,6 @@ fabric.properties
 
 # all PDFs & xmls
 *.pdf
+medctrl-scraper/PDF_scraper/text_scraper/parsers/test_data/
 medctrl-scraper/PDF_scraper/text_scraper/testdata/
 medctrl-scraper/PDF_scraper/text_scraper/data/
