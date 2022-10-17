@@ -30,7 +30,7 @@ from .. import ec_scraper as ec
         ),
         ("o1230",
          None,
-         "(2R,3R,4S,5R)-2-(6-amino-9H-purin-9-yl)-5-((((1r,3S)-3-(2-(5-(tert-butyl)-1H-benzo[d]imidazol-2-yl)ethyl)4cyclobutyl)(isopropyl) amino)methyl)tetrahydrofuran-3,4-diol",
+         "(2R,3R,4S,5R)-2-(6-amino-9H-purin-9-yl)-5-((((1r,3S)-3-(2-(5-(tert-butyl)-1H-benzo[d]imidazol-2-yl)ethyl)cyclobutyl)(isopropyl) amino)methyl)tetrahydrofuran-3,4-diol",
          "EU/3/13/1230",
          "ACTIVE",
          "EU/3/13/1230",

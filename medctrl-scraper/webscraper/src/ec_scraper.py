@@ -186,6 +186,7 @@ def get_data_from_procedures_json(procedures_json: json) -> (list[str, str], lis
 
     return procedures_dict, dec_url_list, anx_url_list
 
+
 # Determines the current authorization type
 def determine_current_aut_type(last_decision_types: list[str]) -> str:
     
@@ -196,6 +197,7 @@ def determine_current_aut_type(last_decision_types: list[str]) -> str:
             return "conditional"
 
     return "standard"
+
 
 # Determines whether a medicine is exceptional, conditional or standard, based on the procedures
 def determine_aut_type(year: int, is_exceptional: bool, is_conditional: bool) -> str:
@@ -209,6 +211,7 @@ def determine_aut_type(year: int, is_exceptional: bool, is_conditional: bool) ->
         return "conditional"
     return "standard"
 
+
 # EMA numbers are formatted, so that only the relevant part of the EMA number remains
 # Sometimes, there are two ema numbers in one column, therefore we return a list of strings 
 def format_ema_number(ema_number: str) -> list[str]:
@@ -221,6 +224,7 @@ def format_ema_number(ema_number: str) -> list[str]:
         ema_numbers_formatted.append(ema_number_formatted)
 
     return ema_numbers_formatted
+
 
 # Determines the right EMA number from the list of procedures
 # TODO: implement this function
@@ -241,7 +245,7 @@ def determine_ema_number(ema_numbers: list[str]) -> (str, float):
     return most_occurring_item, fraction
 
 
-def test_code(eu_num_short):
+def test_code(eu_num_short: str):
     ec_link = f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm"
     scrape_medicine_page(ec_link)
 
