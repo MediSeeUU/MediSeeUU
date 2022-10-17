@@ -97,7 +97,8 @@ def get_data_from_medicine_json(medicine_json: json, eu_num: str) -> (json, list
             case "name":
                 medicine_dict["eu_aut_status"] = row["meta"]["status_name"]
                 medicine_dict["eu_brand_name_current"] = row["value"]
-
+                medicine_dict["orphan_status"] = row["meta"]["pre"]
+                medicine_dict["status_type"] = row["meta"]["status_type"].replace("g", "a").replace("r", "w")
             case "eu_num":
                 medicine_dict["eu_pnumber"] = row["value"]
 
