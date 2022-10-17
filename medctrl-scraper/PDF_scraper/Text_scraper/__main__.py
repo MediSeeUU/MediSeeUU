@@ -45,7 +45,7 @@ def parse_folder(directory: str, folder_name):
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
     for file in directory_files:
         # Skip over all decision files, XML files, and non-pdf files
-        if "dec" in file or ".xml" in file or ".pdf" not in file:
+        if "dec" in file or ".xml" in file or ".pdf" not in file or "anx" in file or "dec" in file:
             continue
         # Skip file if XML is already created (temporary)
         if file[:len(file) - 4] + ".xml" in directory_files:
@@ -62,14 +62,14 @@ def parse_folder(directory: str, folder_name):
     omar_files = [file for file in directory_files if "omar" in file and ".xml" in file]
 
     # call parsers on correct files and update medicine struct
-    for file in decision_files:
-        medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
-
-    for file in annex_files:
-        try:
-            medicine_struct = ap.parse_file(file, medicine_struct)
-        except:
-            print('Failed: ' + file)
+    # for file in decision_files:
+    #     medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
+    #
+    # for file in annex_files:
+    #     try:
+    #         medicine_struct = ap.parse_file(file, medicine_struct)
+    #     except:
+    #         print('Failed: ' + file)
 
     for file in epar_files:
         medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
