@@ -57,7 +57,8 @@ def parse_folder(directory: str, folder_name):
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
     decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file]
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
-    epar_files = [file for file in directory_files if "public-assessment-report" in file and ".xml" in file]
+    epar_files = [file for file in directory_files if ("public-assessment-report" in file or
+                                                       "procedural-steps-taken" in file) and ".xml" in file]
     omar_files = [file for file in directory_files if "omar" in file and ".xml" in file]
 
     # call parsers on correct files and update medicine struct
