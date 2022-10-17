@@ -1,49 +1,102 @@
 # EC parser
 import re
+import os.path as path
 import helper
 import pdf_helper
 import datetime
+import fitz
 
 # EC Decision document
 
-# Returns a default table, used when testing a single file.
-def get_all_test(filename, table):
-    return get_all(get_default(filename),table)
 
+# Given a pdf, returns one long string of text
+def get_txt_from_pdf(pdf):
+    pdf_format = pdf_helper.get_text_format(pdf)
+    return pdf_helper.format_to_string(pdf_format)
+
+def parse_file(filename, directory, medicine_struct):
+    try:
+        pdf = fitz.open(path.join(directory, filename))
+        txt = get_txt_from_pdf(pdf)
+        medicine_struct.decisions.append(get_all(filename, txt))
+        pdf.close()
+    except:
+        print("Could not open PDF: " + filename)
+    return medicine_struct
 
 # Given a dictionary, fills in all attributes for EC decisions
-def get_all(filedata, table):
-    filedata['DecisionDate']    = dec_get_date(table)
-    filedata['BrandName']       = dec_get_bn(table)
-    filedata['ActiveSubstance'] = dec_get_as(table)
-    filedata['NAS']             = dec_get_nas(table)
-    filedata['ATMP']            = dec_get_atmp(table)
-    filedata['OD']              = dec_get_od(table)
-    filedata['MAH']             = dec_get_mah(table)
-    filedata['CMA']             = dec_get_decision_type(table, filedata['DecisionDate'])
-    return filedata
+def get_all(filename, txt):
+    #human use file attributes
+    if '_h_' in filename:
+        filedata = get_data_human_use(filename,txt)
+        return filedata
+
+    #orphan file attributes
+    if '_o_' in filename:
+        filedata = get_data_orphan(filename,txt)
+        return filedata
+
+    #if other file return data with everything 'Not parsed'
+    return get_default_human_use(filename)
 
 # The default values before starting a parse.
-def get_default(filename):
+def get_default_human_use(filename):
     default = 'Not parsed'
     return {'filename': filename,
-            'DecisionDate': default,
-            'BrandName': default,
-            'ActiveSubstance': default,
-            'NAS': default,
-            'ATMP': default,
-            'OD': default,
-            'MAH': default,
-            'CMA': default,
+            'eu_aut_date': default,
+            'eu_brand_name_initial': default,
+            'active_substance': default,
+            'eu_nas': default,
+            'eu_atmp': default,
+            'eu_od_initial': default,
+            'eu_mah_initial': default,
+            'eu_aut_type_initial': default,
             'status': 'Failure unknown reason'
             }
 
-# Given a pdf, returns one long string of text, called a table. 
-# Different parsers may use different structures to find text
-# Decision files use plain text.
-def get_table(pdf):
-    pdf_format = pdf_helper.get_text_format(pdf)
-    return pdf_helper.format_to_string(pdf_format)
+# The default values before starting a parse.
+def get_default_orphan(filename):
+    default = 'Not parsed'
+    return {'filename': filename,
+            'eu_aut_date': default,
+            'eu_brand_name_initial': default,
+            'eu_od_initial': default,
+            'eu_mah_initial': default,
+            'eu_od_comp_date': default,
+            'status': 'Failure unknown reason'
+            }
+
+def get_data_human_use(filename,txt):
+    filedata = get_default_human_use(filename)
+    date = dec_get_date(txt)
+    filedata['eu_aut_date'] = date
+
+    #if date was left blank return dont find date dependant attributes.
+    if isinstance(date,str):
+        date = dec_get_date('')
+
+    filedata['eu_brand_name_initial']       = dec_get_bn(txt)
+    filedata['active_substance']            = dec_get_as(txt)
+    filedata['eu_nas']                      = dec_get_nas(txt, date)
+    filedata['eu_atmp']                     = dec_get_atmp(txt, date)
+    filedata['eu_od_initial']               = dec_get_od(txt, date)
+    filedata['eu_mah_initial']              = dec_get_mah(txt)
+    filedata['eu_aut_type_initial']         = dec_get_decision_type(txt, date)
+    return filedata
+
+def get_data_orphan(filename,txt):
+    filedata = get_default_orphan(filename)
+    date = dec_get_date(txt)
+    filedata['eu_aut_date'] = date
+
+    #if date was left blank return dont find date dependant attributes.
+    if isinstance(date,str):
+        date = dec_get_date('')
+    filedata['eu_brand_name_initial']   = dec_get_bn(txt)
+    filedata['eu_od_initial']           = dec_get_od(txt, date)
+    filedata['eu_mah_initial']          = dec_get_mah(txt)
+    filedata['eu_od_comp_date']         = dec_get_od_comp_date(txt)
+    return filedata
 
 #FUNCTIONS FOR EACH ATTRIBUTE
 
@@ -56,19 +109,19 @@ def dec_get_date(txt):
             return 'Date is blank'
         #check if there are digits on first page
         if bool(re.search(r'\d', section)):
-            return helper.getDate(section)
+            return helper.get_date(section)
         #there are few cases where date on first page is missing
         #retry on second page before giving up.
         try:
             next_page = re.split('commission decision',txt.lower())[2]
             section = re.split('of ',next_page,1)[1]
             section = section[:15]
-            return helper.getDate(section)
+            return helper.get_date(section)
         except:
             pass
     except:
         pass
-    return helper.getDate('')
+    return helper.get_date('')
 
 
 def dec_get_bn(txt):
@@ -166,13 +219,23 @@ def dec_get_mah(txt):
         return 'MAH Not Found'
 
 
-def dec_get_od(txt):
-    if 'orphan medicinal product' in txt.lower() and 'has adopted this decision' in txt.lower():
-        return 'adopted'
-    return 'appointed'
+def dec_get_od(txt,date):
+    #check if there can be a NAS.
+    if date < datetime.datetime(2000, 4, 28):
+        return "NA before 2000"
+
+    if 'orphan medicinal product' in txt.lower():
+        if 'has adopted this decision' in txt.lower():
+            return 'adopted'
+        return 'appointed'
+    return 'OD Not Found'
 
 
-def dec_get_atmp(txt):
+def dec_get_atmp(txt,date):
+    #check if there can be a ATMP.
+    if date < datetime.datetime(2007, 12, 30):
+        return "NA before 2012"
+
     regulation = "Regulation (EC) No 1394/2007"
     fn_idx = txt.find("regulation as last amended by")  # sometimes regulation is mentioned in footnote
     footnote = txt[fn_idx:fn_idx + 70]  # select the sentence if the regulation is mentioned in the footnote
@@ -183,10 +246,18 @@ def dec_get_atmp(txt):
         return False
 
 
-def dec_get_nas(txt):
+def dec_get_nas(txt,date):
+    #check if there can be a NAS.
+    if date < datetime.datetime(2012, 1, 1):
+        return "NA before 2012"
+    
     if "committee for medicinal products for human use" in txt.lower() and "a new active substance" in txt.lower():
         return True
     return False
+
+
+def dec_get_od_comp_date(txt):
+    return helper.get_date('')
 
 
 #HELPERS

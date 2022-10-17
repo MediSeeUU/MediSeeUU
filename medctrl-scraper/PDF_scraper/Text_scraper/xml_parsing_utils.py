@@ -1,10 +1,13 @@
 import xml.etree.ElementTree as ET
+from xml.etree.ElementTree import Element
+
 import xml_tags as tags
 from typing import List
 
+
 def file_is_initial(xml_header: ET.Element) -> bool:
-    initialElement = xml_header.findall(tags.initial_authorization)[0]
-    return initialElement.text.strip() == 'True'
+    initial_element = xml_header.findall(tags.initial_authorization)[0]
+    return initial_element.text.strip() == 'True'
 
 
 def file_get_name_pdf(xml_header: ET.Element) -> str:
@@ -19,12 +22,14 @@ def file_get_modification_date(xml_header: ET.Element) -> str:
     return xml_header.findall(tags.modification_date)[0].text.strip()
 
 
-def section_contains_substring(substring: str, section: ET.Element)-> bool:
-    return section_contains_header_substring(substring, section) or section_contains_paragraph_substring(substring, section)
+def section_contains_substring(substring: str, section: ET.Element) -> bool:
+    return section_contains_header_substring(substring, section) or section_contains_paragraph_substring(substring,
+                                                                                                         section)
 
 
-def section_contains_substring_set(substrings: list[str], section: ET.Element)-> bool:
-    return section_contains_header_substring_set(substrings, section) or section_contains_paragraph_substring_set(substrings, section)
+def section_contains_substring_set(substrings: list[str], section: ET.Element) -> bool:
+    return section_contains_header_substring_set(substrings, section) or section_contains_paragraph_substring_set(
+        substrings, section)
 
 
 def section_contains_header_tag(tag: str, head: ET.Element):
@@ -35,7 +40,6 @@ def section_contains_header_substring(substring: str, section: ET.Element) -> bo
     for head in section.findall(tags.header):
         if substring.lower() in head.text.lower():
             return True
-
     return False
 
 
@@ -84,7 +88,7 @@ def section_append_paragraphs(section: ET.Element) -> str:
     return combined_text
 
 
-def section_get_paragraph_indices(index: int, section: ET.Element) -> list[int]:
+def section_get_paragraph_indices(index: int, section: ET.Element) -> Element:
     return section.findall(tags.paragraph)[index]
 
 
@@ -95,7 +99,7 @@ def section_get_paragraph_text(index: int, section: ET.Element) -> str:
 def get_paragraphs_by_header(header: str, xml: ET.Element):
     res = []
     for section in xml:
-        if section_contains_header_substring(header, section[0]):
+        if section_contains_header_substring(header, section):
             for txt in reversed(section):
                 txt = txt.text
                 res.append(txt)

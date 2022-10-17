@@ -17,15 +17,16 @@ roman_numbers = {
 }
 
 months = {
-    "january": "1",
-    "february": "2",
-    "march": "3",
-    "april": "4",
-    "may": "5",
-    "june": "6",
-    "july": "7",
-    "august": "8",
-    "september": "9",
+    "january": "01",
+    "february": "02",
+    "march": "03",
+    "april": "04",
+    "may": "05",
+    "june": "06",
+    "july": "07",
+    "august": "08",
+    "september": "09",
+    "sept": "09",
     "october": "10",
     "november": "11",
     "december": "12"
@@ -61,20 +62,23 @@ def convert_roman_numbers(date: str):
     return date
 
 
-def convert_article(article: str):
-    num = article.split(' ')[1]
-    newnum = ""
-    for c in num:
-        if c == '(':
-            newnum += '.'
-        elif c == ')':
-            continue
-        else:
-            newnum += c
-    return 'article ' + newnum
+def convert_articles(articles: [str]):
+    res = []
+    for article in articles:
+        num = article.split(' ')[1]
+        newnum = ""
+        for c in num:
+            if c == '(':
+                newnum += '.'
+            elif c == ')':
+                continue
+            else:
+                newnum += c
+        res.append('article ' + newnum)
+    return res
 
 
-def getDate(txt):
+def get_date(txt):
     if txt != '':
         txt = txt.lower()
         try:

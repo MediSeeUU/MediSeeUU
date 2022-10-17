@@ -1,7 +1,3 @@
-venv/
-.vscode/
-medctrl-scraper/PDF_scraper/EC decision parser Vincent/decisions/
-.idea
 # generic python gitignore taken from github
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
@@ -127,6 +123,9 @@ cmake-build-*/
 # IntelliJ
 out/
 
+# VS Code
+.vscode/
+
 # JIRA plugin
 atlassian-ide-plugin.xml
 
@@ -139,8 +138,8 @@ fabric.properties
 # idea folder
 .idea
 
-# all PDFs & xmls
+# all PDFs & test data
 *.pdf
 medctrl-scraper/PDF_scraper/text_scraper/parsers/test_data/
-medctrl-scraper/PDF_scraper/text_scraper/testdata/
 medctrl-scraper/PDF_scraper/text_scraper/data/
+medctrl-scraper/PDF_scraper/text_scraper/test_data/
