@@ -28,10 +28,11 @@ def pdf_parser(directory: str):
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
 
     # 4 concurrent threads to maximize use of all hyper-threads/SMT threads in case one is stalled
-    joblib.Parallel(n_jobs=4, require=None)(
+    joblib.Parallel(n_jobs=12, require=None)(
         joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
         directory_folders)
-    # parse_folder(path.join(directory, directory_folders[0]), directory_folders[0])
+    # for medicine_folder in medicine_folders:
+    #     parse_folder(path.join(directory, medicine_folder), medicine_folder)
 
 
 # scraping on medicine folder level
@@ -44,11 +45,17 @@ def parse_folder(directory: str, folder_name):
     for file in directory_files:
         if "dec" in file or ".xml" in file or ".pdf" not in file:
             continue
+
         # Skip file if XML is already created (temporary)
         # if file[:len(file) - 4] + ".xml" in directory_files:
         #     continue
-        file_path = path.join(directory, file)
-        xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
+
+        try:
+            file_path = path.join(directory, file)
+            xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
+        except:
+            print("failed pdf to xml conversion: " + path.join(directory, file))
+            continue
 
     # update list of files and filter out relevant files for each parser
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
@@ -66,7 +73,7 @@ def parse_folder(directory: str, folder_name):
 
     for file in epar_files:
         medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
-        medicine_struct = parse_file(file, medicine_struct)
+        # medicine_struct = parse_file(file, medicine_struct)
 
     for file in omar_files:
         medicine_struct = parse_file(file, medicine_struct)
@@ -79,4 +86,4 @@ def parse_folder(directory: str, folder_name):
 
 
 # pdf_parser("test_data")
-# pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
+pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
