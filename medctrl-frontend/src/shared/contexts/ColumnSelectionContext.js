@@ -14,11 +14,11 @@ export function useColumnSelection() {
 
 // Represents the default column selection
 export const defaultColumns = [
-  'eunumber',
-  'brandname',
-  'mah',
-  'decisiondate',
-  'atccode',
+  'eu_pnumber',
+  'eu_brand_name',
+  'eu_mah',
+  'eu_aut_date',
+  'atc_code',
 ]
 
 // Provider component that provides the column selection state in the application

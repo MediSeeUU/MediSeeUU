@@ -11,7 +11,7 @@ export default function cleanFetchedData(fetchedData, structData) {
     const dataPoint = fetchedData[i]
     // The datapoint should only be included if it is a valid datapoint
     // This is the case when it has a non null eunumber (Short EU Number)
-    if (dataPoint.eunumber && structData) {
+    if (dataPoint.eu_pnumber && structData) {
       cleanedData.push(cleanFetchedDataPoint(dataPoint, structData))
     }
   }
@@ -69,17 +69,6 @@ function cleanFetchedDataPoint(fetchedDataPoint, structData) {
         typeValue
       )
     }
-  }
-
-  // The decision year can be derived from the year of the decision date (M/D/Y)
-  let DecisionYear = defValue
-  let DecisionDate = cleanedDataPoint['decisiondate']
-  if (DecisionDate === defValue) {
-    DecisionYear = defValue
-    cleanedDataPoint['decisionyear'] = DecisionYear
-  } else if (DecisionDate) {
-    DecisionYear = parseInt(DecisionDate.split('/')[2])
-    cleanedDataPoint['decisionyear'] = DecisionYear
   }
 
   defaultColumns.forEach((key) => {
