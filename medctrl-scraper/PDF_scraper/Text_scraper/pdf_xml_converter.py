@@ -17,7 +17,7 @@ def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
         sections = split_paragraphs(paragraphs)
         print_xml(sections, output_filepath, document.metadata["creationDate"], document.metadata["modDate"])
     except fitz.FileDataError:
-        print(source_filepath)
+        print("Could not open PDF: " + source_filepath)
 
 
 def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
