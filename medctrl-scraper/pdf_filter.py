@@ -61,11 +61,11 @@ def filter_pdf(filename, data_dir):
 
     # check if file is readable
     try:
-        #when readable check if its type matches
+        # when readable check if its type matches
         if check_readable(pdf):
             if 'dec' in filename:
                 return check_decision(filename, pdf)
-        #file not readable
+        # file not readable
         else: 
             pdf.close()
             return filename + '@no_text'
@@ -104,16 +104,17 @@ def check_readable(pdf):
     # Text is readable
     return True
 
+
 def check_decision(filename, pdf):
     try:
-        #gets text of second page
+        # gets text of second page
         first_page = pdf[0]
         txt = first_page.get_text()
-        #checks if it is a decision file
+        # checks if it is a decision file
         if bool(re.search(r'commission \w{0,}\s{0,1}decision', txt.lower())):
             return filename + '@valid'
         else:
-            #try second page
+            # try second page
             second_page = pdf[1]
             txt = second_page.get_text()
             if bool(re.search(r'commission \w{0,}\s{0,1}decision', txt.lower())):

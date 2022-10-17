@@ -8,6 +8,7 @@ import fitz
 
 # EC Decision document
 
+
 # Given a pdf, returns one long string of text
 def get_txt_from_pdf(pdf):
     pdf_format = pdf_helper.get_text_format(pdf)
@@ -95,6 +96,7 @@ def get_data_orphan(filename,txt):
     filedata['eu_od_initial']           = dec_get_od(txt, date)
     filedata['eu_mah_initial']          = dec_get_mah(txt)
     filedata['eu_od_comp_date']         = dec_get_od_comp_date(txt)
+    return filedata
 
 #FUNCTIONS FOR EACH ATTRIBUTE
 
