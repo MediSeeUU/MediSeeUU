@@ -17,7 +17,7 @@ import re
 def filter_all_pdfs():
     print(f'Filtering all PDF files...')
     f = open('retry.txt', 'w', encoding="utf-8")  # open/clean output file
-    data_dir = 'PDF_scraper/text_scraper/test_data'
+    data_dir = 'PDF_scraper/text_scraper/data'
     all_data = Parallel(n_jobs=8)(
         delayed(filter_folder)(os.path.join(data_dir, folder)) for folder in
         os.listdir(data_dir))
@@ -77,7 +77,7 @@ def filter_pdf(filename: str, data_dir: str):
         else:
             pdf.close()
             os.remove(file_path)
-            return filename + '@no_text'
+            return filename + '@corrupt'
     # could not parse
     except:
         # check if html
@@ -112,9 +112,9 @@ def check_readable(pdf: fitz.Document):
     no_text = check_for_no_text(pdf)
     # Text is not readable
     if no_text:
-        return True
+        return False
     # Text is readable
-    return False
+    return True
 
 
 def check_decision(filename, file_path, pdf):
@@ -134,7 +134,6 @@ def check_decision(filename, file_path, pdf):
     except:
         pass
     pdf.close()
-    print(file_path)
     os.remove(file_path)
     return filename + '@wrong_doctype'
 

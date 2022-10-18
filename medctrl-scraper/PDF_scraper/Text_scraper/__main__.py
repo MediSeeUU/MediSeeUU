@@ -10,13 +10,15 @@ import multiprocessing
 # external parsers
 import parsers.ec_parse as ec_parse
 import parsers.epar_parse as epar_parse
+import parsers.omar_parse as omar_parse
 
 
 # Main file to run all parsers
 
-# TODO: replace this stub parse, fake function until other parsers are reworked
-def parse_file(_: str, medicine_struct: pis.parsed_info_struct):
-    return medicine_struct
+def main():
+    # Scrape all PDF files in the data folder
+    directory = "data"
+    pdf_parser(directory)
 
 
 # datetime to string serializer for json dumping
@@ -26,12 +28,14 @@ def datetime_serializer(date: pis.datetime.datetime):
 
 
 def pdf_parser(directory: str):
+    print("Parsing PDF files")
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
         joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
         directory_folders)
+    print("Done!")
 
     # Single-threaded parsing
     # for folder in directory_folders:
@@ -60,13 +64,14 @@ def parse_folder(directory: str, folder_name):
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
     decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file]
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
-    epar_files = [file for file in directory_files if ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
+    epar_files = [file for file in directory_files if
+                  ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
     omar_files = [file for file in directory_files if "omar" in file and ".xml" in file]
 
     # call parsers on correct files and update medicine struct
     for file in decision_files:
         medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
-    
+
     for file in annex_files:
         medicine_struct = ap.parse_file(file, medicine_struct)
 
@@ -74,7 +79,7 @@ def parse_folder(directory: str, folder_name):
         medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
 
     for file in omar_files:
-        medicine_struct = parse_file(file, medicine_struct)
+        medicine_struct = omar_parse.parse_file(file, directory, medicine_struct)
 
     # dump json result to medicine folder directory
     json_file = open(path.join(directory, folder_name) + "_pdf_parser.json", "w")
@@ -83,6 +88,5 @@ def parse_folder(directory: str, folder_name):
     json_file.close()
 
 
-# cProfile.run('pdf_parser("data")')
-pdf_parser("data")
-# pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
+if __name__ == "__main__":
+    main()

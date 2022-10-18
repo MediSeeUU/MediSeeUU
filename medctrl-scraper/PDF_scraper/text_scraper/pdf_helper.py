@@ -30,7 +30,7 @@ def combine_text(lines, lower, old_font, old_size, old_text, results):
     # Start new line when a header number is found after
     # another header number with text behind it
     if header_split_check(old_text, text):
-        append_text(old_text, old_size, old_font, results, lower)
+        append_text(old_text.replace("\\\\", "\\"), old_size, old_font, results, lower)
         old_font, old_size, old_text = font, size, text
     # Combine text that has the same size and font
     # Also combine text that has the same size and is Bold
@@ -47,7 +47,7 @@ def combine_text(lines, lower, old_font, old_size, old_text, results):
         old_font, old_size, old_text = font, size, text
     # Text is different format, add old_text to results and replace it with new text
     else:
-        append_text(old_text, old_size, old_font, results, lower)
+        append_text(old_text.replace("\\\\", "\\"), old_size, old_font, results, lower)
         old_font, old_size, old_text = font, size, text
     return old_font, old_size, old_text
 

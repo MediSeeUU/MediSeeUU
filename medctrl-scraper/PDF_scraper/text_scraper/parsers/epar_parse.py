@@ -1,4 +1,4 @@
-# EPAR parsers
+# EPAR parser
 import re
 import helper as h
 import xml_parsing_utils as xpu
@@ -18,7 +18,6 @@ def get_all(filename: str, xml_data: ET.Element):
             "eu_prime_initial": get_prime(xml_data),
             "ema_rapp": get_rapp(xml_data),
             "ema_corapp": get_corapp(xml_data)}
-    #print("Parsing: " + filename)
     return epar
 
 
@@ -84,15 +83,14 @@ def get_prime(xml: ET.Element):
 def get_rapp(xml: ET.Element):
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(r"rapporteur: (.*?) co-rapporteur:", p):
-            rapporteur = re.search(r"rapporteur: (.*?) co-rapporteur:", p)[0][12:][:len()]
-            if 'greg' in rapporteur:
-                print('rapporteur: ' + rapporteur)
-            return rapporteur.replace(" \\n", "")
+            rapporteur = re.search(r"rapporteur: (.*?) co-rapporteur:", p)[0][12:]
+            return rapporteur.replace("\\n", "")[:len(rapporteur) - 16].rstrip()
         if re.findall(r"rapporteur: (.*?) \\n", p):
             rapporteur = re.search(r"rapporteur: (.*?) \\n", p)[0][12:]
+            return rapporteur.replace("\\n", "").rstrip()
         if re.findall(r"rapporteur: (.*?)", p):
             rapporteur = re.search(r"rapporteur: (.*?)", p)[0][12:]
-            return rapporteur.replace(" \\n", "")
+            return rapporteur.replace("\\n", "").rstrip()
     return "no_rapporteur"
 
 
@@ -100,6 +98,6 @@ def get_rapp(xml: ET.Element):
 def get_corapp(xml: ET.Element):
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(r"co-rapporteur: (.*?) \\n", p):
-            rapporteur = re.search(r"co-rapporteur: (.*?) \\n", p)[0][15:]
-            return rapporteur.replace(" \\n", "")
+            rapporteur = re.search(r"co-rapporteur: (.*?)\\n", p)[0][15:]
+            return rapporteur.replace("\\n", "").rstrip()
     return "no_co-rapporteur"
