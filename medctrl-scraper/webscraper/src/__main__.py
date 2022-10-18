@@ -18,12 +18,13 @@ import ema_scraper
 tqdm_format_string = "{l_bar}{bar}| {n_fmt}/{total_fmt} "
 
 # Global configuration of the log file
-logging.basicConfig(filename='webscraper.log', level=logging.INFO)
+log_handler_console = logging.StreamHandler()
+log_handler_file = logging.FileHandler("webscraper.log")
+
+logging.basicConfig(level=logging.INFO, handlers=[log_handler_console, log_handler_file])
 
 # Local instance of a logger
 log = logging.getLogger(__name__)
-log_handler = logging.StreamHandler()
-log.addHandler(log_handler)
 
 log.info(f"=== NEW LOG {datetime.today()} ===")
 
@@ -32,12 +33,12 @@ log.info(f"=== NEW LOG {datetime.today()} ===")
 Path("../data/CSV").mkdir(exist_ok=True, parents=True)
 Path("../data/medicines").mkdir(exist_ok=True)
 
-log.info("SUCCESS on Generating directories")
+log.info("TASK SUCCESS on Generating directories")
 
 medicine_codes = ec_scraper.scrape_medicines_list(
     "https://ec.europa.eu/health/documents/community-register/html/reg_hum_act.htm")
 
-log.info("SUCCESS on scraping all medicine URLs of EC")
+log.info("TASK SUCCESS on scraping all medicine URLs of EC")
 
 
 # Paralleled function for getting the URL codes. They are written to a CSV file
@@ -66,7 +67,7 @@ def get_urls_ec(medicine_url, eu_n):
         except Exception:
             attempts += 1
             if attempts == max_attempts:
-                log.error(f"failed dec/anx/ema url getting for {eu_n}")
+                log.error(f"FAILED dec/anx/ema url getting for {eu_n}")
                 break
 
 
@@ -88,51 +89,48 @@ def get_urls_ema(medicine, url: str):
         except Exception:
             attempts += 1
             if attempts == max_attempts:
-                log.error(f"failed ema_pdf url getting for {medicine, url}")
+                log.error(f"FAILED ema_pdf url getting for {medicine, url}")
                 break
 
 
 # TODO: These variables are for debugging, remove in final
 # NOTE: Use the lines of code below to fill all the CSV files.
 # If you have a complete CSV file, this line of code below is not needed.
-scrape_ec: bool = True
+scrape_ec: bool = False
 
 # NOTE: Use the lines of code below to fill epar.csv
 # epar.csv will contain the links to the epar pdfs.
-scrape_ema: bool = True
+scrape_ema: bool = False
 
 # NOTE: Use the line of code below to download all files.
-download_files: bool = False
+download_files: bool = True
 
 with Parallel(n_jobs=12) as parallel:
     # TODO: Progressbar needs to be below logging output
     #       https://stackoverflow.com/questions/6847862/how-to-change-the-format-of-logged-messages-temporarily-in-python
-    # log_handler.setFormatter(logging.Formatter("\r%(message)s"))
+    # log_handler_console.setFormatter(logging.Formatter("\r%(message)s"))
     if scrape_ec:
-        log.info("Scraping all medicines on the EC website")
-
+        log.info("TASK START scraping all medicines on the EC website")
         parallel(
             delayed(get_urls_ec)(medicine_url, eu_n)
             for (medicine_url, eu_n)
             in tqdm.tqdm(medicine_codes, bar_format=tqdm_format_string)
         )
 
-        log.info("FINISHED")
+        log.info("TASK FINISHED EC scrape")
 
     if scrape_ema:
-        log.info("Scraping all individual medicine pages of EMA")
+        log.info("TASK START scraping all individual medicine pages of EMA")
         ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0).squeeze().to_dict()
-
         parallel(
             delayed(get_urls_ema)(url[0], url[1])
             for url
             in tqdm.tqdm(ema.items(), bar_format=tqdm_format_string)
         )
+        log.info("TASK FINISHED EMA scrape")
 
     # TODO: Same TODO as above
-    # log_handler.setFormatter(logging.Formatter("%(message)s"))
-    log.info("FINISHED")
-
+    # log_handler_console.setFormatter(logging.Formatter("%(message)s"))
 
 if download_files:
     download.run_parallel()
