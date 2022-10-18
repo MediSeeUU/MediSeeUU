@@ -37,7 +37,7 @@ class HistoryBrandNameAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin
 
     resource_class = HistoryBrandNameResource
     list = (
-        "eu_brand_name_id",
+        "id",
         "eu_pnumber",
         "change_date",
         "eu_brand_name",

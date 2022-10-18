@@ -37,7 +37,7 @@ class HistoryATCCodeAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
 
     resource_class = HistoryATCCodeResource
     list = (
-        "atc_code_id",
+        "id",
         "eu_pnumber",
         "change_date",
         "atc_code",

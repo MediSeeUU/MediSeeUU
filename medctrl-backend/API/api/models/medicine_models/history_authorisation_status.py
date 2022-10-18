@@ -9,8 +9,6 @@ class HistoryAuthorisationStatus(models.Model):
     """
     Model class for the authorisation history table.
     """
-    eu_aut_status_id = models.IntegerField(db_column="eu_aut_status_id", primary_key=True, null=False)
-
     eu_pnumber = models.ForeignKey("Medicine", models.CASCADE, null=False)
 
     change_date = models.DateField(db_column="change_date", null=True)

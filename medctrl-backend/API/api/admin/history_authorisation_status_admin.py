@@ -37,7 +37,7 @@ class HistoryAuthorisationStatusAdmin(import_admin.ImportExportModelAdmin, Cache
 
     resource_class = HistoryAuthorisationStatusResource
     list = (
-        "eu_aut_status_id",
+        "id",
         "eu_pnumber",
         "change_date",
         "eu_aut_status",

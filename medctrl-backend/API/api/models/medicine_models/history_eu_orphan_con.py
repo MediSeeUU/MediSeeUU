@@ -5,12 +5,10 @@ from django.db import models
 from .common import create_dashboard_column, Category
 
 
-class HistoryEuOrphanCon(models.Model):
+class HistoryEUOrphanCon(models.Model):
     """
     Model class for the eu orphan conditions history table.
     """
-    eu_orphan_con_id = models.IntegerField(db_column="eu_orphan_con_id", primary_key=True, null=False)
-
     eu_pnumber = models.ForeignKey("Medicine", models.CASCADE, db_column="eu_pnumber", null=False)
 
     change_date = models.DateField(db_column="change_date", null=True)
@@ -23,4 +21,4 @@ class HistoryEuOrphanCon(models.Model):
     )
 
     class Meta:
-        db_table = "history_atc_code"
+        db_table = "history_eu_orphan_con"

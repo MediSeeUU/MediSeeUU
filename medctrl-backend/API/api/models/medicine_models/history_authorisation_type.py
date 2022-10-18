@@ -9,8 +9,6 @@ class HistoryAuthorisationType(models.Model):
     """
     Model class for the authorisation history table.
     """
-    eu_aut_type_id = models.IntegerField(db_column="eu_aut_type_id", primary_key=True, null=False)
-
     eu_pnumber = models.ForeignKey("Medicine", models.CASCADE, db_column="eu_pnumber", null=False)
 
     change_date = models.DateField(db_column="change_date", null=True)
