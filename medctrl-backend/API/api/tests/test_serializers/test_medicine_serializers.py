@@ -35,7 +35,8 @@ class PublicMedicineSerializerTestCase(TestCase):
             eu_atmp=False,
             aut_url="auturl.com",
             smpc_url="smpcurl.com",
-            epar_url="eparurl.com"
+            epar_url="eparurl.com",
+            ema_number_check=True
         )
         self.medicine.save()
         HistoryATCCode.objects.create(
@@ -103,7 +104,8 @@ class PublicMedicineSerializerTestCase(TestCase):
             "eu_aut_status": "ACTIVE",
             "eu_aut_type": "STANDARD",
             "eu_brand_name": "Brand Name",
-            "eu_mah": "MAH",
+            "eu_mah_initial": "MAH",
+            "eu_mah_current": "MAH",
             "ema_number_check": True,
             "eu_od": True,
             "eu_prime": False,

@@ -53,17 +53,18 @@ def get_medicine_info(perm, mock=None):
 
     # for every field created with create_dashboard_column(), add it to the correct category in JSON
     for field in models_fields:
-        if hasattr(field, "dashboard_columns") and has_permission(perm, field):
+        if hasattr(field, "dashboard_columns") and has_permission(perm, field.name):
             for dashboard_column in field.dashboard_columns:
-                data[dashboard_column.category.value].append({
-                    "data-key": dashboard_column.data_key,
-                    "data-format": dashboard_column.data_format,
-                    "data-value": dashboard_column.data_value,
-                })
+                if has_permission(perm, dashboard_column.data_key):
+                    data[dashboard_column.category.value].append({
+                        "data-key": dashboard_column.data_key,
+                        "data-format": dashboard_column.data_format,
+                        "data-value": dashboard_column.data_value,
+                    })
 
     return data
 
 
 # checks if user has permission to view a field
-def has_permission(perm, field):
-    return field.name in perm
+def has_permission(perm, name):
+    return name in perm

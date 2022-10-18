@@ -20,7 +20,8 @@ class UrlsSerializerTestCase(TestCase):
             eu_atmp=False,
             aut_url="auturl.com",
             smpc_url="smpcurl.com",
-            epar_url="eparurl.com"
+            epar_url="eparurl.com",
+            ema_number_check=True
         )
         self.medicine.save()
 
