@@ -30,7 +30,7 @@ def update_cache():
         )  # We set cache timeout to none so it never expires
         urls_serializer = UrlsSerializer(queryset, many=True)
         cache.set(
-            "urls_cache", medicine_serializer.data, None
+            "urls_cache", urls_serializer.data, None
         )  # We set cache timeout to none so it never expires
 
     else:

@@ -41,7 +41,8 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
     eu_aut_status = serializers.SerializerMethodField()
     eu_aut_type = serializers.SerializerMethodField()
     eu_brand_name = serializers.SerializerMethodField()
-    eu_mah = serializers.SerializerMethodField()
+    eu_mah_initial = serializers.SerializerMethodField()
+    eu_mah_current = serializers.SerializerMethodField()
     eu_od = serializers.SerializerMethodField()
     eu_prime = serializers.SerializerMethodField()
 
@@ -89,14 +90,24 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return BrandNameSerializer(instance=queryset, read_only=True).data
 
-    # retrieves mah from database for each medicine
-    def get_eu_mah(self, mah):
+    # retrieves initial mah from database for each medicine
+    def get_eu_mah_initial(self, mah):
+        queryset = HistoryMAH.objects.filter(eu_pnumber=mah.eu_pnumber)
+        try:
+            queryset = queryset[0]
+        except:
+            queryset = None
+        return MAHSerializer(instance=queryset, read_only=True).data
+
+    # retrieves current mah from database for each medicine
+    def get_eu_mah_current(self, mah):
         queryset = HistoryMAH.objects.filter(eu_pnumber=mah.eu_pnumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
             queryset = None
         return MAHSerializer(instance=queryset, read_only=True).data
+
 
     # retrieves orphan designation from database for each medicine
     def get_eu_od(self, orphan_designation):
@@ -125,13 +136,13 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             "eu_aut_status",
             "eu_aut_type",
             "eu_brand_name",
-            "eu_mah",
+            "eu_mah_initial",
+            "eu_mah_current",
             "eu_od",
             "eu_prime",
-
         ]:
             field_representation = representation.pop(field)
             for key in field_representation:
-                representation[key] = field_representation[key]
+                representation[field] = field_representation[key]
 
         return representation

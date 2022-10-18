@@ -79,11 +79,41 @@ class LegalBases(models.TextChoices):
     article10_c = "article 10(c)"
 
 
-def create_dashboard_column(field, header: Category, data_format, display_name: str):
+class DashboardColumn:
+    """
+    Holds values used in medicine_info_json to create a column in the dashboard
+    """
+    def __init__(self, category, data_key, data_format, data_value):
+        self.category = category
+        self.data_key = data_key
+        self.data_format = data_format
+        self.data_value = data_value
+
+
+def create_dashboard_column(field, category: Category, data_format, display_name: str):
     """
     Sets attributes on a model field that's used in medicine_info_json
     """
-    setattr(field, "category", header)
-    setattr(field, "data_format", data_format)
-    setattr(field, "data_value", display_name)
+    dashboard_column = DashboardColumn(category, field.db_column, data_format, display_name)
+    setattr(field, "dashboard_columns", [dashboard_column])
+    return field
+
+
+def create_dashboard_history_columns(field, category: Category, data_format, display_name: str):
+    """
+    Creates two dashboard columns out of a single model column, an initial and a current one for histories
+    """
+    initial_dashboard_column = DashboardColumn(
+        category,
+        field.db_column + "_initial",
+        data_format,
+        "Initial " + display_name
+    )
+    current_dashboard_column = DashboardColumn(
+        category,
+        field.db_column + "_current",
+        data_format,
+        "Current " + display_name
+    )
+    setattr(field, "dashboard_columns", [initial_dashboard_column, current_dashboard_column])
     return field

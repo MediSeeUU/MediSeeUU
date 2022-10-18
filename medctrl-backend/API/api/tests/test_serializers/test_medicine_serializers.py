@@ -6,7 +6,6 @@ from api.models.medicine_models import (
     HistoryAuthorisationType,
     HistoryBrandName,
     HistoryMAH,
-    HistoryEMANumberCheck,
     HistoryOD,
     HistoryPrime,
 )
@@ -80,12 +79,6 @@ class PublicMedicineSerializerTestCase(TestCase):
             eu_pnumber=self.medicine,
             change_date="2022-01-07",
             eu_mah="MAH",
-        )
-        HistoryEMANumberCheck.objects.create(
-            ema_number_check_id=1,
-            eu_pnumber=self.medicine,
-            change_date="2022-01-08",
-            ema_number_check=True,
         )
 
     def test_public_medicine_serializer(self):

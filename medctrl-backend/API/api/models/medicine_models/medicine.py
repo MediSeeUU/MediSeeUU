@@ -94,7 +94,7 @@ class Medicine(models.Model):
     )
 
     ema_number_check = create_dashboard_column(
-        models.BooleanField(db_column="eu_number_check", null=True),
+        models.BooleanField(db_column="ema_number_check", null=True),
         Category.General_Information,
         "bool",
         "EMA Number Check"

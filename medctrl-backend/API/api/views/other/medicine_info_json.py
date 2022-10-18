@@ -53,13 +53,13 @@ def get_medicine_info(perm, mock=None):
 
     # for every field created with create_dashboard_column(), add it to the correct category in JSON
     for field in models_fields:
-        if hasattr(field, "category") and hasattr(field, "data_format") \
-                and hasattr(field, "data_value") and has_permission(perm, field):
-            data[field.category.value].append({
-                "data-key": field.name,
-                "data-format": field.data_format,
-                "data-value": field.data_value,
-            })
+        if hasattr(field, "dashboard_columns") and has_permission(perm, field):
+            for dashboard_column in field.dashboard_columns:
+                data[dashboard_column.category.value].append({
+                    "data-key": dashboard_column.data_key,
+                    "data-format": dashboard_column.data_format,
+                    "data-value": dashboard_column.data_value,
+                })
 
     return data
 
