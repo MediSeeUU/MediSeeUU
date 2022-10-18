@@ -115,7 +115,7 @@ def get_ec_json_objects(html_active: requests.Response) -> list[json]:
     #   which returns the values of the two JSON objects "dataSet_product_information" and "dataSet_proc"
     plaintext_jsons = re.findall(r"var .+?\K\[.*?\](?=;)", script_tag.string, re.DOTALL)
 
-    parsed_jsons: list[json] = list(map(lambda plaintext: json.loads(plaintext), plaintext_jsons))
+    parsed_jsons: list[json] = list(map(lambda plaintext: json.loads(plaintext, strict=False), plaintext_jsons))
     return parsed_jsons
     
 
@@ -185,6 +185,7 @@ def get_data_from_medicine_json(medicine_json: json, eu_num: str, medicine_type:
             case "ema_links":
                 for json_obj in row["meta"]:
                     ema_url_list.append(json_obj["url"])
+                    # TODO: retrieve date for every PDF
 
     # TODO: logging when an attribute is not found
     # Currently when an attribute is not found it is simply printed to the console

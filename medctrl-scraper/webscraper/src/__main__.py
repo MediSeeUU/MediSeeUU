@@ -1,6 +1,3 @@
-# Entry point of the Python code
-# This will run if you run `python3 .` in the directory
-
 import csv
 import json
 import logging
@@ -94,14 +91,14 @@ def get_urls_ema(medicine, url: str):
             else:
                 url = ''
             pdf_url = ema_scraper.pdf_links_from_url(url)
-            with open("../data/CSV/epar.csv", 'a') as f:
+            with open("../data/CSV/epar.csv", 'a', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow([medicine, pdf_url])
             success = True
         except Exception:
             attempts += 1
             if attempts == max_attempts:
-                log.error(f"failed ema_pdf url getting for {medicine, url}")
+                log.error(f"FAILED ema_pdf url getting for {medicine, url}")
                 break
 
 
