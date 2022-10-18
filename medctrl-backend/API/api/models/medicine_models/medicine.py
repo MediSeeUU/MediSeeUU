@@ -93,13 +93,6 @@ class Medicine(models.Model):
         "EU ATMP"
     )
 
-    ema_number_check = create_dashboard_column(
-        models.BooleanField(db_column="ema_number_check", null=True),
-        Category.General_Information,
-        "bool",
-        "EMA Number Check"
-    )
-
     aut_url = create_dashboard_column(
         models.URLField(db_column="aut_url", null=False),
         Category.General_Information,
@@ -119,6 +112,132 @@ class Medicine(models.Model):
         Category.General_Information,
         "link",
         "Initial Authorisation EPAR Link"
+    )
+
+    ema_number_check = create_dashboard_column(
+        models.BooleanField(db_column="ema_number_check", null=True),
+        Category.General_Information,
+        "bool",
+        "EMA Number Check"
+    )
+
+    eu_accel_assess_g = create_dashboard_column(
+        models.BooleanField(db_column="eu_accel_assess_g", null=True),
+        Category.General_Information,
+        "bool",
+        "EU accelerated assessment granted"
+    )
+
+    eu_accel_assess_m = create_dashboard_column(
+        models.BooleanField(db_column="eu_accel_assess_m", null=True),
+        Category.General_Information,
+        "bool",
+        "EU accelerated assessment maintained"
+    )
+
+    assess_time_days_total = create_dashboard_column(
+        models.IntegerField(db_column="assess_time_days_total", null=False),
+        Category.General_Information,
+        "number",
+        "Duration of initial EU authorisation assessment procedure (total days)"
+    )
+
+    assess_time_days_active = create_dashboard_column(
+        models.IntegerField(db_column="assess_time_days_active", null=False),
+        Category.General_Information,
+        "number",
+        "Duration of initial EU authorisation assessment procedure (active days)"
+    )
+
+    assess_time_days_cstop = create_dashboard_column(
+        models.IntegerField(db_column="assess_time_days_cstop", null=False),
+        Category.General_Information,
+        "number",
+        "Duration of initial EU authorisation assessment procedure (clock-stop days)"
+    )
+
+    ema_reexamination = create_dashboard_column(
+        models.BooleanField(db_column="ema_reexamination", null=False),
+        Category.General_Information,
+        "bool",
+        "EMA re-examination performed"
+    )
+
+    eu_referral = create_dashboard_column(
+        models.BooleanField(db_column="eu_referral", null=False),
+        Category.General_Information,
+        "bool",
+        "EU referral"
+    )
+
+    eu_suspension = create_dashboard_column(
+        models.BooleanField(db_column="eu_suspension", null=False),
+        Category.General_Information,
+        "bool",
+        "EU suspension"
+    )
+
+    omar_url = create_dashboard_column(
+        models.URLField(db_column="omar_url", null=False),
+        Category.General_Information,
+        "link",
+        "URL to orphan maintanance assessment report"
+    )
+
+    odwar_url = create_dashboard_column(
+        models.URLField(db_column="odwar_url", null=False),
+        Category.General_Information,
+        "link",
+        "URL to orphan designation withdrawal assessment report"
+    )
+
+    eu_od_number = create_dashboard_column(
+        models.CharField(db_column="eu_od_number", max_length=255, null=False),
+        Category.General_Information,
+        "string",
+        "EU orphan designation number"
+    )
+
+    ema_od_number = create_dashboard_column(
+        models.CharField(db_column="ema_od_number", max_length=255, null=False),
+        Category.General_Information,
+        "string",
+        "EMA orphan designation number"
+    )
+
+    eu_od_con = create_dashboard_column(
+        models.TextField(db_column="eu_od_con", null=False),
+        Category.General_Information,
+        "string",
+        "EU orphan designation condition"
+    )
+
+    eu_od_date = create_dashboard_column(
+        models.DateField(db_column="eu_od_date", null=False),
+        Category.General_Information,
+        "date",
+        "EU orphan designation date"
+    )
+
+    eu_od_pnumber = create_dashboard_column(
+        models.CharField(db_column="eu_od_pnumber", max_length=255, null=False),
+        Category.General_Information,
+        "string",
+        "EU product number for orphan designation"
+    )
+
+    eu_od_sponsor = create_dashboard_column(
+        models.TextField(db_column="eu_od_sponsor", null=False),
+        Category.General_Information,
+        "string",
+        "Sponsor for EU orphan designation"
+    )
+
+    eu_od_comp_date = create_dashboard_column(
+        models.DateField(db_column="eu_od_comp_date", null=False),
+        Category.General_Information,
+        "date",
+        "COMP decision date (for EU orphan designation)"
     )
 
     class Meta:

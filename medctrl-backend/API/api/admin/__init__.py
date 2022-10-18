@@ -9,6 +9,7 @@ from .history_atc_code_admin import HistoryATCCodeResource
 from .history_authorisation_status_admin import HistoryAuthorisationStatusResource, HistoryAuthorisationStatusAdmin
 from .history_authorisation_type_admin import HistoryAuthorisationTypeResource, HistoryAuthorisationTypeAdmin
 from .history_brand_name_admin import HistoryBrandNameResource, HistoryBrandNameAdmin
+from .history_eu_orphan_con_admin import HistoryEUOrphanConResource, HistoryEUOrphanConAdmin
 from .history_mah_admin import HistoryMAHResource, HistoryMAHAdmin
 from .history_od_admin import HistoryODResource, HistoryODAdmin
 from .history_prime_admin import HistoryPrimeResource, HistoryPrimeAdmin
