@@ -6,5 +6,6 @@ from .public_history import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
+    EUOrphanConSerializer
 )
 from .public_medicine import PublicMedicineSerializer

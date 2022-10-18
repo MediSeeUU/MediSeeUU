@@ -19,6 +19,7 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
+    HistoryEUOrphanCon
 )
 from api.serializers.medicine_serializers.public import (
     ATCCodeSerializer,
@@ -28,6 +29,7 @@ from api.serializers.medicine_serializers.public import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
+    EUOrphanConSerializer
 )
 
 
@@ -45,6 +47,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
     eu_mah_current = serializers.SerializerMethodField()
     eu_od = serializers.SerializerMethodField()
     eu_prime = serializers.SerializerMethodField()
+    eu_orphan_con = serializers.SerializerMethodField()
 
     class Meta:
         """
@@ -126,6 +129,15 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         except:
             queryset = None
         return PrimeSerializer(instance=queryset, read_only=True).data
+
+        # retrieves primenumber from database for each medicine
+    def get_eu_orphan_con (self, prime):
+        queryset = HistoryEUOrphanCon.objects.filter(eu_pnumber=prime.eu_pnumber)
+        try:
+            queryset = queryset[len(queryset) - 1]
+        except:
+            queryset = None
+        return EUOrphanConSerializer(instance=queryset, read_only=True).data
 
     # creates one dimensional object from multiple dimensions
     def to_representation(self, obj):

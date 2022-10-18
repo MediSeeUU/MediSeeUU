@@ -15,6 +15,7 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
+    HistoryEUOrphanCon
 )
 
 
@@ -113,4 +114,17 @@ class PrimeSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryPrime
+        fields = "__all__"
+
+class EUOrphanConSerializer(serializers.ModelSerializer):
+    """
+    Authorisation table serializer for the view endpoint medicine
+    """
+
+    class Meta:
+        """
+        Meta information
+        """
+
+        model = HistoryEUOrphanCon
         fields = "__all__"

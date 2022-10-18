@@ -12,6 +12,7 @@ from .scraper import (
     OrphanDesignationSerializer,
     PrimeSerializer,
     UrlsSerializer,
+    EUOrphanConSerializer
 )
 from .public import (
     PublicMedicineSerializer,
@@ -22,4 +23,5 @@ from .public import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
+    EUOrphanConSerializer
 )

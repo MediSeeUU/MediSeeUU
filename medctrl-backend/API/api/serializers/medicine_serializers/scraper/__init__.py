@@ -6,6 +6,7 @@ from .history_serializers import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
+    EUOrphanConSerializer
 )
 from .medicine_flex_var_update import MedicineFlexVarUpdateSerializer
 from .medicine import MedicineSerializer
