@@ -16,7 +16,8 @@ def get_all(filename: str, xml_data: ET.Element):
             "chmp_opinion_date": get_opinion_date(xml_data),
             "eu_legal_basis": get_legal_basis(xml_data),
             "eu_prime_initial": get_prime(xml_data),
-            "ema_rapp": get_rapp(xml_data)}
+            "ema_rapp": get_rapp(xml_data),
+            "ema_corapp": get_corapp(xml_data)}
     #print("Parsing: " + filename)
     return epar
 
@@ -83,15 +84,22 @@ def get_prime(xml: ET.Element):
 def get_rapp(xml: ET.Element):
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(r"rapporteur: (.*?) co-rapporteur:", p):
-            rapporteur = re.search(r"rapporteur: (.*?) co-rapporteur:", p)[0][12:]
-            return rapporteur[:len(rapporteur) - 15]
+            rapporteur = re.search(r"rapporteur: (.*?) co-rapporteur:", p)[0][12:][:len()]
+            if 'greg' in rapporteur:
+                print('rapporteur: ' + rapporteur)
+            return rapporteur.replace(" \\n", "")
+        if re.findall(r"rapporteur: (.*?) \\n", p):
+            rapporteur = re.search(r"rapporteur: (.*?) \\n", p)[0][12:]
+        if re.findall(r"rapporteur: (.*?)", p):
+            rapporteur = re.search(r"rapporteur: (.*?)", p)[0][12:]
+            return rapporteur.replace(" \\n", "")
     return "no_rapporteur"
 
 
-# ema_rapp
-def get_co_rapp(xml: ET.Element):
+# ema_corapp
+def get_corapp(xml: ET.Element):
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
-        if re.findall(r"rapporteur: (.*?) co-rapporteur:", p):
-            rapporteur = re.search(r"rapporteur: (.*?) co-rapporteur:", p)[0][12:]
-            return rapporteur[:len(rapporteur) - 15]
-    return "no_co_rapporteur"
+        if re.findall(r"co-rapporteur: (.*?) \\n", p):
+            rapporteur = re.search(r"co-rapporteur: (.*?) \\n", p)[0][15:]
+            return rapporteur.replace(" \\n", "")
+    return "no_co-rapporteur"

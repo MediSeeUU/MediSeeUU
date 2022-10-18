@@ -33,6 +33,7 @@ def pdf_parser(directory: str):
         joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
         directory_folders)
 
+    # Single-threaded parsing
     # for folder in directory_folders:
     #     parse_folder(path.join(directory, folder), folder)
 
@@ -52,13 +53,8 @@ def parse_folder(directory: str, folder_name):
         # Skip file if XML is already created (temporary)
         if file[:len(file) - 4] + ".xml" in directory_files:
             continue
-
-        try:
-            file_path = path.join(directory, file)
-            xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
-        except:
-            print("failed pdf to xml conversion: " + path.join(directory, file))
-            continue
+        file_path = path.join(directory, file)
+        xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
     # update list of files and filter out relevant files for each parser
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
@@ -87,8 +83,6 @@ def parse_folder(directory: str, folder_name):
     json_file.close()
 
 
-# pdf_parser("test_data")
-pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
 # cProfile.run('pdf_parser("data")')
-# pdf_parser("data")
+pdf_parser("data")
 # pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")

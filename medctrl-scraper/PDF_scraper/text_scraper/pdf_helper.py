@@ -36,7 +36,7 @@ def combine_text(lines, lower, old_font, old_size, old_text, results):
     # Also combine text that has the same size and is Bold
     elif round(old_size) == round(size) and \
             (old_font == font or 'Bold' in old_font and 'Bold' in font):
-        old_text += text + '\n'
+        old_text += text + '\n '
         old_size, old_font = size, font
     # Add all spaces at the end
     # Sometimes, spaces are of a different font randomly
