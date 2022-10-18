@@ -9,13 +9,9 @@ class HistoryATCCode(models.Model):
     """
     Model class for the MAH history table.
     """
-    atc_code_id = models.IntegerField(db_column="atc_code_id", primary_key=True, null=False)
-
-
     eu_pnumber = models.ForeignKey("Medicine", models.CASCADE, db_column="eu_pnumber", null=False)
 
     change_date = models.DateField(db_column="change_date", null=True)
-
 
     atc_code = create_dashboard_column(
         models.CharField(db_column="atc_code", max_length=7),

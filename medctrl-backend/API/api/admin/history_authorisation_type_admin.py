@@ -37,7 +37,7 @@ class HistoryAuthorisationTypeAdmin(import_admin.ImportExportModelAdmin, CacheMo
 
     resource_class = HistoryAuthorisationTypeResource
     list = (
-        "eu_aut_type_id",
+        "id",
         "eu_pnumber",
         "change_date",
         "eu_aut_type",

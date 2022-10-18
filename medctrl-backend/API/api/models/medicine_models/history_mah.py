@@ -9,8 +9,6 @@ class HistoryMAH(models.Model):
     """
     Model class for the MAH history table.
     """
-    eu_mah_id = models.IntegerField(db_column="eu_mah_id", primary_key=True, null=False)
-
     eu_pnumber = models.ForeignKey("Medicine", models.CASCADE, db_column="eu_pnumber", null=False)
 
     change_date = models.DateField(db_column="change_date", null=True)

@@ -5,15 +5,15 @@ from django.contrib import admin
 from import_export import resources, admin as import_admin
 from api.models.medicine_models import (
     Medicine,
-    HistoryMAH,
+    HistoryEUOrphanCon,
 )
 from api.admin.common import import_foreign_key
 from api.admin.cachemodeladmin import CacheModelAdmin
 
 
-class HistoryMAHResource(resources.ModelResource):
+class HistoryEUOrphanConResource(resources.ModelResource):
     """
-    Resource for the HistoryMAH model.
+    Resource for the HistoryEUOrphanCon model.
     Has explicit foreign keys so Django import/export can automatically create the values if needed.
     """
 
@@ -21,27 +21,27 @@ class HistoryMAHResource(resources.ModelResource):
 
     class Meta:
         """
-        Meta class for HistoryMAHResource
+        Meta class for HistoryPrimeResource
         """
 
-        model = HistoryMAH
+        model = HistoryEUOrphanCon
         import_id_fields = (
             "eu_pnumber",
         )
 
 
-class HistoryMAHAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
+class HistoryEUOrphanConAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
-    Admin View for HistoryMAH
+    Admin View for HistoryEUOrphanCon
     """
 
-    resource_class = HistoryMAHResource
+    resource_class = HistoryEUOrphanConResource
     list = (
         "id",
         "eu_pnumber",
         "change_date",
-        "eu_mah",
+        "eu_orphan_con",
     )
 
 
-admin.site.register(HistoryMAH, HistoryMAHAdmin)
+admin.site.register(HistoryEUOrphanCon, HistoryEUOrphanConAdmin)

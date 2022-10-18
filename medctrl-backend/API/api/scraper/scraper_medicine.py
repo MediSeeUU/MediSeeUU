@@ -36,7 +36,9 @@ from api.serializers.medicine_serializers.scraper import (
 )
 from datetime import date
 from django.forms.models import model_to_dict
+import logging
 
+logger = logging.getLogger(__name__)
 
 class ScraperMedicine(APIView):
     """
@@ -69,6 +71,9 @@ class ScraperMedicine(APIView):
                 ).first()
                 # if exists update the medicine otherwise add it,
                 # update works only on flexible variables
+                logger.info("Van de medicine post request")
+                logger.info("current medicine:")
+                logger.info(current_medicine)
 
                 if current_medicine:
                     errors = self.update_flex_medicine(medicine, current_medicine)
