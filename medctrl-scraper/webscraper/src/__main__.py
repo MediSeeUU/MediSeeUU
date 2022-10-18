@@ -107,7 +107,7 @@ download_files: bool = True
 
 # NOTE: Use the line of code below to fill CSV files parallel:
 # for Windows users: set to 'False'
-parallel_csv_getting: bool = False
+parallel_csv_getting: bool = True
 
 with Parallel(n_jobs=12) as parallel:
     # TODO: Progressbar needs to be below logging output
@@ -144,4 +144,4 @@ with Parallel(n_jobs=12) as parallel:
     # log_handler_console.setFormatter(logging.Formatter("%(message)s"))
 
 if download_files:
-    download.download_all(parallel=True)
+    download.download_all(parallel_download=True)
