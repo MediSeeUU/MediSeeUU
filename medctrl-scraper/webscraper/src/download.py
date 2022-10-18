@@ -1,17 +1,16 @@
-import pandas as pd
-from joblib import Parallel, delayed
-import requests
-import regex as re
 import ast
+import logging
 from pathlib import Path
 
-import sys
-import os
-import logging
+import pandas as pd
+import requests
+from joblib import Parallel, delayed
 
-from requests import Response
+import regex as re
 
 log = logging.getLogger(__name__)
+log_handler = logging.StreamHandler()
+log.addHandler(log_handler)
 
 
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
@@ -27,15 +26,15 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
 
 
 # Download pdfs using the dictionaries created from the CSV files
-def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_type_dict: dict(), med_dict: dict()):
+def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_url_dict: dict[str, [str]], med_dict: dict[str, dict([str, str])]):
     file_counter = 0
-    for url in ast.literal_eval(pdf_type_dict[eu_num]):
+    for url in ast.literal_eval(pdf_url_dict[eu_num]):
         filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type, str(file_counter)]
         download_pdf_from_url(url, eu_num, filename_elements)
         file_counter += 1
 
 
-def download_pdfs_ema(eu_num: str, epar_dict: dict(), med_dict: dict()):
+def download_pdfs_ema(eu_num: str, epar_dict: dict[str, str], med_dict: dict[str, dict([str, str])]):
     if eu_num in epar_dict:
         url = epar_dict[eu_num]
         pdf_type = re.findall(r"(?<=epar-)(.*)(?=_en)", url)[0]
@@ -55,7 +54,7 @@ def read_csv_files():
 
 
 # TODO: Add a new function in a way that that function gets a medicine and downloads all files for that medicine.
-def download_medicine_files(eu_n: str, dec: dict(), anx: dict(), epar: dict(), med_info: dict()):
+def download_medicine_files(eu_n: str, dec: dict[str, [str]], anx: dict[str, [str]], epar: dict[str, str], med_info: dict[str, dict([str, str])]):
     attempts = 0
     max_attempts = 4
     success = False
@@ -72,12 +71,20 @@ def download_medicine_files(eu_n: str, dec: dict(), anx: dict(), epar: dict(), m
 
 
 # TODO: Fix downloading for epar files
-def download_all(parallel: bool):
+def download_all(parallel_download: bool):
     # Store the result of the csv converting into dictionaries
     decisions, annexes, epar, med_dict = read_csv_files()
-    if parallel:
-        Parallel(n_jobs=12)(delayed(download_medicine_files)
-                            (eu_n, decisions, annexes, epar, ast.literal_eval(med_dict[eu_n])) for eu_n in med_dict)
+    log.info("TASK START downloading pdf files from fetched urls from EC and EMA")
+    if parallel_download:
+        with Parallel(n_jobs=12) as parallel:
+            # Download the decision files, parallel
+            parallel(
+                delayed(download_medicine_files)(eu_n, decisions, annexes, epar, ast.literal_eval(med_dict[eu_n]))
+                for eu_n
+                in med_dict
+            )
+
     else:
         for eu_n in med_dict:
             download_medicine_files(eu_n, decisions, annexes, epar, ast.literal_eval(med_dict[eu_n]))
+    log.info("TASK FINISHED downloading pdf files")

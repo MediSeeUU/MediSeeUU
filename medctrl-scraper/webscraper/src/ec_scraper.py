@@ -113,6 +113,7 @@ def get_data_from_medicine_json(medicine_json: json) -> (dict[str, str], list[st
             case "ema_links":
                 for json_obj in row["meta"]:
                     ema_url_list.append(json_obj["url"])
+                    # TODO: retrieve date for every PDF
 
     return medicine_dict, ema_url_list
 
