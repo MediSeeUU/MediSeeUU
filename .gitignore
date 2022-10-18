@@ -142,3 +142,7 @@ fabric.properties
 *.pdf
 medctrl-scraper/PDF_scraper/text_scraper/data/
 medctrl-scraper/PDF_scraper/text_scraper/test_data/
+
+# webscraper data
+medctrl-scraper/webscraper/data/medicines/
+*.json
