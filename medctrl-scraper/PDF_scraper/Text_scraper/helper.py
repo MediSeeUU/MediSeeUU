@@ -78,7 +78,7 @@ def convert_articles(articles: [str]):
     return res
 
 
-def get_date(txt):
+def get_date(txt: str):
     if txt != '':
         txt = txt.lower()
         try:

@@ -26,17 +26,17 @@ def parse_file(filename, directory, medicine_struct):
 
 # Given a dictionary, fills in all attributes for EC decisions
 def get_all(filename, txt):
-    #human use file attributes
+    # human use file attributes
     if '_h_' in filename:
-        filedata = get_data_human_use(filename,txt)
+        filedata = get_data_human_use(filename, txt)
         return filedata
 
-    #orphan file attributes
+    # orphan file attributes
     if '_o_' in filename:
-        filedata = get_data_orphan(filename,txt)
+        filedata = get_data_orphan(filename, txt)
         return filedata
 
-    #if other file return data with everything 'Not parsed'
+    # if other file return data with everything 'Not parsed'
     return get_default_human_use(filename)
 
 # The default values before starting a parse.
