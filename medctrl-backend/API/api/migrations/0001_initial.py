@@ -156,40 +156,68 @@ class Migration(migrations.Migration):
                 (
                     "eunumber",
                     models.IntegerField(
-                        db_column="EUNumber", primary_key=True, serialize=False
+                        db_column="EUNumber",
+                        primary_key=True,
+                        serialize=False
                     ),
                 ),
                 (
                     "emanumber",
                     models.CharField(
-                        blank=True, db_column="EMANumber", max_length=45, null=True
+                        blank=True,
+                        db_column="EMANumber",
+                        max_length=45,
+                        null=True
                     ),
                 ),
                 (
                     "newactivesubstance",
                     models.IntegerField(
-                        blank=True, db_column="NewActiveSubstance", null=True
+                        blank=True,
+                        db_column="NewActiveSubstance",
+                        null=True
                     ),
                 ),
-                ("atmp", models.IntegerField(blank=True, db_column="ATMP", null=True)),
+                (
+                    "atmp",
+                    models.IntegerField(
+                        blank=True,
+                        db_column="ATMP",
+                        null=True
+                    )
+                ),
                 (
                     "referral",
-                    models.IntegerField(blank=True, db_column="Referral", null=True),
+                    models.IntegerField(
+                        blank=True,
+                        db_column="Referral",
+                        null=True
+                    ),
                 ),
                 (
                     "suspension",
-                    models.IntegerField(blank=True, db_column="Suspension", null=True),
+                    models.IntegerField(
+                        blank=True,
+                        db_column="Suspension",
+                        null=True
+                    ),
                 ),
                 (
                     "emaurl",
                     models.CharField(
-                        blank=True, db_column="EMAURL", max_length=320, null=True
+                        blank=True,
+                        db_column="EMAURL",
+                        max_length=320,
+                        null=True
                     ),
                 ),
                 (
                     "ecurl",
                     models.CharField(
-                        blank=True, db_column="ECURL", max_length=320, null=True
+                        blank=True,
+                        db_column="ECURL",
+                        max_length=320,
+                        null=True
                     ),
                 ),
                 (
@@ -273,33 +301,53 @@ class Migration(migrations.Migration):
                 (
                     "emanumber",
                     models.CharField(
-                        blank=True, db_column="EMANumber", max_length=128, null=True
+                        blank=True,
+                        db_column="EMANumber",
+                        max_length=128,
+                        null=True
                     ),
                 ),
                 (
                     "proceduredate",
-                    models.DateField(blank=True, db_column="ProcedureDate", null=True),
+                    models.DateField(
+                        blank=True,
+                        db_column="ProcedureDate",
+                        null=True
+                    ),
                 ),
                 (
                     "decisiondate",
-                    models.DateField(blank=True, db_column="DecisionDate", null=True),
+                    models.DateField(
+                        blank=True,
+                        db_column="DecisionDate",
+                        null=True
+                    ),
                 ),
                 (
                     "decisionnumber",
                     models.CharField(
-                        blank=True, db_column="DecisionNumber", max_length=45, null=True
+                        blank=True,
+                        db_column="DecisionNumber",
+                        max_length=45,
+                        null=True
                     ),
                 ),
                 (
                     "decisionurl",
                     models.CharField(
-                        blank=True, db_column="DecisionURL", max_length=255, null=True
+                        blank=True,
+                        db_column="DecisionURL",
+                        max_length=255,
+                        null=True
                     ),
                 ),
                 (
                     "annexurl",
                     models.CharField(
-                        blank=True, db_column="AnnexURL", max_length=255, null=True
+                        blank=True,
+                        db_column="AnnexURL",
+                        max_length=255,
+                        null=True
                     ),
                 ),
                 (
@@ -338,10 +386,18 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("prime", models.IntegerField(db_column="PRIME")),
+                (
+                    "prime", models.IntegerField(
+                        db_column="PRIME"
+                    )
+                ),
                 (
                     "primedate",
-                    models.DateField(blank=True, db_column="PRIMEDate", null=True),
+                    models.DateField(
+                        blank=True,
+                        db_column="PRIMEDate",
+                        null=True
+                    ),
                 ),
                 (
                     "eunumber",
@@ -369,10 +425,19 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("orphan", models.IntegerField(db_column="Orphan")),
+                (
+                    "orphan",
+                    models.IntegerField(
+                        db_column="Orphan"
+                    )
+                ),
                 (
                     "orphandate",
-                    models.DateField(blank=True, db_column="OrphanDate", null=True),
+                    models.DateField(
+                        blank=True,
+                        db_column="OrphanDate",
+                        null=True
+                    ),
                 ),
                 (
                     "eunumber",
@@ -400,10 +465,20 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("mah", models.CharField(db_column="MAH", max_length=255)),
+                (
+                    "mah",
+                    models.CharField(
+                        db_column="MAH",
+                        max_length=255
+                    )
+                ),
                 (
                     "mahdate",
-                    models.DateField(blank=True, db_column="MAHDate", null=True),
+                    models.DateField(
+                        blank=True,
+                        db_column="MAHDate",
+                        null=True
+                    ),
                 ),
                 (
                     "eunumber",
@@ -431,10 +506,20 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("indication", models.CharField(db_column="Indication", max_length=45)),
+                (
+                    "indication",
+                    models.CharField(
+                        db_column="Indication",
+                        max_length=45
+                    )
+                ),
                 (
                     "indicationdate",
-                    models.DateField(blank=True, db_column="IndicationDate", null=True),
+                    models.DateField(
+                        blank=True,
+                        db_column="IndicationDate",
+                        null=True
+                    ),
                 ),
                 (
                     "eunumber",
@@ -462,10 +547,20 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("brandname", models.CharField(db_column="BrandName", max_length=255)),
+                (
+                    "brandname",
+                    models.CharField(
+                        db_column="BrandName",
+                        max_length=255
+                    )
+                ),
                 (
                     "brandnamedate",
-                    models.DateField(blank=True, db_column="BrandNameDate", null=True),
+                    models.DateField(
+                        blank=True,
+                        db_column="BrandNameDate",
+                        null=True
+                    ),
                 ),
                 (
                     "eunumber",
@@ -493,10 +588,19 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("authorisationdate", models.DateField(db_column="AuthorisationDate")),
+                (
+                    "authorisationdate",
+                    models.DateField(
+                        db_column="AuthorisationDate"
+                    )
+                ),
                 (
                     "opiniondate",
-                    models.DateField(blank=True, db_column="OpinionDate", null=True),
+                    models.DateField(
+                        blank=True,
+                        db_column="OpinionDate",
+                        null=True
+                    ),
                 ),
                 (
                     "decisionauthorisationtype",
@@ -555,55 +659,76 @@ class Migration(migrations.Migration):
                 (
                     "acceleratedgranted",
                     models.IntegerField(
-                        blank=True, db_column="AcceleratedGranted", null=True
+                        blank=True,
+                        db_column="AcceleratedGranted",
+                        null=True
                     ),
                 ),
                 (
                     "acceleratedmaintained",
                     models.IntegerField(
-                        blank=True, db_column="AcceleratedMaintained", null=True
+                        blank=True,
+                        db_column="AcceleratedMaintained",
+                        null=True
                     ),
                 ),
                 (
                     "authorisationtotaltime",
                     models.IntegerField(
-                        blank=True, db_column="AuthorisationTotalTime", null=True
+                        blank=True,
+                        db_column="AuthorisationTotalTime",
+                        null=True
                     ),
                 ),
                 (
                     "authorisationactivetime",
                     models.IntegerField(
-                        blank=True, db_column="AuthorisationActiveTime", null=True
+                        blank=True,
+                        db_column="AuthorisationActiveTime",
+                        null=True
                     ),
                 ),
                 (
                     "authorisationstoppedtime",
                     models.IntegerField(
-                        blank=True, db_column="AuthorisationStoppedTime", null=True
+                        blank=True,
+                        db_column="AuthorisationStoppedTime",
+                        null=True
                     ),
                 ),
                 (
                     "decisiontime",
                     models.IntegerField(
-                        blank=True, db_column="DecisionTime", null=True
+                        blank=True,
+                        db_column="DecisionTime",
+                        null=True
                     ),
                 ),
                 (
                     "decisionurl",
                     models.CharField(
-                        blank=True, db_column="DecisionURL", max_length=255, null=True
+                        blank=True,
+                        db_column="DecisionURL",
+                        max_length=255,
+                        null=True
                     ),
                 ),
                 (
                     "annexurl",
                     models.CharField(
-                        blank=True, db_column="AnnexURL", max_length=255, null=True
+                        blank=True,
+                        db_column="AnnexURL",
+                        max_length=255,
+                        null=True
                     ),
                 ),
                 (
                     "eparurl",
                     models.CharField(
-                        blank=True, db_column="EPARURL", max_length=255, null=True
+                        blank=True,
+                        db_column="EPARURL",
+                        max_length=255,
+                        null=True
                     ),
                 ),
                 (

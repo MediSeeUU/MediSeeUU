@@ -2,6 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
+from .common import create_dashboard_column, Category
 
 
 class Historymah(models.Model):
@@ -10,7 +11,12 @@ class Historymah(models.Model):
     """
 
     eunumber = models.ForeignKey("Medicine", models.CASCADE, db_column="EUNumber")
-    mah = models.CharField(db_column="MAH", max_length=255)
+    mah = create_dashboard_column(
+        models.CharField(db_column="MAH", max_length=255),
+        Category.General_Information,
+        "string",
+        "Marketing Authorisation Holder"
+    )
     mahdate = models.DateField(db_column="MAHDate", blank=True, null=True)
 
     class Meta:

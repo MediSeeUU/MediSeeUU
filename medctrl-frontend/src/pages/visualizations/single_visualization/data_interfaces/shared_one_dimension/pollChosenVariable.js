@@ -19,7 +19,7 @@ export default function pollChosenVariable(data, xAxis, chosenCategories) {
   data.forEach((element) => {
     if (chosenCategories.includes(element[xAxis])) {
       dict[element[xAxis]] += 1
-      euNumbers[element[xAxis]].push(element.EUNoShort)
+      euNumbers[element[xAxis]].push(element.eunumber)
     }
   })
 

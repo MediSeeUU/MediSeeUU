@@ -25,7 +25,7 @@ export function CheckedProvider({ children }) {
   useEffect(() => {
     // Set every datapoint as selected
     setCheckedState(
-      Object.assign({}, ...data.map((entry) => ({ [entry.EUNoShort]: true })))
+      Object.assign({}, ...data.map((entry) => ({ [entry.eunumber]: true })))
     )
   }, [data])
 

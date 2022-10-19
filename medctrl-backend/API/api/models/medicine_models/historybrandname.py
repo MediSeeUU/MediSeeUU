@@ -2,6 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
+from .common import create_dashboard_column, Category
 
 
 class Historybrandname(models.Model):
@@ -10,7 +11,12 @@ class Historybrandname(models.Model):
     """
 
     eunumber = models.ForeignKey("Medicine", models.CASCADE, db_column="EUNumber")
-    brandname = models.CharField(db_column="BrandName", max_length=255)
+    brandname = create_dashboard_column(
+        models.CharField(db_column="BrandName", max_length=255),
+        Category.General_Information,
+        "string",
+        "Brand Name"
+    )
     brandnamedate = models.DateField(db_column="BrandNameDate", blank=True, null=True)
 
     class Meta:

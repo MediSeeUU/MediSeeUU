@@ -108,7 +108,7 @@ function GetDataType(selected) {
   // Then return the type of that variable
   for (let category in structData) {
     for (var i = 0; i < structData[category].length; i++) {
-      if (structData[category][i]['data-front-key'] === selected) {
+      if (structData[category][i]['data-key'] === selected) {
         return structData[category][i]['data-format']
       }
     }

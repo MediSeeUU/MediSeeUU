@@ -14,7 +14,7 @@ function Header({ data, select, sorters, setSorters }) {
   const { checkedState, setCheckedState } = useCheckedState()
 
   // Check if all checkboxes are checked, used to check/uncheck the checkbox in the header
-  const allSelected = data.every((element) => checkedState[element.EUNoShort])
+  const allSelected = data.every((element) => checkedState[element.eunumber])
 
   // Handler that changes the column based on the target value
   const handleColumnChange = (id, value) => {
@@ -39,7 +39,7 @@ function Header({ data, select, sorters, setSorters }) {
   const handleAllChange = () => {
     let updatedCheckedState = JSON.parse(JSON.stringify(checkedState))
     data.forEach((element) => {
-      updatedCheckedState[element.EUNoShort] = !allSelected
+      updatedCheckedState[element.eunumber] = !allSelected
     })
     setCheckedState(updatedCheckedState)
   }

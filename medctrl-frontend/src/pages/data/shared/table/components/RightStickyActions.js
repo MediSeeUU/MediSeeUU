@@ -14,20 +14,20 @@ function RightStickyActions({ entry, select, onChange }) {
         !select && (
           <i
             className="bx bx-trash med-table-icons med-primary-text"
-            onClick={onChange.bind(null, entry.EUNoShort)}
+            onClick={onChange.bind(null, entry.eunumber)}
             role={'button'}
             tabIndex={'0'}
             onKeyPress={(e) => {
-              if (e.key === 'Enter') onChange(entry.EUNoShort)
+              if (e.key === 'Enter') onChange(entry.eunumber)
             }}
           ></i>
         )
       }
-      <Link to={`/details/${entry.EUNoShort}`}>
+      <Link to={`/details/${entry.eunumber}`}>
         <i
           className="bx bx-info-circle med-table-icons med-primary-text"
-          id={'detailInfo' + entry.EUNoShort}
-          testid={'detailInfo' + entry.EUNoShort}
+          id={'detailInfo' + entry.eunumber}
+          testid={'detailInfo' + entry.eunumber}
         />
       </Link>
     </td>
