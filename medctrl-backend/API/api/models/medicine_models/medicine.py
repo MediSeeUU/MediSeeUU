@@ -121,6 +121,20 @@ class Medicine(models.Model):
         "EMA Number Check"
     )
 
+    ema_rapp = create_dashboard_column(
+        models.TextField(db_column="ema_rapp", null=False),
+        Category.General_Information,
+        "string",
+        "EMA rapporteur for initial authorisation"
+    )
+
+    ema_corapp = create_dashboard_column(
+        models.TextField(db_column="ema_corapp", null=False),
+        Category.General_Information,
+        "string",
+        "EMA co-rapporteur for initial authorisation"
+    )
+
     eu_accel_assess_g = create_dashboard_column(
         models.BooleanField(db_column="eu_accel_assess_g", null=True),
         Category.General_Information,
@@ -155,6 +169,14 @@ class Medicine(models.Model):
         "number",
         "Duration of initial EU authorisation assessment procedure (clock-stop days)"
     )
+
+    ec_decision_time_days = create_dashboard_column(
+        models.IntegerField(db_column="ec_decision_time_days", null=False),
+        Category.General_Information,
+        "number",
+        "EC decision time (days)"
+    )
+
 
     ema_reexamination = create_dashboard_column(
         models.BooleanField(db_column="ema_reexamination", null=False),

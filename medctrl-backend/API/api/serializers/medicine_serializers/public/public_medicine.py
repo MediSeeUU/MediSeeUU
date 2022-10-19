@@ -152,6 +152,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             "eu_mah_current",
             "eu_od",
             "eu_prime",
+            "eu_orphan_con",
         ]:
             field_representation = representation.pop(field)
             for key in field_representation:
