@@ -120,7 +120,7 @@ def get_ec_json_objects(html_active: requests.Response) -> list[json]:
     
 
 # Gets all the urls and data for a single medicine
-def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], list[str], list[str], json):
+def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], list[str], list[str], dict[str, str]):
     # Retrieves the html from the European Commission product page
     html_active = get_ec_html(url)
     medicine_json, procedures_json, *_ = get_ec_json_objects(html_active)
@@ -133,12 +133,12 @@ def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], l
 
     # combine the attributes from both dictionaries files in a single JSON file
     all_attributes_dict = medicine_dict | procedures_dict
-    all_attributes_dump = json.dumps(all_attributes_dict, indent=4)
-    all_attributes_json = json.loads(all_attributes_dump)
+    #all_attributes_dump = json.dumps(all_attributes_dict, indent=4)
+    #all_attributes_json = json.loads(all_attributes_dump)
 
     print(eu_num + ": FINISHED")
 
-    return dec_url_list, anx_url_list, ema_url_list, all_attributes_json
+    return dec_url_list, anx_url_list, ema_url_list, all_attributes_dict
 
 
 # Helper function that gets the short EU number from a url
@@ -213,14 +213,18 @@ def get_data_from_medicine_json(medicine_json: json, eu_num: str, medicine_type:
         medicine_dict["eu_mah_current"] = eu_mah_current
     except:
         print(eu_num + ": couldn't find current marketing authorization holder")
-    try:
-        # Orphan medicine never have ATC codes, therefore it will insert a dummy value for them
-        if medicine_type == MedicineType.HUMAN_USE_ACTIVE or medicine_type == MedicineType.HUMAN_USE_WITHDRAWN:
+    if medicine_type == MedicineType.HUMAN_USE_ACTIVE or medicine_type == MedicineType.HUMAN_USE_WITHDRAWN:
+        medicine_dict["orphan_status"] = "h"
+        try:
+            # Orphan medicine never have ATC codes, therefore it will insert a dummy value for them
             medicine_dict["atc_code"] = atc_code
-        else:
-            medicine_dict["atc_code"] = "not applicable"
-    except:
-        print(eu_num + ": couldn't find ATC code")
+        except:
+            print(eu_num + ": couldn't find ATC code")
+    else:
+        medicine_dict["orphan_status"] = "o"
+        medicine_dict["atc_code"] = "not applicable"
+
+
 
     return medicine_dict, ema_url_list
 
