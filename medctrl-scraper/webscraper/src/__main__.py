@@ -51,7 +51,7 @@ def get_urls_ec(medicine_url, eu_n, medicine_type, eu_num_short):
             try:
                 # getURLsForPDFAndEMA returns per medicine the urls for the decision and annexes files and for the ema
                 # website.
-                dec_list, anx_list, ema_list, attributes_json = \
+                dec_list, anx_list, ema_list, attributes_dict = \
                     ec_scraper.scrape_medicine_page(medicine_url, medicine_type)
 
                 with open("../data/CSV/decision.csv", 'a') as f:
@@ -66,6 +66,13 @@ def get_urls_ec(medicine_url, eu_n, medicine_type, eu_num_short):
                     writer = csv.writer(f)
                     writer.writerow([eu_n, ema_list])
 
+                with open("../data/CSV/med_dict.csv", 'a') as f:
+                    writer = csv.writer(f)
+                    writer.writerow([eu_n, attributes_dict])
+
+                # Makes a JSON file from the dictionary
+                attributes_dump = json.dumps(attributes_dict, indent=4)
+                attributes_json = json.loads(attributes_dump)
                 # Creates a directory if the medicine doesn't exist yet, otherwise it just adds the json file to the
                 # existing directory
                 Path(f"../data/medicines/{eu_num_short}").mkdir(exist_ok=True)

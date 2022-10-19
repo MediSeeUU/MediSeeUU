@@ -26,7 +26,7 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
 
 
 # Download pdfs using the dictionaries created from the CSV files
-def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_url_dict: dict[str, [str]], med_dict: dict[str, dict[str, str]]):
+def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_url_dict: dict[str, list[str]], med_dict: dict[str, dict[str, str]]):
     file_counter = 0
     for url in ast.literal_eval(pdf_url_dict[eu_num]):
         filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type, str(file_counter)]
@@ -54,7 +54,7 @@ def read_csv_files():
 
 
 # TODO: Add a new function in a way that that function gets a medicine and downloads all files for that medicine.
-def download_medicine_files(eu_n: str, dec: dict[str, [str]], anx: dict[str, [str]], epar: dict[str, str], med_info: dict[str, dict[str, str]]):
+def download_medicine_files(eu_n: str, dec: dict[str, list[str]], anx: dict[str, list[str]], epar: dict[str, str], med_info: dict[str, dict[str, str]]):
     attempts = 0
     max_attempts = 4
     success = False
