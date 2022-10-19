@@ -58,5 +58,5 @@ class UrlsSerializerTestCase(TestCase):
             "omar_url": "omarurl.com",
             "odwar_url": "odwarurl.com",
         }
-        self.assertEqual(data, expected)
+        self.assertEqual(dict(sorted(data.items())), dict(sorted(expected.items())))
 

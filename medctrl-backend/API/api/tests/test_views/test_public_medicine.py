@@ -7,15 +7,15 @@ from api.management.commands.init_setup import Command as InitSetup
 
 
 class PublicMedicineTestCase(TestCase):
+    def setUp(self):
+        createColumnPermissions().handle()
+        InitSetup().handle()
+        self.client = Client()
+        self.user = User.objects.filter(is_superuser=True)
+
     def test_structure_equal_medicine(self):
         """
         tests if the output from structureData has the same keys as public medicine
         """
-        # createColumnPermissions().handle()
-        # InitSetup().handle()
-        # anonymous = Group.objects.get(name="anonymous")
-        # for permission in Permission.objects.values():
-        #     anonymous.permissions.add(*permission)
-        # c = Client()
-        # response = c.get('/api/structureData/')
-        # self.assertEqual(response.status_code, 200)
+        response = self.client.get('/api/structureData/')
+        self.assertEqual(response.status_code, 200)
