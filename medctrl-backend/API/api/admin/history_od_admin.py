@@ -37,7 +37,7 @@ class HistoryODAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
 
     resource_class = HistoryODResource
     list = (
-        "eu_orphan_id",
+        "id",
         "eu_pnumber",
         "change_date",
         "eu_od",

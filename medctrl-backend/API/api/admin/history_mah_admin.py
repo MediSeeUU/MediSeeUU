@@ -37,7 +37,7 @@ class HistoryMAHAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
 
     resource_class = HistoryMAHResource
     list = (
-        "eu_mah_id",
+        "id",
         "eu_pnumber",
         "change_date",
         "eu_mah",

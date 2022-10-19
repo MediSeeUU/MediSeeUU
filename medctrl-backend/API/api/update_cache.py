@@ -12,7 +12,8 @@ from django.core.cache import cache
 from django.core.management import call_command
 from rest_framework.settings import settings
 
-from api.serializers.medicine_serializers import PublicMedicineSerializer
+from api.serializers.medicine_serializers.public import PublicMedicineSerializer
+from api.serializers.medicine_serializers.scraper import UrlsSerializer
 from api.models.medicine_models import Medicine
 
 
@@ -23,10 +24,15 @@ def update_cache():
 
     if not has_pending_migrations() and not has_unapplied_migration():
         queryset = Medicine.objects.all()
-        serializer = PublicMedicineSerializer(queryset, many=True)
+        medicine_serializer = PublicMedicineSerializer(queryset, many=True)
         cache.set(
-            "medicine_cache", serializer.data, None
+            "medicine_cache", medicine_serializer.data, None
         )  # We set cache timeout to none so it never expires
+        urls_serializer = UrlsSerializer(queryset, many=True)
+        cache.set(
+            "urls_cache", urls_serializer.data, None
+        )  # We set cache timeout to none so it never expires
+
     else:
         print("!!! There are pending migrations, skipping cache update !!!")
 

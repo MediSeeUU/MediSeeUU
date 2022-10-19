@@ -9,21 +9,9 @@ class HistoryAuthorisationStatus(models.Model):
     """
     Model class for the authorisation history table.
     """
-    eu_aut_status_id = create_dashboard_column(
-        models.IntegerField(db_column="eu_aut_status_id", primary_key=True, null=False),
-        Category.General_Information,
-        "number",
-        "EU Authorisation Status ID"
-    )
-
     eu_pnumber = models.ForeignKey("Medicine", models.CASCADE, null=False)
 
-    change_date = create_dashboard_column(
-        models.DateField(db_column="change_date", null=True),
-        Category.General_Information,
-        "date",
-        "Change Date"
-    )
+    change_date = models.DateField(db_column="change_date", null=True)
 
     eu_aut_status = create_dashboard_column(
         models.CharField(db_column="eu_aut_status", max_length=10, choices=AutStatus.choices),

@@ -4,24 +4,22 @@
 from .scraper import (
     MedicineSerializer,
     MedicineFlexVarUpdateSerializer,
-    ATCCodeSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,
     MAHSerializer,
-    NumberCheckSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
     UrlsSerializer,
+    EUOrphanConSerializer
 )
 from .public import (
     PublicMedicineSerializer,
-    ATCCodeSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,
     MAHSerializer,
-    NumberCheckSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
+    EUOrphanConSerializer
 )

@@ -4,12 +4,10 @@ from django.core.management.base import BaseCommand
 
 from api.models.medicine_models import (
     Medicine,
-    HistoryATCCode,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
     HistoryMAH,
-    HistoryEMANumberCheck,
     HistoryOD,
     HistoryPrime,
 )
@@ -45,12 +43,10 @@ class Command(BaseCommand):
         # Assign permissions to scraper user
         for model in [
             Medicine,
-            HistoryATCCode,
             HistoryAuthorisationStatus,
             HistoryAuthorisationType,
             HistoryBrandName,
             HistoryMAH,
-            HistoryEMANumberCheck,
             HistoryOD,
             HistoryPrime,
         ]:

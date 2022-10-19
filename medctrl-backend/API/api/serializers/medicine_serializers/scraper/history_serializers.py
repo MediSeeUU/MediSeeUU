@@ -8,29 +8,14 @@
 
 from rest_framework import serializers
 from api.models.medicine_models import (
-    HistoryATCCode,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
     HistoryMAH,
-    HistoryEMANumberCheck,
     HistoryOD,
     HistoryPrime,
+    HistoryEUOrphanCon
 )
-
-
-class ATCCodeSerializer(serializers.ModelSerializer):
-    """
-    Authorisation table serializer for the view endpoint medicine
-    """
-
-    class Meta:
-        """
-        Meta information
-        """
-
-        model = HistoryATCCode
-        fields = "__all__"
 
 
 class AuthorisationStatusSerializer(serializers.ModelSerializer):
@@ -89,20 +74,6 @@ class MAHSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class NumberCheckSerializer(serializers.ModelSerializer):
-    """
-    Authorisation table serializer for the view endpoint medicine
-    """
-
-    class Meta:
-        """
-        Meta information
-        """
-
-        model = HistoryEMANumberCheck
-        fields = "__all__"
-
-
 class OrphanDesignationSerializer(serializers.ModelSerializer):
     """
     Authorisation table serializer for the view endpoint medicine
@@ -128,4 +99,17 @@ class PrimeSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryPrime
+        fields = "__all__"
+
+class EUOrphanConSerializer(serializers.ModelSerializer):
+    """
+    Authorisation table serializer for the view endpoint medicine
+    """
+
+    class Meta:
+        """
+        Meta information
+        """
+
+        model = HistoryEUOrphanCon
         fields = "__all__"

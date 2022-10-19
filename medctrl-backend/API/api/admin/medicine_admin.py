@@ -36,7 +36,28 @@ class MedicineAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
         "ec_url",
         "ema_number",
         "eu_med_type",
-        "eu_atmp"
+        "eu_atmp",
+        "ema_number_check",
+        "ema_rapp",
+        "ema_corapp",
+        "eu_accel_assess_g",
+        "eu_accel_assess_m",
+        "assess_time_days_total",
+        "assess_time_days_active",
+        "assess_time_days_cstop",
+        "ec_decision_time_days",
+        "ema_reexamination",
+        "eu_referral",
+        "eu_suspension",
+        "omar_url",
+        "odwar_url",
+        "eu_od_number",
+        "ema_od_number",
+        "eu_od_con",
+        "eu_od_date",
+        "eu_od_pnumber",
+        "eu_od_sponsor",
+        "eu_od_comp_date"
     )
 
     def save_model(self, request, obj, form, change):

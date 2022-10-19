@@ -37,7 +37,7 @@ class HistoryPrimeAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
 
     resource_class = HistoryPrimeResource
     list = (
-        "eu_prime_id",
+        "id",
         "eu_pnumber",
         "change_date",
         "eu_prime",
