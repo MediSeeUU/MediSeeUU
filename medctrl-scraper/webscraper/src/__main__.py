@@ -3,6 +3,7 @@ import json
 import logging
 from pathlib import Path
 from datetime import datetime
+from tkinter.tix import Tree
 
 import pandas as pd
 from joblib import Parallel, delayed
@@ -14,9 +15,9 @@ import ema_scraper
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
-scrape_ec: bool = True
-scrape_ema: bool = False            # Requires scrape_ec to have been run at least once
-download_files: bool = False         # Download pdfs from the obtained links
+scrape_ec: bool = False
+scrape_ema: bool = False              # Requires scrape_ec to have been run at least once
+download_files: bool = True         # Download pdfs from the obtained links
 parallel_csv_getting: bool = False   # Parallelization is currently broken on Windows. Set to False
 
 # list of the type of medicines that will be scraped
@@ -73,11 +74,16 @@ def get_urls_ec(medicine_url, eu_n, medicine_type, eu_num_short):
                 # Makes a JSON file from the dictionary
                 attributes_dump = json.dumps(attributes_dict, indent=4)
                 attributes_json = json.loads(attributes_dump)
-                # Creates a directory if the medicine doesn't exist yet, otherwise it just adds the json file to the
-                # existing directory
-                Path(f"../data/medicines/{eu_num_short}").mkdir(exist_ok=True)
-                with open(f"../data/medicines/{eu_num_short}/{eu_num_short}_attributes.json", 'a') as f:
-                    json.dump(attributes_json, f, indent=4)
+
+                try:
+                    # Creates a directory if the medicine doesn't exist yet, otherwise it just adds the json file to the
+                    # existing directory
+                    Path(f"../data/medicines/{eu_n}").mkdir(exist_ok=True)
+                    with open(f"../data/medicines/{eu_n}/{eu_n}_attributes.json", 'a') as f:
+                        json.dump(attributes_json, f, indent=4)
+                except:
+                    print(eu_n)
+
 
                 success = True
             except Exception:
@@ -141,7 +147,7 @@ def main():
 
     if scrape_ema:
         log.info("Scraping all individual medicine pages of EMA")
-        ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0).squeeze().to_dict()
+        ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0, on_bad_lines='skip').squeeze().to_dict()
         if parallel_csv_getting:
             parallel(
                 delayed(get_urls_ema)(url[0], url[1])
@@ -157,7 +163,7 @@ def main():
         # log_handler.setFormatter(logging.Formatter("%(message)s"))
 
     if download_files:
-        download.run_parallel()
+        download.download_all(parallel_download=True)
 
 
 # Keep the code locally testable by including this.

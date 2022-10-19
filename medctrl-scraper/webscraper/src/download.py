@@ -46,10 +46,10 @@ def download_pdfs_ema(eu_num: str, epar_dict: dict[str, str], med_dict: dict[str
 
 # Function for reading the CSV contents back into dictionaries that can be used for downloading.
 def read_csv_files():
-    dec = pd.read_csv('../data/CSV/decision.csv', header=None, index_col=0, lineterminator='\n').squeeze().to_dict()
-    anx = pd.read_csv('../data/CSV/annexes.csv', header=None, index_col=0, lineterminator='\n').squeeze().to_dict()
-    epar = pd.read_csv('../data/CSV/epar.csv', header=None, index_col=0, lineterminator='\n').squeeze().to_dict()
-    med_dict = pd.read_csv('../data/CSV/med_dict.csv', header=None, index_col=0, encoding = "utf-8").squeeze().to_dict()
+    dec = pd.read_csv('../data/CSV/decision.csv', header=None, index_col=0, lineterminator='\n', on_bad_lines='skip').squeeze().to_dict()
+    anx = pd.read_csv('../data/CSV/annexes.csv', header=None, index_col=0, lineterminator='\n', on_bad_lines='skip').squeeze().to_dict()
+    epar = pd.read_csv('../data/CSV/epar.csv', header=None, index_col=0, lineterminator='\n', on_bad_lines='skip').squeeze().to_dict()
+    med_dict = pd.read_csv('../data/CSV/med_dict.csv', header=None, index_col=0, encoding = "utf-8", on_bad_lines='skip').squeeze().to_dict()
     return dec, anx, epar, med_dict
 
 
