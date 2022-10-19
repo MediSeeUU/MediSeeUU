@@ -21,7 +21,7 @@ def parse_file(filename, directory, medicine_struct):
         medicine_struct.decisions.append(get_all(filename, txt))
         pdf.close()
     except:
-        print("Could not open PDF: " + filename)
+        print("EC - Could not open PDF: " + filename)
     return medicine_struct
 
 # Given a dictionary, fills in all attributes for EC decisions

@@ -76,7 +76,7 @@ def filter_pdf(filename: str, data_dir: str):
         # file not readable
         else:
             pdf.close()
-            os.remove(file_path)
+            print('Remove' + file_path)
             return filename + '@corrupt'
     # could not parse
     except:
@@ -84,18 +84,18 @@ def filter_pdf(filename: str, data_dir: str):
         try:
             firstline = get_utf8_line(file_path)
             if 'html' in firstline.lower():
-                os.remove(file_path)
+                print('Remove' + file_path)
                 return filename + '@html'
         except:
             pass
 
         # check if could not open PDF
         if corrupt:
-            os.remove(file_path)
+            print('Remove' + file_path)
             return filename + '@corrupt'
         # other parse error (uses default 'Failure unknown reason')
         else:
-            os.remove(file_path)
+            print('Remove' + file_path)
             return filename + '@unknown'
 
 
@@ -134,7 +134,7 @@ def check_decision(filename, file_path, pdf):
     except:
         pass
     pdf.close()
-    os.remove(file_path)
+    print('Remove' + file_path)
     return filename + '@wrong_doctype'
 
 
