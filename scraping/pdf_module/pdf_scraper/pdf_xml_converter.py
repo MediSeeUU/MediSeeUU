@@ -4,6 +4,7 @@ import fitz
 import pdf_helper as ph
 import xml_tags as tags
 from os import path
+import re
 
 header_indicator = "|-HEADER-|"
 split_indicator = "|-SPLIT-|"
@@ -67,8 +68,28 @@ def replace_special_xml_characters(string: str) -> str:
     string = string.replace("\'", "&apos;")
     string = string.replace("<", "&lt;")
     string = string.replace(">", "&gt;")
-
+    string = remove_illegal_characters(string)
     return string
+
+
+def remove_illegal_characters(string: str) -> str:
+    illegal_unicodes = [(0x00, 0x08), (0x0B, 0x0C), (0x0E, 0x1F),
+                        (0x7F, 0x84), (0x86, 0x9F),
+                        (0xFDD0, 0xFDDF), (0xFFFE, 0xFFFF)]
+    if sys.maxunicode >= 0x10000:
+        illegal_unicodes.extend([(0x1FFFE, 0x1FFFF), (0x2FFFE, 0x2FFFF),
+                                 (0x3FFFE, 0x3FFFF), (0x4FFFE, 0x4FFFF),
+                                 (0x5FFFE, 0x5FFFF), (0x6FFFE, 0x6FFFF),
+                                 (0x7FFFE, 0x7FFFF), (0x8FFFE, 0x8FFFF),
+                                 (0x9FFFE, 0x9FFFF), (0xAFFFE, 0xAFFFF),
+                                 (0xBFFFE, 0xBFFFF), (0xCFFFE, 0xCFFFF),
+                                 (0xDFFFE, 0xDFFFF), (0xEFFFE, 0xEFFFF),
+                                 (0xFFFFE, 0xFFFFF), (0x10FFFE, 0x10FFFF)])
+
+    illegal_ranges = [fr'{chr(low)}-{chr(high)}' for (low, high) in illegal_unicodes]
+    xml_illegal_character_regex = '[' + ''.join(illegal_ranges) + ']'
+    illegal_xml_chars_re = re.compile(xml_illegal_character_regex)
+    return illegal_xml_chars_re.sub('', string)
 
 
 def print_xml_tag_open(xml_tag: str, file: TextIO, attributes: str = ""):
@@ -79,7 +100,8 @@ def print_xml_tag_close(xml_tag: str, file: TextIO):
     file.write("</" + xml_tag + ">")
 
 
-def print_xml(sections: list[(str, str)], output_filepath: str, document_creation_date: str, document_modification_date: str):
+def print_xml(sections: list[(str, str)], output_filepath: str, document_creation_date: str,
+              document_modification_date: str):
     # start printing xml file
     console_out = sys.stdout
     xml_file = open(output_filepath, "w", encoding="utf-8")

@@ -14,13 +14,6 @@ import parsers.omar_parse as omar_parse
 
 
 # Main file to run all parsers
-
-# datetime to string serializer for json dumping
-def datetime_serializer(date: pis.datetime.datetime):
-    if isinstance(date, pis.datetime.datetime):
-        return date.__str__()
-
-
 def main(directory: str):
     print("Parsing PDF files")
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
@@ -47,7 +40,6 @@ def parse_folder(directory: str, folder_name):
         # Skip over all decision files, XML files, and non-pdf files
         if "dec" in file or ".xml" in file or ".pdf" not in file or "anx" in file or "dec" in file:
             continue
-
         # Skip file if XML is already created (temporary)
         if file[:len(file) - 4] + ".xml" in directory_files:
             continue
@@ -63,8 +55,8 @@ def parse_folder(directory: str, folder_name):
     omar_files = [file for file in directory_files if "omar" in file and ".xml" in file]
 
     # call parsers on correct files and update medicine struct
-    # for file in decision_files:
-    #     medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
+    for file in decision_files:
+        medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
 
     for file in annex_files:
         medicine_struct = ap.parse_file(file, medicine_struct)
@@ -80,6 +72,12 @@ def parse_folder(directory: str, folder_name):
     medicine_struct_json = json.dumps(pis.asdict(medicine_struct), default=datetime_serializer)
     json_file.write(medicine_struct_json)
     json_file.close()
+
+
+# datetime to string serializer for json dumping
+def datetime_serializer(date: pis.datetime.datetime):
+    if isinstance(date, pis.datetime.datetime):
+        return date.__str__()
 
 
 if __name__ == "__main__":
