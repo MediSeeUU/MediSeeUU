@@ -22,7 +22,12 @@ def get_all(filename: str, xml_data: ET.Element):
 
 
 def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct):
-    xml_tree = ET.parse(path.join(directory, filename))
+    filepath = path.join(directory, filename)
+    try:
+        xml_tree = ET.parse(filepath)
+    except:
+        print("EPAR PARSER: failed to open XML file " + filepath)
+        return medicine_struct
     xml_root = xml_tree.getroot()
     xml_body = xml_root[1]
     medicine_struct.epars.append(get_all(filename, xml_body))
@@ -82,15 +87,15 @@ def get_prime(xml: ET.Element):
 # ema_rapp
 def get_rapp(xml: ET.Element):
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
-        if re.findall(r"rapporteur: (.*?) co-rapporteur:", p):
-            rapporteur = re.search(r"rapporteur: (.*?) co-rapporteur:", p)[0][12:]
-            return rapporteur.replace("\\n", "")[:len(rapporteur) - 16].rstrip()
-        if re.findall(r"rapporteur: (.*?) \\n", p):
-            rapporteur = re.search(r"rapporteur: (.*?) \\n", p)[0][12:]
-            return rapporteur.replace("\\n", "").rstrip()
-        if re.findall(r"rapporteur: (.*?)", p):
-            rapporteur = re.search(r"rapporteur: (.*?)", p)[0][12:]
-            return rapporteur.replace("\\n", "").rstrip()
+        if re.findall(r"rapporteur:[\w\s]+ co-rapporteur:", p):
+            rapporteur = re.search(r"rapporteur:[\w\s]+ co-rapporteur:", p)[0][12:]
+            return rapporteur.strip()[:len(rapporteur) - 16]
+        if re.findall(r"rapporteur:[\w\s]+ \\n", p):
+            rapporteur = re.search(r"rapporteur:[\w\s]+\\n", p)[0][12:]
+            return rapporteur.strip()
+        if re.findall(r"rapporteur:[\w\s]+", p):
+            rapporteur = re.search(r"rapporteur:[\w\s]+", p)[0][12:]
+            return rapporteur.strip()
     return "no_rapporteur"
 
 
@@ -99,5 +104,9 @@ def get_corapp(xml: ET.Element):
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(r"co-rapporteur: (.*?) \\n", p):
             rapporteur = re.search(r"co-rapporteur: (.*?)\\n", p)[0][15:]
+            return rapporteur.replace("\\n", "").rstrip()
+    for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
+        if re.findall(r"co-rapporteur: (.)+", p):
+            rapporteur = re.search(r"co-rapporteur: (.)+", p)[0][15:]
             return rapporteur.replace("\\n", "").rstrip()
     return "no_co-rapporteur"

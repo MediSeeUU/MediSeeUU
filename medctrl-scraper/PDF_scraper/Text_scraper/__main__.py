@@ -69,8 +69,8 @@ def parse_folder(directory: str, folder_name):
     omar_files = [file for file in directory_files if "omar" in file and ".xml" in file]
 
     # call parsers on correct files and update medicine struct
-    for file in decision_files:
-        medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
+    # for file in decision_files:
+    #     medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
 
     for file in annex_files:
         medicine_struct = ap.parse_file(file, medicine_struct)
