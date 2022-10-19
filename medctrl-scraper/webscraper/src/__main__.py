@@ -3,7 +3,6 @@ import json
 import logging
 from pathlib import Path
 from datetime import datetime
-from tkinter.tix import Tree
 
 import pandas as pd
 from joblib import Parallel, delayed
@@ -16,9 +15,9 @@ import ema_scraper
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
 scrape_ec: bool = False
-scrape_ema: bool = True              # Requires scrape_ec to have been run at least once
-download_files: bool = False         # Download pdfs from the obtained links
-parallel_csv_getting: bool = False   # Parallelization is currently broken on Windows. Set to False
+scrape_ema: bool = False            # Requires scrape_ec to have been run at least once
+download_files: bool = True         # Download pdfs from the obtained links
+use_parallelization: bool = False   # Parallelization is currently broken on Windows. Set to False
 
 # list of the type of medicines that will be scraped
 # NOTE: This was useful for debugging
@@ -42,7 +41,9 @@ log = logging.getLogger(__name__)
 
 
 # Paralleled function for getting the URL codes. They are written to a CSV file
-def get_urls_ec(medicine_url, eu_n, medicine_type, eu_num_short):
+# TODO: What type is medicine_type? It looks like it
+def get_urls_ec(medicine_url: str, eu_n: str, medicine_type):
+    # TODO: Wrapper function for retry
     attempts = 0
     max_attempts = 4
     success = False
@@ -81,9 +82,8 @@ def get_urls_ec(medicine_url, eu_n, medicine_type, eu_num_short):
                     Path(f"../data/medicines/{eu_n}").mkdir(exist_ok=True)
                     with open(f"../data/medicines/{eu_n}/{eu_n}_attributes.json", 'w') as f:
                         json.dump(attributes_json, f, indent=4)
-                except:
+                except Exception:
                     print(eu_n)
-
 
                 success = True
             except Exception:
@@ -94,6 +94,7 @@ def get_urls_ec(medicine_url, eu_n, medicine_type, eu_num_short):
 
 
 def get_urls_ema(medicine, url: str):
+    # TODO: Wrapper function for retry
     attempts = 0
     max_attempts = 4
     success = False
@@ -118,6 +119,7 @@ def get_urls_ema(medicine, url: str):
 def main():
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
+    # TODO: Remove mkdir after it is moved to monolithic main
     # Create the data dir.
     # The ' exist_ok' option ensures no errors thrown if this is not the first time the code runs.
     Path("../data/CSV").mkdir(exist_ok=True, parents=True)
@@ -127,28 +129,30 @@ def main():
 
     medicine_codes: list[(str, str, int, str)] = ec_scraper.scrape_medicines_list()
 
+    # TODO: Review necessity of JobLib
     with Parallel(n_jobs=12) as parallel:
         # TODO: Progressbar needs to be below logging output
         #       https://stackoverflow.com/questions/6847862/how-to-change-the-format-of-logged-messages-temporarily-in-python
+        #       Currently does not work
         # log_handler.setFormatter(logging.Formatter("\r%(message)s"))
         if scrape_ec:
-            log.info("ASK START scraping all medicines on the EC website")
-            if parallel_csv_getting:
+            log.info("TASK START scraping all medicines on the EC website")
+            if use_parallelization:
                 parallel(
-                    delayed(get_urls_ec)(medicine_url, eu_n, medicine_type, eu_num_short)
-                    for (medicine_url, eu_n, medicine_type, eu_num_short)
+                    delayed(get_urls_ec)(medicine_url, eu_n, medicine_type)
+                    for (medicine_url, eu_n, medicine_type, _)
                     in tqdm.tqdm(medicine_codes, bar_format=tqdm_format_string)
                 )
             else:
-                for (medicine_url, eu_n, medicine_type, eu_num_short) \
+                for (medicine_url, eu_n, medicine_type) \
                         in tqdm.tqdm(medicine_codes, bar_format=tqdm_format_string):
-                    get_urls_ec(medicine_url, eu_n, medicine_type, eu_num_short)
+                    get_urls_ec(medicine_url, eu_n, medicine_type)
             log.info("TASK FINISHED EC scrape")
 
     if scrape_ema:
         log.info("Scraping all individual medicine pages of EMA")
         ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0, on_bad_lines='skip').squeeze().to_dict()
-        if parallel_csv_getting:
+        if use_parallelization:
             parallel(
                 delayed(get_urls_ema)(url[0], url[1])
                 for url
@@ -163,7 +167,7 @@ def main():
         # log_handler.setFormatter(logging.Formatter("%(message)s"))
 
     if download_files:
-        download.download_all(parallel_download=True)
+        download.download_all(parallel_download=use_parallelization)
 
 
 # Keep the code locally testable by including this.

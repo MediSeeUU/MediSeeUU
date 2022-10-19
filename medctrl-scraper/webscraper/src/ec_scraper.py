@@ -1,12 +1,13 @@
 import json
+import logging
 from datetime import date, datetime, timedelta
-from re import DOTALL
-from typing import Type
 from enum import Enum
 
-import regex as re
 import bs4
+import regex as re
 import requests
+
+log = logging.getLogger(__name__)
 
 
 # This is an enum that indicates the medicine type
@@ -45,7 +46,6 @@ def scrape_medicines_list() -> list[(str, str, int, str)]:
 
             ec_link = f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm"
             url_list.append((ec_link, eu_num_full, medicine_type, eu_num_short))
-            print(eu_num_full)
         medicine_type += 1
 
     # If anyone ever wants to scrape the refused medicine, the urls to these medicine can be added with this piece
@@ -134,7 +134,6 @@ def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], l
 
     # combine the attributes from both dictionaries files in a single JSON file
     all_attributes_dict = medicine_dict | procedures_dict
-    print(eu_num + ": FINISHED")
 
     return dec_url_list, anx_url_list, ema_url_list, all_attributes_dict
 
@@ -186,38 +185,40 @@ def get_data_from_medicine_json(medicine_json: json, eu_num: str, medicine_type:
                     # TODO: retrieve date for every PDF
 
     # TODO: logging when an attribute is not found
+    # TODO: Rewrite needed
+    #       if statement could work?
     # Currently when an attribute is not found it is simply printed to the console
     try:
         medicine_dict["eu_aut_status"] = eu_aut_status
-    except:
-        print(eu_num + ": couldn't  find authorization status")
+    except Exception:
+        log.warning(eu_num + ": couldn't  find authorization status")
     try:
         medicine_dict["eu_brand_name_current"] = eu_brand_name_current
-    except:
-        print(eu_num + ": couldn't find current brand name")
+    except Exception:
+        log.warning(eu_num + ": couldn't find current brand name")
     try:
         medicine_dict["status_type"] = status_type
-    except:
-        print(eu_num + ": couldn't find status type")
+    except Exception:
+        log.warning(eu_num + ": couldn't find status type")
     try:
         medicine_dict["eu_pnumber"] = eu_pnumber
-    except:
-        print(eu_num + ": couldn't find EU product number")
+    except Exception:
+        log.warning(eu_num + ": couldn't find EU product number")
     try:
         medicine_dict["active_substance"] = active_substance
-    except:
-        print(eu_num + ": couldn't find active substance")
+    except Exception:
+        log.warning(eu_num + ": couldn't find active substance")
     try:
         medicine_dict["eu_mah_current"] = eu_mah_current
-    except:
+    except Exception:
         print(eu_num + ": couldn't find current marketing authorization holder")
     if medicine_type == MedicineType.HUMAN_USE_ACTIVE or medicine_type == MedicineType.HUMAN_USE_WITHDRAWN:
         medicine_dict["orphan_status"] = "h"
         try:
             # Orphan medicine never have ATC codes, therefore it will insert a dummy value for them
             medicine_dict["atc_code"] = atc_code
-        except:
-            print(eu_num + ": couldn't find ATC code")
+        except Exception:
+            log.warning(eu_num + ": couldn't find ATC code")
     else:
         medicine_dict["orphan_status"] = "o"
         medicine_dict["atc_code"] = "not applicable"
@@ -264,10 +265,10 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
             continue
 
         # Parse the date, formatted as %Y-%m-%d, which looks like 1970-01-01
-        decision_date: datetime = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
+        decision_date: date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
         decision_id = row["id"]
 
-        # Puts all the decions from the last one and a half year in a list, to determine the current authorization type
+        # Puts all the decisions from the last one and a half year in a list to determine the current authorization type
         if last_decision_date - decision_date < timedelta(days=548):
             last_decision_types.append(row["type"])
 
@@ -285,7 +286,7 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
     try: 
         eu_aut_datetime: datetime = datetime.strptime(procedures_json[0]["decision"]["date"], '%Y-%m-%d')
         eu_aut_date: str = datetime.strftime(eu_aut_datetime, '%m-%d-%Y')
-    except:
+    except Exception:
         print("test")
 
     # From the list of EMA numbers, the right one is chosen and its certainty determined
@@ -295,23 +296,23 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
     # Currently when an attribute is not found it is simply printed to the console
     try:
         procedures_dict["eu_aut_date"] = eu_aut_date
-    except:
+    except Exception:
         print(eu_num + ": couldn't find authorization date")
     try:
         procedures_dict["eu_aut_type_initial"] = determine_aut_type(eu_aut_datetime.year, is_exceptional, is_conditional)
-    except:
+    except Exception:
         print(eu_num + ": couldn't find initial authorization type")
     try:
         procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
-    except:
+    except Exception:
         print(eu_num + ": couldn't find current authorization type")
     try:
         procedures_dict["ema_number"] = ema_number
-    except:
+    except Exception:
         print(eu_num + ": couldn't find ema number")
     try:
         procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
-    except:
+    except Exception:
         print(eu_num + ": couldn't find ema number certainty")
 
     return procedures_dict, dec_url_list, anx_url_list

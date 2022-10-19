@@ -26,15 +26,15 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
 
 
 # Download pdfs using the dictionaries created from the CSV files
-def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_url_dict: dict[str, list[str]], med_dict: dict[str, dict[str, str]]):
+def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_url_dict: dict[str, list[str]], med_dict: dict[str, str]):
     file_counter = 0
-    for url in ast.literal_eval(pdf_url_dict[eu_num]):
+    for url in pdf_url_dict[eu_num]:
         filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type, str(file_counter)]
         download_pdf_from_url(url, eu_num, filename_elements)
         file_counter += 1
 
 
-def download_pdfs_ema(eu_num: str, epar_dict: dict[str, str], med_dict: dict[str, dict[str, str]]):
+def download_pdfs_ema(eu_num: str, epar_dict: dict[str, str], med_dict: dict[str, str]):
     if eu_num in epar_dict:
         url = epar_dict[eu_num]
         pdf_type = re.findall(r"(?<=epar-)(.*)(?=_en)", url)[0]
@@ -49,12 +49,12 @@ def read_csv_files():
     dec = pd.read_csv('../data/CSV/decision.csv', header=None, index_col=0, lineterminator='\n', on_bad_lines='skip').squeeze().to_dict()
     anx = pd.read_csv('../data/CSV/annexes.csv', header=None, index_col=0, lineterminator='\n', on_bad_lines='skip').squeeze().to_dict()
     epar = pd.read_csv('../data/CSV/epar.csv', header=None, index_col=0, lineterminator='\n', on_bad_lines='skip').squeeze().to_dict()
-    med_dict = pd.read_csv('../data/CSV/med_dict.csv', header=None, index_col=0, encoding = "utf-8", on_bad_lines='skip').squeeze().to_dict()
+    med_dict = pd.read_csv('../data/CSV/med_dict.csv', header=None, index_col=0, encoding="utf-8", on_bad_lines='skip').squeeze().to_dict()
     return dec, anx, epar, med_dict
 
 
 # TODO: Add a new function in a way that that function gets a medicine and downloads all files for that medicine.
-def download_medicine_files(eu_n: str, dec: dict[str, list[str]], anx: dict[str, list[str]], epar: dict[str, str], med_info: dict[str, dict[str, str]]):
+def download_medicine_files(eu_n: str, dec: dict[str, list[str]], anx: dict[str, list[str]], epar: dict[str, str], med_info: dict[str, str]):
     attempts = 0
     max_attempts = 4
     success = False
