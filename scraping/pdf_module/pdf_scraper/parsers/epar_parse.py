@@ -6,12 +6,13 @@ import xml.etree.ElementTree as ET
 import parsed_info_struct as PIS
 import os.path as path
 
-date_pattern: str = r"\d{1,2} \w+ \d{4}"
-procedure_info: str = "information on the procedure"
+date_pattern: str = r"\d{1,2} \w+ \d{4}"  # DD/MONTH/YYYY
+procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure
 
 
-def get_all(filename: str, xml_data: ET.Element):
-    epar = {"filename": filename[:len(filename) - 4],  # remove extension
+# Gets all attributes of the XML and returns them in a dictionary
+def get_all(filename: str, xml_data: ET.Element) -> dict:
+    epar = {"filename": filename[:len(filename) - 4],  # removes extension
             "ema_procedure_start_initial": get_date(xml_data),
             "chmp_opinion_date": get_opinion_date(xml_data),
             "eu_legal_basis": get_legal_basis(xml_data),
@@ -21,7 +22,8 @@ def get_all(filename: str, xml_data: ET.Element):
     return epar
 
 
-def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct):
+# Scrapes all attributes from the XML file after parsing it
+def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct) -> PIS.parsed_info_struct:
     filepath = path.join(directory, filename)
     try:
         xml_tree = ET.parse(filepath)
@@ -35,7 +37,8 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_s
 
 
 # ema_procedure_start_initial
-def get_date(xml: ET.Element):
+# The initial authorization of the EMA
+def get_date(xml: ET.Element) -> str:
     found = False
     regex_date = re.compile(date_pattern)
     regex_ema = re.compile(r"the application was received by the em\w+ on")
@@ -51,7 +54,8 @@ def get_date(xml: ET.Element):
 
 
 # chmp_opinion_date
-def get_opinion_date(xml: ET.Element):
+# The date of the CHMP opinion on the medicine
+def get_opinion_date(xml: ET.Element) -> str:
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(date_pattern, p):
             date = h.convert_months(re.findall(date_pattern, p)[-1])
@@ -60,7 +64,8 @@ def get_opinion_date(xml: ET.Element):
 
 
 # eu_legal_basis
-def get_legal_basis(xml: ET.Element):
+# All legal articles relevant to the medicine
+def get_legal_basis(xml: ET.Element) -> str:
     regex_legal = r"article [^ ]+"
     found = False
     for p in xpu.get_paragraphs_by_header("legal basis for", xml):
@@ -75,7 +80,8 @@ def get_legal_basis(xml: ET.Element):
 
 
 # eu_prime_initial
-def get_prime(xml: ET.Element):
+# Whether the medicine is a priority medicine (PRIME)
+def get_prime(xml: ET.Element) -> str:
     for p in xpu.get_paragraphs_by_header("submission of the dossier", xml):
         if re.findall(r" prime ", p):
             return "yes"
@@ -85,7 +91,8 @@ def get_prime(xml: ET.Element):
 
 
 # ema_rapp
-def get_rapp(xml: ET.Element):
+# The main rapporteur
+def get_rapp(xml: ET.Element) -> str:
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(r"rapporteur:[\w\s]+ co-rapporteur:", p):
             rapporteur = re.search(r"rapporteur:[\w\s]+ co-rapporteur:", p)[0][12:]
@@ -100,7 +107,8 @@ def get_rapp(xml: ET.Element):
 
 
 # ema_corapp
-def get_corapp(xml: ET.Element):
+# The co-rapporteur
+def get_corapp(xml: ET.Element) -> str:
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(r"co-rapporteur: (.*?) \\n", p):
             rapporteur = re.search(r"co-rapporteur: (.*?)\\n", p)[0][15:]

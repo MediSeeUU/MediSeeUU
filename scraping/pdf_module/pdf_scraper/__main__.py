@@ -54,24 +54,27 @@ def parse_folder(directory: str, folder_name):
                   ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
     omar_files = [file for file in directory_files if "omar" in file and ".xml" in file]
 
-    # call parsers on correct files and update medicine struct
-    for file in decision_files:
-        medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
-
-    for file in annex_files:
-        medicine_struct = ap.parse_file(file, medicine_struct)
-
-    for file in epar_files:
-        medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
-
-    for file in omar_files:
-        medicine_struct = omar_parse.parse_file(file, directory, medicine_struct)
+    # call scrapers on correct files and update medicine struct
+    medicine_struct = run_scrapers(annex_files, decision_files, directory, epar_files, medicine_struct, omar_files)
 
     # dump json result to medicine folder directory
     json_file = open(path.join(directory, folder_name) + "_pdf_parser.json", "w")
     medicine_struct_json = json.dumps(pis.asdict(medicine_struct), default=datetime_serializer)
     json_file.write(medicine_struct_json)
     json_file.close()
+
+
+# scraping all XML or PDF files and updating medicine_struct with the scraped attributes
+def run_scrapers(annex_files, decision_files, directory, epar_files, medicine_struct, omar_files):
+    for file in decision_files:
+        medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
+    for file in annex_files:
+        medicine_struct = ap.parse_file(file, medicine_struct)
+    for file in epar_files:
+        medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
+    for file in omar_files:
+        medicine_struct = omar_parse.parse_file(file, directory, medicine_struct)
+    return medicine_struct
 
 
 # datetime to string serializer for json dumping

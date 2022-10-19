@@ -44,6 +44,8 @@ def section_contains_header_tag(tag: str, head: ET.Element):
 
 def section_contains_header_substring(substring: str, section: ET.Element) -> bool:
     for head in section.findall(tags.header):
+        if not head.text:
+            return False
         if substring.lower() in head.text.lower():
             return True
     return False
@@ -52,6 +54,8 @@ def section_contains_header_substring(substring: str, section: ET.Element) -> bo
 def section_contains_header_substring_set(substrings: List[str], section: ET.Element) -> bool:
     for head in section.findall(tags.header):
         for substring in substrings:
+            if not head.text:
+                return False
             if substring.lower() in head.text.lower():
                 return True
 
@@ -67,6 +71,8 @@ def section_contains_header_number(number: str, head: ET.Element) -> bool:
 
 def section_contains_paragraph_substring(substring: str, section: ET.Element) -> bool:
     for paragraph in section.findall(tags.paragraph):
+        if not paragraph.text:
+            return False
         if substring.lower() in paragraph.text:
             return True
 
@@ -76,6 +82,8 @@ def section_contains_paragraph_substring(substring: str, section: ET.Element) ->
 def section_contains_paragraph_substring_set(substrings: list[str], section: ET.Element) -> bool:
     for paragraph in section.findall(tags.paragraph):
         for substring in substrings:
+            if not paragraph.text:
+                return False
             if substring.lower() in paragraph.text:
                 return True
 
