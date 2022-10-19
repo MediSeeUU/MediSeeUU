@@ -14,10 +14,10 @@ import re
 
 # The other non-PDF files will be scraped during the next automatic web scraper run. (I.E. Next week)
 
-def filter_all_pdfs():
+def filter_all_pdfs(directory: str):
     print(f'Filtering all PDF files...')
     f = open('retry.txt', 'w', encoding="utf-8")  # open/clean output file
-    data_dir = 'PDF_scraper/text_scraper/data'
+    data_dir = directory
     all_data = Parallel(n_jobs=8)(
         delayed(filter_folder)(os.path.join(data_dir, folder)) for folder in
         os.listdir(data_dir))
@@ -76,7 +76,7 @@ def filter_pdf(filename: str, data_dir: str):
         # file not readable
         else:
             pdf.close()
-            os.remove(file_path)
+            print('Remove' + file_path)
             return filename + '@corrupt'
     # could not parse
     except:
@@ -84,18 +84,18 @@ def filter_pdf(filename: str, data_dir: str):
         try:
             firstline = get_utf8_line(file_path)
             if 'html' in firstline.lower():
-                os.remove(file_path)
+                print('Remove' + file_path)
                 return filename + '@html'
         except:
             pass
 
         # check if could not open PDF
         if corrupt:
-            os.remove(file_path)
+            print('Remove' + file_path)
             return filename + '@corrupt'
         # other parse error (uses default 'Failure unknown reason')
         else:
-            os.remove(file_path)
+            print('Remove' + file_path)
             return filename + '@unknown'
 
 
@@ -134,8 +134,8 @@ def check_decision(filename, file_path, pdf):
     except:
         pass
     pdf.close()
-    os.remove(file_path)
+    print('Remove' + file_path)
     return filename + '@wrong_doctype'
 
 
-filter_all_pdfs()
+# filter_all_pdfs("text_scraper/data/dec_initial")
