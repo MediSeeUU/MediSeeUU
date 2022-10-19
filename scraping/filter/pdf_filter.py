@@ -138,4 +138,4 @@ def check_decision(filename, file_path, pdf):
     return filename + '@wrong_doctype'
 
 
-# filter_all_pdfs("text_scraper/data/dec_initial")
+filter_all_pdfs("../../data")
