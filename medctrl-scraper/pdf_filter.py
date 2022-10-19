@@ -14,10 +14,10 @@ import re
 
 # The other non-PDF files will be scraped during the next automatic web scraper run. (I.E. Next week)
 
-def filter_all_pdfs():
+def filter_all_pdfs(directory: str):
     print(f'Filtering all PDF files...')
     f = open('retry.txt', 'w', encoding="utf-8")  # open/clean output file
-    data_dir = 'text_scraper/data/dec_initial'
+    data_dir = directory
 
     all_data = Parallel(n_jobs=8)(
         delayed(filter_pdf)(filename, data_dir) for filename in
@@ -124,4 +124,4 @@ def check_decision(filename, pdf):
         pass
     return filename + '@wrong_doctype'
 
-filter_all_pdfs()
+# filter_all_pdfs("text_scraper/data/dec_initial")
