@@ -15,8 +15,8 @@ import ema_scraper
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
-scrape_ec: bool = True
-scrape_ema: bool = False              # Requires scrape_ec to have been run at least once
+scrape_ec: bool = False
+scrape_ema: bool = True              # Requires scrape_ec to have been run at least once
 download_files: bool = False         # Download pdfs from the obtained links
 parallel_csv_getting: bool = False   # Parallelization is currently broken on Windows. Set to False
 
@@ -55,19 +55,19 @@ def get_urls_ec(medicine_url, eu_n, medicine_type, eu_num_short):
                 dec_list, anx_list, ema_list, attributes_dict = \
                     ec_scraper.scrape_medicine_page(medicine_url, ec_scraper.MedicineType(medicine_type))
 
-                with open("../data/CSV/decision.csv", 'a') as f:
+                with open("../data/CSV/decision.csv", 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([eu_n, dec_list])
 
-                with open("../data/CSV/annexes.csv", 'a') as f:
+                with open("../data/CSV/annexes.csv", 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([eu_n, anx_list])
 
-                with open("../data/CSV/ema_urls.csv", 'a') as f:
+                with open("../data/CSV/ema_urls.csv", 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([eu_n, ema_list])
 
-                with open("../data/CSV/med_dict.csv", 'a') as f:
+                with open("../data/CSV/med_dict.csv", 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([eu_n, attributes_dict])
 
