@@ -77,24 +77,24 @@ def remove_illegal_characters(string: str) -> str:
     non_illegal_string = ""
     for character in string:
         is_illegal = False
-        encoded_char = hex(character.encode("utf-8", "ignore"))
+        encoded_char = int(character.encode("utf-8", "ignore").hex(), 16)
 
         if encoded_char == "":
             continue
 
-        if 0x1 <= encoded_char <= 0x8:
+        if 0x1000 <= encoded_char <= 0x8000:
             is_illegal = True
 
-        if 0xB <= encoded_char <= 0xC:
+        if 0xB000 <= encoded_char <= 0xC000:
             is_illegal = True
 
-        if 0xE <= encoded_char <= 0x1F:
+        if 0xE000 <= encoded_char <= 0x1F00:
             is_illegal = True
 
-        if 0x7F <= encoded_char <= 0x84:
+        if 0x7F00 <= encoded_char <= 0x8400:
             is_illegal = True
 
-        if 0x86 <= encoded_char <= 0x9F:
+        if 0x8600 <= encoded_char <= 0x9F00:
             is_illegal = True
 
         if encoded_char in [0x0000, 0xEFFF, 0xEFFF]:
