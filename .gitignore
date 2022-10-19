@@ -140,6 +140,8 @@ fabric.properties
 
 # all PDFs & test data
 *.pdf
+*.xml
+*.json
 medctrl-scraper/PDF_scraper/text_scraper/parsers/test_data/
 medctrl-scraper/PDF_scraper/text_scraper/data/
 medctrl-scraper/PDF_scraper/text_scraper/test_data/
