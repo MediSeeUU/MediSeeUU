@@ -15,19 +15,13 @@ import parsers.omar_parse as omar_parse
 
 # Main file to run all parsers
 
-def main():
-    # Scrape all PDF files in the data folder
-    directory = "data"
-    pdf_parser(directory)
-
-
 # datetime to string serializer for json dumping
 def datetime_serializer(date: pis.datetime.datetime):
     if isinstance(date, pis.datetime.datetime):
         return date.__str__()
 
 
-def pdf_parser(directory: str):
+def main(directory: str):
     print("Parsing PDF files")
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
 
