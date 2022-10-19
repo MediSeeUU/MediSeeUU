@@ -81,4 +81,4 @@ def datetime_serializer(date: pis.datetime.datetime):
 
 
 if __name__ == "__main__":
-    main()
+    main('data')
