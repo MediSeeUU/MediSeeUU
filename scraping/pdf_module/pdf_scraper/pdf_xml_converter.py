@@ -1,9 +1,11 @@
+from operator import is_
 import sys
 from typing import TextIO
 import fitz
 import pdf_helper as ph
 import xml_tags as tags
 from os import path
+import re
 
 header_indicator = "|-HEADER-|"
 split_indicator = "|-SPLIT-|"
@@ -67,8 +69,41 @@ def replace_special_xml_characters(string: str) -> str:
     string = string.replace("\'", "&apos;")
     string = string.replace("<", "&lt;")
     string = string.replace(">", "&gt;")
-
+    string = remove_illegal_characters(string)
     return string
+
+
+def remove_illegal_characters(string: str) -> str:
+    non_illegal_string = ""
+    for character in string:
+        is_illegal = False
+        encoded_char = character.encode("utf-8", "ignore")
+
+        if encoded_char == "":
+            continue
+
+        if bytes.fromhex("01") <= encoded_char <= bytes.fromhex("08"):
+            is_illegal = True
+
+        if bytes.fromhex("0B") <= encoded_char <= bytes.fromhex("0C"):
+            is_illegal = True
+
+        if bytes.fromhex("0E") <= encoded_char <= bytes.fromhex("1F"):
+            is_illegal = True
+
+        if bytes.fromhex("7F") <= encoded_char <= bytes.fromhex("84"):
+            is_illegal = True
+
+        if bytes.fromhex("86") <= encoded_char <= bytes.fromhex("9F"):
+            is_illegal = True
+
+        if encoded_char in ["00", "EF FF", "EF FF"]:
+            is_illegal = True
+
+        if not is_illegal:
+            non_illegal_string += character
+    
+    return non_illegal_string
 
 
 def print_xml_tag_open(xml_tag: str, file: TextIO, attributes: str = ""):
@@ -79,7 +114,8 @@ def print_xml_tag_close(xml_tag: str, file: TextIO):
     file.write("</" + xml_tag + ">")
 
 
-def print_xml(sections: list[(str, str)], output_filepath: str, document_creation_date: str, document_modification_date: str):
+def print_xml(sections: list[(str, str)], output_filepath: str, document_creation_date: str,
+              document_modification_date: str):
     # start printing xml file
     console_out = sys.stdout
     xml_file = open(output_filepath, "w", encoding="utf-8")

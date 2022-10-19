@@ -2,7 +2,6 @@ import pdf_xml_converter as xmlc
 import xml.etree.ElementTree as ET
 import xml_parsing_utils as Utils
 import parsed_info_struct as PIS
-import parsers.annex_parsing_functions as APF
 import os
 
 
@@ -14,7 +13,7 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
         return medicine_struct
 
     if medicine_struct is None:
-        print("ANNEX PARSER: medicine_struct is none at "  + filepath)
+        print("ANNEX PARSER: medicine_struct is none at " + filepath)
         return
 
     xml_root = xml_tree.getroot()
