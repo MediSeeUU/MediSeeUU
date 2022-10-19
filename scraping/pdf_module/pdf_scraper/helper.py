@@ -33,7 +33,7 @@ months = {
 }
 
 
-def convert_months(date: str):
+def convert_months(date: str) -> str:
     for k in months.keys():
         if k in date:
             date = date.replace(f" {k} ", f"/{months[k]}/")
@@ -42,7 +42,7 @@ def convert_months(date: str):
     return date
 
 
-def convert_roman_numbers(date: str):
+def convert_roman_numbers(date: str) -> str:
     """ Converts the roman numbers (up to XII) to normal numbers
     Parameters
     ----------
@@ -62,7 +62,7 @@ def convert_roman_numbers(date: str):
     return date
 
 
-def convert_articles(articles: [str]):
+def convert_articles(articles: [str]) -> [str]:
     res = []
     for article in articles:
         num = article.split(' ')[1]
@@ -78,7 +78,7 @@ def convert_articles(articles: [str]):
     return res
 
 
-def get_date(txt):
+def get_date(txt: str) -> datetime:
     if txt != '':
         txt = txt.lower()
         try:

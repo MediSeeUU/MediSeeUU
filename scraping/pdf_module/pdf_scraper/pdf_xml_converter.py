@@ -97,7 +97,7 @@ def remove_illegal_characters(string: str) -> str:
         if 0x8600 <= encoded_char <= 0x9F00:
             is_illegal = True
 
-        if encoded_char in [0x0000, 0xEFFF, 0xEFFF]:
+        if encoded_char == "efff" or encoded_char[2:] == "00":
             is_illegal = True
 
         if not is_illegal:
@@ -154,12 +154,13 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
         split_header = section_header.strip().split()
         header_attribute = ""
 
-        if all(character.isnumeric() or character == "." for character in split_header[0]):
-            chapter_number_attribute = split_header[0]
-            if chapter_number_attribute[-1] == ".":
-                chapter_number_attribute = chapter_number_attribute[:-1]
+        if split_header:
+            if all(character.isnumeric() or character == "." for character in split_header[0]):
+                chapter_number_attribute = split_header[0]
+                if chapter_number_attribute[-1] == ".":
+                    chapter_number_attribute = chapter_number_attribute[:-1]
 
-            header_attribute = " n=\"" + chapter_number_attribute + "\""
+                header_attribute = " n=\"" + chapter_number_attribute + "\""
 
         # print the section from xml_elements taking sections and subsections into account
         print_xml_tag_open(tags.section, xml_file)

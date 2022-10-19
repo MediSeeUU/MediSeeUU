@@ -6,12 +6,12 @@ import parsed_info_struct as PIS
 import os.path as path
 
 
-def get_all(filename: str, xml_data: ET.Element):
+def get_all(filename: str, xml_data: ET.Element) -> dict:
     omar = {"filename": filename[:len(filename) - 4]} # removes extension
     return omar
 
 
-def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct):
+def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct) -> PIS.parsed_info_struct:
     xml_tree = ET.parse(path.join(directory, filename))
     xml_root = xml_tree.getroot()
     xml_body = xml_root[1]
