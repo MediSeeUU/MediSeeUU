@@ -46,18 +46,18 @@ def parse_folder(directory: str, folder_name):
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
     for file in directory_files:
         # Skip over all decision files, XML files, and non-pdf files
-        if "dec" in file or ".xml" in file or ".pdf" not in file or "anx" in file or "dec" in file:
+        if "dec" in file or ".xml" in file or ".pdf" not in file:
             continue
 
         # Skip file if XML is already created (temporary)
-        if file[:len(file) - 4] + ".xml" in directory_files:
-            continue
+        # if file[:len(file) - 4] + ".xml" in directory_files:
+        #     continue
 
         try:
             file_path = path.join(directory, file)
             xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
         except:
-            print("failed pdf to xml conversion: " + path.join(directory, file))
+            print("PDF MODULE MAIN: failed pdf to xml conversion: " + path.join(directory, file))
             continue
 
     # update list of files and filter out relevant files for each parser
@@ -69,13 +69,15 @@ def parse_folder(directory: str, folder_name):
 
     # call parsers on correct files and update medicine struct
     for file in decision_files:
-        medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
+        # medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
+        medicine_struct = parse_file(file, medicine_struct)
     
     for file in annex_files:
         medicine_struct = ap.parse_file(file, medicine_struct)
 
     for file in epar_files:
-        medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
+        medicine_struct = parse_file(file, medicine_struct)
+        # medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
 
     for file in omar_files:
         medicine_struct = parse_file(file, medicine_struct)
@@ -88,7 +90,7 @@ def parse_folder(directory: str, folder_name):
 
 
 # pdf_parser("test_data")
-pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
+# pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\text_scraper\\parsers\\test_data")
 # cProfile.run('pdf_parser("data")')
 # pdf_parser("data")
 # pdf_parser("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\PDF_scraper\\Text_scraper\\parsers\\test_data")
