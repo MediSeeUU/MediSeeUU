@@ -12,7 +12,6 @@
 from rest_framework import serializers
 from api.models.medicine_models import (
     Medicine,
-    HistoryATCCode,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
@@ -22,7 +21,6 @@ from api.models.medicine_models import (
     HistoryEUOrphanCon
 )
 from api.serializers.medicine_serializers.public import (
-    ATCCodeSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,
@@ -39,15 +37,17 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
     view endpoint medicine
     """
 
-    atc_code = serializers.SerializerMethodField()
     eu_aut_status = serializers.SerializerMethodField()
-    eu_aut_type = serializers.SerializerMethodField()
-    eu_brand_name = serializers.SerializerMethodField()
+    eu_aut_type_initial = serializers.SerializerMethodField()
+    eu_aut_type_current = serializers.SerializerMethodField()
+    eu_brand_name_initial = serializers.SerializerMethodField()
+    eu_brand_name_current = serializers.SerializerMethodField()
     eu_mah_initial = serializers.SerializerMethodField()
     eu_mah_current = serializers.SerializerMethodField()
-    eu_od = serializers.SerializerMethodField()
-    eu_prime = serializers.SerializerMethodField()
-    eu_orphan_con = serializers.SerializerMethodField()
+    eu_od_initial = serializers.SerializerMethodField()
+    eu_prime_initial = serializers.SerializerMethodField()
+    eu_orphan_con_initial = serializers.SerializerMethodField()
+    eu_orphan_con_current = serializers.SerializerMethodField()
 
     class Meta:
         """
@@ -56,15 +56,6 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
         model = Medicine
         fields = "__all__"
-
-    # retrieves atc code from database for each medicine
-    def get_atc_code(self, atc_code):
-        queryset = HistoryATCCode.objects.filter(eu_pnumber=atc_code.eu_pnumber)
-        try:
-            queryset = queryset[len(queryset) - 1]
-        except:
-            queryset = None
-        return ATCCodeSerializer(instance=queryset, read_only=True).data
 
     # retrieves authorisation status from database for each medicine
     def get_eu_aut_status(self, authorisation_status):
@@ -75,8 +66,18 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return AuthorisationStatusSerializer(instance=queryset, read_only=True).data
 
+    # retrieves initial authorisation type from database for each medicine
+    def get_eu_aut_type_initial(self, authorisation_type):
+        queryset = HistoryAuthorisationType.objects.filter(eu_pnumber=authorisation_type.eu_pnumber)
+        try:
+            queryset = queryset[0]
+        except:
+            queryset = None
+        return AuthorisationTypeSerializer(instance=queryset, read_only=True).data
+
+
     # retrieves authorisation type from database for each medicine
-    def get_eu_aut_type(self, authorisation_type):
+    def get_eu_aut_type_current(self, authorisation_type):
         queryset = HistoryAuthorisationType.objects.filter(eu_pnumber=authorisation_type.eu_pnumber)
         try:
             queryset = queryset[len(queryset) - 1]
@@ -84,14 +85,24 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return AuthorisationTypeSerializer(instance=queryset, read_only=True).data
 
-    # retrieves brand name from database for each medicine
-    def get_eu_brand_name(self, brand_name):
+    # retrieves initial brand name from database for each medicine
+    def get_eu_brand_name_initial(self, brand_name):
+        queryset = HistoryBrandName.objects.filter(eu_pnumber=brand_name.eu_pnumber)
+        try:
+            queryset = queryset[0]
+        except:
+            queryset = None
+        return BrandNameSerializer(instance=queryset, read_only=True).data
+
+    # retrieves current brand name from database for each medicine
+    def get_eu_brand_name_current(self, brand_name):
         queryset = HistoryBrandName.objects.filter(eu_pnumber=brand_name.eu_pnumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
             queryset = None
         return BrandNameSerializer(instance=queryset, read_only=True).data
+
 
     # retrieves initial mah from database for each medicine
     def get_eu_mah_initial(self, mah):
@@ -112,47 +123,59 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         return MAHSerializer(instance=queryset, read_only=True).data
 
 
-    # retrieves orphan designation from database for each medicine
-    def get_eu_od(self, orphan_designation):
+    # retrieves initial orphan designation from database for each medicine
+    def get_eu_od_initial(self, orphan_designation):
         queryset = HistoryOD.objects.filter(eu_pnumber=orphan_designation.eu_pnumber)
         try:
-            queryset = queryset[len(queryset) - 1]
+            queryset = queryset[0]
         except:
             queryset = None
         return OrphanDesignationSerializer(instance=queryset, read_only=True).data
 
-    # retrieves primenumber from database for each medicine
-    def get_eu_prime(self, prime):
+    # retrieves initial primenumber from database for each medicine
+    def get_eu_prime_initial(self, prime):
         queryset = HistoryPrime.objects.filter(eu_pnumber=prime.eu_pnumber)
         try:
-            queryset = queryset[len(queryset) - 1]
+            queryset = queryset[0]
         except:
             queryset = None
         return PrimeSerializer(instance=queryset, read_only=True).data
 
-        # retrieves primenumber from database for each medicine
-    def get_eu_orphan_con (self, prime):
-        queryset = HistoryEUOrphanCon.objects.filter(eu_pnumber=prime.eu_pnumber)
+    # retrieves initial orphan conditions from database for each medicine
+    def get_eu_orphan_con_initial(self, orphan_con):
+        queryset = HistoryEUOrphanCon.objects.filter(eu_pnumber=orphan_con.eu_pnumber)
+        try:
+            queryset = queryset[0]
+        except:
+            queryset = None
+        return EUOrphanConSerializer(instance=queryset, read_only=True).data
+
+    # retrieves current orphan conditions from database for each medicine
+    def get_eu_orphan_con_current(self, orphan_con):
+        queryset = HistoryEUOrphanCon.objects.filter(eu_pnumber=orphan_con.eu_pnumber)
         try:
             queryset = queryset[len(queryset) - 1]
         except:
             queryset = None
         return EUOrphanConSerializer(instance=queryset, read_only=True).data
 
+
     # creates one dimensional object from multiple dimensions
     def to_representation(self, obj):
         representation = super().to_representation(obj)
 
         for field in [
-            "atc_code",
             "eu_aut_status",
-            "eu_aut_type",
-            "eu_brand_name",
+            "eu_aut_type_initial",
+            "eu_aut_type_current",
+            "eu_brand_name_initial",
+            "eu_brand_name_current",
             "eu_mah_initial",
             "eu_mah_current",
-            "eu_od",
-            "eu_prime",
-            "eu_orphan_con",
+            "eu_od_initial",
+            "eu_prime_initial",
+            "eu_orphan_con_initial",
+            "eu_orphan_con_current",
         ]:
             field_representation = representation.pop(field)
             for key in field_representation:

@@ -4,7 +4,6 @@
 from .scraper import (
     MedicineSerializer,
     MedicineFlexVarUpdateSerializer,
-    ATCCodeSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,
@@ -16,7 +15,6 @@ from .scraper import (
 )
 from .public import (
     PublicMedicineSerializer,
-    ATCCodeSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,

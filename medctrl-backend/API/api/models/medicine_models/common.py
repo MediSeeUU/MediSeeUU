@@ -83,6 +83,7 @@ class DashboardColumn:
     """
     Holds values used in medicine_info_json to create a column in the dashboard
     """
+
     def __init__(self, category, data_key, data_format, data_value):
         self.category = category
         self.data_key = data_key
@@ -116,4 +117,32 @@ def create_dashboard_history_columns(field, category: Category, data_format, dis
         "Current " + display_name
     )
     setattr(field, "dashboard_columns", [initial_dashboard_column, current_dashboard_column])
+    return field
+
+
+def create_dashboard_history_column_initial(field, category: Category, data_format, display_name: str):
+    """
+    Creates an initial column for a history column
+    """
+    initial_dashboard_column = DashboardColumn(
+        category,
+        field.db_column + "_initial",
+        data_format,
+        "Initial " + display_name
+    )
+    setattr(field, "dashboard_columns", [initial_dashboard_column])
+    return field
+
+
+def create_dashboard_history_column_current(field, category: Category, data_format, display_name: str):
+    """
+    Creates an initial column for a history column
+    """
+    current_dashboard_column = DashboardColumn(
+        category,
+        field.db_column + "_current",
+        data_format,
+        "Current " + display_name
+    )
+    setattr(field, "dashboard_columns", [current_dashboard_column])
     return field

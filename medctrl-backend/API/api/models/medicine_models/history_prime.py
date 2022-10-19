@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from .common import create_dashboard_column, Category
+from .common import create_dashboard_history_column_initial, Category
 
 
 class HistoryPrime(models.Model):
@@ -13,7 +13,7 @@ class HistoryPrime(models.Model):
 
     change_date = models.DateField(db_column="change_date", null=True)
 
-    eu_prime = create_dashboard_column(
+    eu_prime = create_dashboard_history_column_initial(
         models.BooleanField(db_column="eu_prime", null=True),
         Category.General_Information,
         "bool",

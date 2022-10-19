@@ -14,7 +14,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.models.medicine_models import (
     Medicine,
-    HistoryATCCode,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
@@ -26,7 +25,6 @@ from api.update_cache import update_cache
 from api.serializers.medicine_serializers.scraper import (
     MedicineSerializer,
     MedicineFlexVarUpdateSerializer,
-    ATCCodeSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,

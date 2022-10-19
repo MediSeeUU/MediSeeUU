@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from api.models.medicine_models import (
-    HistoryATCCode,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
@@ -9,21 +8,6 @@ from api.models.medicine_models import (
     HistoryPrime,
     HistoryEUOrphanCon
 )
-
-
-class ATCCodeSerializer(serializers.ModelSerializer):
-    """
-    Authorisation table serializer for the view endpoint medicine
-    """
-
-    class Meta:
-        """
-        Meta information
-        """
-
-        model = HistoryATCCode
-        fields = ("atc_code",)
-        ordering = ("change_date",)
 
 
 class AuthorisationStatusSerializer(serializers.ModelSerializer):

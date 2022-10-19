@@ -12,7 +12,6 @@ from django.core.management.base import BaseCommand
 
 from api.models.medicine_models import (
     Medicine,
-    HistoryATCCode,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
@@ -34,7 +33,6 @@ class Command(BaseCommand):
 
         for model in [
             Medicine,
-            HistoryATCCode,
             HistoryAuthorisationStatus,
             HistoryAuthorisationType,
             HistoryBrandName,

@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from .common import create_dashboard_column, Category, AutTypes
+from .common import create_dashboard_history_columns, Category, AutTypes
 
 
 class HistoryAuthorisationType(models.Model):
@@ -13,7 +13,7 @@ class HistoryAuthorisationType(models.Model):
 
     change_date = models.DateField(db_column="change_date", null=True)
 
-    eu_aut_type = create_dashboard_column(
+    eu_aut_type = create_dashboard_history_columns(
         models.CharField(db_column="eu_aut_type", max_length=11, choices=AutTypes.choices),
         Category.General_Information,
         "string",

@@ -16,6 +16,13 @@ class Medicine(models.Model):
         "EU Product Number"
     )
 
+    atc_code = create_dashboard_column(
+        models.CharField(db_column="atc_code", max_length=7),
+        Category.General_Information,
+        "string",
+        "ATC Code"
+    )
+
     active_substance = create_dashboard_column(
         models.TextField(db_column="active_substance", null=False),
         Category.General_Information,

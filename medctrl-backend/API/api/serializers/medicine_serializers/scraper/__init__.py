@@ -1,5 +1,4 @@
 from .history_serializers import (
-    ATCCodeSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,

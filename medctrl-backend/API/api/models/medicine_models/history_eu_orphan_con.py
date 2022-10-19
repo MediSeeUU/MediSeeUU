@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from .common import create_dashboard_column, Category
+from .common import create_dashboard_history_columns, Category
 
 
 class HistoryEUOrphanCon(models.Model):
@@ -13,7 +13,7 @@ class HistoryEUOrphanCon(models.Model):
 
     change_date = models.DateField(db_column="change_date", null=True)
 
-    eu_orphan_con = create_dashboard_column(
+    eu_orphan_con = create_dashboard_history_columns(
         models.TextField(db_column="eu_orphan_con", null=False),
         Category.General_Information,
         "string",
