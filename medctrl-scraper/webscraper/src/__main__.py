@@ -15,9 +15,9 @@ import ema_scraper
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
-scrape_ec: bool = False
+scrape_ec: bool = True
 scrape_ema: bool = False              # Requires scrape_ec to have been run at least once
-download_files: bool = True         # Download pdfs from the obtained links
+download_files: bool = False         # Download pdfs from the obtained links
 parallel_csv_getting: bool = False   # Parallelization is currently broken on Windows. Set to False
 
 # list of the type of medicines that will be scraped
@@ -53,7 +53,7 @@ def get_urls_ec(medicine_url, eu_n, medicine_type, eu_num_short):
                 # getURLsForPDFAndEMA returns per medicine the urls for the decision and annexes files and for the ema
                 # website.
                 dec_list, anx_list, ema_list, attributes_dict = \
-                    ec_scraper.scrape_medicine_page(medicine_url, medicine_type)
+                    ec_scraper.scrape_medicine_page(medicine_url, ec_scraper.MedicineType(medicine_type))
 
                 with open("../data/CSV/decision.csv", 'a') as f:
                     writer = csv.writer(f)
@@ -79,7 +79,7 @@ def get_urls_ec(medicine_url, eu_n, medicine_type, eu_num_short):
                     # Creates a directory if the medicine doesn't exist yet, otherwise it just adds the json file to the
                     # existing directory
                     Path(f"../data/medicines/{eu_n}").mkdir(exist_ok=True)
-                    with open(f"../data/medicines/{eu_n}/{eu_n}_attributes.json", 'a') as f:
+                    with open(f"../data/medicines/{eu_n}/{eu_n}_attributes.json", 'w') as f:
                         json.dump(attributes_json, f, indent=4)
                 except:
                     print(eu_n)
