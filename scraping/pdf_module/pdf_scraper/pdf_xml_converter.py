@@ -79,7 +79,10 @@ def remove_illegal_characters(string: str) -> str:
         if character == '':
             continue
 
-        encoded_char = int(character.encode("utf-8", "ignore").hex(), 16)
+        try:
+            encoded_char = int(character.encode("utf-8", "ignore").hex(), 16)
+        except ValueError:
+            continue
 
         if 0x1000 <= encoded_char <= 0x8000:
             continue
@@ -100,7 +103,7 @@ def remove_illegal_characters(string: str) -> str:
             continue
 
         non_illegal_string += character
-    
+
     return non_illegal_string
 
 

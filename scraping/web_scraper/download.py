@@ -7,6 +7,7 @@ import requests
 from joblib import Parallel, delayed
 
 import regex as re
+import os
 
 log = logging.getLogger(__name__)
 log_handler = logging.StreamHandler()
@@ -17,6 +18,7 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
     downloaded_file = requests.get(url)
     downloaded_file.raise_for_status()
     filename: str = f"{eu_num}_{'_'.join(filename_elements)}.pdf"
+    print(os.listdir())
 
     # TODO: Runs this check for every downloaded file. Could be more efficient?
     path_medicine = Path(f"../data/medicines/{eu_num}")
@@ -47,15 +49,20 @@ def download_pdfs_ema(eu_num: str, epar_dict: dict[str, str], med_dict: dict[str
 
 # Function for reading the CSV contents back into dictionaries that can be used for downloading.
 def read_csv_files():
-    dec = pd.read_csv('web_scraper/CSV/decision.csv', header=None, index_col=0, lineterminator='\n', on_bad_lines='skip').squeeze().to_dict()
-    anx = pd.read_csv('web_scraper/CSV/annexes.csv', header=None, index_col=0, lineterminator='\n', on_bad_lines='skip').squeeze().to_dict()
-    epar = pd.read_csv('web_scraper/CSV/epar.csv', header=None, index_col=0, lineterminator='\n', on_bad_lines='skip').squeeze().to_dict()
-    med_dict = pd.read_csv('web_scraper/CSV/med_dict.csv', header=None, index_col=0, encoding="utf-8", on_bad_lines='skip').squeeze().to_dict()
+    dec = pd.read_csv('web_scraper/CSV/decision.csv', header=None, index_col=0, lineterminator='\n',
+                      on_bad_lines='skip').squeeze().to_dict()
+    anx = pd.read_csv('web_scraper/CSV/annexes.csv', header=None, index_col=0, lineterminator='\n',
+                      on_bad_lines='skip').squeeze().to_dict()
+    epar = pd.read_csv('web_scraper/CSV/epar.csv', header=None, index_col=0, lineterminator='\n',
+                       on_bad_lines='skip').squeeze().to_dict()
+    med_dict = pd.read_csv('web_scraper/CSV/med_dict.csv', header=None, index_col=0, encoding="utf-8",
+                           on_bad_lines='skip').squeeze().to_dict()
     return dec, anx, epar, med_dict
 
 
 # TODO: Add a new function in a way that that function gets a medicine and downloads all files for that medicine.
-def download_medicine_files(eu_n: str, dec: dict[str, list[str]], anx: dict[str, list[str]], epar: dict[str, str], med_info: dict[str, str]):
+def download_medicine_files(eu_n: str, dec: dict[str, list[str]], anx: dict[str, list[str]], epar: dict[str, str],
+                            med_info: dict[str, str]):
     attempts = 0
     max_attempts = 4
     success = False
@@ -66,9 +73,9 @@ def download_medicine_files(eu_n: str, dec: dict[str, list[str]], anx: dict[str,
             download_pdfs_ema(eu_n, epar, med_info)
             success = True
             log.info(f"Downloaded all files for {eu_n}")
-        except Exception:
+        except:
             attempts += 1
-            log.info(f"Failed getting al pdf files for {eu_n}")
+            log.info(f"Failed getting all pdf files for {eu_n}")
 
 
 # TODO: Fix downloading for epar files

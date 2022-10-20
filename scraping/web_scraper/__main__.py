@@ -14,8 +14,8 @@ from web_scraper import ema_scraper
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
-scrape_ec: bool = False
-scrape_ema: bool = False            # Requires scrape_ec to have been run at least once
+scrape_ec: bool = True
+scrape_ema: bool = True            # Requires scrape_ec to have been run at least once
 download_files: bool = True         # Download pdfs from the obtained links
 use_parallelization: bool = False   # Parallelization is currently broken on Windows. Set to False
 
@@ -79,8 +79,8 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type):
                 try:
                     # Creates a directory if the medicine doesn't exist yet, otherwise it just adds the json file to the
                     # existing directory
-                    Path(f"../data/medicines/{eu_n}").mkdir(exist_ok=True)
-                    with open(f"../data/medicines/{eu_n}/{eu_n}_attributes.json", 'w') as f:
+                    Path(f"../data/{eu_n}").mkdir(exist_ok=True)
+                    with open(f"../data/{eu_n}/{eu_n}_attributes.json", 'w') as f:
                         json.dump(attributes_json, f, indent=4)
                 except Exception:
                     print(eu_n)
@@ -105,7 +105,7 @@ def get_urls_ema(medicine, url: str):
             else:
                 url = ''
             pdf_url = ema_scraper.pdf_links_from_url(url)
-            with open("../data/CSV/epar.csv", 'a', newline='') as f:
+            with open("web_scraper/CSV/epar.csv", 'a', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow([medicine, pdf_url])
             success = True
@@ -122,7 +122,7 @@ def main(directory: str):
     # TODO: Remove mkdir after it is moved to monolithic main
     # Create the data dir.
     # The ' exist_ok' option ensures no errors thrown if this is not the first time the code runs.
-    Path("CSV").mkdir(exist_ok=True, parents=True)
+    Path("web_scraper/CSV").mkdir(exist_ok=True, parents=True)
     Path(directory).mkdir(exist_ok=True)
 
     log.info("TASK SUCCESS on Generating directories")
@@ -144,14 +144,14 @@ def main(directory: str):
                     in tqdm.tqdm(medicine_codes, bar_format=tqdm_format_string)
                 )
             else:
-                for (medicine_url, eu_n, medicine_type) \
+                for (medicine_url, eu_n, medicine_type, _) \
                         in tqdm.tqdm(medicine_codes, bar_format=tqdm_format_string):
                     get_urls_ec(medicine_url, eu_n, medicine_type)
             log.info("TASK FINISHED EC scrape")
 
     if scrape_ema:
         log.info("Scraping all individual medicine pages of EMA")
-        ema = pd.read_csv('../CSV/ema_urls.csv', header=None, index_col=0, on_bad_lines='skip').squeeze().to_dict()
+        ema = pd.read_csv('web_scraper/CSV/ema_urls.csv', header=None, index_col=0, on_bad_lines='skip').squeeze().to_dict()
         if use_parallelization:
             parallel(
                 delayed(get_urls_ema)(url[0], url[1])

@@ -15,8 +15,8 @@ def main():
         os.mkdir(data_folder_directory)
 
     web_scraper.main(data_folder_directory)
-    pdf_scraper.main(data_folder_directory)
-    combiner.main(data_folder_directory)
+    # pdf_scraper.main(data_folder_directory)
+    # combiner.main(data_folder_directory)
     # db_uploader.main(data_folder_directory)
 
 
