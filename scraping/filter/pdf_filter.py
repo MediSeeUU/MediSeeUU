@@ -6,7 +6,7 @@ import re
 
 # This program scans all PDF files in the given directory.
 # Sometimes, the content of a PDF file is not correct.
-# This program therefore creates a log file (retry.txt) that saves the actual type of each erroneous PDF file:
+# This program therefore creates a log file (filter.txt) that saves the actual type of each erroneous PDF file:
 # An image, a HTML webpage, or a corrupt PDF in other cases.
 
 # This file can be used by the webscraper to check for corrupt PDF files,
@@ -16,14 +16,14 @@ import re
 
 def filter_all_pdfs(directory: str):
     print(f'Filtering all PDF files...')
-    f = open('retry.txt', 'w', encoding="utf-8")  # open/clean output file
+    f = open('filter.txt', 'w', encoding="utf-8")  # open/clean output file
     data_dir = directory
     all_data = Parallel(n_jobs=8)(
         delayed(filter_folder)(os.path.join(data_dir, folder)) for folder in
         os.listdir(data_dir))
 
     # Write the error of each PDF file to the output file
-    # Each line in retry.txt: filename@error_type
+    # Each line in filter.txt: filename@error_type
     for pdfdata in all_data:
         f.writelines(pdfdata)
 
@@ -76,35 +76,35 @@ def filter_pdf(filename: str, data_dir: str):
         # file not readable
         else:
             pdf.close()
-            print('Remove' + file_path)
+            os.remove(file_path)
             return filename + '@corrupt'
     # could not parse
     except:
         # check if html
         try:
-            firstline = get_utf8_line(file_path)
-            if 'html' in firstline.lower():
-                print('Remove' + file_path)
+            first_line = get_utf8_line(file_path)
+            if 'html' in first_line.lower():
+                os.remove(file_path)
                 return filename + '@html'
         except:
             pass
 
         # check if could not open PDF
         if corrupt:
-            print('Remove' + file_path)
+            os.remove(file_path)
             return filename + '@corrupt'
         # other parse error (uses default 'Failure unknown reason')
         else:
-            print('Remove' + file_path)
+            os.remove(file_path)
             return filename + '@unknown'
 
 
 def get_utf8_line(file_path: str):
     # open file to check first line
     f2 = open(str(file_path), 'r', encoding="utf8")
-    firstline = f2.readline()
+    first_line = f2.readline()
     f2.close()  # close opened file
-    return firstline
+    return first_line
 
 
 def check_readable(pdf: fitz.Document):
@@ -118,23 +118,20 @@ def check_readable(pdf: fitz.Document):
 
 
 def check_decision(filename, file_path, pdf):
-    try:
-        # gets text of second page
-        first_page = pdf[0]
-        txt = first_page.get_text()
-        # checks if it is a decision file
-        if bool(re.search(r'commission \w*\s?decision', txt.lower())):
+    # gets text of second page
+    first_page = pdf[0]
+    txt = first_page.get_text()
+    # checks if it is a decision file
+    if re.search(r'commission \w*\s?decision', txt.lower()):
+        return ''
+    else:
+        # try second page
+        second_page = pdf[1]
+        txt = second_page.get_text()
+        if re.search(r'commission \w*\s?decision', txt.lower()):
             return ''
-        else:
-            # try second page
-            second_page = pdf[1]
-            txt = second_page.get_text()
-            if bool(re.search(r'commission \w*\s?decision', txt.lower())):
-                return ''
-    except:
-        pass
     pdf.close()
-    print('Remove' + file_path)
+    os.remove(file_path)
     return filename + '@wrong_doctype'
 
 

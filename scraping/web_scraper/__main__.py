@@ -8,9 +8,9 @@ import pandas as pd
 from joblib import Parallel, delayed
 import tqdm
 
-import download
-import ec_scraper
-import ema_scraper
+from web_scraper import download
+from web_scraper import ec_scraper
+from web_scraper import ema_scraper
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
@@ -56,19 +56,19 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type):
                 dec_list, anx_list, ema_list, attributes_dict = \
                     ec_scraper.scrape_medicine_page(medicine_url, ec_scraper.MedicineType(medicine_type))
 
-                with open("../data/CSV/decision.csv", 'a', newline='') as f:
+                with open("web_scraper/CSV/decision.csv", 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([eu_n, dec_list])
 
-                with open("../data/CSV/annexes.csv", 'a', newline='') as f:
+                with open("web_scraper/CSV/annexes.csv", 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([eu_n, anx_list])
 
-                with open("../data/CSV/ema_urls.csv", 'a', newline='') as f:
+                with open("web_scraper/CSV/ema_urls.csv", 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([eu_n, ema_list])
 
-                with open("../data/CSV/med_dict.csv", 'a', newline='') as f:
+                with open("web_scraper/CSV/med_dict.csv", 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([eu_n, attributes_dict])
 
@@ -116,14 +116,14 @@ def get_urls_ema(medicine, url: str):
                 break
 
 
-def main():
+def main(directory: str):
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
     # TODO: Remove mkdir after it is moved to monolithic main
     # Create the data dir.
     # The ' exist_ok' option ensures no errors thrown if this is not the first time the code runs.
-    Path("../data/CSV").mkdir(exist_ok=True, parents=True)
-    Path("../data/medicines").mkdir(exist_ok=True)
+    Path("CSV").mkdir(exist_ok=True, parents=True)
+    Path(directory).mkdir(exist_ok=True)
 
     log.info("TASK SUCCESS on Generating directories")
 
@@ -151,7 +151,7 @@ def main():
 
     if scrape_ema:
         log.info("Scraping all individual medicine pages of EMA")
-        ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0, on_bad_lines='skip').squeeze().to_dict()
+        ema = pd.read_csv('../CSV/ema_urls.csv', header=None, index_col=0, on_bad_lines='skip').squeeze().to_dict()
         if use_parallelization:
             parallel(
                 delayed(get_urls_ema)(url[0], url[1])
@@ -173,4 +173,4 @@ def main():
 # Keep the code locally testable by including this.
 # When running this file specifically, the main function will run.
 if __name__ == "__main__":
-    main()
+    main("..\..\data")

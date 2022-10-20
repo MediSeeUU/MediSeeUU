@@ -2,8 +2,8 @@ from operator import is_
 import sys
 from typing import TextIO
 import fitz
-import pdf_helper as ph
-import xml_tags as tags
+import pdf_module.pdf_scraper.pdf_helper as ph
+import pdf_module.pdf_scraper.xml_tags as tags
 from os import path
 import re
 
@@ -76,32 +76,30 @@ def replace_special_xml_characters(string: str) -> str:
 def remove_illegal_characters(string: str) -> str:
     non_illegal_string = ""
     for character in string:
-        is_illegal = False
-        encoded_char = int(character.encode("utf-8", "ignore").hex(), 16)
-
-        if encoded_char == "":
+        if character == '':
             continue
 
+        encoded_char = int(character.encode("utf-8", "ignore").hex(), 16)
+
         if 0x1000 <= encoded_char <= 0x8000:
-            is_illegal = True
+            continue
 
         if 0xB000 <= encoded_char <= 0xC000:
-            is_illegal = True
+            continue
 
         if 0xE000 <= encoded_char <= 0x1F00:
-            is_illegal = True
+            continue
 
         if 0x7F00 <= encoded_char <= 0x8400:
-            is_illegal = True
+            continue
 
         if 0x8600 <= encoded_char <= 0x9F00:
-            is_illegal = True
+            continue
 
         if encoded_char == 0xefff or encoded_char == 0x0000:
-            is_illegal = True
+            continue
 
-        if not is_illegal:
-            non_illegal_string += character
+        non_illegal_string += character
     
     return non_illegal_string
 

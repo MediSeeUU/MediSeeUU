@@ -1,9 +1,9 @@
 # EPAR parser
 import re
-import helper as h
-import xml_parsing_utils as xpu
+import pdf_module.pdf_scraper.helper as h
+import pdf_module.pdf_scraper.xml_parsing_utils as xpu
 import xml.etree.ElementTree as ET
-import parsed_info_struct as PIS
+import pdf_module.pdf_scraper.parsed_info_struct as PIS
 import os.path as path
 
 date_pattern: str = r"\d{1,2} \w+ \d{4}"  # DD/MONTH/YYYY

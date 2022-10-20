@@ -1,11 +1,11 @@
 # EC parser
 import re
 import os.path as path
-import helper
-import pdf_helper
+import pdf_module.pdf_scraper.helper
+import pdf_module.pdf_scraper.pdf_helper
 import datetime
 import fitz
-import parsed_info_struct as PIS
+import pdf_module.pdf_scraper.parsed_info_struct as PIS
 
 
 # EC Decision document

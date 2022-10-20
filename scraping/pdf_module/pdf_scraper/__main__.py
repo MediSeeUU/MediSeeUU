@@ -1,16 +1,21 @@
-import parsers.annex_parser as ap
-import parsed_info_struct as pis
+import pdf_module.pdf_scraper.parsers.annex_parser as ap
+import pdf_module.pdf_scraper.parsed_info_struct as pis
 from os import listdir
 import os.path as path
 import json
-import pdf_xml_converter as xml_converter
+import pdf_module.pdf_scraper.pdf_xml_converter as xml_converter
 import joblib
 import multiprocessing
 
 # external parsers
-import parsers.ec_parse as ec_parse
-import parsers.epar_parse as epar_parse
-import parsers.omar_parse as omar_parse
+# import parsers.ec_parse as ec_parse
+# import parsers.epar_parse as epar_parse
+# import parsers.omar_parse as omar_parse
+
+# for main
+from pdf_module.pdf_scraper.parsers import ec_parse
+from pdf_module.pdf_scraper.parsers import epar_parse
+from pdf_module.pdf_scraper.parsers import omar_parse
 
 
 # Main file to run all parsers
@@ -41,8 +46,8 @@ def parse_folder(directory: str, folder_name):
         if "dec" in file or ".xml" in file or ".pdf" not in file:
             continue
         # Skip file if XML is already created (temporary)
-        # if file[:len(file) - 4] + ".xml" in directory_files:
-        #     continue
+        if file[:len(file) - 4] + ".xml" in directory_files:
+            continue
         file_path = path.join(directory, file)
         xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 

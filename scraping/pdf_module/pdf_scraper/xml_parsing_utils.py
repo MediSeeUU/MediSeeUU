@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element
 
-import xml_tags as tags
+import pdf_module.pdf_scraper.xml_tags as tags
 from typing import List
 
 

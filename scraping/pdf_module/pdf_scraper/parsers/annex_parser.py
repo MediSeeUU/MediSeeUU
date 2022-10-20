@@ -1,7 +1,7 @@
-import pdf_xml_converter as xmlc
+import pdf_module.pdf_scraper.pdf_xml_converter as xmlc
 import xml.etree.ElementTree as ET
-import xml_parsing_utils as Utils
-import parsed_info_struct as PIS
+import pdf_module.pdf_scraper.xml_parsing_utils as Utils
+import pdf_module.pdf_scraper.parsed_info_struct as PIS
 import os
 
 
