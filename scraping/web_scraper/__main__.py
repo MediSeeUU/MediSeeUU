@@ -11,6 +11,7 @@ import tqdm
 import download
 import ec_scraper
 import ema_scraper
+import utils
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
@@ -43,77 +44,46 @@ log = logging.getLogger(__name__)
 # Paralleled function for getting the URL codes. They are written to a CSV file
 # TODO: What type is medicine_type? It looks like it
 def get_urls_ec(medicine_url: str, eu_n: str, medicine_type):
-    # TODO: Wrapper function for retry
-    attempts = 0
-    max_attempts = 4
-    success = False
-
     if ec_scraper.MedicineType(medicine_type) in scrape_medicine_type:
-        while attempts < max_attempts and not success:
-            try:
-                # getURLsForPDFAndEMA returns per medicine the urls for the decision and annexes files and for the ema
-                # website.
-                dec_list, anx_list, ema_list, attributes_dict = \
-                    ec_scraper.scrape_medicine_page(medicine_url, ec_scraper.MedicineType(medicine_type))
+        # getURLsForPDFAndEMA returns per medicine the urls
+        # for the decision and annexes files and for the ema website.
+        dec_list, anx_list, ema_list, attributes_dict = \
+            ec_scraper.scrape_medicine_page(medicine_url, ec_scraper.MedicineType(medicine_type))
 
-                with open("../data/CSV/decision.csv", 'a', newline='') as f:
-                    writer = csv.writer(f)
-                    writer.writerow([eu_n, dec_list])
+        with open("../data/CSV/decision.csv", 'a', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow([eu_n, dec_list])
 
-                with open("../data/CSV/annexes.csv", 'a', newline='') as f:
-                    writer = csv.writer(f)
-                    writer.writerow([eu_n, anx_list])
+        with open("../data/CSV/annexes.csv", 'a', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow([eu_n, anx_list])
 
-                with open("../data/CSV/ema_urls.csv", 'a', newline='') as f:
-                    writer = csv.writer(f)
-                    writer.writerow([eu_n, ema_list])
+        with open("../data/CSV/ema_urls.csv", 'a', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow([eu_n, ema_list])
 
-                with open("../data/CSV/med_dict.csv", 'a', newline='') as f:
-                    writer = csv.writer(f)
-                    writer.writerow([eu_n, attributes_dict])
+        with open("../data/CSV/med_dict.csv", 'a', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow([eu_n, attributes_dict])
 
-                # Makes a JSON file from the dictionary
-                attributes_dump = json.dumps(attributes_dict, indent=4)
-                attributes_json = json.loads(attributes_dump)
-
-                try:
-                    # Creates a directory if the medicine doesn't exist yet, otherwise it just adds the json file to the
-                    # existing directory
-                    Path(f"../data/medicines/{eu_n}").mkdir(exist_ok=True)
-                    with open(f"../data/medicines/{eu_n}/{eu_n}_attributes.json", 'w') as f:
-                        json.dump(attributes_json, f, indent=4)
-                except Exception:
-                    print(eu_n)
-
-                success = True
-            except Exception:
-                attempts += 1
-                if attempts == max_attempts:
-                    log.error(f"failed dec/anx/ema url getting for {eu_n}")
-                    break
+        # Creates a directory if the medicine doesn't exist yet,
+        # otherwise it just adds the json file to the existing directory
+        Path(f"../data/medicines/{eu_n}").mkdir(exist_ok=True)
+        with open(f"../data/medicines/{eu_n}/{eu_n}_attributes.json", 'w') as f:
+            json.dump(attributes_dict, f, indent=4)
 
 
 def get_urls_ema(medicine, url: str):
-    # TODO: Wrapper function for retry
-    attempts = 0
-    max_attempts = 4
-    success = False
-    while attempts < max_attempts and not success:
-        try:
-            if url != "[]":
-                url = json.loads(url.replace('\'', '"'))[0]
-            else:
-                url = ''
-            pdf_url = ema_scraper.pdf_links_from_url(url)
-            with open("../data/CSV/epar.csv", 'a', newline='') as f:
-                writer = csv.writer(f)
-                writer.writerow([medicine, pdf_url])
-            success = True
-        except Exception:
-            attempts += 1
-            if attempts == max_attempts:
-                log.error(f"FAILED ema_pdf url getting for {medicine, url}")
-                break
+    if url != "[]":
+        url = json.loads(url.replace('\'', '"'))[0]
+    else:
+        url = ''
+
+    pdf_url = ema_scraper.pdf_links_from_url(url)
+
+    with open("../data/CSV/epar.csv", 'a', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow([medicine, pdf_url])
 
 
 def main():
@@ -160,7 +130,7 @@ def main():
             )
         else:
             for url in tqdm.tqdm(ema.items(), bar_format=tqdm_format_string):
-                get_urls_ema(url[0], url[1])
+                utils.exception_retry(get_urls_ema(url[0], url[1]))
         log.info("TASK FINISHED EMA scrape")
 
         # TODO: Same TODO as above
