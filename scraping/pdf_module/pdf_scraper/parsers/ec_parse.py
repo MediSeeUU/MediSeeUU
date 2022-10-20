@@ -1,8 +1,8 @@
 # EC parser
 import re
 import os.path as path
-import pdf_module.pdf_scraper.helper
-import pdf_module.pdf_scraper.pdf_helper
+import pdf_module.pdf_scraper.helper as helper
+import pdf_module.pdf_scraper.pdf_helper as pdf_helper
 import datetime
 import fitz
 import pdf_module.pdf_scraper.parsed_info_struct as PIS
