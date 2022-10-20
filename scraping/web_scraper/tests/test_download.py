@@ -1,6 +1,6 @@
 from unittest import TestCase, mock
 from requests.exceptions import Timeout
-from ...src import download
+from scraping.web_scraper import download
 
 
 class TestDownload(TestCase):

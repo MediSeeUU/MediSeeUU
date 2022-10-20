@@ -1,7 +1,7 @@
 from unittest import TestCase, mock
 import sys
 import regex as re
-from ...src import ec_scraper
+from scraping.web_scraper import ec_scraper
 
 
 class TestEcScraper(TestCase):

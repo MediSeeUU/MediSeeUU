@@ -1,5 +1,6 @@
 import ast
 import logging
+import os
 from pathlib import Path
 
 import pandas as pd
@@ -13,6 +14,9 @@ log = logging.getLogger(__name__)
 log_handler = logging.StreamHandler()
 log.addHandler(log_handler)
 
+# TODO: make sure the data path is declared somewhere in main.
+data_path = '../../data'
+
 
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
     downloaded_file = requests.get(url)
@@ -21,17 +25,17 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
     print(os.listdir())
 
     # TODO: Runs this check for every downloaded file. Could be more efficient?
-    path_medicine = Path(f"../data/medicines/{eu_num}")
+    path_medicine = Path(f"{data_path}/{eu_num}")
     path_medicine.mkdir(exist_ok=True)
-    with open(f"../data/medicines/{eu_num}/{filename}", "wb") as file:
+    with open(f"{data_path}/{eu_num}/{filename}", "wb") as file:
         file.write(downloaded_file.content)
         log.debug(f"DOWNLOADED {filename} for {eu_num}")
 
 
 # Download pdfs using the dictionaries created from the CSV files
-def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_url_dict: dict[str, list[str]], med_dict: dict[str, str]):
+def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_url_dict: dict[str, str], med_dict: dict[str, str]):
     file_counter = 0
-    for url in pdf_url_dict[eu_num]:
+    for url in ast.literal_eval(pdf_url_dict[eu_num]):
         filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type, str(file_counter)]
         download_pdf_from_url(url, eu_num, filename_elements)
         file_counter += 1
@@ -57,7 +61,18 @@ def read_csv_files():
                        on_bad_lines='skip').squeeze().to_dict()
     med_dict = pd.read_csv('web_scraper/CSV/med_dict.csv', header=None, index_col=0, encoding="utf-8",
                            on_bad_lines='skip').squeeze().to_dict()
+
     return dec, anx, epar, med_dict
+
+
+# helper function that converts a windows csv file to linux.
+def dos2unix(f_in):
+    with open('CSV/temp.csv', "w") as f_out:
+        with open(f_in, "r") as fin:
+            for line in fin:
+                line = line.replace('\r\n', '\n')
+                f_out.write(line)
+    os.rename('CSV/temp.csv', f_in)
 
 
 # TODO: Add a new function in a way that that function gets a medicine and downloads all files for that medicine.
@@ -78,8 +93,8 @@ def download_medicine_files(eu_n: str, dec: dict[str, list[str]], anx: dict[str,
             log.info(f"Failed getting all pdf files for {eu_n}")
 
 
-# TODO: Fix downloading for epar files
 def download_all(parallel_download: bool):
+    dos2unix('CSV/epar.csv')
     # Store the result of the csv converting into dictionaries
     decisions, annexes, epar, med_dict = read_csv_files()
     log.info("TASK START downloading pdf files from fetched urls from EC and EMA")

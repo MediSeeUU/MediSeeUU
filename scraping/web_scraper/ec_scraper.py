@@ -146,8 +146,10 @@ def get_eu_num(url: str) -> str:
 
 # The medicine_json object from the EC contains some important information that needs to be scraped
 # It loops through the JSON object and finds all the attributes, so that they can be used and stored
-def get_data_from_medicine_json(medicine_json: json, eu_num: str, medicine_type: MedicineType) \
-        -> (dict[str, str], list[str]):
+def get_data_from_medicine_json(medicine_json: json,
+                                eu_num: str,
+                                medicine_type: MedicineType) \
+                                -> (dict[str, str], list[str]):
     medicine_dict: dict[str, str] = {}
     ema_url_list: list[str] = []
 
@@ -157,16 +159,16 @@ def get_data_from_medicine_json(medicine_json: json, eu_num: str, medicine_type:
     for row in medicine_json:
         match row["type"]:
             case "name":
-                eu_aut_status: str = row["meta"]["status_name"]
-                eu_brand_name_current: str = row["value"]
-                status_type: str = row["meta"]["status_type"].replace("g", "a").replace("r", "w")
+                medicine_dict["eu_aut_status"]: str = row["meta"]["status_name"]
+                medicine_dict["eu_brand_name_current"]: str = row["value"]
+                medicine_dict["status_type"]: str = row["meta"]["status_type"].replace("g", "a").replace("r", "w")
 
             case "eu_num":
-                eu_pnumber: str = row["value"]
+                medicine_dict["eu_pnumber"]: str = row["value"]
 
             case "inn":
                 # Sometimes the active substance is written with italics, therefore it is removed with a RegEx
-                active_substance: str = re.sub(re.compile('<.*?>'), '', row["value"])
+                medicine_dict["active_substance"]: str = re.sub(re.compile('<.*?>'), '', row["value"])
 
             case "indication":
                 # If at any point in the future, information about the indication needs to be stored,
@@ -174,54 +176,25 @@ def get_data_from_medicine_json(medicine_json: json, eu_num: str, medicine_type:
                 pass
 
             case "mah":
-                eu_mah_current: str = row["value"]
+                medicine_dict["eu_mah_current"]: str = row["value"]
 
             case "atc":
-                atc_code: str = row["meta"][0][-1]["code"]
+                medicine_dict["atc_code"]: str = row["meta"][0][-1]["code"]
 
             case "ema_links":
                 for json_obj in row["meta"]:
                     ema_url_list.append(json_obj["url"])
                     # TODO: retrieve date for every PDF
 
-    # TODO: logging when an attribute is not found
-    # TODO: Rewrite needed
-    #       if statement could work?
-    # Currently when an attribute is not found it is simply printed to the console
-    try:
-        medicine_dict["eu_aut_status"] = eu_aut_status
-    except Exception:
-        log.warning(eu_num + ": couldn't  find authorization status")
-    try:
-        medicine_dict["eu_brand_name_current"] = eu_brand_name_current
-    except Exception:
-        log.warning(eu_num + ": couldn't find current brand name")
-    try:
-        medicine_dict["status_type"] = status_type
-    except Exception:
-        log.warning(eu_num + ": couldn't find status type")
-    try:
-        medicine_dict["eu_pnumber"] = eu_pnumber
-    except Exception:
-        log.warning(eu_num + ": couldn't find EU product number")
-    try:
-        medicine_dict["active_substance"] = active_substance
-    except Exception:
-        log.warning(eu_num + ": couldn't find active substance")
-    try:
-        medicine_dict["eu_mah_current"] = eu_mah_current
-    except Exception:
-        print(eu_num + ": couldn't find current marketing authorization holder")
     if medicine_type == MedicineType.HUMAN_USE_ACTIVE or medicine_type == MedicineType.HUMAN_USE_WITHDRAWN:
         medicine_dict["orphan_status"] = "h"
-        try:
-            # Orphan medicine never have ATC codes, therefore it will insert a dummy value for them
-            medicine_dict["atc_code"] = atc_code
-        except Exception:
-            log.warning(eu_num + ": couldn't find ATC code")
     else:
         medicine_dict["orphan_status"] = "o"
         medicine_dict["atc_code"] = "not applicable"
+
+    for key, value in medicine_dict.items():
+        if value is "":
+            log.error(f"{eu_num}: No value for {key} (value: {value})")
 
     return medicine_dict, ema_url_list
 
@@ -248,7 +221,6 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
     # for each row in the json file of each medicine, get the urls for the pdfs of the decision and annexes.
     # it also checks whether each procedure row has some information about its authorization type
     for row in procedures_json:
-
         # Checks for initial type of authorization and keeps track if it is either Exceptional or Conditional
         if "annual reassessment" in row["type"].lower():
             is_exceptional = True
@@ -283,44 +255,29 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
             anx_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
 
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
-    try: 
-        eu_aut_datetime: datetime = datetime.strptime(procedures_json[0]["decision"]["date"], '%Y-%m-%d')
-        eu_aut_date: str = datetime.strftime(eu_aut_datetime, '%m-%d-%Y')
-    except Exception:
-        print("test")
+    eu_aut_datetime: datetime = datetime.strptime(procedures_json[0]["decision"]["date"], '%Y-%m-%d')
+    eu_aut_date: str = datetime.strftime(eu_aut_datetime, '%m-%d-%Y')
 
     # From the list of EMA numbers, the right one is chosen and its certainty determined
     ema_number, ema_number_certainty = determine_ema_number(ema_numbers)
 
     # TODO: logging when an attribute is not found
     # Currently when an attribute is not found it is simply printed to the console
-    try:
-        procedures_dict["eu_aut_date"] = eu_aut_date
-    except Exception:
-        print(eu_num + ": couldn't find authorization date")
-    try:
-        procedures_dict["eu_aut_type_initial"] = determine_aut_type(eu_aut_datetime.year, is_exceptional, is_conditional)
-    except Exception:
-        print(eu_num + ": couldn't find initial authorization type")
-    try:
-        procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
-    except Exception:
-        print(eu_num + ": couldn't find current authorization type")
-    try:
-        procedures_dict["ema_number"] = ema_number
-    except Exception:
-        print(eu_num + ": couldn't find ema number")
-    try:
-        procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
-    except Exception:
-        print(eu_num + ": couldn't find ema number certainty")
+    procedures_dict["eu_aut_date"] = eu_aut_date
+    procedures_dict["eu_aut_type_initial"] = determine_aut_type(eu_aut_datetime.year, is_exceptional, is_conditional)
+    procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
+    procedures_dict["ema_number"] = ema_number
+    procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
+
+    for key, value in procedures_dict.items():
+        if value is "":
+            log.error(f"{eu_num}: No value for {key} (value: {value})")
 
     return procedures_dict, dec_url_list, anx_url_list
 
 
 # Determines the current authorization type
 def determine_current_aut_type(last_decision_types: list[str]) -> str:
-    
     for decision_type in last_decision_types:
         if "annual reassessment" in decision_type.lower():
             return "exceptional"
@@ -380,10 +337,10 @@ def determine_ema_number(ema_numbers: list[str]) -> (str, float):
 
 # uncomment this when you want to test if data is retrieved for a certain medicine
 """
-def test_code(eu_num_short: str):
+def debug_code(eu_num_short: str):
     ec_link = f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm"
-    scrape_medicine_page(ec_link)
+    scrape_medicine_page(ec_link, MedicineType.HUMAN_USE_WITHDRAWN)
 
 
-test_code("h544")
+debug_code("h1563")
 """

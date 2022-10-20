@@ -1,5 +1,5 @@
 from unittest import TestCase
-from ...src import ema_scraper
+from scraping.web_scraper import ema_scraper
 
 
 class TestEMAScraper(TestCase):
