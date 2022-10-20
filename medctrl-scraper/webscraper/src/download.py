@@ -15,6 +15,7 @@ log.addHandler(log_handler)
 
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
     downloaded_file = requests.get(url)
+    downloaded_file.raise_for_status()
     filename: str = f"{eu_num}_{'_'.join(filename_elements)}.pdf"
 
     # TODO: Runs this check for every downloaded file. Could be more efficient?
