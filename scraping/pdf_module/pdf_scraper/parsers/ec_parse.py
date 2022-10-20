@@ -5,16 +5,19 @@ import helper
 import pdf_helper
 import datetime
 import fitz
+import parsed_info_struct as PIS
+
 
 # EC Decision document
 
 
 # Given a pdf, returns one long string of text
-def get_txt_from_pdf(pdf):
+def get_txt_from_pdf(pdf: fitz.Document):
     pdf_format = pdf_helper.get_text_format(pdf)
     return pdf_helper.format_to_string(pdf_format)
 
-def parse_file(filename, directory, medicine_struct):
+
+def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct):
     try:
         pdf = fitz.open(path.join(directory, filename))
         txt = get_txt_from_pdf(pdf)
@@ -24,8 +27,9 @@ def parse_file(filename, directory, medicine_struct):
         print("EC - Could not open PDF: " + filename)
     return medicine_struct
 
+
 # Given a dictionary, fills in all attributes for EC decisions
-def get_all(filename, txt):
+def get_all(filename: str, txt: str) -> dict:
     # human use file attributes
     if '_h_' in filename:
         filedata = get_data_human_use(filename, txt)
@@ -39,8 +43,9 @@ def get_all(filename, txt):
     # if other file return data with everything 'Not parsed'
     return get_default_human_use(filename)
 
+
 # The default values before starting a parse.
-def get_default_human_use(filename):
+def get_default_human_use(filename: str) -> dict:
     default = 'Not parsed'
     return {'filename': filename,
             'eu_aut_date': default,
@@ -54,8 +59,9 @@ def get_default_human_use(filename):
             'status': 'Failure unknown reason'
             }
 
+
 # The default values before starting a parse.
-def get_default_orphan(filename):
+def get_default_orphan(filename: str) -> dict:
     default = 'Not parsed'
     return {'filename': filename,
             'eu_aut_date': default,
@@ -66,55 +72,58 @@ def get_default_orphan(filename):
             'status': 'Failure unknown reason'
             }
 
-def get_data_human_use(filename,txt):
+
+def get_data_human_use(filename: str, txt: str) -> dict:
     filedata = get_default_human_use(filename)
     date = dec_get_date(txt)
     filedata['eu_aut_date'] = date
 
-    #if date was left blank return dont find date dependant attributes.
-    if isinstance(date,str):
+    # if date was left blank return dont find date dependant attributes.
+    if isinstance(date, str):
         date = dec_get_date('')
 
-    filedata['eu_brand_name_initial']       = dec_get_bn(txt)
-    filedata['active_substance']            = dec_get_as(txt)
-    filedata['eu_nas']                      = dec_get_nas(txt, date)
-    filedata['eu_atmp']                     = dec_get_atmp(txt, date)
-    filedata['eu_od_initial']               = dec_get_od(txt, date)
-    filedata['eu_mah_initial']              = dec_get_mah(txt)
-    filedata['eu_aut_type_initial']         = dec_get_decision_type(txt, date)
+    filedata['eu_brand_name_initial'] = dec_get_bn(txt)
+    filedata['active_substance'] = dec_get_as(txt)
+    filedata['eu_nas'] = dec_get_nas(txt, date)
+    filedata['eu_atmp'] = dec_get_atmp(txt, date)
+    filedata['eu_od_initial'] = dec_get_od(txt, date)
+    filedata['eu_mah_initial'] = dec_get_mah(txt)
+    filedata['eu_aut_type_initial'] = dec_get_decision_type(txt, date)
     return filedata
 
-def get_data_orphan(filename,txt):
+
+def get_data_orphan(filename: str, txt: str) -> dict:
     filedata = get_default_orphan(filename)
     date = dec_get_date(txt)
     filedata['eu_aut_date'] = date
 
-    #if date was left blank return dont find date dependant attributes.
-    if isinstance(date,str):
+    # if date was left blank return dont find date dependant attributes.
+    if isinstance(date, str):
         date = dec_get_date('')
-    filedata['eu_brand_name_initial']   = dec_get_bn(txt)
-    filedata['eu_od_initial']           = dec_get_od(txt, date)
-    filedata['eu_mah_initial']          = dec_get_mah(txt)
-    filedata['eu_od_comp_date']         = dec_get_od_comp_date(txt)
+    filedata['eu_brand_name_initial'] = dec_get_bn(txt)
+    filedata['eu_od_initial'] = dec_get_od(txt, date)
+    filedata['eu_mah_initial'] = dec_get_mah(txt)
+    filedata['eu_od_comp_date'] = dec_get_od_comp_date()
     return filedata
 
-#FUNCTIONS FOR EACH ATTRIBUTE
+
+# FUNCTIONS FOR EACH ATTRIBUTE
 
 
-def dec_get_date(txt):
+def dec_get_date(txt: str) -> str:
     try:
-        section = re.split('of ',txt,1)[1]
+        section = re.split('of ', txt, 1)[1]
         section = section[:15]
         if '...' in section:
             return 'Date is blank'
-        #check if there are digits on first page
+        # check if there are digits on first page
         if bool(re.search(r'\d', section)):
             return helper.get_date(section)
-        #there are few cases where date on first page is missing
-        #retry on second page before giving up.
+        # there are few cases where date on first page is missing
+        # retry on second page before giving up.
         try:
-            next_page = re.split('commission decision',txt.lower())[2]
-            section = re.split('of ',next_page,1)[1]
+            next_page = re.split('commission decision', txt.lower())[2]
+            section = re.split('of ', next_page, 1)[1]
             section = section[:15]
             return helper.get_date(section)
         except:
@@ -124,11 +133,11 @@ def dec_get_date(txt):
     return helper.get_date('')
 
 
-def dec_get_bn(txt):
-    #returns a section containing just the brandname (and potentially the active substance)
+def dec_get_bn(txt: str) -> str:
+    # returns a section containing just the brandname (and potentially the active substance)
     section = get_name_section(txt)
 
-    #use advance regex to find brandname
+    # use advance regex to find brandname
     regres = None
     try:
         regres = re.search(r'"(\w+[\s\w®/\.,"]*)\s?[-–]\s?\w+.*"', section)
@@ -166,8 +175,8 @@ def dec_get_bn(txt):
     return 'Brandname Not Found'
 
 
-def dec_get_as(txt):
-    #returns a section containing just the brandname (and potentially the active substance)
+def dec_get_as(txt: str) -> str:
+    # returns a section containing just the brandname (and potentially the active substance)
     section = get_name_section(txt)
     try:
         if section != '':
@@ -181,11 +190,11 @@ def dec_get_as(txt):
     return 'Active Substance Not Found'
 
 
-def dec_get_decision_type(txt, date):
-    #check if there can be a CMA.
+def dec_get_decision_type(txt: str, date: str) -> str:
+    # check if there can be a CMA.
     if date < datetime.datetime(2006, 1, 1):
         return "CMA not available before 2006"
-    
+
     excep = re.search(r"article\s+14\W8", txt.lower())  # exceptional: Article 14(8) or alt. (e.g. Article 14.8)
     # conditional
     if "507/2006" in txt or "conditional marketing authorisation" in txt.lower():
@@ -198,29 +207,30 @@ def dec_get_decision_type(txt, date):
         return "CMA Not Found"
 
 
-def dec_get_mah(txt):
-    mahline = ''
+def dec_get_mah(txt: str) -> str:
     try:
-        #get text after one of the following indicators.
-        mahline = re.split(r'(( the notification submitted)|( the applicatio\w+ submitted)|( the application\(s\) submitted))', txt)[5]
-        
+        # get text after one of the following indicators.
+        mahline = \
+        re.split(r"(( the notification submitted)|( the applicatio\w+ submitted)|( the application\(s\) submitted))",
+                 txt)[5]
+
         # gets part after submitted by line
         mah = mahline.split(" by ", 1)[1]
 
-        #clean potential stop words.
+        # clean potential stop words.
         # remove part after MAH
-        mah = re.split(r'(( on ))|(( under ))|(( (the marketing authorisation holder)))', mah, 1)[0]
-        
+        mah = re.split(r"(( on ))|(( under ))|(( (the marketing authorisation holder)))", mah, 1)[0]
+
         # remove comma if there is a comma at the end.
         if mah[-1] == ',':
             mah = mah[:-1]
-        return mah.strip()   
+        return mah.strip()
     except:
         return 'MAH Not Found'
 
 
-def dec_get_od(txt,date):
-    #check if there can be a NAS.
+def dec_get_od(txt: str, date: str) -> str:
+    # check if there can be a NAS.
     if date < datetime.datetime(2000, 4, 28):
         return "NA before 2000"
 
@@ -231,8 +241,8 @@ def dec_get_od(txt,date):
     return 'OD Not Found'
 
 
-def dec_get_atmp(txt,date):
-    #check if there can be a ATMP.
+def dec_get_atmp(txt: str, date: str) -> str | bool:
+    # check if there can be a ATMP.
     if date < datetime.datetime(2007, 12, 30):
         return "NA before 2012"
 
@@ -246,23 +256,23 @@ def dec_get_atmp(txt,date):
         return False
 
 
-def dec_get_nas(txt,date):
-    #check if there can be a NAS.
+def dec_get_nas(txt, date):
+    # check if there can be a NAS.
     if date < datetime.datetime(2012, 1, 1):
         return "NA before 2012"
-    
+
     if "committee for medicinal products for human use" in txt.lower() and "a new active substance" in txt.lower():
         return True
     return False
 
 
-def dec_get_od_comp_date(txt):
+def dec_get_od_comp_date() -> str:
     return helper.get_date('')
 
 
-#HELPERS
-#helper function for finding brandname and active substance.
-def get_name_section(txt):
+# HELPERS
+# helper function for finding brandname and active substance.
+def get_name_section(txt: str) -> str:
     # to make sure no commas from pdf format itself, split at date.
     # try since this only works on default english documents.
 

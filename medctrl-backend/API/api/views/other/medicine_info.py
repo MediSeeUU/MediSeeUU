@@ -13,12 +13,13 @@ from .medicine_info_json import get_medicine_info
 from .permissionFilter import permissionFilter
 from rest_framework import permissions
 
+
 # Returns a json file containing all information the detailed page and the filters need
 class Medicine_info(views.APIView):
     """
     Viewset for the Medicine info
     """
-    
+
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     # each time a get request is send, this function is executed.

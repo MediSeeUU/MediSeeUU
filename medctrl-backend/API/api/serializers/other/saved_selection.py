@@ -8,6 +8,7 @@
 from rest_framework import serializers
 from api.models.other import SavedSelection
 
+
 # Gets all data selections that a user saved
 class SavedSelectionSerializer(serializers.ModelSerializer):
     """

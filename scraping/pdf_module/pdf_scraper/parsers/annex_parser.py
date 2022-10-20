@@ -2,7 +2,6 @@ import pdf_xml_converter as xmlc
 import xml.etree.ElementTree as ET
 import xml_parsing_utils as Utils
 import parsed_info_struct as PIS
-import parsers.annex_parsing_functions as APF
 import os
 
 
