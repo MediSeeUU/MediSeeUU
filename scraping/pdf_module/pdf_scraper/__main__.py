@@ -38,13 +38,18 @@ def parse_folder(directory: str, folder_name):
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
     for file in directory_files:
         # Skip over all decision files, XML files, and non-pdf files
-        if "dec" in file or ".xml" in file or ".pdf" not in file or "anx" in file or "dec" in file:
+        if "dec" in file or ".xml" in file or ".pdf" not in file:
             continue
         # Skip file if XML is already created (temporary)
-        if file[:len(file) - 4] + ".xml" in directory_files:
+        # if file[:len(file) - 4] + ".xml" in directory_files:
+        #     continue
+
+        try:
+            file_path = path.join(directory, file)
+            xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
+        except:
+            print("PDF MODULE MAIN: failed pdf to xml conversion: " + path.join(directory, file))
             continue
-        file_path = path.join(directory, file)
-        xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
     # update list of files and filter out relevant files for each parser
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]

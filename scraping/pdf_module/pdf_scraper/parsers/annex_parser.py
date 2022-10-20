@@ -14,7 +14,7 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
         return medicine_struct
 
     if medicine_struct is None:
-        print("ANNEX PARSER: medicine_struct is none at "  + filepath)
+        print("ANNEX PARSER: medicine_struct is none at " + filepath)
         return
 
     xml_root = xml_tree.getroot()

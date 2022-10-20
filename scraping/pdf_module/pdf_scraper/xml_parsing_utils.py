@@ -15,11 +15,17 @@ def file_get_name_pdf(xml_header: ET.Element) -> str:
 
 
 def file_get_creation_date(xml_header: ET.Element) -> str:
-    return xml_header.findall(tags.creation_date)[0].text.strip()
+    try:
+        return str(xml_header.findall(tags.creation_date)[0].text).strip()
+    except:
+       return xml_header.findall(tags.creation_date)[0].text
 
 
 def file_get_modification_date(xml_header: ET.Element) -> str:
-    return xml_header.findall(tags.modification_date)[0].text.strip()
+    try:
+        return xml_header.findall(tags.modification_date)[0].text.strip()
+    except:
+        return xml_header.findall(tags.modification_date)[0].text
 
 
 def section_contains_substring(substring: str, section: ET.Element) -> bool:
