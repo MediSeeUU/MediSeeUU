@@ -14,8 +14,8 @@ from web_scraper import ema_scraper
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
-scrape_ec: bool = True
-scrape_ema: bool = True            # Requires scrape_ec to have been run at least once
+scrape_ec: bool = False
+scrape_ema: bool = False            # Requires scrape_ec to have been run at least once
 download_files: bool = True         # Download pdfs from the obtained links
 use_parallelization: bool = False   # Parallelization is currently broken on Windows. Set to False
 
