@@ -99,7 +99,10 @@ def remove_illegal_characters(string: str) -> str:
         if 0x8600 <= encoded_char <= 0x9F00:
             continue
 
-        if encoded_char == 0xefff or encoded_char == 0x0000:
+        if 0x0011 <= encoded_char <= 0x0014:
+            continue
+
+        if encoded_char == 0xefff:
             continue
 
         non_illegal_string += character
