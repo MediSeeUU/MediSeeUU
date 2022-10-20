@@ -10,12 +10,12 @@ import db_uploader.__main__ as db_uploader
 
 def main():
     data_folder_directory = '../data'
-    print(data_folder_directory)
+    # print(data_folder_directory)
     if not path.isdir(data_folder_directory):
         os.mkdir(data_folder_directory)
 
-    web_scraper.main(data_folder_directory)
-    # pdf_scraper.main(data_folder_directory)
+    # web_scraper.main(data_folder_directory)
+    pdf_scraper.main(data_folder_directory)
     # combiner.main(data_folder_directory)
     # db_uploader.main(data_folder_directory)
 

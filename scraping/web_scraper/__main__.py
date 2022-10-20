@@ -66,25 +66,11 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type, data_path):
             writer = csv.writer(f)
             writer.writerow([eu_n, attributes_dict])
 
-        # Makes a JSON file from the dictionary
-        attributes_dump = json.dumps(attributes_dict, indent=4)
-        attributes_json = json.loads(attributes_dump)
-
-        try:
-            # Creates a directory if the medicine doesn't exist yet, otherwise it just adds the json file to the
-            # existing directory
-            Path(f"../data/{eu_n}").mkdir(exist_ok=True)
-            with open(f"../data/{eu_n}/{eu_n}_attributes.json", 'w') as f:
-                json.dump(attributes_json, f, indent=4)
-        except Exception:
-            print(eu_n)
-
-        success = True
-    except Exception:
-        attempts += 1
-        if attempts == max_attempts:
-            log.error(f"failed dec/anx/ema url getting for {eu_n}")
-            break
+        # Creates a directory if the medicine doesn't exist yet,
+        # otherwise it just adds the json file to the existing directory
+        Path(f"{data_path}/{eu_n}").mkdir(exist_ok=True)
+        with open(f"{data_path}/{eu_n}/{eu_n}_attributes.json", 'w') as f:
+            json.dump(attributes_dict, f, indent=4)
 
 
 def get_urls_ema(medicine, url: str):
@@ -100,7 +86,7 @@ def get_urls_ema(medicine, url: str):
         writer.writerow([medicine, pdf_url])
 
 
-def main(data_filepath):
+def main(data_filepath='../data'):
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
     # TODO: Remove mkdir after it is moved to monolithic main
@@ -130,13 +116,12 @@ def main(data_filepath):
             else:
                 for (medicine_url, eu_n, medicine_type, _) \
                         in tqdm.tqdm(medicine_codes, bar_format=tqdm_format_string):
-                    get_urls_ec(medicine_url, eu_n, medicine_type)
+                    get_urls_ec(medicine_url, eu_n, medicine_type, data_filepath)
             log.info("TASK FINISHED EC scrape")
 
     if scrape_ema:
         log.info("Scraping all individual medicine pages of EMA")
         ema = pd.read_csv('web_scraper/CSV/ema_urls.csv', header=None, index_col=0, on_bad_lines='skip').squeeze().to_dict()
-
         if use_parallelization:
             parallel(
                 delayed(get_urls_ema)(url[0], url[1])
@@ -158,4 +143,4 @@ def main(data_filepath):
 # Keep the code locally testable by including this.
 # When running this file specifically, the main function will run.
 if __name__ == "__main__":
-    main("..\..\data")
+    main()

@@ -15,14 +15,13 @@ log_handler = logging.StreamHandler()
 log.addHandler(log_handler)
 
 # TODO: make sure the data path is declared somewhere in main.
-data_path = '../../data'
+data_path = '../data'
 
 
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
     downloaded_file = requests.get(url)
     downloaded_file.raise_for_status()
     filename: str = f"{eu_num}_{'_'.join(filename_elements)}.pdf"
-    print(os.listdir())
 
     # TODO: Runs this check for every downloaded file. Could be more efficient?
     path_medicine = Path(f"{data_path}/{eu_num}")
@@ -67,12 +66,12 @@ def read_csv_files():
 
 # helper function that converts a windows csv file to linux.
 def dos2unix(f_in):
-    with open('CSV/temp.csv', "w") as f_out:
+    with open('web_scraper/CSV/temp.csv', "w") as f_out:
         with open(f_in, "r") as fin:
             for line in fin:
                 line = line.replace('\r\n', '\n')
                 f_out.write(line)
-    os.rename('CSV/temp.csv', f_in)
+    os.rename('web_scraper/CSV/temp.csv', f_in)
 
 
 # TODO: Add a new function in a way that that function gets a medicine and downloads all files for that medicine.
@@ -94,7 +93,7 @@ def download_medicine_files(eu_n: str, dec: dict[str, list[str]], anx: dict[str,
 
 
 def download_all(parallel_download: bool):
-    dos2unix('CSV/epar.csv')
+    # dos2unix('web_scraper/CSV/epar.csv')
     # Store the result of the csv converting into dictionaries
     decisions, annexes, epar, med_dict = read_csv_files()
     log.info("TASK START downloading pdf files from fetched urls from EC and EMA")
