@@ -1,5 +1,5 @@
 import pytest
-from .. import ec_scraper as ec
+from scraping.web_scraper import ec_scraper as ec
 
 
 # Unit test that checks whether the correct data is retrieved for a certain medicine.

@@ -14,10 +14,10 @@ import ema_scraper
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
-scrape_ec: bool = False
+scrape_ec: bool = True
 scrape_ema: bool = False            # Requires scrape_ec to have been run at least once
 download_files: bool = True         # Download pdfs from the obtained links
-use_parallelization: bool = False   # Parallelization is currently broken on Windows. Set to False
+use_parallelization: bool = True   # Parallelization is currently broken on Windows. Set to False
 
 # list of the type of medicines that will be scraped
 # NOTE: This was useful for debugging
@@ -42,7 +42,7 @@ log = logging.getLogger(__name__)
 
 # Paralleled function for getting the URL codes. They are written to a CSV file
 # TODO: What type is medicine_type? It looks like it
-def get_urls_ec(medicine_url: str, eu_n: str, medicine_type):
+def get_urls_ec(medicine_url: str, eu_n: str, medicine_type, data_path):
     # TODO: Wrapper function for retry
     attempts = 0
     max_attempts = 4
@@ -56,19 +56,19 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type):
                 dec_list, anx_list, ema_list, attributes_dict = \
                     ec_scraper.scrape_medicine_page(medicine_url, ec_scraper.MedicineType(medicine_type))
 
-                with open("../data/CSV/decision.csv", 'a', newline='') as f:
+                with open("CSV/decision.csv", 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([eu_n, dec_list])
 
-                with open("../data/CSV/annexes.csv", 'a', newline='') as f:
+                with open("CSV/annexes.csv", 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([eu_n, anx_list])
 
-                with open("../data/CSV/ema_urls.csv", 'a', newline='') as f:
+                with open("CSV/ema_urls.csv", 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([eu_n, ema_list])
 
-                with open("../data/CSV/med_dict.csv", 'a', newline='') as f:
+                with open("CSV/med_dict.csv", 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([eu_n, attributes_dict])
 
@@ -79,8 +79,8 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type):
                 try:
                     # Creates a directory if the medicine doesn't exist yet, otherwise it just adds the json file to the
                     # existing directory
-                    Path(f"../data/medicines/{eu_n}").mkdir(exist_ok=True)
-                    with open(f"../data/medicines/{eu_n}/{eu_n}_attributes.json", 'w') as f:
+                    Path(f"{data_path}/{eu_n}").mkdir(exist_ok=True)
+                    with open(f"{data_path}/{eu_n}/{eu_n}_attributes.json", 'w') as f:
                         json.dump(attributes_json, f, indent=4)
                 except Exception:
                     print(eu_n)
@@ -105,7 +105,7 @@ def get_urls_ema(medicine, url: str):
             else:
                 url = ''
             pdf_url = ema_scraper.pdf_links_from_url(url)
-            with open("../data/CSV/epar.csv", 'a', newline='') as f:
+            with open("CSV/epar.csv", 'a', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow([medicine, pdf_url])
             success = True
@@ -116,14 +116,14 @@ def get_urls_ema(medicine, url: str):
                 break
 
 
-def main():
+def main(data_filepath='../../data'):
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
     # TODO: Remove mkdir after it is moved to monolithic main
     # Create the data dir.
     # The ' exist_ok' option ensures no errors thrown if this is not the first time the code runs.
-    Path("../data/CSV").mkdir(exist_ok=True, parents=True)
-    Path("../data/medicines").mkdir(exist_ok=True)
+    Path("CSV").mkdir(exist_ok=True, parents=True)
+    Path(data_filepath).mkdir(exist_ok=True, parents=True)
 
     log.info("TASK SUCCESS on Generating directories")
 
@@ -139,7 +139,7 @@ def main():
             log.info("TASK START scraping all medicines on the EC website")
             if use_parallelization:
                 parallel(
-                    delayed(get_urls_ec)(medicine_url, eu_n, medicine_type)
+                    delayed(get_urls_ec)(medicine_url, eu_n, medicine_type, data_filepath)
                     for (medicine_url, eu_n, medicine_type, _)
                     in tqdm.tqdm(medicine_codes, bar_format=tqdm_format_string)
                 )
@@ -151,7 +151,7 @@ def main():
 
     if scrape_ema:
         log.info("Scraping all individual medicine pages of EMA")
-        ema = pd.read_csv('../data/CSV/ema_urls.csv', header=None, index_col=0, on_bad_lines='skip').squeeze().to_dict()
+        ema = pd.read_csv('CSV/ema_urls.csv', header=None, index_col=0, on_bad_lines='skip').squeeze().to_dict()
         if use_parallelization:
             parallel(
                 delayed(get_urls_ema)(url[0], url[1])
