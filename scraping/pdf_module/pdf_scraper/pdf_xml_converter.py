@@ -80,7 +80,7 @@ def remove_illegal_characters(string: str) -> str:
             continue
 
         try:
-            encoded_char = int(character.encode("utf-8", "ignore").hex(), 16)
+            encoded_char = int.from_bytes(character.encode("utf-8", "ignore"), "big")
         except ValueError:
             continue
 
