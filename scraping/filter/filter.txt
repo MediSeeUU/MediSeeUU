@@ -1,6 +1,4 @@
 EU-1-00-135_h_a_anx_6.pdf@wrong_doctype
-EU-1-00-152_h_a_anx_2.pdf@wrong_doctype
-EU-1-00-152_h_a_anx_3.pdf@wrong_doctype
 EU-1-00-162_h_a_anx_6.pdf@wrong_doctype
 EU-1-00-164_h_a_anx_1.pdf@wrong_doctype
 EU-1-00-166_h_a_anx_1.pdf@wrong_doctype
@@ -13,7 +11,6 @@ EU-1-02-203_h_a_anx_2.pdf@wrong_doctype
 EU-1-02-213_h_a_anx_1.pdf@wrong_doctype
 EU-1-02-217_h_a_anx_0.pdf@wrong_doctype
 EU-1-02-222_h_a_anx_28.pdf@wrong_doctype
-EU-1-02-222_h_a_anx_40.pdf@wrong_doctype
 EU-1-03-269_h_a_public-assessment-report.pdf@wrong_doctype
 EU-1-04-279_h_a_anx_21.pdf@wrong_doctype
 EU-1-04-286_h_a_anx_2.pdf@wrong_doctype
@@ -29,7 +26,6 @@ EU-1-09-558_h_a_anx_3.pdf@wrong_doctype
 EU-1-09-564_h_a_anx_8.pdf@wrong_doctype
 EU-1-09-566_h_a_anx_5.pdf@wrong_doctype
 EU-1-09-590_h_a_anx_4.pdf@wrong_doctype
-EU-1-11-722_h_a_anx_3.pdf@wrong_doctype
 EU-1-12-757_h_a_anx_2.pdf@wrong_doctype
 EU-1-12-808_h_a_anx_5.pdf@wrong_doctype
 EU-1-13-813_h_a_anx_3.pdf@wrong_doctype
@@ -45,7 +41,6 @@ EU-1-96-015_h_a_anx_36.pdf@wrong_doctype
 EU-1-96-020_h_a_anx_2.pdf@wrong_doctype
 EU-1-96-026_h_a_anx_27.pdf@wrong_doctype
 EU-1-97-029_h_a_anx_2.pdf@wrong_doctype
-EU-1-97-030_h_a_anx_2.pdf@wrong_doctype
 EU-1-97-033_h_a_anx_18.pdf@wrong_doctype
 EU-1-97-033_h_a_anx_26.pdf@wrong_doctype
 EU-1-97-039_h_a_anx_3.pdf@wrong_doctype
@@ -59,12 +54,9 @@ EU-1-97-053_h_a_anx_1.pdf@wrong_doctype
 EU-1-97-055_h_a_anx_1.pdf@wrong_doctype
 EU-1-97-055_h_a_anx_35.pdf@wrong_doctype
 EU-1-97-057_h_a_anx_1.pdf@wrong_doctype
-EU-1-97-057_h_a_anx_2.pdf@wrong_doctype
 EU-1-98-063_h_a_anx_7.pdf@wrong_doctype
 EU-1-98-065_h_a_anx_0.pdf@wrong_doctype
-EU-1-98-065_h_a_anx_1.pdf@wrong_doctype
 EU-1-98-065_h_a_anx_2.pdf@wrong_doctype
-EU-1-98-067_h_a_anx_1.pdf@wrong_doctype
 EU-1-98-069_h_a_anx_6.pdf@wrong_doctype
 EU-1-98-071_h_a_anx_1.pdf@wrong_doctype
 EU-1-98-074_h_a_anx_1.pdf@wrong_doctype

@@ -139,36 +139,38 @@ def check_decision(filename, file_path, pdf) -> str:
 
 # checks if it is an annex file
 def check_annex(filename, file_path, pdf) -> str:
-    return check_pdf_type(file_path, filename, pdf, 'annex')
+    return check_pdf_type(file_path, filename, pdf, ['annex', 'name of the medicinal product',
+                                                     'summary of product characteristics'])
 
 
 # checks if it is a procedural steps file (from EPAR)
 def check_procedural(filename, file_path, pdf) -> str:
-    return check_pdf_type(file_path, filename, pdf, 'background information')
+    return check_pdf_type(file_path, filename, pdf, ['background information'])
 
 
 # checks if it is an EPAR file
 def check_epar(filename, file_path, pdf) -> str:
-    return check_pdf_type(file_path, filename, pdf, 'assessment report')
+    return check_pdf_type(file_path, filename, pdf, ['assessment report'])
 
 
 # checks if it is a scientific discussion (from EPAR)
 def check_scientific(filename, file_path, pdf) -> str:
-    return check_pdf_type(file_path, filename, pdf, 'scientific discussion')
+    return check_pdf_type(file_path, filename, pdf, ['scientific discussion'])
 
 
-def check_pdf_type(file_path, filename, pdf, text) -> str:
+def check_pdf_type(file_path, filename, pdf, texts) -> str:
     # gets text of first page
     first_page = pdf[0]
     txt = first_page.get_text()
     # checks if the PDF is of the right type
-    if text in txt.lower():
-        pdf.close()
-        return ''
-    else:
-        pdf.close()
-        print('os.remove(file_path)' + file_path)
-        return filename + '@wrong_doctype'
+    for text in texts:
+        if text in txt.lower():
+            pdf.close()
+            return ''
+    pdf.close()
+    #print('os.remove(file_path)' + file_path)
+    print(filename + txt.lower())
+    return filename + '@wrong_doctype'
 
 
 def file_type_check(filename, file_path, pdf) -> str:
