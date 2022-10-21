@@ -102,7 +102,7 @@ def remove_illegal_characters(string: str) -> str:
         if 0x0011 <= encoded_char <= 0x0014:
             continue
 
-        if encoded_char == 0xefff:
+        if encoded_char == 0x0000 or encoded_char == 0xefff or encoded_char == 0xffff:
             continue
 
         non_illegal_string += character
