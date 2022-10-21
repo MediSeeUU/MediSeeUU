@@ -357,4 +357,6 @@ Could not open PDF: ..\..\..\data\EU-1-98-091\EU-1-98-091_h_a_anx_31.pdf
 Could not open PDF: ..\..\..\data\EU-1-98-092\EU-1-98-092_h_a_anx_32.pdf
 Could not open PDF: ..\..\..\data\EU-1-99-103\EU-1-99-103_h_a_anx_35.pdf
 Could not open PDF: ..\..\..\data\EU-1-99-125\EU-1-99-125_h_a_anx_2.pdf
+
+06-354 anx_6 IS TABEL
 Done!
