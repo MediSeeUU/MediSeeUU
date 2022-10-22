@@ -20,7 +20,6 @@ from api.serializers.medicine_serializers.public import PublicMedicineSerializer
 
 class PublicMedicineSerializerTestCase(TestCase):
     def setUp(self):
-        self.maxDiff = None
         self.medicine = Medicine(
             eu_pnumber=1,
             atc_code="C03CA01",
