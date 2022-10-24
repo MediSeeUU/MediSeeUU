@@ -55,6 +55,7 @@ def get_default_human_use(filename: str) -> dict:
             'eu_atmp': default,
             'eu_od_initial': default,
             'eu_mah_initial': default,
+            'eu_mah_initial2': default,
             'eu_aut_type_initial': default,
             'status': 'Failure unknown reason'
             }
@@ -68,6 +69,7 @@ def get_default_orphan(filename: str) -> dict:
             'eu_brand_name_initial': default,
             'eu_od_initial': default,
             'eu_mah_initial': default,
+            'eu_mah_initial2': default,
             'eu_od_comp_date': default,
             'status': 'Failure unknown reason'
             }
@@ -88,6 +90,7 @@ def get_data_human_use(filename: str, txt: str) -> dict:
     filedata['eu_atmp'] = dec_get_atmp(txt, date)
     filedata['eu_od_initial'] = dec_get_od(txt, date)
     filedata['eu_mah_initial'] = dec_get_mah(txt)
+    filedata['eu_mah_initial2'] = dec_get_mah2test(txt)
     filedata['eu_aut_type_initial'] = dec_get_decision_type(txt, date)
     return filedata
 
@@ -103,6 +106,7 @@ def get_data_orphan(filename: str, txt: str) -> dict:
     filedata['eu_brand_name_initial'] = dec_get_bn(txt)
     filedata['eu_od_initial'] = dec_get_od(txt, date)
     filedata['eu_mah_initial'] = dec_get_mah(txt)
+    filedata['eu_mah_initial2'] = dec_get_mah2test(txt)
     filedata['eu_od_comp_date'] = dec_get_od_comp_date()
     return filedata
 
@@ -224,6 +228,18 @@ def dec_get_mah(txt: str) -> str:
         # remove comma if there is a comma at the end.
         if mah[-1] == ',':
             mah = mah[:-1]
+        return mah.strip()
+    except:
+        return 'MAH Not Found'
+
+def dec_get_mah2test(txt: str) -> str:
+    try:
+        # get text after one of the following indicators.
+        mahline = txt.split('This Decision is addressed to ', 1)[1]
+
+        # gets part after submitted by line
+        mah = mahline.split(", ", 1)[0]
+
         return mah.strip()
     except:
         return 'MAH Not Found'
