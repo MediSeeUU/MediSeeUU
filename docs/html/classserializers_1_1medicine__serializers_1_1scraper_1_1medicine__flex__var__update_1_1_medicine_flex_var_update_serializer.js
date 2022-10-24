@@ -1,0 +1,4 @@
+var classserializers_1_1medicine__serializers_1_1scraper_1_1medicine__flex__var__update_1_1_medicine_flex_var_update_serializer =
+[
+    [ "Meta", "classserializers_1_1medicine__serializers_1_1scraper_1_1medicine__flex__var__update_1_1_medicine7088e3144cefb27389c7408e03917988.html", null ]
+];
