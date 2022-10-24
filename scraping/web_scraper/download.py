@@ -15,6 +15,8 @@ log.addHandler(log_handler)
 
 # TODO: make sure the data path is declared somewhere in main.
 data_path = '../../data'
+
+
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
     downloaded_file = requests.get(url)
     downloaded_file.raise_for_status()

@@ -12,6 +12,7 @@ import download
 import ec_scraper
 import ema_scraper
 import utils
+from json_helper import JsonHelper
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
@@ -37,12 +38,13 @@ log_handler_file = logging.FileHandler("webscraper.log")
 logging.basicConfig(level=logging.INFO, handlers=[log_handler_console, log_handler_file])
 
 # TODO: To __init__? Figure some stuff out
-# Local instance of a logger
 log = logging.getLogger(__name__)
+
+url_file = JsonHelper(path="CSV/urls.json")
 
 
 # Paralleled function for getting the URL codes. They are written to a CSV file
-# TODO: What type is medicine_type? It looks like it
+# TODO: unmarked type for medicine_type
 def get_urls_ec(medicine_url: str, eu_n: str, medicine_type, data_path):
     if ec_scraper.MedicineType(medicine_type) in scrape_medicine_type:
         # getURLsForPDFAndEMA returns per medicine the urls
@@ -50,21 +52,14 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type, data_path):
         dec_list, anx_list, ema_list, attributes_dict = \
             ec_scraper.scrape_medicine_page(medicine_url, ec_scraper.MedicineType(medicine_type))
 
-        with open("CSV/decision.csv", 'a', newline='') as f:
-            writer = csv.writer(f)
-            writer.writerow([eu_n, dec_list])
+        # TODO: Common name structure?
+        url_json: dict[str, list[str]] = {
+            "dec": dec_list,
+            "anx": anx_list,
+            "ema": ema_list
+        }
 
-        with open("CSV/annexes.csv", 'a', newline='') as f:
-            writer = csv.writer(f)
-            writer.writerow([eu_n, anx_list])
-
-        with open("CSV/ema_urls.csv", 'a', newline='') as f:
-            writer = csv.writer(f)
-            writer.writerow([eu_n, ema_list])
-
-        with open("CSV/med_dict.csv", 'a', newline='') as f:
-            writer = csv.writer(f)
-            writer.writerow([eu_n, attributes_dict])
+        url_file.save_single_url(eu_n, url_json)
 
         # Creates a directory if the medicine doesn't exist yet,
         # otherwise it just adds the json file to the existing directory
@@ -73,17 +68,9 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type, data_path):
             json.dump(attributes_dict, f, indent=4)
 
 
-def get_urls_ema(medicine, url: str):
-    if url != "[]":
-        url = json.loads(url.replace('\'', '"'))[0]
-    else:
-        url = ''
-
-    pdf_url = ema_scraper.pdf_links_from_url(url)
-
-    with open("CSV/epar.csv", 'a', newline='') as f:
-        writer = csv.writer(f)
-        writer.writerow([medicine, pdf_url])
+def get_urls_ema(eu_n: str, url: str):
+    pdf_url: dict = {"epar": ema_scraper.pdf_links_from_url(url)}
+    url_file.save_single_url(eu_n, pdf_url)
 
 
 def main(data_filepath='../../data'):
