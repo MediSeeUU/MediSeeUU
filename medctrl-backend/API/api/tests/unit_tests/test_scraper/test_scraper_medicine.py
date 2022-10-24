@@ -21,7 +21,6 @@ from api.serializers.medicine_serializers.scraper import (
     PrimeSerializer,
     EUOrphanConSerializer,
 )
-import logging
 
 class ScraperMedicineTestCase(TestCase):
     def setUp(self):
