@@ -67,6 +67,7 @@ class ScraperMedicine(APIView):
         for medicine in medicine_list:
             try:
                 # Atomic transaction so if there is any error all changes are rolled back
+                # Django will automatically roll back if any exception occurs
                 with transaction.atomic():
                     # check if medicine already exists based on eu_pnumber
                     current_medicine = Medicine.objects.filter(
@@ -76,21 +77,12 @@ class ScraperMedicine(APIView):
                     # update works only on flexible variables
 
                     if current_medicine:
-                        errors = self.update_flex_medicine(medicine, current_medicine)
-                        null_errors = self.update_null_values(medicine)
-                        if errors:
-                            errors.extend(null_errors)
-                        else:
-                            errors = null_errors
+                        self.update_flex_medicine(medicine, current_medicine)
+                        self.update_null_values(medicine)
                     else:
-                        errors = self.add_medicine(medicine, None)
+                        self.add_medicine(medicine, None)
 
-                    # if status is failed, add medicine to the failed list
-                    if errors and (len(errors) > 0):
-                        medicine["errors"] = errors
-                        failed_medicines.append(medicine)
-                    else:
-                        logger.info(f"Posted medicine successfully added to database: {medicine}")
+                    logger.info(f"Posted medicine successfully added to database: {medicine}")
             except Exception as e:
                 medicine["errors"] = str(e)
                 failed_medicines.append(medicine)
@@ -112,9 +104,8 @@ class ScraperMedicine(APIView):
         if medicine_serializer.is_valid():
             medicine_serializer.save()
             self.history_variables(data, False)
-            return []
-
-        return medicine_serializer.errors
+        else:
+            raise ValueError(medicine_serializer.errors)
 
     def add_medicine(self, data, current):
         """
@@ -129,8 +120,7 @@ class ScraperMedicine(APIView):
             serializer.save()
             self.history_variables(data, True)
         else:
-            return serializer.errors
-        return []
+            raise ValueError(serializer.errors)
 
     # Update only the values that are null for an existing medicine
     def update_null_values(self, data):
@@ -146,7 +136,7 @@ class ScraperMedicine(APIView):
                 new_data[attr] = data.get(attr)
 
         if len(new_data.keys()) > 1:
-            return self.add_medicine(new_data, current_medicine)
+            self.add_medicine(new_data, current_medicine)
 
     # Create new history variables for the history models
     def history_variables(self, data, new_medicine: bool):
@@ -227,7 +217,7 @@ class ScraperMedicine(APIView):
                 )
                 if serializer.is_valid():
                     serializer.save()
-                elif new_medicine:
-                    raise ValueError(f"{name} contains invalid data!")
+                else:
+                    raise ValueError(f"{name} contains invalid data! {serializer.errors}")
         elif new_medicine:
             raise ValueError(f"{name} must be part of the data posted!")
