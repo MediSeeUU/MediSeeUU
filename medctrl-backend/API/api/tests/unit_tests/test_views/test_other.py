@@ -42,7 +42,7 @@ class MedicineInfoTestCase(TestCase):
                 }
             ]
         }
-        self.assertEqual(dict(sorted(data.items())), dict(sorted(expected.items())))
+        self.assertEqual(sorted(data.items()), sorted(expected.items()))
 
 
 class Object:

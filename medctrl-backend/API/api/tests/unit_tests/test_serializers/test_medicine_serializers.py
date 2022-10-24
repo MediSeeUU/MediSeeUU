@@ -190,4 +190,4 @@ class PublicMedicineSerializerTestCase(TestCase):
             "eu_orphan_con_initial": "eu orphan con 2",
             "eu_orphan_con_current": "eu orphan con 1",
         }
-        self.assertEqual(dict(sorted(data.items())), dict(sorted(expected.items())))
+        self.assertEqual(sorted(data.items()), sorted(expected.items()))

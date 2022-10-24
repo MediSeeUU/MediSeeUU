@@ -20,8 +20,8 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
+    HistoryEUOrphanCon,
 )
-from api.update_cache import update_cache
 from api.serializers.medicine_serializers.scraper import (
     MedicineSerializer,
     MedicineFlexVarUpdateSerializer,
@@ -31,8 +31,9 @@ from api.serializers.medicine_serializers.scraper import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
+    EUOrphanConSerializer,
 )
-from datetime import date
+from api.update_cache import update_cache
 from django.forms.models import model_to_dict
 import logging
 
@@ -63,23 +64,20 @@ class ScraperMedicine(APIView):
         # get "medicine" key from request
         for medicine in medicine_list:
             try:
-                # check if medicine already exists based on eunumber
+                # check if medicine already exists based on eu_pnumber
                 current_medicine = Medicine.objects.filter(
                     pk=medicine.get("eu_pnumber")
                 ).first()
                 # if exists update the medicine otherwise add it,
                 # update works only on flexible variables
-                logger.info("Van de medicine post request")
-                logger.info("current medicine:")
-                logger.info(current_medicine)
 
                 if current_medicine:
                     errors = self.update_flex_medicine(medicine, current_medicine)
-                    nullErrors = self.update_null_values(medicine)
+                    null_errors = self.update_null_values(medicine)
                     if errors:
-                        errors.extend(nullErrors)
+                        errors.extend(null_errors)
                     else:
-                        errors = nullErrors
+                        errors = null_errors
                 else:
                     errors = self.add_medicine(medicine, None)
 
@@ -87,9 +85,14 @@ class ScraperMedicine(APIView):
                 if errors and (len(errors) > 0):
                     medicine["errors"] = errors
                     failed_medicines.append(medicine)
+                else:
+                    logger.info(f"Posted medicine successfully added to database: {medicine}")
             except Exception as e:
                 medicine["errors"] = str(e)
                 failed_medicines.append(medicine)
+
+        for failed_medicine in failed_medicines:
+            logger.warning(f"Posted medicine failed to add to database: {failed_medicine}")
 
         update_cache()
         return Response(failed_medicines, status=200)
@@ -101,12 +104,12 @@ class ScraperMedicine(APIView):
 
         medicine_serializer = MedicineFlexVarUpdateSerializer(current, data=data)
 
-        history_variables(data)
-
         # update medicine
         if medicine_serializer.is_valid():
             medicine_serializer.save()
+            history_variables(data)
             return []
+
         return medicine_serializer.errors
 
     def add_medicine(self, data, current):
@@ -118,13 +121,14 @@ class ScraperMedicine(APIView):
         serializer = MedicineSerializer(current, data=data)
 
         # add medicine and authorisation
-        history_variables(data)
         if serializer.is_valid():
             serializer.save()
+            history_variables(data)
         else:
             return serializer.errors
         return []
 
+    # Update only the values that are null for an existing medicine
     def update_null_values(self, data):
         current_medicine = Medicine.objects.filter(pk=data.get("eu_pnumber")).first()
 
@@ -143,38 +147,76 @@ class ScraperMedicine(APIView):
 
 def history_variables(data):
     eu_pnumber = data.get("eu_pnumber")
+
+    eu_aut_type = data.get("eu_aut_type")
+    add_or_update_history(
+        HistoryAuthorisationType,
+        AuthorisationTypeSerializer,
+        "eu_aut_type",
+        eu_aut_type.get("eu_aut_type"),
+        eu_aut_type.get("change_date"),
+        eu_pnumber,
+    )
+
+    eu_aut_status = data.get("eu_aut_status")
+    add_or_update_history(
+        HistoryAuthorisationStatus,
+        AuthorisationStatusSerializer,
+        "eu_aut_status",
+        eu_aut_status.get("eu_aut_status"),
+        eu_aut_status.get("change_date"),
+        eu_pnumber,
+    )
+
+    eu_brand_name = data.get("eu_brand_name")
     add_or_update_history(
         HistoryBrandName,
         BrandNameSerializer,
-        "brandname",
-        data.get("brandname"),
-        data.get("change_date"),
+        "eu_brand_name",
+        eu_brand_name.get("eu_brand_name"),
+        eu_brand_name.get("change_date"),
         eu_pnumber,
     )
+
+    eu_od = data.get("eu_od")
+    add_or_update_history(
+        HistoryOD,
+        OrphanDesignationSerializer,
+        "eu_od",
+        eu_od.get("eu_od"),
+        eu_od.get("change_date"),
+        eu_pnumber,
+    )
+
+    eu_prime = data.get("eu_prime")
+    add_or_update_history(
+        HistoryPrime,
+        PrimeSerializer,
+        "eu_prime",
+        eu_prime.get("eu_prime"),
+        eu_prime.get("change_date"),
+        eu_pnumber,
+    )
+
+    eu_mah = data.get("eu_mah")
     add_or_update_history(
         HistoryMAH,
         MAHSerializer,
-        "mah",
-        data.get("mah"),
-        data.get("change_date"),
+        "eu_mah",
+        eu_mah.get("eu_mah"),
+        eu_mah.get("change_date"),
         eu_pnumber,
     )
-    # add_or_update_history(
-    #     Historyorphan,
-    #     OrphanSerializer,
-    #     data.get("orphan"),
-    #     "orphan",
-    #     "orphandate",
-    #     data.get("eunumber"),
-    # )
-    # add_or_update_history(
-    #     Historyprime,
-    #     PRIMESerializer,
-    #     data.get("prime"),
-    #     "prime",
-    #     "primedate",
-    #     data.get("eunumber"),
-    # )
+
+    eu_orphan_con = data.get("eu_orphan_con")
+    add_or_update_history(
+        HistoryEUOrphanCon,
+        EUOrphanConSerializer,
+        "eu_orphan_con",
+        eu_orphan_con.get("eu_orphan_con"),
+        eu_orphan_con.get("change_date"),
+        eu_pnumber,
+    )
 
 
 def add_or_update_history(model, serializer, name, item, date, eu_pnumber):
