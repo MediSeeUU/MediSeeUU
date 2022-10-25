@@ -81,13 +81,12 @@ class ScraperMedicine(APIView):
                     else:
                         self.add_medicine(medicine, None)
 
-                    logger.info(f"Posted medicine successfully added to database: {medicine}")
             except Exception as e:
                 medicine["errors"] = str(e)
                 failed_medicines.append(medicine)
-
-        for failed_medicine in failed_medicines:
-            logger.warning(f"Posted medicine failed to add to database: {failed_medicine}")
+                logger.warning(f"Posted medicine failed to add to database: {medicine}")
+            else:
+                logger.info(f"Posted medicine successfully added to database: {medicine}")
 
         update_cache()
         return Response(failed_medicines, status=200)
@@ -97,7 +96,7 @@ class ScraperMedicine(APIView):
         Update flexible medicine variables
         """
 
-        medicine_serializer = MedicineFlexVarUpdateSerializer(current, data=data)
+        medicine_serializer = MedicineFlexVarUpdateSerializer(current, data=data, partial=True)
 
         # update medicine
         if medicine_serializer.is_valid():

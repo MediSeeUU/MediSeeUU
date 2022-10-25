@@ -48,8 +48,8 @@ class AutStatus(models.TextChoices):
     Choice types for eu_aut_status
     """
     ACTIVE = "ACTIVE",
-    WITHDRAWAL = "WITHDRAWAL",
-    REFUSALS = "REFUSALS"
+    WITHDRAWAL = "WITHDRAWN",
+    REFUSALS = "REFUSED"
 
 
 class LegalBases(models.TextChoices):
