@@ -11,6 +11,17 @@ header_indicator = "|-HEADER-|"
 
 
 def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
+    """
+    Creates an xml file of given pdf file in same directory
+
+    Args:
+        source_filepath (str): filepath to pdf file to convert to xml
+        output_filepath (str): filepath to write xml converted file to
+
+    Returns:
+        None
+    """
+
     document = []
     try:
         document = fitz.open(source_filepath)
@@ -23,6 +34,15 @@ def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
 
 
 def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
+    """
+    Returns a list of paragraph strings based on input from get_text()
+
+    Args:
+        lines (list[(str, float, str)]): a list of pdf text line and font info tuple (line_text: str, line_font_size: float, line_font_type: str)
+
+    Returns:
+        list[str]: list of paragraphs in the format of "bolded_text|-HEADER-|unbolded_text"
+    """    
     # concatenate list of lines into list of paragraphs and mark bolded lines
     paragraphs = []
     for line in lines:

@@ -7,11 +7,22 @@ from .common import create_dashboard_history_columns, Category
 
 class HistoryBrandName(models.Model):
     """
-    Model class for the brand name history table.
-    """
-    eu_pnumber = models.ForeignKey("Medicine", models.CASCADE, db_column="eu_pnumber", null=False)
+    This is the model class for the Brand Name history table. New attributes can be added here.
 
-    change_date = models.DateField(db_column="change_date", null=True)
+    Args:
+        models (_type_): This model is derived from a base model from the Django library.
+    """
+    eu_pnumber = models.ForeignKey(
+        "Medicine", 
+        models.CASCADE, 
+        db_column="eu_pnumber", 
+        null=False
+    )
+
+    change_date = models.DateField(
+        db_column="change_date", 
+        null=True
+    )
 
     eu_brand_name = create_dashboard_history_columns(
         models.TextField(db_column="eu_brand_name"),
