@@ -49,11 +49,11 @@ def parse_folder(directory: str, folder_name):
         if file[:len(file) - 4] + ".xml" in directory_files:
             continue
         file_path = path.join(directory, file)
-        xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
+        #xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
     # update list of files and filter out relevant files for each parser
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
-    decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file]
+    decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file and '_0' in file]
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
     epar_files = [file for file in directory_files if
                   ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
@@ -73,12 +73,12 @@ def parse_folder(directory: str, folder_name):
 def run_scrapers(annex_files, decision_files, directory, epar_files, medicine_struct, omar_files):
     for file in decision_files:
         medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
-    for file in annex_files:
-        medicine_struct = ap.parse_file(file, medicine_struct)
-    for file in epar_files:
-        medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
-    for file in omar_files:
-        medicine_struct = omar_parse.parse_file(file, directory, medicine_struct)
+    # for file in annex_files:
+    #     medicine_struct = ap.parse_file(file, medicine_struct)
+    # for file in epar_files:
+    #     medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
+    # for file in omar_files:
+    #     medicine_struct = omar_parse.parse_file(file, directory, medicine_struct)
     return medicine_struct
 
 
