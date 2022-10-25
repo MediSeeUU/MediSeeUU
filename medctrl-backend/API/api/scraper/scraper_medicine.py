@@ -20,8 +20,8 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
+    HistoryEUOrphanCon,
 )
-from api.update_cache import update_cache
 from api.serializers.medicine_serializers.scraper import (
     MedicineSerializer,
     MedicineFlexVarUpdateSerializer,
@@ -31,9 +31,11 @@ from api.serializers.medicine_serializers.scraper import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
+    EUOrphanConSerializer,
 )
-from datetime import date
+from api.update_cache import update_cache
 from django.forms.models import model_to_dict
+from django.db import transaction
 import logging
 
 logger = logging.getLogger(__name__)
@@ -63,33 +65,28 @@ class ScraperMedicine(APIView):
         # get "medicine" key from request
         for medicine in medicine_list:
             try:
-                # check if medicine already exists based on eunumber
-                current_medicine = Medicine.objects.filter(
-                    pk=medicine.get("eu_pnumber")
-                ).first()
-                # if exists update the medicine otherwise add it,
-                # update works only on flexible variables
-                logger.info("Van de medicine post request")
-                logger.info("current medicine:")
-                logger.info(current_medicine)
+                # Atomic transaction so if there is any error all changes are rolled back
+                # Django will automatically roll back if any exception occurs
+                with transaction.atomic():
+                    # check if medicine already exists based on eu_pnumber
+                    current_medicine = Medicine.objects.filter(
+                        pk=medicine.get("eu_pnumber")
+                    ).first()
+                    # if exists update the medicine otherwise add it,
+                    # update works only on flexible variables
 
-                if current_medicine:
-                    errors = self.update_flex_medicine(medicine, current_medicine)
-                    nullErrors = self.update_null_values(medicine)
-                    if errors:
-                        errors.extend(nullErrors)
+                    if current_medicine:
+                        self.update_flex_medicine(medicine, current_medicine)
+                        self.update_null_values(medicine)
                     else:
-                        errors = nullErrors
-                else:
-                    errors = self.add_medicine(medicine, None)
+                        self.add_medicine(medicine, None)
 
-                # if status is failed, add medicine to the failed list
-                if errors and (len(errors) > 0):
-                    medicine["errors"] = errors
-                    failed_medicines.append(medicine)
             except Exception as e:
                 medicine["errors"] = str(e)
                 failed_medicines.append(medicine)
+                logger.warning(f"Posted medicine failed to add to database: {medicine}")
+            else:
+                logger.info(f"Posted medicine successfully added to database: {medicine}")
 
         update_cache()
         return Response(failed_medicines, status=200)
@@ -99,15 +96,14 @@ class ScraperMedicine(APIView):
         Update flexible medicine variables
         """
 
-        medicine_serializer = MedicineFlexVarUpdateSerializer(current, data=data)
-
-        history_variables(data)
+        medicine_serializer = MedicineFlexVarUpdateSerializer(current, data=data, partial=True)
 
         # update medicine
         if medicine_serializer.is_valid():
             medicine_serializer.save()
-            return []
-        return medicine_serializer.errors
+            self.history_variables(data)
+        else:
+            raise ValueError(medicine_serializer.errors)
 
     def add_medicine(self, data, current):
         """
@@ -118,13 +114,13 @@ class ScraperMedicine(APIView):
         serializer = MedicineSerializer(current, data=data)
 
         # add medicine and authorisation
-        history_variables(data)
         if serializer.is_valid():
             serializer.save()
+            self.history_variables(data)
         else:
-            return serializer.errors
-        return []
+            raise ValueError(serializer.errors)
 
+    # Update only the values that are null for an existing medicine
     def update_null_values(self, data):
         current_medicine = Medicine.objects.filter(pk=data.get("eu_pnumber")).first()
 
@@ -138,53 +134,74 @@ class ScraperMedicine(APIView):
                 new_data[attr] = data.get(attr)
 
         if len(new_data.keys()) > 1:
-            return self.add_medicine(new_data, current_medicine)
+            self.add_medicine(new_data, current_medicine)
 
-
-def history_variables(data):
-    eu_pnumber = data.get("eu_pnumber")
-    add_or_update_history(
-        HistoryBrandName,
-        BrandNameSerializer,
-        "brandname",
-        data.get("brandname"),
-        data.get("change_date"),
-        eu_pnumber,
-    )
-    add_or_update_history(
-        HistoryMAH,
-        MAHSerializer,
-        "mah",
-        data.get("mah"),
-        data.get("change_date"),
-        eu_pnumber,
-    )
-    # add_or_update_history(
-    #     Historyorphan,
-    #     OrphanSerializer,
-    #     data.get("orphan"),
-    #     "orphan",
-    #     "orphandate",
-    #     data.get("eunumber"),
-    # )
-    # add_or_update_history(
-    #     Historyprime,
-    #     PRIMESerializer,
-    #     data.get("prime"),
-    #     "prime",
-    #     "primedate",
-    #     data.get("eunumber"),
-    # )
-
-
-def add_or_update_history(model, serializer, name, item, date, eu_pnumber):
-    if item is not None:
-        model_data = (
-            model.objects.filter(eu_pnumber=eu_pnumber).order_by("change_date").first()
+    # Create new history variables for the history models
+    def history_variables(self, data):
+        self.add_history(
+            HistoryAuthorisationType,
+            AuthorisationTypeSerializer,
+            "eu_aut_type",
+            data,
         )
-        if (not model_data) or item != getattr(model_data, name):
-            serializer = serializer(
-                None, {name: item, "change_date": date, "eu_pnumber": eu_pnumber}
-            )
-            if serializer.is_valid():
-                serializer.save()
+
+        self.add_history(
+            HistoryAuthorisationStatus,
+            AuthorisationStatusSerializer,
+            "eu_aut_status",
+            data,
+        )
+
+        self.add_history(
+            HistoryBrandName,
+            BrandNameSerializer,
+            "eu_brand_name",
+            data,
+        )
+
+        self.add_history(
+            HistoryOD,
+            OrphanDesignationSerializer,
+            "eu_od",
+            data,
+        )
+
+        self.add_history(
+            HistoryPrime,
+            PrimeSerializer,
+            "eu_prime",
+            data,
+        )
+
+        self.add_history(
+            HistoryMAH,
+            MAHSerializer,
+            "eu_mah",
+            data,
+        )
+
+        self.add_history(
+            HistoryEUOrphanCon,
+            EUOrphanConSerializer,
+            "eu_orphan_con",
+            data,
+        )
+
+    # Add new object to history model
+    @staticmethod
+    def add_history(model, serializer, name, data):
+        eu_pnumber = data.get("eu_pnumber")
+        item = data.get(name)
+        model_data = model.objects.filter(eu_pnumber=eu_pnumber).order_by("change_date").first()
+
+        if item is not None:
+            if not model_data or item.get(name) != getattr(model_data, name):
+                serializer = serializer(
+                    None, {name: item.get(name), "change_date": item.get("change_date"), "eu_pnumber": eu_pnumber}
+                )
+                if serializer.is_valid():
+                    serializer.save()
+                else:
+                    raise ValueError(f"{name} contains invalid data! {serializer.errors}")
+        elif not model_data:
+            raise ValueError(f"{name} must be part of the data posted!")

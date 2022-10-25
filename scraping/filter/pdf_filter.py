@@ -71,12 +71,12 @@ def filter_pdf(filename: str, data_dir: str):
     try:
         # when readable check if its type matches
         if check_readable(pdf):
-            if 'dec' in filename:
-                return check_decision(filename, file_path, pdf)
+            return (file_type_check(filename, file_path, pdf))
+
         # file not readable
         else:
             pdf.close()
-            os.remove(file_path)
+            print('os.remove(file_path)' + file_path)
             return filename + '@corrupt'
     # could not parse
     except:
@@ -84,22 +84,22 @@ def filter_pdf(filename: str, data_dir: str):
         try:
             first_line = get_utf8_line(file_path)
             if 'html' in first_line.lower():
-                os.remove(file_path)
+                print('os.remove(file_path)' + file_path)
                 return filename + '@html'
         except:
             pass
 
         # check if could not open PDF
         if corrupt:
-            os.remove(file_path)
+            print('os.remove(file_path)' + file_path)
             return filename + '@corrupt'
         # other parse error (uses default 'Failure unknown reason')
         else:
-            os.remove(file_path)
+            print('os.remove(file_path)' + file_path)
             return filename + '@unknown'
 
 
-def get_utf8_line(file_path: str):
+def get_utf8_line(file_path: str) -> str:
     # open file to check first line
     f2 = open(str(file_path), 'r', encoding="utf8")
     first_line = f2.readline()
@@ -107,7 +107,7 @@ def get_utf8_line(file_path: str):
     return first_line
 
 
-def check_readable(pdf: fitz.Document):
+def check_readable(pdf: fitz.Document) -> bool:
     # Check if PDF is readable
     no_text = check_for_no_text(pdf)
     # Text is not readable
@@ -117,22 +117,76 @@ def check_readable(pdf: fitz.Document):
     return True
 
 
-def check_decision(filename, file_path, pdf):
-    # gets text of second page
+def check_decision(filename, file_path, pdf) -> str:
+    # gets text of first page
     first_page = pdf[0]
     txt = first_page.get_text()
     # checks if it is a decision file
     if re.search(r'commission \w*\s?decision', txt.lower()):
+        pdf.close()
         return ''
     else:
         # try second page
         second_page = pdf[1]
         txt = second_page.get_text()
         if re.search(r'commission \w*\s?decision', txt.lower()):
+            pdf.close()
             return ''
     pdf.close()
-    os.remove(file_path)
+    print('os.remove(file_path)' + file_path)
     return filename + '@wrong_doctype'
+
+
+# checks if it is an annex file
+def check_annex(filename, file_path, pdf) -> str:
+    return check_pdf_type(file_path, filename, pdf, ['annex', 'name of the medicinal product',
+                                                     'summary of product characteristics'])
+
+
+# checks if it is a procedural steps file (from EPAR)
+def check_procedural(filename, file_path, pdf) -> str:
+    return check_pdf_type(file_path, filename, pdf, ['background information'])
+
+
+# checks if it is an EPAR file
+def check_epar(filename, file_path, pdf) -> str:
+    return check_pdf_type(file_path, filename, pdf, ['assessment report'])
+
+
+# checks if it is a scientific discussion (from EPAR)
+def check_scientific(filename, file_path, pdf) -> str:
+    return check_pdf_type(file_path, filename, pdf, ['scientific discussion'])
+
+
+def check_pdf_type(file_path, filename, pdf, texts) -> str:
+    # gets text of first page
+    first_page = pdf[0]
+    txt = first_page.get_text()
+    # checks if the PDF is of the right type
+    for text in texts:
+        if text in txt.lower():
+            pdf.close()
+            return ''
+    pdf.close()
+    #print('os.remove(file_path)' + file_path)
+    print(filename + txt.lower())
+    return filename + '@wrong_doctype'
+
+
+def file_type_check(filename, file_path, pdf) -> str:
+    if 'dec' in filename:
+        return check_decision(filename, file_path, pdf)
+    if 'anx' in filename:
+        return check_annex(filename, file_path, pdf)
+    if 'procedural-steps-taken-authorisation' in filename:
+        return check_procedural(filename, file_path, pdf)
+    if 'public-assessment-report' in filename:
+        return check_epar(filename, file_path, pdf)
+    if 'scientific-discussion' in filename:
+        return check_scientific(filename, file_path, pdf)
+    # TODO: Add OMAR check once available
+    else:
+        return ''
 
 
 filter_all_pdfs("../../data")

@@ -11,6 +11,7 @@ from api.models.medicine_models import (
     HistoryOD,
     HistoryPrime,
 )
+import logging
 
 # This file is responsible for setting up some initial
 # groups and users in the system.
@@ -34,11 +35,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # Create anonymous group
         anon, created = Group.objects.update_or_create(name="anonymous")
-        self.stdout.write(f"Anonymous group {get_action(created)}")
+        logging.getLogger(__name__).info(f"Anonymous group {get_action(created)}")
 
         # Create scraper user
         scraper, created = User.objects.update_or_create(username="scraper")
-        self.stdout.write(f"Scraper user {get_action(created)}")
+        logging.getLogger(__name__).info(f"Scraper user {get_action(created)}")
 
         # Assign permissions to scraper user
         for model in [
