@@ -19,6 +19,7 @@ from api.models.medicine_models import (
     HistoryOD,
     HistoryPrime,
 )
+import logging
 
 # creates custom permission levels to view medicines
 class Command(BaseCommand):
@@ -64,6 +65,6 @@ class Command(BaseCommand):
                         content_type=content_type,
                     )
                     if created:
-                        self.stdout.write(f"Created new permission '{perm}'")
+                        logging.getLogger(__name__).info(f"Created new permission '{perm}'")
                     else:
-                        self.stdout.write(f"Permission '{perm}' already exists")
+                        logging.getLogger(__name__).info(f"Permission '{perm}' already exists")

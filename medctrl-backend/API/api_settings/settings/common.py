@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import logging
 import os
 from pathlib import Path
 
@@ -157,25 +157,47 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'filters': ['require_debug_true'],
         },
+        'djangoHandler': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'django.log',
+            'formatter': 'simple'
+        },
         'debugHandler': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': 'debug.log',
             'formatter': 'simple'
         },
-        'restHandler': {
+        'infoHandler': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': 'api_log.log',
+            'formatter': 'verbose'
+        },
+        'warningHandler': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': 'warning.log',
             'formatter': 'verbose'
         }
     },
     'loggers': {
         '': {
-            'handlers': ['debugHandler', 'restHandler'],
-            'level': 'DEBUG', # os.getenv('DJANGO_LOG_LEVEL', ''''),
+            'handlers': ['debugHandler', 'infoHandler', 'warningHandler'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
             'propagate': True,
         },
+        'django': {
+            'handlers': ['djangoHandler'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': True,
+        }
+        #        'api.views.medicine_views.medicine': {
+        #            'handlers': ['warningHandler'],
+        #            'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR'),
+        #            'propagate': True,
+        #        }
     },
     'formatters': {
         'simple': {
@@ -183,7 +205,7 @@ LOGGING = {
             'style': '{',
         },
         'verbose': {
-            'format': '{name} {levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'format': '{name} {levelname} {asctime} {message}',
             'style': '{',
         },
     }

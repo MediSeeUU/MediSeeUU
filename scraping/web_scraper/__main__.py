@@ -41,9 +41,22 @@ logging.basicConfig(level=logging.INFO, handlers=[log_handler_console, log_handl
 log = logging.getLogger(__name__)
 
 
-# Paralleled function for getting the URL codes. They are written to a CSV file
-# TODO: What type is medicine_type? It looks like it
-def get_urls_ec(medicine_url: str, eu_n: str, medicine_type, data_path):
+def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: int, data_path: str):
+    """ Gets the scraped medicine attributes and urls, and writes them to CSV and JSON files.
+
+    The function writes the data to four (will become three) seperpate CSV files, one for decisions,
+    one for annexes, and one for EMA urls. The attributes for the medicine are stored in a single JSON.
+    They are all stored in the same data folder, where each medicine gets its own folder.
+
+    Args:
+        medicine_url (str): url to a medicine page for a specific medicine.
+        eu_n (str): EU number of the medicine.
+        medicine_type (int): The type of medicine.
+        data_path (str): The path where the CSV and JSON files need to be stored.
+
+    Returns:
+        None: This function returns nothing.
+    """
     if ec_scraper.MedicineType(medicine_type) in scrape_medicine_type:
         # getURLsForPDFAndEMA returns per medicine the urls
         # for the decision and annexes files and for the ema website.
@@ -73,7 +86,17 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type, data_path):
             json.dump(attributes_dict, f, indent=4)
 
 
-def get_urls_ema(medicine, url: str):
+
+def get_urls_ema(eu_n: str, url: str):
+    """ Gets all the pdf urls from the EMA website and writes it to a CSV file.
+
+    Args:
+        eu_n (str): The EU number of the medicine.
+        url (str): The url to an EMA page for a specific medicine.
+
+    Returns:
+        None: This function returns nothing
+    """
     if url != "[]":
         url = json.loads(url.replace('\'', '"'))[0]
     else:
@@ -83,10 +106,21 @@ def get_urls_ema(medicine, url: str):
 
     with open("web_scraper/CSV/epar.csv", 'a', newline='') as f:
         writer = csv.writer(f)
-        writer.writerow([medicine, pdf_url])
+        writer.writerow([eu_n, pdf_url])
 
 
 def main(data_filepath='../data'):
+    """ Main function that controls which scrapers are activated, and if it runs parallel or not.
+
+    Based on some variables declared at the top of the file, it will scrape the EC website, the EMA website
+    and/or downloads the scraped links.
+
+    Args:
+        data_filepath (str, optional): The file path where all data needs to be stored. Defaults to '../data'.
+
+    Returns:
+        None: This function returns nothing.
+    """
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
     # TODO: Remove mkdir after it is moved to monolithic main

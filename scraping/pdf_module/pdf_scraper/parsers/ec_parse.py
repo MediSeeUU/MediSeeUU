@@ -1,10 +1,10 @@
 # EC parser
 import re
 import os.path as path
-import pdf_module.pdf_scraper.helper as helper
-import pdf_module.pdf_scraper.pdf_helper as pdf_helper
 import datetime
 import fitz
+import pdf_module.pdf_scraper.helper as helper
+import pdf_module.pdf_scraper.pdf_helper as pdf_helper
 import pdf_module.pdf_scraper.parsed_info_struct as PIS
 
 
@@ -12,24 +12,59 @@ import pdf_module.pdf_scraper.parsed_info_struct as PIS
 
 
 # Given a pdf, returns one long string of text
-def get_txt_from_pdf(pdf: fitz.Document):
+def get_txt_from_pdf(pdf: fitz.Document) -> str:
+    '''Returns the plain text of a fitz pdf, removing alll \\n that are present.
+
+    Args:
+    pdf (fitz.Document): The opened pdf document to extract text from
+
+    Returns:
+        txt (str): The plain text of a pdf document, without \\n
+    '''
     pdf_format = pdf_helper.get_text_format(pdf)
-    return pdf_helper.format_to_string(pdf_format)
+    txt = pdf_helper.format_to_string(pdf_format)
+    return txt.replace('\n','')
 
 
-def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct):
+def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct) -> PIS.parsed_info_struct:
+    """Opens a pdf and adds all respective attributes to the medicine_struct.
+
+    Args:
+        filename (str): filename of file to open
+        directory (str): directory of file to open
+        medicine_struct (PIS.parsed_info_struct): struct to add found attributes to
+
+    Returns:
+        medicine_struct (PIS.parsed_info_struct): input struct with new variables added
+    """
     try:
         pdf = fitz.open(path.join(directory, filename))
         txt = get_txt_from_pdf(pdf)
-        medicine_struct.decisions.append(get_all(filename, txt))
+        res = get_all(filename, txt)
+        medicine_struct.decisions.append(res)
+        # if '_0' in filename:
+        #     f = open('test.txt', 'a', encoding="utf-8")  # open/clean output file
+        #     f.writelines(f"{filename}@{res['eu_mah_initial']}@{res['eu_mah_initial2']}")
+        #     f.writelines('\n')
+        #     f.close()
         pdf.close()
-    except:
+
+    except Exception:
         print("EC - Could not open PDF: " + filename)
     return medicine_struct
 
 
 # Given a dictionary, fills in all attributes for EC decisions
 def get_all(filename: str, txt: str) -> dict:
+    """based on filename finds all fitting attirubtes
+
+    Args:
+        filename (str): filename of opened pdf file
+        txt (str): plain text of opened pdf file
+
+    Returns:
+        dict: filled filedata
+    """
     # human use file attributes
     if '_h_' in filename:
         filedata = get_data_human_use(filename, txt)
@@ -46,6 +81,14 @@ def get_all(filename: str, txt: str) -> dict:
 
 # The default values before starting a parse.
 def get_default_human_use(filename: str) -> dict:
+    """returns dictionary with default attribute values for human use
+
+    Args:
+        filename (str): filename of pdf
+
+    Returns:
+        dict: contains default value for every attribute
+    """
     default = 'Not parsed'
     return {'filename': filename,
             'eu_aut_date': default,
@@ -55,6 +98,7 @@ def get_default_human_use(filename: str) -> dict:
             'eu_atmp': default,
             'eu_od_initial': default,
             'eu_mah_initial': default,
+            'eu_mah_initial2': default,
             'eu_aut_type_initial': default,
             'status': 'Failure unknown reason'
             }
@@ -62,18 +106,36 @@ def get_default_human_use(filename: str) -> dict:
 
 # The default values before starting a parse.
 def get_default_orphan(filename: str) -> dict:
+    """returns dictionary with default attribute values for orphan
+
+    Args:
+        filename (str): filename of pdf
+
+    Returns:
+        dict: contains default value for every attribute
+    """
     default = 'Not parsed'
     return {'filename': filename,
             'eu_aut_date': default,
             'eu_brand_name_initial': default,
             'eu_od_initial': default,
             'eu_mah_initial': default,
+            'eu_mah_initial2': default,
             'eu_od_comp_date': default,
             'status': 'Failure unknown reason'
             }
 
 
 def get_data_human_use(filename: str, txt: str) -> dict:
+    """fills in each attribute in a dictionary for human use
+
+    Args:
+        filename (str): filename of pdf
+        txt (str): plain txt of pdf
+
+    Returns:
+        dict: _description_
+    """
     filedata = get_default_human_use(filename)
     date = dec_get_date(txt)
     filedata['eu_aut_date'] = date
@@ -88,11 +150,20 @@ def get_data_human_use(filename: str, txt: str) -> dict:
     filedata['eu_atmp'] = dec_get_atmp(txt, date)
     filedata['eu_od_initial'] = dec_get_od(txt, date)
     filedata['eu_mah_initial'] = dec_get_mah(txt)
+    filedata['eu_mah_initial2'] = dec_get_mah2test(txt)
     filedata['eu_aut_type_initial'] = dec_get_decision_type(txt, date)
     return filedata
 
 
 def get_data_orphan(filename: str, txt: str) -> dict:
+    """fills in each attribute in a dictionary for orphan
+    Args:
+        filename (str): filename of pdf
+        txt (str): plain txt of pdf
+
+    Returns:
+        dict: _description_
+    """
     filedata = get_default_orphan(filename)
     date = dec_get_date(txt)
     filedata['eu_aut_date'] = date
@@ -103,6 +174,7 @@ def get_data_orphan(filename: str, txt: str) -> dict:
     filedata['eu_brand_name_initial'] = dec_get_bn(txt)
     filedata['eu_od_initial'] = dec_get_od(txt, date)
     filedata['eu_mah_initial'] = dec_get_mah(txt)
+    filedata['eu_mah_initial2'] = dec_get_mah2test(txt)
     filedata['eu_od_comp_date'] = dec_get_od_comp_date()
     return filedata
 
@@ -110,7 +182,16 @@ def get_data_orphan(filename: str, txt: str) -> dict:
 # FUNCTIONS FOR EACH ATTRIBUTE
 
 
-def dec_get_date(txt: str) -> str:
+def dec_get_date(txt: str) -> str | datetime.datetime:
+    """extracts date out of text
+
+    Args:
+        txt (str): text containing first page of decision document
+
+    Returns:
+        str: string indicating found date or if date is not found
+        datetime.datetime: found date
+    """
     try:
         section = re.split('of ', txt, 1)[1]
         section = section[:15]
@@ -126,14 +207,22 @@ def dec_get_date(txt: str) -> str:
             section = re.split('of ', next_page, 1)[1]
             section = section[:15]
             return helper.get_date(section)
-        except:
+        except Exception:
             pass
-    except:
+    except Exception:
         pass
     return helper.get_date('')
 
 
 def dec_get_bn(txt: str) -> str:
+    """extracts brandname out of decision text
+
+    Args:
+        txt (str): plain decision pdf text
+
+    Returns:
+        str: found brandname or default value
+    """
     # returns a section containing just the brandname (and potentially the active substance)
     section = get_name_section(txt)
 
@@ -141,7 +230,7 @@ def dec_get_bn(txt: str) -> str:
     regres = None
     try:
         regres = re.search(r'"(\w+[\s\w®/\.,"]*)\s?[-–]\s?\w+.*"', section)
-    except:
+    except Exception:
         pass
 
     if regres is not None:
@@ -169,13 +258,21 @@ def dec_get_bn(txt: str) -> str:
         res = res.replace('”', '')
         res.strip()
         return res
-    except:
+    except Exception:
         pass
 
     return 'Brandname Not Found'
 
 
 def dec_get_as(txt: str) -> str:
+    """extracts active substance out of decision text
+
+    Args:
+        txt (str): plain decision pdf text
+
+    Returns:
+        str: found substance or default value
+    """
     # returns a section containing just the brandname (and potentially the active substance)
     section = get_name_section(txt)
     try:
@@ -185,12 +282,21 @@ def dec_get_as(txt: str) -> str:
                 return section.split(' - ')[-1].strip()
             if ' – ' in section:
                 return section.split(' – ')[-1].strip()
-    except:
+    except Exception:
         pass
     return 'Active Substance Not Found'
 
 
-def dec_get_decision_type(txt: str, date: str) -> str:
+def dec_get_decision_type(txt: str, date: datetime.datetime) -> str:
+    """extracts decisiontype out of decision text
+
+    Args:
+        txt (str): plain decision pdf text
+        date (datetime.datetime): decision date of pdf
+
+    Returns:
+        str: found type or default value
+    """
     # check if there can be a CMA.
     if date < datetime.datetime(2006, 1, 1):
         return "CMA not available before 2006"
@@ -208,11 +314,18 @@ def dec_get_decision_type(txt: str, date: str) -> str:
 
 
 def dec_get_mah(txt: str) -> str:
+    """extracts marketholder out of decision text
+
+    Args:
+        txt (str): plain decision pdf text
+
+    Returns:
+        str: found marketholder or default value
+    """
     try:
         # get text after one of the following indicators.
         mahline = \
-        re.split(r"(( the notification submitted)|( the applicatio\w+ submitted)|( the application\(s\) submitted))",
-                 txt)[5]
+        re.split(r"(( the notification submitted)|( the applicatio\w+ submitted)|( the application\(s\) submitted))",txt)[5]
 
         # gets part after submitted by line
         mah = mahline.split(" by ", 1)[1]
@@ -225,11 +338,40 @@ def dec_get_mah(txt: str) -> str:
         if mah[-1] == ',':
             mah = mah[:-1]
         return mah.strip()
-    except:
+    except Exception:
+        return 'MAH Not Found'
+
+def dec_get_mah2test(txt: str) -> str:
+    """extracts marketholder out of decision text, alternative approach
+
+    Args:
+        txt (str): plain decision pdf text
+
+    Returns:
+        str: found marketholder or default value
+    """
+    try:
+        # get text after one of the following indicators.
+        mahline = txt.split('This Decision is addressed to ', 1)[1]
+
+        # gets part after submitted by line
+        mah = mahline.split(", ", 1)[0]
+
+        return mah.strip()
+    except Exception:
         return 'MAH Not Found'
 
 
-def dec_get_od(txt: str, date: str) -> str:
+def dec_get_od(txt: str, date: datetime.datetime) -> str:
+    """extracts orphan designation out of decision text
+
+    Args:
+        txt (str): plain decision pdf text
+        date (datetime.datetime): decision date of pdf
+
+    Returns:
+        str: found orphan designation or default value
+    """
     # check if there can be a NAS.
     if date < datetime.datetime(2000, 4, 28):
         return "NA before 2000"
@@ -241,7 +383,16 @@ def dec_get_od(txt: str, date: str) -> str:
     return 'OD Not Found'
 
 
-def dec_get_atmp(txt: str, date: str) -> str | bool:
+def dec_get_atmp(txt: str, date: datetime.datetime) -> str | bool:
+    """extracts atmp out of decision text
+
+    Args:
+        txt (str): plain decision pdf text
+        date (datetime.datetime): decision date of pdf
+
+    Returns:
+        str: found atmp or default value
+    """
     # check if there can be a ATMP.
     if date < datetime.datetime(2007, 12, 30):
         return "NA before 2012"
@@ -256,53 +407,74 @@ def dec_get_atmp(txt: str, date: str) -> str | bool:
         return False
 
 
-def dec_get_nas(txt, date):
+def dec_get_nas(txt, date) -> str | bool:
+    """extracts NAS out of decision text
+
+    Args:
+        txt (str): plain decision pdf text
+        date (datetime.datetime): decision date of pdf
+
+    Returns:
+        str: NAS not relevant
+        bool: found result
+    """
     # check if there can be a NAS.
     if date < datetime.datetime(2012, 1, 1):
-        return "NA before 2012"
+        return "NAS before 2012"
 
     if "committee for medicinal products for human use" in txt.lower() and "a new active substance" in txt.lower():
         return True
     return False
 
 
-def dec_get_od_comp_date() -> str:
+def dec_get_od_comp_date() -> datetime.datetime:
+    """gives default date value
+
+    Returns:
+        str: default date of get_date
+    """
     return helper.get_date('')
 
 
 # HELPERS
 # helper function for finding brandname and active substance.
 def get_name_section(txt: str) -> str:
+    """finds section of decision document containing brandname and active substance
+
+    Args:
+        txt (str): plain decision pdf text
+
+    Returns:
+        str: found section
+    """
     # to make sure no commas from pdf format itself, split at date.
     # try since this only works on default english documents.
 
-    try:
+    if 'of ' in txt:
         txt = txt.split('of ')
         txt = ' '.join(txt[1:])  # to remove part before date
-    except:
-        pass
 
     section = ''
     # try multiple quotation combinations
     try:
         section = re.search('"([^"]*)"', txt)[0]
         section = section.replace('"', '')
-    except:
+    except Exception:
         try:
             section = re.search('“(.+?)”', txt)[0]
             section = section.replace('“', '')
             section = section.replace('”', '')
-        except:
+        except Exception:
             try:
                 section = re.search('“(.+?)"', txt)[0]
                 section = section.replace('“', '')
                 section = section.replace('"', '')
-            except:
+            except Exception:
                 try:
                     section = re.search('"(.+?)\'', txt)[0]
                     section = section.replace('"', '')
                     section = section.replace('\'', '')
-                except:
+                except Exception:
                     pass
 
     if section is None:

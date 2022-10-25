@@ -34,6 +34,14 @@ months = {
 
 
 def convert_months(date: str) -> str:
+    """converts written months (january) to a numeric value
+
+    Args:
+        date (str): string containing fully writen month
+
+    Returns:
+        str: string with month replaces by numeric value
+    """
     for k in months.keys():
         if k in date:
             date = date.replace(f" {k} ", f"/{months[k]}/")
@@ -43,13 +51,13 @@ def convert_months(date: str) -> str:
 
 
 def convert_roman_numbers(date: str) -> str:
-    """ Converts the roman numbers (up to XII) to normal numbers
-    Parameters
-    ----------
-    date: string pattern of the date
+    """Converts the roman numbers (up to XII) to normal numbers
+
+    Args:
+        date: string pattern of the date
+
     Returns
-    -------
-    date: string pattern of the corrected date
+        date: string pattern of the corrected date
     """
 
     # sort roman_numbers on length (big to small)
@@ -62,7 +70,7 @@ def convert_roman_numbers(date: str) -> str:
     return date
 
 
-def convert_articles(articles: [str]) -> [str]:
+def convert_articles(articles: list[str]) -> list[str]:
     res = []
     for article in articles:
         num = article.split(' ')[1]
@@ -78,23 +86,31 @@ def convert_articles(articles: [str]) -> [str]:
     return res
 
 
-def get_date(txt: str) -> datetime:
+def get_date(txt: str) -> datetime.datetime:
+    """extracts date from a text, also including months with roman numerals and fully written months (IV, january)
+
+    Args:
+        txt (str): text containing date
+
+    Returns:
+        datetime.datetime: found date.
+    """
     if txt != '':
         txt = txt.lower()
         try:
             return dateutil.parser.parse(txt, fuzzy=True)
-        except:
+        except Exception:
             pass
         try:
             tempdate = convert_roman_numbers(txt)
             return dateutil.parser.parse(tempdate, fuzzy=True)
-        except:
+        except Exception:
             pass
 
         try:
             tempdate = convert_months(txt)
             return dateutil.parser.parse(tempdate, fuzzy=True)
-        except:
+        except Exception:
             pass
 
     return datetime.datetime(1980, 1, 1, 0, 0)

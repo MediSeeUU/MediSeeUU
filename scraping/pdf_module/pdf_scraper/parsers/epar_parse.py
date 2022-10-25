@@ -1,9 +1,9 @@
 # EPAR parser
 import re
-import pdf_module.pdf_scraper.helper as h
-import pdf_module.pdf_scraper.xml_parsing_utils as xpu
+import scraping.pdf_module.pdf_scraper.helper as h
+import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xpu
 import xml.etree.ElementTree as ET
-import pdf_module.pdf_scraper.parsed_info_struct as PIS
+import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
 import os.path as path
 
 date_pattern: str = r"\d{1,2} \w+ \d{4}"  # DD/MONTH/YYYY
@@ -93,28 +93,89 @@ def get_prime(xml: ET.Element) -> str:
 # ema_rapp
 # The main rapporteur
 def get_rapp(xml: ET.Element) -> str:
-    for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
-        if re.findall(r"rapporteur:[\w\s]+ co-rapporteur:", p):
-            rapporteur = re.search(r"rapporteur:[\w\s]+ co-rapporteur:", p)[0][12:]
-            return rapporteur.strip()[:len(rapporteur) - 16]
-        if re.findall(r"rapporteur:[\w\s]+ \\n", p):
-            rapporteur = re.search(r"rapporteur:[\w\s]+\\n", p)[0][12:]
-            return rapporteur.strip()
-        if re.findall(r"rapporteur:[\w\s]+", p):
-            rapporteur = re.search(r"rapporteur:[\w\s]+", p)[0][12:]
-            return rapporteur.strip()
+    found = False
+    rapporteur = ""
+    for elem in xml.iter():
+        txt = str(elem.text)
+        # Find rapporteur between "rapporteur:" and "co-rapporteur"
+        if find_rapp_1(txt) is not None:
+            return find_rapp_1(txt)
+        # Find rapporteur after "rapporteur: " and before "\n"
+        regex_str_2 = r"rapporteur: [\s\w]+?\n"
+        if re.findall(regex_str_2, txt):
+            return get_rapp_after(regex_str_2, txt, 12)
+        # Find rapporteur after "rapporteur appointed by the chmp was"
+        regex_str_3 = r"rapporteur appointed by the chmp was[\s\S]+"
+        if re.findall(regex_str_3, txt):
+            return get_rapp_after(regex_str_3, txt, 37)
+        # Find rapporteur after "rapporteur:"
+        regex_str_4 = r"rapporteur:[\s\w]*"
+        if re.search(regex_str_4, txt):
+            rapporteur = get_rapp_after(regex_str_4, txt, 12)
+            # Combine first part of rapporteur like "dr." with next part of rapporteur
+            if len(rapporteur) < 4:
+                found = True
+            else:
+                return get_rapp_after(regex_str_4, txt, 12)
+        # Find rapporteur after "rapporteur:" with found boolean to get rapporteur in new section
+        if found:
+            found = False
+            rapporteur += txt.strip().replace("\n", "")
+            return rapporteur
+
     return "no_rapporteur"
+
+
+def find_rapp_1(txt):
+    regex_str_1 = r"rapporteur:[\s\S]*?(co-rapporteur|corapporteur)"
+    if re.findall(regex_str_1, txt):
+        rapporteur = re.search(regex_str_1, txt)[0][12:]
+        rapporteur = rapporteur[:len(rapporteur) - 14]
+        # stop when "•" or "" is found
+        if re.search("[•|]", rapporteur):
+            rapporteur = re.search(r"[\s\S]+?[•|]", rapporteur)[0]
+            rapporteur = rapporteur[:len(rapporteur) - 2]
+        # stop when "the application was" or "the applicant submitted" is found
+        if re.search("(the application was|the applicant submitted)", rapporteur):
+            rapporteur = re.search(r"[\s\S]+?(the application was|the applicant submi)", rapporteur)[0]
+            rapporteur = rapporteur[:len(rapporteur) - 20]
+        rapporteur = rapporteur.strip().replace("\n", "")
+        return rapporteur
+
+
+def get_rapp_after(regex_str: str, txt: str, from_char: int) -> str:
+    rapporteur = re.search(regex_str, txt)[0][from_char:]
+    # stop when "the application was" or "the applicant submitted" is found
+    if re.search("(the application was|the applicant submitted)", rapporteur):
+        rapporteur = re.search(r"[\s\S]+?(the application was|the applicant submi)", rapporteur)[0]
+        rapporteur = rapporteur[:len(rapporteur) - 20]
+    rapporteur = rapporteur.strip().replace("\n", "")
+    return rapporteur
 
 
 # ema_corapp
 # The co-rapporteur
 def get_corapp(xml: ET.Element) -> str:
-    for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
-        if re.findall(r"co-rapporteur: (.*?) \\n", p):
-            rapporteur = re.search(r"co-rapporteur: (.*?)\\n", p)[0][15:]
-            return rapporteur.replace("\\n", "").rstrip()
-    for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
-        if re.findall(r"co-rapporteur: (.)+", p):
-            rapporteur = re.search(r"co-rapporteur: (.)+", p)[0][15:]
-            return rapporteur.replace("\\n", "").rstrip()
+    found = False
+    corapporteur = ""
+    for elem in xml.iter():
+        txt = str(elem.text)
+        # Find co-rapporteur after "co-rapporteur:" and before "\n"
+        regex_str_1 = r"co-rapporteur:[\s\w]+?\n"
+        if re.findall(regex_str_1, txt):
+            return get_rapp_after(regex_str_1, txt, 15)
+        # Find co-rapporteur after "co-rapporteur:"
+        regex_str_2 = r"co-rapporteur:[\s\w]*"
+        if re.findall(regex_str_2, txt):
+            corapporteur = get_rapp_after(regex_str_2, txt, 15)
+            # Combine first part of co-rapporteur like "dr." with next part of co-rapporteur
+            if len(corapporteur) < 4:
+                found = True
+            else:
+                return get_rapp_after(regex_str_2, txt, 15)
+        # Find rapporteur after "rapporteur:" with found boolean to get rapporteur in new section
+        if found:
+            found = False
+            corapporteur += txt.strip().replace("\n", "")
+            return corapporteur
     return "no_co-rapporteur"
