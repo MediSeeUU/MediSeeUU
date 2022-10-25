@@ -5,13 +5,23 @@ import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xpu
 import xml.etree.ElementTree as ET
 import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
 import os.path as path
+from typing import Union
+
 
 date_pattern: str = r"\d{1,2} \w+ \d{4}"  # DD/MONTH/YYYY
 procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure
 
 
-# Gets all attributes of the XML and returns them in a dictionary
 def get_all(filename: str, xml_data: ET.Element) -> dict:
+    """
+    Gets all attributes of the EPAR XML and returns them in a dictionary
+    Args:
+        filename (str): name of the XML file to be scraped
+        xml_data (ET.Element): the contents of the XML file
+
+    Returns:
+        dict: Dictionary of all scraped attributes, named according to the bible
+    """
     epar = {"filename": filename[:len(filename) - 4],  # removes extension
             "ema_procedure_start_initial": get_date(xml_data),
             "chmp_opinion_date": get_opinion_date(xml_data),
@@ -22,12 +32,22 @@ def get_all(filename: str, xml_data: ET.Element) -> dict:
     return epar
 
 
-# Scrapes all attributes from the XML file after parsing it
 def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct) -> PIS.parsed_info_struct:
+    """
+    Scrapes all attributes from the EPAR XML file after parsing it
+    Args:
+        filename (str): name of the XML file to be scraped
+        directory (str): path of the directory containing the XML file
+        medicine_struct (PIS.parsed_info_struct): the dictionary of all currently scraped attributes of this medicine
+
+    Returns:
+        PIS.parsed_info_struct: a more complete dictionary of scraped attributes,
+        including the attributes of this XML file
+    """
     filepath = path.join(directory, filename)
     try:
         xml_tree = ET.parse(filepath)
-    except:
+    except ET.ParseError:
         print("EPAR PARSER: failed to open XML file " + filepath)
         return medicine_struct
     xml_root = xml_tree.getroot()
@@ -36,9 +56,16 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_s
     return medicine_struct
 
 
-# ema_procedure_start_initial
-# The initial authorization of the EMA
 def get_date(xml: ET.Element) -> str:
+    """
+    Gets the attribute ema_procedure_start_initial
+    The initial authorization date of the EMA
+    Args:
+        xml (ET.Element): the contents of the XML file
+
+    Returns:
+        str: the attribute ema_procedure_start_initial - a string of a date in DD/MM/YYYY format
+    """
     found = False
     regex_date = re.compile(date_pattern)
     regex_ema = re.compile(r"the application was received by the em\w+ on")
@@ -53,9 +80,16 @@ def get_date(xml: ET.Element) -> str:
     return "no_date_found"
 
 
-# chmp_opinion_date
-# The date of the CHMP opinion on the medicine
 def get_opinion_date(xml: ET.Element) -> str:
+    """
+    Gets the attribute chmp_opinion_date
+    The date of the CHMP opinion on the medicine
+    Args:
+        xml (ET.Element): the contents of the XML file
+
+    Returns:
+        str: the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format
+    """
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(date_pattern, p):
             date = h.convert_months(re.findall(date_pattern, p)[-1])
@@ -63,25 +97,39 @@ def get_opinion_date(xml: ET.Element) -> str:
     return "no_chmp_found"
 
 
-# eu_legal_basis
-# All legal articles relevant to the medicine
-def get_legal_basis(xml: ET.Element) -> str:
+def get_legal_basis(xml: ET.Element) -> [str]:
+    """
+    Gets the attribute eu_legal_basis
+    All legal articles relevant to the medicine
+    Args:
+        xml (ET.Element): the contents of the XML file
+
+    Returns:
+        str: the attribute eu_legal_basis - multiple articles of the form "Article X.X"
+    """
     regex_legal = r"article [^ ]+"
     found = False
     for p in xpu.get_paragraphs_by_header("legal basis for", xml):
         if re.findall(regex_legal, p):
-            return h.convert_articles(list(re.findall(regex_legal, p)))
+            return h.convert_articles(re.findall(regex_legal, p))
     for p in xpu.get_paragraphs_by_header("submission of the dossier", xml):
         if found and re.findall(regex_legal, p):
-            return h.convert_articles(list(re.findall(regex_legal, p)))
+            return h.convert_articles(re.findall(regex_legal, p))
         elif "legal basis for" in p:
             found = True
     return "no_legal_basis"
 
 
-# eu_prime_initial
-# Whether the medicine is a priority medicine (PRIME)
 def get_prime(xml: ET.Element) -> str:
+    """
+    Gets the attribute eu_prime_initial
+    Whether the medicine is a priority medicine (PRIME)
+    Args:
+        xml (ET.Element): the contents of the XML file
+
+    Returns:
+        str: the attribute eu_prime_initial - "yes" or "no"
+    """
     for p in xpu.get_paragraphs_by_header("submission of the dossier", xml):
         if re.findall(r" prime ", p):
             return "yes"
@@ -90,9 +138,16 @@ def get_prime(xml: ET.Element) -> str:
     return "no"
 
 
-# ema_rapp
-# The main rapporteur
 def get_rapp(xml: ET.Element) -> str:
+    """
+    Gets the attribute ema_rapp
+    The main rapporteur of the document, usually found after "rapporteur:"
+    Args:
+        xml (ET.Element): the contents of the XML file
+
+    Returns:
+        str: the attribute ema_rapp - the name of the main rapporteur or "no_rapporteur"
+    """
     found = False
     rapporteur = ""
     for elem in xml.iter():
@@ -126,7 +181,16 @@ def get_rapp(xml: ET.Element) -> str:
     return "no_rapporteur"
 
 
-def find_rapp_1(txt: str) -> str:
+def find_rapp_1(txt: str) -> Union[str, None]:
+    """
+    A supporting function for finding the rapporteur of the document that
+    finds the rapporteur in a certain section in some cases (other cases are processed in the main function)
+    Args:
+        txt (str): a section of the xml document
+
+    Returns:
+        str or None: the attribute ema_rapp - the name of the main rapporteur or None if no rapporteur is found
+    """
     regex_str_1 = r"rapporteur:[\s\S]*?(co-rapporteur|corapporteur)"
     if re.findall(regex_str_1, txt):
         rapporteur = re.search(regex_str_1, txt)[0][12:]
@@ -144,6 +208,18 @@ def find_rapp_1(txt: str) -> str:
 
 
 def get_rapp_after(regex_str: str, txt: str, from_char: int) -> str:
+    """
+    A supporting function for finding the (co-)rapporteur of the document that
+    finds the (co-)rapporteur in a certain section using a given regex string.
+
+    Args:
+        regex_str (str): The regex string to search for in the section (txt)
+        txt (str): a section of the xml document
+        from_char (int): The number of characters to remove from the head of the string
+
+    Returns:
+        str: the attribute ema_rapp or ema_corapp - the name of the (co-)rapporteur
+    """
     rapporteur = re.search(regex_str, txt)[0][from_char:]
     # stop when "the application was" or "the applicant submitted" is found
     if re.search("(the application was|the applicant submitted)", rapporteur):
@@ -156,6 +232,15 @@ def get_rapp_after(regex_str: str, txt: str, from_char: int) -> str:
 # ema_corapp
 # The co-rapporteur
 def get_corapp(xml: ET.Element) -> str:
+    """
+    Gets the attribute ema_corapp
+    The co-rapporteur of the document, usually found after "co-rapporteur:"
+    Args:
+        xml (ET.Element): the contents of the XML file
+
+    Returns:
+        str: the attribute ema_corapp - the name of the co-rapporteur or "no_co-rapporteur"
+    """
     found = False
     corapporteur = ""
     for elem in xml.iter():
