@@ -126,7 +126,7 @@ def get_rapp(xml: ET.Element) -> str:
     return "no_rapporteur"
 
 
-def find_rapp_1(txt):
+def find_rapp_1(txt: str) -> str:
     regex_str_1 = r"rapporteur:[\s\S]*?(co-rapporteur|corapporteur)"
     if re.findall(regex_str_1, txt):
         rapporteur = re.search(regex_str_1, txt)[0][12:]
