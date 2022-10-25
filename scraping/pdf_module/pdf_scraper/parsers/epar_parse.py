@@ -1,9 +1,9 @@
 # EPAR parser
 import re
-import pdf_module.pdf_scraper.helper as h
-import pdf_module.pdf_scraper.xml_parsing_utils as xpu
+import scraping.pdf_module.pdf_scraper.helper as h
+import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xpu
 import xml.etree.ElementTree as ET
-import pdf_module.pdf_scraper.parsed_info_struct as PIS
+import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
 import os.path as path
 
 date_pattern: str = r"\d{1,2} \w+ \d{4}"  # DD/MONTH/YYYY
@@ -32,7 +32,6 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_s
         return medicine_struct
     xml_root = xml_tree.getroot()
     xml_body = xml_root[1]
-    print(filename)
     medicine_struct.epars.append(get_all(filename, xml_body))
     return medicine_struct
 
@@ -94,66 +93,89 @@ def get_prime(xml: ET.Element) -> str:
 # ema_rapp
 # The main rapporteur
 def get_rapp(xml: ET.Element) -> str:
-    result = "no_rapporteur"
     found = False
-    # Get rapporteur in submission of the dossier
-    for p in xpu.get_paragraphs_by_header("submission of the dossier", xml):
-        if result == "no_rapporteur":
-            result = find_rapp_in_paragraph(p)
-    # Get rapporteur in steps taken for the assessment
-    for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
-        if result == "no_rapporteur":
-            result = find_rapp_in_paragraph(p)
-    # Get rapporteur after ": " if the header is "rapporteur"
-    for p in xpu.get_paragraphs_by_header("rapporteur", xml):
-        if result == "no_rapporteur" and re.search(r":[\s\S]+", p):
-            rapporteur = re.search(r":[\s\S]+", p)[0][12:]
-            result = rapporteur[2:].strip().replace("\n", "")
-    for section in xml:
-        for head in section.findall("header"):
-            if found and re.search(r"[\s\S]+", head.text):
-                result = re.search(r"[\s\S]+", head.text)[0].strip().replace("\n", "")
-            if "rapporteur" in head.text:
+    rapporteur = ""
+    for elem in xml.iter():
+        txt = str(elem.text)
+        # Find rapporteur between "rapporteur:" and "co-rapporteur"
+        if find_rapp_1(txt) is not None:
+            return find_rapp_1(txt)
+        # Find rapporteur after "rapporteur: " and before "\n"
+        regex_str_2 = r"rapporteur: [\s\w]+?\n"
+        if re.findall(regex_str_2, txt):
+            return get_rapp_after(regex_str_2, txt, 12)
+        # Find rapporteur after "rapporteur appointed by the chmp was"
+        regex_str_3 = r"rapporteur appointed by the chmp was[\s\S]+"
+        if re.findall(regex_str_3, txt):
+            return get_rapp_after(regex_str_3, txt, 37)
+        # Find rapporteur after "rapporteur:"
+        regex_str_4 = r"rapporteur:[\s\w]*"
+        if re.search(regex_str_4, txt):
+            rapporteur = get_rapp_after(regex_str_4, txt, 12)
+            # Combine first part of rapporteur like "dr." with next part of rapporteur
+            if len(rapporteur) < 4:
                 found = True
+            else:
+                return get_rapp_after(regex_str_4, txt, 12)
+        # Find rapporteur after "rapporteur:" with found boolean to get rapporteur in new section
+        if found:
+            found = False
+            rapporteur += txt.strip().replace("\n", "")
+            return rapporteur
 
-   # print("Rapporteur: " + result)
-    return result
+    return "no_rapporteur"
 
 
-# Find rapporteur in paragraph using regex patterns
-def find_rapp_in_paragraph(p):
-    if re.findall(r"rapporteur:[\s\S]*?co-rapporteur:", p):
-        #print("1:")
-        rapporteur = re.search(r"rapporteur:[\s\S]*?co-rapporteur:", p)[0][12:]
-        return rapporteur[:len(rapporteur) - 15].strip().replace("\n", "")
-    if re.findall(r"rapporteur:[\s\S]+", p):
-        #print("2:")
-        rapporteur = re.search(r"rapporteur:[\s\S]+", p)[0][12:]
+def find_rapp_1(txt):
+    regex_str_1 = r"rapporteur:[\s\S]*?(co-rapporteur|corapporteur)"
+    if re.findall(regex_str_1, txt):
+        rapporteur = re.search(regex_str_1, txt)[0][12:]
+        rapporteur = rapporteur[:len(rapporteur) - 14]
+        # stop when "•" or "" is found
         if re.search("[•|]", rapporteur):
             rapporteur = re.search(r"[\s\S]+?[•|]", rapporteur)[0]
             rapporteur = rapporteur[:len(rapporteur) - 2]
-        if re.search("the application was received by", rapporteur):
-            rapporteur = re.search(r"[\s\S]+the application was received by", rapporteur)[0]
-            rapporteur = rapporteur[:len(rapporteur) - 32]
-        return rapporteur.strip().replace("\n", "")
-    if re.findall(r"[\s\S]*?co-rapporteur:", p):
-       # print("3:")
-        rapporteur = re.search(r"[\s\S]*?co-rapporteur:", p)[0]
-        return rapporteur.strip()[:len(rapporteur) - 17].replace("\n", "")
-    #if re.findall(r"rapporteur:", p):
-        #print("More than 1")
-    return "no_rapporteur"
+        # stop when "the application was" or "the applicant submitted" is found
+        if re.search("(the application was|the applicant submitted)", rapporteur):
+            rapporteur = re.search(r"[\s\S]+?(the application was|the applicant submi)", rapporteur)[0]
+            rapporteur = rapporteur[:len(rapporteur) - 20]
+        rapporteur = rapporteur.strip().replace("\n", "")
+        return rapporteur
+
+
+def get_rapp_after(regex_str: str, txt: str, from_char: int) -> str:
+    rapporteur = re.search(regex_str, txt)[0][from_char:]
+    # stop when "the application was" or "the applicant submitted" is found
+    if re.search("(the application was|the applicant submitted)", rapporteur):
+        rapporteur = re.search(r"[\s\S]+?(the application was|the applicant submi)", rapporteur)[0]
+        rapporteur = rapporteur[:len(rapporteur) - 20]
+    rapporteur = rapporteur.strip().replace("\n", "")
+    return rapporteur
 
 
 # ema_corapp
 # The co-rapporteur
 def get_corapp(xml: ET.Element) -> str:
-    for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
-        if re.findall(r"co-rapporteur: (.*?) \\n", p):
-            rapporteur = re.search(r"co-rapporteur: (.*?)\\n", p)[0][15:]
-            return rapporteur.replace("\n", "").rstrip()
-    for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
-        if re.findall(r"co-rapporteur: (.)+", p):
-            rapporteur = re.search(r"co-rapporteur: (.)+", p)[0][15:]
-            return rapporteur.replace("\n", "").rstrip()
+    found = False
+    corapporteur = ""
+    for elem in xml.iter():
+        txt = str(elem.text)
+        # Find co-rapporteur after "co-rapporteur:" and before "\n"
+        regex_str_1 = r"co-rapporteur:[\s\w]+?\n"
+        if re.findall(regex_str_1, txt):
+            return get_rapp_after(regex_str_1, txt, 15)
+        # Find co-rapporteur after "co-rapporteur:"
+        regex_str_2 = r"co-rapporteur:[\s\w]*"
+        if re.findall(regex_str_2, txt):
+            corapporteur = get_rapp_after(regex_str_2, txt, 15)
+            # Combine first part of co-rapporteur like "dr." with next part of co-rapporteur
+            if len(corapporteur) < 4:
+                found = True
+            else:
+                return get_rapp_after(regex_str_2, txt, 15)
+        # Find rapporteur after "rapporteur:" with found boolean to get rapporteur in new section
+        if found:
+            found = False
+            corapporteur += txt.strip().replace("\n", "")
+            return corapporteur
     return "no_co-rapporteur"
