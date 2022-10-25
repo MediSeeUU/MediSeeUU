@@ -51,13 +51,13 @@ def convert_months(date: str) -> str:
 
 
 def convert_roman_numbers(date: str) -> str:
-    """ Converts the roman numbers (up to XII) to normal numbers
-    Parameters
-    ----------
-    date: string pattern of the date
+    """Converts the roman numbers (up to XII) to normal numbers
+
+    Args:
+        date: string pattern of the date
+
     Returns
-    -------
-    date: string pattern of the corrected date
+        date: string pattern of the corrected date
     """
 
     # sort roman_numbers on length (big to small)
