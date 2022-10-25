@@ -8,7 +8,6 @@ from os import path
 import re
 
 header_indicator = "|-HEADER-|"
-split_indicator = "|-SPLIT-|"
 
 
 def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
