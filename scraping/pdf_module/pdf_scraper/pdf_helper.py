@@ -73,7 +73,7 @@ def get_text_format(pdf, lower=False):
 #converts a formatted text to normal string.
 def format_to_string(section):
     res = ''
-    for (txt, size, font) in section:
+    for (txt, _, _) in section:
         res += txt     
     return res
 
@@ -123,7 +123,7 @@ def find_from_format(start, form, inclusive, minimum_size=0):
 # counts for every text CONTAINING the search string
 def count_str(string, search_font, section):
     count = 0
-    for (txt, size, font) in section:
+    for (txt, _, font) in section:
         if string in txt and font == search_font:
             count += 1
     return count
