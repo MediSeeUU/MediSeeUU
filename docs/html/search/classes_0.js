@@ -1,9 +1,0 @@
-var searchData=
-[
-  ['apiconfig_0',['ApiConfig',['../classapps_1_1_api_config.html',1,'apps']]],
-  ['atccodeserializer_1',['ATCCodeSerializer',['../classserializers_1_1medicine__serializers_1_1full__serializer_1_1_a_t_c_code_serializer.html',1,'serializers::medicine_serializers::full_serializer']]],
-  ['authorisationstatusserializer_2',['AuthorisationStatusSerializer',['../classserializers_1_1medicine__serializers_1_1full__serializer_1_1_authorisation_status_serializer.html',1,'serializers.medicine_serializers.full_serializer.AuthorisationStatusSerializer'],['../classserializers_1_1medicine__serializers_1_1public_1_1public__history_1_1_authorisation_status_serializer.html',1,'serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer'],['../classserializers_1_1medicine__serializers_1_1scraper_1_1history__serializers_1_1_authorisation_status_serializer.html',1,'serializers.medicine_serializers.scraper.history_serializers.AuthorisationStatusSerializer']]],
-  ['authorisationtypeserializer_3',['AuthorisationTypeSerializer',['../classserializers_1_1medicine__serializers_1_1full__serializer_1_1_authorisation_type_serializer.html',1,'serializers.medicine_serializers.full_serializer.AuthorisationTypeSerializer'],['../classserializers_1_1medicine__serializers_1_1public_1_1public__history_1_1_authorisation_type_serializer.html',1,'serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer'],['../classserializers_1_1medicine__serializers_1_1scraper_1_1history__serializers_1_1_authorisation_type_serializer.html',1,'serializers.medicine_serializers.scraper.history_serializers.AuthorisationTypeSerializer']]],
-  ['autstatus_4',['AutStatus',['../classmodels_1_1medicine__models_1_1common_1_1_aut_status.html',1,'models::medicine_models::common']]],
-  ['auttypes_5',['AutTypes',['../classmodels_1_1medicine__models_1_1common_1_1_aut_types.html',1,'models::medicine_models::common']]]
-];
