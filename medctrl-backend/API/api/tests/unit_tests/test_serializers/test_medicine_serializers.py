@@ -20,7 +20,6 @@ from api.serializers.medicine_serializers.public import PublicMedicineSerializer
 
 class PublicMedicineSerializerTestCase(TestCase):
     def setUp(self):
-        self.maxDiff = None
         self.medicine = Medicine(
             eu_pnumber=1,
             atc_code="C03CA01",
@@ -191,4 +190,4 @@ class PublicMedicineSerializerTestCase(TestCase):
             "eu_orphan_con_initial": "eu orphan con 2",
             "eu_orphan_con_current": "eu orphan con 1",
         }
-        self.assertEqual(dict(sorted(data.items())), dict(sorted(expected.items())))
+        self.assertEqual(sorted(data.items()), sorted(expected.items()))

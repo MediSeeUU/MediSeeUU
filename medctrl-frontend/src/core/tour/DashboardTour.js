@@ -87,8 +87,8 @@ function DashboardTour(props) {
           id: 1,
           chartType: 'histogram',
           chartSpecificOptions: {
-            xAxis: 'decisionyear',
-            yAxis: 'rapporteur',
+            xAxis: 'eu_aut_date',
+            yAxis: 'ema_rapp',
             categoriesSelectedY: [],
             categoriesSelectedX: [
               1998, 1999, 2001, 2003, 2006, 2016, 2017, 2020,
@@ -103,11 +103,11 @@ function DashboardTour(props) {
       // medicines which have a withdrawn status, we want to make sure that the
       // status variable is visible in the selection table
       setColumnSelection([
-        'eunumber',
-        'brandname',
-        'mah',
-        'decisiondate',
-        'status',
+        'eu_pnumber',
+        'eu_brand_name_current',
+        'eu_mah_current',
+        'eu_aut_date',
+        'atc_code',
       ])
     }
 

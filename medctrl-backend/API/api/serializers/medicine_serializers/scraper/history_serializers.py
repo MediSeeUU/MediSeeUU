@@ -29,7 +29,7 @@ class AuthorisationStatusSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryAuthorisationStatus
-        fields = "__all__"
+        exclude = ["id", ]
 
 
 class AuthorisationTypeSerializer(serializers.ModelSerializer):
@@ -43,7 +43,7 @@ class AuthorisationTypeSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryAuthorisationType
-        fields = "__all__"
+        exclude = ["id", ]
 
 
 class BrandNameSerializer(serializers.ModelSerializer):
@@ -57,7 +57,7 @@ class BrandNameSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryBrandName
-        fields = "__all__"
+        exclude = ["id", ]
 
 
 class MAHSerializer(serializers.ModelSerializer):
@@ -71,7 +71,7 @@ class MAHSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryMAH
-        fields = "__all__"
+        exclude = ["id", ]
 
 
 class OrphanDesignationSerializer(serializers.ModelSerializer):
@@ -85,7 +85,7 @@ class OrphanDesignationSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryOD
-        fields = "__all__"
+        exclude = ["id", ]
 
 
 class PrimeSerializer(serializers.ModelSerializer):
@@ -99,7 +99,8 @@ class PrimeSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryPrime
-        fields = "__all__"
+        exclude = ["id", ]
+
 
 class EUOrphanConSerializer(serializers.ModelSerializer):
     """
@@ -112,4 +113,4 @@ class EUOrphanConSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryEUOrphanCon
-        fields = "__all__"
+        exclude = ["id", ]
