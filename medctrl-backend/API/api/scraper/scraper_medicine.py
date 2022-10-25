@@ -55,7 +55,6 @@ class ScraperMedicine(APIView):
         """
         return Medicine.objects.all()
 
-    @transaction.atomic
     def post(self, request):
         """
         Post endpoint medicine scraper
@@ -103,7 +102,7 @@ class ScraperMedicine(APIView):
         # update medicine
         if medicine_serializer.is_valid():
             medicine_serializer.save()
-            self.history_variables(data, False)
+            self.history_variables(data)
         else:
             raise ValueError(medicine_serializer.errors)
 
@@ -118,7 +117,7 @@ class ScraperMedicine(APIView):
         # add medicine and authorisation
         if serializer.is_valid():
             serializer.save()
-            self.history_variables(data, True)
+            self.history_variables(data)
         else:
             raise ValueError(serializer.errors)
 
@@ -139,79 +138,65 @@ class ScraperMedicine(APIView):
             self.add_medicine(new_data, current_medicine)
 
     # Create new history variables for the history models
-    def history_variables(self, data, new_medicine: bool):
-        eu_pnumber = data.get("eu_pnumber")
-
+    def history_variables(self, data):
         self.add_history(
             HistoryAuthorisationType,
             AuthorisationTypeSerializer,
             "eu_aut_type",
-            data.get("eu_aut_type"),
-            eu_pnumber,
-            new_medicine,
+            data,
         )
 
         self.add_history(
             HistoryAuthorisationStatus,
             AuthorisationStatusSerializer,
             "eu_aut_status",
-            data.get("eu_aut_status"),
-            eu_pnumber,
-            new_medicine,
+            data,
         )
 
         self.add_history(
             HistoryBrandName,
             BrandNameSerializer,
             "eu_brand_name",
-            data.get("eu_brand_name"),
-            eu_pnumber,
-            new_medicine,
+            data,
         )
 
         self.add_history(
             HistoryOD,
             OrphanDesignationSerializer,
             "eu_od",
-            data.get("eu_od"),
-            eu_pnumber,
-            new_medicine,
+            data,
         )
 
         self.add_history(
             HistoryPrime,
             PrimeSerializer,
             "eu_prime",
-            data.get("eu_prime"),
-            eu_pnumber,
-            new_medicine,
+            data,
         )
 
         self.add_history(
             HistoryMAH,
             MAHSerializer,
             "eu_mah",
-            data.get("eu_mah"),
-            eu_pnumber,
-            new_medicine,
+            data,
         )
 
         self.add_history(
             HistoryEUOrphanCon,
             EUOrphanConSerializer,
             "eu_orphan_con",
-            data.get("eu_orphan_con"),
-            eu_pnumber,
-            new_medicine,
+            data,
         )
 
     # Add new object to history model
-    def add_history(self, model, serializer, name, item, eu_pnumber, new_medicine: bool):
+    @staticmethod
+    def add_history(model, serializer, name, data):
+        eu_pnumber = data.get("eu_pnumber")
+        item = data.get(name)
+        model_data = model.objects.filter(eu_pnumber=eu_pnumber).order_by("change_date").first()
+
         if item is not None:
-            model_data = (
-                model.objects.filter(eu_pnumber=eu_pnumber).order_by("change_date").first()
-            )
-            if (not model_data) or item.get(name) != getattr(model_data, name):
+            if not model_data or item.get(name) != getattr(model_data, name):
                 serializer = serializer(
                     None, {name: item.get(name), "change_date": item.get("change_date"), "eu_pnumber": eu_pnumber}
                 )
@@ -219,5 +204,5 @@ class ScraperMedicine(APIView):
                     serializer.save()
                 else:
                     raise ValueError(f"{name} contains invalid data! {serializer.errors}")
-        elif new_medicine:
+        elif not model_data:
             raise ValueError(f"{name} must be part of the data posted!")
