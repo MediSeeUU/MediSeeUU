@@ -30,8 +30,8 @@ def main(directory: str):
     print("Done!")
 
     # Single-threaded parsing
-    # for folder in directory_folders:
-    #     parse_folder(path.join(directory, folder), folder)
+    for folder in directory_folders:
+        parse_folder(path.join(directory, folder), folder)
 
 
 # scraping on medicine folder level

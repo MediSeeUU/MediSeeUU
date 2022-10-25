@@ -62,16 +62,6 @@ def split_paragraphs(paragraphs: list[str]) -> list[(str, str)]:
     return sections
 
 
-def replace_special_xml_characters(string: str) -> str:
-    string = string.replace("&", "&amp;")
-    string = string.replace("\"", "&quot;")
-    string = string.replace("\'", "&apos;")
-    string = string.replace("<", "&lt;")
-    string = string.replace(">", "&gt;")
-    string = remove_illegal_characters(string)
-    return string
-
-
 def remove_illegal_characters(string: str) -> str:
     non_illegal_string = ""
     for character in string:
@@ -81,6 +71,26 @@ def remove_illegal_characters(string: str) -> str:
         try:
             encoded_char = int.from_bytes(character.encode("utf-8", "ignore"), "big")
         except ValueError:
+            continue
+
+        if character == "&":
+            non_illegal_string += "&amp;"
+            continue
+
+        if character == "\"":
+            non_illegal_string += "&quot;"
+            continue
+
+        if character == "\'":
+            non_illegal_string += "&apos;"
+            continue
+
+        if character == "<":
+            non_illegal_string += "&lt;"
+            continue
+
+        if character == ">":
+            non_illegal_string += "&gt;"
             continue
 
         if 0x1000 <= encoded_char <= 0x8000:
@@ -98,10 +108,10 @@ def remove_illegal_characters(string: str) -> str:
         if 0x8600 <= encoded_char <= 0x9F00:
             continue
 
-        if 0x0011 <= encoded_char <= 0x0014:
+        if 0x0011 <= encoded_char <= 0x0015 or 0x0006 <= encoded_char <= 0x0007 or encoded_char == 0x0001:
             continue
 
-        if encoded_char == 0x0000 or encoded_char == 0xefff or encoded_char == 0xffff:
+        if encoded_char == 0x0000 or encoded_char == 0xEFFF or encoded_char == 0xFFFF:
             continue
 
         non_illegal_string += character
@@ -150,8 +160,8 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
     print_xml_tag_open(tags.body, xml_file)
 
     for section in sections:
-        section_header = replace_special_xml_characters(section[0])
-        section_paragraphs = replace_special_xml_characters(section[1]).split("  ")
+        section_header = remove_illegal_characters(section[0])
+        section_paragraphs = remove_illegal_characters(section[1]).split("  ")
 
         # check if header contains paragraph number and fill header_attribute with the corresponding number
         split_header = section_header.strip().split()

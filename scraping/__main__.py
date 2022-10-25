@@ -4,7 +4,6 @@ import os
 
 import web_scraper.__main__ as web_scraper
 import pdf_module.pdf_scraper.__main__ as pdf_scraper
-import pdf_module.pdf_scraper.pdf_xml_converter as pdf_m
 import combiner.__main__ as combiner
 import db_uploader.__main__ as db_uploader
 
@@ -17,7 +16,7 @@ def main():
 
     ## NOTE: Uncomment any of the following modules to run the module
     # web_scraper.main(data_folder_directory)
-    # pdf_scraper.main(data_folder_directory)
+    pdf_scraper.main(data_folder_directory)
     # combiner.main(data_folder_directory)
     # db_uploader.main(data_folder_directory)
 

@@ -32,6 +32,7 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_s
         return medicine_struct
     xml_root = xml_tree.getroot()
     xml_body = xml_root[1]
+    print(filename)
     medicine_struct.epars.append(get_all(filename, xml_body))
     return medicine_struct
 
@@ -93,16 +94,30 @@ def get_prime(xml: ET.Element) -> str:
 # ema_rapp
 # The main rapporteur
 def get_rapp(xml: ET.Element) -> str:
+    result = "no_rapporteur"
+    for p in xpu.get_paragraphs_by_header("submission of the dossier", xml):
+        if result == "no_rapporteur":
+            result = find_rapp_in_paragraph(p)
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
-        if re.findall(r"rapporteur:[\w\s]+ co-rapporteur:", p):
-            rapporteur = re.search(r"rapporteur:[\w\s]+ co-rapporteur:", p)[0][12:]
-            return rapporteur.strip()[:len(rapporteur) - 16]
-        if re.findall(r"rapporteur:[\w\s]+ \\n", p):
-            rapporteur = re.search(r"rapporteur:[\w\s]+\\n", p)[0][12:]
-            return rapporteur.strip()
-        if re.findall(r"rapporteur:[\w\s]+", p):
-            rapporteur = re.search(r"rapporteur:[\w\s]+", p)[0][12:]
-            return rapporteur.strip()
+        if result == "no_rapporteur":
+            result = find_rapp_in_paragraph(p)
+
+    print("Rapporteur: " + result)
+    return result
+
+
+def find_rapp_in_paragraph(p):
+    if re.findall(r"(rapporteur:)(.+?)(co-rapporteur:)", p):
+        print("1st: \n")
+        rapporteur = re.search(r"rapporteur:(.+?)co-rapporteur:", p)[0][12:]
+        return rapporteur.strip()[:len(rapporteur) - 17].replace("\\n", "")
+    if re.findall(r"(rapporteur:)(.+?)+", p):
+        print("2nd: \n")
+        rapporteur = re.search(r"(rapporteur:)(.+?)+", p)[0][12:]
+        return rapporteur.strip().replace("\\n", "")
+    if re.findall(r"rapporteur:", p):
+        print("More than 1")
+
     return "no_rapporteur"
 
 
