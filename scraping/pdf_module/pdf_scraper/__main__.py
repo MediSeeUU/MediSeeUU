@@ -1,5 +1,4 @@
-import pdf_module.pdf_scraper.parsers.annex_parser as ap
-import pdf_module.pdf_scraper.parsed_info_struct as pis
+import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
 from os import listdir
 import os.path as path
 import json
@@ -8,9 +7,10 @@ import joblib
 import multiprocessing
 
 # for main
-from scraping.pdf_module.pdf_scraper.parsers import ec_parse
+from scraping.pdf_module.pdf_scraper.parsers import dec_parse
 from scraping.pdf_module.pdf_scraper.parsers import epar_parse
 from scraping.pdf_module.pdf_scraper.parsers import omar_parse
+from scraping.pdf_module.pdf_scraper.parsers import annex_parser
 
 
 # Main file to run all parsers
@@ -73,9 +73,9 @@ def get_files(directory):
 # scraping all XML or PDF files and updating medicine_struct with the scraped attributes
 def run_scrapers(annex_files, decision_files, directory, epar_files, medicine_struct, omar_files):
     for file in decision_files:
-        medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
+        medicine_struct = dec_parse.parse_file(file, directory, medicine_struct)
     for file in annex_files:
-        medicine_struct = ap.parse_file(file, medicine_struct)
+        medicine_struct = annex_parser.parse_file(file, medicine_struct)
     for file in epar_files:
         medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
     for file in omar_files:
