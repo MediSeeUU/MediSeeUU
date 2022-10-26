@@ -8,10 +8,10 @@ import pandas as pd
 from joblib import Parallel, delayed
 import tqdm
 
-from web_scraper import download
-from web_scraper import ec_scraper
-from web_scraper import ema_scraper
-from web_scraper import utils
+from scraping.web_scraper import download
+from scraping.web_scraper import ec_scraper
+from scraping.web_scraper import ema_scraper
+from scraping.web_scraper import utils
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not

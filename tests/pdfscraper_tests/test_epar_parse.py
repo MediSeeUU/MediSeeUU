@@ -3,10 +3,10 @@ import regex as re
 import sys
 import os
 
-sys.path.append("..")  # Adds higher directory to python modules path.
-from parsers import epar_parse
+from scraping.pdf_module.pdf_scraper.parsers import epar_parse
 import xml.etree.ElementTree as ET
 
+# TODO: fix location of test data.
 test_data_loc = "../test_data/epars"
 xml_bodies = []
 percentage_str = "Percentage found: "
@@ -14,6 +14,9 @@ percentage_str = "Percentage found: "
 
 # Tests all functions of EPAR parser with all XML files
 class TestEparParse(TestCase):
+    """
+    Class that contains the unit tests for scraping.pdf_module.pdf_scraper.scrapers.epar_parse
+    """
     def setUp(self):
         # Prepare a list of XML files
         files = [file for file in os.listdir(test_data_loc) if os.path.isfile(os.path.join(test_data_loc, file))]
