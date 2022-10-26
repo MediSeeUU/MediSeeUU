@@ -111,7 +111,7 @@ def get_legal_basis(xml: ET.Element) -> [str]:
     Returns:
         str: the attribute eu_legal_basis - multiple articles of the form "Article X.X"
     """
-    regex_legal = r"article [^ ]+"
+    regex_legal = r"article [\s\S]+?(?=[a-z]{2,90})"
     found = False
     for p in xpu.get_paragraphs_by_header("legal basis for", xml):
         if re.findall(regex_legal, p):
@@ -121,6 +121,7 @@ def get_legal_basis(xml: ET.Element) -> [str]:
             return h.convert_articles(re.findall(regex_legal, p))
         elif "legal basis for" in p:
             found = True
+
     return "no_legal_basis"
 
 
@@ -160,15 +161,19 @@ def get_rapp(xml: ET.Element) -> str:
         if find_rapp_between_rapp_and_corapp(txt) is not None:
             return find_rapp_between_rapp_and_corapp(txt)
         # Find rapporteur after "rapporteur: " and before "\n"
-        regex_str_2 = r"rapporteur: [\s\w]+?\n"
+        regex_str_2 = r"rapporteur:[\s\w]+?\n"
         if re.findall(regex_str_2, txt):
-            return get_rapp_after(regex_str_2, txt, 12)
+            temp_rapp = get_rapp_after(regex_str_2, txt, 12)
+            if temp_rapp:
+                return temp_rapp
         # Find rapporteur after "rapporteur appointed by the chmp was"
         regex_str_3 = r"rapporteur appointed by the chmp was[\s\S]+"
         if re.findall(regex_str_3, txt):
-            return get_rapp_after(regex_str_3, txt, 37)
+            temp_rapp = get_rapp_after(regex_str_3, txt, 37)
+            if temp_rapp:
+                return temp_rapp
         # Find rapporteur after "rapporteur:"
-        regex_str_4 = r"rapporteur:[\s\w]*"
+        regex_str_4 = r"rapporteur:[\s\w]+"
         if re.search(regex_str_4, txt):
             rapporteur = get_rapp_after(regex_str_4, txt, 12)
             # Combine first part of rapporteur like "dr." with next part of rapporteur
@@ -177,10 +182,11 @@ def get_rapp(xml: ET.Element) -> str:
             else:
                 return get_rapp_after(regex_str_4, txt, 12)
         # Find rapporteur after "rapporteur:" with found boolean to get rapporteur in new section
-        if found:
-            found = False
+        if found and txt.strip().replace("\n", ""):
             rapporteur += txt.strip().replace("\n", "")
-            return rapporteur
+            if rapporteur:
+                found = False
+                return rapporteur
 
     return "no_rapporteur"
 
@@ -195,7 +201,7 @@ def find_rapp_between_rapp_and_corapp(txt: str) -> Union[str, None]:
     Returns:
         str or None: the attribute ema_rapp - the name of the main rapporteur or None if no rapporteur is found
     """
-    regex_str_1 = r"rapporteur:[\s\S]*?(co-rapporteur|corapporteur)"
+    regex_str_1 = r"rapporteur:[\s\S]+?(co-rapporteur|corapporteur)"
     if re.findall(regex_str_1, txt):
         rapporteur = re.search(regex_str_1, txt)[0][12:]
         rapporteur = rapporteur[:len(rapporteur) - 14]

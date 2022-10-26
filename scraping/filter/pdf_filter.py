@@ -105,7 +105,7 @@ def filter_pdf(filename: str, data_dir: str) -> str:
     # try to open
     try:
         fitz.open(file_path)  # open document
-    except fitz.fitzError:
+    except fitz.fitz.FileDataError:
         corrupt = True
 
     # check if file is readable
@@ -121,7 +121,7 @@ def filter_pdf(filename: str, data_dir: str) -> str:
             os.remove(file_path)
             return filename + '@corrupt'
     # could not parse
-    except fitz.fitzError:
+    except fitz.fitz.FileDataError:
         # check if html
         first_line = get_utf8_line(file_path)
         if 'html' in first_line.lower():
@@ -246,7 +246,7 @@ def check_epar(filename: str, file_path: str, pdf: fitz.Document) -> str:
 
 def check_scientific(filename: str, file_path: str, pdf: fitz.Document) -> str:
     """
-    Check if it is an scientific discussion file
+    Check if it is a scientific discussion file
     Args:
         filename (str): filename of the supposed scientific discussion file to check
         file_path (str): path to the scientific discussion file

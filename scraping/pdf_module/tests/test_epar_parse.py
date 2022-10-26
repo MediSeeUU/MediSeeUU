@@ -109,8 +109,14 @@ class TestEparParse(TestCase):
             if output != "no_legal_basis":
                 found_count += 1
                 self.assertGreater(len(output), 0)
-                for a in output:
-                    self.assertIn("article", a)
+                for article in output:
+                    # Check if article is of correct format
+                    article_number = re.search(r'article (\d|\.|[a-z])+', article)
+                    self.assertIn("article", article)
+                    self.assertTrue(article_number)
+                    # There should not be any other characters in the output
+                    other_chars = r"[^a-z|\d|\s|\.]"
+                    self.assertFalse(re.search(other_chars, article))
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 90)
@@ -129,3 +135,28 @@ class TestEparParse(TestCase):
                 yes_exists = True
             self.assertIn(output, 'yesno')
         self.assertTrue(yes_exists)
+
+    def test_get_rapp(self):
+        """
+        Test getting ema_rapp
+        Returns:
+            None
+        """
+        found_count = 0
+        # Call get_rapp
+        for xml_body in xml_bodies:
+            output = epar_parse.get_rapp(xml_body)
+            if not output:
+                self.fail("Rapporteur is empty")
+            if output != "no_rapporteur":
+                print(output)
+                found_count += 1
+                # Check if rapporteur name is of reasonable length
+                self.assertGreater(len(output), 2)
+                self.assertGreater(40, len(output))
+                # Check if rapporteur is of correct format
+                rapp_format = re.search(r'[\w\s]+', output)
+                self.assertTrue(rapp_format)
+        percentage_found = found_count / len(xml_bodies) * 100
+        print(percentage_str + str(round(percentage_found, 2)) + '%')
+        self.assertGreater(percentage_found, 80)

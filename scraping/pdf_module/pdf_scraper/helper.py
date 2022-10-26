@@ -82,16 +82,22 @@ def convert_articles(articles: [str]) -> [str]:
     """
     res = []
     for article in articles:
+        # remove all whitespace from articles
+        article = "".join(article.split())
+        # add space after article
+        article = article[:7] + ' ' + article[7:]
         num = article.split(' ')[1]
-        newnum = ""
+        new_num = ""
         for c in num:
             if c == '(':
-                newnum += '.'
-            elif c == ')':
+                new_num += '.'
+            # do not add the following characters
+            elif c == ')' or c == '-' or c == '–' or c == '‘' or \
+                    c == '/' or c == ',':
                 continue
             else:
-                newnum += c
-        res.append('article ' + newnum)
+                new_num += c
+        res.append('article ' + new_num)
     return res
 
 
