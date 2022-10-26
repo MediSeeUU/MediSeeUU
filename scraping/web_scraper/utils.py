@@ -31,7 +31,7 @@ def exception_retry(func: callable, max_attempts: int = 4, logging_instance: log
                 continue
 
         if logging_instance is not None:
-            logging_instance.warning(f"Function {func.__name__} failed after {max_attempts} attempts")
+            logging_instance.warning(f"Function {func.__name__}({', '.join(map(str, args))}) failed after {max_attempts} attempts")
 
         return None  # Func threw an exception, return None
 

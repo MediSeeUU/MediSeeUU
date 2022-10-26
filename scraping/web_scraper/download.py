@@ -9,9 +9,7 @@ from joblib import Parallel, delayed
 
 import regex as re
 
-log = logging.getLogger(__name__)
-log_handler = logging.StreamHandler()
-log.addHandler(log_handler)
+log = logging.getLogger("webscraper.ec_scraper")
 
 # TODO: make sure the data path is declared somewhere in main.
 data_path = '../../data'

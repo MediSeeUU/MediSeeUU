@@ -17,14 +17,16 @@ import json_helper
 scrape_ec: bool = True
 scrape_ema: bool = True           # Requires scrape_ec to have been run at least once
 download_files: bool = True         # Download pdfs from the obtained links
-use_parallelization: bool = False   # Parallelization is currently broken on Windows. Set to False
+use_parallelization: bool = True   # Parallelization is currently broken on Windows. Set to False
 
 # list of the type of medicines that will be scraped
 # NOTE: This was useful for debugging
-scrape_medicine_type: list[ec_scraper.MedicineType] = [ec_scraper.MedicineType.HUMAN_USE_ACTIVE,
-                                                       ec_scraper.MedicineType.HUMAN_USE_WITHDRAWN,
-                                                       ec_scraper.MedicineType.ORPHAN_ACTIVE,
-                                                       ec_scraper.MedicineType.ORPHAN_WITHDRAWN]
+scrape_medicine_type: list[ec_scraper.MedicineType] = [
+                                                       ec_scraper.MedicineType.HUMAN_USE_ACTIVE,
+                                                       # ec_scraper.MedicineType.HUMAN_USE_WITHDRAWN,
+                                                       # ec_scraper.MedicineType.ORPHAN_ACTIVE,
+                                                       # ec_scraper.MedicineType.ORPHAN_WITHDRAWN
+                                                      ]
 
 # TODO: Logging to monolithic main
 tqdm_format_string = "{l_bar}{bar}| {n_fmt}/{total_fmt} "
@@ -33,10 +35,11 @@ tqdm_format_string = "{l_bar}{bar}| {n_fmt}/{total_fmt} "
 log_handler_console = logging.StreamHandler()
 log_handler_file = logging.FileHandler("webscraper.log")
 
-logging.basicConfig(level=logging.INFO, handlers=[log_handler_console, log_handler_file])
+logging.basicConfig(level=logging.DEBUG, handlers=[log_handler_console, log_handler_file])
 
 # TODO: To __init__? Figure some stuff out
-log = logging.getLogger(__name__)
+log = logging.getLogger("webscraper")
+logging.getLogger("urllib3.connectionpool").setLevel(logging.INFO)
 
 url_file = json_helper.JsonHelper(path="CSV/urls.json")
 
@@ -102,7 +105,7 @@ def main(data_filepath: str = '../../data'):
             log.info("TASK START scraping all medicines on the EC website")
             if use_parallelization:
                 parallel(
-                    delayed(get_urls_ec)(medicine_url, eu_n, medicine_type, data_filepath)
+                    delayed(utils.exception_retry(get_urls_ec, logging_instance=log))(medicine_url, eu_n, medicine_type, data_filepath)
                     for (medicine_url, eu_n, medicine_type, _)
                     in tqdm.tqdm(medicine_codes, bar_format=tqdm_format_string)
                 )
@@ -110,6 +113,7 @@ def main(data_filepath: str = '../../data'):
                 for (medicine_url, eu_n, medicine_type, _) \
                         in tqdm.tqdm(medicine_codes, bar_format=tqdm_format_string):
                     utils.exception_retry(get_urls_ec, logging_instance=log)(medicine_url, eu_n, medicine_type, data_filepath)
+            url_file.save_dict()
             log.info("TASK FINISHED EC scrape")
 
         if scrape_ema:
@@ -121,13 +125,14 @@ def main(data_filepath: str = '../../data'):
 
             if use_parallelization:
                 parallel(
-                    delayed(get_urls_ema)(eu_n, urls["ema_url"])
+                    delayed(utils.exception_retry(get_urls_ec, logging_instance=log))(eu_n, urls["ema_url"])
                     for eu_n, urls
                     in tqdm.tqdm(ema_urls, bar_format=tqdm_format_string)
                 )
             else:
                 for eu_n, url in tqdm.tqdm(ema_urls, bar_format=tqdm_format_string):
                     utils.exception_retry(get_urls_ema, logging_instance=log)(eu_n, url)
+            url_file.save_dict()
             log.info("TASK FINISHED EMA scrape")
 
         # TODO: Same TODO as above

@@ -1,5 +1,8 @@
 import requests
+import logging
 import bs4
+
+log = logging.getLogger("webscraper.ec_scraper")
 
 
 def pdf_links_from_url(url: str) -> str:
@@ -28,9 +31,7 @@ def pdf_links_from_url(url: str) -> str:
     # Get all links to pdf files from the
     url_list: list[str] = list(map(lambda a: a["href"], link_tags))
 
-    # TEMP: https://www.ema.europa.eu/documents/assessment-report/faslodex-epar-public-assessment-report_en.pdf
-    # TEMP: https://www.ema.europa.eu/documents/scientific-discussion/ambirix-epar-scientific-discussion_en.pdf
-    # TEMP: https://www.ema.europa.eu/documents/procedural-steps/ambirix-epar-procedural-steps-taken-authorisation_en.pdf
+    # Files named 'public-assessment-report' will be the highest priority in the search.
     priority_list = ["public-assessment-report", "scientific-discussion", "procedural-steps-taken-authorisation"]
 
     # Go through all links, try to find the document that is the highest on the priority list first.
@@ -39,8 +40,8 @@ def pdf_links_from_url(url: str) -> str:
             if type_of_report in pdf_url:
                 return pdf_url
 
-    # If nothing is found, we throw an exception. This also passes all found URLs on newlines
-    raise Exception(f"No valid URLs found for {medicine_name}. Found URLs are listed below.\n" + "\n".join(url_list))
+    log.warning(f"No EPAR for {medicine_name}. The searched URLs are {url_list}")
+    raise LookupError()
 
 
 # print(pdf_links_from_url(""))

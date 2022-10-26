@@ -7,7 +7,7 @@ import bs4
 import regex as re
 import requests
 
-log = logging.getLogger(__name__)
+log = logging.getLogger("webscraper.ec_scraper")
 
 
 # This is an enum that indicates the medicine type
@@ -194,7 +194,7 @@ def get_data_from_medicine_json(medicine_json: json,
 
     for key, value in medicine_dict.items():
         if value == "":
-            log.error(f"{eu_num}: No value for {key} (value: {value})")
+            log.error(f"{eu_num}: No value for {key}")
 
     return medicine_dict, ema_url_list
 
@@ -269,7 +269,7 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
 
     for key, value in procedures_dict.items():
         if value == "":
-            log.error(f"{eu_num}: No value for {key} (value: {value})")
+            log.error(f"{eu_num}: No value for {key}")
 
     return procedures_dict, dec_url_list, anx_url_list
 
