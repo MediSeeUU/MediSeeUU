@@ -54,6 +54,9 @@ class TestEparParse(TestCase):
             output = epar_parse.get_opinion_date(xml_body)
             if output != "no_chmp_found":
                 found_count += 1
+                if not re.search(r"\d{2}/", output):
+                    for i in xml_body.iter():
+                        print(i.text)
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
                 month = re.search(r"/\d{2}/", output)[0][1:3].strip()
                 year = re.search(r"\d{4}", output)[0].strip()

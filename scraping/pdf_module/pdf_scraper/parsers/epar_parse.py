@@ -93,6 +93,10 @@ def get_opinion_date(xml: ET.Element) -> str:
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(date_pattern, p):
             date = h.convert_months(re.findall(date_pattern, p)[-1])
+            # Date contains emea instead of month, returns not found
+            # TODO: Find correct date when emea is given
+            if re.search(r"emea", date):
+                return "no_chmp_found"
             return date
     return "no_chmp_found"
 
