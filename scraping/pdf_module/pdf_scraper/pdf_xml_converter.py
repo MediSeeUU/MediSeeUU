@@ -64,6 +64,15 @@ def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
 
 
 def split_paragraphs(paragraphs: list[str]) -> list[(str, str)]:
+    """
+    Returns a list of (header, paragraph) tuples from a list of paragraphs in format "bolded_text|-HEADER-|unbolded_text", meant to take get_marked_paragraph's return value as input.
+
+    Args:
+        paragraphs (list[str]): a list of paragraphs in the format returned by get_marked_paragraphs: "bolded_text|-HEADER-|unbolded_text"
+
+    Returns:
+        list[(str, str)]: list of XML section text in form of (header, paragraph)
+    """    
     sections = []
 
     for paragraph in paragraphs:
@@ -83,6 +92,15 @@ def split_paragraphs(paragraphs: list[str]) -> list[(str, str)]:
 
 
 def remove_illegal_characters(string: str) -> str:
+    """
+    Takes a string and returns a string where all special XML characters are replaced with their delimited version and all illegal UTF-8 characters removed.
+
+    Args:
+        string (str): input string to be converted to legal XML text
+
+    Returns:
+        str: legal XML text with special and illegal characters replaced
+    """    
     non_illegal_string = ""
     for character in string:
         if character == '':
