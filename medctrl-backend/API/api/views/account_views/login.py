@@ -14,14 +14,24 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
 
 
-# Class used for logging in a user
 class LoginAPI(KnoxLoginView):
-    """Login API View"""
-
+    """
+    Class used for logging in a user, derived vor the KnoxLoginView
+    """    
     permission_classes = (permissions.AllowAny,)
 
-    # For each post request on '../account/login' this method is called
     def post(self, request, _format=None):
+        """
+        This method handles the user logins. For each post request on 
+        '../account/login' this method is called.
+
+        Args:
+            request (httpRequest): The login request from the userside
+            _format (optional): the format for the given request. Defaults to None.
+
+        Returns:
+            httpRequest: The request has been modified based on the success of the login.
+        """        
         serializer = AuthTokenSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
