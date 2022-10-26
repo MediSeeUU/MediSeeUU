@@ -8,9 +8,7 @@ from .common import create_dashboard_column, Category, AutStatus
 class HistoryAuthorisationStatus(models.Model):
     """
     This is the model class for the Authorisation Status history table. New attributes can be added here.
-
-    Args:
-        models (_type_): This model is derived from a base model from the Django library.
+    This model is derived from a base model from the Django library.
     """
     eu_pnumber = models.ForeignKey(
         "Medicine", 

@@ -13,17 +13,16 @@ from api.admin.cachemodeladmin import CacheModelAdmin
 
 class HistoryPrimeResource(resources.ModelResource):
     """
-    Resource for the HistoryPrime model.
+    Necessary resource class for the HistoryPrime admin view.
     Has explicit foreign keys so Django import/export can automatically create the values if needed.
+    ModelResource is Resource subclass for handling Django models.
     """
-
     eu_pnumber = import_foreign_key("eu_pnumber", Medicine)
 
     class Meta:
         """
         Meta class for HistoryPrimeResource
         """
-
         model = HistoryPrime
         import_id_fields = (
             "eu_pnumber",
@@ -34,7 +33,6 @@ class HistoryPrimeAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
     Admin View for HistoryPrime
     """
-
     resource_class = HistoryPrimeResource
     list = (
         "id",
