@@ -157,8 +157,8 @@ def get_rapp(xml: ET.Element) -> str:
     for elem in xml.iter():
         txt = str(elem.text)
         # Find rapporteur between "rapporteur:" and "co-rapporteur"
-        if find_rapp_1(txt) is not None:
-            return find_rapp_1(txt)
+        if find_rapp_between_rapp_and_corapp(txt) is not None:
+            return find_rapp_between_rapp_and_corapp(txt)
         # Find rapporteur after "rapporteur: " and before "\n"
         regex_str_2 = r"rapporteur: [\s\w]+?\n"
         if re.findall(regex_str_2, txt):
@@ -185,7 +185,7 @@ def get_rapp(xml: ET.Element) -> str:
     return "no_rapporteur"
 
 
-def find_rapp_1(txt: str) -> Union[str, None]:
+def find_rapp_between_rapp_and_corapp(txt: str) -> Union[str, None]:
     """
     A supporting function for finding the rapporteur of the document that
     finds the rapporteur in a certain section in some cases (other cases are processed in the main function)
