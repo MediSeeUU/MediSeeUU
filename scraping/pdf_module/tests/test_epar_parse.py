@@ -3,11 +3,10 @@ import regex as re
 import sys
 import os
 
-sys.path.append("..")  # Adds higher directory to python modules path.
-from parsers import epar_parse
+from scraping.pdf_module.pdf_scraper.parsers import epar_parse
 import xml.etree.ElementTree as ET
 
-test_data_loc = "../test_data/epars"
+test_data_loc = "../../../data"
 xml_bodies = []
 percentage_str = "Percentage found: "
 
@@ -16,12 +15,18 @@ percentage_str = "Percentage found: "
 class TestEparParse(TestCase):
     def setUp(self):
         # Prepare a list of XML files
-        files = [file for file in os.listdir(test_data_loc) if os.path.isfile(os.path.join(test_data_loc, file))]
-        xml_files = [file for file in files if ".xml" in file]
+        files = []
+        for folder in os.listdir(test_data_loc):
+            for file in os.listdir(os.path.join(test_data_loc, folder)):
+                path = os.path.join(test_data_loc, folder, file)
+                if os.path.isfile(path):
+                    files.append(path)
+        xml_files = [file for file in files if ".xml" in file and ("procedural-steps" in file or
+                                                                   "public-assessment" in file)]
+
         # Get XML bodies, assuming there are XML files
         for xml_file in xml_files:
-            xml_path = os.path.join(test_data_loc, xml_file)
-            xml_tree = ET.parse(xml_path)
+            xml_tree = ET.parse(xml_file)
             xml_root = xml_tree.getroot()
             xml_bodies.append(xml_root[1])
 
