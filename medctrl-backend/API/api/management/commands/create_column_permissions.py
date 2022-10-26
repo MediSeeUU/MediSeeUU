@@ -26,7 +26,6 @@ class Command(BaseCommand):
     """
     Django admin command that creates permissions for all models in the API.
     """
-
     help = "Creates permissions for the columns per table"
 
     def handle(self, *args, **options):

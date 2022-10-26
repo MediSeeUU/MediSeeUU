@@ -7,7 +7,7 @@ from .common import create_dashboard_history_column_initial, Category
 
 class HistoryPrime(models.Model):
     """
-    This is the model class for the Prime Designation History table. New attributes can be added here.
+    This is the model class for the Priority Medicine Designation History table. New attributes can be added here.
     This model is derived from a base model from the Django library.
     """
     eu_pnumber = models.ForeignKey(
