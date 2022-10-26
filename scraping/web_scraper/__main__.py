@@ -3,7 +3,6 @@ import logging
 from pathlib import Path
 from datetime import datetime
 
-import pandas as pd
 from joblib import Parallel, delayed
 import tqdm
 
@@ -15,8 +14,8 @@ import json_helper
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
-scrape_ec: bool = False
-scrape_ema: bool = False            # Requires scrape_ec to have been run at least once
+scrape_ec: bool = True
+scrape_ema: bool = True           # Requires scrape_ec to have been run at least once
 download_files: bool = True         # Download pdfs from the obtained links
 use_parallelization: bool = False   # Parallelization is currently broken on Windows. Set to False
 
@@ -44,7 +43,7 @@ url_file = json_helper.JsonHelper(path="CSV/urls.json")
 
 # Paralleled function for getting the URL codes. They are written to a CSV file
 # TODO: unmarked type for medicine_type
-def get_urls_ec(medicine_url: str, eu_n: str, medicine_type, data_path):
+def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.MedicineType, data_path: str):
     # A list of the medicine types we want to scrape is defined in this file
     # If the entered medicine_type is not in that list, this method will ignore
     if ec_scraper.MedicineType(medicine_type) not in scrape_medicine_type:
@@ -108,9 +107,9 @@ def main(data_filepath: str = '../../data'):
                     in tqdm.tqdm(medicine_codes, bar_format=tqdm_format_string)
                 )
             else:
-                for (medicine_url, eu_n, medicine_type) \
+                for (medicine_url, eu_n, medicine_type, _) \
                         in tqdm.tqdm(medicine_codes, bar_format=tqdm_format_string):
-                    get_urls_ec(medicine_url, eu_n, medicine_type)
+                    utils.exception_retry(get_urls_ec, logging_instance=log)(medicine_url, eu_n, medicine_type, data_filepath)
             log.info("TASK FINISHED EC scrape")
 
         if scrape_ema:
@@ -128,7 +127,7 @@ def main(data_filepath: str = '../../data'):
                 )
             else:
                 for eu_n, url in tqdm.tqdm(ema_urls, bar_format=tqdm_format_string):
-                    utils.exception_retry(get_urls_ema(eu_n, url))
+                    utils.exception_retry(get_urls_ema, logging_instance=log)(eu_n, url)
             log.info("TASK FINISHED EMA scrape")
 
         # TODO: Same TODO as above
@@ -141,4 +140,4 @@ def main(data_filepath: str = '../../data'):
 # Keep the code locally testable by including this.
 # When running this file specifically, the main function will run.
 if __name__ == "__main__":
-    main()
+    main(data_filepath="../../data")

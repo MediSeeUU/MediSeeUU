@@ -193,7 +193,7 @@ def get_data_from_medicine_json(medicine_json: json,
         medicine_dict["atc_code"] = "not applicable"
 
     for key, value in medicine_dict.items():
-        if value is "":
+        if value == "":
             log.error(f"{eu_num}: No value for {key} (value: {value})")
 
     return medicine_dict, ema_url_list
@@ -246,12 +246,10 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
 
         if row["files_dec"]:
             pdf_url_dec = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""
-            # add url to decision pdf to list
             dec_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
 
         if row["files_anx"]:
             pdf_url_anx = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""
-            # add url to annexes pdf to list
             anx_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
 
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
@@ -270,7 +268,7 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
     procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
 
     for key, value in procedures_dict.items():
-        if value is "":
+        if value == "":
             log.error(f"{eu_num}: No value for {key} (value: {value})")
 
     return procedures_dict, dec_url_list, anx_url_list
