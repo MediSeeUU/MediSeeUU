@@ -1,5 +1,4 @@
-import pdf_module.pdf_scraper.parsers.annex_parser as ap
-import pdf_module.pdf_scraper.parsed_info_struct as pis
+import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
 from os import listdir
 import os.path as path
 import json
@@ -7,15 +6,11 @@ import pdf_module.pdf_scraper.pdf_xml_converter as xml_converter
 import joblib
 import multiprocessing
 
-# external parsers
-# import parsers.ec_parse as ec_parse
-# import parsers.epar_parse as epar_parse
-# import parsers.omar_parse as omar_parse
-
 # for main
-from pdf_module.pdf_scraper.parsers import ec_parse
-from pdf_module.pdf_scraper.parsers import epar_parse
-from pdf_module.pdf_scraper.parsers import omar_parse
+from scraping.pdf_module.pdf_scraper.parsers import dec_parse
+from scraping.pdf_module.pdf_scraper.parsers import epar_parse
+from scraping.pdf_module.pdf_scraper.parsers import omar_parse
+from scraping.pdf_module.pdf_scraper.parsers import annex_parser
 
 
 # Main file to run all parsers
@@ -30,8 +25,8 @@ def main(directory: str):
     print("Done!")
 
     # Single-threaded parsing
-    for folder in directory_folders:
-        parse_folder(path.join(directory, folder), folder)
+    # for folder in directory_folders:
+    #     parse_folder(path.join(directory, folder), folder)
 
 
 # scraping on medicine folder level
@@ -52,12 +47,7 @@ def parse_folder(directory: str, folder_name):
         xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
     # update list of files and filter out relevant files for each parser
-    directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
-    decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file]
-    annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
-    epar_files = [file for file in directory_files if
-                  ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
-    omar_files = [file for file in directory_files if "omar" in file and ".xml" in file]
+    annex_files, decision_files, epar_files, omar_files = get_files(directory)
 
     # call scrapers on correct files and update medicine struct
     medicine_struct = run_scrapers(annex_files, decision_files, directory, epar_files, medicine_struct, omar_files)
@@ -69,12 +59,23 @@ def parse_folder(directory: str, folder_name):
     json_file.close()
 
 
+# Get all PDF and XML files per PDF type
+def get_files(directory):
+    directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
+    decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file and '_0' in file]
+    annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
+    epar_files = [file for file in directory_files if
+                  ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
+    omar_files = [file for file in directory_files if "omar" in file and ".xml" in file]
+    return annex_files, decision_files, epar_files, omar_files
+
+
 # scraping all XML or PDF files and updating medicine_struct with the scraped attributes
 def run_scrapers(annex_files, decision_files, directory, epar_files, medicine_struct, omar_files):
     for file in decision_files:
-        medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
+        medicine_struct = dec_parse.parse_file(file, directory, medicine_struct)
     for file in annex_files:
-        medicine_struct = ap.parse_file(file, medicine_struct)
+        medicine_struct = annex_parser.parse_file(file, medicine_struct)
     for file in epar_files:
         medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
     for file in omar_files:
@@ -89,4 +90,4 @@ def datetime_serializer(date: pis.datetime.datetime):
 
 
 if __name__ == "__main__":
-    main('..\..\..\data')
+    main('../../../data')

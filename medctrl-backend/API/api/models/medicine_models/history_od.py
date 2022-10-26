@@ -7,9 +7,16 @@ from .common import create_dashboard_history_column_initial, Category
 
 class HistoryOD(models.Model):
     """
-    Model class for the orphan designation history table.
+    This is the model class for the Orphan Designation history table. New attributes can be added here.
+
+    Args:
+        models (_type_): This model is derived from a base model from the Django library.
     """
-    eu_pnumber = models.ForeignKey("Medicine", models.CASCADE, db_column="eu_pnumber", null=False)
+    eu_pnumber = models.ForeignKey(
+        "Medicine", 
+        models.CASCADE, 
+        db_column="eu_pnumber", 
+        null=False)
 
     change_date = models.DateField(db_column="change_date", null=True)
 

@@ -34,6 +34,15 @@ months = {
 
 
 def convert_months(date: str) -> str:
+    """
+    Converts written months (january) to a numeric value
+
+    Args:
+        date (str): string containing fully writen month
+
+    Returns:
+        str: string with month replaces by numeric value
+    """
     for k in months.keys():
         if k in date:
             date = date.replace(f" {k} ", f"/{months[k]}/")
@@ -43,13 +52,14 @@ def convert_months(date: str) -> str:
 
 
 def convert_roman_numbers(date: str) -> str:
-    """ Converts the roman numbers (up to XII) to normal numbers
-    Parameters
-    ----------
-    date: string pattern of the date
+    """
+    Converts the roman numbers (up to XII) to normal numbers
+
+    Args:
+        date: string pattern of the date
+
     Returns
-    -------
-    date: string pattern of the corrected date
+        date: string pattern of the corrected date
     """
 
     # sort roman_numbers on length (big to small)
@@ -63,38 +73,46 @@ def convert_roman_numbers(date: str) -> str:
 
 
 def convert_articles(articles: [str]) -> [str]:
+    """
+    Args:
+        articles ([str]): The articles to convert to the right format
+
+    Returns:
+        [str]: The converted articles
+    """
     res = []
     for article in articles:
+        # remove all whitespace from articles
+        article = "".join(article.split())
+        # add space after article
+        article = article[:7] + ' ' + article[7:]
         num = article.split(' ')[1]
-        newnum = ""
+        new_num = ""
         for c in num:
             if c == '(':
-                newnum += '.'
-            elif c == ')':
+                new_num += '.'
+            # do not add the following characters
+            elif c == ')' or c == '-' or c == '–' or c == '‘' or \
+                    c == '/' or c == ',':
                 continue
             else:
-                newnum += c
-        res.append('article ' + newnum)
+                new_num += c
+        res.append('article ' + new_num)
     return res
 
 
-def get_date(txt: str) -> datetime:
+def get_date(txt: str) -> datetime.datetime:
+    """
+    Extracts date from a text, also including months with roman numerals and fully written months (IV, january)
+
+    Args:
+        txt (str): text containing date
+
+    Returns:
+        datetime.datetime: found date.
+    """
     if txt != '':
         txt = txt.lower()
-        try:
-            return dateutil.parser.parse(txt, fuzzy=True)
-        except:
-            pass
-        try:
-            tempdate = convert_roman_numbers(txt)
-            return dateutil.parser.parse(tempdate, fuzzy=True)
-        except:
-            pass
-
-        try:
-            tempdate = convert_months(txt)
-            return dateutil.parser.parse(tempdate, fuzzy=True)
-        except:
-            pass
+        return dateutil.parser.parse(txt, fuzzy=True)
 
     return datetime.datetime(1980, 1, 1, 0, 0)

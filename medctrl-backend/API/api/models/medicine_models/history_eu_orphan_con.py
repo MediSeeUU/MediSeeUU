@@ -7,11 +7,22 @@ from .common import create_dashboard_history_columns, Category
 
 class HistoryEUOrphanCon(models.Model):
     """
-    Model class for the eu orphan conditions history table.
-    """
-    eu_pnumber = models.ForeignKey("Medicine", models.CASCADE, db_column="eu_pnumber", null=False)
+    This is the model class for the Orphan Condition history table. New attributes can be added here.
 
-    change_date = models.DateField(db_column="change_date", null=True)
+    Args:
+        models (_type_): This model is derived from a base model from the Django library.
+    """
+    eu_pnumber = models.ForeignKey(
+        "Medicine", 
+        models.CASCADE, 
+        db_column="eu_pnumber", 
+        null=False
+    )
+
+    change_date = models.DateField(
+        db_column="change_date", 
+        null=True
+    )
 
     eu_orphan_con = create_dashboard_history_columns(
         models.TextField(db_column="eu_orphan_con", null=False),

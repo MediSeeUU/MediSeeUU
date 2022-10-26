@@ -7,11 +7,21 @@ from .common import create_dashboard_column, Category, AutStatus
 
 class HistoryAuthorisationStatus(models.Model):
     """
-    Model class for the authorisation history table.
-    """
-    eu_pnumber = models.ForeignKey("Medicine", models.CASCADE, null=False)
+    This is the model class for the Authorisation Status history table. New attributes can be added here.
 
-    change_date = models.DateField(db_column="change_date", null=True)
+    Args:
+        models (_type_): This model is derived from a base model from the Django library.
+    """
+    eu_pnumber = models.ForeignKey(
+        "Medicine", 
+        models.CASCADE, 
+        null=False
+    )
+
+    change_date = models.DateField(
+        db_column="change_date", 
+        null=True
+    )
 
     eu_aut_status = create_dashboard_column(
         models.CharField(db_column="eu_aut_status", max_length=10, choices=AutStatus.choices),
