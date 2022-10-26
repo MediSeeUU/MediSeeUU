@@ -41,23 +41,39 @@ import logging
 logger = logging.getLogger(__name__)
 
 class ScraperMedicine(APIView):
-    """
-    Class which provides an interface for the scraper to interact
+    """    
+    The ScraperMedicine class provides an interface for the scraper to interact
     with the database models medicine and authorisation.
-    """
+
+    Args:
+        APIView (rest_framework.views.APIView): The current APIView from where communication handled
+    """    
 
     # Permission on this endpoint when user can add medicine
     permission_classes = [DjangoModelPermissions]
 
     def get_queryset(self):
         """
-        Specify queryset for DjangoModelPermissions
+        get_queryset specifies the queryset for DjangoModelPermissions. 
+        DjangoModelPermissions is a list of medicine the user has permissions of.
+
+        Returns:
+            list[medicineObject]: Returns all medicine objects found in the medicine model.
         """
         return Medicine.objects.all()
 
     def post(self, request):
-        """
-        Post endpoint medicine scraper
+        """ 
+        post is the post endpoint of this class. Medicine scraper communicates 
+        via this endpoint to inster data into the database.
+
+        Args:
+            request (httpRequest): The data from the post request. This should contain a header
+            with a valid token and a body with a json of medicine_data.
+
+        Returns:
+            httpResponse: Returns a list of all medicine that failed to get uploaded to the 
+            database (failed_medicine) and status code 200.
         """
         # initialize list to return failed updates/adds, so these can be checked manually
         failed_medicines = []
@@ -93,9 +109,13 @@ class ScraperMedicine(APIView):
 
     def update_flex_medicine(self, data, current):
         """
-        Update flexible medicine variables
-        """
+        This function updates the flexible medicine variables if this is applicable for the current data.
+        The function is called if a previous version of the medicine already exists in the database.
 
+        Args:
+            data (medicineObject): The new medicine data.
+            current (medicineObject): The medicine data that is currently in the database.
+        """        
         medicine_serializer = MedicineFlexVarUpdateSerializer(current, data=data, partial=True)
 
         # update medicine
@@ -107,9 +127,13 @@ class ScraperMedicine(APIView):
 
     def add_medicine(self, data, current):
         """
-        add medicine variables
-        """
+        Adds a new medicine with its attributes to the database. If this is valid, 
+        it will also add the history variables to the database.
 
+        Args:
+            data (medicineObject): The new medicine data.
+            current (medicineObject): The medicine data that is currently in the database.
+        """        
         # initialise serializers for addition
         serializer = MedicineSerializer(current, data=data)
 
@@ -120,8 +144,14 @@ class ScraperMedicine(APIView):
         else:
             raise ValueError(serializer.errors)
 
-    # Update only the values that are null for an existing medicine
     def update_null_values(self, data):
+        """
+        Updates all null values for an existing medicine using the data given in its 
+        argument "data".
+
+        Args:
+            data (medicineObject): The new medicine data.
+        """        
         current_medicine = Medicine.objects.filter(pk=data.get("eu_pnumber")).first()
 
         medicine = model_to_dict(current_medicine)
@@ -136,8 +166,14 @@ class ScraperMedicine(APIView):
         if len(new_data.keys()) > 1:
             self.add_medicine(new_data, current_medicine)
 
-    # Create new history variables for the history models
     def history_variables(self, data):
+        """
+        Creates new history variables for the history models using the data given in its 
+        argument "data".       
+
+        Args:
+            data (medicineObject): The new medicine data.
+        """        
         self.add_history(
             HistoryAuthorisationType,
             AuthorisationTypeSerializer,
@@ -190,6 +226,19 @@ class ScraperMedicine(APIView):
     # Add new object to history model
     @staticmethod
     def add_history(model, serializer, name, data):
+        """
+        Add a new object to the given history model.
+
+        Args:
+            model (medicine_model): The history model of the history object you want to add.
+            serializer (medicine_serializer): The applicable serializer.
+            name (string): The name of the attribute.
+            data (medicineObject): The new medicine data.
+
+        Raises:
+            ValueError: Invalid data in data argument
+            ValueError: Data does not exist in the given data argument
+        """        
         eu_pnumber = data.get("eu_pnumber")
         item = data.get(name)
         model_data = model.objects.filter(eu_pnumber=eu_pnumber).order_by("change_date").first()
