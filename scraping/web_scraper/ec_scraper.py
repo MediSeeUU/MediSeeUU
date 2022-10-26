@@ -28,8 +28,18 @@ ORPHAN_WITHDRAWN_URL: str = "https://ec.europa.eu/health/documents/community-reg
 ORPHAN_REFUSED_URL: str = "https://ec.europa.eu/health/documents/community-register/html/reg_od_refus.htm"
 
 
-# Gets the
 def scrape_medicines_list() -> list[(str, str, int, str)]:
+    """ Scrape the EC website, and construct urls to all individual medicine pages.
+
+    From the EC website, the JSON files for active and withdrawn medicine are scraped. The JSONs
+    contain information about the medicine that is needed to construct a link to each individual medicine page. 
+    It does so for all active and withrawn, orphan and human use medicine.
+
+    Returns:
+        list[(str, str, int, str)]: The links to the medicine pages are stored in a list, along with the full EU number, 
+            the medicine type and a short EU number.
+
+    """    
     url_list: list[(str, str, int, str)] = []
 
     # Loops over all the JSON objects that contain the short eu numbers, so that they can be stored
@@ -64,8 +74,14 @@ def scrape_medicines_list() -> list[(str, str, int, str)]:
     return url_list
 
 
-# Retrieves a list of JSON objects that are needed to make the urls for all the medicines, except the refused medicines
 def scrape_active_withdrawn_jsons() -> list[json]:
+    """ Scrape the EC website for active and withdrawn medicine JSONs.
+
+    The JSON files that are scraped are needed to construct the url to each individual medicine page.
+
+    Returns:
+        list[json]: The list of JSONs that for active and withdrawn, human use and orphan medicine.
+    """
     active_withdrawn_json_list: list[json] = [get_ec_json_objects(get_ec_html(HUMAN_USE_ACTIVE_URL))[0],
                                               get_ec_json_objects(get_ec_html(HUMAN_USE_WITHDRAWN_URL))[0],
                                               get_ec_json_objects(get_ec_html(ORPHAN_ACTIVE_URL))[0],
@@ -74,16 +90,29 @@ def scrape_active_withdrawn_jsons() -> list[json]:
     return active_withdrawn_json_list
 
 
-# Retrieves a list of JSON objects that are needed to make the urls for all the refused medicines
 def scrape_refused_jsons() -> list[json]:
+    """ Scrape the EC website for refused medicine JSONs.
+
+    The JSON files that are scraped are needed to construct the url to each individual medicine page.
+
+    Returns:
+        list[json]: The list of JSONs that for refused, human use and orphan medicine.
+    """
     refused_json_list: list[json] = [get_ec_json_objects(get_ec_html(HUMAN_USE_REFUSED_URL))[0],
                                      get_ec_json_objects(get_ec_html(ORPHAN_REFUSED_URL))[0]]
 
     return refused_json_list
 
 
-# Fetches the html from the EC website for a certain medicine
 def get_ec_html(url: str) -> requests.Response:
+    """ Fetches the html from a website.
+
+    Args:
+        url (str): The link to the page where the html is needed from.
+
+    Returns:
+        requests.Response: Returns a Response object that contains the response to the HTTP request.
+    """
     html_active: requests.Response = requests.get(url)
 
     # If an http error occurred, throw error
@@ -93,8 +122,16 @@ def get_ec_html(url: str) -> requests.Response:
     return html_active
 
 
-# Gets the JSON object that contain all the data, links to the EMA website and links to the pdfs
 def get_ec_json_objects(html_active: requests.Response) -> list[json]:
+    """ Gets all the JSON objects from a web page.
+
+    Args:
+        html_active (requests.Response): The response to the HTTP request for the page where the JSONs need
+            to be fetched from.
+
+    Returns:
+        list[json]: All the JSONs on the web page are returned in a list.
+    """
     soup = bs4.BeautifulSoup(html_active.text, "html.parser")
 
     # The data we are looking for is contained in a script tag. A JSON object containing called 'dataSet_proc'
@@ -119,14 +156,24 @@ def get_ec_json_objects(html_active: requests.Response) -> list[json]:
     return parsed_jsons
     
 
-# Gets all the urls and data for a single medicine
 def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], list[str], list[str], dict[str, str]):
-    # Retrieves the html from the European Commission product page
+    """ Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.
 
+    Args:
+        url (str): The url to the medicine page for the medicine that needs to be scraped.
+        medicine_type (MedicineType): The type of medicine this medicine is.
+
+    Returns:
+        (list[str], list[str], list[str], dict[str, str]): All the links to pdf's for decisions and annexes are
+            stored in lists and returned. The same is done for all links to the ema website. All attributes are
+            stored in a dictionary.
+    """
+    # Retrieves the html from the European Commission product page
     html_active = get_ec_html(url)
     medicine_json, procedures_json, *_ = get_ec_json_objects(html_active)
 
-    eu_num = get_eu_num(url)
+    # Gets the short EU number from the url
+    eu_num = url.split('/')[-1].replace(".htm", "")
 
     # Gets all the necessary information from the medicine_json and procedures_json objects
     medicine_dict, ema_url_list = get_data_from_medicine_json(medicine_json, eu_num, medicine_type)
@@ -138,18 +185,24 @@ def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], l
     return dec_url_list, anx_url_list, ema_url_list, all_attributes_dict
 
 
-# Helper function that gets the short EU number from a url
-# TODO: pass the short EU number in the function, instead of retrieving it this way
-def get_eu_num(url: str) -> str:
-    return url.split('/')[-1].replace(".htm", "")
-
-
-# The medicine_json object from the EC contains some important information that needs to be scraped
-# It loops through the JSON object and finds all the attributes, so that they can be used and stored
 def get_data_from_medicine_json(medicine_json: json,
                                 eu_num: str,
                                 medicine_type: MedicineType) \
                                 -> (dict[str, str], list[str]):
+    """ Gets all attribute information that is stored in the medicine JSON, and all links to the EMA website.
+
+    The function loops through the JSON object and finds all the attributes and links, 
+    so that they can be used and stored. Whenever an attribute is not found, this is logged.
+
+    Args:
+        medicine_json (json): The JSON object that contains all relevant attributes and links.
+        eu_num (str): The EU number for the medicine that belongs to this JSON.
+        medicine_type (MedicineType): The type of medicine that belongs to this JSON.
+
+    Returns:
+        (dict[str, str], list[str]): Returns a dictionary with all the attribute values and a list
+            with all the links to the EMA.
+    """
     medicine_dict: dict[str, str] = {}
     ema_url_list: list[str] = []
 
@@ -193,14 +246,28 @@ def get_data_from_medicine_json(medicine_json: json,
         medicine_dict["atc_code"] = "not applicable"
 
     for key, value in medicine_dict.items():
-        if value is "":
+        if value == "":
             log.error(f"{eu_num}: No value for {key} (value: {value})")
 
     return medicine_dict, ema_url_list
 
 
-# TODO: Change this function so that it not only gets the dec and anx urls, but other data as well
 def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[str, str], list[str], list[str]):
+    """ Gets all attribute information that is stored in the procedures JSON, and all links the decision and annex pdf's.
+
+    The function loops through the JSON object and finds all the attributes and links, 
+    so that they can be used and stored. There is also some extra logic that is needed to determine some of the attribute
+    values. This is done for the EMA number (certainty), the initial authorization type and current authorization type.
+    Whenever an attribute is not found, this is logged.
+
+    Args:
+        procedures_json (json): The JSON object that contains all relevant attributes and links
+        eu_num (str): The EU number for the medicine that belongs to this JSON
+
+    Returns:
+        (dict[str, str], list[str], list[str]): Returns a dictionary with all the attribute values, a list
+            with all the links decisions and a list with a the links to the annexes.
+    """    
     # The necessary urls and other data will be saved in these lists and dictionary
     dec_url_list: list[str] = []
     anx_url_list: list[str] = []
@@ -264,20 +331,27 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
     # TODO: logging when an attribute is not found
     # Currently when an attribute is not found it is simply printed to the console
     procedures_dict["eu_aut_date"] = eu_aut_date
-    procedures_dict["eu_aut_type_initial"] = determine_aut_type(eu_aut_datetime.year, is_exceptional, is_conditional)
+    procedures_dict["eu_aut_type_initial"] = determine_initial_aut_type(eu_aut_datetime.year, is_exceptional, is_conditional)
     procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
     procedures_dict["ema_number"] = ema_number
     procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
 
     for key, value in procedures_dict.items():
-        if value is "":
+        if value == "":
             log.error(f"{eu_num}: No value for {key} (value: {value})")
 
     return procedures_dict, dec_url_list, anx_url_list
 
 
-# Determines the current authorization type
 def determine_current_aut_type(last_decision_types: list[str]) -> str:
+    """ Determines the current authorization type for a medicine
+
+    Args:
+        last_decision_types (list[str]): The decision types from the last year and a half
+
+    Returns:
+        str: The current decision type
+    """
     for decision_type in last_decision_types:
         if "annual reassessment" in decision_type.lower():
             return "exceptional"
@@ -287,8 +361,20 @@ def determine_current_aut_type(last_decision_types: list[str]) -> str:
     return "standard"
 
 
-# Determines whether a medicine is exceptional, conditional or standard, based on the procedures
-def determine_aut_type(year: int, is_exceptional: bool, is_conditional: bool) -> str:
+def determine_initial_aut_type(year: int, is_exceptional: bool, is_conditional: bool) -> str:
+    """ Determines the initial authorization type, based on whether it has seen exceptional or conditional procedures
+
+    For procedures from before 2006, it is not possible to determine the initial authorization type. Otherwise
+    the procedure type van be determined, which is either exceptional, conditional or standard.
+
+    Args:
+        year (int): The year of the first procedure.
+        is_exceptional (bool): _description_
+        is_conditional (bool): _description_
+
+    Returns:
+        str: _description_
+    """
     if year < 2006:
         return "pre_2006"
     if is_exceptional and is_conditional:
@@ -300,9 +386,18 @@ def determine_aut_type(year: int, is_exceptional: bool, is_conditional: bool) ->
     return "standard"
 
 
-# EMA numbers are formatted, so that only the relevant part of the EMA number remains
-# Sometimes, there are two ema numbers in one column, therefore we return a list of strings 
 def format_ema_number(ema_number: str) -> list[str]:
+    """ Formats the input into a (list of) EMA number(s)
+
+    In the procedures JSON file, there is often an EMA number present for a procedure, and sometimes multiple
+    The EMA numbers are formatted with a RegEx, that handles both EMA numbers for human use and orphan medicine.
+
+    Args:
+        ema_number (str): EMA number value directly fetched from the JSON, corresponding to a procedure
+
+    Returns:
+        list[str]: The list of formatted EMA numbers. Usually it only contains one EMA number, but sometimes multiple
+    """
     ema_numbers: list[str] = ema_number.split(", ")
     ema_numbers_formatted: list[str] = []
 
@@ -317,8 +412,18 @@ def format_ema_number(ema_number: str) -> list[str]:
     return ema_numbers_formatted
 
 
-# Determines the right EMA number from the list of procedures
 def determine_ema_number(ema_numbers: list[str]) -> (str, float):
+    """ Determines the right EMA number from the list of procedures
+
+    The right EMA number is simply the EMA number that occurs most often in the procedures table.
+
+    Args:
+        ema_numbers (list[str]): The list of formatted EMA numbers in the JSON file
+
+    Returns:
+        (str, float): The function returns the EMA number that occurrs the most, and a fraction how often
+            this EMA number is present in the list. 
+    """
     # gets the most frequent element in a list
     # code retrieved from https://www.geeksforgeeks.org/python-find-most-frequent-element-in-a-list/
     ema_numbers_dict: dict[str, int] = {}

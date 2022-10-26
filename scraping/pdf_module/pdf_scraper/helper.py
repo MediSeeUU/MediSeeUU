@@ -34,7 +34,8 @@ months = {
 
 
 def convert_months(date: str) -> str:
-    """converts written months (january) to a numeric value
+    """
+    Converts written months (january) to a numeric value
 
     Args:
         date (str): string containing fully writen month
@@ -51,7 +52,8 @@ def convert_months(date: str) -> str:
 
 
 def convert_roman_numbers(date: str) -> str:
-    """Converts the roman numbers (up to XII) to normal numbers
+    """
+    Converts the roman numbers (up to XII) to normal numbers
 
     Args:
         date: string pattern of the date
@@ -70,7 +72,7 @@ def convert_roman_numbers(date: str) -> str:
     return date
 
 
-def convert_articles(articles: list[str]) -> list[str]:
+def convert_articles(articles: [str]) -> [str]:
     res = []
     for article in articles:
         num = article.split(' ')[1]
@@ -87,7 +89,8 @@ def convert_articles(articles: list[str]) -> list[str]:
 
 
 def get_date(txt: str) -> datetime.datetime:
-    """extracts date from a text, also including months with roman numerals and fully written months (IV, january)
+    """
+    Extracts date from a text, also including months with roman numerals and fully written months (IV, january)
 
     Args:
         txt (str): text containing date

@@ -1,14 +1,14 @@
-import pdf_module.pdf_scraper.pdf_xml_converter as xmlc
+import scraping.pdf_module.pdf_scraper.pdf_xml_converter as xmlc
 import xml.etree.ElementTree as ET
-import pdf_module.pdf_scraper.xml_parsing_utils as Utils
-import pdf_module.pdf_scraper.parsed_info_struct as PIS
+import scraping.pdf_module.pdf_scraper.xml_parsing_utils as Utils
+import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
 import os
 
 
 def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
     try:
         xml_tree = ET.parse(filepath)
-    except:
+    except ET.ParseError:
         print("ANNEX PARSER: failed to open xml file " + filepath)
         return medicine_struct
 
