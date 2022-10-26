@@ -192,11 +192,15 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
         str: string indicating found date or if date is not found
         datetime.datetime: found date
     """
+    txt = txt.lower()
     try:
         section = re.split('of ', txt, 1)[1]
-        section = section[:15]
-        if '...' in section:
+        section = section[:17]
+        if '...' in section or '(date)' in section or 'xxx' in section:
             return 'Date is blank'
+        if '/' in section:
+            section = section.replace('/','-')
+
         # check if there are digits on first page
         if bool(re.search(r'\d', section)):
             return helper.get_date(section)
@@ -205,7 +209,9 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
         try:
             next_page = re.split('commission decision', txt.lower())[2]
             section = re.split('of ', next_page, 1)[1]
-            section = section[:15]
+            section = section[:17]
+            if '...' in section or '(date)' in section or 'xxx' in section:
+                return 'Date is blank'
             return helper.get_date(section)
         except:
             pass
