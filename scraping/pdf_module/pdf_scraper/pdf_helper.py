@@ -1,4 +1,6 @@
 import fitz
+
+
 # PDF Helper functions
 
 def append_text(text: str, size: int, font: str, results: [(str, int, str)], lower: bool):
@@ -142,68 +144,5 @@ def format_to_string(section: [(str, int, str)]) -> str:
     """
     res = ''
     for (txt, _, _) in section:
-        res += txt     
+        res += txt
     return res
-
-
-def find_between_format(start: str, stop: str, form, inclusive: bool, minimum_size: int = 0):
-    """
-    returns all lines from and including start till stop for a given format
-    with an optional minimum_size for both start and stop values
-
-    Args:
-        start (str):
-        stop(str):
-        form:
-        inclusive (booL):
-        minimum_size (int):
-
-    Returns:
-
-    """
-    results = []
-    save = save_last_true = False
-    index = 0
-    for (txt, size, font) in form:
-        save = start_found(save, start, txt, size, minimum_size)
-        if stop in txt and save_last_true and size > minimum_size:
-            return get_until_stop(font, form, inclusive, index, results, size, txt)
-        if save:
-            save_last_true = True
-        if save_last_true:
-            results.append((txt, size, font))
-        index += 1
-    # stop not found
-    return results, []
-
-
-# Return results and the last line if inclusive is true to find_between_format
-def get_until_stop(font, form, inclusive, index, results, size, txt):
-    if inclusive:
-        # includes stop as tail, remainder is without stop
-        results.append((txt, size, font))
-    else:
-        index -= 1  # returns stop as header for remainder
-    return results, form[index + 1:]
-
-
-def start_found(save, start, txt, size, minimum_size):
-    if start == '':
-        return True
-    if start in txt and size > minimum_size:
-        save = True
-    return save
-
-
-# returns all lines from and including start till the end of the format
-def find_from_format(start, form, inclusive, minimum_size=0):
-    return find_between_format(start, 'something_that_will_never_be_found', form, inclusive, minimum_size)
-
-
-# counts for every text CONTAINING the search string
-def count_str(string, search_font, section):
-    count = 0
-    for (txt, _, font) in section:
-        if string in txt and font == search_font:
-            count += 1
-    return count

@@ -44,7 +44,7 @@ def file_get_creation_date(xml_head: ET.Element) -> str:
         str: string representing the creation datetime in the original pdf metadata, can be null.
     """
 
-    if xml_head.findall(tags.creation_date):
+    if xml_head.findall(tags.creation_date)[0].text:
         return xml_head.findall(tags.creation_date)[0].text.strip()
     return "no_creation_date"
 
@@ -80,7 +80,7 @@ def file_get_modification_date(xml_head: ET.Element) -> str:
         str: string representing the modification datetime in the original pdf metadata, can be null.
     """
 
-    if xml_head.findall(tags.modification_date):
+    if xml_head.findall(tags.modification_date)[0].text:
         return xml_head.findall(tags.modification_date)[0].text.strip()
     return "no_modification_date"
 

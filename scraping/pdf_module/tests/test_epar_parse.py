@@ -14,7 +14,11 @@ percentage_str = "Percentage found: "
 # Tests all functions of EPAR parser with all XML files
 class TestEparParse(TestCase):
     def setUp(self):
-        # Prepare a list of XML files
+        """
+        Prepare a list of XML files in the global variable xml_bodies
+        Returns:
+            None
+        """
         files = []
         for folder in os.listdir(test_data_loc):
             for file in os.listdir(os.path.join(test_data_loc, folder)):
@@ -30,8 +34,12 @@ class TestEparParse(TestCase):
             xml_root = xml_tree.getroot()
             xml_bodies.append(xml_root[1])
 
-    # ema_procedure_start_initial
     def test_get_date(self):
+        """
+        Test getting ema_procedure_start_initial
+        Returns:
+            None
+        """
         found_count = 0
         # Call get_date
         for xml_body in xml_bodies:
@@ -46,8 +54,12 @@ class TestEparParse(TestCase):
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 90)
 
-    # chmp_opinion_date
     def test_get_opinion_date(self):
+        """
+        Test getting chmp_opinion_date
+        Returns:
+            None
+        """
         found_count = 0
         # Call get_opinion_date
         for xml_body in xml_bodies:
@@ -65,8 +77,17 @@ class TestEparParse(TestCase):
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 90)
 
-    # Check for reasonable dates
-    def check_date(self, day, month, year):
+    def check_date(self, day: str, month: str, year: str):
+        """
+        Check for reasonable dates
+        Args:
+            day (str): day to check from scraped date
+            month (str): month to check from scraped date
+            year (str): year to check from scraped date
+
+        Returns:
+            None
+        """
         self.assertGreater(int(year), 1900)
         # Make sure to check this in the future :D
         self.assertGreater(3000, int(year))
@@ -75,8 +96,12 @@ class TestEparParse(TestCase):
         self.assertGreater(int(day), 0)
         self.assertGreater(32, int(day))
 
-    # eu_legal_basis
     def test_get_legal_basis(self):
+        """
+        Test getting eu_legal_basis
+        Returns:
+            None
+        """
         found_count = 0
         # Call get_legal_basis
         for xml_body in xml_bodies:
@@ -90,8 +115,12 @@ class TestEparParse(TestCase):
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 90)
 
-    # eu_prime_initial
     def test_get_prime(self):
+        """
+        Test getting eu_prime_initial
+        Returns:
+            None
+        """
         yes_exists = False
         # Call get_prime
         for xml_body in xml_bodies:
