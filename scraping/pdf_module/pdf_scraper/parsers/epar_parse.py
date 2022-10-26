@@ -1,6 +1,6 @@
 # EPAR parser
 import re
-import scraping.pdf_module.pdf_scraper.helper as h
+import scraping.pdf_module.pdf_scraper.helper as helper
 import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xpu
 import xml.etree.ElementTree as ET
 import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
@@ -46,11 +46,11 @@ def get_date(xml: ET.Element) -> str:
     regex_ema2 = re.compile(r"the procedure started on")
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
         if found and regex_date.search(p):
-            return h.convert_months(re.search(date_pattern, p)[0])
+            return helper.convert_months(re.search(date_pattern, p)[0])
         elif regex_ema.search(p) or regex_ema2.search(p):
             found = True
             if regex_date.search(p):
-                return h.convert_months(re.search(date_pattern, p)[0])
+                return helper.convert_months(re.search(date_pattern, p)[0])
     return "no_date_found"
 
 
@@ -59,7 +59,7 @@ def get_date(xml: ET.Element) -> str:
 def get_opinion_date(xml: ET.Element) -> str:
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(date_pattern, p):
-            date = h.convert_months(re.findall(date_pattern, p)[-1])
+            date = helper.convert_months(re.findall(date_pattern, p)[-1])
             return date
     return "no_chmp_found"
 
@@ -71,10 +71,10 @@ def get_legal_basis(xml: ET.Element) -> str:
     found = False
     for p in xpu.get_paragraphs_by_header("legal basis for", xml):
         if re.findall(regex_legal, p):
-            return h.convert_articles(list(re.findall(regex_legal, p)))
+            return helper.convert_articles(list(re.findall(regex_legal, p)))
     for p in xpu.get_paragraphs_by_header("submission of the dossier", xml):
         if found and re.findall(regex_legal, p):
-            return h.convert_articles(list(re.findall(regex_legal, p)))
+            return helper.convert_articles(list(re.findall(regex_legal, p)))
         elif "legal basis for" in p:
             found = True
     return "no_legal_basis"
