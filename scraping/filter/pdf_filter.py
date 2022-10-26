@@ -308,5 +308,5 @@ def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
     else:
         return ''
 
-
-filter_all_pdfs("../../data")
+# TODO: fix the path to the data folder
+# filter_all_pdfs("../../data")
