@@ -105,7 +105,7 @@ def filter_pdf(filename: str, data_dir: str) -> str:
     # try to open
     try:
         fitz.open(file_path)  # open document
-    except fitz.fitzError:
+    except Exception:
         corrupt = True
 
     # check if file is readable
@@ -121,7 +121,7 @@ def filter_pdf(filename: str, data_dir: str) -> str:
             os.remove(file_path)
             return filename + '@corrupt'
     # could not parse
-    except fitz.fitzError:
+    except Exception:
         # check if html
         first_line = get_utf8_line(file_path)
         if 'html' in first_line.lower():
