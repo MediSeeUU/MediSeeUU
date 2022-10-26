@@ -9,6 +9,11 @@ import db_uploader.__main__ as db_uploader
 
 
 def main():
+    """
+    Runs the entire scraping process on the specified directory
+    Returns:
+        None
+    """
     data_folder_directory = '../data'
     # print(data_folder_directory)
     if not path.isdir(data_folder_directory):

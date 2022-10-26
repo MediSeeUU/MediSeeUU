@@ -13,17 +13,17 @@ import pdf_module.pdf_scraper.parsed_info_struct as PIS
 
 # Given a pdf, returns one long string of text
 def get_txt_from_pdf(pdf: fitz.Document) -> str:
-    '''Returns the plain text of a fitz pdf, removing alll \\n that are present.
+    """Returns the plain text of a fitz pdf, removing all \\n that are present.
 
     Args:
     pdf (fitz.Document): The opened pdf document to extract text from
 
     Returns:
         txt (str): The plain text of a pdf document, without \\n
-    '''
+    """
     pdf_format = pdf_helper.get_text_format(pdf)
     txt = pdf_helper.format_to_string(pdf_format)
-    return txt.replace('\n','')
+    return txt.replace('\n', '')
 
 
 def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct) -> PIS.parsed_info_struct:
@@ -49,14 +49,14 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_s
         #     f.close()
         pdf.close()
 
-    except Exception:
+    except:
         print("EC - Could not open PDF: " + filename)
     return medicine_struct
 
 
 # Given a dictionary, fills in all attributes for EC decisions
 def get_all(filename: str, txt: str) -> dict:
-    """based on filename finds all fitting attirubtes
+    """based on filename finds all fitting attributes
 
     Args:
         filename (str): filename of opened pdf file
@@ -207,30 +207,30 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
             section = re.split('of ', next_page, 1)[1]
             section = section[:15]
             return helper.get_date(section)
-        except Exception:
+        except:
             pass
-    except Exception:
+    except:
         pass
     return helper.get_date('')
 
 
 def dec_get_bn(txt: str) -> str:
-    """extracts brandname out of decision text
+    """extracts brand name out of decision text
 
     Args:
         txt (str): plain decision pdf text
 
     Returns:
-        str: found brandname or default value
+        str: found brand name or default value
     """
-    # returns a section containing just the brandname (and potentially the active substance)
+    # returns a section containing just the brand name (and potentially the active substance)
     section = get_name_section(txt)
 
-    # use advance regex to find brandname
+    # use advance regex to find brand name
     regres = None
     try:
-        regres = re.search(r'"(\w+[\s\w®/\.,"]*)\s?[-–]\s?\w+.*"', section)
-    except Exception:
+        regres = re.search(r'"(\w+[\s\w®/.,"]*)\s?[-–]\s?\w+.*"', section)
+    except:
         pass
 
     if regres is not None:
@@ -246,7 +246,7 @@ def dec_get_bn(txt: str) -> str:
             res = section.split(' –')[:-1]
             res = ''.join(res)
             return res.strip()
-        # no active substace, so return whole name
+        # no active substance, so return whole name
         return section
 
     # for orphan structure
@@ -258,10 +258,10 @@ def dec_get_bn(txt: str) -> str:
         res = res.replace('”', '')
         res.strip()
         return res
-    except Exception:
+    except:
         pass
 
-    return 'Brandname Not Found'
+    return 'Brand name Not Found'
 
 
 def dec_get_as(txt: str) -> str:
@@ -273,22 +273,22 @@ def dec_get_as(txt: str) -> str:
     Returns:
         str: found substance or default value
     """
-    # returns a section containing just the brandname (and potentially the active substance)
+    # returns a section containing just the brand name (and potentially the active substance)
     section = get_name_section(txt)
     try:
         if section != '':
-            # takes last element after split operator, to remove brandname.
+            # takes last element after split operator, to remove brand name.
             if ' - ' in section:
                 return section.split(' - ')[-1].strip()
             if ' – ' in section:
                 return section.split(' – ')[-1].strip()
-    except Exception:
+    except:
         pass
     return 'Active Substance Not Found'
 
 
 def dec_get_decision_type(txt: str, date: datetime.datetime) -> str:
-    """extracts decisiontype out of decision text
+    """extracts decision type out of decision text
 
     Args:
         txt (str): plain decision pdf text
@@ -325,21 +325,24 @@ def dec_get_mah(txt: str) -> str:
     try:
         # get text after one of the following indicators.
         mahline = \
-        re.split(r"(( the notification submitted)|( the applicatio\w+ submitted)|( the application\(s\) submitted))",txt)[5]
+            re.split(
+                r"(( the notification submitted)|( the applicatio\w+ submitted)|( the application\(s\) submitted))",
+                txt)[5]
 
         # gets part after submitted by line
         mah = mahline.split(" by ", 1)[1]
 
         # clean potential stop words.
         # remove part after MAH
-        mah = re.split(r"(( on ))|(( under ))|(( (the marketing authorisation holder)))", mah, 1)[0]
+        mah = re.split(r'( on )|( under )|( (the marketing authorisation holder))', mah, 1)[0]
 
         # remove comma if there is a comma at the end.
         if mah[-1] == ',':
             mah = mah[:-1]
         return mah.strip()
-    except Exception:
+    except:
         return 'MAH Not Found'
+
 
 def dec_get_mah2test(txt: str) -> str:
     """extracts marketholder out of decision text, alternative approach
@@ -352,13 +355,13 @@ def dec_get_mah2test(txt: str) -> str:
     """
     try:
         # get text after one of the following indicators.
-        mahline = txt.split('This Decision is addressed to ', 1)[1]
+        mah_line = txt.split('This Decision is addressed to ', 1)[1]
 
         # gets part after submitted by line
-        mah = mahline.split(", ", 1)[0]
+        mah = mah_line.split(", ", 1)[0]
 
         return mah.strip()
-    except Exception:
+    except:
         return 'MAH Not Found'
 
 
@@ -437,9 +440,9 @@ def dec_get_od_comp_date() -> datetime.datetime:
 
 
 # HELPERS
-# helper function for finding brandname and active substance.
+# helper function for finding brand name and active substance.
 def get_name_section(txt: str) -> str:
-    """finds section of decision document containing brandname and active substance
+    """finds section of decision document containing brand name and active substance
 
     Args:
         txt (str): plain decision pdf text
@@ -459,22 +462,22 @@ def get_name_section(txt: str) -> str:
     try:
         section = re.search('"([^"]*)"', txt)[0]
         section = section.replace('"', '')
-    except Exception:
+    except:
         try:
             section = re.search('“(.+?)”', txt)[0]
             section = section.replace('“', '')
             section = section.replace('”', '')
-        except Exception:
+        except:
             try:
                 section = re.search('“(.+?)"', txt)[0]
                 section = section.replace('“', '')
                 section = section.replace('"', '')
-            except Exception:
+            except:
                 try:
                     section = re.search('"(.+?)\'', txt)[0]
                     section = section.replace('"', '')
                     section = section.replace('\'', '')
-                except Exception:
+                except:
                     pass
 
     if section is None:

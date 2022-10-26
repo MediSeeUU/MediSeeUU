@@ -73,6 +73,13 @@ def convert_roman_numbers(date: str) -> str:
 
 
 def convert_articles(articles: [str]) -> [str]:
+    """
+    Args:
+        articles ([str]): The articles to convert to the right format
+
+    Returns:
+        [str]: The converted articles
+    """
     res = []
     for article in articles:
         num = article.split(' ')[1]
@@ -100,20 +107,6 @@ def get_date(txt: str) -> datetime.datetime:
     """
     if txt != '':
         txt = txt.lower()
-        try:
-            return dateutil.parser.parse(txt, fuzzy=True)
-        except Exception:
-            pass
-        try:
-            tempdate = convert_roman_numbers(txt)
-            return dateutil.parser.parse(tempdate, fuzzy=True)
-        except Exception:
-            pass
-
-        try:
-            tempdate = convert_months(txt)
-            return dateutil.parser.parse(tempdate, fuzzy=True)
-        except Exception:
-            pass
+        return dateutil.parser.parse(txt, fuzzy=True)
 
     return datetime.datetime(1980, 1, 1, 0, 0)
