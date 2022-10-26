@@ -59,7 +59,7 @@ class TestEparParse(TestCase):
 
     # Check for reasonable dates
     def check_date(self, day, month, year):
-        self.assertGreater(int(year), 1900)
+        self.assertGreater(int(year), 1980)
         # Make sure to check this in the future :D
         self.assertGreater(3000, int(year))
         self.assertGreater(int(month), 0)

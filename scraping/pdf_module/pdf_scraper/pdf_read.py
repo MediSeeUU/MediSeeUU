@@ -4,7 +4,7 @@ import json
 import fitz  # part of pip install PyMuPDF
 import os  # to get all file names in folder
 # external classes for debug using parse_test_file
-from parsers import ec_parse
+from parsers importdec_parse
 # from parsers.epar_parse import epar_parse
 
 from joblib import delayed, Parallel

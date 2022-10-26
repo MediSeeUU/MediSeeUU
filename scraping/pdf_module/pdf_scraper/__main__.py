@@ -8,12 +8,12 @@ import joblib
 import multiprocessing
 
 # external parsers
-# import parsers.ec_parse as ec_parse
+# import parsers.dec_parse asdec_parse
 # import parsers.epar_parse as epar_parse
 # import parsers.omar_parse as omar_parse
 
 # for main
-from pdf_module.pdf_scraper.parsers import ec_parse
+from pdf_module.pdf_scraper.parsers import dec_parse
 from pdf_module.pdf_scraper.parsers import epar_parse
 from pdf_module.pdf_scraper.parsers import omar_parse
 
@@ -72,7 +72,7 @@ def parse_folder(directory: str, folder_name):
 # scraping all XML or PDF files and updating medicine_struct with the scraped attributes
 def run_scrapers(annex_files, decision_files, directory, epar_files, medicine_struct, omar_files):
     for file in decision_files:
-        medicine_struct = ec_parse.parse_file(file, directory, medicine_struct)
+        medicine_struct = dec_parse.parse_file(file, directory, medicine_struct)
     # for file in annex_files:
     #     medicine_struct = ap.parse_file(file, medicine_struct)
     # for file in epar_files:
