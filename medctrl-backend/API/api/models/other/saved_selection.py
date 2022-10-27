@@ -12,8 +12,10 @@ from django.contrib.auth.models import User
 from api.models.medicine_models import Medicine
 
 
-# Model for saving dataset to database
 class SavedSelection(models.Model):
+    """
+    This model is used to save the selected dataset to the database.
+    """    
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     eu_numbers = models.ManyToManyField(Medicine)
     name = models.CharField(max_length=256, null=True)

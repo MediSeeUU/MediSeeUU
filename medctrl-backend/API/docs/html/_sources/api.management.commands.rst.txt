@@ -1,0 +1,29 @@
+api.management.commands package
+===============================
+
+Submodules
+----------
+
+api.management.commands.create\_column\_permissions module
+----------------------------------------------------------
+
+.. automodule:: api.management.commands.create_column_permissions
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.management.commands.init\_setup module
+------------------------------------------
+
+.. automodule:: api.management.commands.init_setup
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: api.management.commands
+   :members:
+   :undoc-members:
+   :show-inheritance:

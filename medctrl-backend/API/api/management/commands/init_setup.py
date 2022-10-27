@@ -29,7 +29,6 @@ class Command(BaseCommand):
     """
     Django admin command that does the initial setup of the system.
     """
-
     help = "Initial MedCtrl setup"
 
     def handle(self, *args, **options):

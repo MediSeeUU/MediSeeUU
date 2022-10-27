@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backend &mdash; Backend 1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="api" href="modules.html" />
+    <link rel="prev" title="Welcome to the backend documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Backend
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Backend</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#settings">Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#settings-setup">Settings setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#linting-and-formatting">Linting and formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copyright-statement">Copyright statement</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">api</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Backend</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/readme.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <!-- This program has been developed by students from the bachelor Computer Science at
+Utrecht University within the Software Project course.
+© Copyright Utrecht University (Department of Information and Computing Sciences) -->
+<section id="backend">
+<h1>Backend<a class="headerlink" href="#backend" title="Permalink to this heading"></a></h1>
+<section id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this heading"></a></h2>
+<p>In the <code class="docutils literal notranslate"><span class="pre">api_settings/settings/</span></code> folder there is a common settings file (<code class="docutils literal notranslate"><span class="pre">common.py</span></code>), these settings are the same for everyone.<br />
+Some settings, like database credentials, are different for each developer/server.<br />
+These settings are stored in separate files that are excluded by the version control system.</p>
+<section id="settings-setup">
+<h3>Settings setup<a class="headerlink" href="#settings-setup" title="Permalink to this heading"></a></h3>
+<p>To configure your local settings follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Create a file called <code class="docutils literal notranslate"><span class="pre">dev_settings.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">api_settings/settings/</span></code> folder.</p></li>
+<li><p>Paste the example settings from below into the file you just created:</p></li>
+</ol>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">api_settings.settings.common</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s2">&quot;random secret key&quot;</span>
+
+<span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;ENGINE&quot;</span><span class="p">:</span> <span class="s2">&quot;django.db.backends.mysql&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;NAME&quot;</span><span class="p">:</span> <span class="s2">&quot;Database name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;USER&quot;</span><span class="p">:</span> <span class="s2">&quot;Database username&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PASSWORD&quot;</span><span class="p">:</span> <span class="s2">&quot;Database password&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;HOST&quot;</span><span class="p">:</span> <span class="s2">&quot;Database host&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PORT&quot;</span><span class="p">:</span> <span class="s2">&quot;Database port&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>IMPORTANT</strong>: Make sure to actually change the settings values that you just pasted in.</p></li>
+<li><p><em>(optional)</em>: Any file in <code class="docutils literal notranslate"><span class="pre">api_settings/settings/</span></code> that has the following pattern: <code class="docutils literal notranslate"><span class="pre">local_*.py</span></code> as filename can be used
+as a local settings file. <br />
+To switch between settings files you have to set the environment variable <code class="docutils literal notranslate"><span class="pre">DJANGO_SETTINGS_MODULE</span></code> to a dot-seperated path to your settingsfile.<br />
+Example: if you have a <code class="docutils literal notranslate"><span class="pre">local_mysettings.py</span></code> settings file, you have to set <code class="docutils literal notranslate"><span class="pre">DJANGO_SETTINGS_MODULE</span></code> to <code class="docutils literal notranslate"><span class="pre">api_settings.settings.local_mysettings</span></code> for Django to pickup the local settings file</p></li>
+</ol>
+</section>
+</section>
+<section id="linting-and-formatting">
+<h2>Linting and formatting<a class="headerlink" href="#linting-and-formatting" title="Permalink to this heading"></a></h2>
+<p>We make use of Black and Pylint as our linter/formatter.
+These tools are already installed if you ran the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code> command.</p>
+<p>To format all python files, run the following commands:</p>
+<ul class="simple">
+<li><p>To just see what will be changed: <code class="docutils literal notranslate"><span class="pre">black</span> <span class="pre">--diff</span> <span class="pre">.</span></code></p></li>
+<li><p>To actually format the files: <code class="docutils literal notranslate"><span class="pre">black</span> <span class="pre">.</span></code></p></li>
+</ul>
+<p>To check for errors using Pylint run the following command:</p>
+<ul class="simple">
+<li><p>On Unix systems: <code class="docutils literal notranslate"><span class="pre">pylint</span> <span class="pre">`git</span> <span class="pre">ls-files</span> <span class="pre">**/*.py`</span> </code></p></li>
+<li><p>On Windows: # TODO</p></li>
+</ul>
+<p>Most editors have support for Black and Pylint built in.</p>
+</section>
+<section id="copyright-statement">
+<h2>Copyright statement<a class="headerlink" href="#copyright-statement" title="Permalink to this heading"></a></h2>
+<p>This program has been developed by students from the bachelor Computer Science at Utrecht University within the Software Project course.</p>
+<p>© Copyright Utrecht University (Department of Information and Computing Sciences)</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to the backend documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="api" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Medisee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

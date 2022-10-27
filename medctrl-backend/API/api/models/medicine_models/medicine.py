@@ -8,9 +8,7 @@ from .common import create_dashboard_column, Category, LegalBases
 class Medicine(models.Model):
     """
     This is the model class for the Medicine table. New attributes can be added here.
-
-    Args:
-        models (_type_): This model is derived from a base model from the Django library.
+    This model is derived from a base model from the Django library.
     """    
     eu_pnumber = create_dashboard_column(
         models.CharField(db_column="eu_pnumber", max_length=255, primary_key=True, null=False),

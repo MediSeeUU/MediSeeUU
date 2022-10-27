@@ -34,7 +34,6 @@ class UserSerializer(serializers.ModelSerializer):
     """
     Serializer class for the User model
     """
-
     groups = GroupSerializer(many=True)  # adds all groups a user belongs to
     selections = serializers.SerializerMethodField()
 
@@ -42,7 +41,6 @@ class UserSerializer(serializers.ModelSerializer):
         """
         Meta class for the UserSerializer
         """
-
         model = User
         fields = (
             "id",

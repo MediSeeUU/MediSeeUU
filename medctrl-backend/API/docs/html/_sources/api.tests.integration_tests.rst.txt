@@ -1,0 +1,18 @@
+api.tests.integration\_tests package
+====================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   api.tests.integration_tests.test_views
+
+Module contents
+---------------
+
+.. automodule:: api.tests.integration_tests
+   :members:
+   :undoc-members:
+   :show-inheritance:

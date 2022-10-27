@@ -8,21 +8,22 @@ from api.admin.cachemodeladmin import CacheModelAdmin
 
 
 class MedicineResource(resources.ModelResource):
-    
+    """
+    Necessary resource class for the Medicine admin view.
+    ModelResource is Resource subclass for handling Django models.
+    """    
     class Meta:
         """
         Meta class for MedicineResource
         """
-
         model = Medicine
         import_id_fields = ("eu_pnumber",)
 
 
 class MedicineAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
-    Admin View for Medicine
+    Admin View for Medicine, contains a list of all the shown attributes.
     """
-
     resource_class = MedicineResource
     list = (
         "eu_pnumber",
@@ -60,7 +61,18 @@ class MedicineAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
         "eu_od_comp_date"
     )
 
-    def save_model(self, request, obj, form, change):
+    def save_model(self, request, obj, form, change: bool):
+        """
+        This is a Django Admin function that saves the model.
+
+        Args:
+            request (Any): This is a HttpRequest.
+            obj (Any): This is the instance of the model.
+            form (Any): This is the ModelForm instance.
+            change (bool): This boolean decides whether the object is being changed or added to.
+        Returns:
+            None
+        """        
         # Get reference to previous object
         med = Medicine.objects.filter(eu_pnumber=obj.eu_pnumber).first()
 
