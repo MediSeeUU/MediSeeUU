@@ -18,7 +18,8 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
-    HistoryEUOrphanCon
+    HistoryEUOrphanCon,
+    LegalBases,
 )
 
 
@@ -54,7 +55,8 @@ def get_medicine_info(perm, mock=None):
             HistoryMAH,
             HistoryOD,
             HistoryPrime,
-            HistoryEUOrphanCon
+            HistoryEUOrphanCon,
+            LegalBases,
         ]
 
         # make a list containing all the fields from all the models

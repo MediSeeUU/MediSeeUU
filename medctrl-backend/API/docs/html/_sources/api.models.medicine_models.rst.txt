@@ -68,6 +68,14 @@ api.models.medicine\_models.history\_prime module
    :undoc-members:
    :show-inheritance:
 
+api.models.medicine\_models.legal\_bases module
+-----------------------------------------------
+
+.. automodule:: api.models.medicine_models.legal_bases
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 api.models.medicine\_models.medicine module
 -------------------------------------------
 

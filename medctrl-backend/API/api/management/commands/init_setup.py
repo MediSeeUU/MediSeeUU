@@ -10,6 +10,7 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
+    LegalBases,
 )
 import logging
 
@@ -49,6 +50,7 @@ class Command(BaseCommand):
             HistoryMAH,
             HistoryOD,
             HistoryPrime,
+            LegalBases,
         ]:
             ct = ContentType.objects.filter(model=model.__name__).first()
             all_permissions = Permission.objects.filter(content_type=ct)

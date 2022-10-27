@@ -61,6 +61,7 @@ class GenerateKeyView(LoginRequiredMixin, UserPassesTestMixin, FormView):
         """        
         duration = form.cleaned_data["duration"]
         user = form.cleaned_data["user"]
+        logger.info("API duration: " + str(duration) + "API user" + str(user))
 
         instance, token = AuthToken.objects.create(
             user, datetime.timedelta(days=duration)
