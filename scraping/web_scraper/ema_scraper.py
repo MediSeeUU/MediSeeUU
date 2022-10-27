@@ -41,7 +41,7 @@ def pdf_links_from_url(url: str) -> str:
                 return pdf_url
 
     log.warning(f"No EPAR for {medicine_name}. The searched URLs are {url_list}")
-    raise LookupError()
+    return ""
 
 
 # print(pdf_links_from_url(""))
