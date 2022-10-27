@@ -15,8 +15,8 @@ export function useColumnSelection() {
 // Represents the default column selection
 export const defaultColumns = [
   'eu_pnumber',
-  'eu_brand_name',
-  'eu_mah',
+  'eu_brand_name_current',
+  'eu_mah_current',
   'eu_aut_date',
   'atc_code',
 ]

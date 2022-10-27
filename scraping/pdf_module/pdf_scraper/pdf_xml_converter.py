@@ -2,16 +2,26 @@ from operator import is_
 import sys
 from typing import TextIO
 import fitz
-import pdf_helper as ph
-import xml_tags as tags
+import pdf_module.pdf_scraper.pdf_helper as ph
+import pdf_module.pdf_scraper.xml_tags as tags
 from os import path
 import re
 
 header_indicator = "|-HEADER-|"
-split_indicator = "|-SPLIT-|"
 
 
 def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
+    """
+    Creates an xml file of given pdf file in same directory
+
+    Args:
+        source_filepath (str): filepath to pdf file to convert to xml
+        output_filepath (str): filepath to write xml converted file to
+
+    Returns:
+        None
+    """
+
     document = []
     try:
         document = fitz.open(source_filepath)
@@ -24,6 +34,15 @@ def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
 
 
 def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
+    """
+    Returns a list of paragraph strings based on input from get_text()
+
+    Args:
+        lines (list[(str, float, str)]): a list of pdf text line and font info tuple (line_text: str, line_font_size: float, line_font_type: str)
+
+    Returns:
+        list[str]: list of paragraphs in the format of "bolded_text|-HEADER-|unbolded_text"
+    """    
     # concatenate list of lines into list of paragraphs and mark bolded lines
     paragraphs = []
     for line in lines:
@@ -45,6 +64,15 @@ def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
 
 
 def split_paragraphs(paragraphs: list[str]) -> list[(str, str)]:
+    """
+    Returns a list of (header, paragraph) tuples from a list of paragraphs in format "bolded_text|-HEADER-|unbolded_text", meant to take get_marked_paragraph's return value as input.
+
+    Args:
+        paragraphs (list[str]): a list of paragraphs in the format returned by get_marked_paragraphs: "bolded_text|-HEADER-|unbolded_text"
+
+    Returns:
+        list[(str, str)]: list of XML section text in form of (header, paragraph)
+    """    
     sections = []
 
     for paragraph in paragraphs:
@@ -63,46 +91,69 @@ def split_paragraphs(paragraphs: list[str]) -> list[(str, str)]:
     return sections
 
 
-def replace_special_xml_characters(string: str) -> str:
-    string = string.replace("&", "&amp;")
-    string = string.replace("\"", "&quot;")
-    string = string.replace("\'", "&apos;")
-    string = string.replace("<", "&lt;")
-    string = string.replace(">", "&gt;")
-    string = remove_illegal_characters(string)
-    return string
-
-
 def remove_illegal_characters(string: str) -> str:
+    """
+    Takes a string and returns a string where all special XML characters are replaced with their delimited version and all illegal UTF-8 characters removed.
+
+    Args:
+        string (str): input string to be converted to legal XML text
+
+    Returns:
+        str: legal XML text with special and illegal characters replaced
+    """    
     non_illegal_string = ""
     for character in string:
-        is_illegal = False
-        encoded_char = int(character.encode("utf-8", "ignore").hex(), 16)
+        if character == '':
+            continue
 
-        if encoded_char == "":
+        try:
+            encoded_char = int.from_bytes(character.encode("utf-8", "ignore"), "big")
+        except ValueError:
+            continue
+
+        if character == "&":
+            non_illegal_string += "&amp;"
+            continue
+
+        if character == "\"":
+            non_illegal_string += "&quot;"
+            continue
+
+        if character == "\'":
+            non_illegal_string += "&apos;"
+            continue
+
+        if character == "<":
+            non_illegal_string += "&lt;"
+            continue
+
+        if character == ">":
+            non_illegal_string += "&gt;"
             continue
 
         if 0x1000 <= encoded_char <= 0x8000:
-            is_illegal = True
+            continue
 
         if 0xB000 <= encoded_char <= 0xC000:
-            is_illegal = True
+            continue
 
         if 0xE000 <= encoded_char <= 0x1F00:
-            is_illegal = True
+            continue
 
         if 0x7F00 <= encoded_char <= 0x8400:
-            is_illegal = True
+            continue
 
         if 0x8600 <= encoded_char <= 0x9F00:
-            is_illegal = True
+            continue
 
-        if encoded_char == 0xefff or encoded_char == 0x0000:
-            is_illegal = True
+        if 0x0011 <= encoded_char <= 0x0015 or 0x0006 <= encoded_char <= 0x0007 or encoded_char == 0x0001:
+            continue
 
-        if not is_illegal:
-            non_illegal_string += character
-    
+        if encoded_char == 0x0000 or encoded_char == 0xEFFF or encoded_char == 0xFFFF:
+            continue
+
+        non_illegal_string += character
+
     return non_illegal_string
 
 
@@ -147,8 +198,8 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
     print_xml_tag_open(tags.body, xml_file)
 
     for section in sections:
-        section_header = replace_special_xml_characters(section[0])
-        section_paragraphs = replace_special_xml_characters(section[1]).split("  ")
+        section_header = remove_illegal_characters(section[0])
+        section_paragraphs = remove_illegal_characters(section[1]).split("  ")
 
         # check if header contains paragraph number and fill header_attribute with the corresponding number
         split_header = section_header.strip().split()

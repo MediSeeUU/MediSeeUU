@@ -13,9 +13,9 @@ from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
 scrape_ec: bool = False
-scrape_ema: bool = False           # Requires scrape_ec to have been run at least once
+scrape_ema: bool = False            # Requires scrape_ec to have been run at least once
 download_files: bool = True         # Download pdfs from the obtained links
-use_parallelization: bool = True   # Parallelization is currently broken on Windows. Set to False
+use_parallelization: bool = False   # Parallelization is currently broken on Windows. Set to False
 
 # list of the type of medicines that will be scraped
 # NOTE: This was useful for debugging
@@ -45,6 +45,21 @@ url_file = json_helper.JsonHelper(path="JSON/urls.json")
 # Paralleled function for getting the URL codes. They are written to a JSON file
 # TODO: unmarked type for medicine_type
 def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.MedicineType, data_path: str):
+    """ Gets the scraped medicine attributes and urls, and writes them to CSV and JSON files.
+
+    The function writes the data to four (will become three) seperpate CSV files, one for decisions,
+    one for annexes, and one for EMA urls. The attributes for the medicine are stored in a single JSON.
+    They are all stored in the same data folder, where each medicine gets its own folder.
+
+    Args:
+        medicine_url (str): url to a medicine page for a specific medicine.
+        eu_n (str): EU number of the medicine.
+        medicine_type (int): The type of medicine.
+        data_path (str): The path where the CSV and JSON files need to be stored.
+
+    Returns:
+        None: This function returns nothing.
+    """
     # A list of the medicine types we want to scrape is defined in this file
     # If the entered medicine_type is not in that list, this method will ignore
     if ec_scraper.MedicineType(medicine_type) not in scrape_medicine_type:
@@ -75,6 +90,15 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
 
 
 def get_urls_ema(eu_n: str, url: str):
+    """ Gets all the pdf urls from the EMA website and writes it to a CSV file.
+
+        Args:
+            eu_n (str): The EU number of the medicine.
+            url (str): The url to an EMA page for a specific medicine.
+
+        Returns:
+            None: This function returns nothing
+        """
     pdf_url: dict = {
         eu_n: {
             "epar_url": ema_scraper.pdf_links_from_url(url)
@@ -84,6 +108,17 @@ def get_urls_ema(eu_n: str, url: str):
 
 
 def main(data_filepath: str = '../../data'):
+    """ Main function that controls which scrapers are activated, and if it runs parallel or not.
+
+        Based on some variables declared at the top of the file, it will scrape the EC website, the EMA website
+        and/or downloads the scraped links.
+
+        Args:
+            data_filepath (str, optional): The file path where all data needs to be stored. Defaults to '../data'.
+
+        Returns:
+            None: This function returns nothing.
+        """
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
     Path("JSON").mkdir(exist_ok=True, parents=True)

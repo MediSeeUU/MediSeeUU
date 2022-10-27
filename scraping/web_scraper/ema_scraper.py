@@ -6,6 +6,17 @@ log = logging.getLogger("webscraper.ema_scraper")
 
 
 def pdf_links_from_url(url: str) -> str:
+    """ Gets the pdf link on the EMA website that is highest on the priority list
+
+    Args:
+        url (str): Link to the medicine page on the EMA website
+
+    Raises:
+        Exception: If nothing is found, we throw an exception. This also passes all found URLs on newlines
+
+    Returns:
+        str: The pdf link that is highest on the priority list
+    """
     # Expecting a link scraped from the EC website. Link should look like this
     # https://www.ema.europa.eu/en/medicines/human/EPAR/tandemact
     html_obj = requests.get(url)

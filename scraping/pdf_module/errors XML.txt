@@ -78,11 +78,6 @@ Could not open PDF: ..\..\..\data\EU-1-07-436\EU-1-07-436_h_a_anx_23.pdf
 Could not open PDF: ..\..\..\data\EU-1-08-455\EU-1-08-455_h_a_anx_21.pdf
 EC - Could not open PDF: EU-1-08-454_h_a_dec_7.pdf
 EC - Could not open PDF: EU-1-08-451_h_a_dec_27.pdf
-ANNEX PARSER: failed to open xml file ..\..\..\data\EU-1-08-451\EU-1-08-451_h_a_anx_10.xml
-ANNEX PARSER: failed to open xml file ..\..\..\data\EU-1-08-451\EU-1-08-451_h_a_anx_6.xml
-ANNEX PARSER: failed to open xml file ..\..\..\data\EU-1-08-451\EU-1-08-451_h_a_anx_7.xml
-ANNEX PARSER: failed to open xml file ..\..\..\data\EU-1-08-451\EU-1-08-451_h_a_anx_8.xml
-ANNEX PARSER: failed to open xml file ..\..\..\data\EU-1-08-451\EU-1-08-451_h_a_anx_9.xml
 Could not open PDF: ..\..\..\data\EU-1-08-470\EU-1-08-470_h_a_anx_21.pdf
 Could not open PDF: ..\..\..\data\EU-1-08-470\EU-1-08-470_h_a_anx_23.pdf
 Could not open PDF: ..\..\..\data\EU-1-08-495\EU-1-08-495_h_a_anx_8.pdf
@@ -362,4 +357,6 @@ Could not open PDF: ..\..\..\data\EU-1-98-091\EU-1-98-091_h_a_anx_31.pdf
 Could not open PDF: ..\..\..\data\EU-1-98-092\EU-1-98-092_h_a_anx_32.pdf
 Could not open PDF: ..\..\..\data\EU-1-99-103\EU-1-99-103_h_a_anx_35.pdf
 Could not open PDF: ..\..\..\data\EU-1-99-125\EU-1-99-125_h_a_anx_2.pdf
+
+06-354 anx_6 IS TABEL
 Done!

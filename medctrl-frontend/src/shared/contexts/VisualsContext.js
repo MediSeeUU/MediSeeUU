@@ -20,8 +20,8 @@ export function VisualsProvider({ children }) {
       id: 1,
       chartType: 'bar',
       chartSpecificOptions: {
-        xAxis: 'decisionyear',
-        yAxis: 'rapporteur',
+        xAxis: 'eu_aut_date',
+        yAxis: 'ema_rapp',
       },
       legendOn: false,
       labelsOn: false,
