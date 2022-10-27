@@ -1,0 +1,29 @@
+tests.pdfscraper\_tests package
+===============================
+
+Submodules
+----------
+
+tests.pdfscraper\_tests.test\_dec\_parse module
+-----------------------------------------------
+
+.. automodule:: tests.pdfscraper_tests.test_dec_parse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tests.pdfscraper\_tests.test\_epar\_parse module
+------------------------------------------------
+
+.. automodule:: tests.pdfscraper_tests.test_epar_parse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: tests.pdfscraper_tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
