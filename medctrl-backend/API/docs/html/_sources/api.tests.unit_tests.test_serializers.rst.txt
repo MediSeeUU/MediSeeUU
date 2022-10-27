@@ -1,0 +1,29 @@
+api.tests.unit\_tests.test\_serializers package
+===============================================
+
+Submodules
+----------
+
+api.tests.unit\_tests.test\_serializers.test\_medicine\_serializers module
+--------------------------------------------------------------------------
+
+.. automodule:: api.tests.unit_tests.test_serializers.test_medicine_serializers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.tests.unit\_tests.test\_serializers.test\_urls\_serializer module
+---------------------------------------------------------------------
+
+.. automodule:: api.tests.unit_tests.test_serializers.test_urls_serializer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: api.tests.unit_tests.test_serializers
+   :members:
+   :undoc-members:
+   :show-inheritance:

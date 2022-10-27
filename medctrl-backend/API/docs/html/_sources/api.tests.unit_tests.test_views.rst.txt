@@ -1,0 +1,21 @@
+api.tests.unit\_tests.test\_views package
+=========================================
+
+Submodules
+----------
+
+api.tests.unit\_tests.test\_views.test\_other module
+----------------------------------------------------
+
+.. automodule:: api.tests.unit_tests.test_views.test_other
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: api.tests.unit_tests.test_views
+   :members:
+   :undoc-members:
+   :show-inheritance:

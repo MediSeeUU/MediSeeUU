@@ -1,0 +1,21 @@
+api.models.other package
+========================
+
+Submodules
+----------
+
+api.models.other.saved\_selection module
+----------------------------------------
+
+.. automodule:: api.models.other.saved_selection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: api.models.other
+   :members:
+   :undoc-members:
+   :show-inheritance:

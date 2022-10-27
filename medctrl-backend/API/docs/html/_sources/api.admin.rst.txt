@@ -1,0 +1,93 @@
+api.admin package
+=================
+
+Submodules
+----------
+
+api.admin.cachemodeladmin module
+--------------------------------
+
+.. automodule:: api.admin.cachemodeladmin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.admin.common module
+-----------------------
+
+.. automodule:: api.admin.common
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.admin.history\_authorisation\_status\_admin module
+------------------------------------------------------
+
+.. automodule:: api.admin.history_authorisation_status_admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.admin.history\_authorisation\_type\_admin module
+----------------------------------------------------
+
+.. automodule:: api.admin.history_authorisation_type_admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.admin.history\_brand\_name\_admin module
+--------------------------------------------
+
+.. automodule:: api.admin.history_brand_name_admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.admin.history\_eu\_orphan\_con\_admin module
+------------------------------------------------
+
+.. automodule:: api.admin.history_eu_orphan_con_admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.admin.history\_mah\_admin module
+------------------------------------
+
+.. automodule:: api.admin.history_mah_admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.admin.history\_od\_admin module
+-----------------------------------
+
+.. automodule:: api.admin.history_od_admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.admin.history\_prime\_admin module
+--------------------------------------
+
+.. automodule:: api.admin.history_prime_admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.admin.medicine\_admin module
+--------------------------------
+
+.. automodule:: api.admin.medicine_admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: api.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,19 @@
+api.models package
+==================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   api.models.medicine_models
+   api.models.other
+
+Module contents
+---------------
+
+.. automodule:: api.models
+   :members:
+   :undoc-members:
+   :show-inheritance:

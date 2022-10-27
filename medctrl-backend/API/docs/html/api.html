@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>api package &mdash; Backend 1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="api.admin package" href="api.admin.html" />
+    <link rel="prev" title="api" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Backend
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Backend</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">api</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">api package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html">api.admin package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.management.html">api.management package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html">api.migrations package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.html">api.models package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.scraper.html">api.scraper package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.serializers.html">api.serializers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.tests.html">api.tests package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.html">api.views package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-api.apps">api.apps module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#api.apps.ApiConfig"><code class="docutils literal notranslate"><span class="pre">ApiConfig</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-api.update_cache">api.update_cache module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#api.update_cache.has_pending_migrations"><code class="docutils literal notranslate"><span class="pre">has_pending_migrations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api.update_cache.has_unapplied_migration"><code class="docutils literal notranslate"><span class="pre">has_unapplied_migration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api.update_cache.update_cache"><code class="docutils literal notranslate"><span class="pre">update_cache()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-api.urls">api.urls module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-api">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">api</a> &raquo;</li>
+      <li>api package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-package">
+<h1>api package<a class="headerlink" href="#api-package" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.admin.html">api.admin package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.admin.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.admin.html#module-api.admin.cachemodeladmin">api.admin.cachemodeladmin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.cachemodeladmin.CacheModelAdmin"><code class="docutils literal notranslate"><span class="pre">CacheModelAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.cachemodeladmin.CacheModelAdmin.delete_model"><code class="docutils literal notranslate"><span class="pre">CacheModelAdmin.delete_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.cachemodeladmin.CacheModelAdmin.delete_queryset"><code class="docutils literal notranslate"><span class="pre">CacheModelAdmin.delete_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.cachemodeladmin.CacheModelAdmin.media"><code class="docutils literal notranslate"><span class="pre">CacheModelAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.cachemodeladmin.CacheModelAdmin.save_model"><code class="docutils literal notranslate"><span class="pre">CacheModelAdmin.save_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.admin.html#module-api.admin.common">api.admin.common module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.common.CustomForeignKeyWidget"><code class="docutils literal notranslate"><span class="pre">CustomForeignKeyWidget</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.common.CustomForeignKeyWidget.clean"><code class="docutils literal notranslate"><span class="pre">CustomForeignKeyWidget.clean()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.common.import_foreign_key"><code class="docutils literal notranslate"><span class="pre">import_foreign_key()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.admin.html#module-api.admin.history_authorisation_status_admin">api.admin.history_authorisation_status_admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusAdmin.list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusResource"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusResource.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.admin.html#module-api.admin.history_authorisation_type_admin">api.admin.history_authorisation_type_admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeAdmin.list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeResource"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeResource.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.admin.html#module-api.admin.history_brand_name_admin">api.admin.history_brand_name_admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_brand_name_admin.HistoryBrandNameAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_brand_name_admin.HistoryBrandNameAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameAdmin.list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_brand_name_admin.HistoryBrandNameAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_brand_name_admin.HistoryBrandNameAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_brand_name_admin.HistoryBrandNameResource"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_brand_name_admin.HistoryBrandNameResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameResource.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_brand_name_admin.HistoryBrandNameResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.admin.html#module-api.admin.history_eu_orphan_con_admin">api.admin.history_eu_orphan_con_admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConAdmin.list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConResource"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConResource.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.admin.html#module-api.admin.history_mah_admin">api.admin.history_mah_admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_mah_admin.HistoryMAHAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryMAHAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_mah_admin.HistoryMAHAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryMAHAdmin.list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_mah_admin.HistoryMAHAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryMAHAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_mah_admin.HistoryMAHAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryMAHAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_mah_admin.HistoryMAHResource"><code class="docutils literal notranslate"><span class="pre">HistoryMAHResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_mah_admin.HistoryMAHResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryMAHResource.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_mah_admin.HistoryMAHResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryMAHResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.admin.html#module-api.admin.history_od_admin">api.admin.history_od_admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_od_admin.HistoryODAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryODAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_od_admin.HistoryODAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryODAdmin.list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_od_admin.HistoryODAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryODAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_od_admin.HistoryODAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryODAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_od_admin.HistoryODResource"><code class="docutils literal notranslate"><span class="pre">HistoryODResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_od_admin.HistoryODResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryODResource.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_od_admin.HistoryODResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryODResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.admin.html#module-api.admin.history_prime_admin">api.admin.history_prime_admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_prime_admin.HistoryPrimeAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_prime_admin.HistoryPrimeAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeAdmin.list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_prime_admin.HistoryPrimeAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_prime_admin.HistoryPrimeAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.history_prime_admin.HistoryPrimeResource"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_prime_admin.HistoryPrimeResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeResource.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.history_prime_admin.HistoryPrimeResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.admin.html#module-api.admin.medicine_admin">api.admin.medicine_admin module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.medicine_admin.MedicineAdmin"><code class="docutils literal notranslate"><span class="pre">MedicineAdmin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.medicine_admin.MedicineAdmin.list"><code class="docutils literal notranslate"><span class="pre">MedicineAdmin.list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.medicine_admin.MedicineAdmin.media"><code class="docutils literal notranslate"><span class="pre">MedicineAdmin.media</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.medicine_admin.MedicineAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">MedicineAdmin.resource_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.medicine_admin.MedicineAdmin.save_model"><code class="docutils literal notranslate"><span class="pre">MedicineAdmin.save_model()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.admin.html#api.admin.medicine_admin.MedicineResource"><code class="docutils literal notranslate"><span class="pre">MedicineResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.medicine_admin.MedicineResource.Meta"><code class="docutils literal notranslate"><span class="pre">MedicineResource.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html#api.admin.medicine_admin.MedicineResource.fields"><code class="docutils literal notranslate"><span class="pre">MedicineResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.admin.html#module-api.admin">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.management.html">api.management package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.management.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.management.commands.html">api.management.commands package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.management.commands.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.management.commands.html#module-api.management.commands.create_column_permissions">api.management.commands.create_column_permissions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.management.commands.html#module-api.management.commands.init_setup">api.management.commands.init_setup module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.management.commands.html#module-api.management.commands">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.management.html#module-api.management">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.migrations.html">api.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.migrations.html#module-api.migrations.0001_initial">api.migrations.0001_initial module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.migrations.html#api.migrations.0001_initial.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html#api.migrations.0001_initial.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html#api.migrations.0001_initial.Migration.initial"><code class="docutils literal notranslate"><span class="pre">Migration.initial</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html#api.migrations.0001_initial.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.migrations.html#module-api.migrations">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.models.html">api.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.models.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html">api.models.medicine_models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.common">api.models.medicine_models.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_authorisation_status">api.models.medicine_models.history_authorisation_status module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_authorisation_type">api.models.medicine_models.history_authorisation_type module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_brand_name">api.models.medicine_models.history_brand_name module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_eu_orphan_con">api.models.medicine_models.history_eu_orphan_con module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_mah">api.models.medicine_models.history_mah module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_od">api.models.medicine_models.history_od module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_prime">api.models.medicine_models.history_prime module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.medicine">api.models.medicine_models.medicine module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.models.other.html">api.models.other package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#module-api.models.other.saved_selection">api.models.other.saved_selection module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#module-api.models.other">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.html#module-api.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.scraper.html">api.scraper package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.scraper.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.scraper.html#module-api.scraper.router">api.scraper.router module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.scraper.html#module-api.scraper.scraper_medicine">api.scraper.scraper_medicine module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.add_history"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.add_history()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.add_medicine"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.add_medicine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.get_queryset"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.history_variables"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.history_variables()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.permission_classes"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.post"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.post()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.update_flex_medicine"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.update_flex_medicine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.update_null_values"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.update_null_values()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.scraper.html#module-api.scraper.scraper_procedure">api.scraper.scraper_procedure module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.scraper.html#module-api.scraper">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.serializers.html">api.serializers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.serializers.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.serializers.medicine_serializers.html">api.serializers.medicine_serializers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.serializers.medicine_serializers.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.serializers.medicine_serializers.html#module-api.serializers.medicine_serializers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.serializers.other.html">api.serializers.other package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.serializers.other.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.serializers.other.html#module-api.serializers.other.saved_selection">api.serializers.other.saved_selection module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.serializers.other.html#module-api.serializers.other">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.serializers.user_serializers.html">api.serializers.user_serializers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.serializers.user_serializers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.serializers.user_serializers.html#module-api.serializers.user_serializers.normal_user">api.serializers.user_serializers.normal_user module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.serializers.user_serializers.html#module-api.serializers.user_serializers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.serializers.html#module-api.serializers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.tests.html">api.tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.tests.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.tests.integration_tests.html">api.tests.integration_tests package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.tests.integration_tests.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.tests.integration_tests.html#module-api.tests.integration_tests">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.tests.unit_tests.html">api.tests.unit_tests package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.tests.unit_tests.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.tests.unit_tests.html#module-api.tests.unit_tests">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.tests.html#module-api.tests">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.views.html">api.views package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.views.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.views.account_views.html">api.views.account_views package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.views.account_views.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.account_views.html#module-api.views.account_views.login">api.views.account_views.login module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.account_views.html#module-api.views.account_views">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.views.generate_key_views.html">api.views.generate_key_views package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.views.generate_key_views.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.generate_key_views.html#module-api.views.generate_key_views.generate_api_key">api.views.generate_key_views.generate_api_key module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.generate_key_views.html#module-api.views.generate_key_views">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.views.medicine_views.html">api.views.medicine_views package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.views.medicine_views.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.medicine_views.html#module-api.views.medicine_views.medicine">api.views.medicine_views.medicine module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.medicine_views.html#module-api.views.medicine_views.procedure">api.views.medicine_views.procedure module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.medicine_views.html#module-api.views.medicine_views">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.views.other.html">api.views.other package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.views.other.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.other.html#module-api.views.other.medicine_info">api.views.other.medicine_info module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.other.html#module-api.views.other.medicine_info_json">api.views.other.medicine_info_json module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.other.html#module-api.views.other.permissionFilter">api.views.other.permissionFilter module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.other.html#module-api.views.other.saved_selection">api.views.other.saved_selection module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.other.html#module-api.views.other">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.views.scraper_views.html">api.views.scraper_views package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.views.scraper_views.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.scraper_views.html#module-api.views.scraper_views.scraper_urls_view">api.views.scraper_views.scraper_urls_view module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.scraper_views.html#module-api.views.scraper_views">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.views.html#module-api.views">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-api.apps">
+<span id="api-apps-module"></span><h2>api.apps module<a class="headerlink" href="#module-api.apps" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.apps.ApiConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.apps.</span></span><span class="sig-name descname"><span class="pre">ApiConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.apps.ApiConfig" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<p>Basic api config</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.apps.ApiConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#api.apps.ApiConfig.default_auto_field" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.apps.ApiConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'api'</span></em><a class="headerlink" href="#api.apps.ApiConfig.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-api.update_cache">
+<span id="api-update-cache-module"></span><h2>api.update_cache module<a class="headerlink" href="#module-api.update_cache" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="api.update_cache.has_pending_migrations">
+<span class="sig-prename descclassname"><span class="pre">api.update_cache.</span></span><span class="sig-name descname"><span class="pre">has_pending_migrations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.update_cache.has_pending_migrations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.update_cache.has_unapplied_migration">
+<span class="sig-prename descclassname"><span class="pre">api.update_cache.</span></span><span class="sig-name descname"><span class="pre">has_unapplied_migration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.update_cache.has_unapplied_migration" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.update_cache.update_cache">
+<span class="sig-prename descclassname"><span class="pre">api.update_cache.</span></span><span class="sig-name descname"><span class="pre">update_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.update_cache.update_cache" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-api.urls">
+<span id="api-urls-module"></span><h2>api.urls module<a class="headerlink" href="#module-api.urls" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-api">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-api" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="api" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.admin.html" class="btn btn-neutral float-right" title="api.admin package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Medisee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

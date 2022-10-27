@@ -1,0 +1,45 @@
+api.views.other package
+=======================
+
+Submodules
+----------
+
+api.views.other.medicine\_info module
+-------------------------------------
+
+.. automodule:: api.views.other.medicine_info
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.views.other.medicine\_info\_json module
+-------------------------------------------
+
+.. automodule:: api.views.other.medicine_info_json
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.views.other.permissionFilter module
+---------------------------------------
+
+.. automodule:: api.views.other.permissionFilter
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.views.other.saved\_selection module
+---------------------------------------
+
+.. automodule:: api.views.other.saved_selection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: api.views.other
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,37 @@
+api.scraper package
+===================
+
+Submodules
+----------
+
+api.scraper.router module
+-------------------------
+
+.. automodule:: api.scraper.router
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.scraper.scraper\_medicine module
+------------------------------------
+
+.. automodule:: api.scraper.scraper_medicine
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.scraper.scraper\_procedure module
+-------------------------------------
+
+.. automodule:: api.scraper.scraper_procedure
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: api.scraper
+   :members:
+   :undoc-members:
+   :show-inheritance:
