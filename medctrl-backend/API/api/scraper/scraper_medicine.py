@@ -21,6 +21,7 @@ from api.models.medicine_models import (
     HistoryOD,
     HistoryPrime,
     HistoryEUOrphanCon,
+    LegalBases,
 )
 from api.serializers.medicine_serializers.scraper import (
     MedicineSerializer,
@@ -32,6 +33,7 @@ from api.serializers.medicine_serializers.scraper import (
     OrphanDesignationSerializer,
     PrimeSerializer,
     EUOrphanConSerializer,
+    LegalBasesSerializer,
 )
 from api.update_cache import update_cache
 from django.forms.models import model_to_dict
@@ -123,6 +125,7 @@ class ScraperMedicine(APIView):
         if medicine_serializer.is_valid():
             medicine_serializer.save()
             self.history_variables(data)
+            self.list_variables(data)
         else:
             raise ValueError(medicine_serializer.errors)
 
@@ -144,6 +147,7 @@ class ScraperMedicine(APIView):
         if serializer.is_valid():
             serializer.save()
             self.history_variables(data)
+            self.list_variables(data)
         else:
             raise ValueError(serializer.errors)
 
@@ -169,14 +173,66 @@ class ScraperMedicine(APIView):
         if len(new_data.keys()) > 1:
             self.add_medicine(new_data, current_medicine)
 
-    def history_variables(self, data):
+    def list_variables(self, data):
         """
-        Creates new history variables for the history models using the data given in its 
-        argument "data".       
+        Creates new list variables for the history models using the data given in its
+        argument "data". It expects the input data to be formed like this:
+        name: ["value1", "value2", ...]
 
         Args:
             data (medicineObject): The new medicine data.
-        """        
+        """
+        self.add_list(
+            LegalBases,
+            LegalBasesSerializer,
+            "eu_legal_basis",
+            data,
+            True,
+        )
+
+    @staticmethod
+    def add_list(model, serializer, name, data, replace):
+        """
+        Add a new object to the given list model.
+
+        Args:
+            model (medicine_model): The list model of the list object you want to add.
+            serializer (medicine_serializer): The applicable serializer.
+            name (string): The name of the attribute.
+            data (medicineObject): The new medicine data.
+            replace (bool): If True, will delete all previously added objects with the same eu_pnumber
+
+        Raises:
+            ValueError: Invalid data in data argument
+            ValueError: Data does not exist in the given data argument
+        """
+        eu_pnumber = data.get("eu_pnumber")
+        items = data.get(name)
+        model_data = model.objects.filter(eu_pnumber=eu_pnumber).all()
+
+        if items is not None and len(items) > 0:
+            for item in items:
+                if model_data and replace:
+                    model_data.delete()
+                serializer = serializer(
+                    None, {name: item, "eu_pnumber": eu_pnumber}
+                )
+                if serializer.is_valid():
+                    serializer.save()
+                else:
+                    raise ValueError(f"{name} contains invalid data! {serializer.errors}")
+        elif not model_data:
+            raise ValueError(f"{name} must be part of the data posted!")
+
+
+    def history_variables(self, data):
+        """
+        Creates new history variables for the history models using the data given in its
+        argument "data".
+
+        Args:
+            data (medicineObject): The new medicine data.
+        """
         self.add_history(
             HistoryAuthorisationType,
             AuthorisationTypeSerializer,

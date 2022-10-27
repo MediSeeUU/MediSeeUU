@@ -12,13 +12,14 @@
 from rest_framework import serializers
 from api.models.medicine_models import (
     Medicine,
+    LegalBases,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
-    HistoryEUOrphanCon
+    HistoryEUOrphanCon,
 )
 from api.serializers.medicine_serializers.public import (
     AuthorisationStatusSerializer,
@@ -31,11 +32,23 @@ from api.serializers.medicine_serializers.public import (
 )
 
 
-# Creates medicine object per medicine
+class LegalBasesSerializer(serializers.ModelSerializer):
+    """
+    Legal bases table serializer for the view endpoint medicine
+    """
+    class Meta:
+        """
+        Meta information
+        """
+        model = LegalBases
+        fields = ("eu_legal_basis",)
+
+
 class PublicMedicineSerializer(serializers.ModelSerializer):
     """
     This is the view endpoint for a medicine.
     """
+    eu_legal_basis = serializers.SerializerMethodField()
     eu_aut_status = serializers.SerializerMethodField()
     eu_aut_type_initial = serializers.SerializerMethodField()
     eu_aut_type_current = serializers.SerializerMethodField()
@@ -55,6 +68,20 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         model = Medicine
         fields = "__all__"
 
+    def get_eu_legal_basis(self, legal_basis):
+        """
+        This retrieves the authorisation status from the database for each medicine.
+
+        Args:
+            legal_basis (Any): The legal basis of the medicine.
+
+        Returns:
+            str: Returns the data of the relevant serializer as JSON.
+        """
+        queryset = LegalBases.objects.filter(eu_pnumber=legal_basis.eu_pnumber)
+        if len(queryset) == 0:
+            queryset = None
+        return LegalBasesSerializer(instance=queryset, read_only=True, many=True).data
 
     def get_eu_aut_status(self, authorisation_status):
         """
@@ -266,6 +293,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         """        
         representation = super().to_representation(obj)
 
+        # Change the representation for all history variables
         for field in [
             "eu_aut_status",
             "eu_aut_type_initial",
@@ -282,5 +310,15 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             field_representation = representation.pop(field)
             for key in field_representation:
                 representation[field] = field_representation[key]
+
+        # Change the representation for all list variables
+        for field in [
+            "eu_legal_basis",
+        ]:
+            field_representation = representation.pop(field)
+            representation[field] = []
+            for key in field_representation:
+                for value in key.values():
+                    representation[field].append(value)
 
         return representation

@@ -60,10 +60,10 @@ class AutStatus(models.TextChoices):
     REFUSALS = "REFUSED"
 
 
-class LegalBases(models.TextChoices):
+class LegalBasesTypes(models.TextChoices):
     """
     Choice types for legal bases. Is derived from the enumerated choice class.
-    """   
+    """
     article48 = "article 4.8",
     article4_8 = "article 4(8)"
     article48_1 = "article 4.8(1)",
