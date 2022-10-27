@@ -103,13 +103,17 @@ def main(data_filepath: str = '../../data'):
 
         # Transform zipped list into individual lists for thread_map function
         # The last element of the medicine_codes tuple is not of interest, thus we pop()
-        unzipped_medicine_codes = [list(t) for t in zip(*medicine_codes)]
-        unzipped_medicine_codes.pop()
 
-        with tqdm.contrib.logging.logging_redirect_tqdm():
-            tqdm_concurrent.thread_map(get_urls_ec_retry,
-                                       *unzipped_medicine_codes,
-                                       [data_filepath] * len(medicine_codes))
+        with tqdm_logging.logging_redirect_tqdm():
+            if use_parallelization:
+                unzipped_medicine_codes = [list(t) for t in zip(*medicine_codes)]
+                unzipped_medicine_codes.pop()
+                tqdm_concurrent.thread_map(get_urls_ec_retry,
+                                           *unzipped_medicine_codes,
+                                           [data_filepath] * len(medicine_codes))
+            else:
+                for (medicine_url, eu_n, medicine_type, _) in tqdm.tqdm(medicine_codes):
+                    get_urls_ec_retry(medicine_url, eu_n, medicine_type, data_filepath)
 
         url_file.save_dict()
         log.info("TASK FINISHED EC scrape")
@@ -129,14 +133,23 @@ def main(data_filepath: str = '../../data'):
 
         unzipped_ema_urls = [list(t) for t in zip(*ema_urls)]
 
-        with tqdm.contrib.logging.logging_redirect_tqdm():
-            tqdm_concurrent.thread_map(get_urls_ema_retry, *unzipped_ema_urls)
+        with tqdm_logging.logging_redirect_tqdm():
+            if use_parallelization:
+                tqdm_concurrent.thread_map(get_urls_ema_retry, *unzipped_ema_urls)
+
+            else:
+                for eu_n, url in tqdm.tqdm(ema_urls, bar_format=tqdm_format_string):
+                    get_urls_ema_retry(eu_n, url)
 
         url_file.save_dict()
         log.info("TASK FINISHED EMA scrape")
 
     if download_files:
-        download.download_all(parallel_download=use_parallelization)
+        log.info("TASK START downloading pdf files from fetched urls from EC and EMA")
+
+        download.download_all(url_file, parallel_download=use_parallelization)
+
+        log.info("TASK FINISHED downloading pdf files")
 
 
 # Keep the code locally testable by including this.

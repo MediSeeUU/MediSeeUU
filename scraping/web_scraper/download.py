@@ -1,16 +1,17 @@
-import ast
 import logging
-import os
 from pathlib import Path
 
-import pandas as pd
-import requests
-from joblib import Parallel, delayed
-
 import regex as re
+import requests
+import tqdm
+import tqdm.contrib.concurrent as tqdm_concurrent
+import tqdm.contrib.logging as tqdm_logging
+
 import scraping.web_scraper.json_helper as json_helper
+import scraping.web_scraper.utils as utils
 
 log = logging.getLogger("webscraper.ec_scraper")
+urls_file: json_helper.JsonHelper
 
 # TODO: make sure the data path is declared somewhere in main.
 data_path = '../../data'
@@ -48,43 +49,23 @@ def download_pdfs_ema(eu_num: str, epar_url: str, med_dict: dict[str, str]):
 
 
 def download_medicine_files(eu_n: str, url_dict: dict[str, [str]]):
-    log.debug(eu_n)
-    attempts = 0
-    max_attempts = 4
-    success = False
     attr_dict = (json_helper.JsonHelper(path=f"../../data/{eu_n}/{eu_n}_attributes.json")).load_json()
-    while attempts < max_attempts and not success:
-        try:
-            download_pdfs_ec(eu_n, "dec", url_dict["aut_url"], attr_dict)
-            download_pdfs_ec(eu_n, "anx", url_dict["smpc_url"], attr_dict)
-            download_pdfs_ema(eu_n, url_dict["epar_url"], attr_dict)
-            success = True
-            log.info(f"Downloaded all files for {eu_n}")
-        except Exception:
-            attempts += 1
-            log.info(f"Failed getting al pdf files for {eu_n}")
+    utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "dec", url_dict["aut_url"], attr_dict)
+    utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "anx", url_dict["smpc_url"], attr_dict)
+    utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, url_dict["epar_url"], attr_dict)
+    log.info(f"Finished download for {eu_n}")
 
 
-def download_all(parallel_download: bool):
-    # dos2unix('CSV/epar.csv')
-    # Store the result of the csv converting into dictionaries
-    # decisions, annexes, epar, med_dict = read_csv_files()
-    log.info("TASK START downloading pdf files from fetched urls from EC and EMA")
-    urls_dict = (json_helper.JsonHelper(path="../../scraping/web_scraper/CSV/urls.json")).load_json()
-    if parallel_download:
-        with Parallel(n_jobs=12) as parallel:
-            # Download the decision files, parallel
-            parallel(
-                delayed(download_medicine_files)(eu_n, urls_dict[eu_n])
-                for eu_n
-                in urls_dict
-            )
+def download_all(url_jsonhelper: json_helper.JsonHelper, parallel_download: bool):
+    global urls_file
+    urls_file = url_jsonhelper
 
-    else:
-        for eu_n in urls_dict:
-            download_medicine_files(eu_n, urls_dict[eu_n])
-    log.info("TASK FINISHED downloading pdf files")
+    with tqdm_logging.logging_redirect_tqdm():
+        if parallel_download:
+            tqdm_concurrent.thread_map(download_medicine_files,
+                                       urls_file.local_dict.keys(),
+                                       urls_file.local_dict.values())
 
-
-
-
+        else:
+            for eu_n, urls_eu_n_dict in tqdm.tqdm(urls_file.local_dict.items()):
+                download_medicine_files(eu_n, urls_eu_n_dict)
