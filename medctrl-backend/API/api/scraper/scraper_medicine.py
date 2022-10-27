@@ -65,7 +65,7 @@ class ScraperMedicine(APIView):
     def post(self, request):
         """ 
         post is the post endpoint of this class. Medicine scraper communicates 
-        via this endpoint to inster data into the database.
+        via this endpoint to insert data into the database.
 
         Args:
             request (httpRequest): The data from the post request. This should contain a header
@@ -81,22 +81,21 @@ class ScraperMedicine(APIView):
         # get "medicine" key from request
         for medicine in medicine_list:
             try:
-                # Atomic transaction so if there is any error all changes are rolled back
+                # atomic transaction so if there is any error all changes are rolled back
                 # Django will automatically roll back if any exception occurs
                 with transaction.atomic():
                     # check if medicine already exists based on eu_pnumber
                     current_medicine = Medicine.objects.filter(
                         pk=medicine.get("eu_pnumber")
                     ).first()
-                    # if exists update the medicine otherwise add it,
-                    # update works only on flexible variables
-
-                    if current_medicine:
+                    # if the medicine doesn't exist or the medicine should be overriden, call add_medicine,
+                    # otherwise update the flexible variables and the null values
+                    override = medicine.get("override")
+                    if current_medicine is None or override:
+                        self.add_or_override_medicine(medicine, current_medicine, override)
+                    else:
                         self.update_flex_medicine(medicine, current_medicine)
                         self.update_null_values(medicine)
-                    else:
-                        self.add_medicine(medicine, None)
-
             except Exception as e:
                 medicine["errors"] = str(e)
                 failed_medicines.append(medicine)
@@ -104,7 +103,9 @@ class ScraperMedicine(APIView):
             else:
                 logger.info(f"Posted medicine successfully added to database: {medicine}")
 
+        # put all new medicine objects into the cache
         update_cache()
+        # send back a list with all the failed medicines
         return Response(failed_medicines, status=200)
 
     def update_flex_medicine(self, data, current):
@@ -125,7 +126,7 @@ class ScraperMedicine(APIView):
         else:
             raise ValueError(medicine_serializer.errors)
 
-    def add_medicine(self, data, current):
+    def add_or_override_medicine(self, data, current, override: bool):
         """
         Adds a new medicine with its attributes to the database. If this is valid, 
         it will also add the history variables to the database.
@@ -133,9 +134,11 @@ class ScraperMedicine(APIView):
         Args:
             data (medicineObject): The new medicine data.
             current (medicineObject): The medicine data that is currently in the database.
+            override (bool): Specifies if the new medine should override an existing medicine.
         """        
         # initialise serializers for addition
-        serializer = MedicineSerializer(current, data=data)
+        # partial is only allowed if an existing medicine is being overwritten
+        serializer = MedicineSerializer(current, data=data, partial=current and override)
 
         # add medicine and authorisation
         if serializer.is_valid():
@@ -223,7 +226,6 @@ class ScraperMedicine(APIView):
             data,
         )
 
-    # Add new object to history model
     @staticmethod
     def add_history(model, serializer, name, data):
         """
@@ -240,17 +242,18 @@ class ScraperMedicine(APIView):
             ValueError: Data does not exist in the given data argument
         """        
         eu_pnumber = data.get("eu_pnumber")
-        item = data.get(name)
+        items = data.get(name)
         model_data = model.objects.filter(eu_pnumber=eu_pnumber).order_by("change_date").first()
 
-        if item is not None:
-            if not model_data or item.get(name) != getattr(model_data, name):
-                serializer = serializer(
-                    None, {name: item.get(name), "change_date": item.get("change_date"), "eu_pnumber": eu_pnumber}
-                )
-                if serializer.is_valid():
-                    serializer.save()
-                else:
-                    raise ValueError(f"{name} contains invalid data! {serializer.errors}")
+        if items is not None and len(items) > 0:
+            for item in items:
+                if not model_data or item.get(name) != getattr(model_data, name):
+                    serializer = serializer(
+                        None, {name: item.get(name), "change_date": item.get("change_date"), "eu_pnumber": eu_pnumber}
+                    )
+                    if serializer.is_valid():
+                        serializer.save()
+                    else:
+                        raise ValueError(f"{name} contains invalid data! {serializer.errors}")
         elif not model_data:
             raise ValueError(f"{name} must be part of the data posted!")
