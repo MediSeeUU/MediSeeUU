@@ -135,8 +135,31 @@ with the database models medicine and authorisation.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.add_medicine">
-<span class="sig-name descname"><span class="pre">add_medicine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine.add_medicine" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.add_list">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serializer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine.add_list" title="Permalink to this definition"></a></dt>
+<dd><p>Add a new object to the given list model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>medicine_model</em>) – The list model of the list object you want to add.</p></li>
+<li><p><strong>serializer</strong> (<em>medicine_serializer</em>) – The applicable serializer.</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – The name of the attribute.</p></li>
+<li><p><strong>data</strong> (<em>medicineObject</em>) – The new medicine data.</p></li>
+<li><p><strong>replace</strong> (<em>bool</em>) – If True, will delete all previously added objects with the same eu_pnumber</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – Invalid data in data argument</p></li>
+<li><p><strong>ValueError</strong> – Data does not exist in the given data argument</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.add_or_override_medicine">
+<span class="sig-name descname"><span class="pre">add_or_override_medicine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">override</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine.add_or_override_medicine" title="Permalink to this definition"></a></dt>
 <dd><p>Adds a new medicine with its attributes to the database. If this is valid,
 it will also add the history variables to the database.</p>
 <dl class="field-list simple">
@@ -144,6 +167,7 @@ it will also add the history variables to the database.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<em>medicineObject</em>) – The new medicine data.</p></li>
 <li><p><strong>current</strong> (<em>medicineObject</em>) – The medicine data that is currently in the database.</p></li>
+<li><p><strong>override</strong> (<em>bool</em>) – Specifies if the new medine should override an existing medicine.</p></li>
 </ul>
 </dd>
 </dl>
@@ -176,6 +200,19 @@ argument “data”.</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.list_variables">
+<span class="sig-name descname"><span class="pre">list_variables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine.list_variables" title="Permalink to this definition"></a></dt>
+<dd><p>Creates new list variables for the history models using the data given in its
+argument “data”. It expects the input data to be formed like this:
+name: [“value1”, “value2”, …]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>medicineObject</em>) – The new medicine data.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.permission_classes">
 <span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.DjangoModelPermissions'&gt;]</span></em><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine.permission_classes" title="Permalink to this definition"></a></dt>
@@ -185,7 +222,7 @@ argument “data”.</p>
 <dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.post">
 <span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine.post" title="Permalink to this definition"></a></dt>
 <dd><p>post is the post endpoint of this class. Medicine scraper communicates
-via this endpoint to inster data into the database.</p>
+via this endpoint to insert data into the database.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -232,9 +269,6 @@ argument “data”.</p>
 
 </dd></dl>
 
-</section>
-<section id="module-api.scraper.scraper_procedure">
-<span id="api-scraper-scraper-procedure-module"></span><h2>api.scraper.scraper_procedure module<a class="headerlink" href="#module-api.scraper.scraper_procedure" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-api.scraper">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-api.scraper" title="Permalink to this heading"></a></h2>

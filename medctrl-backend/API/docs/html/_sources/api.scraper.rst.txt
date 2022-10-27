@@ -20,14 +20,6 @@ api.scraper.scraper\_medicine module
    :undoc-members:
    :show-inheritance:
 
-api.scraper.scraper\_procedure module
--------------------------------------
-
-.. automodule:: api.scraper.scraper_procedure
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Module contents
 ---------------
 
