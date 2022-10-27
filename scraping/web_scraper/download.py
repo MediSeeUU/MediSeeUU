@@ -14,7 +14,7 @@ log = logging.getLogger("webscraper.ec_scraper")
 
 # TODO: make sure the data path is declared somewhere in main.
 data_path = '../../data'
-
+webscraper_path = '../../scraping/web_scraper'
 
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
     downloaded_file = requests.get(url)
@@ -52,7 +52,7 @@ def download_medicine_files(eu_n: str, url_dict: dict[str, [str]]):
     attempts = 0
     max_attempts = 4
     success = False
-    attr_dict = (json_helper.JsonHelper(path=f"../../data/{eu_n}/{eu_n}_attributes.json")).load_json()
+    attr_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_attributes.json")).load_json()
     while attempts < max_attempts and not success:
         try:
             download_pdfs_ec(eu_n, "dec", url_dict["aut_url"], attr_dict)
@@ -67,7 +67,7 @@ def download_medicine_files(eu_n: str, url_dict: dict[str, [str]]):
 
 def download_all(parallel_download: bool):
     log.info("TASK START downloading pdf files from fetched urls from EC and EMA")
-    urls_dict = (json_helper.JsonHelper(path="../../scraping/web_scraper/CSV/urls.json")).load_json()
+    urls_dict = (json_helper.JsonHelper(path=f"{webscraper_path}/CSV/urls.json")).load_json()
     if parallel_download:
         with Parallel(n_jobs=12) as parallel:
             # Download the decision files, parallel
