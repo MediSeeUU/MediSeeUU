@@ -16,7 +16,7 @@ def file_is_initial(xml_head: ET.Element) -> bool:
     """
 
     initial_element = xml_head.findall(tags.initial_authorization)[0]
-    return initial_element.text.strip() == 'True'
+    return initial_element.text.strip() == "True"
 
 
 def file_get_name_pdf(xml_head: ET.Element) -> str:
@@ -49,7 +49,7 @@ def file_get_creation_date(xml_head: ET.Element) -> str:
     return "no_creation_date"
 
 
-def get_paragraphs_by_header(header: str, xml: ET.Element) -> [str]:
+def get_paragraphs_by_header(header: str, xml: ET.Element) -> list[str]:
     """
     Returns a list of all paragraphs contained by the given header
 
@@ -58,7 +58,7 @@ def get_paragraphs_by_header(header: str, xml: ET.Element) -> [str]:
         xml (xml.etree.ElementTree.Element): the entire xml document
 
     Returns:
-        [str]: List of all paragraphs contained by the given header
+        list[str]: List of all paragraphs contained by the given header
     """
     res = []
     for section in xml:
