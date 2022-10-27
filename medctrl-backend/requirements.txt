@@ -10,3 +10,6 @@ django-rest-knox
 djangorestframework-guardian
 django-import-export
 docutils
+sphinx
+myst-parser
+sphinx_rtd_theme
