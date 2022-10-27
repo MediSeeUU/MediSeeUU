@@ -20,7 +20,7 @@ from api.models.medicine_models import (
 
 class AuthorisationStatusSerializer(serializers.ModelSerializer):
     """
-    Authorisation table serializer for the view endpoint medicine
+    Authorisation Status serializer for the post endpoint.
     """
 
     class Meta:
@@ -34,7 +34,7 @@ class AuthorisationStatusSerializer(serializers.ModelSerializer):
 
 class AuthorisationTypeSerializer(serializers.ModelSerializer):
     """
-    Authorisation table serializer for the view endpoint medicine
+    Authorisation type serializer for the post endpoint.
     """
 
     class Meta:
@@ -48,7 +48,7 @@ class AuthorisationTypeSerializer(serializers.ModelSerializer):
 
 class BrandNameSerializer(serializers.ModelSerializer):
     """
-    Authorisation table serializer for the view endpoint medicine
+    Brand name serializer for the post endpoint
     """
 
     class Meta:
@@ -62,7 +62,7 @@ class BrandNameSerializer(serializers.ModelSerializer):
 
 class MAHSerializer(serializers.ModelSerializer):
     """
-    Authorisation table serializer for the view endpoint medicine
+    Marketing Authorisation Holder serializer for the post endpoint
     """
 
     class Meta:
@@ -76,23 +76,21 @@ class MAHSerializer(serializers.ModelSerializer):
 
 class OrphanDesignationSerializer(serializers.ModelSerializer):
     """
-    Authorisation table serializer for the view endpoint medicine
+    Orphan Designation table serializer for the post endpoint
     """
-
     class Meta:
         """
         Meta information
         """
-
         model = HistoryOD
         exclude = ["id", ]
 
 
 class PrimeSerializer(serializers.ModelSerializer):
     """
-    Authorisation table serializer for the view endpoint medicine
+    Priority Medicine Designation table serializer for the post endpoint
     """
-
+    
     class Meta:
         """
         Meta information
@@ -104,7 +102,7 @@ class PrimeSerializer(serializers.ModelSerializer):
 
 class EUOrphanConSerializer(serializers.ModelSerializer):
     """
-    Authorisation table serializer for the view endpoint medicine
+    Orphan Condition table serializer for the post endpoint
     """
 
     class Meta:

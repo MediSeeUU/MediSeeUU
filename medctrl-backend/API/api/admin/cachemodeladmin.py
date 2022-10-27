@@ -10,7 +10,6 @@ class CacheModelAdmin(admin.ModelAdmin):
     Admin View class.
     Every class that will inherit from this will automatically update the cache after data modifications.
     """
-
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
         update_cache()

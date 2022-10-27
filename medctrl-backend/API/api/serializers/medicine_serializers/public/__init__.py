@@ -7,4 +7,7 @@ from .public_history import (
     PrimeSerializer,
     EUOrphanConSerializer
 )
-from .public_medicine import PublicMedicineSerializer
+from .public_medicine import (
+    PublicMedicineSerializer,
+    LegalBasesSerializer,
+)

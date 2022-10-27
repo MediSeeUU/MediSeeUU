@@ -2,8 +2,8 @@ from operator import is_
 import sys
 from typing import TextIO
 import fitz
-import pdf_module.pdf_scraper.pdf_helper as ph
-import pdf_module.pdf_scraper.xml_tags as tags
+import scraping.pdf_module.pdf_scraper.pdf_helper as ph
+import scraping.pdf_module.pdf_scraper.xml_tags as tags
 from os import path
 import re
 
@@ -12,7 +12,7 @@ header_indicator = "|-HEADER-|"
 
 def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
     """
-    Creates an xml file of given pdf file in same directory
+    Creates a xml file of given pdf file in same directory
 
     Args:
         source_filepath (str): filepath to pdf file to convert to xml
@@ -38,10 +38,11 @@ def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
     Returns a list of paragraph strings based on input from get_text()
 
     Args:
-        lines (list[(str, float, str)]): a list of pdf text line and font info tuple (line_text: str, line_font_size: float, line_font_type: str)
+        lines (list[(str, float, str)]): a list of pdf text line and
+        font info tuple line_text: str, line_font_size: float, line_font_type: str)
 
     Returns:
-        list[str]: list of paragraphs in the format of "bolded_text|-HEADER-|unbolded_text"
+        list[str]: list of paragraphs in the format of "bolded_text | -HEADER- | unbolded_text"
     """    
     # concatenate list of lines into list of paragraphs and mark bolded lines
     paragraphs = []
@@ -65,10 +66,12 @@ def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
 
 def split_paragraphs(paragraphs: list[str]) -> list[(str, str)]:
     """
-    Returns a list of (header, paragraph) tuples from a list of paragraphs in format "bolded_text|-HEADER-|unbolded_text", meant to take get_marked_paragraph's return value as input.
+    Returns a list of (header, paragraph) tuples from a list of paragraphs in
+    format "bolded_text | -HEADER- | unbolded_text", meant to take get_marked_paragraph's return value as input.
 
     Args:
-        paragraphs (list[str]): a list of paragraphs in the format returned by get_marked_paragraphs: "bolded_text|-HEADER-|unbolded_text"
+        paragraphs (list[str]): a list of paragraphs in the format returned by 
+            get_marked_paragraphs: "bolded_text | -HEADER- | unbolded_text"
 
     Returns:
         list[(str, str)]: list of XML section text in form of (header, paragraph)
@@ -93,14 +96,15 @@ def split_paragraphs(paragraphs: list[str]) -> list[(str, str)]:
 
 def remove_illegal_characters(string: str) -> str:
     """
-    Takes a string and returns a string where all special XML characters are replaced with their delimited version and all illegal UTF-8 characters removed.
+    Takes a string and returns a string where all special XML characters are replaced with their
+    delimited version and all illegal UTF-8 characters removed.
 
     Args:
         string (str): input string to be converted to legal XML text
 
     Returns:
         str: legal XML text with special and illegal characters replaced
-    """    
+    """
     non_illegal_string = ""
     for character in string:
         if character == '':

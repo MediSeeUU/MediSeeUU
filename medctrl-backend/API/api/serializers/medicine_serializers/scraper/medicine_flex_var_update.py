@@ -7,11 +7,13 @@ from api.models.medicine_models import Medicine
 
 # serializer for the flexible fields of medicine
 class MedicineFlexVarUpdateSerializer(serializers.ModelSerializer):
-    """Medicineflex serializer"""
-
+    """
+    Medicineflex serializer for the post endpoint
+    """
     class Meta:
-        """Metadata"""
-
+        """
+        Metadata
+        """
         model = Medicine
         fields = [
             "atc_code",

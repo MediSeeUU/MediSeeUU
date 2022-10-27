@@ -16,15 +16,23 @@ from django.core.cache import cache
 from api.update_cache import update_cache
 from api.views.other import permissionFilter
 
-# Returns a list of urls according to the access level of the user
+
 class UrlsViewSet(viewsets.ViewSet):
     """
     View set for the URLS in the Medicine model
     """
-
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def list(self, request):
+        """
+        Returns a list of urls according to the access level of the user
+
+        Args:
+            request (httpRequest): the incoming httpRequest
+
+        Returns:
+            httpResponse: Response with the list of filtered urls
+        """        
         cache_urls = cache.get("urls_cache")
 
         # if the data is not present in the cache, we just obtain the data from the database

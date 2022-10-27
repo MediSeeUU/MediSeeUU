@@ -8,11 +8,12 @@ from api.models.medicine_models import (
     HistoryOD,
     HistoryPrime,
     HistoryEUOrphanCon,
+    LegalBases,
 )
 from api.models.medicine_models.common import (
     AutStatus,
     AutTypes,
-    LegalBases
+    LegalBasesTypes,
 )
 
 from api.serializers.medicine_serializers.public import PublicMedicineSerializer
@@ -28,7 +29,6 @@ class PublicMedicineSerializerTestCase(TestCase):
             ema_procedure_start_initial="2000-01-01",
             chmp_opinion_date="2000-01-02",
             eu_aut_date="2000-01-03",
-            eu_legal_basis=LegalBases.article10_a,
             ema_url="emaurl.com",
             ec_url="ecurl.com",
             ema_number="1",
@@ -137,6 +137,10 @@ class PublicMedicineSerializerTestCase(TestCase):
             change_date="2021-01-08",
             eu_orphan_con="eu orphan con 2",
         )
+        LegalBases.objects.create(
+            eu_pnumber=self.medicine,
+            eu_legal_basis=LegalBasesTypes.article10_a,
+        )
 
     def test_public_medicine_serializer(self):
         data = PublicMedicineSerializer(self.medicine).data
@@ -147,7 +151,7 @@ class PublicMedicineSerializerTestCase(TestCase):
             "ema_procedure_start_initial": "2000-01-01",
             "chmp_opinion_date": "2000-01-02",
             "eu_aut_date": "2000-01-03",
-            "eu_legal_basis": "article 10(a)",
+            "eu_legal_basis": ["article 10(a)"],
             "ema_url": "emaurl.com",
             "ec_url": "ecurl.com",
             "ema_number": "1",

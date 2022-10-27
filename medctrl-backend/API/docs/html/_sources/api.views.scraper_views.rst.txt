@@ -1,0 +1,21 @@
+api.views.scraper\_views package
+================================
+
+Submodules
+----------
+
+api.views.scraper\_views.scraper\_urls\_view module
+---------------------------------------------------
+
+.. automodule:: api.views.scraper_views.scraper_urls_view
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: api.views.scraper_views
+   :members:
+   :undoc-members:
+   :show-inheritance:

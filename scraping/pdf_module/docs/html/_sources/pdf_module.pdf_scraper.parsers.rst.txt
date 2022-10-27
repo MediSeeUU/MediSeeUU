@@ -1,0 +1,45 @@
+pdf\_module.pdf\_scraper.parsers package
+========================================
+
+Submodules
+----------
+
+pdf\_module.pdf\_scraper.parsers.annex\_parser module
+-----------------------------------------------------
+
+.. automodule:: pdf_module.pdf_scraper.parsers.annex_parser
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pdf\_module.pdf\_scraper.parsers.dec\_parse module
+--------------------------------------------------
+
+.. automodule:: pdf_module.pdf_scraper.parsers.dec_parse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pdf\_module.pdf\_scraper.parsers.epar\_parse module
+---------------------------------------------------
+
+.. automodule:: pdf_module.pdf_scraper.parsers.epar_parse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pdf\_module.pdf\_scraper.parsers.omar\_parse module
+---------------------------------------------------
+
+.. automodule:: pdf_module.pdf_scraper.parsers.omar_parse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pdf_module.pdf_scraper.parsers
+   :members:
+   :undoc-members:
+   :show-inheritance:

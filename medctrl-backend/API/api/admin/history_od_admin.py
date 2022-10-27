@@ -13,17 +13,16 @@ from api.admin.cachemodeladmin import CacheModelAdmin
 
 class HistoryODResource(resources.ModelResource):
     """
-    Resource for the HistoryOD model.
+    Necessary resource class for the HistoryOD admin view.
     Has explicit foreign keys so Django import/export can automatically create the values if needed.
+    ModelResource is Resource subclass for handling Django models.
     """
-
     eu_pnumber = import_foreign_key("eu_pnumber", Medicine)
 
     class Meta:
         """
         Meta class for HistoryODResource
         """
-
         model = HistoryOD
         import_id_fields = (
             "eu_pnumber",
@@ -34,7 +33,6 @@ class HistoryODAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
     Admin View for HistoryOD
     """
-
     resource_class = HistoryODResource
     list = (
         "id",

@@ -18,6 +18,7 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
+    LegalBases,
 )
 import logging
 
@@ -26,7 +27,6 @@ class Command(BaseCommand):
     """
     Django admin command that creates permissions for all models in the API.
     """
-
     help = "Creates permissions for the columns per table"
 
     def handle(self, *args, **options):
@@ -40,6 +40,7 @@ class Command(BaseCommand):
             HistoryMAH,
             HistoryOD,
             HistoryPrime,
+            LegalBases,
         ]:
             content_type = ContentType.objects.filter(model=model.__name__).first()
 

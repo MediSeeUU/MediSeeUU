@@ -246,7 +246,7 @@ def get_data_from_medicine_json(medicine_json: json,
         medicine_dict["atc_code"] = "not applicable"
 
     for key, value in medicine_dict.items():
-        if value is "":
+        if value == "":
             log.error(f"{eu_num}: No value for {key} (value: {value})")
 
     return medicine_dict, ema_url_list
@@ -337,7 +337,7 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
     procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
 
     for key, value in procedures_dict.items():
-        if value is "":
+        if value == "":
             log.error(f"{eu_num}: No value for {key} (value: {value})")
 
     return procedures_dict, dec_url_list, anx_url_list

@@ -2,15 +2,13 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from .common import create_dashboard_column, Category, LegalBases
+from .common import create_dashboard_column, Category
 
 
 class Medicine(models.Model):
     """
     This is the model class for the Medicine table. New attributes can be added here.
-
-    Args:
-        models (_type_): This model is derived from a base model from the Django library.
+    This model is derived from a base model from the Django library.
     """    
     eu_pnumber = create_dashboard_column(
         models.CharField(db_column="eu_pnumber", max_length=255, primary_key=True, null=False),
@@ -59,13 +57,6 @@ class Medicine(models.Model):
         Category.General_Information,
         "date",
         "Initial EU Authorisation Date"
-    )
-
-    eu_legal_basis = create_dashboard_column(
-        models.CharField(db_column="eu_legal_basis", max_length=14, choices=LegalBases.choices),
-        Category.General_Information,
-        "string",
-        "EU Legal Basis"
     )
 
     ema_url = create_dashboard_column(
