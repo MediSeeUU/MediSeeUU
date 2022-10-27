@@ -103,7 +103,7 @@
 <dt class="sig sig-object py" id="api.views.generate_key_views.generate_api_key.GenerateKeyForm">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.views.generate_key_views.generate_api_key.</span></span><span class="sig-name descname"><span class="pre">GenerateKeyForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_id='id_%s'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_class=&lt;class</span> <span class="pre">'django.forms.utils.ErrorList'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_suffix=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">empty_permitted=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_order=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_required_attribute=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">renderer=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.generate_key_views.generate_api_key.GenerateKeyForm" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Form</span></code></p>
-<p>Generate form to get key for api user</p>
+<p>Generate a form to get key for api user</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="api.views.generate_key_views.generate_api_key.GenerateKeyForm.base_fields">
 <span class="sig-name descname"><span class="pre">base_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'duration':</span> <span class="pre">&lt;django.forms.fields.IntegerField</span> <span class="pre">object&gt;,</span> <span class="pre">'user':</span> <span class="pre">&lt;django.forms.models.ModelChoiceField</span> <span class="pre">object&gt;}</span></em><a class="headerlink" href="#api.views.generate_key_views.generate_api_key.GenerateKeyForm.base_fields" title="Permalink to this definition"></a></dt>
@@ -126,7 +126,7 @@
 <dt class="sig sig-object py" id="api.views.generate_key_views.generate_api_key.GenerateKeyView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.views.generate_key_views.generate_api_key.</span></span><span class="sig-name descname"><span class="pre">GenerateKeyView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.generate_key_views.generate_api_key.GenerateKeyView" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UserPassesTestMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FormView</span></code></p>
-<p>Generate view to get key for api user</p>
+<p>Generate a view to get key for api user</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="api.views.generate_key_views.generate_api_key.GenerateKeyView.form_class">
 <span class="sig-name descname"><span class="pre">form_class</span></span><a class="headerlink" href="#api.views.generate_key_views.generate_api_key.GenerateKeyView.form_class" title="Permalink to this definition"></a></dt>
@@ -136,13 +136,32 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="api.views.generate_key_views.generate_api_key.GenerateKeyView.form_valid">
 <span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.generate_key_views.generate_api_key.GenerateKeyView.form_valid" title="Permalink to this definition"></a></dt>
-<dd><p>If the form is valid, redirect to the supplied URL.</p>
+<dd><p>Creates a token when a form is submitted via the django admin pannel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>form</strong> (<em>djangoForm</em>) – A form submitted via the django admin panel.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>will return the url if the form is valid.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>super.url</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="api.views.generate_key_views.generate_api_key.GenerateKeyView.get_context_data">
 <span class="sig-name descname"><span class="pre">get_context_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.generate_key_views.generate_api_key.GenerateKeyView.get_context_data" title="Permalink to this definition"></a></dt>
-<dd><p>Insert the form into the context dict.</p>
+<dd><p>Gets the context in which the data should be used in the serializer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The corresponding context.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>any</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute">
@@ -163,7 +182,16 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="api.views.generate_key_views.generate_api_key.GenerateKeyView.test_func">
 <span class="sig-name descname"><span class="pre">test_func</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.views.generate_key_views.generate_api_key.GenerateKeyView.test_func" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Returns a boolean depending on the usertype of the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>returns true if the user is a superuser</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

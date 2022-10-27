@@ -170,38 +170,153 @@
 <span id="web-scraper-download-module"></span><h2>web_scraper.download module<a class="headerlink" href="#module-web_scraper.download" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.dos2unix">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">dos2unix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_in</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.dos2unix" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">dos2unix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_in</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.dos2unix" title="Permalink to this definition"></a></dt>
+<dd><p>Helper function that converts a windows csv file to linux csv files.
+It takes a CSV file, replaces the line endings and writes this to another csv file.
+After this the new csv file will replace the old csv file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>f_in</strong> (<em>str</em>) – The filepath towards the to-be-converted csv file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.download_all">
 <span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parallel_download</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_all" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Downloads all files for all medicines. Can be done parallel or sequential.
+First it reads the CSV files, and then calls download_medicine_files function for all medicines.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parallel_download</strong> (<em>bool</em>) – If this boolean is set to True, the files will be downloaded parallel</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.download_medicine_files">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_medicine_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_medicine_files" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_medicine_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_medicine_files" title="Permalink to this definition"></a></dt>
+<dd><p>Downloads all the pdf files that belong to a medicine.
+Logs succesful downloads and also logs if not all files could be downloaded for a specific medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_n</strong> (<em>str</em>) – The EU number of the medicine where we want to download the files of</p></li>
+<li><p><strong>dec</strong> (<em>dict</em><em>[</em><em>str</em><em>,</em><em>str</em><em>]</em>) – The dictionary containing the urls of the decisions pdf files</p></li>
+<li><p><strong>anx</strong> (<em>dict</em><em>[</em><em>str</em><em>,</em><em>str</em><em>]</em>) – The dictionary containing the urls of the annexes pdf files</p></li>
+<li><p><strong>epar</strong> (<em>dict</em><em>[</em><em>str</em><em>,</em><em>str</em><em>]</em>) – The dictionary containing the urls of the EMA website files</p></li>
+<li><p><strong>med_info</strong> (<em>dict</em><em>[</em><em>str</em><em>,</em><em>str</em><em>]</em>) – The dictionary containing the attributes of a specific medicine.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.download_pdf_from_url">
 <span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_pdf_from_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_pdf_from_url" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Downloads a pdf file given an url. It also gives the file a specific name based on the input.
+The file will be downloaded to the corresponding EU number folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>str</em>) – the url towards the page where the pdf file is found</p></li>
+<li><p><strong>eu_num</strong> (<em>str</em>) – the EU number of the medicine where the pdf belongs to, also used to locate correct folder</p></li>
+<li><p><strong>filename_elements</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – list containing the filename elements: human/orphan, active/withdrawn, pdf type and file_index</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.download_pdfs_ec">
 <span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_pdfs_ec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_url_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_pdfs_ec" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Downloads the pdfs of the EC website files for a specific medicine and a specific file type (decision or annex)
+It evaluates the string in the pdf_url_dict to a list of urls which then can be used for downloading with the
+download_pdf_from_url function.
+The filename_elements used for structuring the filename are also specified in this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_num</strong> (<em>str</em>) – The EU number of the medicine where the files should be downloaded for.</p></li>
+<li><p><strong>pdf_type</strong> (<em>str</em>) – The type of pdf: decision or annex</p></li>
+<li><p><strong>pdf_url_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>,</em><em>str</em><em>]</em>) – The dictionary containing the urls to the pdf files.</p></li>
+<li><p><strong>med_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>,</em><em>str</em><em>]</em>) – The dictionary containing the attributes of the medicine. Used for structuring the filename</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.download_pdfs_ema">
 <span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_pdfs_ema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epar_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_pdfs_ema" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Downloads the pdfs of the EMA website files for a specific medicine.
+It gets the url from the epar dictionary which is used for downloading with the download_pdf_from_url function.
+The filename_elements used for structuring the filename are also specified in this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_num</strong> (<em>str</em>) – The EU number of the medicine where the files should be downloaded for.</p></li>
+<li><p><strong>epar_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>,</em><em>str</em><em>]</em>) – The dictionary containing the urls to the epar pdf files.</p></li>
+<li><p><strong>med_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>,</em><em>str</em><em>]</em>) – The dictionary containing the attributes of the medicine. Used for structuring the filename</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.read_csv_files">
 <span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">read_csv_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.read_csv_files" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Reads the csv files and converts them into dictionaries that can be used for downloading</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>This function returns three dictionaries</dt><dd><p>with EU number as keys and urls to files as values, and one dictionary with EU number as key and
+an attribute dictionary as value.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(dict[str,str], dict[str,str], dict[str,str], dict[str,str])</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-web_scraper.ec_scraper">

@@ -107,7 +107,21 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="api.views.other.medicine_info.Medicine_info.get">
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.other.medicine_info.Medicine_info.get" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Gathers all available information with the current user’s permissions
+and inserts it into a JSON. Each time a get request is send, this
+function is executed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> (<em>httpRequest</em>) – the incoming httpRequest</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The medicine information</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="api.views.other.medicine_info.Medicine_info.permission_classes">
@@ -122,12 +136,44 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="api.views.other.medicine_info_json.get_medicine_info">
 <span class="sig-prename descclassname"><span class="pre">api.views.other.medicine_info_json.</span></span><span class="sig-name descname"><span class="pre">get_medicine_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">perm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mock</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.other.medicine_info_json.get_medicine_info" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>returns a list of json components using medicine_models,
+this list is for the filters and for the detailed information page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>perm</strong> (<em>list</em><em>[</em><em>attributes</em><em>]</em>) – the permissions of the current user</p></li>
+<li><p><strong>mock</strong> (<em>list</em><em>[</em><em>models</em><em>]</em><em>, </em><em>optional</em>) – If it has a value, the mockdata</p></li>
+<li><p><strong>None.</strong> (<em>will be used instead</em><em> of </em><em>generating new data. Defaults to</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>medicinedata in JSON format</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>JSON</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="api.views.other.medicine_info_json.has_permission">
 <span class="sig-prename descclassname"><span class="pre">api.views.other.medicine_info_json.</span></span><span class="sig-name descname"><span class="pre">has_permission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">perm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.other.medicine_info_json.has_permission" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>checks if user has permission to view a field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>perm</strong> (<em>list</em><em>[</em><em>attributes</em><em>]</em>) – the permissions of the current user</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – the field name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true if the name is in the permissions</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-api.views.other.permissionFilter">
@@ -135,7 +181,16 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="api.views.other.permissionFilter.permissionFilter">
 <span class="sig-prename descclassname"><span class="pre">api.views.other.permissionFilter.</span></span><span class="sig-name descname"><span class="pre">permissionFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.other.permissionFilter.permissionFilter" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Gets all permissions of a user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the permissions of the current user</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list[attributes]</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-api.views.other.saved_selection">
@@ -153,7 +208,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="api.views.other.saved_selection.SavedSelectionViewSet.create">
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.other.saved_selection.SavedSelectionViewSet.create" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Set the created_by to the requesting users’ ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> (<em>httpRequest</em>) – the incoming httpRequest</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="api.views.other.saved_selection.SavedSelectionViewSet.description">
@@ -163,7 +224,19 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="api.views.other.saved_selection.SavedSelectionViewSet.destroy">
 <span class="sig-name descname"><span class="pre">destroy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.other.saved_selection.SavedSelectionViewSet.destroy" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Deletes the SavedSelection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> (<em>httpRequest</em>) – the incoming httpRequest</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>changes the status of the response.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>httpResponse</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="api.views.other.saved_selection.SavedSelectionViewSet.detail">
@@ -173,15 +246,15 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="api.views.other.saved_selection.SavedSelectionViewSet.get_queryset">
 <span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.views.other.saved_selection.SavedSelectionViewSet.get_queryset" title="Permalink to this definition"></a></dt>
-<dd><p>Get the list of items for this view.
-This must be an iterable, and may be a queryset.
-Defaults to using <cite>self.queryset</cite>.</p>
-<p>This method should always be used rather than accessing <cite>self.queryset</cite>
-directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
-are cached for all subsequent requests.</p>
-<p>You may want to override this if you need to provide different
-querysets depending on the incoming request.</p>
-<p>(Eg. return a list of items that is specific to the user)</p>
+<dd><p>Fetches all stored data selections.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A json with all user saved data.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>JSON</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute">

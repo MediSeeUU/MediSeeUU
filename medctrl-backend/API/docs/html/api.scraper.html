@@ -105,29 +105,76 @@
 <dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.scraper.scraper_medicine.</span></span><span class="sig-name descname"><span class="pre">ScraperMedicine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
-<p>Class which provides an interface for the scraper to interact
+<p>The ScraperMedicine class provides an interface for the scraper to interact
 with the database models medicine and authorisation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>APIView</strong> (<em>rest_framework.views.APIView</em>) – The current APIView from where communication handled</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.add_history">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serializer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine.add_history" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Add a new object to the given history model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>medicine_model</em>) – The history model of the history object you want to add.</p></li>
+<li><p><strong>serializer</strong> (<em>medicine_serializer</em>) – The applicable serializer.</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – The name of the attribute.</p></li>
+<li><p><strong>data</strong> (<em>medicineObject</em>) – The new medicine data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – Invalid data in data argument</p></li>
+<li><p><strong>ValueError</strong> – Data does not exist in the given data argument</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.add_medicine">
 <span class="sig-name descname"><span class="pre">add_medicine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine.add_medicine" title="Permalink to this definition"></a></dt>
-<dd><p>add medicine variables</p>
+<dd><p>Adds a new medicine with its attributes to the database. If this is valid,
+it will also add the history variables to the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>medicineObject</em>) – The new medicine data.</p></li>
+<li><p><strong>current</strong> (<em>medicineObject</em>) – The medicine data that is currently in the database.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.get_queryset">
 <span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine.get_queryset" title="Permalink to this definition"></a></dt>
-<dd><p>Specify queryset for DjangoModelPermissions</p>
+<dd><p>get_queryset specifies the queryset for DjangoModelPermissions.
+DjangoModelPermissions is a list of medicine the user has permissions of.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns all medicine objects found in the medicine model.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list[medicineObject]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.history_variables">
 <span class="sig-name descname"><span class="pre">history_variables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine.history_variables" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Creates new history variables for the history models using the data given in its
+argument “data”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>medicineObject</em>) – The new medicine data.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.permission_classes">
@@ -137,19 +184,51 @@ with the database models medicine and authorisation.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.post">
 <span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine.post" title="Permalink to this definition"></a></dt>
-<dd><p>Post endpoint medicine scraper</p>
+<dd><p>post is the post endpoint of this class. Medicine scraper communicates
+via this endpoint to inster data into the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<em>httpRequest</em>) – The data from the post request. This should contain a header</p></li>
+<li><p><strong>medicine_data.</strong> (<em>with a valid token and a body with a json of</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a list of all medicine that failed to get uploaded to the
+database (failed_medicine) and status code 200.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>httpResponse</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.update_flex_medicine">
 <span class="sig-name descname"><span class="pre">update_flex_medicine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine.update_flex_medicine" title="Permalink to this definition"></a></dt>
-<dd><p>Update flexible medicine variables</p>
+<dd><p>This function updates the flexible medicine variables if this is applicable for the current data.
+The function is called if a previous version of the medicine already exists in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>medicineObject</em>) – The new medicine data.</p></li>
+<li><p><strong>current</strong> (<em>medicineObject</em>) – The medicine data that is currently in the database.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="api.scraper.scraper_medicine.ScraperMedicine.update_null_values">
 <span class="sig-name descname"><span class="pre">update_null_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.scraper.scraper_medicine.ScraperMedicine.update_null_values" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Updates all null values for an existing medicine using the data given in its
+argument “data”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>medicineObject</em>) – The new medicine data.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
