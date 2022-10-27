@@ -6,6 +6,19 @@ import os
 
 
 def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
+    """
+    1. Load the XML file.
+    2. Create a dictionary with all the attributes that need to be scraped.
+    3. Loop through the body of the XML and find the attributes.
+    4. Append the attributes to the struct and return it.
+    
+    Args:
+        filename (str): Name of the XML file to be scraped.
+        medicine_struct (PIS.parsed_info_struct): The dictionary of all currently scraped attributes of this medicine.
+
+    Returns:
+        PIS.parsed_info_struct: Returns an updated struct, with the current attributes added to it.
+    """    
     try:
         xml_tree = ET.parse(filepath)
     except ET.ParseError:
