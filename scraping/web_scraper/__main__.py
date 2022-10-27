@@ -61,6 +61,7 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
     # TODO: Common name structure?
     url_json: dict[str, list[str]] = {
         eu_n: {
+            "ec_url": medicine_url,
             "aut_url": dec_list,
             "smpc_url": anx_list,
             "ema_url": ema_list

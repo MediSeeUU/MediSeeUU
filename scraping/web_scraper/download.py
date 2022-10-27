@@ -29,7 +29,7 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
         log.debug(f"DOWNLOADED {filename} for {eu_num}")
 
 
-# Download pdfs using the dictionaries created from the CSV files
+# Download pdfs using the dictionaries created from the json file
 def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_urls: list[str], med_dict: dict[str, str]):
     file_counter = 0
     for url in pdf_urls:
@@ -66,9 +66,6 @@ def download_medicine_files(eu_n: str, url_dict: dict[str, [str]]):
 
 
 def download_all(parallel_download: bool):
-    # dos2unix('CSV/epar.csv')
-    # Store the result of the csv converting into dictionaries
-    # decisions, annexes, epar, med_dict = read_csv_files()
     log.info("TASK START downloading pdf files from fetched urls from EC and EMA")
     urls_dict = (json_helper.JsonHelper(path="../../scraping/web_scraper/CSV/urls.json")).load_json()
     if parallel_download:
