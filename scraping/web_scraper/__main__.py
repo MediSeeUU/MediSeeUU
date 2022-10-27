@@ -3,8 +3,8 @@ import logging
 from pathlib import Path
 from datetime import datetime
 
-from joblib import Parallel, delayed
 import tqdm
+import tqdm.contrib.logging
 
 import download
 import ec_scraper
@@ -35,7 +35,7 @@ tqdm_format_string = "{l_bar}{bar}| {n_fmt}/{total_fmt} "
 log_handler_console = logging.StreamHandler()
 log_handler_file = logging.FileHandler("webscraper.log")
 
-logging.basicConfig(level=logging.DEBUG, handlers=[log_handler_console, log_handler_file])
+logging.basicConfig(level=logging.INFO, handlers=[log_handler_console, log_handler_file])
 
 # TODO: To __init__? Figure some stuff out
 log = logging.getLogger("webscraper")
@@ -95,48 +95,34 @@ def main(data_filepath: str = '../../data'):
 
     medicine_codes: list[(str, str, int, str)] = ec_scraper.scrape_medicines_list()
 
-    # TODO: Review necessity of JobLib
-    with Parallel(n_jobs=12) as parallel:
-        # TODO: Progressbar needs to be below logging output
-        #       https://stackoverflow.com/questions/6847862/how-to-change-the-format-of-logged-messages-temporarily-in-python
-        #       Currently does not work
-        # log_handler.setFormatter(logging.Formatter("\r%(message)s"))
-        if scrape_ec:
-            log.info("TASK START scraping all medicines on the EC website")
-            if use_parallelization:
-                parallel(
-                    delayed(utils.exception_retry(get_urls_ec, logging_instance=log))(medicine_url, eu_n, medicine_type, data_filepath)
-                    for (medicine_url, eu_n, medicine_type, _)
-                    in tqdm.tqdm(medicine_codes, bar_format=tqdm_format_string)
-                )
-            else:
-                for (medicine_url, eu_n, medicine_type, _) \
-                        in tqdm.tqdm(medicine_codes, bar_format=tqdm_format_string):
-                    utils.exception_retry(get_urls_ec, logging_instance=log)(medicine_url, eu_n, medicine_type, data_filepath)
-            url_file.save_dict()
-            log.info("TASK FINISHED EC scrape")
+    if scrape_ec:
+        log.info("TASK START scraping all medicines on the EC website")
 
-        if scrape_ema:
-            log.info("Scraping all individual medicine pages of EMA")
-            # Transform JSON object into list of (eu_n, url)
-            ema_urls = [(eu_n, url)
-                        for eu_n, value_dict in url_file.local_dict.items()
-                        for url in value_dict["ema_url"]]
+        get_urls_ec_retry = utils.exception_retry(get_urls_ec, logging_instance=log)
 
-            if use_parallelization:
-                parallel(
-                    delayed(utils.exception_retry(get_urls_ec, logging_instance=log))(eu_n, urls["ema_url"])
-                    for eu_n, urls
-                    in tqdm.tqdm(ema_urls, bar_format=tqdm_format_string)
-                )
-            else:
-                for eu_n, url in tqdm.tqdm(ema_urls, bar_format=tqdm_format_string):
-                    utils.exception_retry(get_urls_ema, logging_instance=log)(eu_n, url)
-            url_file.save_dict()
-            log.info("TASK FINISHED EMA scrape")
+        with tqdm.contrib.logging.logging_redirect_tqdm():
+            for (medicine_url, eu_n, medicine_type, _) in tqdm.tqdm(medicine_codes):
+                get_urls_ec_retry(medicine_url, eu_n, medicine_type, data_filepath)
 
-        # TODO: Same TODO as above
-        # log_handler.setFormatter(logging.Formatter("%(message)s"))
+        url_file.save_dict()
+        log.info("TASK FINISHED EC scrape")
+
+    if scrape_ema:
+        log.info("Scraping all individual medicine pages of EMA")
+
+        get_urls_ema_retry: callable = utils.exception_retry(get_urls_ema, logging_instance=log)
+
+        # Transform JSON object into list of (eu_n, url)
+        ema_urls = [(eu_n, url)
+                    for eu_n, value_dict in url_file.local_dict.items()
+                    for url in value_dict["ema_url"]]
+
+        with tqdm.contrib.logging.logging_redirect_tqdm():
+            for eu_n, url in tqdm.tqdm(ema_urls, bar_format=tqdm_format_string):
+                get_urls_ema_retry(eu_n, url)
+
+        url_file.save_dict()
+        log.info("TASK FINISHED EMA scrape")
 
     if download_files:
         download.download_all(parallel_download=use_parallelization)
