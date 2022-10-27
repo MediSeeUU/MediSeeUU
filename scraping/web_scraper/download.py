@@ -15,6 +15,7 @@ urls_file: json_helper.JsonHelper
 
 # TODO: make sure the data path is declared somewhere in main.
 data_path = '../../data'
+webscraper_path = '../../scraping/web_scraper'
 
 
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
@@ -30,7 +31,7 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
         log.debug(f"DOWNLOADED {filename} for {eu_num}")
 
 
-# Download pdfs using the dictionaries created from the CSV files
+# Download pdfs using the dictionaries created from the json file
 def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_urls: list[str], med_dict: dict[str, str]):
     file_counter = 0
     for url in pdf_urls:
@@ -49,7 +50,7 @@ def download_pdfs_ema(eu_num: str, epar_url: str, med_dict: dict[str, str]):
 
 
 def download_medicine_files(eu_n: str, url_dict: dict[str, [str]]):
-    attr_dict = (json_helper.JsonHelper(path=f"../../data/{eu_n}/{eu_n}_attributes.json")).load_json()
+    attr_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_attributes.json")).load_json()
     utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "dec", url_dict["aut_url"], attr_dict)
     utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "anx", url_dict["smpc_url"], attr_dict)
     utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, url_dict["epar_url"], attr_dict)
