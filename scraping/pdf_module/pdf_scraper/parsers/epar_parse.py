@@ -170,7 +170,6 @@ def get_rapp(xml: ET.Element) -> str:
         if re.findall(regex_str_3, txt):
             temp_rapp = get_rapp_after(regex_str_3, txt, 37)
             if temp_rapp:
-                print("3" + temp_rapp)
                 return temp_rapp
         # Find rapporteur after "rapporteur:" with found boolean to get rapporteur in new section
         if found:
@@ -222,7 +221,7 @@ def get_rapp_after(regex_str: str, txt: str, from_char: int) -> str:
     Returns:
         str: the attribute ema_rapp or ema_corapp - the name of the (co-)rapporteur
     """
-    rapporteur = re.search(regex_str, txt)[0][from_char:]
+    rapporteur = re.search(regex_str, txt)[0][from_char:].replace(":", "")
     rapporteur = clean_rapporteur(rapporteur)
     return rapporteur
 
