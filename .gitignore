@@ -148,6 +148,6 @@ medctrl-scraper/PDF_scraper/text_scraper/data/
 medctrl-scraper/PDF_scraper/text_scraper/test_data/
 
 # sphinx auto generated files
-**/docs/*.rst
 **/docs/sphinx-source/*.rst
+!**/docs/sphinx-source/index.rst
 **/docs/doctrees
