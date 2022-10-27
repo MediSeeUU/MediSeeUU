@@ -2,7 +2,7 @@ import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
 from os import listdir
 import os.path as path
 import json
-import pdf_module.pdf_scraper.pdf_xml_converter as xml_converter
+import scraping.pdf_module.pdf_scraper.pdf_xml_converter as xml_converter
 import joblib
 import multiprocessing
 

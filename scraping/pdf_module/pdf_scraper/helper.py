@@ -113,29 +113,6 @@ def get_date(txt: str) -> datetime.datetime:
     """
     if txt != '':
         txt = txt.lower()
-<<<<<<< Updated upstream
         return dateutil.parser.parse(txt, fuzzy=True)
-=======
-        try:
-            return dateutil.parser.parse(txt, fuzzy=True)
-        except Exception:
-            pass
-        try:
-            tempdate = txt
-            #to not catch part after year
-            if " " in tempdate:
-                tempdate = tempdate.split(" ")[0]
-
-            tempdate = convert_roman_numbers(tempdate)
-            return dateutil.parser.parse(tempdate, fuzzy=True)
-        except Exception:
-            pass
-
-        try:
-            tempdate = convert_months(txt)
-            return dateutil.parser.parse(tempdate, fuzzy=True)
-        except Exception:
-            pass
->>>>>>> Stashed changes
 
     return datetime.datetime(1980, 1, 1, 0, 0)

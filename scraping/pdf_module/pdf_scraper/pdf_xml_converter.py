@@ -2,8 +2,8 @@ from operator import is_
 import sys
 from typing import TextIO
 import fitz
-import pdf_module.pdf_scraper.pdf_helper as ph
-import pdf_module.pdf_scraper.xml_tags as tags
+import scraping.pdf_module.pdf_scraper.pdf_helper as ph
+import scraping.pdf_module.pdf_scraper.xml_tags as tags
 from os import path
 import re
 
