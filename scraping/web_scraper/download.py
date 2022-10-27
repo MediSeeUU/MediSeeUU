@@ -13,9 +13,6 @@ import scraping.web_scraper.utils as utils
 log = logging.getLogger("webscraper.ec_scraper")
 urls_file: json_helper.JsonHelper
 
-# TODO: make sure the data path is declared somewhere in main.
-data_path = '../../data'
-
 
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
     downloaded_file = requests.get(url)
@@ -56,10 +53,11 @@ def download_medicine_files(eu_n: str, url_dict: dict[str, [str]]):
     log.info(f"Finished download for {eu_n}")
 
 
-def download_all(url_jsonhelper: json_helper.JsonHelper, parallel_download: bool):
+def download_all(data_filepath: str, url_jsonhelper: json_helper.JsonHelper, parallel_download: bool):
     global urls_file
     urls_file = url_jsonhelper
-
+    global data_path
+    data_path = data_filepath
     with tqdm_logging.logging_redirect_tqdm():
         if parallel_download:
             tqdm_concurrent.thread_map(download_medicine_files,

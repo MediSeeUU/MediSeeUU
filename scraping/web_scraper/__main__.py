@@ -145,7 +145,7 @@ def main(data_filepath: str = '../../data'):
     if download_files:
         log.info("TASK START downloading pdf files from fetched urls from EC and EMA")
 
-        download.download_all(url_file, parallel_download=use_parallelization)
+        download.download_all(data_filepath, url_file, parallel_download=use_parallelization)
 
         log.info("TASK FINISHED downloading pdf files")
 
