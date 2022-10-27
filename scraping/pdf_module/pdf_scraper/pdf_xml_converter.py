@@ -71,7 +71,7 @@ def split_paragraphs(paragraphs: list[str]) -> list[(str, str)]:
 
     Args:
         paragraphs (list[str]): a list of paragraphs in the format returned by 
-            get_marked_paragraphs\: "bolded_text | -HEADER- | unbolded_text"
+            get_marked_paragraphs: "bolded_text | -HEADER- | unbolded_text"
 
     Returns:
         list[(str, str)]: list of XML section text in form of (header, paragraph)
