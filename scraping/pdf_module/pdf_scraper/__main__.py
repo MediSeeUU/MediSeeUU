@@ -66,7 +66,8 @@ def get_files(directory):
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
     epar_files = [file for file in directory_files if
                   ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
-    omar_files = [file for file in directory_files if "omar" in file and ".xml" in file]
+    #omar_files = [file for file in directory_files if "omar" in file and ".xml" in file]
+    omar_files = [path.join(directory, file) for file in directory_files if "omar" in file and ".xml" in file]
     return annex_files, decision_files, epar_files, omar_files
 
 
@@ -79,7 +80,7 @@ def run_scrapers(annex_files, decision_files, directory, epar_files, medicine_st
     for file in epar_files:
         medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
     for file in omar_files:
-        medicine_struct = omar_parse.parse_file(file, directory, medicine_struct)
+        medicine_struct = omar_parse.parse_file(file, medicine_struct)
     return medicine_struct
 
 

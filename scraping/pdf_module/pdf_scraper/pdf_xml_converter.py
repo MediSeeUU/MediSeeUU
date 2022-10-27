@@ -189,7 +189,7 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
 
     # whether the original pdf was an initial authorization file
     print_xml_tag_open(tags.initial_authorization, xml_file)
-    is_initial_file = output_filepath.split(".")[0].split("_")[-1] == "0"
+    is_initial_file = output_filepath.split(".")[-2].split("_")[-1] == "0"
     xml_file.write(str(is_initial_file))
     print_xml_tag_close(tags.initial_authorization, xml_file)
 
