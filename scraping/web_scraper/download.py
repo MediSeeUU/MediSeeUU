@@ -15,7 +15,6 @@ urls_file: json_helper.JsonHelper
 
 # TODO: make sure the data path is declared somewhere in main.
 data_path = '../../data'
-webscraper_path = '../../scraping/web_scraper'
 
 
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
@@ -41,12 +40,12 @@ def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_urls: list[str], med_dict: 
 
 
 def download_pdfs_ema(eu_num: str, epar_url: str, med_dict: dict[str, str]):
-    if epar_url != '':
+    if epar_url == '':
+        log.info(f"no ema documents available for {eu_num}")
+    else:
         pdf_type = re.findall(r"(?<=epar-)(.*)(?=_en)", epar_url)[0]
         filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type]
         download_pdf_from_url(epar_url, eu_num, filename_elements)
-    else:
-        log.info(f"no ema documents available for {eu_num}")
 
 
 def download_medicine_files(eu_n: str, url_dict: dict[str, [str]]):
@@ -65,7 +64,7 @@ def download_all(url_jsonhelper: json_helper.JsonHelper, parallel_download: bool
         if parallel_download:
             tqdm_concurrent.thread_map(download_medicine_files,
                                        urls_file.local_dict.keys(),
-                                       urls_file.local_dict.values())
+                                       urls_file.local_dict.values(), max_workers=12)
 
         else:
             for eu_n, urls_eu_n_dict in tqdm.tqdm(urls_file.local_dict.items()):

@@ -7,16 +7,13 @@ import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 
-import download
-import ec_scraper
-import ema_scraper
-import utils
-import json_helper
+from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper
+
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
-scrape_ec: bool = True
-scrape_ema: bool = True           # Requires scrape_ec to have been run at least once
+scrape_ec: bool = False
+scrape_ema: bool = False           # Requires scrape_ec to have been run at least once
 download_files: bool = True         # Download pdfs from the obtained links
 use_parallelization: bool = True   # Parallelization is currently broken on Windows. Set to False
 
@@ -42,10 +39,10 @@ logging.basicConfig(level=logging.INFO, handlers=[log_handler_console, log_handl
 log = logging.getLogger("webscraper")
 logging.getLogger("urllib3.connectionpool").setLevel(logging.INFO)
 
-url_file = json_helper.JsonHelper(path="CSV/urls.json")
+url_file = json_helper.JsonHelper(path="JSON/urls.json")
 
 
-# Paralleled function for getting the URL codes. They are written to a CSV file
+# Paralleled function for getting the URL codes. They are written to a JSON file
 # TODO: unmarked type for medicine_type
 def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.MedicineType, data_path: str):
     # A list of the medicine types we want to scrape is defined in this file
@@ -89,7 +86,7 @@ def get_urls_ema(eu_n: str, url: str):
 def main(data_filepath: str = '../../data'):
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
-    Path("CSV").mkdir(exist_ok=True, parents=True)
+    Path("JSON").mkdir(exist_ok=True, parents=True)
     # TODO: Remove mkdir filepath after it is moved to monolithic main
     Path(data_filepath).mkdir(exist_ok=True, parents=True)
 

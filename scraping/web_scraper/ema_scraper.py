@@ -2,7 +2,7 @@ import requests
 import logging
 import bs4
 
-log = logging.getLogger("webscraper.ec_scraper")
+log = logging.getLogger("webscraper.ema_scraper")
 
 
 def pdf_links_from_url(url: str) -> str:
