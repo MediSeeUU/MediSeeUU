@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-# Returns a list of medicines according to the access level of the user
 class MedicineViewSet(viewsets.ViewSet):
     """
     View set for the Medicine model
@@ -32,6 +31,15 @@ class MedicineViewSet(viewsets.ViewSet):
     update_cache()
 
     def list(self, request):
+        """
+        Returns a list of medicines according to the access level of the user
+
+        Args:
+            request (httpRequest): httpRequest from the user
+
+        Returns:
+            httpResponse: returns a list of filtered medicine corresponding to this type of user.
+        """        
         cache_medicine = cache.get("medicine_cache")
 
         # if the data is not present in the cache, we just obtain the data from the database

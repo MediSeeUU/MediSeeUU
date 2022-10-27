@@ -6,7 +6,7 @@ import os
 from scraping.pdf_module.pdf_scraper.parsers import epar_parse
 import xml.etree.ElementTree as ET
 
-test_data_loc = "../../../data"
+test_data_loc = "../../data"
 xml_bodies = []
 percentage_str = "Percentage found: "
 
@@ -16,6 +16,7 @@ class TestEparParse(TestCase):
     """
     Class that contains the unit tests for scraping.pdf_module.pdf_scraper.scrapers.epar_parse
     """
+
     def setUp(self):
         """
         Prepare a list of XML files in the global variable xml_bodies
@@ -152,9 +153,10 @@ class TestEparParse(TestCase):
             if not output:
                 self.fail("Rapporteur is empty")
             if output != "no_rapporteur":
-                print(output)
+                # print(output)
                 found_count += 1
                 # Check if rapporteur name is of reasonable length
+                print(output)
                 self.assertGreater(len(output), 2)
                 self.assertGreater(40, len(output))
                 # Check if rapporteur is of correct format

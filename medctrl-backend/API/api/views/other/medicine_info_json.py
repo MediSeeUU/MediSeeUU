@@ -18,13 +18,26 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
-    HistoryEUOrphanCon
+    HistoryEUOrphanCon,
+    LegalBases,
 )
 
 
 # returns a list of json components using medicine_models,
 # this list is for the filters and for the detailed information page
 def get_medicine_info(perm, mock=None):
+    """
+    returns a list of json components using medicine_models,
+    this list is for the filters and for the detailed information page.
+
+    Args:
+        perm (list[attributes]): the permissions of the current user 
+        mock (list[models], optional): If it has a value, the mockdata 
+        will be used instead of generating new data. Defaults to None.
+
+    Returns:
+        JSON: medicinedata in JSON format
+    """    
     # make a JSON list for every category in medicine_models.common.Category
     data = {}
     for category in Category:
@@ -42,7 +55,8 @@ def get_medicine_info(perm, mock=None):
             HistoryMAH,
             HistoryOD,
             HistoryPrime,
-            HistoryEUOrphanCon
+            HistoryEUOrphanCon,
+            LegalBases,
         ]
 
         # make a list containing all the fields from all the models
@@ -67,4 +81,14 @@ def get_medicine_info(perm, mock=None):
 
 # checks if user has permission to view a field
 def has_permission(perm, name):
+    """
+    checks if user has permission to view a field
+
+    Args:
+        perm (list[attributes]): the permissions of the current user 
+        name (string): the field name
+
+    Returns:
+        bool: true if the name is in the permissions
+    """    
     return name in perm

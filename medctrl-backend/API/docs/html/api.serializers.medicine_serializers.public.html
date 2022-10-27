@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>api.serializers.medicine_serializers.public package &mdash; Backend 1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="api.serializers.medicine_serializers.scraper package" href="api.serializers.medicine_serializers.scraper.html" />
+    <link rel="prev" title="api.serializers.medicine_serializers package" href="api.serializers.medicine_serializers.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Backend
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Backend</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">api</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">api package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="api.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html">api.admin package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.management.html">api.management package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html">api.migrations package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.html">api.models package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.scraper.html">api.scraper package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="api.serializers.html">api.serializers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.tests.html">api.tests package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.html">api.views package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.apps">api.apps module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.update_cache">api.update_cache module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.urls">api.urls module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">api</a> &raquo;</li>
+          <li><a href="api.html">api package</a> &raquo;</li>
+          <li><a href="api.serializers.html">api.serializers package</a> &raquo;</li>
+          <li><a href="api.serializers.medicine_serializers.html">api.serializers.medicine_serializers package</a> &raquo;</li>
+      <li>api.serializers.medicine_serializers.public package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.serializers.medicine_serializers.public.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-serializers-medicine-serializers-public-package">
+<h1>api.serializers.medicine_serializers.public package<a class="headerlink" href="#api-serializers-medicine-serializers-public-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-api.serializers.medicine_serializers.public.public_history">
+<span id="api-serializers-medicine-serializers-public-public-history-module"></span><h2>api.serializers.medicine_serializers.public.public_history module<a class="headerlink" href="#module-api.serializers.medicine_serializers.public.public_history" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.serializers.medicine_serializers.public.public_history.</span></span><span class="sig-name descname"><span class="pre">AuthorisationStatusSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Authorisation Status table serializer for the view endpoint medicine</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer.Meta" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Meta information</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('eu_aut_status',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer.Meta.fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer.Meta.model" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus" title="api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus"><code class="xref py py-class docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer.Meta.ordering">
+<span class="sig-name descname"><span class="pre">ordering</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('change_date',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer.Meta.ordering" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.serializers.medicine_serializers.public.public_history.</span></span><span class="sig-name descname"><span class="pre">AuthorisationTypeSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Authorisation Type table serializer for the view endpoint medicine</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer.Meta" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Meta information</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('eu_aut_type',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer.Meta.fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer.Meta.model" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType" title="api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType"><code class="xref py py-class docutils literal notranslate"><span class="pre">HistoryAuthorisationType</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer.Meta.ordering">
+<span class="sig-name descname"><span class="pre">ordering</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('change_date',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer.Meta.ordering" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.BrandNameSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.serializers.medicine_serializers.public.public_history.</span></span><span class="sig-name descname"><span class="pre">BrandNameSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.BrandNameSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Brand Name table serializer for the view endpoint medicine</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.BrandNameSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.BrandNameSerializer.Meta" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Meta information</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.BrandNameSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('eu_brand_name',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.BrandNameSerializer.Meta.fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.BrandNameSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.BrandNameSerializer.Meta.model" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName" title="api.models.medicine_models.history_brand_name.HistoryBrandName"><code class="xref py py-class docutils literal notranslate"><span class="pre">HistoryBrandName</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.BrandNameSerializer.Meta.ordering">
+<span class="sig-name descname"><span class="pre">ordering</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('change_date',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.BrandNameSerializer.Meta.ordering" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.serializers.medicine_serializers.public.public_history.</span></span><span class="sig-name descname"><span class="pre">EUOrphanConSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Orphan Condition table serializer for the view endpoint medicine</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer.Meta" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Meta information</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('eu_orphan_con',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer.Meta.fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer.Meta.model" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon" title="api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon"><code class="xref py py-class docutils literal notranslate"><span class="pre">HistoryEUOrphanCon</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer.Meta.ordering">
+<span class="sig-name descname"><span class="pre">ordering</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('change_date',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer.Meta.ordering" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.MAHSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.serializers.medicine_serializers.public.public_history.</span></span><span class="sig-name descname"><span class="pre">MAHSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.MAHSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Marketing Authorisation Holder table serializer for the view endpoint medicine</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.MAHSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.MAHSerializer.Meta" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Meta information</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.MAHSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('eu_mah',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.MAHSerializer.Meta.fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.MAHSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.MAHSerializer.Meta.model" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH" title="api.models.medicine_models.history_mah.HistoryMAH"><code class="xref py py-class docutils literal notranslate"><span class="pre">HistoryMAH</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.MAHSerializer.Meta.ordering">
+<span class="sig-name descname"><span class="pre">ordering</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('change_date',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.MAHSerializer.Meta.ordering" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.serializers.medicine_serializers.public.public_history.</span></span><span class="sig-name descname"><span class="pre">OrphanDesignationSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Orphan Designation table serializer for the view endpoint medicine</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer.Meta" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Meta information</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('eu_od',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer.Meta.fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer.Meta.model" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD" title="api.models.medicine_models.history_od.HistoryOD"><code class="xref py py-class docutils literal notranslate"><span class="pre">HistoryOD</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer.Meta.ordering">
+<span class="sig-name descname"><span class="pre">ordering</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('change_date',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer.Meta.ordering" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.PrimeSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.serializers.medicine_serializers.public.public_history.</span></span><span class="sig-name descname"><span class="pre">PrimeSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.PrimeSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Priority Medicine Designation table serializer for the view endpoint medicine</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.PrimeSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.PrimeSerializer.Meta" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Meta information</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.PrimeSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('eu_prime',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.PrimeSerializer.Meta.fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.PrimeSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.PrimeSerializer.Meta.model" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime" title="api.models.medicine_models.history_prime.HistoryPrime"><code class="xref py py-class docutils literal notranslate"><span class="pre">HistoryPrime</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_history.PrimeSerializer.Meta.ordering">
+<span class="sig-name descname"><span class="pre">ordering</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('change_date',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_history.PrimeSerializer.Meta.ordering" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-api.serializers.medicine_serializers.public.public_medicine">
+<span id="api-serializers-medicine-serializers-public-public-medicine-module"></span><h2>api.serializers.medicine_serializers.public.public_medicine module<a class="headerlink" href="#module-api.serializers.medicine_serializers.public.public_medicine" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.LegalBasesSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.serializers.medicine_serializers.public.public_medicine.</span></span><span class="sig-name descname"><span class="pre">LegalBasesSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.LegalBasesSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Legal bases table serializer for the view endpoint medicine</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.LegalBasesSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.LegalBasesSerializer.Meta" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Meta information</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.LegalBasesSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('eu_legal_basis',)</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.LegalBasesSerializer.Meta.fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.LegalBasesSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.LegalBasesSerializer.Meta.model" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases" title="api.models.medicine_models.legal_bases.LegalBases"><code class="xref py py-class docutils literal notranslate"><span class="pre">LegalBases</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.serializers.medicine_serializers.public.public_medicine.</span></span><span class="sig-name descname"><span class="pre">PublicMedicineSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>This is the view endpoint for a medicine.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.Meta" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Meta information</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'__all__'</span></em><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.Meta.fields" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.Meta.model" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine" title="api.models.medicine_models.medicine.Medicine"><code class="xref py py-class docutils literal notranslate"><span class="pre">Medicine</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_aut_status">
+<span class="sig-name descname"><span class="pre">get_eu_aut_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authorisation_status</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_aut_status" title="Permalink to this definition"></a></dt>
+<dd><p>This retrieves the authorisation status from the database for each medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>authorisation_status</strong> (<em>Any</em>) – The autherisation status of the medicine.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the data of the relevant serializer as JSON.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_aut_type_current">
+<span class="sig-name descname"><span class="pre">get_eu_aut_type_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authorisation_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_aut_type_current" title="Permalink to this definition"></a></dt>
+<dd><p>This retrieves the current authorisation type from the database for each medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>authorisation_type</strong> (<em>Any</em>) – The autherisation type of the medicine.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the data of the relevant serializer as JSON.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_aut_type_initial">
+<span class="sig-name descname"><span class="pre">get_eu_aut_type_initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authorisation_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_aut_type_initial" title="Permalink to this definition"></a></dt>
+<dd><p>This retrieves the initial authorisation type from the database for each medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>authorisation_type</strong> (<em>Any</em>) – The autherisation status of the medicine.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the data of the relevant serializer as JSON.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_brand_name_current">
+<span class="sig-name descname"><span class="pre">get_eu_brand_name_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brand_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_brand_name_current" title="Permalink to this definition"></a></dt>
+<dd><p>This retrieves the current brand name from the database for each medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>brand_name</strong> (<em>Any</em>) – The brand name of the medicine.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the data of the relevant serializer as JSON.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_brand_name_initial">
+<span class="sig-name descname"><span class="pre">get_eu_brand_name_initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brand_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_brand_name_initial" title="Permalink to this definition"></a></dt>
+<dd><p>This retrieves the initial brand name from the database for each medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>brand_name</strong> (<em>Any</em>) – The brand name of the medicine.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the data of the relevant serializer as JSON.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_legal_basis">
+<span class="sig-name descname"><span class="pre">get_eu_legal_basis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">legal_basis</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_legal_basis" title="Permalink to this definition"></a></dt>
+<dd><p>This retrieves the authorisation status from the database for each medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>legal_basis</strong> (<em>Any</em>) – The legal basis of the medicine.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the data of the relevant serializer as JSON.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_mah_current">
+<span class="sig-name descname"><span class="pre">get_eu_mah_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mah</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_mah_current" title="Permalink to this definition"></a></dt>
+<dd><p>This retrieves the current marketing autherisation holder from the database for each medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mah</strong> (<em>Any</em>) – The marketing autherisation holder of the medicine.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the data of the relevant serializer as JSON.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_mah_initial">
+<span class="sig-name descname"><span class="pre">get_eu_mah_initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mah</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_mah_initial" title="Permalink to this definition"></a></dt>
+<dd><p>This retrieves the initial marketing autherisation holder from the database for each medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mah</strong> (<em>Any</em>) – The marketing autherisation holder of the medicine.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the data of the relevant serializer as JSON.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_od_initial">
+<span class="sig-name descname"><span class="pre">get_eu_od_initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orphan_designation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_od_initial" title="Permalink to this definition"></a></dt>
+<dd><p>This retrieves the initial orphan designation from the database for each medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>orphan_designation</strong> (<em>Any</em>) – The orphan designation of the medicine.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the data of the relevant serializer as JSON.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_orphan_con_current">
+<span class="sig-name descname"><span class="pre">get_eu_orphan_con_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orphan_con</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_orphan_con_current" title="Permalink to this definition"></a></dt>
+<dd><p>This retrieves the current orphan condition from the database for each medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>orphan_con</strong> (<em>Any</em>) – The orphan condition of the medicine.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the data of the relevant serializer as JSON.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_orphan_con_initial">
+<span class="sig-name descname"><span class="pre">get_eu_orphan_con_initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orphan_con</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_orphan_con_initial" title="Permalink to this definition"></a></dt>
+<dd><p>This retrieves the initial orphan condition from the database for each medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>orphan_con</strong> (<em>Any</em>) – The orphan condition of the medicine.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the data of the relevant serializer as JSON.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_prime_initial">
+<span class="sig-name descname"><span class="pre">get_eu_prime_initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prime</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_prime_initial" title="Permalink to this definition"></a></dt>
+<dd><p>This retrieves the initial priority medicine designation from the database for each medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>prime</strong> (<em>Any</em>) – The priority medicine designation of the medicine.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the data of the relevant serializer as JSON.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.to_representation">
+<span class="sig-name descname"><span class="pre">to_representation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.to_representation" title="Permalink to this definition"></a></dt>
+<dd><p>This function creates a one-dimensional object from multiple fields.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>Any</em>) – Takes an object to be transformed.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a single JSON representation of the object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-api.serializers.medicine_serializers.public">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-api.serializers.medicine_serializers.public" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api.serializers.medicine_serializers.html" class="btn btn-neutral float-left" title="api.serializers.medicine_serializers package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.serializers.medicine_serializers.scraper.html" class="btn btn-neutral float-right" title="api.serializers.medicine_serializers.scraper package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Medisee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -25,11 +25,25 @@ class SavedSelectionViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
 
     def create(self, request, *args, **kwargs):
-        # set the created_by to the requesting users' ID
+        """
+        Set the created_by to the requesting users' ID.
+
+        Args:
+            request (httpRequest): the incoming httpRequest
+        """        
         request.data["created_by"] = request.user.id
         return super().create(request)
 
     def destroy(self, request, *args, **kwargs):  # Delete the SavedSelection
+        """
+        Deletes the SavedSelection.
+
+        Args:
+            request (httpRequest): the incoming httpRequest
+
+        Returns:
+            httpResponse: changes the status of the response.
+        """        
         pk = kwargs.get("pk")
         obj = SavedSelection.objects.filter(created_by=request.user.id, id=pk).first()
         if obj is None:
@@ -38,7 +52,13 @@ class SavedSelectionViewSet(viewsets.ModelViewSet):
         obj.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def get_queryset(self):  # fetching all stored data selections
+    def get_queryset(self):
+        """
+        Fetches all stored data selections.
+        
+        Returns:
+            JSON: A json with all user saved data.
+        """        
         pk = self.kwargs.get("pk")
 
         if pk is None:

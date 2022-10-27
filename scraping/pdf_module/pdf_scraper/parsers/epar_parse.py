@@ -7,7 +7,6 @@ import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
 import os.path as path
 from typing import Union
 
-
 date_pattern: str = r"\d{1,2} \w+ \d{4}"  # DD/MONTH/YYYY
 procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure
 
@@ -92,7 +91,7 @@ def get_opinion_date(xml: ET.Element) -> str:
     """
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(date_pattern, p):
-            date = h.convert_months(re.findall(date_pattern, p)[-1])
+            date = helper.convert_months(re.findall(date_pattern, p)[-1])
             # Date contains emea instead of month, returns not found
             # TODO: Find correct date when emea is given
             if re.search(r"emea", date):
@@ -161,7 +160,7 @@ def get_rapp(xml: ET.Element) -> str:
         if find_rapp_between_rapp_and_corapp(txt) is not None:
             return find_rapp_between_rapp_and_corapp(txt)
         # Find rapporteur after "rapporteur: " and before "\n"
-        regex_str_2 = r"rapporteur:[\s\w]+?\n"
+        regex_str_2 = r"rapporteur:[\s\w\.]+?\n"
         if re.findall(regex_str_2, txt):
             temp_rapp = get_rapp_after(regex_str_2, txt, 12)
             if temp_rapp:
@@ -172,20 +171,20 @@ def get_rapp(xml: ET.Element) -> str:
             temp_rapp = get_rapp_after(regex_str_3, txt, 37)
             if temp_rapp:
                 return temp_rapp
-        # Find rapporteur after "rapporteur:"
-        regex_str_4 = r"rapporteur:[\s\w]+"
-        if re.search(regex_str_4, txt):
-            rapporteur = get_rapp_after(regex_str_4, txt, 12)
+        # Find rapporteur after "rapporteur:" with found boolean to get rapporteur in new section
+        if found:
             # Combine first part of rapporteur like "dr." with next part of rapporteur
+            rapporteur += txt.strip().replace("\n", "")
+            if len(rapporteur) >= 4:
+                found = False
+                return rapporteur
+        # Find rapporteur after "rapporteur:"
+        regex_str_4 = r"rapporteur:[\s\w\.]+"
+        if re.search(regex_str_4, txt) and not found:
+            rapporteur = get_rapp_after(regex_str_4, txt, 12)
             if len(rapporteur) < 4:
                 found = True
             else:
-                return get_rapp_after(regex_str_4, txt, 12)
-        # Find rapporteur after "rapporteur:" with found boolean to get rapporteur in new section
-        if found and txt.strip().replace("\n", ""):
-            rapporteur += txt.strip().replace("\n", "")
-            if rapporteur:
-                found = False
                 return rapporteur
 
     return "no_rapporteur"
@@ -205,15 +204,7 @@ def find_rapp_between_rapp_and_corapp(txt: str) -> Union[str, None]:
     if re.findall(regex_str_1, txt):
         rapporteur = re.search(regex_str_1, txt)[0][12:]
         rapporteur = rapporteur[:len(rapporteur) - 14]
-        # stop when "•" or "" is found
-        if re.search("[•|]", rapporteur):
-            rapporteur = re.search(r"[\s\S]+?[•|]", rapporteur)[0]
-            rapporteur = rapporteur[:len(rapporteur) - 2]
-        # stop when "the application was" or "the applicant submitted" is found
-        if re.search("(the application was|the applicant submitted)", rapporteur):
-            rapporteur = re.search(r"[\s\S]+?(the application was|the applicant submi)", rapporteur)[0]
-            rapporteur = rapporteur[:len(rapporteur) - 20]
-        rapporteur = rapporteur.strip().replace("\n", "")
+        rapporteur = clean_rapporteur(rapporteur)
         return rapporteur
 
 
@@ -230,17 +221,37 @@ def get_rapp_after(regex_str: str, txt: str, from_char: int) -> str:
     Returns:
         str: the attribute ema_rapp or ema_corapp - the name of the (co-)rapporteur
     """
-    rapporteur = re.search(regex_str, txt)[0][from_char:]
-    # stop when "the application was" or "the applicant submitted" is found
-    if re.search("(the application was|the applicant submitted)", rapporteur):
-        rapporteur = re.search(r"[\s\S]+?(the application was|the applicant submi)", rapporteur)[0]
-        rapporteur = rapporteur[:len(rapporteur) - 20]
-    rapporteur = rapporteur.strip().replace("\n", "")
+    rapporteur = re.search(regex_str, txt)[0][from_char:].replace(":", "")
+    rapporteur = clean_rapporteur(rapporteur)
     return rapporteur
 
 
-# ema_corapp
-# The co-rapporteur
+def clean_rapporteur(rapporteur: str) -> str:
+    """
+    From a string containing the rapporteur, as well as spaces, enters, and other text,
+    this function tries to remove all whitespace and trailing irrelevant text from the rapporteur string
+    Args:
+        rapporteur (str): the uncleaned string with whitespace and trailing text
+
+    Returns:
+        (str): the cleaned string containing only the rapporteur
+
+    """
+    rapporteur = rapporteur.strip().replace("\n", "").replace("rapporteur:", "")
+    # stop when "the application was" or "the applicant submitted" or "the rapporteur appointed" is found
+    if re.search("(the application was|the applicant submitted|the rapporteur appointed)", rapporteur):
+        rapporteur = re.search(r"[\s\S]+?(the application was|the applicant submi|the rapporteur appo)", rapporteur)[0]
+        rapporteur = rapporteur[:len(rapporteur) - 20].strip()
+    # stop when "•" or "" is found
+    if re.search("[•|]", rapporteur):
+        rapporteur = re.search(r"[\s\S]+?[•|]", rapporteur)[0]
+        rapporteur = rapporteur[:len(rapporteur) - 2].strip()
+    # take the first part of rapporteur when two spaces are found
+    if "  " in rapporteur:
+        rapporteur = rapporteur.split("  ")[0].strip()
+    return rapporteur
+
+
 def get_corapp(xml: ET.Element) -> str:
     """
     Gets the attribute ema_corapp

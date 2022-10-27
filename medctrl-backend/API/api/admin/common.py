@@ -8,11 +8,15 @@ from import_export import fields, widgets
 def import_foreign_key(field, model):
     """
     Create a ForeignKey field for a given field and model.
-    Can be used to automatically create foreign key fields for import if they don't exist already.
+    Can be used to automatically create foreign key fields for import if they do not exist already.
 
-    :param field: The field to create a ForeignKey for
-    :param model: The model to create a ForeignKey for
-    """
+    Args:
+        field (Any): The field to create the ForeignKey for.
+        model (Any): The model to create the ForeignKey for.
+
+    Returns:
+        fields.Field: Returns a field with the added ForeignKey.
+    """    
     return fields.Field(
         column_name=field, attribute=field, widget=CustomForeignKeyWidget(model, field)
     )
@@ -20,9 +24,8 @@ def import_foreign_key(field, model):
 
 class CustomForeignKeyWidget(widgets.ForeignKeyWidget):
     """
-    Custom ForeignKeyWidget that creates a new object if it doesn't exist already.
+    This is a Custom ForeignKeyWidget that creates a new object if it does not exist already.
     """
-
     def clean(self, value, row, *args, **kwargs):
         if value is not None:
             value, _ = self.model.objects.get_or_create(**{self.field: value})

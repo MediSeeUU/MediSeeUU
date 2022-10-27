@@ -1,0 +1,93 @@
+api.models.medicine\_models package
+===================================
+
+Submodules
+----------
+
+api.models.medicine\_models.common module
+-----------------------------------------
+
+.. automodule:: api.models.medicine_models.common
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.models.medicine\_models.history\_authorisation\_status module
+-----------------------------------------------------------------
+
+.. automodule:: api.models.medicine_models.history_authorisation_status
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.models.medicine\_models.history\_authorisation\_type module
+---------------------------------------------------------------
+
+.. automodule:: api.models.medicine_models.history_authorisation_type
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.models.medicine\_models.history\_brand\_name module
+-------------------------------------------------------
+
+.. automodule:: api.models.medicine_models.history_brand_name
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.models.medicine\_models.history\_eu\_orphan\_con module
+-----------------------------------------------------------
+
+.. automodule:: api.models.medicine_models.history_eu_orphan_con
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.models.medicine\_models.history\_mah module
+-----------------------------------------------
+
+.. automodule:: api.models.medicine_models.history_mah
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.models.medicine\_models.history\_od module
+----------------------------------------------
+
+.. automodule:: api.models.medicine_models.history_od
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.models.medicine\_models.history\_prime module
+-------------------------------------------------
+
+.. automodule:: api.models.medicine_models.history_prime
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.models.medicine\_models.legal\_bases module
+-----------------------------------------------
+
+.. automodule:: api.models.medicine_models.legal_bases
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.models.medicine\_models.medicine module
+-------------------------------------------
+
+.. automodule:: api.models.medicine_models.medicine
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: api.models.medicine_models
+   :members:
+   :undoc-members:
+   :show-inheritance:

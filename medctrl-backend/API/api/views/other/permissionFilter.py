@@ -9,8 +9,13 @@
 from django.contrib.auth.models import Group
 
 
-# Gets all permissions of a user
 def permissionFilter(user):
+    """
+    Gets all permissions of a user
+
+    Returns:
+        list[attributes]: the permissions of the current user 
+    """    
     if user.is_anonymous:
         # If user is anonymous, return default permissions for anonymous group
         perms = Group.objects.get(name="anonymous").permissions.all()

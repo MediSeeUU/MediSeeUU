@@ -9,10 +9,10 @@ from api.models.medicine_models import (
     HistoryOD,
     HistoryPrime,
     HistoryEUOrphanCon,
+    LegalBases,
 )
 from api.serializers.medicine_serializers.scraper import (
     MedicineSerializer,
-    MedicineFlexVarUpdateSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,
@@ -20,11 +20,12 @@ from api.serializers.medicine_serializers.scraper import (
     OrphanDesignationSerializer,
     PrimeSerializer,
     EUOrphanConSerializer,
+    LegalBasesSerializer,
 )
 from api.models.medicine_models.common import (
     AutStatus,
     AutTypes,
-    LegalBases
+    LegalBasesTypes,
 )
 
 
@@ -34,16 +35,16 @@ class ScraperMedicineTestCase(TestCase):
         Test posting a new medicine to the scraper post function
         """
         self.data = {
-            "override": False,
             "data": [
                 {
+                    "override": False,
                     "eu_pnumber": "13",
                     "active_substance": "testsubstance",
                     "eu_nas": True,
                     "ema_procedure_start_initial": "2019-01-28",
                     "chmp_opinion_date": "2019-02-28",
                     "eu_aut_date": "2019-03-28",
-                    "eu_legal_basis": "article 4.8",
+                    "eu_legal_basis": ["article 4.8"],
                     "ema_url": "https://ema.com",
                     "ec_url": "https://ec.com",
                     "ema_number": "23",
@@ -74,34 +75,48 @@ class ScraperMedicineTestCase(TestCase):
                     "eu_od_pnumber": "1 million",
                     "eu_od_sponsor": "test eu od sponsor",
                     "eu_od_comp_date": "2018-09-02",
-                    "eu_aut_type": {
-                        "eu_aut_type": "CONDITIONAL",
-                        "change_date": "2019-05-28",
-                    },
-                    "eu_aut_status": {
-                        "eu_aut_status": "ACTIVE",
-                        "change_date": "2019-06-28",
-                    },
-                    "eu_brand_name": {
-                        "eu_brand_name": "brandname",
-                        "change_date": "2019-07-28",
-                    },
-                    "eu_od": {
-                        "eu_od": True,
-                        "change_date": "2019-08-28",
-                    },
-                    "eu_prime": {
-                        "eu_prime": False,
-                        "change_date": "2019-09-28",
-                    },
-                    "eu_mah": {
-                        "eu_mah": "eu_mahtest",
-                        "change_date": "2019-10-28",
-                    },
-                    "eu_orphan_con": {
-                        "eu_orphan_con": "Zynteglo",
-                        "change_date": "2019-12-28",
-                    },
+                    "eu_aut_type": [
+                        {
+                            "eu_aut_type": "CONDITIONAL",
+                            "change_date": "2019-05-28",
+                        }
+                    ],
+                    "eu_aut_status": [
+                        {
+                            "eu_aut_status": "ACTIVE",
+                            "change_date": "2019-06-28",
+                        }
+                    ],
+                    "eu_brand_name": [
+                        {
+                            "eu_brand_name": "brandname",
+                            "change_date": "2019-07-28",
+                        }
+                    ],
+                    "eu_od": [
+                        {
+                            "eu_od": True,
+                            "change_date": "2019-08-28",
+                        }
+                    ],
+                    "eu_prime": [
+                        {
+                            "eu_prime": False,
+                            "change_date": "2019-09-28",
+                        }
+                    ],
+                    "eu_mah": [
+                        {
+                            "eu_mah": "eu_mahtest",
+                            "change_date": "2019-10-28",
+                        }
+                    ],
+                    "eu_orphan_con": [
+                        {
+                            "eu_orphan_con": "Zynteglo",
+                            "change_date": "2019-12-28",
+                        }
+                    ],
                 }
             ]
         }
@@ -118,7 +133,6 @@ class ScraperMedicineTestCase(TestCase):
             "ema_procedure_start_initial": "2019-01-28",
             "chmp_opinion_date": "2019-02-28",
             "eu_aut_date": "2019-03-28",
-            "eu_legal_basis": "article 4.8",
             "ema_url": "https://ema.com",
             "ec_url": "https://ec.com",
             "ema_number": "23",
@@ -215,6 +229,14 @@ class ScraperMedicineTestCase(TestCase):
         }
         self.assertEqual(sorted(dict(eu_orphan_con_data).items()), sorted(eu_orphan_con_expected.items()))
 
+        eu_legal_basis_query = LegalBases.objects.first()
+        eu_legal_basis_data = LegalBasesSerializer(eu_legal_basis_query).data
+        eu_legal_basis_expected = {
+            "eu_pnumber": "13",
+            "eu_legal_basis": "article 4.8",
+        }
+        self.assertEqual(sorted(dict(eu_legal_basis_data).items()), sorted(eu_legal_basis_expected.items()))
+
     def test_scraper_post_update(self):
         """
         Test posting an update to an existing medicine to the scraper post function
@@ -229,7 +251,6 @@ class ScraperMedicineTestCase(TestCase):
             ema_procedure_start_initial="2000-01-01",
             chmp_opinion_date="2000-01-02",
             eu_aut_date="2000-01-03",
-            eu_legal_basis=LegalBases.article10_a,
             ema_url="emaurl.com",
             ec_url="ecurl.com",
             ema_number="1",
@@ -297,6 +318,10 @@ class ScraperMedicineTestCase(TestCase):
             change_date="2022-01-08",
             eu_orphan_con="eu orphan con 1",
         )
+        LegalBases.objects.create(
+            eu_pnumber=self.medicine,
+            eu_legal_basis=LegalBasesTypes.article10_a,
+        )
 
         # data to be updated by the scraper post endpoint
         self.data = {
@@ -306,14 +331,18 @@ class ScraperMedicineTestCase(TestCase):
                     "eu_pnumber": "15",
                     "active_substance": "new substance",
                     "ema_url": "https://newemaurl.com",
-                    "eu_aut_status": {
-                        "eu_aut_status": "WITHDRAWN",
-                        "change_date": "2023-01-01",
-                    },
-                    "eu_prime": {
-                        "eu_prime": False,
-                        "change_date": "2023-01-02",
-                    },
+                    "eu_aut_status": [
+                        {
+                            "eu_aut_status": "WITHDRAWN",
+                            "change_date": "2023-01-01",
+                        }
+                    ],
+                    "eu_prime": [
+                        {
+                            "eu_prime": False,
+                            "change_date": "2023-01-02",
+                        }
+                    ],
                 }
             ]
         }
@@ -363,7 +392,7 @@ class ScraperMedicineTestCase(TestCase):
                     "ema_procedure_start_initial": "2019-01-28",
                     "chmp_opinion_date": "2019-02-28",
                     "eu_aut_date": "2019-03-28",
-                    "eu_legal_basis": "article 4.8",
+                    "eu_legal_basis": ["article 4.8"],
                     "ema_url": "https://ema.com",
                     "ec_url": "https://ec.com",
                     "ema_number": "23",
@@ -394,30 +423,42 @@ class ScraperMedicineTestCase(TestCase):
                     "eu_od_pnumber": "1 million",
                     "eu_od_sponsor": "test eu od sponsor",
                     "eu_od_comp_date": "2018-09-02",
-                    "eu_aut_type": {
-                        "eu_aut_type": "CONDITIONAL",
-                        "change_date": "2019-05-28",
-                    },
-                    "eu_aut_status": {
-                        "eu_aut_status": "ACTIVE",
-                        "change_date": "2019-06-28",
-                    },
-                    "eu_brand_name": {
-                        "eu_brand_name": "brandname",
-                        "change_date": "2019-07-28",
-                    },
-                    "eu_od": {
-                        "eu_od": True,
-                        "change_date": "2019-08-28",
-                    },
-                    "eu_prime": {
-                        "eu_prime": False,
-                        "change_date": "2019-09-28",
-                    },
-                    "eu_mah": {
-                        "eu_mah": "eu_mahtest",
-                        "change_date": "2019-10-28",
-                    },
+                    "eu_aut_type": [
+                        {
+                            "eu_aut_type": "CONDITIONAL",
+                            "change_date": "2019-05-28",
+                        }
+                    ],
+                    "eu_aut_status": [
+                        {
+                            "eu_aut_status": "ACTIVE",
+                            "change_date": "2019-06-28",
+                        }
+                    ],
+                    "eu_brand_name": [
+                        {
+                            "eu_brand_name": "brandname",
+                            "change_date": "2019-07-28",
+                        }
+                    ],
+                    "eu_od": [
+                        {
+                            "eu_od": True,
+                            "change_date": "2019-08-28",
+                        }
+                    ],
+                    "eu_prime": [
+                        {
+                            "eu_prime": False,
+                            "change_date": "2019-09-28",
+                        }
+                    ],
+                    "eu_mah": [
+                        {
+                            "eu_mah": "eu_mahtest",
+                            "change_date": "2019-10-28",
+                        }
+                    ],
                 }
             ]
         }
@@ -433,6 +474,7 @@ class ScraperMedicineTestCase(TestCase):
         self.assertIsNone(HistoryOD.objects.first())
         self.assertIsNone(HistoryPrime.objects.first())
         self.assertIsNone(HistoryEUOrphanCon.objects.first())
+        self.assertIsNone(LegalBases.objects.first())
 
         # Assert response returns failed medicine
         self.assertEqual(self.data["data"], response.data)

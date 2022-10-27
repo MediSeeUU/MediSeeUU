@@ -10,6 +10,7 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
+    LegalBases,
 )
 import logging
 
@@ -29,7 +30,6 @@ class Command(BaseCommand):
     """
     Django admin command that does the initial setup of the system.
     """
-
     help = "Initial MedCtrl setup"
 
     def handle(self, *args, **options):
@@ -50,6 +50,7 @@ class Command(BaseCommand):
             HistoryMAH,
             HistoryOD,
             HistoryPrime,
+            LegalBases,
         ]:
             ct = ContentType.objects.filter(model=model.__name__).first()
             all_permissions = Permission.objects.filter(content_type=ct)

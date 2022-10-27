@@ -1,0 +1,21 @@
+tests package
+=============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   tests.combiner_tests
+   tests.db_uploader_tests
+   tests.pdfscraper_tests
+   tests.webscraper_tests
+
+Module contents
+---------------
+
+.. automodule:: tests
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>api.models package &mdash; Backend 1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="api.models.medicine_models package" href="api.models.medicine_models.html" />
+    <link rel="prev" title="api.migrations package" href="api.migrations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Backend
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Backend</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">api</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">api package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="api.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html">api.admin package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.management.html">api.management package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html">api.migrations package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">api.models package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.scraper.html">api.scraper package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.serializers.html">api.serializers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.tests.html">api.tests package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.html">api.views package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.apps">api.apps module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.update_cache">api.update_cache module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.urls">api.urls module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">api</a> &raquo;</li>
+          <li><a href="api.html">api package</a> &raquo;</li>
+      <li>api.models package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-models-package">
+<h1>api.models package<a class="headerlink" href="#api-models-package" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.models.medicine_models.html">api.models.medicine_models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.models.medicine_models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.common">api.models.medicine_models.common module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutStatus"><code class="docutils literal notranslate"><span class="pre">AutStatus</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutStatus.ACTIVE"><code class="docutils literal notranslate"><span class="pre">AutStatus.ACTIVE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutStatus.REFUSALS"><code class="docutils literal notranslate"><span class="pre">AutStatus.REFUSALS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutStatus.WITHDRAWAL"><code class="docutils literal notranslate"><span class="pre">AutStatus.WITHDRAWAL</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutTypes"><code class="docutils literal notranslate"><span class="pre">AutTypes</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutTypes.CONDITIONAL"><code class="docutils literal notranslate"><span class="pre">AutTypes.CONDITIONAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutTypes.EXCEPTIONAL"><code class="docutils literal notranslate"><span class="pre">AutTypes.EXCEPTIONAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutTypes.STANDARD"><code class="docutils literal notranslate"><span class="pre">AutTypes.STANDARD</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category"><code class="docutils literal notranslate"><span class="pre">Category</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.Additional_Resources"><code class="docutils literal notranslate"><span class="pre">Category.Additional_Resources</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.Authorisation_Timing"><code class="docutils literal notranslate"><span class="pre">Category.Authorisation_Timing</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.Co_Rapporteur"><code class="docutils literal notranslate"><span class="pre">Category.Co_Rapporteur</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.General_Information"><code class="docutils literal notranslate"><span class="pre">Category.General_Information</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.Identifying_Information"><code class="docutils literal notranslate"><span class="pre">Category.Identifying_Information</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.Legal_Information"><code class="docutils literal notranslate"><span class="pre">Category.Legal_Information</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.Medicine_Designations"><code class="docutils literal notranslate"><span class="pre">Category.Medicine_Designations</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.DashboardColumn"><code class="docutils literal notranslate"><span class="pre">DashboardColumn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article101"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article101</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article102"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article102</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article103"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article103</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article104"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article104</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_1"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_2"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_2</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_3"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_3</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_4"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_4</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_a"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_a</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_b"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_b</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_c"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10a"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10a</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10b"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10b</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10c"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article48"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article48</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article48_1"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article48_1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article48_2"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article48_2</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article48_3"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article48_3</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article4_8"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article4_8</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article83"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article83</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article8_3"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article8_3</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.NotVarCharField"><code class="docutils literal notranslate"><span class="pre">NotVarCharField</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.NotVarCharField.db_type"><code class="docutils literal notranslate"><span class="pre">NotVarCharField.db_type()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.create_dashboard_column"><code class="docutils literal notranslate"><span class="pre">create_dashboard_column()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.create_dashboard_history_column_current"><code class="docutils literal notranslate"><span class="pre">create_dashboard_history_column_current()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.create_dashboard_history_column_initial"><code class="docutils literal notranslate"><span class="pre">create_dashboard_history_column_initial()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.create_dashboard_history_columns"><code class="docutils literal notranslate"><span class="pre">create_dashboard_history_columns()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_authorisation_status">api.models.medicine_models.history_authorisation_status module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.change_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.eu_aut_status"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.eu_aut_status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.eu_pnumber</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.get_eu_aut_status_display"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.get_eu_aut_status_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.id"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.objects"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_authorisation_type">api.models.medicine_models.history_authorisation_type module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.change_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.eu_aut_type"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.eu_aut_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.eu_pnumber</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.get_eu_aut_type_display"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.get_eu_aut_type_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.id"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.objects"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_brand_name">api.models.medicine_models.history_brand_name module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.change_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.eu_brand_name"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.eu_brand_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.eu_pnumber</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.id"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.objects"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_eu_orphan_con">api.models.medicine_models.history_eu_orphan_con module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.change_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.eu_orphan_con"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.eu_orphan_con</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.eu_pnumber</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.id"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.objects"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_mah">api.models.medicine_models.history_mah module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH"><code class="docutils literal notranslate"><span class="pre">HistoryMAH</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.change_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.eu_mah"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.eu_mah</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.eu_pnumber</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.id"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.objects"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_od">api.models.medicine_models.history_od module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD"><code class="docutils literal notranslate"><span class="pre">HistoryOD</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryOD.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryOD.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryOD.change_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.eu_od"><code class="docutils literal notranslate"><span class="pre">HistoryOD.eu_od</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryOD.eu_pnumber</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryOD.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.id"><code class="docutils literal notranslate"><span class="pre">HistoryOD.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.objects"><code class="docutils literal notranslate"><span class="pre">HistoryOD.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_prime">api.models.medicine_models.history_prime module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime"><code class="docutils literal notranslate"><span class="pre">HistoryPrime</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.change_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.eu_pnumber</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.eu_prime"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.eu_prime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.id"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.objects"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.legal_bases">api.models.medicine_models.legal_bases module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases"><code class="docutils literal notranslate"><span class="pre">LegalBases</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">LegalBases.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">LegalBases.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.eu_legal_basis"><code class="docutils literal notranslate"><span class="pre">LegalBases.eu_legal_basis</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">LegalBases.eu_pnumber</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">LegalBases.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.get_eu_legal_basis_display"><code class="docutils literal notranslate"><span class="pre">LegalBases.get_eu_legal_basis_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.id"><code class="docutils literal notranslate"><span class="pre">LegalBases.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.objects"><code class="docutils literal notranslate"><span class="pre">LegalBases.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.medicine">api.models.medicine_models.medicine module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine"><code class="docutils literal notranslate"><span class="pre">Medicine</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Medicine.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Medicine.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.active_substance"><code class="docutils literal notranslate"><span class="pre">Medicine.active_substance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.assess_time_days_active"><code class="docutils literal notranslate"><span class="pre">Medicine.assess_time_days_active</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.assess_time_days_cstop"><code class="docutils literal notranslate"><span class="pre">Medicine.assess_time_days_cstop</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.assess_time_days_total"><code class="docutils literal notranslate"><span class="pre">Medicine.assess_time_days_total</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.atc_code"><code class="docutils literal notranslate"><span class="pre">Medicine.atc_code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.aut_url"><code class="docutils literal notranslate"><span class="pre">Medicine.aut_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.chmp_opinion_date"><code class="docutils literal notranslate"><span class="pre">Medicine.chmp_opinion_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ec_decision_time_days"><code class="docutils literal notranslate"><span class="pre">Medicine.ec_decision_time_days</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ec_url"><code class="docutils literal notranslate"><span class="pre">Medicine.ec_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_corapp"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_corapp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_number"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_number</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_number_check"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_number_check</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_od_number"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_od_number</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_procedure_start_initial"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_procedure_start_initial</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_rapp"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_rapp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_reexamination"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_reexamination</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_url"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.epar_url"><code class="docutils literal notranslate"><span class="pre">Medicine.epar_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_accel_assess_g"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_accel_assess_g</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_accel_assess_m"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_accel_assess_m</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_atmp"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_atmp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_aut_date"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_aut_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_med_type"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_med_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_nas"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_nas</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_od_comp_date"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_od_comp_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_od_con"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_od_con</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_od_date"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_od_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_od_number"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_od_number</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_od_pnumber"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_od_pnumber</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_od_sponsor"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_od_sponsor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_pnumber</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_referral"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_referral</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_suspension"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_suspension</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_next_by_chmp_opinion_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_next_by_chmp_opinion_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_next_by_ema_procedure_start_initial"><code class="docutils literal notranslate"><span class="pre">Medicine.get_next_by_ema_procedure_start_initial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_next_by_eu_aut_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_next_by_eu_aut_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_next_by_eu_od_comp_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_next_by_eu_od_comp_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_next_by_eu_od_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_next_by_eu_od_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_previous_by_chmp_opinion_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_previous_by_chmp_opinion_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_previous_by_ema_procedure_start_initial"><code class="docutils literal notranslate"><span class="pre">Medicine.get_previous_by_ema_procedure_start_initial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_previous_by_eu_aut_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_previous_by_eu_aut_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_previous_by_eu_od_comp_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_previous_by_eu_od_comp_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_previous_by_eu_od_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_previous_by_eu_od_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historyauthorisationstatus_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historyauthorisationstatus_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historyauthorisationtype_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historyauthorisationtype_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historybrandname_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historybrandname_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historyeuorphancon_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historyeuorphancon_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historymah_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historymah_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historyod_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historyod_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historyprime_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historyprime_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.legalbases_set"><code class="docutils literal notranslate"><span class="pre">Medicine.legalbases_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.objects"><code class="docutils literal notranslate"><span class="pre">Medicine.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.odwar_url"><code class="docutils literal notranslate"><span class="pre">Medicine.odwar_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.omar_url"><code class="docutils literal notranslate"><span class="pre">Medicine.omar_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.savedselection_set"><code class="docutils literal notranslate"><span class="pre">Medicine.savedselection_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.smpc_url"><code class="docutils literal notranslate"><span class="pre">Medicine.smpc_url</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.models.other.html">api.models.other package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.models.other.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.other.html#module-api.models.other.saved_selection">api.models.other.saved_selection module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection"><code class="docutils literal notranslate"><span class="pre">SavedSelection</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">SavedSelection.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">SavedSelection.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.created_at"><code class="docutils literal notranslate"><span class="pre">SavedSelection.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.created_by"><code class="docutils literal notranslate"><span class="pre">SavedSelection.created_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.created_by_id"><code class="docutils literal notranslate"><span class="pre">SavedSelection.created_by_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.eu_numbers"><code class="docutils literal notranslate"><span class="pre">SavedSelection.eu_numbers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">SavedSelection.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">SavedSelection.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.id"><code class="docutils literal notranslate"><span class="pre">SavedSelection.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.name"><code class="docutils literal notranslate"><span class="pre">SavedSelection.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.objects"><code class="docutils literal notranslate"><span class="pre">SavedSelection.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.models.other.html#module-api.models.other">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-api.models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-api.models" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api.migrations.html" class="btn btn-neutral float-left" title="api.migrations package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.models.medicine_models.html" class="btn btn-neutral float-right" title="api.models.medicine_models package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Medisee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

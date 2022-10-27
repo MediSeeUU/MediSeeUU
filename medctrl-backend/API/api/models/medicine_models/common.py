@@ -1,6 +1,7 @@
 # This program has been developed by students from the bachelor Computer Science at
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
+from dataclasses import Field
 from enum import Enum
 from django.db import models
 
@@ -8,9 +9,7 @@ from django.db import models
 class Category(Enum):
     """
     Defines the categories for a column on the dashboard data table.
-
-    Args:
-        Enum (_type_): Derives from the enumeration class.
+    It derives from the enumeration class.
     """
     General_Information = "General Information"
     Identifying_Information = "Identifying Information"
@@ -24,9 +23,7 @@ class Category(Enum):
 class NotVarCharField(models.CharField):
     """
     Special field type that enforces CHAR instead of VARCHAR
-
-    Args:
-        models (_type_): Derives from the Django CharField
+    It derives from the Django CharField.
     """    
     def db_type(self, connection):
         """
@@ -37,7 +34,8 @@ class NotVarCharField(models.CharField):
             connection (_type_): Connection with the database.
 
         Returns:
-            _type_: It returns the type of the connection, but it will return a CHAR if it would be a VARCHAR.
+            str: It returns the column data type for the given connection as string,
+            but it will return 'char' if it would be a 'varchar'.
         """        
         varchar: str = super().db_type(connection)
         char: str = varchar.replace('varchar', 'char')
@@ -46,10 +44,7 @@ class NotVarCharField(models.CharField):
 
 class AutTypes(models.TextChoices):
     """
-    Choice types for eu_aut_type.
-
-    Args:
-        models (_type_): Derives from the enumerated choice class.
+    Choice types for eu_aut_type. Is derived from the enumerated choice class.
     """    
     CONDITIONAL = "CONDITIONAL",
     EXCEPTIONAL = "EXCEPTIONAL",
@@ -58,23 +53,17 @@ class AutTypes(models.TextChoices):
 
 class AutStatus(models.TextChoices):
     """
-    Choice types for eu_aut_status.
-
-    Args:
-        models (_type_): Derives from the enumerated choice class.
+    Choice types for eu_aut_status. Is derived from the enumerated choice class.
     """   
     ACTIVE = "ACTIVE",
     WITHDRAWAL = "WITHDRAWN",
     REFUSALS = "REFUSED"
 
 
-class LegalBases(models.TextChoices):
+class LegalBasesTypes(models.TextChoices):
     """
-    Choice types for legal bases.
-
-    Args:
-        models (_type_): Derives from the enumerated choice class.
-    """   
+    Choice types for legal bases. Is derived from the enumerated choice class.
+    """
     article48 = "article 4.8",
     article4_8 = "article 4(8)"
     article48_1 = "article 4.8(1)",
@@ -109,35 +98,35 @@ class DashboardColumn:
         self.data_value = data_value
 
 
-def create_dashboard_column(field, category: Category, data_format: str, display_name: str):
+def create_dashboard_column(field: Field, category: Category, data_format: str, display_name: str):
     """
     Sets attributes on a model field that's used in medicine_info_json.
 
     Args:
-        field (_type_): The type that the database attribute will have (CharField, BooleanField, etc.).
+        field (Field): The type that the database attribute will have (CharField, BooleanField, etc.).
         category (Category): Which category the attribute should belong to.
         data_format (str): Defines what data format the attribute should have.
         display_name (str): This is the name that the attribute displays in the database.
 
     Returns:
-        _type_: Returns the original field, but updated with the correct information.
+        Field: Returns the original field, but updated with the correct information.
     """    
     dashboard_column = DashboardColumn(category, field.db_column, data_format, display_name)
     setattr(field, "dashboard_columns", [dashboard_column])
     return field
 
-def create_dashboard_history_columns(field, category: Category, data_format: str, display_name: str):
+def create_dashboard_history_columns(field: Field, category: Category, data_format: str, display_name: str):
     """
     Creates two dashboard columns out of a single model column, an initial and a current one for histories.
 
     Args:
-        field (_type_): The type that the database attribute will have (CharField, BooleanField, etc.).
+        field (Field): The type that the database attribute will have (CharField, BooleanField, etc.).
         category (Category): Which category the attribute should belong to.
         data_format (str): Defines what data format the attribute should have.
         display_name (str): This is the name that the attribute displays in the database.
 
     Returns:
-        _type_: Returns the original field, but updated with the correct information.
+        Field: Returns the original field, but updated with the correct information.
     """    
     initial_dashboard_column = DashboardColumn(
         category,
@@ -156,18 +145,18 @@ def create_dashboard_history_columns(field, category: Category, data_format: str
     return field
 
 
-def create_dashboard_history_column_initial(field, category: Category, data_format: str, display_name: str):
+def create_dashboard_history_column_initial(field: Field, category: Category, data_format: str, display_name: str):
     """
     Creates the initial column for a history column.
 
     Args:
-        field (_type_): The type that the database attribute will have (CharField, BooleanField, etc.).
+        field (Field): The type that the database attribute will have (CharField, BooleanField, etc.).
         category (Category): Which category the attribute should belong to.
         data_format (str): Defines what data format the attribute should have.
         display_name (str): This is the name that the attribute displays in the database.
 
     Returns:
-        _type_: Returns the original field, but updated with the correct information.
+        Field: Returns the original field, but updated with the correct information.
     """    
     initial_dashboard_column = DashboardColumn(
         category,
@@ -179,18 +168,18 @@ def create_dashboard_history_column_initial(field, category: Category, data_form
     return field
 
 
-def create_dashboard_history_column_current(field, category: Category, data_format: str, display_name: str):
+def create_dashboard_history_column_current(field: Field, category: Category, data_format: str, display_name: str):
     """
     Creates the current column for a history column.
 
     Args:
-        field (_type_): The type that the database attribute will have (CharField, BooleanField, etc.).
+        field (Field): The type that the database attribute will have (CharField, BooleanField, etc.).
         category (Category): Which category the attribute should belong to.
         data_format (str): Defines what data format the attribute should have.
         display_name (str): This is the name that the attribute displays in the database.
 
     Returns:
-        _type_: Returns the original field, but updated with the correct information.
+        Field: Returns the original field, but updated with the correct information.
     """   
     current_dashboard_column = DashboardColumn(
         category,

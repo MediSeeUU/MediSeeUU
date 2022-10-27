@@ -1,0 +1,52 @@
+api package
+===========
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   api.admin
+   api.management
+   api.migrations
+   api.models
+   api.scraper
+   api.serializers
+   api.tests
+   api.views
+
+Submodules
+----------
+
+api.apps module
+---------------
+
+.. automodule:: api.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.update\_cache module
+------------------------
+
+.. automodule:: api.update_cache
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+api.urls module
+---------------
+
+.. automodule:: api.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: api
+   :members:
+   :undoc-members:
+   :show-inheritance:

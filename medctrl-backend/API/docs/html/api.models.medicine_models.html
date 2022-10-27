@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>api.models.medicine_models package &mdash; Backend 1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="api.models.other package" href="api.models.other.html" />
+    <link rel="prev" title="api.models package" href="api.models.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Backend
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Backend</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">api</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="api.html">api package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="api.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api.admin.html">api.admin package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.management.html">api.management package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html">api.migrations package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="api.models.html">api.models package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.scraper.html">api.scraper package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.serializers.html">api.serializers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.tests.html">api.tests package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.html">api.views package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.apps">api.apps module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.update_cache">api.update_cache module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.urls">api.urls module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">api</a> &raquo;</li>
+          <li><a href="api.html">api package</a> &raquo;</li>
+          <li><a href="api.models.html">api.models package</a> &raquo;</li>
+      <li>api.models.medicine_models package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.models.medicine_models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-models-medicine-models-package">
+<h1>api.models.medicine_models package<a class="headerlink" href="#api-models-medicine-models-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-api.models.medicine_models.common">
+<span id="api-models-medicine-models-common-module"></span><h2>api.models.medicine_models.common module<a class="headerlink" href="#module-api.models.medicine_models.common" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.AutStatus">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.common.</span></span><span class="sig-name descname"><span class="pre">AutStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.common.AutStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TextChoices</span></code></p>
+<p>Choice types for eu_aut_status. Is derived from the enumerated choice class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.AutStatus.ACTIVE">
+<span class="sig-name descname"><span class="pre">ACTIVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ACTIVE'</span></em><a class="headerlink" href="#api.models.medicine_models.common.AutStatus.ACTIVE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.AutStatus.REFUSALS">
+<span class="sig-name descname"><span class="pre">REFUSALS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'REFUSED'</span></em><a class="headerlink" href="#api.models.medicine_models.common.AutStatus.REFUSALS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.AutStatus.WITHDRAWAL">
+<span class="sig-name descname"><span class="pre">WITHDRAWAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'WITHDRAWN'</span></em><a class="headerlink" href="#api.models.medicine_models.common.AutStatus.WITHDRAWAL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.AutTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.common.</span></span><span class="sig-name descname"><span class="pre">AutTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.common.AutTypes" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TextChoices</span></code></p>
+<p>Choice types for eu_aut_type. Is derived from the enumerated choice class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.AutTypes.CONDITIONAL">
+<span class="sig-name descname"><span class="pre">CONDITIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CONDITIONAL'</span></em><a class="headerlink" href="#api.models.medicine_models.common.AutTypes.CONDITIONAL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.AutTypes.EXCEPTIONAL">
+<span class="sig-name descname"><span class="pre">EXCEPTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'EXCEPTIONAL'</span></em><a class="headerlink" href="#api.models.medicine_models.common.AutTypes.EXCEPTIONAL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.AutTypes.STANDARD">
+<span class="sig-name descname"><span class="pre">STANDARD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'STANDARD'</span></em><a class="headerlink" href="#api.models.medicine_models.common.AutTypes.STANDARD" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.Category">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.common.</span></span><span class="sig-name descname"><span class="pre">Category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.common.Category" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Defines the categories for a column on the dashboard data table.
+It derives from the enumeration class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.Category.Additional_Resources">
+<span class="sig-name descname"><span class="pre">Additional_Resources</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Additional</span> <span class="pre">Resources'</span></em><a class="headerlink" href="#api.models.medicine_models.common.Category.Additional_Resources" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.Category.Authorisation_Timing">
+<span class="sig-name descname"><span class="pre">Authorisation_Timing</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Authorisation</span> <span class="pre">Timing'</span></em><a class="headerlink" href="#api.models.medicine_models.common.Category.Authorisation_Timing" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.Category.Co_Rapporteur">
+<span class="sig-name descname"><span class="pre">Co_Rapporteur</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'(Co-)Rapporteur'</span></em><a class="headerlink" href="#api.models.medicine_models.common.Category.Co_Rapporteur" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.Category.General_Information">
+<span class="sig-name descname"><span class="pre">General_Information</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'General</span> <span class="pre">Information'</span></em><a class="headerlink" href="#api.models.medicine_models.common.Category.General_Information" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.Category.Identifying_Information">
+<span class="sig-name descname"><span class="pre">Identifying_Information</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Identifying</span> <span class="pre">Information'</span></em><a class="headerlink" href="#api.models.medicine_models.common.Category.Identifying_Information" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.Category.Legal_Information">
+<span class="sig-name descname"><span class="pre">Legal_Information</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Legal</span> <span class="pre">Information'</span></em><a class="headerlink" href="#api.models.medicine_models.common.Category.Legal_Information" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.Category.Medicine_Designations">
+<span class="sig-name descname"><span class="pre">Medicine_Designations</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Medicine</span> <span class="pre">Designations'</span></em><a class="headerlink" href="#api.models.medicine_models.common.Category.Medicine_Designations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.DashboardColumn">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.common.</span></span><span class="sig-name descname"><span class="pre">DashboardColumn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.common.DashboardColumn" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Holds values used in medicine_info_json to create a column in the dashboard.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.common.</span></span><span class="sig-name descname"><span class="pre">LegalBasesTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TextChoices</span></code></p>
+<p>Choice types for legal bases. Is derived from the enumerated choice class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article101">
+<span class="sig-name descname"><span class="pre">article101</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10.1'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article101" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article102">
+<span class="sig-name descname"><span class="pre">article102</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10.2'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article102" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article103">
+<span class="sig-name descname"><span class="pre">article103</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10.3'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article103" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article104">
+<span class="sig-name descname"><span class="pre">article104</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10.4'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article104" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article10_1">
+<span class="sig-name descname"><span class="pre">article10_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10(1)'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article10_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article10_2">
+<span class="sig-name descname"><span class="pre">article10_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10(2)'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article10_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article10_3">
+<span class="sig-name descname"><span class="pre">article10_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10(3)'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article10_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article10_4">
+<span class="sig-name descname"><span class="pre">article10_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10(4)'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article10_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article10_a">
+<span class="sig-name descname"><span class="pre">article10_a</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10(a)'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article10_a" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article10_b">
+<span class="sig-name descname"><span class="pre">article10_b</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10(b)'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article10_b" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article10_c">
+<span class="sig-name descname"><span class="pre">article10_c</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10(c)'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article10_c" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article10a">
+<span class="sig-name descname"><span class="pre">article10a</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10a'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article10a" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article10b">
+<span class="sig-name descname"><span class="pre">article10b</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10b'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article10b" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article10c">
+<span class="sig-name descname"><span class="pre">article10c</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">10c'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article10c" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article48">
+<span class="sig-name descname"><span class="pre">article48</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">4.8'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article48" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article48_1">
+<span class="sig-name descname"><span class="pre">article48_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">4.8(1)'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article48_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article48_2">
+<span class="sig-name descname"><span class="pre">article48_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">4.8(2)'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article48_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article48_3">
+<span class="sig-name descname"><span class="pre">article48_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">4.8(3)'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article48_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article4_8">
+<span class="sig-name descname"><span class="pre">article4_8</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">4(8)'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article4_8" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article83">
+<span class="sig-name descname"><span class="pre">article83</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">8.3'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article83" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.LegalBasesTypes.article8_3">
+<span class="sig-name descname"><span class="pre">article8_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article</span> <span class="pre">8(3)'</span></em><a class="headerlink" href="#api.models.medicine_models.common.LegalBasesTypes.article8_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.NotVarCharField">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.common.</span></span><span class="sig-name descname"><span class="pre">NotVarCharField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_collation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.common.NotVarCharField" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CharField</span></code></p>
+<p>Special field type that enforces CHAR instead of VARCHAR
+It derives from the Django CharField.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.NotVarCharField.db_type">
+<span class="sig-name descname"><span class="pre">db_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.common.NotVarCharField.db_type" title="Permalink to this definition"></a></dt>
+<dd><p>db_type returns the database field type for the given connection.
+This function specifically returns CHAR instead of VARCHAR.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>connection</strong> (<em>_type_</em>) – Connection with the database.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>It returns the column data type for the given connection as string,
+but it will return ‘char’ if it would be a ‘varchar’.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.create_dashboard_column">
+<span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.common.</span></span><span class="sig-name descname"><span class="pre">create_dashboard_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#api.models.medicine_models.common.Category" title="api.models.medicine_models.common.Category"><span class="pre">Category</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.common.create_dashboard_column" title="Permalink to this definition"></a></dt>
+<dd><p>Sets attributes on a model field that’s used in medicine_info_json.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>field</strong> (<em>Field</em>) – The type that the database attribute will have (CharField, BooleanField, etc.).</p></li>
+<li><p><strong>category</strong> (<a class="reference internal" href="#api.models.medicine_models.common.Category" title="api.models.medicine_models.common.Category"><em>Category</em></a>) – Which category the attribute should belong to.</p></li>
+<li><p><strong>data_format</strong> (<em>str</em>) – Defines what data format the attribute should have.</p></li>
+<li><p><strong>display_name</strong> (<em>str</em>) – This is the name that the attribute displays in the database.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the original field, but updated with the correct information.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Field</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.create_dashboard_history_column_current">
+<span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.common.</span></span><span class="sig-name descname"><span class="pre">create_dashboard_history_column_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#api.models.medicine_models.common.Category" title="api.models.medicine_models.common.Category"><span class="pre">Category</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.common.create_dashboard_history_column_current" title="Permalink to this definition"></a></dt>
+<dd><p>Creates the current column for a history column.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>field</strong> (<em>Field</em>) – The type that the database attribute will have (CharField, BooleanField, etc.).</p></li>
+<li><p><strong>category</strong> (<a class="reference internal" href="#api.models.medicine_models.common.Category" title="api.models.medicine_models.common.Category"><em>Category</em></a>) – Which category the attribute should belong to.</p></li>
+<li><p><strong>data_format</strong> (<em>str</em>) – Defines what data format the attribute should have.</p></li>
+<li><p><strong>display_name</strong> (<em>str</em>) – This is the name that the attribute displays in the database.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the original field, but updated with the correct information.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Field</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.create_dashboard_history_column_initial">
+<span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.common.</span></span><span class="sig-name descname"><span class="pre">create_dashboard_history_column_initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#api.models.medicine_models.common.Category" title="api.models.medicine_models.common.Category"><span class="pre">Category</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.common.create_dashboard_history_column_initial" title="Permalink to this definition"></a></dt>
+<dd><p>Creates the initial column for a history column.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>field</strong> (<em>Field</em>) – The type that the database attribute will have (CharField, BooleanField, etc.).</p></li>
+<li><p><strong>category</strong> (<a class="reference internal" href="#api.models.medicine_models.common.Category" title="api.models.medicine_models.common.Category"><em>Category</em></a>) – Which category the attribute should belong to.</p></li>
+<li><p><strong>data_format</strong> (<em>str</em>) – Defines what data format the attribute should have.</p></li>
+<li><p><strong>display_name</strong> (<em>str</em>) – This is the name that the attribute displays in the database.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the original field, but updated with the correct information.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Field</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api.models.medicine_models.common.create_dashboard_history_columns">
+<span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.common.</span></span><span class="sig-name descname"><span class="pre">create_dashboard_history_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#api.models.medicine_models.common.Category" title="api.models.medicine_models.common.Category"><span class="pre">Category</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.common.create_dashboard_history_columns" title="Permalink to this definition"></a></dt>
+<dd><p>Creates two dashboard columns out of a single model column, an initial and a current one for histories.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>field</strong> (<em>Field</em>) – The type that the database attribute will have (CharField, BooleanField, etc.).</p></li>
+<li><p><strong>category</strong> (<a class="reference internal" href="#api.models.medicine_models.common.Category" title="api.models.medicine_models.common.Category"><em>Category</em></a>) – Which category the attribute should belong to.</p></li>
+<li><p><strong>data_format</strong> (<em>str</em>) – Defines what data format the attribute should have.</p></li>
+<li><p><strong>display_name</strong> (<em>str</em>) – This is the name that the attribute displays in the database.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the original field, but updated with the correct information.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Field</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-api.models.medicine_models.history_authorisation_status">
+<span id="api-models-medicine-models-history-authorisation-status-module"></span><h2>api.models.medicine_models.history_authorisation_status module<a class="headerlink" href="#module-api.models.medicine_models.history_authorisation_status" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.history_authorisation_status.</span></span><span class="sig-name descname"><span class="pre">HistoryAuthorisationStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>This is the model class for the Authorisation Status history table. New attributes can be added here.
+This model is derived from a base model from the Django library.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.change_date">
+<span class="sig-name descname"><span class="pre">change_date</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.change_date" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.eu_aut_status">
+<span class="sig-name descname"><span class="pre">eu_aut_status</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.eu_aut_status" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.eu_pnumber">
+<span class="sig-name descname"><span class="pre">eu_pnumber</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.eu_pnumber" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.eu_pnumber_id">
+<span class="sig-name descname"><span class="pre">eu_pnumber_id</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.eu_pnumber_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.get_eu_aut_status_display">
+<span class="sig-name descname"><span class="pre">get_eu_aut_status_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">eu_aut_status&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.get_eu_aut_status_display" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.id" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-api.models.medicine_models.history_authorisation_type">
+<span id="api-models-medicine-models-history-authorisation-type-module"></span><h2>api.models.medicine_models.history_authorisation_type module<a class="headerlink" href="#module-api.models.medicine_models.history_authorisation_type" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.history_authorisation_type.</span></span><span class="sig-name descname"><span class="pre">HistoryAuthorisationType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>This is the model class for the Authorisation Type history table. New attributes can be added here.
+This model is derived from a base model from the Django library.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.change_date">
+<span class="sig-name descname"><span class="pre">change_date</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.change_date" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.eu_aut_type">
+<span class="sig-name descname"><span class="pre">eu_aut_type</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.eu_aut_type" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.eu_pnumber">
+<span class="sig-name descname"><span class="pre">eu_pnumber</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.eu_pnumber" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.eu_pnumber_id">
+<span class="sig-name descname"><span class="pre">eu_pnumber_id</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.eu_pnumber_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.get_eu_aut_type_display">
+<span class="sig-name descname"><span class="pre">get_eu_aut_type_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">eu_aut_type&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.get_eu_aut_type_display" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.id" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-api.models.medicine_models.history_brand_name">
+<span id="api-models-medicine-models-history-brand-name-module"></span><h2>api.models.medicine_models.history_brand_name module<a class="headerlink" href="#module-api.models.medicine_models.history_brand_name" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_brand_name.HistoryBrandName">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.history_brand_name.</span></span><span class="sig-name descname"><span class="pre">HistoryBrandName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.history_brand_name.HistoryBrandName" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>This is the model class for the Brand Name history table. New attributes can be added here.
+This model is derived from a base model from the Django library.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_brand_name.HistoryBrandName.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#api.models.medicine_models.history_brand_name.HistoryBrandName.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_brand_name.HistoryBrandName.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#api.models.medicine_models.history_brand_name.HistoryBrandName.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_brand_name.HistoryBrandName.change_date">
+<span class="sig-name descname"><span class="pre">change_date</span></span><a class="headerlink" href="#api.models.medicine_models.history_brand_name.HistoryBrandName.change_date" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_brand_name.HistoryBrandName.eu_brand_name">
+<span class="sig-name descname"><span class="pre">eu_brand_name</span></span><a class="headerlink" href="#api.models.medicine_models.history_brand_name.HistoryBrandName.eu_brand_name" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_brand_name.HistoryBrandName.eu_pnumber">
+<span class="sig-name descname"><span class="pre">eu_pnumber</span></span><a class="headerlink" href="#api.models.medicine_models.history_brand_name.HistoryBrandName.eu_pnumber" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_brand_name.HistoryBrandName.eu_pnumber_id">
+<span class="sig-name descname"><span class="pre">eu_pnumber_id</span></span><a class="headerlink" href="#api.models.medicine_models.history_brand_name.HistoryBrandName.eu_pnumber_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_brand_name.HistoryBrandName.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#api.models.medicine_models.history_brand_name.HistoryBrandName.id" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_brand_name.HistoryBrandName.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#api.models.medicine_models.history_brand_name.HistoryBrandName.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-api.models.medicine_models.history_eu_orphan_con">
+<span id="api-models-medicine-models-history-eu-orphan-con-module"></span><h2>api.models.medicine_models.history_eu_orphan_con module<a class="headerlink" href="#module-api.models.medicine_models.history_eu_orphan_con" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.history_eu_orphan_con.</span></span><span class="sig-name descname"><span class="pre">HistoryEUOrphanCon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>This is the model class for the Orphan Condition history table. New attributes can be added here.
+This model is derived from a base model from the Django library.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.change_date">
+<span class="sig-name descname"><span class="pre">change_date</span></span><a class="headerlink" href="#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.change_date" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.eu_orphan_con">
+<span class="sig-name descname"><span class="pre">eu_orphan_con</span></span><a class="headerlink" href="#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.eu_orphan_con" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.eu_pnumber">
+<span class="sig-name descname"><span class="pre">eu_pnumber</span></span><a class="headerlink" href="#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.eu_pnumber" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.eu_pnumber_id">
+<span class="sig-name descname"><span class="pre">eu_pnumber_id</span></span><a class="headerlink" href="#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.eu_pnumber_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.id" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-api.models.medicine_models.history_mah">
+<span id="api-models-medicine-models-history-mah-module"></span><h2>api.models.medicine_models.history_mah module<a class="headerlink" href="#module-api.models.medicine_models.history_mah" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_mah.HistoryMAH">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.history_mah.</span></span><span class="sig-name descname"><span class="pre">HistoryMAH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.history_mah.HistoryMAH" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>This is the model class for the Marketing Authorisation Holder history table. New attributes can be added here.
+This model is derived from a base model from the Django library.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_mah.HistoryMAH.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#api.models.medicine_models.history_mah.HistoryMAH.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_mah.HistoryMAH.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#api.models.medicine_models.history_mah.HistoryMAH.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_mah.HistoryMAH.change_date">
+<span class="sig-name descname"><span class="pre">change_date</span></span><a class="headerlink" href="#api.models.medicine_models.history_mah.HistoryMAH.change_date" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_mah.HistoryMAH.eu_mah">
+<span class="sig-name descname"><span class="pre">eu_mah</span></span><a class="headerlink" href="#api.models.medicine_models.history_mah.HistoryMAH.eu_mah" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_mah.HistoryMAH.eu_pnumber">
+<span class="sig-name descname"><span class="pre">eu_pnumber</span></span><a class="headerlink" href="#api.models.medicine_models.history_mah.HistoryMAH.eu_pnumber" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_mah.HistoryMAH.eu_pnumber_id">
+<span class="sig-name descname"><span class="pre">eu_pnumber_id</span></span><a class="headerlink" href="#api.models.medicine_models.history_mah.HistoryMAH.eu_pnumber_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_mah.HistoryMAH.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#api.models.medicine_models.history_mah.HistoryMAH.id" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_mah.HistoryMAH.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#api.models.medicine_models.history_mah.HistoryMAH.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-api.models.medicine_models.history_od">
+<span id="api-models-medicine-models-history-od-module"></span><h2>api.models.medicine_models.history_od module<a class="headerlink" href="#module-api.models.medicine_models.history_od" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_od.HistoryOD">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.history_od.</span></span><span class="sig-name descname"><span class="pre">HistoryOD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.history_od.HistoryOD" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>This is the model class for the Orphan Designation history table. New attributes can be added here.
+This model is derived from a base model from the Django library.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_od.HistoryOD.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#api.models.medicine_models.history_od.HistoryOD.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_od.HistoryOD.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#api.models.medicine_models.history_od.HistoryOD.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_od.HistoryOD.change_date">
+<span class="sig-name descname"><span class="pre">change_date</span></span><a class="headerlink" href="#api.models.medicine_models.history_od.HistoryOD.change_date" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_od.HistoryOD.eu_od">
+<span class="sig-name descname"><span class="pre">eu_od</span></span><a class="headerlink" href="#api.models.medicine_models.history_od.HistoryOD.eu_od" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_od.HistoryOD.eu_pnumber">
+<span class="sig-name descname"><span class="pre">eu_pnumber</span></span><a class="headerlink" href="#api.models.medicine_models.history_od.HistoryOD.eu_pnumber" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_od.HistoryOD.eu_pnumber_id">
+<span class="sig-name descname"><span class="pre">eu_pnumber_id</span></span><a class="headerlink" href="#api.models.medicine_models.history_od.HistoryOD.eu_pnumber_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_od.HistoryOD.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#api.models.medicine_models.history_od.HistoryOD.id" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_od.HistoryOD.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#api.models.medicine_models.history_od.HistoryOD.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-api.models.medicine_models.history_prime">
+<span id="api-models-medicine-models-history-prime-module"></span><h2>api.models.medicine_models.history_prime module<a class="headerlink" href="#module-api.models.medicine_models.history_prime" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_prime.HistoryPrime">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.history_prime.</span></span><span class="sig-name descname"><span class="pre">HistoryPrime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.history_prime.HistoryPrime" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>This is the model class for the Priority Medicine Designation History table. New attributes can be added here.
+This model is derived from a base model from the Django library.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_prime.HistoryPrime.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#api.models.medicine_models.history_prime.HistoryPrime.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_prime.HistoryPrime.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#api.models.medicine_models.history_prime.HistoryPrime.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_prime.HistoryPrime.change_date">
+<span class="sig-name descname"><span class="pre">change_date</span></span><a class="headerlink" href="#api.models.medicine_models.history_prime.HistoryPrime.change_date" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_prime.HistoryPrime.eu_pnumber">
+<span class="sig-name descname"><span class="pre">eu_pnumber</span></span><a class="headerlink" href="#api.models.medicine_models.history_prime.HistoryPrime.eu_pnumber" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_prime.HistoryPrime.eu_pnumber_id">
+<span class="sig-name descname"><span class="pre">eu_pnumber_id</span></span><a class="headerlink" href="#api.models.medicine_models.history_prime.HistoryPrime.eu_pnumber_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_prime.HistoryPrime.eu_prime">
+<span class="sig-name descname"><span class="pre">eu_prime</span></span><a class="headerlink" href="#api.models.medicine_models.history_prime.HistoryPrime.eu_prime" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_prime.HistoryPrime.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#api.models.medicine_models.history_prime.HistoryPrime.id" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.history_prime.HistoryPrime.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#api.models.medicine_models.history_prime.HistoryPrime.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-api.models.medicine_models.legal_bases">
+<span id="api-models-medicine-models-legal-bases-module"></span><h2>api.models.medicine_models.legal_bases module<a class="headerlink" href="#module-api.models.medicine_models.legal_bases" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.legal_bases.LegalBases">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.legal_bases.</span></span><span class="sig-name descname"><span class="pre">LegalBases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.legal_bases.LegalBases" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>This is the model class for the Legal Base table. New attributes can be added here.
+This model is derived from a base model from the Django library.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.legal_bases.LegalBases.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#api.models.medicine_models.legal_bases.LegalBases.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.legal_bases.LegalBases.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#api.models.medicine_models.legal_bases.LegalBases.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.legal_bases.LegalBases.eu_legal_basis">
+<span class="sig-name descname"><span class="pre">eu_legal_basis</span></span><a class="headerlink" href="#api.models.medicine_models.legal_bases.LegalBases.eu_legal_basis" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.legal_bases.LegalBases.eu_pnumber">
+<span class="sig-name descname"><span class="pre">eu_pnumber</span></span><a class="headerlink" href="#api.models.medicine_models.legal_bases.LegalBases.eu_pnumber" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.legal_bases.LegalBases.eu_pnumber_id">
+<span class="sig-name descname"><span class="pre">eu_pnumber_id</span></span><a class="headerlink" href="#api.models.medicine_models.legal_bases.LegalBases.eu_pnumber_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.legal_bases.LegalBases.get_eu_legal_basis_display">
+<span class="sig-name descname"><span class="pre">get_eu_legal_basis_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">eu_legal_basis&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.legal_bases.LegalBases.get_eu_legal_basis_display" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.legal_bases.LegalBases.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#api.models.medicine_models.legal_bases.LegalBases.id" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.legal_bases.LegalBases.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#api.models.medicine_models.legal_bases.LegalBases.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-api.models.medicine_models.medicine">
+<span id="api-models-medicine-models-medicine-module"></span><h2>api.models.medicine_models.medicine module<a class="headerlink" href="#module-api.models.medicine_models.medicine" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.models.medicine_models.medicine.</span></span><span class="sig-name descname"><span class="pre">Medicine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>This is the model class for the Medicine table. New attributes can be added here.
+This model is derived from a base model from the Django library.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.DoesNotExist" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.active_substance">
+<span class="sig-name descname"><span class="pre">active_substance</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.active_substance" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.assess_time_days_active">
+<span class="sig-name descname"><span class="pre">assess_time_days_active</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.assess_time_days_active" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.assess_time_days_cstop">
+<span class="sig-name descname"><span class="pre">assess_time_days_cstop</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.assess_time_days_cstop" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.assess_time_days_total">
+<span class="sig-name descname"><span class="pre">assess_time_days_total</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.assess_time_days_total" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.atc_code">
+<span class="sig-name descname"><span class="pre">atc_code</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.atc_code" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.aut_url">
+<span class="sig-name descname"><span class="pre">aut_url</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.aut_url" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.chmp_opinion_date">
+<span class="sig-name descname"><span class="pre">chmp_opinion_date</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.chmp_opinion_date" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.ec_decision_time_days">
+<span class="sig-name descname"><span class="pre">ec_decision_time_days</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.ec_decision_time_days" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.ec_url">
+<span class="sig-name descname"><span class="pre">ec_url</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.ec_url" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.ema_corapp">
+<span class="sig-name descname"><span class="pre">ema_corapp</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.ema_corapp" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.ema_number">
+<span class="sig-name descname"><span class="pre">ema_number</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.ema_number" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.ema_number_check">
+<span class="sig-name descname"><span class="pre">ema_number_check</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.ema_number_check" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.ema_od_number">
+<span class="sig-name descname"><span class="pre">ema_od_number</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.ema_od_number" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.ema_procedure_start_initial">
+<span class="sig-name descname"><span class="pre">ema_procedure_start_initial</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.ema_procedure_start_initial" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.ema_rapp">
+<span class="sig-name descname"><span class="pre">ema_rapp</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.ema_rapp" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.ema_reexamination">
+<span class="sig-name descname"><span class="pre">ema_reexamination</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.ema_reexamination" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.ema_url">
+<span class="sig-name descname"><span class="pre">ema_url</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.ema_url" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.epar_url">
+<span class="sig-name descname"><span class="pre">epar_url</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.epar_url" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_accel_assess_g">
+<span class="sig-name descname"><span class="pre">eu_accel_assess_g</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_accel_assess_g" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_accel_assess_m">
+<span class="sig-name descname"><span class="pre">eu_accel_assess_m</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_accel_assess_m" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_atmp">
+<span class="sig-name descname"><span class="pre">eu_atmp</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_atmp" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_aut_date">
+<span class="sig-name descname"><span class="pre">eu_aut_date</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_aut_date" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_med_type">
+<span class="sig-name descname"><span class="pre">eu_med_type</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_med_type" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_nas">
+<span class="sig-name descname"><span class="pre">eu_nas</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_nas" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_od_comp_date">
+<span class="sig-name descname"><span class="pre">eu_od_comp_date</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_od_comp_date" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_od_con">
+<span class="sig-name descname"><span class="pre">eu_od_con</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_od_con" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_od_date">
+<span class="sig-name descname"><span class="pre">eu_od_date</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_od_date" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_od_number">
+<span class="sig-name descname"><span class="pre">eu_od_number</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_od_number" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_od_pnumber">
+<span class="sig-name descname"><span class="pre">eu_od_pnumber</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_od_pnumber" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_od_sponsor">
+<span class="sig-name descname"><span class="pre">eu_od_sponsor</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_od_sponsor" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_pnumber">
+<span class="sig-name descname"><span class="pre">eu_pnumber</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_pnumber" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_referral">
+<span class="sig-name descname"><span class="pre">eu_referral</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_referral" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.eu_suspension">
+<span class="sig-name descname"><span class="pre">eu_suspension</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.eu_suspension" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.get_next_by_chmp_opinion_date">
+<span class="sig-name descname"><span class="pre">get_next_by_chmp_opinion_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">chmp_opinion_date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.get_next_by_chmp_opinion_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.get_next_by_ema_procedure_start_initial">
+<span class="sig-name descname"><span class="pre">get_next_by_ema_procedure_start_initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">ema_procedure_start_initial&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.get_next_by_ema_procedure_start_initial" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.get_next_by_eu_aut_date">
+<span class="sig-name descname"><span class="pre">get_next_by_eu_aut_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">eu_aut_date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.get_next_by_eu_aut_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.get_next_by_eu_od_comp_date">
+<span class="sig-name descname"><span class="pre">get_next_by_eu_od_comp_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">eu_od_comp_date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.get_next_by_eu_od_comp_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.get_next_by_eu_od_date">
+<span class="sig-name descname"><span class="pre">get_next_by_eu_od_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">eu_od_date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.get_next_by_eu_od_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.get_previous_by_chmp_opinion_date">
+<span class="sig-name descname"><span class="pre">get_previous_by_chmp_opinion_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">chmp_opinion_date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.get_previous_by_chmp_opinion_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.get_previous_by_ema_procedure_start_initial">
+<span class="sig-name descname"><span class="pre">get_previous_by_ema_procedure_start_initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">ema_procedure_start_initial&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.get_previous_by_ema_procedure_start_initial" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.get_previous_by_eu_aut_date">
+<span class="sig-name descname"><span class="pre">get_previous_by_eu_aut_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">eu_aut_date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.get_previous_by_eu_aut_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.get_previous_by_eu_od_comp_date">
+<span class="sig-name descname"><span class="pre">get_previous_by_eu_od_comp_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">eu_od_comp_date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.get_previous_by_eu_od_comp_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.get_previous_by_eu_od_date">
+<span class="sig-name descname"><span class="pre">get_previous_by_eu_od_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">eu_od_date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.get_previous_by_eu_od_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.historyauthorisationstatus_set">
+<span class="sig-name descname"><span class="pre">historyauthorisationstatus_set</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.historyauthorisationstatus_set" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.historyauthorisationtype_set">
+<span class="sig-name descname"><span class="pre">historyauthorisationtype_set</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.historyauthorisationtype_set" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.historybrandname_set">
+<span class="sig-name descname"><span class="pre">historybrandname_set</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.historybrandname_set" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.historyeuorphancon_set">
+<span class="sig-name descname"><span class="pre">historyeuorphancon_set</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.historyeuorphancon_set" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.historymah_set">
+<span class="sig-name descname"><span class="pre">historymah_set</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.historymah_set" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.historyod_set">
+<span class="sig-name descname"><span class="pre">historyod_set</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.historyod_set" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.historyprime_set">
+<span class="sig-name descname"><span class="pre">historyprime_set</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.historyprime_set" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.legalbases_set">
+<span class="sig-name descname"><span class="pre">legalbases_set</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.legalbases_set" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.odwar_url">
+<span class="sig-name descname"><span class="pre">odwar_url</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.odwar_url" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.omar_url">
+<span class="sig-name descname"><span class="pre">omar_url</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.omar_url" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.savedselection_set">
+<span class="sig-name descname"><span class="pre">savedselection_set</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.savedselection_set" title="Permalink to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="api.models.medicine_models.medicine.Medicine.smpc_url">
+<span class="sig-name descname"><span class="pre">smpc_url</span></span><a class="headerlink" href="#api.models.medicine_models.medicine.Medicine.smpc_url" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-api.models.medicine_models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-api.models.medicine_models" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api.models.html" class="btn btn-neutral float-left" title="api.models package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.models.other.html" class="btn btn-neutral float-right" title="api.models.other package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Medisee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

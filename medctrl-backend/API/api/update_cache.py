@@ -17,8 +17,10 @@ from api.serializers.medicine_serializers.scraper import UrlsSerializer
 from api.models.medicine_models import Medicine
 
 
-# Adds all medicine data to cache memory of the server
 def update_cache():
+    """
+    Adds all medicine data to cache memory of the server
+    """
     if not settings.MEDICINES_CACHING:
         return
 
@@ -38,7 +40,9 @@ def update_cache():
 
 
 def has_pending_migrations():
-    # Execute the makemigrations command and redirect its output to a StringIO object
+    """
+    Execute the makemigrations command and redirect its output to a StringIO object.
+    """    
     out = io.StringIO()
     call_command("makemigrations", dry_run=True, no_input=True, stdout=out)
     out.seek(0)
@@ -47,7 +51,12 @@ def has_pending_migrations():
 
 
 def has_unapplied_migration():
-    # Execute the showmigrations command and redirect its output to a StringIO object
+    """
+    Execute the showmigrations command and redirect its output to a StringIO object
+
+    Returns:
+        bool: true if there are any unapplied migrations, false otherwise
+    """    
     out = io.StringIO()
     call_command("showmigrations", list=True, no_color=True, stdout=out)
     out.seek(0)

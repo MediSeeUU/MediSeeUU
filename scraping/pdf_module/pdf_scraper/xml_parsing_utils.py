@@ -9,14 +9,14 @@ def file_is_initial(xml_head: ET.Element) -> bool:
     Returns whether a xml file is an initial authorization.
 
     Args:
-        xml_head (xml.etree.ElementTree.Element): a xml Element of the <head>...</head> node.
+        xml_head (xml.etree.ElementTree.Element): A xml Element of the <head>...</head> node.
 
     Returns:
-        bool: bool equal to the is_initial flag in the xml head node.
+        bool: is_initial flag bool value in the xml head node.
     """
 
     initial_element = xml_head.findall(tags.initial_authorization)[0]
-    return initial_element.text.strip() == 'True'
+    return initial_element.text.strip() == "True"
 
 
 def file_get_name_pdf(xml_head: ET.Element) -> str:
@@ -24,10 +24,10 @@ def file_get_name_pdf(xml_head: ET.Element) -> str:
     Returns file name of the pdf from which the xml file was made.
 
     Args:
-        xml_head (xml.etree.ElementTree.Element): a xml Element of the <head>...</head> node.
+        xml_head (xml.etree.ElementTree.Element): A xml Element of the <head>...</head> node.
 
     Returns:
-        str: name of the pdf file in string format.
+        str: Name of the pdf file in string format.
     """
 
     return xml_head.findall(tags.pdf_file)[0].text.strip()
@@ -38,10 +38,10 @@ def file_get_creation_date(xml_head: ET.Element) -> str:
     Returns creation date of a xml file.
 
     Args:
-        xml_head (xml.etree.ElementTree.Element): a xml Element of the <head>...</head> node.
+        xml_head (xml.etree.ElementTree.Element): A xml Element of the <head>...</head> node.
 
     Returns:
-        str: string representing the creation datetime in the original pdf metadata, can be null.
+        str: String representing the creation datetime in the original pdf metadata, can be null.
     """
 
     if xml_head.findall(tags.creation_date)[0].text:
@@ -49,16 +49,16 @@ def file_get_creation_date(xml_head: ET.Element) -> str:
     return "no_creation_date"
 
 
-def get_paragraphs_by_header(header: str, xml: ET.Element) -> [str]:
+def get_paragraphs_by_header(header: str, xml: ET.Element) -> list[str]:
     """
-    Returns a list of all paragraphs contained by the given header
+    Returns a list of all paragraphs contained by the given header.
 
     Args:
-        header (str): substring to search for in the section header.
-        xml (xml.etree.ElementTree.Element): the entire xml document
+        header (str): Substring to search for in the section header.
+        xml (xml.etree.ElementTree.Element): The entire xml document.
 
     Returns:
-        [str]: List of all paragraphs contained by the given header
+        list[str]: List of all paragraphs contained by the given header
     """
     res = []
     for section in xml:
@@ -74,10 +74,10 @@ def file_get_modification_date(xml_head: ET.Element) -> str:
     Returns modification date of a xml file.
 
     Args:
-        xml_head (xml.etree.ElementTree.Element): a xml Element of the <head>...</head> node.
+        xml_head (xml.etree.ElementTree.Element): A xml Element of the <head>...</head> node.
 
     Returns:
-        str: string representing the modification datetime in the original pdf metadata, can be null.
+        str: String representing the modification datetime in the original pdf metadata, can be null.
     """
 
     if xml_head.findall(tags.modification_date)[0].text:
@@ -90,8 +90,8 @@ def section_contains_substring(substring: str, section: ET.Element) -> bool:
     Returns whether a xml section contains a substring in its header or paragraph tags.
 
     Args:
-        substring (str): substring to search for in the section.
-        section (xml.etree.ElementTree.Element): a xml Element of the <section>...</section> node.
+        substring (str): Substring to search for in the section.
+        section (xml.etree.ElementTree.Element): A xml Element of the <section>...</section> node.
 
     Returns:
         bool: bool indicating whether the section contains the substring.
@@ -106,8 +106,8 @@ def section_contains_substring_set(substring_set: list[str], section: ET.Element
     Returns whether a xml section contains any substring of the substring_set in its header or paragraph tags.
 
     Args:
-        substring_set (list[str]): list of substrings to search for in the section.
-        section (xml.etree.ElementTree.Element): a xml Element of the <section>...</section> node.
+        substring_set (list[str]): List of substrings to search for in the section.
+        section (xml.etree.ElementTree.Element): A xml Element of the <section>...</section> node.
 
     Returns:
         bool: bool indicating whether the section contains any of the substrings.
@@ -123,7 +123,7 @@ def section_contains_header_substring(substring: str, section: ET.Element) -> bo
 
     Args:
         substring (str): substring to search for in the section header.
-        section (xml.etree.ElementTree.Element): a xml Element of the <header>...</header> node within a section.
+        section (xml.etree.ElementTree.Element): A xml Element of the <header>...</header> node within a section.
 
     Returns:
         bool: bool indicating whether the section header contains the substring.
@@ -142,8 +142,8 @@ def section_contains_header_substring_set(substring_set: List[str], section: ET.
     Returns whether a xml section header contains any of the substrings within substring_set.
 
     Args:
-        substring_set (list[str]): list of substrings to search for in the section header.
-        section (xml.etree.ElementTree.Element): a xml Element of the <header>...</header> node within a section.
+        substring_set (list[str]): List of substrings to search for in the section header.
+        section (xml.etree.ElementTree.Element): A xml Element of the <header>...</header> node within a section.
 
     Returns:
         bool: bool indicating whether the section contains any of the substrings in substring_set.
@@ -164,11 +164,11 @@ def section_contains_header_number(header_number: str, header: ET.Element) -> bo
     Returns whether a xml section header contains an attribute n with value number.
 
     Args:
-        header_number (str): string value of a header number in the form of x.y.z with no dot at the end.
-        header (xml.etree.ElementTree.Element): a xml Element of the <header>...</header> node within a section.
+        header_number (str): String value of a header number in the form of x.y.z with no dot at the end.
+        header (xml.etree.ElementTree.Element): A xml Element of the <header>...</header> node within a section.
 
     Returns:
-        bool: bool indicating whether the section contains an attribute n with value number
+        bool: bool indicating whether the section contains an attribute n with value number.
     """
 
     if len(header.attrib) == 0:
@@ -183,7 +183,7 @@ def section_contains_paragraph_substring(substring: str, section: ET.Element) ->
 
     Args:
         substring (str): substring to search for in paragraphs of section.
-        section (ET.Element): a xml Element of the <section>...</section> node.
+        section (ET.Element): A xml Element of the <section>...</section> node.
 
     Returns:
         bool: bool value indicating whether any paragraph in the section contains the given substring.
@@ -203,8 +203,8 @@ def section_contains_paragraph_substring_set(substring_set: list[str], section: 
     Returns whether a section contains a substring within substring_set in any of its paragraphs.
 
     Args:
-        substring_set (list[str]): list of substrings to search for in paragraphs of section.
-        section (ET.Element): a xml Element of the <section>...</section> node.
+        substring_set (list[str]): List of substrings to search for in paragraphs of section.
+        section (ET.Element): A xml Element of the <section>...</section> node.
 
     Returns:
         bool: bool value indicating whether any paragraph contains any substring in substring_set.
@@ -225,8 +225,8 @@ def paragraph_contains_substring(substring: str, paragraph: ET.Element) -> bool:
     Returns whether a single paragraph contains the given substring.
 
     Args:
-        substring (str): substring to search withing the paragraph.
-        paragraph (ET.Element): a xml Element of the <p>...</p> node.
+        substring (str): Substring to search withing the paragraph.
+        paragraph (ET.Element): A xml Element of the <p>...</p> node.
 
     Returns:
         bool: bool value indicating whether the paragraph contains the given substring.
@@ -240,7 +240,7 @@ def section_append_paragraphs(section: ET.Element) -> str:
     Returns a string with all text from all section paragraphs appended to each other.
 
     Args:
-        section (ET.Element): a xml Element of the <section>...</section> node.
+        section (ET.Element): A xml Element of the <section>...</section> node.
 
     Returns:
         str: all text within section paragraphs appended to each other in one string.
@@ -258,12 +258,13 @@ def section_get_paragraph_indices(index: int, section: ET.Element) -> ET.Element
     Returns a paragraph node based on its occurrence order in the section node, starts as 0 like an index.
 
     Args:
-        index (int): integer starting from zero indicating which paragraph to get text from
-        section (ET.Element): a xml Element of the <section>...</section> node.
+        index (int): Integer starting from zero indicating which paragraph to get text from.
+        section (ET.Element): A xml Element of the <section>...</section> node.
 
     Returns:
-        ET.Element: a xml Element of the <p>...</p> node from the given section.
+        ET.Element: A xml Element of the <p>...</p> node from the given section.
     """
+    
     return section.findall(tags.paragraph)[index]
 
 
@@ -272,11 +273,11 @@ def section_get_paragraph_text(index: int, section: ET.Element) -> str:
     Returns text from a paragraph node based on its occurrence order in the section node, starts as 0 like an index.
 
     Args:
-        index (int): integer starting from zero indicating which paragraph to get text from.
-        section (ET.Element): a xml Element of the <section>...</section> node.
+        index (int): Integer starting from zero indicating which paragraph to get text from.
+        section (ET.Element): A xml Element of the <section>...</section> node.
 
     Returns:
-        str: text contained within the paragraph accessed by index.
+        str: Text contained within the paragraph accessed by index.
     """
 
     return section.findall(tags.paragraph)[index].text
