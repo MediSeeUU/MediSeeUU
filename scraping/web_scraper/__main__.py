@@ -4,7 +4,8 @@ from pathlib import Path
 from datetime import datetime
 
 import tqdm
-import tqdm.contrib.logging
+import tqdm.contrib.concurrent as tqdm_concurrent
+import tqdm.contrib.logging as tqdm_logging
 
 import download
 import ec_scraper
@@ -100,15 +101,24 @@ def main(data_filepath: str = '../../data'):
 
         get_urls_ec_retry = utils.exception_retry(get_urls_ec, logging_instance=log)
 
+        # Transform zipped list into individual lists for thread_map function
+        # The last element of the medicine_codes tuple is not of interest, thus we pop()
+        unzipped_medicine_codes = [list(t) for t in zip(*medicine_codes)]
+        unzipped_medicine_codes.pop()
+
         with tqdm.contrib.logging.logging_redirect_tqdm():
-            for (medicine_url, eu_n, medicine_type, _) in tqdm.tqdm(medicine_codes):
-                get_urls_ec_retry(medicine_url, eu_n, medicine_type, data_filepath)
+            tqdm_concurrent.thread_map(get_urls_ec_retry,
+                                       *unzipped_medicine_codes,
+                                       [data_filepath] * len(medicine_codes))
 
         url_file.save_dict()
         log.info("TASK FINISHED EC scrape")
 
     if scrape_ema:
         log.info("Scraping all individual medicine pages of EMA")
+
+        if not scrape_ec:
+            url_file.load_json()
 
         get_urls_ema_retry: callable = utils.exception_retry(get_urls_ema, logging_instance=log)
 
@@ -117,9 +127,10 @@ def main(data_filepath: str = '../../data'):
                     for eu_n, value_dict in url_file.local_dict.items()
                     for url in value_dict["ema_url"]]
 
+        unzipped_ema_urls = [list(t) for t in zip(*ema_urls)]
+
         with tqdm.contrib.logging.logging_redirect_tqdm():
-            for eu_n, url in tqdm.tqdm(ema_urls, bar_format=tqdm_format_string):
-                get_urls_ema_retry(eu_n, url)
+            tqdm_concurrent.thread_map(get_urls_ema_retry, *unzipped_ema_urls)
 
         url_file.save_dict()
         log.info("TASK FINISHED EMA scrape")

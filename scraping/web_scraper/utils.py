@@ -18,6 +18,7 @@ def exception_retry(func: callable, max_attempts: int = 4, logging_instance: log
 
     """
     def wrapper(*args, **kwargs):
+        exception_names: list[str] = []
         if func is None:
             return None
 
@@ -26,13 +27,20 @@ def exception_retry(func: callable, max_attempts: int = 4, logging_instance: log
                 return func(*args, **kwargs)
 
             except Exception as e:
+                exception_names.append(type(e).__name__)
                 if logging_instance is not None:
                     logging_instance.debug(f"Function {func.__name__} failed with {type(e).__name__}")
                 continue
 
         if logging_instance is not None:
-            logging_instance.warning(f"Function {func.__name__}({', '.join(map(str, args))}) failed after {max_attempts} attempts")
-
+            logging_instance.warning(f"Retry failed after {max_attempts} attempts. {count_unique(exception_names)} "
+                                     f"{func.__name__}({', '.join(map(str, args))}) ")
         return None  # Func threw an exception, return None
 
     return wrapper
+
+
+def count_unique(input_list: list):
+    return dict(
+        zip(list(input_list), [list(input_list).count(i) for i in list(input_list)])
+    )
