@@ -170,6 +170,7 @@ def get_rapp(xml: ET.Element) -> str:
         if re.findall(regex_str_3, txt):
             temp_rapp = get_rapp_after(regex_str_3, txt, 37)
             if temp_rapp:
+                print("3" + temp_rapp)
                 return temp_rapp
         # Find rapporteur after "rapporteur:" with found boolean to get rapporteur in new section
         if found:
