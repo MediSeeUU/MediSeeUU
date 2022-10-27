@@ -1,15 +1,6 @@
 web\_scraper package
 ====================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   web_scraper.tests
-   web_scraper.webscraper_tests
-
 Submodules
 ----------
 
