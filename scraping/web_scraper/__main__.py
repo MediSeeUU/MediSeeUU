@@ -7,14 +7,14 @@ import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 
-from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper
+from . import download, ec_scraper, ema_scraper, utils, json_helper
 
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
 scrape_ec: bool = False
-scrape_ema: bool = False            # Requires scrape_ec to have been run at least once
-download_files: bool = True         # Download pdfs from the obtained links
+scrape_ema: bool = True            # Requires scrape_ec to have been run at least once
+download_files: bool = False         # Download pdfs from the obtained links
 use_parallelization: bool = False   # Parallelization is currently broken on Windows. Set to False
 
 # list of the type of medicines that will be scraped
@@ -99,9 +99,12 @@ def get_urls_ema(eu_n: str, url: str):
         Returns:
             None: This function returns nothing
         """
-    pdf_url: dict = {
+    epar_url, omar_url = ema_scraper.pdf_links_from_url(url)
+
+    pdf_url: dict[str, str] = {
         eu_n: {
-            "epar_url": ema_scraper.pdf_links_from_url(url)
+            "epar_url": epar_url,
+            "omar_url": omar_url
         }
     }
     url_file.add_to_dict(pdf_url)

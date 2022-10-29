@@ -5,7 +5,7 @@ import bs4
 log = logging.getLogger("webscraper.ema_scraper")
 
 
-def pdf_links_from_url(url: str) -> str:
+def pdf_links_from_url(url: str) -> (str, str):
     """ Gets the pdf link on the EMA website that is highest on the priority list
 
     Args:
@@ -37,22 +37,51 @@ def pdf_links_from_url(url: str) -> str:
     specific_soup = soup.find(string="Initial marketing-authorisation documents").parent.parent.parent
 
     # Compiles a list of all link tags, that link to a .pdf file.
-    link_tags = specific_soup.find_all('a')
-
+    try:
+        link_tags = specific_soup.find_all('a')
+    except AttributeError:
+        log.warning(f"There are no initial marketing-authorisation documents")
+        return "" ""
+    else:
+        pass
+    
     # Get all links to pdf files from the
     url_list: list[str] = list(map(lambda a: a["href"], link_tags))
 
     # Files named 'public-assessment-report' will be the highest priority in the search.
-    priority_list = ["public-assessment-report", "scientific-discussion", "procedural-steps-taken-authorisation"]
+    priority_list: list[str] = ["public-assessment-report", "scientific-discussion", "procedural-steps-taken-authorisation"]
+    priority_link: str = ""
+    omar_link: str = ""
+    break_epar_loop: bool = False
+    break_omar_loop: bool = False
 
     # Go through all links, try to find the document that is the highest on the priority list first.
     for type_of_report in priority_list:
         for pdf_url in url_list:
             if type_of_report in pdf_url:
-                return pdf_url
+                priority_link = pdf_url
+                break_epar_loop = True
+                break
+        if break_epar_loop:
+            break
 
-    log.warning(f"No EPAR for {medicine_name}. The searched URLs are {url_list}")
-    return ""
+    # Go through all links, try to find the OMAR document
+    for pdf_url in url_list:
+        if "orphan-medicine-assessment-report" in pdf_url:
+            omar_link = pdf_url
+            break
 
+    # gives a warning if it hasn't found an epar or omar document
+    if priority_link == "" and omar_link == "":
+        log.warning(f"No EPAR for {medicine_name}. The searched URLs are {url_list}")
+        log.warning(f"No OMAR for {medicine_name}. The searched URLs are {url_list}")
+
+    if priority_link == "" and omar_link != "":
+        log.warning(f"No EPAR for {medicine_name}. The searched URLs are {url_list}")
+
+    if priority_link != "" and omar_link == "":
+        log.warning(f"No OMAR for {medicine_name}. The searched URLs are {url_list}")
+
+    return priority_link, omar_link
 
 # print(pdf_links_from_url(""))

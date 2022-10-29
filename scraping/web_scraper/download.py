@@ -7,8 +7,8 @@ import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 
-import scraping.web_scraper.json_helper as json_helper
-import scraping.web_scraper.utils as utils
+from . import json_helper
+from . import utils
 
 log = logging.getLogger("webscraper.ec_scraper")
 urls_file: json_helper.JsonHelper
@@ -51,20 +51,21 @@ def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_urls: list[str], med_dict: 
         file_counter += 1
 
 
-def download_pdfs_ema(eu_num: str, epar_url: str, med_dict: dict[str, str]):
-    if epar_url == '':
-        log.info(f"no ema documents available for {eu_num}")
+def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[str, str]):
+    if pdf_url == '':
+        log.info(f"no {pdf_type} available for {eu_num}")
     else:
-        pdf_type = re.findall(r"(?<=epar-)(.*)(?=_en)", epar_url)[0]
+        pdf_type = re.findall(r"(?<=epar-)(.*)(?=_en)", pdf_url)[0]
         filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type]
-        download_pdf_from_url(epar_url, eu_num, filename_elements)
+        download_pdf_from_url(pdf_url, eu_num, filename_elements)
 
 
-def download_medicine_files(eu_n: str, url_dict: dict[str, [str]]):
+def download_medicine_files(eu_n: str, url_dict: dict[str, list[str]]):
     attr_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_attributes.json")).load_json()
     utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "dec", url_dict["aut_url"], attr_dict)
     utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "anx", url_dict["smpc_url"], attr_dict)
-    utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, url_dict["epar_url"], attr_dict)
+    utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, "epar", url_dict["epar_url"], attr_dict)
+    utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, "omar", url_dict["omar_url"], attr_dict)
     log.info(f"Finished download for {eu_n}")
 
 
