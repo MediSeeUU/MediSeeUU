@@ -7,8 +7,8 @@ import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 
-import scraping.web_scraper.json_helper as json_helper
-import scraping.web_scraper.utils as utils
+from . import json_helper
+from . import utils
 
 log = logging.getLogger("webscraper.ec_scraper")
 urls_file: json_helper.JsonHelper
