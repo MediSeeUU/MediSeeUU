@@ -61,10 +61,19 @@ def pdf_links_from_url(url: str) -> str:
 
 
 def get_annex10_files(url: str, annex_dict: dict[int, dict[str, str]]) -> dict[int, dict[str, str]]:
-    """_summary_
+    """ Gets all the annex 10 files from the EMA website.
+
+    The website is scraped for all annex 10 files. Whenever this scraper runs, it checks whether it has to
+    update the links in the dictionary, based on whether the document on the site was updated or not. It also
+    adds new links to the excel documents if it finds these 
 
     Args:
-        url (str): _description_
+        url (str): Link to the EMA website that contains all annex 10 files
+        annex_dict (dict[int, dict[str, str]]): Dictionary that contains links to the annex files per year
+            and when they were last updated
+
+    Returns:
+        dict[int, dict[str, str]]: _description_
     """
     html_obj = requests.get(url)
 
@@ -78,16 +87,22 @@ def get_annex10_files(url: str, annex_dict: dict[int, dict[str, str]]) -> dict[i
     
     # Checks for each year if there is an annex 10 excel file and if the excel link needs to be updated
     while year_iterator <= current_year:
+        # Get the element that contains annex 10 text
         complete_soup = soup.find(string=re.compile(f"Annex 10 (?:-|–) {year_iterator} annual report.*"))
 
+        # If it can't find it, it makes sure that no errors are thrown and starts with the next year
         if complete_soup != None:
             specific_soup = complete_soup.parent.parent.parent
         else:
             year_iterator += 1
             continue
 
+        # Link to the excel file
         excel_link = specific_soup["href"]
 
+        # If the annex 10 link for the current year is already in the dictionary, it checks when it was last updated on the site.
+        # It compares this when the dictonary was last updated. If the site was updated after the dictionary, the dictionary needs to be
+        # updated with the new link. Also, new entries must always be added
         if str(year_iterator) in annex_dict:
             last_updated_local: datetime = datetime.strptime(annex_dict[str(year_iterator)]["last_updated"], '%d/%m/%Y')
             last_updated_site: datetime = find_last_updated_date(specific_soup.find_all('small')[1].get_text())   
@@ -107,12 +122,25 @@ def get_annex10_files(url: str, annex_dict: dict[int, dict[str, str]]) -> dict[i
 
 
 def find_last_updated_date(text: str) -> datetime:
+    """ Converts a piece of text with information when an excel-sheet was last updated to a datetime object
+
+    Args:
+        text (str): text containing information when it was last updated.
+
+    Returns:
+        datetime: When the excel-sheet was last updated
+    """
+    # Removes all whitespaces from the text, and splits the words in a list
     new_text: list[str] = text.split()
 
+    # When the document has updated somewhere over the years been updated, it has more than three words in the list.
+    # Otherwise, the original upload date is taken
     if len(new_text) > 3:
         updated_date: str = new_text[5]
     else:
         updated_date: str = new_text[2]
 
     return datetime.strptime(updated_date, '%d/%m/%Y')
+
+
 # print(pdf_links_from_url(""))
