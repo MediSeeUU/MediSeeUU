@@ -21,9 +21,9 @@ use_parallelization: bool = False   # Parallelization is currently broken on Win
 # NOTE: This was useful for debugging
 scrape_medicine_type: list[ec_scraper.MedicineType] = [
                                                        ec_scraper.MedicineType.HUMAN_USE_ACTIVE,
-                                                       # ec_scraper.MedicineType.HUMAN_USE_WITHDRAWN,
-                                                       # ec_scraper.MedicineType.ORPHAN_ACTIVE,
-                                                       # ec_scraper.MedicineType.ORPHAN_WITHDRAWN
+                                                       ec_scraper.MedicineType.HUMAN_USE_WITHDRAWN,
+                                                       ec_scraper.MedicineType.ORPHAN_ACTIVE,
+                                                       ec_scraper.MedicineType.ORPHAN_WITHDRAWN
                                                       ]
 
 # TODO: Logging to monolithic main

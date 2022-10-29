@@ -17,6 +17,8 @@ class MedicineType(Enum):
     HUMAN_USE_WITHDRAWN = 1
     ORPHAN_ACTIVE = 2
     ORPHAN_WITHDRAWN = 3
+    HUMAN_USE_REFUSED = 4
+    ORPHAN_REFUSE = 5
 
 
 # links to the ec pages that contain medicine codes
