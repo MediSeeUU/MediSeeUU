@@ -81,9 +81,9 @@ def get_annex10_files(url: str, annex_dict: dict[int, dict[str, str]]) -> dict[i
     html_obj.raise_for_status()
 
     soup = bs4.BeautifulSoup(html_obj.text, "html.parser")
-    # TODO: change so that it updates current year automatically
-    current_year: int = 2022
-    year_iterator: int = 2005
+        
+    year_iterator: int = 2005                       # Starts looking for annex 10 files from this year,
+    current_year: int = datetime.now().year         # up to the current year
     
     # Checks for each year if there is an annex 10 excel file and if the excel link needs to be updated
     while year_iterator <= current_year:
