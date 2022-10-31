@@ -1,6 +1,11 @@
 api.views.other package
 =======================
 
+.. automodule:: api.views.other
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -32,14 +37,6 @@ api.views.other.saved\_selection module
 ---------------------------------------
 
 .. automodule:: api.views.other.saved_selection
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api.views.other
    :members:
    :undoc-members:
    :show-inheritance:

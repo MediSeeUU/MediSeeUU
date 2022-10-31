@@ -15,22 +15,43 @@ from scraping.pdf_module.pdf_scraper.parsers import annex_parser
 
 # Main file to run all parsers
 def main(directory: str):
+    """
+    given a folder containing medicine folders, parses each folder in parallel
+
+    Args:
+        directory: data folder, containing medicine folders
+
+    Returns:
+
+    """
     print("Parsing PDF files")
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
 
     # Use all the system's threads to maximize use of all hyper-threads
-    joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
-        directory_folders)
+    # joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
+    #     joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
+    #     directory_folders)
     print("Done!")
 
     # Single-threaded parsing
-    # for folder in directory_folders:
-    #     parse_folder(path.join(directory, folder), folder)
+    for folder in directory_folders:
+        parse_folder(path.join(directory, folder), folder)
 
 
 # scraping on medicine folder level
 def parse_folder(directory: str, folder_name):
+    """
+    given a folder of medicine folder, walks through each pdf file and creates xml when necessary.
+        After which, calls a parser for each pdf/xml file depending on filename and writes json file in folder containing
+        attributes.
+
+    Args:
+        directory: location of folder to parse
+        folder_name: name of medicine folder to parse
+
+    Returns:
+
+    """
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing
     medicine_struct = pis.parsed_info_struct(folder_name)
 
@@ -44,7 +65,7 @@ def parse_folder(directory: str, folder_name):
         if file[:len(file) - 4] + ".xml" in directory_files:
             continue
         file_path = path.join(directory, file)
-        xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
+        #ml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
     # update list of files and filter out relevant files for each parser
     annex_files, decision_files, epar_files, omar_files = get_files(directory)
@@ -72,20 +93,42 @@ def get_files(directory):
 
 
 # scraping all XML or PDF files and updating medicine_struct with the scraped attributes
-def run_scrapers(annex_files, decision_files, directory, epar_files, medicine_struct, omar_files):
+def run_scrapers(directory: str, annex_files: list[str], decision_files: list[str], epar_files: list[str], omar_files: list[str], medicine_struct):
+    """
+
+    Args:
+        directory: directory of folder containing the files
+        annex_files: list of file names for annex files
+        decision_files: list of file names for decisions files
+        epar_files: list of file names for epar files
+        omar_files: list of file names for omar files
+        medicine_struct: struct to add parsed attributes to
+
+    Returns:
+
+    """
     for file in decision_files:
         medicine_struct = dec_parse.parse_file(file, directory, medicine_struct)
-    for file in annex_files:
-        medicine_struct = annex_parser.parse_file(file, medicine_struct)
-    for file in epar_files:
-        medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
-    for file in omar_files:
-        medicine_struct = omar_parse.parse_file(file, medicine_struct)
+    # for file in annex_files:
+    #     medicine_struct = annex_parser.parse_file(file, medicine_struct)
+    # for file in epar_files:
+    #     medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
+    # for file in omar_files:
+    #     medicine_struct = omar_parse.parse_file(file, medicine_struct)
     return medicine_struct
 
 
 # datetime to string serializer for json dumping
 def datetime_serializer(date: pis.datetime.datetime):
+    """
+    convert datetime.datetime to string
+
+    Args:
+        date (datetime.datetime): date to convert to string
+
+    Returns:
+
+    """
     if isinstance(date, pis.datetime.datetime):
         return date.__str__()
 

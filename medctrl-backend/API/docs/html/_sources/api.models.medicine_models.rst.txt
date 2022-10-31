@@ -1,6 +1,11 @@
 api.models.medicine\_models package
 ===================================
 
+.. automodule:: api.models.medicine_models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -80,14 +85,6 @@ api.models.medicine\_models.medicine module
 -------------------------------------------
 
 .. automodule:: api.models.medicine_models.medicine
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api.models.medicine_models
    :members:
    :undoc-members:
    :show-inheritance:

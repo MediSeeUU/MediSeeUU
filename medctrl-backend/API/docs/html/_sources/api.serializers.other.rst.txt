@@ -1,6 +1,11 @@
 api.serializers.other package
 =============================
 
+.. automodule:: api.serializers.other
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -8,14 +13,6 @@ api.serializers.other.saved\_selection module
 ---------------------------------------------
 
 .. automodule:: api.serializers.other.saved_selection
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api.serializers.other
    :members:
    :undoc-members:
    :show-inheritance:

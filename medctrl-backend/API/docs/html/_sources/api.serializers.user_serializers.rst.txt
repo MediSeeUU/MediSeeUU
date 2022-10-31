@@ -1,6 +1,11 @@
 api.serializers.user\_serializers package
 =========================================
 
+.. automodule:: api.serializers.user_serializers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -8,14 +13,6 @@ api.serializers.user\_serializers.normal\_user module
 -----------------------------------------------------
 
 .. automodule:: api.serializers.user_serializers.normal_user
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api.serializers.user_serializers
    :members:
    :undoc-members:
    :show-inheritance:

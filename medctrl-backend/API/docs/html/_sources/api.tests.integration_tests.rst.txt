@@ -1,6 +1,11 @@
 api.tests.integration\_tests package
 ====================================
 
+.. automodule:: api.tests.integration_tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
@@ -8,11 +13,3 @@ Subpackages
    :maxdepth: 4
 
    api.tests.integration_tests.test_views
-
-Module contents
----------------
-
-.. automodule:: api.tests.integration_tests
-   :members:
-   :undoc-members:
-   :show-inheritance:
