@@ -152,3 +152,5 @@ medctrl-scraper/PDF_scraper/text_scraper/test_data/
 !**/docs/sphinx-source/index.rst
 **/docs/doctrees
 **/docs/html/_sources
+scraping/pdf_module/pdf_scraper/annex_results.txt
+scraping/pdf_module/pdf_scraper/epar_results.txt
