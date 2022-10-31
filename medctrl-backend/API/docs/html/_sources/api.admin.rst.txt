@@ -1,6 +1,11 @@
 api.admin package
 =================
 
+.. automodule:: api.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -80,14 +85,6 @@ api.admin.medicine\_admin module
 --------------------------------
 
 .. automodule:: api.admin.medicine_admin
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api.admin
    :members:
    :undoc-members:
    :show-inheritance:

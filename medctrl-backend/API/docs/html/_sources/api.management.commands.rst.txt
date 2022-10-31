@@ -1,6 +1,11 @@
 api.management.commands package
 ===============================
 
+.. automodule:: api.management.commands
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -16,14 +21,6 @@ api.management.commands.init\_setup module
 ------------------------------------------
 
 .. automodule:: api.management.commands.init_setup
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api.management.commands
    :members:
    :undoc-members:
    :show-inheritance:

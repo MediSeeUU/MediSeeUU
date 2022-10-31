@@ -1,6 +1,11 @@
 api.tests.unit\_tests.test\_scraper package
 ===========================================
 
+.. automodule:: api.tests.unit_tests.test_scraper
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -8,14 +13,6 @@ api.tests.unit\_tests.test\_scraper.test\_scraper\_medicine module
 ------------------------------------------------------------------
 
 .. automodule:: api.tests.unit_tests.test_scraper.test_scraper_medicine
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api.tests.unit_tests.test_scraper
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,6 +1,11 @@
 api.management package
 ======================
 
+.. automodule:: api.management
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
@@ -8,11 +13,3 @@ Subpackages
    :maxdepth: 4
 
    api.management.commands
-
-Module contents
----------------
-
-.. automodule:: api.management
-   :members:
-   :undoc-members:
-   :show-inheritance:

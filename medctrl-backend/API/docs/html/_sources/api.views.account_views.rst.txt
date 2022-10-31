@@ -1,6 +1,11 @@
 api.views.account\_views package
 ================================
 
+.. automodule:: api.views.account_views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -8,14 +13,6 @@ api.views.account\_views.login module
 -------------------------------------
 
 .. automodule:: api.views.account_views.login
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api.views.account_views
    :members:
    :undoc-members:
    :show-inheritance:

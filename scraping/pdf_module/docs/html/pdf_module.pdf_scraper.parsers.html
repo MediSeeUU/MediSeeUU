@@ -89,7 +89,27 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.annex_parser.parse_file">
 <span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.annex_parser.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">parsed_info_struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.annex_parser.parse_file" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><ol class="arabic simple">
+<li><p>Load the XML file.</p></li>
+<li><p>Create a dictionary with all the attributes that need to be scraped.</p></li>
+<li><p>Loop through the body of the XML and find the attributes.</p></li>
+<li><p>Append the attributes to the struct and return it.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Name of the XML file to be scraped.</p></li>
+<li><p><strong>medicine_struct</strong> (<em>PIS.parsed_info_struct</em>) – The dictionary of all currently scraped attributes of this medicine.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns an updated struct, with the current attributes added to it.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>PIS.parsed_info_struct</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-pdf_module.pdf_scraper.parsers.dec_parse">
@@ -625,43 +645,9 @@ including the attributes of this XML file</p>
 <section id="module-pdf_module.pdf_scraper.parsers.omar_parse">
 <span id="pdf-module-pdf-scraper-parsers-omar-parse-module"></span><h2>pdf_module.pdf_scraper.parsers.omar_parse module<a class="headerlink" href="#module-pdf_module.pdf_scraper.parsers.omar_parse" title="Permalink to this heading"></a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.omar_parse.get_all">
-<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse.</span></span><span class="sig-name descname"><span class="pre">get_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xml_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse.get_all" title="Permalink to this definition"></a></dt>
-<dd><p>Gets all attributes of the OMAR XML and returns them in a dictionary
-:param filename: name of the XML file to be scraped
-:type filename: str
-:param xml_data: the contents of the XML file
-:type xml_data: ET.Element</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Dictionary of all scraped attributes, named according to the bible</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.omar_parse.parse_file">
-<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">parsed_info_struct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">parsed_info_struct</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse.parse_file" title="Permalink to this definition"></a></dt>
-<dd><p>Scrapes all attributes from the OMAR XML file after parsing it
-:param filename: name of the XML file to be scraped
-:type filename: str
-:param directory: path of the directory containing the XML file
-:type directory: str
-:param medicine_struct: the dictionary of all currently scraped attributes of this medicine
-:type medicine_struct: PIS.parsed_info_struct</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>a more complete dictionary of scraped attributes,
-including the attributes of this XML file</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>PIS.parsed_info_struct</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">parsed_info_struct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse.parse_file" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </section>
 <section id="module-pdf_module.pdf_scraper.parsers">

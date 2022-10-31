@@ -1,6 +1,11 @@
 api.views package
 =================
 
+.. automodule:: api.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
@@ -12,11 +17,3 @@ Subpackages
    api.views.medicine_views
    api.views.other
    api.views.scraper_views
-
-Module contents
----------------
-
-.. automodule:: api.views
-   :members:
-   :undoc-members:
-   :show-inheritance:
