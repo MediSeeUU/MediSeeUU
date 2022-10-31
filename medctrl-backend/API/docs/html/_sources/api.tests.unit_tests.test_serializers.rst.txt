@@ -1,6 +1,11 @@
 api.tests.unit\_tests.test\_serializers package
 ===============================================
 
+.. automodule:: api.tests.unit_tests.test_serializers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -16,14 +21,6 @@ api.tests.unit\_tests.test\_serializers.test\_urls\_serializer module
 ---------------------------------------------------------------------
 
 .. automodule:: api.tests.unit_tests.test_serializers.test_urls_serializer
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api.tests.unit_tests.test_serializers
    :members:
    :undoc-members:
    :show-inheritance:

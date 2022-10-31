@@ -6,7 +6,8 @@
 Welcome to the web scraper documentation!
 =========================================
 .. toctree::
-   
+   :maxdepth: 3
+
    modules
    
 

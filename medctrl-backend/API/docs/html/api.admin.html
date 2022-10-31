@@ -39,26 +39,982 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="readme.html">Backend</a></li>
+              <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Backend</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#settings">Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#settings-setup">Settings setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#linting-and-formatting">Linting and formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#copyright-statement">Copyright statement</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Source Code Documentation</span></p>
+<ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">api</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="api.html">api package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="api.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">api.admin package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.management.html">api.management package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.migrations.html">api.migrations package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.models.html">api.models package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.scraper.html">api.scraper package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.serializers.html">api.serializers package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.tests.html">api.tests package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.views.html">api.views package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">api.admin package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-api.admin.cachemodeladmin">api.admin.cachemodeladmin module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.cachemodeladmin.CacheModelAdmin"><code class="docutils literal notranslate"><span class="pre">CacheModelAdmin</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.cachemodeladmin.CacheModelAdmin.delete_model"><code class="docutils literal notranslate"><span class="pre">CacheModelAdmin.delete_model()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.cachemodeladmin.CacheModelAdmin.delete_queryset"><code class="docutils literal notranslate"><span class="pre">CacheModelAdmin.delete_queryset()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.cachemodeladmin.CacheModelAdmin.media"><code class="docutils literal notranslate"><span class="pre">CacheModelAdmin.media</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.cachemodeladmin.CacheModelAdmin.save_model"><code class="docutils literal notranslate"><span class="pre">CacheModelAdmin.save_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-api.admin.common">api.admin.common module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.common.CustomForeignKeyWidget"><code class="docutils literal notranslate"><span class="pre">CustomForeignKeyWidget</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.common.CustomForeignKeyWidget.clean"><code class="docutils literal notranslate"><span class="pre">CustomForeignKeyWidget.clean()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.common.import_foreign_key"><code class="docutils literal notranslate"><span class="pre">import_foreign_key()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-api.admin.history_authorisation_status_admin">api.admin.history_authorisation_status_admin module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusAdmin</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusAdmin.list</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusAdmin.media</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusResource"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusResource</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusResource.Meta</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusResource.Meta.import_id_fields"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusResource.Meta.import_id_fields</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusResource.Meta.model"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusResource.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_authorisation_status_admin.HistoryAuthorisationStatusResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatusResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-api.admin.history_authorisation_type_admin">api.admin.history_authorisation_type_admin module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeAdmin</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeAdmin.list</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeAdmin.media</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeResource"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeResource</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeResource.Meta</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeResource.Meta.import_id_fields"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeResource.Meta.import_id_fields</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeResource.Meta.model"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeResource.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_authorisation_type_admin.HistoryAuthorisationTypeResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationTypeResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-api.admin.history_brand_name_admin">api.admin.history_brand_name_admin module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_brand_name_admin.HistoryBrandNameAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameAdmin</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_brand_name_admin.HistoryBrandNameAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameAdmin.list</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_brand_name_admin.HistoryBrandNameAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameAdmin.media</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_brand_name_admin.HistoryBrandNameAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_brand_name_admin.HistoryBrandNameResource"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameResource</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_brand_name_admin.HistoryBrandNameResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameResource.Meta</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_brand_name_admin.HistoryBrandNameResource.Meta.import_id_fields"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameResource.Meta.import_id_fields</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_brand_name_admin.HistoryBrandNameResource.Meta.model"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameResource.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_brand_name_admin.HistoryBrandNameResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryBrandNameResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-api.admin.history_eu_orphan_con_admin">api.admin.history_eu_orphan_con_admin module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConAdmin</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConAdmin.list</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConAdmin.media</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConResource"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConResource</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConResource.Meta</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConResource.Meta.import_id_fields"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConResource.Meta.import_id_fields</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConResource.Meta.model"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConResource.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_eu_orphan_con_admin.HistoryEUOrphanConResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanConResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-api.admin.history_mah_admin">api.admin.history_mah_admin module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_mah_admin.HistoryMAHAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryMAHAdmin</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_mah_admin.HistoryMAHAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryMAHAdmin.list</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_mah_admin.HistoryMAHAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryMAHAdmin.media</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_mah_admin.HistoryMAHAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryMAHAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_mah_admin.HistoryMAHResource"><code class="docutils literal notranslate"><span class="pre">HistoryMAHResource</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_mah_admin.HistoryMAHResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryMAHResource.Meta</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_mah_admin.HistoryMAHResource.Meta.import_id_fields"><code class="docutils literal notranslate"><span class="pre">HistoryMAHResource.Meta.import_id_fields</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_mah_admin.HistoryMAHResource.Meta.model"><code class="docutils literal notranslate"><span class="pre">HistoryMAHResource.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_mah_admin.HistoryMAHResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryMAHResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-api.admin.history_od_admin">api.admin.history_od_admin module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_od_admin.HistoryODAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryODAdmin</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_od_admin.HistoryODAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryODAdmin.list</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_od_admin.HistoryODAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryODAdmin.media</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_od_admin.HistoryODAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryODAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_od_admin.HistoryODResource"><code class="docutils literal notranslate"><span class="pre">HistoryODResource</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_od_admin.HistoryODResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryODResource.Meta</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_od_admin.HistoryODResource.Meta.import_id_fields"><code class="docutils literal notranslate"><span class="pre">HistoryODResource.Meta.import_id_fields</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_od_admin.HistoryODResource.Meta.model"><code class="docutils literal notranslate"><span class="pre">HistoryODResource.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_od_admin.HistoryODResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryODResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-api.admin.history_prime_admin">api.admin.history_prime_admin module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_prime_admin.HistoryPrimeAdmin"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeAdmin</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_prime_admin.HistoryPrimeAdmin.list"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeAdmin.list</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_prime_admin.HistoryPrimeAdmin.media"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeAdmin.media</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_prime_admin.HistoryPrimeAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeAdmin.resource_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.history_prime_admin.HistoryPrimeResource"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeResource</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_prime_admin.HistoryPrimeResource.Meta"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeResource.Meta</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_prime_admin.HistoryPrimeResource.Meta.import_id_fields"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeResource.Meta.import_id_fields</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.history_prime_admin.HistoryPrimeResource.Meta.model"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeResource.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.history_prime_admin.HistoryPrimeResource.fields"><code class="docutils literal notranslate"><span class="pre">HistoryPrimeResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-api.admin.medicine_admin">api.admin.medicine_admin module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.medicine_admin.MedicineAdmin"><code class="docutils literal notranslate"><span class="pre">MedicineAdmin</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.medicine_admin.MedicineAdmin.list"><code class="docutils literal notranslate"><span class="pre">MedicineAdmin.list</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.medicine_admin.MedicineAdmin.media"><code class="docutils literal notranslate"><span class="pre">MedicineAdmin.media</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.medicine_admin.MedicineAdmin.resource_class"><code class="docutils literal notranslate"><span class="pre">MedicineAdmin.resource_class</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.medicine_admin.MedicineAdmin.save_model"><code class="docutils literal notranslate"><span class="pre">MedicineAdmin.save_model()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#api.admin.medicine_admin.MedicineResource"><code class="docutils literal notranslate"><span class="pre">MedicineResource</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.medicine_admin.MedicineResource.Meta"><code class="docutils literal notranslate"><span class="pre">MedicineResource.Meta</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.medicine_admin.MedicineResource.Meta.import_id_fields"><code class="docutils literal notranslate"><span class="pre">MedicineResource.Meta.import_id_fields</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#api.admin.medicine_admin.MedicineResource.Meta.model"><code class="docutils literal notranslate"><span class="pre">MedicineResource.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#api.admin.medicine_admin.MedicineResource.fields"><code class="docutils literal notranslate"><span class="pre">MedicineResource.fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api.management.html">api.management package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.management.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="api.management.commands.html">api.management.commands package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.management.commands.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.management.commands.html#module-api.management.commands.create_column_permissions">api.management.commands.create_column_permissions module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.management.commands.html#api.management.commands.create_column_permissions.Command"><code class="docutils literal notranslate"><span class="pre">Command</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.management.commands.html#api.management.commands.create_column_permissions.Command.handle"><code class="docutils literal notranslate"><span class="pre">Command.handle()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.management.commands.html#api.management.commands.create_column_permissions.Command.help"><code class="docutils literal notranslate"><span class="pre">Command.help</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.management.commands.html#module-api.management.commands.init_setup">api.management.commands.init_setup module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.management.commands.html#api.management.commands.init_setup.Command"><code class="docutils literal notranslate"><span class="pre">Command</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.management.commands.html#api.management.commands.init_setup.Command.handle"><code class="docutils literal notranslate"><span class="pre">Command.handle()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.management.commands.html#api.management.commands.init_setup.Command.help"><code class="docutils literal notranslate"><span class="pre">Command.help</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="api.management.commands.html#api.management.commands.init_setup.get_action"><code class="docutils literal notranslate"><span class="pre">get_action()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api.models.html">api.models package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.models.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="api.models.medicine_models.html">api.models.medicine_models package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.models.medicine_models.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.common">api.models.medicine_models.common module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutStatus"><code class="docutils literal notranslate"><span class="pre">AutStatus</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutStatus.ACTIVE"><code class="docutils literal notranslate"><span class="pre">AutStatus.ACTIVE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutStatus.REFUSALS"><code class="docutils literal notranslate"><span class="pre">AutStatus.REFUSALS</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutStatus.WITHDRAWAL"><code class="docutils literal notranslate"><span class="pre">AutStatus.WITHDRAWAL</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutTypes"><code class="docutils literal notranslate"><span class="pre">AutTypes</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutTypes.CONDITIONAL"><code class="docutils literal notranslate"><span class="pre">AutTypes.CONDITIONAL</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutTypes.EXCEPTIONAL"><code class="docutils literal notranslate"><span class="pre">AutTypes.EXCEPTIONAL</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.AutTypes.STANDARD"><code class="docutils literal notranslate"><span class="pre">AutTypes.STANDARD</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category"><code class="docutils literal notranslate"><span class="pre">Category</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.Additional_Resources"><code class="docutils literal notranslate"><span class="pre">Category.Additional_Resources</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.Authorisation_Timing"><code class="docutils literal notranslate"><span class="pre">Category.Authorisation_Timing</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.Co_Rapporteur"><code class="docutils literal notranslate"><span class="pre">Category.Co_Rapporteur</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.General_Information"><code class="docutils literal notranslate"><span class="pre">Category.General_Information</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.Identifying_Information"><code class="docutils literal notranslate"><span class="pre">Category.Identifying_Information</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.Legal_Information"><code class="docutils literal notranslate"><span class="pre">Category.Legal_Information</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.Category.Medicine_Designations"><code class="docutils literal notranslate"><span class="pre">Category.Medicine_Designations</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.DashboardColumn"><code class="docutils literal notranslate"><span class="pre">DashboardColumn</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article101"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article101</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article102"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article102</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article103"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article103</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article104"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article104</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_1"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_1</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_2"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_2</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_3"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_3</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_4"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_4</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_a"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_a</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_b"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_b</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10_c"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10_c</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10a"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10a</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10b"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10b</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article10c"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article10c</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article48"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article48</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article48_1"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article48_1</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article48_2"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article48_2</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article48_3"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article48_3</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article4_8"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article4_8</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article83"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article83</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.LegalBasesTypes.article8_3"><code class="docutils literal notranslate"><span class="pre">LegalBasesTypes.article8_3</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.NotVarCharField"><code class="docutils literal notranslate"><span class="pre">NotVarCharField</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.NotVarCharField.db_type"><code class="docutils literal notranslate"><span class="pre">NotVarCharField.db_type()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.create_dashboard_column"><code class="docutils literal notranslate"><span class="pre">create_dashboard_column()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.create_dashboard_history_column_current"><code class="docutils literal notranslate"><span class="pre">create_dashboard_history_column_current()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.create_dashboard_history_column_initial"><code class="docutils literal notranslate"><span class="pre">create_dashboard_history_column_initial()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.common.create_dashboard_history_columns"><code class="docutils literal notranslate"><span class="pre">create_dashboard_history_columns()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_authorisation_status">api.models.medicine_models.history_authorisation_status module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.DoesNotExist</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.change_date</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.eu_aut_status"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.eu_aut_status</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.eu_pnumber</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.get_eu_aut_status_display"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.get_eu_aut_status_display()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.id"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_status.HistoryAuthorisationStatus.objects"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationStatus.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_authorisation_type">api.models.medicine_models.history_authorisation_type module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.DoesNotExist</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.change_date</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.eu_aut_type"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.eu_aut_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.eu_pnumber</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.get_eu_aut_type_display"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.get_eu_aut_type_display()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.id"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_authorisation_type.HistoryAuthorisationType.objects"><code class="docutils literal notranslate"><span class="pre">HistoryAuthorisationType.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_brand_name">api.models.medicine_models.history_brand_name module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.DoesNotExist</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.change_date</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.eu_brand_name"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.eu_brand_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.eu_pnumber</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.id"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_brand_name.HistoryBrandName.objects"><code class="docutils literal notranslate"><span class="pre">HistoryBrandName.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_eu_orphan_con">api.models.medicine_models.history_eu_orphan_con module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.DoesNotExist</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.change_date</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.eu_orphan_con"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.eu_orphan_con</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.eu_pnumber</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.id"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_eu_orphan_con.HistoryEUOrphanCon.objects"><code class="docutils literal notranslate"><span class="pre">HistoryEUOrphanCon.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_mah">api.models.medicine_models.history_mah module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH"><code class="docutils literal notranslate"><span class="pre">HistoryMAH</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.DoesNotExist</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.change_date</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.eu_mah"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.eu_mah</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.eu_pnumber</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.id"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_mah.HistoryMAH.objects"><code class="docutils literal notranslate"><span class="pre">HistoryMAH.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_od">api.models.medicine_models.history_od module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD"><code class="docutils literal notranslate"><span class="pre">HistoryOD</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryOD.DoesNotExist</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryOD.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryOD.change_date</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.eu_od"><code class="docutils literal notranslate"><span class="pre">HistoryOD.eu_od</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryOD.eu_pnumber</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryOD.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.id"><code class="docutils literal notranslate"><span class="pre">HistoryOD.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_od.HistoryOD.objects"><code class="docutils literal notranslate"><span class="pre">HistoryOD.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.history_prime">api.models.medicine_models.history_prime module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime"><code class="docutils literal notranslate"><span class="pre">HistoryPrime</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.DoesNotExist</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.change_date"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.change_date</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.eu_pnumber</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.eu_prime"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.eu_prime</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.id"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.history_prime.HistoryPrime.objects"><code class="docutils literal notranslate"><span class="pre">HistoryPrime.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.legal_bases">api.models.medicine_models.legal_bases module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases"><code class="docutils literal notranslate"><span class="pre">LegalBases</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">LegalBases.DoesNotExist</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">LegalBases.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.eu_legal_basis"><code class="docutils literal notranslate"><span class="pre">LegalBases.eu_legal_basis</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">LegalBases.eu_pnumber</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">LegalBases.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.get_eu_legal_basis_display"><code class="docutils literal notranslate"><span class="pre">LegalBases.get_eu_legal_basis_display()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.id"><code class="docutils literal notranslate"><span class="pre">LegalBases.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.legal_bases.LegalBases.objects"><code class="docutils literal notranslate"><span class="pre">LegalBases.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.models.medicine_models.html#module-api.models.medicine_models.medicine">api.models.medicine_models.medicine module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine"><code class="docutils literal notranslate"><span class="pre">Medicine</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Medicine.DoesNotExist</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Medicine.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.active_substance"><code class="docutils literal notranslate"><span class="pre">Medicine.active_substance</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.assess_time_days_active"><code class="docutils literal notranslate"><span class="pre">Medicine.assess_time_days_active</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.assess_time_days_cstop"><code class="docutils literal notranslate"><span class="pre">Medicine.assess_time_days_cstop</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.assess_time_days_total"><code class="docutils literal notranslate"><span class="pre">Medicine.assess_time_days_total</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.atc_code"><code class="docutils literal notranslate"><span class="pre">Medicine.atc_code</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.aut_url"><code class="docutils literal notranslate"><span class="pre">Medicine.aut_url</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.chmp_opinion_date"><code class="docutils literal notranslate"><span class="pre">Medicine.chmp_opinion_date</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ec_decision_time_days"><code class="docutils literal notranslate"><span class="pre">Medicine.ec_decision_time_days</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ec_url"><code class="docutils literal notranslate"><span class="pre">Medicine.ec_url</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_corapp"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_corapp</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_number"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_number</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_number_check"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_number_check</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_od_number"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_od_number</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_procedure_start_initial"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_procedure_start_initial</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_rapp"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_rapp</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_reexamination"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_reexamination</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.ema_url"><code class="docutils literal notranslate"><span class="pre">Medicine.ema_url</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.epar_url"><code class="docutils literal notranslate"><span class="pre">Medicine.epar_url</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_accel_assess_g"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_accel_assess_g</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_accel_assess_m"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_accel_assess_m</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_atmp"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_atmp</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_aut_date"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_aut_date</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_med_type"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_med_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_nas"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_nas</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_od_comp_date"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_od_comp_date</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_od_con"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_od_con</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_od_date"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_od_date</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_od_number"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_od_number</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_od_pnumber"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_od_pnumber</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_od_sponsor"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_od_sponsor</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_pnumber</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_referral"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_referral</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.eu_suspension"><code class="docutils literal notranslate"><span class="pre">Medicine.eu_suspension</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_next_by_chmp_opinion_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_next_by_chmp_opinion_date()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_next_by_ema_procedure_start_initial"><code class="docutils literal notranslate"><span class="pre">Medicine.get_next_by_ema_procedure_start_initial()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_next_by_eu_aut_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_next_by_eu_aut_date()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_next_by_eu_od_comp_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_next_by_eu_od_comp_date()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_next_by_eu_od_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_next_by_eu_od_date()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_previous_by_chmp_opinion_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_previous_by_chmp_opinion_date()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_previous_by_ema_procedure_start_initial"><code class="docutils literal notranslate"><span class="pre">Medicine.get_previous_by_ema_procedure_start_initial()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_previous_by_eu_aut_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_previous_by_eu_aut_date()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_previous_by_eu_od_comp_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_previous_by_eu_od_comp_date()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.get_previous_by_eu_od_date"><code class="docutils literal notranslate"><span class="pre">Medicine.get_previous_by_eu_od_date()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historyauthorisationstatus_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historyauthorisationstatus_set</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historyauthorisationtype_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historyauthorisationtype_set</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historybrandname_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historybrandname_set</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historyeuorphancon_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historyeuorphancon_set</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historymah_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historymah_set</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historyod_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historyod_set</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historyprime_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historyprime_set</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.legalbases_set"><code class="docutils literal notranslate"><span class="pre">Medicine.legalbases_set</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.objects"><code class="docutils literal notranslate"><span class="pre">Medicine.objects</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.odwar_url"><code class="docutils literal notranslate"><span class="pre">Medicine.odwar_url</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.omar_url"><code class="docutils literal notranslate"><span class="pre">Medicine.omar_url</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.savedselection_set"><code class="docutils literal notranslate"><span class="pre">Medicine.savedselection_set</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.smpc_url"><code class="docutils literal notranslate"><span class="pre">Medicine.smpc_url</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="api.models.other.html">api.models.other package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.models.other.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.models.other.html#module-api.models.other.saved_selection">api.models.other.saved_selection module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection"><code class="docutils literal notranslate"><span class="pre">SavedSelection</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">SavedSelection.DoesNotExist</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">SavedSelection.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.created_at"><code class="docutils literal notranslate"><span class="pre">SavedSelection.created_at</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.created_by"><code class="docutils literal notranslate"><span class="pre">SavedSelection.created_by</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.created_by_id"><code class="docutils literal notranslate"><span class="pre">SavedSelection.created_by_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.eu_numbers"><code class="docutils literal notranslate"><span class="pre">SavedSelection.eu_numbers</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">SavedSelection.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">SavedSelection.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.id"><code class="docutils literal notranslate"><span class="pre">SavedSelection.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.name"><code class="docutils literal notranslate"><span class="pre">SavedSelection.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.objects"><code class="docutils literal notranslate"><span class="pre">SavedSelection.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api.scraper.html">api.scraper package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.scraper.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.scraper.html#module-api.scraper.router">api.scraper.router module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.scraper.html#module-api.scraper.scraper_medicine">api.scraper.scraper_medicine module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.add_history"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.add_history()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.add_list"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.add_list()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.add_or_override_medicine"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.add_or_override_medicine()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.get_queryset"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.get_queryset()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.history_variables"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.history_variables()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.list_variables"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.list_variables()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.permission_classes"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.permission_classes</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.post"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.post()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.update_flex_medicine"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.update_flex_medicine()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.update_null_values"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.update_null_values()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api.serializers.html">api.serializers package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.serializers.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="api.serializers.medicine_serializers.html">api.serializers.medicine_serializers package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.serializers.medicine_serializers.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.serializers.medicine_serializers.public.html">api.serializers.medicine_serializers.public package</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#submodules">Submodules</a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#module-api.serializers.medicine_serializers.public.public_history">api.serializers.medicine_serializers.public.public_history module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer"><code class="docutils literal notranslate"><span class="pre">AuthorisationStatusSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">AuthorisationStatusSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">AuthorisationStatusSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">AuthorisationStatusSerializer.Meta.model</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.AuthorisationStatusSerializer.Meta.ordering"><code class="docutils literal notranslate"><span class="pre">AuthorisationStatusSerializer.Meta.ordering</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer"><code class="docutils literal notranslate"><span class="pre">AuthorisationTypeSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">AuthorisationTypeSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">AuthorisationTypeSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">AuthorisationTypeSerializer.Meta.model</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.AuthorisationTypeSerializer.Meta.ordering"><code class="docutils literal notranslate"><span class="pre">AuthorisationTypeSerializer.Meta.ordering</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.BrandNameSerializer"><code class="docutils literal notranslate"><span class="pre">BrandNameSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.BrandNameSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">BrandNameSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.BrandNameSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">BrandNameSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.BrandNameSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">BrandNameSerializer.Meta.model</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.BrandNameSerializer.Meta.ordering"><code class="docutils literal notranslate"><span class="pre">BrandNameSerializer.Meta.ordering</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer"><code class="docutils literal notranslate"><span class="pre">EUOrphanConSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">EUOrphanConSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">EUOrphanConSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">EUOrphanConSerializer.Meta.model</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.EUOrphanConSerializer.Meta.ordering"><code class="docutils literal notranslate"><span class="pre">EUOrphanConSerializer.Meta.ordering</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.MAHSerializer"><code class="docutils literal notranslate"><span class="pre">MAHSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.MAHSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">MAHSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.MAHSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">MAHSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.MAHSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">MAHSerializer.Meta.model</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.MAHSerializer.Meta.ordering"><code class="docutils literal notranslate"><span class="pre">MAHSerializer.Meta.ordering</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer"><code class="docutils literal notranslate"><span class="pre">OrphanDesignationSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">OrphanDesignationSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">OrphanDesignationSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">OrphanDesignationSerializer.Meta.model</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.OrphanDesignationSerializer.Meta.ordering"><code class="docutils literal notranslate"><span class="pre">OrphanDesignationSerializer.Meta.ordering</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.PrimeSerializer"><code class="docutils literal notranslate"><span class="pre">PrimeSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.PrimeSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">PrimeSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.PrimeSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">PrimeSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.PrimeSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">PrimeSerializer.Meta.model</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_history.PrimeSerializer.Meta.ordering"><code class="docutils literal notranslate"><span class="pre">PrimeSerializer.Meta.ordering</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#module-api.serializers.medicine_serializers.public.public_medicine">api.serializers.medicine_serializers.public.public_medicine module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.LegalBasesSerializer"><code class="docutils literal notranslate"><span class="pre">LegalBasesSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.LegalBasesSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">LegalBasesSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.LegalBasesSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">LegalBasesSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.LegalBasesSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">LegalBasesSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_aut_status"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.get_eu_aut_status()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_aut_type_current"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.get_eu_aut_type_current()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_aut_type_initial"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.get_eu_aut_type_initial()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_brand_name_current"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.get_eu_brand_name_current()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_brand_name_initial"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.get_eu_brand_name_initial()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_legal_basis"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.get_eu_legal_basis()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_mah_current"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.get_eu_mah_current()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_mah_initial"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.get_eu_mah_initial()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_od_initial"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.get_eu_od_initial()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_orphan_con_current"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.get_eu_orphan_con_current()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_orphan_con_initial"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.get_eu_orphan_con_initial()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.get_eu_prime_initial"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.get_eu_prime_initial()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.public.html#api.serializers.medicine_serializers.public.public_medicine.PublicMedicineSerializer.to_representation"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializer.to_representation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html">api.serializers.medicine_serializers.scraper package</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#submodules">Submodules</a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#module-api.serializers.medicine_serializers.scraper.history_serializers">api.serializers.medicine_serializers.scraper.history_serializers module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.AuthorisationStatusSerializer"><code class="docutils literal notranslate"><span class="pre">AuthorisationStatusSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.AuthorisationStatusSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">AuthorisationStatusSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.AuthorisationStatusSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">AuthorisationStatusSerializer.Meta.exclude</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.AuthorisationStatusSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">AuthorisationStatusSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.AuthorisationTypeSerializer"><code class="docutils literal notranslate"><span class="pre">AuthorisationTypeSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.AuthorisationTypeSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">AuthorisationTypeSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.AuthorisationTypeSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">AuthorisationTypeSerializer.Meta.exclude</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.AuthorisationTypeSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">AuthorisationTypeSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.BrandNameSerializer"><code class="docutils literal notranslate"><span class="pre">BrandNameSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.BrandNameSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">BrandNameSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.BrandNameSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">BrandNameSerializer.Meta.exclude</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.BrandNameSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">BrandNameSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.EUOrphanConSerializer"><code class="docutils literal notranslate"><span class="pre">EUOrphanConSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.EUOrphanConSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">EUOrphanConSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.EUOrphanConSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">EUOrphanConSerializer.Meta.exclude</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.EUOrphanConSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">EUOrphanConSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.MAHSerializer"><code class="docutils literal notranslate"><span class="pre">MAHSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.MAHSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">MAHSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.MAHSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">MAHSerializer.Meta.exclude</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.MAHSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">MAHSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.OrphanDesignationSerializer"><code class="docutils literal notranslate"><span class="pre">OrphanDesignationSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.OrphanDesignationSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">OrphanDesignationSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.OrphanDesignationSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">OrphanDesignationSerializer.Meta.exclude</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.OrphanDesignationSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">OrphanDesignationSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.PrimeSerializer"><code class="docutils literal notranslate"><span class="pre">PrimeSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.PrimeSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">PrimeSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.PrimeSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">PrimeSerializer.Meta.exclude</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.history_serializers.PrimeSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">PrimeSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#module-api.serializers.medicine_serializers.scraper.medicine">api.serializers.medicine_serializers.scraper.medicine module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.medicine.LegalBasesSerializer"><code class="docutils literal notranslate"><span class="pre">LegalBasesSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.medicine.LegalBasesSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">LegalBasesSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.medicine.LegalBasesSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">LegalBasesSerializer.Meta.exclude</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.medicine.LegalBasesSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">LegalBasesSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.medicine.MedicineSerializer"><code class="docutils literal notranslate"><span class="pre">MedicineSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.medicine.MedicineSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">MedicineSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.medicine.MedicineSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">MedicineSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.medicine.MedicineSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">MedicineSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#module-api.serializers.medicine_serializers.scraper.medicine_flex_var_update">api.serializers.medicine_serializers.scraper.medicine_flex_var_update module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.medicine_flex_var_update.MedicineFlexVarUpdateSerializer"><code class="docutils literal notranslate"><span class="pre">MedicineFlexVarUpdateSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.medicine_flex_var_update.MedicineFlexVarUpdateSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">MedicineFlexVarUpdateSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.medicine_flex_var_update.MedicineFlexVarUpdateSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">MedicineFlexVarUpdateSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.medicine_flex_var_update.MedicineFlexVarUpdateSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">MedicineFlexVarUpdateSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#module-api.serializers.medicine_serializers.scraper.urls">api.serializers.medicine_serializers.scraper.urls module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.urls.UrlsSerializer"><code class="docutils literal notranslate"><span class="pre">UrlsSerializer</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.urls.UrlsSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">UrlsSerializer.Meta</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.urls.UrlsSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">UrlsSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="api.serializers.medicine_serializers.scraper.html#api.serializers.medicine_serializers.scraper.urls.UrlsSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">UrlsSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="api.serializers.other.html">api.serializers.other package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.serializers.other.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.serializers.other.html#module-api.serializers.other.saved_selection">api.serializers.other.saved_selection module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.serializers.other.html#api.serializers.other.saved_selection.SavedSelectionSerializer"><code class="docutils literal notranslate"><span class="pre">SavedSelectionSerializer</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.other.html#api.serializers.other.saved_selection.SavedSelectionSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">SavedSelectionSerializer.Meta</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.other.html#api.serializers.other.saved_selection.SavedSelectionSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">SavedSelectionSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.other.html#api.serializers.other.saved_selection.SavedSelectionSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">SavedSelectionSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.other.html#api.serializers.other.saved_selection.SavedSelectionSerializer.to_representation"><code class="docutils literal notranslate"><span class="pre">SavedSelectionSerializer.to_representation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="api.serializers.user_serializers.html">api.serializers.user_serializers package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.serializers.user_serializers.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.serializers.user_serializers.html#module-api.serializers.user_serializers.normal_user">api.serializers.user_serializers.normal_user module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.serializers.user_serializers.html#api.serializers.user_serializers.normal_user.GroupSerializer"><code class="docutils literal notranslate"><span class="pre">GroupSerializer</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.user_serializers.html#api.serializers.user_serializers.normal_user.GroupSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">GroupSerializer.Meta</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.user_serializers.html#api.serializers.user_serializers.normal_user.GroupSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">GroupSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.user_serializers.html#api.serializers.user_serializers.normal_user.GroupSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">GroupSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="api.serializers.user_serializers.html#api.serializers.user_serializers.normal_user.UserSerializer"><code class="docutils literal notranslate"><span class="pre">UserSerializer</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.user_serializers.html#api.serializers.user_serializers.normal_user.UserSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">UserSerializer.Meta</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.user_serializers.html#api.serializers.user_serializers.normal_user.UserSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">UserSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.user_serializers.html#api.serializers.user_serializers.normal_user.UserSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">UserSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.user_serializers.html#api.serializers.user_serializers.normal_user.UserSerializer.get_selections"><code class="docutils literal notranslate"><span class="pre">UserSerializer.get_selections()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api.tests.html">api.tests package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.tests.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="api.tests.integration_tests.html">api.tests.integration_tests package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.tests.integration_tests.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.tests.integration_tests.test_views.html">api.tests.integration_tests.test_views package</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.integration_tests.test_views.html#submodules">Submodules</a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.integration_tests.test_views.html#module-api.tests.integration_tests.test_views.test_public_medicine">api.tests.integration_tests.test_views.test_public_medicine module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.tests.integration_tests.test_views.html#api.tests.integration_tests.test_views.test_public_medicine.PublicMedicineTestCase"><code class="docutils literal notranslate"><span class="pre">PublicMedicineTestCase</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.integration_tests.test_views.html#api.tests.integration_tests.test_views.test_public_medicine.PublicMedicineTestCase.setUp"><code class="docutils literal notranslate"><span class="pre">PublicMedicineTestCase.setUp()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.integration_tests.test_views.html#api.tests.integration_tests.test_views.test_public_medicine.PublicMedicineTestCase.test_structure_equal_medicine"><code class="docutils literal notranslate"><span class="pre">PublicMedicineTestCase.test_structure_equal_medicine()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="api.tests.unit_tests.html">api.tests.unit_tests package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.tests.unit_tests.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.tests.unit_tests.test_models.html">api.tests.unit_tests.test_models package</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.unit_tests.test_models.html#submodules">Submodules</a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.unit_tests.test_models.html#module-api.tests.unit_tests.test_models.test_common">api.tests.unit_tests.test_models.test_common module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.tests.unit_tests.test_models.html#api.tests.unit_tests.test_models.test_common.DashboardColumnTestCase"><code class="docutils literal notranslate"><span class="pre">DashboardColumnTestCase</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_models.html#api.tests.unit_tests.test_models.test_common.DashboardColumnTestCase.test_create_dashboard_column1"><code class="docutils literal notranslate"><span class="pre">DashboardColumnTestCase.test_create_dashboard_column1()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_models.html#api.tests.unit_tests.test_models.test_common.DashboardColumnTestCase.test_create_dashboard_column2"><code class="docutils literal notranslate"><span class="pre">DashboardColumnTestCase.test_create_dashboard_column2()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.tests.unit_tests.test_models.html#api.tests.unit_tests.test_models.test_common.Object"><code class="docutils literal notranslate"><span class="pre">Object</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html">api.tests.unit_tests.test_scraper package</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#submodules">Submodules</a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#module-api.tests.unit_tests.test_scraper.test_scraper_medicine">api.tests.unit_tests.test_scraper.test_scraper_medicine module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#api.tests.unit_tests.test_scraper.test_scraper_medicine.ScraperMedicineTestCase"><code class="docutils literal notranslate"><span class="pre">ScraperMedicineTestCase</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#api.tests.unit_tests.test_scraper.test_scraper_medicine.ScraperMedicineTestCase.test_scraper_post_new"><code class="docutils literal notranslate"><span class="pre">ScraperMedicineTestCase.test_scraper_post_new()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#api.tests.unit_tests.test_scraper.test_scraper_medicine.ScraperMedicineTestCase.test_scraper_post_new_missing_history"><code class="docutils literal notranslate"><span class="pre">ScraperMedicineTestCase.test_scraper_post_new_missing_history()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#api.tests.unit_tests.test_scraper.test_scraper_medicine.ScraperMedicineTestCase.test_scraper_post_update"><code class="docutils literal notranslate"><span class="pre">ScraperMedicineTestCase.test_scraper_post_update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="api.tests.unit_tests.test_serializers.html">api.tests.unit_tests.test_serializers package</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.unit_tests.test_serializers.html#submodules">Submodules</a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.unit_tests.test_serializers.html#module-api.tests.unit_tests.test_serializers.test_medicine_serializers">api.tests.unit_tests.test_serializers.test_medicine_serializers module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.tests.unit_tests.test_serializers.html#api.tests.unit_tests.test_serializers.test_medicine_serializers.PublicMedicineSerializerTestCase"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializerTestCase</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_serializers.html#api.tests.unit_tests.test_serializers.test_medicine_serializers.PublicMedicineSerializerTestCase.setUp"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializerTestCase.setUp()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_serializers.html#api.tests.unit_tests.test_serializers.test_medicine_serializers.PublicMedicineSerializerTestCase.test_public_medicine_serializer"><code class="docutils literal notranslate"><span class="pre">PublicMedicineSerializerTestCase.test_public_medicine_serializer()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.unit_tests.test_serializers.html#module-api.tests.unit_tests.test_serializers.test_urls_serializer">api.tests.unit_tests.test_serializers.test_urls_serializer module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.tests.unit_tests.test_serializers.html#api.tests.unit_tests.test_serializers.test_urls_serializer.UrlsSerializerTestCase"><code class="docutils literal notranslate"><span class="pre">UrlsSerializerTestCase</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_serializers.html#api.tests.unit_tests.test_serializers.test_urls_serializer.UrlsSerializerTestCase.setUp"><code class="docutils literal notranslate"><span class="pre">UrlsSerializerTestCase.setUp()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_serializers.html#api.tests.unit_tests.test_serializers.test_urls_serializer.UrlsSerializerTestCase.test_urls_serializer"><code class="docutils literal notranslate"><span class="pre">UrlsSerializerTestCase.test_urls_serializer()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="api.tests.unit_tests.test_views.html">api.tests.unit_tests.test_views package</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.unit_tests.test_views.html#submodules">Submodules</a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.unit_tests.test_views.html#module-api.tests.unit_tests.test_views.test_other">api.tests.unit_tests.test_views.test_other module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.tests.unit_tests.test_views.html#api.tests.unit_tests.test_views.test_other.MedicineInfoTestCase"><code class="docutils literal notranslate"><span class="pre">MedicineInfoTestCase</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_views.html#api.tests.unit_tests.test_views.test_other.MedicineInfoTestCase.test_get_medicine_info"><code class="docutils literal notranslate"><span class="pre">MedicineInfoTestCase.test_get_medicine_info()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="api.tests.unit_tests.test_views.html#api.tests.unit_tests.test_views.test_other.Object"><code class="docutils literal notranslate"><span class="pre">Object</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api.views.html">api.views package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.views.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="api.views.account_views.html">api.views.account_views package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.views.account_views.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.views.account_views.html#module-api.views.account_views.login">api.views.account_views.login module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.views.account_views.html#api.views.account_views.login.LoginAPI"><code class="docutils literal notranslate"><span class="pre">LoginAPI</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.views.account_views.html#api.views.account_views.login.LoginAPI.permission_classes"><code class="docutils literal notranslate"><span class="pre">LoginAPI.permission_classes</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.account_views.html#api.views.account_views.login.LoginAPI.post"><code class="docutils literal notranslate"><span class="pre">LoginAPI.post()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="api.views.generate_key_views.html">api.views.generate_key_views package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.views.generate_key_views.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.views.generate_key_views.html#module-api.views.generate_key_views.generate_api_key">api.views.generate_key_views.generate_api_key module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyForm"><code class="docutils literal notranslate"><span class="pre">GenerateKeyForm</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyForm.base_fields"><code class="docutils literal notranslate"><span class="pre">GenerateKeyForm.base_fields</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">GenerateKeyForm.declared_fields</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyForm.media"><code class="docutils literal notranslate"><span class="pre">GenerateKeyForm.media</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyView"><code class="docutils literal notranslate"><span class="pre">GenerateKeyView</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyView.form_class"><code class="docutils literal notranslate"><span class="pre">GenerateKeyView.form_class</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyView.form_valid"><code class="docutils literal notranslate"><span class="pre">GenerateKeyView.form_valid()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyView.get_context_data"><code class="docutils literal notranslate"><span class="pre">GenerateKeyView.get_context_data()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyView.login_url"><code class="docutils literal notranslate"><span class="pre">GenerateKeyView.login_url</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyView.success_url"><code class="docutils literal notranslate"><span class="pre">GenerateKeyView.success_url</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyView.template_name"><code class="docutils literal notranslate"><span class="pre">GenerateKeyView.template_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyView.test_func"><code class="docutils literal notranslate"><span class="pre">GenerateKeyView.test_func()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="api.views.medicine_views.html">api.views.medicine_views package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.views.medicine_views.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.views.medicine_views.html#module-api.views.medicine_views.medicine">api.views.medicine_views.medicine module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.views.medicine_views.html#api.views.medicine_views.medicine.MedicineViewSet"><code class="docutils literal notranslate"><span class="pre">MedicineViewSet</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.views.medicine_views.html#api.views.medicine_views.medicine.MedicineViewSet.basename"><code class="docutils literal notranslate"><span class="pre">MedicineViewSet.basename</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.medicine_views.html#api.views.medicine_views.medicine.MedicineViewSet.description"><code class="docutils literal notranslate"><span class="pre">MedicineViewSet.description</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.medicine_views.html#api.views.medicine_views.medicine.MedicineViewSet.detail"><code class="docutils literal notranslate"><span class="pre">MedicineViewSet.detail</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.medicine_views.html#api.views.medicine_views.medicine.MedicineViewSet.list"><code class="docutils literal notranslate"><span class="pre">MedicineViewSet.list()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.medicine_views.html#api.views.medicine_views.medicine.MedicineViewSet.name"><code class="docutils literal notranslate"><span class="pre">MedicineViewSet.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.medicine_views.html#api.views.medicine_views.medicine.MedicineViewSet.permission_classes"><code class="docutils literal notranslate"><span class="pre">MedicineViewSet.permission_classes</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.medicine_views.html#api.views.medicine_views.medicine.MedicineViewSet.suffix"><code class="docutils literal notranslate"><span class="pre">MedicineViewSet.suffix</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.views.medicine_views.html#module-api.views.medicine_views.procedure">api.views.medicine_views.procedure module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="api.views.other.html">api.views.other package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.views.other.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.views.other.html#module-api.views.other.medicine_info">api.views.other.medicine_info module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.views.other.html#api.views.other.medicine_info.Medicine_info"><code class="docutils literal notranslate"><span class="pre">Medicine_info</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.views.other.html#api.views.other.medicine_info.Medicine_info.get"><code class="docutils literal notranslate"><span class="pre">Medicine_info.get()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.other.html#api.views.other.medicine_info.Medicine_info.permission_classes"><code class="docutils literal notranslate"><span class="pre">Medicine_info.permission_classes</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.views.other.html#module-api.views.other.medicine_info_json">api.views.other.medicine_info_json module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.views.other.html#api.views.other.medicine_info_json.get_medicine_info"><code class="docutils literal notranslate"><span class="pre">get_medicine_info()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="api.views.other.html#api.views.other.medicine_info_json.has_permission"><code class="docutils literal notranslate"><span class="pre">has_permission()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.views.other.html#module-api.views.other.permissionFilter">api.views.other.permissionFilter module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.views.other.html#api.views.other.permissionFilter.permissionFilter"><code class="docutils literal notranslate"><span class="pre">permissionFilter()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.views.other.html#module-api.views.other.saved_selection">api.views.other.saved_selection module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.views.other.html#api.views.other.saved_selection.SavedSelectionViewSet"><code class="docutils literal notranslate"><span class="pre">SavedSelectionViewSet</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.views.other.html#api.views.other.saved_selection.SavedSelectionViewSet.basename"><code class="docutils literal notranslate"><span class="pre">SavedSelectionViewSet.basename</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.other.html#api.views.other.saved_selection.SavedSelectionViewSet.create"><code class="docutils literal notranslate"><span class="pre">SavedSelectionViewSet.create()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.other.html#api.views.other.saved_selection.SavedSelectionViewSet.description"><code class="docutils literal notranslate"><span class="pre">SavedSelectionViewSet.description</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.other.html#api.views.other.saved_selection.SavedSelectionViewSet.destroy"><code class="docutils literal notranslate"><span class="pre">SavedSelectionViewSet.destroy()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.other.html#api.views.other.saved_selection.SavedSelectionViewSet.detail"><code class="docutils literal notranslate"><span class="pre">SavedSelectionViewSet.detail</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.other.html#api.views.other.saved_selection.SavedSelectionViewSet.get_queryset"><code class="docutils literal notranslate"><span class="pre">SavedSelectionViewSet.get_queryset()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.other.html#api.views.other.saved_selection.SavedSelectionViewSet.name"><code class="docutils literal notranslate"><span class="pre">SavedSelectionViewSet.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.other.html#api.views.other.saved_selection.SavedSelectionViewSet.permission_classes"><code class="docutils literal notranslate"><span class="pre">SavedSelectionViewSet.permission_classes</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.other.html#api.views.other.saved_selection.SavedSelectionViewSet.serializer_class"><code class="docutils literal notranslate"><span class="pre">SavedSelectionViewSet.serializer_class</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.other.html#api.views.other.saved_selection.SavedSelectionViewSet.suffix"><code class="docutils literal notranslate"><span class="pre">SavedSelectionViewSet.suffix</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="api.views.scraper_views.html">api.views.scraper_views package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.views.scraper_views.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.views.scraper_views.html#module-api.views.scraper_views.scraper_urls_view">api.views.scraper_views.scraper_urls_view module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.basename"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.basename</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.description"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.description</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.detail"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.detail</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.list"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.list()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.name"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.permission_classes"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.permission_classes</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.suffix"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.suffix</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.apps">api.apps module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.update_cache">api.update_cache module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.apps">api.apps module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#api.apps.ApiConfig"><code class="docutils literal notranslate"><span class="pre">ApiConfig</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api.html#api.apps.ApiConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">ApiConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.html#api.apps.ApiConfig.name"><code class="docutils literal notranslate"><span class="pre">ApiConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.update_cache">api.update_cache module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#api.update_cache.has_pending_migrations"><code class="docutils literal notranslate"><span class="pre">has_pending_migrations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#api.update_cache.has_unapplied_migration"><code class="docutils literal notranslate"><span class="pre">has_unapplied_migration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#api.update_cache.update_cache"><code class="docutils literal notranslate"><span class="pre">update_cache()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#module-api.urls">api.urls module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#module-api">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -91,8 +1047,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="api-admin-package">
-<h1>api.admin package<a class="headerlink" href="#api-admin-package" title="Permalink to this heading"></a></h1>
+  <section id="module-api.admin">
+<span id="api-admin-package"></span><h1>api.admin package<a class="headerlink" href="#module-api.admin" title="Permalink to this heading"></a></h1>
+<div class="line-block">
+<div class="line">The admin package defines admin views for the models, which can be used in Django’s admin panel.</div>
+<div class="line">Read more about the admin site here: <a class="reference external" href="https://docs.djangoproject.com/en/4.1/ref/contrib/admin/">https://docs.djangoproject.com/en/4.1/ref/contrib/admin/</a></div>
+</div>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
@@ -654,9 +1614,6 @@ ModelResource is Resource subclass for handling Django models.</p>
 </dd></dl>
 
 </section>
-<section id="module-api.admin">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-api.admin" title="Permalink to this heading"></a></h2>
-</section>
 </section>
 
 
@@ -685,7 +1642,7 @@ ModelResource is Resource subclass for handling Django models.</p>
   </div>
   <script>
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.Navigation.enable(false);
       });
   </script> 
 

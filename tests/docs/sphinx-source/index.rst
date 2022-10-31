@@ -6,7 +6,8 @@
 Welcome to tests documentation!
 =========================================
 .. toctree::
-   
+   :maxdepth: 4
+
    modules
    
 
