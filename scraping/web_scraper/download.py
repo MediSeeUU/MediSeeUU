@@ -7,11 +7,13 @@ import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 
-from . import json_helper
-from . import utils
+from scraping.web_scraper import json_helper, utils
 
 log = logging.getLogger("webscraper.ec_scraper")
+
 urls_file: json_helper.JsonHelper
+
+data_path: str
 
 
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
@@ -62,10 +64,14 @@ def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[s
 
 def download_medicine_files(eu_n: str, url_dict: dict[str, list[str]]):
     attr_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_attributes.json")).load_json()
-    utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "dec", url_dict["aut_url"], attr_dict)
-    utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "anx", url_dict["smpc_url"], attr_dict)
-    utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, "epar", url_dict["epar_url"], attr_dict)
-    utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, "omar", url_dict["omar_url"], attr_dict)
+    if "aut_url" in url_dict:
+        utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "dec", url_dict["aut_url"], attr_dict)
+    if "smpc_url" in url_dict:
+        utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "anx", url_dict["smpc_url"], attr_dict)
+    if "epar_url" in url_dict:
+        utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, url_dict["epar_url"], attr_dict)
+    if "omar_url" in url_dict:
+        utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, "omar", url_dict["omar_url"], attr_dict)
     log.info(f"Finished download for {eu_n}")
 
 
@@ -74,6 +80,7 @@ def download_all(data_filepath: str, url_jsonhelper: json_helper.JsonHelper, par
     urls_file = url_jsonhelper
     global data_path
     data_path = data_filepath
+
     with tqdm_logging.logging_redirect_tqdm():
         if parallel_download:
             tqdm_concurrent.thread_map(download_medicine_files,
