@@ -18,7 +18,6 @@ from api.views.medicine_views import (
     MedicineViewSet,
 )
 from api.views.account_views import LoginAPI
-from api.views.scraper_views import UrlsViewSet
 from api.views.other import SavedSelectionViewSet
 from api.views.other import Medicine_info
 
@@ -31,7 +30,6 @@ router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
 # router.register(r"procedure/(?P<eunumber>\d+)", ProcedureViewSet, basename="procedure")
 router.register(r"saveselection", SavedSelectionViewSet, basename="saveselection")
-router.register(r"scraper/urls", UrlsViewSet, basename="scraped_urls")
 
 # urlpatterns is the default way of adding routes (endpoints).
 urlpatterns = [
