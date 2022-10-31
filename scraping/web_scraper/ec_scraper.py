@@ -323,6 +323,7 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
 
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
     eu_aut_datetime: datetime = datetime.strptime(procedures_json[0]["decision"]["date"], '%Y-%m-%d')
+    # TODO: parse to datetime instead of string
     eu_aut_date: str = datetime.strftime(eu_aut_datetime, '%d-%m-%Y')
 
     # From the list of EMA numbers, the right one is chosen and its certainty determined
