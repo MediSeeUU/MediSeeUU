@@ -15,15 +15,6 @@ from scraping.pdf_module.pdf_scraper.parsers import annex_parse
 
 # Main file to run all parsers
 def main(directory: str):
-    """
-    given a folder containing medicine folders, parses each folder in parallel
-
-    Args:
-        directory: data folder, containing medicine folders
-
-    Returns:
-
-    """
     print("Parsing PDF files")
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
 
@@ -40,6 +31,7 @@ def main(directory: str):
 
 # scraping on medicine folder level
 def parse_folder(directory: str, folder_name):
+<<<<<<< Updated upstream
     """
     Given a folder containing medicines, parse_folder walks creates an XML file for each PDF when it doesn't exist.
         After this, a parser for each pdf/xml file is called,
@@ -52,6 +44,8 @@ def parse_folder(directory: str, folder_name):
     Returns:
 
     """
+=======
+>>>>>>> Stashed changes
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing
     medicine_struct = pis.parsed_info_struct(folder_name)
 
@@ -65,7 +59,12 @@ def parse_folder(directory: str, folder_name):
         if file[:len(file) - 4] + ".xml" in directory_files:
             continue
         file_path = path.join(directory, file)
+<<<<<<< Updated upstream
         xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
+=======
+        if '_0' in file or 'public-assessment' in file or 'procedural-steps-taken' in file:
+            xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
+>>>>>>> Stashed changes
 
     # update list of files and filter out relevant files for each parser
     annex_files, decision_files, epar_files, omar_files = get_files(directory)
@@ -92,6 +91,7 @@ def get_files(directory):
 
 
 # scraping all XML or PDF files and updating medicine_struct with the scraped attributes
+<<<<<<< Updated upstream
 def run_scrapers(directory: str, annex_files: list[str], decision_files: list[str], epar_files: list[str],
                  omar_files: list[str], medicine_struct):
     """
@@ -115,20 +115,22 @@ def run_scrapers(directory: str, annex_files: list[str], decision_files: list[st
         medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
     for file in omar_files:
         medicine_struct = omar_parse.parse_file(file, medicine_struct)
+=======
+def run_scrapers(annex_files, decision_files, directory, epar_files, medicine_struct, omar_files):
+    for file in decision_files:
+        medicine_struct = dec_parse.parse_file(file, directory, medicine_struct)
+    for file in annex_files:
+        medicine_struct = annex_parser.parse_file(file, medicine_struct)
+    for file in epar_files:
+        medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
+    # for file in omar_files:
+    #     medicine_struct = omar_parse.parse_file(file, medicine_struct)
+>>>>>>> Stashed changes
     return medicine_struct
 
 
 # datetime to string serializer for json dumping
 def datetime_serializer(date: pis.datetime.datetime):
-    """
-    convert datetime.datetime to string
-
-    Args:
-        date (datetime.datetime): date to convert to string
-
-    Returns:
-
-    """
     if isinstance(date, pis.datetime.datetime):
         return date.__str__()
 

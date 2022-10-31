@@ -146,3 +146,31 @@ def format_to_string(section: [(str, int, str)]) -> str:
     for (txt, _, _) in section:
         res += txt
     return res
+
+
+def create_outputfile_dec(filename, res):
+    write = False
+    if '_h_' in filename:
+        f = open('human_initial_dec.txt', 'a', encoding="utf-8")  # open/clean output file
+        write = True
+    if '_0_' in filename:
+        f = open('orphan_initial_dec.txt', 'a', encoding="utf-8")  # open/clean output file
+        write = True
+    if write:
+        res_to_file(f, res, filename)
+        f.close()
+
+
+def create_outputfile(filename, outputname, res):
+    f = open(outputname, 'a', encoding="utf-8")  # open/clean output file
+    res_to_file(f, res, filename)
+    f.close()
+
+
+def res_to_file(f, res, filename):
+    write_string = filename
+    for value in res.values():
+        write_string += '@'
+        write_string += str(value)
+    f.writelines(write_string)
+    f.writelines('\n')

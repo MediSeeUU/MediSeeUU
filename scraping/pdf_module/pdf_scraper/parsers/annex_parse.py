@@ -2,6 +2,7 @@ import scraping.pdf_module.pdf_scraper.pdf_xml_converter as xmlc
 import xml.etree.ElementTree as ET
 import scraping.pdf_module.pdf_scraper.xml_parsing_utils as Utils
 import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
+import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
 import os
 
 
@@ -71,4 +72,7 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
         # TODO: to add attributes, initial EU conditions and current EU conditions, 50 and 51 in bible
 
     medicine_struct.annexes.append(annex_attributes)
+    filename = Utils.file_get_name_pdf(xml_header)
+    if '_0' in filename:
+        pdf_helper.create_outputfile(filename, 'annex_results.txt', annex_attributes)
     return medicine_struct

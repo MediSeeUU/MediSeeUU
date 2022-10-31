@@ -4,6 +4,7 @@ import scraping.pdf_module.pdf_scraper.helper as helper
 import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xpu
 import xml.etree.ElementTree as ET
 import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
+import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
 import os.path as path
 from typing import Union
 
@@ -52,7 +53,9 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_s
         return medicine_struct
     xml_root = xml_tree.getroot()
     xml_body = xml_root[1]
-    medicine_struct.epars.append(get_all(filename, xml_body))
+    res = get_all(filename, xml_body)
+    medicine_struct.epars.append(res)
+    pdf_helper.create_outputfile(filename, 'epar_results.txt', res)
     return medicine_struct
 
 
