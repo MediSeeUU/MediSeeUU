@@ -91,13 +91,12 @@ class ScraperMedicine(APIView):
                         pk=medicine.get("eu_pnumber")
                     ).first()
                     # if the medicine doesn't exist or the medicine should be overriden, call add_medicine,
-                    # otherwise update the flexible variables and the null values
+                    # otherwise update the flexible variables
                     override = medicine.get("override")
                     if current_medicine is None or override:
                         self.add_or_override_medicine(medicine, current_medicine, override)
                     else:
                         self.update_flex_medicine(medicine, current_medicine)
-                        self.update_null_values(medicine)
             except Exception as e:
                 medicine["errors"] = str(e)
                 failed_medicines.append(medicine)
@@ -150,28 +149,6 @@ class ScraperMedicine(APIView):
             self.list_variables(data)
         else:
             raise ValueError(serializer.errors)
-
-    def update_null_values(self, data):
-        """
-        Updates all null values for an existing medicine using the data given in its 
-        argument "data".
-
-        Args:
-            data (medicineObject): The new medicine data.
-        """        
-        current_medicine = Medicine.objects.filter(pk=data.get("eu_pnumber")).first()
-
-        medicine = model_to_dict(current_medicine)
-        new_data = {"eu_pnumber": data.get("eu_pnumber")}
-
-        for attr in medicine:
-            if (getattr(current_medicine, attr) is None) and (
-                    not (data.get(attr) is None)
-            ):
-                new_data[attr] = data.get(attr)
-
-        if len(new_data.keys()) > 1:
-            self.add_medicine(new_data, current_medicine)
 
     def list_variables(self, data):
         """
