@@ -41,9 +41,9 @@ def main(directory: str):
 # scraping on medicine folder level
 def parse_folder(directory: str, folder_name):
     """
-    given a folder of medicine folder, walks through each pdf file and creates xml when necessary.
-        After which, calls a parser for each pdf/xml file depending on filename and writes json file in folder containing
-        attributes.
+    Given a folder containing medicines, parse_folder walks creates an XML file for each PDF when it doesn't exist.
+        After this, a parser for each pdf/xml file is called,
+        writing a json file containing the scraped attributes to the folder.
 
     Args:
         directory: location of folder to parse

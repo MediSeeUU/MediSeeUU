@@ -182,7 +182,7 @@ class TestEparParse(TestCase):
             if output != "no_co-rapporteur":
                 # print(output)
                 found_count += 1
-                # Check if rapporteur name is of reasonable length
+                # Check if co-rapporteur name is of reasonable length
                 print(output)
                 self.assertGreater(len(output), 2)
                 self.assertGreater(40, len(output))
@@ -191,4 +191,5 @@ class TestEparParse(TestCase):
                 self.assertTrue(rapp_format)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 80)
+        # There aren't a lot of co-rapporteurs, just to make sure the function keeps working correctly
+        self.assertGreater(percentage_found, 30)

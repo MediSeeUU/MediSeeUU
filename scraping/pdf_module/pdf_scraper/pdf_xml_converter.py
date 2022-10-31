@@ -22,7 +22,6 @@ def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
         None
     """
 
-    document = []
     try:
         document = fitz.open(source_filepath)
         text_format_lower = ph.get_text_format(document, True)
@@ -163,12 +162,12 @@ def remove_illegal_characters(string: str) -> str:
 
 def print_xml_tag_open(xml_tag: str, file: TextIO, attribute: str = ""):
     """
-    Prints xml_tag string to file as an xml opening tag with attribute: <xml_tag attribute>
+    Prints xml_tag string to file as a xml opening tag with attribute: <xml_tag attribute>
 
     Args:
         xml_tag (str): XML tag to be printed, for example: "head", "body", "p". Should be imported from xml_tags.py.
         file (TextIO): File handle to write to. Obtained from open("filename", access_type).
-        attributes (str, optional): Attributes to be added to opening tag. Defaults to "".
+        attribute (str, optional): Attributes to be added to opening tag. Defaults to "".
 
     Returns:
         None
@@ -179,7 +178,7 @@ def print_xml_tag_open(xml_tag: str, file: TextIO, attribute: str = ""):
 
 def print_xml_tag_close(xml_tag: str, file: TextIO):
     """
-    Prints xml_tag string to file as an closing xml tag with attribute: </xml_tag>
+    Prints xml_tag string to file as a closing xml tag with attribute: </xml_tag>
 
     Args:
         xml_tag (str): XML tag to be printed, for example: "head", "body", "p". Should be imported from xml_tags.py.
@@ -195,19 +194,19 @@ def print_xml_tag_close(xml_tag: str, file: TextIO):
 def print_xml(sections: list[(str, str)], output_filepath: str, document_creation_date: str,
               document_modification_date: str):
     """
-    Prints whole XML file output_filepath from the given list of section text tuples, with given document_creation_date and document_modification_date in metadata.
+    Prints whole XML file output_filepath from the given list of section text tuples,
+    with given document_creation_date and document_modification_date in metadata.
 
     Args:
         sections (list[str, str)]): List of section text tuples in form of (header_text, paragraph_text).
-        output_filepath (str): Filepath of the file to be written in form of "*.xml", wher * is a wildcard.
+        output_filepath (str): Filepath of the file to be written in form of "*.xml", where * is a wildcard.
         document_creation_date (str): Meta-data creation date of original pdf in string form from pyMuPDF.
-        document_modification_date (str): Meta-data modifiation date of original pdf in string form from pyMuPDF.
+        document_modification_date (str): Meta-data modification date of original pdf in string form from pyMuPDF.
 
     Returns:
         None
     """              
     # start printing xml file
-    console_out = sys.stdout
     xml_file = open(output_filepath, "w", encoding="utf-8")
 
     xml_file.write("<?xml version=\"1.1\" encoding=\"UTF-8\" standalone=\"yes\"?>")

@@ -269,19 +269,23 @@ def get_corapp(xml: ET.Element) -> str:
         # Find co-rapporteur after "co-rapporteur:" and before "\n"
         regex_str_1 = r"co-rapporteur:[\s\w]+?\n"
         if re.findall(regex_str_1, txt):
-            return get_rapp_after(regex_str_1, txt, 15)
-        # Find co-rapporteur after "co-rapporteur:"
-        regex_str_2 = r"co-rapporteur:[\s\w]*"
-        if re.findall(regex_str_2, txt):
-            corapporteur = get_rapp_after(regex_str_2, txt, 15)
-            # Combine first part of co-rapporteur like "dr." with next part of co-rapporteur
-            if len(corapporteur) < 4:
-                found = True
-            else:
-                return get_rapp_after(regex_str_2, txt, 15)
-        # Find rapporteur after "rapporteur:" with found boolean to get rapporteur in new section
-        if found:
-            found = False
-            corapporteur += txt.strip().replace("\n", "")
-            return corapporteur
+            temp_corapp = get_rapp_after(regex_str_1, txt, 15)
+            if temp_corapp:
+                return temp_corapp
+
+            # Find corapporteur after "co-rapporteur:" with found boolean to get corapp in new section
+            if found:
+                # Combine first part of corapp like "dr." with next part of corapporteur
+                corapporteur += txt.strip().replace("\n", "")
+                if len(corapporteur) >= 4:
+                    found = False
+                    return corapporteur
+            # Find co-rapporteur after "co-rapporteur:"
+            regex_str_2 = r"co-rapporteur:[\s\w\.]+"
+            if re.search(regex_str_2, txt) and not found:
+                corapporteur = get_rapp_after(regex_str_2, txt, 15)
+                if len(corapporteur) < 4:
+                    found = True
+                else:
+                    return corapporteur
     return "no_co-rapporteur"
