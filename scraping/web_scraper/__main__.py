@@ -22,9 +22,9 @@ use_parallelization: bool = False   # Parallelization is currently broken on Win
 # NOTE: This was useful for debugging
 scrape_medicine_type: list[ec_scraper.MedicineType] = [
                                                        ec_scraper.MedicineType.HUMAN_USE_ACTIVE,
-                                                       # ec_scraper.MedicineType.HUMAN_USE_WITHDRAWN,
-                                                       # ec_scraper.MedicineType.ORPHAN_ACTIVE,
-                                                       # ec_scraper.MedicineType.ORPHAN_WITHDRAWN
+                                                       ec_scraper.MedicineType.HUMAN_USE_WITHDRAWN,
+                                                       ec_scraper.MedicineType.ORPHAN_ACTIVE,
+                                                       ec_scraper.MedicineType.ORPHAN_WITHDRAWN
                                                       ]
 
 # TODO: Logging to monolithic main
@@ -101,9 +101,12 @@ def get_urls_ema(eu_n: str, url: str):
         Returns:
             None: This function returns nothing
         """
-    pdf_url: dict = {
+    epar_url, omar_url = ema_scraper.pdf_links_from_url(url)
+
+    pdf_url: dict[str, str] = {
         eu_n: {
-            "epar_url": ema_scraper.pdf_links_from_url(url)
+            "epar_url": epar_url,
+            "omar_url": omar_url
         }
     }
     url_file.add_to_dict(pdf_url)
