@@ -176,8 +176,8 @@ class ScraperMedicine(APIView):
     def list_variables(self, data):
         """
         Creates new list variables for the history models using the data given in its
-        argument "data". It expects the input data to be formed like this:
-        name: ["value1", "value2", ...]
+        argument "data". It expects the input data for the list variable to be formed like this:
+        ``name: ["value1", "value2", ...]``
 
         Args:
             data (medicineObject): The new medicine data.
@@ -228,7 +228,8 @@ class ScraperMedicine(APIView):
     def history_variables(self, data):
         """
         Creates new history variables for the history models using the data given in its
-        argument "data".
+        argument "data". It expects the input data for the history variable to be formed like this:
+        ``name: [{name: value, change_date: date}, ...]``
 
         Args:
             data (medicineObject): The new medicine data.

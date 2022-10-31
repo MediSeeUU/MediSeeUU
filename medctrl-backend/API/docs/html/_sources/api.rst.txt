@@ -1,6 +1,11 @@
 api package
 ===========
 
+.. automodule:: api
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
@@ -9,7 +14,6 @@ Subpackages
 
    api.admin
    api.management
-   api.migrations
    api.models
    api.scraper
    api.serializers
@@ -39,14 +43,6 @@ api.urls module
 ---------------
 
 .. automodule:: api.urls
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api
    :members:
    :undoc-members:
    :show-inheritance:

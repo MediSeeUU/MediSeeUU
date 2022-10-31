@@ -1,6 +1,11 @@
 api.views.medicine\_views package
 =================================
 
+.. automodule:: api.views.medicine_views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -8,22 +13,6 @@ api.views.medicine\_views.medicine module
 -----------------------------------------
 
 .. automodule:: api.views.medicine_views.medicine
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-api.views.medicine\_views.procedure module
-------------------------------------------
-
-.. automodule:: api.views.medicine_views.procedure
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api.views.medicine_views
    :members:
    :undoc-members:
    :show-inheritance:

@@ -25,7 +25,7 @@ if errorlevel 9009 (
 
 if "%1" == "" goto help
 
-sphinx-apidoc -f -o %SOURCEDIR% ../api
+sphinx-apidoc --module-first -f -o %SOURCEDIR% ../api ../api/migrations/
 %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
 goto end
 
