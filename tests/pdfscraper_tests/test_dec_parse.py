@@ -5,8 +5,7 @@ import fitz
 import datetime
 import scraping.pdf_module.pdf_scraper.parsers.dec_parse as dec_parse
 
-test_data_loc = "../../../data"
-dec_txt = []
+test_data_loc = "../../data"
 percentage_str = "Percentage found: "
 
 
@@ -34,7 +33,7 @@ class TestDecParse(TestCase):
         for txt, filename in dec_txt:
             output = dec_parse.dec_get_date(txt)
             self.assertTrue((isinstance(output, str) or isinstance(output, datetime.datetime)))
-            if output == datetime.datetime(1980, 1, 1, 0 ,0):
+            if output == datetime.datetime(1980, 1, 1, 0, 0):
                 not_found_count += 1
                 print(f"{filename} date not found")
             if isinstance(output, datetime.datetime):
@@ -42,7 +41,7 @@ class TestDecParse(TestCase):
                 self.assertGreater(output, datetime.datetime(1979, 1, 1, 0, 0))
             if isinstance(output, str):
                 self.assertTrue(output == 'Date is blank')
-        percentage_found = (len(dec_txt)-not_found_count) / len(dec_txt) * 100
+        percentage_found = (len(dec_txt) - not_found_count) / len(dec_txt) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         print(f"Amount not found: {not_found_count}")
         self.assertGreater(percentage_found, 99)

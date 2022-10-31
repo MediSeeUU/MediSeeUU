@@ -15,6 +15,15 @@ from scraping.pdf_module.pdf_scraper.parsers import annex_parser
 
 # Main file to run all parsers
 def main(directory: str):
+    """
+    given a folder containing medicine folders, parses each folder in parallel
+
+    Args:
+        directory: data folder, containing medicine folders
+
+    Returns:
+
+    """
     print("Parsing PDF files")
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
 
@@ -31,6 +40,18 @@ def main(directory: str):
 
 # scraping on medicine folder level
 def parse_folder(directory: str, folder_name):
+    """
+    given a folder of medicine folder, walks through each pdf file and creates xml when necessary.
+        After which, calls a parser for each pdf/xml file depending on filename and writes json file in folder containing
+        attributes.
+
+    Args:
+        directory: location of folder to parse
+        folder_name: name of medicine folder to parse
+
+    Returns:
+
+    """
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing
     medicine_struct = pis.parsed_info_struct(folder_name)
 
@@ -72,7 +93,20 @@ def get_files(directory):
 
 
 # scraping all XML or PDF files and updating medicine_struct with the scraped attributes
-def run_scrapers(annex_files, decision_files, directory, epar_files, medicine_struct, omar_files):
+def run_scrapers(directory: str, annex_files: list[str], decision_files: list[str], epar_files: list[str], omar_files: list[str], medicine_struct):
+    """
+
+    Args:
+        directory: directory of folder containing the files
+        annex_files: list of file names for annex files
+        decision_files: list of file names for decisions files
+        epar_files: list of file names for epar files
+        omar_files: list of file names for omar files
+        medicine_struct: struct to add parsed attributes to
+
+    Returns:
+
+    """
     for file in decision_files:
         medicine_struct = dec_parse.parse_file(file, directory, medicine_struct)
     for file in annex_files:
@@ -86,6 +120,15 @@ def run_scrapers(annex_files, decision_files, directory, epar_files, medicine_st
 
 # datetime to string serializer for json dumping
 def datetime_serializer(date: pis.datetime.datetime):
+    """
+    convert datetime.datetime to string
+
+    Args:
+        date (datetime.datetime): date to convert to string
+
+    Returns:
+
+    """
     if isinstance(date, pis.datetime.datetime):
         return date.__str__()
 
