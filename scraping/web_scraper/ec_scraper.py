@@ -35,7 +35,7 @@ def scrape_medicines_list() -> list[(str, str, int, str)]:
 
     From the EC website, the JSON files for active and withdrawn medicine are scraped. The JSONs
     contain information about the medicine that is needed to construct a link to each individual medicine page.
-    It does so for all active and withrawn, orphan and human use medicine.
+    It does so for all active and withdrawn, orphan and human use medicine.
 
     Returns:
         list[(str, str, int, str)]: The links to the medicine pages are stored in a list, along with the full EU number,
@@ -166,7 +166,7 @@ def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], l
         medicine_type (MedicineType): The type of medicine this medicine is.
 
     Returns:
-        (list[str], list[str], list[str], dict[str, str]): All the links to pdf's for decisions and annexes are
+        (list[str], list[str], list[str], dict[str, str]): All the links to PDFs for decisions and annexes are
             stored in lists and returned. The same is done for all links to the ema website. All attributes are
             stored in a dictionary.
     """
@@ -187,7 +187,7 @@ def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], l
     return dec_url_list, anx_url_list, ema_url_list, all_attributes_dict
 
 
-def get_data_from_medicine_json(medicine_json: json,
+def get_data_from_medicine_json(medicine_json: dict,
                                 eu_num: str,
                                 medicine_type: MedicineType) \
                                 -> (dict[str, str], list[str]):
@@ -254,11 +254,11 @@ def get_data_from_medicine_json(medicine_json: json,
     return medicine_dict, ema_url_list
 
 
-def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[str, str], list[str], list[str]):
-    """ Gets all attribute information that is stored in the procedures JSON, and all links the decision and annex pdf's.
+def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[str, str], list[str], list[str]):
+    """ Gets all attribute information that is stored in the procedures JSON, and all links the decision and annex PDFs.
 
     The function loops through the JSON object and finds all the attributes and links,
-    so that they can be used and stored. There is also some extra logic that is needed to determine some of the attribute
+    so that they can be used and stored. There is also some extra logic that is needed to determine some attribute
     values. This is done for the EMA number (certainty), the initial authorization type and current authorization type.
     Whenever an attribute is not found, this is logged.
 
@@ -268,7 +268,7 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
 
     Returns:
         (dict[str, str], list[str], list[str]): Returns a dictionary with all the attribute values, a list
-            with all the links decisions and a list with a the links to the annexes.
+            with all the links decisions and a list with the links to the annexes.
     """
     # The necessary urls and other data will be saved in these lists and dictionary
     dec_url_list: list[str] = []
@@ -314,11 +314,15 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
             last_decision_types.append(row["type"])
 
         if row["files_dec"]:
-            pdf_url_dec = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""
+            pdf_url_dec = \
+                f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""
+
             dec_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
 
         if row["files_anx"]:
-            pdf_url_anx = f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""
+            pdf_url_anx = \
+                f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""
+
             anx_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
 
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
@@ -331,7 +335,9 @@ def get_data_from_procedures_json(procedures_json: json, eu_num: str) -> (dict[s
     # TODO: logging when an attribute is not found
     # Currently when an attribute is not found it is simply printed to the console
     procedures_dict["eu_aut_date"] = eu_aut_date
-    procedures_dict["eu_aut_type_initial"] = determine_initial_aut_type(eu_aut_datetime.year, is_exceptional, is_conditional)
+    procedures_dict["eu_aut_type_initial"] = determine_initial_aut_type(eu_aut_datetime.year,
+                                                                        is_exceptional,
+                                                                        is_conditional)
     procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
     procedures_dict["ema_number"] = ema_number
     procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
@@ -364,8 +370,8 @@ def determine_current_aut_type(last_decision_types: list[str]) -> str:
 def determine_initial_aut_type(year: int, is_exceptional: bool, is_conditional: bool) -> str:
     """ Determines the initial authorization type, based on whether it has seen exceptional or conditional procedures
 
-    For procedures from before 2006, it is not possible to determine the initial authorization type. Otherwise
-    the procedure type van be determined, which is either exceptional, conditional or standard.
+    For procedures from before 2006, it is not possible to determine the initial authorization type.
+    Otherwise, the procedure type van be determined, which is either exceptional, conditional or standard.
 
     Args:
         year (int): The year of the first procedure.
@@ -389,7 +395,7 @@ def determine_initial_aut_type(year: int, is_exceptional: bool, is_conditional: 
 def format_ema_number(ema_number: str) -> list[str]:
     """ Formats the input into a (list of) EMA number(s)
 
-    In the procedures JSON file, there is often an EMA number present for a procedure, and sometimes multiple
+    In the procedures JSON file, there is often an EMA number present for a procedure, and sometimes multiple.
     The EMA numbers are formatted with a RegEx, that handles both EMA numbers for human use and orphan medicine.
 
     Args:
@@ -421,7 +427,7 @@ def determine_ema_number(ema_numbers: list[str]) -> (str, float):
         ema_numbers (list[str]): The list of formatted EMA numbers in the JSON file
 
     Returns:
-        (str, float): The function returns the EMA number that occurrs the most, and a fraction how often
+        (str, float): The function returns the EMA number that occurs the most, and a fraction how often
             this EMA number is present in the list.
     """
     # gets the most frequent element in a list

@@ -7,7 +7,7 @@ import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 
-from . import download, ec_scraper, ema_scraper, utils, json_helper
+from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper
 
 
 # TODO: These variables are for debugging, remove in final
@@ -49,7 +49,7 @@ annex10_file = json_helper.JsonHelper(path="JSON/annex10.json")
 def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.MedicineType, data_path: str):
     """ Gets the scraped medicine attributes and urls, and writes them to CSV and JSON files.
 
-    The function writes the data to four (will become three) seperpate CSV files, one for decisions,
+    The function writes the data to four (will become three) separate CSV files, one for decisions,
     one for annexes, and one for EMA urls. The attributes for the medicine are stored in a single JSON.
     They are all stored in the same data folder, where each medicine gets its own folder.
 
@@ -122,6 +122,7 @@ def get_excel_ema(url: str):
         None: This function returns nothing
 
     """
+
     excel_url: dict[int, dict[str, str]] = ema_scraper.get_annex10_files(url, annex10_file.load_json())
     annex10_file.overwrite_dict(excel_url)
 
@@ -211,6 +212,8 @@ def main(data_filepath: str = '../../data'):
         download.download_all(data_filepath, url_file, parallel_download=use_parallelization)
 
         log.info("TASK FINISHED downloading pdf files")
+
+    log.info("=== LOG FINISH ===")
 
 
 # Keep the code locally testable by including this.
