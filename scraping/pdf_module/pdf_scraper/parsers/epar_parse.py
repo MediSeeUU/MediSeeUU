@@ -9,7 +9,7 @@ from typing import Union
 
 date_pattern: str = r"\d{1,2} \w+ \d{4}"  # DD/MONTH/YYYY
 procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure
-
+accelerated_assessment = "accelerated assessment"
 
 def get_all(filename: str, xml_data: ET.Element) -> dict:
     """
@@ -27,7 +27,8 @@ def get_all(filename: str, xml_data: ET.Element) -> dict:
             "eu_legal_basis": get_legal_basis(xml_data),
             "eu_prime_initial": get_prime(xml_data),
             "ema_rapp": get_rapp(xml_data),
-            "ema_corapp": get_corapp(xml_data)}
+            "ema_corapp": get_corapp(xml_data),
+            "ema_reexamination": get_reexamination(xml_data)}
     return epar
 
 
@@ -138,7 +139,7 @@ def get_prime(xml: ET.Element) -> str:
         xml (ET.Element): the contents of the XML file
 
     Returns:
-        str: the attribute eu_prime_initial - "yes" or "no", "NA" if ema_procedure_start_initial before 20-05-2004
+        str: the attribute eu_prime_initial - "yes" or "no", "NA" if ema_procedure_start_initial before 01-03-2016
     """
     if check_date_before(xml, 1, 3, 2016):
         return "NA"
@@ -150,7 +151,18 @@ def get_prime(xml: ET.Element) -> str:
     return "no"
 
 
-def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_year: int):
+def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_year: int) -> bool:
+    """
+        Checks whether the date ema_procedure_start_initial is earlier than the given date
+        Args:
+            xml (ET.Element): the contents of the XML file
+            check_day (int): the day of the given date
+            check_month (int): the month of the given date
+            check_year (int): the year of the given date
+
+        Returns:
+            bool: True if scraped date is before given date, False otherwise
+        """
     date = get_date(xml)
     if date != "no_date_found" and date != "not_easily_scrapable":
         day = int(date.split("/")[0])
@@ -348,3 +360,91 @@ def get_reexamination(xml: ET.Element) -> str:
         if "re-examination" in txt:
             return "yes"
     return "no"
+
+
+def get_accelerated_assessment(xml: ET.Element) -> str:
+    """
+    Gets the attribute eu_accel_assess_g
+    Check whether the word "accelerated assessment" is in text and
+    "agreed" is close by and "not agreed" is not close by
+    Args:
+        xml (ET.Element): the contents of the XML file
+
+    Returns:
+        str: the attribute eu_accel_assess_g - "yes" or "no", "NA" if ema_procedure_start_initial before 20-05-2004
+    """
+    if check_date_before(xml, 20, 5, 2004):
+        return "NA"
+    found = False
+    for elem in xml.iter():
+        txt = str(elem.text)
+        if accelerated_assessment in txt:
+            found = True
+    if not found:
+        return "no"
+
+    text_elements = 20
+    # Check whether the word "agreed" is at most 20 text elements before "accelerated assessment"
+    found_before = agreed_before_accelerated_assessment(xml, text_elements)
+    # Check whether the word "agreed" is at most 20 text elements after "accelerated assessment"
+    found_after = agreed_after_accelerated_assessment(xml, text_elements)
+
+    if found_before:
+        return found_before
+    if found_after:
+        return found_after
+    return "no"
+
+
+def agreed_before_accelerated_assessment(xml: ET.Element, text_elements: int) -> str:
+    """
+    Checks whether the word "agreed" is at most 20 text elements before "accelerated assessment"
+    Returns None when "agreed" is not close to "accelerated assessment"
+    Args:
+        xml (ET.Element): the contents of the XML file
+        text_elements (int): the maximum number of text elements to be considered close by
+
+    Returns:
+        str: the attribute eu_accel_assess_g - "yes" or "no"
+        None: no conclusive evidence was found
+    """
+    counter = -1
+    for elem in xml.iter():
+        txt = str(elem.text)
+        if counter != -1:
+            counter += 1
+            if accelerated_assessment in txt and counter <= text_elements:
+                return "yes"
+        if "agreed" in txt:
+            # Return no if accelerated assessment is not agreed
+            if "not agreed" in txt:
+                return "no"
+            # Start counter
+            counter = 0
+
+
+def agreed_after_accelerated_assessment(xml: ET.Element, text_elements: int) -> str:
+    """
+    Checks whether the word "agreed" is at most 20 text elements after "accelerated assessment"
+    Returns None when "agreed" is not close to "accelerated assessment"
+    Args:
+        xml (ET.Element): the contents of the XML file
+        text_elements (int): the maximum number of text elements to be considered close by
+
+    Returns:
+        str: the attribute eu_accel_assess_g - "yes" or "no"
+        None: no conclusive evidence was found
+    """
+    counter = -1
+    for elem in xml.iter():
+        txt = str(elem.text)
+        if counter != -1:
+            counter += 1
+            if "agreed" in txt and counter <= text_elements:
+                # Return no if accelerated assessment is not agreed
+                if "not agreed" in txt:
+                    return "no"
+                return "yes"
+        if accelerated_assessment in txt:
+            # Start counter
+            counter = 0

@@ -205,11 +205,26 @@ class TestEparParse(TestCase):
             None
         """
         yes_exists = False
-        # Call ema_reexamination
+        # Call get_reexamination
         for xml_body in xml_bodies:
             output = epar_parse.get_reexamination(xml_body)
-            print(output)
             if output == "yes":
                 yes_exists = True
             self.assertIn(output, 'yesno')
+        self.assertTrue(yes_exists)
+
+    def test_get_accelerated_assessment(self):
+        """
+        Test getting eu_accel_assess_g
+        Returns:
+            None
+        """
+        yes_exists = False
+        # Call get_accelerated_assessment
+        for xml_body in xml_bodies:
+            output = epar_parse.get_accelerated_assessment(xml_body)
+            print(output)
+            if output == "yes":
+                yes_exists = True
+            self.assertIn(output, 'yesnoNA')
         self.assertTrue(yes_exists)
