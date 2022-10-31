@@ -3,7 +3,7 @@ import os
 import regex as re
 import fitz
 import datetime
-import scraping.pdf_module.pdf_scraper.parsers.annex_parser as annex_parser
+import scraping.pdf_module.pdf_scraper.parsers.annex_parse as annex_parser
 
 test_data_filepath = "../../data"
 

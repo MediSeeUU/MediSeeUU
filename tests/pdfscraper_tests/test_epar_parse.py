@@ -27,6 +27,7 @@ class TestEparParse(TestCase):
         for folder in os.listdir(test_data_loc):
             for file in os.listdir(os.path.join(test_data_loc, folder)):
                 path = os.path.join(test_data_loc, folder, file)
+
                 if os.path.isfile(path):
                     files.append(path)
         xml_files = [file for file in files if ".xml" in file and ("procedural-steps" in file or
@@ -153,6 +154,32 @@ class TestEparParse(TestCase):
             if not output:
                 self.fail("Rapporteur is empty")
             if output != "no_rapporteur":
+                # print(output)
+                found_count += 1
+                # Check if rapporteur name is of reasonable length
+                print(output)
+                self.assertGreater(len(output), 2)
+                self.assertGreater(40, len(output))
+                # Check if rapporteur is of correct format
+                rapp_format = re.search(r'[\w\s]+', output)
+                self.assertTrue(rapp_format)
+        percentage_found = found_count / len(xml_bodies) * 100
+        print(percentage_str + str(round(percentage_found, 2)) + '%')
+        self.assertGreater(percentage_found, 80)
+
+    def test_get_corapp(self):
+        """
+        Test getting ema_corapp
+        Returns:
+            None
+        """
+        found_count = 0
+        # Call get_corapp
+        for xml_body in xml_bodies:
+            output = epar_parse.get_corapp(xml_body)
+            if not output:
+                self.fail("Co-rapporteur is empty")
+            if output != "no_co-rapporteur":
                 # print(output)
                 found_count += 1
                 # Check if rapporteur name is of reasonable length
