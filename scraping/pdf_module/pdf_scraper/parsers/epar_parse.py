@@ -165,19 +165,22 @@ def get_rapp(xml: ET.Element) -> str:
             temp_rapp = get_rapp_after(regex_str_2, txt, 12)
             if temp_rapp:
                 return temp_rapp
+        # Find rapporteur after "rapporteur:" with found boolean to get rapporteur in new section
+        if found:
+            # Combine first part of rapporteur like "dr." with next part of rapporteur
+            txt = txt.strip().replace("\n", "")
+            if txt:
+                rapporteur += txt
+                rapporteur = clean_rapporteur(rapporteur)
+            if len(rapporteur) >= 4:
+                found = False
+                return rapporteur
         # Find rapporteur after "rapporteur appointed by the chmp was"
         regex_str_3 = r"rapporteur appointed by the chmp was[\s\S]+"
         if re.findall(regex_str_3, txt):
             temp_rapp = get_rapp_after(regex_str_3, txt, 37)
-            if temp_rapp:
+            if temp_rapp != "rapporteur" and temp_rapp:
                 return temp_rapp
-        # Find rapporteur after "rapporteur:" with found boolean to get rapporteur in new section
-        if found:
-            # Combine first part of rapporteur like "dr." with next part of rapporteur
-            rapporteur += txt.strip().replace("\n", "")
-            if len(rapporteur) >= 4:
-                found = False
-                return rapporteur
         # Find rapporteur after "rapporteur:"
         regex_str_4 = r"rapporteur:[\s\w\.]+"
         if re.search(regex_str_4, txt) and not found:
@@ -239,17 +242,20 @@ def clean_rapporteur(rapporteur: str) -> str:
     """
     rapporteur = rapporteur.strip().replace("\n", "").replace("rapporteur:", "")
     # stop when "the application was" or "the applicant submitted" or "the rapporteur appointed" is found
-    if re.search("(the application was|the applicant submitted|the rapporteur appointed)", rapporteur):
-        rapporteur = re.search(r"[\s\S]+?(the application was|the applicant submi|the rapporteur appo)", rapporteur)[0]
+    if re.search("(the application was|the applicant submitted|the rapporteur appointed|"
+                 "chmp assessment report|the rapporteur circulated)", rapporteur):
+        rapporteur = re.search(r"[\s\S]*?(the application was|the applicant submi|the rapporteur appo|"
+                               r"chmp assessment rep|the rapporteur circ)", rapporteur)[0]
         rapporteur = rapporteur[:len(rapporteur) - 20].strip()
     # stop when "•" or "" is found
     if re.search("[•|]", rapporteur):
-        rapporteur = re.search(r"[\s\S]+?[•|]", rapporteur)[0]
+        rapporteur = re.search(r"[\s\S]*?[•|]", rapporteur)[0]
         rapporteur = rapporteur[:len(rapporteur) - 2].strip()
     # take the first part of rapporteur when two spaces are found
     if "  " in rapporteur:
         rapporteur = rapporteur.split("  ")[0].strip()
-    return rapporteur
+    return rapporteur[:39] # TEMP
+#   return rapporteur
 
 
 def get_corapp(xml: ET.Element) -> str:
