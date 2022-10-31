@@ -1,6 +1,11 @@
 api.serializers.medicine\_serializers.public package
 ====================================================
 
+.. automodule:: api.serializers.medicine_serializers.public
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -16,14 +21,6 @@ api.serializers.medicine\_serializers.public.public\_medicine module
 --------------------------------------------------------------------
 
 .. automodule:: api.serializers.medicine_serializers.public.public_medicine
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api.serializers.medicine_serializers.public
    :members:
    :undoc-members:
    :show-inheritance:

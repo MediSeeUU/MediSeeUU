@@ -1,6 +1,11 @@
 api.views.generate\_key\_views package
 ======================================
 
+.. automodule:: api.views.generate_key_views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -8,14 +13,6 @@ api.views.generate\_key\_views.generate\_api\_key module
 --------------------------------------------------------
 
 .. automodule:: api.views.generate_key_views.generate_api_key
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api.views.generate_key_views
    :members:
    :undoc-members:
    :show-inheritance:

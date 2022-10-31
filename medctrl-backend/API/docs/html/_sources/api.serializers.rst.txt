@@ -1,6 +1,11 @@
 api.serializers package
 =======================
 
+.. automodule:: api.serializers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
@@ -10,11 +15,3 @@ Subpackages
    api.serializers.medicine_serializers
    api.serializers.other
    api.serializers.user_serializers
-
-Module contents
----------------
-
-.. automodule:: api.serializers
-   :members:
-   :undoc-members:
-   :show-inheritance:

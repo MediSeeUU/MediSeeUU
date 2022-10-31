@@ -1,6 +1,11 @@
 api.tests.unit\_tests package
 =============================
 
+.. automodule:: api.tests.unit_tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
@@ -11,11 +16,3 @@ Subpackages
    api.tests.unit_tests.test_scraper
    api.tests.unit_tests.test_serializers
    api.tests.unit_tests.test_views
-
-Module contents
----------------
-
-.. automodule:: api.tests.unit_tests
-   :members:
-   :undoc-members:
-   :show-inheritance:

@@ -6,7 +6,8 @@
 Welcome to the pdf scraper documentation!
 =========================================
 .. toctree::
-   
+   :maxdepth: 5
+
    modules
    
 
