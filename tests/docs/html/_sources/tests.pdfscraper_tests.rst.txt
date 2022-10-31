@@ -4,6 +4,14 @@ tests.pdfscraper\_tests package
 Submodules
 ----------
 
+tests.pdfscraper\_tests.test\_annex\_parse module
+-------------------------------------------------
+
+.. automodule:: tests.pdfscraper_tests.test_annex_parse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 tests.pdfscraper\_tests.test\_dec\_parse module
 -----------------------------------------------
 

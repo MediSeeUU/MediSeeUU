@@ -1,6 +1,11 @@
 api.scraper package
 ===================
 
+.. automodule:: api.scraper
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -16,14 +21,6 @@ api.scraper.scraper\_medicine module
 ------------------------------------
 
 .. automodule:: api.scraper.scraper_medicine
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: api.scraper
    :members:
    :undoc-members:
    :show-inheritance:
