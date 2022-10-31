@@ -110,14 +110,14 @@ def get_legal_basis(xml: ET.Element) -> [str]:
     Returns:
         str: the attribute eu_legal_basis - multiple articles of the form "Article X.X"
     """
-    regex_legal = r"article [\s\S]+?(?=[a-z]{2,90})"
+    regex_legal = r"article .+?(?=[a-z]{2,90})"
     found = False
     for p in xpu.get_paragraphs_by_header("legal basis for", xml):
-        if re.findall(regex_legal, p):
-            return helper.convert_articles(re.findall(regex_legal, p))
+        if re.findall(regex_legal, p, re.DOTALL):
+            return helper.convert_articles(re.findall(regex_legal, p, re.DOTALL))
     for p in xpu.get_paragraphs_by_header("submission of the dossier", xml):
-        if found and re.findall(regex_legal, p):
-            return helper.convert_articles(re.findall(regex_legal, p))
+        if found and re.findall(regex_legal, p, re.DOTALL):
+            return helper.convert_articles(re.findall(regex_legal, p, re.DOTALL))
         elif "legal basis for" in p:
             found = True
 
