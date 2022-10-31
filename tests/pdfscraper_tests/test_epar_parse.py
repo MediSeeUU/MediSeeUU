@@ -49,7 +49,7 @@ class TestEparParse(TestCase):
         # Call get_date
         for xml_body in xml_bodies:
             output = epar_parse.get_date(xml_body)
-            if output != "no_date_found":
+            if output != "no_date_found" and output != "not_easily_scrapable":
                 found_count += 1
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
                 month = re.search(r"/\d{2}/", output)[0][1:3].strip()
@@ -69,7 +69,7 @@ class TestEparParse(TestCase):
         # Call get_opinion_date
         for xml_body in xml_bodies:
             output = epar_parse.get_opinion_date(xml_body)
-            if output != "no_chmp_found":
+            if output != "no_chmp_found" and output != "not_easily_scrapable":
                 found_count += 1
                 if not re.search(r"\d{2}/", output):
                     for i in xml_body.iter():
@@ -111,7 +111,7 @@ class TestEparParse(TestCase):
         # Call get_legal_basis
         for xml_body in xml_bodies:
             output = epar_parse.get_legal_basis(xml_body)
-            if output != "no_legal_basis":
+            if output != "no_legal_basis" and output != "not_easily_scrapable":
                 found_count += 1
                 self.assertGreater(len(output), 0)
                 for article in output:
@@ -153,7 +153,7 @@ class TestEparParse(TestCase):
             output = epar_parse.get_rapp(xml_body)
             if not output:
                 self.fail("Rapporteur is empty")
-            if output != "no_rapporteur":
+            if output != "no_rapporteur" and output != "not_easily_scrapable":
                 # print(output)
                 found_count += 1
                 # Check if rapporteur name is of reasonable length
@@ -179,7 +179,7 @@ class TestEparParse(TestCase):
             output = epar_parse.get_corapp(xml_body)
             if not output:
                 self.fail("Co-rapporteur is empty")
-            if output != "no_co-rapporteur":
+            if output != "no_co-rapporteur" and output != "not_easily_scrapable":
                 # print(output)
                 found_count += 1
                 # Check if co-rapporteur name is of reasonable length
