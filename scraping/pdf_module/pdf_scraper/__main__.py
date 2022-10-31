@@ -19,14 +19,14 @@ def main(directory: str):
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
 
     # Use all the system's threads to maximize use of all hyper-threads
-    joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
-        directory_folders)
+    # joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
+    #     joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
+    #     directory_folders)
     print("Done!")
 
     # Single-threaded parsing
-    # for folder in directory_folders:
-    #     parse_folder(path.join(directory, folder), folder)
+    for folder in directory_folders:
+        parse_folder(path.join(directory, folder), folder)
 
 
 # scraping on medicine folder level
@@ -44,7 +44,7 @@ def parse_folder(directory: str, folder_name):
         if file[:len(file) - 4] + ".xml" in directory_files:
             continue
         file_path = path.join(directory, file)
-        xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
+        #ml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
     # update list of files and filter out relevant files for each parser
     annex_files, decision_files, epar_files, omar_files = get_files(directory)
@@ -75,12 +75,12 @@ def get_files(directory):
 def run_scrapers(annex_files, decision_files, directory, epar_files, medicine_struct, omar_files):
     for file in decision_files:
         medicine_struct = dec_parse.parse_file(file, directory, medicine_struct)
-    for file in annex_files:
-        medicine_struct = annex_parser.parse_file(file, medicine_struct)
-    for file in epar_files:
-        medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
-    for file in omar_files:
-        medicine_struct = omar_parse.parse_file(file, medicine_struct)
+    # for file in annex_files:
+    #     medicine_struct = annex_parser.parse_file(file, medicine_struct)
+    # for file in epar_files:
+    #     medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
+    # for file in omar_files:
+    #     medicine_struct = omar_parse.parse_file(file, medicine_struct)
     return medicine_struct
 
 
