@@ -1,17 +1,17 @@
-from csv import excel
-from datetime import datetime
-from time import strptime
-from turtle import update
-import requests
 import logging
+from datetime import datetime
+
 import bs4
 import regex as re
+import requests
 
 log = logging.getLogger("webscraper.ema_scraper")
 
 
-def pdf_links_from_url(url: str) -> (str, str):
-    """ Gets the pdf link on the EMA website that is highest on the priority list and a link to the OMAR document if it exists
+def pdf_links_from_url(url: str) -> tuple[str, str]:
+    """
+    Gets the pdf link on the EMA website that is the highest on the priority list
+    and a link to the OMAR document if it exists
 
     Args:
         url (str): Link to the medicine page on the EMA website
@@ -20,7 +20,7 @@ def pdf_links_from_url(url: str) -> (str, str):
         Exception: If nothing is found, we throw an exception. This also passes all found URLs on newlines
 
     Returns:
-        str: The pdf link that is highest on the priority list
+        str: The pdf link that is the highest on the priority list
     """
     # Expecting a link scraped from the EC website. Link should look like this
     # https://www.ema.europa.eu/en/medicines/human/EPAR/tandemact
@@ -34,8 +34,6 @@ def pdf_links_from_url(url: str) -> (str, str):
 
     soup = bs4.BeautifulSoup(html_obj.text, "html.parser")
 
-    
-
     # The documents we search are under the header
     #   Initial marketing-authorisation documents
     # Element is in a <div><h4><span>text</span></h4> [pdfs here] </div>
@@ -44,7 +42,7 @@ def pdf_links_from_url(url: str) -> (str, str):
 
     complete_soup = soup.find(string="Initial marketing-authorisation documents")
 
-    if complete_soup != None:
+    if complete_soup is not None:
         specific_soup = complete_soup.parent.parent.parent
     else:
         log.warning(f"There are no initial marketing-authorisation documents")
@@ -57,7 +55,11 @@ def pdf_links_from_url(url: str) -> (str, str):
     url_list: list[str] = list(map(lambda a: a["href"], link_tags))
 
     # Files named 'public-assessment-report' will be the highest priority in the search.
-    priority_list: list[str] = ["public-assessment-report", "scientific-discussion", "procedural-steps-taken-authorisation"]
+    priority_list: list[str] = [
+        "public-assessment-report",
+        "scientific-discussion",
+        "procedural-steps-taken-authorisation"
+    ]
     priority_link: str = ""
     omar_link: str = ""
     break_epar_loop: bool = False
@@ -91,12 +93,13 @@ def pdf_links_from_url(url: str) -> (str, str):
 
     return priority_link, omar_link
 
+
 def get_annex10_files(url: str, annex_dict: dict[int, dict[str, str]]) -> dict[int, dict[str, str]]:
     """ Gets all the annex 10 files from the EMA website.
 
     The website is scraped for all annex 10 files. Whenever this scraper runs, it checks whether it has to
     update the links in the dictionary, based on whether the document on the site was updated or not. It also
-    adds new links to the excel documents if it finds these 
+    adds new links to the Excel documents if it finds these
 
     Args:
         url (str): Link to the EMA website that contains all annex 10 files
@@ -116,33 +119,33 @@ def get_annex10_files(url: str, annex_dict: dict[int, dict[str, str]]) -> dict[i
     year_iterator: int = 2005                       # Starts looking for annex 10 files from this year,
     current_year: int = datetime.now().year         # up to the current year
     
-    # Checks for each year if there is an annex 10 excel file and if the excel link needs to be updated
+    # Checks for each year if there is an annex 10 Excel file and if the Excel link needs to be updated
     while year_iterator <= current_year:
         # Get the element that contains annex 10 text
         complete_soup = soup.find(string=re.compile(f"Annex 10 (?:-|–) {year_iterator} annual report.*"))
 
         # If it can't find it, it makes sure that no errors are thrown and starts with the next year
-        if complete_soup != None:
+        if complete_soup is not None:
             specific_soup = complete_soup.parent.parent.parent
         else:
             year_iterator += 1
             continue
 
-        # Link to the excel file
+        # Link to the Excel file
         excel_link = specific_soup["href"]
 
-        # If the annex 10 link for the current year is already in the dictionary, it checks when it was last updated on the site.
-        # It compares this when the dictonary was last updated. If the site was updated after the dictionary, the dictionary needs to be
-        # updated with the new link. Also, new entries must always be added
+        # If the annex 10 link for the current year is already in the dictionary, it checks when it was last updated on
+        # the site. It compares this when the dictionary was last updated. If the site was updated after the dictionary,
+        # the dictionary needs to be updated with the new link. Also, new entries must always be added
         if str(year_iterator) in annex_dict:
-            last_updated_local: datetime = datetime.strptime(annex_dict[str(year_iterator)]["last_updated"], '%d/%m/%Y')
+            last_updated_local: datetime = datetime.strptime(annex_dict[year_iterator]["last_updated"], '%d/%m/%Y')
             last_updated_site: datetime = find_last_updated_date(specific_soup.find_all('small')[1].get_text())   
 
             if last_updated_local > last_updated_site:
                 year_iterator += 1
                 continue
 
-        annex_dict[str(year_iterator)] = {
+        annex_dict[year_iterator] = {
             "last_updated": datetime.strftime(datetime.now(), '%d/%m/%Y'),
             "annex10_url": excel_link
         }

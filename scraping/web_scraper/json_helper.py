@@ -20,7 +20,7 @@ class JsonHelper:
 
     def load_json(self) -> dict[str, [dict]]:
         """
-        Loads the json from disk with the path given on class initialisation
+        Loads the json from disk with the path given on class initialization
         If no json file exists at the path, return an empty dictionary.
 
         Returns: Dictionary representing the json at the path
