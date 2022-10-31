@@ -15,6 +15,15 @@ from scraping.pdf_module.pdf_scraper.parsers import annex_parse
 
 # Main file to run all parsers
 def main(directory: str):
+    """
+    given a folder containing medicine folders, parses each folder in parallel
+
+    Args:
+        directory: data folder, containing medicine folders
+
+    Returns:
+
+    """
     print("Parsing PDF files")
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
 
@@ -105,13 +114,22 @@ def run_scrapers(directory: str, annex_files: list[str], decision_files: list[st
         medicine_struct = annex_parse.parse_file(file, medicine_struct)
     for file in epar_files:
         medicine_struct = epar_parse.parse_file(file, directory, medicine_struct)
-    # for file in omar_files:
-    #     medicine_struct = omar_parse.parse_file(file, medicine_struct)
+    for file in omar_files:
+        medicine_struct = omar_parse.parse_file(file, medicine_struct)
     return medicine_struct
 
 
 # datetime to string serializer for json dumping
 def datetime_serializer(date: pis.datetime.datetime):
+    """
+    convert datetime.datetime to string
+
+    Args:
+        date (datetime.datetime): date to convert to string
+
+    Returns:
+
+    """
     if isinstance(date, pis.datetime.datetime):
         return date.__str__()
 
