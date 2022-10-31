@@ -42,11 +42,24 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_s
         txt = get_txt_from_pdf(pdf)
         res = get_all(filename, txt)
         medicine_struct.decisions.append(res)
-        # if '_0' in filename:
-        #     f = open('test.txt', 'a', encoding="utf-8")  # open/clean output file
-        #     f.writelines(f"{filename}@{res['eu_mah_initial']}@{res['eu_mah_initial2']}")
-        #     f.writelines('\n')
-        #     f.close()
+        if '_0' in filename and '_h_' in filename:
+            f = open('human_initial_dec.txt', 'a', encoding="utf-8")  # open/clean output file
+            write_string = filename
+            for value in res.values():
+                write_string += '@'
+                write_string += str(value)
+            f.writelines(write_string)
+            f.writelines('\n')
+            f.close()
+        if '_0' in filename and '_0_' in filename:
+            f = open('orphan_initial_dec.txt', 'a', encoding="utf-8")  # open/clean output file
+            write_string = filename
+            for value in res.values():
+                write_string += '@'
+                write_string += str(value)
+            f.writelines(write_string)
+            f.writelines('\n')
+            f.close()
         pdf.close()
 
     except:
@@ -98,7 +111,6 @@ def get_default_human_use(filename: str) -> dict:
             'eu_atmp': default,
             'eu_od_initial': default,
             'eu_mah_initial': default,
-            'eu_mah_initial2': default,
             'eu_aut_type_initial': default,
             'status': 'Failure unknown reason'
             }
@@ -120,7 +132,6 @@ def get_default_orphan(filename: str) -> dict:
             'eu_brand_name_initial': default,
             'eu_od_initial': default,
             'eu_mah_initial': default,
-            'eu_mah_initial2': default,
             'eu_od_comp_date': default,
             'status': 'Failure unknown reason'
             }
@@ -150,8 +161,8 @@ def get_data_human_use(filename: str, txt: str) -> dict:
     filedata['eu_atmp'] = dec_get_atmp(txt, date)
     filedata['eu_od_initial'] = dec_get_od(txt, date)
     filedata['eu_mah_initial'] = dec_get_mah(txt)
-    filedata['eu_mah_initial2'] = dec_get_mah2test(txt)
     filedata['eu_aut_type_initial'] = dec_get_decision_type(txt, date)
+    filedata['status'] = 'Parsed'
     return filedata
 
 
@@ -174,8 +185,8 @@ def get_data_orphan(filename: str, txt: str) -> dict:
     filedata['eu_brand_name_initial'] = dec_get_bn(txt)
     filedata['eu_od_initial'] = dec_get_od(txt, date)
     filedata['eu_mah_initial'] = dec_get_mah(txt)
-    filedata['eu_mah_initial2'] = dec_get_mah2test(txt)
     filedata['eu_od_comp_date'] = dec_get_od_comp_date()
+    filedata['status'] = 'Parsed'
     return filedata
 
 
@@ -248,6 +259,10 @@ def dec_get_bn(txt: str) -> str:
             res = section.split(' -')[:-1]
             res = ''.join(res)
             return res.strip()
+        if '- ' in section:
+            res = section.split('- ')[:-1]
+            res = ''.join(res)
+            return res.strip()
         if ' –' in section:
             res = section.split(' –')[:-1]
             res = ''.join(res)
@@ -284,10 +299,10 @@ def dec_get_as(txt: str) -> str:
     try:
         if section != '':
             # takes last element after split operator, to remove brand name.
-            if ' - ' in section:
-                return section.split(' - ')[-1].strip()
-            if ' – ' in section:
-                return section.split(' – ')[-1].strip()
+            if '- ' in section:
+                return section.split('- ')[-1].strip()
+            if '– ' in section:
+                return section.split('– ')[-1].strip()
     except:
         pass
     return 'Active Substance Not Found'
@@ -347,28 +362,17 @@ def dec_get_mah(txt: str) -> str:
             mah = mah[:-1]
         return mah.strip()
     except:
-        return 'MAH Not Found'
+        # read from bottom of final page
+        try:
+            # get text after one of the following indicators.
+            mah_line = txt.split('This Decision is addressed to ', 1)[1]
 
+            # gets part after submitted by line
+            mah = mah_line.split(", ", 1)[0]
 
-def dec_get_mah2test(txt: str) -> str:
-    """extracts marketholder out of decision text, alternative approach
-
-    Args:
-        txt (str): plain decision pdf text
-
-    Returns:
-        str: found marketholder or default value
-    """
-    try:
-        # get text after one of the following indicators.
-        mah_line = txt.split('This Decision is addressed to ', 1)[1]
-
-        # gets part after submitted by line
-        mah = mah_line.split(", ", 1)[0]
-
-        return mah.strip()
-    except:
-        return 'MAH Not Found'
+            return mah.strip()
+        except:
+            return 'MAH Not Found'
 
 
 def dec_get_od(txt: str, date: datetime.datetime) -> str:
@@ -386,6 +390,7 @@ def dec_get_od(txt: str, date: datetime.datetime) -> str:
         return "NA before 2000"
 
     if 'orphan medicinal product' in txt.lower():
+        txt = txt.lower().split('orphan medicinal product', 1)[1]
         if 'has adopted this decision' in txt.lower():
             return 'adopted'
         return 'appointed'
