@@ -210,6 +210,8 @@ class TestEparParse(TestCase):
             output = epar_parse.get_reexamination(xml_body)
             if output == "yes":
                 yes_exists = True
+            if not output:
+                self.fail("No output found")
             self.assertIn(output, 'yesno')
         self.assertTrue(yes_exists)
 
@@ -226,5 +228,7 @@ class TestEparParse(TestCase):
             print(output)
             if output == "yes":
                 yes_exists = True
+            if not output:
+                self.fail("No output found")
             self.assertIn(output, 'yesnoNA')
         self.assertTrue(yes_exists)

@@ -65,8 +65,7 @@ def parse_folder(directory: str, folder_name):
         if file[:len(file) - 4] + ".xml" in directory_files:
             continue
         file_path = path.join(directory, file)
-        if '_0' in file or 'public-assessment' in file or 'procedural-steps-taken' in file:
-            xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
+        xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
     # update list of files and filter out relevant files for each parser
     annex_files, decision_files, epar_files, omar_files = get_files(directory)
@@ -84,7 +83,7 @@ def parse_folder(directory: str, folder_name):
 # Get all PDF and XML files per PDF type
 def get_files(directory):
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
-    decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file and '_0' in file]
+    decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file]
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
     epar_files = [file for file in directory_files if
                   ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]

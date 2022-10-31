@@ -42,7 +42,7 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_s
         txt = get_txt_from_pdf(pdf)
         res = get_all(filename, txt)
         medicine_struct.decisions.append(res)
-        pdf_helper.create_outputfile_dec(filename,res)
+        pdf_helper.create_outputfile_dec(filename, res)
         pdf.close()
 
     except:
