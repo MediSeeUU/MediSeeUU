@@ -119,23 +119,33 @@ def filter_pdf(filename: str, data_dir: str) -> str:
         else:
             pdf.close()
             os.remove(file_path)
-            return filename + '@corrupt'
+            url = get_url(filename)
+            return filename + '@' + url + '@corrupt'
     # could not parse
     except fitz.fitz.FileDataError:
         # check if html
         first_line = get_utf8_line(file_path)
         if 'html' in first_line.lower():
             os.remove(file_path)
-            return filename + '@html'
+            url = get_url(filename)
+            return filename + '@' + url + '@html'
 
         # check if PDF was corrupt
         if corrupt:
             os.remove(file_path)
-            return filename + '@corrupt'
+            url = get_url(filename)
+            return filename + '@' + url + '@corrupt'
         # other parse error (uses default 'Failure unknown reason')
         else:
             os.remove(file_path)
-            return filename + '@unknown'
+            url = get_url(filename)
+            return filename + '@' + url + '@unknown'
+
+
+def get_url(filename):
+    eu_num = filename[:11]
+    print(eu_num)
+    return eu_num
 
 
 def get_utf8_line(file_path: str) -> str:
@@ -198,7 +208,8 @@ def check_decision(filename: str, file_path: str, pdf: fitz.Document) -> str:
             return ''
     pdf.close()
     os.remove(file_path)
-    return filename + '@wrong_doctype'
+    url = get_url(filename)
+    return filename + '@' + url + '@wrong_doctype'
 
 
 def check_annex(filename: str, file_path: str, pdf: fitz.Document) -> str:
@@ -280,7 +291,8 @@ def check_pdf_type(file_path: str, filename: str, pdf: fitz.Document, texts: [st
             return ''
     pdf.close()
     os.remove(file_path)
-    return filename + '@wrong_doctype'
+    url = get_url(filename)
+    return filename + '@' + url + '@wrong_doctype'
 
 
 def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
@@ -308,5 +320,5 @@ def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
     else:
         return ''
 
-# TODO: fix the path to the data folder
-# filter_all_pdfs("../../data")
+
+filter_all_pdfs("../../data")
