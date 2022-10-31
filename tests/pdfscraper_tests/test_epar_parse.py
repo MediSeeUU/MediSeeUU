@@ -133,13 +133,17 @@ class TestEparParse(TestCase):
             None
         """
         yes_exists = False
+        na_exists = False
         # Call get_prime
         for xml_body in xml_bodies:
             output = epar_parse.get_prime(xml_body)
             if output == "yes":
                 yes_exists = True
-            self.assertIn(output, 'yesno')
+            if output == "NA":
+                na_exists = True
+            self.assertIn(output, 'yesnoNA')
         self.assertTrue(yes_exists)
+        self.assertTrue(na_exists)
 
     def test_get_rapp(self):
         """
@@ -193,3 +197,19 @@ class TestEparParse(TestCase):
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         # There aren't a lot of co-rapporteurs, just to make sure the function keeps working correctly
         self.assertGreater(percentage_found, 30)
+
+    def test_get_reexamination(self):
+        """
+        Test getting ema_reexamination
+        Returns:
+            None
+        """
+        yes_exists = False
+        # Call ema_reexamination
+        for xml_body in xml_bodies:
+            output = epar_parse.get_reexamination(xml_body)
+            print(output)
+            if output == "yes":
+                yes_exists = True
+            self.assertIn(output, 'yesno')
+        self.assertTrue(yes_exists)

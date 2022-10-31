@@ -138,14 +138,32 @@ def get_prime(xml: ET.Element) -> str:
         xml (ET.Element): the contents of the XML file
 
     Returns:
-        str: the attribute eu_prime_initial - "yes" or "no"
+        str: the attribute eu_prime_initial - "yes" or "no", "NA" if ema_procedure_start_initial before 20-05-2004
     """
+    if check_date_before(xml, 1, 3, 2016):
+        return "NA"
     for p in xpu.get_paragraphs_by_header("submission of the dossier", xml):
         if re.findall(r" prime ", p):
             return "yes"
         if re.findall(r"priority medicine", p):
             return "yes"
     return "no"
+
+
+def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_year: int):
+    date = get_date(xml)
+    if date != "no_date_found" and date != "not_easily_scrapable":
+        day = int(date.split("/")[0])
+        month = int(date.split("/")[1])
+        year = int(date.split("/")[2])
+        if year < check_year:
+            return True
+        if year == check_year:
+            if month < check_month:
+                return True
+            if month == check_month and day <= check_day:
+                return True
+    return False
 
 
 def get_rapp(xml: ET.Element) -> str:
@@ -311,3 +329,22 @@ def get_corapp(xml: ET.Element) -> str:
         if "co-rapporteur" in txt:
             return "not_easily_scrapable"
     return "no_co-rapporteur"
+
+
+def get_reexamination(xml: ET.Element) -> str:
+    """
+    Gets the attribute ema_reexamination
+    Whether the word reexamination/re-examination exists
+    Args:
+        xml (ET.Element): the contents of the XML file
+
+    Returns:
+        str: the attribute ema_reexamination - "yes" or "no"
+    """
+    for elem in xml.iter():
+        txt = str(elem.text)
+        if "reexamination" in txt:
+            return "yes"
+        if "re-examination" in txt:
+            return "yes"
+    return "no"
