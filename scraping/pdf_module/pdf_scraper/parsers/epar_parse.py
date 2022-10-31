@@ -29,7 +29,8 @@ def get_all(filename: str, xml_data: ET.Element) -> dict:
             "eu_prime_initial": get_prime(xml_data),
             "ema_rapp": get_rapp(xml_data),
             "ema_corapp": get_corapp(xml_data),
-            "ema_reexamination": get_reexamination(xml_data)}
+            "ema_reexamination": get_reexamination(xml_data),
+            "eu_accel_assess_g": get_accelerated_assessment(xml_data)}
     return epar
 
 
