@@ -40,8 +40,11 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
     modification_date = Utils.file_get_modification_date(xml_header)
 
     # create annex attribute dictionary with default values
-    annex_attributes: dict[str, str] = {"pdf_file": Utils.file_get_name_pdf(xml_header), "is_initial": is_initial_file,
-                                        "creation_date": creation_date, "modification_date": modification_date}
+    annex_attributes: dict[str, str] = {"pdf_file": Utils.file_get_name_pdf(xml_header),
+                                        "xml_file": os.path.basename(filepath),
+                                        "is_initial": is_initial_file,
+                                        "creation_date": creation_date, 
+                                        "modification_date": modification_date}
 
     # add default attribute values for initial authorization annexes
     if is_initial_file:
