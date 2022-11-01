@@ -21,12 +21,12 @@ data_filepath = "../../data"
 log = logging.getLogger("webscraper.filter_retry")
 
 
-def run_filter(n: str):
+def run_filter(n: int):
     """
     calls filter and runs retry function
 
     Args:
-        n: Number of times filter is called
+        n (int): Number of times filter is called
 
     Returns:
         None
@@ -43,8 +43,8 @@ def retry_all(filter_path: str, url_jsonhelper: json_helper.JsonHelper):
     It also calls the download function for the specific file again
 
     Args:
-        filter_path: path to filter file
-        url_jsonhelper: the dictionary with all the urls
+        filter_path (str): path to filter file
+        url_jsonhelper (json_helper.JsonHelper): the dictionary with all the urls
 
     Returns:
         None
@@ -61,13 +61,13 @@ def retry_all(filter_path: str, url_jsonhelper: json_helper.JsonHelper):
                 retry_download(eu_n, filename_elements, urls_file[eu_n])
 
 
-def retry_download(eu_n, filename_elements, url_dict: dict[str, list[str]]):
+def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, list[str]]):
     """
 
     Args:
-        eu_n: eu number used for calling the download function
-        filename_elements: filename elements, used as parameter in the download function
-        url_dict: dictionary that contains the url where to download from
+        eu_n (str): eu number used for calling the download function
+        filename_elements (list[str]): filename elements, used as parameter in the download function
+        url_dict (dict[str, list[str]]): dictionary that contains the url where to download from
 
     Returns:
         None
@@ -78,7 +78,8 @@ def retry_download(eu_n, filename_elements, url_dict: dict[str, list[str]]):
     utils.exception_retry(download.download_pdf_from_url, logging_instance=log)(url, eu_n, filename_elements)
 
 
-#used for testing
+# used for testing
 run_filter(3)
+
 
 
