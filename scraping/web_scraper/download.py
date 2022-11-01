@@ -56,10 +56,11 @@ def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_urls: list[str], med_dict: 
 def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[str, str]):
     if pdf_url == '':
         log.info(f"no {pdf_type} available for {eu_num}")
-    else:
-        pdf_type = re.findall(r"(?<=epar-)(.*)(?=_en)", pdf_url)[0]
-        filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type]
-        download_pdf_from_url(pdf_url, eu_num, filename_elements)
+        return
+
+    pdf_type = re.findall(r"(?<=epar-)(.*)(?=_en)", pdf_url)[0]
+    filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type]
+    download_pdf_from_url(pdf_url, eu_num, filename_elements)
 
 
 def download_medicine_files(eu_n: str, url_dict: dict[str, list[str]]):
