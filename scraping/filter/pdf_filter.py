@@ -240,7 +240,7 @@ def safe_remove(file_path: str):
         file_path (str): Path of the file to remove
     """
     try:
-        print("os.remove(file_path)")
+        os.remove(file_path)
     except FileNotFoundError:
         print("Can't remove file: file_not_found")
 
