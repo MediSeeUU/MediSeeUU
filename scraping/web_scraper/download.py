@@ -7,12 +7,13 @@ import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 
-from . import json_helper
-from . import utils
+from scraping.web_scraper import json_helper
+from scraping.web_scraper import utils
 
 log = logging.getLogger("webscraper.ec_scraper")
 urls_file: json_helper.JsonHelper
 
+data_path = '../../data'
 
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
     """
