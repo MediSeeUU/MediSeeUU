@@ -1,4 +1,5 @@
 import json
+import logging
 from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper
 from scraping.web_scraper import __main__ as m
 from scraping.filter import pdf_filter
@@ -17,6 +18,7 @@ med_type_dict = {"ha": ec_scraper.MedicineType.HUMAN_USE_ACTIVE,
 
 # path to data. TODO: make sure it gets it from the main
 data_filepath = "../../data"
+log = logging.getLogger("webscraper.filter_retry")
 
 
 def run_filter(n: str):
@@ -73,14 +75,10 @@ def retry_download(eu_n, filename_elements, url_dict: dict[str, list[str]]):
     url = url_dict[key_dict[filename_elements[2]]]
     if len(filename_elements) == 4:
         url = url[int(filename_elements[3])]
-    try:
-        download.download_pdf_from_url(url, eu_n, filename_elements)
-    except Exception:
-        # TODO: do nice logging
-        print(f"retry failed for {eu_n, url}")
+    utils.exception_retry(download.download_pdf_from_url, logging_instance=log)(url, eu_n, filename_elements)
 
 
 #used for testing
-run_filter(1)
+run_filter(3)
 
 

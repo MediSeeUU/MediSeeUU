@@ -13,7 +13,7 @@ log = logging.getLogger("webscraper.ec_scraper")
 
 urls_file: json_helper.JsonHelper
 
-data_path: str
+data_path: str = '../../data'
 
 
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
