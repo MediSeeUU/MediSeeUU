@@ -281,7 +281,7 @@ def clean_rapporteur(rapporteur: str) -> str:
         rapporteur (str): the uncleaned string with whitespace and trailing text
 
     Returns:
-        (str): the cleaned string containing only the rapporteur
+        str: the cleaned string containing only the rapporteur
 
     """
     rapporteur = rapporteur.strip().replace("\n", "").replace("rapporteur:", "")
