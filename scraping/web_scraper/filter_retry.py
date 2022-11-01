@@ -37,19 +37,18 @@ def run_filter(n: int):
         retry_all('filter.txt', url_file)
 
 
-def retry_all(filter_path: str, url_jsonhelper: json_helper.JsonHelper):
+def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str]]]):
     """
     For every line in filter.txt, it scrapes the urls again.
     It also calls the download function for the specific file again
 
     Args:
         filter_path (str): path to filter file
-        url_jsonhelper (json_helper.JsonHelper): the dictionary with all the urls
+        urls_file (dict[str, dict[str, list[str]]]): the dictionary with all the urls
 
     Returns:
         None
     """
-    urls_file = url_jsonhelper
     with open(filter_path, "r") as f:
         for line in f:
             filename = line.split(".pdf@")[0]
@@ -79,7 +78,7 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
 
 
 # used for testing
-run_filter(3)
+# run_filter(3)
 
 
 
