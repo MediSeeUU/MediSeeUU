@@ -150,8 +150,8 @@ def error_line(filename: str, error: str) -> str:
     if "dec" in filename:
         eu_num = filename[:11].replace("-", "/")
         brand_name = get_brand_name(filename)
-        return filename + '@' + url + error + '@' + eu_num + '@' + brand_name
-    return filename + '@' + url + '@' + error
+        return f"{filename}@{url}{error}@{eu_num}@{brand_name}"
+    return f"{filename}@{url}@{error}"
 
 
 def get_brand_name(filename: str) -> str:
