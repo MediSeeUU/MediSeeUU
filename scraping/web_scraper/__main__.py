@@ -14,9 +14,9 @@ from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
 scrape_ec: bool = True
 scrape_ema: bool = False            # Requires scrape_ec to have been run at least once
-scrape_annex10: bool = True
+scrape_annex10: bool = False
 download_files: bool = True         # Download pdfs from the obtained links
-use_parallelization: bool = True   # Parallelization is currently broken on Windows. Set to False
+use_parallelization: bool = False
 
 # list of the type of medicines that will be scraped
 # NOTE: This was useful for debugging
@@ -120,7 +120,7 @@ def get_excel_ema(url: str):
 
     """
 
-    excel_url: dict[int, dict[str, str]] = ema_scraper.get_annex10_files(url, annex10_file.load_json())
+    excel_url: dict[str, dict[str, str]] = ema_scraper.get_annex10_files(url, annex10_file.load_json())
     annex10_file.overwrite_dict(excel_url)
 
 
@@ -204,11 +204,11 @@ def main(data_filepath: str = '../../data'):
         log.info("TASK FINISHED EMA scrape")
 
     if download_files:
-        log.info("TASK START downloading pdf files from fetched urls from EC and EMA")
+        log.info("TASK START downloading PDF files from fetched urls from EC and EMA")
 
         download.download_all(data_filepath, url_file, parallel_download=use_parallelization)
 
-        log.info("TASK FINISHED downloading pdf files")
+        log.info("TASK FINISHED downloading PDF files")
 
     log.info("=== LOG FINISH ===")
 

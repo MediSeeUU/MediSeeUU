@@ -55,46 +55,45 @@ def pdf_links_from_url(url: str) -> tuple[str, str]:
     url_list: list[str] = list(map(lambda a: a["href"], link_tags))
 
     # Files named 'public-assessment-report' will be the highest priority in the search.
-    priority_list: list[str] = [
+    epar_priority_list: list[str] = [
         "public-assessment-report",
         "scientific-discussion",
         "procedural-steps-taken-authorisation"
     ]
-    priority_link: str = ""
-    omar_link: str = ""
-    break_epar_loop: bool = False
-
-    # Go through all links, try to find the document that is the highest on the priority list first.
-    for type_of_report in priority_list:
-        for pdf_url in url_list:
-            if type_of_report in pdf_url:
-                priority_link = pdf_url
-                break_epar_loop = True
-                break
-        if break_epar_loop:
-            break
-
-    # Go through all links, try to find the OMAR document
-    for pdf_url in url_list:
-        if "orphan-medicine-assessment-report" in pdf_url:
-            omar_link = pdf_url
-            break
+    omar_priority_list: list[str] = [
+        "orphan-maintenance-assessment-report",
+        "orphan-medicine-assessment-report"
+    ]
+    epar_link = find_priority_link(epar_priority_list, url_list)
+    omar_link = find_priority_link(omar_priority_list, url_list)
 
     # gives a warning if it hasn't found an epar or omar document
-    if priority_link == "" and omar_link == "":
+    if epar_link == "":
         log.warning(f"No EPAR for {medicine_name}. The searched URLs are {url_list}")
 
-    if priority_link == "" and omar_link != "":
-        log.warning(f"No EPAR for {medicine_name}. The searched URLs are {url_list}")
-        log.info(f"OMAR for {medicine_name} found. The searched URLs are {url_list}")
-
-    if priority_link != "" and omar_link != "":
-        log.info(f"OMAR for {medicine_name} found. The searched URLs are {url_list}")
-
-    return priority_link, omar_link
+    return epar_link, omar_link
 
 
-def get_annex10_files(url: str, annex_dict: dict[int, dict[str, str]]) -> dict[int, dict[str, str]]:
+def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:
+    """ Finds the url with the highest priority in a list of urls
+
+    Args:
+        priority_list (list[str]): String that the url must contain. Strings with a lower index have higher priority
+        url_list (list[str]): List of urls to be searched
+
+    Returns:
+        str: Return the highest priority url, or if it can't find it, an empty string
+
+    """
+    for type_of_report in priority_list:
+        for url in url_list:
+            if type_of_report in url:
+                return url
+
+    return ""
+
+
+def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
     """ Gets all the annex 10 files from the EMA website.
 
     The website is scraped for all annex 10 files. Whenever this scraper runs, it checks whether it has to
@@ -107,7 +106,7 @@ def get_annex10_files(url: str, annex_dict: dict[int, dict[str, str]]) -> dict[i
             and when they were last updated
 
     Returns:
-        dict[int, dict[str, str]]: _description_
+        dict[int, dict[str, str]]: Amended annex_dict
     """
     html_obj = requests.get(url)
 
@@ -116,41 +115,37 @@ def get_annex10_files(url: str, annex_dict: dict[int, dict[str, str]]) -> dict[i
 
     soup = bs4.BeautifulSoup(html_obj.text, "html.parser")
         
-    year_iterator: int = 2005                       # Starts looking for annex 10 files from this year,
+    start_year: int = 2005                       # Starts looking for annex 10 files from this year,
     current_year: int = datetime.now().year         # up to the current year
     
     # Checks for each year if there is an annex 10 Excel file and if the Excel link needs to be updated
-    while year_iterator <= current_year:
+    for year in range(start_year, current_year + 1):
         # Get the element that contains annex 10 text
-        complete_soup = soup.find(string=re.compile(f"Annex 10 (?:-|–) {year_iterator} annual report.*"))
+        complete_soup = soup.find(string=re.compile(f"Annex 10 (?:-|–) {year} annual report.*"))
 
-        # If it can't find it, it makes sure that no errors are thrown and starts with the next year
-        if complete_soup is not None:
-            specific_soup = complete_soup.parent.parent.parent
-        else:
-            year_iterator += 1
+        if complete_soup is None:
             continue
 
-        # Link to the Excel file
+        specific_soup = complete_soup.parent.parent.parent
+
         excel_link = specific_soup["href"]
 
         # If the annex 10 link for the current year is already in the dictionary, it checks when it was last updated on
         # the site. It compares this when the dictionary was last updated. If the site was updated after the dictionary,
         # the dictionary needs to be updated with the new link. Also, new entries must always be added
-        if str(year_iterator) in annex_dict:
-            last_updated_local: datetime = datetime.strptime(annex_dict[year_iterator]["last_updated"], '%d/%m/%Y')
-            last_updated_site: datetime = find_last_updated_date(specific_soup.find_all('small')[1].get_text())   
+        year_s = str(year)
+        if year_s in annex_dict.keys():
+            last_updated_local: datetime = datetime.strptime(annex_dict[year_s]["last_updated"], '%d/%m/%Y')
+            last_updated_site: datetime = find_last_updated_date(specific_soup.find_all('small')[1].get_text())
 
+            # ignore files that have not changed since last time downloading
             if last_updated_local > last_updated_site:
-                year_iterator += 1
                 continue
 
-        annex_dict[year_iterator] = {
+        annex_dict[year_s] = {
             "last_updated": datetime.strftime(datetime.now(), '%d/%m/%Y'),
             "annex10_url": excel_link
         }
-
-        year_iterator += 1
 
     return annex_dict
 
