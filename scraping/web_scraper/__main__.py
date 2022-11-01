@@ -123,7 +123,7 @@ def get_excel_ema(url: str):
 
     """
 
-    excel_url: dict[int, dict[str, str]] = ema_scraper.get_annex10_files(url, annex10_file.load_json())
+    excel_url: dict[str, dict[str, str]] = ema_scraper.get_annex10_files(url, annex10_file.load_json())
     annex10_file.overwrite_dict(excel_url)
 
 
