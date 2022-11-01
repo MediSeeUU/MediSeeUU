@@ -118,8 +118,21 @@ class TestEcScraper(unittest.TestCase):
         json_list: list[json] = ec.scrape_refused_jsons()
         self.assertIsNotNone(json_list, msg="json list is empty")
 
-    def test_get_ec_json_objects(self):
-        self.fail()
+
+    @parameterized.expand([
+        ["h944"],               # human use active
+        ["h313"],               # human use withdrawn
+        ["ho24765"],            # human use refused
+        ["o1384"],              # orphan active
+        ["o200"],               # orphan withdrawn
+        ["ho26270"]             # orphan refused
+    ])
+    def test_get_ec_json_objects(self, eu_num_short):
+        html_active = ec.get_ec_html(
+            f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm")
+        json_list: list[json] = ec.get_ec_json_objects(html_active)
+        self.assertIsNotNone(json_list, msg="json list is empty")
+
 
     def test_scrape_medicine_page(self):
         url = 'https://ec.europa.eu/health/documents/community-register/html/h273.htm'
@@ -158,8 +171,32 @@ class TestEcScraper(unittest.TestCase):
         self.assertEqual(decision, dec_result, "incorrect decision result")
         self.assertEqual(annex, anx_result, "incorrect annex result")
 
-    def test_determine_current_aut_type(self):
-        self.fail()
+
+    @parameterized.expand(
+        [
+            [
+                [],
+                "standard"
+            ],
+            [
+                ["Annual Renewal"],
+                "conditional"
+            ],
+            [
+                ["Annual Reassessment"],
+                "exceptional"
+            ],
+            [
+                ["something else",
+                 "bla bla"],
+                "standard"
+            ]
+        ]
+    )
+    def test_determine_current_aut_type(self, last_decision_types, exp_output):
+        output = ec.determine_current_aut_type(last_decision_types)
+        self.assertEqual(output, exp_output, msg="decision type is wrong")
+
 
     def test_determine_aut_type(self):
         self.fail()
