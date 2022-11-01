@@ -3,12 +3,8 @@ import os
 import regex as re
 import fitz
 import datetime
-<<<<<<< Updated upstream
-import scraping.pdf_module.pdf_scraper.parsers.annex_parse as annex_parser
-=======
-import scraping.pdf_module.pdf_scraper.parsers.annex_parser as annex_parser
+import scraping.pdf_module.pdf_scraper.parsers.annex_parse as annex_parse
 import scraping.pdf_module.pdf_scraper.__main__ as pdf_scraper
->>>>>>> Stashed changes
 
 test_data_foldername = "test_annex_parse_data"
 
