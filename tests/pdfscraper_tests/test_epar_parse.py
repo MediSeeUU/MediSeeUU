@@ -20,8 +20,6 @@ class TestEparParse(TestCase):
     def setUp(self):
         """
         Prepare a list of XML files in the global variable xml_bodies
-        Returns:
-            None
         """
         files = []
         for folder in os.listdir(test_data_loc):
@@ -42,8 +40,6 @@ class TestEparParse(TestCase):
     def test_get_date(self):
         """
         Test getting ema_procedure_start_initial
-        Returns:
-            None
         """
         found_count = 0
         # Call get_date
@@ -62,8 +58,6 @@ class TestEparParse(TestCase):
     def test_get_opinion_date(self):
         """
         Test getting chmp_opinion_date
-        Returns:
-            None
         """
         found_count = 0
         # Call get_opinion_date
@@ -89,9 +83,6 @@ class TestEparParse(TestCase):
             day (str): day to check from scraped date
             month (str): month to check from scraped date
             year (str): year to check from scraped date
-
-        Returns:
-            None
         """
         self.assertGreater(int(year), 1980)
         # Make sure to check this in the future :D
@@ -104,8 +95,6 @@ class TestEparParse(TestCase):
     def test_get_legal_basis(self):
         """
         Test getting eu_legal_basis
-        Returns:
-            None
         """
         found_count = 0
         # Call get_legal_basis
@@ -129,8 +118,6 @@ class TestEparParse(TestCase):
     def test_get_prime(self):
         """
         Test getting eu_prime_initial
-        Returns:
-            None
         """
         yes_exists = False
         na_exists = False
@@ -148,8 +135,6 @@ class TestEparParse(TestCase):
     def test_get_rapp(self):
         """
         Test getting ema_rapp
-        Returns:
-            None
         """
         found_count = 0
         # Call get_rapp
@@ -174,8 +159,6 @@ class TestEparParse(TestCase):
     def test_get_corapp(self):
         """
         Test getting ema_corapp
-        Returns:
-            None
         """
         found_count = 0
         # Call get_corapp
@@ -201,8 +184,6 @@ class TestEparParse(TestCase):
     def test_get_reexamination(self):
         """
         Test getting ema_reexamination
-        Returns:
-            None
         """
         yes_exists = False
         # Call get_reexamination
@@ -218,8 +199,6 @@ class TestEparParse(TestCase):
     def test_get_accelerated_assessment(self):
         """
         Test getting eu_accel_assess_g
-        Returns:
-            None
         """
         yes_exists = False
         # Call get_accelerated_assessment

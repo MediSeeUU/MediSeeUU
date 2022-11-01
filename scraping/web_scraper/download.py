@@ -18,7 +18,7 @@ data_path: str
 
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
     """
-    Downloads a pdf file given an url. It also gives the file a specific name based on the input.
+    Downloads a PDF file given an url. It also gives the file a specific name based on the input.
     The file will be downloaded to the corresponding EU number folder.
 
     Args:
@@ -28,9 +28,6 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
             the EU number of the medicine where the pdf belongs to, also used to locate correct folder
         filename_elements (list[str]):
             list containing the filename elements: human/orphan, active/withdrawn, pdf type and file_index
-
-    Returns:
-        None: This function returns nothing.
     """
     downloaded_file = requests.get(url)
     downloaded_file.raise_for_status()

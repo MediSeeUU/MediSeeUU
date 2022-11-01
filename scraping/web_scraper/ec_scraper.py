@@ -281,10 +281,11 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
     is_conditional: bool = False
     # This information is needed to determine what the current authorization type is
     last_decision_types: list[str] = []
+    last_decision_date: date = date.today() + timedelta(549)  # Safest date if there is no last_decision_date
 
     for row in reversed(procedures_json):
         if row["decision"]["date"] is not None:
-            last_decision_date: date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
+            last_decision_date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
             break
 
     # for each row in the json file of each medicine, get the urls for the pdfs of the decision and annexes.
