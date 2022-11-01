@@ -55,6 +55,7 @@ class DbCommunicator:
             print("token not valid")
             return "No token"
 
+        # This should not be duplicate code
         api_headers = {
             'Content-type': 'application/json',
             'Accept': 'application/json',
@@ -68,7 +69,18 @@ class DbCommunicator:
         return "200"
 
     def delete_token(self) -> bool:
+        post_url = 'http://localhost:8000/api/scraper/token/'
+        api_headers = {
+            'Content-type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': self.api_key
+        }
         print("send request for deleting the token")
+        response = requests.post(url=post_url, headers=api_headers)
+        print(response)
+        if response.status_code == 200:
+            return True
+        return False
 
     # should refresh the token if it is old
     def refresh_token(self):

@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.views import APIView
 from knox.models import AuthToken
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 
 import logging
@@ -25,6 +26,15 @@ class ScraperToken(APIView):
         Returns:
             object:
         """
+    #     invoke the logout function
+        self.delete_token(request)
+        return Response(status=200)
+
+    def delete_token(self, request):
+        logger.info("in delete token")
+        logger.info(request)
+        logout(request)
+        logger.info("LOGGED OUT")
 
 
     def get(self, request):

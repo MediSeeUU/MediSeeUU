@@ -42,7 +42,7 @@ def check_key():
     """
 
     Returns:
-        object: 
+        object:
     """
     max_tries = 5
     tries = 1
