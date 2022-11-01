@@ -8,15 +8,17 @@ from parameterized import parameterized
 class TestFilterRetry(unittest.TestCase):
 
     @parameterized.expand([
-        [b"EU-1-00-000_h_a_anx_0.pdf@wrong_doctype", True],
-        [b"EU-1-00-129_h_a_anx_0.pdf@wrong_doctype", False]
+        [b"EU-1-00-000_o_w_dec_0.pdf@https://ec.europa.eu/health/documents/community-register/2005/2005122310805/dec_10805_en.pdf@corrupt@EU/3/05/339@no_pdf_json_found", True],
+        [b"EU-3-05-339_o_w_dec_0.pdf@https://ec.europa.eu/health/documents/community-register/2005/2005122310805/dec_10805_en.pdf@corrupt@EU/3/05/339@no_pdf_json_found", False]
     ])
     def test_retry_all(self, file_content, err_check):
-        url_file = {"EU-1-00-129": {"ec_url": "https://ec.europa.eu/health/documents/community-register/html/h129.htm",
-                                    "aut_url": "",
-                                    "smpc_url": "https://ec.europa.eu/health/documents/community-register/2000/200003093513/anx_3513_en.pdf",
-                                    "ema_url": "",
-                                    "epar_url": "",
+        url_file = {"EU-3-05-339": {"ec_url": "https://ec.europa.eu/health/documents/community-register/html/o339.htm",
+                                    "aut_url": ["https://ec.europa.eu/health/documents/community-register/2005/2005122310805/dec_10805_en.pdf"],
+                                    "smpc_url": [],
+                                    "ema_url": [
+                                        "http://www.ema.europa.eu/ema/index.jsp?curl=pages/medicines/human/orphans/2009/11/human_orphan_000555.jsp&murl=menus/medicines/medicines.jsp&mid=WC0b01ac058001d12b",
+                                        "http://www.ema.europa.eu/ema/index.jsp?curl=pages/medicines/human/medicines/000709/human_med_001062.jsp&murl=menus/medicines/medicines.jsp&mid=WC0b01ac058001d124"],
+                                    "epar_url": "https://www.ema.europa.eu/documents/scientific-discussion/sprycel-epar-scientific-discussion_en.pdf",
                                     "omar_url": ""}}
         # Make a temporary file and test for key error if eu number is not in the url dictionary
         temp = tempfile.TemporaryFile()
