@@ -107,7 +107,7 @@ def get_opinion_date(xml: ET.Element) -> str:
     return "no_chmp_found"
 
 
-def get_legal_basis(xml: ET.Element) -> [str]:
+def get_legal_basis(xml: ET.Element) -> [str] | str:
     """
     Gets the attribute eu_legal_basis
     All legal articles relevant to the medicine
@@ -115,7 +115,7 @@ def get_legal_basis(xml: ET.Element) -> [str]:
         xml (ET.Element): the contents of the XML file
 
     Returns:
-        str: the attribute eu_legal_basis - multiple articles of the form "Article X.X"
+        [str] | str: the attribute eu_legal_basis - multiple articles of the form "Article X.X"
     """
     regex_legal = r"article .+?(?=[a-z]{2,90})"
     found = False
@@ -237,7 +237,7 @@ def get_rapp(xml: ET.Element) -> str:
     return "no_rapporteur"
 
 
-def find_rapp_between_rapp_and_corapp(txt: str) -> Union[str, None]:
+def find_rapp_between_rapp_and_corapp(txt: str) -> str | None:
     """
     A supporting function for finding the rapporteur of the document that
     finds the rapporteur in a certain section in some cases (other cases are processed in the main function)
@@ -245,7 +245,7 @@ def find_rapp_between_rapp_and_corapp(txt: str) -> Union[str, None]:
         txt (str): a section of the xml document
 
     Returns:
-        str or None: the attribute ema_rapp - the name of the main rapporteur or None if no rapporteur is found
+        str | None: the attribute ema_rapp - the name of the main rapporteur or None if no rapporteur is found
     """
     regex_str_1 = r"rapporteur:[\s\S]+?(co-rapporteur|corapporteur)"
     if re.findall(regex_str_1, txt):
