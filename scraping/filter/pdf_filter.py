@@ -24,10 +24,6 @@ def filter_all_pdfs(directory: str):
     
     Args:
         directory (str): folder with all medicine folders to filter
-
-    Returns:
-        None
-
     """
     print(f'Filtering all PDF files...')
     f = open('filter.txt', 'w', encoding="utf-8")  # open/clean output file
@@ -242,12 +238,9 @@ def safe_remove(file_path: str):
     """
     Args:
         file_path (str): Path of the file to remove
-
-    Returns:
-        None
     """
     try:
-        os.remove(file_path)
+        print("os.remove(file_path)")
     except FileNotFoundError:
         print("Can't remove file: file_not_found")
 
