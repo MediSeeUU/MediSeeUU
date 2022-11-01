@@ -44,3 +44,8 @@ def count_unique(input_list: list):
     return dict(
         zip(list(input_list), [list(input_list).count(i) for i in list(input_list)])
     )
+
+
+# TODO (Maybe): Logging context which adds the ThreadID to the logs.
+#               Makes it easier to see if a program is multi threaded
+#               https://stackoverflow.com/a/2357652/20321120
