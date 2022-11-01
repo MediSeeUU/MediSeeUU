@@ -36,15 +36,15 @@ class ScraperMedicineTestCase(TestCase):
         Test posting a new medicine to the scraper post function
 
         Args:
-            medicine_serializer:
-            aut_status_serializer:
-            aut_type_serializer:
-            brand_name_serializer:
-            mah_serializer:
-            od_serializer:
-            prime_serializer:
-            eu_oc_serializer:
-            legal_base_serializer:
+            medicine_serializer (MagicMock): The mock object for the MedicineSerializer
+            aut_status_serializer (MagicMock): The mock object for the AuthorisationStatusSerializer
+            aut_type_serializer (MagicMock): The mock object for the AuthorisationTypeSerializer
+            brand_name_serializer (MagicMock): The mock object for the BrandNameSerializer
+            mah_serializer (MagicMock): The mock object for the MAHSerializer
+            od_serializer (MagicMock): The mock object for the OrphanDesignationSerializer
+            prime_serializer (MagicMock): The mock object for the PrimeSerializer
+            eu_oc_serializer (MagicMock): The mock object for the EUOrphanConSerializer
+            legal_base_serializer (MagicMock): The mock object for the LegalBasesSerializer
         """
         self.data = {
             "data": [
@@ -212,9 +212,9 @@ class ScraperMedicineTestCase(TestCase):
         Test posting an update to an existing medicine to the scraper post function
 
         Args:
-            update_serializer:
-            aut_status_serializer:
-            prime_serializer:
+            update_serializer (MagicMock): The mock object for the MedicineFlexVarUpdateSerializer
+            aut_status_serializer (MagicMock): The mock object for the AuthorisationStatusSerializer
+            prime_serializer (MagicMock): The mock object for the PrimeSerializer
         """
 
         # sample data inserted into the database
