@@ -151,7 +151,7 @@ def error_line(filename: str, error: str) -> str:
         eu_num = filename[:11].replace("-", "/")
         brand_name = get_brand_name(filename)
         return f"{filename}@{url}{error}@{eu_num}@{brand_name}"
-    return f"{filename}@{url}@{error}"
+    return f"{filename}@{url}{error}"
 
 
 def get_brand_name(filename: str) -> str:
@@ -188,10 +188,11 @@ def get_url(filename) -> str:
     Returns:
         str: url of the filename
     """
-    eu_num = filename[:11]
+    eu_num = filename.split('_')[0]
     try:
         with open('../web_scraper/JSON/urls.json') as urls_json:
             urls = json.load(urls_json)
+            print(urls[eu_num]['epar_url'])
             try:
                 if 'dec' in filename:
                     num = filename.split('_')[-1]
