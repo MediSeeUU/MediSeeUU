@@ -19,7 +19,8 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
 
     Returns:
         PIS.parsed_info_struct: Returns an updated struct, with the current attributes added to it.
-    """    
+    """
+    
     try:
         xml_tree = ET.parse(filepath)
     except ET.ParseError:
