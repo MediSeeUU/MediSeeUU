@@ -352,11 +352,12 @@ def determine_current_aut_type(last_decision_types: list[str]) -> str:
     Returns:
         str: The current decision type
     """
-    for decision_type in last_decision_types:
-        if "annual reassessment" in decision_type.lower():
-            return "exceptional"
-        if "annual renewal" in decision_type.lower():
-            return "conditional"
+    if len(last_decision_types) > 0:
+        for decision_type in last_decision_types:
+            if "annual reassessment" in decision_type.lower():
+                return "exceptional"
+            if "annual renewal" in decision_type.lower():
+                return "conditional"
 
     return "standard"
 
