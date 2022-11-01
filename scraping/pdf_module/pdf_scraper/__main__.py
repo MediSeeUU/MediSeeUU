@@ -58,6 +58,7 @@ def parse_folder(directory: str, folder_name):
         # Skip file if XML is already created (temporary)
         if file[:len(file) - 4] + ".xml" in directory_files:
             continue
+
         file_path = path.join(directory, file)
         xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
@@ -81,7 +82,7 @@ def get_files(directory):
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
     epar_files = [file for file in directory_files if
                   ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
-    omar_files = [path.join(directory, file) for file in directory_files if "omar" in file and ".xml" in file]
+    omar_files = [path.join(directory, file) for file in directory_files if "orphan-maintenance-assessment-report" in file and ".xml" in file]
     return annex_files, decision_files, epar_files, omar_files
 
 

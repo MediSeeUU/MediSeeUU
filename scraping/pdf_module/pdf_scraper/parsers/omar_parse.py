@@ -1,5 +1,6 @@
 # OMAR parser
 import re
+from tkinter import HORIZONTAL
 import xml.etree.ElementTree as ET
 import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
 import scraping.pdf_module.pdf_scraper.xml_parsing_utils as Utils
@@ -65,7 +66,17 @@ def get_xml_name(filepath: str) -> str:
 
 
 def get_prevalence(xml_data: ET.Element) -> str:
+    """
+    Finds the paragraph that contains the information about the prevalence of the medicine.
+
+    Args:
+        xml_data (ET.Element): This is the XML part to be parsed.
+
+    Returns:
+        str: Return the string with the relevant information about the prevalence or NA if it cannot be found.
+    """    
     for p in Utils.get_paragraphs_by_header("comp position adopted", xml_data):
+        print(p)
         # Find the paragraph with the bullet points
         if "•" in p:
             bullets = p.split("•")
@@ -88,7 +99,7 @@ def get_alternative_treatments(xml_data: ET.Element) -> str:
         # Find the paragraph with the bullet points
         if "•" in p:
             bullets = p.split("•")
-            # Find the bullet point with the prevalence data in it
+            # Find the bullet point with the alternative treatment data in it
             for b in bullets:
                 if "no satisfactory methods" in b:
                     return "No Satisfactory Methods"
@@ -98,7 +109,33 @@ def get_alternative_treatments(xml_data: ET.Element) -> str:
 
 
 def get_significant_benefit(xml_data: ET.Element, alternative_treatment: str) -> str: 
-    return "NA"
+    contains = False
+    result = ""
+
+    for p in Utils.get_paragraphs_by_header("comp position adopted", xml_data):
+        # Find the paragraph with the bullet points
+        if "•" in p:
+            bullets = p.split("•")
+            # Find the bullet point with the prevalence data in it
+            for b in bullets:
+                if "clinically relevant advantage" in b:
+                    contains = True
+                    result += "Clinically Relevant Advantage"
+                if "major contribution" in b:
+                    contains = True
+                    if result == "":
+                        result += "Major Contribution"
+                    else:
+                        result += " + Major Contribution"
+
+    # TODO: Uncomment this if logger works
+    #if not contains and alternative_treatment == "Significant Benefit":        
+        # Logger.warning("Alternative treatment = Significant benefit requires result.")
+
+    if contains:
+        return result
+    else:
+        return "NA"
 
 
 

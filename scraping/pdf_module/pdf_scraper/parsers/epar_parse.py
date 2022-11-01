@@ -131,8 +131,8 @@ def get_legal_basis(xml: ET.Element) -> [str]:
             found = True
             legal_basis_present = True
     if legal_basis_present:
-        return "not_easily_scrapable"
-    return "no_legal_basis"
+        return ["not_easily_scrapable"]
+    return ["no_legal_basis"]
 
 
 def get_prime(xml: ET.Element) -> str:
