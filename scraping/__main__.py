@@ -5,7 +5,11 @@ import os
 # import web_scraper.__main__ as web_scraper
 # import pdf_module.pdf_scraper.__main__ as pdf_scraper
 import combiner.__main__ as combiner
-import db_communicator.__main__ as db_communicator
+from db_communicator import DbCommunicator
+import db_communicator.__main__ as db_communicator_main
+
+# Create static db_communicator
+db_communicator = DbCommunicator()
 
 
 def main():
@@ -23,7 +27,7 @@ def main():
     # web_scraper.main(data_folder_directory)
     # pdf_scraper.main(data_folder_directory)
     # combiner.main(data_folder_directory)
-    db_communicator.main(data_folder_directory)
+    db_communicator_main.main(data_folder_directory)
 
 
 if __name__ == '__main__':

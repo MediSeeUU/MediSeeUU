@@ -19,6 +19,14 @@ class ScraperToken(APIView):
     """
     Generates a view for token communication between the scraper and the backend
     """
+    def post(self, request):
+        """
+        Deletes the token for the scraper user
+        Returns:
+            object:
+        """
+
+
     def get(self, request):
         """
 
