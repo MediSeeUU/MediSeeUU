@@ -13,7 +13,6 @@ from api.serializers.medicine_serializers import UrlsSerializer
 from api.models.medicine_models import Medicine
 from rest_framework.response import Response
 from django.core.cache import cache
-from api.update_cache import update_cache
 from api.views.other import permissionFilter
 
 
@@ -40,6 +39,7 @@ class UrlsViewSet(viewsets.ViewSet):
             queryset = Medicine.objects.all()
             serializer = UrlsSerializer(queryset, many=True)
             cache_urls = serializer.data
+            cache.set("urls_cache", cache_urls)
 
         user = self.request.user
         perms = permissionFilter(user)
