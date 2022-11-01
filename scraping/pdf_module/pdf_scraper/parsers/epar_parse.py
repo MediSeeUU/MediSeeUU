@@ -107,7 +107,7 @@ def get_opinion_date(xml: ET.Element) -> str:
     return "no_chmp_found"
 
 
-def get_legal_basis(xml: ET.Element) -> [str] | str:
+def get_legal_basis(xml: ET.Element) -> [str]:
     """
     Gets the attribute eu_legal_basis
     All legal articles relevant to the medicine
@@ -131,8 +131,8 @@ def get_legal_basis(xml: ET.Element) -> [str] | str:
             found = True
             legal_basis_present = True
     if legal_basis_present:
-        return "not_easily_scrapable"
-    return "no_legal_basis"
+        return ["not_easily_scrapable"]
+    return ["no_legal_basis"]
 
 
 def get_prime(xml: ET.Element) -> str:
@@ -281,7 +281,7 @@ def clean_rapporteur(rapporteur: str) -> str:
         rapporteur (str): the uncleaned string with whitespace and trailing text
 
     Returns:
-        (str): the cleaned string containing only the rapporteur
+        str: the cleaned string containing only the rapporteur
 
     """
     rapporteur = rapporteur.strip().replace("\n", "").replace("rapporteur:", "")

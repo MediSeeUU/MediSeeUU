@@ -20,9 +20,6 @@ def main(directory: str):
 
     Args:
         directory: data folder, containing medicine folders
-
-    Returns:
-
     """
     print("Parsing PDF files")
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
@@ -48,9 +45,6 @@ def parse_folder(directory: str, folder_name):
     Args:
         directory: location of folder to parse
         folder_name: name of medicine folder to parse
-
-    Returns:
-
     """
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing
     medicine_struct = pis.parsed_info_struct(folder_name)
@@ -88,7 +82,7 @@ def get_files(directory):
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
     epar_files = [file for file in directory_files if
                   ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
-    omar_files = [path.join(directory, file) for file in directory_files if "omar" in file and ".xml" in file]
+    omar_files = [path.join(directory, file) for file in directory_files if "orphan-maintenance-assessment-report" in file and ".xml" in file]
     return annex_files, decision_files, epar_files, omar_files
 
 
@@ -104,8 +98,6 @@ def run_scrapers(directory: str, annex_files: list[str], decision_files: list[st
         epar_files: list of file names for epar files
         omar_files: list of file names for omar files
         medicine_struct: struct to add parsed attributes to
-
-    Returns:
 
     """
     for file in decision_files:
@@ -126,8 +118,6 @@ def datetime_serializer(date: pis.datetime.datetime):
 
     Args:
         date (datetime.datetime): date to convert to string
-
-    Returns:
 
     """
     if isinstance(date, pis.datetime.datetime):

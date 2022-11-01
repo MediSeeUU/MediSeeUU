@@ -1953,3 +1953,977 @@ EU-1-22-1658_h_a_public-assessment-report.xml@EU-1-22-1658_h_a_public-assessment
 EU-1-22-1663_h_a_public-assessment-report.xml@EU-1-22-1663_h_a_public-assessment-report@2/03/2021@19/05/2022@['article 10.1']@no@agnes gyurasics@no_co-rapporteur@no@no
 EU-1-22-1653_h_a_public-assessment-report.xml@EU-1-22-1653_h_a_public-assessment-report@12/01/2020@19/05/2022@['article 8.3']@no@maura o@lisbeth barkholt@no@no
 EU-1-98-065_h_a_procedural-steps-taken-authorisation.xml@EU-1-98-065_h_a_procedural-steps-taken-authorisation@21/03/1997@18/05/1998@no_legal_basis@NA@prof. k strandberg@dr. h. pittner@no@NA
+EU-1-00-155_h_a_public-assessment-report.xml@EU-1-00-155_h_a_public-assessment-report@25/06/1999@27/07/2000@no_legal_basis@NA@no_rapporteur@not_easily_scrapable@no@NA
+EU-1-02-233_h_a_procedural-steps-taken-authorisation.xml@EU-1-02-233_h_a_procedural-steps-taken-authorisation@17/07/2001@7/10/2002@no_legal_basis@NA@m. ainsworth@p. nilsson@no@NA
+EU-1-06-370_h_a_procedural-steps-taken-authorisation.xml@EU-1-06-370_h_a_procedural-steps-taken-authorisation@8/02/2006@17/01/2007@['article 3.2.a']@NA@alar irs@not_easily_scrapable@no@no
+EU-1-07-404_h_a_procedural-steps-taken-authorisation.xml@EU-1-07-404_h_a_procedural-steps-taken-authorisation@05/09/2006@19/06/2007@['article 3.2.b', 'article 3.2.b']@NA@manfred haase@not_easily_scrapable@no@no
+EU-1-07-400_h_a_procedural-steps-taken-authorisation.xml@EU-1-07-400_h_a_procedural-steps-taken-authorisation@25/04/2006@20/07/2007@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-07-420_h_a_procedural-steps-taken-authorisation.xml@EU-1-07-420_h_a_procedural-steps-taken-authorisation@27/12/2006@23/11/2007@['article 3.2.b']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-07-428_h_a_public-assessment-report.xml@EU-1-07-428_h_a_public-assessment-report@25/08/2006@11/01/2008@['article 3.2.b', 'article 3.2.b']@NA@pieter de graeff@eva skovlund@no@no
+EU-1-07-435_h_a_public-assessment-report.xml@EU-1-07-435_h_a_public-assessment-report@3/09/2007@10/01/2008@not_easily_scrapable@NA@no_rapporteur@not_easily_scrapable@no@no
+EU-1-07-438_h_a_public-assessment-report.xml@EU-1-07-438_h_a_public-assessment-report@20/07/2007@21/02/2008@['article 3.3']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-07-437_h_a_public-assessment-report.xml@EU-1-07-437_h_a_public-assessment-report@3/05/2006@06/11/2007@['article 3.2.a']@NA@dr tomas p salmonson@dr barbara van zwieten@no@no
+EU-1-07-439_h_a_public-assessment-report.xml@EU-1-07-439_h_a_public-assessment-report@20/07/2007@not_easily_scrapable@['article 3.3']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-08-444_h_a_public-assessment-report.xml@EU-1-08-444_h_a_public-assessment-report@29/01/2007@10/07/2008@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-07-440_h_a_public-assessment-report.xml@EU-1-07-440_h_a_public-assessment-report@4/10/2006@21/04/2008@['article 3.1']@NA@tomas salmonson@not_easily_scrapable@no@no
+EU-1-08-445_h_a_public-assessment-report.xml@EU-1-08-445_h_a_public-assessment-report@29/01/2007@10/07/2008@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-446_h_a_public-assessment-report.xml@EU-1-08-446_h_a_public-assessment-report@31/01/2007@25/04/2008@['article 3.2.b', 'article 3.2.b']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-447_h_a_public-assessment-report.xml@EU-1-08-447_h_a_public-assessment-report@23/08/2006@21/02/2008@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-448_h_a_public-assessment-report.xml@EU-1-08-448_h_a_public-assessment-report@11/04/2006@21/02/2008@['article 3.2.a']@NA@bruno flamion@not_easily_scrapable@no@no
+EU-1-08-443_h_a_public-assessment-report.xml@EU-1-08-443_h_a_public-assessment-report@22/01/2007@16/04/2008@no_legal_basis@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-454_h_a_public-assessment-report.xml@EU-1-08-454_h_a_public-assessment-report@14/10/2007@19/03/2008@['article 3.1']@NA@no_rapporteur@not_easily_scrapable@no@no
+EU-1-08-442_h_a_public-assessment-report.xml@EU-1-08-442_h_a_public-assessment-report@1/02/2007@18/03/2008@['article 3.2.a']@NA@pierre demolis@pierre demolis@no@no
+EU-1-08-455_h_a_public-assessment-report.xml@EU-1-08-455_h_a_public-assessment-report@30/04/2007@16/07/2008@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-451_h_a_public-assessment-report.xml@EU-1-08-451_h_a_public-assessment-report@2/03/2007@21/04/2008@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-461_h_a_public-assessment-report.xml@EU-1-08-461_h_a_public-assessment-report@27/07/2007@11/07/2008@not_easily_scrapable@NA@not_easily_scrapable@not_easily_scrapable@no@yes
+EU-1-08-462_h_a_public-assessment-report.xml@EU-1-08-462_h_a_public-assessment-report@27/11/2006@21/04/2008@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-456_h_a_public-assessment-report.xml@EU-1-08-456_h_a_public-assessment-report@30/04/2007@16/07/2008@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-457_h_a_public-assessment-report.xml@EU-1-08-457_h_a_public-assessment-report@25/07/2007@16/07/2008@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-466_h_a_public-assessment-report.xml@EU-1-08-466_h_a_public-assessment-report@21/06/2007@25/07/2008@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-463_h_a_public-assessment-report.xml@EU-1-08-463_h_a_public-assessment-report@04/05/2007@23/04/2008@not_easily_scrapable@NA@dr. harald enzmann@not_easily_scrapable@no@no
+EU-1-08-465_h_a_public-assessment-report.xml@EU-1-08-465_h_a_public-assessment-report@8/01/2008@16/07/2008@['article 3.2.a']@NA@cristina sampaio@not_easily_scrapable@no@no
+EU-1-08-469_h_a_public-assessment-report.xml@EU-1-08-469_h_a_public-assessment-report@31/10/2007@20/06/2008@['article 3.3']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-08-476_h_a_public-assessment-report.xml@EU-1-08-476_h_a_public-assessment-report@8/05/2008@1/10/2008@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-473_h_a_public-assessment-report.xml@EU-1-08-473_h_a_public-assessment-report@25/07/2007@22/07/2008@['article 3.2b', 'article 3.2.b']@NA@prof.@not_easily_scrapable@no@no
+EU-1-08-468_h_a_public-assessment-report.xml@EU-1-08-468_h_a_public-assessment-report@19/07/2007@26/06/2008@['article 3.1']@NA@beatriz silva lima@not_easily_scrapable@no@yes
+EU-1-08-477_h_a_public-assessment-report.xml@EU-1-08-477_h_a_public-assessment-report@20/07/2006@19/03/2008@not_easily_scrapable@NA@david lyons@bengt ljungberg@yes@no
+EU-1-08-475_h_a_public-assessment-report.xml@EU-1-08-475_h_a_public-assessment-report@30/11/2007@24/07/2008@no_legal_basis@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-08-470_h_a_public-assessment-report.xml@EU-1-08-470_h_a_public-assessment-report@2/05/2007@26/06/2008@['article 3.2.a']@NA@giuseppe nisticó@not_easily_scrapable@no@no
+EU-1-08-479_h_a_public-assessment-report.xml@EU-1-08-479_h_a_public-assessment-report@27/06/2007@24/09/2008@not_easily_scrapable@NA@pierre demolis@not_easily_scrapable@no@no
+EU-1-08-480_h_a_public-assessment-report.xml@EU-1-08-480_h_a_public-assessment-report@6/12/2007@1/12/2008@['article 3.3']@NA@concepción prieto yerro@no_co-rapporteur@no@no
+EU-1-08-472_h_a_public-assessment-report.xml@EU-1-08-472_h_a_public-assessment-report@31/10/2007@30/09/2008@['article 3.2.a']@NA@bengt ljungberg@karl broich@yes@no
+EU-1-08-482_h_a_public-assessment-report.xml@EU-1-08-482_h_a_public-assessment-report@3/12/2007@22/09/2008@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-481_h_a_public-assessment-report.xml@EU-1-08-481_h_a_public-assessment-report@30/10/2007@2/12/2008@not_easily_scrapable@NA@patrick salmon@pieter neels@no@no
+EU-1-08-483_h_a_public-assessment-report.xml@EU-1-08-483_h_a_public-assessment-report@4/07/2008@25/09/2008@not_easily_scrapable@NA@no_rapporteur@not_easily_scrapable@no@no
+EU-1-08-490_h_a_public-assessment-report.xml@EU-1-08-490_h_a_public-assessment-report@22/10/2007@22/10/2008@['article 3.3']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-08-484_h_a_public-assessment-report.xml@EU-1-08-484_h_a_public-assessment-report@10/07/2008@25/09/2008@not_easily_scrapable@NA@no_rapporteur@not_easily_scrapable@no@no
+EU-1-08-485_h_a_public-assessment-report.xml@EU-1-08-485_h_a_public-assessment-report@4/07/2008@25/09/2008@not_easily_scrapable@NA@bengt ljungberg@not_easily_scrapable@no@no
+EU-1-08-486_h_a_public-assessment-report.xml@EU-1-08-486_h_a_public-assessment-report@10/07/2008@25/09/2008@not_easily_scrapable@NA@bengt ljungberg@not_easily_scrapable@no@no
+EU-1-08-496_h_a_public-assessment-report.xml@EU-1-08-496_h_a_public-assessment-report@06/09/2007@20/11/2008@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-495_h_a_public-assessment-report.xml@EU-1-08-495_h_a_public-assessment-report@06/09/2007@14/11/2008@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-488_h_a_public-assessment-report.xml@EU-1-08-488_h_a_public-assessment-report@09/01/2008@17/12/2008@no_legal_basis@NA@barbara van zwieten-boot@gonzalo calvo rojas@no@no
+EU-1-08-502_h_a_public-assessment-report.xml@EU-1-08-502_h_a_public-assessment-report@3/11/2006@15/12/2008@not_easily_scrapable@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-501_h_a_public-assessment-report.xml@EU-1-08-501_h_a_public-assessment-report@7/12/2007@9/03/2009@not_easily_scrapable@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-499_h_a_public-assessment-report.xml@EU-1-08-499_h_a_public-assessment-report@06/09/2007@20/11/2008@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@yes@no
+EU-1-08-497_h_a_public-assessment-report.xml@EU-1-08-497_h_a_public-assessment-report@02/11/2007@19/11/2008@not_easily_scrapable@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-494_h_a_public-assessment-report.xml@EU-1-08-494_h_a_public-assessment-report@04/12/2007@19/11/2008@['article 3.1']@NA@ian hudson@not_easily_scrapable@no@no
+EU-1-08-492_h_a_public-assessment-report.xml@EU-1-08-492_h_a_public-assessment-report@29/11/2007@20/11/2008@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-08-498_h_a_public-assessment-report.xml@EU-1-08-498_h_a_public-assessment-report@06/09/2007@18/11/2008@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@yes@no
+EU-1-08-503_h_a_public-assessment-report.xml@EU-1-08-503_h_a_public-assessment-report@6/02/2008@25/02/2009@not_easily_scrapable@NA@steffen thirstrup@gonzalo calvo rojas@no@no
+EU-1-08-504_h_a_public-assessment-report.xml@EU-1-08-504_h_a_public-assessment-report@27/02/2008@21/01/2009@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-515_h_a_public-assessment-report.xml@EU-1-09-515_h_a_public-assessment-report@20/11/2008@12/06/2009@['article 3.2.b']@NA@gonzalo calvo rojas@not_easily_scrapable@no@no
+EU-1-09-516_h_a_public-assessment-report.xml@EU-1-09-516_h_a_public-assessment-report@20/11/2008@12/06/2009@['article 3.2.b']@NA@gonzalo calvo rojas@not_easily_scrapable@no@no
+EU-1-09-511_h_a_public-assessment-report.xml@EU-1-09-511_h_a_public-assessment-report@05/09/2007@17/02/2009@['article 3.2.a']@NA@harald enzmann@steffen thirstrup@no@no
+EU-1-09-508_h_a_public-assessment-report.xml@EU-1-09-508_h_a_public-assessment-report@30/12/2007@30/03/2009@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-517_h_a_public-assessment-report.xml@EU-1-09-517_h_a_public-assessment-report@28/04/2008@12/06/2009@['article 3.2.b']@NA@gonzalo calvo rojas@not_easily_scrapable@no@no
+EU-1-09-514_h_a_public-assessment-report.xml@EU-1-09-514_h_a_public-assessment-report@03/03/2008@19/02/2009@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-523_h_a_public-assessment-report.xml@EU-1-09-523_h_a_public-assessment-report@27/11/2007@15/05/2009@['article 3.2.b', 'article 3.2.b']@NA@tomas p salmonson@not_easily_scrapable@no@no
+EU-1-09-525_h_a_public-assessment-report.xml@EU-1-09-525_h_a_public-assessment-report@25/06/2008@12/03/2009@['article 3.3']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-09-521_h_a_public-assessment-report.xml@EU-1-09-521_h_a_public-assessment-report@6/03/2008@19/03/2009@['article 3.2.b', 'article 3.2.b']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-522_h_a_public-assessment-report.xml@EU-1-09-522_h_a_public-assessment-report@30/05/2008@17/03/2009@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-524_h_a_public-assessment-report.xml@EU-1-09-524_h_a_public-assessment-report@30/08/2007@9/03/2009@['article 3.2b', 'article 3.2.b']@NA@no_rapporteur@not_easily_scrapable@no@no
+EU-1-09-528_h_a_public-assessment-report.xml@EU-1-09-528_h_a_public-assessment-report@06/05/2008@22/04/2009@not_easily_scrapable@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-526_h_a_public-assessment-report.xml@EU-1-09-526_h_a_public-assessment-report@06/05/2008@22/04/2009@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-530_h_a_public-assessment-report.xml@EU-1-09-530_h_a_public-assessment-report@24/09/2008@23/04/2009@['article 3.3']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-09-533_h_a_public-assessment-report.xml@EU-1-09-533_h_a_public-assessment-report@07/09/2007@22/01/2009@['article 3.2.b', 'article 3.2.b']@NA@not_easily_scrapable@not_easily_scrapable@yes@no
+EU-1-09-535_h_a_public-assessment-report.xml@EU-1-09-535_h_a_public-assessment-report@20/08/2008@28/07/2009@['article 3.3']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-09-529_h_a_public-assessment-report.xml@EU-1-09-529_h_a_public-assessment-report@23/05/2008@17/04/2009@['article 3.1']@NA@no_rapporteur@not_easily_scrapable@no@no
+EU-1-09-537_h_a_public-assessment-report.xml@EU-1-09-537_h_a_public-assessment-report@5/06/2008@27/05/2009@not_easily_scrapable@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-531_h_a_public-assessment-report.xml@EU-1-09-531_h_a_public-assessment-report@20/11/2007@20/07/2009@['article 3.2.b']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-539_h_a_public-assessment-report.xml@EU-1-09-539_h_a_public-assessment-report@28/01/2008@20/05/2009@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-540_h_a_public-assessment-report.xml@EU-1-09-540_h_a_public-assessment-report@20/08/2008@29/05/2009@['article 3.3']@NA@dr. lipnik@no_co-rapporteur@no@no
+EU-1-09-538_h_a_public-assessment-report.xml@EU-1-09-538_h_a_public-assessment-report@01/07/2008@21/11/2008@not_easily_scrapable@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-543_h_a_public-assessment-report.xml@EU-1-09-543_h_a_public-assessment-report@7/03/2008@19/03/2009@not_easily_scrapable@NA@patrick salmon@not_easily_scrapable@yes@no
+EU-1-09-550_h_a_public-assessment-report.xml@EU-1-09-550_h_a_public-assessment-report@6/02/2008@24/06/2009@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-551_h_a_public-assessment-report.xml@EU-1-09-551_h_a_public-assessment-report@22/10/2008@22/06/2009@['article 3.3']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-09-545_h_a_public-assessment-report.xml@EU-1-09-545_h_a_public-assessment-report@1/07/2008@19/06/2009@['article 3.1']@NA@pieter de graeff@not_easily_scrapable@no@no
+EU-1-09-555_h_a_public-assessment-report.xml@EU-1-09-555_h_a_public-assessment-report@25/03/2009@25/06/2009@['article 3.3']@NA@pr philippe lechat@no_co-rapporteur@no@no
+EU-1-09-553_h_a_public-assessment-report.xml@EU-1-09-553_h_a_public-assessment-report@20/08/2008@23/06/2009@['article 3.3']@NA@prof. philippe lechat@no_co-rapporteur@no@no
+EU-1-09-544_h_a_public-assessment-report.xml@EU-1-09-544_h_a_public-assessment-report@6/06/2008@24/06/2009@['article 3.1']@NA@tomas salmonson@jános borvendég@no@no
+EU-1-09-556_h_a_public-assessment-report.xml@EU-1-09-556_h_a_public-assessment-report@20/08/2008@25/06/2009@['article 3.3']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-09-558_h_a_public-assessment-report.xml@EU-1-09-558_h_a_public-assessment-report@25/03/2009@23/06/2009@['article 3.3']@NA@prof. philippe lechat@no_co-rapporteur@no@no
+EU-1-09-546_h_a_public-assessment-report.xml@EU-1-09-546_h_a_public-assessment-report@3/03/2008@24/06/2009@['article 3.1']@NA@pierre demolis@not_easily_scrapable@no@no
+EU-1-09-566_h_a_public-assessment-report.xml@EU-1-09-566_h_a_public-assessment-report@5/12/2008@23/07/2009@['article 3.3']@NA@dr dermolis@no_co-rapporteur@no@no
+EU-1-09-562_h_a_public-assessment-report.xml@EU-1-09-562_h_a_public-assessment-report@25/03/2009@17/06/2009@['article 3.3']@NA@pr philippe lechat@no_co-rapporteur@no@no
+EU-1-09-559_h_a_public-assessment-report.xml@EU-1-09-559_h_a_public-assessment-report@25/03/2009@25/06/2009@['article 3.3']@NA@pr philippe lechat@no_co-rapporteur@no@no
+EU-1-09-565_h_a_public-assessment-report.xml@EU-1-09-565_h_a_public-assessment-report@04/06/2008@21/07/2009@['article 3.1']@NA@no_rapporteur@not_easily_scrapable@no@no
+EU-1-09-571_h_a_public-assessment-report.xml@EU-1-09-571_h_a_public-assessment-report@9/07/2009@23/07/2009@['article 3.1']@NA@dr andrea laslop@dr andrea laslop@no@no
+EU-1-09-568_h_a_public-assessment-report.xml@EU-1-09-568_h_a_public-assessment-report@2/07/2009@16/10/2009@['article 3.3']@NA@metoda lipnik-štangelj.@no_co-rapporteur@no@no
+EU-1-09-564_h_a_public-assessment-report.xml@EU-1-09-564_h_a_public-assessment-report@04/12/2008@23/07/2009@not_easily_scrapable@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-573_h_a_public-assessment-report.xml@EU-1-09-573_h_a_public-assessment-report@04/06/2008@21/07/2009@['article 3.1']@NA@no_rapporteur@not_easily_scrapable@no@no
+EU-1-09-572_h_a_public-assessment-report.xml@EU-1-09-572_h_a_public-assessment-report@06/05/2009@15/07/2009@['article 3.2']@NA@no_rapporteur@not_easily_scrapable@no@no
+EU-1-09-579_h_a_public-assessment-report.xml@EU-1-09-579_h_a_public-assessment-report@24/09/2008@7/07/2009@no_legal_basis@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-577_h_a_public-assessment-report.xml@EU-1-09-577_h_a_public-assessment-report@14/07/2009@23/07/2009@['article 3.1']@NA@dr barbara van zwieten@dr barbara van zwieten@no@no
+EU-1-09-576_h_a_public-assessment-report.xml@EU-1-09-576_h_a_public-assessment-report@19/11/2008@30/10/2009@['article 3.3']@NA@concepcion prieto yerro@no_co-rapporteur@no@no
+EU-1-09-569_h_a_public-assessment-report.xml@EU-1-09-569_h_a_public-assessment-report@4/09/2008@22/07/2009@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-580_h_a_public-assessment-report.xml@EU-1-09-580_h_a_public-assessment-report@24/09/2008@7/07/2009@no_legal_basis@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-574_h_a_public-assessment-report.xml@EU-1-09-574_h_a_public-assessment-report@26/03/2009@22/07/2009@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-575_h_a_public-assessment-report.xml@EU-1-09-575_h_a_public-assessment-report@26/03/2009@22/07/2009@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-581_h_a_public-assessment-report.xml@EU-1-09-581_h_a_public-assessment-report@8/05/2008@23/07/2009@['article 3.2.a']@NA@no_rapporteur@not_easily_scrapable@no@no
+EU-1-09-584_h_a_public-assessment-report.xml@EU-1-09-584_h_a_public-assessment-report@22/10/2008@24/09/2009@['article 3.3']@NA@dr. prieto yerro.@no_co-rapporteur@no@no
+EU-1-09-583_h_a_public-assessment-report.xml@EU-1-09-583_h_a_public-assessment-report@08/12/2008@24/09/2009@['article 3.3']@NA@concepción prieto yerro@no_co-rapporteur@no@no
+EU-1-09-586_h_a_public-assessment-report.xml@EU-1-09-586_h_a_public-assessment-report@24/07/2009@24/09/2009@['article 3.2.a']@NA@david lyons@not_easily_scrapable@no@no
+EU-1-09-587_h_a_public-assessment-report.xml@EU-1-09-587_h_a_public-assessment-report@19/11/2008@24/09/2009@['article 3.3']@NA@pierre demolis.@no_co-rapporteur@no@no
+EU-1-09-588_h_a_public-assessment-report.xml@EU-1-09-588_h_a_public-assessment-report@19/11/2008@24/09/2009@['article 3.3']@NA@pierre demolis.@no_co-rapporteur@no@no
+EU-1-09-589_h_a_public-assessment-report.xml@EU-1-09-589_h_a_public-assessment-report@24/05/2009@15/09/2009@not_easily_scrapable@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-592_h_a_public-assessment-report.xml@EU-1-09-592_h_a_public-assessment-report@19/11/2008@10/12/2009@['article 10.1']@NA@pierre demolis.@no_co-rapporteur@no@no
+EU-1-09-591_h_a_public-assessment-report.xml@EU-1-09-591_h_a_public-assessment-report@03/07/2008@16/09/2009@['article 3.2.a']@NA@dr.None@not_easily_scrapable@no@no
+EU-1-09-595_h_a_public-assessment-report.xml@EU-1-09-595_h_a_public-assessment-report@29/10/2008@10/12/2009@['article 3.3']@NA@ondrej slanar@no_co-rapporteur@no@no
+EU-1-09-596_h_a_public-assessment-report.xml@EU-1-09-596_h_a_public-assessment-report@24/12/2008@22/09/2009@['article 3.3']@NA@dr demolis@no_co-rapporteur@no@no
+EU-1-09-593_h_a_public-assessment-report.xml@EU-1-09-593_h_a_public-assessment-report@18/12/2008@24/09/2009@['article 3.2.a']@NA@david lyons@not_easily_scrapable@no@no
+EU-1-09-594_h_a_public-assessment-report.xml@EU-1-09-594_h_a_public-assessment-report@24/07/2009@24/09/2009@['article 3.2.a']@NA@david lyons@not_easily_scrapable@no@no
+EU-1-09-590_h_a_public-assessment-report.xml@EU-1-09-590_h_a_public-assessment-report@02/12/2008@23/09/2009@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-598_h_a_public-assessment-report.xml@EU-1-09-598_h_a_public-assessment-report@28/01/2009@24/09/2009@['article 3.3']@NA@dr. r.j.hemmings@no_co-rapporteur@no@no
+EU-1-09-600_h_a_public-assessment-report.xml@EU-1-09-600_h_a_public-assessment-report@29/10/2008@21/09/2009@['article 3.2.b']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-602_h_a_public-assessment-report.xml@EU-1-09-602_h_a_public-assessment-report@02/07/2008@22/10/2009@['article 3.1']@NA@concepción prieto yerro@not_easily_scrapable@no@no
+EU-1-09-597_h_a_public-assessment-report.xml@EU-1-09-597_h_a_public-assessment-report@19/11/2008@11/12/2009@['article 3.3']@NA@pierre demolis.@no_co-rapporteur@no@no
+EU-1-09-599_h_a_public-assessment-report.xml@EU-1-09-599_h_a_public-assessment-report@24/05/2009@15/09/2009@not_easily_scrapable@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-09-603_h_a_public-assessment-report.xml@EU-1-09-603_h_a_public-assessment-report@22/10/2008@23/12/2009@['article 3.3']@NA@philippe lechat@no_co-rapporteur@no@no
+EU-1-09-601_h_a_public-assessment-report.xml@EU-1-09-601_h_a_public-assessment-report@5/06/2008@23/12/2009@not_easily_scrapable@NA@ian hudson@bengt ljungberg@no@no
+EU-1-09-607_h_a_public-assessment-report.xml@EU-1-09-607_h_a_public-assessment-report@26/07/2009@19/11/2009@['article 3.2.a']@NA@antonio addis@not_easily_scrapable@no@no
+EU-1-09-604_h_a_public-assessment-report.xml@EU-1-09-604_h_a_public-assessment-report@4/02/2009@22/10/2009@['article 3.2.a']@NA@barbara van zwieten-boot@pieter neels@no@no
+EU-1-09-608_h_a_public-assessment-report.xml@EU-1-09-608_h_a_public-assessment-report@30/10/2008@19/11/2009@['article 3.2.a']@NA@antonio addis@not_easily_scrapable@no@no
+EU-1-09-606_h_a_public-assessment-report.xml@EU-1-09-606_h_a_public-assessment-report@25/02/2009@28/01/2010@['article 3.3']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-09-609_h_a_public-assessment-report.xml@EU-1-09-609_h_a_public-assessment-report@04/12/2008@19/11/2009@['article 3.1']@NA@no_rapporteur@not_easily_scrapable@no@no
+EU-1-10-619_h_a_public-assessment-report.xml@EU-1-10-619_h_a_public-assessment-report@04/03/2009@16/12/2009@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-614_h_a_public-assessment-report.xml@EU-1-10-614_h_a_public-assessment-report@31/10/2008@17/12/2009@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-615_h_a_public-assessment-report.xml@EU-1-10-615_h_a_public-assessment-report@25/02/2009@14/12/2009@['article 3.3']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-10-618_h_a_public-assessment-report.xml@EU-1-10-618_h_a_public-assessment-report@09/01/2009@17/03/2010@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-627_h_a_public-assessment-report.xml@EU-1-10-627_h_a_public-assessment-report@02/10/2008@18/02/2010@['article 3.3']@NA@robert hemmings.@no_co-rapporteur@no@no
+EU-1-10-620_h_a_public-assessment-report.xml@EU-1-10-620_h_a_public-assessment-report@2/10/2009@17/12/2009@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-622_h_a_public-assessment-report.xml@EU-1-10-622_h_a_public-assessment-report@4/07/2008@22/01/2009@not_easily_scrapable@NA@pierre demolis@not_easily_scrapable@no@no
+EU-1-10-632_h_a_public-assessment-report.xml@EU-1-10-632_h_a_public-assessment-report@3/07/2009@4/06/2010@not_easily_scrapable@NA@jános borvendég.@no_co-rapporteur@no@no
+EU-1-10-621_h_a_public-assessment-report.xml@EU-1-10-621_h_a_public-assessment-report@2/10/2009@17/12/2009@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-633_h_a_public-assessment-report.xml@EU-1-10-633_h_a_public-assessment-report@24/06/2009@18/03/2010@['article 3.3']@NA@dr. gonzalo calvo@no_co-rapporteur@no@no
+EU-1-10-612_h_a_public-assessment-report.xml@EU-1-10-612_h_a_public-assessment-report@04/12/2008@11/03/2010@not_easily_scrapable@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-631_h_a_public-assessment-report.xml@EU-1-10-631_h_a_public-assessment-report@27/02/2009@17/03/2010@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-639_h_a_public-assessment-report.xml@EU-1-10-639_h_a_public-assessment-report@24/06/2009@24/06/2010@not_easily_scrapable@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-10-637_h_a_public-assessment-report.xml@EU-1-10-637_h_a_public-assessment-report@8/09/2009@20/05/2010@not_easily_scrapable@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-10-635_h_a_public-assessment-report.xml@EU-1-10-635_h_a_public-assessment-report@27/05/2009@18/03/2010@no_legal_basis@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-10-640_h_a_public-assessment-report.xml@EU-1-10-640_h_a_public-assessment-report@5/05/2009@1/09/2010@['article 3.2.a']@NA@ian hudson@not_easily_scrapable@no@no
+EU-1-10-636_h_a_public-assessment-report.xml@EU-1-10-636_h_a_public-assessment-report@06/05/2009@22/04/2010@['article 3.2.a']@NA@dr. calvo rojas@not_easily_scrapable@no@yes
+EU-1-10-641_h_a_public-assessment-report.xml@EU-1-10-641_h_a_public-assessment-report@03/09/2009@9/09/2010@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-638_h_a_public-assessment-report.xml@EU-1-10-638_h_a_public-assessment-report@24/02/2009@18/05/2010@['article 3.2.b', 'article 3.2.b']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-628_h_a_public-assessment-report.xml@EU-1-10-628_h_a_public-assessment-report@27/02/2009@22/04/2010@['article 3.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-642_h_a_public-assessment-report.xml@EU-1-10-642_h_a_public-assessment-report@1/07/2009@17/09/2010@['article 3.3']@NA@robert james hemmings.@no_co-rapporteur@no@no
+EU-1-10-647_h_a_public-assessment-report.xml@EU-1-10-647_h_a_public-assessment-report@23/09/2009@7/10/2010@['article 3.3']@NA@andrea laslop@no_co-rapporteur@no@no
+EU-1-10-645_h_a_public-assessment-report.xml@EU-1-10-645_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 3.2.a']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-644_h_a_public-assessment-report.xml@EU-1-10-644_h_a_public-assessment-report@no_date_found@no_chmp_found@not_easily_scrapable@no@dr. broich@dr. demolis@no@no
+EU-1-10-643_h_a_public-assessment-report.xml@EU-1-10-643_h_a_public-assessment-report@6/05/2009@21/06/2010@not_easily_scrapable@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-646_h_a_public-assessment-report.xml@EU-1-10-646_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 3.1']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-652_h_a_public-assessment-report.xml@EU-1-10-652_h_a_public-assessment-report@no_date_found@no_chmp_found@not_easily_scrapable@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-648_h_a_public-assessment-report.xml@EU-1-10-648_h_a_public-assessment-report@3/09/2009@21/07/2010@['article 3.2.a']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-654_h_a_public-assessment-report.xml@EU-1-10-654_h_a_public-assessment-report@7/05/2010@23/09/2010@not_easily_scrapable@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-10-659_h_a_public-assessment-report.xml@EU-1-10-659_h_a_public-assessment-report@20/01/2010@21/10/2010@not_easily_scrapable@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-10-655_h_a_public-assessment-report.xml@EU-1-10-655_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-10-660_h_a_public-assessment-report.xml@EU-1-10-660_h_a_public-assessment-report@18/08/2010@21/10/2010@['article 3.3']@NA@dr. laslop.@no_co-rapporteur@no@no
+EU-1-10-663_h_a_public-assessment-report.xml@EU-1-10-663_h_a_public-assessment-report@21/10/2009@18/11/2010@['article 10.1']@NA@dr. p. demolis@no_co-rapporteur@no@no
+EU-1-10-658_h_a_public-assessment-report.xml@EU-1-10-658_h_a_public-assessment-report@23/12/2009@23/09/2010@['article 8.3']@NA@daniela melchiorri@not_easily_scrapable@no@no
+EU-1-10-665_h_a_public-assessment-report.xml@EU-1-10-665_h_a_public-assessment-report@6/05/2010@18/02/2011@not_easily_scrapable@NA@tomas salmonson.@no_co-rapporteur@no@no
+EU-1-11-673_h_a_public-assessment-report.xml@EU-1-11-673_h_a_public-assessment-report@26/05/2010@16/12/2010@not_easily_scrapable@NA@concepcion prieto yerro.@no_co-rapporteur@no@no
+EU-1-11-672_h_a_public-assessment-report.xml@EU-1-11-672_h_a_public-assessment-report@23/12/2009@15/12/2010@['article 8.3']@NA@tomas salmonson@not_easily_scrapable@no@no
+EU-1-11-669_h_a_public-assessment-report.xml@EU-1-11-669_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-667_h_a_public-assessment-report.xml@EU-1-11-667_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3', 'article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-679_h_a_public-assessment-report.xml@EU-1-11-679_h_a_public-assessment-report@18/11/2009@17/01/2011@['article 10.b']@NA@pr. lechat@not_easily_scrapable@no@no
+EU-1-11-676_h_a_public-assessment-report.xml@EU-1-11-676_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-678_h_a_public-assessment-report.xml@EU-1-11-678_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-682_h_a_public-assessment-report.xml@EU-1-11-682_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 3.2.b', 'article 3.2.b']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-685_h_a_public-assessment-report.xml@EU-1-11-685_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 10.1']@no@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-11-687_h_a_public-assessment-report.xml@EU-1-11-687_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-688_h_a_public-assessment-report.xml@EU-1-11-688_h_a_public-assessment-report@3/03/2010@22/07/2010@['article 8.3', 'article 8.3']@NA@christian schneider@ian hudson@no@no
+EU-1-11-692_h_a_public-assessment-report.xml@EU-1-11-692_h_a_public-assessment-report@2/07/2009@16/03/2011@['article 8.3', 'article 8.3']@NA@jens heisterberg@not_easily_scrapable@no@no
+EU-1-11-677_h_a_public-assessment-report.xml@EU-1-11-677_h_a_public-assessment-report@21/01/2010@19/01/2011@['article 8.3']@NA@philippe lechat@not_easily_scrapable@no@no
+EU-1-11-693_h_a_public-assessment-report.xml@EU-1-11-693_h_a_public-assessment-report@26/05/2010@11/04/2011@['article 10.1']@NA@dr. tomas salmonson.@no_co-rapporteur@no@no
+EU-1-11-690_h_a_public-assessment-report.xml@EU-1-11-690_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 3.2.b', 'article 3.2b']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-697_h_a_public-assessment-report.xml@EU-1-11-697_h_a_public-assessment-report@29/06/2010@19/05/2011@['article 10.1']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-11-691_h_a_public-assessment-report.xml@EU-1-11-691_h_a_public-assessment-report@25/02/2010@17/03/2011@['article 3.2.a']@NA@pieter de graeff@not_easily_scrapable@no@no
+EU-1-11-694_h_a_public-assessment-report.xml@EU-1-11-694_h_a_public-assessment-report@03/02/2010@13/04/2011@['article 8.3']@NA@dr. tomas salmonson (se)@not_easily_scrapable@no@no
+EU-1-11-699_h_a_public-assessment-report.xml@EU-1-11-699_h_a_public-assessment-report@21/01/2010@20/01/2011@['article 8.3']@NA@barbara van zwieten@not_easily_scrapable@yes@no
+EU-1-11-696_h_a_public-assessment-report.xml@EU-1-11-696_h_a_public-assessment-report@no_date_found@no_chmp_found@no_legal_basis@no@kristina dunder@not_easily_scrapable@no@no
+EU-1-11-702_h_a_public-assessment-report.xml@EU-1-11-702_h_a_public-assessment-report@20/10/2010@19/05/2011@no_legal_basis@NA@pieter neels@no_co-rapporteur@no@no
+EU-1-11-701_h_a_public-assessment-report.xml@EU-1-11-701_h_a_public-assessment-report@20/10/2010@19/05/2011@not_easily_scrapable@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-11-706_h_a_public-assessment-report.xml@EU-1-11-706_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 10.c', 'article 82.1']@no@no_rapporteur@not_easily_scrapable@no@no
+EU-1-11-708_h_a_public-assessment-report.xml@EU-1-11-708_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 10.c', 'article 82.1']@no@no_rapporteur@not_easily_scrapable@no@no
+EU-1-11-707_h_a_public-assessment-report.xml@EU-1-11-707_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@no_rapporteur@not_easily_scrapable@no@no
+EU-1-11-700_h_a_public-assessment-report.xml@EU-1-11-700_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-703_h_a_public-assessment-report.xml@EU-1-11-703_h_a_public-assessment-report@no_date_found@no_chmp_found@not_easily_scrapable@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-709_h_a_public-assessment-report.xml@EU-1-11-709_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 10.3']@no@no_rapporteur@not_easily_scrapable@no@no
+EU-1-11-698_h_a_public-assessment-report.xml@EU-1-11-698_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-711_h_a_public-assessment-report.xml@EU-1-11-711_h_a_public-assessment-report@20/10/2010@21/07/2011@['article 10.2.b', 'article 8.3']@NA@dalibor valik@pieter neels@no@no
+EU-1-11-713_h_a_public-assessment-report.xml@EU-1-11-713_h_a_public-assessment-report@20/10/2010@21/07/2011@['article 3.3', 'article 10.2.b', 'article 8.3']@NA@alar irs@no_co-rapporteur@no@no
+EU-1-11-715_h_a_public-assessment-report.xml@EU-1-11-715_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 3.1', 'article 10.3.b', 'article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-712_h_a_public-assessment-report.xml@EU-1-11-712_h_a_public-assessment-report@17/11/2011@21/07/2011@['article 3.3', 'article 10.2.b', 'article 8.3']@NA@pieter neels@no_co-rapporteur@no@no
+EU-1-11-714_h_a_public-assessment-report.xml@EU-1-11-714_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@yes
+EU-1-11-717_h_a_public-assessment-report.xml@EU-1-11-717_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-722_h_a_public-assessment-report.xml@EU-1-11-722_h_a_public-assessment-report@17/11/2010@19/01/2012@no_legal_basis@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-11-718_h_a_public-assessment-report.xml@EU-1-11-718_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-719_h_a_public-assessment-report.xml@EU-1-11-719_h_a_public-assessment-report@22/05/2011@21/07/2011@['article 3.3', 'article 10.2.b', 'article 8.3']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-11-716_h_a_public-assessment-report.xml@EU-1-11-716_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 3.1']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-732_h_a_public-assessment-report.xml@EU-1-11-732_h_a_public-assessment-report@23/02/2011@22/09/2011@['article 10.1']@NA@jános borvendég.@no_co-rapporteur@no@no
+EU-1-11-727_h_a_public-assessment-report.xml@EU-1-11-727_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 3.1']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-710_h_a_public-assessment-report.xml@EU-1-11-710_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 3.2.b']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-734_h_a_public-assessment-report.xml@EU-1-11-734_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-731_h_a_public-assessment-report.xml@EU-1-11-731_h_a_public-assessment-report@21/07/2010@22/09/2011@not_easily_scrapable@NA@pieter de graeff@arsten bruins slot@no@no
+EU-1-11-736_h_a_public-assessment-report.xml@EU-1-11-736_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-733_h_a_public-assessment-report.xml@EU-1-11-733_h_a_public-assessment-report@16/07/2010@22/09/2011@['article 8.3', 'article 8.3']@NA@kristina dunder@philippe lechat@no@no
+EU-1-11-739_h_a_public-assessment-report.xml@EU-1-11-739_h_a_public-assessment-report@23/02/2011@20/09/2011@['article 10.1']@NA@jános borvendég@no_co-rapporteur@no@no
+EU-1-11-743_h_a_public-assessment-report.xml@EU-1-11-743_h_a_public-assessment-report@15/12/2010@20/10/2011@['article 3.3', 'article 10.2.b', 'article 8.3']@NA@prof. dr. j. borvendég@no_co-rapporteur@no@no
+EU-1-11-738_h_a_public-assessment-report.xml@EU-1-11-738_h_a_public-assessment-report@15/12/2010@22/09/2011@not_easily_scrapable@NA@alar irs@no_co-rapporteur@no@no
+EU-1-11-740_h_a_public-assessment-report.xml@EU-1-11-740_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-741_h_a_public-assessment-report.xml@EU-1-11-741_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 10.2.b', 'article 8.3']@no@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-11-742_h_a_public-assessment-report.xml@EU-1-11-742_h_a_public-assessment-report@15/12/2010@20/10/2011@['article 10.1']@NA@ian hudson@no_co-rapporteur@no@no
+EU-1-11-737_h_a_public-assessment-report.xml@EU-1-11-737_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3.']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-11-746_h_a_public-assessment-report.xml@EU-1-11-746_h_a_public-assessment-report@23/02/2011@17/11/2011@['article 10.1']@NA@pieter neels.@no_co-rapporteur@no@no
+EU-1-11-745_h_a_public-assessment-report.xml@EU-1-11-745_h_a_public-assessment-report@23/02/2011@17/11/2011@['article 10.1']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-11-747_h_a_public-assessment-report.xml@EU-1-11-747_h_a_public-assessment-report@4/09/2009@10/10/2011@not_easily_scrapable@NA@ian hudson@not_easily_scrapable@no@no
+EU-1-12-750_h_a_public-assessment-report.xml@EU-1-12-750_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@no_rapporteur@not_easily_scrapable@no@no
+EU-1-12-751_h_a_public-assessment-report.xml@EU-1-12-751_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 3.1']@no@not_easily_scrapable@not_easily_scrapable@no@yes
+EU-1-12-755_h_a_public-assessment-report.xml@EU-1-12-755_h_a_public-assessment-report@29/10/2010@19/01/2012@['article 10.1']@NA@patrick salmon.@no_co-rapporteur@no@no
+EU-1-12-757_h_a_public-assessment-report.xml@EU-1-12-757_h_a_public-assessment-report@28/10/2010@19/01/2012@['article 10.1']@NA@patrick salmon.@no_co-rapporteur@no@no
+EU-1-11-749_h_a_public-assessment-report.xml@EU-1-11-749_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@no_rapporteur@not_easily_scrapable@no@no
+EU-1-12-753_h_a_public-assessment-report.xml@EU-1-12-753_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-759_h_a_public-assessment-report.xml@EU-1-12-759_h_a_public-assessment-report@25/05/2011@16/02/2012@['article 10.1']@NA@dr. milena stain@no_co-rapporteur@no@no
+EU-1-12-761_h_a_public-assessment-report.xml@EU-1-12-761_h_a_public-assessment-report@23/03/2011@16/02/2012@['article 10.1']@NA@tomas salmonson.@no_co-rapporteur@no@no
+EU-1-12-763_h_a_public-assessment-report.xml@EU-1-12-763_h_a_public-assessment-report@19/10/2011@16/02/2012@['article 10.1', 'article 10.3']@NA@tomas salmonson@no_co-rapporteur@no@no
+EU-1-12-760_h_a_public-assessment-report.xml@EU-1-12-760_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 3.1']@no@not_easily_scrapable@not_easily_scrapable@yes@yes
+EU-1-12-766_h_a_public-assessment-report.xml@EU-1-12-766_h_a_public-assessment-report@29/09/2010@16/02/2012@['article 10.3']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-762_h_a_public-assessment-report.xml@EU-1-12-762_h_a_public-assessment-report@23/03/2011@16/02/2012@['article 10.1', 'article 10.3']@NA@tomas salmonson@no_co-rapporteur@no@no
+EU-1-12-768_h_a_public-assessment-report.xml@EU-1-12-768_h_a_public-assessment-report@28/11/2011@16/02/2012@['article 10.c', 'article 82.1']@NA@rapporteur ian hudson@no_co-rapporteur@no@no
+EU-1-12-775_h_a_public-assessment-report.xml@EU-1-12-775_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-767_h_a_public-assessment-report.xml@EU-1-12-767_h_a_public-assessment-report@01/03/2011@16/02/2012@['article 3.2.a']@NA@ian hudson@not_easily_scrapable@no@no
+EU-1-12-764_h_a_public-assessment-report.xml@EU-1-12-764_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-771_h_a_public-assessment-report.xml@EU-1-12-771_h_a_public-assessment-report@25/05/2011@15/03/2012@['article 10.1']@NA@kristina dunder@no_co-rapporteur@no@no
+EU-1-12-769_h_a_public-assessment-report.xml@EU-1-12-769_h_a_public-assessment-report@22/06/2011@15/03/2012@['article 10.1']@NA@tomas salmonson@no_co-rapporteur@no@no
+EU-1-12-779_h_a_public-assessment-report.xml@EU-1-12-779_h_a_public-assessment-report@25/05/2011@24/05/2012@['article 10.1', 'article 10.3']@NA@alar irs.@no_co-rapporteur@no@no
+EU-1-12-770_h_a_public-assessment-report.xml@EU-1-12-770_h_a_public-assessment-report@22/06/2011@15/03/2012@['article 10.1']@NA@pierre demolis.@no_co-rapporteur@no@no
+EU-1-12-777_h_a_public-assessment-report.xml@EU-1-12-777_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@no_rapporteur@not_easily_scrapable@no@no
+EU-1-12-778_h_a_public-assessment-report.xml@EU-1-12-778_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-776_h_a_public-assessment-report.xml@EU-1-12-776_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 3.2.a']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-783_h_a_public-assessment-report.xml@EU-1-12-783_h_a_public-assessment-report@20/07/2011@21/06/2012@['article 10.3']@NA@robert james hemmings@no_co-rapporteur@no@no
+EU-1-12-780_h_a_public-assessment-report.xml@EU-1-12-780_h_a_public-assessment-report@no_date_found@no_chmp_found@not_easily_scrapable@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-784_h_a_public-assessment-report.xml@EU-1-12-784_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-781_h_a_public-assessment-report.xml@EU-1-12-781_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3', 'article 82.1']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-786_h_a_public-assessment-report.xml@EU-1-12-786_h_a_public-assessment-report@4/05/2011@21/06/2012@['article 10.1']@NA@milena stain@no_co-rapporteur@no@no
+EU-1-12-785_h_a_public-assessment-report.xml@EU-1-12-785_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-788_h_a_public-assessment-report.xml@EU-1-12-788_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-789_h_a_public-assessment-report.xml@EU-1-12-789_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-790_h_a_public-assessment-report.xml@EU-1-12-790_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-787_h_a_public-assessment-report.xml@EU-1-12-787_h_a_public-assessment-report@3/03/2011@21/06/2012@not_easily_scrapable@NA@jens ersbøll@harald enzmann@no@no
+EU-1-12-792_h_a_public-assessment-report.xml@EU-1-12-792_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-782_h_a_public-assessment-report.xml@EU-1-12-782_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@yes
+EU-1-12-798_h_a_public-assessment-report.xml@EU-1-12-798_h_a_public-assessment-report@25/01/2012@20/09/2012@not_easily_scrapable@NA@alar irs@no_co-rapporteur@no@no
+EU-1-12-799_h_a_public-assessment-report.xml@EU-1-12-799_h_a_public-assessment-report@no_date_found@no_chmp_found@not_easily_scrapable@no@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-12-797_h_a_public-assessment-report.xml@EU-1-12-797_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@no_rapporteur@not_easily_scrapable@no@no
+EU-1-12-794_h_a_public-assessment-report.xml@EU-1-12-794_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3', 'article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-800_h_a_public-assessment-report.xml@EU-1-12-800_h_a_public-assessment-report@22/06/2011@20/09/2012@['article 10.1', 'article 10.3']@NA@kristina dunder@no_co-rapporteur@no@no
+EU-1-12-793_h_a_public-assessment-report.xml@EU-1-12-793_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@no_rapporteur@not_easily_scrapable@no@no
+EU-1-12-802_h_a_public-assessment-report.xml@EU-1-12-802_h_a_public-assessment-report@16/11/2011@20/09/2012@['article 10.1']@NA@k. dunder@no_co-rapporteur@no@no
+EU-1-12-795_h_a_public-assessment-report.xml@EU-1-12-795_h_a_public-assessment-report@16/12/2010@20/09/2012@no_legal_basis@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-803_h_a_public-assessment-report.xml@EU-1-12-803_h_a_public-assessment-report@29/10/2010@20/09/2012@['article 8.3']@NA@robertjames hemmings@robertjames hemmings@no@no
+EU-1-12-805_h_a_public-assessment-report.xml@EU-1-12-805_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@no_rapporteur@not_easily_scrapable@no@no
+EU-1-12-801_h_a_public-assessment-report.xml@EU-1-12-801_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-806_h_a_public-assessment-report.xml@EU-1-12-806_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-811_h_a_public-assessment-report.xml@EU-1-12-811_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 3.1']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-807_h_a_public-assessment-report.xml@EU-1-12-807_h_a_public-assessment-report@26/09/2011@18/10/2012@not_easily_scrapable@NA@kristina dunder@jens heisterberg@no@no
+EU-1-12-814_h_a_public-assessment-report.xml@EU-1-12-814_h_a_public-assessment-report@24/11/2011@15/11/2012@['article 8.3']@NA@kristina dunder@daniela melchiorri@no@no
+EU-1-12-808_h_a_public-assessment-report.xml@EU-1-12-808_h_a_public-assessment-report@21/12/2011@18/10/2012@['article 10.1']@NA@arantxa sancho@no_co-rapporteur@no@no
+EU-1-12-809_h_a_public-assessment-report.xml@EU-1-12-809_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-812_h_a_public-assessment-report.xml@EU-1-12-812_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-12-815_h_a_public-assessment-report.xml@EU-1-12-815_h_a_public-assessment-report@25/11/2011@13/12/2012@['article 8.3']@NA@martina weise@not_easily_scrapable@no@no
+EU-1-13-817_h_a_public-assessment-report.xml@EU-1-13-817_h_a_public-assessment-report@23/05/2012@17/01/2013@['article 10.1']@NA@alar irs@no_co-rapporteur@no@no
+EU-1-13-822_h_a_public-assessment-report.xml@EU-1-13-822_h_a_public-assessment-report@21/03/2012@21/02/2013@['article 10.3']@NA@david lyons@no_co-rapporteur@no@no
+EU-1-13-820_h_a_public-assessment-report.xml@EU-1-13-820_h_a_public-assessment-report@30/05/2012@17/01/2013@['article 10.1']@NA@andrea laslop.@no_co-rapporteur@no@no
+EU-1-13-819_h_a_public-assessment-report.xml@EU-1-13-819_h_a_public-assessment-report@26/09/2011@17/01/2013@['article 8.3']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-13-821_h_a_public-assessment-report.xml@EU-1-13-821_h_a_public-assessment-report@23/05/2012@17/01/2013@['article 10.1']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-13-813_h_a_public-assessment-report.xml@EU-1-13-813_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-13-823_h_a_public-assessment-report.xml@EU-1-13-823_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-13-826_h_a_public-assessment-report.xml@EU-1-13-826_h_a_public-assessment-report@22/05/2012@21/02/2013@['article 10.1']@NA@martina weise.@no_co-rapporteur@no@no
+EU-1-13-824_h_a_public-assessment-report.xml@EU-1-13-824_h_a_public-assessment-report@20/06/2012@21/02/2013@['article 10.1']@NA@milena stain@no_co-rapporteur@no@no
+EU-1-13-827_h_a_public-assessment-report.xml@EU-1-13-827_h_a_public-assessment-report@18/07/2012@21/02/2013@['article 10.1']@NA@concepcion prieto yerro@no_co-rapporteur@no@no
+EU-1-13-818_h_a_public-assessment-report.xml@EU-1-13-818_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@harald enzmann@not_easily_scrapable@no@no
+EU-1-13-828_h_a_public-assessment-report.xml@EU-1-13-828_h_a_public-assessment-report@28/08/2012@21/02/2013@['article 8.3']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-13-829_h_a_public-assessment-report.xml@EU-1-13-829_h_a_public-assessment-report@19/09/2012@21/02/2013@['article 8.3', 'article 82.1']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-13-836_h_a_public-assessment-report.xml@EU-1-13-836_h_a_public-assessment-report@20/06/2012@21/03/2013@['article 10.1']@NA@walter janssens@no_co-rapporteur@no@no
+EU-1-13-832_h_a_public-assessment-report.xml@EU-1-13-832_h_a_public-assessment-report@30/08/2012@21/03/2013@['article 10c']@NA@pierre demolis@not_easily_scrapable@no@no
+EU-1-13-834_h_a_public-assessment-report.xml@EU-1-13-834_h_a_public-assessment-report@23/05/2012@21/11/2013@['article 10.1']@NA@alar irs.@no_co-rapporteur@no@no
+EU-1-13-830_h_a_public-assessment-report.xml@EU-1-13-830_h_a_public-assessment-report@24/11/2011@21/03/2013@['article 8.3']@NA@robert james hemmings@not_easily_scrapable@yes@no
+EU-1-13-835_h_a_public-assessment-report.xml@EU-1-13-835_h_a_public-assessment-report@20/06/2012@21/03/2013@['article 10.1']@NA@john joseph borg@no_co-rapporteur@no@no
+EU-1-13-838_h_a_public-assessment-report.xml@EU-1-13-838_h_a_public-assessment-report@1/02/2012@21/03/2013@['article 8.3']@NA@martina weise@not_easily_scrapable@yes@no
+EU-1-13-840_h_a_public-assessment-report.xml@EU-1-13-840_h_a_public-assessment-report@30/09/2011@21/03/2013@['article 8.3']@NA@jan mueller@not_easily_scrapable@no@no
+EU-1-13-841_h_a_public-assessment-report.xml@EU-1-13-841_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-13-837_h_a_public-assessment-report.xml@EU-1-13-837_h_a_public-assessment-report@28/02/2012@26/11/2013@['article 8.3', 'article 7']@NA@martina weise@robert james hemmings@no@no
+EU-1-13-842_h_a_public-assessment-report.xml@EU-1-13-842_h_a_public-assessment-report@30/05/2012@25/07/2013@['article 8.3']@NA@kristina dunder@kristina dunder@no@no
+EU-1-13-843_h_a_public-assessment-report.xml@EU-1-13-843_h_a_public-assessment-report@30/05/2012@25/07/2013@['article 8.3']@NA@pieter de graeff@kristina dunder@no@no
+EU-1-13-844_h_a_public-assessment-report.xml@EU-1-13-844_h_a_public-assessment-report@2/05/2012@25/07/2013@['article 8.3']@NA@pieter de graeff@kristina dunder@no@no
+EU-1-13-852_h_a_public-assessment-report.xml@EU-1-13-852_h_a_public-assessment-report@19/09/2012@30/05/2013@['article 10.1']@NA@john joseph borg@no_co-rapporteur@no@no
+EU-1-13-846_h_a_public-assessment-report.xml@EU-1-13-846_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@arantxa sancho-lopez@bengt ljungberg@no@yes
+EU-1-13-845_h_a_public-assessment-report.xml@EU-1-13-845_h_a_public-assessment-report@20/06/2012@25/04/2013@['article 10.1']@NA@arantxa sancho@no_co-rapporteur@no@no
+EU-1-13-848_h_a_public-assessment-report.xml@EU-1-13-848_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-13-851_h_a_public-assessment-report.xml@EU-1-13-851_h_a_public-assessment-report@1/03/2012@30/05/2013@['article 3.2.a']@NA@pieter de graeff@robert james hemmings@no@no
+EU-1-13-857_h_a_public-assessment-report.xml@EU-1-13-857_h_a_public-assessment-report@23/11/2011@11/06/2013@['article 8.3']@NA@pieter de graeff@ian hudson@no@no
+EU-1-13-853_h_a_public-assessment-report.xml@EU-1-13-853_h_a_public-assessment-report@01/03/2012@27/06/2013@['article 10.4']@NA@ian hudson@not_easily_scrapable@no@no
+EU-1-13-855_h_a_public-assessment-report.xml@EU-1-13-855_h_a_public-assessment-report@29/02/2012@30/05/2013@['article 8.3']@NA@ian hudson@not_easily_scrapable@no@no
+EU-1-13-854_h_a_public-assessment-report.xml@EU-1-13-854_h_a_public-assessment-report@14/07/2012@27/06/2013@['article 10.4', 'article 82.1']@NA@ian hudson@not_easily_scrapable@no@no
+EU-1-13-856_h_a_public-assessment-report.xml@EU-1-13-856_h_a_public-assessment-report@29/11/2011@30/05/2013@['article 8.3']@NA@ian hudson@not_easily_scrapable@no@no
+EU-1-13-850_h_a_public-assessment-report.xml@EU-1-13-850_h_a_public-assessment-report@20/06/2012@30/05/2013@['article 8.3']@NA@robert james hemmings@not_easily_scrapable@no@no
+EU-1-13-859_h_a_public-assessment-report.xml@EU-1-13-859_h_a_public-assessment-report@7/02/2013@19/09/2013@['article 10.c']@NA@outi mäki-ikola@bruno sepodes@no@no
+EU-1-13-858_h_a_public-assessment-report.xml@EU-1-13-858_h_a_public-assessment-report@3/05/2012@27/06/2013@not_easily_scrapable@NA@daniela melchiorri@not_easily_scrapable@no@yes
+EU-1-13-861_h_a_public-assessment-report.xml@EU-1-13-861_h_a_public-assessment-report@21/03/2012@27/06/2013@['article 10.3']@NA@tomas salmonson@not_easily_scrapable@no@no
+EU-1-13-862_h_a_public-assessment-report.xml@EU-1-13-862_h_a_public-assessment-report@4/10/2012@25/07/2013@['article 10.b']@NA@jens heisterberg@david lyons@no@no
+EU-1-13-860_h_a_public-assessment-report.xml@EU-1-13-860_h_a_public-assessment-report@18/07/2012@27/06/2013@['article 10.3']@NA@romaldas mačiulaitis@robert james hemmings@no@no
+EU-1-13-863_h_a_public-assessment-report.xml@EU-1-13-863_h_a_public-assessment-report@8/03/2013@25/07/2013@['article 10.b', 'article 82.1']@NA@jens heisterberg@david lyons@no@no
+EU-1-13-866_h_a_public-assessment-report.xml@EU-1-13-866_h_a_public-assessment-report@21/12/2011@27/06/2013@not_easily_scrapable@NA@robert james hemmings@alar irs@no@no
+EU-1-13-871_h_a_public-assessment-report.xml@EU-1-13-871_h_a_public-assessment-report@28/02/2012@31/07/2013@['article 10.4']@NA@pieter de graeff@jános borvendég@no@no
+EU-1-13-870_h_a_public-assessment-report.xml@EU-1-13-870_h_a_public-assessment-report@18/11/2009@14/04/2011@['article 10.a']@NA@robert hemmings (uk)@not_easily_scrapable@no@no
+EU-1-13-869_h_a_public-assessment-report.xml@EU-1-13-869_h_a_public-assessment-report@no_date_found@27/06/2013@['article 8.3']@no@jens ersbøll@bengt ljungberg@no@no
+EU-1-13-873_h_a_public-assessment-report.xml@EU-1-13-873_h_a_public-assessment-report@12/12/2012@19/09/2013@['article 8.3']@NA@harald enzmann@not_easily_scrapable@no@yes
+EU-1-13-877_h_a_public-assessment-report.xml@EU-1-13-877_h_a_public-assessment-report@30/04/2012@25/07/2013@['article 10.4']@NA@robert james hemmings@not_easily_scrapable@no@no
+EU-1-13-872_h_a_public-assessment-report.xml@EU-1-13-872_h_a_public-assessment-report@26/04/2012@25/07/2013@['article 8.3']@NA@robert james hemmings@philippe lechat@no@no
+EU-1-13-865_h_a_public-assessment-report.xml@EU-1-13-865_h_a_public-assessment-report@24/07/2012@27/06/2013@['article 8.3']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-13-875_h_a_public-assessment-report.xml@EU-1-13-875_h_a_public-assessment-report@25/11/2011@25/07/2013@['article 8.3']@NA@ian hudson@walter janssens@yes@no
+EU-1-13-878_h_a_public-assessment-report.xml@EU-1-13-878_h_a_public-assessment-report@3/05/2011@21/03/2013@['article 3.1']@NA@ian hudson@kristina dunder@yes@no
+EU-1-13-879_h_a_public-assessment-report.xml@EU-1-13-879_h_a_public-assessment-report@28/08/2012@25/07/2013@not_easily_scrapable@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-13-880_h_a_public-assessment-report.xml@EU-1-13-880_h_a_public-assessment-report@19/09/2012@19/09/2013@['article 10.1']@NA@milena stain@no_co-rapporteur@no@no
+EU-1-13-881_h_a_public-assessment-report.xml@EU-1-13-881_h_a_public-assessment-report@20/06/2012@19/09/2013@['article 10.b']@NA@concepcion prieto yerro@greg markey@no@no
+EU-1-13-882_h_a_public-assessment-report.xml@EU-1-13-882_h_a_public-assessment-report@30/11/2012@19/09/2013@['article 8.3']@NA@bruno sepodes@aikaterini moraiti@no@no
+EU-1-13-885_h_a_public-assessment-report.xml@EU-1-13-885_h_a_public-assessment-report@30/08/2012@19/09/2013@['article 8.3']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-13-888_h_a_public-assessment-report.xml@EU-1-13-888_h_a_public-assessment-report@15/10/2012@19/09/2013@['article 8.3']@NA@andrea laslop@andrea laslop@no@no
+EU-1-13-884_h_a_public-assessment-report.xml@EU-1-13-884_h_a_public-assessment-report@22/06/2012@19/09/2013@['article 3.1']@NA@martina weise@kristina dunder@no@no
+EU-1-13-887_h_a_public-assessment-report.xml@EU-1-13-887_h_a_public-assessment-report@28/09/2012@19/09/2013@['article 8.3']@NA@daniel brasseur@not_easily_scrapable@no@no
+EU-1-13-886_h_a_public-assessment-report.xml@EU-1-13-886_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@concepcion prieto yerro@david lyons@no@no
+EU-1-13-889_h_a_public-assessment-report.xml@EU-1-13-889_h_a_public-assessment-report@26/12/2012@24/10/2013@['article 10.2.b', 'article 8.3']@NA@juris pokrotnieks@no_co-rapporteur@no@no
+EU-1-13-891_h_a_public-assessment-report.xml@EU-1-13-891_h_a_public-assessment-report@24/08/2012@24/10/2013@['article 8.3']@NA@bart van der schueren@not_easily_scrapable@no@no
+EU-1-13-893_h_a_public-assessment-report.xml@EU-1-13-893_h_a_public-assessment-report@25/10/2012@24/10/2013@['article 8.3']@NA@concepcion prieto yerro@pieter de graeff@no@no
+EU-1-13-890_h_a_public-assessment-report.xml@EU-1-13-890_h_a_public-assessment-report@29/10/2012@19/12/2013@['article 8.3']@NA@pieter de graeff@ingunn hagen westgaard@no@no
+EU-1-13-896_h_a_public-assessment-report.xml@EU-1-13-896_h_a_public-assessment-report@21/03/2012@29/11/2013@['article 10.a']@NA@greg markey@not_easily_scrapable@no@no
+EU-1-13-892_h_a_public-assessment-report.xml@EU-1-13-892_h_a_public-assessment-report@17/12/2012@21/11/2013@['article 8.3']@NA@kristina dunder@not_easily_scrapable@no@no
+EU-1-13-900_h_a_public-assessment-report.xml@EU-1-13-900_h_a_public-assessment-report@26/11/2012@21/11/2013@['article 10.b']@NA@kristina dunder@agnes gyurasics@no@no
+EU-1-13-894_h_a_public-assessment-report.xml@EU-1-13-894_h_a_public-assessment-report@19/04/2013@21/11/2013@['article 3.1']@NA@bengt ljungberg@alar irs@no@yes
+EU-1-13-904_h_a_public-assessment-report.xml@EU-1-13-904_h_a_public-assessment-report@30/11/2012@19/12/2013@['article 8.3']@NA@daniela melchiorri@daniela melchiorri@no@no
+EU-1-13-905_h_a_public-assessment-report.xml@EU-1-13-905_h_a_public-assessment-report@5/12/2012@19/12/2013@['article 8.3']@NA@concepcion prieto yerro.@not_easily_scrapable@no@no
+EU-1-13-901_h_a_public-assessment-report.xml@EU-1-13-901_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-13-907_h_a_public-assessment-report.xml@EU-1-13-907_h_a_public-assessment-report@27/02/2013@23/01/2014@['article 8.3']@NA@pieter de graeff@martina weise@no@no
+EU-1-13-909_h_a_public-assessment-report.xml@EU-1-13-909_h_a_public-assessment-report@30/10/2012@31/01/2014@['article 10.4']@NA@pieter de graeff@bart van der schueren@no@no
+EU-1-13-906_h_a_public-assessment-report.xml@EU-1-13-906_h_a_public-assessment-report@7/01/2013@19/12/2013@['article 3.2.a']@NA@concepcion prieto yerro@not_easily_scrapable@no@no
+EU-1-14-914_h_a_public-assessment-report.xml@EU-1-14-914_h_a_public-assessment-report@23/04/2013@20/02/2014@['article 8.3']@NA@harald enzmann@harald enzmann@no@yes
+EU-1-13-902_h_a_public-assessment-report.xml@EU-1-13-902_h_a_public-assessment-report@29/10/2012@23/01/2014@['article 8.3']@NA@johann lodewijk hillege@not_easily_scrapable@yes@no
+EU-1-14-915_h_a_public-assessment-report.xml@EU-1-14-915_h_a_public-assessment-report@22/05/2013@20/03/2014@['article 10.1']@NA@milena stain.@no_co-rapporteur@no@no
+EU-1-14-899_h_a_public-assessment-report.xml@EU-1-14-899_h_a_public-assessment-report@6/03/2013@28/03/2014@['article 8.3', 'article 82.1']@NA@robert james hemmings@david lyons@no@no
+EU-1-14-913_h_a_public-assessment-report.xml@EU-1-14-913_h_a_public-assessment-report@27/09/2012@23/01/2014@['article 8.3']@NA@bengt ljungberg@robert james hemmings@no@no
+EU-1-14-916_h_a_public-assessment-report.xml@EU-1-14-916_h_a_public-assessment-report@29/11/2013@20/02/2014@['article 82.1']@NA@johann lodewijk hillege@bruno sepodes@no@no
+EU-1-14-919_h_a_public-assessment-report.xml@EU-1-14-919_h_a_public-assessment-report@6/03/2013@20/02/2014@['article 8.3']@NA@greg markey@not_easily_scrapable@no@yes
+EU-1-14-917_h_a_public-assessment-report.xml@EU-1-14-917_h_a_public-assessment-report@4/12/2013@20/02/2014@['article 10.c', 'article 82.1']@NA@jens heisterberg@david lyons@no@no
+EU-1-14-920_h_a_public-assessment-report.xml@EU-1-14-920_h_a_public-assessment-report@no_date_found@no_chmp_found@no_legal_basis@no@greg markey@david lyons@no@no
+EU-1-14-918_h_a_public-assessment-report.xml@EU-1-14-918_h_a_public-assessment-report@4/03/2013@20/02/2014@['article 8.3']@NA@martina weise@not_easily_scrapable@no@no
+EU-1-14-921_h_a_public-assessment-report.xml@EU-1-14-921_h_a_public-assessment-report@no_date_found@no_chmp_found@no_legal_basis@no@greg markey@david lyons@no@no
+EU-1-14-928_h_a_public-assessment-report.xml@EU-1-14-928_h_a_public-assessment-report@29/08/2013@20/03/2014@['article 8.3']@NA@concepcion prieto yerro@robert james hemmings@no@yes
+EU-1-14-923_h_a_public-assessment-report.xml@EU-1-14-923_h_a_public-assessment-report@6/03/2013@20/03/2014@['article 8.3']@NA@greg markey@not_easily_scrapable@no@no
+EU-1-14-935_h_a_public-assessment-report.xml@EU-1-14-935_h_a_public-assessment-report@29/04/2013@22/05/2014@['article 10.3']@NA@rapporteur john joseph borg@no_co-rapporteur@no@no
+EU-1-14-929_h_a_public-assessment-report.xml@EU-1-14-929_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 10.c', 'article 82.1']@no@concepcion prieto yerro@david lyons@no@no
+EU-1-14-922_h_a_public-assessment-report.xml@EU-1-14-922_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@concepcion prieto@not_easily_scrapable@no@no
+EU-1-14-933_h_a_public-assessment-report.xml@EU-1-14-933_h_a_public-assessment-report@4/06/2013@22/05/2014@['article 10.b']@NA@robert james hemmings@concepcion prieto yerro@no@no
+EU-1-14-930_h_a_public-assessment-report.xml@EU-1-14-930_h_a_public-assessment-report@5/03/2013@20/03/2014@['article 8.3']@NA@pieter de graeff@bart van der schueren@no@no
+EU-1-14-934_h_a_public-assessment-report.xml@EU-1-14-934_h_a_public-assessment-report@30/05/2013@22/05/2014@['article 8.3']@NA@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-14-943_h_a_public-assessment-report.xml@EU-1-14-943_h_a_public-assessment-report@19/12/2012@26/06/2014@['article 8.3']@NA@johann lodewijk hillege.@not_easily_scrapable@yes@no
+EU-1-14-937_h_a_public-assessment-report.xml@EU-1-14-937_h_a_public-assessment-report@25/04/2013@22/05/2014@['article 8.3']@NA@jens ersbøll@not_easily_scrapable@no@no
+EU-1-14-936_h_a_public-assessment-report.xml@EU-1-14-936_h_a_public-assessment-report@29/05/2013@22/05/2014@['article 8.3']@NA@jan mueller@not_easily_scrapable@no@no
+EU-1-14-931_h_a_public-assessment-report.xml@EU-1-14-931_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@pieter de graeff@filip josephson@no@yes
+EU-1-14-941_h_a_public-assessment-report.xml@EU-1-14-941_h_a_public-assessment-report@23/11/2012@26/06/2014@['article 8.3']@NA@concepcion prieto yerro@not_easily_scrapable@no@no
+EU-1-14-940_h_a_public-assessment-report.xml@EU-1-14-940_h_a_public-assessment-report@25/10/2013@26/06/2014@['article 8.3']@NA@kristina dunder@johann lodewijk hillege@no@no
+EU-1-14-944_h_a_public-assessment-report.xml@EU-1-14-944_h_a_public-assessment-report@3/06/2013@26/06/2014@['article 10.4']@NA@robert james hemmings@not_easily_scrapable@no@no
+EU-1-14-938_h_a_public-assessment-report.xml@EU-1-14-938_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@kristina dunder@pieter de graeff@no@yes
+EU-1-14-951_h_a_public-assessment-report.xml@EU-1-14-951_h_a_public-assessment-report@21/08/2013@24/07/2014@['article 10.1']@NA@john joseph borg@no_co-rapporteur@no@no
+EU-1-14-946_h_a_public-assessment-report.xml@EU-1-14-946_h_a_public-assessment-report@24/03/2014@24/07/2014@['article 10.4', 'article 82.1']@NA@robert james hemmings@sol ruiz@no@no
+EU-1-14-947_h_a_public-assessment-report.xml@EU-1-14-947_h_a_public-assessment-report@31/05/2013@24/07/2014@['article 10.b']@NA@kristina dunder@not_easily_scrapable@no@no
+EU-1-14-952_h_a_public-assessment-report.xml@EU-1-14-952_h_a_public-assessment-report@5/06/2014@20/11/2014@['article 10.c', 'article 82.1']@NA@bart van der schueren@johann lodewijk hillege@no@no
+EU-1-14-955_h_a_public-assessment-report.xml@EU-1-14-955_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@greg markey@not_easily_scrapable@no@no
+EU-1-14-954_h_a_public-assessment-report.xml@EU-1-14-954_h_a_public-assessment-report@30/09/2013@25/09/2014@['article 8.3']@NA@christian schneider@ingunn hagen westgaard@no@no
+EU-1-14-945_h_a_public-assessment-report.xml@EU-1-14-945_h_a_public-assessment-report@29/10/2013@24/07/2014@['article 8.3']@NA@filip josephson@not_easily_scrapable@no@no
+EU-1-14-957_h_a_public-assessment-report.xml@EU-1-14-957_h_a_public-assessment-report@23/08/2013@25/09/2014@['article 8.3']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-14-956_h_a_public-assessment-report.xml@EU-1-14-956_h_a_public-assessment-report@27/09/2013@25/09/2014@['article 8.3']@NA@greg markey@martina weise@no@no
+EU-1-14-960_h_a_public-assessment-report.xml@EU-1-14-960_h_a_public-assessment-report@26/06/2012@23/10/2014@['article 10.b']@NA@harald enzmann@christian schneider@no@no
+EU-1-14-962_h_a_public-assessment-report.xml@EU-1-14-962_h_a_public-assessment-report@26/08/2013@25/09/2014@['article 8.3']@NA@piotr fiedor@piotr fiedor@no@no
+EU-1-14-961_h_a_public-assessment-report.xml@EU-1-14-961_h_a_public-assessment-report@26/12/2013@25/09/2014@['article 10.1']@NA@kolbeinn guðmundsson.@no_co-rapporteur@no@no
+EU-1-14-963_h_a_public-assessment-report.xml@EU-1-14-963_h_a_public-assessment-report@5/02/2014@25/09/2014@['article 10.b', 'article 82.1']@NA@piotr fiedor@piotr fiedor@yes@no
+EU-1-14-964_h_a_public-assessment-report.xml@EU-1-14-964_h_a_public-assessment-report@24/10/2013@25/09/2014@['article 10.b']@NA@piotr fiedor@piotr fiedor@yes@no
+EU-1-14-959_h_a_public-assessment-report.xml@EU-1-14-959_h_a_public-assessment-report@3/09/2013@23/10/2014@['article 8.3']@NA@pierre demolis@bart van der schueren@no@no
+EU-1-14-958_h_a_public-assessment-report.xml@EU-1-14-958_h_a_public-assessment-report@28/02/2014@25/09/2014@['article 8.3']@NA@filip josephson@joseph emmerich@no@no
+EU-1-14-965_h_a_public-assessment-report.xml@EU-1-14-965_h_a_public-assessment-report@5/02/2014@25/09/2014@['article 10.a']@NA@concepcion prieto yerro@patrick salmon@no@yes
+EU-1-14-970_h_a_public-assessment-report.xml@EU-1-14-970_h_a_public-assessment-report@28/10/2013@23/10/2014@['article 8.3']@NA@andrea laslop@not_easily_scrapable@no@no
+EU-1-14-969_h_a_public-assessment-report.xml@EU-1-14-969_h_a_public-assessment-report@3/02/2012@23/10/2014@['article 8.3']@NA@harald enzmann@robert james hemmings@no@no
+EU-1-14-974_h_a_public-assessment-report.xml@EU-1-14-974_h_a_public-assessment-report@23/10/2013@20/11/2014@['article 8.3']@NA@pieter de graeff@harald enzmann@no@no
+EU-1-14-972_h_a_public-assessment-report.xml@EU-1-14-972_h_a_public-assessment-report@7/05/2014@23/10/2014@['article 10.c']@NA@arantxa sancho@not_easily_scrapable@no@no
+EU-1-14-967_h_a_public-assessment-report.xml@EU-1-14-967_h_a_public-assessment-report@2/10/2013@25/09/2014@['article 10.b']@NA@no_rapporteur@not_easily_scrapable@no@no
+EU-1-14-975_h_a_public-assessment-report.xml@EU-1-14-975_h_a_public-assessment-report@27/07/2014@18/12/2014@['article 10.1']@NA@stanislav primožič@not_easily_scrapable@no@no
+EU-1-14-977_h_a_public-assessment-report.xml@EU-1-14-977_h_a_public-assessment-report@21/09/2014@20/11/2014@['article 10.c', 'article 82.1']@NA@bruno sepodes@david lyons@no@no
+EU-1-14-973_h_a_public-assessment-report.xml@EU-1-14-973_h_a_public-assessment-report@29/11/2013@25/04/2014@['article 8.3']@NA@robert james hemmings.@not_easily_scrapable@no@no
+EU-1-14-984_h_a_public-assessment-report.xml@EU-1-14-984_h_a_public-assessment-report@5/12/2013@18/12/2014@['article 8.3']@NA@johann lodewijk hillege@greg markey@no@no
+EU-1-14-978_h_a_public-assessment-report.xml@EU-1-14-978_h_a_public-assessment-report@5/03/2013@20/11/2014@['article 8.3']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-14-979_h_a_public-assessment-report.xml@EU-1-14-979_h_a_public-assessment-report@25/04/2014@24/07/2014@['article 8.3']@NA@david lyons@not_easily_scrapable@no@yes
+EU-1-14-981_h_a_public-assessment-report.xml@EU-1-14-981_h_a_public-assessment-report@2/12/2013@20/11/2014@['article 8.3']@NA@patrick salmon@robert james hemmings@no@no
+EU-1-14-983_h_a_public-assessment-report.xml@EU-1-14-983_h_a_public-assessment-report@6/05/2014@20/11/2014@['article 8.3']@NA@filip josephson@johann lodewijk hillege@no@yes
+EU-1-14-987_h_a_public-assessment-report.xml@EU-1-14-987_h_a_public-assessment-report@6/03/2013@18/12/2014@['article 8.3']@NA@egbert flory@paolo gasparini@no@no
+EU-1-14-982_h_a_public-assessment-report.xml@EU-1-14-982_h_a_public-assessment-report@6/05/2014@20/11/2014@['article 8.3']@NA@johann lodewijk hillege@johann lodewijk hillege@no@no
+EU-1-15-1000_h_a_public-assessment-report.xml@EU-1-15-1000_h_a_public-assessment-report@29/11/2013@26/02/2015@['article 8.3', 'article 82.1']@NA@greg markey@daniela melchiorri@no@no
+EU-1-15-1002_h_a_public-assessment-report.xml@EU-1-15-1002_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@yes
+EU-1-14-980_h_a_public-assessment-report.xml@EU-1-14-980_h_a_public-assessment-report@23/10/2013@20/11/2014@['article 8.3']@NA@janne komi@not_easily_scrapable@no@no
+EU-1-15-1004_h_a_public-assessment-report.xml@EU-1-15-1004_h_a_public-assessment-report@26/03/2014@12/03/2015@['article 10.1']@NA@juris pokrotnieks@no_co-rapporteur@no@no
+EU-1-15-1001_h_a_public-assessment-report.xml@EU-1-15-1001_h_a_public-assessment-report@13/12/2013@22/01/2015@['article 8.3']@NA@patrick salmon@joseph emmerich@no@no
+EU-1-14-988_h_a_public-assessment-report.xml@EU-1-14-988_h_a_public-assessment-report@2/10/2013@18/12/2014@['article 10.b']@NA@jens heisterberg@robert james hemmings@no@no
+EU-1-15-1003_h_a_public-assessment-report.xml@EU-1-15-1003_h_a_public-assessment-report@3/07/2014@26/03/2015@['article 10.b']@NA@pieter de graeff@not_easily_scrapable@no@no
+EU-1-15-1006_h_a_public-assessment-report.xml@EU-1-15-1006_h_a_public-assessment-report@2/12/2013@25/06/2015@['article 8.3']@NA@kristina dunder@not_easily_scrapable@no@no
+EU-1-15-1005_h_a_public-assessment-report.xml@EU-1-15-1005_h_a_public-assessment-report@23/07/2014@10/04/2015@['article 10.1']@NA@karsten bruins slot@no_co-rapporteur@no@no
+EU-1-15-1009_h_a_public-assessment-report.xml@EU-1-15-1009_h_a_public-assessment-report@23/07/2014@23/04/2015@['article 10.1']@NA@john joseph borg@no_co-rapporteur@no@no
+EU-1-15-1011_h_a_public-assessment-report.xml@EU-1-15-1011_h_a_public-assessment-report@20/08/2014@23/04/2015@['article 10.1']@NA@rapporteur radka montoniová@no_co-rapporteur@no@no
+EU-1-15-1008_h_a_public-assessment-report.xml@EU-1-15-1008_h_a_public-assessment-report@1/05/2014@23/04/2015@['article 8.3']@NA@greg markey@david lyons@no@no
+EU-1-15-1010_h_a_public-assessment-report.xml@EU-1-15-1010_h_a_public-assessment-report@24/09/2014@23/04/2015@['article 10.1']@NA@rapporteur john joseph borg@no_co-rapporteur@no@no
+EU-1-15-1012_h_a_public-assessment-report.xml@EU-1-15-1012_h_a_public-assessment-report@20/08/2014@26/05/2015@['article 10.1']@NA@rapporteur radka montoniová@no_co-rapporteur@no@no
+EU-1-15-1007_h_a_public-assessment-report.xml@EU-1-15-1007_h_a_public-assessment-report@3/03/2014@26/03/2015@['article 8.3']@NA@kristina dunder@not_easily_scrapable@no@no
+EU-1-15-1013_h_a_public-assessment-report.xml@EU-1-15-1013_h_a_public-assessment-report@5/12/2013@23/04/2015@['article 10.a']@NA@robert james hemmings@not_easily_scrapable@no@no
+EU-1-15-1015_h_a_public-assessment-report.xml@EU-1-15-1015_h_a_public-assessment-report@1/06/2014@25/06/2015@['article 8.3']@NA@greg markey@daniela melchiorri@no@no
+EU-1-15-1020_h_a_public-assessment-report.xml@EU-1-15-1020_h_a_public-assessment-report@28/05/2014@25/06/2015@['article 10.3']@NA@john joseph borg@andrea laslop@no@no
+EU-1-15-1018_h_a_public-assessment-report.xml@EU-1-15-1018_h_a_public-assessment-report@6/09/2013@21/05/2015@['article 8.3']@NA@david lyons@not_easily_scrapable@no@no
+EU-1-15-1016_h_a_public-assessment-report.xml@EU-1-15-1016_h_a_public-assessment-report@24/09/2014@21/05/2015@['article 8.3']@NA@pieter de graeff@alar irs@no@no
+EU-1-15-1021_h_a_public-assessment-report.xml@EU-1-15-1021_h_a_public-assessment-report@20/08/2014@21/05/2015@['article 10.1']@NA@alar irs@not_easily_scrapable@no@no
+EU-1-15-1019_h_a_public-assessment-report.xml@EU-1-15-1019_h_a_public-assessment-report@25/06/2014@21/05/2015@['article 10.1']@NA@milena stain@no_co-rapporteur@no@no
+EU-1-15-1028_h_a_public-assessment-report.xml@EU-1-15-1028_h_a_public-assessment-report@24/09/2014@25/06/2015@['article 10.1']@NA@kristina dunder@no_co-rapporteur@no@no
+EU-1-15-1027_h_a_public-assessment-report.xml@EU-1-15-1027_h_a_public-assessment-report@20/08/2014@25/06/2015@['article 10.1']@NA@outi mäki@no_co-rapporteur@no@no
+EU-1-15-1023_h_a_public-assessment-report.xml@EU-1-15-1023_h_a_public-assessment-report@5/05/2014@3/07/2015@['article 8.3']@NA@pieter de graeff@filip josephson@no@no
+EU-1-15-1029_h_a_public-assessment-report.xml@EU-1-15-1029_h_a_public-assessment-report@23/07/2014@25/06/2015@['article 10.1', 'article 10.3']@NA@john joseph borg@no_co-rapporteur@no@no
+EU-1-15-1025_h_a_public-assessment-report.xml@EU-1-15-1025_h_a_public-assessment-report@4/07/2014@21/05/2015@['article 10.b']@NA@bruno sepodes@robert james hemmings@no@no
+EU-1-15-1031_h_a_public-assessment-report.xml@EU-1-15-1031_h_a_public-assessment-report@2/12/2014@23/07/2015@['article 8.3']@NA@pieter de graeff@alar irs@no@no
+EU-1-15-1030_h_a_public-assessment-report.xml@EU-1-15-1030_h_a_public-assessment-report@5/05/2014@25/06/2015@['article 8.3']@NA@pieter de graeff@daniela melchiorri@no@no
+EU-1-15-1033_h_a_public-assessment-report.xml@EU-1-15-1033_h_a_public-assessment-report@24/11/2014@25/06/2015@['article 8.3']@NA@bart van der schueren@not_easily_scrapable@no@yes
+EU-1-15-1032_h_a_public-assessment-report.xml@EU-1-15-1032_h_a_public-assessment-report@29/07/2014@23/07/2015@['article 8.3']@NA@robert james hemmings@not_easily_scrapable@no@no
+EU-1-15-1035_h_a_public-assessment-report.xml@EU-1-15-1035_h_a_public-assessment-report@30/06/2014@23/07/2015@['article 8.3']@NA@greg markey@not_easily_scrapable@no@no
+EU-1-15-1038_h_a_public-assessment-report.xml@EU-1-15-1038_h_a_public-assessment-report@29/10/2014@24/09/2015@['article 10.1']@NA@bart van der schueren@no_co-rapporteur@no@no
+EU-1-15-1037_h_a_public-assessment-report.xml@EU-1-15-1037_h_a_public-assessment-report@29/10/2014@23/07/2015@['article 10.1']@NA@karsten bruins slot@no_co-rapporteur@no@no
+EU-1-15-1041_h_a_public-assessment-report.xml@EU-1-15-1041_h_a_public-assessment-report@5/05/2015@23/07/2015@['article 10.c']@NA@pieter de graeff@not_easily_scrapable@no@no
+EU-1-15-1036_h_a_public-assessment-report.xml@EU-1-15-1036_h_a_public-assessment-report@16/07/2014@23/07/2015@['article 8.3']@NA@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-15-1040_h_a_public-assessment-report.xml@EU-1-15-1040_h_a_public-assessment-report@3/03/2014@23/07/2015@['article 8.3']@NA@johann lodewijk hillege@piotr fiedor@no@no
+EU-1-15-1045_h_a_public-assessment-report.xml@EU-1-15-1045_h_a_public-assessment-report@20/08/2014@24/09/2015@['article 10.1']@NA@john joseph borg@no_co-rapporteur@no@no
+EU-1-15-1046_h_a_public-assessment-report.xml@EU-1-15-1046_h_a_public-assessment-report@9/10/2014@24/09/2015@['article 8.3']@NA@jan mueller-berghaus@sol ruiz@no@no
+EU-1-15-1043_h_a_public-assessment-report.xml@EU-1-15-1043_h_a_public-assessment-report@3/11/2014@24/09/2015@['article 8.3']@NA@greg markey@david lyons@no@no
+EU-1-15-1048_h_a_public-assessment-report.xml@EU-1-15-1048_h_a_public-assessment-report@2/09/2014@24/09/2015@['article 8.3']@NA@filip josephson@daniel brasseur@no@no
+EU-1-15-1049_h_a_public-assessment-report.xml@EU-1-15-1049_h_a_public-assessment-report@30/07/2014@13/10/2016@['article 8.3']@NA@kristina dunder@greg markey@no@no
+EU-1-15-1047_h_a_public-assessment-report.xml@EU-1-15-1047_h_a_public-assessment-report@9/10/2014@26/02/2015@['article 8.3']@NA@pierre demolis@daniela melchiorri@no@no
+EU-1-15-1014_h_a_public-assessment-report.xml@EU-1-15-1014_h_a_public-assessment-report@2/09/2014@23/04/2015@['article 8.3']@NA@arantxa sancho@pieter de graeff@no@yes
+EU-1-15-1053_h_a_public-assessment-report.xml@EU-1-15-1053_h_a_public-assessment-report@no_date_found@17/12/2015@['article 10.3']@no@robert james hemmings,@daniela melchiorri@no@no
+EU-1-15-1051_h_a_public-assessment-report.xml@EU-1-15-1051_h_a_public-assessment-report@3/07/2015@24/09/2015@['article 10.c']@NA@kristina dunder@not_easily_scrapable@no@no
+EU-1-15-1055_h_a_public-assessment-report.xml@EU-1-15-1055_h_a_public-assessment-report@29/10/2014@24/09/2015@['article 10.1']@NA@juris pokrotnieks@no_co-rapporteur@no@no
+EU-1-15-1054_h_a_public-assessment-report.xml@EU-1-15-1054_h_a_public-assessment-report@22/01/2015@24/09/2015@['article 10.1']@NA@radka montoniová@no_co-rapporteur@no@no
+EU-1-15-1056_h_a_public-assessment-report.xml@EU-1-15-1056_h_a_public-assessment-report@2/03/2015@24/09/2015@['article 8.3']@NA@jan mueller-berghaus@jens heisterberg@no@yes
+EU-1-15-1024_h_a_public-assessment-report.xml@EU-1-15-1024_h_a_public-assessment-report@4/06/2014@21/05/2015@['article 8.3']@NA@daniela melchiorri@not_easily_scrapable@no@no
+EU-1-15-1052_h_a_public-assessment-report.xml@EU-1-15-1052_h_a_public-assessment-report@3/07/2015@24/09/2015@['article 10.c', 'article 82.1']@NA@kristina dunder@not_easily_scrapable@no@no
+EU-1-15-1057_h_a_public-assessment-report.xml@EU-1-15-1057_h_a_public-assessment-report@29/10/2014@24/09/2015@['article 10.1']@NA@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-15-1064_h_a_public-assessment-report.xml@EU-1-15-1064_h_a_public-assessment-report@28/08/2014@22/10/2015@['article 8.3']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-15-1063_h_a_public-assessment-report.xml@EU-1-15-1063_h_a_public-assessment-report@26/02/2015@19/11/2015@['article 10.3']@NA@alar irs@no_co-rapporteur@no@no
+EU-1-15-1058_h_a_public-assessment-report.xml@EU-1-15-1058_h_a_public-assessment-report@16/12/2014@23/09/2015@['article 8.3']@NA@pieter de graeff@kristina dunder@no@no
+EU-1-15-1060_h_a_public-assessment-report.xml@EU-1-15-1060_h_a_public-assessment-report@22/01/2015@24/09/2015@['article 8.3']@NA@arantxa sancho-lopez@pierre demolis@no@yes
+EU-1-15-1059_h_a_public-assessment-report.xml@EU-1-15-1059_h_a_public-assessment-report@5/11/2014@24/09/2015@['article 8.3']@NA@greg markey@daniela melchiorri@no@yes
+EU-1-15-1062_h_a_public-assessment-report.xml@EU-1-15-1062_h_a_public-assessment-report@2/06/2014@24/09/2015@['article 8.3']@NA@greg markey@not_easily_scrapable@no@no
+EU-1-15-1065_h_a_public-assessment-report.xml@EU-1-15-1065_h_a_public-assessment-report@24/12/2014@19/11/2015@['article 10.1']@NA@david lyons@not_easily_scrapable@no@no
+EU-1-15-1066_h_a_public-assessment-report.xml@EU-1-15-1066_h_a_public-assessment-report@25/11/2014@28/04/2015@['article 8.3']@NA@greg markey@martina weise@no@no
+EU-1-15-1067_h_a_public-assessment-report.xml@EU-1-15-1067_h_a_public-assessment-report@22/01/2015@19/11/2015@['article 10.1']@NA@john joseph borg@no_co-rapporteur@no@no
+EU-1-15-1068_h_a_public-assessment-report.xml@EU-1-15-1068_h_a_public-assessment-report@7/05/2014@19/11/2015@['article 8.3']@NA@joseph emmerich@greg markey@no@no
+EU-1-15-1072_h_a_public-assessment-report.xml@EU-1-15-1072_h_a_public-assessment-report@5/12/2013@26/11/2015@['article 8.3']@NA@robert james hemmings@daniela melchiorri@no@no
+EU-1-15-1061_h_a_public-assessment-report.xml@EU-1-15-1061_h_a_public-assessment-report@28/11/2014@24/09/2015@['article 8.3']@NA@robert james hemmings@not_easily_scrapable@no@no
+EU-1-15-1071_h_a_public-assessment-report.xml@EU-1-15-1071_h_a_public-assessment-report@26/11/2014@19/11/2015@['article 10.1']@NA@john joseph borg@no_co-rapporteur@no@no
+EU-1-15-1076_h_a_public-assessment-report.xml@EU-1-15-1076_h_a_public-assessment-report@2/12/2014@17/12/2015@['article 8.3']@NA@kristina dunder@robert james hemmings@no@no
+EU-1-15-1073_h_a_public-assessment-report.xml@EU-1-15-1073_h_a_public-assessment-report@20/11/2014@19/11/2015@['article 8.3']@NA@filip josephson@daniela melchiorri@no@no
+EU-1-15-1075_h_a_public-assessment-report.xml@EU-1-15-1075_h_a_public-assessment-report@1/12/2014@17/12/2015@['article 8.3']@NA@concepcion prieto yerro@harald enzmann@no@no
+EU-1-15-1079_h_a_public-assessment-report.xml@EU-1-15-1079_h_a_public-assessment-report@17/12/2014@17/12/2015@['article 8.3']@NA@daniel brasseur@karsten bruins slot@no@no
+EU-1-15-1082_h_a_public-assessment-report.xml@EU-1-15-1082_h_a_public-assessment-report@2/06/2015@1/04/2016@['article 8.3']@NA@pieter de graeff@ondřej slanař@no@yes
+EU-1-15-1074_h_a_public-assessment-report.xml@EU-1-15-1074_h_a_public-assessment-report@3/12/2014@19/11/2015@['article 10.4']@NA@andrea laslop@not_easily_scrapable@no@no
+EU-1-15-1078_h_a_public-assessment-report.xml@EU-1-15-1078_h_a_public-assessment-report@5/11/2014@23/02/2017@['article 8.3']@NA@bart van der schueren@not_easily_scrapable@no@no
+EU-1-15-990_h_a_public-assessment-report.xml@EU-1-15-990_h_a_public-assessment-report@2/12/2013@22/01/2015@['article 8.3']@NA@patrick salmon@agnes gyurasics@no@no
+EU-1-15-1085_h_a_public-assessment-report.xml@EU-1-15-1085_h_a_public-assessment-report@23/04/2015@25/02/2016@['article 8.3']@NA@kristina dunder@greg markey@no@no
+EU-1-15-989_h_a_public-assessment-report.xml@EU-1-15-989_h_a_public-assessment-report@4/02/2014@22/01/2015@['article 8.3']@NA@greg markey@not_easily_scrapable@no@no
+EU-1-15-994_h_a_public-assessment-report.xml@EU-1-15-994_h_a_public-assessment-report@26/12/2013@22/01/2014@['article 8.3']@NA@pieter de graeff@not_easily_scrapable@no@no
+EU-1-15-992_h_a_public-assessment-report.xml@EU-1-15-992_h_a_public-assessment-report@20/12/2013@11/02/2015@['article 8.3']@NA@pieter de graeff@jens heisterberg@no@no
+EU-1-15-991_h_a_public-assessment-report.xml@EU-1-15-991_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-15-997_h_a_public-assessment-report.xml@EU-1-15-997_h_a_public-assessment-report@20/08/2014@26/05/2015@['article 10.1', 'article 82.1']@NA@pierre demolis@no_co-rapporteur@no@no
+EU-1-16-1087_h_a_public-assessment-report.xml@EU-1-16-1087_h_a_public-assessment-report@6/05/2015@28/01/2016@['article 8.3']@NA@andrea laslop@not_easily_scrapable@no@yes
+EU-1-16-1090_h_a_public-assessment-report.xml@EU-1-16-1090_h_a_public-assessment-report@25/03/2015@28/01/2016@['article 10.1']@NA@kolbeinn gudmundsson@no_co-rapporteur@no@no
+EU-1-16-1089_h_a_public-assessment-report.xml@EU-1-16-1089_h_a_public-assessment-report@5/03/2015@17/03/2016@['article 8.3']@NA@jan mueller-berghaus@karsten bruins slot@no@no
+EU-1-16-1088_h_a_public-assessment-report.xml@EU-1-16-1088_h_a_public-assessment-report@3/07/2015@28/01/2016@['article 8.3']@NA@pieter de graeff@daniela melchiorri@no@yes
+EU-1-16-1086_h_a_public-assessment-report.xml@EU-1-16-1086_h_a_public-assessment-report@5/06/2015@17/12/2015@['article 8.3']@NA@arantxa sancho-lopez@karsten bruins slot@no@yes
+EU-1-16-1093_h_a_public-assessment-report.xml@EU-1-16-1093_h_a_public-assessment-report@25/06/2015@28/01/2016@['article 10.1']@NA@bruno sepodes@no_co-rapporteur@no@no
+EU-1-16-1091_h_a_public-assessment-report.xml@EU-1-16-1091_h_a_public-assessment-report@21/01/2015@23/06/2016@['article 10.1']@NA@karsten bruins slot@no_co-rapporteur@no@no
+EU-1-16-1092_h_a_public-assessment-report.xml@EU-1-16-1092_h_a_public-assessment-report@25/02/2015@28/01/2016@['article 10.1']@NA@piotr fiedor@not_easily_scrapable@no@no
+EU-1-15-999_h_a_public-assessment-report.xml@EU-1-15-999_h_a_public-assessment-report@4/03/2014@26/02/2015@['article 8.3']@NA@arantxa sancho@not_easily_scrapable@no@no
+EU-1-16-1097_h_a_public-assessment-report.xml@EU-1-16-1097_h_a_public-assessment-report@1/05/2015@1/04/2016@['article 8.3']@NA@elaine french@sol ruiz@no@no
+EU-1-16-1095_h_a_public-assessment-report.xml@EU-1-16-1095_h_a_public-assessment-report@9/03/2015@25/02/2016@['article 8.3']@NA@jan mueller-berghaus@not_easily_scrapable@no@no
+EU-1-16-1104_h_a_public-assessment-report.xml@EU-1-16-1104_h_a_public-assessment-report@28/05/2015@1/04/2016@['article 10.1']@NA@alar irs@no_co-rapporteur@no@no
+EU-1-16-1094_h_a_public-assessment-report.xml@EU-1-16-1094_h_a_public-assessment-report@30/07/2015@26/05/2016@['article 8.3']@NA@greg markey@daniela melchiorri@yes@yes
+EU-1-16-1098_h_a_public-assessment-report.xml@EU-1-16-1098_h_a_public-assessment-report@4/06/2015@25/02/2016@['article 8.3']@NA@andrea laslop@concepcion prieto yerro@no@no
+EU-1-16-1102_h_a_public-assessment-report.xml@EU-1-16-1102_h_a_public-assessment-report@25/03/2015@26/05/2016@['article 10.1']@NA@rapporteur ines baotic@no_co-rapporteur@no@no
+EU-1-16-1099_h_a_public-assessment-report.xml@EU-1-16-1099_h_a_public-assessment-report@21/04/2015@25/02/2016@['article 8.3']@NA@robert james hemmings@not_easily_scrapable@no@no
+EU-1-16-1101_h_a_public-assessment-report.xml@EU-1-16-1101_h_a_public-assessment-report@9/09/2015@1/04/2016@['article 8.3']@NA@sinan b. sarac@not_easily_scrapable@no@yes
+EU-1-16-1105_h_a_public-assessment-report.xml@EU-1-16-1105_h_a_public-assessment-report@28/04/2015@28/04/2016@['article 8.3']@NA@patrick salmon@robert james hemmings@no@no
+EU-1-16-1110_h_a_public-assessment-report.xml@EU-1-16-1110_h_a_public-assessment-report@29/10/2015@15/09/2016@['article 10.3']@NA@robert james hemmings@george aislaitner@no@no
+EU-1-16-1108_h_a_public-assessment-report.xml@EU-1-16-1108_h_a_public-assessment-report@20/04/2015@26/05/2016@['article 10.b']@NA@pieter de graeff@bart van der schueren@no@no
+EU-1-16-1103_h_a_public-assessment-report.xml@EU-1-16-1103_h_a_public-assessment-report@14/01/2016@1/04/2016@['article 10.c', 'article 82.1']@NA@pieter de graeff@kristina dunder@no@no
+EU-1-16-1106_h_a_public-assessment-report.xml@EU-1-16-1106_h_a_public-assessment-report@3/03/2015@1/04/2016@['article 10.4']@NA@jan mueller-berghaus@not_easily_scrapable@no@no
+EU-1-16-1109_h_a_public-assessment-report.xml@EU-1-16-1109_h_a_public-assessment-report@24/03/2015@28/04/2016@['article 8.3']@NA@robert james hemmings@karsten bruins slot@no@no
+EU-1-16-1114_h_a_public-assessment-report.xml@EU-1-16-1114_h_a_public-assessment-report@1/10/2015@26/05/2016@['article 10.1']@NA@milena stain@no_co-rapporteur@no@no
+EU-1-16-1115_h_a_public-assessment-report.xml@EU-1-16-1115_h_a_public-assessment-report@25/06/2015@26/05/2016@['article 10.1']@NA@karsten bruins slot@no_co-rapporteur@no@no
+EU-1-16-1112_h_a_public-assessment-report.xml@EU-1-16-1112_h_a_public-assessment-report@29/07/2015@28/04/2016@['article 8.3']@NA@robert james hemmings@not_easily_scrapable@no@no
+EU-1-16-1125_h_a_public-assessment-report.xml@EU-1-16-1125_h_a_public-assessment-report@30/06/2015@17/06/2016@['article 8.3']@NA@johann lodewijk hillege@david lyons@no@no
+EU-1-16-1124_h_a_public-assessment-report.xml@EU-1-16-1124_h_a_public-assessment-report@22/06/2015@23/06/2016@['article 10.3']@NA@bruno sepodes@no_co-rapporteur@no@no
+EU-1-16-1127_h_a_public-assessment-report.xml@EU-1-16-1127_h_a_public-assessment-report@1/10/2015@21/07/2016@['article 10.1']@NA@john joseph borg@no_co-rapporteur@no@no
+EU-1-16-1128_h_a_public-assessment-report.xml@EU-1-16-1128_h_a_public-assessment-report@28/01/2016@21/07/2016@['article 82.1']@NA@bart van der schueren@robert james hemmings@no@yes
+EU-1-16-1116_h_a_public-assessment-report.xml@EU-1-16-1116_h_a_public-assessment-report@14/11/2015@26/05/2016@['article 8.3']@NA@filip josephson@not_easily_scrapable@no@yes
+EU-1-16-1129_h_a_public-assessment-report.xml@EU-1-16-1129_h_a_public-assessment-report@20/08/2015@13/10/2016@['article 10.1']@NA@romaldas mačiulaitis@no_co-rapporteur@no@no
+EU-1-16-1134_h_a_public-assessment-report.xml@EU-1-16-1134_h_a_public-assessment-report@4/12/2015@28/07/2016@['article 10.1']@NA@rapporteur ondřej slanař@no_co-rapporteur@no@no
+EU-1-16-1130_h_a_public-assessment-report.xml@EU-1-16-1130_h_a_public-assessment-report@30/04/2015@21/07/2016@['article 8.3']@NA@filip josephson@not_easily_scrapable@no@no
+EU-1-16-1133_h_a_public-assessment-report.xml@EU-1-16-1133_h_a_public-assessment-report@23/07/2015@13/10/2016@['article 10.1']@NA@romaldas mačiulaitis@no_co-rapporteur@no@no
+EU-1-16-1137_h_a_public-assessment-report.xml@EU-1-16-1137_h_a_public-assessment-report@4/12/2015@15/09/2016@['article 10.1']@NA@kolbeinn gudmundsson@no_co-rapporteur@no@no
+EU-1-16-1136_h_a_public-assessment-report.xml@EU-1-16-1136_h_a_public-assessment-report@28/01/2016@21/07/2016@['article 8.3']@NA@robert james hemmings@bjorg bolstad@no@yes
+EU-1-16-1135_h_a_public-assessment-report.xml@EU-1-16-1135_h_a_public-assessment-report@28/11/2014@28/04/2016@['article 10.a']@NA@jens heisterberg@not_easily_scrapable@yes@no
+EU-1-16-1132_h_a_public-assessment-report.xml@EU-1-16-1132_h_a_public-assessment-report@27/05/2015@21/07/2016@['article 10.4']@NA@andrea laslop@patrick salmon@no@no
+EU-1-16-1141_h_a_public-assessment-report.xml@EU-1-16-1141_h_a_public-assessment-report@8/10/2015@13/10/2016@['article 10.a']@NA@concepcion prieto yerro@piotr fiedor@no@no
+EU-1-16-1140_h_a_public-assessment-report.xml@EU-1-16-1140_h_a_public-assessment-report@20/08/2015@10/11/2016@['article 10.1']@NA@john joseph borg@no_co-rapporteur@no@no
+EU-1-16-1142_h_a_public-assessment-report.xml@EU-1-16-1142_h_a_public-assessment-report@2/09/2015@15/09/2016@['article 8.3']@NA@pieter de graeff@andrea laslop@no@no
+EU-1-16-1144_h_a_public-assessment-report.xml@EU-1-16-1144_h_a_public-assessment-report@4/12/2015@15/09/2016@['article 10.1']@NA@radka montoniová@no_co-rapporteur@no@no
+EU-1-16-1146_h_a_public-assessment-report.xml@EU-1-16-1146_h_a_public-assessment-report@8/10/2015@15/09/2016@['article 10.b']@NA@pieter de graeff@bart van der schueren@no@no
+EU-1-16-1138_h_a_public-assessment-report.xml@EU-1-16-1138_h_a_public-assessment-report@13/11/2015@13/10/2016@['article 8.3']@NA@filip josephson@pieter de graeff@no@no
+EU-1-16-1139_h_a_public-assessment-report.xml@EU-1-16-1139_h_a_public-assessment-report@8/06/2015@13/10/2016@['article 8.3']@NA@aranzazu sancho-lopez@daniela melchiorri@no@no
+EU-1-16-1150_h_a_public-assessment-report.xml@EU-1-16-1150_h_a_public-assessment-report@7/10/2015@13/10/2016@['article 8.3']@NA@joseph emmerich@nithyanandan nagercoil@no@no
+EU-1-16-1153_h_a_public-assessment-report.xml@EU-1-16-1153_h_a_public-assessment-report@28/01/2016@10/11/2016@['article 10.1']@NA@radka montoniová@no_co-rapporteur@no@no
+EU-1-16-1148_h_a_public-assessment-report.xml@EU-1-16-1148_h_a_public-assessment-report@29/10/2015@15/09/2016@['article 10.1']@NA@alar irs@no_co-rapporteur@no@no
+EU-1-16-1152_h_a_public-assessment-report.xml@EU-1-16-1152_h_a_public-assessment-report@10/08/2016@23/02/2017@['article 10.c', 'article 82.1']@no@concepcion prieto yerro@not_easily_scrapable@no@no
+EU-1-16-1147_h_a_public-assessment-report.xml@EU-1-16-1147_h_a_public-assessment-report@30/07/2015@15/09/2016@['article 8.3']@NA@filip josephson@pierre demolis@no@no
+EU-1-16-1155_h_a_public-assessment-report.xml@EU-1-16-1155_h_a_public-assessment-report@13/11/2015@18/05/2017@['article 8.3']@NA@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-16-1156_h_a_public-assessment-report.xml@EU-1-16-1156_h_a_public-assessment-report@4/12/2015@22/11/2016@['article 8.3']@NA@jan mueller-berghaus@karsten bruins slot@no@yes
+EU-1-16-1158_h_a_public-assessment-report.xml@EU-1-16-1158_h_a_public-assessment-report@4/12/2015@10/11/2016@['article 8.3']@NA@jan mueller-berghaus@not_easily_scrapable@yes@no
+EU-1-16-1159_h_a_public-assessment-report.xml@EU-1-16-1159_h_a_public-assessment-report@16/12/2015@10/11/2016@['article 10.4']@NA@milena stain@greg markey@no@no
+EU-1-16-1154_h_a_public-assessment-report.xml@EU-1-16-1154_h_a_public-assessment-report@25/02/2016@10/11/2016@['article 8.3']@NA@robert james hemmings@martina weise@no@no
+EU-1-16-1161_h_a_public-assessment-report.xml@EU-1-16-1161_h_a_public-assessment-report@16/12/2015@10/11/2016@['article 10.4', 'article 82.1']@NA@milena stain@greg markey@no@no
+EU-1-16-1157_h_a_public-assessment-report.xml@EU-1-16-1157_h_a_public-assessment-report@3/03/2016@10/11/2016@['article 10.b']@no@kristina dunder@bart van der schueren@no@no
+EU-1-16-1166_h_a_public-assessment-report.xml@EU-1-16-1166_h_a_public-assessment-report@23/05/2016@15/12/2016@['article 10.1']@no@rapporteur alar irs@no_co-rapporteur@no@no
+EU-1-16-1168_h_a_public-assessment-report.xml@EU-1-16-1168_h_a_public-assessment-report@28/09/2016@15/12/2016@['article 10.c', 'article 82.1']@no@jan mueller-berghaus@andrea laslop@no@no
+EU-1-16-1160_h_a_public-assessment-report.xml@EU-1-16-1160_h_a_public-assessment-report@4/12/2015@10/11/2016@['article 82.1']@NA@kristina dunder@not_easily_scrapable@no@no
+EU-1-16-1164_h_a_public-assessment-report.xml@EU-1-16-1164_h_a_public-assessment-report@3/12/2015@26/01/2017@['article 10.4']@NA@kristina dunder@daniela melchiorri@no@no
+EU-1-16-1167_h_a_public-assessment-report.xml@EU-1-16-1167_h_a_public-assessment-report@9/10/2015@15/12/2016@['article 10.4']@NA@sol ruiz@robert james hemmings@no@no
+EU-1-17-1173_h_a_public-assessment-report.xml@EU-1-17-1173_h_a_public-assessment-report@3/12/2015@25/01/2018@['article 8.3']@NA@romaldas mačiulaitis@not_easily_scrapable@no@no
+EU-1-16-1171_h_a_public-assessment-report.xml@EU-1-16-1171_h_a_public-assessment-report@28/05/2015@15/12/2016@['article 10.3']@NA@greg markey@not_easily_scrapable@no@no
+EU-1-16-1170_h_a_public-assessment-report.xml@EU-1-16-1170_h_a_public-assessment-report@22/01/2016@15/12/2016@['article 8.3']@NA@johann lodewijk hillege@bart van der schueren@no@no
+EU-1-16-1169_h_a_public-assessment-report.xml@EU-1-16-1169_h_a_public-assessment-report@8/09/2015@15/12/2016@['article 8.3']@NA@filip josephson@not_easily_scrapable@no@no
+EU-1-17-1177_h_a_public-assessment-report.xml@EU-1-17-1177_h_a_public-assessment-report@2/11/2016@26/01/2017@['article 10.c', 'article 82.1']@no@concepcion prieto yerro@not_easily_scrapable@no@no
+EU-1-17-1175_h_a_public-assessment-report.xml@EU-1-17-1175_h_a_public-assessment-report@25/02/2016@26/01/2017@['article 10.1']@NA@kolbeinn gudmundsson.@no_co-rapporteur@no@no
+EU-1-17-1176_h_a_public-assessment-report.xml@EU-1-17-1176_h_a_public-assessment-report@25/03/2015@26/01/2017@['article 10.1']@NA@milena stain@no_co-rapporteur@no@no
+EU-1-17-1174_h_a_public-assessment-report.xml@EU-1-17-1174_h_a_public-assessment-report@28/11/2016@26/01/2017@['article 10.c']@no@concepcion prieto yerro@not_easily_scrapable@no@no
+EU-1-17-1179_h_a_public-assessment-report.xml@EU-1-17-1179_h_a_public-assessment-report@15/04/2016@18/05/2017@['article 8.3']@no@robert james hemmings@david lyons@no@no
+EU-1-17-1172_h_a_public-assessment-report.xml@EU-1-17-1172_h_a_public-assessment-report@25/03/2015@26/01/2017@['article 10.3']@NA@bruno sepodes@no_co-rapporteur@no@no
+EU-1-17-1182_h_a_public-assessment-report.xml@EU-1-17-1182_h_a_public-assessment-report@26/12/2016@23/02/2017@['article 10.1']@no@john joseph borg@no_co-rapporteur@no@no
+EU-1-17-1181_h_a_public-assessment-report.xml@EU-1-17-1181_h_a_public-assessment-report@3/12/2012@18/05/2017@['article 8.3']@NA@lennart åkerblom@not_easily_scrapable@no@no
+EU-1-17-1185_h_a_public-assessment-report.xml@EU-1-17-1185_h_a_public-assessment-report@11/04/2016@21/04/2017@['article 10.4']@no@jan mueller-berghaus@paula boudewina van hennik@no@no
+EU-1-17-1184_h_a_public-assessment-report.xml@EU-1-17-1184_h_a_public-assessment-report@9/12/2016@21/04/2017@['article 10.4', 'article 82.1']@no@jan mueller-berghaus@paula boudewina van hennik@no@no
+EU-1-17-1187_h_a_public-assessment-report.xml@EU-1-17-1187_h_a_public-assessment-report@22/04/2016@23/03/2017@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-17-1189_h_a_public-assessment-report.xml@EU-1-17-1189_h_a_public-assessment-report@4/02/2016@23/03/2017@['article 10.a']@NA@joseph emmerich@not_easily_scrapable@no@no
+EU-1-17-1186_h_a_public-assessment-report.xml@EU-1-17-1186_h_a_public-assessment-report@4/12/2015@23/03/2017@['article 8.3']@NA@harald enzmann@concepcion prieto yerro@no@no
+EU-1-17-1190_h_a_public-assessment-report.xml@EU-1-17-1190_h_a_public-assessment-report@4/12/2015@23/03/2017@['article 10.1']@NA@eleftheria nikolaid@no_co-rapporteur@no@no
+EU-1-17-1193_h_a_public-assessment-report.xml@EU-1-17-1193_h_a_public-assessment-report@28/01/2016@23/03/2017@['article 8.3']@NA@andrea laslop@not_easily_scrapable@no@no
+EU-1-17-1178_h_a_public-assessment-report.xml@EU-1-17-1178_h_a_public-assessment-report@3/03/2016@26/01/2017@['article 8.3']@no@robert james hemmings@not_easily_scrapable@yes@no
+EU-1-17-1188_h_a_public-assessment-report.xml@EU-1-17-1188_h_a_public-assessment-report@27/10/2016@21/04/2017@['article 8.3']@no@bruno sepodes@greg markey@no@yes
+EU-1-17-1197_h_a_public-assessment-report.xml@EU-1-17-1197_h_a_public-assessment-report@24/11/2016@18/05/2017@['article 8.3']@no@concepcion prieto yerro@patrick salmon@no@yes
+EU-1-17-1194_h_a_public-assessment-report.xml@EU-1-17-1194_h_a_public-assessment-report@19/05/2016@21/04/2017@['article 10.1']@no@juris pokrotnieks@no_co-rapporteur@no@no
+EU-1-17-1191_h_a_public-assessment-report.xml@EU-1-17-1191_h_a_public-assessment-report@6/05/2015@22/03/2017@['article 8.3']@NA@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-17-1199_h_a_public-assessment-report.xml@EU-1-17-1199_h_a_public-assessment-report@31/12/2015@21/04/2014@['article 10.3']@NA@david lyons@milena stain@no@no
+EU-1-17-1195_h_a_public-assessment-report.xml@EU-1-17-1195_h_a_public-assessment-report@11/11/2015@21/04/2017@['article 10.4']@NA@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-17-1196_h_a_public-assessment-report.xml@EU-1-17-1196_h_a_public-assessment-report@24/06/2016@21/04/2017@['article 8.3']@no@jan mueller-berghaus@daniela melchiorri@no@no
+EU-1-17-1192_h_a_public-assessment-report.xml@EU-1-17-1192_h_a_public-assessment-report@15/09/2016@21/04/2017@['article 8.3']@no@martina weise@not_easily_scrapable@no@yes
+EU-1-17-1202_h_a_public-assessment-report.xml@EU-1-17-1202_h_a_public-assessment-report@19/05/2016@21/04/2017@['article 10.1', 'article 10.3']@no@eleftheria nikolaidi@not_easily_scrapable@no@no
+EU-1-17-1201_h_a_public-assessment-report.xml@EU-1-17-1201_h_a_public-assessment-report@2/12/2015@21/04/2017@['article 8.3']@NA@robert james hemmings@martina weise@no@no
+EU-1-17-1203_h_a_public-assessment-report.xml@EU-1-17-1203_h_a_public-assessment-report@7/09/2016@18/05/2017@['article 10.4']@no@outi mäki-ikola@martina weise@no@no
+EU-1-17-1200_h_a_public-assessment-report.xml@EU-1-17-1200_h_a_public-assessment-report@14/04/2016@21/04/2017@['article 8.3']@no@robert james hemmings@filip josephson@no@no
+EU-1-17-1208_h_a_public-assessment-report.xml@EU-1-17-1208_h_a_public-assessment-report@30/09/2016@18/05/2017@['article 10.b']@no@harald enzmann@not_easily_scrapable@no@no
+EU-1-17-1209_h_a_public-assessment-report.xml@EU-1-17-1209_h_a_public-assessment-report@2/03/2016@18/05/2017@['article 8.3']@no@kristina dunder@not_easily_scrapable@no@no
+EU-1-17-1205_h_a_public-assessment-report.xml@EU-1-17-1205_h_a_public-assessment-report@06/03/2017@18/05/2017@['article 10.4']@no@sol ruiz@no_co-rapporteur@no@no
+EU-1-17-1210_h_a_public-assessment-report.xml@EU-1-17-1210_h_a_public-assessment-report@14/07/2016@18/05/2017@['article 10.1']@no@radka montoniová@no_co-rapporteur@no@no
+EU-1-17-1212_h_a_public-assessment-report.xml@EU-1-17-1212_h_a_public-assessment-report@23/06/2016@22/06/2017@['article 8.3']@no@hanne lomholt larsen@not_easily_scrapable@no@no
+EU-1-17-1211_h_a_public-assessment-report.xml@EU-1-17-1211_h_a_public-assessment-report@18/08/2016@20/07/2017@['article 10.1']@no@ewa balkowiec iskra@no_co-rapporteur@no@no
+EU-1-17-1219_h_a_public-assessment-report.xml@EU-1-17-1219_h_a_public-assessment-report@20/01/2017@20/07/2017@['article 8.3', 'article 82.1']@no@patrick salmon@alexandre moreau@no@yes
+EU-1-17-1215_h_a_public-assessment-report.xml@EU-1-17-1215_h_a_public-assessment-report@29/02/2016@26/01/2017@['article 8.3']@NA@bruno sepodes@robert james hemmings@no@no
+EU-1-17-1213_h_a_public-assessment-report.xml@EU-1-17-1213_h_a_public-assessment-report@20/01/2017@22/06/2017@['article 8.3']@no@joseph emmerich@filip josephson@no@yes
+EU-1-17-1214_h_a_public-assessment-report.xml@EU-1-17-1214_h_a_public-assessment-report@6/10/2016@20/07/2017@['article 8.3']@no@filip josephson@daniela melchiorri@no@no
+EU-1-17-1217_h_a_public-assessment-report.xml@EU-1-17-1217_h_a_public-assessment-report@24/03/2016@22/06/2017@['article 10.1']@no@alar irs@not_easily_scrapable@no@no
+EU-1-17-1216_h_a_public-assessment-report.xml@EU-1-17-1216_h_a_public-assessment-report@14/07/2016@22/06/2017@['article 10.4']@no@outi mäki-ikola@not_easily_scrapable@no@no
+EU-1-17-1221_h_a_public-assessment-report.xml@EU-1-17-1221_h_a_public-assessment-report@5/09/2016@22/06/2017@['article 8.3']@no@filip josephson@not_easily_scrapable@no@yes
+EU-1-17-1227_h_a_public-assessment-report.xml@EU-1-17-1227_h_a_public-assessment-report@18/08/2016@20/07/2017@['article 10.1']@no@alexandre moreau@no_co-rapporteur@no@no
+EU-1-17-1225_h_a_public-assessment-report.xml@EU-1-17-1225_h_a_public-assessment-report@9/09/2016@20/07/2017@['article 10.b']@no@johann lodewijk hillege@alexandre moreau@no@no
+EU-1-17-1228_h_a_public-assessment-report.xml@EU-1-17-1228_h_a_public-assessment-report@7/01/2016@14/09/2017@['article 8.3']@NA@bruno sepodes@greg markey@no@no
+EU-1-17-1223_h_a_public-assessment-report.xml@EU-1-17-1223_h_a_public-assessment-report@20/01/2017@22/06/2017@['article 8.3']@no@filip josephson@greg markey@no@yes
+EU-1-17-1222_h_a_public-assessment-report.xml@EU-1-17-1222_h_a_public-assessment-report@18/08/2016@22/06/2017@['article 10.1']@no@bruno sepodes@no_co-rapporteur@no@no
+EU-1-17-1226_h_a_public-assessment-report.xml@EU-1-17-1226_h_a_public-assessment-report@19/05/2016@20/07/2017@['article 8.3']@no@robert james hemmings@harald enzmann@no@yes
+EU-1-17-1220_h_a_public-assessment-report.xml@EU-1-17-1220_h_a_public-assessment-report@26/04/2016@20/07/2017@['article 8.3']@no@sinan b. sarac@not_easily_scrapable@no@no
+EU-1-17-1229_h_a_public-assessment-report.xml@EU-1-17-1229_h_a_public-assessment-report@4/11/2016@20/07/2017@['article 8.3']@no@jan mueller-berghaus@not_easily_scrapable@no@no
+EU-1-17-1231_h_a_public-assessment-report.xml@EU-1-17-1231_h_a_public-assessment-report@25/04/2016@9/11/2017@['article 8.3']@no@hanne lomholt larsen@not_easily_scrapable@no@no
+EU-1-17-1233_h_a_public-assessment-report.xml@EU-1-17-1233_h_a_public-assessment-report@27/10/2016@14/09/2017@['article 10.3']@no@patrick salmon@radka montoniová@no@no
+EU-1-17-1224_h_a_public-assessment-report.xml@EU-1-17-1224_h_a_public-assessment-report@14/07/2016@20/07/2017@['article 8.3']@no@harald enzmann@ondřej slanař@no@no
+EU-1-17-1239_h_a_public-assessment-report.xml@EU-1-17-1239_h_a_public-assessment-report@23/12/2016@14/09/2017@['article 8.3']@no@andrea laslop@not_easily_scrapable@no@no
+EU-1-17-1237_h_a_public-assessment-report.xml@EU-1-17-1237_h_a_public-assessment-report@2/12/2016@14/09/2017@['article 10.b']@no@david lyons@not_easily_scrapable@no@no
+EU-1-17-1232_h_a_public-assessment-report.xml@EU-1-17-1232_h_a_public-assessment-report@18/08/2016@14/09/2017@['article 10.1']@no@milena stain@no_co-rapporteur@no@no
+EU-1-17-1244_h_a_public-assessment-report.xml@EU-1-17-1244_h_a_public-assessment-report@23/12/2016@12/10/2017@['article 10.1']@no@milena stain@no_co-rapporteur@no@no
+EU-1-17-1230_h_a_public-assessment-report.xml@EU-1-17-1230_h_a_public-assessment-report@29/09/2016@20/07/2017@['article 10.1']@no@john joseph borg@no_co-rapporteur@no@no
+EU-1-17-1235_h_a_public-assessment-report.xml@EU-1-17-1235_h_a_public-assessment-report@4/10/2016@14/09/2017@['article 8.3']@no@bjorg bolstad@alexandre moreau@no@no
+EU-1-17-1234_h_a_public-assessment-report.xml@EU-1-17-1234_h_a_public-assessment-report@23/11/2016@14/09/2017@['article 8.3']@no@agnes gyurasics@not_easily_scrapable@no@no
+EU-1-17-1241_h_a_public-assessment-report.xml@EU-1-17-1241_h_a_public-assessment-report@30/08/2016@14/09/2017@['article 10.4']@no@koenraad norga@greg markey@no@no
+EU-1-17-1247_h_a_public-assessment-report.xml@EU-1-17-1247_h_a_public-assessment-report@1/03/2016@9/11/2017@['article 8.3']@NA@andrea laslop@kristina dunder@no@no
+EU-1-17-1238_h_a_public-assessment-report.xml@EU-1-17-1238_h_a_public-assessment-report@1/11/2016@14/09/2017@['article 10.3']@no@bruno sepodes@not_easily_scrapable@no@yes
+EU-1-17-1245_h_a_public-assessment-report.xml@EU-1-17-1245_h_a_public-assessment-report@31/03/2017@09/11/2017@['article 8.3']@no@filip josephson@not_easily_scrapable@no@yes
+EU-1-17-1253_h_a_public-assessment-report.xml@EU-1-17-1253_h_a_public-assessment-report@23/12/2016@9/11/2017@['article 10.1']@no@natalja karpova@not_easily_scrapable@no@no
+EU-1-17-1249_h_a_public-assessment-report.xml@EU-1-17-1249_h_a_public-assessment-report@24/11/2016@9/11/2017@['article 10.1']@no@john joseph borg@no_co-rapporteur@no@no
+EU-1-17-1242_h_a_public-assessment-report.xml@EU-1-17-1242_h_a_public-assessment-report@23/12/2016@14/09/2017@['article 10.1']@no@john joseph borg@no_co-rapporteur@no@no
+EU-1-17-1255_h_a_public-assessment-report.xml@EU-1-17-1255_h_a_public-assessment-report@18/12/2015@9/11/2017@['article 8.3']@NA@joseph emmerich@patrick salmon@no@no
+EU-1-17-1251_h_a_public-assessment-report.xml@EU-1-17-1251_h_a_public-assessment-report@5/12/2016@14/12/2017@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-17-1254_h_a_public-assessment-report.xml@EU-1-17-1254_h_a_public-assessment-report@11/05/2017@9/11/2017@['article 8.3']@no@harald enzmann@tomas boran@no@yes
+EU-1-17-1236_h_a_public-assessment-report.xml@EU-1-17-1236_h_a_public-assessment-report@2/12/2016@14/09/2017@['article 10.b']@no@david lyons@not_easily_scrapable@no@no
+EU-1-17-1256_h_a_public-assessment-report.xml@EU-1-17-1256_h_a_public-assessment-report@23/12/2016@14/12/2017@['article 10.3', 'article 10.1']@no@alar irs@no_co-rapporteur@no@no
+EU-1-17-1252_h_a_public-assessment-report.xml@EU-1-17-1252_h_a_public-assessment-report@24/11/2016@9/11/2017@['article 8.3']@no@nithyanandan nagercoil@bruno sepodes@no@no
+EU-1-17-1260_h_a_public-assessment-report.xml@EU-1-17-1260_h_a_public-assessment-report@23/12/2016@14/12/2017@['article 10.3']@no@koenraad norga@not_easily_scrapable@no@no
+EU-1-17-1246_h_a_public-assessment-report.xml@EU-1-17-1246_h_a_public-assessment-report@17/12/2016@9/11/2017@['article 82.1']@no@bjorg bolstad@not_easily_scrapable@no@no
+EU-1-18-1264_h_a_public-assessment-report.xml@EU-1-18-1264_h_a_public-assessment-report@3/02/2017@29/08/2018@['article 8.3']@no@sinan b. sarac@not_easily_scrapable@no@yes
+EU-1-17-1261_h_a_public-assessment-report.xml@EU-1-17-1261_h_a_public-assessment-report@2/03/2016@14/12/2017@['article 8.3']@no@lennart åkerblom@not_easily_scrapable@no@no
+EU-1-17-1258_h_a_public-assessment-report.xml@EU-1-17-1258_h_a_public-assessment-report@29/09/2016@25/01/2018@['article 8.3']@no@johann lodewijk hillege@martina weise@no@no
+EU-1-18-1266_h_a_public-assessment-report.xml@EU-1-18-1266_h_a_public-assessment-report@1/02/2017@25/01/2018@['article 8.3']@no@kristina dunder@agnes gyurasics@no@no
+EU-1-18-1269_h_a_public-assessment-report.xml@EU-1-18-1269_h_a_public-assessment-report@22/12/2016@22/02/2018@['article 8.3']@no@robert james hemmings@not_easily_scrapable@no@yes
+EU-1-17-1250_h_a_public-assessment-report.xml@EU-1-17-1250_h_a_public-assessment-report@1/11/2016@22/03/2018@['article 8.3']@no@jorge camarero jiménez@greg markey@no@yes
+EU-1-18-1273_h_a_public-assessment-report.xml@EU-1-18-1273_h_a_public-assessment-report@18/05/2017@22/03/2018@['article 10.1']@no@alar irs@no_co-rapporteur@no@no
+EU-1-17-1262_h_a_public-assessment-report.xml@EU-1-17-1262_h_a_public-assessment-report@30/11/2016@14/12/2017@['article 8.3']@no@kristina dunder@not_easily_scrapable@no@no
+EU-1-18-1265_h_a_public-assessment-report.xml@EU-1-18-1265_h_a_public-assessment-report@27/01/2017@25/01/2018@['article 8.3']@no@kristina dunder@agnes gyurasics@no@no
+EU-1-18-1270_h_a_public-assessment-report.xml@EU-1-18-1270_h_a_public-assessment-report@1/08/2016@25/01/2018@['article 10.4']@no@martina weise@agnes gyurasics@no@no
+EU-1-18-1271_h_a_public-assessment-report.xml@EU-1-18-1271_h_a_public-assessment-report@22/06/2017@25/01/2018@['article 8.3']@no@nithyanandan nagercoil@alexandre moreau@no@yes
+EU-1-18-1267_h_a_public-assessment-report.xml@EU-1-18-1267_h_a_public-assessment-report@1/02/2017@25/01/2018@['article 8.3']@no@kristina dunder@agnes gyurasics@no@no
+EU-1-18-1275_h_a_public-assessment-report.xml@EU-1-18-1275_h_a_public-assessment-report@24/11/2017@22/02/2018@['article 10.c', 'article 82.1']@no@harald enzmann@not_easily_scrapable@no@no
+EU-1-17-1263_h_a_public-assessment-report.xml@EU-1-17-1263_h_a_public-assessment-report@18/05/2017@14/12/2017@['article 10.1']@no@john joseph borg@not_easily_scrapable@no@no
+EU-1-18-1274_h_a_public-assessment-report.xml@EU-1-18-1274_h_a_public-assessment-report@24/11/2017@22/02/2018@['article 10.c', 'article 82.1']@no@harald enzmann@not_easily_scrapable@no@no
+EU-1-18-1277_h_a_public-assessment-report.xml@EU-1-18-1277_h_a_public-assessment-report@1/12/2016@22/02/2018@['article 8.3']@no@nithyanandan nagercoil@not_easily_scrapable@no@no
+EU-1-18-1279_h_a_public-assessment-report.xml@EU-1-18-1279_h_a_public-assessment-report@27/10/2016@22/02/2017@['article 10.3']@no@martina weise@agnes gyurasics@no@yes
+EU-1-18-1281_h_a_public-assessment-report.xml@EU-1-18-1281_h_a_public-assessment-report@1/03/2017@22/03/2018@['article 10.4']@no@jan mueller-berghaus@andrea laslop@no@no
+EU-1-18-1272_h_a_public-assessment-report.xml@EU-1-18-1272_h_a_public-assessment-report@25/11/2016@25/01/2018@['article 8.3']@no@bart van der schueren@not_easily_scrapable@no@no
+EU-1-18-1283_h_a_public-assessment-report.xml@EU-1-18-1283_h_a_public-assessment-report@15/06/2017@22/03/2018@['article 10.1']@no@kolbeinn gudmundsson@not_easily_scrapable@no@no
+EU-1-18-1276_h_a_public-assessment-report.xml@EU-1-18-1276_h_a_public-assessment-report@21/12/2016@31/05/2018@['article 8.3']@no@bart van der schueren@not_easily_scrapable@no@no
+EU-1-18-1280_h_a_public-assessment-report.xml@EU-1-18-1280_h_a_public-assessment-report@21/04/2017@22/03/2018@['article 10.4']@no@nithyanandan nagercoil@svein rune andersen@no@no
+EU-1-18-1284_h_a_public-assessment-report.xml@EU-1-18-1284_h_a_public-assessment-report@23/03/2017@26/04/2018@['article 10.3']@no@kolbeinn gudmundsson@agnes gyurasics@no@no
+EU-1-18-1278_h_a_public-assessment-report.xml@EU-1-18-1278_h_a_public-assessment-report@16/06/2016@26/04/2018@['article 10.1']@no@juris pokrotnieks@no_co-rapporteur@no@no
+EU-1-18-1286_h_a_public-assessment-report.xml@EU-1-18-1286_h_a_public-assessment-report@24/04/2017@31/05/2018@['article 10.4']@no@milena stain@not_easily_scrapable@no@no
+EU-1-18-1282_h_a_public-assessment-report.xml@EU-1-18-1282_h_a_public-assessment-report@23/05/2017@22/03/2018@['article 10.b']@no@harald enzmann@not_easily_scrapable@no@no
+EU-1-18-1290_h_a_public-assessment-report.xml@EU-1-18-1290_h_a_public-assessment-report@23/02/2017@31/05/2018@['article 10.1']@no@peter kiely@no_co-rapporteur@no@no
+EU-1-18-1298_h_a_public-assessment-report.xml@EU-1-18-1298_h_a_public-assessment-report@22/05/2017@28/06/2018@['article 8.3']@no@jan mueller-berghaus@not_easily_scrapable@no@no
+EU-1-18-1289_h_a_public-assessment-report.xml@EU-1-18-1289_h_a_public-assessment-report@21/06/2017@26/04/2018@['article 8.3']@no@joseph emmerich@bruno sepodes@no@no
+EU-1-18-1294_h_a_public-assessment-report.xml@EU-1-18-1294_h_a_public-assessment-report@28/02/2017@31/05/2018@['article 8.3']@no@not_easily_scrapable@not_easily_scrapable@no@no
+EU-1-18-1287_h_a_public-assessment-report.xml@EU-1-18-1287_h_a_public-assessment-report@23/11/2017@31/05/2018@['article 10.4']@no@milena stain@not_easily_scrapable@no@no
+EU-1-18-1291_h_a_public-assessment-report.xml@EU-1-18-1291_h_a_public-assessment-report@1/03/2017@13/12/2018@['article 8.3']@no@mark ainsworth@bart van der schueren@no@no
+EU-1-18-1301_h_a_public-assessment-report.xml@EU-1-18-1301_h_a_public-assessment-report@30/03/2017@28/06/2018@['article 8.3']@no@johann lodewijk hillege@alexandre moreau@no@no
+EU-1-18-1302_h_a_public-assessment-report.xml@EU-1-18-1302_h_a_public-assessment-report@29/05/2017@26/07/2018@['article 10.3']@no@ewa balkowiec iskra@no_co-rapporteur@no@no
+EU-1-18-1305_h_a_public-assessment-report.xml@EU-1-18-1305_h_a_public-assessment-report@3/02/2017@28/06/2018@['article 8.3']@no@filip josephson@joseph emmerich@no@no
+EU-1-18-1295_h_a_public-assessment-report.xml@EU-1-18-1295_h_a_public-assessment-report@27/06/2017@31/05/2018@['article 10.4']@no@jan mueller-berghaus@sol ruiz@no@no
+EU-1-18-1310_h_a_public-assessment-report.xml@EU-1-18-1310_h_a_public-assessment-report@2/06/2017@26/07/2018@['article 10.1']@no@ewa balkowiec iskra@no_co-rapporteur@no@no
+EU-1-18-1299_h_a_public-assessment-report.xml@EU-1-18-1299_h_a_public-assessment-report@22/06/2017@28/06/2018@['article 8.3']@yes@jan mueller@claire beuneu@no@yes
+EU-1-18-1296_h_a_public-assessment-report.xml@EU-1-18-1296_h_a_public-assessment-report@12/10/2017@20/02/2018@['article 8.3']@no@martina weise@tuomo lapveteläinen@no@yes
+EU-1-18-1293_h_a_public-assessment-report.xml@EU-1-18-1293_h_a_public-assessment-report@23/05/2017@31/05/2018@['article 8.3']@no@kristina dunder@not_easily_scrapable@no@no
+EU-1-18-1307_h_a_public-assessment-report.xml@EU-1-18-1307_h_a_public-assessment-report@27/07/2017@26/07/2018@['article 8.3']@no@filip josephson@not_easily_scrapable@no@no
+EU-1-18-1315_h_a_public-assessment-report.xml@EU-1-18-1315_h_a_public-assessment-report@28/07/2017@26/07/2018@['article 82.1', 'article 82.1']@no@nithyanandan nagercoil@harald enzmann@no@no
+EU-1-18-1311_h_a_public-assessment-report.xml@EU-1-18-1311_h_a_public-assessment-report@23/06/2016@22/02/2018@['article 8.3']@no@greg markey@bruno sepodes@yes@no
+EU-1-18-1317_h_a_public-assessment-report.xml@EU-1-18-1317_h_a_public-assessment-report@28/07/2017@28/02/2019@['article 10.1']@no@milena stain@no_co-rapporteur@no@no
+EU-1-18-1306_h_a_public-assessment-report.xml@EU-1-18-1306_h_a_public-assessment-report@25/07/2017@26/07/2018@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@yes
+EU-1-18-1313_h_a_public-assessment-report.xml@EU-1-18-1313_h_a_public-assessment-report@27/04/2017@26/07/2018@['article 10.4']@no@sol ruiz@ondřej slanař@no@no
+EU-1-18-1308_h_a_public-assessment-report.xml@EU-1-18-1308_h_a_public-assessment-report@no_date_found@no_chmp_found@no_legal_basis@no@johanna lähteenvuo@not_easily_scrapable@no@no
+EU-1-18-1297_h_a_public-assessment-report.xml@EU-1-18-1297_h_a_public-assessment-report@31/10/2017@28/06/2018@['article 8.3']@yes@rune kjeken cat@not_easily_scrapable@no@yes
+EU-1-18-1318_h_a_public-assessment-report.xml@EU-1-18-1318_h_a_public-assessment-report@3/01/2017@26/07/2018@['article 8.3']@no@kristina dunder@not_easily_scrapable@no@no
+EU-1-18-1321_h_a_public-assessment-report.xml@EU-1-18-1321_h_a_public-assessment-report@24/07/2017@26/07/2018@['article 10.1']@no@katarina vučić@no_co-rapporteur@no@no
+EU-1-18-1312_h_a_public-assessment-report.xml@EU-1-18-1312_h_a_public-assessment-report@21/07/2017@25/06/2018@['article 8.3']@no@filip josephson@not_easily_scrapable@no@no
+EU-1-18-1314_h_a_public-assessment-report.xml@EU-1-18-1314_h_a_public-assessment-report@28/07/2017@26/07/2018@['article 8.3']@no@nithyanandan nagercoil@not_easily_scrapable@no@no
+EU-1-18-1325_h_a_public-assessment-report.xml@EU-1-18-1325_h_a_public-assessment-report@26/06/2017@18/10/2018@['article 8.3']@no@bruno sepodes@kristina dunder@no@no
+EU-1-18-1316_h_a_public-assessment-report.xml@EU-1-18-1316_h_a_public-assessment-report@29/07/2017@26/07/2018@['article 10.1']@no@ewa balkowiec iskra@no_co-rapporteur@no@no
+EU-1-18-1319_h_a_public-assessment-report.xml@EU-1-18-1319_h_a_public-assessment-report@25/04/2017@26/07/2018@['article 10.4']@no@bart van der schueren@not_easily_scrapable@no@no
+EU-1-18-1327_h_a_public-assessment-report.xml@EU-1-18-1327_h_a_public-assessment-report@6/10/2017@20/09/2018@['article 10.4']@no@andrea laslop@simona badoi@no@no
+EU-1-18-1326_h_a_public-assessment-report.xml@EU-1-18-1326_h_a_public-assessment-report@31/10/2017@18/10/2018@['article 8.3']@no@sol ruiz@joseph emmerich@no@no
+EU-1-18-1328_h_a_public-assessment-report.xml@EU-1-18-1328_h_a_public-assessment-report@8/09/2017@20/09/2018@['article 10.4']@no@koenraad norga@andrea laslop@no@no
+EU-1-18-1333_h_a_public-assessment-report.xml@EU-1-18-1333_h_a_public-assessment-report@3/11/2017@20/09/2018@['article 8.3']@no@filip josephson@not_easily_scrapable@no@yes
+EU-1-18-1331_h_a_public-assessment-report.xml@EU-1-18-1331_h_a_public-assessment-report@29/07/2017@20/09/2018@['article 8.3']@no@christiane niederlaender@sol ruiz@no@no
+EU-1-18-1337_h_a_public-assessment-report.xml@EU-1-18-1337_h_a_public-assessment-report@26/10/2017@15/11/2018@['article 8.3']@no@martina weise@joseph emmerich@no@no
+EU-1-18-1339_h_a_public-assessment-report.xml@EU-1-18-1339_h_a_public-assessment-report@16/06/2017@18/10/2018@['article 10.b']@no@kristina dunder@peter kiely@no@no
+EU-1-18-1335_h_a_public-assessment-report.xml@EU-1-18-1335_h_a_public-assessment-report@6/10/2017@20/09/2018@['article 8.3']@no@paula boudewina van hennik@daniela melchiorri@no@no
+EU-1-18-1322_h_a_public-assessment-report.xml@EU-1-18-1322_h_a_public-assessment-report@1/09/2017@26/07/2018@['article 8.3']@no@sinan b. sarac@not_easily_scrapable@no@no
+EU-1-18-1330_h_a_refusal-public-assessment-report.xml@EU-1-18-1330_h_a_refusal-public-assessment-report@7/02/2019@27/02/2020@['article 19']@no@daniela melchiorri@kristina dunder@no@no
+EU-1-18-1334_h_a_public-assessment-report.xml@EU-1-18-1334_h_a_public-assessment-report@21/04/2017@20/09/2018@['article 8.3']@no@robert james hemmings@not_easily_scrapable@no@no
+EU-1-18-1338_h_a_public-assessment-report.xml@EU-1-18-1338_h_a_public-assessment-report@2/03/2016@18/10/2018@['article 8.3']@no@bart van der schueren@sol ruiz@no@no
+EU-1-18-1332_h_a_public-assessment-report.xml@EU-1-18-1332_h_a_public-assessment-report@3/11/2017@20/09/2018@['article 8.3']@no@filip josephson@johann lodewijk hillege@no@yes
+EU-1-18-1343_h_a_public-assessment-report.xml@EU-1-18-1343_h_a_public-assessment-report@10/04/2018@15/11/2018@['article 10.1', 'article 82.1']@no@katarina vučić@no_co-rapporteur@no@no
+EU-1-18-1336_h_a_public-assessment-report.xml@EU-1-18-1336_h_a_public-assessment-report@27/07/2017@20/09/2018@['article 10.3']@no@greg markey@not_easily_scrapable@no@no
+EU-1-18-1347_h_a_public-assessment-report.xml@EU-1-18-1347_h_a_public-assessment-report@23/04/2018@31/01/2019@['article 10.1']@no@john joseph borg@no_co-rapporteur@no@no
+EU-1-18-1341_h_a_public-assessment-report.xml@EU-1-18-1341_h_a_public-assessment-report@3/11/2017@18/10/2018@['article 10.4']@no@koenraad norga@not_easily_scrapable@no@no
+EU-1-18-1348_h_a_public-assessment-report.xml@EU-1-18-1348_h_a_public-assessment-report@12/01/2018@13/12/2018@['article 8.3']@no@andrea laslop@not_easily_scrapable@no@no
+@yes@yes
+EU-1-18-1344_h_a_public-assessment-report.xml@EU-1-18-1344_h_a_public-assessment-report@1/02/2018@13/12/2018@['article 10.4']@no@bjorg bolstad@not_easily_scrapable@no@no
+EU-1-18-1351_h_a_public-assessment-report.xml@EU-1-18-1351_h_a_public-assessment-report@12/12/2017@13/12/2018@['article 8.3']@no@nithyanandan nagercoil@not_easily_scrapable@no@no
+EU-1-18-1345_h_a_public-assessment-report.xml@EU-1-18-1345_h_a_public-assessment-report@1/08/2016@28/02/2019@['article 8.3']@no@jan mueller-berghaus@concepcion prieto yerro@no@yes
+EU-1-19-1353_h_a_public-assessment-report.xml@EU-1-19-1353_h_a_public-assessment-report@8/03/2018@31/01/2019@['article 10.1']@no@tomas boran@no_co-rapporteur@no@no
+EU-1-18-1349_h_a_public-assessment-report.xml@EU-1-18-1349_h_a_public-assessment-report@21/11/2017@28/02/2019@['article 8.3']@no@svein rune andersen@not_easily_scrapable@no@no
+EU-1-18-1350_h_a_public-assessment-report.xml@EU-1-18-1350_h_a_public-assessment-report@31/07/2018@13/12/2018@['article 10.3']@no@kristina dunder@no_co-rapporteur@no@no
+EU-1-18-1352_h_a_public-assessment-report.xml@EU-1-18-1352_h_a_public-assessment-report@2/02/2017@13/12/2018@['article 8.3']@no@harald enzmann@not_easily_scrapable@no@no
+EU-1-19-1358_h_a_public-assessment-report.xml@EU-1-19-1358_h_a_public-assessment-report@12/01/2018@31/01/2019@['article 8.3']@no@jan mueller-berghaus@not_easily_scrapable@no@no
+EU-1-19-1354_h_a_public-assessment-report.xml@EU-1-19-1354_h_a_public-assessment-report@9/02/2018@31/01/2019@['article 8.3']@no@jorge camarero jiménez@bjorg bolstad@no@no
+EU-1-18-1346_h_a_public-assessment-report.xml@EU-1-18-1346_h_a_public-assessment-report@8/03/2018@13/12/2018@['article 10.1']@no@frantisek drafi@no_co-rapporteur@no@no
+EU-1-19-1365_h_a_public-assessment-report.xml@EU-1-19-1365_h_a_public-assessment-report@8/02/2018@29/05/2019@['article 8.3']@no@milena stain@not_easily_scrapable@no@no
+EU-1-19-1359_h_a_public-assessment-report.xml@EU-1-19-1359_h_a_public-assessment-report@26/07/2018@25/07/2019@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@yes
+EU-1-19-1369_h_a_public-assessment-report.xml@EU-1-19-1369_h_a_public-assessment-report@6/11/2017@26/04/2019@['article 8.3']@no@peter kiely@not_easily_scrapable@no@no
+EU-1-19-1361_h_a_public-assessment-report.xml@EU-1-19-1361_h_a_public-assessment-report@26/04/2018@28/02/2019@['article 8.3']@no@peter kiely@not_easily_scrapable@no@no
+EU-1-19-1368_h_a_public-assessment-report.xml@EU-1-19-1368_h_a_public-assessment-report@30/04/2018@26/04/2019@['article 10.1']@no@eleftheria nikolaidi@no_co-rapporteur@yes@no
+EU-1-19-1364_h_a_public-assessment-report.xml@EU-1-19-1364_h_a_public-assessment-report@22/06/2017@25/07/2019@['article 8.3']@no@greg markey@peter kiely@no@no
+EU-1-19-1356_h_a_public-assessment-report.xml@EU-1-19-1356_h_a_public-assessment-report@25/10/2017@31/01/2019@['article 10.4']@no@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-19-1366_h_a_public-assessment-report.xml@EU-1-19-1366_h_a_public-assessment-report@9/02/2018@26/04/2019@['article 10.3']@no@constantinos markopoulos@not_easily_scrapable@no@no
+EU-1-19-1375_h_a_public-assessment-report.xml@EU-1-19-1375_h_a_public-assessment-report@6/11/2017@26/04/2019@['article 10.4']@no@koenraad norga@martina weise@no@no
+EU-1-19-1370_h_a_public-assessment-report.xml@EU-1-19-1370_h_a_public-assessment-report@13/09/2018@26/04/2019@['article 10.b']@no@filip josephson@not_easily_scrapable@no@no
+EU-1-19-1373_h_a_public-assessment-report.xml@EU-1-19-1373_h_a_public-assessment-report@30/04/2018@26/04/2019@['article 8.3']@no@sinan b. sarac@andrea laslop@no@yes
+EU-1-19-1360_h_a_public-assessment-report.xml@EU-1-19-1360_h_a_public-assessment-report@26/07/2017@28/02/2019@['article 8.3']@no@johann lodewijk hillege@bart van der schueren@no@no
+EU-1-19-1371_h_a_public-assessment-report.xml@EU-1-19-1371_h_a_public-assessment-report@27/06/2018@26/04/2019@['article 8.3']@no@jorge camarero jiménez@not_easily_scrapable@no@no
+EU-1-19-1377_h_a_public-assessment-report.xml@EU-1-19-1377_h_a_public-assessment-report@27/04/2018@26/04/2019@['article 8.3']@no@filip josephson@not_easily_scrapable@no@no
+no@no
+EU-1-19-1381_h_a_public-assessment-report.xml@EU-1-19-1381_h_a_public-assessment-report@1/06/2018@29/05/2019@['article 10.a']@no@janet koenig@mark ainsworth@no@no
+EU-1-19-1374_h_a_public-assessment-report.xml@EU-1-19-1374_h_a_public-assessment-report@27/02/2018@26/04/2019@['article 8.3']@no@andrea laslop@ewa balkowiec iskra@no@no
+EU-1-19-1372_h_a_public-assessment-report.xml@EU-1-19-1372_h_a_public-assessment-report@2/05/2018@26/04/2019@['article 10.1']@no@ewa balkowiec iskra@not_easily_scrapable@no@no
+EU-1-19-1380_h_a_public-assessment-report.xml@EU-1-19-1380_h_a_public-assessment-report@2/06/2018@29/05/2019@['article 10.1']@no@kolbeinn gudmundsson@no_co-rapporteur@no@no
+EU-1-19-1387_h_a_public-assessment-report.xml@EU-1-19-1387_h_a_public-assessment-report@3/05/2019@19/09/2019@['article 10.c']@no@maria concepcion prieto yerro@not_easily_scrapable@no@no
+EU-1-19-1383_h_a_public-assessment-report.xml@EU-1-19-1383_h_a_public-assessment-report@2/04/2019@27/06/2019@['article 10.c', 'article 82.1']@no@filip josephson@not_easily_scrapable@no@no
+EU-1-19-1385_h_a_public-assessment-report.xml@EU-1-19-1385_h_a_public-assessment-report@13/09/2018@25/07/2019@['article 8.3']@no@filip josephson@alexandre moreau@no@yes
+EU-1-19-1392_h_a_public-assessment-report.xml@EU-1-19-1392_h_a_public-assessment-report@11/03/2019@17/10/2019@['article 8.3']@no@bart van der schueren@not_easily_scrapable@no@yes
+EU-1-19-1389_h_a_public-assessment-report.xml@EU-1-19-1389_h_a_public-assessment-report@21/12/2017@25/07/2019@['article 8.3']@no@mark ainsworth@not_easily_scrapable@no@no
+EU-1-19-1395_h_a_public-assessment-report.xml@EU-1-19-1395_h_a_public-assessment-report@14/09/2018@14/11/2019@['article 10.1']@no@rajko kenda@not_easily_scrapable@no@no
+EU-1-19-1388_h_a_public-assessment-report.xml@EU-1-19-1388_h_a_public-assessment-report@13/12/2018@14/11/2019@['article 8.3']@yes@alexandre moreau@not_easily_scrapable@no@yes
+EU-1-19-1384_h_a_public-assessment-report.xml@EU-1-19-1384_h_a_public-assessment-report@30/05/2018@27/06/2019@['article 8.3']@no@concepcion prieto yerro@not_easily_scrapable@no@yes
+EU-1-19-1386_h_a_public-assessment-report.xml@EU-1-19-1386_h_a_public-assessment-report@29/06/2018@25/07/2019@['article 10.1']@no@agnes gyurasics@no_co-rapporteur@no@no
+EU-1-19-1393_h_a_public-assessment-report.xml@EU-1-19-1393_h_a_public-assessment-report@6/03/2018@17/10/2019@['article 8.3']@no@janet koenig@alar irs@no@no
+EU-1-19-1398_h_a_public-assessment-report.xml@EU-1-19-1398_h_a_public-assessment-report@26/11/2018@19/09/2019@['article 10.1']@no@alar irs@no_co-rapporteur@no@no
+EU-1-19-1396_h_a_public-assessment-report.xml@EU-1-19-1396_h_a_public-assessment-report@17/09/2018@19/09/2019@['article 10.1']@no@simona badoi@no_co-rapporteur@no@no
+EU-1-19-1403_h_a_public-assessment-report.xml@EU-1-19-1403_h_a_public-assessment-report@30/07/2019@30/01/2020@['article 10.3']@no@john joseph borg@no_co-rapporteur@no@no
+EU-1-19-1400_h_a_public-assessment-report.xml@EU-1-19-1400_h_a_public-assessment-report@12/09/2018@19/09/2019@['article 8.3']@no@jayne crowe@not_easily_scrapable@no@no
+EU-1-19-1399_h_a_public-assessment-report.xml@EU-1-19-1399_h_a_public-assessment-report@31/01/2019@19/09/2019@['article 8.3']@no@bjorg bolstad@not_easily_scrapable@no@yes
+EU-1-19-1376_h_a_public-assessment-report.xml@EU-1-19-1376_h_a_public-assessment-report@6/03/2018@26/04/2019@['article 8.3']@no@sinan b. sarac@tuomo lapveteläinen@no@yes
+EU-1-19-1397_h_a_public-assessment-report.xml@EU-1-19-1397_h_a_public-assessment-report@17/09/2018@19/09/2019@['article 10.1']@no@kolbeinn gudmundsson@no_co-rapporteur@no@no
+EU-1-19-1405_h_a_public-assessment-report.xml@EU-1-19-1405_h_a_public-assessment-report@17/09/2018@14/11/2019@['article 8.3']@no@sinan b. sarac@not_easily_scrapable@no@no
+EU-1-19-1411_h_a_public-assessment-report.xml@EU-1-19-1411_h_a_public-assessment-report@21/11/2017@27/06/2019@['article 8.3']@no@kristina dunder@not_easily_scrapable@yes@no
+EU-1-19-1413_h_a_public-assessment-report.xml@EU-1-19-1413_h_a_public-assessment-report@12/01/2019@12/12/2019@['article 10.1']@no@kolbeinn gudmundsson@not_easily_scrapable@no@no
+EU-1-19-1409_h_a_public-assessment-report.xml@EU-1-19-1409_h_a_public-assessment-report@30/07/2019@17/10/2019@['article 10.4', 'article 82.1']@no@koenraad norga@andrea laslop@no@no
+EU-1-19-1406_h_a_public-assessment-report.xml@EU-1-19-1406_h_a_public-assessment-report@19/07/2018@17/10/2019@['article 8.3']@no@koenraad norga@not_easily_scrapable@no@no
+EU-1-19-1412_h_a_public-assessment-report.xml@EU-1-19-1412_h_a_public-assessment-report@3/11/2018@14/11/2019@['article 10.1']@no@milena stain@not_easily_scrapable@no@no
+EU-1-19-1415_h_a_public-assessment-report.xml@EU-1-19-1415_h_a_public-assessment-report@5/11/2018@12/12/2019@['article 10.4']@no@outi mäki-ikola@simona badoi@no@no
+EU-1-19-1419_h_a_public-assessment-report.xml@EU-1-19-1419_h_a_public-assessment-report@8/02/2019@30/01/2020@['article 10.3']@no@johann lodewijk hillege@ewa balkowiec iskra@no@no
+EU-1-19-1404_h_a_public-assessment-report.xml@EU-1-19-1404_h_a_public-assessment-report@18/12/2018@17/10/2019@['article 8.3']@no@kristina dunder@not_easily_scrapable@no@no
+EU-1-19-1408_h_a_public-assessment-report.xml@EU-1-19-1408_h_a_public-assessment-report@8/11/2018@16/10/2019@['article 8.3']@no@janet koenig@not_easily_scrapable@no@no
+EU-1-19-1414_h_a_public-assessment-report.xml@EU-1-19-1414_h_a_public-assessment-report@13/09/2018@14/11/2019@['article 8.3']@no@mark ainsworth@martina weise@no@no
+EU-1-19-1410_h_a_public-assessment-report.xml@EU-1-19-1410_h_a_public-assessment-report@10/10/2018@21/11/2019@['article 8.3']@no@martina weise@not_easily_scrapable@no@yes
+EU-1-19-1421_h_a_public-assessment-report.xml@EU-1-19-1421_h_a_public-assessment-report@26/04/2018@30/01/2020@['article 8.3']@no@andrea laslop@jayne crowe@no@no
+EU-1-19-1417_h_a_public-assessment-report.xml@EU-1-19-1417_h_a_public-assessment-report@6/02/2019@12/12/2019@['article 8.3']@no@alexandre moreau,@maria concepcion prieto yerro@no@no
+EU-1-20-1423_h_a_public-assessment-report.xml@EU-1-20-1423_h_a_public-assessment-report@11/01/2019@30/01/2020@['article 8.3']@no@bjorg bolstad@filip josephson@no@no
+EU-1-20-1425_h_a_public-assessment-report.xml@EU-1-20-1425_h_a_public-assessment-report@12/02/2019@30/01/2020@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-19-1418_h_a_public-assessment-report.xml@EU-1-19-1418_h_a_public-assessment-report@23/11/2018@12/12/2019@['article 10.1']@no@john joseph borg@no_co-rapporteur@no@no
+EU-1-19-1420_h_a_public-assessment-report.xml@EU-1-19-1420_h_a_public-assessment-report@9/11/2018@12/12/2019@['article 8.3']@no@filip josephson@alar irs@no@no
+EU-1-20-1427_h_a_public-assessment-report.xml@EU-1-20-1427_h_a_public-assessment-report@7/03/2019@30/01/2020@['article 10.1']@no@milena stain@no_co-rapporteur@no@no
+EU-1-20-1429_h_a_public-assessment-report.xml@EU-1-20-1429_h_a_public-assessment-report@10/01/2019@30/01/2020@['article 10.1']@no@andrea laslop@not_easily_scrapable@no@no
+EU-1-20-1428_h_a_public-assessment-report.xml@EU-1-20-1428_h_a_public-assessment-report@29/05/2019@30/01/2020@['article 3.1']@yes@paula boudewina van hennik@not_easily_scrapable@no@yes
+EU-1-20-1430_h_a_public-assessment-report.xml@EU-1-20-1430_h_a_public-assessment-report@26/04/2019@30/01/2020@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-20-1422_h_a_public-assessment-report.xml@EU-1-20-1422_h_a_public-assessment-report@8/03/2019@30/01/2020@['article 8.3']@no@outi mäki-ikola@bart van der schueren@no@no
+EU-1-20-1424_h_a_public-assessment-report.xml@EU-1-20-1424_h_a_public-assessment-report@12/02/2019@30/01/2020@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-20-1426_h_a_public-assessment-report.xml@EU-1-20-1426_h_a_public-assessment-report@8/03/2019@30/01/2020@['article 10.1']@no@kolbeinn gudmundsson@not_easily_scrapable@no@no
+EU-1-20-1433_h_a_public-assessment-report.xml@EU-1-20-1433_h_a_public-assessment-report@5/03/2019@26/03/2020@['article 8.3']@no@sol ruiz@johann lodewijk hillege@no@no
+EU-1-20-1431_h_a_public-assessment-report.xml@EU-1-20-1431_h_a_public-assessment-report@25/07/2018@30/01/2020@['article 10.4']@no@paula boudewina van hennik@not_easily_scrapable@no@no
+EU-1-20-1435_h_a_public-assessment-report.xml@EU-1-20-1435_h_a_public-assessment-report@30/04/2019@26/03/2020@['article 8.3']@no@paula boudewina van hennik@not_easily_scrapable@no@yes
+EU-1-20-1432_h_a_public-assessment-report.xml@EU-1-20-1432_h_a_public-assessment-report@7/03/2019@30/01/2020@['article 8.3']@no@alexandre moreau@not_easily_scrapable@no@yes
+EU-1-20-1439_h_a_public-assessment-report.xml@EU-1-20-1439_h_a_public-assessment-report@3/05/2019@02/04/2020@['article 10.b']@no@peter kiely@ewa balkowiec iskra@no@no
+EU-1-20-1434_h_a_public-assessment-report.xml@EU-1-20-1434_h_a_public-assessment-report@13/12/2018@27/02/2020@['article 8.3']@no@filip josephson@not_easily_scrapable@no@yes
+EU-1-20-1445_h_a_public-assessment-report.xml@EU-1-20-1445_h_a_public-assessment-report@6/11/2019@28/05/2020@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@yes
+EU-1-20-1437_h_a_public-assessment-report.xml@EU-1-20-1437_h_a_public-assessment-report@11/03/2019@25/06/2020@['article 8.3']@no@filip josephson@not_easily_scrapable@no@no
+EU-1-20-1447_h_a_public-assessment-report.xml@EU-1-20-1447_h_a_public-assessment-report@29/05/2019@30/04/2020@['article 10.4']@no@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-20-1436_h_a_public-assessment-report.xml@EU-1-20-1436_h_a_public-assessment-report@30/04/2018@26/03/2020@['article 10.4']@no@martina weise@ewa balkowiec iskra@no@no
+EU-1-20-1440_h_a_public-assessment-report.xml@EU-1-20-1440_h_a_public-assessment-report@8/11/2019@30/04/2020@['article 10.b']@no@peter kiely@ewa balkowiec iskra@no@no
+EU-1-20-1442_h_a_public-assessment-report.xml@EU-1-20-1442_h_a_public-assessment-report@6/03/2019@9/04/2020@['article 8.3']@no@bruno sepodes@not_easily_scrapable@no@no
+EU-1-20-1448_h_a_public-assessment-report.xml@EU-1-20-1448_h_a_public-assessment-report@25/03/2019@30/04/2020@['article 10.3']@no@hrefna gudmundsdottir@no_co-rapporteur@no@no
+EU-1-20-1438_h_a_public-assessment-report.xml@EU-1-20-1438_h_a_public-assessment-report@3/05/2019@30/04/2020@['article 10.b']@no@peter kiely@ewa balkowiec iskra@no@no
+EU-1-20-1450_h_a_public-assessment-report.xml@EU-1-20-1450_h_a_public-assessment-report@4/05/2019@30/04/2020@['article 10.1']@no@selma arapovic dzakula@no_co-rapporteur@no@no
+EU-1-20-1446_h_a_public-assessment-report.xml@EU-1-20-1446_h_a_public-assessment-report@31/10/2019@28/05/2020@['article 8.3']@yes@filip josephson@daniela melchiorri@no@yes
+EU-1-20-1454_h_a_public-assessment-report.xml@EU-1-20-1454_h_a_public-assessment-report@26/06/2019@25/06/2020@['article 10.4']@no@andrea laslop@agnes gyurasics@no@no
+EU-1-20-1452_h_a_public-assessment-report.xml@EU-1-20-1452_h_a_public-assessment-report@26/04/2019@30/04/2020@['article 8.3']@no@milena stain@not_easily_scrapable@no@no
+EU-1-20-1451_h_a_public-assessment-report.xml@EU-1-20-1451_h_a_public-assessment-report@29/04/2019@30/04/2020@['article 8.3']@no@alexandre moreau@not_easily_scrapable@no@no
+EU-1-20-1458_h_a_public-assessment-report.xml@EU-1-20-1458_h_a_public-assessment-report@1/06/2019@28/05/2020@['article 10.1']@no@rapporteur alar irs@no_co-rapporteur@no@no
+EU-1-20-1456_h_a_public-assessment-report.xml@EU-1-20-1456_h_a_public-assessment-report@29/05/2019@28/05/2020@['article 10.4']@no@sol ruiz@not_easily_scrapable@no@no
+EU-1-20-1453_h_a_public-assessment-report.xml@EU-1-20-1453_h_a_public-assessment-report@7/02/2020@30/04/2020@['article 10.c']@no@kristina dunder@not_easily_scrapable@no@no
+EU-1-20-1443_h_a_public-assessment-report.xml@EU-1-20-1443_h_a_public-assessment-report@26/07/2018@26/03/2020@['article 3.1']@yes@johannes hendrikus ovelgonne@egbert flory@no@yes
+EU-1-20-1460_h_a_public-assessment-report.xml@EU-1-20-1460_h_a_public-assessment-report@7/01/2019@28/05/2020@['article 8.3']@yes@daniela melchiorri@not_easily_scrapable@no@yes
+EU-1-20-1465_h_a_public-assessment-report.xml@EU-1-20-1465_h_a_public-assessment-report@12/10/2019@25/06/2020@['article 10.3']@no@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-20-1444_h_a_public-assessment-report.xml@EU-1-20-1444_h_a_public-assessment-report@6/11/2019@28/05/2020@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@yes
+EU-1-20-1457_h_a_public-assessment-report.xml@EU-1-20-1457_h_a_public-assessment-report@20/06/2019@28/05/2020@['article 8.3']@no@jayne crowe@bjorg bolstad@no@yes
+EU-1-20-1455_h_a_public-assessment-report.xml@EU-1-20-1455_h_a_public-assessment-report@19/12/2018@28/05/2020@['article 8.3']@no@jorge camarero jiménez@not_easily_scrapable@no@no
+EU-1-20-1462_h_a_public-assessment-report.xml@EU-1-20-1462_h_a_public-assessment-report@6/05/2019@25/06/2020@['article 10.4']@no@milena stain@not_easily_scrapable@no@no
+EU-1-20-1468_h_a_public-assessment-report.xml@EU-1-20-1468_h_a_public-assessment-report@19/09/2019@10/07/2020@['article 8.3']@no@johann lodewijk hillege@peter kiely@no@yes
+EU-1-20-1470_h_a_public-assessment-report.xml@EU-1-20-1470_h_a_public-assessment-report@7/02/2019@25/06/2020@['article 10.3']@no@kirstine moll harboe@natalja karpova@no@no
+EU-1-20-1478_h_a_public-assessment-report.xml@EU-1-20-1478_h_a_public-assessment-report@8/03/2019@23/07/2020@['article 10.b']@no@alexandre moreau@natalja karpova@no@no
+EU-1-20-1469_h_a_public-assessment-report.xml@EU-1-20-1469_h_a_public-assessment-report@1/07/2019@23/07/2020@['article 8.3']@no@jayne crowe@ewa balkowiec iskra@no@no
+EU-1-20-1473_h_a_public-assessment-report.xml@EU-1-20-1473_h_a_public-assessment-report@1/07/2019@23/07/2020@['article 8.3']@no@blanca garcia-ochoa@not_easily_scrapable@no@no
+EU-1-20-1476_h_a_public-assessment-report.xml@EU-1-20-1476_h_a_public-assessment-report@29/05/2019@23/07/2020@['article 8.3']@no@milena stain@tuomo lapveteläinen@no@no
+EU-1-20-1474_h_a_public-assessment-report.xml@EU-1-20-1474_h_a_public-assessment-report@14/11/2019@23/07/2020@['article 8.3']@yes@tuomo lapveteläinen@not_easily_scrapable@no@yes
+EU-1-20-1471_h_a_public-assessment-report.xml@EU-1-20-1471_h_a_public-assessment-report@5/02/2019@13/07/2020@['article 8.3']@yes@martina weise@kristina dunder@no@no
+EU-1-20-1477_h_a_public-assessment-report.xml@EU-1-20-1477_h_a_public-assessment-report@29/07/2019@23/07/2020@['article 10.1']@no@rajko kenda@no_co-rapporteur@no@no
+EU-1-20-1479_h_a_public-assessment-report.xml@EU-1-20-1479_h_a_public-assessment-report@14/10/2019@23/07/2020@['article 8.3']@no@filip josephson@maria concepcion prieto yerro@no@no
+EU-1-20-1475_h_a_public-assessment-report.xml@EU-1-20-1475_h_a_public-assessment-report@26/07/2019@23/07/2020@['article 10.1']@no@milena stain@no_co-rapporteur@no@no
+EU-1-20-1482_h_a_public-assessment-report.xml@EU-1-20-1482_h_a_public-assessment-report@26/07/2019@15/10/2020@['article 8.3']@no@johann lodewijk hillege@bruno sepodes@no@no
+EU-1-20-1484_h_a_public-assessment-report.xml@EU-1-20-1484_h_a_public-assessment-report@4/10/2019@17/09/2020@['article 8.3']@no@jan mueller-berghaus@andrea laslop@no@no
+EU-1-20-1486_h_a_public-assessment-report.xml@EU-1-20-1486_h_a_public-assessment-report@12/09/2019@17/09/2020@['article 10.4']@no@ondřej slanař@koenraad norga@no@no
+EU-1-20-1480_h_a_public-assessment-report.xml@EU-1-20-1480_h_a_public-assessment-report@24/07/2019@23/07/2020@['article 8.3']@no@kristina dunder@not_easily_scrapable@no@no
+EU-1-20-1459_h_a_public-assessment-report.xml@EU-1-20-1459_h_a_public-assessment-report@no_date_found@no_chmp_found@['article 8.3']@no@janet koenig@not_easily_scrapable@no@no
+EU-1-20-1485_h_a_public-assessment-report.xml@EU-1-20-1485_h_a_public-assessment-report@3/06/2019@17/09/2020@['article 8.3']@no@jan mueller-berghaus@not_easily_scrapable@no@no
+EU-1-20-1488_h_a_public-assessment-report.xml@EU-1-20-1488_h_a_public-assessment-report@29/07/2019@17/09/2020@['article 10.1']@no@frantisek drafi@no_co-rapporteur@no@no
+EU-1-20-1483_h_a_public-assessment-report.xml@EU-1-20-1483_h_a_public-assessment-report@4/10/2019@17/09/2020@['article 8.3']@no@andrea laslop@ingrid wang@no@no
+EU-1-20-1487_h_a_public-assessment-report.xml@EU-1-20-1487_h_a_public-assessment-report@11/03/2019@17/09/2020@['article 10.3']@no@paula boudewina van hennik@natalja karpova@no@no
+EU-1-20-1489_h_a_public-assessment-report.xml@EU-1-20-1489_h_a_public-assessment-report@24/05/2019@17/09/2020@['article 8.3']@no@natalja karpova@not_easily_scrapable@no@no
+EU-1-20-1492_h_a_public-assessment-report.xml@EU-1-20-1492_h_a_public-assessment-report@12/12/2019@15/10/2020@['article 8.3']@yes@jan mueller-berghaus@not_easily_scrapable@no@yes
+EU-1-20-1496_h_a_public-assessment-report.xml@EU-1-20-1496_h_a_public-assessment-report@27/02/2020@15/10/2020@['article 8.3']@yes@martina weise@fátima ventura@no@yes
+EU-1-20-1500_h_a_public-assessment-report.xml@EU-1-20-1500_h_a_public-assessment-report@6/11/2019@12/11/2020@['article 8.3']@no@kirstine moll harboe@jayne crowe@no@yes
+EU-1-20-1494_h_a_public-assessment-report.xml@EU-1-20-1494_h_a_public-assessment-report@9/01/2020@15/10/2020@['article 8.3']@no@martina weise@not_easily_scrapable@no@no
+EU-1-20-1498_h_a_public-assessment-report.xml@EU-1-20-1498_h_a_public-assessment-report@22/11/2018@15/10/2020@['article 10.b']@no@peter kiely@ewa balkowiec iskra@no@no
+EU-1-20-1481_h_a_public-assessment-report.xml@EU-1-20-1481_h_a_public-assessment-report@26/07/2019@15/10/2020@['article 8.3']@no@jean-michel race@johann lodewijk hillege@no@no
+EU-1-20-1490_h_a_public-assessment-report.xml@EU-1-20-1490_h_a_public-assessment-report@13/09/2019@15/10/2020@['article 10.1']@no@eleftheria nikolaidi@not_easily_scrapable@no@no
+EU-1-20-1493_h_a_public-assessment-report.xml@EU-1-20-1493_h_a_public-assessment-report@08/11/2019@15/10/2020@['article 8.3']@no@carla herberts@paolo gasparini@no@yes
+EU-1-20-1497_h_a_public-assessment-report.xml@EU-1-20-1497_h_a_public-assessment-report@9/01/2020@12/11/2020@['article 10.b']@no@sinan b. sarac@not_easily_scrapable@no@no
+EU-1-20-1499_h_a_public-assessment-report.xml@EU-1-20-1499_h_a_public-assessment-report@14/09/2020@12/11/2020@['article 10.4', 'article 82.1']@no@andrea laslop@agnes gyurasics@no@no
+EU-1-20-1504_h_a_public-assessment-report.xml@EU-1-20-1504_h_a_public-assessment-report@15/11/2018@23/07/2020@['article 8.3']@no@alexandre moreau@bjorg bolstad@yes@yes
+EU-1-20-1501_h_a_public-assessment-report.xml@EU-1-20-1501_h_a_public-assessment-report@3/10/2019@28/01/2021@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-20-1502_h_a_public-assessment-report.xml@EU-1-20-1502_h_a_public-assessment-report@2/01/2020@12/11/2020@['article 10.b']@no@jayne crowe@not_easily_scrapable@no@no
+EU-1-20-1495_h_a_public-assessment-report.xml@EU-1-20-1495_h_a_public-assessment-report@27/06/2019@15/10/2020@['article 8.3']@no@jan mueller-berghaus@not_easily_scrapable@no@no
+EU-1-20-1491_h_a_public-assessment-report.xml@EU-1-20-1491_h_a_public-assessment-report@5/02/2019@15/10/2020@['article 8.3']@no@kirstine moll harboe@not_easily_scrapable@no@yes
+EU-1-20-1503_h_a_public-assessment-report.xml@EU-1-20-1503_h_a_public-assessment-report@11/03/2019@10/12/2020@['article 3.1']@no@filip josephson@christophe focke@no@no
+EU-1-20-1512_h_a_public-assessment-report.xml@EU-1-20-1512_h_a_public-assessment-report@3/10/2019@25/02/2021@['article 10.1']@no@alar irs@no_co-rapporteur@no@no
+EU-1-20-1506_h_a_public-assessment-report.xml@EU-1-20-1506_h_a_public-assessment-report@11/10/2019@10/12/2020@['article 10.4']@no@kirstine moll harboe@agnes gyurasics@no@no
+EU-1-20-1510_h_a_public-assessment-report.xml@EU-1-20-1510_h_a_public-assessment-report@30/01/2020@28/01/2021@['article 10.4', 'article 82.1']@no@christian gartner@filip josephson@no@no
+EU-1-20-1505_h_a_public-assessment-report.xml@EU-1-20-1505_h_a_public-assessment-report@20/11/2019@28/01/2021@['article 8.3']@no@bruno sepodes@selma arapovic dzakula@no@no
+EU-1-20-1517_h_a_public-assessment-report.xml@EU-1-20-1517_h_a_public-assessment-report@9/11/2019@10/12/2020@['article 10.b']@no@johann lodewijk hillege@tomas radimersky@no@no
+EU-1-20-1508_h_a_public-assessment-report.xml@EU-1-20-1508_h_a_public-assessment-report@26/03/2020@10/12/2020@['article 8.3']@no@sinan b. sarac@not_easily_scrapable@no@yes
+EU-1-20-1511_h_a_public-assessment-report.xml@EU-1-20-1511_h_a_public-assessment-report@31/10/2019@10/12/2020@['article 10.1']@no@tomas radimersky@not_easily_scrapable@no@no
+EU-1-20-1518_h_a_public-assessment-report.xml@EU-1-20-1518_h_a_public-assessment-report@30/01/2020@10/12/2020@['article 8.3']@no@janet koenig@jayne crowe@no@yes
+EU-1-20-1514_h_a_public-assessment-report.xml@EU-1-20-1514_h_a_public-assessment-report@30/01/2020@10/12/2020@['article 8.3']@no@paula boudewina van hennik@not_easily_scrapable@no@no
+EU-1-20-1513_h_a_public-assessment-report.xml@EU-1-20-1513_h_a_public-assessment-report@6/03/2020@10/12/2020@['article 10.4']@no@outi mäki-ikola@not_easily_scrapable@no@no
+EU-1-20-1509_h_a_public-assessment-report.xml@EU-1-20-1509_h_a_public-assessment-report@30/01/2020@28/01/2021@['article 10.4']@no@christian gartner@filip josephson@no@no
+EU-1-20-1523_h_a_public-assessment-report.xml@EU-1-20-1523_h_a_public-assessment-report@2/01/2020@10/12/2020@['article 10.3']@no@karin janssen van doorn@not_easily_scrapable@no@no
+EU-1-20-1520_h_a_public-assessment-report.xml@EU-1-20-1520_h_a_public-assessment-report@17/07/2020@10/12/2020@['article 10.1']@no@nevenka trsinar brodt@no_co-rapporteur@no@no
+EU-1-20-1515_h_a_public-assessment-report.xml@EU-1-20-1515_h_a_public-assessment-report@20/02/2020@25/02/2021@['article 10.4']@no@jan mueller-berghaus@ondřej slanař@no@no
+EU-1-20-1526_h_a_public-assessment-report.xml@EU-1-20-1526_h_a_public-assessment-report@9/01/2020@10/12/2020@['article 8.3']@no@sinan b. sarac@not_easily_scrapable@no@no
+EU-1-20-1519_h_a_public-assessment-report.xml@EU-1-20-1519_h_a_public-assessment-report@30/01/2020@10/12/2020@['article 10.1']@no@nevenka trsinar brodt@no_co-rapporteur@no@no
+EU-1-20-1521_h_a_public-assessment-report.xml@EU-1-20-1521_h_a_public-assessment-report@17/07/2020@10/12/2020@['article 10.1']@no@nevenka trsinar brodt@no_co-rapporteur@no@no
+EU-1-20-1524_h_a_public-assessment-report.xml@EU-1-20-1524_h_a_public-assessment-report@8/11/2019@28/01/2021@['article 8.3']@no@martina weise@alar irs@no@yes
+EU-1-21-1536_h_a_public-assessment-report.xml@EU-1-21-1536_h_a_public-assessment-report@21/05/2020@28/01/2021@['article 10.1']@no@margareta bego@no_co-rapporteur@no@no
+EU-1-21-1534_h_a_public-assessment-report.xml@EU-1-21-1534_h_a_public-assessment-report@31/10/2019@28/01/2021@['article 82.1', 'article 7']@no@john joseph borg@ewa balkowiec iskra@no@no
+EU-1-21-1532_h_a_public-assessment-report.xml@EU-1-21-1532_h_a_public-assessment-report@9/01/2020@28/01/2021@['article 8.3']@no@kirstine moll harboe@not_easily_scrapable@no@no
+EU-1-20-1527_h_a_public-assessment-report.xml@EU-1-20-1527_h_a_public-assessment-report@20/12/2019@10/12/2020@['article 8.3']@no@alexandre moreau@not_easily_scrapable@no@yes
+EU-1-21-1535_h_a_public-assessment-report.xml@EU-1-21-1535_h_a_public-assessment-report@21/11/2019@25/02/2021@['article 8.3']@no@alexandre moreau@not_easily_scrapable@no@yes
+EU-1-21-1537_h_a_public-assessment-report.xml@EU-1-21-1537_h_a_public-assessment-report@25/01/2019@28/01/2021@['article 8.3']@no@jorge camarero@not_easily_scrapable@no@yes
+EU-1-21-1540_h_a_public-assessment-report.xml@EU-1-21-1540_h_a_public-assessment-report@3/06/2019@27/01/2022@['article 10.1']@no@john joseph borg@no_co-rapporteur@no@no
+EU-1-21-1546_h_a_public-assessment-report.xml@EU-1-21-1546_h_a_public-assessment-report@8/11/2019@20/05/2021@['article 8.3']@no@johann lodewijk hillege@bruno sepodes@no@no
+EU-1-21-1542_h_a_public-assessment-report.xml@EU-1-21-1542_h_a_public-assessment-report@25/11/2019@25/03/2021@['article 8.3']@no@sinan b. sarac@paula boudewina van hennik@no@no
+EU-1-21-1541_h_a_public-assessment-report.xml@EU-1-21-1541_h_a_public-assessment-report@3/06/2019@27/01/2022@['article 10.1']@no@john joseph borg@no_co-rapporteur@no@no
+EU-1-21-1538_h_a_public-assessment-report.xml@EU-1-21-1538_h_a_public-assessment-report@30/01/2020@25/02/2021@['article 8.3']@no@blanca garcía-ochoa@not_easily_scrapable@no@yes
+EU-1-21-1547_h_a_public-assessment-report.xml@EU-1-21-1547_h_a_public-assessment-report@27/02/2020@25/03/2021@['article 8.3']@no@kristina dunder@not_easily_scrapable@yes@no
+EU-1-21-1548_h_a_public-assessment-report.xml@EU-1-21-1548_h_a_public-assessment-report@27/02/2020@25/03/2021@['article 82.1']@no@kristina dunder@not_easily_scrapable@yes@no
+EU-1-21-1544_h_a_public-assessment-report.xml@EU-1-21-1544_h_a_public-assessment-report@9/03/2020@25/02/2021@['article 8.3']@no@peter kiely@margareta bego@no@no
+EU-1-21-1550_h_a_public-assessment-report.xml@EU-1-21-1550_h_a_public-assessment-report@26/03/2020@25/03/2021@['article 8.3']@no@johann lodewijk hillege@elita poplavska@no@no
+EU-1-21-1549_h_a_public-assessment-report.xml@EU-1-21-1549_h_a_public-assessment-report@26/03/2020@25/03/2021@['article 10.3']@no@johann lodewijk hillege@kristina dunder@no@no
+EU-1-21-1552_h_a_public-assessment-report.xml@EU-1-21-1552_h_a_public-assessment-report@6/03/2020@22/04/2021@['article 8.3']@no@alexandre moreau@paula boudewina van hennik@no@yes
+EU-1-21-1539_h_a_public-assessment-report.xml@EU-1-21-1539_h_a_public-assessment-report@26/03/2020@24/06/2021@['article 3.1']@yes@rune kjeken@olli tenhunen@no@yes
+EU-1-20-1507_h_a_public-assessment-report.xml@EU-1-20-1507_h_a_public-assessment-report@9/12/2020@6/01/2021@['article 8.3']@no@jan mueller-berghaus@not_easily_scrapable@no@no
+EU-1-21-1553_h_a_public-assessment-report.xml@EU-1-21-1553_h_a_public-assessment-report@29/06/2020@22/04/2021@['article 10.1']@no@nevenka trsinar brodt@no_co-rapporteur@no@no
+EU-1-21-1555_h_a_public-assessment-report.xml@EU-1-21-1555_h_a_public-assessment-report@21/05/2020@16/09/2021@['article 8.3']@no@sinan b. sarac@not_easily_scrapable@no@no
+EU-1-21-1560_h_a_public-assessment-report.xml@EU-1-21-1560_h_a_public-assessment-report@1/07/2019@22/04/2021@['article 10.1']@no@ewa balkowiec iskra@not_easily_scrapable@no@no
+EU-1-21-1559_h_a_public-assessment-report.xml@EU-1-21-1559_h_a_public-assessment-report@25/07/2019@22/04/2021@['article 8.3']@no@kristina dunder@maria concepcion prieto yerro@no@yes
+EU-1-21-1556_h_a_public-assessment-report.xml@EU-1-21-1556_h_a_public-assessment-report@30/04/2020@22/04/2021@['article 8.3']@no@john joseph borg@not_easily_scrapable@no@no
+EU-1-21-1561_h_a_public-assessment-report.xml@EU-1-21-1561_h_a_public-assessment-report@27/05/2020@20/05/2021@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-21-1562_h_a_public-assessment-report.xml@EU-1-21-1562_h_a_public-assessment-report@11/11/2021@28/06/2021@['article 8.3']@no@thalia marie blicher@jayne crowe@no@no
+EU-1-21-1568_h_a_public-assessment-report.xml@EU-1-21-1568_h_a_public-assessment-report@26/06/2020@22/07/2021@['article 10.3']@no@john joseph borg@not_easily_scrapable@no@no
+EU-1-21-1566_h_a_public-assessment-report.xml@EU-1-21-1566_h_a_public-assessment-report@12/11/2020@20/05/2021@['article 8.3']@yes@johann lodewijk hillege@jayne crowe@no@yes
+EU-1-20-1525_h_a_public-assessment-report.xml@EU-1-20-1525_h_a_public-assessment-report@15/02/2021@11/03/2021@['article 8.3']@no@christophe focke@sol ruiz@no@no
+EU-1-21-1564_h_a_public-assessment-report.xml@EU-1-21-1564_h_a_public-assessment-report@30/04/2020@20/05/2021@['article 8.3']@yes@karin janssen van doorn@not_easily_scrapable@no@yes
+EU-1-21-1569_h_a_public-assessment-report.xml@EU-1-21-1569_h_a_public-assessment-report@12/09/2020@16/09/2021@['article 8.3']@no@filip josephson@not_easily_scrapable@no@no
+EU-1-21-1567_h_a_public-assessment-report.xml@EU-1-21-1567_h_a_public-assessment-report@24/07/2020@20/05/2021@['article 10.1']@no@alar irs@not_easily_scrapable@no@no
+EU-1-21-1572_h_a_public-assessment-report.xml@EU-1-21-1572_h_a_public-assessment-report@10/09/2020@9/08/2021@['article 10.4']@no@andrea laslop@christophe focke@no@no
+EU-1-21-1570_h_a_public-assessment-report.xml@EU-1-21-1570_h_a_public-assessment-report@30/04/2020@24/06/2021@['article 8.3']@no@sinan b. sarac@not_easily_scrapable@no@no
+EU-1-21-1578_h_a_public-assessment-report.xml@EU-1-21-1578_h_a_public-assessment-report@28/04/2021@16/12/2021@['article 82.1']@no@chmp rapporteur martina weise@no_co-rapporteur@no@no
+EU-1-21-1576_h_a_public-assessment-report.xml@EU-1-21-1576_h_a_public-assessment-report@28/05/2020@16/09/2021@['article 8.3']@no@sinan b. sarac@not_easily_scrapable@no@no
+EU-1-21-1574_h_a_public-assessment-report.xml@EU-1-21-1574_h_a_public-assessment-report@12/04/2020@24/06/2021@['article 8.3']@no@johann lodewijk hillege@ondřej slanař@no@no
+EU-1-21-1573_h_a_public-assessment-report.xml@EU-1-21-1573_h_a_public-assessment-report@5/11/2020@24/06/2021@['article 10.1']@no@nevenka trsinar brodt@no_co-rapporteur@no@no
+EU-1-21-1571_h_a_public-assessment-report.xml@EU-1-21-1571_h_a_public-assessment-report@9/03/2020@22/04/2021@['article 10.1', 'article 10.3']@no@john joseph borg@no_co-rapporteur@no@no
+EU-1-21-1579_h_a_public-assessment-report.xml@EU-1-21-1579_h_a_public-assessment-report@11/09/2020@23/07/2021@['article 8.3']@no@andrea laslop@john joseph borg@yes@yes
+EU-1-21-1565_h_a_public-assessment-report.xml@EU-1-21-1565_h_a_public-assessment-report@6/03/2020@20/05/2021@['article 8.3']@no@paula boudewina van hennik@not_easily_scrapable@no@no
+EU-1-21-1575_h_a_public-assessment-report.xml@EU-1-21-1575_h_a_public-assessment-report@15/07/2020@24/06/2021@['article 8.3']@no@peter kiely@christophe focke@no@no
+EU-1-21-1582_h_a_public-assessment-report.xml@EU-1-21-1582_h_a_public-assessment-report@14/09/2020@16/09/2021@['article 8.3']@no@jayne crowe@johann lodewijk hillege@no@no
+EU-1-21-1585_h_a_public-assessment-report.xml@EU-1-21-1585_h_a_public-assessment-report@16/11/2020@16/09/2021@['article 8.3']@no@martina weise@ewa balkowiec iskra@no@no
+EU-1-21-1577_h_a_public-assessment-report.xml@EU-1-21-1577_h_a_public-assessment-report@13/08/2020@24/06/2021@['article 8.3']@no@martina weise@andrea laslop@no@no
+EU-1-21-1586_h_a_public-assessment-report.xml@EU-1-21-1586_h_a_public-assessment-report@12/06/2020@11/11/2021@['article 8.3']@no@ondřej slanař@ewa balkowiec iskra@no@no
+@no@no
+EU-1-21-1589_h_a_public-assessment-report.xml@EU-1-21-1589_h_a_public-assessment-report@11/09/2020@16/09/2021@['article 10.4']@no@outi mäki-ikola@simona badoi@no@no
+EU-1-21-1593_h_a_public-assessment-report.xml@EU-1-21-1593_h_a_public-assessment-report@28/08/2020@14/10/2021@['article 8.3']@no@kristina dunder@not_easily_scrapable@no@no
+EU-1-21-1583_h_a_public-assessment-report.xml@EU-1-21-1583_h_a_public-assessment-report@30/04/2020@16/09/2021@['article 10.1']@no@hrefna gudmundsdottir@no_co-rapporteur@no@no
+EU-1-21-1588_h_a_public-assessment-report.xml@EU-1-21-1588_h_a_public-assessment-report@11/09/2020@16/09/2021@['article 10.1']@no@konstantinos markopoulos@no_co-rapporteur@no@no
+EU-1-21-1595_h_a_public-assessment-report.xml@EU-1-21-1595_h_a_public-assessment-report@10/09/2020@14/10/2021@['article 8.3']@no@alexandre moreau@not_easily_scrapable@no@no
+EU-1-21-1590_h_a_public-assessment-report.xml@EU-1-21-1590_h_a_public-assessment-report@11/09/2020@16/09/2021@['article 10.4']@no@outi mäki@simona badoi@no@no
+EU-1-21-1599_h_a_public-assessment-report.xml@EU-1-21-1599_h_a_public-assessment-report@16/11/2020@11/11/2021@['article 8.3']@no@jan mueller-berghaus@bruno sepodes@no@no
+EU-1-21-1594_h_a_public-assessment-report.xml@EU-1-21-1594_h_a_public-assessment-report@23/12/2020@14/10/2021@['article 8.3']@no@filip josephson@johanna lähteenvuo@no@yes
+EU-1-21-1596_h_a_public-assessment-report.xml@EU-1-21-1596_h_a_public-assessment-report@5/11/2020@16/12/2021@['article 8.3']@no@filip josephson@karin janssen van doorn@no@no
+EU-1-21-1603_h_a_public-assessment-report.xml@EU-1-21-1603_h_a_public-assessment-report@21/01/2021@11/11/2021@['article 8.3']@no@alexandre moreau@not_easily_scrapable@no@no
+EU-1-21-1597_h_a_public-assessment-report.xml@EU-1-21-1597_h_a_public-assessment-report@16/09/2021@11/11/2021@['article 8.3']@no@filip josephson@not_easily_scrapable@no@no
+EU-1-21-1604_h_a_public-assessment-report.xml@EU-1-21-1604_h_a_public-assessment-report@19/08/2021@11/11/2021@['article 10.c', 'article 82.1']@no@peter kiely@not_easily_scrapable@no@no
+EU-1-21-1600_h_a_public-assessment-report.xml@EU-1-21-1600_h_a_public-assessment-report@24/07/2020@11/11/2021@['article 8.3']@no@jayne crowe@romaldas mačiulaitis@no@no
+EU-1-21-1605_h_a_public-assessment-report.xml@EU-1-21-1605_h_a_public-assessment-report@9/10/2020@11/11/2021@['article 8.3']@no@kristina dunder@not_easily_scrapable@no@no
+EU-1-21-1601_h_a_public-assessment-report.xml@EU-1-21-1601_h_a_public-assessment-report@16/09/2021@11/11/2021@['article 8.3']@no@jan mueller@not_easily_scrapable@no@no
+EU-1-21-1598_h_a_public-assessment-report.xml@EU-1-21-1598_h_a_public-assessment-report@9/11/2020@14/10/2021@['article 10.1']@no@alar irs@no_co-rapporteur@no@no
+EU-1-21-1611_h_a_public-assessment-report.xml@EU-1-21-1611_h_a_public-assessment-report@23/10/2020@27/01/2022@['article 10.1']@no@tomas radimersky@no_co-rapporteur@no@no
+EU-1-21-1607_h_a_public-assessment-report.xml@EU-1-21-1607_h_a_public-assessment-report@8/09/2020@11/11/2021@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-21-1615_h_a_public-assessment-report.xml@EU-1-21-1615_h_a_public-assessment-report@25/03/2021@24/02/2022@['article 8.3']@no@sinan b. sarac@alexandre moreau@no@yes
+EU-1-21-1606_h_a_public-assessment-report.xml@EU-1-21-1606_h_a_public-assessment-report@20/11/2020@22/04/2022@['article 8.3']@no@peter kiely@margareta bego@no@no
+EU-1-21-1612_h_a_public-assessment-report.xml@EU-1-21-1612_h_a_public-assessment-report@5/02/2021@16/12/2021@['article 8.3']@no@daniela philadelphy@not_easily_scrapable@no@yes
+EU-1-21-1617_h_a_public-assessment-report.xml@EU-1-21-1617_h_a_public-assessment-report@3/02/2021@16/12/2021@['article 8.3']@no@peter kiely@martina weise@no@no
+EU-1-21-1608_h_a_public-assessment-report.xml@EU-1-21-1608_h_a_public-assessment-report@17/12/2020@11/11/2021@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@no
+EU-1-21-1616_h_a_public-assessment-report.xml@EU-1-21-1616_h_a_public-assessment-report@5/11/2020@16/12/2021@['article 8.3']@no@kristina dunder@armando genazzani@no@yes
+EU-1-21-1619_h_a_public-assessment-report.xml@EU-1-21-1619_h_a_public-assessment-report@4/11/2020@16/12/2021@['article 10.1']@no@elita poplavska@no_co-rapporteur@no@no
+EU-1-21-1621_h_a_public-assessment-report.xml@EU-1-21-1621_h_a_public-assessment-report@27/12/2019@16/12/2021@['article 10.3']@no@kristina dunder@ewa balkowiec iskra@no@no
+EU-1-20-1528_h_a_public-assessment-report.xml@EU-1-20-1528_h_a_public-assessment-report@1/12/2020@21/12/2020@['article 8.3']@no@filip josephson@not_easily_scrapable@no@no
+EU-1-22-1629_h_a_public-assessment-report.xml@EU-1-22-1629_h_a_public-assessment-report@3/06/2019@24/03/2022@['article 10.3']@no@blanca garcia@not_easily_scrapable@no@no
+EU-1-21-1623_h_a_public-assessment-report.xml@EU-1-21-1623_h_a_public-assessment-report@8/10/2020@16/12/2021@['article 8.3']@no@outi mäki-ikola@not_easily_scrapable@no@no
+EU-1-21-1620_h_a_public-assessment-report.xml@EU-1-21-1620_h_a_public-assessment-report@4/01/2021@16/12/2021@['article 10.1']@no@frantisek drafi@no_co-rapporteur@no@no
+EU-1-21-1622_h_a_public-assessment-report.xml@EU-1-21-1622_h_a_public-assessment-report@23/12/2020@16/12/2021@['article 8.3']@no@paula boudewina van hennik@not_easily_scrapable@no@yes
+EU-1-22-1630_h_a_public-assessment-report.xml@EU-1-22-1630_h_a_public-assessment-report@24/06/2021@24/02/2022@['article 8.3']@no@sinan b. sarac@alexandre moreau@no@yes
+EU-1-22-1635_h_a_public-assessment-report.xml@EU-1-22-1635_h_a_public-assessment-report@30/05/2021@24/02/2022@['article 10.1']@no@ewa balkowiec iskra@not_easily_scrapable@no@no
+EU-1-22-1631_h_a_public-assessment-report.xml@EU-1-22-1631_h_a_public-assessment-report@30/04/2020@27/01/2022@['article 8.3']@no@concetta quintarelli@claire beuneu@no@yes
+EU-1-22-1625_h_a_public-assessment-report.xml@EU-1-22-1625_h_a_public-assessment-report@6/07/2021@27/01/2022@['article 8.3']@no@jean@fátima ventura@no@no
+EU-1-22-1640_h_a_public-assessment-report.xml@EU-1-22-1640_h_a_public-assessment-report@9/11/2020@24/02/2022@['article 10.1']@no@tomas radimersky@no_co-rapporteur@no@no
+EU-1-22-1637_h_a_public-assessment-report.xml@EU-1-22-1637_h_a_public-assessment-report@9/11/2021@24/02/2022@['article 10.1', 'article 82.1']@no@ewa balkowiec iskra.@no_co-rapporteur@no@no
+EU-1-22-1632_h_a_public-assessment-report.xml@EU-1-22-1632_h_a_public-assessment-report@27/04/2020@27/01/2022@['article 10.4']@no@christian gartner@tomas radimersky@no@no
+EU-1-21-1624_h_a_public-assessment-report.xml@EU-1-21-1624_h_a_public-assessment-report@22/04/2022@23/06/2022@['article 8.3']@no@andrea laslop@alar irs@no@no
+EU-1-22-1628_h_a_public-assessment-report.xml@EU-1-22-1628_h_a_public-assessment-report@5/03/2021@27/01/2022@['article 10.4']@no@peter kiely@not_easily_scrapable@no@no
+EU-1-22-1638_h_a_public-assessment-report.xml@EU-1-22-1638_h_a_public-assessment-report@2/03/2021@24/02/2022@['article 8.3']@no@alexandre moreau@ondřej slanař@no@no
+EU-1-22-1641_h_a_public-assessment-report.xml@EU-1-22-1641_h_a_public-assessment-report@20/11/2020@24/02/2022@['article 8.3']@no@jan mueller-berghaus@ingrid wang@no@no
+EU-1-21-1618_h_a_public-assessment-report.xml@EU-1-21-1618_h_a_public-assessment-report@6/12/2021@04/01/2022@['article 8.3']@no@johann lodewijk hillege@thalia marie blicher@no@no
+EU-1-22-1644_h_a_public-assessment-report.xml@EU-1-22-1644_h_a_public-assessment-report@5/03/2020@24/02/2022@['article 10.4']@no@andrea laslop@not_easily_scrapable@no@no
+EU-1-22-1633_h_a_public-assessment-report.xml@EU-1-22-1633_h_a_public-assessment-report@04/05/2020@24/02/2022@['article 10.1']@no@simona badoi@no_co-rapporteur@no@no
+EU-1-22-1648_h_a_public-assessment-report.xml@EU-1-22-1648_h_a_public-assessment-report@28/01/2021@24/03/2022@['article 8.3']@no@jan mueller@marcos timón@no@yes
+EU-1-22-1639_h_a_public-assessment-report.xml@EU-1-22-1639_h_a_public-assessment-report@28/04/2021@24/02/2022@['article 10.4']@no@martina weise@not_easily_scrapable@no@no
+EU-1-22-1645_h_a_public-assessment-report.xml@EU-1-22-1645_h_a_public-assessment-report@8/02/2021@24/02/2022@['article 8.3']@no@janet koenig@ewa balkowiec iskra@no@no
+EU-1-22-1652_h_a_public-assessment-report.xml@EU-1-22-1652_h_a_public-assessment-report@8/03/2021@22/04/2022@['article 8.3']@no@kristina dunder@not_easily_scrapable@no@no
+EU-1-22-1634_h_a_public-assessment-report.xml@EU-1-22-1634_h_a_public-assessment-report@15/06/2021@24/02/2022@['article 10.1']@no@hrefna gudmundsdottir.@no_co-rapporteur@no@no
+EU-1-22-1649_h_a_public-assessment-report.xml@EU-1-22-1649_h_a_public-assessment-report@16/09/2021@22/04/2022@['article 8.3']@no@aaron sosa mejia@karin janssen van doorn@no@yes
+EU-1-22-1646_h_a_public-assessment-report.xml@EU-1-22-1646_h_a_public-assessment-report@29/04/2021@24/03/2022@['article 10.1']@no@not_easily_scrapable@no_co-rapporteur@no@no
+EU-1-22-1642_h_a_public-assessment-report.xml@EU-1-22-1642_h_a_public-assessment-report@8/03/2021@24/02/2022@['article 8.3']@no@paula boudewina van hennik@not_easily_scrapable@no@no
+EU-1-22-1661_h_a_public-assessment-report.xml@EU-1-22-1661_h_a_public-assessment-report@27/04/2021@19/05/2022@['article 10.1']@no@hrefna gudmundsdottir@no_co-rapporteur@no@no
+EU-1-22-1657_h_a_public-assessment-report.xml@EU-1-22-1657_h_a_public-assessment-report@28/05/2021@19/05/2022@['article 10.3']@no@not_easily_scrapable@not_easily_scrapable@no@yes
+EU-1-22-1647_h_a_public-assessment-report.xml@EU-1-22-1647_h_a_public-assessment-report@6/03/2020@24/03/2022@['article 10.3']@no@johanna lähteenvuo@not_easily_scrapable@no@no
+EU-1-22-1653_h_a_public-assessment-report.xml@EU-1-22-1653_h_a_public-assessment-report@12/01/2020@19/05/2022@['article 8.3']@no@maura o@lisbeth barkholt@no@no
+EU-1-22-1663_h_a_public-assessment-report.xml@EU-1-22-1663_h_a_public-assessment-report@2/03/2021@19/05/2022@['article 10.1']@no@agnes gyurasics@no_co-rapporteur@no@no
+EU-1-22-1643_h_a_public-assessment-report.xml@EU-1-22-1643_h_a_public-assessment-report@8/03/2021@24/02/2022@['article 8.3']@no@thalia marie estrup blicher@františek dráfi@no@no
+EU-1-22-1658_h_a_public-assessment-report.xml@EU-1-22-1658_h_a_public-assessment-report@4/03/2021@19/05/2022@['article 10.1']@no@hrefna gudmundsdottir@no_co-rapporteur@no@no
+EU-1-22-1655_h_a_public-assessment-report.xml@EU-1-22-1655_h_a_public-assessment-report@28/04/2021@22/04/2022@['article 10.1']@no@john joseph borg@no_co-rapporteur@no@no
+EU-1-22-1651_h_a_public-assessment-report.xml@EU-1-22-1651_h_a_public-assessment-report@14/03/2022@24/03/2022@['article 8.3']@no@jan mueller-berghaus@christophe focke@no@no
+EU-1-22-1659_h_a_public-assessment-report.xml@EU-1-22-1659_h_a_public-assessment-report@21/07/2021@19/05/2022@['article 8.3']@no@johann lodewijk hillege@ewa balkowiec iskra@no@yes
+EU-1-22-1669_h_a_public-assessment-report.xml@EU-1-22-1669_h_a_public-assessment-report@15/04/2021@23/06/2022@['article 8.3']@no@paula boudewina van hennik@elita poplavska@no@no
+EU-1-22-1660_h_a_public-assessment-report.xml@EU-1-22-1660_h_a_public-assessment-report@27/03/2020@19/05/2022@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@yes
+EU-1-21-1529_h_a_public-assessment-report.xml@EU-1-21-1529_h_a_public-assessment-report@28/12/2020@29/01/2021@['article 8.3']@no@sol ruiz@not_easily_scrapable@no@no
+EU-1-98-065_h_a_procedural-steps-taken-authorisation.xml@EU-1-98-065_h_a_procedural-steps-taken-authorisation@21/03/1997@18/05/1998@no_legal_basis@NA@prof. k strandberg@dr. h. pittner@no@NA

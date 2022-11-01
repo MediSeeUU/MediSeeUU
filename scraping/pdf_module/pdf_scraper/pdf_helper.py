@@ -12,10 +12,6 @@ def append_text(text: str, size: int, font: str, results: [(str, int, str)], low
         font (str): The font of the text to append
         results ([(str, int, str)]): The final results list of tuples of texts, font sizes, and font names
         lower (bool): Determines whether the text should be lowercase or not
-
-    Returns:
-        None
-
     """
     if lower:
         results.append((text.lower(), size, font))
@@ -31,10 +27,6 @@ def get_text(blocks: [dict], results: ([(str, int, str)]), lower: bool):
         blocks ([dict]): Some section of a PDF document, containing spans that contain lines
         results ([(str, int, str)]): The final results list of tuples of texts, font sizes, and font names
         lower (bool): Determines whether the text should be lowercase or not
-
-    Returns:
-        None
-
     """
     old_text = old_font = ''
     old_size = 0
@@ -59,10 +51,6 @@ def combine_text(lines: dict, lower: bool, old_font: str, old_size: int, old_tex
         old_size (int): The font size of current text to which lines['size'] can be added
         old_text (str): The current text to which lines['text'] can be added
         results ([(str, int, str)]): The final results list of tuples of texts, font sizes, and font names
-
-    Returns:
-        None
-
     """
     text = lines['text']
     size = lines['size']
