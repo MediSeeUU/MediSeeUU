@@ -55,44 +55,49 @@ def pdf_links_from_url(url: str) -> tuple[str, str]:
     url_list: list[str] = list(map(lambda a: a["href"], link_tags))
 
     # Files named 'public-assessment-report' will be the highest priority in the search.
-    priority_list: list[str] = [
+    epar_priority_list: list[str] = [
         "public-assessment-report",
         "scientific-discussion",
         "procedural-steps-taken-authorisation"
     ]
-    priority_link: str = ""
-    omar_link: str = ""
-    break_epar_loop: bool = False
-
-    # Go through all links, try to find the document that is the highest on the priority list first.
-    for type_of_report in priority_list:
-        for pdf_url in url_list:
-            if type_of_report in pdf_url:
-                priority_link = pdf_url
-                break_epar_loop = True
-                break
-        if break_epar_loop:
-            break
-
-    # Go through all links, try to find the OMAR document
-    for pdf_url in url_list:
-        if "orphan-medicine-assessment-report" in pdf_url:
-            omar_link = pdf_url
-            break
+    omar_priority_list: list[str] = [
+        "orphan-maintenance-assessment-report",
+        "orphan-medicine-assessment-report"
+    ]
+    epar_link = find_priority_link(epar_priority_list, url_list)
+    omar_link = find_priority_link(omar_priority_list, url_list)
 
     # gives a warning if it hasn't found an epar or omar document
-    if priority_link == "" and omar_link == "":
+    if epar_link == "" and omar_link == "":
         log.warning(f"No EPAR for {medicine_name}. The searched URLs are {url_list}")
 
-    if priority_link == "" and omar_link != "":
+    if epar_link == "" and omar_link != "":
         log.warning(f"No EPAR for {medicine_name}. The searched URLs are {url_list}")
         log.info(f"OMAR for {medicine_name} found. The searched URLs are {url_list}")
 
-    if priority_link != "" and omar_link != "":
+    if epar_link != "" and omar_link != "":
         log.info(f"OMAR for {medicine_name} found. The searched URLs are {url_list}")
 
-    return priority_link, omar_link
+    return epar_link, omar_link
 
+
+def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:
+    """ Finds the url with the highest priority in a list of urls
+
+    Args:
+        priority_list (list[str]): String that the url must contain. Strings with a lower index have higher priority
+        url_list (list[str]): List of urls to be searched
+
+    Returns:
+        str: Return the highest priority url, or if it can't find it, an empty string
+
+    """
+    for type_of_report in priority_list:
+        for url in url_list:
+            if type_of_report in url:
+                return url
+
+    return ""
 
 def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
     """ Gets all the annex 10 files from the EMA website.
