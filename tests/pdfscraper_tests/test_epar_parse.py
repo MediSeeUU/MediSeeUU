@@ -20,13 +20,12 @@ class TestEparParse(TestCase):
     def setUp(self):
         """
         Prepare a list of XML files in the global variable xml_bodies
-        Returns:
-            None
         """
         files = []
         for folder in os.listdir(test_data_loc):
             for file in os.listdir(os.path.join(test_data_loc, folder)):
                 path = os.path.join(test_data_loc, folder, file)
+
                 if os.path.isfile(path):
                     files.append(path)
         xml_files = [file for file in files if ".xml" in file and ("procedural-steps" in file or
@@ -41,14 +40,12 @@ class TestEparParse(TestCase):
     def test_get_date(self):
         """
         Test getting ema_procedure_start_initial
-        Returns:
-            None
         """
         found_count = 0
         # Call get_date
         for xml_body in xml_bodies:
             output = epar_parse.get_date(xml_body)
-            if output != "no_date_found":
+            if output != "no_date_found" and output != "not_easily_scrapable":
                 found_count += 1
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
                 month = re.search(r"/\d{2}/", output)[0][1:3].strip()
@@ -61,14 +58,12 @@ class TestEparParse(TestCase):
     def test_get_opinion_date(self):
         """
         Test getting chmp_opinion_date
-        Returns:
-            None
         """
         found_count = 0
         # Call get_opinion_date
         for xml_body in xml_bodies:
             output = epar_parse.get_opinion_date(xml_body)
-            if output != "no_chmp_found":
+            if output != "no_chmp_found" and output != "not_easily_scrapable":
                 found_count += 1
                 if not re.search(r"\d{2}/", output):
                     for i in xml_body.iter():
@@ -88,9 +83,6 @@ class TestEparParse(TestCase):
             day (str): day to check from scraped date
             month (str): month to check from scraped date
             year (str): year to check from scraped date
-
-        Returns:
-            None
         """
         self.assertGreater(int(year), 1980)
         # Make sure to check this in the future :D
@@ -103,14 +95,12 @@ class TestEparParse(TestCase):
     def test_get_legal_basis(self):
         """
         Test getting eu_legal_basis
-        Returns:
-            None
         """
         found_count = 0
         # Call get_legal_basis
         for xml_body in xml_bodies:
             output = epar_parse.get_legal_basis(xml_body)
-            if output != "no_legal_basis":
+            if output != "no_legal_basis" and output != "not_easily_scrapable":
                 found_count += 1
                 self.assertGreater(len(output), 0)
                 for article in output:
@@ -128,23 +118,23 @@ class TestEparParse(TestCase):
     def test_get_prime(self):
         """
         Test getting eu_prime_initial
-        Returns:
-            None
         """
         yes_exists = False
+        na_exists = False
         # Call get_prime
         for xml_body in xml_bodies:
             output = epar_parse.get_prime(xml_body)
             if output == "yes":
                 yes_exists = True
-            self.assertIn(output, 'yesno')
+            if output == "NA":
+                na_exists = True
+            self.assertIn(output, 'yesnoNA')
         self.assertTrue(yes_exists)
+        self.assertTrue(na_exists)
 
     def test_get_rapp(self):
         """
         Test getting ema_rapp
-        Returns:
-            None
         """
         found_count = 0
         # Call get_rapp
@@ -152,7 +142,7 @@ class TestEparParse(TestCase):
             output = epar_parse.get_rapp(xml_body)
             if not output:
                 self.fail("Rapporteur is empty")
-            if output != "no_rapporteur":
+            if output != "no_rapporteur" and output != "not_easily_scrapable":
                 # print(output)
                 found_count += 1
                 # Check if rapporteur name is of reasonable length
@@ -165,3 +155,59 @@ class TestEparParse(TestCase):
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 80)
+
+    def test_get_corapp(self):
+        """
+        Test getting ema_corapp
+        """
+        found_count = 0
+        # Call get_corapp
+        for xml_body in xml_bodies:
+            output = epar_parse.get_corapp(xml_body)
+            if not output:
+                self.fail("Co-rapporteur is empty")
+            if output != "no_co-rapporteur" and output != "not_easily_scrapable":
+                # print(output)
+                found_count += 1
+                # Check if co-rapporteur name is of reasonable length
+                print(output)
+                self.assertGreater(len(output), 2)
+                self.assertGreater(40, len(output))
+                # Check if rapporteur is of correct format
+                rapp_format = re.search(r'[\w\s]+', output)
+                self.assertTrue(rapp_format)
+        percentage_found = found_count / len(xml_bodies) * 100
+        print(percentage_str + str(round(percentage_found, 2)) + '%')
+        # There aren't a lot of co-rapporteurs, just to make sure the function keeps working correctly
+        self.assertGreater(percentage_found, 30)
+
+    def test_get_reexamination(self):
+        """
+        Test getting ema_reexamination
+        """
+        yes_exists = False
+        # Call get_reexamination
+        for xml_body in xml_bodies:
+            output = epar_parse.get_reexamination(xml_body)
+            if output == "yes":
+                yes_exists = True
+            if not output:
+                self.fail("No output found")
+            self.assertIn(output, 'yesno')
+        self.assertTrue(yes_exists)
+
+    def test_get_accelerated_assessment(self):
+        """
+        Test getting eu_accel_assess_g
+        """
+        yes_exists = False
+        # Call get_accelerated_assessment
+        for xml_body in xml_bodies:
+            output = epar_parse.get_accelerated_assessment(xml_body)
+            print(output)
+            if output == "yes":
+                yes_exists = True
+            if not output:
+                self.fail("No output found")
+            self.assertIn(output, 'yesnoNA')
+        self.assertTrue(yes_exists)
