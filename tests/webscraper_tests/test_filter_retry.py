@@ -3,8 +3,6 @@ import tempfile
 from scraping.web_scraper import filter_retry, json_helper
 from unittest.mock import patch, mock_open, MagicMock
 from parameterized import parameterized
-with patch("builtins.open", mock_open(read_data="data")) as mock_file:
-    assert open("../../scraping/web_scraper/filter.txt").read() == "data"
 
 
 class TestFilterRetry(unittest.TestCase):
