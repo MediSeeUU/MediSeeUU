@@ -198,8 +198,41 @@ class TestEcScraper(unittest.TestCase):
         self.assertEqual(output, exp_output, msg="decision type is wrong")
 
 
-    def test_determine_aut_type(self):
-        self.fail()
+    @parameterized.expand([
+        [
+            2005,
+            True,
+            False,
+            "pre_2006"
+        ],
+        [
+            2007,
+            False,
+            False,
+            "standard"
+        ],
+        [
+            2008,
+            True,
+            False,
+            "exceptional"
+        ],
+        [
+            2009,
+            False,
+            True,
+            "conditional"
+        ],
+        [
+            2010,
+            True,
+            True,
+            "exceptional_conditional"
+        ]
+    ])
+    def test_determine_initial_aut_type(self, year, is_exceptional, is_conditional, exp_output):
+        output = ec.determine_initial_aut_type(year, is_exceptional, is_conditional)
+        self.assertEqual(output, exp_output, msg="output is not as expected")
 
     def test_format_ema_number(self):
         self.fail()
