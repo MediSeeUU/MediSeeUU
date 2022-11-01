@@ -3,9 +3,9 @@ import os.path as path
 import os
 
 import web_scraper.__main__ as web_scraper
-#import pdf_module.pdf_scraper.__main__ as pdf_scraper
-#import combiner.__main__ as combiner
-#import db_uploader.__main__ as db_uploader
+import pdf_module.pdf_scraper.__main__ as pdf_scraper
+import combiner.__main__ as combiner
+import db_uploader.__main__ as db_uploader
 
 
 def main():

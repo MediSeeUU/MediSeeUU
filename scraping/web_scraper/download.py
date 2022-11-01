@@ -18,7 +18,7 @@ data_path: str
 
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str]):
     """
-    Downloads a pdf file given an url. It also gives the file a specific name based on the input.
+    Downloads a PDF file given an url. It also gives the file a specific name based on the input.
     The file will be downloaded to the corresponding EU number folder.
 
     Args:

@@ -16,7 +16,7 @@ scrape_ec: bool = False
 scrape_ema: bool = False            # Requires scrape_ec to have been run at least once
 scrape_annex10: bool = False
 download_files: bool = True         # Download pdfs from the obtained links
-use_parallelization: bool = True   # Parallelization is currently broken on Windows. Set to False
+use_parallelization: bool = False
 
 # list of the type of medicines that will be scraped
 # NOTE: This was useful for debugging
@@ -207,11 +207,11 @@ def main(data_filepath: str = '../../data'):
         log.info("TASK FINISHED EMA scrape")
 
     if download_files:
-        log.info("TASK START downloading pdf files from fetched urls from EC and EMA")
+        log.info("TASK START downloading PDF files from fetched urls from EC and EMA")
 
         download.download_all(data_filepath, url_file, parallel_download=use_parallelization)
 
-        log.info("TASK FINISHED downloading pdf files")
+        log.info("TASK FINISHED downloading PDF files")
 
     log.info("=== LOG FINISH ===")
 

@@ -68,15 +68,8 @@ def pdf_links_from_url(url: str) -> tuple[str, str]:
     omar_link = find_priority_link(omar_priority_list, url_list)
 
     # gives a warning if it hasn't found an epar or omar document
-    if epar_link == "" and omar_link == "":
+    if epar_link == "":
         log.warning(f"No EPAR for {medicine_name}. The searched URLs are {url_list}")
-
-    if epar_link == "" and omar_link != "":
-        log.warning(f"No EPAR for {medicine_name}. The searched URLs are {url_list}")
-        log.info(f"OMAR for {medicine_name} found. The searched URLs are {url_list}")
-
-    if epar_link != "" and omar_link != "":
-        log.info(f"OMAR for {medicine_name} found. The searched URLs are {url_list}")
 
     return epar_link, omar_link
 
@@ -98,6 +91,7 @@ def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:
                 return url
 
     return ""
+
 
 def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
     """ Gets all the annex 10 files from the EMA website.
