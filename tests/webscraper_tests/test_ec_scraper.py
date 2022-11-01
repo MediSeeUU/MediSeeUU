@@ -234,8 +234,52 @@ class TestEcScraper(unittest.TestCase):
         output = ec.determine_initial_aut_type(year, is_exceptional, is_conditional)
         self.assertEqual(output, exp_output, msg="output is not as expected")
 
-    def test_format_ema_number(self):
-        self.fail()
 
-    def test_determine_ema_number(self):
-        self.fail()
+    @parameterized.expand([
+        [
+            "EMEA/H/C/000674/IA/0142/G",
+            ["EMEA/H/C/000674"]
+        ],
+        [
+            "EMA/OD/020/02",
+            ["EMA/OD/020/02"]
+        ],
+        [
+            "EMEA/H/C/000674/IA/0142/G, EMA/OD/020/02",
+            [
+                "EMEA/H/C/000674",
+                "EMA/OD/020/02"
+            ]
+        ]
+    ])
+    def test_format_ema_number(self, ema_number, exp_output):
+        output = ec.format_ema_number(ema_number)
+        self.assertEqual(output, exp_output, msg="output is not as expected")
+
+    @parameterized.expand([
+        [
+            [
+                "EMEA/H/C/000572",
+                "EMEA/H/C/000572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/IG1126",
+                "EMEA/H/C/572"
+                "EMEA/H/C/IG1055",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572"
+            ],
+            "EMEA/H/C/572",
+            0.7333333333333333
+        ]
+    ])
+    def test_determine_ema_number(self, ema_numbers, exp_ema_number, exp_fraction):
+        ema_number, fraction = ec.determine_ema_number(ema_numbers)
+        self.assertEqual(ema_number, exp_ema_number, msg="ema number is not right")
+        self.assertEqual(fraction, exp_fraction, msg="fraction is not right")
