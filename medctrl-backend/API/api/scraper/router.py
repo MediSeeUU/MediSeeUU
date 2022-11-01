@@ -8,7 +8,7 @@
 
 from django.urls import path, include
 from rest_framework import routers
-from .scraper_medicine import ScraperMedicine
+from .scraper_medicine_post import ScraperMedicine
 from .scraper_urls_view import UrlsViewSet
 
 router = routers.DefaultRouter()

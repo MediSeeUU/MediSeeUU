@@ -1,5 +1,6 @@
 from django.test import TestCase
-from api.scraper.scraper_medicine import ScraperMedicine
+from unittest.mock import patch
+from api.scraper.scraper_medicine_post import ScraperMedicine
 from api.models.medicine_models import (
     Medicine,
     HistoryAuthorisationStatus,
@@ -12,24 +13,29 @@ from api.models.medicine_models import (
     LegalBases,
 )
 from api.models.other.locks import Locks
-from api.serializers.medicine_serializers.scraper import (
-    MedicineSerializer,
-    AuthorisationStatusSerializer,
-    PrimeSerializer,
-)
 from api.models.medicine_models.common import (
     AutStatus,
     AutTypes,
     LegalBasesTypes,
 )
 
+
 class ScraperLocksTestCase(TestCase):
     """
     Test if lock works correctly when posting to the scraper post function
     """
-    def test_scraper_update_lock(self):
+
+    @patch('api.scraper.scraper_medicine_post.AuthorisationStatusSerializer')
+    @patch('api.scraper.scraper_medicine_post.PrimeSerializer', is_valid=True)
+    @patch('api.scraper.scraper_medicine_post.MedicineFlexVarUpdateSerializer', is_valid=True)
+    def test_scraper_update_lock(self, update_serializer, prime_serializer, status_serializer):
         """
         Test if lock works correctly when updating an existing medicine
+
+        Args:
+            update_serializer (MagicMock): The mock object for the MedicineFlexVarUpdateSerializer
+            prime_serializer (MagicMock): The mock object for the PrimeSerializer
+            status_serializer (MagicMock): The mock object for the AuthorisationStatusSerializer
         """
 
         # sample data inserted into the database
@@ -149,32 +155,29 @@ class ScraperLocksTestCase(TestCase):
         scraper = ScraperMedicine()
         scraper.post(self)
 
-        medicine_query = Medicine.objects.first()
-        medicine_data = dict(MedicineSerializer(medicine_query).data)
-
-        # ema_url is locked, so test it hasn't updated
-        self.assertEqual(medicine_data["ema_url"], "emaurl.com")
-
-        # omar_url isn't locked, so test it has updated
-        self.assertEqual(medicine_data["omar_url"], "https://newomarurl.com")
-
-
-        # test if locked eu_aut_status history object hasn't been inserted
-        eu_aut_status_query = HistoryAuthorisationStatus.objects.order_by('change_date').last()
-        eu_aut_status_data = AuthorisationStatusSerializer(eu_aut_status_query).data
-        eu_aut_status_expected = {
+        # test if flex update serializer is called correctly
+        update_data = update_serializer.call_args.kwargs["data"]
+        update_expected = {
             "eu_pnumber": "15",
-            "eu_aut_status": "ACTIVE",
-            "change_date": "2022-01-03",
+            "omar_url": "https://newomarurl.com",
+            "eu_prime": [
+                {
+                    "eu_prime": False,
+                    "change_date": "2023-01-02",
+                }
+            ],
         }
-        self.assertEqual(sorted(dict(eu_aut_status_data).items()), sorted(eu_aut_status_expected.items()))
+        self.assertEqual(sorted(update_data.items()), sorted(update_expected.items()))
 
-        # test if new eu_prime history object has been inserted
-        eu_prime_query = HistoryPrime.objects.order_by('change_date').last()
-        eu_prime_data = PrimeSerializer(eu_prime_query).data
-        eu_prime_expected = {
+        # Test if prime serializer is called correctly
+        prime_data = prime_serializer.call_args.args[1]
+        prime_expected = {
             "eu_pnumber": "15",
             "eu_prime": False,
             "change_date": "2023-01-02",
         }
-        self.assertEqual(sorted(dict(eu_prime_data).items()), sorted(eu_prime_expected.items()))
+        self.assertEqual(sorted(prime_data.items()), sorted(prime_expected.items()))
+
+        # Test if authorisation status serializer doesn't get called
+        status_data = status_serializer.call_args
+        self.assertIsNone(status_data)

@@ -1,5 +1,5 @@
 from django.test import TestCase
-from api.scraper.scraper_medicine import ScraperMedicine
+from api.scraper.scraper_medicine_post import ScraperMedicine
 from api.models.medicine_models import (
     Medicine,
     HistoryAuthorisationStatus,
