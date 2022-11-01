@@ -23,6 +23,7 @@ from api.models.medicine_models import (
     HistoryEUOrphanCon,
     LegalBases,
 )
+from api.models.other.locks import Locks
 from api.serializers.medicine_serializers.scraper import (
     MedicineSerializer,
     MedicineFlexVarUpdateSerializer,
@@ -88,11 +89,17 @@ class ScraperMedicine(APIView):
                 with transaction.atomic():
                     # check if medicine already exists based on eu_pnumber
                     current_medicine = Medicine.objects.filter(
-                        pk=medicine.get("eu_pnumber")
+                        eu_pnumber=medicine.get("eu_pnumber")
                     ).first()
                     # if the medicine doesn't exist or the medicine should be overriden, call add_medicine,
                     # otherwise update the flexible variables
                     override = medicine.get("override")
+
+                    # if variable is locked, delete it from the data
+                    locks = Locks.objects.filter(
+                        eu_pnumber=medicine.get("eu_pnumber")
+                    ).values_list("column_name", flat=True)
+                    medicine = {key: value for key, value in medicine.items() if key not in locks}
                     if current_medicine is None or override:
                         self.add_or_override_medicine(medicine, current_medicine, override)
                     else:

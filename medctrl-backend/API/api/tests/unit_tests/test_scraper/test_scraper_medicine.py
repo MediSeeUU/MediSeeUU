@@ -477,4 +477,5 @@ class ScraperMedicineTestCase(TestCase):
         self.assertIsNone(LegalBases.objects.first())
 
         # Assert response returns failed medicine
+        self.data["data"][0]["errors"] = "eu_orphan_con must be part of the data posted!"
         self.assertEqual(self.data["data"], response.data)
