@@ -436,7 +436,7 @@ def determine_ema_number(ema_numbers: list[str]) -> (str, float):
             count, most_occurring_item = ema_numbers_dict[item], item
 
     # Calculates the fraction that have this EMA number
-    fraction: float = ema_numbers_dict.get(most_occurring_item) / len(ema_numbers)
+    fraction: float = (ema_numbers_dict.get(most_occurring_item) + 1) / (len(ema_numbers) + 1)
 
     return most_occurring_item, fraction
 
