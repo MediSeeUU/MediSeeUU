@@ -107,7 +107,7 @@ def get_opinion_date(xml: ET.Element) -> str:
     return "no_chmp_found"
 
 
-def get_legal_basis(xml: ET.Element) -> [str] | str:
+def get_legal_basis(xml: ET.Element) -> [str]:
     """
     Gets the attribute eu_legal_basis
     All legal articles relevant to the medicine
