@@ -19,6 +19,7 @@ roman_numbers = {
 months = {
     "january": "01",
     "february": "02",
+    "feb": "02",
     "march": "03",
     "april": "04",
     "may": "05",

@@ -214,7 +214,7 @@ def get_rapp(xml: ET.Element) -> str:
                 rapporteur += txt
                 rapporteur = clean_rapporteur(rapporteur)
             if len(rapporteur) >= 4:
-                return rapporteur
+                return rapporteur[:39]
         # Find rapporteur after "rapporteur appointed by the chmp was"
         regex_str_3 = r"rapporteur appointed by the chmp was[\s\S]+"
         if re.findall(regex_str_3, txt):
@@ -228,7 +228,7 @@ def get_rapp(xml: ET.Element) -> str:
             if len(rapporteur) < 4:
                 found = True
             else:
-                return rapporteur
+                return rapporteur[:39]
     for elem in xml.iter():
         txt = str(elem.text)
         if "rapporteur" in txt and "co-rapporteur" not in txt:
@@ -285,11 +285,11 @@ def clean_rapporteur(rapporteur: str) -> str:
 
     """
     rapporteur = rapporteur.strip().replace("\n", "").replace("rapporteur:", "")
-    # stop when "the application was" or "the applicant submitted" or "the rapporteur appointed" is found
-    if re.search("(the application was|the applicant submitted|the rapporteur appointed|"
-                 "chmp assessment report|the rapporteur circulated)", rapporteur):
-        rapporteur = re.search(r"[\s\S]*?(the application was|the applicant submi|the rapporteur appo|"
-                               r"chmp assessment rep|the rapporteur circ)", rapporteur)[0]
+    # stop when one of certain strings is found
+    stop_regex_str = r"[\s\S]*?(medicinal product n|the application was|the applicant submi|the rapporteur appo|chmp " \
+                     r"assessment rep|the rapporteur circ)"
+    if re.search(stop_regex_str, rapporteur):
+        rapporteur = re.search(stop_regex_str, rapporteur)[0]
         rapporteur = rapporteur[:len(rapporteur) - 20].strip()
     # stop when "•" or "" is found
     if re.search("[•|]", rapporteur):
