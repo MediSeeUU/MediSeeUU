@@ -47,6 +47,7 @@ class MedicineViewSet(viewsets.ViewSet):
             queryset = Medicine.objects.all()
             serializer = PublicMedicineSerializer(queryset, many=True)
             cache_medicine = serializer.data
+            cache.set("medicine_cache", cache_medicine, None)
 
         user = self.request.user
         perms = permissionFilter(user)

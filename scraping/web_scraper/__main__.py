@@ -12,7 +12,7 @@ from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
-scrape_ec: bool = False
+scrape_ec: bool = True
 scrape_ema: bool = False            # Requires scrape_ec to have been run at least once
 scrape_annex10: bool = False
 download_files: bool = True         # Download pdfs from the obtained links
@@ -58,9 +58,6 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
         eu_n (str): EU number of the medicine.
         medicine_type (int): The type of medicine.
         data_path (str): The path where the CSV and JSON files need to be stored.
-
-    Returns:
-        None: This function returns nothing.
     """
     # A list of the medicine types we want to scrape is defined in this file
     # If the entered medicine_type is not in that list, this method will ignore

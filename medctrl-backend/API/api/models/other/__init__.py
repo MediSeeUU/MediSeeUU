@@ -8,3 +8,4 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 from .saved_selection import SavedSelection
+from .locks import Locks
