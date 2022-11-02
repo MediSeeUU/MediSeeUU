@@ -1,7 +1,0 @@
-pdf_module
-==========
-
-.. toctree::
-   :maxdepth: 4
-
-   pdf_module

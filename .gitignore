@@ -139,15 +139,18 @@ fabric.properties
 .idea
 
 # all PDFs & test data
-*.pdf
-*.xml
-*.json
 *.DS_Store
-medctrl-scraper/PDF_scraper/text_scraper/parsers/test_data/
-medctrl-scraper/PDF_scraper/text_scraper/data/
-medctrl-scraper/PDF_scraper/text_scraper/test_data/
+data/
+data_backup/
+data_old/
 
 # sphinx auto generated files
 **/docs/sphinx-source/*.rst
 !**/docs/sphinx-source/index.rst
 **/docs/doctrees
+**/docs/html/_sources
+scraping/pdf_module/pdf_scraper/annex_results.txt
+scraping/pdf_module/pdf_scraper/epar_results.txt
+scraping/pdf_module/pdf_scraper/human_initial_dec.txt
+scraping/pdf_module/pdf_scraper/human_initial_dec.txt
+scraping/pdf_module/pdf_scraper/human_initial_dec.txt
