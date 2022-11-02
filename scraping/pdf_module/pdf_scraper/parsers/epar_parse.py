@@ -214,7 +214,6 @@ def get_rapp(xml: ET.Element) -> str:
                 rapporteur += txt
                 rapporteur = clean_rapporteur(rapporteur)
             if len(rapporteur) >= 4:
-                found = False
                 return rapporteur
         # Find rapporteur after "rapporteur appointed by the chmp was"
         regex_str_3 = r"rapporteur appointed by the chmp was[\s\S]+"
@@ -331,7 +330,6 @@ def get_corapp(xml: ET.Element) -> str:
                     corapporteur += txt
                     corapporteur = clean_rapporteur(corapporteur)
                 if len(corapporteur) >= 4:
-                    found = False
                     return corapporteur
             # Find co-rapporteur after "co-rapporteur:"
             regex_str_2 = r"co-rapporteur:[\s\w\.]+"

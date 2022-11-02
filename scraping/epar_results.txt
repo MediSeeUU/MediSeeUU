@@ -2927,3 +2927,29 @@ EU-1-22-1669_h_a_public-assessment-report.xml@EU-1-22-1669_h_a_public-assessment
 EU-1-22-1660_h_a_public-assessment-report.xml@EU-1-22-1660_h_a_public-assessment-report@27/03/2020@19/05/2022@['article 8.3']@no@johann lodewijk hillege@not_easily_scrapable@no@yes
 EU-1-21-1529_h_a_public-assessment-report.xml@EU-1-21-1529_h_a_public-assessment-report@28/12/2020@29/01/2021@['article 8.3']@no@sol ruiz@not_easily_scrapable@no@no
 EU-1-98-065_h_a_procedural-steps-taken-authorisation.xml@EU-1-98-065_h_a_procedural-steps-taken-authorisation@21/03/1997@18/05/1998@no_legal_basis@NA@prof. k strandberg@dr. h. pittner@no@NA
+EU-1-00-155_h_a_public-assessment-report.xml@EU-1-00-155_h_a_public-assessment-report@25/06/1999@27/07/2000@['no_legal_basis']@NA@no_rapporteur@not_easily_scrapable@no@NA
+EU-1-00-155_h_a_public-assessment-report.xml@EU-1-00-155_h_a_public-assessment-report@25/06/1999@27/07/2000@['no_legal_basis']@NA@no_rapporteur@not_easily_scrapable@no@NA
+EU-1-00-155_h_a_public-assessment-report.xml@EU-1-00-155_h_a_public-assessment-report@25/06/1999@27/07/2000@['no_legal_basis']@NA@no_rapporteur@not_easily_scrapable@no@NA
+EU-1-01-178_h_a_public-assessment-report.xml@EU-1-01-178_h_a_public-assessment-report@no_date_found@no_chmp_found@['no_legal_basis']@no@no_rapporteur@no_co-rapporteur@no@no
+EU-1-01-178_h_a_public-assessment-report.xml@EU-1-01-178_h_a_public-assessment-report@no_date_found@no_chmp_found@['no_legal_basis']@no@no_rapporteur@no_co-rapporteur@no@no
+EU-1-00-155_h_a_public-assessment-report.xml@EU-1-00-155_h_a_public-assessment-report@25/06/1999@27/07/2000@['no_legal_basis']@NA@no_rapporteur@not_easily_scrapable@no@NA
+EU-1-01-178_h_a_public-assessment-report.xml@EU-1-01-178_h_a_public-assessment-report@no_date_found@no_chmp_found@['no_legal_basis']@no@no_rapporteur@no_co-rapporteur@no@no
+EU-1-00-155_h_a_public-assessment-report.xml@EU-1-00-155_h_a_public-assessment-report@25/06/1999@27/07/2000@['no_legal_basis']@NA@no_rapporteur@not_easily_scrapable@no@NA
+EU-1-01-178_h_a_public-assessment-report.xml@EU-1-01-178_h_a_public-assessment-report@no_date_found@no_chmp_found@['no_legal_basis']@no@no_rapporteur@no_co-rapporteur@no@no
+EU-1-02-233_h_a_procedural-steps-taken-authorisation.xml@EU-1-02-233_h_a_procedural-steps-taken-authorisation@17/07/2001@7/10/2002@['no_legal_basis']@NA@m. ainsworth@p. nilsson@no@NA
+EU-1-03-266_h_w_procedural-steps-taken-authorisation.xml@EU-1-03-266_h_w_procedural-steps-taken-authorisation@22/07/2002@23/02/2004@['no_legal_basis']@NA@dr mark ainsworth@prof. heribert pittner@no@NA
+EU-1-03-269_h_a_public-assessment-report.xml@EU-1-03-269_h_a_public-assessment-report@no_date_found@no_chmp_found@['no_legal_basis']@no@no_rapporteur@no_co-rapporteur@no@no
+EU-1-00-155_h_a_public-assessment-report.xml@EU-1-00-155_h_a_public-assessment-report@25/06/1999@27/07/2000@['no_legal_basis']@NA@no_rapporteur@not_easily_scrapable@no@NA
+EU-1-01-178_h_a_public-assessment-report.xml@EU-1-01-178_h_a_public-assessment-report@no_date_found@no_chmp_found@['no_legal_basis']@no@no_rapporteur@no_co-rapporteur@no@no
+EU-1-00-155_h_a_public-assessment-report.xml@EU-1-00-155_h_a_public-assessment-report@25/06/1999@27/07/2000@['no_legal_basis']@NA@no_rapporteur@not_easily_scrapable@no@NA
+EU-1-01-178_h_a_public-assessment-report.xml@EU-1-01-178_h_a_public-assessment-report@no_date_found@no_chmp_found@['no_legal_basis']@no@no_rapporteur@no_co-rapporteur@no@no
+EU-1-00-155_h_a_public-assessment-report.xml@EU-1-00-155_h_a_public-assessment-report@25/06/1999@27/07/2000@['no_legal_basis']@NA@no_rapporteur@not_easily_scrapable@no@NA
+EU-1-01-178_h_a_public-assessment-report.xml@EU-1-01-178_h_a_public-assessment-report@no_date_found@no_chmp_found@['no_legal_basis']@no@no_rapporteur@no_co-rapporteur@no@no
+EU-1-02-233_h_a_procedural-steps-taken-authorisation.xml@EU-1-02-233_h_a_procedural-steps-taken-authorisation@17/07/2001@7/10/2002@['no_legal_basis']@NA@m. ainsworth@p. nilsson@no@NA
+EU-1-03-266_h_w_procedural-steps-taken-authorisation.xml@EU-1-03-266_h_w_procedural-steps-taken-authorisation@22/07/2002@23/02/2004@['no_legal_basis']@NA@dr mark ainsworth@prof. heribert pittner@no@NA
+EU-1-03-269_h_a_public-assessment-report.xml@EU-1-03-269_h_a_public-assessment-report@no_date_found@no_chmp_found@['no_legal_basis']@no@no_rapporteur@no_co-rapporteur@no@no
+EU-1-00-155_h_a_public-assessment-report.xml@EU-1-00-155_h_a_public-assessment-report@25/06/1999@27/07/2000@['no_legal_basis']@NA@no_rapporteur@not_easily_scrapable@no@NA
+EU-1-01-178_h_a_public-assessment-report.xml@EU-1-01-178_h_a_public-assessment-report@no_date_found@no_chmp_found@['no_legal_basis']@no@no_rapporteur@no_co-rapporteur@no@no
+EU-1-01-178_h_a_public-assessment-report.xml@EU-1-01-178_h_a_public-assessment-report@no_date_found@no_chmp_found@['no_legal_basis']@no@no_rapporteur@no_co-rapporteur@no@no
+EU-1-01-178_h_a_public-assessment-report.xml@EU-1-01-178_h_a_public-assessment-report@no_date_found@no_chmp_found@['no_legal_basis']@no@no_rapporteur@no_co-rapporteur@no@no
+EU-1-01-178_h_a_public-assessment-report.xml@EU-1-01-178_h_a_public-assessment-report@no_date_found@no_chmp_found@['no_legal_basis']@no@no_rapporteur@no_co-rapporteur@no@no

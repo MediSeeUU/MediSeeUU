@@ -187,7 +187,7 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
         datetime.datetime: found date
     """
     txt = txt.lower()
-    if re.split('of ', txt, 1):
+    if len(re.split('of ', txt, 1)) > 1:
         section = re.split('of ', txt, 1)[1]
         section = section[:17]
         if '...' in section or '(date)' in section or 'xxx' in section:

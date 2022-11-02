@@ -1,5 +1,6 @@
 import datetime
 import dateutil.parser
+import re
 
 roman_numbers = {
     "i": "1",
@@ -112,27 +113,22 @@ def get_date(txt: str) -> datetime.datetime:
         datetime.datetime: found date.
     """
     if txt != '':
-        txt = txt.lower()
-
+        txt = txt.lower().split(' ')[0]
         try:
             return dateutil.parser.parse(txt, fuzzy=True)
-        except Exception:
+        except dateutil.parser._parser.ParseError:
             pass
-        try:
-            tempdate = txt
-            # to not catch part after year
-            if " " in tempdate:
-                tempdate = tempdate.split(" ")[0]
 
-            tempdate = convert_roman_numbers(tempdate)
-            return dateutil.parser.parse(tempdate, fuzzy=True)
-        except Exception:
+        temp_date = convert_roman_numbers(txt)
+        try:
+            return dateutil.parser.parse(temp_date, fuzzy=True)
+        except dateutil.parser._parser.ParseError:
             pass
 
         try:
-            tempdate = convert_months(txt)
-            return dateutil.parser.parse(tempdate, fuzzy=True)
-        except Exception:
+            temp_date = convert_months(txt)
+            return dateutil.parser.parse(temp_date, fuzzy=True)
+        except dateutil.parser._parser.ParseError:
             pass
 
     return datetime.datetime(1980, 1, 1, 0, 0)
