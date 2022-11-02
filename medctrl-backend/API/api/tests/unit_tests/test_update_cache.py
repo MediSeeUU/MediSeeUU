@@ -1,5 +1,5 @@
 from django.test import TestCase
-from unittest.mock import patch, call
+from unittest.mock import patch
 from api.update_cache import update_cache
 
 
@@ -24,9 +24,9 @@ class TestUpdateCache(TestCase):
         Test update_cache() function
 
         Args:
-            public_medicine_serializer:
-            urls_serializer:
-            cache_set:
+            public_medicine_serializer (MagicMock): The mock object for the PublicMedicineSerializer
+            urls_serializer (MagicMock): The mock object for the UrlsSerializer
+            cache_set (MagicMock): The mock object for cache.set()
         """
         # Set return value for mocks
         public_medicine_serializer.return_value.data = self.public_medicine_data
