@@ -15,7 +15,7 @@ from api.models.medicine_models import Medicine
 from rest_framework.response import Response
 from django.core.cache import cache
 from api.update_cache import update_cache
-from api.views.other import permissionFilter
+from api.views.other import permission_filter
 import logging
 
 logger = logging.getLogger(__name__)
@@ -30,12 +30,9 @@ class MedicineViewSet(viewsets.ViewSet):
 
     update_cache()
 
-    def list(self, request):
+    def list(self, _):
         """
         Returns a list of medicines according to the access level of the user
-
-        Args:
-            request (httpRequest): httpRequest from the user
 
         Returns:
             httpResponse: returns a list of filtered medicine corresponding to this type of user.
@@ -47,9 +44,10 @@ class MedicineViewSet(viewsets.ViewSet):
             queryset = Medicine.objects.all()
             serializer = PublicMedicineSerializer(queryset, many=True)
             cache_medicine = serializer.data
+            cache.set("medicine_cache", cache_medicine, None)
 
         user = self.request.user
-        perms = permissionFilter(user)
+        perms = permission_filter(user)
 
         # filters medicines according to access level of the user
         filtered_medicines = map(

@@ -23,6 +23,7 @@ from api.models.medicine_models import (
     HistoryEUOrphanCon,
     LegalBases,
 )
+from api.models.other.locks import Locks
 from api.serializers.medicine_serializers.scraper import (
     MedicineSerializer,
     MedicineFlexVarUpdateSerializer,
@@ -56,7 +57,7 @@ class ScraperMedicine(APIView):
 
     def get_queryset(self):
         """
-        get_queryset specifies the queryset for DjangoModelPermissions. 
+        get_queryset specifies the queryset for DjangoModelPermissions.
         DjangoModelPermissions is a list of medicine the user has permissions of.
 
         Returns:
@@ -88,16 +89,24 @@ class ScraperMedicine(APIView):
                 with transaction.atomic():
                     # check if medicine already exists based on eu_pnumber
                     current_medicine = Medicine.objects.filter(
-                        pk=medicine.get("eu_pnumber")
+                        eu_pnumber=medicine.get("eu_pnumber")
                     ).first()
                     # if the medicine doesn't exist or the medicine should be overriden, call add_medicine,
                     # otherwise update the flexible variables and the null values
                     override = medicine.get("override")
+
+                    # if variable is locked, delete it from the data
+                    locks = Locks.objects.filter(
+                        eu_pnumber=medicine.get("eu_pnumber")
+                    ).values_list("column_name", flat=True)
+                    medicine = {key: value for key, value in medicine.items() if key not in locks}
                     if current_medicine is None or override:
-                        self.add_or_override_medicine(medicine, current_medicine, override)
+                        self.add_or_override_medicine(medicine, current_medicine)
                     else:
                         self.update_flex_medicine(medicine, current_medicine)
-                        self.update_null_values(medicine)
+                        self.update_null_values(medicine, current_medicine)
+                    self.history_variables(medicine)
+                    self.list_variables(medicine)
             except Exception as e:
                 medicine["errors"] = str(e)
                 failed_medicines.append(medicine)
@@ -124,54 +133,50 @@ class ScraperMedicine(APIView):
         # update medicine
         if medicine_serializer.is_valid():
             medicine_serializer.save()
-            self.history_variables(data)
-            self.list_variables(data)
         else:
             raise ValueError(medicine_serializer.errors)
 
-    def add_or_override_medicine(self, data, current, override: bool):
+    def add_or_override_medicine(self, data, current_medicine):
         """
         Adds a new medicine with its attributes to the database. If this is valid, 
         it will also add the history variables to the database.
 
         Args:
             data (medicineObject): The new medicine data.
-            current (medicineObject): The medicine data that is currently in the database.
-            override (bool): Specifies if the new medine should override an existing medicine.
+            current_medicine (medicineObject): The medicine data that is currently in the database.
+
+        Raises:
+            ValueError: Invalid data in data argument
         """        
         # initialise serializers for addition
-        # partial is only allowed if an existing medicine is being overwritten
-        serializer = MedicineSerializer(current, data=data, partial=current and override)
+        serializer = MedicineSerializer(current_medicine, data=data, partial=True)
 
         # add medicine and authorisation
         if serializer.is_valid():
             serializer.save()
-            self.history_variables(data)
-            self.list_variables(data)
         else:
             raise ValueError(serializer.errors)
 
-    def update_null_values(self, data):
+    def update_null_values(self, data, current_medicine):
         """
-        Updates all null values for an existing medicine using the data given in its 
+        Updates all null values for an existing medicine using the data given in its
         argument "data".
 
         Args:
             data (medicineObject): The new medicine data.
-        """        
-        current_medicine = Medicine.objects.filter(pk=data.get("eu_pnumber")).first()
-
+            current_medicine (medicineObject): The medicine data that is currently in the database.
+        """
         medicine = model_to_dict(current_medicine)
         new_data = {"eu_pnumber": data.get("eu_pnumber")}
 
         for attr in medicine:
-            if (getattr(current_medicine, attr) is None) and (
+            if (getattr(current_medicine, attr) is None or getattr(current_medicine, attr) is '') and (
                     not (data.get(attr) is None)
             ):
                 new_data[attr] = data.get(attr)
 
         if len(new_data.keys()) > 1:
-            self.add_medicine(new_data, current_medicine)
+            self.add_or_override_medicine(new_data, current_medicine)
 
     def list_variables(self, data):
         """
@@ -221,9 +226,6 @@ class ScraperMedicine(APIView):
                     serializer.save()
                 else:
                     raise ValueError(f"{name} contains invalid data! {serializer.errors}")
-        elif not model_data:
-            raise ValueError(f"{name} must be part of the data posted!")
-
 
     def history_variables(self, data):
         """
@@ -312,5 +314,3 @@ class ScraperMedicine(APIView):
                         serializer.save()
                     else:
                         raise ValueError(f"{name} contains invalid data! {serializer.errors}")
-        elif not model_data:
-            raise ValueError(f"{name} must be part of the data posted!")

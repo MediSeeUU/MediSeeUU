@@ -9,7 +9,7 @@
 from django.contrib.auth.models import Group
 
 
-def permissionFilter(user):
+def permission_filter(user):
     """
     Gets all permissions of a user
 

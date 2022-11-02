@@ -27,5 +27,6 @@ class LegalBases(models.Model):
     class Meta:
         db_table = "legal_bases"
         constraints = [
-            models.UniqueConstraint(fields=['eu_pnumber', 'eu_legal_basis'], name="unique together")
+            models.UniqueConstraint(fields=['eu_pnumber', 'eu_legal_basis'],
+                                    name="eu_pnumber eu_legal_basis composite key")
         ]
