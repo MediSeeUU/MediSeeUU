@@ -14,9 +14,17 @@ test_data_foldername = "test_annex_parse_data"
 
 
 class TestAnnexParse(TestCase):
+    """
+    Unit testing annex_parse on various pre-made XML files with known output
+    """
     annex_attributes: dict[str, str]
 
     def setUp(self) -> None:
+        """
+        TODO: Add docstrings here
+        Returns:
+
+        """
         pdf_scraper.parse_folder(path.abspath(test_data_foldername), test_data_foldername)
         attributes_json = open(path.abspath(test_data_foldername) + "\\" + test_data_foldername + "_pdf_parser.json")
         with json.load(attributes_json)["annexes"] as attributes_json:
@@ -24,6 +32,11 @@ class TestAnnexParse(TestCase):
             return super().setUp()
 
     def test_get_initial_type_of_eu_authorization(self):
+        """
+        TODO: Add docstrings here
+        Returns:
+
+        """
         incorrect_files = False
         incorrect_values = False
 
@@ -63,6 +76,11 @@ class TestAnnexParse(TestCase):
         assert (not incorrect_files and not incorrect_values)
 
     def test_get_eu_type_of_medicine(self):
+        """
+        TODO: Add docstrings here
+        Returns:
+
+        """
         incorrect_files = False
         incorrect_values = False
 
