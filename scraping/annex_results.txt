@@ -5002,3 +5002,284 @@ EU-1-01-192_h_w_anx_0.pdf@EU-1-01-192_h_w_anx_0.pdf@EU-1-01-192_h_w_anx_0.xml@Tr
 EU-1-01-185_h_a_anx_0.pdf@EU-1-01-185_h_a_anx_0.pdf@EU-1-01-185_h_a_anx_0.xml@True@D:20070920142002+02'00'@D:20070920142004+02'00'@standard@small molecule
 EU-1-01-189_h_a_anx_0.pdf@EU-1-01-189_h_a_anx_0.pdf@EU-1-01-189_h_a_anx_0.xml@True@D:20070924085243+02'00'@D:20070924085244+02'00'@exceptional or conditional@small molecule
 EU-1-01-194_h_a_anx_0.pdf@EU-1-01-194_h_a_anx_0.pdf@EU-1-01-194_h_a_anx_0.xml@True@D:20070924083718+02'00'@D:20070924083720+02'00'@standard@small molecule
+EU-1-00-136_h_w_anx_0.pdf@EU-1-00-136_h_w_anx_0.pdf@EU-1-00-136_h_w_anx_0.xml@True@D:20070906144715+02'00'@D:20070906144716+02'00'@standard@small molecule
+EU-1-00-130_h_a_anx_0.pdf@EU-1-00-130_h_a_anx_0.pdf@EU-1-00-130_h_a_anx_0.xml@True@D:20070830155604+02'00'@D:20070830155607+02'00'@standard@small molecule
+EU-1-00-129_h_a_anx_0.pdf@EU-1-00-129_h_a_anx_0.pdf@EU-1-00-129_h_a_anx_0.xml@True@D:20070829114411+02'00'@D:20070829114413+02'00'@standard@small molecule
+EU-1-00-136_h_w_anx_0.pdf@EU-1-00-136_h_w_anx_0.pdf@EU-1-00-136_h_w_anx_0.xml@True@D:20070906144715+02'00'@D:20070906144716+02'00'@standard@small molecule
+EU-1-00-135_h_a_anx_0.pdf@EU-1-00-135_h_a_anx_0.pdf@EU-1-00-135_h_a_anx_0.xml@True@D:20070903125655+02'00'@D:20070903125656+02'00'@standard@small molecule
+EU-1-00-138_h_w_anx_0.pdf@EU-1-00-138_h_w_anx_0.pdf@EU-1-00-138_h_w_anx_0.xml@True@D:20070831125735+02'00'@D:20070831125737+02'00'@standard@small molecule
+EU-1-00-133_h_a_anx_0.pdf@EU-1-00-133_h_a_anx_0.pdf@EU-1-00-133_h_a_anx_0.xml@True@D:20070831122250+02'00'@D:20070831122252+02'00'@standard@small molecule
+EU-1-00-139_h_w_anx_0.pdf@EU-1-00-139_h_w_anx_0.pdf@EU-1-00-139_h_w_anx_0.xml@True@D:20070831143130+02'00'@D:20070831143133+02'00'@standard@small molecule
+EU-1-00-134_h_a_anx_0.pdf@EU-1-00-134_h_a_anx_0.pdf@EU-1-00-134_h_a_anx_0.xml@True@D:20070831121551+02'00'@D:20070831121552+02'00'@standard@small molecule
+EU-1-00-132_h_w_anx_0.pdf@EU-1-00-132_h_w_anx_0.pdf@EU-1-00-132_h_w_anx_0.xml@True@D:20070831110748+02'00'@D:20070831110750+02'00'@standard@small molecule
+EU-1-00-137_h_w_anx_0.pdf@EU-1-00-137_h_w_anx_0.pdf@EU-1-00-137_h_w_anx_0.xml@True@D:20070831125511+02'00'@D:20070831125512+02'00'@standard@small molecule
+EU-1-00-140_h_a_anx_0.pdf@EU-1-00-140_h_a_anx_0.pdf@EU-1-00-140_h_a_anx_0.xml@True@D:20070903130142+02'00'@D:20070903130144+02'00'@standard@small molecule
+EU-1-00-141_h_a_anx_0.pdf@EU-1-00-141_h_a_anx_0.pdf@EU-1-00-141_h_a_anx_0.xml@True@D:20070903123732+02'00'@D:20070903123734+02'00'@standard@small molecule
+EU-1-00-142_h_a_anx_0.pdf@EU-1-00-142_h_a_anx_0.pdf@EU-1-00-142_h_a_anx_0.xml@True@D:20070903132640+02'00'@D:20070903132642+02'00'@standard@small molecule
+EU-1-00-143_h_a_anx_0.pdf@EU-1-00-143_h_a_anx_0.pdf@EU-1-00-143_h_a_anx_0.xml@True@D:20070906144934+02'00'@D:20070906144938+02'00'@standard@small molecule
+EU-1-00-145_h_a_anx_0.pdf@EU-1-00-145_h_a_anx_0.pdf@EU-1-00-145_h_a_anx_0.xml@True@D:20070906152459+02'00'@D:20070906152501+02'00'@standard@small molecule
+EU-1-00-144_h_w_anx_0.pdf@EU-1-00-144_h_w_anx_0.pdf@EU-1-00-144_h_w_anx_0.xml@True@D:20070906145453+02'00'@D:20070906145454+02'00'@standard@small molecule
+EU-1-00-147_h_w_anx_0.pdf@EU-1-00-147_h_w_anx_0.pdf@EU-1-00-147_h_w_anx_0.xml@True@D:20070914085259+02'00'@D:20070914085300+02'00'@standard@small molecule
+EU-1-00-146_h_a_anx_0.pdf@EU-1-00-146_h_a_anx_0.pdf@EU-1-00-146_h_a_anx_0.xml@True@D:20070913142220+02'00'@D:20070913142222+02'00'@standard@small molecule
+EU-1-00-150_h_a_anx_0.pdf@EU-1-00-150_h_a_anx_0.pdf@EU-1-00-150_h_a_anx_0.xml@True@D:20070914082650+02'00'@D:20070914082652+02'00'@standard@small molecule
+EU-1-00-148_h_w_anx_0.pdf@EU-1-00-148_h_w_anx_0.pdf@EU-1-00-148_h_w_anx_0.xml@True@D:20070914084420+02'00'@D:20070914084422+02'00'@exceptional or conditional@small molecule
+EU-1-00-151_h_w_anx_0.pdf@EU-1-00-151_h_w_anx_0.pdf@EU-1-00-151_h_w_anx_0.xml@True@D:20070914081917+02'00'@D:20070914081919+02'00'@standard@small molecule
+EU-1-00-154_h_w_anx_0.pdf@EU-1-00-154_h_w_anx_0.pdf@EU-1-00-154_h_w_anx_0.xml@True@D:20070914101148+02'00'@D:20070914101150+02'00'@standard@small molecule
+EU-1-00-153_h_w_anx_0.pdf@EU-1-00-153_h_w_anx_0.pdf@EU-1-00-153_h_w_anx_0.xml@True@D:20070914090207+02'00'@D:20070914090208+02'00'@standard@small molecule
+EU-1-00-155_h_a_anx_0.pdf@EU-1-00-155_h_a_anx_0.pdf@EU-1-00-155_h_a_anx_0.xml@True@D:20070914101349+02'00'@D:20070914101351+02'00'@standard@small molecule
+EU-1-00-159_h_w_anx_0.pdf@EU-1-00-159_h_w_anx_0.pdf@EU-1-00-159_h_w_anx_0.xml@True@D:20070822154210+02'00'@D:20070822154212+02'00'@standard@small molecule
+EU-1-00-131_h_w_anx_0.pdf@EU-1-00-131_h_w_anx_0.pdf@EU-1-00-131_h_w_anx_0.xml@True@D:20070831105641+02'00'@D:20070831105643+02'00'@standard@small molecule
+EU-1-00-157_h_a_anx_0.pdf@EU-1-00-157_h_a_anx_0.pdf@EU-1-00-157_h_a_anx_0.xml@True@D:20070822153339+02'00'@D:20070822153341+02'00'@standard@small molecule
+EU-1-00-162_h_a_anx_0.pdf@EU-1-00-162_h_a_anx_0.pdf@EU-1-00-162_h_a_anx_0.xml@True@D:20070823120715+02'00'@D:20070823120718+02'00'@standard@small molecule
+EU-1-00-152_h_a_anx_0.pdf@EU-1-00-152_h_a_anx_0.pdf@EU-1-00-152_h_a_anx_0.xml@True@D:20070914085913+02'00'@D:20070914085915+02'00'@standard@small molecule
+EU-1-00-156_h_a_anx_0.pdf@EU-1-00-156_h_a_anx_0.pdf@EU-1-00-156_h_a_anx_0.xml@True@D:20070917093937+02'00'@D:20070917093938+02'00'@standard@small molecule
+EU-1-00-161_h_a_anx_0.pdf@EU-1-00-161_h_a_anx_0.pdf@EU-1-00-161_h_a_anx_0.xml@True@D:20070822154923+02'00'@D:20070822154926+02'00'@standard@small molecule
+EU-1-00-160_h_a_anx_0.pdf@EU-1-00-160_h_a_anx_0.pdf@EU-1-00-160_h_a_anx_0.xml@True@D:20070822154540+02'00'@D:20070822154542+02'00'@standard@small molecule
+EU-1-00-164_h_a_anx_0.pdf@EU-1-00-164_h_a_anx_0.pdf@EU-1-00-164_h_a_anx_0.xml@True@D:20070823141915+02'00'@D:20070823141918+02'00'@standard@small molecule
+EU-1-00-165_h_a_anx_0.pdf@EU-1-00-165_h_a_anx_0.pdf@EU-1-00-165_h_a_anx_0.xml@True@D:20070823134559+02'00'@D:20070823134601+02'00'@standard@small molecule
+EU-1-00-163_h_a_anx_0.pdf@EU-1-00-163_h_a_anx_0.pdf@EU-1-00-163_h_a_anx_0.xml@True@D:20070823134008+02'00'@D:20070823134012+02'00'@standard@small molecule
+EU-1-00-168_h_w_anx_0.pdf@EU-1-00-168_h_w_anx_0.pdf@EU-1-00-168_h_w_anx_0.xml@True@D:20070823144237+02'00'@D:20070823144241+02'00'@standard@small molecule
+EU-1-00-169_h_a_anx_0.pdf@EU-1-00-169_h_a_anx_0.pdf@EU-1-00-169_h_a_anx_0.xml@True@D:20070824094612+02'00'@D:20070824094615+02'00'@standard@small molecule
+EU-1-00-167_h_w_anx_0.pdf@EU-1-00-167_h_w_anx_0.pdf@EU-1-00-167_h_w_anx_0.xml@True@D:20070823140340+02'00'@D:20070823140342+02'00'@standard@small molecule
+EU-1-00-170_h_a_anx_0.pdf@EU-1-00-170_h_a_anx_0.pdf@EU-1-00-170_h_a_anx_0.xml@True@D:20070824095209+02'00'@D:20070824095211+02'00'@standard@small molecule
+EU-1-01-173_h_a_anx_0.pdf@EU-1-01-173_h_a_anx_0.pdf@EU-1-01-173_h_a_anx_0.xml@True@D:20070824125019+02'00'@D:20070824125021+02'00'@standard@small molecule
+EU-1-00-166_h_a_anx_0.pdf@EU-1-00-166_h_a_anx_0.pdf@EU-1-00-166_h_a_anx_0.xml@True@D:20070823104648+02'00'@D:20070823104654+02'00'@exceptional or conditional@small molecule
+EU-1-01-175_h_w_anx_0.pdf@EU-1-01-175_h_w_anx_0.pdf@EU-1-01-175_h_w_anx_0.xml@True@D:20070920104110+02'00'@D:20070920104112+02'00'@standard@small molecule
+EU-1-01-174_h_w_anx_0.pdf@EU-1-01-174_h_w_anx_0.pdf@EU-1-01-174_h_w_anx_0.xml@True@D:20070920103844+02'00'@D:20070920103845+02'00'@standard@small molecule
+EU-1-01-177_h_a_anx_0.pdf@EU-1-01-177_h_a_anx_0.pdf@EU-1-01-177_h_a_anx_0.xml@True@D:20070920102530+02'00'@D:20070920102532+02'00'@standard@small molecule
+EU-1-01-180_h_w_anx_0.pdf@EU-1-01-180_h_w_anx_0.pdf@EU-1-01-180_h_w_anx_0.xml@True@D:20070920133227+02'00'@D:20070920133229+02'00'@standard@small molecule
+EU-1-01-171_h_a_anx_0.pdf@EU-1-01-171_h_a_anx_0.pdf@EU-1-01-171_h_a_anx_0.xml@True@D:20070824120832+02'00'@D:20070824120834+02'00'@standard@small molecule
+EU-1-01-178_h_a_anx_0.pdf@EU-1-01-178_h_a_anx_0.pdf@EU-1-01-178_h_a_anx_0.xml@True@D:20070920103613+02'00'@D:20070920103615+02'00'@standard@small molecule
+EU-1-01-181_h_w_anx_0.pdf@EU-1-01-181_h_w_anx_0.pdf@EU-1-01-181_h_w_anx_0.xml@True@D:20070920133441+02'00'@D:20070920133444+02'00'@standard@small molecule
+EU-1-01-182_h_w_anx_0.pdf@EU-1-01-182_h_w_anx_0.pdf@EU-1-01-182_h_w_anx_0.xml@True@D:20070920133700+02'00'@D:20070920133701+02'00'@standard@small molecule
+EU-1-01-179_h_w_anx_0.pdf@EU-1-01-179_h_w_anx_0.pdf@EU-1-01-179_h_w_anx_0.xml@True@D:20070920130943+02'00'@D:20070920130944+02'00'@standard@small molecule
+EU-1-01-176_h_a_anx_0.pdf@EU-1-01-176_h_a_anx_0.pdf@EU-1-01-176_h_a_anx_0.xml@True@D:20070824153426+02'00'@D:20070824153428+02'00'@standard@small molecule
+EU-1-01-186_h_w_anx_0.pdf@EU-1-01-186_h_w_anx_0.pdf@EU-1-01-186_h_w_anx_0.xml@True@D:20070921114210+02'00'@D:20070921114211+02'00'@standard@small molecule
+EU-1-01-184_h_w_anx_0.pdf@EU-1-01-184_h_w_anx_0.pdf@EU-1-01-184_h_w_anx_0.xml@True@D:20070920141716+02'00'@D:20070920141717+02'00'@standard@small molecule
+EU-1-01-172_h_a_anx_0.pdf@EU-1-01-172_h_a_anx_0.pdf@EU-1-01-172_h_a_anx_0.xml@True@D:20070824124750+02'00'@D:20070824124751+02'00'@exceptional or conditional@small molecule
+EU-1-01-183_h_a_anx_0.pdf@EU-1-01-183_h_a_anx_0.pdf@EU-1-01-183_h_a_anx_0.xml@True@D:20070920113801+02'00'@D:20070920113802+02'00'@standard@small molecule
+EU-1-01-187_h_w_anx_0.pdf@EU-1-01-187_h_w_anx_0.pdf@EU-1-01-187_h_w_anx_0.xml@True@D:20070921135228+02'00'@D:20070921135229+02'00'@standard@small molecule
+EU-1-01-188_h_a_anx_0.pdf@EU-1-01-188_h_a_anx_0.pdf@EU-1-01-188_h_a_anx_0.xml@True@D:20070924084901+02'00'@D:20070924084902+02'00'@exceptional or conditional@small molecule
+EU-1-01-190_h_a_anx_0.pdf@EU-1-01-190_h_a_anx_0.pdf@EU-1-01-190_h_a_anx_0.xml@True@D:20070921141306+02'00'@D:20070921141330+02'00'@exceptional or conditional@small molecule
+EU-1-01-185_h_a_anx_0.pdf@EU-1-01-185_h_a_anx_0.pdf@EU-1-01-185_h_a_anx_0.xml@True@D:20070920142002+02'00'@D:20070920142004+02'00'@standard@small molecule
+EU-1-01-192_h_w_anx_0.pdf@EU-1-01-192_h_w_anx_0.pdf@EU-1-01-192_h_w_anx_0.xml@True@D:20060315191101+01'00'@D:20060315191101+01'00'@standard@small molecule
+EU-1-01-189_h_a_anx_0.pdf@EU-1-01-189_h_a_anx_0.pdf@EU-1-01-189_h_a_anx_0.xml@True@D:20070924085243+02'00'@D:20070924085244+02'00'@exceptional or conditional@small molecule
+EU-1-01-193_h_w_anx_0.pdf@EU-1-01-193_h_w_anx_0.pdf@EU-1-01-193_h_w_anx_0.xml@True@D:20070921135016+02'00'@D:20070921135017+02'00'@exceptional or conditional@small molecule
+EU-1-01-191_h_w_anx_0.pdf@EU-1-01-191_h_w_anx_0.pdf@EU-1-01-191_h_w_anx_0.xml@True@D:20060315190834+01'00'@D:20060315190834+01'00'@standard@small molecule
+EU-1-01-194_h_a_anx_0.pdf@EU-1-01-194_h_a_anx_0.pdf@EU-1-01-194_h_a_anx_0.xml@True@D:20070924083718+02'00'@D:20070924083720+02'00'@standard@small molecule
+EU-1-01-197_h_a_anx_0.pdf@EU-1-01-197_h_a_anx_0.pdf@EU-1-01-197_h_a_anx_0.xml@True@D:20070925151020+02'00'@D:20070925151022+02'00'@exceptional or conditional@small molecule
+EU-1-01-195_h_a_anx_0.pdf@EU-1-01-195_h_a_anx_0.pdf@EU-1-01-195_h_a_anx_0.xml@True@D:20070924084623+02'00'@D:20070924084625+02'00'@standard@small molecule
+EU-1-01-196_h_a_anx_0.pdf@EU-1-01-196_h_a_anx_0.pdf@EU-1-01-196_h_a_anx_0.xml@True@D:20070925150812+02'00'@D:20070925150814+02'00'@exceptional or conditional@small molecule
+EU-1-02-208_h_w_anx_0.pdf@EU-1-02-208_h_w_anx_0.pdf@EU-1-02-208_h_w_anx_0.xml@True@D:20020319085824Z@D:20060321205336+01'00'@standard@small molecule
+EU-1-02-202_h_w_anx_0.pdf@EU-1-02-202_h_w_anx_0.pdf@EU-1-02-202_h_w_anx_0.xml@True@D:20020306145618Z@D:20060321204238+01'00'@standard@small molecule
+EU-1-02-207_h_w_anx_0.pdf@EU-1-02-207_h_w_anx_0.pdf@EU-1-02-207_h_w_anx_0.xml@True@D:20020325171300Z@D:20060321205036+01'00'@standard@small molecule
+EU-1-02-203_h_a_anx_0.pdf@EU-1-02-203_h_a_anx_0.pdf@EU-1-02-203_h_a_anx_0.xml@True@D:20020320121507Z@D:20060321204501+01'00'@standard@small molecule
+EU-1-02-210_h_w_anx_0.pdf@EU-1-02-210_h_w_anx_0.pdf@EU-1-02-210_h_w_anx_0.xml@True@D:20020319085650Z@D:20060321205428+01'00'@standard@small molecule
+EU-1-02-205_h_a_anx_0.pdf@EU-1-02-205_h_a_anx_0.pdf@EU-1-02-205_h_a_anx_0.xml@True@D:20020304141938Z@D:20060321204447+01'00'@standard@small molecule
+EU-1-02-211_h_w_anx_0.pdf@EU-1-02-211_h_w_anx_0.pdf@EU-1-02-211_h_w_anx_0.xml@True@D:20020325105615Z@D:20060321204719+01'00'@standard@small molecule
+EU-1-02-209_h_a_anx_0.pdf@EU-1-02-209_h_a_anx_0.pdf@EU-1-02-209_h_a_anx_0.xml@True@D:20020319085211Z@D:20060321205402+01'00'@standard@small molecule
+EU-1-00-136_h_w_anx_0.pdf@EU-1-00-136_h_w_anx_0.pdf@EU-1-00-136_h_w_anx_0.xml@True@D:20070906144715+02'00'@D:20070906144716+02'00'@standard@small molecule
+EU-1-00-130_h_a_anx_0.pdf@EU-1-00-130_h_a_anx_0.pdf@EU-1-00-130_h_a_anx_0.xml@True@D:20070830155604+02'00'@D:20070830155607+02'00'@standard@small molecule
+EU-1-00-129_h_a_anx_0.pdf@EU-1-00-129_h_a_anx_0.pdf@EU-1-00-129_h_a_anx_0.xml@True@D:20070829114411+02'00'@D:20070829114413+02'00'@standard@small molecule
+EU-1-00-135_h_a_anx_0.pdf@EU-1-00-135_h_a_anx_0.pdf@EU-1-00-135_h_a_anx_0.xml@True@D:20070903125655+02'00'@D:20070903125656+02'00'@standard@small molecule
+EU-1-00-136_h_w_anx_0.pdf@EU-1-00-136_h_w_anx_0.pdf@EU-1-00-136_h_w_anx_0.xml@True@D:20070906144715+02'00'@D:20070906144716+02'00'@standard@small molecule
+EU-1-00-139_h_w_anx_0.pdf@EU-1-00-139_h_w_anx_0.pdf@EU-1-00-139_h_w_anx_0.xml@True@D:20070831143130+02'00'@D:20070831143133+02'00'@standard@small molecule
+EU-1-00-138_h_w_anx_0.pdf@EU-1-00-138_h_w_anx_0.pdf@EU-1-00-138_h_w_anx_0.xml@True@D:20070831125735+02'00'@D:20070831125737+02'00'@standard@small molecule
+EU-1-00-133_h_a_anx_0.pdf@EU-1-00-133_h_a_anx_0.pdf@EU-1-00-133_h_a_anx_0.xml@True@D:20070831122250+02'00'@D:20070831122252+02'00'@standard@small molecule
+EU-1-00-134_h_a_anx_0.pdf@EU-1-00-134_h_a_anx_0.pdf@EU-1-00-134_h_a_anx_0.xml@True@D:20070831121551+02'00'@D:20070831121552+02'00'@standard@small molecule
+EU-1-00-132_h_w_anx_0.pdf@EU-1-00-132_h_w_anx_0.pdf@EU-1-00-132_h_w_anx_0.xml@True@D:20070831110748+02'00'@D:20070831110750+02'00'@standard@small molecule
+EU-1-00-137_h_w_anx_0.pdf@EU-1-00-137_h_w_anx_0.pdf@EU-1-00-137_h_w_anx_0.xml@True@D:20070831125511+02'00'@D:20070831125512+02'00'@standard@small molecule
+EU-1-00-141_h_a_anx_0.pdf@EU-1-00-141_h_a_anx_0.pdf@EU-1-00-141_h_a_anx_0.xml@True@D:20070903123732+02'00'@D:20070903123734+02'00'@standard@small molecule
+EU-1-00-140_h_a_anx_0.pdf@EU-1-00-140_h_a_anx_0.pdf@EU-1-00-140_h_a_anx_0.xml@True@D:20070903130142+02'00'@D:20070903130144+02'00'@standard@small molecule
+EU-1-00-142_h_a_anx_0.pdf@EU-1-00-142_h_a_anx_0.pdf@EU-1-00-142_h_a_anx_0.xml@True@D:20070903132640+02'00'@D:20070903132642+02'00'@standard@small molecule
+EU-1-00-143_h_a_anx_0.pdf@EU-1-00-143_h_a_anx_0.pdf@EU-1-00-143_h_a_anx_0.xml@True@D:20070906144934+02'00'@D:20070906144938+02'00'@standard@small molecule
+EU-1-00-144_h_w_anx_0.pdf@EU-1-00-144_h_w_anx_0.pdf@EU-1-00-144_h_w_anx_0.xml@True@D:20070906145453+02'00'@D:20070906145454+02'00'@standard@small molecule
+EU-1-00-147_h_w_anx_0.pdf@EU-1-00-147_h_w_anx_0.pdf@EU-1-00-147_h_w_anx_0.xml@True@D:20070914085259+02'00'@D:20070914085300+02'00'@standard@small molecule
+EU-1-00-145_h_a_anx_0.pdf@EU-1-00-145_h_a_anx_0.pdf@EU-1-00-145_h_a_anx_0.xml@True@D:20070906152459+02'00'@D:20070906152501+02'00'@standard@small molecule
+EU-1-00-146_h_a_anx_0.pdf@EU-1-00-146_h_a_anx_0.pdf@EU-1-00-146_h_a_anx_0.xml@True@D:20070913142220+02'00'@D:20070913142222+02'00'@standard@small molecule
+EU-1-00-148_h_w_anx_0.pdf@EU-1-00-148_h_w_anx_0.pdf@EU-1-00-148_h_w_anx_0.xml@True@D:20070914084420+02'00'@D:20070914084422+02'00'@exceptional or conditional@small molecule
+EU-1-00-150_h_a_anx_0.pdf@EU-1-00-150_h_a_anx_0.pdf@EU-1-00-150_h_a_anx_0.xml@True@D:20070914082650+02'00'@D:20070914082652+02'00'@standard@small molecule
+EU-1-00-151_h_w_anx_0.pdf@EU-1-00-151_h_w_anx_0.pdf@EU-1-00-151_h_w_anx_0.xml@True@D:20070914081917+02'00'@D:20070914081919+02'00'@standard@small molecule
+EU-1-00-154_h_w_anx_0.pdf@EU-1-00-154_h_w_anx_0.pdf@EU-1-00-154_h_w_anx_0.xml@True@D:20070914101148+02'00'@D:20070914101150+02'00'@standard@small molecule
+EU-1-00-153_h_w_anx_0.pdf@EU-1-00-153_h_w_anx_0.pdf@EU-1-00-153_h_w_anx_0.xml@True@D:20070914090207+02'00'@D:20070914090208+02'00'@standard@small molecule
+EU-1-00-155_h_a_anx_0.pdf@EU-1-00-155_h_a_anx_0.pdf@EU-1-00-155_h_a_anx_0.xml@True@D:20070914101349+02'00'@D:20070914101351+02'00'@standard@small molecule
+EU-1-00-159_h_w_anx_0.pdf@EU-1-00-159_h_w_anx_0.pdf@EU-1-00-159_h_w_anx_0.xml@True@D:20070822154210+02'00'@D:20070822154212+02'00'@standard@small molecule
+EU-1-00-131_h_w_anx_0.pdf@EU-1-00-131_h_w_anx_0.pdf@EU-1-00-131_h_w_anx_0.xml@True@D:20070831105641+02'00'@D:20070831105643+02'00'@standard@small molecule
+EU-1-00-157_h_a_anx_0.pdf@EU-1-00-157_h_a_anx_0.pdf@EU-1-00-157_h_a_anx_0.xml@True@D:20070822153339+02'00'@D:20070822153341+02'00'@standard@small molecule
+EU-1-00-152_h_a_anx_0.pdf@EU-1-00-152_h_a_anx_0.pdf@EU-1-00-152_h_a_anx_0.xml@True@D:20070914085913+02'00'@D:20070914085915+02'00'@standard@small molecule
+EU-1-00-162_h_a_anx_0.pdf@EU-1-00-162_h_a_anx_0.pdf@EU-1-00-162_h_a_anx_0.xml@True@D:20070823120715+02'00'@D:20070823120718+02'00'@standard@small molecule
+EU-1-00-156_h_a_anx_0.pdf@EU-1-00-156_h_a_anx_0.pdf@EU-1-00-156_h_a_anx_0.xml@True@D:20070917093937+02'00'@D:20070917093938+02'00'@standard@small molecule
+EU-1-00-161_h_a_anx_0.pdf@EU-1-00-161_h_a_anx_0.pdf@EU-1-00-161_h_a_anx_0.xml@True@D:20070822154923+02'00'@D:20070822154926+02'00'@standard@small molecule
+EU-1-00-160_h_a_anx_0.pdf@EU-1-00-160_h_a_anx_0.pdf@EU-1-00-160_h_a_anx_0.xml@True@D:20070822154540+02'00'@D:20070822154542+02'00'@standard@small molecule
+EU-1-00-164_h_a_anx_0.pdf@EU-1-00-164_h_a_anx_0.pdf@EU-1-00-164_h_a_anx_0.xml@True@D:20070823141915+02'00'@D:20070823141918+02'00'@standard@small molecule
+EU-1-00-165_h_a_anx_0.pdf@EU-1-00-165_h_a_anx_0.pdf@EU-1-00-165_h_a_anx_0.xml@True@D:20070823134559+02'00'@D:20070823134601+02'00'@standard@small molecule
+EU-1-00-163_h_a_anx_0.pdf@EU-1-00-163_h_a_anx_0.pdf@EU-1-00-163_h_a_anx_0.xml@True@D:20070823134008+02'00'@D:20070823134012+02'00'@standard@small molecule
+EU-1-00-168_h_w_anx_0.pdf@EU-1-00-168_h_w_anx_0.pdf@EU-1-00-168_h_w_anx_0.xml@True@D:20070823144237+02'00'@D:20070823144241+02'00'@standard@small molecule
+EU-1-00-169_h_a_anx_0.pdf@EU-1-00-169_h_a_anx_0.pdf@EU-1-00-169_h_a_anx_0.xml@True@D:20070824094612+02'00'@D:20070824094615+02'00'@standard@small molecule
+EU-1-00-167_h_w_anx_0.pdf@EU-1-00-167_h_w_anx_0.pdf@EU-1-00-167_h_w_anx_0.xml@True@D:20070823140340+02'00'@D:20070823140342+02'00'@standard@small molecule
+EU-1-00-170_h_a_anx_0.pdf@EU-1-00-170_h_a_anx_0.pdf@EU-1-00-170_h_a_anx_0.xml@True@D:20070824095209+02'00'@D:20070824095211+02'00'@standard@small molecule
+EU-1-00-166_h_a_anx_0.pdf@EU-1-00-166_h_a_anx_0.pdf@EU-1-00-166_h_a_anx_0.xml@True@D:20070823104648+02'00'@D:20070823104654+02'00'@exceptional or conditional@small molecule
+EU-1-01-173_h_a_anx_0.pdf@EU-1-01-173_h_a_anx_0.pdf@EU-1-01-173_h_a_anx_0.xml@True@D:20070824125019+02'00'@D:20070824125021+02'00'@standard@small molecule
+EU-1-01-175_h_w_anx_0.pdf@EU-1-01-175_h_w_anx_0.pdf@EU-1-01-175_h_w_anx_0.xml@True@D:20070920104110+02'00'@D:20070920104112+02'00'@standard@small molecule
+EU-1-01-174_h_w_anx_0.pdf@EU-1-01-174_h_w_anx_0.pdf@EU-1-01-174_h_w_anx_0.xml@True@D:20070920103844+02'00'@D:20070920103845+02'00'@standard@small molecule
+EU-1-01-177_h_a_anx_0.pdf@EU-1-01-177_h_a_anx_0.pdf@EU-1-01-177_h_a_anx_0.xml@True@D:20070920102530+02'00'@D:20070920102532+02'00'@standard@small molecule
+EU-1-01-180_h_w_anx_0.pdf@EU-1-01-180_h_w_anx_0.pdf@EU-1-01-180_h_w_anx_0.xml@True@D:20070920133227+02'00'@D:20070920133229+02'00'@standard@small molecule
+EU-1-01-178_h_a_anx_0.pdf@EU-1-01-178_h_a_anx_0.pdf@EU-1-01-178_h_a_anx_0.xml@True@D:20070920103613+02'00'@D:20070920103615+02'00'@standard@small molecule
+EU-1-01-171_h_a_anx_0.pdf@EU-1-01-171_h_a_anx_0.pdf@EU-1-01-171_h_a_anx_0.xml@True@D:20070824120832+02'00'@D:20070824120834+02'00'@standard@small molecule
+EU-1-01-181_h_w_anx_0.pdf@EU-1-01-181_h_w_anx_0.pdf@EU-1-01-181_h_w_anx_0.xml@True@D:20070920133441+02'00'@D:20070920133444+02'00'@standard@small molecule
+EU-1-01-182_h_w_anx_0.pdf@EU-1-01-182_h_w_anx_0.pdf@EU-1-01-182_h_w_anx_0.xml@True@D:20070920133700+02'00'@D:20070920133701+02'00'@standard@small molecule
+EU-1-01-179_h_w_anx_0.pdf@EU-1-01-179_h_w_anx_0.pdf@EU-1-01-179_h_w_anx_0.xml@True@D:20070920130943+02'00'@D:20070920130944+02'00'@standard@small molecule
+EU-1-01-176_h_a_anx_0.pdf@EU-1-01-176_h_a_anx_0.pdf@EU-1-01-176_h_a_anx_0.xml@True@D:20070824153426+02'00'@D:20070824153428+02'00'@standard@small molecule
+EU-1-01-172_h_a_anx_0.pdf@EU-1-01-172_h_a_anx_0.pdf@EU-1-01-172_h_a_anx_0.xml@True@D:20070824124750+02'00'@D:20070824124751+02'00'@exceptional or conditional@small molecule
+EU-1-01-186_h_w_anx_0.pdf@EU-1-01-186_h_w_anx_0.pdf@EU-1-01-186_h_w_anx_0.xml@True@D:20070921114210+02'00'@D:20070921114211+02'00'@standard@small molecule
+EU-1-01-183_h_a_anx_0.pdf@EU-1-01-183_h_a_anx_0.pdf@EU-1-01-183_h_a_anx_0.xml@True@D:20070920113801+02'00'@D:20070920113802+02'00'@standard@small molecule
+EU-1-01-184_h_w_anx_0.pdf@EU-1-01-184_h_w_anx_0.pdf@EU-1-01-184_h_w_anx_0.xml@True@D:20070920141716+02'00'@D:20070920141717+02'00'@standard@small molecule
+EU-1-01-187_h_w_anx_0.pdf@EU-1-01-187_h_w_anx_0.pdf@EU-1-01-187_h_w_anx_0.xml@True@D:20070921135228+02'00'@D:20070921135229+02'00'@standard@small molecule
+EU-1-01-190_h_a_anx_0.pdf@EU-1-01-190_h_a_anx_0.pdf@EU-1-01-190_h_a_anx_0.xml@True@D:20070921141306+02'00'@D:20070921141330+02'00'@exceptional or conditional@small molecule
+EU-1-01-188_h_a_anx_0.pdf@EU-1-01-188_h_a_anx_0.pdf@EU-1-01-188_h_a_anx_0.xml@True@D:20070924084901+02'00'@D:20070924084902+02'00'@exceptional or conditional@small molecule
+EU-1-01-185_h_a_anx_0.pdf@EU-1-01-185_h_a_anx_0.pdf@EU-1-01-185_h_a_anx_0.xml@True@D:20070920142002+02'00'@D:20070920142004+02'00'@standard@small molecule
+EU-1-01-189_h_a_anx_0.pdf@EU-1-01-189_h_a_anx_0.pdf@EU-1-01-189_h_a_anx_0.xml@True@D:20070924085243+02'00'@D:20070924085244+02'00'@exceptional or conditional@small molecule
+EU-1-01-192_h_w_anx_0.pdf@EU-1-01-192_h_w_anx_0.pdf@EU-1-01-192_h_w_anx_0.xml@True@D:20060315191101+01'00'@D:20060315191101+01'00'@standard@small molecule
+EU-1-01-193_h_w_anx_0.pdf@EU-1-01-193_h_w_anx_0.pdf@EU-1-01-193_h_w_anx_0.xml@True@D:20070921135016+02'00'@D:20070921135017+02'00'@exceptional or conditional@small molecule
+EU-1-01-191_h_w_anx_0.pdf@EU-1-01-191_h_w_anx_0.pdf@EU-1-01-191_h_w_anx_0.xml@True@D:20060315190834+01'00'@D:20060315190834+01'00'@standard@small molecule
+EU-1-01-194_h_a_anx_0.pdf@EU-1-01-194_h_a_anx_0.pdf@EU-1-01-194_h_a_anx_0.xml@True@D:20070924083718+02'00'@D:20070924083720+02'00'@standard@small molecule
+EU-1-01-195_h_a_anx_0.pdf@EU-1-01-195_h_a_anx_0.pdf@EU-1-01-195_h_a_anx_0.xml@True@D:20070924084623+02'00'@D:20070924084625+02'00'@standard@small molecule
+EU-1-01-197_h_a_anx_0.pdf@EU-1-01-197_h_a_anx_0.pdf@EU-1-01-197_h_a_anx_0.xml@True@D:20070925151020+02'00'@D:20070925151022+02'00'@exceptional or conditional@small molecule
+EU-1-01-199_h_a_anx_0.pdf@EU-1-01-199_h_a_anx_0.pdf@EU-1-01-199_h_a_anx_0.xml@True@D:20070927101650+02'00'@D:20070927101651+02'00'@standard@small molecule
+EU-1-01-196_h_a_anx_0.pdf@EU-1-01-196_h_a_anx_0.pdf@EU-1-01-196_h_a_anx_0.xml@True@D:20070925150812+02'00'@D:20070925150814+02'00'@exceptional or conditional@small molecule
+EU-1-02-202_h_w_anx_0.pdf@EU-1-02-202_h_w_anx_0.pdf@EU-1-02-202_h_w_anx_0.xml@True@D:20020306145618Z@D:20060321204238+01'00'@standard@small molecule
+EU-1-02-203_h_a_anx_0.pdf@EU-1-02-203_h_a_anx_0.pdf@EU-1-02-203_h_a_anx_0.xml@True@D:20020320121507Z@D:20060321204501+01'00'@standard@small molecule
+EU-1-02-201_h_a_anx_0.pdf@EU-1-02-201_h_a_anx_0.pdf@EU-1-02-201_h_a_anx_0.xml@True@D:20020306122551Z@D:20060321204223+01'00'@standard@small molecule
+EU-1-01-198_h_a_anx_0.pdf@EU-1-01-198_h_a_anx_0.pdf@EU-1-01-198_h_a_anx_0.xml@True@D:20070926131735+02'00'@D:20070926131736+02'00'@exceptional or conditional@small molecule
+EU-1-02-208_h_w_anx_0.pdf@EU-1-02-208_h_w_anx_0.pdf@EU-1-02-208_h_w_anx_0.xml@True@D:20020319085824Z@D:20060321205336+01'00'@standard@small molecule
+EU-1-02-205_h_a_anx_0.pdf@EU-1-02-205_h_a_anx_0.pdf@EU-1-02-205_h_a_anx_0.xml@True@D:20020304141938Z@D:20060321204447+01'00'@standard@small molecule
+EU-1-02-207_h_w_anx_0.pdf@EU-1-02-207_h_w_anx_0.pdf@EU-1-02-207_h_w_anx_0.xml@True@D:20020325171300Z@D:20060321205036+01'00'@standard@small molecule
+EU-1-02-204_h_a_anx_0.pdf@EU-1-02-204_h_a_anx_0.pdf@EU-1-02-204_h_a_anx_0.xml@True@D:20020307115849Z@D:20060321204313+01'00'@exceptional or conditional@small molecule
+EU-1-01-200_h_a_anx_0.pdf@EU-1-01-200_h_a_anx_0.pdf@EU-1-01-200_h_a_anx_0.xml@True@D:20060307145134+01'00'@D:20060321203322+01'00'@exceptional or conditional@small molecule
+EU-1-02-210_h_w_anx_0.pdf@EU-1-02-210_h_w_anx_0.pdf@EU-1-02-210_h_w_anx_0.xml@True@D:20020319085650Z@D:20060321205428+01'00'@standard@small molecule
+EU-1-02-211_h_w_anx_0.pdf@EU-1-02-211_h_w_anx_0.pdf@EU-1-02-211_h_w_anx_0.xml@True@D:20020325105615Z@D:20060321204719+01'00'@standard@small molecule
+EU-1-02-206_h_a_anx_0.pdf@EU-1-02-206_h_a_anx_0.pdf@EU-1-02-206_h_a_anx_0.xml@True@D:20020325164608Z@D:20060321205021+01'00'@standard@small molecule
+EU-1-02-209_h_a_anx_0.pdf@EU-1-02-209_h_a_anx_0.pdf@EU-1-02-209_h_a_anx_0.xml@True@D:20020319085211Z@D:20060321205402+01'00'@standard@small molecule
+EU-1-02-213_h_a_anx_0.pdf@EU-1-02-213_h_a_anx_0.pdf@EU-1-02-213_h_a_anx_0.xml@True@D:20020417112906Z@D:20060321211638+01'00'@standard@small molecule
+EU-1-02-214_h_a_anx_0.pdf@EU-1-02-214_h_a_anx_0.pdf@EU-1-02-214_h_a_anx_0.xml@True@D:20020423153852Z@D:20060321211619+01'00'@standard@small molecule
+EU-1-02-216_h_a_anx_0.pdf@EU-1-02-216_h_a_anx_0.pdf@EU-1-02-216_h_a_anx_0.xml@True@D:20020417114642Z@D:20060321211151+01'00'@standard@small molecule
+EU-1-02-215_h_a_anx_0.pdf@EU-1-02-215_h_a_anx_0.pdf@EU-1-02-215_h_a_anx_0.xml@True@D:20020422144825Z@D:20060321211749+01'00'@standard@small molecule
+EU-1-02-217_h_a_anx_0.pdf@EU-1-02-217_h_a_anx_0.pdf@EU-1-02-217_h_a_anx_0.xml@False@D:20020523091657Z@D:20060321212701+01'00'
+EU-1-02-212_h_a_anx_0.pdf@EU-1-02-212_h_a_anx_0.pdf@EU-1-02-212_h_a_anx_0.xml@True@D:20020606154221Z@D:20060321204755+01'00'@standard@small molecule
+EU-1-02-218_h_a_anx_0.pdf@EU-1-02-218_h_a_anx_0.pdf@EU-1-02-218_h_a_anx_0.xml@True@D:20020628141022Z@D:20060321212716+01'00'@standard@small molecule
+EU-1-02-219_h_a_anx_0.pdf@EU-1-02-219_h_a_anx_0.pdf@EU-1-02-219_h_a_anx_0.xml@True@D:20020628140847Z@D:20060321212506+01'00'@standard@small molecule
+EU-1-02-224_h_a_anx_0.pdf@EU-1-02-224_h_a_anx_0.pdf@EU-1-02-224_h_a_anx_0.xml@True@D:20020910095816Z@D:20060321220142+01'00'@standard@small molecule
+EU-1-02-223_h_a_anx_0.pdf@EU-1-02-223_h_a_anx_0.pdf@EU-1-02-223_h_a_anx_0.xml@True@D:20020910083714Z@D:20060321215732+01'00'@standard@small molecule
+EU-1-02-228_h_w_anx_0.pdf@EU-1-02-228_h_w_anx_0.pdf@EU-1-02-228_h_w_anx_0.xml@True@D:20020909141026Z@D:20060321220014+01'00'@standard@small molecule
+EU-1-02-225_h_w_anx_0.pdf@EU-1-02-225_h_w_anx_0.pdf@EU-1-02-225_h_w_anx_0.xml@True@D:20020819114135Z@D:20060321215847+01'00'@exceptional or conditional@small molecule
+EU-1-02-221_h_a_anx_0.pdf@EU-1-02-221_h_a_anx_0.pdf@EU-1-02-221_h_a_anx_0.xml@True@D:20020617123216Z@D:20060321213730+01'00'@standard@small molecule
+EU-1-02-220_h_a_anx_0.pdf@EU-1-02-220_h_a_anx_0.pdf@EU-1-02-220_h_a_anx_0.xml@True@D:20020521110200Z@D:20060321212523+01'00'@exceptional or conditional@small molecule
+EU-1-02-226_h_a_anx_0.pdf@EU-1-02-226_h_a_anx_0.pdf@EU-1-02-226_h_a_anx_0.xml@True@D:20020911141540Z@D:20060321220318+01'00'@standard@small molecule
+EU-1-02-229_h_a_anx_0.pdf@EU-1-02-229_h_a_anx_0.pdf@EU-1-02-229_h_a_anx_0.xml@True@D:20030123161833Z@D:20060321222133+01'00'@standard@small molecule
+EU-1-02-232_h_w_anx_0.pdf@EU-1-02-232_h_w_anx_0.pdf@EU-1-02-232_h_w_anx_0.xml@True@D:20030207155435Z@D:20060321222241+01'00'@standard@small molecule
+EU-1-02-227_h_a_anx_0.pdf@EU-1-02-227_h_a_anx_0.pdf@EU-1-02-227_h_a_anx_0.xml@True@D:20020909143901Z@D:20060321215958+01'00'@standard@small molecule
+EU-1-02-230_h_a_anx_0.pdf@EU-1-02-230_h_a_anx_0.pdf@EU-1-02-230_h_a_anx_0.xml@True@D:20030122163537Z@D:20060321222220+01'00'@standard@small molecule
+EU-1-02-235_h_w_anx_0.pdf@EU-1-02-235_h_w_anx_0.pdf@EU-1-02-235_h_w_anx_0.xml@True@D:20030123153308Z@D:20060321222326+01'00'@standard@small molecule
+EU-1-02-236_h_w_anx_0.pdf@EU-1-02-236_h_w_anx_0.pdf@EU-1-02-236_h_w_anx_0.xml@True@D:20030203114040Z@D:20060321222417+01'00'@standard@small molecule
+EU-1-02-231_h_a_anx_0.pdf@EU-1-02-231_h_a_anx_0.pdf@EU-1-02-231_h_a_anx_0.xml@True@D:20030130143147Z@D:20060321222500+01'00'@standard@small molecule
+EU-1-02-233_h_a_anx_0.pdf@EU-1-02-233_h_a_anx_0.pdf@EU-1-02-233_h_a_anx_0.xml@True@D:20030123101338Z@D:20060321222349+01'00'@standard@small molecule
+EU-1-02-239_h_w_anx_0.pdf@EU-1-02-239_h_w_anx_0.pdf@EU-1-02-239_h_w_anx_0.xml@True@D:20030331141845@D:20030331141846+02'00'@standard@small molecule
+EU-1-02-222_h_a_anx_0.pdf@EU-1-02-222_h_a_anx_0.pdf@EU-1-02-222_h_a_anx_0.xml@True@D:20020710143308Z@D:20060321213801+01'00'@standard@small molecule
+EU-1-02-234_h_a_anx_0.pdf@EU-1-02-234_h_a_anx_0.pdf@EU-1-02-234_h_a_anx_0.xml@True@D:20030203110135Z@D:20060321222259+01'00'@standard@small molecule
+EU-1-02-242_h_w_anx_0.pdf@EU-1-02-242_h_w_anx_0.pdf@EU-1-02-242_h_w_anx_0.xml@True@D:20030305170632@D:20030305170656+01'00'@standard@small molecule
+EU-1-02-245_h_w_anx_0.pdf@EU-1-02-245_h_w_anx_0.pdf@EU-1-02-245_h_w_anx_0.xml@True@D:20030110152431@D:20030110152431+01'00'@standard@small molecule
+EU-1-02-244_h_w_anx_0.pdf@EU-1-02-244_h_w_anx_0.pdf@EU-1-02-244_h_w_anx_0.xml@True@D:20030331100132@D:20030331100152+02'00'@standard@small molecule
+EU-1-02-246_h_a_anx_0.pdf@EU-1-02-246_h_a_anx_0.pdf@EU-1-02-246_h_a_anx_0.xml@True@D:20030120142123@D:20030120142124+01'00'@exceptional or conditional@small molecule
+EU-1-02-238_h_a_anx_0.pdf@EU-1-02-238_h_a_anx_0.pdf@EU-1-02-238_h_a_anx_0.xml@True@D:20021216091247@D:20021216091259+01'00'@exceptional or conditional@small molecule
+EU-1-02-240_h_a_anx_0.pdf@EU-1-02-240_h_a_anx_0.pdf@EU-1-02-240_h_a_anx_0.xml@True@D:20021108120602@D:20021108120602+01'00'@standard@small molecule
+EU-1-02-237_h_a_anx_0.pdf@EU-1-02-237_h_a_anx_0.pdf@EU-1-02-237_h_a_anx_0.xml@True@D:20021030094419Z@D:20060321224436+01'00'@standard@small molecule
+EU-1-03-250_h_w_anx_0.pdf@EU-1-03-250_h_w_anx_0.pdf@EU-1-03-250_h_w_anx_0.xml@True@D:20030331090439@D:20030331090449+02'00'@standard@small molecule
+EU-1-03-247_h_a_anx_0.pdf@EU-1-03-247_h_a_anx_0.pdf@EU-1-03-247_h_a_anx_0.xml@True@D:20030702113250@D:20030702113250+02'00'@standard@small molecule
+EU-1-03-248_h_a_anx_0.pdf@EU-1-03-248_h_a_anx_0.pdf@EU-1-03-248_h_a_anx_0.xml@True@D:20030226100838@D:20030226100838+01'00'@standard@small molecule
+EU-1-03-254_h_a_anx_0.pdf@EU-1-03-254_h_a_anx_0.pdf@EU-1-03-254_h_a_anx_0.xml@True@D:20030714104554@D:20030714104602+02'00'@standard@small molecule
+EU-1-03-249_h_a_anx_0.pdf@EU-1-03-249_h_a_anx_0.pdf@EU-1-03-249_h_a_anx_0.xml@True@D:20030226111254@D:20030226111254+01'00'@standard@small molecule
+EU-1-03-253_h_a_anx_0.pdf@EU-1-03-253_h_a_anx_0.pdf@EU-1-03-253_h_a_anx_0.xml@True@D:20030612160932@D:20030612160935+02'00'@exceptional or conditional@small molecule
+EU-1-03-255_h_a_anx_0.pdf@EU-1-03-255_h_a_anx_0.pdf@EU-1-03-255_h_a_anx_0.xml@True@D:20030902150048@D:20030902150048+02'00'@exceptional or conditional@small molecule
+EU-1-03-251_h_a_anx_0.pdf@EU-1-03-251_h_a_anx_0.pdf@EU-1-03-251_h_a_anx_0.xml@True@D:20030227120222@D:20030227120234+01'00'@standard@small molecule
+EU-1-03-257_h_w_anx_0.pdf@EU-1-03-257_h_w_anx_0.pdf@EU-1-03-257_h_w_anx_0.xml@True@D:20040603095319Z@D:20040603105941+01'00'@standard@small molecule
+EU-1-03-259_h_w_anx_0.pdf@EU-1-03-259_h_w_anx_0.pdf@EU-1-03-259_h_w_anx_0.xml@True@D:20031010155235@D:20031010155243+02'00'@exceptional or conditional@small molecule
+EU-1-03-258_h_w_anx_0.pdf@EU-1-03-258_h_w_anx_0.pdf@EU-1-03-258_h_w_anx_0.xml@True@D:20031007164337@D:20031007164341+02'00'@standard@small molecule
+EU-1-03-263_h_a_anx_0.pdf@EU-1-03-263_h_a_anx_0.pdf@EU-1-03-263_h_a_anx_0.xml@True@D:20040402172348+01'00'@D:20040402172348+01'00'@standard@small molecule
+EU-1-03-252_h_a_anx_0.pdf@EU-1-03-252_h_a_anx_0.pdf@EU-1-03-252_h_a_anx_0.xml@True@D:20030520110942@D:20030520111017+02'00'@exceptional or conditional@small molecule
+EU-1-03-260_h_a_anx_0.pdf@EU-1-03-260_h_a_anx_0.pdf@EU-1-03-260_h_a_anx_0.xml@True@D:20031023144126@D:20031023144146+02'00'@standard@small molecule
+EU-1-03-261_h_a_anx_0.pdf@EU-1-03-261_h_a_anx_0.pdf@EU-1-03-261_h_a_anx_0.xml@True@21/10/2003 8:49:2@no_modification_date@standard@small molecule
+EU-1-03-262_h_a_anx_0.pdf@EU-1-03-262_h_a_anx_0.pdf@EU-1-03-262_h_a_anx_0.xml@True@D:20031112164354+01'00'@D:20031112164354+01'00'@standard@small molecule
+EU-1-03-264_h_a_anx_0.pdf@EU-1-03-264_h_a_anx_0.pdf@EU-1-03-264_h_a_anx_0.xml@True@D:20040113111026+01'00'@D:20040113111026+01'00'@exceptional or conditional@small molecule
+EU-1-03-266_h_w_anx_0.pdf@EU-1-03-266_h_w_anx_0.pdf@EU-1-03-266_h_w_anx_0.xml@True@D:20040217130047+01'00'@D:20040217130047+01'00'@standard@small molecule
+EU-1-03-265_h_a_anx_0.pdf@EU-1-03-265_h_a_anx_0.pdf@EU-1-03-265_h_a_anx_0.xml@True@D:20040217125930+01'00'@D:20040217125930+01'00'@standard@small molecule
+EU-1-03-268_h_a_anx_0.pdf@EU-1-03-268_h_a_anx_0.pdf@EU-1-03-268_h_a_anx_0.xml@True@D:20040311152202+01'00'@D:20040311152202+01'00'@standard@small molecule
+EU-1-03-270_h_a_anx_0.pdf@EU-1-03-270_h_a_anx_0.pdf@EU-1-03-270_h_a_anx_0.xml@True@D:20040505094658+02'00'@D:20040505094658+02'00'@standard@small molecule
+EU-1-04-272_h_w_anx_0.pdf@EU-1-04-272_h_w_anx_0.pdf@EU-1-04-272_h_w_anx_0.xml@True@D:20040319112710Z@D:20040322152548Z@standard@small molecule
+EU-1-03-256_h_a_anx_0.pdf@EU-1-03-256_h_a_anx_0.pdf@EU-1-03-256_h_a_anx_0.xml@True@D:20030827171333@D:20030827171349+02'00'@standard@small molecule
+EU-1-03-269_h_a_anx_0.pdf@EU-1-03-269_h_a_anx_0.pdf@EU-1-03-269_h_a_anx_0.xml@True@D:20040302103148+01'00'@D:20040302103148+01'00'@standard@small molecule
+EU-1-03-271_h_a_anx_0.pdf@EU-1-03-271_h_a_anx_0.pdf@EU-1-03-271_h_a_anx_0.xml@True@D:20040224170539+01'00'@D:20040224170539+01'00'@standard@small molecule
+EU-1-04-275_h_a_anx_0.pdf@EU-1-04-275_h_a_anx_0.pdf@EU-1-04-275_h_a_anx_0.xml@True@D:20040405160552+01'00'@D:20040405160552+01'00'@standard@small molecule
+EU-1-04-273_h_a_anx_0.pdf@EU-1-04-273_h_a_anx_0.pdf@EU-1-04-273_h_a_anx_0.xml@True@D:20040506114806+02'00'@D:20040506114806+02'00'@standard@small molecule
+EU-1-03-267_h_a_anx_0.pdf@EU-1-03-267_h_a_anx_0.pdf@EU-1-03-267_h_a_anx_0.xml@True@D:20040225103824+01'00'@D:20040225103824+01'00'@exceptional or conditional@small molecule
+EU-1-04-277_h_a_anx_0.pdf@EU-1-04-277_h_a_anx_0.pdf@EU-1-04-277_h_a_anx_0.xml@True@D:20040414165728+02'00'@D:20040414165728+02'00'@standard@small molecule
+EU-1-04-278_h_a_anx_0.pdf@EU-1-04-278_h_a_anx_0.pdf@EU-1-04-278_h_a_anx_0.xml@True@D:20040414144411+01'00'@D:20040414144411+01'00'@standard@small molecule
+EU-1-04-274_h_a_anx_0.pdf@EU-1-04-274_h_a_anx_0.pdf@EU-1-04-274_h_a_anx_0.xml@True@D:20040419122543+02'00'@D:20040419122543+02'00'@exceptional or conditional@small molecule
+EU-1-04-280_h_a_anx_0.pdf@EU-1-04-280_h_a_anx_0.pdf@EU-1-04-280_h_a_anx_0.xml@True@D:20040630172642+01'00'@D:20040630172642+01'00'@standard@small molecule
+EU-1-04-276_h_a_anx_0.pdf@EU-1-04-276_h_a_anx_0.pdf@EU-1-04-276_h_a_anx_0.xml@True@D:20040526162344+02'00'@D:20040526162344+02'00'@standard@small molecule
+EU-1-04-281_h_a_anx_0.pdf@EU-1-04-281_h_a_anx_0.pdf@EU-1-04-281_h_a_anx_0.xml@True@D:20040621115817+01'00'@D:20040621115817+01'00'@standard@small molecule
+EU-1-04-284_h_a_anx_0.pdf@EU-1-04-284_h_a_anx_0.pdf@EU-1-04-284_h_a_anx_0.xml@True@D:20040719093010+01'00'@D:20040719093010+01'00'@standard@small molecule
+EU-1-04-286_h_a_anx_0.pdf@EU-1-04-286_h_a_anx_0.pdf@EU-1-04-286_h_a_anx_0.xml@True@D:20041004144113+01'00'@D:20041004144113+01'00'@standard@small molecule
+EU-1-04-285_h_a_anx_0.pdf@EU-1-04-285_h_a_anx_0.pdf@EU-1-04-285_h_a_anx_0.xml@True@D:20040802094204Z@D:20040802143341+01'00'@standard@small molecule
+EU-1-04-283_h_w_anx_0.pdf@EU-1-04-283_h_w_anx_0.pdf@EU-1-04-283_h_w_anx_0.xml@True@D:20040701092541+01'00'@D:20040701092541+01'00'@standard@small molecule
+EU-1-04-291_h_w_anx_0.pdf@EU-1-04-291_h_w_anx_0.pdf@EU-1-04-291_h_w_anx_0.xml@True@D:20040804141401+01'00'@D:20040804141401+01'00'@standard@small molecule
+EU-1-04-282_h_a_anx_0.pdf@EU-1-04-282_h_a_anx_0.pdf@EU-1-04-282_h_a_anx_0.xml@True@D:20040628131753+01'00'@D:20040628131753+01'00'@standard@small molecule
+EU-1-04-279_h_a_anx_0.pdf@EU-1-04-279_h_a_anx_0.pdf@EU-1-04-279_h_a_anx_0.xml@True@D:20040510144256+01'00'@D:20040510144256+01'00'@standard@small molecule
+EU-1-04-287_h_w_anx_0.pdf@EU-1-04-287_h_w_anx_0.pdf@EU-1-04-287_h_w_anx_0.xml@True@D:20040806112051+01'00'@D:20040806112051+01'00'@standard@small molecule
+EU-1-04-288_h_w_anx_0.pdf@EU-1-04-288_h_w_anx_0.pdf@EU-1-04-288_h_w_anx_0.xml@True@D:20040805113922+01'00'@D:20040805113922+01'00'@standard@small molecule
+EU-1-04-289_h_w_anx_0.pdf@EU-1-04-289_h_w_anx_0.pdf@EU-1-04-289_h_w_anx_0.xml@True@D:20040909134533Z@D:20040909144537+01'00'@standard@small molecule
+EU-1-04-293_h_w_anx_0.pdf@EU-1-04-293_h_w_anx_0.pdf@EU-1-04-293_h_w_anx_0.xml@True@D:20040914101242Z@D:20040914111249+01'00'@standard@small molecule
+EU-1-04-290_h_a_anx_0.pdf@EU-1-04-290_h_a_anx_0.pdf@EU-1-04-290_h_a_anx_0.xml@True@D:20040910120132Z@D:20040910130136+01'00'@standard@small molecule
+EU-1-04-294_h_a_anx_0.pdf@EU-1-04-294_h_a_anx_0.pdf@EU-1-04-294_h_a_anx_0.xml@True@D:20040910120906Z@D:20040910130912+01'00'@standard@small molecule
+EU-1-04-292_h_a_anx_0.pdf@EU-1-04-292_h_a_anx_0.pdf@EU-1-04-292_h_a_anx_0.xml@True@D:20040910123103Z@D:20040914113251+01'00'@standard@small molecule
+EU-1-04-299_h_a_anx_0.pdf@EU-1-04-299_h_a_anx_0.pdf@EU-1-04-299_h_a_anx_0.xml@True@D:20041216170253Z@D:20041216170257Z@standard@small molecule
+EU-1-04-301_h_w_anx_0.pdf@EU-1-04-301_h_w_anx_0.pdf@EU-1-04-301_h_w_anx_0.xml@True@D:20041209163852Z@D:20060322164544+01'00'@standard@small molecule
+EU-1-04-296_h_a_anx_0.pdf@EU-1-04-296_h_a_anx_0.pdf@EU-1-04-296_h_a_anx_0.xml@True@D:20041027163010Z@D:20041027173015+01'00'@standard@small molecule
+EU-1-04-298_h_a_anx_0.pdf@EU-1-04-298_h_a_anx_0.pdf@EU-1-04-298_h_a_anx_0.xml@True@D:20041103162651Z@D:20041103162657Z@standard@small molecule
+EU-1-04-295_h_a_anx_0.pdf@EU-1-04-295_h_a_anx_0.pdf@EU-1-04-295_h_a_anx_0.xml@True@D:20041025103552Z@D:20041025113556+01'00'@exceptional or conditional@small molecule
+EU-1-04-303_h_a_anx_0.pdf@EU-1-04-303_h_a_anx_0.pdf@EU-1-04-303_h_a_anx_0.xml@True@D:20050214121549Z00'00'@D:20050214121549Z00'00'@exceptional or conditional@small molecule
+EU-1-04-297_h_w_anx_0.pdf@EU-1-04-297_h_w_anx_0.pdf@EU-1-04-297_h_w_anx_0.xml@True@D:20041103185054Z@D:20041103185100Z@standard@small molecule
+EU-1-04-302_h_a_anx_0.pdf@EU-1-04-302_h_a_anx_0.pdf@EU-1-04-302_h_a_anx_0.xml@True@D:20050107154645Z@D:20050107155912Z@exceptional or conditional@small molecule
+EU-1-04-304_h_a_anx_0.pdf@EU-1-04-304_h_a_anx_0.pdf@EU-1-04-304_h_a_anx_0.xml@True@D:20050106104630Z@D:20050106104633Z@standard@small molecule
+EU-1-04-306_h_a_anx_0.pdf@EU-1-04-306_h_a_anx_0.pdf@EU-1-04-306_h_a_anx_0.xml@True@D:20050310193023Z00'00'@D:20050310193023Z00'00'@standard@small molecule
+EU-1-04-300_h_a_anx_0.pdf@EU-1-04-300_h_a_anx_0.pdf@EU-1-04-300_h_a_anx_0.xml@True@D:20041209162826+01'00'@D:20060322162643+01'00'@standard@small molecule
+EU-1-04-307_h_a_anx_0.pdf@EU-1-04-307_h_a_anx_0.pdf@EU-1-04-307_h_a_anx_0.xml@True@D:20050303150230Z@D:20050303150237Z@standard@small molecule
+EU-1-05-308_h_a_anx_0.pdf@EU-1-05-308_h_a_anx_0.pdf@EU-1-05-308_h_a_anx_0.xml@True@D:20050314110659Z@D:20050314110703Z@standard@small molecule
+EU-1-05-310_h_a_anx_0.pdf@EU-1-05-310_h_a_anx_0.pdf@EU-1-05-310_h_a_anx_0.xml@True@D:20050711104258Z@D:20050711114304+01'00'@standard@small molecule
+EU-1-05-312_h_a_anx_0.pdf@EU-1-05-312_h_a_anx_0.pdf@EU-1-05-312_h_a_anx_0.xml@True@D:20051006133935Z@D:20051006143939+01'00'@standard@small molecule
+EU-1-05-313_h_w_anx_0.pdf@EU-1-05-313_h_w_anx_0.pdf@EU-1-05-313_h_w_anx_0.xml@True@D:20050823083242Z@D:20050823104844+01'00'@standard@small molecule
+EU-1-05-311_h_a_anx_0.pdf@EU-1-05-311_h_a_anx_0.pdf@EU-1-05-311_h_a_anx_0.xml@True@D:20050805102728Z@D:20050805121351+01'00'@standard@small molecule
+EU-1-04-305_h_a_anx_0.pdf@EU-1-04-305_h_a_anx_0.pdf@EU-1-04-305_h_a_anx_0.xml@True@D:20050107095927Z@D:20050107095932Z@standard@small molecule
+EU-1-05-314_h_w_anx_0.pdf@EU-1-05-314_h_w_anx_0.pdf@EU-1-05-314_h_w_anx_0.xml@True@D:20050912164632Z@D:20050912174635+01'00'@standard@small molecule
+EU-1-05-321_h_w_anx_0.pdf@EU-1-05-321_h_w_anx_0.pdf@EU-1-05-321_h_w_anx_0.xml@True@D:20050912115946Z@D:20050912125951+01'00'@standard@small molecule
+EU-1-05-317_h_a_anx_0.pdf@EU-1-05-317_h_a_anx_0.pdf@EU-1-05-317_h_a_anx_0.xml@True@D:20050912074759Z@D:20050912084806+01'00'@standard@small molecule
+EU-1-05-316_h_a_anx_0.pdf@EU-1-05-316_h_a_anx_0.pdf@EU-1-05-316_h_a_anx_0.xml@True@D:20050912073706Z@D:20050912083713+01'00'@standard@small molecule
+EU-1-05-322_h_a_anx_0.pdf@EU-1-05-322_h_a_anx_0.pdf@EU-1-05-322_h_a_anx_0.xml@True@D:20051116105855Z00'00'@D:20051116105855Z00'00'@standard@small molecule
+EU-1-05-319_h_a_anx_0.pdf@EU-1-05-319_h_a_anx_0.pdf@EU-1-05-319_h_a_anx_0.xml@True@D:20050912145951Z@D:20050912155958+01'00'@standard@small molecule
+EU-1-05-315_h_a_anx_0.pdf@EU-1-05-315_h_a_anx_0.pdf@EU-1-05-315_h_a_anx_0.xml@True@D:20050912074500Z@D:20050912084506+01'00'@exceptional or conditional@small molecule
+EU-1-05-326_h_w_anx_0.pdf@EU-1-05-326_h_w_anx_0.pdf@EU-1-05-326_h_w_anx_0.xml@True@D:20060111094618Z00'00'@D:20060111094618Z00'00'@standard@small molecule
+EU-1-05-320_h_a_anx_0.pdf@EU-1-05-320_h_a_anx_0.pdf@EU-1-05-320_h_a_anx_0.xml@True@D:20050912115237Z@D:20050912125241+01'00'@standard@small molecule
+EU-1-05-318_h_a_anx_0.pdf@EU-1-05-318_h_a_anx_0.pdf@EU-1-05-318_h_a_anx_0.xml@True@D:20050912151126Z@D:20050912161130+01'00'@exceptional or conditional@small molecule
+EU-1-05-323_h_a_anx_0.pdf@EU-1-05-323_h_a_anx_0.pdf@EU-1-05-323_h_a_anx_0.xml@True@D:20051028131313Z@D:20051028155042+01'00'@standard@small molecule
+EU-1-05-325_h_w_anx_0.pdf@EU-1-05-325_h_w_anx_0.pdf@EU-1-05-325_h_w_anx_0.xml@True@D:20060120154536Z@D:20060120154537Z@standard@small molecule
+EU-1-05-327_h_w_anx_0.pdf@EU-1-05-327_h_w_anx_0.pdf@EU-1-05-327_h_w_anx_0.xml@True@D:20051220095303Z@D:20051220104527Z@standard@small molecule
+EU-1-05-324_h_a_anx_0.pdf@EU-1-05-324_h_a_anx_0.pdf@EU-1-05-324_h_a_anx_0.xml@True@D:20051222133117Z@D:20051222133118Z@exceptional or conditional@small molecule
+EU-1-05-329_h_a_anx_0.pdf@EU-1-05-329_h_a_anx_0.pdf@EU-1-05-329_h_a_anx_0.xml@True@D:20051216164706Z@D:20051216173845Z@standard@small molecule
+EU-1-06-332_h_a_anx_0.pdf@EU-1-06-332_h_a_anx_0.pdf@EU-1-06-332_h_a_anx_0.xml@True@D:20060306140351Z@D:20060306140354Z@standard@small molecule
+EU-1-06-335_h_w_anx_0.pdf@EU-1-06-335_h_w_anx_0.pdf@EU-1-06-335_h_w_anx_0.xml@True@D:20060320152131Z@D:20060320152134Z@standard@small molecule
+EU-1-06-333_h_a_anx_0.pdf@EU-1-06-333_h_a_anx_0.pdf@EU-1-06-333_h_a_anx_0.xml@True@D:20060228164137Z@D:20060228164139Z@standard@small molecule
+EU-1-05-330_h_a_anx_0.pdf@EU-1-05-330_h_a_anx_0.pdf@EU-1-05-330_h_a_anx_0.xml@True@D:20060113161503Z00'00'@D:20060113161503Z00'00'@standard@small molecule
+EU-1-05-328_h_a_anx_0.pdf@EU-1-05-328_h_a_anx_0.pdf@EU-1-05-328_h_a_anx_0.xml@True@D:20051214145000Z@D:20051214145003Z@standard@small molecule
+EU-1-06-334_h_a_anx_0.pdf@EU-1-06-334_h_a_anx_0.pdf@EU-1-06-334_h_a_anx_0.xml@True@D:20060424163849+01'00'@D:20060424163849+01'00'@exceptional or conditional@small molecule
+EU-1-05-331_h_a_anx_0.pdf@EU-1-05-331_h_a_anx_0.pdf@EU-1-05-331_h_a_anx_0.xml@True@D:20060116135311Z@D:20060116142946Z@standard@small molecule
+EU-1-06-339_h_w_anx_0.pdf@EU-1-06-339_h_w_anx_0.pdf@EU-1-06-339_h_w_anx_0.xml@True@D:20060322142150Z@D:20060322142151Z@standard@small molecule
+EU-1-06-337_h_a_anx_0.pdf@EU-1-06-337_h_a_anx_0.pdf@EU-1-06-337_h_a_anx_0.xml@True@D:20060330190629+01'00'@D:20060330190631+01'00'@standard@small molecule

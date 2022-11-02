@@ -116,19 +116,19 @@ def get_date(txt: str) -> datetime.datetime:
         txt = txt.lower().split(' ')[0]
         try:
             return dateutil.parser.parse(txt, fuzzy=True)
-        except dateutil.parser._parser.ParseError:
+        except dateutil.parser._parser.ParserError:
             pass
 
         temp_date = convert_roman_numbers(txt)
         try:
             return dateutil.parser.parse(temp_date, fuzzy=True)
-        except dateutil.parser._parser.ParseError:
+        except dateutil.parser._parser.ParserError:
             pass
 
         try:
             temp_date = convert_months(txt)
             return dateutil.parser.parse(temp_date, fuzzy=True)
-        except dateutil.parser._parser.ParseError:
+        except dateutil.parser._parser.ParserError:
             pass
 
     return datetime.datetime(1980, 1, 1, 0, 0)
