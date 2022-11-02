@@ -22,14 +22,16 @@ def update_cache():
     """
     if not settings.MEDICINES_CACHING:
         log.info("Caching turned off, skipping cache update")
-        return
-
-    queryset = Medicine.objects.all()
-    medicine_serializer = PublicMedicineSerializer(queryset, many=True)
-    cache.set(
-        "medicine_cache", medicine_serializer.data, None
-    )  # We set cache timeout to none so it never expires
-    urls_serializer = UrlsSerializer(queryset, many=True)
-    cache.set(
-        "urls_cache", urls_serializer.data, None
-    )  # We set cache timeout to none so it never expires
+    else:
+        try:
+            queryset = Medicine.objects.all()
+            medicine_serializer = PublicMedicineSerializer(queryset, many=True)
+            cache.set(
+                "medicine_cache", medicine_serializer.data, None
+            )  # We set cache timeout to none so it never expires
+            urls_serializer = UrlsSerializer(queryset, many=True)
+            cache.set(
+                "urls_cache", urls_serializer.data, None
+            )  # We set cache timeout to none so it never expires
+        except Exception as e:
+            log.warning(f"An error has occurred while updating cache: {str(e)}")

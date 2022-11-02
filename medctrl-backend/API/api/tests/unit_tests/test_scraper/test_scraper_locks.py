@@ -167,7 +167,7 @@ class ScraperLocksTestCase(TestCase):
                 }
             ],
         }
-        self.assertEqual(sorted(update_data.items()), sorted(update_expected.items()))
+        self.assertDictEqual(update_data, update_expected)
 
         # Test if prime serializer is called correctly
         prime_data = prime_serializer.call_args.args[1]
@@ -176,7 +176,7 @@ class ScraperLocksTestCase(TestCase):
             "eu_prime": False,
             "change_date": "2023-01-02",
         }
-        self.assertEqual(sorted(prime_data.items()), sorted(prime_expected.items()))
+        self.assertDictEqual(prime_data, prime_expected)
 
         # Test if authorisation status serializer doesn't get called
         status_data = status_serializer.call_args

@@ -79,4 +79,4 @@ class ScraperUrlsViewTestCase(TestCase):
                 "odwar_url": "odwarurl.com",
             }
         }
-        self.assertEqual(sorted(expected_data.items()), sorted(response_data.items()))
+        self.assertDictEqual(expected_data, response_data)
