@@ -71,4 +71,3 @@ class TestFilterRetry(unittest.TestCase):
             self.assertRaises(KeyError, lambda: filter_retry.retry_download(eu_n, filename_el, url_file[eu_n]))
         else:
             self.assertIsNone(filter_retry.retry_download(eu_n, filename_el, url_file[eu_n]))
-
