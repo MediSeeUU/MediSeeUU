@@ -34,3 +34,21 @@ specific obligation paragraph anx_0.pdf@specific obligation paragraph anx_0.pdf@
 specific obligations header anx_0.pdf@specific obligations header anx_0.pdf@specific obligations header anx_0.xml@True@D:20221101151247+01'00'@D:20221101151247+01'00'@exceptional or conditional@small molecule
 specific obligations paragraph anx_0.pdf@specific obligations paragraph anx_0.pdf@specific obligations paragraph anx_0.xml@True@D:20221101152028+01'00'@D:20221101152028+01'00'@exceptional or conditional@small molecule
 standard approval and small molecule anx_0.pdf@standard approval and small molecule anx_0.pdf@standard approval and small molecule anx_0.xml@True@D:20221101150958+01'00'@D:20221101150958+01'00'@standard@small molecule
+biologicals header anx_0.pdf@biologicals header anx_0.pdf@biologicals header anx_0.xml@True@D:20221101152752+01'00'@D:20221101152752+01'00'@standard@biologicals
+biologicals paragraph anx_0.pdf@biologicals paragraph anx_0.pdf@biologicals paragraph anx_0.xml@True@D:20221101152951+01'00'@D:20221101152951+01'00'@standard@biologicals
+conditional approval header anx_0.pdf@conditional approval header anx_0.pdf@conditional approval header anx_0.xml@True@D:20221101150833+01'00'@D:20221101150833+01'00'@conditional@small molecule
+conditional approval paragraph anx_0.pdf@conditional approval paragraph anx_0.pdf@conditional approval paragraph anx_0.xml@True@D:20221101150645+01'00'@D:20221101150645+01'00'@conditional@small molecule
+specific obligation header anx_0.pdf@specific obligation header anx_0.pdf@specific obligation header anx_0.xml@True@D:20221101151155+01'00'@D:20221101151155+01'00'@exceptional or conditional@small molecule
+specific obligation paragraph anx_0.pdf@specific obligation paragraph anx_0.pdf@specific obligation paragraph anx_0.xml@True@D:20221101151859+01'00'@D:20221101151859+01'00'@exceptional or conditional@small molecule
+specific obligations header anx_0.pdf@specific obligations header anx_0.pdf@specific obligations header anx_0.xml@True@D:20221101151247+01'00'@D:20221101151247+01'00'@exceptional or conditional@small molecule
+specific obligations paragraph anx_0.pdf@specific obligations paragraph anx_0.pdf@specific obligations paragraph anx_0.xml@True@D:20221101152028+01'00'@D:20221101152028+01'00'@exceptional or conditional@small molecule
+standard approval and small molecule anx_0.pdf@standard approval and small molecule anx_0.pdf@standard approval and small molecule anx_0.xml@True@D:20221101150958+01'00'@D:20221101150958+01'00'@standard@small molecule
+biologicals header anx_0.pdf@biologicals header anx_0.pdf@biologicals header anx_0.xml@True@D:20221101152752+01'00'@D:20221101152752+01'00'@standard@biologicals
+biologicals paragraph anx_0.pdf@biologicals paragraph anx_0.pdf@biologicals paragraph anx_0.xml@True@D:20221101152951+01'00'@D:20221101152951+01'00'@standard@biologicals
+conditional approval header anx_0.pdf@conditional approval header anx_0.pdf@conditional approval header anx_0.xml@True@D:20221101150833+01'00'@D:20221101150833+01'00'@conditional@small molecule
+conditional approval paragraph anx_0.pdf@conditional approval paragraph anx_0.pdf@conditional approval paragraph anx_0.xml@True@D:20221101150645+01'00'@D:20221101150645+01'00'@conditional@small molecule
+specific obligation header anx_0.pdf@specific obligation header anx_0.pdf@specific obligation header anx_0.xml@True@D:20221101151155+01'00'@D:20221101151155+01'00'@exceptional or conditional@small molecule
+specific obligation paragraph anx_0.pdf@specific obligation paragraph anx_0.pdf@specific obligation paragraph anx_0.xml@True@D:20221101151859+01'00'@D:20221101151859+01'00'@exceptional or conditional@small molecule
+specific obligations header anx_0.pdf@specific obligations header anx_0.pdf@specific obligations header anx_0.xml@True@D:20221101151247+01'00'@D:20221101151247+01'00'@exceptional or conditional@small molecule
+specific obligations paragraph anx_0.pdf@specific obligations paragraph anx_0.pdf@specific obligations paragraph anx_0.xml@True@D:20221101152028+01'00'@D:20221101152028+01'00'@exceptional or conditional@small molecule
+standard approval and small molecule anx_0.pdf@standard approval and small molecule anx_0.pdf@standard approval and small molecule anx_0.xml@True@D:20221101150958+01'00'@D:20221101150958+01'00'@standard@small molecule
