@@ -62,7 +62,7 @@ class TestUpdateCache(TestCase):
         )
         self.medicine.save()
 
-    @patch('api.scraper.scraper_urls_view.UrlsSerializer')
+    @patch('api.views.scraper.scraper_urls_view.UrlsSerializer')
     def test_update_cache(self, urls_serializer):
         """
         Test update_cache() function in combination with scraper_urls_view

@@ -1,6 +1,6 @@
 from django.test import TestCase
 from unittest.mock import patch
-from api.scraper.scraper_medicine_post import ScraperMedicine
+from api.views.scraper.scraper_medicine_post import ScraperMedicine
 from api.models.medicine_models import (
     Medicine,
     HistoryAuthorisationStatus,
@@ -25,9 +25,9 @@ class ScraperLocksTestCase(TestCase):
     Test if lock works correctly when posting to the scraper post function
     """
 
-    @patch('api.scraper.scraper_medicine_post.AuthorisationStatusSerializer')
-    @patch('api.scraper.scraper_medicine_post.PrimeSerializer', is_valid=True)
-    @patch('api.scraper.scraper_medicine_post.MedicineFlexVarUpdateSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.AuthorisationStatusSerializer')
+    @patch('api.views.scraper.scraper_medicine_post.PrimeSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.MedicineFlexVarUpdateSerializer', is_valid=True)
     def test_scraper_update_lock(self, update_serializer, prime_serializer, status_serializer):
         """
         Test if lock works correctly when updating an existing medicine

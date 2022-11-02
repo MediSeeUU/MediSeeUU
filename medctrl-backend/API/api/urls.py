@@ -21,14 +21,13 @@ from api.views.account_views import LoginAPI
 from api.views.other import SavedSelectionViewSet
 from api.views.other import Medicine_info
 
-from api.scraper.router import url_patterns as scraper_routes
+from api.views.scraper.router import url_patterns as scraper_routes
 
 
 # Only viewSets can be registered at a router.
 # The router is used for better organization of the code.
 router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
-# router.register(r"procedure/(?P<eunumber>\d+)", ProcedureViewSet, basename="procedure")
 router.register(r"saveselection", SavedSelectionViewSet, basename="saveselection")
 
 # urlpatterns is the default way of adding routes (endpoints).

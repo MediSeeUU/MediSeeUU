@@ -175,7 +175,6 @@ class ScraperMedicine(APIView):
             ):
                 new_data[attr] = data.get(attr)
 
-        logger.info(new_data)
         if len(new_data.keys()) > 1:
             self.add_or_override_medicine(new_data, current_medicine)
 
