@@ -1,13 +1,14 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import Group, Permission
 from django.core.management import call_command
-from api.scraper.scraper_urls_view import UrlsViewSet
 from api.models.medicine_models import Medicine
+
 
 class ScraperUrlsViewTestCase(TestCase):
     """
     Test if scraper_urls_view works correctly
     """
+
     def setUp(self):
         # Add all permission to anonymous group so test can view urls view
         call_command("create_column_permissions")

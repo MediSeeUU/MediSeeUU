@@ -39,7 +39,7 @@ class UrlsViewSet(viewsets.ViewSet):
             queryset = Medicine.objects.all()
             serializer = UrlsSerializer(queryset, many=True)
             cache_urls = serializer.data
-            cache.set("urls_cache", cache_urls)
+            cache.set("urls_cache", cache_urls, None)
 
         user = self.request.user
         perms = permissionFilter(user)
