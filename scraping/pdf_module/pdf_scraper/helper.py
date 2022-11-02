@@ -1,6 +1,5 @@
 import datetime
 import dateutil.parser
-import re
 
 roman_numbers = {
     "i": "1",
