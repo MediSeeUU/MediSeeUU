@@ -112,13 +112,13 @@ def get_date(txt: str) -> datetime.datetime:
         datetime.datetime: found date.
     """
     if txt != '':
-
+        txt = txt.lower()
         try:
             return dateutil.parser.parse(txt, fuzzy=True)
         except dateutil.parser._parser.ParserError:
             pass
-        txt = txt.lower().split(' ')[0]
-        temp_date = convert_roman_numbers(txt)
+        temp_date = txt.split(' ')[0]
+        temp_date = convert_roman_numbers(temp_date)
         try:
             return dateutil.parser.parse(temp_date, fuzzy=True)
         except dateutil.parser._parser.ParserError:
