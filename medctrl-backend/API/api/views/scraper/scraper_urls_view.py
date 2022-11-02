@@ -13,8 +13,7 @@ from api.serializers.medicine_serializers import UrlsSerializer
 from api.models.medicine_models import Medicine
 from rest_framework.response import Response
 from django.core.cache import cache
-from api.update_cache import update_cache
-from api.views.other import permissionFilter
+from api.views.other import permission_filter
 
 
 class UrlsViewSet(viewsets.ViewSet):
@@ -23,12 +22,9 @@ class UrlsViewSet(viewsets.ViewSet):
     """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    def list(self, request):
+    def list(self, _):
         """
         Returns a list of urls according to the access level of the user
-
-        Args:
-            request (httpRequest): the incoming httpRequest
 
         Returns:
             httpResponse: Response with the list of filtered urls
@@ -40,9 +36,10 @@ class UrlsViewSet(viewsets.ViewSet):
             queryset = Medicine.objects.all()
             serializer = UrlsSerializer(queryset, many=True)
             cache_urls = serializer.data
+            cache.set("urls_cache", cache_urls, None)
 
         user = self.request.user
-        perms = permissionFilter(user)
+        perms = permission_filter(user)
 
         # filters urls according to access level of the user
         filtered_urls = list(map(

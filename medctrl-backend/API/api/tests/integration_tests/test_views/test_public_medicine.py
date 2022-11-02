@@ -20,6 +20,9 @@ from api.models.medicine_models.common import (
 
 
 class PublicMedicineTestCase(TestCase):
+    """
+    Test if medicine_views and medicine_info provide matching information
+    """
     def setUp(self):
         # Add all permission to anonymous group so test can view medicines
         call_command("create_column_permissions")

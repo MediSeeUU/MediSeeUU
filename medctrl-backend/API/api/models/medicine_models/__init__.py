@@ -17,3 +17,15 @@ from .history_prime import HistoryPrime
 from .history_eu_orphan_con import HistoryEUOrphanCon
 from .legal_bases import LegalBases
 from .medicine import Medicine
+
+# place all models here
+models = [
+    Medicine,
+    HistoryAuthorisationStatus,
+    HistoryAuthorisationType,
+    HistoryBrandName,
+    HistoryMAH,
+    HistoryOD,
+    HistoryPrime,
+    LegalBases,
+]
