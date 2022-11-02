@@ -111,7 +111,7 @@ def get_date(txt: str) -> datetime.datetime:
     Returns:
         datetime.datetime: found date.
     """
-    if txt != '':
+    if txt:
         txt = txt.lower()
         try:
             return dateutil.parser.parse(txt, fuzzy=True)
