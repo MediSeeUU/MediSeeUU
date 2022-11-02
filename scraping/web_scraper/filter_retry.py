@@ -44,7 +44,7 @@ def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str]]]):
 
     Args:
         filter_path (str): path to filter file
-        urls_file (dict[str, dict[str, list[str]]]): the dictionary with all the urls
+        urls_file (dict[str, dict[str, list[str]]] | dict[str, dict[str, str]]): the dictionary with all the urls
 
     Returns:
         None
@@ -55,8 +55,9 @@ def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str]]]):
             filename_list = filename.split('_')
             eu_n = filename_list[0]
             filename_elements = filename_list[1:]
-            m.get_urls_ec(urls_file[eu_n]["ec_url"], eu_n, med_type_dict[''.join(filename_elements[:2])], data_filepath)
             if eu_n in urls_file:
+                m.get_urls_ec(urls_file[eu_n]["ec_url"], eu_n, med_type_dict[''.join(filename_elements[:2])],
+                              data_filepath)
                 retry_download(eu_n, filename_elements, urls_file[eu_n])
 
 
@@ -66,7 +67,7 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
     Args:
         eu_n (str): eu number used for calling the download function
         filename_elements (list[str]): filename elements, used as parameter in the download function
-        url_dict (dict[str, list[str]]): dictionary that contains the url where to download from
+        url_dict (dict[str, list[str]] | dict[str, str]): dictionary that contains the url where to download from
 
     Returns:
         None
@@ -79,6 +80,3 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
 
 # used for testing
 # run_filter(3)
-
-
-
