@@ -394,4 +394,4 @@ def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
         return ''
 
 
-filter_all_pdfs("../../data")
+#filter_all_pdfs("../../data")
