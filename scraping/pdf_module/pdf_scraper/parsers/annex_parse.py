@@ -53,8 +53,6 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
 
     # loop through sections and parse section if conditions met
     for section in xml_body:
-        # section_header = section[0]
-        # print(section_header.text)
 
         # scrape attributes specific to authorization annexes
         if is_initial_file:
@@ -70,7 +68,7 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
 
             # EU type of medicine
             # override default value of "small molecule" if traceability header is present
-            if Utils.section_contains_header_substring("traceability", section):
+            if Utils.section_contains_substring("traceability", section):
                 annex_attributes["eu_type_of_medicine"] = "biologicals"
 
         # TODO: to add attributes, initial EU conditions and current EU conditions, 50 and 51 in bible
