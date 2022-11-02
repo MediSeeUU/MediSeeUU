@@ -1,4 +1,6 @@
 import datetime
+import re
+
 import dateutil.parser
 
 roman_numbers = {
@@ -44,6 +46,7 @@ def convert_months(date: str) -> str:
     Returns:
         str: string with month replaces by numeric value
     """
+    date = date.replace("th", "")
     for k in months.keys():
         if k in date:
             date = date.replace(f" {k} ", f"/{months[k]}/")

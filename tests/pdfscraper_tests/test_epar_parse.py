@@ -35,7 +35,7 @@ class TestEparParse(TestCase):
         for xml_file in xml_files:
             xml_tree = ET.parse(xml_file)
             xml_root = xml_tree.getroot()
-            xml_bodies.append(xml_root[1])
+            xml_bodies.append((xml_root[1], xml_file))
 
     def test_get_date(self):
         """
@@ -43,7 +43,7 @@ class TestEparParse(TestCase):
         """
         found_count = 0
         # Call get_date
-        for xml_body in xml_bodies:
+        for (xml_body, filename) in xml_bodies:
             output = epar_parse.get_date(xml_body)
             if output != "no_date_found" and output != "not_easily_scrapable":
                 found_count += 1
@@ -51,6 +51,8 @@ class TestEparParse(TestCase):
                 month = re.search(r"/\d{2}/", output)[0][1:3].strip()
                 year = re.search(r"\d{4}", output)[0].strip()
                 self.check_date(day, month, year)
+            elif output == "not_easily_scrapable":
+                print(filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 89)
@@ -61,7 +63,7 @@ class TestEparParse(TestCase):
         """
         found_count = 0
         # Call get_opinion_date
-        for xml_body in xml_bodies:
+        for (xml_body, filename) in xml_bodies:
             output = epar_parse.get_opinion_date(xml_body)
             if output != "no_chmp_found" and output != "not_easily_scrapable":
                 found_count += 1
@@ -69,6 +71,8 @@ class TestEparParse(TestCase):
                 month = re.search(r"/\d{2}/", output)[0][1:3].strip()
                 year = re.search(r"\d{4}", output)[0].strip()
                 self.check_date(day, month, year)
+            elif output == "not_easily_scrapable":
+                print(filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 80)
@@ -95,7 +99,7 @@ class TestEparParse(TestCase):
         """
         found_count = 0
         # Call get_legal_basis
-        for xml_body in xml_bodies:
+        for (xml_body, filename) in xml_bodies:
             output = epar_parse.get_legal_basis(xml_body)
             if output != ["no_legal_basis"] and output != ["not_easily_scrapable"]:
                 found_count += 1
@@ -108,6 +112,8 @@ class TestEparParse(TestCase):
                     # There should not be any other characters in the output
                     other_chars = r"[^a-z|\d|\s|\.]"
                     self.assertFalse(re.search(other_chars, article))
+            elif output == "not_easily_scrapable":
+                print(filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 90)
@@ -119,7 +125,7 @@ class TestEparParse(TestCase):
         yes_exists = False
         na_exists = False
         # Call get_prime
-        for xml_body in xml_bodies:
+        for (xml_body, filename) in xml_bodies:
             output = epar_parse.get_prime(xml_body)
             if output == "yes":
                 yes_exists = True
@@ -135,7 +141,7 @@ class TestEparParse(TestCase):
         """
         found_count = 0
         # Call get_rapp
-        for xml_body in xml_bodies:
+        for (xml_body, filename) in xml_bodies:
             output = epar_parse.get_rapp(xml_body)
             if not output:
                 self.fail("Rapporteur is empty")
@@ -143,10 +149,12 @@ class TestEparParse(TestCase):
                 found_count += 1
                 # Check if rapporteur name is of reasonable length
                 self.assertGreater(len(output), 2)
-                self.assertGreater(40, len(output))
+                self.assertGreater(38, len(output))
                 # Check if rapporteur is of correct format
                 rapp_format = re.search(r'[\w\s]+', output)
                 self.assertTrue(rapp_format)
+            elif output == "not_easily_scrapable":
+                print(filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 75)
@@ -157,7 +165,7 @@ class TestEparParse(TestCase):
         """
         found_count = 0
         # Call get_corapp
-        for xml_body in xml_bodies:
+        for (xml_body, filename) in xml_bodies:
             output = epar_parse.get_corapp(xml_body)
             if not output:
                 self.fail("Co-rapporteur is empty")
@@ -169,6 +177,8 @@ class TestEparParse(TestCase):
                 # Check if rapporteur is of correct format
                 rapp_format = re.search(r'[\w\s]+', output)
                 self.assertTrue(rapp_format)
+            elif output == "not_easily_scrapable":
+                print(filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         # There aren't a lot of co-rapporteurs, just to make sure the function keeps working correctly
@@ -180,7 +190,7 @@ class TestEparParse(TestCase):
         """
         yes_exists = False
         # Call get_reexamination
-        for xml_body in xml_bodies:
+        for (xml_body, filename) in xml_bodies:
             output = epar_parse.get_reexamination(xml_body)
             if output == "yes":
                 yes_exists = True
@@ -195,7 +205,7 @@ class TestEparParse(TestCase):
         """
         yes_exists = False
         # Call get_accelerated_assessment
-        for xml_body in xml_bodies:
+        for (xml_body, filename) in xml_bodies:
             output = epar_parse.get_accelerated_assessment(xml_body)
             if output == "yes":
                 yes_exists = True

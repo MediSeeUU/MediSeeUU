@@ -8,7 +8,7 @@ import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
 import os.path as path
 from typing import Union
 
-date_pattern: str = r"\d{1,2} \w+ \d{4}"  # DD/MONTH/YYYY
+date_pattern: str = r"\d{1,2} \b(?!emea\b)\w+ \d{4}|\d{1,2}\w{2} \b(?!emea\b)\w+ \d{4}"  # DD/MONTH/YYYY
 procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure
 accelerated_assessment = "accelerated assessment"
 
@@ -170,7 +170,7 @@ def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_y
         """
     date = get_date(xml)
     if date != "no_date_found" and date != "not_easily_scrapable":
-        day = int(date.split("/")[0])
+        day = int(''.join(filter(str.isdigit, date.split("/")[0])))
         month = int(date.split("/")[1])
         year = int(date.split("/")[2])
         if year < check_year:
@@ -284,10 +284,10 @@ def clean_rapporteur(rapporteur: str) -> str:
         str: the cleaned string containing only the rapporteur
 
     """
-    rapporteur = rapporteur.strip().replace("\n", "").replace("rapporteur:", "")
+    rapporteur = rapporteur.strip().replace("\n", "").replace("rapporteur:", "").replace(":", "").replace("/", "")
     # stop when one of certain strings is found
     stop_regex_str = r"[\s\S]*?(medicinal product n|the application was|the applicant submi|the rapporteur appo|chmp " \
-                     r"assessment rep|the rapporteur circ)"
+                     r"assessment rep|the rapporteur circ|nthe prac rmp advic| chmp peer reviewer)"
     if re.search(stop_regex_str, rapporteur):
         rapporteur = re.search(stop_regex_str, rapporteur)[0]
         rapporteur = rapporteur[:len(rapporteur) - 20].strip()
@@ -298,6 +298,8 @@ def clean_rapporteur(rapporteur: str) -> str:
     # take the first part of rapporteur when two spaces are found
     if "  " in rapporteur:
         rapporteur = rapporteur.split("  ")[0].strip()
+    if rapporteur == "None":
+        return ''
     return rapporteur
 
 
@@ -316,29 +318,36 @@ def get_corapp(xml: ET.Element) -> str:
     for elem in xml.iter():
         txt = str(elem.text)
         # Find co-rapporteur after "co-rapporteur:" and before "\n"
-        regex_str_1 = r"co-rapporteur:[\s\w]+?\n"
+        regex_str_1 = r"co-rapporteur:[\s\w\.]+?\n"
         if re.findall(regex_str_1, txt):
             temp_corapp = get_rapp_after(regex_str_1, txt, 15)
             if temp_corapp:
                 return temp_corapp
 
-            # Find corapporteur after "co-rapporteur:" with found boolean to get corapp in new section
-            if found:
-                # Combine first part of corapp like "dr." with next part of corapporteur
-                txt = txt.strip().replace("\n", "")
-                if txt:
-                    corapporteur += txt
-                    corapporteur = clean_rapporteur(corapporteur)
-                if len(corapporteur) >= 4:
-                    return corapporteur
-            # Find co-rapporteur after "co-rapporteur:"
-            regex_str_2 = r"co-rapporteur:[\s\w\.]+"
-            if re.search(regex_str_2, txt) and not found:
-                corapporteur = get_rapp_after(regex_str_2, txt, 15)
-                if len(corapporteur) < 4:
-                    found = True
-                else:
-                    return corapporteur
+        # Find corapporteur after "co-rapporteur:" with found boolean to get corapp in new section
+        if found:
+            # Combine first part of corapp like "dr." with next part of corapporteur
+            txt = txt.replace("\n", "").strip()
+            if txt:
+                corapporteur += txt
+                corapporteur = clean_rapporteur(corapporteur)
+                if corapporteur == "n" or "n/a" in corapporteur:
+                    return "no_co-rapporteur"
+            if len(corapporteur) >= 4:
+                return corapporteur
+        # Find co-rapporteur after "co-rapporteur:"
+        regex_str_2 = r"co-rapporteur:[\s\w\.]*"
+        if re.search(regex_str_2, txt) and not found:
+            corapporteur = get_rapp_after(regex_str_2, txt, 15)
+            if corapporteur == "n" or "n/a" in corapporteur:
+                return "no_co-rapporteur"
+            if len(corapporteur) < 4:
+                found = True
+            else:
+                return corapporteur
+        # Find co-rapporteur after "co-rapporteur"
+        if "co-rapporteur" == txt or "corapporteur" == txt:
+            found = True
     for elem in xml.iter():
         txt = str(elem.text)
         if "co-rapporteur" in txt:
