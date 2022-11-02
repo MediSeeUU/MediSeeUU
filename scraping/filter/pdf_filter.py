@@ -371,7 +371,7 @@ def check_pdf_type(file_path: str, filename: str, pdf: fitz.Document, texts: [st
             return ''
     pdf.close()
     safe_remove(file_path)
-    error_line(filename, '@wrong_doctype')
+    return error_line(filename, '@wrong_doctype')
 
 
 def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
