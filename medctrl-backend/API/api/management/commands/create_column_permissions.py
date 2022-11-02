@@ -13,6 +13,7 @@ from django.core.management.base import BaseCommand
 from api.models.medicine_models import models
 import logging
 
+
 # creates custom permission levels to view medicines
 class Command(BaseCommand):
     """
