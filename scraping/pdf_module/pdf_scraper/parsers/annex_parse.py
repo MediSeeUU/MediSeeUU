@@ -1,4 +1,4 @@
-import scraping.pdf_module.pdf_scraper.pdf_xml_converter as xmlc
+import scraping.pdf_module.pdf_scraper.pdf_xml_converter as xml_converter
 import xml.etree.ElementTree as ET
 import scraping.pdf_module.pdf_scraper.xml_parsing_utils as Utils
 import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
@@ -14,7 +14,7 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
     4. Append the attributes to the struct and return it.
     
     Args:
-        filename (str): Name of the XML file to be scraped.
+        filepath (str): Path of the XML file to be scraped.
         medicine_struct (PIS.parsed_info_struct): The dictionary of all currently scraped attributes of this medicine.
 
     Returns:
@@ -53,9 +53,6 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
 
     # loop through sections and parse section if conditions met
     for section in xml_body:
-        # section_header = section[0]
-        # print(section_header.text)
-
         # scrape attributes specific to authorization annexes
         if is_initial_file:
             # initial type of eu authorization
@@ -70,7 +67,7 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
 
             # EU type of medicine
             # override default value of "small molecule" if traceability header is present
-            if Utils.section_contains_header_substring("traceability", section):
+            if Utils.section_contains_substring("traceability", section):
                 annex_attributes["eu_type_of_medicine"] = "biologicals"
 
         # TODO: to add attributes, initial EU conditions and current EU conditions, 50 and 51 in bible

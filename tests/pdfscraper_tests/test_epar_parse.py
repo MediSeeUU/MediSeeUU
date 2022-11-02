@@ -53,7 +53,7 @@ class TestEparParse(TestCase):
                 self.check_date(day, month, year)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 90)
+        self.assertGreater(percentage_found, 89)
 
     def test_get_opinion_date(self):
         """
@@ -100,7 +100,7 @@ class TestEparParse(TestCase):
         # Call get_legal_basis
         for xml_body in xml_bodies:
             output = epar_parse.get_legal_basis(xml_body)
-            if output != "no_legal_basis" and output != "not_easily_scrapable":
+            if output != ["no_legal_basis"] and output != ["not_easily_scrapable"]:
                 found_count += 1
                 self.assertGreater(len(output), 0)
                 for article in output:

@@ -111,28 +111,23 @@ def get_date(txt: str) -> datetime.datetime:
     Returns:
         datetime.datetime: found date.
     """
-    if txt != '':
+    if txt:
         txt = txt.lower()
-
         try:
             return dateutil.parser.parse(txt, fuzzy=True)
-        except Exception:
+        except dateutil.parser._parser.ParserError:
             pass
+        temp_date = txt.split(' ')[0]
+        temp_date = convert_roman_numbers(temp_date)
         try:
-            tempdate = txt
-            # to not catch part after year
-            if " " in tempdate:
-                tempdate = tempdate.split(" ")[0]
-
-            tempdate = convert_roman_numbers(tempdate)
-            return dateutil.parser.parse(tempdate, fuzzy=True)
-        except Exception:
+            return dateutil.parser.parse(temp_date, fuzzy=True)
+        except dateutil.parser._parser.ParserError:
             pass
 
         try:
-            tempdate = convert_months(txt)
-            return dateutil.parser.parse(tempdate, fuzzy=True)
-        except Exception:
+            temp_date = convert_months(txt)
+            return dateutil.parser.parse(temp_date, fuzzy=True)
+        except dateutil.parser._parser.ParserError:
             pass
 
     return datetime.datetime(1980, 1, 1, 0, 0)

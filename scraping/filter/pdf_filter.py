@@ -150,8 +150,8 @@ def error_line(filename: str, error: str) -> str:
     if "dec" in filename:
         eu_num = filename[:11].replace("-", "/")
         brand_name = get_brand_name(filename)
-        return f"{filename}@{url}{error}@{eu_num}@{brand_name}"
-    return f"{filename}@{url}{error}"
+        return f"{filename}{error}@{eu_num}@{brand_name}@{url}"
+    return f"{filename}{error}@{url}"
 
 
 def get_brand_name(filename: str) -> str:
@@ -164,19 +164,13 @@ def get_brand_name(filename: str) -> str:
         str: Brand name of the EC decision file
 
     """
-    eu_num = filename[:11]
+    eu_num = filename.split('_')[0]
     try:
-        with open(f'../../data/{eu_num}/{eu_num}_pdf_parser.json') as pdf_json:
-            decision_attributes = json.load(pdf_json)['decisions']
-            num = filename.split('_')[-1]
-            num = int(num[:len(num) - 4])
-            try:
-                brand_name = decision_attributes[num]['eu_brand_name_initial']
-                return brand_name
-            except IndexError:
-                return "decision_file_not_parsed"
+        with open(f'../../data/{eu_num}/{eu_num}_attributes.json') as pdf_json:
+            web_attributes = json.load(pdf_json)
+            return web_attributes['eu_brand_name_current']
     except FileNotFoundError:
-        return "no_pdf_json_found"
+        return "no_attributes_json_found"
 
 
 def get_url(filename) -> str:
@@ -192,7 +186,6 @@ def get_url(filename) -> str:
     try:
         with open('../web_scraper/JSON/urls.json') as urls_json:
             urls = json.load(urls_json)
-            print(urls[eu_num]['epar_url'])
             try:
                 if 'dec' in filename:
                     num = filename.split('_')[-1]
@@ -372,7 +365,7 @@ def check_pdf_type(file_path: str, filename: str, pdf: fitz.Document, texts: [st
             return ''
     pdf.close()
     safe_remove(file_path)
-    error_line(filename, '@wrong_doctype')
+    return error_line(filename, '@wrong_doctype')
 
 
 def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:

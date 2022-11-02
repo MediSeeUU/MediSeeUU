@@ -12,6 +12,7 @@ date_pattern: str = r"\d{1,2} \w+ \d{4}"  # DD/MONTH/YYYY
 procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure
 accelerated_assessment = "accelerated assessment"
 
+
 def get_all(filename: str, xml_data: ET.Element) -> dict:
     """
     Gets all attributes of the EPAR XML and returns them in a dictionary
@@ -115,7 +116,7 @@ def get_legal_basis(xml: ET.Element) -> [str]:
         xml (ET.Element): the contents of the XML file
 
     Returns:
-        [str] | str: the attribute eu_legal_basis - multiple articles of the form "Article X.X"
+        [str]: the attribute eu_legal_basis - multiple articles of the form "Article X.X"
     """
     regex_legal = r"article .+?(?=[a-z]{2,90})"
     found = False
@@ -213,7 +214,6 @@ def get_rapp(xml: ET.Element) -> str:
                 rapporteur += txt
                 rapporteur = clean_rapporteur(rapporteur)
             if len(rapporteur) >= 4:
-                found = False
                 return rapporteur
         # Find rapporteur after "rapporteur appointed by the chmp was"
         regex_str_3 = r"rapporteur appointed by the chmp was[\s\S]+"
@@ -330,7 +330,6 @@ def get_corapp(xml: ET.Element) -> str:
                     corapporteur += txt
                     corapporteur = clean_rapporteur(corapporteur)
                 if len(corapporteur) >= 4:
-                    found = False
                     return corapporteur
             # Find co-rapporteur after "co-rapporteur:"
             regex_str_2 = r"co-rapporteur:[\s\w\.]+"
