@@ -13,10 +13,17 @@ class Locks(models.Model):
         null=False,
     )
 
-    column_name = models.CharField(db_column="column_name", max_length=255, null=False)
+    column_name = models.CharField(
+        db_column="column_name",
+        max_length=255,
+        null=False
+    )
 
     class Meta:
         db_table = "locks"
         constraints = [
-            models.UniqueConstraint(fields=['eu_pnumber', 'column_name'], name="eu_pnumber column_name composite key")
+            models.UniqueConstraint(
+                fields=['eu_pnumber', 'column_name'],
+                name="eu_pnumber column_name composite key"
+            )
         ]

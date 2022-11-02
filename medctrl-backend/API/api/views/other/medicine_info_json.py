@@ -26,7 +26,7 @@ def get_medicine_info(perm, mock=None):
         will be used instead of generating new data. Defaults to None.
 
     Returns:
-        JSON: medicinedata in JSON format
+        JSON: medicine data in JSON format
     """    
     # make a JSON list for every category in medicine_models.common.Category
     data = {}
