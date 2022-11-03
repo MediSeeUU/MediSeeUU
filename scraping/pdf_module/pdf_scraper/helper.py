@@ -101,7 +101,7 @@ def convert_articles(articles: [str]) -> [str]:
                 continue
             else:
                 new_num += c
-        res.append('article ' + new_num)
+        res.append('article ' + new_num.strip(".:"))
     return res
 
 

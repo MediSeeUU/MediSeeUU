@@ -76,14 +76,27 @@ def get_date(xml: ET.Element) -> str:
     regex_ema = re.compile(r"the application was received by the em\w+ on")
     regex_ema2 = re.compile(r"the procedure started on")
     for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
+        print(p)
         if found and regex_date.search(p):
             return helper.convert_months(re.search(date_pattern, p)[0])
         elif regex_ema.search(p) or regex_ema2.search(p):
             found = True
             if regex_date.search(p):
                 return helper.convert_months(re.search(date_pattern, p)[0])
-    if found:
-        return "not_easily_scrapable"
+
+    count = -1
+    for elem in xml.iter():
+        txt = elem.text
+        if count >= 0:
+            count += 1
+        if "steps taken for the assessment" in txt:
+            count = 0
+        if found and regex_date.search(txt) and count < 30:
+            return helper.convert_months(re.search(date_pattern, txt)[0])
+        if txt and (regex_ema.search(txt) or regex_ema2.search(txt)):
+            found = True
+            if regex_date.search(txt):
+                return helper.convert_months(re.search(date_pattern, txt)[0])
     return "no_date_found"
 
 
@@ -121,17 +134,23 @@ def get_legal_basis(xml: ET.Element) -> [str]:
     regex_legal = r"article .+?(?=[a-z]{2,90})"
     found = False
     legal_basis_present = False
-    for p in xpu.get_paragraphs_by_header("legal basis for", xml):
-        if re.findall(regex_legal, p, re.DOTALL):
-            return helper.convert_articles(re.findall(regex_legal, p, re.DOTALL))
-        legal_basis_present = True
-    for p in xpu.get_paragraphs_by_header("submission of the dossier", xml):
-        if found and re.findall(regex_legal, p, re.DOTALL):
-            return helper.convert_articles(re.findall(regex_legal, p, re.DOTALL))
-        elif "legal basis for" in p:
+    right_section = False
+
+    for elem in xml.iter():
+        txt = elem.text
+        count = 0
+        if not txt:
+            continue
+        if "submission of the dossier" in txt:
+            right_section = True
+        if "legal basis for" in txt and right_section:
             found = True
-            legal_basis_present = True
-    if legal_basis_present:
+        if found:
+            count += 1
+            if count < 10 and re.findall(regex_legal, txt, re.DOTALL):
+                return helper.convert_articles(re.findall(regex_legal, txt, re.DOTALL))
+
+    if found:
         return ["not_easily_scrapable"]
     return ["no_legal_basis"]
 
