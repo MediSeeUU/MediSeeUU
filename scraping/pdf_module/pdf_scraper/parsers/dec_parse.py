@@ -223,51 +223,12 @@ def dec_get_bn(txt: str, is_orphan: bool = False) -> str:
     # returns a section containing just the brand name (and potentially the active substance)
     section = get_name_section(txt)
 
-<<<<<<< Updated upstream
-    # use advanced regex to find brand name
-    brand_name_section = re.search(r'"(\w+[\s\w®/.,"]*)\s?[-–]\s?\w+.*"', section)
-
-    if brand_name_section:
-        return brand_name_section.group(0)
-
-    if section != '':
-        # takes everything before split operator, to remove active substance.
-        if ' -' in section:
-            res = section.split(' -')[:-1]
-            res = ''.join(res)
-            return res.strip()
-        if '- ' in section:
-            res = section.split('- ')[:-1]
-            res = ''.join(res)
-            return res.strip()
-        if ' –' in section:
-            res = section.split(' –')[:-1]
-            res = ''.join(res)
-            return res.strip()
-        # no active substance, so return whole name
-        return section
-
-    # for orphan structure
-    if len(txt.split('relating to the designation of medicinal product')) > 1:
-        res = txt.split('relating to the designation of medicinal product')[1]
-        if res.split('as an orphan medicinal'):
-            res = res.split('as an orphan medicinal')[0]
-            res = res.replace('"', '')
-            res = res.replace('“', '')
-            res = res.replace('”', '')
-            res.strip()
-            return res
-=======
     if not is_orphan:
-        # use advance regex to find brand name
-        regres = None
-        try:
-            regres = re.search(r'"(\w+[\s\w®/.,"]*)\s?[-–]\s?\w+.*"', section)
-        except Exception:
-            pass
+        # use advanced regex to find brand name
+        brand_name_section = re.search(r'"(\w+[\s\w®/.,"]*)\s?[-–]\s?\w+.*"', section)
 
-        if regres is not None:
-            return regres.group(0).strip()
+        if brand_name_section:
+            return brand_name_section.group(0)
 
         if section != '':
             # takes everything before split operator, to remove active substance.
@@ -284,22 +245,20 @@ def dec_get_bn(txt: str, is_orphan: bool = False) -> str:
                 res = ''.join(res)
                 return res.strip()
             # no active substance, so return whole name
-            return section.strip()
+            return section
 
-    # for orphan structure
-    try:
-        res = txt.split('relating to the designation of medicinal product',1)[1]
-        if 'as an' in res:
-            res = res.split('as an',1)[0]
-        if 'as  an' in res:
-            res = res.split('as  an',1)[0]
-        res = res.replace('"', '')
-        res = res.replace('“', '')
-        res = res.replace('”', '')
-        return res.strip()
-    except:
-        pass
->>>>>>> Stashed changes
+    else:
+        # for orphan structure
+        if len(txt.split('relating to the designation of medicinal product')) > 1:
+            res = txt.split('relating to the designation of medicinal product',1)[1]
+            if 'as an' in res:
+                res = res.split('as an', 1)[0]
+            if 'as  an' in res:
+                res = res.split('as  an', 1)[0]
+            res = res.replace('"', '')
+            res = res.replace('“', '')
+            res = res.replace('”', '')
+            return res.strip()
 
     return 'Brand name Not Found'
 
@@ -456,11 +415,11 @@ def dec_get_nas(txt, date) -> str | bool:
     return False
 
 
-def dec_get_od_comp_date(txt) -> datetime.datetime | str:
+def dec_get_od_comp_date(txt) -> datetime.datetime:
     """gives default date value
 
     Returns:
-        str: default date of get_date
+        datetime.datetime: date found
     """
     keyword1 = 'opinion'
     keyword2 = 'Committee for Orphan Medicinal Products'.lower()
@@ -471,12 +430,12 @@ def dec_get_od_comp_date(txt) -> datetime.datetime | str:
         section = txt.split(keyword1,1)[1]
         section = section.split(keyword2,1)[0]
 
+        # get section containing the date:
         if 'drawn' in section:
             datetxt = section.split('on',1)[1]
             datetxt = datetxt.split(',',1)[0]
             datetxt = datetxt.split('by the', 1)[0]
             return helper.get_date(datetxt.strip())
-        # get section containing the date:
     return helper.get_date('')
 
 
