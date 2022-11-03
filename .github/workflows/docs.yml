@@ -16,4 +16,4 @@ jobs:
       working-directory: medctrl-backend/API
       run: |
         python -m pip install --upgrade pip
-        make html -C docs
+        python -m pip install -r ../requirements.txt
