@@ -53,7 +53,7 @@ class TestDecParse(TestCase):
         orphan_count = 0
         for txt, filename in dec_txt:
             if '_o_' in filename:
-                orphan_count +=1
+                orphan_count += 1
                 output = dec_parse.dec_get_date(txt)
                 self.assertTrue(isinstance(output, datetime.datetime))
                 if output == datetime.datetime(1980, 1, 1, 0, 0):

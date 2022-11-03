@@ -216,6 +216,7 @@ def dec_get_bn(txt: str, is_orphan: bool = False) -> str:
 
     Args:
         txt (str): plain decision pdf text
+        is_orphan: TODO
 
     Returns:
         str: found brand name or default value
@@ -250,7 +251,7 @@ def dec_get_bn(txt: str, is_orphan: bool = False) -> str:
     else:
         # for orphan structure
         if len(txt.split('relating to the designation of medicinal product')) > 1:
-            res = txt.split('relating to the designation of medicinal product',1)[1]
+            res = txt.split('relating to the designation of medicinal product', 1)[1]
             if 'as an' in res:
                 res = res.split('as an', 1)[0]
             if 'as  an' in res:
@@ -427,15 +428,15 @@ def dec_get_od_comp_date(txt) -> datetime.datetime:
     txt = txt.lower()
     if keyword1 in txt and keyword2 in txt:
         # get section between keywords
-        section = txt.split(keyword1,1)[1]
-        section = section.split(keyword2,1)[0]
+        section = txt.split(keyword1, 1)[1]
+        section = section.split(keyword2, 1)[0]
 
         # get section containing the date:
         if 'drawn' in section:
-            datetxt = section.split('on',1)[1]
-            datetxt = datetxt.split(',',1)[0]
-            datetxt = datetxt.split('by the', 1)[0]
-            return helper.get_date(datetxt.strip())
+            date_txt = section.split('on', 1)[1]
+            date_txt = date_txt.split(',', 1)[0]
+            date_txt = date_txt.split('by the', 1)[0]
+            return helper.get_date(date_txt.strip())
     return helper.get_date('')
 
 
