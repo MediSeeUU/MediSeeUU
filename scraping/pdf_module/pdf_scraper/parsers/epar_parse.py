@@ -71,22 +71,16 @@ def get_date(xml: ET.Element) -> str:
     Returns:
         str: the attribute ema_procedure_start_initial - a string of a date in DD/MM/YYYY format
     """
-    found = False
     regex_date = re.compile(date_pattern)
     regex_ema = re.compile(r"the application was received by the em\w+ on")
     regex_ema2 = re.compile(r"the procedure started on")
-    for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
-        print(p)
-        if found and regex_date.search(p):
-            return helper.convert_months(re.search(date_pattern, p)[0])
-        elif regex_ema.search(p) or regex_ema2.search(p):
-            found = True
-            if regex_date.search(p):
-                return helper.convert_months(re.search(date_pattern, p)[0])
-
     count = -1
+    found = False
+
     for elem in xml.iter():
         txt = elem.text
+        if not txt:
+            continue
         if count >= 0:
             count += 1
         if "steps taken for the assessment" in txt:
@@ -133,7 +127,6 @@ def get_legal_basis(xml: ET.Element) -> [str]:
     """
     regex_legal = r"article .+?(?=[a-z]{2,90})"
     found = False
-    legal_basis_present = False
     right_section = False
 
     for elem in xml.iter():
@@ -143,13 +136,14 @@ def get_legal_basis(xml: ET.Element) -> [str]:
             continue
         if "submission of the dossier" in txt:
             right_section = True
-        if "legal basis for" in txt and right_section:
+        if "legal basis for" in txt:
             found = True
         if found:
             count += 1
+            if not right_section:
+                print("Wrong section")
             if count < 10 and re.findall(regex_legal, txt, re.DOTALL):
                 return helper.convert_articles(re.findall(regex_legal, txt, re.DOTALL))
-
     if found:
         return ["not_easily_scrapable"]
     return ["no_legal_basis"]

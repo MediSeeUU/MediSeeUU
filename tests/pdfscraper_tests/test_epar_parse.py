@@ -44,9 +44,7 @@ class TestEparParse(TestCase):
         found_count = 0
         # Call get_date
         for (xml_body, filename) in xml_bodies:
-            output = "no_date_found"
-            if "3-13-1121" in filename:
-                output = epar_parse.get_date(xml_body)
+            output = epar_parse.get_date(xml_body)
             if output != "no_date_found" and output != "not_easily_scrapable":
                 found_count += 1
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
@@ -57,7 +55,7 @@ class TestEparParse(TestCase):
                 print(filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        #self.assertGreater(percentage_found, 89)
+        self.assertGreater(percentage_found, 98)
 
     def test_get_opinion_date(self):
         """
