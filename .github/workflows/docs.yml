@@ -10,6 +10,7 @@ env:
   DB_HOST: 'localhost'
   DB_PORT: '3800'
   DB_DATABASE: 'mydatabase'
+  DB_ROOT_PASSWORD: '1234'
 
 jobs:
   build:
@@ -25,8 +26,14 @@ jobs:
       with:
         host port: ${{ env.DB_PORT }}
         mysql database: ${{ env.DB_DATABASE }}
+        mysql root password: ${{ env.DB_ROOT_PASSWORD }}
         mysql user: ${{ env.DB_USERNAME }}
         mysql password: ${{ env.DB_PASSWORD }}
+    - name: Wait for MySQL
+      run: |
+        while ! mysqladmin ping --host=$DB_HOST --password=$DB_ROOT_PASSWORD --silent; do
+          sleep 1
+        done
     - name: Generate Backend Docs
       working-directory: medctrl-backend/API
       run: |
