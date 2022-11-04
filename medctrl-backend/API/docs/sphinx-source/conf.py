@@ -6,7 +6,7 @@
 import os
 import sys
 import django
-sys.path.insert(0, os.path.abspath('../../../api'))
+sys.path.insert(0, os.path.abspath('../../'))
 if os.getenv('GITHUB_ACTION'):
     os.environ['DJANGO_SETTINGS_MODULE'] = 'api_settings.settings.common'
 else:
