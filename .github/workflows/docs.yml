@@ -1,5 +1,8 @@
 on:
-  workflow_dispatch
+  push:
+    branches:
+      - 'feature/66-Database'
+      - 'development'
 
 name: Generate Sphinx Docs
 
@@ -45,7 +48,9 @@ jobs:
         DB_PORT: ${{ job.services.mysql.ports['3306'] }}
     - name: Generate Sphinx Docs
       working-directory: medctrl-backend/API
-      run: make html -C docs
+      run: |
+        make clean -C docs
+        make html -C docs
       env: 
         DB_PORT: ${{ job.services.mysql.ports['3306'] }}
     - name: Commit Docs
