@@ -7,7 +7,7 @@ env:
   SECRET_KEY: 'notsecret'
   DB_USERNAME: 'developer' 
   DB_PASSWORD: '1234'
-  DB_HOST: 'localhost'
+  DB_HOST: '127.0.0.1'
   DB_PORT: '3800'
   DB_DATABASE: 'mydatabase'
   DB_ROOT_PASSWORD: '1234'
