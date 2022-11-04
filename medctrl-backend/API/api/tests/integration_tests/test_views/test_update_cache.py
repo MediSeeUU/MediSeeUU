@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from unittest.mock import patch
-from api.update_cache import update_cache
+from api.views.update_cache import update_cache
 from django.contrib.auth.models import Group, Permission
 from django.core.management import call_command
 from api.models.medicine_models import Medicine

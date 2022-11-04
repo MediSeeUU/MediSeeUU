@@ -1,6 +1,6 @@
 from django.test import TestCase
 from unittest.mock import patch
-from api.update_cache import update_cache
+from api.views.update_cache import update_cache
 
 
 class TestUpdateCache(TestCase):
@@ -16,9 +16,9 @@ class TestUpdateCache(TestCase):
         "ec_url": "ec.com",
     }
 
-    @patch('api.update_cache.cache.set')
-    @patch('api.update_cache.UrlsSerializer')
-    @patch('api.update_cache.PublicMedicineSerializer')
+    @patch('api.views.update_cache.cache.set')
+    @patch('api.views.update_cache.UrlsSerializer')
+    @patch('api.views.update_cache.PublicMedicineSerializer')
     def test_update_cache(self, public_medicine_serializer, urls_serializer, cache_set):
         """
         Test update_cache() function

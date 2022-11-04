@@ -6,14 +6,15 @@
 # the dashboard and stored in memory cache.
 # This improves the performance of the GET requests by several seconds.
 # -------------------------------------------------------------------
-
 from django.core.cache import cache
 from rest_framework.settings import settings
 
 from api.serializers.medicine_serializers.public import PublicMedicineSerializer
 from api.serializers.medicine_serializers.scraper import UrlsSerializer
 from api.models.medicine_models import Medicine
-from logging import log
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def update_cache():
@@ -21,7 +22,7 @@ def update_cache():
     Adds all medicine and urls data to cache memory of the server
     """
     if not settings.MEDICINES_CACHING:
-        log.info("Caching turned off, skipping cache update")
+        logger.info("Caching turned off, skipping cache update")
     else:
         try:
             queryset = Medicine.objects.all()
@@ -34,4 +35,4 @@ def update_cache():
                 "urls_cache", urls_serializer.data, None
             )  # We set cache timeout to none so it never expires
         except Exception as e:
-            log.warning(f"An error has occurred while updating cache: {str(e)}")
+            logger.warning(f"An error has occurred while updating cache: {str(e)}")

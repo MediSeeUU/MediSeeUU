@@ -36,12 +36,13 @@ from api.serializers.medicine_serializers.scraper import (
     EUOrphanConSerializer,
     LegalBasesSerializer,
 )
-from api.update_cache import update_cache
+from api.views.update_cache import update_cache
 from django.forms.models import model_to_dict
 from django.db import transaction
 import logging
 
 logger = logging.getLogger(__name__)
+
 
 class ScraperMedicine(APIView):
     """    
