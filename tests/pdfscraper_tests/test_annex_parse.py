@@ -11,16 +11,21 @@ test_data_foldername = "test_annex_parse_data"
 
 class TestAnnexParse(TestCase):
     """
-    Unit testing annex_parse on various pre-made XML files with known output
+    Unit testing annex_parse attribute scraping correctness with handmade test PDF files.
+    Tested attributes:
+        eu_type_of_medicine
+        initial_type_of_eu_authorization
     """
     annex_attributes: dict[str, str]
 
     def setUp(self) -> None:
         """
-        TODO: Add docstrings here
-        Returns:
+        Sets up the xml files from test pdf's and then scrapes data from them into a json and reads it so other functions can use the data.
+        Automatically run when whoe test class is used.
 
-        """
+        Returns:
+            None
+        """        
         pdf_scraper.parse_folder(path.abspath(test_data_foldername), test_data_foldername)
         attributes_json = open(path.join(path.abspath(test_data_foldername), test_data_foldername + "_pdf_parser.json"))
 
@@ -30,10 +35,12 @@ class TestAnnexParse(TestCase):
 
     def test_get_initial_type_of_eu_authorization(self):
         """
-        TODO: Add docstrings here
-        Returns:
+        Unit test for scraping initial_type_of_eu_authorization attribute.
+        This test checks whether this attribute is only read in initial authorization annex files and whether the value is correct and found in all applicable cases.
 
-        """
+        Returns:
+            None
+        """        
         incorrect_files = False
         incorrect_values = False
 
@@ -74,10 +81,12 @@ class TestAnnexParse(TestCase):
 
     def test_get_eu_type_of_medicine(self):
         """
-        TODO: Add docstrings here
-        Returns:
+        Unit test for scraping eu_type_of_medicine attribute.
+        This test checks whether this attribute is only read in initial authorization annex files and whether the value is correct and found in all applicable cases.
 
-        """
+        Returns:
+            None
+        """      
         incorrect_files = False
         incorrect_values = False
 
