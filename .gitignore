@@ -149,8 +149,9 @@ data_old/
 !**/docs/sphinx-source/index.rst
 **/docs/doctrees
 **/docs/html/_sources
-scraping/pdf_module/pdf_scraper/annex_results.txt
-scraping/pdf_module/pdf_scraper/epar_results.txt
-scraping/pdf_module/pdf_scraper/human_initial_dec.txt
-scraping/pdf_module/pdf_scraper/human_initial_dec.txt
-scraping/pdf_module/pdf_scraper/human_initial_dec.txt
+*/annex_results.txt
+*/epar_results.txt
+*/human_initial_dec.txt
+tests/pdfscraper_tests/annex_results.txt
+data filtered and xml 31 okt.zip
+scraping/orphan_initial_dec.txt

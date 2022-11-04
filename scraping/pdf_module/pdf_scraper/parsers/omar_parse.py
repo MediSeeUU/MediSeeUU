@@ -7,29 +7,6 @@ import scraping.pdf_module.pdf_scraper.xml_parsing_utils as Utils
 import os.path as path
 
 
-def get_all(filepath: str, xml_data: ET.Element) -> dict:
-    """
-    Gets all attributes of the OMAR XML and returns them in a dictionary
-    Args:
-        filename (str): name of the XML file to be scraped
-        xml_data (ET.Element): the contents of the XML file
-
-    Returns:
-        dict: Dictionary of all scraped attributes, named according to the bible
-    """
-    at = get_alternative_treatments(xml_data)
-
-    omar = {
-        "xml_file": get_xml_name(filepath),
-        "prevalence": get_prevalence(xml_data),
-        "insufficient_roi": get_insufficient_roi(xml_data),
-        "alternative_treatments": at,
-        "significant_benefit": get_significant_benefit(xml_data, at)
-    }
-
-    return omar
-
-
 def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct) -> PIS.parsed_info_struct:
     """
     Scrapes all attributes from the OMAR XML file after parsing it
@@ -61,6 +38,62 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct) -> PIS.pa
     return medicine_struct
 
 
+def get_all(filepath: str, xml_data: ET.Element) -> dict:
+    """
+    Gets all attributes of the OMAR XML and returns them in a dictionary
+    Args:
+        filename (str): name of the XML file to be scraped
+        xml_data (ET.Element): the contents of the XML file
+
+    Returns:
+        dict: Dictionary of all scraped attributes, named according to the bible
+    """
+    omar = {
+        "xml_file": get_xml_name(filepath)
+        }
+    
+    n_indications = get_indications(xml_data)
+
+    if (n_indications == 1):
+        omar["indication_1"] = get_indication_attributes(xml_data)
+    else:
+        for i in range(1, n_indications + 1):
+            omar_data = get_correct_indication(xml_data, i)
+            omar[f'indication_{i}'] = get_indication_attributes(xml_data)
+
+    return omar
+
+def get_indication_attributes(xml_data: ET.Element) -> dict:
+    at = get_alternative_treatments(xml_data)
+
+    indication = {
+        "prevalence": get_prevalence(xml_data),
+        "insufficient_roi": get_insufficient_roi(xml_data),
+        "alternative_treatments": at,
+        "significant_benefit": get_significant_benefit(xml_data, at)
+    }
+
+    return indication
+
+
+def get_correct_indication(xml_data: ET.Element, index: int) -> list[str]:
+    #print(index)
+    return
+
+
+
+def get_indications(xml_data: ET.Element) -> int:
+    count = 0
+    for p in Utils.get_paragraphs_by_header("introductory comment", xml_data):
+        if "•" in p:
+            count += 1
+
+    if count == 0:
+        return 1
+    else:
+        return count
+
+
 def get_xml_name(filepath: str) -> str:
     return filepath.split("\\")[-1]
 
@@ -76,7 +109,6 @@ def get_prevalence(xml_data: ET.Element) -> str:
         str: Return the string with the relevant information about the prevalence or NA if it cannot be found.
     """    
     for p in Utils.get_paragraphs_by_header("comp position adopted", xml_data):
-        print(p)
         # Find the paragraph with the bullet points
         if "•" in p:
             bullets = p.split("•")
@@ -89,6 +121,7 @@ def get_prevalence(xml_data: ET.Element) -> str:
     return "NA"
 
 
+# Nog geen OMAR gevonden waar dit in staat dus kan nog niet gedaan worden
 def get_insufficient_roi(xml_data: ET.Element) -> str:
     return "NA"
 

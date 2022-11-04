@@ -3,5 +3,5 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from .medicine_info import Medicine_info
 from .medicine_info_json import get_medicine_info
-from .permissionFilter import permissionFilter
+from .permissionFilter import permission_filter
 from .saved_selection import SavedSelectionViewSet

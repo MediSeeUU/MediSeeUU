@@ -165,10 +165,10 @@ def get_data_orphan(filename: str, txt: str) -> dict:
     # if date was left blank return don't find date dependant attributes.
     if isinstance(date, str):
         date = dec_get_date('')
-    filedata['eu_brand_name_initial'] = dec_get_bn(txt)
+    filedata['eu_brand_name_initial'] = dec_get_bn(txt, True)
     filedata['eu_od_initial'] = dec_get_od(txt, date)
     filedata['eu_mah_initial'] = dec_get_mah(txt)
-    filedata['eu_od_comp_date'] = dec_get_od_comp_date()
+    filedata['eu_od_comp_date'] = dec_get_od_comp_date(txt)
     filedata['status'] = 'Parsed'
     return filedata
 
@@ -187,7 +187,7 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
         datetime.datetime: found date
     """
     txt = txt.lower()
-    if re.split('of ', txt, 1):
+    if len(re.split('of ', txt, 1)) > 1:
         section = re.split('of ', txt, 1)[1]
         section = section[:17]
         if '...' in section or '(date)' in section or 'xxx' in section:
@@ -211,11 +211,12 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
     return helper.get_date('')
 
 
-def dec_get_bn(txt: str) -> str:
+def dec_get_bn(txt: str, is_orphan: bool = False) -> str:
     """extracts brand name out of decision text
 
     Args:
         txt (str): plain decision pdf text
+        is_orphan: TODO
 
     Returns:
         str: found brand name or default value
@@ -223,39 +224,42 @@ def dec_get_bn(txt: str) -> str:
     # returns a section containing just the brand name (and potentially the active substance)
     section = get_name_section(txt)
 
-    # use advanced regex to find brand name
-    brand_name_section = re.search(r'"(\w+[\s\w®/.,"]*)\s?[-–]\s?\w+.*"', section)
+    if not is_orphan:
+        # use advanced regex to find brand name
+        brand_name_section = re.search(r'"(\w+[\s\w®/.,"]*)\s?[-–]\s?\w+.*"', section)
 
-    if brand_name_section:
-        return brand_name_section.group(0)
+        if brand_name_section:
+            return brand_name_section.group(0)
 
-    if section != '':
-        # takes everything before split operator, to remove active substance.
-        if ' -' in section:
-            res = section.split(' -')[:-1]
-            res = ''.join(res)
-            return res.strip()
-        if '- ' in section:
-            res = section.split('- ')[:-1]
-            res = ''.join(res)
-            return res.strip()
-        if ' –' in section:
-            res = section.split(' –')[:-1]
-            res = ''.join(res)
-            return res.strip()
-        # no active substance, so return whole name
-        return section
+        if section != '':
+            # takes everything before split operator, to remove active substance.
+            if ' -' in section:
+                res = section.split(' -')[:-1]
+                res = ''.join(res)
+                return res.strip()
+            if '- ' in section:
+                res = section.split('- ')[:-1]
+                res = ''.join(res)
+                return res.strip()
+            if ' –' in section:
+                res = section.split(' –')[:-1]
+                res = ''.join(res)
+                return res.strip()
+            # no active substance, so return whole name
+            return section
 
-    # for orphan structure
-    if len(txt.split('relating to the designation of medicinal product')) > 1:
-        res = txt.split('relating to the designation of medicinal product')[1]
-        if res.split('as an orphan medicinal'):
-            res = res.split('as an orphan medicinal')[0]
+    else:
+        # for orphan structure
+        if len(txt.split('relating to the designation of medicinal product')) > 1:
+            res = txt.split('relating to the designation of medicinal product', 1)[1]
+            if 'as an' in res:
+                res = res.split('as an', 1)[0]
+            if 'as  an' in res:
+                res = res.split('as  an', 1)[0]
             res = res.replace('"', '')
             res = res.replace('“', '')
             res = res.replace('”', '')
-            res.strip()
-            return res
+            return res.strip()
 
     return 'Brand name Not Found'
 
@@ -412,12 +416,27 @@ def dec_get_nas(txt, date) -> str | bool:
     return False
 
 
-def dec_get_od_comp_date() -> datetime.datetime:
+def dec_get_od_comp_date(txt) -> datetime.datetime:
     """gives default date value
 
     Returns:
-        str: default date of get_date
+        datetime.datetime: date found
     """
+    keyword1 = 'opinion'
+    keyword2 = 'Committee for Orphan Medicinal Products'.lower()
+
+    txt = txt.lower()
+    if keyword1 in txt and keyword2 in txt:
+        # get section between keywords
+        section = txt.split(keyword1, 1)[1]
+        section = section.split(keyword2, 1)[0]
+
+        # get section containing the date:
+        if 'drawn' in section:
+            date_txt = section.split('on', 1)[1]
+            date_txt = date_txt.split(',', 1)[0]
+            date_txt = date_txt.split('by the', 1)[0]
+            return helper.get_date(date_txt.strip())
     return helper.get_date('')
 
 
