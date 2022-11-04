@@ -120,7 +120,7 @@ class TestEparParse(TestCase):
                 print("Found but not scrapable: " + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        #self.assertGreater(percentage_found, 90)
+        self.assertGreater(percentage_found, 90)
 
     def test_get_prime(self):
         """
