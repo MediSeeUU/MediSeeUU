@@ -1,7 +1,6 @@
 on:
   push:
     branches:
-      - 'feature/66-Database'
       - 'development'
 
 name: Generate Sphinx Docs
