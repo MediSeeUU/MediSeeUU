@@ -26,10 +26,11 @@ class TestAnnexParse(TestCase):
 
         """
         pdf_scraper.parse_folder(path.abspath(test_data_foldername), test_data_foldername)
-        attributes_json = open(path.abspath(test_data_foldername) + "\\" + test_data_foldername + "_pdf_parser.json")
-        with json.load(attributes_json)["annexes"] as attributes_json:
-            attributes_json.close()
-            return super().setUp()
+        attributes_json = open(path.join(path.abspath(test_data_foldername), test_data_foldername + "_pdf_parser.json"))
+
+        self.annex_attributes = json.load(attributes_json)["annexes"]
+        attributes_json.close()
+        return super().setUp()
 
     def test_get_initial_type_of_eu_authorization(self):
         """
