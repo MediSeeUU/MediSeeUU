@@ -7,7 +7,10 @@ import os
 import sys
 import django
 sys.path.insert(0, os.path.abspath('../../../api'))
-os.environ['DJANGO_SETTINGS_MODULE'] = 'api_settings.settings.dev_settings'
+if os.getenv('GITHUB_ACTION'):
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'api_settings.settings.common'
+else:
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'api_settings.settings.dev_settings'
 
 django.setup()
 # -- Project information -----------------------------------------------------
