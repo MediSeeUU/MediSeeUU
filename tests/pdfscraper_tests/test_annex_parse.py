@@ -1,13 +1,9 @@
 from operator import contains
 from unittest import TestCase
-import os
 import os.path as path
 from xml.etree.ElementInclude import include
 import regex as re
-import fitz
-import datetime
 import json
-import scraping.pdf_module.pdf_scraper.parsers.annex_parse as annex_parse
 import scraping.pdf_module.pdf_scraper.__main__ as pdf_scraper
 
 test_data_foldername = "test_annex_parse_data"
@@ -94,4 +90,3 @@ class TestAnnexParse(TestCase):
             incorrect_values |= incorrect_value
 
         assert(not incorrect_files and not incorrect_values)
-
