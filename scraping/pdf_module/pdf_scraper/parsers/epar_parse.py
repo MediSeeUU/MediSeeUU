@@ -125,25 +125,37 @@ def get_legal_basis(xml: ET.Element) -> [str]:
     Returns:
         [str]: the attribute eu_legal_basis - multiple articles of the form "Article X.X"
     """
-    regex_legal = r"article .+?(?=[a-z]{2,90})"
+    regex_legal = r"article .+?(?=[a-z]{2,90}|\n|$)"
     found = False
     right_section = False
-
+    count = 0
     for elem in xml.iter():
         txt = elem.text
-        count = 0
         if not txt:
             continue
         if "submission of the dossier" in txt:
             right_section = True
         if "legal basis for" in txt:
             found = True
+            count = 0
+        # For when "legal basis for" appears in the table of contents, triggering found
+        if count > 3:
+            found = False
         if found:
             count += 1
             if not right_section:
                 print("Wrong section")
-            if count < 10 and re.findall(regex_legal, txt, re.DOTALL):
-                return helper.convert_articles(re.findall(regex_legal, txt, re.DOTALL))
+            # Get only text after "legal basis for" if this string is in txt
+            if len(txt.split("legal basis for", 1)) > 1:
+                txt = txt.split("legal basis for", 1)[1]
+            articles = re.findall(regex_legal, txt[:75], re.DOTALL)
+            articles2 = re.findall(regex_legal, txt, re.DOTALL)
+            if articles:
+                return helper.convert_articles(articles)
+            # Search in longer text for first legal basis if legal_basis not found after 75 characters
+            elif articles2:
+                return helper.convert_articles([articles2[0]])
+
     if found:
         return ["not_easily_scrapable"]
     return ["no_legal_basis"]
