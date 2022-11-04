@@ -4,12 +4,11 @@ on:
 name: Generate Sphinx Docs
 
 env:
-  SECRET_KEY: 'notsecret'
-  DB_USERNAME: 'developer' 
-  DB_PASSWORD: '1234'
-  DB_HOST: '127.0.0.1'
-  DB_DATABASE: 'mydatabase'
-  DB_ROOT_PASSWORD: '1234'
+  SECRET_KEY: notsecret
+  DB_USERNAME: root
+  DB_PASSWORD: 1234
+  DB_HOST: 127.0.0.1
+  DB_DATABASE: mydatabase
 
 jobs:
   build:
@@ -19,7 +18,7 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: ${{ env.DB_ROOT_PASSWORD }}
+          MYSQL_ROOT_PASSWORD: ${{ env.DB_PASSWORD }}
           MYSQL_DATABASE: ${{ env.DB_DATABASE }}
         ports: ['3306:3306']
     
