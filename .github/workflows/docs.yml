@@ -35,6 +35,7 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install -r ../requirements.txt
     - name: Set up API
+      working-directory: medctrl-backend/API
       run: |
         python manage.py makemigrations
         python manage.py migrate
@@ -44,6 +45,7 @@ jobs:
       env: 
         DB_PORT: ${{ job.services.mysql.ports['3306'] }}
     - name: Generate Sphinx Docs
+      working-directory: medctrl-backend/API
       run: make html -C docs
       env: 
         DB_PORT: ${{ job.services.mysql.ports['3306'] }}
