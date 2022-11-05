@@ -33,25 +33,32 @@ jobs:
       with:
         python-version: '3.10' 
         cache: 'pip'
+
+    - name: Install Docs Dependencies
+      working-directory: docs
+      run: pip install -r requirements.txt
+      
+    - name: Generate Sphinx Docs for Home
+      working-directory: docs
+      run: |
+        make clean
+        make html
     
-    - name: Install Dependencies
+    - name: Install Backend Dependencies
       working-directory: medctrl-backend/API
       run: |
         pip install --upgrade pip
         pip install -r ../requirements.txt
     
-    - name: Set up API
+    - name: Set up Backend
       working-directory: medctrl-backend/API
       run: |
         python manage.py makemigrations api
         python manage.py migrate
-        python manage.py create_column_permissions
-        python manage.py createsuperuser
-        python manage.py init_setup
       env: 
         DB_PORT: ${{ job.services.mysql.ports['3306'] }}
     
-    - name: Generate Sphinx Docs
+    - name: Generate Sphinx Docs for Backend
       working-directory: medctrl-backend/API
       run: |
         make clean -C docs
