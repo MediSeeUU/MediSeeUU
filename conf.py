@@ -14,13 +14,17 @@ release = '1.0'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-root_doc = 'README'
-
 extensions = [
+    'sphinx.ext.intersphinx',
     'myst_parser',
     ]
 
+intersphinx_mapping = {
+  'backend': ('../../medctrl-backend/API/docs/html', 'medctrl-backend/API/docs/html/objects.inv'),
+  }
+
 include_patterns = [
+    'index.rst',
     'README.md',
 ]
 
