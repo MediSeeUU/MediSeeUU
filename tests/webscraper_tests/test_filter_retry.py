@@ -5,6 +5,9 @@ from unittest.mock import patch, mock_open, MagicMock
 from parameterized import parameterized
 
 
+data_filepath = "../../data"
+
+
 class TestFilterRetry(unittest.TestCase):
 
     @parameterized.expand([
