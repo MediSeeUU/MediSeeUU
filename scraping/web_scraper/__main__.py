@@ -2,12 +2,13 @@ import json
 import logging
 from pathlib import Path
 from datetime import datetime
+import os
 
 import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 
-from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper
+from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper, filter_retry
 
 
 # TODO: These variables are for debugging, remove in final
@@ -40,8 +41,12 @@ logging.basicConfig(level=logging.INFO, handlers=[log_handler_console, log_handl
 log = logging.getLogger("webscraper")
 logging.getLogger("urllib3.connectionpool").setLevel(logging.INFO)
 
-url_file = json_helper.JsonHelper(path="JSON/urls.json")
-annex10_file = json_helper.JsonHelper(path="JSON/annex10.json")
+json_path = "web_scraper/"
+# If file is run locally:
+if "web_scraper" in os.getcwd():
+    json_path = ""
+url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
+annex10_file = json_helper.JsonHelper(path=f"{json_path}JSON/annex10.json")
 
 
 # Paralleled function for getting the URL codes. They are written to a JSON file
@@ -94,9 +99,6 @@ def get_urls_ema(eu_n: str, url: str):
         Args:
             eu_n (str): The EU number of the medicine.
             url (str): The url to an EMA page for a specific medicine.
-
-        Returns:
-            None: This function returns nothing
         """
     epar_url, omar_url = ema_scraper.pdf_links_from_url(url)
 
@@ -114,17 +116,13 @@ def get_excel_ema(url: str):
 
     Args:
         url (str): link to where all annex10 files are stored
-
-    Returns: 
-        None: This function returns nothing
-
     """
 
     excel_url: dict[str, dict[str, str]] = ema_scraper.get_annex10_files(url, annex10_file.load_json())
     annex10_file.overwrite_dict(excel_url)
 
 
-def main(data_filepath: str = '../../data'):
+def main(data_filepath: str = '../data'):
     """ Main function that controls which scrapers are activated, and if it runs parallel or not.
 
         Based on some variables declared at the top of the file, it will scrape the EC website, the EMA website
@@ -132,15 +130,12 @@ def main(data_filepath: str = '../../data'):
 
         Args:
             data_filepath (str, optional): The file path where all data needs to be stored. Defaults to '../data'.
-
-        Returns:
-            None: This function returns nothing.
         """
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
-    Path("JSON").mkdir(exist_ok=True, parents=True)
+    Path(f"{json_path}JSON").mkdir(exist_ok=True, parents=True)
     # TODO: Remove mkdir filepath after it is moved to monolithic main
-    Path(data_filepath).mkdir(exist_ok=True, parents=True)
+    # Path(data_filepath).mkdir(exist_ok=True, parents=True)
 
     log.info("TASK SUCCESS on Generating directories")
 
@@ -210,6 +205,7 @@ def main(data_filepath: str = '../../data'):
 
         log.info("TASK FINISHED downloading PDF files")
 
+    filter_retry.run_filter(3, data_filepath)
     log.info("=== LOG FINISH ===")
 
 

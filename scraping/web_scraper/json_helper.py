@@ -11,8 +11,6 @@ class JsonHelper:
         """
         Save the dictionary to disk.
         Meant to be run when no more changes are expected to be made.
-
-        Returns: None
         """
         # 'w+' mode creates or overwrites a file with the name
         with open(self.path, 'w+') as file:
@@ -37,8 +35,6 @@ class JsonHelper:
 
         Args:
             new_dict: Dictionary used as second dictionary in merge_nested_dict
-
-        Returns: None
         """
         self.merge_nested_dict(self.local_dict, new_dict)
 
@@ -48,8 +44,6 @@ class JsonHelper:
 
         Args:
             new_dict: Dictionary to replace the existing dictionary
-
-        Returns: None
         """
         self.local_dict = new_dict
 
