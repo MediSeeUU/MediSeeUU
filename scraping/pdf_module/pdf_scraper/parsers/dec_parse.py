@@ -433,6 +433,9 @@ def dec_get_nas(txt, date) -> str | bool:
 def dec_get_od_comp_date(txt) -> datetime.datetime:
     """gives date of orphan comp from decision files.
 
+     Args:
+        txt (str): plain decision pdf text
+
     Returns:
         datetime.datetime: date found
     """
