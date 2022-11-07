@@ -10,10 +10,3 @@ Welcome to the pdf scraper documentation!
 
    modules
    
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

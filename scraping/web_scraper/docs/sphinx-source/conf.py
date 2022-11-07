@@ -5,50 +5,50 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../../../'))
-sys.path.insert(0, os.path.abspath('../../../'))
+sys.path.insert(0, os.path.abspath("../../../../"))
+sys.path.insert(0, os.path.abspath("../../../"))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Web Scraper'
-copyright = '2022, Medisee'
-author = 'Medisee'
-release = '1.0'
+project = "Web Scraper"
+copyright = "2022, Medisee"
+author = "Medisee"
+release = "1.0"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 extensions = [
-    'myst_parser',
-    'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary',
-    'sphinx.ext.napoleon',
+    "myst_parser",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.napoleon",
     ]
 
 autosummary_generate = True
 
 exclude_patterns = [
-    '**/venv',
-    '**/__pychache__',
-    '**/node_modules',
+    "**/venv",
+    "**/__pychache__",
+    "**/node_modules",
     ]
 
 source_suffix = {
-    '.rst': 'restructuredtext',
-    '.md': 'markdown',
+    ".rst": "restructuredtext",
+    ".md": "markdown",
 }
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'sphinx_rtd_theme'
+html_theme = "sphinx_rtd_theme"
 html_theme_options = {
-    'collapse_navigation': False,
-    'navigation_depth': -1,
-    'sticky_navigation': False,
+    "collapse_navigation": False,
+    "navigation_depth": -1,
+    "sticky_navigation": False,
 }
 html_show_sourcelink = False
-html_static_path = ['_static']
+html_static_path = ["_static"]

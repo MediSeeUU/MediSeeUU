@@ -10,10 +10,3 @@ Welcome to tests documentation!
 
    modules
    
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
