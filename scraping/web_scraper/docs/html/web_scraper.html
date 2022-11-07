@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>web_scraper package &mdash; Web Scraper 1 documentation</title>
+  <title>web_scraper package &mdash; Web Scraper 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -57,7 +57,15 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.ec_scraper">web_scraper.ec_scraper module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType"><code class="docutils literal notranslate"><span class="pre">MedicineType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType"><code class="docutils literal notranslate"><span class="pre">MedicineType</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType.HUMAN_USE_ACTIVE"><code class="docutils literal notranslate"><span class="pre">MedicineType.HUMAN_USE_ACTIVE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType.HUMAN_USE_REFUSED"><code class="docutils literal notranslate"><span class="pre">MedicineType.HUMAN_USE_REFUSED</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType.HUMAN_USE_WITHDRAWN"><code class="docutils literal notranslate"><span class="pre">MedicineType.HUMAN_USE_WITHDRAWN</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType.ORPHAN_ACTIVE"><code class="docutils literal notranslate"><span class="pre">MedicineType.ORPHAN_ACTIVE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType.ORPHAN_REFUSE"><code class="docutils literal notranslate"><span class="pre">MedicineType.ORPHAN_REFUSE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType.ORPHAN_WITHDRAWN"><code class="docutils literal notranslate"><span class="pre">MedicineType.ORPHAN_WITHDRAWN</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.determine_current_aut_type"><code class="docutils literal notranslate"><span class="pre">determine_current_aut_type()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.determine_ema_number"><code class="docutils literal notranslate"><span class="pre">determine_ema_number()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.determine_initial_aut_type"><code class="docutils literal notranslate"><span class="pre">determine_initial_aut_type()</span></code></a></li>
@@ -86,7 +94,14 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.json_helper">web_scraper.json_helper module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#web_scraper.json_helper.JsonHelper"><code class="docutils literal notranslate"><span class="pre">JsonHelper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.json_helper.JsonHelper"><code class="docutils literal notranslate"><span class="pre">JsonHelper</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#web_scraper.json_helper.JsonHelper.add_to_dict"><code class="docutils literal notranslate"><span class="pre">JsonHelper.add_to_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#web_scraper.json_helper.JsonHelper.load_json"><code class="docutils literal notranslate"><span class="pre">JsonHelper.load_json()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#web_scraper.json_helper.JsonHelper.merge_nested_dict"><code class="docutils literal notranslate"><span class="pre">JsonHelper.merge_nested_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#web_scraper.json_helper.JsonHelper.overwrite_dict"><code class="docutils literal notranslate"><span class="pre">JsonHelper.overwrite_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#web_scraper.json_helper.JsonHelper.save_dict"><code class="docutils literal notranslate"><span class="pre">JsonHelper.save_dict()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.utils">web_scraper.utils module</a><ul>
@@ -731,7 +746,7 @@ Meant to be run when no more changes are expected to be made.</p>
   </div>
   <script>
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.Navigation.enable(false);
       });
   </script> 
 
