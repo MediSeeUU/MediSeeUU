@@ -9,12 +9,11 @@
 
 from rest_framework import viewsets
 from rest_framework import permissions
-from api.models.other import SavedSelection
 from api.serializers.medicine_serializers import PublicMedicineSerializer
 from api.models.medicine_models import Medicine
 from rest_framework.response import Response
 from django.core.cache import cache
-from api.update_cache import update_cache
+from api.views.update_cache import update_cache
 from api.views.other import permission_filter
 import logging
 
