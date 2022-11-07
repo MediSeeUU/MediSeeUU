@@ -106,7 +106,7 @@ def convert_articles(articles: [str]) -> [str]:
             else:
                 new_num += c
         res.append('article ' + new_num.strip(".: "))
-    return res
+    return list(set(res))
 
 
 def get_date(txt: str) -> datetime.datetime:
