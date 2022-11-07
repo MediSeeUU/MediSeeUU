@@ -1,3 +1,4 @@
 PyMuPDF
 pytest
 joblib
+python-dateutil
