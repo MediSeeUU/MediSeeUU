@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath('../../../'))
 project = 'PDF Scraper'
 copyright = '2022, Medisee'
 author = 'Medisee'
-release = '1'
+release = '1.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
