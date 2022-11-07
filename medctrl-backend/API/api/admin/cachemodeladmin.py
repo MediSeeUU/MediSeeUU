@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.contrib import admin
-from api.update_cache import update_cache
+from api.views.update_cache import update_cache
 
 
 class CacheModelAdmin(admin.ModelAdmin):
