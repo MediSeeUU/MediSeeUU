@@ -43,6 +43,16 @@ jobs:
       run: |
         make clean
         make html
+        
+    - name: Install PDF Module Dependencies
+      working-directory: scraping/pdf_module
+      run: pip install -r requirements.txt
+      
+    - name: Generate Sphinx Docs for PDF Module
+      working-directory: scraping/pdf_module
+      run: |
+        make clean -C docs
+        make html -C docs
     
     - name: Install Backend Dependencies
       working-directory: medctrl-backend/API
