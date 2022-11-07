@@ -47,7 +47,25 @@ jobs:
     - name: Install Scraper Dependencies
       working-directory: scraping
       run: pip install -r requirements.txt
-      
+    
+    - name: Generate Sphinx Docs for Combiner
+      working-directory: scraping/combiner
+      run: |
+        make clean -C docs
+        make html -C docs
+    
+    - name: Generate Sphinx Docs for DB Uploader
+      working-directory: scraping/db_uploader
+      run: |
+        make clean -C docs
+        make html -C docs
+    
+    - name: Generate Sphinx Docs for Filter
+      working-directory: scraping/filter
+      run: |
+        make clean -C docs
+        make html -C docs
+    
     - name: Generate Sphinx Docs for PDF Module
       working-directory: scraping/pdf_module
       run: |
@@ -60,6 +78,16 @@ jobs:
         make clean -C docs
         make html -C docs
     
+    - name: Install Tests Dependencies
+      working-directory: tests
+      run: |
+        pip install -r requirements.txt
+    
+    - name: Generate Sphinx Docs for Tests
+      working-directory: tests
+      run: |
+        make clean -C docs
+        make html -C docs
     
     - name: Install Backend Dependencies
       working-directory: medctrl-backend/API
