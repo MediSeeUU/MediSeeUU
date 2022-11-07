@@ -155,3 +155,6 @@ data_old/
 tests/pdfscraper_tests/annex_results.txt
 data filtered and xml 31 okt.zip
 scraping/orphan_initial_dec.txt
+*.json
+*.pdf
+*.xml
