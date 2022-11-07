@@ -54,7 +54,7 @@ class TestDecParse(TestCase):
         for txt, filename in dec_txt:
             if '_o_' in filename:
                 orphan_count += 1
-                output = dec_parse.dec_get_date(txt)
+                output = dec_parse.dec_get_od_comp_date(txt)
                 self.assertTrue(isinstance(output, datetime.datetime))
                 if output == datetime.datetime(1980, 1, 1, 0, 0):
                     not_found_count += 1
@@ -62,7 +62,7 @@ class TestDecParse(TestCase):
                 else:
                     self.assertGreater(datetime.datetime(2050, 1, 1, 0, 0), output)
                     self.assertGreater(output, datetime.datetime(1979, 1, 1, 0, 0))
-        percentage_found = (len(dec_txt) - not_found_count) / orphan_count * 100
+        percentage_found = (orphan_count - not_found_count) / orphan_count * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         print(f"Amount not found: {not_found_count}")
         self.assertGreater(percentage_found, 99)
