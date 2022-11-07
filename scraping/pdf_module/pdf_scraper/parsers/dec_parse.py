@@ -42,24 +42,7 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_s
         txt = get_txt_from_pdf(pdf)
         res = get_all(filename, txt)
         medicine_struct.decisions.append(res)
-        if '_0' in filename and '_h_' in filename:
-            f = open('human_initial_dec.txt', 'a', encoding="utf-8")  # open/clean output file
-            write_string = filename
-            for value in res.values():
-                write_string += '@'
-                write_string += str(value)
-            f.writelines(write_string)
-            f.writelines('\n')
-            f.close()
-        if '_0' in filename and '_0_' in filename:
-            f = open('orphan_initial_dec.txt', 'a', encoding="utf-8")  # open/clean output file
-            write_string = filename
-            for value in res.values():
-                write_string += '@'
-                write_string += str(value)
-            f.writelines(write_string)
-            f.writelines('\n')
-            f.close()
+        pdf_helper.create_outputfile_dec(filename, res)
         pdf.close()
 
     except:
