@@ -128,7 +128,7 @@ def get_data_human_use(filename: str, txt: str) -> dict:
         txt (str): plain txt of pdf
 
     Returns:
-        dict: _description_
+        dict: dictionary filled with parsed results
     """
     filedata = get_default_human_use(filename)
     date = dec_get_date(txt)
@@ -138,7 +138,7 @@ def get_data_human_use(filename: str, txt: str) -> dict:
     if isinstance(date, str):
         date = dec_get_date('')
 
-    filedata['eu_brand_name_initial'] = dec_get_bn(txt)
+    filedata['eu_brand_name_initial'] = dec_get_bn_human(txt)
     filedata['active_substance'] = dec_get_as(txt)
     filedata['eu_nas'] = dec_get_nas(txt, date)
     filedata['eu_atmp'] = dec_get_atmp(txt, date)
@@ -156,7 +156,7 @@ def get_data_orphan(filename: str, txt: str) -> dict:
         txt (str): plain txt of pdf
 
     Returns:
-        dict: _description_
+        dict: dictionary filled with parsed results
     """
     filedata = get_default_orphan(filename)
     date = dec_get_date(txt)
@@ -165,7 +165,7 @@ def get_data_orphan(filename: str, txt: str) -> dict:
     # if date was left blank return don't find date dependant attributes.
     if isinstance(date, str):
         date = dec_get_date('')
-    filedata['eu_brand_name_initial'] = dec_get_bn(txt, True)
+    filedata['eu_brand_name_initial'] = dec_get_bn_orphan(txt)
     filedata['eu_od_initial'] = dec_get_od(txt, date)
     filedata['eu_mah_initial'] = dec_get_mah(txt)
     filedata['eu_od_comp_date'] = dec_get_od_comp_date(txt)
@@ -211,12 +211,11 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
     return helper.get_date('')
 
 
-def dec_get_bn(txt: str, is_orphan: bool = False) -> str:
-    """extracts brand name out of decision text
+def dec_get_bn_human(txt: str) -> str:
+    """extracts brand name out of non orphan decision text
 
     Args:
         txt (str): plain decision pdf text
-        is_orphan: TODO
 
     Returns:
         str: found brand name or default value
@@ -224,42 +223,56 @@ def dec_get_bn(txt: str, is_orphan: bool = False) -> str:
     # returns a section containing just the brand name (and potentially the active substance)
     section = get_name_section(txt)
 
-    if not is_orphan:
-        # use advanced regex to find brand name
-        brand_name_section = re.search(r'"(\w+[\s\w®/.,"]*)\s?[-–]\s?\w+.*"', section)
+    # use advanced regex to find brand name
+    brand_name_section = re.search(r'"(\w+[\s\w®/.,"]*)\s?[-–]\s?\w+.*"', section)
 
-        if brand_name_section:
-            return brand_name_section.group(0)
+    #check if regex found name
+    if brand_name_section:
+        return brand_name_section.group(0)
 
-        if section != '':
-            # takes everything before split operator, to remove active substance.
-            if ' -' in section:
-                res = section.split(' -')[:-1]
-                res = ''.join(res)
-                return res.strip()
-            if '- ' in section:
-                res = section.split('- ')[:-1]
-                res = ''.join(res)
-                return res.strip()
-            if ' –' in section:
-                res = section.split(' –')[:-1]
-                res = ''.join(res)
-                return res.strip()
-            # no active substance, so return whole name
-            return section
-
-    else:
-        # for orphan structure
-        if len(txt.split('relating to the designation of medicinal product')) > 1:
-            res = txt.split('relating to the designation of medicinal product', 1)[1]
-            if 'as an' in res:
-                res = res.split('as an', 1)[0]
-            if 'as  an' in res:
-                res = res.split('as  an', 1)[0]
-            res = res.replace('"', '')
-            res = res.replace('“', '')
-            res = res.replace('”', '')
+    #manually try to find name
+    if section != '':
+        # takes everything before split operator, to remove active substance.
+        if ' -' in section:
+            res = section.split(' -')[:-1]
+            res = ''.join(res)
             return res.strip()
+        if '- ' in section:
+            res = section.split('- ')[:-1]
+            res = ''.join(res)
+            return res.strip()
+        if ' –' in section:
+            res = section.split(' –')[:-1]
+            res = ''.join(res)
+            return res.strip()
+        # no active substance, so return whole name
+        return section
+
+    return 'Brand name Not Found'
+
+def dec_get_bn_orphan(txt: str) -> str:
+    """extracts brand name out of orphan decision text
+
+    Args:
+        txt (str): plain decision pdf text
+
+    Returns:
+        str: found brand name or default value
+    """
+    # returns a section containing just the brand name (and potentially the active substance)
+    section = get_name_section(txt)
+
+    # for orphan structure
+    if len(txt.split('relating to the designation of medicinal product')) > 1:
+        res = txt.split('relating to the designation of medicinal product', 1)[1]
+        if 'as an' in res:
+            res = res.split('as an', 1)[0]
+        if 'as  an' in res:
+            res = res.split('as  an', 1)[0]
+        res = res.replace('"', '')
+        res = res.replace('“', '')
+        res = res.replace('”', '')
+        return res.strip()
 
     return 'Brand name Not Found'
 
@@ -373,14 +386,15 @@ def dec_get_od(txt: str, date: datetime.datetime) -> str:
 
 
 def dec_get_atmp(txt: str, date: datetime.datetime) -> str | bool:
-    """extracts atmp out of decision text
+    """extracts ATMP out of decision text
 
     Args:
         txt (str): plain decision pdf text
         date (datetime.datetime): decision date of pdf
 
     Returns:
-        str: found atmp or default value
+        str: found ATMP or default value
+        bool: found result
     """
     # check if there can be a ATMP.
     if date < datetime.datetime(2007, 12, 30):
@@ -417,7 +431,7 @@ def dec_get_nas(txt, date) -> str | bool:
 
 
 def dec_get_od_comp_date(txt) -> datetime.datetime:
-    """gives default date value
+    """gives date of orphan comp from decision files.
 
     Returns:
         datetime.datetime: date found
