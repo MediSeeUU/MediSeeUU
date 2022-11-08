@@ -360,11 +360,12 @@ def determine_current_aut_type(last_decision_types: list[str]) -> str:
     Returns:
         str: The current decision type
     """
-    for decision_type in last_decision_types:
-        if "annual reassessment" in decision_type.lower():
-            return "exceptional"
-        if "annual renewal" in decision_type.lower():
-            return "conditional"
+    if len(last_decision_types) > 0:
+        for decision_type in last_decision_types:
+            if "annual reassessment" in decision_type.lower():
+                return "exceptional"
+            if "annual renewal" in decision_type.lower():
+                return "conditional"
 
     return "standard"
 
@@ -443,7 +444,7 @@ def determine_ema_number(ema_numbers: list[str]) -> (str, float):
             count, most_occurring_item = ema_numbers_dict[item], item
 
     # Calculates the fraction that have this EMA number
-    fraction: float = ema_numbers_dict.get(most_occurring_item) / len(ema_numbers)
+    fraction: float = (ema_numbers_dict.get(most_occurring_item) + 1) / (len(ema_numbers) + 1)
 
     return most_occurring_item, fraction
 
