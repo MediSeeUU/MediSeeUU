@@ -141,7 +141,7 @@ def create_outputfile_dec(filename, res):
     if '_h_' in filename:
         f = open('human_initial_dec.txt', 'a', encoding="utf-8")  # open/clean output file
         write = True
-    if '_o_' in filename:
+    elif '_o_' in filename:
         f = open('orphan_initial_dec.txt', 'a', encoding="utf-8")  # open/clean output file
         write = True
     if write:

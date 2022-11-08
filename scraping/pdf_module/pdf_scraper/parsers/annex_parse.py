@@ -1,12 +1,12 @@
 import scraping.pdf_module.pdf_scraper.pdf_xml_converter as xml_converter
 import xml.etree.ElementTree as ET
 import scraping.pdf_module.pdf_scraper.xml_parsing_utils as Utils
-import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
+import scraping.pdf_module.pdf_scraper.parsedinfostruct as PIS
 import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
 import os
 
 
-def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
+def parse_file(filepath: str, medicine_struct: PIS.ParsedInfoStruct):
     """
     1. Load the XML file.
     2. Create a dictionary with all the attributes that need to be scraped.
@@ -15,10 +15,10 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct):
     
     Args:
         filepath (str): Path of the XML file to be scraped.
-        medicine_struct (PIS.parsed_info_struct): The dictionary of all currently scraped attributes of this medicine.
+        medicine_struct (PIS.ParsedInfoStruct): The dictionary of all currently scraped attributes of this medicine.
 
     Returns:
-        PIS.parsed_info_struct: Returns an updated struct, with the current attributes added to it.
+        PIS.ParsedInfoStruct: Returns an updated struct, with the current attributes added to it.
     """
     
     try:

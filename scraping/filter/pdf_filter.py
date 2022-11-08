@@ -26,7 +26,7 @@ def filter_all_pdfs(directory: str):
         directory (str): folder with all medicine folders to filter
     """
     print(f'Filtering all PDF files...')
-    f = open('filter.txt', 'w', encoding="utf-8")  # open/clean output file
+    f = open(os.path.join(directory, 'filter.txt'), 'w', encoding="utf-8")  # open/clean output file
     data_dir = directory
     all_data = Parallel(n_jobs=8)(
         delayed(filter_folder)(os.path.join(data_dir, folder)) for folder in
@@ -393,5 +393,4 @@ def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
     else:
         return ''
 
-
-#filter_all_pdfs("../../data")
+# filter_all_pdfs("../../data")

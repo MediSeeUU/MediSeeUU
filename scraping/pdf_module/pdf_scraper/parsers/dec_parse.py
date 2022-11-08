@@ -5,7 +5,7 @@ import datetime
 import fitz
 import scraping.pdf_module.pdf_scraper.helper as helper
 import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
-import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
+import scraping.pdf_module.pdf_scraper.parsedinfostruct as PIS
 
 
 # EC Decision document
@@ -13,7 +13,8 @@ import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
 
 # Given a pdf, returns one long string of text
 def get_txt_from_pdf(pdf: fitz.Document) -> str:
-    """Returns the plain text of a fitz pdf, removing all \\n that are present.
+    """
+    Returns the plain text of a fitz pdf, removing all \\n that are present.
 
     Args:
     pdf (fitz.Document): The opened pdf document to extract text from
@@ -26,13 +27,14 @@ def get_txt_from_pdf(pdf: fitz.Document) -> str:
     return txt.replace('\n', '')
 
 
-def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct) -> PIS.parsed_info_struct:
-    """Opens a pdf and adds all respective attributes to the medicine_struct.
+def parse_file(filename: str, directory: str, medicine_struct: PIS.ParsedInfoStruct) -> PIS.ParsedInfoStruct:
+    """
+    Opens a pdf and adds all respective attributes to the medicine_struct.
 
     Args:
         filename (str): filename of file to open
         directory (str): directory of file to open
-        medicine_struct (PIS.parsed_info_struct): struct to add found attributes to
+        medicine_struct (PIS.ParsedInfoStruct): struct to add found attributes to
 
     Returns:
         medicine_struct (PIS.parsed_info_struct): input struct with new variables added
@@ -52,7 +54,8 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_s
 
 # Given a dictionary, fills in all attributes for EC decisions
 def get_all(filename: str, txt: str) -> dict:
-    """based on filename finds all fitting attributes
+    """
+    Based on filename finds all fitting attributes
 
     Args:
         filename (str): filename of opened pdf file
@@ -77,7 +80,8 @@ def get_all(filename: str, txt: str) -> dict:
 
 # The default values before starting a parse.
 def get_default_human_use(filename: str) -> dict:
-    """returns dictionary with default attribute values for human use
+    """
+    Returns dictionary with default attribute values for human use
 
     Args:
         filename (str): filename of pdf
@@ -101,7 +105,8 @@ def get_default_human_use(filename: str) -> dict:
 
 # The default values before starting a parse.
 def get_default_orphan(filename: str) -> dict:
-    """returns dictionary with default attribute values for orphan
+    """
+    Returns dictionary with default attribute values for orphan
 
     Args:
         filename (str): filename of pdf
@@ -121,7 +126,8 @@ def get_default_orphan(filename: str) -> dict:
 
 
 def get_data_human_use(filename: str, txt: str) -> dict:
-    """fills in each attribute in a dictionary for human use
+    """
+    Fills in each attribute in a dictionary for human use
 
     Args:
         filename (str): filename of pdf
@@ -150,7 +156,8 @@ def get_data_human_use(filename: str, txt: str) -> dict:
 
 
 def get_data_orphan(filename: str, txt: str) -> dict:
-    """fills in each attribute in a dictionary for orphan
+    """
+    Fills in each attribute in a dictionary for orphan
     Args:
         filename (str): filename of pdf
         txt (str): plain txt of pdf
@@ -177,7 +184,8 @@ def get_data_orphan(filename: str, txt: str) -> dict:
 
 
 def dec_get_date(txt: str) -> str | datetime.datetime:
-    """extracts date out of text
+    """
+    Extracts date out of text
 
     Args:
         txt (str): text containing first page of decision document
@@ -212,7 +220,8 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
 
 
 def dec_get_bn_human(txt: str) -> str:
-    """extracts brand name out of non orphan decision text
+    """
+    Extracts brand name out of non-orphan decision text
 
     Args:
         txt (str): plain decision pdf text
@@ -226,11 +235,11 @@ def dec_get_bn_human(txt: str) -> str:
     # use advanced regex to find brand name
     brand_name_section = re.search(r'"(\w+[\s\w®/.,"]*)\s?[-–]\s?\w+.*"', section)
 
-    #check if regex found name
+    # check if regex found name
     if brand_name_section:
         return brand_name_section.group(0)
 
-    #manually try to find name
+    # manually try to find name
     if section != '':
         # takes everything before split operator, to remove active substance.
         if ' -' in section:
@@ -250,8 +259,10 @@ def dec_get_bn_human(txt: str) -> str:
 
     return 'Brand name Not Found'
 
+
 def dec_get_bn_orphan(txt: str) -> str:
-    """extracts brand name out of orphan decision text
+    """
+    Extracts brand name out of orphan decision text
 
     Args:
         txt (str): plain decision pdf text
@@ -260,7 +271,7 @@ def dec_get_bn_orphan(txt: str) -> str:
         str: found brand name or default value
     """
     # returns a section containing just the brand name (and potentially the active substance)
-    section = get_name_section(txt)
+    section = get_name_section(txt)  # TODO: Do something about this, or remove unused var
 
     # for orphan structure
     if len(txt.split('relating to the designation of medicinal product')) > 1:
@@ -411,7 +422,8 @@ def dec_get_atmp(txt: str, date: datetime.datetime) -> str | bool:
 
 
 def dec_get_nas(txt, date) -> str | bool:
-    """extracts NAS out of decision text
+    """
+    Extracts NAS out of decision text
 
     Args:
         txt (str): plain decision pdf text
@@ -431,7 +443,8 @@ def dec_get_nas(txt, date) -> str | bool:
 
 
 def dec_get_od_comp_date(txt) -> datetime.datetime:
-    """gives date of orphan comp from decision files.
+    """
+    Gives date of orphan comp from decision files.
 
      Args:
         txt (str): plain decision pdf text
@@ -460,7 +473,8 @@ def dec_get_od_comp_date(txt) -> datetime.datetime:
 # HELPERS
 # helper function for finding brand name and active substance.
 def get_name_section(txt: str) -> str:
-    """finds section of decision document containing brand name and active substance
+    """
+    Finds section of decision document containing brand name and active substance
 
     Args:
         txt (str): plain decision pdf text

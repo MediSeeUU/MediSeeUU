@@ -139,7 +139,7 @@ def get_prevalence(xml_data: ET.Element) -> str:
             for b in bullets:
                 if "the prevalence of" in b:
                     # Remove unnecessary whitespaces and newlines
-                    clean = re.sub('\s+', ' ', b).lstrip(" ")
+                    clean = re.sub(r'\s+', ' ', b).lstrip(" ")
                     return clean
     return "NA"
 

@@ -3,7 +3,7 @@ import re
 import scraping.pdf_module.pdf_scraper.helper as helper
 import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xpu
 import xml.etree.ElementTree as ET
-import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
+import scraping.pdf_module.pdf_scraper.parsedinfostruct as PIS
 import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
 import os.path as path
 from typing import Union
@@ -35,16 +35,16 @@ def get_all(filename: str, xml_data: ET.Element) -> dict:
     return epar
 
 
-def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct) -> PIS.parsed_info_struct:
+def parse_file(filename: str, directory: str, medicine_struct: PIS.ParsedInfoStruct) -> PIS.ParsedInfoStruct:
     """
     Scrapes all attributes from the EPAR XML file after parsing it
     Args:
         filename (str): name of the XML file to be scraped
         directory (str): path of the directory containing the XML file
-        medicine_struct (PIS.parsed_info_struct): the dictionary of all currently scraped attributes of this medicine
+        medicine_struct (PIS.ParsedInfoStruct): the dictionary of all currently scraped attributes of this medicine
 
     Returns:
-        PIS.parsed_info_struct: a more complete dictionary of scraped attributes,
+        PIS.ParsedInfoStruct: a more complete dictionary of scraped attributes,
         including the attributes of this XML file
     """
     filepath = path.join(directory, filename)

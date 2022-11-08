@@ -20,13 +20,14 @@ class TestAnnexParse(TestCase):
 
     def setUp(self) -> None:
         """
-        Sets up the xml files from test pdf's and then scrapes data from them into a json and reads it so other functions can use the data.
-        Automatically run when whoe test class is used.
+        Sets up the xml files from test pdf's and then scrapes data from them into a json and reads it so other
+        functions can use the data. Automatically run when whoe test class is used.
 
         Returns:
             None
         """        
         pdf_scraper.parse_folder(path.abspath(test_data_foldername), test_data_foldername)
+        # TODO: Try/catch this with appropriate exception when file does not exist
         attributes_json = open(path.join(path.abspath(test_data_foldername), test_data_foldername + "_pdf_parser.json"))
 
         self.annex_attributes = json.load(attributes_json)["annexes"]
@@ -35,8 +36,9 @@ class TestAnnexParse(TestCase):
 
     def test_get_initial_type_of_eu_authorization(self):
         """
-        Unit test for scraping initial_type_of_eu_authorization attribute.
-        This test checks whether this attribute is only read in initial authorization annex files and whether the value is correct and found in all applicable cases.
+        Unit test for scraping initial_type_of_eu_authorization attribute. This test checks whether this attribute is
+        only read in initial authorization annex files and whether the value is correct and found in all applicable
+        cases.
 
         Returns:
             None
@@ -60,19 +62,22 @@ class TestAnnexParse(TestCase):
 
             # test for attribute values
             if file_attributes["is_initial"]:
-                incorrect_value |= "specific obligation" in pdf_file and authorization_type != "exceptional or conditional"
-                incorrect_value |= "specific obligations" in pdf_file and authorization_type != "exceptional or conditional"
+                incorrect_value |= "specific obligation" in pdf_file and authorization_type != "exceptional or " \
+                                                                                               "conditional "
+                incorrect_value |= "specific obligations" in pdf_file and authorization_type != "exceptional or " \
+                                                                                                "conditional "
                 incorrect_value |= "conditional approval" in pdf_file and authorization_type != "conditional"
                 incorrect_value |= "standard approval" in pdf_file and authorization_type != "standard"
 
             # print errors
             if incorrect_file:
                 print("\nTEST ERROR: " + str(
-                    pdf_file) + "  incorrect presence of initial_type_of_eu_authorization | presence " + contains_attribute)
+                    pdf_file) + "  incorrect presence of initial_type_of_eu_authorization | presence " +
+                      str(contains_attribute))
 
             if incorrect_value:
-                print("\nTEST ERROR: " + str(pdf_file) + " contains incorrect initial_type_of_eu_authorization: " + str(
-                    authorization_type))
+                print("\nTEST ERROR: " + str(pdf_file) + " contains incorrect initial_type_of_eu_authorization: " +
+                      str(authorization_type))
 
             incorrect_files |= incorrect_file
             incorrect_values |= incorrect_value
@@ -81,8 +86,8 @@ class TestAnnexParse(TestCase):
 
     def test_get_eu_type_of_medicine(self):
         """
-        Unit test for scraping eu_type_of_medicine attribute.
-        This test checks whether this attribute is only read in initial authorization annex files and whether the value is correct and found in all applicable cases.
+        Unit test for scraping eu_type_of_medicine attribute. This test checks whether this attribute is only read in
+        initial authorization annex files and whether the value is correct and found in all applicable cases.
 
         Returns:
             None

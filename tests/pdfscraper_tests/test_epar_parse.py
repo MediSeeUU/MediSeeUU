@@ -34,9 +34,12 @@ class TestEparParse(TestCase):
 
         # Get XML bodies, assuming there are XML files
         for xml_file in xml_files:
-            xml_tree = ET.parse(xml_file)
-            xml_root = xml_tree.getroot()
-            xml_bodies.append((xml_root[1], xml_file))
+            try:
+                xml_tree = ET.parse(xml_file)
+                xml_root = xml_tree.getroot()
+                xml_bodies.append((xml_root[1], xml_file))
+            except ET.ParseError:
+                print("EPAR Test could not parse XML file " + xml_file)
 
     def test_get_date(self):
         """
@@ -188,7 +191,7 @@ class TestEparParse(TestCase):
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         # There aren't a lot of co-rapporteurs, just to make sure the function keeps working correctly
-        self.assertGreater(percentage_found, 30)
+        self.assertGreater(percentage_found, 70)
 
     def test_get_reexamination(self):
         """

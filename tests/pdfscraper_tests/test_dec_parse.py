@@ -22,10 +22,14 @@ class TestDecParse(TestCase):
         dec_files = [file for file in files if "dec_0" in file and ".pdf" in file]
         # Get XML bodies, assuming there are XML files
         for dec_file in dec_files:
-            pdf = fitz.open(dec_file)
-            txt = dec_parse.get_txt_from_pdf(pdf)
-            pdf.close()
-            dec_txt.append((txt, dec_file))
+            try:
+                pdf = fitz.open(dec_file)
+                txt = dec_parse.get_txt_from_pdf(pdf)
+                pdf.close()
+                dec_txt.append((txt, dec_file))
+            except fitz.fitz.FileDataError:
+                print("EC Test: failed to open PDF file " + dec_file)
+
 
     # eu_prime_initial
     def test_get_date(self):
