@@ -52,8 +52,8 @@ def parse_folder(directory: str, folder_name):
     # do xml conversion on annex, epar and omar files
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
     for file in directory_files:
-        # Skip over all decision files, XML files, and non-pdf files
-        if "dec" in file or ".xml" in file or ".pdf" not in file:
+        # Skip over all XML files and non-PDF files
+        if ".xml" in file or ".pdf" not in file:
             continue
         # Skip file if XML is already created (temporary)
         if file[:len(file) - 4] + ".xml" in directory_files:
