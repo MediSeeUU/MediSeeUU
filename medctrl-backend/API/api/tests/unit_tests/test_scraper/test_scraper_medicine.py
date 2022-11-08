@@ -1,6 +1,6 @@
 from django.test import TestCase
 from unittest.mock import patch
-from api.scraper.scraper_medicine_post import ScraperMedicine
+from api.views.scraper.scraper_medicine_post import ScraperMedicine
 from api.models.medicine_models import (
     Medicine,
     HistoryAuthorisationStatus,
@@ -20,15 +20,15 @@ from api.models.medicine_models.common import (
 
 
 class ScraperMedicineTestCase(TestCase):
-    @patch('api.scraper.scraper_medicine_post.LegalBasesSerializer', is_valid=True)
-    @patch('api.scraper.scraper_medicine_post.EUOrphanConSerializer', is_valid=True)
-    @patch('api.scraper.scraper_medicine_post.PrimeSerializer', is_valid=True)
-    @patch('api.scraper.scraper_medicine_post.OrphanDesignationSerializer', is_valid=True)
-    @patch('api.scraper.scraper_medicine_post.MAHSerializer', is_valid=True)
-    @patch('api.scraper.scraper_medicine_post.BrandNameSerializer', is_valid=True)
-    @patch('api.scraper.scraper_medicine_post.AuthorisationTypeSerializer', is_valid=True)
-    @patch('api.scraper.scraper_medicine_post.AuthorisationStatusSerializer', is_valid=True)
-    @patch('api.scraper.scraper_medicine_post.MedicineSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.LegalBasesSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.EUOrphanConSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.PrimeSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.OrphanDesignationSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.MAHSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.BrandNameSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.AuthorisationTypeSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.AuthorisationStatusSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.MedicineSerializer', is_valid=True)
     def test_scraper_post_new(self, medicine_serializer, aut_status_serializer, aut_type_serializer,
                               brand_name_serializer, mah_serializer, od_serializer,
                               prime_serializer, eu_oc_serializer, legal_base_serializer):
@@ -204,9 +204,9 @@ class ScraperMedicineTestCase(TestCase):
         }
         self.assertDictEqual(eu_legal_basis_data, eu_legal_basis_expected)
 
-    @patch('api.scraper.scraper_medicine_post.PrimeSerializer', is_valid=True)
-    @patch('api.scraper.scraper_medicine_post.AuthorisationStatusSerializer', is_valid=True)
-    @patch('api.scraper.scraper_medicine_post.MedicineFlexVarUpdateSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.PrimeSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.AuthorisationStatusSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.MedicineFlexVarUpdateSerializer', is_valid=True)
     def test_scraper_post_update(self, update_serializer, aut_status_serializer, prime_serializer):
         """
         Test posting an update to an existing medicine to the scraper post function
@@ -346,7 +346,7 @@ class ScraperMedicineTestCase(TestCase):
         }
         self.assertDictEqual(eu_prime_data, eu_prime_expected)
 
-    @patch('api.scraper.scraper_medicine_post.MedicineSerializer', is_valid=True)
+    @patch('api.views.scraper.scraper_medicine_post.MedicineSerializer', is_valid=True)
     def test_scraper_post_update_null(self, medicine_serializer):
         """
         Test posting an update to an existing medicine with null values to the scraper post function

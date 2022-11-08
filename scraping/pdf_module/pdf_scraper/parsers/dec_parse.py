@@ -40,13 +40,13 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_s
     try:
         pdf = fitz.open(path.join(directory, filename))
         txt = get_txt_from_pdf(pdf)
-        res = get_all(filename, txt)
-        medicine_struct.decisions.append(res)
-        pdf_helper.create_outputfile_dec(filename, res)
         pdf.close()
-
-    except:
+    except fitz.fitz.FileDataError:
         print("EC - Could not open PDF: " + filename)
+        return medicine_struct
+    res = get_all(filename, txt)
+    medicine_struct.decisions.append(res)
+    pdf_helper.create_outputfile_dec(filename, res)
     return medicine_struct
 
 
@@ -134,7 +134,7 @@ def get_data_human_use(filename: str, txt: str) -> dict:
     date = dec_get_date(txt)
     filedata['eu_aut_date'] = date
 
-    # if date was left blank return dont find date dependant attributes.
+    # if date was left blank return don't find date dependant attributes.
     if isinstance(date, str):
         date = dec_get_date('')
 
@@ -162,7 +162,7 @@ def get_data_orphan(filename: str, txt: str) -> dict:
     date = dec_get_date(txt)
     filedata['eu_aut_date'] = date
 
-    # if date was left blank return dont find date dependant attributes.
+    # if date was left blank return don't find date dependant attributes.
     if isinstance(date, str):
         date = dec_get_date('')
     filedata['eu_brand_name_initial'] = dec_get_bn(txt)
@@ -187,30 +187,27 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
         datetime.datetime: found date
     """
     txt = txt.lower()
-    try:
+    if len(re.split('of ', txt, 1)) > 1:
         section = re.split('of ', txt, 1)[1]
         section = section[:17]
         if '...' in section or '(date)' in section or 'xxx' in section:
             return 'Date is blank'
         if '/' in section:
-            section = section.replace('/','-')
+            section = section.replace('/', '-')
 
         # check if there are digits on first page
         if bool(re.search(r'\d', section)):
             return helper.get_date(section)
         # there are few cases where date on first page is missing
         # retry on second page before giving up.
-        try:
+        if len(re.split('commission decision', txt.lower())) > 2:
             next_page = re.split('commission decision', txt.lower())[2]
             section = re.split('of ', next_page, 1)[1]
             section = section[:17]
             if '...' in section or '(date)' in section or 'xxx' in section:
                 return 'Date is blank'
             return helper.get_date(section)
-        except:
-            pass
-    except:
-        pass
+
     return helper.get_date('')
 
 
@@ -226,15 +223,11 @@ def dec_get_bn(txt: str) -> str:
     # returns a section containing just the brand name (and potentially the active substance)
     section = get_name_section(txt)
 
-    # use advance regex to find brand name
-    regres = None
-    try:
-        regres = re.search(r'"(\w+[\s\w®/.,"]*)\s?[-–]\s?\w+.*"', section)
-    except:
-        pass
+    # use advanced regex to find brand name
+    brand_name_section = re.search(r'"(\w+[\s\w®/.,"]*)\s?[-–]\s?\w+.*"', section)
 
-    if regres is not None:
-        return regres.group(0)
+    if brand_name_section:
+        return brand_name_section.group(0)
 
     if section != '':
         # takes everything before split operator, to remove active substance.
@@ -254,16 +247,15 @@ def dec_get_bn(txt: str) -> str:
         return section
 
     # for orphan structure
-    try:
+    if len(txt.split('relating to the designation of medicinal product')) > 1:
         res = txt.split('relating to the designation of medicinal product')[1]
-        res = res.split('as an orphan medicinal')[0]
-        res = res.replace('"', '')
-        res = res.replace('“', '')
-        res = res.replace('”', '')
-        res.strip()
-        return res
-    except:
-        pass
+        if res.split('as an orphan medicinal'):
+            res = res.split('as an orphan medicinal')[0]
+            res = res.replace('"', '')
+            res = res.replace('“', '')
+            res = res.replace('”', '')
+            res.strip()
+            return res
 
     return 'Brand name Not Found'
 
@@ -279,15 +271,13 @@ def dec_get_as(txt: str) -> str:
     """
     # returns a section containing just the brand name (and potentially the active substance)
     section = get_name_section(txt)
-    try:
-        if section != '':
-            # takes last element after split operator, to remove brand name.
-            if '- ' in section:
-                return section.split('- ')[-1].strip()
-            if '– ' in section:
-                return section.split('– ')[-1].strip()
-    except:
-        pass
+    if section != '' and section.split('- '):
+        # takes last element after split operator, to remove brand name.
+        if '- ' in section:
+            return section.split('- ')[-1].strip()
+        if '– ' in section:
+            return section.split('– ')[-1].strip()
+
     return 'Active Substance Not Found'
 
 
@@ -305,13 +295,13 @@ def dec_get_decision_type(txt: str, date: datetime.datetime) -> str:
     if date < datetime.datetime(2006, 1, 1):
         return "CMA not available before 2006"
 
-    excep = re.search(r"article\s+14\W8", txt.lower())  # exceptional: Article 14(8) or alt. (e.g. Article 14.8)
+    exceptional = re.search(r"article\s+14\W8", txt.lower())  # exceptional: Article 14(8) or alt. (e.g. Article 14.8)
     # conditional
     if "507/2006" in txt or "conditional marketing authorisation" in txt.lower():
         return "conditional"
 
     # exceptional
-    elif "exceptional circumstances" in txt.lower() or excep is not None:
+    elif "exceptional circumstances" in txt.lower() or exceptional is not None:
         return "exceptional"
     else:
         return "CMA Not Found"
@@ -326,15 +316,13 @@ def dec_get_mah(txt: str) -> str:
     Returns:
         str: found marketholder or default value
     """
-    try:
+    mah_regex = r"(( the notification submitted)|( the applicatio\w+ submitted)|( the application\(s\) submitted))"
+    if len(re.split(mah_regex, txt)) > 5:
         # get text after one of the following indicators.
-        mahline = \
-            re.split(
-                r"(( the notification submitted)|( the applicatio\w+ submitted)|( the application\(s\) submitted))",
-                txt)[5]
+        mah_line = re.split(mah_regex, txt)[5]
 
         # gets part after submitted by line
-        mah = mahline.split(" by ", 1)[1]
+        mah = mah_line.split(" by ", 1)[1]
 
         # clean potential stop words.
         # remove part after MAH
@@ -344,9 +332,9 @@ def dec_get_mah(txt: str) -> str:
         if mah[-1] == ',':
             mah = mah[:-1]
         return mah.strip()
-    except:
+    else:
         # read from bottom of final page
-        try:
+        if len(txt.split('This Decision is addressed to ', 1)) > 1:
             # get text after one of the following indicators.
             mah_line = txt.split('This Decision is addressed to ', 1)[1]
 
@@ -354,7 +342,7 @@ def dec_get_mah(txt: str) -> str:
             mah = mah_line.split(", ", 1)[0]
 
             return mah.strip()
-        except:
+        else:
             return 'MAH Not Found'
 
 
@@ -453,26 +441,21 @@ def get_name_section(txt: str) -> str:
 
     section = ''
     # try multiple quotation combinations
-    try:
+    if re.search('"([^"]*)"', txt):
         section = re.search('"([^"]*)"', txt)[0]
         section = section.replace('"', '')
-    except:
-        try:
-            section = re.search('“(.+?)”', txt)[0]
-            section = section.replace('“', '')
-            section = section.replace('”', '')
-        except:
-            try:
-                section = re.search('“(.+?)"', txt)[0]
-                section = section.replace('“', '')
-                section = section.replace('"', '')
-            except:
-                try:
-                    section = re.search('"(.+?)\'', txt)[0]
-                    section = section.replace('"', '')
-                    section = section.replace('\'', '')
-                except:
-                    pass
+    elif re.search('“(.+?)”', txt):
+        section = re.search('“(.+?)”', txt)[0]
+        section = section.replace('“', '')
+        section = section.replace('”', '')
+    elif re.search('“(.+?)"', txt):
+        section = re.search('“(.+?)"', txt)[0]
+        section = section.replace('“', '')
+        section = section.replace('"', '')
+    elif re.search('"(.+?)\'', txt):
+        section = re.search('"(.+?)\'', txt)[0]
+        section = section.replace('"', '')
+        section = section.replace('\'', '')
 
     if section is None:
         section = ''
