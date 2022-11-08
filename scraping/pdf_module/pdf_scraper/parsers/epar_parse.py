@@ -1,9 +1,9 @@
 # EPAR parser
 import re
 import scraping.pdf_module.pdf_scraper.helper as helper
-import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xpu
+import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xml_utils
 import xml.etree.ElementTree as ET
-import scraping.pdf_module.pdf_scraper.parsedinfostruct as PIS
+import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
 import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
 import os.path as path
 from typing import Union
@@ -35,7 +35,7 @@ def get_all(filename: str, xml_data: ET.Element) -> dict:
     return epar
 
 
-def parse_file(filename: str, directory: str, medicine_struct: PIS.ParsedInfoStruct) -> PIS.ParsedInfoStruct:
+def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStruct) -> pis.ParsedInfoStruct:
     """
     Scrapes all attributes from the EPAR XML file after parsing it
     Args:
@@ -104,7 +104,7 @@ def get_opinion_date(xml: ET.Element) -> str:
     Returns:
         str: the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format
     """
-    for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
+    for p in xml_utils.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(date_pattern, p):
             date = helper.convert_months(re.findall(date_pattern, p)[-1])
             # Date contains emea instead of month, returns not found
@@ -173,7 +173,7 @@ def get_prime(xml: ET.Element) -> str:
     """
     if check_date_before(xml, 1, 3, 2016):
         return "NA"
-    for p in xpu.get_paragraphs_by_header("submission of the dossier", xml):
+    for p in xml_utils.get_paragraphs_by_header("submission of the dossier", xml):
         if re.findall(r" prime ", p):
             return "yes"
         if re.findall(r"priority medicine", p):
