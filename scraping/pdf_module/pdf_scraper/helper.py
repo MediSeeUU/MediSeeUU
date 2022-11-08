@@ -35,9 +35,9 @@ months = {
     "december": "12"
 }
 
-legal_bases = {'article 10.b', 'article 8.3', 'article 10.2', 'article 4.8.3', 'article 10.a', 'article 10b', 'article 10c',
-       'article 10.3', 'article 4.8.2', 'article 10a', 'article 4.8.1', 'article 10.c', 'article 4.8', 'article 10.1',
-       'article 10.4'}
+legal_bases = {'article 10.b', 'article 8.3', 'article 10.2', 'article 4.8.3', 'article 10.a', 'article 10b',
+               'article 10c', 'article 10.3', 'article 4.8.2', 'article 10a', 'article 4.8.1', 'article 10.c',
+               'article 4.8', 'article 10.1', 'article 10.4'}
 
 
 def convert_months(date: str) -> str:
