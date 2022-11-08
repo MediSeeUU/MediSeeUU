@@ -61,3 +61,5 @@ eu_od_date = "eu_od_date"                                   # EU orphan designat
 eu_od_pnumber = "eu_od_pnumber"                             # EU product number for orphan designation
 eu_od_sponsor = "eu_od_sponsor"                             # Sponsor for EU orphan designation
 eu_od_comp_date = "eu_od_comp_date"                         # COMP decision date (for EU orphan designation)
+
+not_found = "NA | Not Found | Unkown"
