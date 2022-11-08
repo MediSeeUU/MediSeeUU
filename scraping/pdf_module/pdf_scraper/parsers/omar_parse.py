@@ -9,15 +9,15 @@ import os.path as path
 
 def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct) -> PIS.parsed_info_struct:
     """
-    Scrapes all attributes from the OMAR XML file after parsing it
+    This function parses the OMAR XML file and returns an updated dictionary.
+
     Args:
-        filename (str): name of the XML file to be scraped
-        directory (str): path of the directory containing the XML file
+        filepath (str): name of the XML file to be scraped
         medicine_struct (PIS.parsed_info_struct): the dictionary of all currently scraped attributes of this medicine
 
     Returns:
-        PIS.parsed_info_struct: a more complete dictionary of scraped attributes,
-        including the attributes of this XML file
+        PIS.parsed_info_struct: Returns a more complete dictionary of scraped attributes,
+            including the attributes of this XML file.
     """
     try:
         xml_tree = ET.parse(filepath)
@@ -27,43 +27,59 @@ def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct) -> PIS.pa
 
     if medicine_struct is None:
         print("OMAR PARSER: medicine_struct is none at " + filepath)
-        return
+        return 
 
-    xml_root = xml_tree.getroot()
-    xml_body = xml_root[1]
-
-    result = get_all(filepath, xml_body)
+    result = get_all(filepath, xml_tree)
     medicine_struct.omars.append(result)
-    
+
     return medicine_struct
 
 
-def get_all(filepath: str, xml_data: ET.Element) -> dict:
+def get_all(filepath: str, xml_tree: ET.ElementTree) -> dict:
     """
-    Gets all attributes of the OMAR XML and returns them in a dictionary
+    This function gets all attributes of the OMAR XML and returns them in a dictionary.
+
     Args:
-        filename (str): name of the XML file to be scraped
-        xml_data (ET.Element): the contents of the XML file
+        filepath (str): name of the XML file to be scraped
+        xml_tree (ET.ElementTree): the whole XML tree of the file
 
     Returns:
-        dict: Dictionary of all scraped attributes, named according to the bible
+        dict: Dictionary of all parsed attributes, named according to the bible.
     """
-    omar = {
-        "xml_file": get_xml_name(filepath)
-        }
-    
-    n_indications = get_indications(xml_data)
+    xml_root = xml_tree.getroot()
+    xml_header = xml_root[0]
+    xml_body = xml_root[1]
 
-    if (n_indications == 1):
-        omar["indication_1"] = get_indication_attributes(xml_data)
+    omar = {
+        "pdf_file": Utils.file_get_name_pdf(xml_header)
+    }
+
+    n_indications = get_conditions_number(xml_body)
+
+    # The prefix for the attributes in the JSON file
+    condition_prefix = "condition"
+
+    # Each condition will be parsed and added to the dictionary
+    if n_indications == 1:
+        omar[f"{condition_prefix}_1"] = get_condition_attributes(xml_body)
     else:
         for i in range(1, n_indications + 1):
-            omar_data = get_correct_indication(xml_data, i)
-            omar[f'indication_{i}'] = get_indication_attributes(xml_data)
+            omar_data = get_correct_condition(xml_body, i)
+            omar[f"{condition_prefix}_{i}"] = get_condition_attributes(xml_body)
 
     return omar
 
-def get_indication_attributes(xml_data: ET.Element) -> dict:
+
+def get_condition_attributes(xml_data: ET.Element) -> dict:
+    """
+    This function will parse out all the attributes from a given piece of XML.
+
+    Args:
+        xml_data (ET.Element): This is the XML part to be parsed.
+
+    Returns:
+        dict: Returns a dictionary of the parsed piece of XML.
+    """    
     at = get_alternative_treatments(xml_data)
 
     indication = {
@@ -76,26 +92,33 @@ def get_indication_attributes(xml_data: ET.Element) -> dict:
     return indication
 
 
-def get_correct_indication(xml_data: ET.Element, index: int) -> list[str]:
-    #print(index)
+def get_correct_condition(xml_data: ET.Element, index: int) -> list[str]:
+    # print(index)
     return
 
 
+def get_conditions_number(xml_data: ET.Element) -> int:
+    """
+    This function gets the amount conditions for an orphan medicine.
+    This is necessary because certain OMARs contain multiple conditions.
 
-def get_indications(xml_data: ET.Element) -> int:
+    Args:
+        xml_data (ET.Element): This is the XML part to be parsed.
+
+    Returns:
+        int: If no section is detected which contains an indicator for multiple conditions,
+             then it is assumed that there is only a single condition.
+    """
     count = 0
     for p in Utils.get_paragraphs_by_header("introductory comment", xml_data):
         if "•" in p:
             count += 1
 
+    # If no header is found then it implies that there is only a single condition
     if count == 0:
         return 1
     else:
         return count
-
-
-def get_xml_name(filepath: str) -> str:
-    return filepath.split("\\")[-1]
 
 
 def get_prevalence(xml_data: ET.Element) -> str:
@@ -107,7 +130,7 @@ def get_prevalence(xml_data: ET.Element) -> str:
 
     Returns:
         str: Return the string with the relevant information about the prevalence or NA if it cannot be found.
-    """    
+    """
     for p in Utils.get_paragraphs_by_header("comp position adopted", xml_data):
         # Find the paragraph with the bullet points
         if "•" in p:
@@ -116,7 +139,7 @@ def get_prevalence(xml_data: ET.Element) -> str:
             for b in bullets:
                 if "the prevalence of" in b:
                     # Remove unnecessary whitespaces and newlines
-                    clean = re.sub('\s+',' ', b).lstrip(" ")
+                    clean = re.sub('\s+', ' ', b).lstrip(" ")
                     return clean
     return "NA"
 
@@ -141,7 +164,18 @@ def get_alternative_treatments(xml_data: ET.Element) -> str:
     return "NA"
 
 
-def get_significant_benefit(xml_data: ET.Element, alternative_treatment: str) -> str: 
+def get_significant_benefit(xml_data: ET.Element, alternative_treatment: str) -> str:
+    """
+    This function parses out the significant benefit of the OMAR, 
+    the result is influenced by the result of a previous attribute.
+
+    Args:
+        xml_data (ET.Element): This is the XML part to be parsed.
+        alternative_treatment (str): The result of the get_alternative_treatment function
+
+    Returns:
+        str: Returns the appropriate string, depending on what was found in the file.
+    """    
     contains = False
     result = ""
 
@@ -162,24 +196,10 @@ def get_significant_benefit(xml_data: ET.Element, alternative_treatment: str) ->
                         result += " + Major Contribution"
 
     # TODO: Uncomment this if logger works
-    #if not contains and alternative_treatment == "Significant Benefit":        
-        # Logger.warning("Alternative treatment = Significant benefit requires result.")
+    # if not contains and alternative_treatment == "Significant Benefit":
+    # Logger.warning("Alternative treatment = Significant benefit requires result.")
 
     if contains:
         return result
     else:
         return "NA"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
