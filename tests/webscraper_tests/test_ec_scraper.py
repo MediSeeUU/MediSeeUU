@@ -75,7 +75,8 @@ class TestEcScraper(unittest.TestCase):
         self.assertEqual(medicine_dict["active_substance"], exp_active_substance, msg="active substances are not equal")
         self.assertEqual(medicine_dict["eu_pnumber"], exp_eu_pnumber, msg="product numbers are not equal")
         self.assertEqual(medicine_dict["eu_aut_status"], exp_eu_aut_status, msg="authorization statuses are not equal")
-        self.assertEqual(medicine_dict["eu_brand_name_current"], exp_eu_brand_name_current, msg="current brand names are not equal")
+        self.assertEqual(medicine_dict["eu_brand_name_current"], exp_eu_brand_name_current, msg="current brand names "
+                                                                                                "are not equal")
         self.assertEqual(medicine_dict["eu_mah_current"], exp_eu_mah_current, msg="current mahs are not equal")
 
     @parameterized.expand([
@@ -118,7 +119,6 @@ class TestEcScraper(unittest.TestCase):
         json_list: list[json] = ec.scrape_refused_jsons()
         self.assertIsNotNone(json_list, msg="json list is empty")
 
-
     @parameterized.expand([
         ["h944"],               # human use active
         ["h313"],               # human use withdrawn
@@ -132,7 +132,6 @@ class TestEcScraper(unittest.TestCase):
             f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm")
         json_list: list[json] = ec.get_ec_json_objects(html_active)
         self.assertIsNotNone(json_list, msg="json list is empty")
-
 
     def test_scrape_medicine_page(self):
         url = 'https://ec.europa.eu/health/documents/community-register/html/h273.htm'
@@ -171,7 +170,6 @@ class TestEcScraper(unittest.TestCase):
         self.assertEqual(decision, dec_result, "incorrect decision result")
         self.assertEqual(annex, anx_result, "incorrect annex result")
 
-
     @parameterized.expand(
         [
             [
@@ -196,7 +194,6 @@ class TestEcScraper(unittest.TestCase):
     def test_determine_current_aut_type(self, last_decision_types, exp_output):
         output = ec.determine_current_aut_type(last_decision_types)
         self.assertEqual(output, exp_output, msg="decision type is wrong")
-
 
     @parameterized.expand([
         [
@@ -233,7 +230,6 @@ class TestEcScraper(unittest.TestCase):
     def test_determine_initial_aut_type(self, year, is_exceptional, is_conditional, exp_output):
         output = ec.determine_initial_aut_type(year, is_exceptional, is_conditional)
         self.assertEqual(output, exp_output, msg="output is not as expected")
-
 
     @parameterized.expand([
         [
