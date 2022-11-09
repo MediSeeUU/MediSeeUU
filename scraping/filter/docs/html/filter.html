@@ -58,7 +58,26 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">filter</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">filter package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#filter-pdf-filter-module">filter.pdf_filter module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-filter.pdf_filter">filter.pdf_filter module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.check_annex"><code class="docutils literal notranslate"><span class="pre">check_annex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.check_decision"><code class="docutils literal notranslate"><span class="pre">check_decision()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.check_epar"><code class="docutils literal notranslate"><span class="pre">check_epar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.check_for_no_text"><code class="docutils literal notranslate"><span class="pre">check_for_no_text()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.check_pdf_type"><code class="docutils literal notranslate"><span class="pre">check_pdf_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.check_procedural"><code class="docutils literal notranslate"><span class="pre">check_procedural()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.check_readable"><code class="docutils literal notranslate"><span class="pre">check_readable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.check_scientific"><code class="docutils literal notranslate"><span class="pre">check_scientific()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.error_line"><code class="docutils literal notranslate"><span class="pre">error_line()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.file_type_check"><code class="docutils literal notranslate"><span class="pre">file_type_check()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.filter_all_pdfs"><code class="docutils literal notranslate"><span class="pre">filter_all_pdfs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.filter_folder"><code class="docutils literal notranslate"><span class="pre">filter_folder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.filter_pdf"><code class="docutils literal notranslate"><span class="pre">filter_pdf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.get_brand_name"><code class="docutils literal notranslate"><span class="pre">get_brand_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.get_url"><code class="docutils literal notranslate"><span class="pre">get_url()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.get_utf8_line"><code class="docutils literal notranslate"><span class="pre">get_utf8_line()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filter.pdf_filter.safe_remove"><code class="docutils literal notranslate"><span class="pre">safe_remove()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#module-filter">Module contents</a></li>
 </ul>
 </li>
@@ -96,8 +115,317 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="filter-pdf-filter-module">
-<h2>filter.pdf_filter module<a class="headerlink" href="#filter-pdf-filter-module" title="Permalink to this heading"></a></h2>
+<section id="module-filter.pdf_filter">
+<span id="filter-pdf-filter-module"></span><h2>filter.pdf_filter module<a class="headerlink" href="#module-filter.pdf_filter" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.check_annex">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">check_annex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#filter.pdf_filter.check_annex" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if it is an annex file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – filename of supposed annex file to check</p></li>
+<li><p><strong>file_path</strong> (<em>str</em>) – path of annex file to check</p></li>
+<li><p><strong>pdf</strong> (<em>fitz.Document</em>) – pdf of annex file to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>&#64;wrong_doctype if it is an annex file, empty string otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.check_decision">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">check_decision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#filter.pdf_filter.check_decision" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the file is a decision file
+:param filename: filename of the supposed decision file
+:type filename: str
+:param file_path: path to the decision file
+:type file_path: str
+:param pdf: PDF file to check
+:type pdf: fitz.Document</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>“&#64;wrong_doctype” if the file is not a decision file, otherwise empty string</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.check_epar">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">check_epar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#filter.pdf_filter.check_epar" title="Permalink to this definition"></a></dt>
+<dd><p>Check if it is an EPAR file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – filename of the supposed EPAR file to check</p></li>
+<li><p><strong>file_path</strong> (<em>str</em>) – path to the EPAR file</p></li>
+<li><p><strong>pdf</strong> (<em>fitz.Document</em>) – PDF file to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>&#64;wrong_doctype if it is an EPAR file, empty string otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.check_for_no_text">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">check_for_no_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#filter.pdf_filter.check_for_no_text" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pdf</strong> (<em>fitz.Document</em>) – PDF file to check whether it is text-free</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if pdf is text-free, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.check_pdf_type">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">check_pdf_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">file_path:</span> <span class="pre">str,</span> <span class="pre">filename:</span> <span class="pre">str,</span> <span class="pre">pdf:</span> <span class="pre">~fitz.fitz.Document,</span> <span class="pre">texts:</span> <span class="pre">[&lt;class</span> <span class="pre">'str'&gt;]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#filter.pdf_filter.check_pdf_type" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the file is of the correct type - helper function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – filename of the file to check</p></li>
+<li><p><strong>file_path</strong> (<em>str</em>) – path to the file</p></li>
+<li><p><strong>pdf</strong> (<em>fitz.Document</em>) – PDF file to check</p></li>
+<li><p><strong>texts</strong> (<em>list</em>) – check if any of these strings is in PDF</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>&#64;wrong_doctype if the file has the wrong type, empty string otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.check_procedural">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">check_procedural</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#filter.pdf_filter.check_procedural" title="Permalink to this definition"></a></dt>
+<dd><p>Check if it is a procedural steps file (from EPAR)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – filename of supposed procedural steps pdf to check</p></li>
+<li><p><strong>file_path</strong> (<em>str</em>) – path to the file to check</p></li>
+<li><p><strong>pdf</strong> (<em>fitz.Document</em>) – pdf to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>&#64;wrong_doctype if it is a procedural steps file, empty string otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.check_readable">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">check_readable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#filter.pdf_filter.check_readable" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pdf</strong> (<em>fitz.Document</em>) – PDF file to check</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the PDF file is readable</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.check_scientific">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">check_scientific</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#filter.pdf_filter.check_scientific" title="Permalink to this definition"></a></dt>
+<dd><p>Check if it is a scientific discussion file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – filename of the supposed scientific discussion file to check</p></li>
+<li><p><strong>file_path</strong> (<em>str</em>) – path to the scientific discussion file</p></li>
+<li><p><strong>pdf</strong> (<em>fitz.Document</em>) – PDF file to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>&#64;wrong_doctype if it is a scientific discussion file, empty string otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.error_line">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">error_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#filter.pdf_filter.error_line" title="Permalink to this definition"></a></dt>
+<dd><p>Gives the error line to be written to filter.txt</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – The name of the PDF file</p></li>
+<li><p><strong>error</strong> (<em>str</em>) – The error message of the PDF file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>filename&#64;url&#64;error_type OR filename&#64;url&#64;error_type&#64;product_number&#64;brand_name for decision files</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.file_type_check">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">file_type_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#filter.pdf_filter.file_type_check" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if any PDF file is of the right type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – name of the PDF file</p></li>
+<li><p><strong>file_path</strong> (<em>str</em>) – path of the PDF file</p></li>
+<li><p><strong>pdf</strong> (<em>fitz.Document</em>) – PDF document</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>&#64;wrong_doctype if the file has the wrong type, empty string otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.filter_all_pdfs">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">filter_all_pdfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#filter.pdf_filter.filter_all_pdfs" title="Permalink to this definition"></a></dt>
+<dd><p>Go through all PDF files in the directory and remove incorrect PDF files
+Saves the names of the filtered PDF files with the error type [corrupt, html, unknown, wrong_doctype]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>directory</strong> (<em>str</em>) – folder with all medicine folders to filter</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.filter_folder">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">filter_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">[&lt;class</span> <span class="pre">'str'&gt;]</span></span></span><a class="headerlink" href="#filter.pdf_filter.filter_folder" title="Permalink to this definition"></a></dt>
+<dd><p>Filters a medicine folder containing PDF files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>folder</strong> (<em>str</em>) – name of the folder to filter</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PDF names with error types for the folder</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.filter_pdf">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">filter_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#filter.pdf_filter.filter_pdf" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the PDF is readable, or gives an error
+Deletes PDF files with an error and returns the filename as well as the error in a string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – The name of the PDF file</p></li>
+<li><p><strong>data_dir</strong> (<em>str</em>) – The directory where the PDF is stored</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference external" href="mailto:filename&#37;&#52;&#48;error_type">filename<span>&#64;</span>error_type</a></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.get_brand_name">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">get_brand_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#filter.pdf_filter.get_brand_name" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – The name of the PDF file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Brand name of the EC decision file</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.get_url">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">get_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#filter.pdf_filter.get_url" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieve the URL for a given filename</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – The name of the PDF file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>url of the filename</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.get_utf8_line">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">get_utf8_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#filter.pdf_filter.get_utf8_line" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the first line of the file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – Path of the file to read</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>first line of the file</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="filter.pdf_filter.safe_remove">
+<span class="sig-prename descclassname"><span class="pre">filter.pdf_filter.</span></span><span class="sig-name descname"><span class="pre">safe_remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#filter.pdf_filter.safe_remove" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – Path of the file to remove</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-filter">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-filter" title="Permalink to this heading"></a></h2>
