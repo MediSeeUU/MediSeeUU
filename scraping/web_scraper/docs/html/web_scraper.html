@@ -55,7 +55,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_pdf_from_url"><code class="docutils literal notranslate"><span class="pre">download_pdf_from_url()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_pdfs_ec"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ec()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_pdfs_ema"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ema()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.urls_file"><code class="docutils literal notranslate"><span class="pre">urls_file</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.ec_scraper">web_scraper.ec_scraper module</a><ul>
@@ -164,17 +163,39 @@
 <span id="web-scraper-download-module"></span><h2>web_scraper.download module<a class="headerlink" href="#module-web_scraper.download" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.download_all">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_jsonhelper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JsonHelper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel_download</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_all" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urls_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JsonHelper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel_download</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_all" title="Permalink to this definition"></a></dt>
+<dd><p>Downloads all files for all medicines. Can be done parallel or sequential.
+First it reads the CSV files, and then calls download_medicine_files function for all medicines.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_filepath</strong> (<em>str</em>) – the path to the data folder</p></li>
+<li><p><strong>urls_dict</strong> (<a class="reference internal" href="#web_scraper.json_helper.JsonHelper" title="web_scraper.json_helper.JsonHelper"><em>json_helper.JsonHelper</em></a>) – The dictionary containing the urls of all medicine files</p></li>
+<li><p><strong>parallel_download</strong> (<em>bool</em>) – If this boolean is set to True, the files will be downloaded parallel</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.download_medicine_files">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_medicine_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_medicine_files" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_medicine_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'../data'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_medicine_files" title="Permalink to this definition"></a></dt>
+<dd><p>Downloads all the pdf files that belong to a medicine.
+Logs successful downloads and also logs if not all files could be downloaded for a specific medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_n</strong> (<em>str</em>) – The EU number of the medicine where we want to download the files of</p></li>
+<li><p><strong>url_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>list</em><em>[</em><em>str</em><em>]</em><em>]</em>) – the dictionary containing all the urls of a specific medicine</p></li>
+<li><p><strong>data_path</strong> (<em>str</em>) – The path to the data folder</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.download_pdf_from_url">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_pdf_from_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_pdf_from_url" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_pdf_from_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_pdf_from_url" title="Permalink to this definition"></a></dt>
 <dd><p>Downloads a PDF file given an url. It also gives the file a specific name based on the input.
 The file will be downloaded to the corresponding EU number folder.</p>
 <dl class="field-list simple">
@@ -183,6 +204,7 @@ The file will be downloaded to the corresponding EU number folder.</p>
 <li><p><strong>url</strong> (<em>str</em>) – the url towards the page where the pdf file is found</p></li>
 <li><p><strong>eu_num</strong> (<em>str</em>) – the EU number of the medicine where the pdf belongs to, also used to locate correct folder</p></li>
 <li><p><strong>filename_elements</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – list containing the filename elements: human/orphan, active/withdrawn, pdf type and file_index</p></li>
+<li><p><strong>data_path</strong> (<em>str</em>) – The path to the data folder</p></li>
 </ul>
 </dd>
 </dl>
@@ -190,18 +212,43 @@ The file will be downloaded to the corresponding EU number folder.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.download_pdfs_ec">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_pdfs_ec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_urls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_pdfs_ec" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_pdfs_ec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_urls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_pdfs_ec" title="Permalink to this definition"></a></dt>
+<dd><p>Downloads the pdfs of the EC website files for a specific medicine and a specific file type (decision or annex)
+It evaluates the string in the pdf_url_dict to a list of urls which then can be used for downloading with the
+download_pdf_from_url function.
+The filename_elements used for structuring the filename are also specified in this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_num</strong> (<em>str</em>) – The EU number of the medicine where the files should be downloaded for.</p></li>
+<li><p><strong>pdf_type</strong> (<em>str</em>) – The type of pdf: decision or annex</p></li>
+<li><p><strong>pdf_urls</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – The list containing the urls to the pdf files.</p></li>
+<li><p><strong>med_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>,</em><em>str</em><em>]</em>) – The dictionary containing the attributes of the medicine. Used for structuring the filename</p></li>
+<li><p><strong>data_path</strong> (<em>str</em>) – The path to the data folder</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.download_pdfs_ema">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_pdfs_ema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_pdfs_ema" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="web_scraper.download.urls_file">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">urls_file</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">JsonHelper</span></em><a class="headerlink" href="#web_scraper.download.urls_file" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_pdfs_ema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_pdfs_ema" title="Permalink to this definition"></a></dt>
+<dd><p>Downloads the pdfs of the EMA website files for a specific medicine.
+It gets the url from the epar dictionary which is used for downloading with the download_pdf_from_url function.
+The filename_elements used for structuring the filename are also specified in this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_num</strong> (<em>str</em>) – The EU number of the medicine where the files should be downloaded for.</p></li>
+<li><p><strong>pdf_type</strong> (<em>str</em>) – The type of pdf, epar or omar</p></li>
+<li><p><strong>pdf_url</strong> (<em>str</em>) – </p></li>
+<li><p><strong>med_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>,</em><em>str</em><em>]</em>) – The dictionary containing the attributes of the medicine.
+Used for structuring the filename</p></li>
+<li><p><strong>data_path</strong> (<em>str</em>) – The path to the data folder</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-web_scraper.ec_scraper">
@@ -580,7 +627,7 @@ and a link to the OMAR document if it exists</p>
 <span id="web-scraper-filter-retry-module"></span><h2>web_scraper.filter_retry module<a class="headerlink" href="#module-web_scraper.filter_retry" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.filter_retry.retry_all">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.filter_retry.</span></span><span class="sig-name descname"><span class="pre">retry_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urls_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.filter_retry.retry_all" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.filter_retry.</span></span><span class="sig-name descname"><span class="pre">retry_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urls_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'../../data'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.filter_retry.retry_all" title="Permalink to this definition"></a></dt>
 <dd><p>For every line in filter.txt, it scrapes the urls again.
 It also calls the download function for the specific file again</p>
 <dl class="field-list simple">
@@ -588,10 +635,8 @@ It also calls the download function for the specific file again</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filter_path</strong> (<em>str</em>) – path to filter file</p></li>
 <li><p><strong>urls_file</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>list</em><em>[</em><em>str</em><em>]</em><em>]</em><em>] </em><em>| </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>) – the dictionary with all the urls</p></li>
+<li><p><strong>data_filepath</strong> (<em>str</em>) – the path to the data folder</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -599,30 +644,25 @@ It also calls the download function for the specific file again</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.filter_retry.retry_download">
 <span class="sig-prename descclassname"><span class="pre">web_scraper.filter_retry.</span></span><span class="sig-name descname"><span class="pre">retry_download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.filter_retry.retry_download" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>eu_n</strong> (<em>str</em>) – eu number used for calling the download function</p></li>
-<li><p><strong>filename_elements</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – filename elements, used as parameter in the download function</p></li>
-<li><p><strong>url_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>list</em><em>[</em><em>str</em><em>]</em><em>] </em><em>| </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – dictionary that contains the url where to download from</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
+<dd><p>Calls the download function for a specific file
+:param eu_n: eu number used for calling the download function
+:type eu_n: str
+:param filename_elements: filename elements, used as parameter in the download function
+:type filename_elements: list[str]
+:param url_dict: dictionary that contains the url where to download from
+:type url_dict: dict[str, list[str]] | dict[str, str]</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.filter_retry.run_filter">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.filter_retry.</span></span><span class="sig-name descname"><span class="pre">run_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.filter_retry.run_filter" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.filter_retry.</span></span><span class="sig-name descname"><span class="pre">run_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'../../data'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.filter_retry.run_filter" title="Permalink to this definition"></a></dt>
 <dd><p>calls filter and runs retry function</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – Number of times filter is called</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>None</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – Number of times filter is called</p></li>
+<li><p><strong>data_filepath</strong> (<em>str</em><em>, </em><em>optional</em>) – the path to the data folder. Defaults to “../../data”</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -643,7 +683,6 @@ It also calls the download function for the specific file again</p>
 <dd class="field-odd"><p><strong>new_dict</strong> – Dictionary used as second dictionary in merge_nested_dict</p>
 </dd>
 </dl>
-<p>Returns: None</p>
 </dd></dl>
 
 <dl class="py method">
@@ -680,7 +719,6 @@ from the old_dict</p></li>
 <dd class="field-odd"><p><strong>new_dict</strong> – Dictionary to replace the existing dictionary</p>
 </dd>
 </dl>
-<p>Returns: None</p>
 </dd></dl>
 
 <dl class="py method">
@@ -688,7 +726,6 @@ from the old_dict</p></li>
 <span class="sig-name descname"><span class="pre">save_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.json_helper.JsonHelper.save_dict" title="Permalink to this definition"></a></dt>
 <dd><p>Save the dictionary to disk.
 Meant to be run when no more changes are expected to be made.</p>
-<p>Returns: None</p>
 </dd></dl>
 
 </dd></dl>
