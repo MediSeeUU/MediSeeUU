@@ -1,6 +1,5 @@
 # PDF Module
 PyMuPDF
-pytest
 joblib
 python-dateutil
 
@@ -9,3 +8,13 @@ tqdm
 regex
 requests
 bs4
+
+# DB Communicator
+flask
+requests
+
+# Testing
+pytest
+parameterized
+nose
+mock

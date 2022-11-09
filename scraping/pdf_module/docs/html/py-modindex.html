@@ -30,18 +30,43 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html">
-            <img src="_static/medisee.svg" class="logo" alt="Logo"/>
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
+
+<a href="../../../../docs/html/README.html">
+  <img src="_static/medisee.svg" class="logo" alt="Logo"/>
+</a>
+
+
+  
+  
+
+
+
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+    <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+      <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+      <ul>
+        <li class="toctree-l1"><a href="../../../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
+        <li class="toctree-l1"><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
+        <li class="toctree-l1 current-module"><a href="index.html">PDF Scraper</a></li>
+        <li class="toctree-l1"><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
+        <li class="toctree-l1"><a href="../../../../scraping/db_uploader/docs/html/index.html">DB Uploader</a></li>
+        <li class="toctree-l1"><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
+        <li class="toctree-l1"><a href="../../../../tests/docs/html/index.html">Tests</a></li>
+      </ul>
+    </div>  
+    
+              <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Algemene functie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#input-output">Input &amp; Output</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#input">Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#overige-belangrijke-punten">Overige belangrijke punten</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Source Code Documentation</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">pdf_module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pdf_module.html">pdf_module package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pdf_module.html#subpackages">Subpackages</a><ul>
@@ -56,7 +81,8 @@
 <li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#module-pdf_module.pdf_scraper.parsers.dec_parse">pdf_module.pdf_scraper.parsers.dec_parse module</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_as"><code class="docutils literal notranslate"><span class="pre">dec_get_as()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_atmp"><code class="docutils literal notranslate"><span class="pre">dec_get_atmp()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn"><code class="docutils literal notranslate"><span class="pre">dec_get_bn()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn_human"><code class="docutils literal notranslate"><span class="pre">dec_get_bn_human()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn_orphan"><code class="docutils literal notranslate"><span class="pre">dec_get_bn_orphan()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_date"><code class="docutils literal notranslate"><span class="pre">dec_get_date()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_decision_type"><code class="docutils literal notranslate"><span class="pre">dec_get_decision_type()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_mah"><code class="docutils literal notranslate"><span class="pre">dec_get_mah()</span></code></a></li>
@@ -93,13 +119,24 @@
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#module-pdf_module.pdf_scraper.parsers.omar_parse">pdf_module.pdf_scraper.parsers.omar_parse module</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse.get_all"><code class="docutils literal notranslate"><span class="pre">get_all()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse.get_alternative_treatments"><code class="docutils literal notranslate"><span class="pre">get_alternative_treatments()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse.get_insufficient_roi"><code class="docutils literal notranslate"><span class="pre">get_insufficient_roi()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse.get_prevalence"><code class="docutils literal notranslate"><span class="pre">get_prevalence()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse.get_significant_benefit"><code class="docutils literal notranslate"><span class="pre">get_significant_benefit()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse.get_xml_name"><code class="docutils literal notranslate"><span class="pre">get_xml_name()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#module-pdf_module.pdf_scraper.parsers.omar_parse_old">pdf_module.pdf_scraper.parsers.omar_parse_old module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_all"><code class="docutils literal notranslate"><span class="pre">get_all()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_alternative_treatments"><code class="docutils literal notranslate"><span class="pre">get_alternative_treatments()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_condition_attributes"><code class="docutils literal notranslate"><span class="pre">get_condition_attributes()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_conditions_number"><code class="docutils literal notranslate"><span class="pre">get_conditions_number()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_correct_condition"><code class="docutils literal notranslate"><span class="pre">get_correct_condition()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_insufficient_roi"><code class="docutils literal notranslate"><span class="pre">get_insufficient_roi()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_prevalence"><code class="docutils literal notranslate"><span class="pre">get_prevalence()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_prevalence_section"><code class="docutils literal notranslate"><span class="pre">get_prevalence_section()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_significant_benefit"><code class="docutils literal notranslate"><span class="pre">get_significant_benefit()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#module-pdf_module.pdf_scraper.parsers">Module contents</a></li>
@@ -116,13 +153,13 @@
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="pdf_module.pdf_scraper.html#module-pdf_module.pdf_scraper.parsed_info_struct">pdf_module.pdf_scraper.parsed_info_struct module</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.parsed_info_struct"><code class="docutils literal notranslate"><span class="pre">parsed_info_struct</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.parsed_info_struct.annexes"><code class="docutils literal notranslate"><span class="pre">parsed_info_struct.annexes</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.parsed_info_struct.decisions"><code class="docutils literal notranslate"><span class="pre">parsed_info_struct.decisions</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.parsed_info_struct.epars"><code class="docutils literal notranslate"><span class="pre">parsed_info_struct.epars</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.parsed_info_struct.eu_number"><code class="docutils literal notranslate"><span class="pre">parsed_info_struct.eu_number</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.parsed_info_struct.omars"><code class="docutils literal notranslate"><span class="pre">parsed_info_struct.omars</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.parsed_info_struct.parse_date"><code class="docutils literal notranslate"><span class="pre">parsed_info_struct.parse_date</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.ParsedInfoStruct"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.ParsedInfoStruct.annexes"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.annexes</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.ParsedInfoStruct.decisions"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.decisions</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.ParsedInfoStruct.epars"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.epars</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.ParsedInfoStruct.eu_number"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.eu_number</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.ParsedInfoStruct.omars"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.omars</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.parsed_info_struct.ParsedInfoStruct.parse_date"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.parse_date</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -166,6 +203,7 @@
 <li class="toctree-l6"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.xml_parsing_utils.section_contains_substring_set"><code class="docutils literal notranslate"><span class="pre">section_contains_substring_set()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.xml_parsing_utils.section_get_paragraph_indices"><code class="docutils literal notranslate"><span class="pre">section_get_paragraph_indices()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.xml_parsing_utils.section_get_paragraph_text"><code class="docutils literal notranslate"><span class="pre">section_get_paragraph_text()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_module.pdf_scraper.html#pdf_module.pdf_scraper.xml_parsing_utils.section_is_table_of_contents"><code class="docutils literal notranslate"><span class="pre">section_is_table_of_contents()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="pdf_module.pdf_scraper.html#module-pdf_module.pdf_scraper.xml_tags">pdf_module.pdf_scraper.xml_tags module</a></li>
@@ -180,6 +218,7 @@
 </ul>
 </li>
 </ul>
+
 
         </div>
       </div>
@@ -260,6 +299,11 @@
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="pdf_module.pdf_scraper.parsers.html#module-pdf_module.pdf_scraper.parsers.omar_parse"><code class="xref">pdf_module.pdf_scraper.parsers.omar_parse</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="pdf_module.pdf_scraper.parsers.html#module-pdf_module.pdf_scraper.parsers.omar_parse_old"><code class="xref">pdf_module.pdf_scraper.parsers.omar_parse_old</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>

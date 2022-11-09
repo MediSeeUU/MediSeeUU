@@ -16,6 +16,8 @@ release = "1.0"
 
 root_doc = "README"
 
+templates_path = ["_templates"]
+
 extensions = [
     "sphinx.ext.intersphinx",
     "myst_parser",
@@ -44,6 +46,7 @@ source_suffix = {
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
+html_theme = "sphinx_rtd_theme"
 html_logo = "_static/medisee.svg"
 html_theme_options = {
     "logo_only": True,

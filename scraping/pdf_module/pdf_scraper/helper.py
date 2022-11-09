@@ -1,5 +1,7 @@
 import datetime
-import dateutil.parser
+import re
+
+import dateutil.parser as dateparser
 
 roman_numbers = {
     "i": "1",
@@ -19,6 +21,7 @@ roman_numbers = {
 months = {
     "january": "01",
     "february": "02",
+    "feb": "02",
     "march": "03",
     "april": "04",
     "may": "05",
@@ -32,6 +35,10 @@ months = {
     "december": "12"
 }
 
+legal_bases = {'article 10.b', 'article 8.3', 'article 10.2', 'article 4.8.3', 'article 10.a', 'article 10b',
+               'article 10c', 'article 10.3', 'article 4.8.2', 'article 10a', 'article 4.8.1', 'article 10.c',
+               'article 4.8', 'article 10.1', 'article 10.4'}
+
 
 def convert_months(date: str) -> str:
     """
@@ -43,6 +50,7 @@ def convert_months(date: str) -> str:
     Returns:
         str: string with month replaces by numeric value
     """
+    date = date.replace("th", "")
     for k in months.keys():
         if k in date:
             date = date.replace(f" {k} ", f"/{months[k]}/")
@@ -97,8 +105,8 @@ def convert_articles(articles: [str]) -> [str]:
                 continue
             else:
                 new_num += c
-        res.append('article ' + new_num)
-    return res
+        res.append('article ' + new_num.strip(".: "))
+    return list(set(res))
 
 
 def get_date(txt: str) -> datetime.datetime:
@@ -114,20 +122,20 @@ def get_date(txt: str) -> datetime.datetime:
     if txt:
         txt = txt.lower()
         try:
-            return dateutil.parser.parse(txt, fuzzy=True)
-        except dateutil.parser._parser.ParserError:
+            return dateparser.parse(txt, fuzzy=True)
+        except dateparser._parser.ParserError:
             pass
         temp_date = txt.split(' ')[0]
         temp_date = convert_roman_numbers(temp_date)
         try:
-            return dateutil.parser.parse(temp_date, fuzzy=True)
-        except dateutil.parser._parser.ParserError:
+            return dateparser.parse(temp_date, fuzzy=True)
+        except dateparser._parser.ParserError:
             pass
 
         try:
             temp_date = convert_months(txt)
-            return dateutil.parser.parse(temp_date, fuzzy=True)
-        except dateutil.parser._parser.ParserError:
+            return dateparser.parse(temp_date, fuzzy=True)
+        except dateparser._parser.ParserError:
             pass
 
     return datetime.datetime(1980, 1, 1, 0, 0)

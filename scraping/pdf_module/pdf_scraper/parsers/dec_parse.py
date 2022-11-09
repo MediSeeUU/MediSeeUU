@@ -5,7 +5,7 @@ import datetime
 import fitz
 import scraping.pdf_module.pdf_scraper.helper as helper
 import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
-import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
+import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
 
 
 # EC Decision document
@@ -13,7 +13,8 @@ import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
 
 # Given a pdf, returns one long string of text
 def get_txt_from_pdf(pdf: fitz.Document) -> str:
-    """Returns the plain text of a fitz pdf, removing all \\n that are present.
+    """
+    Returns the plain text of a fitz pdf, removing all \\n that are present.
 
     Args:
     pdf (fitz.Document): The opened pdf document to extract text from
@@ -26,13 +27,14 @@ def get_txt_from_pdf(pdf: fitz.Document) -> str:
     return txt.replace('\n', '')
 
 
-def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct) -> PIS.parsed_info_struct:
-    """Opens a pdf and adds all respective attributes to the medicine_struct.
+def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStruct) -> pis.ParsedInfoStruct:
+    """
+    Opens a pdf and adds all respective attributes to the medicine_struct.
 
     Args:
         filename (str): filename of file to open
         directory (str): directory of file to open
-        medicine_struct (PIS.parsed_info_struct): struct to add found attributes to
+        medicine_struct (PIS.ParsedInfoStruct): struct to add found attributes to
 
     Returns:
         medicine_struct (PIS.parsed_info_struct): input struct with new variables added
@@ -52,7 +54,8 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_s
 
 # Given a dictionary, fills in all attributes for EC decisions
 def get_all(filename: str, txt: str) -> dict:
-    """based on filename finds all fitting attributes
+    """
+    Based on filename finds all fitting attributes
 
     Args:
         filename (str): filename of opened pdf file
@@ -77,7 +80,8 @@ def get_all(filename: str, txt: str) -> dict:
 
 # The default values before starting a parse.
 def get_default_human_use(filename: str) -> dict:
-    """returns dictionary with default attribute values for human use
+    """
+    Returns dictionary with default attribute values for human use
 
     Args:
         filename (str): filename of pdf
@@ -101,7 +105,8 @@ def get_default_human_use(filename: str) -> dict:
 
 # The default values before starting a parse.
 def get_default_orphan(filename: str) -> dict:
-    """returns dictionary with default attribute values for orphan
+    """
+    Returns dictionary with default attribute values for orphan
 
     Args:
         filename (str): filename of pdf
@@ -121,14 +126,15 @@ def get_default_orphan(filename: str) -> dict:
 
 
 def get_data_human_use(filename: str, txt: str) -> dict:
-    """fills in each attribute in a dictionary for human use
+    """
+    Fills in each attribute in a dictionary for human use
 
     Args:
         filename (str): filename of pdf
         txt (str): plain txt of pdf
 
     Returns:
-        dict: _description_
+        dict: dictionary filled with parsed results
     """
     filedata = get_default_human_use(filename)
     date = dec_get_date(txt)
@@ -138,7 +144,7 @@ def get_data_human_use(filename: str, txt: str) -> dict:
     if isinstance(date, str):
         date = dec_get_date('')
 
-    filedata['eu_brand_name_initial'] = dec_get_bn(txt)
+    filedata['eu_brand_name_initial'] = dec_get_bn_human(txt)
     filedata['active_substance'] = dec_get_as(txt)
     filedata['eu_nas'] = dec_get_nas(txt, date)
     filedata['eu_atmp'] = dec_get_atmp(txt, date)
@@ -150,13 +156,15 @@ def get_data_human_use(filename: str, txt: str) -> dict:
 
 
 def get_data_orphan(filename: str, txt: str) -> dict:
-    """fills in each attribute in a dictionary for orphan
+    """
+    Fills in each attribute in a dictionary for orphan
+
     Args:
         filename (str): filename of pdf
         txt (str): plain txt of pdf
 
     Returns:
-        dict: _description_
+        dict: dictionary filled with parsed results
     """
     filedata = get_default_orphan(filename)
     date = dec_get_date(txt)
@@ -165,10 +173,10 @@ def get_data_orphan(filename: str, txt: str) -> dict:
     # if date was left blank return don't find date dependant attributes.
     if isinstance(date, str):
         date = dec_get_date('')
-    filedata['eu_brand_name_initial'] = dec_get_bn(txt)
+    filedata['eu_brand_name_initial'] = dec_get_bn_orphan(txt)
     filedata['eu_od_initial'] = dec_get_od(txt, date)
     filedata['eu_mah_initial'] = dec_get_mah(txt)
-    filedata['eu_od_comp_date'] = dec_get_od_comp_date()
+    filedata['eu_od_comp_date'] = dec_get_od_comp_date(txt)
     filedata['status'] = 'Parsed'
     return filedata
 
@@ -177,7 +185,8 @@ def get_data_orphan(filename: str, txt: str) -> dict:
 
 
 def dec_get_date(txt: str) -> str | datetime.datetime:
-    """extracts date out of text
+    """
+    Extracts date out of text
 
     Args:
         txt (str): text containing first page of decision document
@@ -211,8 +220,9 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
     return helper.get_date('')
 
 
-def dec_get_bn(txt: str) -> str:
-    """extracts brand name out of decision text
+def dec_get_bn_human(txt: str) -> str:
+    """
+    Extracts brand name out of non-orphan decision text
 
     Args:
         txt (str): plain decision pdf text
@@ -226,9 +236,11 @@ def dec_get_bn(txt: str) -> str:
     # use advanced regex to find brand name
     brand_name_section = re.search(r'"(\w+[\s\w®/.,"]*)\s?[-–]\s?\w+.*"', section)
 
+    # check if regex found name
     if brand_name_section:
         return brand_name_section.group(0)
 
+    # manually try to find name
     if section != '':
         # takes everything before split operator, to remove active substance.
         if ' -' in section:
@@ -246,16 +258,33 @@ def dec_get_bn(txt: str) -> str:
         # no active substance, so return whole name
         return section
 
+    return 'Brand name Not Found'
+
+
+def dec_get_bn_orphan(txt: str) -> str:
+    """
+    Extracts brand name out of orphan decision text
+
+    Args:
+        txt (str): plain decision pdf text
+
+    Returns:
+        str: found brand name or default value
+    """
+    # returns a section containing just the brand name (and potentially the active substance)
+    section = get_name_section(txt)  # TODO: Do something about this, or remove unused var
+
     # for orphan structure
     if len(txt.split('relating to the designation of medicinal product')) > 1:
-        res = txt.split('relating to the designation of medicinal product')[1]
-        if res.split('as an orphan medicinal'):
-            res = res.split('as an orphan medicinal')[0]
-            res = res.replace('"', '')
-            res = res.replace('“', '')
-            res = res.replace('”', '')
-            res.strip()
-            return res
+        res = txt.split('relating to the designation of medicinal product', 1)[1]
+        if 'as an' in res:
+            res = res.split('as an', 1)[0]
+        if 'as  an' in res:
+            res = res.split('as  an', 1)[0]
+        res = res.replace('"', '')
+        res = res.replace('“', '')
+        res = res.replace('”', '')
+        return res.strip()
 
     return 'Brand name Not Found'
 
@@ -282,7 +311,8 @@ def dec_get_as(txt: str) -> str:
 
 
 def dec_get_decision_type(txt: str, date: datetime.datetime) -> str:
-    """extracts decision type out of decision text
+    """
+    Extracts decision type out of decision text
 
     Args:
         txt (str): plain decision pdf text
@@ -308,7 +338,8 @@ def dec_get_decision_type(txt: str, date: datetime.datetime) -> str:
 
 
 def dec_get_mah(txt: str) -> str:
-    """extracts marketholder out of decision text
+    """
+    Extracts marketholder out of decision text
 
     Args:
         txt (str): plain decision pdf text
@@ -347,7 +378,8 @@ def dec_get_mah(txt: str) -> str:
 
 
 def dec_get_od(txt: str, date: datetime.datetime) -> str:
-    """extracts orphan designation out of decision text
+    """
+    Extracts orphan designation out of decision text
 
     Args:
         txt (str): plain decision pdf text
@@ -369,14 +401,16 @@ def dec_get_od(txt: str, date: datetime.datetime) -> str:
 
 
 def dec_get_atmp(txt: str, date: datetime.datetime) -> str | bool:
-    """extracts atmp out of decision text
+    """
+    Extracts ATMP out of decision text
 
     Args:
         txt (str): plain decision pdf text
         date (datetime.datetime): decision date of pdf
 
     Returns:
-        str: found atmp or default value
+        str: found ATMP or default value
+        bool: found result
     """
     # check if there can be a ATMP.
     if date < datetime.datetime(2007, 12, 30):
@@ -393,7 +427,8 @@ def dec_get_atmp(txt: str, date: datetime.datetime) -> str | bool:
 
 
 def dec_get_nas(txt, date) -> str | bool:
-    """extracts NAS out of decision text
+    """
+    Extracts NAS out of decision text
 
     Args:
         txt (str): plain decision pdf text
@@ -412,19 +447,39 @@ def dec_get_nas(txt, date) -> str | bool:
     return False
 
 
-def dec_get_od_comp_date() -> datetime.datetime:
-    """gives default date value
+def dec_get_od_comp_date(txt) -> datetime.datetime:
+    """
+    Gives date of orphan comp from decision files.
+
+     Args:
+        txt (str): plain decision pdf text
 
     Returns:
-        str: default date of get_date
+        datetime.datetime: date found
     """
+    keyword1 = 'opinion'
+    keyword2 = 'Committee for Orphan Medicinal Products'.lower()
+
+    txt = txt.lower()
+    if keyword1 in txt and keyword2 in txt:
+        # get section between keywords
+        section = txt.split(keyword1, 1)[1]
+        section = section.split(keyword2, 1)[0]
+
+        # get section containing the date:
+        if 'drawn' in section:
+            date_txt = section.split('on', 1)[1]
+            date_txt = date_txt.split(',', 1)[0]
+            date_txt = date_txt.split('by the', 1)[0]
+            return helper.get_date(date_txt.strip())
     return helper.get_date('')
 
 
 # HELPERS
 # helper function for finding brand name and active substance.
 def get_name_section(txt: str) -> str:
-    """finds section of decision document containing brand name and active substance
+    """
+    Finds section of decision document containing brand name and active substance
 
     Args:
         txt (str): plain decision pdf text

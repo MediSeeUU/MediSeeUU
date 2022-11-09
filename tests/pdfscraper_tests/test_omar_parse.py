@@ -34,10 +34,12 @@ class TestOmarParse(TestCase):
 
         # Get XML bodies, assuming there are XML files
         for xml_file in xml_files:
-            xml_tree = ET.parse(xml_file)
-            xml_root = xml_tree.getroot()
-            xml_bodies.append(xml_root[1])
-
+            try:
+                xml_tree = ET.parse(xml_file)
+                xml_root = xml_tree.getroot()
+                xml_bodies.append((xml_root[1], xml_file))
+            except ET.ParseError:
+                print("OMAR Test could not parse XML file " + xml_file)
 
     def test_get_prevalence(self):
         """
@@ -56,7 +58,6 @@ class TestOmarParse(TestCase):
 
         self.assertTrue(correct)
 
-
     def test_get_alternative_treatments(self):
         """
         Test getting omar_alternative_treatments
@@ -65,4 +66,3 @@ class TestOmarParse(TestCase):
         """
 
         self.assertTrue(True)
-

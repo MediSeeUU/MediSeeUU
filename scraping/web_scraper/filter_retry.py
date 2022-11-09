@@ -16,20 +16,16 @@ med_type_dict = {"ha": ec_scraper.MedicineType.HUMAN_USE_ACTIVE,
                  "oa": ec_scraper.MedicineType.ORPHAN_ACTIVE,
                  "ow": ec_scraper.MedicineType.ORPHAN_WITHDRAWN}
 
-# path to data. TODO: make sure it gets it from the main
-data_filepath = "../../data"
 log = logging.getLogger("webscraper.filter_retry")
 
 
-def run_filter(n: int):
+def run_filter(n: int, data_filepath: str = "../../data"):
     """
     calls filter and runs retry function
 
     Args:
         n (int): Number of times filter is called
-
-    Returns:
-        None
+        data_filepath (str, optional): the path to the data folder. Defaults to "../../data"
     """
     for i in range(n):
         pdf_filter.filter_all_pdfs(data_filepath)
@@ -37,7 +33,7 @@ def run_filter(n: int):
         retry_all('filter.txt', url_file)
 
 
-def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str]]]):
+def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str]]], data_filepath: str = "../../data"):
     """
     For every line in filter.txt, it scrapes the urls again.
     It also calls the download function for the specific file again
@@ -45,9 +41,7 @@ def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str]]]):
     Args:
         filter_path (str): path to filter file
         urls_file (dict[str, dict[str, list[str]]] | dict[str, dict[str, str]]): the dictionary with all the urls
-
-    Returns:
-        None
+        data_filepath (str): the path to the data folder
     """
     with open(filter_path, "r") as f:
         for line in f:
@@ -63,14 +57,11 @@ def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str]]]):
 
 def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, list[str]]):
     """
-
+    Calls the download function for a specific file
     Args:
         eu_n (str): eu number used for calling the download function
         filename_elements (list[str]): filename elements, used as parameter in the download function
         url_dict (dict[str, list[str]] | dict[str, str]): dictionary that contains the url where to download from
-
-    Returns:
-        None
     """
     url = url_dict[key_dict[filename_elements[2]]]
     if len(filename_elements) == 4:

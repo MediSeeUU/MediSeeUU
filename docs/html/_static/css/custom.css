@@ -1,3 +1,20 @@
+.current-module {
+    background-color: #e3e3e3;
+}
+
+.current-module > a {
+    color: #404040;
+    font-weight: 700;
+}
+
+.current-module > a:hover {
+    background:#fcfcfc;
+}
+
+.wy-side-nav-search {
+    background-color: #e7e7e7;
+}
+
 /* 
 `width:auto` was rendering 0px wide for .svg files
 https://stackoverflow.com/questions/59215996/how-to-add-a-logo-to-my-readthedocs-logo-rendering-at-0px-wide
