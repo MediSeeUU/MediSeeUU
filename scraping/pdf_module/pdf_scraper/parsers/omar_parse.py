@@ -99,7 +99,8 @@ def get_insufficient_roi(bullet_points: list[str]) -> str:
 
 # WIP WIP WIP WIP WIP
 def get_alternative_treatments(bullet_points: list[str]) -> str:
-    """_summary_
+    """
+    _summary_
 
     Args:
         section (ET.Element): _description_
