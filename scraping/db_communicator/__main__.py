@@ -1,4 +1,5 @@
 import json
+import os
 import requests
 import datetime
 # from .app import send_data
@@ -6,16 +7,26 @@ import time
 # import os
 # from .app import
 from scraping.__main__ import db_communicator
-
+import scraping.db_communicator
 
 def main(directory: str):
-    # Read all data, for now use a test file
-    json_file = open('db_communicator/example_data/json_example_file.json')
-    data = json.loads(json_file.read())
-    data = json.dumps(data)
-    print(data)
+    # Read all data
 
-    db_communicator.send_data(data=data)
+
+    for medicine_dir in os.listdir(directory):
+        full_dir = os.path.join(directory, medicine_dir)
+        for file in os.listdir(full_dir):
+            if file.endswith("combined.json"):
+                print(file)
+        # f = os.path.join(directory, medicine_dirs)
+        # if os.path.isfile(f):
+        #     print(f)
+    # json_file = open('db_communicator/example_data/json_example_file.json')
+    # data = json.loads(json_file.read())
+    # data = json.dumps(data)
+    # print(data)
+
+    # db_communicator.send_data(data=data)
     # self.request_token()
     # has_token = receive_token()
     # print(last_retrieval)

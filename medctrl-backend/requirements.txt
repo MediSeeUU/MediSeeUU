@@ -11,3 +11,4 @@ django-rest-knox
 djangorestframework-guardian
 django-import-export
 docutils
+requests
