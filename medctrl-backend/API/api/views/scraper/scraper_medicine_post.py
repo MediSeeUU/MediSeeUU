@@ -51,7 +51,7 @@ class ScraperMedicine(APIView):
 
     Args:
         APIView (rest_framework.views.APIView): The current APIView from where communication handled
-    """    
+    """
 
     # Permission on this endpoint when user can add medicine
     permission_classes = [DjangoModelPermissions]
@@ -128,7 +128,7 @@ class ScraperMedicine(APIView):
         Args:
             data (medicineObject): The new medicine data.
             current (medicineObject): The medicine data that is currently in the database.
-        """        
+        """
         medicine_serializer = MedicineFlexVarUpdateSerializer(current, data=data, partial=True)
 
         # update medicine
@@ -148,7 +148,7 @@ class ScraperMedicine(APIView):
 
         Raises:
             ValueError: Invalid data in data argument
-        """        
+        """
         # initialise serializers for addition
         serializer = MedicineSerializer(current_medicine, data=data, partial=True)
 
@@ -300,7 +300,7 @@ class ScraperMedicine(APIView):
         Raises:
             ValueError: Invalid data in data argument
             ValueError: Data does not exist in the given data argument
-        """        
+        """
         eu_pnumber = data.get("eu_pnumber")
         items = data.get(name)
         model_data = model.objects.filter(eu_pnumber=eu_pnumber).order_by("change_date").first()

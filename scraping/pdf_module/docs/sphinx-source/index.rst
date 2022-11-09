@@ -5,8 +5,15 @@
 
 PDF Scraper Documentation
 =========================
+
+.. toctree::
+   :caption: Readme
+
+   README
+
 .. toctree::
    :maxdepth: 5
+   :caption: Source Code Documentation
 
    modules
    
