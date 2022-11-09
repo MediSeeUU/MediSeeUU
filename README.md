@@ -3,14 +3,14 @@
 ## How to install
 
 Install python 3.10.7.
-All the dependencies for the scraping modules are in the requirements.txt file in the scraping folder. Use pip install -r requirements.txt in the scraping folder to install these dependencies.
+All the dependencies for the scraping modules are in the requirements.txt file in the scraping folder. Use `pip install -r requirements.txt` in the scraping folder to install these dependencies.
 
 ## How to use
 
-##### To test whole program:
+### To test whole program:
 Run the `__main__.py` in the scraping folder next to all the module folders.
 
-##### To test a module:
+### To test a module:
 Comment out all the modules you don’t want to test in the `__main__.py` file.
 
 ## Functionality
