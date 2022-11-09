@@ -16,6 +16,8 @@ release = "1.0"
 
 root_doc = "README"
 
+templates_path = ["_templates"]
+
 extensions = [
     "sphinx.ext.intersphinx",
     "myst_parser",

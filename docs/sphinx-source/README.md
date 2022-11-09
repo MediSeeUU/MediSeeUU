@@ -1,21 +1,32 @@
-# Interactive dashboard to make data on regulation of medicines openly available
+# Scraper and Dashboard to make data on regulation of medicines openly available
 
-Medicine evaluation boards across Europe evaluate medicines for European market approval. The resulting regulatory reports are published on the European Medicines Agency website. Data on these medicine regulatory procedures is collected by a scraper created in a collaboration between Utrecht University regulatory science researchers and the Dutch Medicines Evaluation Board. Visualization of this data can provide valuable insights toward improving the regulatory trajectory. The MedCtrl Scrum team has developed an interactive dashboard allowing rapid visualization of the collected medicine regulatory data. Intuitive controls combined with sharp-cut visualizations offer regulatory scientists direct insight into trends in medicine market authorizations. Continuously updated with data scraped from thousands of publicly available documents, the dashboard is a highly interactive React application backed by an extensible Django REST backend and MySQL database.
+## How to install
 
-## Description
+Install python 3.10.7.
+All the dependencies for the scraping modules are in the requirements.txt file in the scraping folder. Use `pip install -r requirements.txt` in the scraping folder to install these dependencies.
 
-This repository has two significant branches: *development* and *master*. When a contributor has finished their work, the temporary branch will be pushed into the development branch. Once the development branch is stable, it will be pushed into the master branch. When the master branch is updated, the new changes will be deployed on the environment where the program is installed.
+## How to use
 
-The repository consists of four crucial folders, each folder has a readme with more explanation:
-* *medctrl-backend*, with the backend API and database code, including documentation
-* *medctrl-frontend*, with the code for all node modules, pages, public files, and mocks, including unit tests and documentation
-* *medctrl-scraper*, with the scraper including supplementary files, in this folder a file can be found with an example how to connect the scraper to the backend
-* *selenium*, where the system tests are defined and handled
+### To test whole program:
+Run the `__main__.py` in the scraping folder next to all the module folders.
+
+### To test a module:
+Comment out all the modules you don’t want to test in the `__main__.py` file.
+
+## Functionality
+
+The program delivered creates the discussed folder structure and fills it with pdf, xml and json files.
+
+Currently the program has most of its functionality within the web scraper, filter, xml converter and pdf scraper modules. This means that all files up until pdf_data.json from the diagram below are made. 
+
+Combiner is still a work in progress and will not create a json file containing useful information. The database communicator has functionality built in but will not communicate with the back-end since no useful data is being generated from the combiner module.
+
+## Architecture Diagram
+
+![alt text](_static/architecture_diagram.svg "Architecture Diagram")
 
 ## Copyright statement
 
 This program has been developed by students from the bachelor Computer Science at Utrecht University within the Software Project course.
 
 © Copyright Utrecht University (Department of Information and Computing Sciences)
-
-{py:mod}`api`
