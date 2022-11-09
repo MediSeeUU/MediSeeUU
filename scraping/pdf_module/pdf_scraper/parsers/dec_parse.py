@@ -158,6 +158,7 @@ def get_data_human_use(filename: str, txt: str) -> dict:
 def get_data_orphan(filename: str, txt: str) -> dict:
     """
     Fills in each attribute in a dictionary for orphan
+
     Args:
         filename (str): filename of pdf
         txt (str): plain txt of pdf
@@ -310,7 +311,8 @@ def dec_get_as(txt: str) -> str:
 
 
 def dec_get_decision_type(txt: str, date: datetime.datetime) -> str:
-    """extracts decision type out of decision text
+    """
+    Extracts decision type out of decision text
 
     Args:
         txt (str): plain decision pdf text
@@ -336,7 +338,8 @@ def dec_get_decision_type(txt: str, date: datetime.datetime) -> str:
 
 
 def dec_get_mah(txt: str) -> str:
-    """extracts marketholder out of decision text
+    """
+    Extracts marketholder out of decision text
 
     Args:
         txt (str): plain decision pdf text
@@ -375,7 +378,8 @@ def dec_get_mah(txt: str) -> str:
 
 
 def dec_get_od(txt: str, date: datetime.datetime) -> str:
-    """extracts orphan designation out of decision text
+    """
+    Extracts orphan designation out of decision text
 
     Args:
         txt (str): plain decision pdf text
@@ -397,7 +401,8 @@ def dec_get_od(txt: str, date: datetime.datetime) -> str:
 
 
 def dec_get_atmp(txt: str, date: datetime.datetime) -> str | bool:
-    """extracts ATMP out of decision text
+    """
+    Extracts ATMP out of decision text
 
     Args:
         txt (str): plain decision pdf text
