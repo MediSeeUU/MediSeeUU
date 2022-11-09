@@ -130,8 +130,7 @@ def download_all(data_filepath: str, urls_dict: json_helper.JsonHelper, parallel
     with tqdm_logging.logging_redirect_tqdm():
         if parallel_download:
             tqdm_concurrent.thread_map(download_medicine_files,
-                                       urls_dict.local_dict.keys(),
-                                       urls_dict.local_dict.values(), max_workers=12)
+                                       urls_dict.local_dict.values(), max_workers=24)
 
         else:
             for eu_n, urls_eu_n_dict in tqdm.tqdm(urls_dict.local_dict.items()):
