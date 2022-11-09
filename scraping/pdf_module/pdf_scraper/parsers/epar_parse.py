@@ -391,7 +391,7 @@ def get_corapp(xml: ET.Element) -> str:
                 return corapporteur
         # Find co-rapporteur after "co-rapporteur:"
         regex_str_2 = r"co-rapporteur:[\s\w\.]*"
-        if re.search(regex_str_2, txt) and not found:
+        if re.search(regex_str_2, txt):
             corapporteur = get_rapp_after(regex_str_2, txt, 15)
             if corapporteur == "n" or "n/a" in corapporteur:
                 return "no_co-rapporteur"

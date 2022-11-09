@@ -180,6 +180,7 @@ class TestEparParse(TestCase):
                 self.fail("Co-rapporteur is empty")
             if output != "no_co-rapporteur" and output != "not_easily_scrapable":
                 found_count += 1
+                print(output)
                 # Check if co-rapporteur name is of reasonable length
                 self.assertGreater(len(output), 2)
                 self.assertGreater(40, len(output))
