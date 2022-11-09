@@ -1,0 +1,86 @@
+{
+        "data": [
+            {
+                "override": false,
+                "eu_pnumber": "13",
+                "active_substance": "testsubstance",
+                "eu_nas": true,
+                "ema_procedure_start_initial": "2019-01-28",
+                "chmp_opinion_date": "2019-02-28",
+                "eu_aut_date": "2019-03-28",
+                "eu_legal_basis": ["article 4.8"],
+                "ema_url": "https://ema.com",
+                "ec_url": "https://ec.com",
+                "ema_number": "23",
+                "eu_med_type": "test_type",
+                "eu_atmp": False,
+                "aut_url": "https://aut.com",
+                "smpc_url": "https://smpc.com",
+                "epar_url": "https://epar.com",
+                "atc_code": "atccode",
+                "ema_number_check": True,
+                "ema_rapp": "Germany",
+                "ema_corapp": "France",
+                "eu_accel_assess_g": false,
+                "eu_accel_assess_m": true,
+                "assess_time_days_total": 100,
+                "assess_time_days_active": 80,
+                "assess_time_days_cstop": 20,
+                "ec_decision_time_days": 10,
+                "ema_reexamination": true,
+                "eu_referral": false,
+                "eu_suspension": false,
+                "omar_url": "https://omar.com",
+                "odwar_url": "https://odwar.com",
+                "eu_od_number": "EU/od_number",
+                "ema_od_number": "EMA/od_number",
+                "eu_od_con": "test eu od con",
+                "eu_od_date": "2018-09-01",
+                "eu_od_pnumber": "1 million",
+                "eu_od_sponsor": "test eu od sponsor",
+                "eu_od_comp_date": "2018-09-02",
+                "eu_aut_type": [
+                    {
+                        "eu_aut_type": "CONDITIONAL",
+                        "change_date": "2019-05-28"
+                    }
+                ],
+                "eu_aut_status": [
+                    {
+                        "eu_aut_status": "ACTIVE",
+                        "change_date": "2019-06-28"
+                    }
+                ],
+                "eu_brand_name": [
+                    {
+                        "eu_brand_name": "brandname",
+                        "change_date": "2019-07-28"
+                    }
+                ],
+                "eu_od": [
+                    {
+                        "eu_od": true,
+                        "change_date": "2019-08-28"
+                    }
+                ],
+                "eu_prime": [
+                    {
+                        "eu_prime": false,
+                        "change_date": "2019-09-28"
+                    }
+                ],
+                "eu_mah": [
+                    {
+                        "eu_mah": "eu_mahtest",
+                        "change_date": "2019-10-28"
+                    }
+                ],
+                "eu_orphan_con": [
+                    {
+                        "eu_orphan_con": "Zynteglo",
+                        "change_date": "2019-12-28"
+                    }
+                ]
+            }
+        ]
+    }

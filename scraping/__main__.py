@@ -2,19 +2,6 @@ import sys
 import os.path as path
 import os
 
-<<<<<<< Updated upstream
-import web_scraper.__main__ as web_scraper
-import pdf_module.pdf_scraper.__main__ as pdf_scraper
-import combiner.__main__ as combiner
-<<<<<<< Updated upstream
-from db_communicator import DbCommunicator
-import db_communicator.__main__ as db_communicator_main
-
-# Create static db_communicator
-db_communicator = DbCommunicator()
-=======
-import db_uploader.__main__ as db_uploader
-=======
 # import web_scraper.__main__ as web_scraper
 # import pdf_module.pdf_scraper.__main__ as pdf_scraper
 # import combiner.__main__ as combiner
@@ -25,8 +12,6 @@ import db_communicator.__main__ as db_communicator_main
 # POSSIBLE ERROR: the api key could be overwritten every import
 api_key = ''
 db_communicator = DbCommunicator()
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
 
 def main():
