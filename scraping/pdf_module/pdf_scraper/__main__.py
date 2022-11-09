@@ -1,4 +1,4 @@
-import scraping.pdf_module.pdf_scraper.parsedinfostruct as pis
+import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
 from os import listdir
 import os.path as path
 import json

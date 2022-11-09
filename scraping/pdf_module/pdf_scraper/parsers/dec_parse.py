@@ -5,7 +5,7 @@ import datetime
 import fitz
 import scraping.pdf_module.pdf_scraper.helper as helper
 import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
-import scraping.pdf_module.pdf_scraper.parsedinfostruct as PIS
+import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
 
 
 # EC Decision document
@@ -27,7 +27,7 @@ def get_txt_from_pdf(pdf: fitz.Document) -> str:
     return txt.replace('\n', '')
 
 
-def parse_file(filename: str, directory: str, medicine_struct: PIS.ParsedInfoStruct) -> PIS.ParsedInfoStruct:
+def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStruct) -> pis.ParsedInfoStruct:
     """
     Opens a pdf and adds all respective attributes to the medicine_struct.
 

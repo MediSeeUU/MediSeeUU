@@ -63,9 +63,9 @@ class TestAnnexParse(TestCase):
             # test for attribute values
             if file_attributes["is_initial"]:
                 incorrect_value |= "specific obligation" in pdf_file and authorization_type != "exceptional or " \
-                                                                                               "conditional "
+                                                                                               "conditional"
                 incorrect_value |= "specific obligations" in pdf_file and authorization_type != "exceptional or " \
-                                                                                                "conditional "
+                                                                                                "conditional"
                 incorrect_value |= "conditional approval" in pdf_file and authorization_type != "conditional"
                 incorrect_value |= "standard approval" in pdf_file and authorization_type != "standard"
 
