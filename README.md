@@ -1,5 +1,7 @@
 # Scraper and Dashboard to make data on regulation of medicines openly available
 
+[Documentation can be viewed online here](https://mediseeuu.github.io/MediSeeUU/)
+
 ## How to install
 
 Install python 3.10.7.
