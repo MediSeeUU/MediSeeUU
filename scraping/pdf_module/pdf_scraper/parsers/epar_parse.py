@@ -265,7 +265,7 @@ def get_rapp(xml: ET.Element) -> str:
                 rapporteur += txt
                 rapporteur = clean_rapporteur(rapporteur)
             if len(rapporteur) >= 4:
-                return rapporteur[:39]
+                return rapporteur
         # Find rapporteur after "rapporteur appointed by the chmp was"
         regex_str_3 = r"rapporteur appointed by the chmp was[\s\S]+"
         if re.findall(regex_str_3, txt):
@@ -273,13 +273,13 @@ def get_rapp(xml: ET.Element) -> str:
             if temp_rapp != "rapporteur" and temp_rapp:
                 return temp_rapp
         # Find rapporteur after "rapporteur:"
-        regex_str_4 = r"rapporteur:[\s\w\.]+"
+        regex_str_4 = r"rapporteur:[\s\w\.]*"
         if re.search(regex_str_4, txt) and not found:
             rapporteur = get_rapp_after(regex_str_4, txt, 12)
             if len(rapporteur) < 4:
                 found = True
             else:
-                return rapporteur[:39]
+                return rapporteur
     for elem in xml.iter():
         txt = str(elem.text)
         if "rapporteur" in txt and "co-rapporteur" not in txt:
@@ -353,7 +353,7 @@ def clean_rapporteur(rapporteur: str) -> str:
         rapporteur = rapporteur.split("  ")[0].strip()
     if rapporteur == "None":
         return ''
-    return rapporteur
+    return rapporteur.strip()
 
 
 def get_corapp(xml: ET.Element) -> str:
@@ -404,7 +404,7 @@ def get_corapp(xml: ET.Element) -> str:
             found = True
     for elem in xml.iter():
         txt = str(elem.text)
-        if "co-rapporteur" in txt:
+        if "co-rapporteur" in txt or "corraporteur" in txt:
             return "not_easily_scrapable"
     return "no_co-rapporteur"
 

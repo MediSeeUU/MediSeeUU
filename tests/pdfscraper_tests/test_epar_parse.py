@@ -80,7 +80,7 @@ class TestEparParse(TestCase):
                 print("Found but not scrapable: " + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 80)
+        self.assertGreater(percentage_found, 98)
 
     def check_date(self, day: str, month: str, year: str):
         """
@@ -124,7 +124,7 @@ class TestEparParse(TestCase):
                 print("Found but not scrapable: " + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 90)
+        self.assertGreater(percentage_found, 97)
 
     def test_get_prime(self):
         """
@@ -153,7 +153,10 @@ class TestEparParse(TestCase):
             output = epar_parse.get_rapp(xml_body)
             if not output:
                 self.fail("Rapporteur is empty")
-            if output != "no_rapporteur" and output != "not_easily_scrapable":
+            # No rapporteur present in file, do not count as not scraped
+            elif output == "no_rapporteur":
+                found_count += 1
+            elif output != "no_rapporteur" and output != "not_easily_scrapable":
                 found_count += 1
                 # Check if rapporteur name is of reasonable length
                 self.assertGreater(len(output), 2)
@@ -166,7 +169,7 @@ class TestEparParse(TestCase):
                 print("Found but not scrapable: " + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 75)
+        self.assertGreater(percentage_found, 97)
 
     def test_get_corapp(self):
         """
@@ -178,9 +181,11 @@ class TestEparParse(TestCase):
             output = epar_parse.get_corapp(xml_body)
             if not output:
                 self.fail("Co-rapporteur is empty")
-            if output != "no_co-rapporteur" and output != "not_easily_scrapable":
+            # No rapporteur present in file, do not count as not scraped
+            elif output == "no_co-rapporteur":
                 found_count += 1
-                print(output)
+            elif output != "not_easily_scrapable":
+                found_count += 1
                 # Check if co-rapporteur name is of reasonable length
                 self.assertGreater(len(output), 2)
                 self.assertGreater(40, len(output))
@@ -193,7 +198,7 @@ class TestEparParse(TestCase):
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         # There aren't a lot of co-rapporteurs, just to make sure the function keeps working correctly
-        self.assertGreater(percentage_found, 70)
+        self.assertGreater(percentage_found, 98)
 
     def test_get_reexamination(self):
         """
