@@ -118,8 +118,21 @@ class TestEcScraper(unittest.TestCase):
         json_list: list[json] = ec.scrape_refused_jsons()
         self.assertIsNotNone(json_list, msg="json list is empty")
 
-    def test_get_ec_json_objects(self):
-        self.fail()
+
+    @parameterized.expand([
+        ["h944"],               # human use active
+        ["h313"],               # human use withdrawn
+        ["ho24765"],            # human use refused
+        ["o1384"],              # orphan active
+        ["o200"],               # orphan withdrawn
+        ["ho26270"]             # orphan refused
+    ])
+    def test_get_ec_json_objects(self, eu_num_short):
+        html_active = ec.get_ec_html(
+            f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm")
+        json_list: list[json] = ec.get_ec_json_objects(html_active)
+        self.assertIsNotNone(json_list, msg="json list is empty")
+
 
     def test_scrape_medicine_page(self):
         url = 'https://ec.europa.eu/health/documents/community-register/html/h273.htm'
@@ -158,14 +171,115 @@ class TestEcScraper(unittest.TestCase):
         self.assertEqual(decision, dec_result, "incorrect decision result")
         self.assertEqual(annex, anx_result, "incorrect annex result")
 
-    def test_determine_current_aut_type(self):
-        self.fail()
 
-    def test_determine_aut_type(self):
-        self.fail()
+    @parameterized.expand(
+        [
+            [
+                [],
+                "standard"
+            ],
+            [
+                ["Annual Renewal"],
+                "conditional"
+            ],
+            [
+                ["Annual Reassessment"],
+                "exceptional"
+            ],
+            [
+                ["something else",
+                 "bla bla"],
+                "standard"
+            ]
+        ]
+    )
+    def test_determine_current_aut_type(self, last_decision_types, exp_output):
+        output = ec.determine_current_aut_type(last_decision_types)
+        self.assertEqual(output, exp_output, msg="decision type is wrong")
 
-    def test_format_ema_number(self):
-        self.fail()
 
-    def test_determine_ema_number(self):
-        self.fail()
+    @parameterized.expand([
+        [
+            2005,
+            True,
+            False,
+            "pre_2006"
+        ],
+        [
+            2007,
+            False,
+            False,
+            "standard"
+        ],
+        [
+            2008,
+            True,
+            False,
+            "exceptional"
+        ],
+        [
+            2009,
+            False,
+            True,
+            "conditional"
+        ],
+        [
+            2010,
+            True,
+            True,
+            "exceptional_conditional"
+        ]
+    ])
+    def test_determine_initial_aut_type(self, year, is_exceptional, is_conditional, exp_output):
+        output = ec.determine_initial_aut_type(year, is_exceptional, is_conditional)
+        self.assertEqual(output, exp_output, msg="output is not as expected")
+
+
+    @parameterized.expand([
+        [
+            "EMEA/H/C/000674/IA/0142/G",
+            ["EMEA/H/C/000674"]
+        ],
+        [
+            "EMA/OD/020/02",
+            ["EMA/OD/020/02"]
+        ],
+        [
+            "EMEA/H/C/000674/IA/0142/G, EMA/OD/020/02",
+            [
+                "EMEA/H/C/000674",
+                "EMA/OD/020/02"
+            ]
+        ]
+    ])
+    def test_format_ema_number(self, ema_number, exp_output):
+        output = ec.format_ema_number(ema_number)
+        self.assertEqual(output, exp_output, msg="output is not as expected")
+
+    @parameterized.expand([
+        [
+            [
+                "EMEA/H/C/000572",
+                "EMEA/H/C/000572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/IG1126",
+                "EMEA/H/C/572"
+                "EMEA/H/C/IG1055",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572",
+                "EMEA/H/C/572"
+            ],
+            "EMEA/H/C/572",
+            0.7333333333333333
+        ]
+    ])
+    def test_determine_ema_number(self, ema_numbers, exp_ema_number, exp_fraction):
+        ema_number, fraction = ec.determine_ema_number(ema_numbers)
+        self.assertEqual(ema_number, exp_ema_number, msg="ema number is not right")
+        self.assertEqual(fraction, exp_fraction, msg="fraction is not right")
