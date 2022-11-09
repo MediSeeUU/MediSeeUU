@@ -210,3 +210,40 @@ LOGGING = {
         },
     }
 }
+
+BASE_URL = "api/"
+
+STATIC_ROOT = "django-static"
+
+# Set up Database for GitHub Actions.
+# To use Database locally, set it up in dev_settings
+if os.getenv('GITHUB_ACTION'):
+    DEBUG = True
+
+    SECRET = os.getenv("SECRET_KEY")
+    if SECRET:
+        SECRET_KEY = SECRET
+
+    DB_USERNAME = os.getenv("DB_USERNAME")
+    DB_PASSWORD = os.getenv("DB_PASSWORD")
+    DB_HOST = os.getenv("DB_HOST")
+    DB_PORT = os.getenv("DB_PORT")
+    DB_DATABASE = os.getenv("DB_DATABASE")
+    if all([
+        DB_USERNAME,
+        DB_PASSWORD,
+        DB_HOST,
+        DB_PORT,
+        DB_DATABASE,
+    ]):
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                "NAME": DB_DATABASE,
+                "USER": DB_USERNAME,
+                "PASSWORD": DB_PASSWORD,
+                "HOST": DB_HOST,
+                "PORT": DB_PORT,
+            }
+        }
+

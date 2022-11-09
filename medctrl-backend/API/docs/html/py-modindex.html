@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Python Module Index &mdash; Backend 1 documentation</title>
+  <title>Python Module Index &mdash; Backend 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -29,7 +30,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Backend
+            <a href="index.html">
+            <img src="_static/medisee.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -481,6 +483,7 @@
 <li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historyod_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historyod_set</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.historyprime_set"><code class="docutils literal notranslate"><span class="pre">Medicine.historyprime_set</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.legalbases_set"><code class="docutils literal notranslate"><span class="pre">Medicine.legalbases_set</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.locks_set"><code class="docutils literal notranslate"><span class="pre">Medicine.locks_set</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.objects"><code class="docutils literal notranslate"><span class="pre">Medicine.objects</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.odwar_url"><code class="docutils literal notranslate"><span class="pre">Medicine.odwar_url</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="api.models.medicine_models.html#api.models.medicine_models.medicine.Medicine.omar_url"><code class="docutils literal notranslate"><span class="pre">Medicine.omar_url</span></code></a></li>
@@ -494,6 +497,19 @@
 </li>
 <li class="toctree-l6"><a class="reference internal" href="api.models.other.html">api.models.other package</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="api.models.other.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.models.other.html#module-api.models.other.locks">api.models.other.locks module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.models.other.html#api.models.other.locks.Locks"><code class="docutils literal notranslate"><span class="pre">Locks</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.locks.Locks.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Locks.DoesNotExist</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.locks.Locks.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Locks.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.locks.Locks.column_name"><code class="docutils literal notranslate"><span class="pre">Locks.column_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.locks.Locks.eu_pnumber"><code class="docutils literal notranslate"><span class="pre">Locks.eu_pnumber</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.locks.Locks.eu_pnumber_id"><code class="docutils literal notranslate"><span class="pre">Locks.eu_pnumber_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.locks.Locks.id"><code class="docutils literal notranslate"><span class="pre">Locks.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.locks.Locks.objects"><code class="docutils literal notranslate"><span class="pre">Locks.objects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="api.models.other.html#module-api.models.other.saved_selection">api.models.other.saved_selection module</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection"><code class="docutils literal notranslate"><span class="pre">SavedSelection</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="api.models.other.html#api.models.other.saved_selection.SavedSelection.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">SavedSelection.DoesNotExist</span></code></a></li>
@@ -511,27 +527,6 @@
 </li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="api.scraper.html">api.scraper package</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="api.scraper.html#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="api.scraper.html#module-api.scraper.router">api.scraper.router module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="api.scraper.html#module-api.scraper.scraper_medicine">api.scraper.scraper_medicine module</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.add_history"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.add_history()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.add_list"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.add_list()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.add_or_override_medicine"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.add_or_override_medicine()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.get_queryset"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.get_queryset()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.history_variables"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.history_variables()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.list_variables"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.list_variables()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.permission_classes"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.permission_classes</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.post"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.post()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.update_flex_medicine"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.update_flex_medicine()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="api.scraper.html#api.scraper.scraper_medicine.ScraperMedicine.update_null_values"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.update_null_values()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -754,6 +749,17 @@
 </li>
 <li class="toctree-l6"><a class="reference internal" href="api.serializers.other.html">api.serializers.other package</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="api.serializers.other.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.serializers.other.html#module-api.serializers.other.locks">api.serializers.other.locks module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.serializers.other.html#api.serializers.other.locks.LocksSerializer"><code class="docutils literal notranslate"><span class="pre">LocksSerializer</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.serializers.other.html#api.serializers.other.locks.LocksSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">LocksSerializer.Meta</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.other.html#api.serializers.other.locks.LocksSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">LocksSerializer.Meta.fields</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="api.serializers.other.html#api.serializers.other.locks.LocksSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">LocksSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="api.serializers.other.html#module-api.serializers.other.saved_selection">api.serializers.other.saved_selection module</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="api.serializers.other.html#api.serializers.other.saved_selection.SavedSelectionSerializer"><code class="docutils literal notranslate"><span class="pre">SavedSelectionSerializer</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="api.serializers.other.html#api.serializers.other.saved_selection.SavedSelectionSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">SavedSelectionSerializer.Meta</span></code></a><ul>
@@ -810,6 +816,22 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.integration_tests.test_views.html#module-api.tests.integration_tests.test_views.test_scraper_urls_view">api.tests.integration_tests.test_views.test_scraper_urls_view module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.tests.integration_tests.test_views.html#api.tests.integration_tests.test_views.test_scraper_urls_view.ScraperUrlsViewTestCase"><code class="docutils literal notranslate"><span class="pre">ScraperUrlsViewTestCase</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.integration_tests.test_views.html#api.tests.integration_tests.test_views.test_scraper_urls_view.ScraperUrlsViewTestCase.setUp"><code class="docutils literal notranslate"><span class="pre">ScraperUrlsViewTestCase.setUp()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.integration_tests.test_views.html#api.tests.integration_tests.test_views.test_scraper_urls_view.ScraperUrlsViewTestCase.test_scraper_urls_view"><code class="docutils literal notranslate"><span class="pre">ScraperUrlsViewTestCase.test_scraper_urls_view()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.integration_tests.test_views.html#module-api.tests.integration_tests.test_views.test_update_cache">api.tests.integration_tests.test_views.test_update_cache module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.tests.integration_tests.test_views.html#api.tests.integration_tests.test_views.test_update_cache.TestUpdateCache"><code class="docutils literal notranslate"><span class="pre">TestUpdateCache</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.integration_tests.test_views.html#api.tests.integration_tests.test_views.test_update_cache.TestUpdateCache.setUp"><code class="docutils literal notranslate"><span class="pre">TestUpdateCache.setUp()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.integration_tests.test_views.html#api.tests.integration_tests.test_views.test_update_cache.TestUpdateCache.test_update_cache"><code class="docutils literal notranslate"><span class="pre">TestUpdateCache.test_update_cache()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -833,11 +855,18 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html">api.tests.unit_tests.test_scraper package</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#submodules">Submodules</a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#module-api.tests.unit_tests.test_scraper.test_scraper_locks">api.tests.unit_tests.test_scraper.test_scraper_locks module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#api.tests.unit_tests.test_scraper.test_scraper_locks.ScraperLocksTestCase"><code class="docutils literal notranslate"><span class="pre">ScraperLocksTestCase</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#api.tests.unit_tests.test_scraper.test_scraper_locks.ScraperLocksTestCase.test_scraper_update_lock"><code class="docutils literal notranslate"><span class="pre">ScraperLocksTestCase.test_scraper_update_lock()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l9"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#module-api.tests.unit_tests.test_scraper.test_scraper_medicine">api.tests.unit_tests.test_scraper.test_scraper_medicine module</a><ul>
 <li class="toctree-l10"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#api.tests.unit_tests.test_scraper.test_scraper_medicine.ScraperMedicineTestCase"><code class="docutils literal notranslate"><span class="pre">ScraperMedicineTestCase</span></code></a><ul>
 <li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#api.tests.unit_tests.test_scraper.test_scraper_medicine.ScraperMedicineTestCase.test_scraper_post_new"><code class="docutils literal notranslate"><span class="pre">ScraperMedicineTestCase.test_scraper_post_new()</span></code></a></li>
-<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#api.tests.unit_tests.test_scraper.test_scraper_medicine.ScraperMedicineTestCase.test_scraper_post_new_missing_history"><code class="docutils literal notranslate"><span class="pre">ScraperMedicineTestCase.test_scraper_post_new_missing_history()</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#api.tests.unit_tests.test_scraper.test_scraper_medicine.ScraperMedicineTestCase.test_scraper_post_update"><code class="docutils literal notranslate"><span class="pre">ScraperMedicineTestCase.test_scraper_post_update()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_scraper.html#api.tests.unit_tests.test_scraper.test_scraper_medicine.ScraperMedicineTestCase.test_scraper_post_update_null"><code class="docutils literal notranslate"><span class="pre">ScraperMedicineTestCase.test_scraper_post_update_null()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -872,6 +901,15 @@
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="api.tests.unit_tests.test_views.html#api.tests.unit_tests.test_views.test_other.Object"><code class="docutils literal notranslate"><span class="pre">Object</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="api.tests.unit_tests.test_views.html#module-api.tests.unit_tests.test_views.test_update_cache">api.tests.unit_tests.test_views.test_update_cache module</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="api.tests.unit_tests.test_views.html#api.tests.unit_tests.test_views.test_update_cache.TestUpdateCache"><code class="docutils literal notranslate"><span class="pre">TestUpdateCache</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_views.html#api.tests.unit_tests.test_views.test_update_cache.TestUpdateCache.public_medicine_data"><code class="docutils literal notranslate"><span class="pre">TestUpdateCache.public_medicine_data</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_views.html#api.tests.unit_tests.test_views.test_update_cache.TestUpdateCache.test_update_cache"><code class="docutils literal notranslate"><span class="pre">TestUpdateCache.test_update_cache()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="api.tests.unit_tests.test_views.html#api.tests.unit_tests.test_views.test_update_cache.TestUpdateCache.urls_data"><code class="docutils literal notranslate"><span class="pre">TestUpdateCache.urls_data</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -954,7 +992,7 @@
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="api.views.other.html#module-api.views.other.permissionFilter">api.views.other.permissionFilter module</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="api.views.other.html#api.views.other.permissionFilter.permissionFilter"><code class="docutils literal notranslate"><span class="pre">permissionFilter()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="api.views.other.html#api.views.other.permissionFilter.permission_filter"><code class="docutils literal notranslate"><span class="pre">permission_filter()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="api.views.other.html#module-api.views.other.saved_selection">api.views.other.saved_selection module</a><ul>
@@ -975,23 +1013,45 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="api.views.scraper_views.html">api.views.scraper_views package</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="api.views.scraper_views.html#submodules">Submodules</a></li>
-<li class="toctree-l7"><a class="reference internal" href="api.views.scraper_views.html#module-api.views.scraper_views.scraper_urls_view">api.views.scraper_views.scraper_urls_view module</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.basename"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.basename</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.description"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.description</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.detail"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.detail</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.list"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.list()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.name"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.permission_classes"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.permission_classes</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="api.views.scraper_views.html#api.views.scraper_views.scraper_urls_view.UrlsViewSet.suffix"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.suffix</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="api.views.scraper.html">api.views.scraper package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="api.views.scraper.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.views.scraper.html#module-api.views.scraper.router">api.views.scraper.router module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="api.views.scraper.html#module-api.views.scraper.scraper_medicine_post">api.views.scraper.scraper_medicine_post module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_medicine_post.ScraperMedicine"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_medicine_post.ScraperMedicine.add_history"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.add_history()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_medicine_post.ScraperMedicine.add_list"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.add_list()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_medicine_post.ScraperMedicine.add_or_override_medicine"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.add_or_override_medicine()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_medicine_post.ScraperMedicine.get_queryset"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.get_queryset()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_medicine_post.ScraperMedicine.history_variables"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.history_variables()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_medicine_post.ScraperMedicine.list_variables"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.list_variables()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_medicine_post.ScraperMedicine.permission_classes"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.permission_classes</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_medicine_post.ScraperMedicine.post"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.post()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_medicine_post.ScraperMedicine.update_flex_medicine"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.update_flex_medicine()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_medicine_post.ScraperMedicine.update_null_values"><code class="docutils literal notranslate"><span class="pre">ScraperMedicine.update_null_values()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="api.views.scraper.html#module-api.views.scraper.scraper_urls_view">api.views.scraper.scraper_urls_view module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_urls_view.UrlsViewSet"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_urls_view.UrlsViewSet.basename"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.basename</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_urls_view.UrlsViewSet.description"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.description</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_urls_view.UrlsViewSet.detail"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.detail</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_urls_view.UrlsViewSet.list"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.list()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_urls_view.UrlsViewSet.name"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_urls_view.UrlsViewSet.permission_classes"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.permission_classes</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_urls_view.UrlsViewSet.suffix"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.suffix</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="api.views.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api.views.html#module-api.views.update_cache">api.views.update_cache module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="api.views.html#api.views.update_cache.update_cache"><code class="docutils literal notranslate"><span class="pre">update_cache()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1005,12 +1065,6 @@
 <li class="toctree-l5"><a class="reference internal" href="api.html#api.apps.ApiConfig.name"><code class="docutils literal notranslate"><span class="pre">ApiConfig.name</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#module-api.update_cache">api.update_cache module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api.html#api.update_cache.has_pending_migrations"><code class="docutils literal notranslate"><span class="pre">has_pending_migrations()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#api.update_cache.has_unapplied_migration"><code class="docutils literal notranslate"><span class="pre">has_unapplied_migration()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#api.update_cache.update_cache"><code class="docutils literal notranslate"><span class="pre">update_cache()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#module-api.urls">api.urls module</a></li>
@@ -1033,8 +1087,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Python Module Index</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Python Module Index</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -1208,22 +1262,12 @@
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
+       <a href="api.models.other.html#module-api.models.other.locks"><code class="xref">api.models.other.locks</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
        <a href="api.models.other.html#module-api.models.other.saved_selection"><code class="xref">api.models.other.saved_selection</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="api.scraper.html#module-api.scraper"><code class="xref">api.scraper</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="api.scraper.html#module-api.scraper.router"><code class="xref">api.scraper.router</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="api.scraper.html#module-api.scraper.scraper_medicine"><code class="xref">api.scraper.scraper_medicine</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
@@ -1283,6 +1327,11 @@
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
+       <a href="api.serializers.other.html#module-api.serializers.other.locks"><code class="xref">api.serializers.other.locks</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
        <a href="api.serializers.other.html#module-api.serializers.other.saved_selection"><code class="xref">api.serializers.other.saved_selection</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
@@ -1318,6 +1367,16 @@
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
+       <a href="api.tests.integration_tests.test_views.html#module-api.tests.integration_tests.test_views.test_scraper_urls_view"><code class="xref">api.tests.integration_tests.test_views.test_scraper_urls_view</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api.tests.integration_tests.test_views.html#module-api.tests.integration_tests.test_views.test_update_cache"><code class="xref">api.tests.integration_tests.test_views.test_update_cache</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
        <a href="api.tests.unit_tests.html#module-api.tests.unit_tests"><code class="xref">api.tests.unit_tests</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
@@ -1334,6 +1393,11 @@
        <td></td>
        <td>&#160;&#160;&#160;
        <a href="api.tests.unit_tests.test_scraper.html#module-api.tests.unit_tests.test_scraper"><code class="xref">api.tests.unit_tests.test_scraper</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api.tests.unit_tests.test_scraper.html#module-api.tests.unit_tests.test_scraper.test_scraper_locks"><code class="xref">api.tests.unit_tests.test_scraper.test_scraper_locks</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
@@ -1368,7 +1432,7 @@
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="api.html#module-api.update_cache"><code class="xref">api.update_cache</code></a></td><td>
+       <a href="api.tests.unit_tests.test_views.html#module-api.tests.unit_tests.test_views.test_update_cache"><code class="xref">api.tests.unit_tests.test_views.test_update_cache</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
@@ -1438,12 +1502,27 @@
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="api.views.scraper_views.html#module-api.views.scraper_views"><code class="xref">api.views.scraper_views</code></a></td><td>
+       <a href="api.views.scraper.html#module-api.views.scraper"><code class="xref">api.views.scraper</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="api.views.scraper_views.html#module-api.views.scraper_views.scraper_urls_view"><code class="xref">api.views.scraper_views.scraper_urls_view</code></a></td><td>
+       <a href="api.views.scraper.html#module-api.views.scraper.router"><code class="xref">api.views.scraper.router</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api.views.scraper.html#module-api.views.scraper.scraper_medicine_post"><code class="xref">api.views.scraper.scraper_medicine_post</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api.views.scraper.html#module-api.views.scraper.scraper_urls_view"><code class="xref">api.views.scraper.scraper_urls_view</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="api.views.html#module-api.views.update_cache"><code class="xref">api.views.update_cache</code></a></td><td>
        <em></em></td></tr>
    </table>
 

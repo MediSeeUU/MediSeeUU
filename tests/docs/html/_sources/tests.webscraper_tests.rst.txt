@@ -28,6 +28,14 @@ tests.webscraper\_tests.test\_ema\_scraper module
    :undoc-members:
    :show-inheritance:
 
+tests.webscraper\_tests.test\_filter\_retry module
+--------------------------------------------------
+
+.. automodule:: tests.webscraper_tests.test_filter_retry
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

@@ -1,0 +1,11 @@
+# PDF Module
+PyMuPDF
+pytest
+joblib
+python-dateutil
+
+# Web Scraper
+tqdm
+regex
+requests
+bs4

@@ -36,7 +36,7 @@ from api.serializers.medicine_serializers.scraper import (
     EUOrphanConSerializer,
     LegalBasesSerializer,
 )
-from api.update_cache import update_cache
+from api.views.update_cache import update_cache
 from django.forms.models import model_to_dict
 from django.db import transaction
 import logging
@@ -171,7 +171,7 @@ class ScraperMedicine(APIView):
         new_data = {"eu_pnumber": data.get("eu_pnumber")}
 
         for attr in medicine:
-            if (getattr(current_medicine, attr) is None or getattr(current_medicine, attr) is '') and (
+            if (getattr(current_medicine, attr) is None or getattr(current_medicine, attr) == '') and (
                     not (data.get(attr) is None)
             ):
                 new_data[attr] = data.get(attr)
