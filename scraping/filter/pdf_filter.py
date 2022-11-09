@@ -251,6 +251,7 @@ def check_readable(pdf: fitz.Document) -> bool:
 def check_decision(filename: str, file_path: str, pdf: fitz.Document) -> str:
     """
     Check if the file is a decision file
+
     Args:
         filename (str): filename of the supposed decision file
         file_path (str): path to the decision file
