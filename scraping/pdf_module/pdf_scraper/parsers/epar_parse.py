@@ -107,14 +107,33 @@ def get_opinion_date(xml: ET.Element) -> str:
     Returns:
         str: the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format
     """
+    not_easily_scrapable = False
     for p in xml_utils.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(date_pattern, p):
             date = helper.convert_months(re.findall(date_pattern, p)[-1])
-            # Date contains emea instead of month, returns not found
-            # TODO: Find correct date when emea is given
-            if re.search(r"emea", date):
-                return "not_easily_scrapable"
             return date
+        # Section is found and should always contain the CHMP opinion date
+        not_easily_scrapable = True
+    # Look below rapporteur in steps taken for the assessment when not found by default method
+    # This is needed as rapporteur is seen as a header when it is bold, causing text below to
+    # not be a part of "steps taken for the assessment" anymore.
+    right_section = False
+    below_rapp = False
+    for elem in xml.iter():
+        txt = elem.text
+        if not txt:
+            continue
+        if "steps taken for the assessment" in txt:
+            right_section = True
+        if right_section and "rapporteur" in txt:
+            below_rapp = True
+        if below_rapp and re.findall(date_pattern, txt):
+            date = helper.convert_months(re.findall(date_pattern, txt)[-1])
+            return date
+        if below_rapp and "scientific discussion" in txt:
+            return "not_easily_scrapable"
+    if not_easily_scrapable:
+        return "not_easily_scrapable"
     return "no_chmp_found"
 
 
