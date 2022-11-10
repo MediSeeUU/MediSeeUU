@@ -35,7 +35,7 @@ def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
 
     Args:
         lines (list[(str, float, str)]): a list of pdf text line and
-        font info tuple line_text: str, line_font_size: float, line_font_type: str)
+            font info tuple line_text: str, line_font_size: float, line_font_type: str)
 
     Returns:
         list[str]: list of paragraphs in the format of "bolded_text | -HEADER- | unbolded_text"
@@ -190,7 +190,7 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
 
     Args:
         sections (list[str, str)]): List of section text tuples in form of (header_text, paragraph_text).
-        output_filepath (str): Filepath of the file to be written in form of "*.xml", where * is a wildcard.
+        output_filepath (str): Filepath of the file to be written in form of `*.xml`, where * is a wildcard.
         document_creation_date (str): Meta-data creation date of original pdf in string form from pyMuPDF.
         document_modification_date (str): Meta-data modification date of original pdf in string form from pyMuPDF.
     """              

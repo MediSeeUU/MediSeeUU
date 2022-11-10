@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interactive dashboard to make data on regulation of medicines openly available &mdash; Medisee 1.0 documentation</title>
+  <title>Scraper and Dashboard to make data on regulation of medicines openly available &mdash; Medisee 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -27,25 +28,32 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="#" class="icon icon-home"> Medisee
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
+
+<a href="../../docs/html/README.html">
+  <img src="_static/medisee.svg" class="logo" alt="Logo"/>
+</a>
+
+
+  
+  
+
+
+
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Interactive dashboard to make data on regulation of medicines openly available</a><ul>
-<li><a class="reference internal" href="#description">Description</a></li>
-<li><a class="reference internal" href="#copyright-statement">Copyright statement</a></li>
-</ul>
-</li>
-</ul>
-</div>
+    <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+      <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+      <ul>
+        <li class="toctree-l1" ><a href="../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
+        <li class="toctree-l1" ><a href="../../scraping/filter/docs/html/index.html">Filter</a></li>
+        <li class="toctree-l1" ><a href="../../scraping/pdf_module/docs/html/index.html">PDF Scraper</a></li>
+        <li class="toctree-l1" ><a href="../../scraping/combiner/docs/html/index.html">Combiner</a></li>
+        <li class="toctree-l1" ><a href="../../scraping/db_uploader/docs/html/index.html">DB Uploader</a></li>
+        <li class="toctree-l1" ><a href="../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
+        <li class="toctree-l1 margin-top "><a href="../../tests/docs/html/index.html">Tests</a></li>
+      </ul>
+    </div>  
+    
+
         </div>
       </div>
     </nav>
@@ -59,8 +67,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>Interactive dashboard to make data on regulation of medicines openly available</li>
+      <li><a href="#" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Scraper and Dashboard to make data on regulation of medicines openly available</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -69,19 +77,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="interactive-dashboard-to-make-data-on-regulation-of-medicines-openly-available">
-<h1>Interactive dashboard to make data on regulation of medicines openly available<a class="headerlink" href="#interactive-dashboard-to-make-data-on-regulation-of-medicines-openly-available" title="Permalink to this heading"></a></h1>
-<p>Medicine evaluation boards across Europe evaluate medicines for European market approval. The resulting regulatory reports are published on the European Medicines Agency website. Data on these medicine regulatory procedures is collected by a scraper created in a collaboration between Utrecht University regulatory science researchers and the Dutch Medicines Evaluation Board. Visualization of this data can provide valuable insights toward improving the regulatory trajectory. The MedCtrl Scrum team has developed an interactive dashboard allowing rapid visualization of the collected medicine regulatory data. Intuitive controls combined with sharp-cut visualizations offer regulatory scientists direct insight into trends in medicine market authorizations. Continuously updated with data scraped from thousands of publicly available documents, the dashboard is a highly interactive React application backed by an extensible Django REST backend and MySQL database.</p>
-<section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
-<p>This repository has two significant branches: <em>development</em> and <em>master</em>. When a contributor has finished their work, the temporary branch will be pushed into the development branch. Once the development branch is stable, it will be pushed into the master branch. When the master branch is updated, the new changes will be deployed on the environment where the program is installed.</p>
-<p>The repository consists of four crucial folders, each folder has a readme with more explanation:</p>
-<ul class="simple">
-<li><p><em>medctrl-backend</em>, with the backend API and database code, including documentation</p></li>
-<li><p><em>medctrl-frontend</em>, with the code for all node modules, pages, public files, and mocks, including unit tests and documentation</p></li>
-<li><p><em>medctrl-scraper</em>, with the scraper including supplementary files, in this folder a file can be found with an example how to connect the scraper to the backend</p></li>
-<li><p><em>selenium</em>, where the system tests are defined and handled</p></li>
-</ul>
+  <section id="scraper-and-dashboard-to-make-data-on-regulation-of-medicines-openly-available">
+<h1>Scraper and Dashboard to make data on regulation of medicines openly available<a class="headerlink" href="#scraper-and-dashboard-to-make-data-on-regulation-of-medicines-openly-available" title="Permalink to this heading"></a></h1>
+<section id="how-to-install">
+<h2>How to install<a class="headerlink" href="#how-to-install" title="Permalink to this heading"></a></h2>
+<p>Install python 3.10.7.
+All the dependencies for the scraping modules are in the requirements.txt file in the scraping folder. Use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code> in the scraping folder to install these dependencies.</p>
+</section>
+<section id="how-to-use">
+<h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this heading"></a></h2>
+<section id="to-test-whole-program">
+<h3>To test whole program:<a class="headerlink" href="#to-test-whole-program" title="Permalink to this heading"></a></h3>
+<p>Run the <code class="docutils literal notranslate"><span class="pre">__main__.py</span></code> in the scraping folder next to all the module folders.</p>
+</section>
+<section id="to-test-a-module">
+<h3>To test a module:<a class="headerlink" href="#to-test-a-module" title="Permalink to this heading"></a></h3>
+<p>Comment out all the modules you don’t want to test in the <code class="docutils literal notranslate"><span class="pre">__main__.py</span></code> file.</p>
+</section>
+</section>
+<section id="functionality">
+<h2>Functionality<a class="headerlink" href="#functionality" title="Permalink to this heading"></a></h2>
+<p>The program delivered creates the discussed folder structure and fills it with pdf, xml and json files.</p>
+<p>Currently the program has most of its functionality within the web scraper, filter, xml converter and pdf scraper modules. This means that all files up until pdf_data.json from the diagram below are made.</p>
+<p>Combiner is still a work in progress and will not create a json file containing useful information. The database communicator has functionality built in but will not communicate with the back-end since no useful data is being generated from the combiner module.</p>
+</section>
+<section id="architecture-diagram">
+<h2>Architecture Diagram<a class="headerlink" href="#architecture-diagram" title="Permalink to this heading"></a></h2>
+<p><img alt="alt text" src="_images/architecture_diagram.svg" /></p>
 </section>
 <section id="copyright-statement">
 <h2>Copyright statement<a class="headerlink" href="#copyright-statement" title="Permalink to this heading"></a></h2>

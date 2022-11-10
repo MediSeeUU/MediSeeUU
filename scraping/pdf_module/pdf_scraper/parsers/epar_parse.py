@@ -1,12 +1,11 @@
 # EPAR parser
 import re
 import scraping.pdf_module.pdf_scraper.helper as helper
-import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xpu
+import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xml_utils
 import xml.etree.ElementTree as ET
-import scraping.pdf_module.pdf_scraper.parsedinfostruct as PIS
+import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
 import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
 import os.path as path
-from typing import Union
 
 date_pattern: str = r"\d{1,2} \b(?!emea\b)\w+ \d{4}|\d{1,2}\w{2} \b(?!emea\b)\w+ \d{4}"  # DD/MONTH/YYYY
 procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure
@@ -16,6 +15,7 @@ accelerated_assessment = "accelerated assessment"
 def get_all(filename: str, xml_data: ET.Element) -> dict:
     """
     Gets all attributes of the EPAR XML and returns them in a dictionary
+
     Args:
         filename (str): name of the XML file to be scraped
         xml_data (ET.Element): the contents of the XML file
@@ -35,9 +35,10 @@ def get_all(filename: str, xml_data: ET.Element) -> dict:
     return epar
 
 
-def parse_file(filename: str, directory: str, medicine_struct: PIS.ParsedInfoStruct) -> PIS.ParsedInfoStruct:
+def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStruct) -> pis.ParsedInfoStruct:
     """
     Scrapes all attributes from the EPAR XML file after parsing it
+
     Args:
         filename (str): name of the XML file to be scraped
         directory (str): path of the directory containing the XML file
@@ -65,6 +66,7 @@ def get_date(xml: ET.Element) -> str:
     """
     Gets the attribute ema_procedure_start_initial
     The initial authorization date of the EMA
+
     Args:
         xml (ET.Element): the contents of the XML file
 
@@ -98,13 +100,14 @@ def get_opinion_date(xml: ET.Element) -> str:
     """
     Gets the attribute chmp_opinion_date
     The date of the CHMP opinion on the medicine
+
     Args:
         xml (ET.Element): the contents of the XML file
 
     Returns:
         str: the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format
     """
-    for p in xpu.get_paragraphs_by_header("steps taken for the assessment", xml):
+    for p in xml_utils.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(date_pattern, p):
             date = helper.convert_months(re.findall(date_pattern, p)[-1])
             # Date contains emea instead of month, returns not found
@@ -119,6 +122,7 @@ def get_legal_basis(xml: ET.Element) -> [str]:
     """
     Gets the attribute eu_legal_basis
     All legal articles relevant to the medicine
+
     Args:
         xml (ET.Element): the contents of the XML file
 
@@ -165,6 +169,7 @@ def get_prime(xml: ET.Element) -> str:
     """
     Gets the attribute eu_prime_initial
     Whether the medicine is a priority medicine (PRIME)
+
     Args:
         xml (ET.Element): the contents of the XML file
 
@@ -173,7 +178,7 @@ def get_prime(xml: ET.Element) -> str:
     """
     if check_date_before(xml, 1, 3, 2016):
         return "NA"
-    for p in xpu.get_paragraphs_by_header("submission of the dossier", xml):
+    for p in xml_utils.get_paragraphs_by_header("submission of the dossier", xml):
         if re.findall(r" prime ", p):
             return "yes"
         if re.findall(r"priority medicine", p):
@@ -184,6 +189,7 @@ def get_prime(xml: ET.Element) -> str:
 def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_year: int) -> bool:
     """
         Checks whether the date ema_procedure_start_initial is earlier than the given date
+
         Args:
             xml (ET.Element): the contents of the XML file
             check_day (int): the day of the given date
@@ -212,6 +218,7 @@ def get_rapp(xml: ET.Element) -> str:
     """
     Gets the attribute ema_rapp
     The main rapporteur of the document, usually found after "rapporteur:"
+
     Args:
         xml (ET.Element): the contents of the XML file
 
@@ -266,6 +273,7 @@ def find_rapp_between_rapp_and_corapp(txt: str) -> str | None:
     """
     A supporting function for finding the rapporteur of the document that
     finds the rapporteur in a certain section in some cases (other cases are processed in the main function)
+
     Args:
         txt (str): a section of the xml document
 
@@ -302,6 +310,7 @@ def clean_rapporteur(rapporteur: str) -> str:
     """
     From a string containing the rapporteur, as well as spaces, enters, and other text,
     this function tries to remove all whitespace and trailing irrelevant text from the rapporteur string
+
     Args:
         rapporteur (str): the uncleaned string with whitespace and trailing text
 
@@ -332,6 +341,7 @@ def get_corapp(xml: ET.Element) -> str:
     """
     Gets the attribute ema_corapp
     The co-rapporteur of the document, usually found after "co-rapporteur:"
+
     Args:
         xml (ET.Element): the contents of the XML file
 
@@ -384,6 +394,7 @@ def get_reexamination(xml: ET.Element) -> str:
     """
     Gets the attribute ema_reexamination
     Whether the word reexamination/re-examination exists
+
     Args:
         xml (ET.Element): the contents of the XML file
 
@@ -404,6 +415,7 @@ def get_accelerated_assessment(xml: ET.Element) -> str:
     Gets the attribute eu_accel_assess_g
     Check whether the word "accelerated assessment" is in text and
     "agreed" is close by and "not agreed" is not close by
+
     Args:
         xml (ET.Element): the contents of the XML file
 
@@ -437,6 +449,7 @@ def agreed_before_accelerated_assessment(xml: ET.Element, text_elements: int) ->
     """
     Checks whether the word "agreed" is at most 20 text elements before "accelerated assessment"
     Returns None when "agreed" is not close to "accelerated assessment"
+
     Args:
         xml (ET.Element): the contents of the XML file
         text_elements (int): the maximum number of text elements to be considered close by
@@ -464,6 +477,7 @@ def agreed_after_accelerated_assessment(xml: ET.Element, text_elements: int) -> 
     """
     Checks whether the word "agreed" is at most 20 text elements after "accelerated assessment"
     Returns None when "agreed" is not close to "accelerated assessment"
+
     Args:
         xml (ET.Element): the contents of the XML file
         text_elements (int): the maximum number of text elements to be considered close by

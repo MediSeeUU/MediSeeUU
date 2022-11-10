@@ -11,9 +11,14 @@ def main():
     """
     Run administrative tasks.
     """
-    os.environ.setdefault(
-        "DJANGO_SETTINGS_MODULE", "api_settings.settings.dev_settings"
-    )
+    if os.getenv('GITHUB_ACTION'):
+        os.environ.setdefault(
+            "DJANGO_SETTINGS_MODULE", "api_settings.settings.common"
+        )
+    else:
+        os.environ.setdefault(
+            "DJANGO_SETTINGS_MODULE", "api_settings.settings.dev_settings"
+        )
     try:
         # pylint: disable=import-outside-toplevel
         from django.core.management import execute_from_command_line

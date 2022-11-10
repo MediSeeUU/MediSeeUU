@@ -12,9 +12,10 @@ test_data_foldername = "test_annex_parse_data"
 class TestAnnexParse(TestCase):
     """
     Unit testing annex_parse attribute scraping correctness with handmade test PDF files.
+
     Tested attributes:
-        eu_type_of_medicine
-        initial_type_of_eu_authorization
+        - eu_type_of_medicine
+        - initial_type_of_eu_authorization
     """
     annex_attributes: dict[str, str]
 
@@ -63,9 +64,9 @@ class TestAnnexParse(TestCase):
             # test for attribute values
             if file_attributes["is_initial"]:
                 incorrect_value |= "specific obligation" in pdf_file and authorization_type != "exceptional or " \
-                                                                                               "conditional "
+                                                                                               "conditional"
                 incorrect_value |= "specific obligations" in pdf_file and authorization_type != "exceptional or " \
-                                                                                                "conditional "
+                                                                                                "conditional"
                 incorrect_value |= "conditional approval" in pdf_file and authorization_type != "conditional"
                 incorrect_value |= "standard approval" in pdf_file and authorization_type != "standard"
 

@@ -220,6 +220,10 @@ def section_contains_paragraph_substring_set(substring_set: list[str], section: 
     return False
 
 
+def section_is_table_of_contents(section: ET.Element) -> bool:
+    return section.findall(tags.header)[0].text.count('.') >= 3
+
+
 def paragraph_contains_substring(substring: str, paragraph: ET.Element) -> bool:
     """
     Returns whether a single paragraph contains the given substring.
