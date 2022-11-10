@@ -340,7 +340,10 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
         eu_aut_type_initial: str = ""
 
     # From the list of EMA numbers, the right one is chosen and its certainty determined
-    ema_number, ema_number_certainty = determine_ema_number(ema_numbers)
+    if ema_numbers:
+        ema_number, ema_number_certainty = determine_ema_number(ema_numbers)
+    else:
+        ema_number, ema_number_certainty = "", ""
 
     # TODO: logging when an attribute is not found
     # Currently when an attribute is not found it is simply printed to the console
@@ -421,7 +424,7 @@ def format_ema_number(ema_number: str) -> list[str]:
             # REGEX that gets only the relevant part of the EMA numbers
             ema_number_formatted = re.findall(r"E?ME?A\/(?:H\/(?:C|\w*-\w*)\/\w*|OD\/\w*(?:\/\w*)?)", en, re.DOTALL)[0]
             ema_numbers_formatted.append(ema_number_formatted)
-        except IndexError:
+        except Exception:
             continue
         
     return ema_numbers_formatted
