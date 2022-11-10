@@ -1,5 +1,6 @@
 # Algemene functie
 PDF Scraper haalt alle relevante attributen uit PDF files per PDF type.
+
 PDF Types:
 - EC Decision
 - Annex files

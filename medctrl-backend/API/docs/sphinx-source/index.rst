@@ -9,7 +9,7 @@ Backend Documentation
 .. toctree::
    :caption: Readme
 
-   readme
+   README
 
 .. toctree::
    :maxdepth: 4
