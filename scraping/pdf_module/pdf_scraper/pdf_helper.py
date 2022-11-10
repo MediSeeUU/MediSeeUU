@@ -168,10 +168,10 @@ def create_outputfile(filename: str, outputname: str, res: dict):
     f.close()
 
 
-def res_to_file(f: io.TextIO, res: dict, filename: str):
+def res_to_file(f: io.TextIOWrapper, res: dict, filename: str):
     """
     Args:
-        f (io.TextIO): File to write results to for visualisation of the attributes
+        f (io.TextIOWrapper): File to write results to for visualisation of the attributes
         res (dict): dictionary containing all attributes of the PDF file
         filename (str): Name of the PDF file
     """
