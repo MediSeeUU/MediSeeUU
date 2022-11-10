@@ -19,7 +19,13 @@ release = "1.0"
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-templates_path = ["_templates"]
+root_url = "../../../../"
+html_context = {
+    "root_url": root_url,
+    "current_module": "db_uploader",
+    "display_super": True,
+}
+templates_path = [root_url + "docs/sphinx-source/_templates"]
 
 extensions = [
     "myst_parser",

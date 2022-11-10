@@ -16,6 +16,9 @@ release = "1.0"
 
 root_doc = "README"
 
+html_context = {
+    "root_url": "../../",
+}
 templates_path = ["_templates"]
 
 extensions = [
