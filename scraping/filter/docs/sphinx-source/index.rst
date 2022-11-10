@@ -8,6 +8,7 @@ Filter Documentation
 .. toctree::
    :caption: Readme
 
+   README
 
 .. toctree::
    :maxdepth: 3
