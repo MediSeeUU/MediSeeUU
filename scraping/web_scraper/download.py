@@ -14,7 +14,7 @@ from scraping.web_scraper import utils
 log = logging.getLogger("webscraper.download")
 
 
-def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str], data_path: str):
+def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str], data_path: str, overwrite: bool = False):
     """
     Downloads a PDF file given an url. It also gives the file a specific name based on the input.
     The file will be downloaded to the corresponding EU number folder.
@@ -28,11 +28,21 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str], d
             list containing the filename elements: human/orphan, active/withdrawn, pdf type and file_index
         data_path (str):
             The path to the data folder
-    """
-    downloaded_file = requests.get(url)
-    downloaded_file.raise_for_status()
-    filename: str = f"{eu_num}_{'_'.join(filename_elements)}.pdf"
+        overwrite (bool): if true, files will be downloaded again if they exist
 
+    """
+
+    filename: str = f"{eu_num}_{'_'.join(filename_elements)}.pdf"
+    if not overwrite:
+        filepath = Path(f"{data_path}/{eu_num}/{filename}")
+        if os.path.exists(filepath):
+            return
+
+    downloaded_file = requests.get(url)
+    if downloaded_file.status_code != 200:
+        with open(f"failed.txt", "a") as f:
+            f.write(f"{filename}@{url}@{downloaded_file.status_code}\n")
+    downloaded_file.raise_for_status()
     # TODO: Runs this check for every downloaded file. Could be more efficient?
     path_medicine = Path(f"{data_path}/{eu_num}")
     path_medicine.mkdir(exist_ok=True)
@@ -110,8 +120,9 @@ def download_medicine_files(eu_n: str, url_dict: dict[str, list[str]], data_path
                                                                   attr_dict, data_path)
     utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "anx", url_dict["smpc_url"],
                                                                   attr_dict, data_path)
-    utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, "epar", url_dict["epar_url"],
-                                                                   attr_dict, data_path)
+    if "epar_url" in url_dict.keys():
+        utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, "epar", url_dict["epar_url"],
+                                                                       attr_dict, data_path)
     utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, "omar", url_dict["omar_url"],
                                                                    attr_dict, data_path)
     log.info(f"Finished download for {eu_n}")
