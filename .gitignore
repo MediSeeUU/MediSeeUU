@@ -158,3 +158,4 @@ scraping/orphan_initial_dec.txt
 *.json
 *.pdf
 *.xml
+tests/pdfscraper_tests/test_annex_parse_data/test_annex_parse_data_pdf_parser.json

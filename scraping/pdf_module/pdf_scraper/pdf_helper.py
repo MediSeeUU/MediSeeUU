@@ -42,7 +42,6 @@ def get_text(blocks: list[dict], results: list[(str, int, str)], lower: bool):
     append_text(old_text, old_size, old_font, results, lower)
 
 
-def combine_text(lines: dict, lower: bool, old_font: str, old_size: int, old_text: str, results: list[(str, int, str)]):
 def combine_text(lines: dict, lower: bool, old_font: str, old_size: int, old_text: str, results: list[tuple]):
     """
     Helper function that actually combines text with same size and font, combines headers, and adds them to results
