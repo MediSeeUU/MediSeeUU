@@ -59,5 +59,5 @@ class TestDownload(TestCase):
                             "omar_url": ""}
                            ]])
     def test_download_medicine_files(self, eu_n, url_dict):
-        self.assertIsNone(download.download_medicine_files(eu_n, url_dict))
+        self.assertIsNone(download.download_medicine_files(eu_n, url_dict, data_path))
 

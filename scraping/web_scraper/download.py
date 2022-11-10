@@ -98,7 +98,10 @@ def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[s
         log.info(f"no {pdf_type} available for {eu_num}")
         return
     if pdf_type != 'omar':
-        pdf_type = re.findall(r"(?<=epar-)(.*)(?=_en)", pdf_url)[0]
+        try:
+            pdf_type = re.findall(r"(?<=epar-)(.*)(?=_en)", pdf_url)[0]
+        except IndexError:
+            log.warning(f"no filetype found for {pdf_url}")
     filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type]
     download_pdf_from_url(pdf_url, eu_num, filename_elements, data_path)
 

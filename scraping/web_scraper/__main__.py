@@ -52,6 +52,7 @@ annex10_file = json_helper.JsonHelper(path=f"{json_path}JSON/annex10.json")
 
 # Paralleled function for getting the URL codes. They are written to a JSON file
 # TODO: unmarked type for medicine_type
+@utils.exception_retry(logging_instance=log)
 def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.MedicineType, data_path: str):
     """ Gets the scraped medicine attributes and urls, and writes them to CSV and JSON files.
 
@@ -94,6 +95,7 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
         json.dump(attributes_dict, f, indent=4)
 
 
+@utils.exception_retry(logging_instance=log)
 def get_urls_ema(eu_n: str, url: str):
     """ Gets all the pdf urls from the EMA website and writes it to a CSV file.
 
@@ -153,9 +155,6 @@ def main(data_filepath: str = '../data'):
 
     if scrape_ec:
         log.info("TASK START scraping all medicines on the EC website")
-
-        get_urls_ec_retry = utils.exception_retry(logging_instance=log)(get_urls_ec)
-
         # Transform zipped list into individual lists for thread_map function
         # The last element of the medicine_codes tuple is not of interest, thus we pop()
 
@@ -163,12 +162,12 @@ def main(data_filepath: str = '../data'):
             if use_parallelization:
                 unzipped_medicine_codes = [list(t) for t in zip(*medicine_codes)]
                 unzipped_medicine_codes.pop()
-                tqdm_concurrent.thread_map(get_urls_ec_retry,
+                tqdm_concurrent.thread_map(get_urls_ec,
                                            *unzipped_medicine_codes,
                                            [data_filepath] * len(medicine_codes), max_workers=12)
             else:
                 for (medicine_url, eu_n, medicine_type, _) in tqdm.tqdm(medicine_codes):
-                    get_urls_ec_retry(medicine_url, eu_n, medicine_type, data_filepath)
+                    get_urls_ec(medicine_url, eu_n, medicine_type, data_filepath)
 
         url_file.save_dict()
         log.info("TASK FINISHED EC scrape")
@@ -179,8 +178,6 @@ def main(data_filepath: str = '../data'):
         if not scrape_ec:
             url_file.load_json()
 
-        get_urls_ema_retry: callable = utils.exception_retry(logging_instance=log)(get_urls_ema)
-
         # Transform JSON object into list of (eu_n, url)
         ema_urls = [(eu_n, url)
                     for eu_n, value_dict in url_file.local_dict.items()
@@ -190,11 +187,11 @@ def main(data_filepath: str = '../data'):
 
         with tqdm_logging.logging_redirect_tqdm():
             if use_parallelization:
-                tqdm_concurrent.thread_map(get_urls_ema_retry, *unzipped_ema_urls, max_workers=12)
+                tqdm_concurrent.thread_map(get_urls_ema, *unzipped_ema_urls, max_workers=12)
 
             else:
                 for eu_n, url in tqdm.tqdm(ema_urls, bar_format=tqdm_format_string):
-                    get_urls_ema_retry(eu_n, url)
+                    get_urls_ema(eu_n, url)
 
         url_file.save_dict()
         log.info("TASK FINISHED EMA scrape")

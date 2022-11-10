@@ -28,13 +28,15 @@ def run_filter(n: int, data_filepath: str = "../../data"):
         data_filepath (str, optional): the path to the data folder. Defaults to "../../data"
     """
     json_path = "web_scraper/"
+    filter_path = ""
     # If file is run locally:
     if "web_scraper" in os.getcwd():
         json_path = ""
+        filter_path = "../"
     for i in range(n):
         pdf_filter.filter_all_pdfs(data_filepath)
         url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json").load_json()
-        retry_all('filter.txt', url_file, data_filepath)
+        retry_all(f'{filter_path}filter.txt', url_file, data_filepath)
 
 
 def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str]]], data_filepath: str = "../../data"):
@@ -71,9 +73,8 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
     url = url_dict[key_dict[filename_elements[2]]]
     if len(filename_elements) == 4:
         url = url[int(filename_elements[3])]
-    utils.exception_retry(download.download_pdf_from_url, logging_instance=log)(url, eu_n, filename_elements,
-                                                                                data_filepath, overwrite=True)
+    download.download_pdf_from_url(url, eu_n, filename_elements, data_filepath, overwrite=True)
 
 
 # used for testing
-# run_filter(3)
+# run_filter(1)
