@@ -331,19 +331,28 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
                 anx_url_list.append("https://ec.europa.eu/health/documents/community-register/"+pdf_url_anx)
 
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
-    eu_aut_datetime: datetime = datetime.strptime(procedures_json[0]["decision"]["date"], '%Y-%m-%d')
-    # TODO: parse to datetime instead of string
-    eu_aut_date: str = datetime.strftime(eu_aut_datetime, '%d-%m-%Y')
+    eu_aut_str: str = procedures_json[0]["decision"]["date"]
+    if eu_aut_str is not None:
+        eu_aut_datetime: datetime = datetime.strptime(eu_aut_str, '%Y-%m-%d')
+        # TODO: parse to datetime instead of string
+        eu_aut_date = datetime.strftime(eu_aut_datetime, '%d-%m-%Y')
+        eu_aut_type_initial: str = determine_initial_aut_type(eu_aut_datetime.year,
+                                                              is_exceptional,
+                                                              is_conditional)
+    else:
+        eu_aut_date: str = ""
+        eu_aut_type_initial: str = ""
 
     # From the list of EMA numbers, the right one is chosen and its certainty determined
-    ema_number, ema_number_certainty = determine_ema_number(ema_numbers)
+    if ema_numbers:
+        ema_number, ema_number_certainty = determine_ema_number(ema_numbers)
+    else:
+        ema_number, ema_number_certainty = "", ""
 
     # TODO: logging when an attribute is not found
     # Currently when an attribute is not found it is simply printed to the console
     procedures_dict["eu_aut_date"] = eu_aut_date
-    procedures_dict["eu_aut_type_initial"] = determine_initial_aut_type(eu_aut_datetime.year,
-                                                                        is_exceptional,
-                                                                        is_conditional)
+    procedures_dict["eu_aut_type_initial"] = eu_aut_type_initial
     procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
     procedures_dict["ema_number"] = ema_number
     procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
@@ -417,9 +426,9 @@ def format_ema_number(ema_number: str) -> list[str]:
     for en in ema_numbers:
         try:
             # REGEX that gets only the relevant part of the EMA numbers
-            ema_number_formatted = re.findall(r"EME?A\/(?:H\/(?:C|\w*-\w*)\/\w*|OD\/\w*(?:\/\w*)?)", en, re.DOTALL)[0]
+            ema_number_formatted = re.findall(r"E?ME?A\/(?:H\/(?:C|\w*-\w*)\/\w*|OD\/\w*(?:\/\w*)?)", en, re.DOTALL)[0]
             ema_numbers_formatted.append(ema_number_formatted)
-        except IndexError:
+        except Exception:
             continue
         
     return ema_numbers_formatted
