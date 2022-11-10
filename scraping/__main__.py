@@ -17,8 +17,8 @@ def main():
     if not path.isdir(data_folder_directory):
         os.mkdir(data_folder_directory)
 
-    ## NOTE: Uncomment any of the following modules to run the module
-    web_scraper.main(data_folder_directory)
+    # NOTE: Uncomment any of the following modules to run the module
+    # web_scraper.main(data_folder_directory)
     pdf_scraper.main(data_folder_directory)
     # combiner.main(data_folder_directory)
     # db_uploader.main(data_folder_directory)
