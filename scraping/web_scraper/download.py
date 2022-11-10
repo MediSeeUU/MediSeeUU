@@ -42,7 +42,7 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str], d
     if downloaded_file.status_code != 200:
         with open(f"failed.txt", "a") as f:
             f.write(f"{filename}@{url}@{downloaded_file.status_code}\n")
-    downloaded_file.raise_for_status()
+            return
     # TODO: Runs this check for every downloaded file. Could be more efficient?
     path_medicine = Path(f"{data_path}/{eu_num}")
     path_medicine.mkdir(exist_ok=True)
