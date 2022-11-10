@@ -32,3 +32,5 @@ from a PDF file. Logically it will take some time to create the XML files, but
 they only have to be created once, which will save time in the long run.
 
 Visualisation of the scraped attributes: [Visualisaties PDF](MediSee_PDF_visualisation.html)
+
+© Copyright Utrecht University (Department of Information and Computing Sciences)

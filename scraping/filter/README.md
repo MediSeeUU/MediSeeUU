@@ -1,5 +1,5 @@
 # General
-Filter checks whether all PDF files in the map with medicijnen are correct.
+Filter checks whether all PDF files in the folder with medicines are correct.
 Incorrect PDF files will be deleted and logged as a line in filter.txt.
 
 Error types:
@@ -18,6 +18,10 @@ Location of the data folder with medicines
 - data folder without the incorrect PDF files
 
 # Other points of interest
+**When calling filter directly**
+
 After one run, all incorrect PDF files will be removed.
 Therefore, filter.txt will be empty after two runs.
 Make sure to make a backup if the filtered files relevant and you want to run filter again.
+
+© Copyright Utrecht University (Department of Information and Computing Sciences)
