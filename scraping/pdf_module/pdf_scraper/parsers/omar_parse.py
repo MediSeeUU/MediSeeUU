@@ -78,7 +78,7 @@ def get_prevalence(bullet_points: list[str]) -> str:
     Finds the paragraph that contains the information about the prevalence of the medicine.
 
     Args:
-        xml_data (ET.Element): This is the XML part to be parsed.
+        bullet_points (list[str]): These are all the bullet points from the appropriate section.
 
     Returns:
         str: Return the string with the relevant information about the prevalence or NA if it cannot be found.
@@ -92,21 +92,21 @@ def get_prevalence(bullet_points: list[str]) -> str:
     return "NA"
 
 
-# Nog geen OMAR gevonden waar dit in staat dus kan nog niet gedaan worden
+# No OMARs have been found containing this piece of information, so far.
 def get_insufficient_roi(bullet_points: list[str]) -> str:
     return "NA"
 
 
-# WIP WIP WIP WIP WIP
 def get_alternative_treatments(bullet_points: list[str]) -> str:
     """
-    _summary_
+    Finds the bullet point that contains the appropriate information and return
+        short description about the findings.
 
     Args:
-        section (ET.Element): _description_
+        bullet_points (list[str]): These are all the bullet points from the appropriate section.
 
     Returns:
-        str: _description_
+        str: Return a short description depending on what was found in the bullet point.
     """
     for b in bullet_points:
         if "no satisfactory methods" in b:
@@ -120,10 +120,10 @@ def get_alternative_treatments(bullet_points: list[str]) -> str:
 def get_significant_benefit(bullet_points: list[str], alternative_treatment: str) -> str:
     """
     This function parses out the significant benefit of the OMAR, 
-    the result is influenced by the result of a previous attribute.
+        the result is influenced by the result of a previous attribute.
 
     Args:
-        xml_data (ET.Element): This is the XML part to be parsed.
+        bullet_points (list[str]): These are all the bullet points from the appropriate section.
         alternative_treatment (str): The result of the get_alternative_treatment function
 
     Returns:
