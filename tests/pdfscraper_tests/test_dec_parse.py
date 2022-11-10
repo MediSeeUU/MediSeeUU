@@ -69,4 +69,4 @@ class TestDecParse(TestCase):
         percentage_found = (orphan_count - not_found_count) / orphan_count * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         print(f"Amount not found: {not_found_count}")
-        self.assertGreater(percentage_found, 99)
+        self.assertGreater(percentage_found, 90)
