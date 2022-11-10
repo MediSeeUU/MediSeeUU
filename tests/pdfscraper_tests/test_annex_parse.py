@@ -12,9 +12,10 @@ test_data_foldername = "test_annex_parse_data"
 class TestAnnexParse(TestCase):
     """
     Unit testing annex_parse attribute scraping correctness with handmade test PDF files.
+
     Tested attributes:
-        eu_type_of_medicine
-        initial_type_of_eu_authorization
+        - eu_type_of_medicine
+        - initial_type_of_eu_authorization
     """
     annex_attributes: dict[str, str]
 
