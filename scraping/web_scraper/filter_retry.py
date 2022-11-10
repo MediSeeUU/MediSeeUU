@@ -58,6 +58,7 @@ def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str]]], data
 def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, list[str]]):
     """
     Calls the download function for a specific file
+
     Args:
         eu_n (str): eu number used for calling the download function
         filename_elements (list[str]): filename elements, used as parameter in the download function
