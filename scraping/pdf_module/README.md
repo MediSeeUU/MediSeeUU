@@ -18,7 +18,8 @@ Locatie van data
 - XML bestand voor elk PDF bestand in zelfde map als PDF bestand.
 - JSON bestand voor elk medicijn, met alle relevante attributen van dat medicijn.
   - JSON naam format: {EU_number}_pdf_parser.json
-
 # Overige belangrijke punten
 Het parsen vanuit XML files is sneller dan vanuit PDF files door het snellere lezen.
 Het kost wat tijd om de XML files te maken, maar dit hoeft maar één keer.
+
+Visualisatie van gescrapede attributen: [Visualisaties PDF](MediSee_PDF_visualisation.html)
