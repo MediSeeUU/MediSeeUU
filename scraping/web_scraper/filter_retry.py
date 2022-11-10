@@ -1,9 +1,8 @@
-import json
 import logging
 import os
-from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper
-from scraping.web_scraper import __main__ as m
 from scraping.filter import pdf_filter
+from scraping.web_scraper import __main__ as m
+from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper
 
 # dictionaries used for mapping
 key_dict = {"dec": "aut_url",

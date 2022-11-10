@@ -27,7 +27,7 @@ def pdf_links_from_url(url: str) -> tuple[str, str]:
     html_obj = requests.get(url)
 
     # Last part of the url, contains the medicine name
-    medicine_name: str = url.split('/')[-1]
+    medicine_name: str = url.split('&')[0].split('/')[-1]
 
     # TODO: Graceful handling
     html_obj.raise_for_status()
