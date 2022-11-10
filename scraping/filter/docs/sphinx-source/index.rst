@@ -6,7 +6,11 @@
 Filter Documentation
 ====================
 .. toctree::
+   :caption: Readme
+
+
+.. toctree::
    :maxdepth: 3
+   :caption: Source Code Documentation
 
    modules
-   
