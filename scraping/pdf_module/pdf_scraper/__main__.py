@@ -47,17 +47,18 @@ def parse_folder(directory: str, folder_name):
         folder_name: name of medicine folder to parse
     """
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing
-    medicine_struct = pis.parsed_info_struct(folder_name)
+    medicine_struct = pis.ParsedInfoStruct(folder_name)
 
     # do xml conversion on annex, epar and omar files
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
     for file in directory_files:
-        # Skip over all decision files, XML files, and non-pdf files
-        if "dec" in file or ".xml" in file or ".pdf" not in file:
+        # Skip over all XML files and non-PDF files
+        if ".xml" in file or ".pdf" not in file:
             continue
         # Skip file if XML is already created (temporary)
         if file[:len(file) - 4] + ".xml" in directory_files:
             continue
+
         file_path = path.join(directory, file)
         xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
@@ -81,7 +82,8 @@ def get_files(directory):
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
     epar_files = [file for file in directory_files if
                   ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
-    omar_files = [path.join(directory, file) for file in directory_files if "omar" in file and ".xml" in file]
+    omar_files = [path.join(directory, file) for file in directory_files if
+                  "orphan-maintenance-assessment-report" in file and ".xml" in file]
     return annex_files, decision_files, epar_files, omar_files
 
 

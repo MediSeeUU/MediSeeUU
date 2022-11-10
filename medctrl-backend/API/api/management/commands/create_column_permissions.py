@@ -10,17 +10,9 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.management.base import BaseCommand
 
-from api.models.medicine_models import (
-    Medicine,
-    HistoryAuthorisationStatus,
-    HistoryAuthorisationType,
-    HistoryBrandName,
-    HistoryMAH,
-    HistoryOD,
-    HistoryPrime,
-    LegalBases,
-)
+from api.models.medicine_models import models
 import logging
+
 
 # creates custom permission levels to view medicines
 class Command(BaseCommand):
@@ -32,16 +24,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         content_type = ContentType.objects.filter(model="medicine").first()
 
-        for model in [
-            Medicine,
-            HistoryAuthorisationStatus,
-            HistoryAuthorisationType,
-            HistoryBrandName,
-            HistoryMAH,
-            HistoryOD,
-            HistoryPrime,
-            LegalBases,
-        ]:
+        for model in models:
             content_type = ContentType.objects.filter(model=model.__name__).first()
 
             # pylint: disable=protected-access

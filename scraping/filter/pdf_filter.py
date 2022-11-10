@@ -4,18 +4,6 @@ import os
 import re
 import json
 
-"""
-This program scans all PDF files in the given directory.
-Sometimes, the content of a PDF file is not correct.
-This program therefore creates a log file (filter.txt) that saves the actual type of each erroneous PDF file:
-An image, a HTML webpage, or a corrupt PDF in other cases.
-
-This file can be used by the webscraper to check for corrupt PDF files,
-as this allows the web scraper to try to scrape these files again.
-
-The other non-PDF files will be scraped during the next automatic web scraper run. (I.E. Next week)
-"""
-
 
 def filter_all_pdfs(directory: str):
     """
@@ -26,7 +14,7 @@ def filter_all_pdfs(directory: str):
         directory (str): folder with all medicine folders to filter
     """
     print(f'Filtering all PDF files...')
-    f = open('filter.txt', 'w', encoding="utf-8")  # open/clean output file
+    f = open(os.path.join(directory, 'filter.txt'), 'w', encoding="utf-8")  # open/clean output file
     data_dir = directory
     all_data = Parallel(n_jobs=8)(
         delayed(filter_folder)(os.path.join(data_dir, folder)) for folder in
@@ -44,6 +32,7 @@ def filter_all_pdfs(directory: str):
 def filter_folder(folder: str) -> [str]:
     """
     Filters a medicine folder containing PDF files
+
     Args:
         folder (str): name of the folder to filter
 
@@ -88,6 +77,7 @@ def filter_pdf(filename: str, data_dir: str) -> str:
     """
     Checks whether the PDF is readable, or gives an error
     Deletes PDF files with an error and returns the filename as well as the error in a string
+
     Args:
         filename (str): The name of the PDF file
         data_dir (str): The directory where the PDF is stored
@@ -138,6 +128,7 @@ def filter_pdf(filename: str, data_dir: str) -> str:
 def error_line(filename: str, error: str) -> str:
     """
     Gives the error line to be written to filter.txt
+
     Args:
         filename (str): The name of the PDF file
         error (str): The error message of the PDF file
@@ -150,13 +141,12 @@ def error_line(filename: str, error: str) -> str:
     if "dec" in filename:
         eu_num = filename[:11].replace("-", "/")
         brand_name = get_brand_name(filename)
-        return f"{filename}@{url}{error}@{eu_num}@{brand_name}"
-    return f"{filename}@{url}{error}"
+        return f"{filename}{error}@{eu_num}@{brand_name}@{url}"
+    return f"{filename}{error}@{url}"
 
 
 def get_brand_name(filename: str) -> str:
     """
-
     Args:
         filename (str): The name of the PDF file
 
@@ -164,24 +154,19 @@ def get_brand_name(filename: str) -> str:
         str: Brand name of the EC decision file
 
     """
-    eu_num = filename[:11]
+    eu_num = filename.split('_')[0]
     try:
-        with open(f'../../data/{eu_num}/{eu_num}_pdf_parser.json') as pdf_json:
-            decision_attributes = json.load(pdf_json)['decisions']
-            num = filename.split('_')[-1]
-            num = int(num[:len(num) - 4])
-            try:
-                brand_name = decision_attributes[num]['eu_brand_name_initial']
-                return brand_name
-            except IndexError:
-                return "decision_file_not_parsed"
+        with open(f'../../data/{eu_num}/{eu_num}_attributes.json') as pdf_json:
+            web_attributes = json.load(pdf_json)
+            return web_attributes['eu_brand_name_current']
     except FileNotFoundError:
-        return "no_pdf_json_found"
+        return "no_attributes_json_found"
 
 
 def get_url(filename) -> str:
     """
     Retrieve the URL for a given filename
+
     Args:
         filename (str): The name of the PDF file
 
@@ -192,7 +177,6 @@ def get_url(filename) -> str:
     try:
         with open('../web_scraper/JSON/urls.json') as urls_json:
             urls = json.load(urls_json)
-            print(urls[eu_num]['epar_url'])
             try:
                 if 'dec' in filename:
                     num = filename.split('_')[-1]
@@ -218,6 +202,7 @@ def get_url(filename) -> str:
 def get_utf8_line(file_path: str) -> str:
     """
     Gets the first line of the file
+
     Args:
         file_path (str): Path of the file to read
 
@@ -241,7 +226,7 @@ def safe_remove(file_path: str):
         file_path (str): Path of the file to remove
     """
     try:
-        os.remove(file_path)
+        print(file_path)  # os.remove(file_path)
     except FileNotFoundError:
         print("Can't remove file: file_not_found")
 
@@ -266,6 +251,7 @@ def check_readable(pdf: fitz.Document) -> bool:
 def check_decision(filename: str, file_path: str, pdf: fitz.Document) -> str:
     """
     Check if the file is a decision file
+
     Args:
         filename (str): filename of the supposed decision file
         file_path (str): path to the decision file
@@ -296,6 +282,7 @@ def check_decision(filename: str, file_path: str, pdf: fitz.Document) -> str:
 def check_annex(filename: str, file_path: str, pdf: fitz.Document) -> str:
     """
     Checks if it is an annex file
+
     Args:
         filename (str): filename of supposed annex file to check
         file_path (str): path of annex file to check
@@ -311,6 +298,7 @@ def check_annex(filename: str, file_path: str, pdf: fitz.Document) -> str:
 def check_procedural(filename: str, file_path: str, pdf: fitz.Document) -> str:
     """
     Check if it is a procedural steps file (from EPAR)
+
     Args:
         filename (str): filename of supposed procedural steps pdf to check
         file_path (str): path to the file to check
@@ -325,6 +313,7 @@ def check_procedural(filename: str, file_path: str, pdf: fitz.Document) -> str:
 def check_epar(filename: str, file_path: str, pdf: fitz.Document) -> str:
     """
     Check if it is an EPAR file
+
     Args:
         filename (str): filename of the supposed EPAR file to check
         file_path (str): path to the EPAR file
@@ -339,6 +328,7 @@ def check_epar(filename: str, file_path: str, pdf: fitz.Document) -> str:
 def check_scientific(filename: str, file_path: str, pdf: fitz.Document) -> str:
     """
     Check if it is a scientific discussion file
+
     Args:
         filename (str): filename of the supposed scientific discussion file to check
         file_path (str): path to the scientific discussion file
@@ -353,6 +343,7 @@ def check_scientific(filename: str, file_path: str, pdf: fitz.Document) -> str:
 def check_pdf_type(file_path: str, filename: str, pdf: fitz.Document, texts: [str]) -> str:
     """
     Check if the file is of the correct type - helper function
+
     Args:
         filename (str): filename of the file to check
         file_path (str): path to the file
@@ -372,12 +363,13 @@ def check_pdf_type(file_path: str, filename: str, pdf: fitz.Document, texts: [st
             return ''
     pdf.close()
     safe_remove(file_path)
-    error_line(filename, '@wrong_doctype')
+    return error_line(filename, '@wrong_doctype')
 
 
 def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
     """
     Checks if any PDF file is of the right type
+
     Args:
         filename (str): name of the PDF file
         file_path (str): path of the PDF file
@@ -401,4 +393,4 @@ def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
         return ''
 
 
-#filter_all_pdfs("../../data")
+# filter_all_pdfs("../../data")

@@ -1,6 +1,7 @@
 django>=4.0,<4.1
 djangorestframework==3.13.1
 django-cors-headers
+coverage
 mysqlclient
 black
 pylint
@@ -10,6 +11,3 @@ django-rest-knox
 djangorestframework-guardian
 django-import-export
 docutils
-sphinx
-myst-parser
-sphinx_rtd_theme

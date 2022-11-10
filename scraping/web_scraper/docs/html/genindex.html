@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Web Scraper 1 documentation</title>
+  <title>Index &mdash; Web Scraper 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -26,19 +27,125 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Web Scraper
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
+
+<a href="../../../../docs/html/README.html">
+  <img src="_static/medisee.svg" class="logo" alt="Logo"/>
+</a>
+
+
+  
+  
+
+
+
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">web_scraper</a></li>
+    <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+      <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+      <ul>
+        <li class="toctree-l1 current-module"><a href="index.html">Web Scraper</a></li>
+        <li class="toctree-l1"><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
+        <li class="toctree-l1"><a href="../../../../scraping/pdf_module/docs/html/index.html">PDF Scraper</a></li>
+        <li class="toctree-l1"><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
+        <li class="toctree-l1"><a href="../../../../scraping/db_uploader/docs/html/index.html">DB Uploader</a></li>
+        <li class="toctree-l1"><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
+        <li class="toctree-l1"><a href="../../../../tests/docs/html/index.html">Tests</a></li>
+      </ul>
+    </div>  
+    
+              <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Web Scraper</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#algemene-functie">Algemene Functie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#ec-scraper-py">ec_scraper.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#ema-scraper-py">ema_scraper.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#download-py">download.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#filter-retry-py">filter_retry.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#main-py"><strong>main</strong>.py</a></li>
 </ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#input-output">Input &amp; Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#overige-belangrijke-punten">Overige belangrijke punten</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Source Code Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">web_scraper</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="web_scraper.html">web_scraper package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.db_helper">web_scraper.db_helper module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.db_helper.load_urls"><code class="docutils literal notranslate"><span class="pre">load_urls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.db_helper.save_urls"><code class="docutils literal notranslate"><span class="pre">save_urls()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.download">web_scraper.download module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_all"><code class="docutils literal notranslate"><span class="pre">download_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_medicine_files"><code class="docutils literal notranslate"><span class="pre">download_medicine_files()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_pdf_from_url"><code class="docutils literal notranslate"><span class="pre">download_pdf_from_url()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_pdfs_ec"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ec()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_pdfs_ema"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ema()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.ec_scraper">web_scraper.ec_scraper module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType"><code class="docutils literal notranslate"><span class="pre">MedicineType</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType.HUMAN_USE_ACTIVE"><code class="docutils literal notranslate"><span class="pre">MedicineType.HUMAN_USE_ACTIVE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType.HUMAN_USE_REFUSED"><code class="docutils literal notranslate"><span class="pre">MedicineType.HUMAN_USE_REFUSED</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType.HUMAN_USE_WITHDRAWN"><code class="docutils literal notranslate"><span class="pre">MedicineType.HUMAN_USE_WITHDRAWN</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType.ORPHAN_ACTIVE"><code class="docutils literal notranslate"><span class="pre">MedicineType.ORPHAN_ACTIVE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType.ORPHAN_REFUSE"><code class="docutils literal notranslate"><span class="pre">MedicineType.ORPHAN_REFUSE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType.ORPHAN_WITHDRAWN"><code class="docutils literal notranslate"><span class="pre">MedicineType.ORPHAN_WITHDRAWN</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.determine_current_aut_type"><code class="docutils literal notranslate"><span class="pre">determine_current_aut_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.determine_ema_number"><code class="docutils literal notranslate"><span class="pre">determine_ema_number()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.determine_initial_aut_type"><code class="docutils literal notranslate"><span class="pre">determine_initial_aut_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.format_ema_number"><code class="docutils literal notranslate"><span class="pre">format_ema_number()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.get_data_from_medicine_json"><code class="docutils literal notranslate"><span class="pre">get_data_from_medicine_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.get_data_from_procedures_json"><code class="docutils literal notranslate"><span class="pre">get_data_from_procedures_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.get_ec_html"><code class="docutils literal notranslate"><span class="pre">get_ec_html()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.get_ec_json_objects"><code class="docutils literal notranslate"><span class="pre">get_ec_json_objects()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.scrape_active_withdrawn_jsons"><code class="docutils literal notranslate"><span class="pre">scrape_active_withdrawn_jsons()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.scrape_medicine_page"><code class="docutils literal notranslate"><span class="pre">scrape_medicine_page()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.scrape_medicines_list"><code class="docutils literal notranslate"><span class="pre">scrape_medicines_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.scrape_refused_jsons"><code class="docutils literal notranslate"><span class="pre">scrape_refused_jsons()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.ema_scraper">web_scraper.ema_scraper module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.find_last_updated_date"><code class="docutils literal notranslate"><span class="pre">find_last_updated_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.find_priority_link"><code class="docutils literal notranslate"><span class="pre">find_priority_link()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.get_annex10_files"><code class="docutils literal notranslate"><span class="pre">get_annex10_files()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.pdf_links_from_url"><code class="docutils literal notranslate"><span class="pre">pdf_links_from_url()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.filter_retry">web_scraper.filter_retry module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.filter_retry.retry_all"><code class="docutils literal notranslate"><span class="pre">retry_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.filter_retry.retry_download"><code class="docutils literal notranslate"><span class="pre">retry_download()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.filter_retry.run_filter"><code class="docutils literal notranslate"><span class="pre">run_filter()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.json_helper">web_scraper.json_helper module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.json_helper.JsonHelper"><code class="docutils literal notranslate"><span class="pre">JsonHelper</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.json_helper.JsonHelper.add_to_dict"><code class="docutils literal notranslate"><span class="pre">JsonHelper.add_to_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.json_helper.JsonHelper.load_json"><code class="docutils literal notranslate"><span class="pre">JsonHelper.load_json()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.json_helper.JsonHelper.merge_nested_dict"><code class="docutils literal notranslate"><span class="pre">JsonHelper.merge_nested_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.json_helper.JsonHelper.overwrite_dict"><code class="docutils literal notranslate"><span class="pre">JsonHelper.overwrite_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.json_helper.JsonHelper.save_dict"><code class="docutils literal notranslate"><span class="pre">JsonHelper.save_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.utils">web_scraper.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.utils.count_unique"><code class="docutils literal notranslate"><span class="pre">count_unique()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.utils.exception_retry"><code class="docutils literal notranslate"><span class="pre">exception_retry()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
 
         </div>
       </div>
@@ -53,8 +160,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Index</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -67,11 +174,15 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#D"><strong>D</strong></a>
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
@@ -80,6 +191,22 @@
  | <a href="#W"><strong>W</strong></a>
  
 </div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="web_scraper.html#web_scraper.json_helper.JsonHelper.add_to_dict">add_to_dict() (web_scraper.json_helper.JsonHelper method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="web_scraper.html#web_scraper.utils.count_unique">count_unique() (in module web_scraper.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -89,12 +216,10 @@
 </li>
       <li><a href="web_scraper.html#web_scraper.ec_scraper.determine_initial_aut_type">determine_initial_aut_type() (in module web_scraper.ec_scraper)</a>
 </li>
-      <li><a href="web_scraper.html#web_scraper.download.dos2unix">dos2unix() (in module web_scraper.download)</a>
+      <li><a href="web_scraper.html#web_scraper.download.download_all">download_all() (in module web_scraper.download)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="web_scraper.html#web_scraper.download.download_all">download_all() (in module web_scraper.download)</a>
-</li>
       <li><a href="web_scraper.html#web_scraper.download.download_medicine_files">download_medicine_files() (in module web_scraper.download)</a>
 </li>
       <li><a href="web_scraper.html#web_scraper.download.download_pdf_from_url">download_pdf_from_url() (in module web_scraper.download)</a>
@@ -117,6 +242,12 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="web_scraper.html#web_scraper.ema_scraper.find_last_updated_date">find_last_updated_date() (in module web_scraper.ema_scraper)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="web_scraper.html#web_scraper.ema_scraper.find_priority_link">find_priority_link() (in module web_scraper.ema_scraper)</a>
+</li>
       <li><a href="web_scraper.html#web_scraper.ec_scraper.format_ema_number">format_ema_number() (in module web_scraper.ec_scraper)</a>
 </li>
   </ul></td>
@@ -125,12 +256,14 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="web_scraper.html#web_scraper.ec_scraper.get_data_from_medicine_json">get_data_from_medicine_json() (in module web_scraper.ec_scraper)</a>
+      <li><a href="web_scraper.html#web_scraper.ema_scraper.get_annex10_files">get_annex10_files() (in module web_scraper.ema_scraper)</a>
 </li>
-      <li><a href="web_scraper.html#web_scraper.ec_scraper.get_data_from_procedures_json">get_data_from_procedures_json() (in module web_scraper.ec_scraper)</a>
+      <li><a href="web_scraper.html#web_scraper.ec_scraper.get_data_from_medicine_json">get_data_from_medicine_json() (in module web_scraper.ec_scraper)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="web_scraper.html#web_scraper.ec_scraper.get_data_from_procedures_json">get_data_from_procedures_json() (in module web_scraper.ec_scraper)</a>
+</li>
       <li><a href="web_scraper.html#web_scraper.ec_scraper.get_ec_html">get_ec_html() (in module web_scraper.ec_scraper)</a>
 </li>
       <li><a href="web_scraper.html#web_scraper.ec_scraper.get_ec_json_objects">get_ec_json_objects() (in module web_scraper.ec_scraper)</a>
@@ -145,7 +278,29 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="web_scraper.html#web_scraper.ec_scraper.MedicineType.HUMAN_USE_REFUSED">HUMAN_USE_REFUSED (web_scraper.ec_scraper.MedicineType attribute)</a>
+</li>
       <li><a href="web_scraper.html#web_scraper.ec_scraper.MedicineType.HUMAN_USE_WITHDRAWN">HUMAN_USE_WITHDRAWN (web_scraper.ec_scraper.MedicineType attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="web_scraper.html#web_scraper.json_helper.JsonHelper">JsonHelper (class in web_scraper.json_helper)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="web_scraper.html#web_scraper.json_helper.JsonHelper.load_json">load_json() (web_scraper.json_helper.JsonHelper method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="web_scraper.html#web_scraper.db_helper.load_urls">load_urls() (in module web_scraper.db_helper)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -155,17 +310,25 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="web_scraper.html#web_scraper.ec_scraper.MedicineType">MedicineType (class in web_scraper.ec_scraper)</a>
 </li>
+      <li><a href="web_scraper.html#web_scraper.json_helper.JsonHelper.merge_nested_dict">merge_nested_dict() (web_scraper.json_helper.JsonHelper method)</a>
+</li>
       <li>
     module
 
       <ul>
         <li><a href="web_scraper.html#module-web_scraper">web_scraper</a>
 </li>
+        <li><a href="web_scraper.html#module-web_scraper.db_helper">web_scraper.db_helper</a>
+</li>
         <li><a href="web_scraper.html#module-web_scraper.download">web_scraper.download</a>
 </li>
         <li><a href="web_scraper.html#module-web_scraper.ec_scraper">web_scraper.ec_scraper</a>
 </li>
         <li><a href="web_scraper.html#module-web_scraper.ema_scraper">web_scraper.ema_scraper</a>
+</li>
+        <li><a href="web_scraper.html#module-web_scraper.filter_retry">web_scraper.filter_retry</a>
+</li>
+        <li><a href="web_scraper.html#module-web_scraper.json_helper">web_scraper.json_helper</a>
 </li>
         <li><a href="web_scraper.html#module-web_scraper.utils">web_scraper.utils</a>
 </li>
@@ -178,9 +341,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="web_scraper.html#web_scraper.ec_scraper.MedicineType.ORPHAN_ACTIVE">ORPHAN_ACTIVE (web_scraper.ec_scraper.MedicineType attribute)</a>
 </li>
+      <li><a href="web_scraper.html#web_scraper.ec_scraper.MedicineType.ORPHAN_REFUSE">ORPHAN_REFUSE (web_scraper.ec_scraper.MedicineType attribute)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="web_scraper.html#web_scraper.ec_scraper.MedicineType.ORPHAN_WITHDRAWN">ORPHAN_WITHDRAWN (web_scraper.ec_scraper.MedicineType attribute)</a>
+</li>
+      <li><a href="web_scraper.html#web_scraper.json_helper.JsonHelper.overwrite_dict">overwrite_dict() (web_scraper.json_helper.JsonHelper method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -196,7 +363,13 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="web_scraper.html#web_scraper.download.read_csv_files">read_csv_files() (in module web_scraper.download)</a>
+      <li><a href="web_scraper.html#web_scraper.filter_retry.retry_all">retry_all() (in module web_scraper.filter_retry)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="web_scraper.html#web_scraper.filter_retry.retry_download">retry_download() (in module web_scraper.filter_retry)</a>
+</li>
+      <li><a href="web_scraper.html#web_scraper.filter_retry.run_filter">run_filter() (in module web_scraper.filter_retry)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -204,12 +377,16 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="web_scraper.html#web_scraper.ec_scraper.scrape_active_withdrawn_jsons">scrape_active_withdrawn_jsons() (in module web_scraper.ec_scraper)</a>
+      <li><a href="web_scraper.html#web_scraper.json_helper.JsonHelper.save_dict">save_dict() (web_scraper.json_helper.JsonHelper method)</a>
 </li>
-      <li><a href="web_scraper.html#web_scraper.ec_scraper.scrape_medicine_page">scrape_medicine_page() (in module web_scraper.ec_scraper)</a>
+      <li><a href="web_scraper.html#web_scraper.db_helper.save_urls">save_urls() (in module web_scraper.db_helper)</a>
+</li>
+      <li><a href="web_scraper.html#web_scraper.ec_scraper.scrape_active_withdrawn_jsons">scrape_active_withdrawn_jsons() (in module web_scraper.ec_scraper)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="web_scraper.html#web_scraper.ec_scraper.scrape_medicine_page">scrape_medicine_page() (in module web_scraper.ec_scraper)</a>
+</li>
       <li><a href="web_scraper.html#web_scraper.ec_scraper.scrape_medicines_list">scrape_medicines_list() (in module web_scraper.ec_scraper)</a>
 </li>
       <li><a href="web_scraper.html#web_scraper.ec_scraper.scrape_refused_jsons">scrape_refused_jsons() (in module web_scraper.ec_scraper)</a>
@@ -225,6 +402,13 @@
 
       <ul>
         <li><a href="web_scraper.html#module-web_scraper">module</a>
+</li>
+      </ul></li>
+      <li>
+    web_scraper.db_helper
+
+      <ul>
+        <li><a href="web_scraper.html#module-web_scraper.db_helper">module</a>
 </li>
       </ul></li>
       <li>
@@ -248,6 +432,20 @@
 
       <ul>
         <li><a href="web_scraper.html#module-web_scraper.ema_scraper">module</a>
+</li>
+      </ul></li>
+      <li>
+    web_scraper.filter_retry
+
+      <ul>
+        <li><a href="web_scraper.html#module-web_scraper.filter_retry">module</a>
+</li>
+      </ul></li>
+      <li>
+    web_scraper.json_helper
+
+      <ul>
+        <li><a href="web_scraper.html#module-web_scraper.json_helper">module</a>
 </li>
       </ul></li>
       <li>
@@ -284,7 +482,7 @@
   </div>
   <script>
       jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
+          SphinxRtdTheme.Navigation.enable(false);
       });
   </script> 
 

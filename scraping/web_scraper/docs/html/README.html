@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Scraper &mdash; Web Scraper 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="web_scraper" href="modules.html" />
+    <link rel="prev" title="Web Scraper Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+<a href="../../../../docs/html/README.html">
+  <img src="_static/medisee.svg" class="logo" alt="Logo"/>
+</a>
+
+
+  
+  
+
+
+
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+      <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+      <ul>
+        <li class="toctree-l1 current-module"><a href="index.html">Web Scraper</a></li>
+        <li class="toctree-l1"><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
+        <li class="toctree-l1"><a href="../../../../scraping/pdf_module/docs/html/index.html">PDF Scraper</a></li>
+        <li class="toctree-l1"><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
+        <li class="toctree-l1"><a href="../../../../scraping/db_uploader/docs/html/index.html">DB Uploader</a></li>
+        <li class="toctree-l1"><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
+        <li class="toctree-l1"><a href="../../../../tests/docs/html/index.html">Tests</a></li>
+      </ul>
+    </div>  
+    
+              <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Web Scraper</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#algemene-functie">Algemene Functie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ec-scraper-py">ec_scraper.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ema-scraper-py">ema_scraper.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-py">download.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filter-retry-py">filter_retry.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#main-py"><strong>main</strong>.py</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#input-output">Input &amp; Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overige-belangrijke-punten">Overige belangrijke punten</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Source Code Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">web_scraper</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="web_scraper.html">web_scraper package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.db_helper">web_scraper.db_helper module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.db_helper.load_urls"><code class="docutils literal notranslate"><span class="pre">load_urls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.db_helper.save_urls"><code class="docutils literal notranslate"><span class="pre">save_urls()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.download">web_scraper.download module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_all"><code class="docutils literal notranslate"><span class="pre">download_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_medicine_files"><code class="docutils literal notranslate"><span class="pre">download_medicine_files()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_pdf_from_url"><code class="docutils literal notranslate"><span class="pre">download_pdf_from_url()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_pdfs_ec"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ec()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_pdfs_ema"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ema()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.ec_scraper">web_scraper.ec_scraper module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType"><code class="docutils literal notranslate"><span class="pre">MedicineType</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType.HUMAN_USE_ACTIVE"><code class="docutils literal notranslate"><span class="pre">MedicineType.HUMAN_USE_ACTIVE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType.HUMAN_USE_REFUSED"><code class="docutils literal notranslate"><span class="pre">MedicineType.HUMAN_USE_REFUSED</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType.HUMAN_USE_WITHDRAWN"><code class="docutils literal notranslate"><span class="pre">MedicineType.HUMAN_USE_WITHDRAWN</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType.ORPHAN_ACTIVE"><code class="docutils literal notranslate"><span class="pre">MedicineType.ORPHAN_ACTIVE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType.ORPHAN_REFUSE"><code class="docutils literal notranslate"><span class="pre">MedicineType.ORPHAN_REFUSE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.MedicineType.ORPHAN_WITHDRAWN"><code class="docutils literal notranslate"><span class="pre">MedicineType.ORPHAN_WITHDRAWN</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.determine_current_aut_type"><code class="docutils literal notranslate"><span class="pre">determine_current_aut_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.determine_ema_number"><code class="docutils literal notranslate"><span class="pre">determine_ema_number()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.determine_initial_aut_type"><code class="docutils literal notranslate"><span class="pre">determine_initial_aut_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.format_ema_number"><code class="docutils literal notranslate"><span class="pre">format_ema_number()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.get_data_from_medicine_json"><code class="docutils literal notranslate"><span class="pre">get_data_from_medicine_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.get_data_from_procedures_json"><code class="docutils literal notranslate"><span class="pre">get_data_from_procedures_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.get_ec_html"><code class="docutils literal notranslate"><span class="pre">get_ec_html()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.get_ec_json_objects"><code class="docutils literal notranslate"><span class="pre">get_ec_json_objects()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.scrape_active_withdrawn_jsons"><code class="docutils literal notranslate"><span class="pre">scrape_active_withdrawn_jsons()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.scrape_medicine_page"><code class="docutils literal notranslate"><span class="pre">scrape_medicine_page()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.scrape_medicines_list"><code class="docutils literal notranslate"><span class="pre">scrape_medicines_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ec_scraper.scrape_refused_jsons"><code class="docutils literal notranslate"><span class="pre">scrape_refused_jsons()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.ema_scraper">web_scraper.ema_scraper module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.find_last_updated_date"><code class="docutils literal notranslate"><span class="pre">find_last_updated_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.find_priority_link"><code class="docutils literal notranslate"><span class="pre">find_priority_link()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.get_annex10_files"><code class="docutils literal notranslate"><span class="pre">get_annex10_files()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.pdf_links_from_url"><code class="docutils literal notranslate"><span class="pre">pdf_links_from_url()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.filter_retry">web_scraper.filter_retry module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.filter_retry.retry_all"><code class="docutils literal notranslate"><span class="pre">retry_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.filter_retry.retry_download"><code class="docutils literal notranslate"><span class="pre">retry_download()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.filter_retry.run_filter"><code class="docutils literal notranslate"><span class="pre">run_filter()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.json_helper">web_scraper.json_helper module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.json_helper.JsonHelper"><code class="docutils literal notranslate"><span class="pre">JsonHelper</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.json_helper.JsonHelper.add_to_dict"><code class="docutils literal notranslate"><span class="pre">JsonHelper.add_to_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.json_helper.JsonHelper.load_json"><code class="docutils literal notranslate"><span class="pre">JsonHelper.load_json()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.json_helper.JsonHelper.merge_nested_dict"><code class="docutils literal notranslate"><span class="pre">JsonHelper.merge_nested_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.json_helper.JsonHelper.overwrite_dict"><code class="docutils literal notranslate"><span class="pre">JsonHelper.overwrite_dict()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="web_scraper.html#web_scraper.json_helper.JsonHelper.save_dict"><code class="docutils literal notranslate"><span class="pre">JsonHelper.save_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.utils">web_scraper.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.utils.count_unique"><code class="docutils literal notranslate"><span class="pre">count_unique()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.utils.exception_retry"><code class="docutils literal notranslate"><span class="pre">exception_retry()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Web Scraper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Web Scraper</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="web-scraper">
+<h1>Web Scraper<a class="headerlink" href="#web-scraper" title="Permalink to this heading"></a></h1>
+<section id="algemene-functie">
+<h2>Algemene Functie<a class="headerlink" href="#algemene-functie" title="Permalink to this heading"></a></h2>
+<p>De webscraper zorgt ervoor dat alle relevante informatie over het beoordelingsproces van medicijnen van het internet wordt gehaald. De scraper haalt (op dit moment) informatie van twee verschillende bronnen: de website van de Europese Commissie (EC) en het European Medicine Agency (EMA). Op de website van de EC is er voor ieder medicijn een unieke pagina die informatie bevat over dat medicijn, aangevuld met bestanden (pdf’s) die extra informatie bevatten over beoordelingsprocedures. Daarnaast wordt er ook doorgelinkt naar de EMA website die ook een aparte pagina heeft voor dat medicijn, eveneens met extra informatie en bestanden.<br />
+Er zijn 5 belangrijke python bestanden die ervoor zorgen dat de informatie van deze websites wordt gehaald; ec_scraper.py, ema_scraper.py, download.py, filter_retry.py en <strong>main</strong>.py.</p>
+<section id="ec-scraper-py">
+<h3>ec_scraper.py<a class="headerlink" href="#ec-scraper-py" title="Permalink to this heading"></a></h3>
+<p>Het script voor de EC website heeft twee verschillende functionaliteiten. Ten eerste haalt het een lijst op van medicijnen die moet worden gescraped. Voor ieder van deze medicijnen wordt een mapje aangemaakt waar de nodige informatie van het medicijn tijdelijk wordt opgeslagen. Daarnaast zorgt de EC scraper er daadwerkelijk ook voor dat alle nodige informatie van de EC website wordt gehaald. Deze informatie bestaat uit een aantal datapunten voor een medicijn (attributen), links naar extra procedure bestanden (decisions en annexes) en links naar de website van de EMA. De attributen van een medicijn worden in de eerder genoemde map, in een JSON opgeslagen. De links naar decision documenten en annex documenten  voor alle medicijnen worden in één enkele JSON opgeslagen. Dit bestand bevat ook links naar de EMA en wordt later aangevuld door de EMA scraper.</p>
+</section>
+<section id="ema-scraper-py">
+<h3>ema_scraper.py<a class="headerlink" href="#ema-scraper-py" title="Permalink to this heading"></a></h3>
+<p>ema_scraper.py heeft een soortgelijke functie als de scraper voor de Europese Commissie. Het haalt voor ieder medicijn een aantal attributen op van de website zelf, en het slaat alle linkjes naar bestanden, zodat deze lijst later kan worden gedownload. De attributen worden in de JSON bijgevoegd, evenals de linkjes naar EPAR en OMAR bestanden. Van de EMA website moet ook een lijst van Annex 10 bestanden worden gedownload. Hier is een begin aan gemaakt, maar is nog niet af.</p>
+</section>
+<section id="download-py">
+<h3>download.py<a class="headerlink" href="#download-py" title="Permalink to this heading"></a></h3>
+<p>Het downloadscript zorgt ervoor dat de JSON met linkjes naar bestanden (die zijn gescraped door ec_scraper.py en ema_scraper.py) ook daadwerkelijk worden opgeslagen. Het download ieder decision, annex, EPAR of OMAR bestand naar de juiste medicijnmap. Ieder bestand dat niet kon worden gedownload wordt gelogd.</p>
+</section>
+<section id="filter-retry-py">
+<h3>filter_retry.py<a class="headerlink" href="#filter-retry-py" title="Permalink to this heading"></a></h3>
+<p>Gebaseerd op het .txt bestand dat de filtermodule aan de webscraper geeft, wordt voor de bestanden die in eerste instantie niet gedownload konden worden en nieuwe poging gedaan om ze te downloaden.</p>
+</section>
+<section id="main-py">
+<h3><strong>main</strong>.py<a class="headerlink" href="#main-py" title="Permalink to this heading"></a></h3>
+<p>Dit script is wat de volledige webscraper aanstuurt. Het kan bepaalde delen van de webscraper aan en uit zetten, zodat het niet altijd in zijn volledigheid loopt. Als alles wel aan staat, zal eerst de lijst met te scrapen medicijnen van de EC website worden gehaald. Vervolgens wordt alle benodigde informatie voor ieder van deze medicijnen van de EC website gehaald. Dit bevat dus ook linkjes naar de EMA website. Met deze linkjes kan vervolgens de EMA website worden gescraped. Als laatste worden alle linkjes naar bestanden op de EC en EMA website gedownload.</p>
+</section>
+</section>
+<section id="input-output">
+<h2>Input &amp; Output<a class="headerlink" href="#input-output" title="Permalink to this heading"></a></h2>
+<p>Deze module start, wanneer deze voor het eerst wordt aangeroepen, zonder input. Het haalt alle benodigde informatie van de EC website af, en kan daarmee zelfstandig aan de slag. Voor ieder medicijn wordt een apart mapje gemaakt waar alle informatie omtrent dat medicijn wordt opgeslagen. Alle attributen die rechtstreeks van de EC en EMA websites af worden gehaald worden in een JSON bestand gezet. Ook worden alle procedure bestanden voor een medicijn in diezelfde map opgeslagen wanneer ze worden gedownload. De bestanden die in de mapjes staan worden door de filter module onder handen genomen. Het kan namelijk zijn dat het bestand dat is gedownload corrupt, een html pagina, of een plaatje is. De filter maakt een lijst met alle bestanden die niet goed zijn en koppelt dit terug aan de websraper, zodat deze bestanden opnieuw gedownload kunnen worden.
+De goede pdf-bestanden die in de mapjes staan worden onder handen genomen door de pdf scraper, die op zijn beurt ook weer attributen voor medicijnen ophaalt. De JSON met attributen die direct van de website zijn gehaald, de JSON met attributen uit de pdf scraper en JSON’s van externe bronnen worden aan de combiner gegeven, zodat inconsistente informatie correct kan worden opgeslagen in de database.</p>
+</section>
+<section id="overige-belangrijke-punten">
+<h2>Overige belangrijke punten<a class="headerlink" href="#overige-belangrijke-punten" title="Permalink to this heading"></a></h2>
+<p>This program has been developed by students from the bachelor Computer Science at Utrecht University within the Software Project course.</p>
+<p>© Copyright Utrecht University (Department of Information and Computing Sciences)</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Web Scraper Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="web_scraper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Medisee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

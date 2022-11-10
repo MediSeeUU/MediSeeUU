@@ -3,17 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the pdf scraper documentation!
-=========================================
+PDF Scraper Documentation
+=========================
+
+.. toctree::
+   :caption: Readme
+
+   README
+
 .. toctree::
    :maxdepth: 5
+   :caption: Source Code Documentation
 
    modules
    
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

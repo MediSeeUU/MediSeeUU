@@ -1,115 +1,153 @@
 # OMAR parser
 import re
 import xml.etree.ElementTree as ET
-import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
-import scraping.pdf_module.pdf_scraper.xml_parsing_utils as Utils
-import os.path as path
+import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
+import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xml_utils
+import os
 
 
-def get_all(filepath: str, xml_data: ET.Element) -> dict:
+def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     """
-    Gets all attributes of the OMAR XML and returns them in a dictionary
+    1. Load the XML file.
+    2. Create a dictionary with all the attributes that need to be scraped.
+    3. Loop through the body of the XML and find the attributes.
+    4. Append the attributes to the struct and return it.
+
     Args:
-        filename (str): name of the XML file to be scraped
-        xml_data (ET.Element): the contents of the XML file
+        filepath (str): Path of the XML file to be scraped.
+        medicine_struct (PIS.ParsedInfoStruct): The dictionary of all currently scraped attributes of this medicine.
 
     Returns:
-        dict: Dictionary of all scraped attributes, named according to the bible
+        PIS.ParsedInfoStruct: Returns an updated struct, with the current attributes added to it.
     """
-    at = get_alternative_treatments(xml_data)
 
-    omar = {
-        "xml_file": get_xml_name(filepath),
-        "prevalence": get_prevalence(xml_data),
-        "insufficient_roi": get_insufficient_roi(xml_data),
-        "alternative_treatments": at,
-        "significant_benefit": get_significant_benefit(xml_data, at)
-    }
-
-    return omar
-
-
-def parse_file(filepath: str, medicine_struct: PIS.parsed_info_struct) -> PIS.parsed_info_struct:
-    """
-    Scrapes all attributes from the OMAR XML file after parsing it
-    Args:
-        filename (str): name of the XML file to be scraped
-        directory (str): path of the directory containing the XML file
-        medicine_struct (PIS.parsed_info_struct): the dictionary of all currently scraped attributes of this medicine
-
-    Returns:
-        PIS.parsed_info_struct: a more complete dictionary of scraped attributes,
-        including the attributes of this XML file
-    """
     try:
         xml_tree = ET.parse(filepath)
     except ET.ParseError:
-        print("OMAR PARSER: failed to open XML file " + filepath)
+        print("OMAR PARSER: failed to open xml file " + filepath)
         return medicine_struct
 
     if medicine_struct is None:
         print("OMAR PARSER: medicine_struct is none at " + filepath)
-        return
+        return medicine_struct
 
     xml_root = xml_tree.getroot()
+    xml_header = xml_root[0]
     xml_body = xml_root[1]
 
-    result = get_all(filepath, xml_body)
-    medicine_struct.omars.append(result)
-    
+    creation_date = xml_utils.file_get_creation_date(xml_header)
+    modification_date = xml_utils.file_get_modification_date(xml_header)
+
+    # create annex attribute dictionary with default values
+    omar_attributes = {
+        "pdf_file": xml_utils.file_get_name_pdf(xml_header),
+        "xml_file": os.path.basename(filepath),
+        "creation_date": creation_date,
+        "modification_date": modification_date,
+        "conditions": []
+    }
+
+    # loop through sections and parse section if conditions met
+    for section in xml_body:
+        # scrape attributes specific to authorization annexes
+
+        # Detect a condition
+        if xml_utils.section_contains_header_substring("COMP position adopted on", section) \
+                and not xml_utils.section_is_table_of_contents(section):
+
+            section_string = xml_utils.section_append_paragraphs(section)
+            bullet_points = section_string.split("•")
+
+            alternative_treatments = get_alternative_treatments(bullet_points)
+            omar_condition_dict = {
+                "prevalence": get_prevalence(bullet_points),
+                "insufficient_roi": get_insufficient_roi(bullet_points),
+                "alternative_treatments": alternative_treatments,
+                "significant_benefit": get_significant_benefit(bullet_points, alternative_treatments)
+            }
+
+            omar_attributes["conditions"].append(omar_condition_dict)
+
+    medicine_struct.omars.append(omar_attributes)
+
     return medicine_struct
 
 
-def get_xml_name(filepath: str) -> str:
-    return filepath.split("\\")[-1]
+def get_prevalence(bullet_points: list[str]) -> str:
+    """
+    Finds the paragraph that contains the information about the prevalence of the medicine.
 
+    Args:
+        xml_data (ET.Element): This is the XML part to be parsed.
 
-def get_prevalence(xml_data: ET.Element) -> str:
-    for p in Utils.get_paragraphs_by_header("comp position adopted", xml_data):
-        # Find the paragraph with the bullet points
-        if "•" in p:
-            bullets = p.split("•")
-            # Find the bullet point with the prevalence data in it
-            for b in bullets:
-                if "the prevalence of" in b:
-                    # Remove unnecessary whitespaces and newlines
-                    clean = re.sub('\s+',' ', b).lstrip(" ")
-                    return clean
+    Returns:
+        str: Return the string with the relevant information about the prevalence or NA if it cannot be found.
+    """
+    for b in bullet_points:
+        if "the prevalence of" in b:
+            # Remove unnecessary whitespaces and newlines
+            clean = re.sub(r'\s+', ' ', b).lstrip(" ")
+            return clean
+
     return "NA"
 
 
-def get_insufficient_roi(xml_data: ET.Element) -> str:
+# Nog geen OMAR gevonden waar dit in staat dus kan nog niet gedaan worden
+def get_insufficient_roi(bullet_points: list[str]) -> str:
     return "NA"
 
 
 # WIP WIP WIP WIP WIP
-def get_alternative_treatments(xml_data: ET.Element) -> str:
-    for p in Utils.get_paragraphs_by_header("comp position adopted", xml_data):
-        # Find the paragraph with the bullet points
-        if "•" in p:
-            bullets = p.split("•")
-            # Find the bullet point with the prevalence data in it
-            for b in bullets:
-                if "no satisfactory methods" in b:
-                    return "No Satisfactory Methods"
-                if "significant benefit" in b:
-                    return "Significant Benefit"
+def get_alternative_treatments(bullet_points: list[str]) -> str:
+    """
+    _summary_
+
+    Args:
+        section (ET.Element): _description_
+
+    Returns:
+        str: _description_
+    """
+    for b in bullet_points:
+        if "no satisfactory methods" in b:
+            return "No Satisfactory Methods"
+        if "significant benefit" in b:
+            return "Significant Benefit"
+
     return "NA"
 
 
-def get_significant_benefit(xml_data: ET.Element, alternative_treatment: str) -> str: 
-    return "NA"
+def get_significant_benefit(bullet_points: list[str], alternative_treatment: str) -> str:
+    """
+    This function parses out the significant benefit of the OMAR, 
+    the result is influenced by the result of a previous attribute.
 
+    Args:
+        xml_data (ET.Element): This is the XML part to be parsed.
+        alternative_treatment (str): The result of the get_alternative_treatment function
 
+    Returns:
+        str: Returns the appropriate string, depending on what was found in the file.
+    """
+    contains = False
+    result = ""
 
+    for b in bullet_points:
+        if "clinically relevant advantage" in b:
+            contains = True
+            result += "Clinically Relevant Advantage"
+        if "major contribution" in b:
+            contains = True
+            if result == "":
+                result += "Major Contribution"
+            else:
+                result += " + Major Contribution"
 
+    # TODO: Uncomment this if logger works
+    # if not contains and alternative_treatment == "Significant Benefit":
+    # Logger.warning("Alternative treatment = Significant benefit requires result.")
 
-
-
-
-
-
-
-
-
-
+    if contains:
+        return result
+    else:
+        return "NA"

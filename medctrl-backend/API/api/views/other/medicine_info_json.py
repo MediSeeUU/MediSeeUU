@@ -10,17 +10,7 @@
 # ----------------------------------------------------------------------------
 
 from api.models.medicine_models.common import Category
-from api.models.medicine_models import (
-    Medicine,
-    HistoryAuthorisationStatus,
-    HistoryAuthorisationType,
-    HistoryBrandName,
-    HistoryMAH,
-    HistoryOD,
-    HistoryPrime,
-    HistoryEUOrphanCon,
-    LegalBases,
-)
+from api.models.medicine_models import models
 
 
 # returns a list of json components using medicine_models,
@@ -36,7 +26,7 @@ def get_medicine_info(perm, mock=None):
         will be used instead of generating new data. Defaults to None.
 
     Returns:
-        JSON: medicinedata in JSON format
+        JSON: medicine data in JSON format
     """    
     # make a JSON list for every category in medicine_models.common.Category
     data = {}
@@ -46,19 +36,6 @@ def get_medicine_info(perm, mock=None):
     models_fields = []
 
     if mock is None:
-        # place all models here
-        models = [
-            Medicine,
-            HistoryAuthorisationStatus,
-            HistoryAuthorisationType,
-            HistoryBrandName,
-            HistoryMAH,
-            HistoryOD,
-            HistoryPrime,
-            HistoryEUOrphanCon,
-            LegalBases,
-        ]
-
         # make a list containing all the fields from all the models
         for model in models:
             models_fields += model._meta.get_fields()

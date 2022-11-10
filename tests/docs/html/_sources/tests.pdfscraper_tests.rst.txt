@@ -28,6 +28,14 @@ tests.pdfscraper\_tests.test\_epar\_parse module
    :undoc-members:
    :show-inheritance:
 
+tests.pdfscraper\_tests.test\_omar\_parse module
+------------------------------------------------
+
+.. automodule:: tests.pdfscraper_tests.test_omar_parse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

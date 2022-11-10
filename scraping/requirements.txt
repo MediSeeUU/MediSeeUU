@@ -1,0 +1,20 @@
+# PDF Module
+PyMuPDF
+joblib
+python-dateutil
+
+# Web Scraper
+tqdm
+regex
+requests
+bs4
+
+# DB Communicator
+flask
+requests
+
+# Testing
+pytest
+parameterized
+nose
+mock
