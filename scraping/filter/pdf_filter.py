@@ -14,7 +14,7 @@ def filter_all_pdfs(directory: str):
         directory (str): folder with all medicine folders to filter
     """
     print(f'Filtering all PDF files...')
-    f = open("filter.txt", 'w', encoding="utf-8")  # open/clean output file
+    f = open('filter.txt', 'w', encoding="utf-8")  # open/clean output file
     data_dir = directory
     all_data = Parallel(n_jobs=8)(
         delayed(filter_folder)(os.path.join(data_dir, folder)) for folder in
@@ -175,7 +175,11 @@ def get_url(filename) -> str:
     """
     eu_num = filename.split('_')[0]
     try:
-        with open('../web_scraper/JSON/urls.json') as urls_json:
+        json_path = "web_scraper/"
+        # If file is run from webscraper locally:
+        if "web_scraper" in os.getcwd():
+            json_path = ""
+        with open(f'{json_path}JSON/urls.json') as urls_json:
             urls = json.load(urls_json)
             try:
                 if 'dec' in filename:
