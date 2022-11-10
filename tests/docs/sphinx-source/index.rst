@@ -6,7 +6,11 @@
 Tests Documentation
 ===================
 .. toctree::
+   :caption: Readme
+
+
+.. toctree::
    :maxdepth: 4
+   :caption: Source Code Documentation
 
    modules
-   
