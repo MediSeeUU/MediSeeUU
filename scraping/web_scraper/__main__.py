@@ -14,10 +14,10 @@ from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
 scrape_ec: bool = True
-scrape_ema: bool = True            # Requires scrape_ec to have been run at least once
+scrape_ema: bool = False            # Requires scrape_ec to have been run at least once
 scrape_annex10: bool = False
-download_files: bool = True         # Download pdfs from the obtained links
-run_filter: bool = True
+download_files: bool = False         # Download pdfs from the obtained links
+run_filter: bool = False
 use_parallelization: bool = True   # Parallelization is currently broken on Windows. Set to False
 
 # list of the type of medicines that will be scraped
