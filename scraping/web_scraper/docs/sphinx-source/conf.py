@@ -53,5 +53,5 @@ html_theme_options = {
     "navigation_depth": -1,
     "sticky_navigation": False,
 }
-html_show_sourcelink = False
+html_copy_source = False
 html_css_files = ["css/custom.css"]
