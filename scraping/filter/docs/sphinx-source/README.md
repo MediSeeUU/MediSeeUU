@@ -13,8 +13,8 @@ Error types:
 Location of the data folder with medicines
 ## Output
 - filter.txt containing the following line for each incorrect PDF file:
-  - "{name of PDF}@{error type}@{URL}" for EPAR, OMAR and Annex files
-  - "{name of PDF}@{error type}@{EU number}@{Brand name}@{url}" for a decision PDF
+  - `{name of PDF}@{error type}@{URL}` for EPAR, OMAR and Annex files
+  - `{name of PDF}@{error type}@{EU number}@{Brand name}@{url}` for a decision PDF
 - data folder without the incorrect PDF files
 
 # Other points of interest

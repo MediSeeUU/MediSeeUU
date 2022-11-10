@@ -24,7 +24,7 @@ The filepath of the file that needs to be parsed.
 - An XML file for every PDF file, which contains all the information from the PDFs but
   seperated into headers, sections and paragraphs.
 - A JSON file for every medicine, containing all relevant attributes of that medicine.
-  - JSON name format: {EU_number}_pdf_parser.json
+  - JSON name format: `{EU_number}_pdf_parser.json`
 
 # Other points of interest
 Parsing attributes from the XML files is multitudes faster than parsing directly
