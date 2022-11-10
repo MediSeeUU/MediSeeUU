@@ -14,6 +14,7 @@ from scraping.web_scraper import utils
 log = logging.getLogger("webscraper.download")
 
 
+@utils.exception_retry(logging_instance=log)
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str], data_path: str, overwrite: bool = False):
     """
     Downloads a PDF file given an url. It also gives the file a specific name based on the input.
@@ -102,14 +103,14 @@ def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[s
     download_pdf_from_url(pdf_url, eu_num, filename_elements, data_path)
 
 
-def download_medicine_files(eu_n: str, url_dict: dict[str, list[str]], data_path: str = "../data"):
+def download_medicine_files(eu_n: str, url_dict: dict[str, list[str] | str], data_path: str = "../data"):
     """
     Downloads all the pdf files that belong to a medicine.
     Logs successful downloads and also logs if not all files could be downloaded for a specific medicine.
 
     Args:
         eu_n (str): The EU number of the medicine where we want to download the files of
-        url_dict (dict[str, list[str]]): the dictionary containing all the urls of a specific medicine
+        url_dict (dict[str, list[str] | str]): the dictionary containing all the urls of a specific medicine
         data_path (str): The path to the data folder
     """
     if "web_scraper" in os.getcwd():
@@ -117,17 +118,13 @@ def download_medicine_files(eu_n: str, url_dict: dict[str, list[str]], data_path
     # print(f"{data_path}/{eu_n}/{eu_n}_attributes.json")
     attr_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_attributes.json")).load_json()
     if "aut_url" in url_dict.keys():
-        utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "dec", url_dict["aut_url"],
-                                                                      attr_dict, data_path)
+        download_pdfs_ec(eu_n, "dec", url_dict["aut_url"], attr_dict, data_path)
     if "smpc_url" in url_dict.keys():
-        utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "anx", url_dict["smpc_url"],
-                                                                      attr_dict, data_path)
+        download_pdfs_ec(eu_n, "anx", url_dict["smpc_url"], attr_dict, data_path)
     if "epar_url" in url_dict.keys():
-        utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, "epar", url_dict["epar_url"],
-                                                                       attr_dict, data_path)
+        download_pdfs_ema(eu_n, "epar", url_dict["epar_url"], attr_dict, data_path)
     if "omar_url" in url_dict.keys():
-        utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, "omar", url_dict["omar_url"],
-                                                                       attr_dict, data_path)
+        download_pdfs_ema(eu_n, "omar", url_dict["omar_url"], attr_dict, data_path)
     log.info(f"Finished download for {eu_n}")
 
 

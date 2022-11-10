@@ -1,8 +1,8 @@
-import json
 import logging
-from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper
-from scraping.web_scraper import __main__ as m
+
 from scraping.filter import pdf_filter
+from scraping.web_scraper import __main__ as m
+from scraping.web_scraper import download, ec_scraper, json_helper
 
 # dictionaries used for mapping
 key_dict = {"dec": "aut_url",
@@ -66,7 +66,7 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
     url = url_dict[key_dict[filename_elements[2]]]
     if len(filename_elements) == 4:
         url = url[int(filename_elements[3])]
-    utils.exception_retry(download.download_pdf_from_url, logging_instance=log)(url, eu_n, filename_elements)
+    download.download_pdf_from_url(url, eu_n, filename_elements)
 
 
 # used for testing

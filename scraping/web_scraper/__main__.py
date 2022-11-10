@@ -154,7 +154,7 @@ def main(data_filepath: str = '../data'):
     if scrape_ec:
         log.info("TASK START scraping all medicines on the EC website")
 
-        get_urls_ec_retry = utils.exception_retry(get_urls_ec, logging_instance=log)
+        get_urls_ec_retry = utils.exception_retry(logging_instance=log)(get_urls_ec)
 
         # Transform zipped list into individual lists for thread_map function
         # The last element of the medicine_codes tuple is not of interest, thus we pop()
@@ -179,7 +179,7 @@ def main(data_filepath: str = '../data'):
         if not scrape_ec:
             url_file.load_json()
 
-        get_urls_ema_retry: callable = utils.exception_retry(get_urls_ema, logging_instance=log)
+        get_urls_ema_retry: callable = utils.exception_retry(logging_instance=log)(get_urls_ema)
 
         # Transform JSON object into list of (eu_n, url)
         ema_urls = [(eu_n, url)
