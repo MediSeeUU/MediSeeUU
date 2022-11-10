@@ -91,7 +91,7 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
     # Creates a directory if the medicine doesn't exist yet,
     # otherwise it just adds the json file to the existing directory
     Path(f"{data_path}/{eu_n}").mkdir(exist_ok=True)
-    with open(f"{data_path}/{eu_n}/{eu_n}_attributes.json", 'w') as f:
+    with open(f"{data_path}/{eu_n}/{eu_n}_webdata.json", 'w') as f:
         json.dump(attributes_dict, f, indent=4)
 
 

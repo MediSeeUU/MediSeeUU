@@ -118,8 +118,8 @@ def download_medicine_files(eu_n: str, url_dict: dict[str, list[str] | str], dat
     """
     if "web_scraper" in os.getcwd():
         data_path = "../../data"
-    # print(f"{data_path}/{eu_n}/{eu_n}_attributes.json")
-    attr_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_attributes.json")).load_json()
+    # print(f"{data_path}/{eu_n}/{eu_n}_webdata.json")
+    attr_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_webdata.json")).load_json()
     if "aut_url" in url_dict.keys():
         download_pdfs_ec(eu_n, "dec", url_dict["aut_url"], attr_dict, data_path)
     if "smpc_url" in url_dict.keys():

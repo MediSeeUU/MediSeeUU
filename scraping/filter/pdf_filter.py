@@ -156,7 +156,7 @@ def get_brand_name(filename: str) -> str:
     """
     eu_num = filename.split('_')[0]
     try:
-        with open(f'../../data/{eu_num}/{eu_num}_attributes.json') as pdf_json:
+        with open(f'../../data/{eu_num}/{eu_num}_webdata.json') as pdf_json:
             web_attributes = json.load(pdf_json)
             return web_attributes['eu_brand_name_current']
     except FileNotFoundError:
