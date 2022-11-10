@@ -5,6 +5,7 @@ import json
 import joblib
 import multiprocessing
 
+
 class filetype(Enum):
     decision = "decision"
     annex = "annex"
@@ -34,7 +35,7 @@ def main(directory: str):
 
 
 # scraping on medicine folder level
-def combine_folder(directory: str, folder_name):
+def combine_folder(directory: str, folder_name: str):
     try:
         pdf_json = json.load(folder_name + "_pdf_parser.json")
     except Exception as exception:
@@ -42,22 +43,19 @@ def combine_folder(directory: str, folder_name):
         print(f"skipped combining: {folder_name}")
         return
 
-    try:    
+    try:
         web_json = json.load(folder_name + "_web_parser.json")
     except Exception as exception:
         print(str(exception))
         print(f"skipped combining: {folder_name}")
         return
 
-    #attribute values
+    # attribute values
     attribute_values: dict[str, (str, str, datetime.date)]
 
     # list of attributeCombiningFunctions with priorities
-    
+
     # loop through list and update the output json
-    
-
-
 
     # dump json result to medicine folder directory
     json_file = open(path.join(directory, folder_name) + "_combined.json", "w")
@@ -71,5 +69,6 @@ def date_serializer(date: datetime.date):
     if isinstance(date, datetime.date):
         return date.__str__()
 
+
 if __name__ == "__main__":
-    main('..\..\..\data')
+    main('../../../data')
