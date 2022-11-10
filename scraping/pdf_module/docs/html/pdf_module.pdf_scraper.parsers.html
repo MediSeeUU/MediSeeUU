@@ -44,16 +44,17 @@
     <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
       <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
       <ul>
-        <li class="toctree-l1"><a href="../../../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
-        <li class="toctree-l1"><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
-        <li class="toctree-l1 current-module"><a href="index.html">PDF Scraper</a></li>
-        <li class="toctree-l1"><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
-        <li class="toctree-l1"><a href="../../../../scraping/db_uploader/docs/html/index.html">DB Uploader</a></li>
-        <li class="toctree-l1"><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
-        <li class="toctree-l1"><a href="../../../../tests/docs/html/index.html">Tests</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
+        <li class="toctree-l1 current-module"><a href="../../../../scraping/pdf_module/docs/html/index.html">PDF Scraper</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/db_uploader/docs/html/index.html">DB Uploader</a></li>
+        <li class="toctree-l1 "><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
+        <li class="toctree-l1 margin-top "><a href="../../../../tests/docs/html/index.html">Tests</a></li>
       </ul>
     </div>  
     
+      
               <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="README.html">Algemene functie</a></li>
@@ -138,7 +139,6 @@
 <li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l7"><a class="reference internal" href="#module-pdf_module.pdf_scraper.parsers">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -206,18 +206,17 @@
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="pdf_module.pdf_scraper.html#module-pdf_module.pdf_scraper.xml_tags">pdf_module.pdf_scraper.xml_tags module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="pdf_module.pdf_scraper.html#module-pdf_module.pdf_scraper">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="pdf_module.html#module-pdf_module">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 
+    
 
         </div>
       </div>
@@ -245,8 +244,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="pdf-module-pdf-scraper-parsers-package">
-<h1>pdf_module.pdf_scraper.parsers package<a class="headerlink" href="#pdf-module-pdf-scraper-parsers-package" title="Permalink to this heading"></a></h1>
+  <section id="module-pdf_module.pdf_scraper.parsers">
+<span id="pdf-module-pdf-scraper-parsers-package"></span><h1>pdf_module.pdf_scraper.parsers package<a class="headerlink" href="#module-pdf_module.pdf_scraper.parsers" title="Permalink to this heading"></a></h1>
+<p>Parsers module contains files that can scrape a PDF or XML file. Each scraper can scrape one PDF type.</p>
+<p>annex_parse.py can get all attributes from annex XML files (converted by XML converter)
+dec_parse.py can get all attributes from decision PDF files
+epar_parse.py can get all attributes from EPAR XML files (converted by XML converter)
+omar_parse.py can get all attributes from OMAR XML files (converted by XML converter)</p>
+<p>Running one of these parsers results in an updated medicine_struct in __main__.py</p>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
@@ -1162,15 +1167,6 @@ the result is influenced by the result of a previous attribute.</p>
 </dl>
 </dd></dl>
 
-</section>
-<section id="module-pdf_module.pdf_scraper.parsers">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pdf_module.pdf_scraper.parsers" title="Permalink to this heading"></a></h2>
-<p>Parsers module contains files that can scrape a PDF or XML file. Each scraper can scrape one PDF type.</p>
-<p>annex_parse.py can get all attributes from annex XML files (converted by XML converter)
-dec_parse.py can get all attributes from decision PDF files
-epar_parse.py can get all attributes from EPAR XML files (converted by XML converter)
-omar_parse.py can get all attributes from OMAR XML files (converted by XML converter)</p>
-<p>Running one of these parsers results in an updated medicine_struct in __main__.py</p>
 </section>
 </section>
 
