@@ -315,16 +315,20 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
             last_decision_types.append(row["type"])
 
         if row["files_dec"]:
-            pdf_url_dec = \
-                f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""
-
-            dec_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
+            if not (any('en' in d.values() for d in row["files_dec"])):
+                log.warning(f"""No english file available for {eu_num}: dec_{decision_id}""")
+            else:
+                pdf_url_dec = \
+                    f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""
+                dec_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
 
         if row["files_anx"]:
-            pdf_url_anx = \
-                f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""
-
-            anx_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
+            if not(any('en' in d.values() for d in row["files_anx"])):
+                log.warning(f"""No english file available for {eu_num}: anx_{decision_id}""")
+            else:
+                pdf_url_anx = \
+                    f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""
+                anx_url_list.append("https://ec.europa.eu/health/documents/community-register/"+pdf_url_anx)
 
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
     eu_aut_datetime: datetime = datetime.strptime(procedures_json[0]["decision"]["date"], '%Y-%m-%d')
@@ -453,8 +457,7 @@ def determine_ema_number(ema_numbers: list[str]) -> (str, float):
 """
 def debug_code(eu_num_short: str):
     ec_link = f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm"
-    scrape_medicine_page(ec_link, MedicineType.HUMAN_USE_WITHDRAWN)
+    dec_list, anx_list, ema_list, attributes_dict = scrape_medicine_page(ec_link, MedicineType.HUMAN_USE_ACTIVE)
 
-
-debug_code("h1563")
+debug_code("h280")
 """

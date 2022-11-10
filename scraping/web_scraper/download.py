@@ -116,15 +116,18 @@ def download_medicine_files(eu_n: str, url_dict: dict[str, list[str]], data_path
         data_path = "../../data"
     # print(f"{data_path}/{eu_n}/{eu_n}_attributes.json")
     attr_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_attributes.json")).load_json()
-    utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "dec", url_dict["aut_url"],
-                                                                  attr_dict, data_path)
-    utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "anx", url_dict["smpc_url"],
-                                                                  attr_dict, data_path)
+    if "aut_url" in url_dict.keys():
+        utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "dec", url_dict["aut_url"],
+                                                                      attr_dict, data_path)
+    if "smpc_url" in url_dict.keys():
+        utils.exception_retry(download_pdfs_ec, logging_instance=log)(eu_n, "anx", url_dict["smpc_url"],
+                                                                      attr_dict, data_path)
     if "epar_url" in url_dict.keys():
         utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, "epar", url_dict["epar_url"],
                                                                        attr_dict, data_path)
-    utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, "omar", url_dict["omar_url"],
-                                                                   attr_dict, data_path)
+    if "omar_url" in url_dict.keys():
+        utils.exception_retry(download_pdfs_ema, logging_instance=log)(eu_n, "omar", url_dict["omar_url"],
+                                                                       attr_dict, data_path)
     log.info(f"Finished download for {eu_n}")
 
 
