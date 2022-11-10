@@ -137,7 +137,7 @@ def get_opinion_date(xml: ET.Element) -> str:
     return "no_chmp_found"
 
 
-def get_legal_basis(xml: ET.Element) -> [str]:
+def get_legal_basis(xml: ET.Element) -> list[str]:
     """
     Gets the attribute eu_legal_basis
     All legal articles relevant to the medicine
@@ -146,7 +146,7 @@ def get_legal_basis(xml: ET.Element) -> [str]:
         xml (ET.Element): the contents of the XML file
 
     Returns:
-        [str]: the attribute eu_legal_basis - multiple articles of the form "Article X.X"
+        list[str]: the attribute eu_legal_basis - multiple articles of the form "Article X.X"
     """
     regex_legal = r"article .+?(?=[a-z]{2,90}|\n|$)"
     found = False
