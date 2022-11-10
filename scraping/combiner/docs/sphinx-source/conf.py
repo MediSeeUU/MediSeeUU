@@ -52,7 +52,7 @@ source_suffix = {
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "sphinx_rtd_theme"
-html_static_path = ["../../../../docs/sphinx-source/_static"]
+html_static_path = [root_url + "docs/sphinx-source/_static"]
 html_logo = html_static_path[0] + "/medisee.svg"
 html_theme_options = {
     "collapse_navigation": False,

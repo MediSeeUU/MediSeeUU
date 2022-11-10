@@ -16,8 +16,9 @@ release = "1.0"
 
 root_doc = "README"
 
+root_url = "../../"
 html_context = {
-    "root_url": "../../",
+    "root_url": root_url,
 }
 templates_path = ["_templates"]
 
@@ -27,7 +28,7 @@ extensions = [
     ]
 
 intersphinx_mapping = {
-  "backend": ("../../medctrl-backend/API/docs/html", None),
+  "backend": (root_url + "medctrl-backend/API/docs/html", None),
   }
 
 include_patterns = [
