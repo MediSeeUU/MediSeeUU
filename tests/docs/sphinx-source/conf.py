@@ -44,9 +44,9 @@ source_suffix = {
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
-
 html_theme = "sphinx_rtd_theme"
-html_logo = "_static/medisee.svg"
+html_static_path = ["../../../docs/sphinx-source/_static"]
+html_logo = html_static_path[0] + "/medisee.svg"
 html_theme_options = {
     "logo_only": True,
     "collapse_navigation": False,
@@ -54,5 +54,4 @@ html_theme_options = {
     "sticky_navigation": False,
 }
 html_show_sourcelink = False
-html_static_path = ["_static"]
 html_css_files = ["css/custom.css"]
