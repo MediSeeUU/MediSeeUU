@@ -11,6 +11,10 @@
     background:#fcfcfc;
 }
 
+.margin-top {
+    margin-top: .5em;
+}
+
 .wy-side-nav-search {
     background-color: #e7e7e7;
 }

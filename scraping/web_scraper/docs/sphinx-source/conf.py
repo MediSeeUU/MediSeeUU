@@ -19,7 +19,13 @@ release = "1.0"
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-templates_path = ["_templates"]
+root_url = "../../../../"
+html_context = {
+    "root_url": root_url,
+    "current_module": "web_scraper",
+    "display_super": True,
+}
+templates_path = [root_url + "docs/sphinx-source/_templates"]
 
 extensions = [
     "myst_parser",
@@ -45,13 +51,13 @@ source_suffix = {
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "sphinx_rtd_theme"
-html_logo = "_static/medisee.svg"
+html_static_path = [root_url + "docs/sphinx-source/_static"]
+html_logo = html_static_path[0] + "/medisee.svg"
 html_theme_options = {
     "logo_only": True,
     "collapse_navigation": False,
     "navigation_depth": -1,
     "sticky_navigation": False,
 }
-html_show_sourcelink = False
-html_static_path = ["_static"]
+html_copy_source = False
 html_css_files = ["css/custom.css"]
