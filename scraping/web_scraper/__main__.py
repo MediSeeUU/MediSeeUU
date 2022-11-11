@@ -3,6 +3,7 @@ import logging
 from pathlib import Path
 from datetime import datetime
 import os
+import multiprocessing
 
 import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
@@ -13,10 +14,10 @@ from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
-scrape_ec: bool = False
+scrape_ec: bool = True
 scrape_ema: bool = True            # Requires scrape_ec to have been run at least once
 scrape_annex10: bool = False
-download_files: bool = False         # Download pdfs from the obtained links
+download_files: bool = True         # Download pdfs from the obtained links
 run_filter: bool = False
 use_parallelization: bool = True   # Parallelization is currently broken on Windows. Set to False
 
@@ -43,6 +44,7 @@ log = logging.getLogger("webscraper")
 logging.getLogger("urllib3.connectionpool").setLevel(logging.INFO)
 
 json_path = "web_scraper/"
+cpu_count = multiprocessing.cpu_count()
 # If file is run locally:
 if "web_scraper" in os.getcwd():
     json_path = ""
@@ -164,7 +166,7 @@ def main(data_filepath: str = '../data'):
                 unzipped_medicine_codes.pop()
                 tqdm_concurrent.thread_map(get_urls_ec,
                                            *unzipped_medicine_codes,
-                                           [data_filepath] * len(medicine_codes), max_workers=12)
+                                           [data_filepath] * len(medicine_codes), max_workers=cpu_count)
             else:
                 for (medicine_url, eu_n, medicine_type, _) in tqdm.tqdm(medicine_codes):
                     get_urls_ec(medicine_url, eu_n, medicine_type, data_filepath)
@@ -187,7 +189,7 @@ def main(data_filepath: str = '../data'):
 
         with tqdm_logging.logging_redirect_tqdm():
             if use_parallelization:
-                tqdm_concurrent.thread_map(get_urls_ema, *unzipped_ema_urls, max_workers=12)
+                tqdm_concurrent.thread_map(get_urls_ema, *unzipped_ema_urls, max_workers=cpu_count)
 
             else:
                 for eu_n, url in tqdm.tqdm(ema_urls, bar_format=tqdm_format_string):
