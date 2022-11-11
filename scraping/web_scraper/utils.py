@@ -1,4 +1,5 @@
 import logging
+import requests
 
 
 # This method makes use of Decorators.
@@ -8,13 +9,10 @@ import logging
 def exception_retry(max_attempts: int = 4, logging_instance: logging.getLoggerClass() = None):
     """
     Decorator function to make a function parallelized. The function will have the code retry if it throws an exception.
-
     Args:
         max_attempts: The amount of times a function can be retried. The default value is 4.
         logging_instance: If errors need to be reported, the logging instance from the caller can be attached
-
     Returns: The result of func. Returns None when the function did not return after the maximum attempts.
-
     """
     # Decorators are a little tricky. if you want to pass arguments to a function with the @exception_retry notation,
     # You need to split the decorator into two functions. The first function catches the arguments, and returns a
