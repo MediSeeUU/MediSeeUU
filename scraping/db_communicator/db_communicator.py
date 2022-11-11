@@ -1,57 +1,69 @@
 import json
 import requests
 import datetime
-# from .app import send_data
 import time
-# import os
-# from .app import
 
 
 class DbCommunicator:
+    """
+    Handles all communication between the database and the modules
+    """
     def __init__(self):
+        """
+        The init of the class which is invoked when a new DBCommunicator is created. It declares global variables
+        api_key of type string and last_retrieval of type datetime. Then it sends a get request for this key to the
+        token_handler
+        """
         # Initialize values
         self.api_key = ""
         self.last_retrieval = datetime.datetime(2000, 1, 1, 12, 0, 00, 0)
-        # self.username = username maybe niet nodig
+        self.tries = 0
 
+        # Updates the api_key and the last_retrieval value
         success = self.request_token()
 
-        if not success:
-            print("terminate something idk, shit goes wrong")
-
-    def __del__(self):
-        success_token_delete = self.delete_token()
-        # Maybe also close the flask server and open it at the start
-        if success_token_delete:
-            print("db_communicator terminated correctly")
-        else:
-            print("db_communicator failed to delete the token")
+        if success:
+            print("Terminate the class, not implemented yet")
 
     def request_token(self) -> bool:
-        api_endpoint = 'http://localhost:8000/api/scraper/token/'
-        response = requests.get(api_endpoint)
-        print(response)  # LOGGER
-        success = self.receive_token()
-        return success
+        """
+        Requests a token from the token_handler server and updates the member variables api_key, last_retrieval and
+        self.tries
 
-    def receive_token(self) -> bool:
+        Returns:
+            bool: True if a valid token has been received, False otherwise
+        """
         token_url = 'http://localhost:5000/token/'
         response = requests.get(url=token_url)
-        print(response)  # LOGGER
 
         if response.status_code == 200:
             self.api_key = response.json()['key']
             self.last_retrieval = datetime.datetime.now()
+            self.tries = 0
             print("New api key acquired")
             return True
+        elif response.status_code == 503 and self.tries < 5:
+            self.tries += 1
+            print("Failed to retrieve key, retrying...")
+            time.sleep(1)
+            self.request_token()
         else:
             print("Could not retrieve token, are the flask server and the backend server running?")
             return False
 
     def send_data(self, data):
+        """
+        Sends all data received in the argument to the database using a valid api_key
+
+        Args:
+            data (json): The data which is sent to the database
+
+        Returns:
+            Response: The response object of the request
+        """
         post_url = 'http://localhost:8000/api/scraper/medicine/'
 
-        if not self.token_valid():
+        if not self.key_valid():
             print("token not valid")
             return "No token"
 
@@ -63,30 +75,16 @@ class DbCommunicator:
         }
 
         response = requests.post(url=post_url, headers=api_headers, data=data)
-        print("Status code: ", response.status_code)
-        print("Printing Entire Post Request")
-        print(response.json())
         return "200"
 
-    def delete_token(self) -> bool:
-        post_url = 'http://localhost:8000/api/scraper/token/'
-        api_headers = {
-            'Content-type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': self.api_key
-        }
-        print("send request for deleting the token")
-        response = requests.post(url=post_url, headers=api_headers)
-        print(response)
-        if response.status_code == 200:
-            return True
-        return False
+    # Not fully functional
+    def key_valid(self) -> bool:
+        """
+        Checks if there is a valid api key. If the key is not valid it requests a new key.
 
-    # should refresh the token if it is old
-    def refresh_token(self):
-        return "not implemented"
-
-    def token_valid(self) -> bool:
+        Returns:
+            bool: True if the token is still valid, False otherwise
+        """
         token_age = datetime.datetime.now() - self.last_retrieval
         # Requires at least 100 seconds for a task, can be another value
         if token_age.days < 0.99:
