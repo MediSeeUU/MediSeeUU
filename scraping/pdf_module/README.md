@@ -45,21 +45,7 @@ the next header is found.
 Each section contains exactly one header element and between 0 and infinite paragraph tags.
 example of the structure:
 
-< section >
-
-  < header >
-
-    Bolded text.
-
-  < /header >
-
-  < p >
-
-    Non-bolded text.
-
-  < /p >
-
-< /section >
+![[example_structure.png]]
 
 Additionally the XML converter also includes meta data in the <head>.
 The meta data includes:
@@ -69,55 +55,10 @@ The meta data includes:
 - last modification date of pdf: datetime
 
 Example head structure:
-<head>
-  <creation_date>D:20071005142659+02'00'</creation_date>
-  <modification_date>D:20071005142701+02'00'</modification_date>
-  <initial_authorization>True or False</initial_authorization>
-  <pdf_file>PDF_name.pdf</pdf_file>
-</head>
+![[head_structure.png]]
 
 Example of whole XML:
-<xml>
-  <head>
-    <creation_date>D:20071005142659+02'00'</creation_date>
-    <modification_date>D:20071005142701+02'00'</modification_date>
-    <initial_authorization>True or False</initial_authorization>
-    <pdf_file>PDF_name.pdf</pdf_file>
-  </head>
-  <body>
-    <section>
-      <header>
-        First Section.
-      </header>
-      <p>
-        First Paragraph.
-      </p>
-      .
-      .
-      .
-      <p>
-        Last Paragraph.
-      </p>
-    </section>
-    .
-    .
-    .
-    <section>
-      <header>
-        Last Section.
-      </header>
-      <p>
-        First Paragraph.
-      </p>
-      .
-      .
-      .
-      <p>
-        Last Paragraph.
-      </p>
-    </section>
-  </body>
-</xml>
+![[whole_xml.png]]
 
 ## Accessing XML data
 The XML files can be accessed via the xml_parsing_utils.py. The functions can be called on ET.Elements nodes 
@@ -130,12 +71,7 @@ Example utility function:
 
 instead of:
 
-`for head in section.findall(tags.header):
-        if not head.text:
-            return False
-        if substring.lower() in head.text.lower():
-            return True
-    return False`
+![[for_loop.png]]
 
 or
 
@@ -153,20 +89,6 @@ Another major advantage is that it now becomes easy to add new scraping function
 the code simple, clean and efficient.
 
 Example attribute scraping on XML:
-`
-for section in xml_body:
-
-  if xml_utils.section_contains_header_substring("relevant_header_attribute_1", section)
-    medicine_info_struct = scrape_attribute_1(section, medicine_info_struct)
-
-  if xml_utils.section_contains_substring("relevant_substring_attribute_2", section)
-    medicine_info_struct = scrape_attribute_2(section, medicine_info_struct)
-
-  if xml_utils.section_contains_paragraph_substring("relevant_paragraph_attribute_3", section)
-    medicine_info_struct = scrape_attribute_3(section, medicine_info_struct)
-
-
-return medicine_info_struct
-`
+![[scraping.png]]
 
 © Copyright Utrecht University (Department of Information and Computing Sciences)
