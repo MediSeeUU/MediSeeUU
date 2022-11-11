@@ -12,7 +12,6 @@ error_state = False
 last_key_request = datetime.datetime(2000, 1, 1, 10, 0, 0, 0)
 
 
-# Problem is that flask can only handle one request at a time, asynchoronus??
 def request_token():
     """
     Sends a request to the api_endpoint requesting a new token. The token will not be received in the same call but in
@@ -27,7 +26,6 @@ def request_token():
 
     api_endpoint = 'http://localhost:8000/api/scraper/token/'
     response = requests.get(api_endpoint)
-    print(response)
     if response.status_code == 200:
         print("Successfully requested a token")
     else:
@@ -72,7 +70,6 @@ def return_token():
     if error_state:
         return "Could not get a token", 500
     if has_key:
-        print(json.dumps({'key': api_key}), 200, {'ContentType': 'application/json'})
         return json.dumps({'key': api_key}), 200, {'ContentType': 'application/json'}
     else:
         return "Retry later", 503
@@ -91,8 +88,7 @@ def check_key() -> bool:
         return False
 
     time_left = last_key_request + datetime.timedelta(days=expiry_days) - datetime.datetime.now()
-    print("Time left: ")
-    print(time_left.seconds)
+    print("Time left: " + str(time_left.seconds))
     if time_left.seconds < 3600:
         request_token()
     return True
@@ -101,8 +97,7 @@ def check_key() -> bool:
 #  This is a stub function, not functional
 def wait_key() -> bool:
     """
-    Sends a request to delete the given token. This is used when the server gets closed while the current token hasn't
-    expired yet.
+    Waits until a key is found with a maximum amount of time (5 seconds)
 
     Returns:
         bool: True if a key was found after the wait, False otherwise
@@ -116,6 +111,7 @@ def wait_key() -> bool:
     if api_key == "":
         return False
     return True
+
 
 # Not fully functional (token does not always get deleted)
 def delete_token() -> bool:
