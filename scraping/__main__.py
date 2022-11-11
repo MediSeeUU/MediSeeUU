@@ -5,13 +5,7 @@ import os
 # import web_scraper.__main__ as web_scraper
 # import pdf_module.pdf_scraper.__main__ as pdf_scraper
 # import combiner.__main__ as combiner
-from db_communicator import DbCommunicator
 import db_communicator.__main__ as db_communicator_main
-
-# Import the key when using the db_communicator
-# POSSIBLE ERROR: the api key could be overwritten every import
-api_key = ''
-db_communicator = DbCommunicator()
 
 
 def main():

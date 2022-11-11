@@ -8,7 +8,8 @@ app = Flask(__name__)
 api_key = ""
 expiry_days = 2
 # Arbitrary date from the past
-last_key_request = datetime.datetime(2000, 1, 1, 10, 0, 00, 0)
+last_key_request = datetime.datetime(2000, 1, 1, 10, 0, 0, 0)
+
 
 def request_token():
     api_endpoint = 'http://localhost:8000/api/scraper/token/'
@@ -18,8 +19,10 @@ def request_token():
     response.status_code = 200
     return response
 
+
 # Initially request the key
 request_token()
+
 
 @app.route('/token/', methods=['POST'])
 def receive_token():
@@ -29,10 +32,9 @@ def receive_token():
         object: 
     """
     token = request.form['token']
-    print(token)
+    print("Token received")
     global api_key
     api_key = "Token " + token
-    print(api_key)
     success_response = json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
     return success_response
 
@@ -45,14 +47,13 @@ def return_token():
         object: 
     """
     has_key = check_key()
-    print("has key?: ")
-    print(str(has_key))
     if has_key:
         print(json.dumps({'key': api_key}), 200, {'ContentType': 'application/json'})
         return json.dumps({'key': api_key}), 200, {'ContentType': 'application/json'}
     return "500"
 
 
+# This function is a stub
 def check_key() -> bool:
     """
     Checks if there is an api key and if it is still valid. If it isn't it updates the key
@@ -60,8 +61,6 @@ def check_key() -> bool:
     Returns:
         object:
     """
-    max_tries = 5
-    tries = 1
     if api_key == "":
         received = wait_key()
         if not received:
@@ -79,4 +78,3 @@ def wait_key() -> bool:
     if api_key == "":
         return False
     return True
-

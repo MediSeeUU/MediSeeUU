@@ -11,8 +11,8 @@ class DbCommunicator:
     def __init__(self):
         """
         The init of the class which is invoked when a new DBCommunicator is created. It declares global variables
-        api_key of type string and last_retrieval of type datetime. Then it sends a get request for this key to the
-        token_handler
+        `api_key` of type string, `last_retrieval` of type datetime and `tries` of type int. Then it sends a get request
+        for this key to the token_handler
         """
         # Initialize values
         self.api_key = ""
@@ -27,8 +27,8 @@ class DbCommunicator:
 
     def request_token(self) -> bool:
         """
-        Requests a token from the token_handler server and updates the member variables api_key, last_retrieval and
-        self.tries
+        Requests a token from the token_handler server and updates the member variables `api_key`, `last_retrieval` and
+        `tries`
 
         Returns:
             bool: True if a valid token has been received, False otherwise
