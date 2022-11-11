@@ -30,7 +30,7 @@ class TestDownload(TestCase):
                             ["https://ec.europa.eu/health/documents/community-register/2022/20220324154987/anx_154987_en.pdf"]]
                            ])
     def test_download_pdfs_ec(self, eu_n, pdf_type, pdf_url):
-        med_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_attributes.json")).load_json()
+        med_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_webdata.json")).load_json()
         self.assertIsNone(download.download_pdfs_ec(eu_n, pdf_type, pdf_url, med_dict, data_path))
 
     @parameterized.expand([["EU-1-21-1541",
@@ -41,7 +41,7 @@ class TestDownload(TestCase):
                             ""]
                            ])
     def test_download_pdfs_ema(self, eu_n, pdf_type, pdf_url):
-        med_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_attributes.json")).load_json()
+        med_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_webdata.json")).load_json()
         self.assertIsNone(download.download_pdfs_ema(eu_n, pdf_type, pdf_url, med_dict, data_path))
 
     @parameterized.expand([["EU-1-21-1541",
@@ -53,5 +53,5 @@ class TestDownload(TestCase):
                             "omar_url": ""}
                            ]])
     def test_download_medicine_files(self, eu_n, url_dict):
-        self.assertIsNone(download.download_medicine_files(eu_n, url_dict))
+        self.assertIsNone(download.download_medicine_files(eu_n, url_dict, data_path))
 

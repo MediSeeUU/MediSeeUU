@@ -1,8 +1,10 @@
-from joblib import Parallel, delayed
-import fitz
+import json
 import os
 import re
-import json
+
+import fitz
+import pathlib
+from joblib import Parallel, delayed
 
 
 def filter_all_pdfs(directory: str):
@@ -156,7 +158,7 @@ def get_brand_name(filename: str) -> str:
     """
     eu_num = filename.split('_')[0]
     try:
-        with open(f'../../data/{eu_num}/{eu_num}_attributes.json') as pdf_json:
+        with open(f'../../data/{eu_num}/{eu_num}_webdata.json') as pdf_json:
             web_attributes = json.load(pdf_json)
             return web_attributes['eu_brand_name_current']
     except FileNotFoundError:
@@ -175,7 +177,11 @@ def get_url(filename) -> str:
     """
     eu_num = filename.split('_')[0]
     try:
-        with open('../web_scraper/JSON/urls.json') as urls_json:
+        json_path = "web_scraper/"
+        # If file is run from webscraper locally:
+        if "web_scraper" == pathlib.Path.cwd().name:
+            json_path = ""
+        with open(f'{json_path}JSON/urls.json') as urls_json:
             urls = json.load(urls_json)
             try:
                 if 'dec' in filename:
