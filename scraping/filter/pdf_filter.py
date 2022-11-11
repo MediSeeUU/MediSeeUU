@@ -14,7 +14,7 @@ def filter_all_pdfs(directory: str):
         directory (str): folder with all medicine folders to filter
     """
     print(f'Filtering all PDF files...')
-    f = open('filter.txt', 'w', encoding="utf-8")  # open/clean output file
+    f = open("filter.txt", 'w', encoding="utf-8")  # open/clean output file
     data_dir = directory
     all_data = Parallel(n_jobs=8)(
         delayed(filter_folder)(os.path.join(data_dir, folder)) for folder in

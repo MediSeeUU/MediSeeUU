@@ -16,6 +16,10 @@ release = "1.0"
 
 root_doc = "README"
 
+root_url = "../../"
+html_context = {
+    "root_url": root_url,
+}
 templates_path = ["_templates"]
 
 extensions = [
@@ -24,7 +28,7 @@ extensions = [
     ]
 
 intersphinx_mapping = {
-  "backend": ("../../medctrl-backend/API/docs/html", None),
+  "backend": (root_url + "medctrl-backend/API/docs/html", None),
   }
 
 include_patterns = [
@@ -54,6 +58,6 @@ html_theme_options = {
     "navigation_depth": -1,
     "sticky_navigation": False,
 }
-html_show_sourcelink = False
+html_copy_source = False
 html_static_path = ["_static"]
 html_css_files = ["css/custom.css"]

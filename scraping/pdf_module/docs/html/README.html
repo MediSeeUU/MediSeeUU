@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Algemene functie &mdash; PDF Scraper 1.0 documentation</title>
+  <title>General &mdash; PDF Scraper 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -45,25 +45,26 @@
     <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
       <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
       <ul>
-        <li class="toctree-l1"><a href="../../../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
-        <li class="toctree-l1"><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
-        <li class="toctree-l1 current-module"><a href="index.html">PDF Scraper</a></li>
-        <li class="toctree-l1"><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
-        <li class="toctree-l1"><a href="../../../../scraping/db_uploader/docs/html/index.html">DB Uploader</a></li>
-        <li class="toctree-l1"><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
-        <li class="toctree-l1"><a href="../../../../tests/docs/html/index.html">Tests</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
+        <li class="toctree-l1 current-module"><a href="../../../../scraping/pdf_module/docs/html/index.html">PDF Scraper</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/db_uploader/docs/html/index.html">DB Uploader</a></li>
+        <li class="toctree-l1 "><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
+        <li class="toctree-l1 margin-top "><a href="../../../../tests/docs/html/index.html">Tests</a></li>
       </ul>
     </div>  
     
+      
               <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Algemene functie</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#input-output">Input &amp; Output</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#input">Input</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#output">Output</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#overige-belangrijke-punten">Overige belangrijke punten</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#other-points-of-interest">Other points of interest</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Source Code Documentation</span></p>
 <ul>
@@ -81,8 +82,7 @@
 <li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#module-pdf_module.pdf_scraper.parsers.dec_parse">pdf_module.pdf_scraper.parsers.dec_parse module</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_as"><code class="docutils literal notranslate"><span class="pre">dec_get_as()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_atmp"><code class="docutils literal notranslate"><span class="pre">dec_get_atmp()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn_human"><code class="docutils literal notranslate"><span class="pre">dec_get_bn_human()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn_orphan"><code class="docutils literal notranslate"><span class="pre">dec_get_bn_orphan()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn"><code class="docutils literal notranslate"><span class="pre">dec_get_bn()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_date"><code class="docutils literal notranslate"><span class="pre">dec_get_date()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_decision_type"><code class="docutils literal notranslate"><span class="pre">dec_get_decision_type()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_mah"><code class="docutils literal notranslate"><span class="pre">dec_get_mah()</span></code></a></li>
@@ -126,20 +126,6 @@
 <li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#module-pdf_module.pdf_scraper.parsers.omar_parse_old">pdf_module.pdf_scraper.parsers.omar_parse_old module</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_all"><code class="docutils literal notranslate"><span class="pre">get_all()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_alternative_treatments"><code class="docutils literal notranslate"><span class="pre">get_alternative_treatments()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_condition_attributes"><code class="docutils literal notranslate"><span class="pre">get_condition_attributes()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_conditions_number"><code class="docutils literal notranslate"><span class="pre">get_conditions_number()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_correct_condition"><code class="docutils literal notranslate"><span class="pre">get_correct_condition()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_insufficient_roi"><code class="docutils literal notranslate"><span class="pre">get_insufficient_roi()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_prevalence"><code class="docutils literal notranslate"><span class="pre">get_prevalence()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_prevalence_section"><code class="docutils literal notranslate"><span class="pre">get_prevalence_section()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.get_significant_benefit"><code class="docutils literal notranslate"><span class="pre">get_significant_benefit()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#pdf_module.pdf_scraper.parsers.omar_parse_old.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l7"><a class="reference internal" href="pdf_module.pdf_scraper.parsers.html#module-pdf_module.pdf_scraper.parsers">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -207,18 +193,17 @@
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="pdf_module.pdf_scraper.html#module-pdf_module.pdf_scraper.xml_tags">pdf_module.pdf_scraper.xml_tags module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="pdf_module.pdf_scraper.html#module-pdf_module.pdf_scraper">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="pdf_module.html#module-pdf_module">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 
+    
 
         </div>
       </div>
@@ -234,7 +219,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Algemene functie</li>
+      <li class="breadcrumb-item active">General</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -243,43 +228,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="algemene-functie">
-<h1>Algemene functie<a class="headerlink" href="#algemene-functie" title="Permalink to this heading"></a></h1>
-<p>PDF Scraper haalt alle relevante attributen uit PDF files per PDF type.
-PDF Types:</p>
+  <section id="general">
+<h1>General<a class="headerlink" href="#general" title="Permalink to this heading"></a></h1>
+<p>The main functionality of the PDF scraper is to parse relevant attributes from the
+pdf files obtained by the web scraper.</p>
+<p>PDF Types:</p>
 <ul class="simple">
-<li><p>EC Decision</p></li>
-<li><p>Annex files</p></li>
-<li><p>EPAR</p></li>
-<li><p>OMAR</p></li>
+<li><p>Authorisation Decision                (dec)</p></li>
+<li><p>Summary of Product Characteristics    (annex)</p></li>
+<li><p>European Public Assessment Report     (epar)</p></li>
+<li><p>Orphan Maintenance Assessment Report  (omar)</p></li>
 </ul>
-<p>Dit wordt deels gedaan met behulp van de XML converter.
-Deze converteert alle PDF files naar XML formaat, waarna deze XML files
-worden gescraped. De EC scraper maakt geen gebruik van de XML converter:
-deze scraped de PDF bestanden direct.</p>
+<p>To streamline this process, PDFs are first converted to XML files. This is being
+done by the pdf_xml_converter. This allows for a fast and easy way to search
+information in PDFs. This process is being complimented by the xml_parsing_utils
+which provides convenient functions to find particular parts of information.</p>
+<p>The ec_parse is excluded from this process as it cannot easily be converted to
+an XML file.</p>
 </section>
 <section id="input-output">
 <h1>Input &amp; Output<a class="headerlink" href="#input-output" title="Permalink to this heading"></a></h1>
 <section id="input">
 <h2>Input<a class="headerlink" href="#input" title="Permalink to this heading"></a></h2>
-<p>Locatie van data</p>
+<p>The filepath of the file that needs to be parsed.</p>
 </section>
 <section id="output">
 <h2>Output<a class="headerlink" href="#output" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>XML bestand voor elk PDF bestand in zelfde map als PDF bestand.</p></li>
-<li><p>JSON bestand voor elk medicijn, met alle relevante attributen van dat medicijn.</p>
+<li><p>An XML file for every PDF file, which contains all the information from the PDFs but
+seperated into headers, sections and paragraphs.</p></li>
+<li><p>A JSON file for every medicine, containing all relevant attributes of that medicine.</p>
 <ul>
-<li><p>JSON naam format: {EU_number}_pdf_parser.json</p></li>
+<li><p>JSON name format: <code class="docutils literal notranslate"><span class="pre">{EU_number}_pdf_parser.json</span></code></p></li>
 </ul>
 </li>
 </ul>
 </section>
 </section>
-<section id="overige-belangrijke-punten">
-<h1>Overige belangrijke punten<a class="headerlink" href="#overige-belangrijke-punten" title="Permalink to this heading"></a></h1>
-<p>Het parsen vanuit XML files is sneller dan vanuit PDF files door het snellere lezen.
-Het kost wat tijd om de XML files te maken, maar dit hoeft maar één keer.</p>
+<section id="other-points-of-interest">
+<h1>Other points of interest<a class="headerlink" href="#other-points-of-interest" title="Permalink to this heading"></a></h1>
+<p>Parsing attributes from the XML files is multitudes faster than parsing directly
+from a PDF file. Logically it will take some time to create the XML files, but
+they only have to be created once, which will save time in the long run.</p>
+<p>Visualisation of the scraped attributes: <a class="reference download internal" download="" href="_downloads/3d18f72b99fafb69157c746cdfbf2d87/MediSee_PDF_visualisation.html"><span class="xref download myst">Visualisaties PDF</span></a></p>
+<p>© Copyright Utrecht University (Department of Information and Computing Sciences)</p>
 </section>
 
 
