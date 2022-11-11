@@ -12,7 +12,7 @@ error_state = False
 last_key_request = datetime.datetime(2000, 1, 1, 10, 0, 0, 0)
 
 
-def request_token():
+def request_token() -> requests.models.Response:
     """
     Sends a request to the api_endpoint requesting a new token. The token will not be received in the same call but in
     the function receive_token instead
@@ -40,7 +40,7 @@ request_token()
 
 
 @app.route('/token/', methods=['POST'])
-def receive_token():
+def receive_token() -> requests.models.Response | tuple:
     """
     Receives incoming token post requests from the backend. When the token is received the api_key and last_key_request
     member variables are updated
@@ -57,7 +57,7 @@ def receive_token():
 
 
 @app.route('/token/', methods=['GET'])
-def return_token():
+def return_token() -> requests.models.Response | tuple:
     """
     Receives token get requests from the db_communicator and then sends a valid api_key back to the db_communicator. If
     there is no valid key, a new key will be requested via the check_key() function.

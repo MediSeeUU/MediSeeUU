@@ -22,9 +22,10 @@ class ScraperToken(APIView):
     Generates a view for token communication between the scraper and the backend
     """
 
-    def post(self, request):
+    def post(self, request: requests.models.Request) -> requests.models.Response:
         """
         Deletes the token for the scraper user
+
         Returns:
             Response: The response object of the request
         """
@@ -33,13 +34,13 @@ class ScraperToken(APIView):
         return Response(status=200)
 
     # This function is a stub
-    def delete_token(self, request):
+    def delete_token(self, request: requests.models.Request):
         logger.info("in delete token")
         logger.info(request)
         logout(request)
         logger.info("LOGGED OUT")
 
-    def get(self, request):
+    def get(self, request: requests.models.Request) -> requests.models.Response:
         """
         Handles incoming get requests for a token and sends a token to the token_handler server using the
         `send_token(self, data)` function
@@ -70,7 +71,7 @@ class ScraperToken(APIView):
         x.start()
         return Response(status=200)
 
-    def send_token(self, data):
+    def send_token(self, data: dict):
         """
         Receives a token and sends it to a specific url corresponding to the token_handler from the flask server
 

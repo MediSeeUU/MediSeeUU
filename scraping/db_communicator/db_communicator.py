@@ -1,4 +1,3 @@
-import json
 import requests
 import datetime
 import time
@@ -51,12 +50,12 @@ class DbCommunicator:
             print("Could not retrieve token, are the flask server and the backend server running?")
             return False
 
-    def send_data(self, data):
+    def send_data(self, data: str) -> str | tuple:
         """
         Sends all data received in the argument to the database using a valid api_key
 
         Args:
-            data (json): The data which is sent to the database
+            data (dict): The data which is sent to the database
 
         Returns:
             Response: The response object of the request
@@ -74,8 +73,8 @@ class DbCommunicator:
             'Authorization': self.api_key
         }
 
-        response = requests.post(url=post_url, headers=api_headers, data=data)
-        return "200"
+        requests.post(url=post_url, headers=api_headers, data=data)
+        return "correct", 200
 
     # Not fully functional
     def key_valid(self) -> bool:
