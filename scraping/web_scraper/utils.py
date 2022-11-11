@@ -1,5 +1,4 @@
 import logging
-import requests
 
 
 # This method makes use of Decorators.
@@ -27,23 +26,16 @@ def exception_retry(func: callable, max_attempts: int = 4, logging_instance: log
             try:
                 return func(*args, **kwargs)
 
-            except (OSError, requests.HTTPError) as e:
+            except Exception as e:
                 exception_names.append(type(e).__name__)
                 if logging_instance is not None:
                     logging_instance.debug(f"Function {func.__name__} failed with {type(e).__name__}")
                 continue
 
-            # TODO: remove eventually. Left here to make running code easy while allowing easier debugging
-            except Exception as e:
-                if logging_instance is not None:
-                    logging_instance.error(f"TODO: {func.__name__}({', '.join(map(str, args))}) "
-                                           f"failed... {e}")
-                return None
-
         if logging_instance is not None:
             logging_instance.warning(f"Retry failed after {max_attempts} attempts. {count_unique(exception_names)} "
                                      f"{func.__name__}({', '.join(map(str, args))}) ")
-        return None
+        return None  # Func threw an exception, return None
 
     return wrapper
 

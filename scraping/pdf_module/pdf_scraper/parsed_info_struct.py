@@ -5,15 +5,6 @@ import typing
 
 @dataclass
 class ParsedInfoStruct:
-    """
-    Class continaining all information for a certain medicine:
-    - EU number
-    - Date of parsing the file
-    - Attributes for each decision file
-    - Attributes for each annex file
-    - Attributes for each EPAR file
-    - Attributes for each OMAR file
-    """
     eu_number: str = field(default_factory=str)
     parse_date: datetime.datetime = datetime.datetime.now()
 
