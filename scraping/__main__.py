@@ -11,17 +11,17 @@ import db_communicator.__main__ as db_communicator
 def main():
     """
     Runs the entire scraping process on the specified directory
-    Returns:
-        None
     """
     data_folder_directory = '../data'
     # print(data_folder_directory)
     if not path.isdir(data_folder_directory):
         os.mkdir(data_folder_directory)
 
+    # For now only the web_scraper and pdf_scraper will be run
     web_scraper.main(data_folder_directory)
     pdf_scraper.main(data_folder_directory)
-
+    # combiner.main(data_folder_directory)
+    # db_communicator_main.main(data_folder_directory)
 
 if __name__ == '__main__':
     main()
