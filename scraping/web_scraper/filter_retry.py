@@ -1,8 +1,9 @@
 import logging
-import os
+import pathlib
+
 from scraping.filter import pdf_filter
 from scraping.web_scraper import __main__ as m
-from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper
+from scraping.web_scraper import download, ec_scraper, json_helper
 
 # dictionaries used for mapping
 key_dict = {"dec": "aut_url",
@@ -30,7 +31,7 @@ def run_filter(n: int, data_filepath: str = "../../data"):
     json_path = "web_scraper/"
     filter_path = ""
     # If file is run locally:
-    if "web_scraper" in os.getcwd():
+    if "web_scraper" == pathlib.Path.cwd().name:
         json_path = ""
         filter_path = "../"
     for i in range(n):

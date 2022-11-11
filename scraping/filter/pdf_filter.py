@@ -1,8 +1,10 @@
-from joblib import Parallel, delayed
-import fitz
+import json
 import os
 import re
-import json
+
+import fitz
+import pathlib
+from joblib import Parallel, delayed
 
 
 def filter_all_pdfs(directory: str):
@@ -177,7 +179,7 @@ def get_url(filename) -> str:
     try:
         json_path = "web_scraper/"
         # If file is run from webscraper locally:
-        if "web_scraper" in os.getcwd():
+        if "web_scraper" == pathlib.Path.cwd().name:
             json_path = ""
         with open(f'{json_path}JSON/urls.json') as urls_json:
             urls = json.load(urls_json)
