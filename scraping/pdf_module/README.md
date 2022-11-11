@@ -24,7 +24,7 @@ The filepath of the file that needs to be parsed.
 - An XML file for every PDF file, which contains all the information from the PDFs but
   seperated into headers, sections and paragraphs.
 - A JSON file for every medicine, containing all relevant attributes of that medicine.
-  - JSON name format: {EU_number}_pdf_parser.json
+  - JSON name format: `{EU_number}_pdf_parser.json`
 
 # Other points of interest
 Parsing attributes from the XML files is multitudes faster than parsing directly
@@ -32,3 +32,5 @@ from a PDF file. Logically it will take some time to create the XML files, but
 they only have to be created once, which will save time in the long run.
 
 Visualisation of the scraped attributes: [Visualisaties PDF](MediSee_PDF_visualisation.html)
+
+© Copyright Utrecht University (Department of Information and Computing Sciences)

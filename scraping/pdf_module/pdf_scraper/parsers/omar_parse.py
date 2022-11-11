@@ -120,7 +120,7 @@ def get_alternative_treatments(bullet_points: list[str]) -> str:
 def get_significant_benefit(bullet_points: list[str], alternative_treatment: str) -> str:
     """
     This function parses out the significant benefit of the OMAR, 
-        the result is influenced by the result of a previous attribute.
+    the result is influenced by the result of a previous attribute.
 
     Args:
         bullet_points (list[str]): These are all the bullet points from the appropriate section.

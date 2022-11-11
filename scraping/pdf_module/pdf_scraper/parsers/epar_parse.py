@@ -167,7 +167,7 @@ def get_legal_basis(xml: ET.Element) -> list[str]:
         if found:
             count += 1
             if not right_section:
-                print("Legal basis found before \"submission of the dossier\"")
+                print("EPAR PARSER: Legal basis found before \"submission of the dossier\"")
             # Get only text after "legal basis for" if this string is in txt
             if len(txt.split("legal basis for", 1)) > 1:
                 txt = txt.split("legal basis for", 1)[1]

@@ -66,10 +66,7 @@ class JsonHelper:
 
             elif key in old_dict and isinstance(old_dict[key], list) and isinstance(new_dict[key], list):
                 # Edge case call if both items are lists
-                old_set: set = set(old_dict[key])  # Set only saves unique values. No duplicate values
-
-                old_set.update(new_dict[key])
-                old_dict[key] = list(old_set)
+                old_dict[key] += new_dict[key]
 
             else:
                 # Normal data replacement call

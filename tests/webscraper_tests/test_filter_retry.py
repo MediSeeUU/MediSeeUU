@@ -70,6 +70,7 @@ class TestFilterRetry(unittest.TestCase):
                                     'omar_url': ''}
                     }
         if not any(x in ["anx", "dec", "omar", "public-assessment-report"] for x in filename_el):
-            self.assertRaises(KeyError, lambda: filter_retry.retry_download(eu_n, filename_el, url_file[eu_n]))
+            self.assertRaises(KeyError, lambda: filter_retry.retry_download(eu_n, filename_el, url_file[eu_n],
+                                                                            data_filepath))
         else:
-            self.assertIsNone(filter_retry.retry_download(eu_n, filename_el, url_file[eu_n]))
+            self.assertIsNone(filter_retry.retry_download(eu_n, filename_el, url_file[eu_n], data_filepath))
