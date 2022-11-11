@@ -16,7 +16,7 @@ def filter_all_pdfs(directory: str):
         directory (str): folder with all medicine folders to filter
     """
     print(f'Filtering all PDF files...')
-    f = open("filter.txt", 'w', encoding="utf-8")  # open/clean output file
+    f = open(os.path.join(directory, 'filter.txt'), 'w', encoding="utf-8")  # open/clean output file
     data_dir = directory
     all_data = Parallel(n_jobs=8)(
         delayed(filter_folder)(os.path.join(data_dir, folder)) for folder in
@@ -232,7 +232,7 @@ def safe_remove(file_path: str):
         file_path (str): Path of the file to remove
     """
     try:
-        os.remove(file_path)
+        print(file_path)  # os.remove(file_path)
     except FileNotFoundError:
         print("Can't remove file: file_not_found")
 

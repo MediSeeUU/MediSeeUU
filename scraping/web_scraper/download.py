@@ -29,16 +29,7 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str], d
             list containing the filename elements: human/orphan, active/withdrawn, pdf type and file_index
         data_path (str):
             The path to the data folder
-        overwrite (bool): if true, files will be downloaded again if they exist
-
     """
-
-    filename: str = f"{eu_num}_{'_'.join(filename_elements)}.pdf"
-    if not overwrite:
-        filepath = Path(f"{data_path}/{eu_num}/{filename}")
-        if os.path.exists(filepath):
-            return
-
     downloaded_file = requests.get(url)
     if downloaded_file.status_code != 200:
         with open(f"failed.txt", "a") as f:

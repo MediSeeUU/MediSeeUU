@@ -1,5 +1,4 @@
 import logging
-import requests
 
 
 # This method makes use of Decorators.

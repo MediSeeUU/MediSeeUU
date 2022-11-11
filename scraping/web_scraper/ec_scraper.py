@@ -249,7 +249,7 @@ def get_data_from_medicine_json(medicine_json: dict,
 
     for key, value in medicine_dict.items():
         if value == "":
-            log.warning(f"{eu_num}: No value for {key}")
+            log.error(f"{eu_num}: No value for {key}")
 
     return medicine_dict, ema_url_list
 
@@ -359,7 +359,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
 
     for key, value in procedures_dict.items():
         if value == "":
-            log.warning(f"{eu_num}: No value for {key}")
+            log.error(f"{eu_num}: No value for {key}")
 
     return procedures_dict, dec_url_list, anx_url_list
 

@@ -1,18 +1,16 @@
 import fitz
-import io
 
 
 # PDF Helper functions
 
-def append_text(text: str, size: int, font: str, results: list[(str, int, str)], lower: bool):
+def append_text(text: str, size: int, font: str, results: [(str, int, str)], lower: bool):
     """
     Returns the text size and font of every line in a pdf.
-
     Args:
         text (str): The text to append to the list of results
         size (int): The font size
         font (str): The font of the text to append
-        results (list[(str, int, str)]): The final results list of tuples of texts, font sizes, and font names
+        results ([(str, int, str)]): The final results list of tuples of texts, font sizes, and font names
         lower (bool): Determines whether the text should be lowercase or not
     """
     if lower:
@@ -21,13 +19,13 @@ def append_text(text: str, size: int, font: str, results: list[(str, int, str)],
         results.append((text, size, font))
 
 
-def get_text(blocks: list[dict], results: list[(str, int, str)], lower: bool):
+def get_text(blocks: [dict], results: ([(str, int, str)]), lower: bool):
     """
     Main function to combine text with same size and font, combine headers, and add them to results
 
     Args:
-        blocks (list[dict]): Some section of a PDF document, containing spans that contain lines
-        results (list[(str, int, str)]): The final results list of tuples of texts, font sizes, and font names
+        blocks ([dict]): Some section of a PDF document, containing spans that contain lines
+        results ([(str, int, str)]): The final results list of tuples of texts, font sizes, and font names
         lower (bool): Determines whether the text should be lowercase or not
     """
     old_text = old_font = ''
@@ -42,9 +40,9 @@ def get_text(blocks: list[dict], results: list[(str, int, str)], lower: bool):
     append_text(old_text, old_size, old_font, results, lower)
 
 
-def combine_text(lines: dict, lower: bool, old_font: str, old_size: int, old_text: str, results: list[tuple]):
+def combine_text(lines: dict, lower: bool, old_font: str, old_size: int, old_text: str, results: ([(str, int, str)])):
     """
-    Helper function that actually combines text with same size and font, combines headers, and adds them to results
+    Helper function that actually combines text with same size and font, combines headers, and adds them 2to results
 
     Args:
         lines (dict): Line of text to add to the results
@@ -52,7 +50,7 @@ def combine_text(lines: dict, lower: bool, old_font: str, old_size: int, old_tex
         old_font (str): The font of current text to which lines['font'] can be added
         old_size (int): The font size of current text to which lines['size'] can be added
         old_text (str): The current text to which lines['text'] can be added
-        results (list[tuple]): The final results list of tuples of texts, font sizes, and font names
+        results ([(str, int, str)]): The final results list of tuples of texts, font sizes, and font names
     """
     text = lines['text']
     size = lines['size']
@@ -103,7 +101,7 @@ def header_split_check(old_text: str, text: str) -> bool:
     return False
 
 
-def get_text_format(pdf: fitz.Document, lower: bool = False) -> list[(str, int, str)]:
+def get_text_format(pdf: fitz.Document, lower: bool = False) -> [(str, int, str)]:
     """
     Returns formatted text from PDF document, optionally lowered
 
@@ -112,7 +110,7 @@ def get_text_format(pdf: fitz.Document, lower: bool = False) -> list[(str, int, 
         lower (bool): Whether text should be lowercase
 
     Returns:
-        (list[(str, int, str)]): Formatted text as a list of tuples of text, font size, and font name
+        ([(str, int, str)]): Formatted text as a list of tuples of text, font size, and font name
     """
     results = []
     for page in pdf:
@@ -122,12 +120,12 @@ def get_text_format(pdf: fitz.Document, lower: bool = False) -> list[(str, int, 
     return results
 
 
-def format_to_string(section: list[(str, int, str)]) -> str:
+def format_to_string(section: [(str, int, str)]) -> str:
     """
     Converts a formatted text to normal string
 
     Args:
-        section (list[(str, int, str)]): Formatted PDF document, list of tuples of text, font size, and font name
+        section ([(str, int, str)]): Formatted PDF document, list of tuples of text, font size, and font name
     Returns:
         str: All text in document
 
@@ -138,12 +136,7 @@ def format_to_string(section: list[(str, int, str)]) -> str:
     return res
 
 
-def create_outputfile_dec(filename: str, res: dict):
-    """
-    Args:
-        filename (str): Name of the PDF file
-        res (dict): dictionary containing all attributes of the PDF file
-    """
+def create_outputfile_dec(filename, res):
     write = False
     if '_h_' in filename:
         f = open('human_initial_dec.txt', 'a', encoding="utf-8")  # open/clean output file
@@ -156,25 +149,13 @@ def create_outputfile_dec(filename: str, res: dict):
         f.close()
 
 
-def create_outputfile(filename: str, outputname: str, res: dict):
-    """
-    Args:
-        filename (str): Name of the PDF file
-        outputname (str): Name to be written to
-        res (dict): dictionary containing all attributes of the PDF file
-    """
+def create_outputfile(filename, outputname, res):
     f = open(outputname, 'a', encoding="utf-8")  # open/clean output file
     res_to_file(f, res, filename)
     f.close()
 
 
-def res_to_file(f: io.TextIOWrapper, res: dict, filename: str):
-    """
-    Args:
-        f (io.TextIOWrapper): File to write results to for visualisation of the attributes
-        res (dict): dictionary containing all attributes of the PDF file
-        filename (str): Name of the PDF file
-    """
+def res_to_file(f, res, filename):
     write_string = filename
     for value in res.values():
         write_string += '@'
