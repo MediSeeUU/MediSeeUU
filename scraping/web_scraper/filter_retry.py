@@ -34,20 +34,21 @@ def run_filter(n: int, data_filepath: str = "../../data"):
     if "web_scraper" == pathlib.Path.cwd().name:
         json_path = ""
         filter_path = "../"
-    for i in range(n):
+
+    for _ in range(n):
         pdf_filter.filter_all_pdfs(data_filepath)
         url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json").load_json()
         retry_all(f'{filter_path}filter.txt', url_file, data_filepath)
 
 
-def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str]]], data_filepath: str = "../../data"):
+def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str] | str]], data_filepath: str = "../../data"):
     """
     For every line in filter.txt, it scrapes the urls again.
     It also calls the download function for the specific file again
 
     Args:
         filter_path (str): path to filter file
-        urls_file (dict[str, dict[str, list[str]]] | dict[str, dict[str, str]]): the dictionary with all the urls
+        urls_file (dict[str, dict[str, list[str] | str]]): the dictionary with all the urls
         data_filepath (str): the path to the data folder
     """
     with open(filter_path, "r") as f:
