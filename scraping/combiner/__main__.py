@@ -5,15 +5,15 @@ import json
 import joblib
 import multiprocessing
 
-# TODO: Fix error: Enum is not defined
-# class filetype(Enum):
-#     decision = "decision"
-#     annex = "annex"
-#     epar = "epar"
-#     omar = "omar"
-#     ec_site = "ec_site"
-#     ema_site = "ema_site"
-#     excel = "excel"
+
+class filetype(Enum):
+    decision = "decision"
+    annex = "annex"
+    epar = "epar"
+    omar = "omar"
+    ec_site = "ec_site"
+    ema_site = "ema_site"
+    excel = "excel"
 
 
 # Main file to run all parsers

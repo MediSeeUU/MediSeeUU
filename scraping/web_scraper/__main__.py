@@ -13,11 +13,11 @@ from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_
 
 # TODO: These variables are for debugging, remove in final
 # Flag variables to indicate whether the webscraper should fill the .csv files or not
-scrape_ec: bool = True
-scrape_ema: bool = True            # Requires scrape_ec to have been run at least once
+scrape_ec: bool = False
+scrape_ema: bool = False            # Requires scrape_ec to have been run at least once
 scrape_annex10: bool = False
 download_files: bool = True         # Download pdfs from the obtained links
-run_filter: bool = True
+run_filter: bool = False
 use_parallelization: bool = True   # Parallelization is currently broken on Windows. Set to False
 
 # list of the type of medicines that will be scraped
@@ -165,7 +165,7 @@ def main(data_filepath: str = '../data'):
                 unzipped_medicine_codes.pop()
                 tqdm_concurrent.thread_map(get_urls_ec_retry,
                                            *unzipped_medicine_codes,
-                                           [data_filepath] * len(medicine_codes), max_workers=24)
+                                           [data_filepath] * len(medicine_codes))
             else:
                 for (medicine_url, eu_n, medicine_type, _) in tqdm.tqdm(medicine_codes):
                     get_urls_ec_retry(medicine_url, eu_n, medicine_type, data_filepath)
@@ -190,7 +190,7 @@ def main(data_filepath: str = '../data'):
 
         with tqdm_logging.logging_redirect_tqdm():
             if use_parallelization:
-                tqdm_concurrent.thread_map(get_urls_ema_retry, *unzipped_ema_urls, max_workers=24)
+                tqdm_concurrent.thread_map(get_urls_ema_retry, *unzipped_ema_urls)
 
             else:
                 for eu_n, url in tqdm.tqdm(ema_urls, bar_format=tqdm_format_string):
