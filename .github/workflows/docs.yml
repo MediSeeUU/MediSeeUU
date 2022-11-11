@@ -54,8 +54,8 @@ jobs:
         make clean -C docs
         make html -C docs
     
-    - name: Generate Sphinx Docs for DB Uploader
-      working-directory: scraping/db_uploader
+    - name: Generate Sphinx Docs for DB Communicator
+      working-directory: scraping/db_communicator
       run: |
         make clean -C docs
         make html -C docs
