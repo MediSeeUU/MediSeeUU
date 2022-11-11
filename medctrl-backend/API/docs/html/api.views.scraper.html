@@ -48,7 +48,7 @@
         <li class="toctree-l1 "><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/pdf_module/docs/html/index.html">PDF Scraper</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
-        <li class="toctree-l1 "><a href="../../../../scraping/db_uploader/docs/html/index.html">DB Uploader</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/db_communicator/docs/html/index.html">DB Communicator</a></li>
         <li class="toctree-l1 current-module"><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
         <li class="toctree-l1 margin-top "><a href="../../../../tests/docs/html/index.html">Tests</a></li>
       </ul>
@@ -1045,6 +1045,16 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l7"><a class="reference internal" href="#module-api.views.scraper.scraper_token">api.views.scraper.scraper_token module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#api.views.scraper.scraper_token.ScraperToken"><code class="docutils literal notranslate"><span class="pre">ScraperToken</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#api.views.scraper.scraper_token.ScraperToken.delete_token"><code class="docutils literal notranslate"><span class="pre">ScraperToken.delete_token()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#api.views.scraper.scraper_token.ScraperToken.get"><code class="docutils literal notranslate"><span class="pre">ScraperToken.get()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#api.views.scraper.scraper_token.ScraperToken.post"><code class="docutils literal notranslate"><span class="pre">ScraperToken.post()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#api.views.scraper.scraper_token.ScraperToken.send_token"><code class="docutils literal notranslate"><span class="pre">ScraperToken.send_token()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="#module-api.views.scraper.scraper_urls_view">api.views.scraper.scraper_urls_view module</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#api.views.scraper.scraper_urls_view.UrlsViewSet"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#api.views.scraper.scraper_urls_view.UrlsViewSet.basename"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.basename</span></code></a></li>
@@ -1296,6 +1306,64 @@ argument “data”.</p>
 <li><p><strong>data</strong> (<em>medicineObject</em>) – The new medicine data.</p></li>
 <li><p><strong>current_medicine</strong> (<em>medicineObject</em>) – The medicine data that is currently in the database.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-api.views.scraper.scraper_token">
+<span id="api-views-scraper-scraper-token-module"></span><h2>api.views.scraper.scraper_token module<a class="headerlink" href="#module-api.views.scraper.scraper_token" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="api.views.scraper.scraper_token.ScraperToken">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.views.scraper.scraper_token.</span></span><span class="sig-name descname"><span class="pre">ScraperToken</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.scraper.scraper_token.ScraperToken" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<p>Generates a view for token communication between the scraper and the backend</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="api.views.scraper.scraper_token.ScraperToken.delete_token">
+<span class="sig-name descname"><span class="pre">delete_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.scraper.scraper_token.ScraperToken.delete_token" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.views.scraper.scraper_token.ScraperToken.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Response</span></span></span><a class="headerlink" href="#api.views.scraper.scraper_token.ScraperToken.get" title="Permalink to this definition"></a></dt>
+<dd><p>Handles incoming get requests for a token and sends a token to the token_handler server using the
+<cite>send_token(self, data)</cite> function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – The get request object</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The response object of the request</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.views.scraper.scraper_token.ScraperToken.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Response</span></span></span><a class="headerlink" href="#api.views.scraper.scraper_token.ScraperToken.post" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes the token for the scraper user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The response object of the request</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="api.views.scraper.scraper_token.ScraperToken.send_token">
+<span class="sig-name descname"><span class="pre">send_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.scraper.scraper_token.ScraperToken.send_token" title="Permalink to this definition"></a></dt>
+<dd><p>Receives a token and sends it to a specific url corresponding to the token_handler from the flask server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>obj</em>) – The token in dict form</p>
 </dd>
 </dl>
 </dd></dl>

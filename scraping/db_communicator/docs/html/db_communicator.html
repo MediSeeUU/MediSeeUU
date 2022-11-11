@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>db_communicator package &mdash; DB Communicator 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="db_communicator" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+<a href="../../../../docs/html/README.html">
+  <img src="_static/medisee.svg" class="logo" alt="Logo"/>
+</a>
+
+
+  
+  
+
+
+
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+      <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+      <ul>
+        <li class="toctree-l1 "><a href="../../../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/pdf_module/docs/html/index.html">PDF Scraper</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
+        <li class="toctree-l1 current-module"><a href="../../../../scraping/db_communicator/docs/html/index.html">DB Communicator</a></li>
+        <li class="toctree-l1 "><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
+        <li class="toctree-l1 margin-top "><a href="../../../../tests/docs/html/index.html">Tests</a></li>
+      </ul>
+    </div>  
+    
+      
+              <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">DB Communicator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#generic-use-case">Generic use case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#how-to-use">How to use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#input-and-output">Input and output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#input">Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#files">Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#db-communicator-py">db_communicator.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#token-handler-py">token_handler.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Source Code Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">db_communicator</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">db_communicator package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-db_communicator.db_communicator">db_communicator.db_communicator module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator"><code class="docutils literal notranslate"><span class="pre">DbCommunicator</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator.key_valid"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.key_valid()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator.request_token"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.request_token()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator.send_data"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.send_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#db-communicator-token-handler-module">db_communicator.token_handler module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DB Communicator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">db_communicator</a></li>
+      <li class="breadcrumb-item active">db_communicator package</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-db_communicator">
+<span id="db-communicator-package"></span><h1>db_communicator package<a class="headerlink" href="#module-db_communicator" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-db_communicator.db_communicator">
+<span id="db-communicator-db-communicator-module"></span><h2>db_communicator.db_communicator module<a class="headerlink" href="#module-db_communicator.db_communicator" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="db_communicator.db_communicator.DbCommunicator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">db_communicator.db_communicator.</span></span><span class="sig-name descname"><span class="pre">DbCommunicator</span></span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Handles all communication between the database and the modules</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="db_communicator.db_communicator.DbCommunicator.key_valid">
+<span class="sig-name descname"><span class="pre">key_valid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.key_valid" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if there is a valid api key. If the key is not valid it requests a new key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if the token is still valid, False otherwise</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="db_communicator.db_communicator.DbCommunicator.request_token">
+<span class="sig-name descname"><span class="pre">request_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.request_token" title="Permalink to this definition"></a></dt>
+<dd><p>Requests a token from the token_handler server and updates the member variables <cite>api_key</cite>, <cite>last_retrieval</cite> and
+<cite>tries</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if a valid token has been received, False otherwise</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="db_communicator.db_communicator.DbCommunicator.send_data">
+<span class="sig-name descname"><span class="pre">send_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span></span></span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.send_data" title="Permalink to this definition"></a></dt>
+<dd><p>Sends all data received in the argument to the database using a valid api_key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dict</em>) – The data which is sent to the database</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The response object of the request</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="db-communicator-token-handler-module">
+<h2>db_communicator.token_handler module<a class="headerlink" href="#db-communicator-token-handler-module" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="db_communicator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Medisee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
