@@ -65,6 +65,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#other-points-of-interest">Other points of interest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#pdf-xml-converter">pdf_xml_converter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#xml-structure">XML Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-xml-data">Accessing XML data</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Source Code Documentation</span></p>
 <ul>
@@ -271,7 +276,54 @@ seperated into headers, sections and paragraphs.</p></li>
 from a PDF file. Logically it will take some time to create the XML files, but
 they only have to be created once, which will save time in the long run.</p>
 <p>Visualisation of the scraped attributes: <a class="reference download internal" download="" href="_downloads/3d18f72b99fafb69157c746cdfbf2d87/MediSee_PDF_visualisation.html"><span class="xref download myst">Visualisaties PDF</span></a></p>
+</section>
+<section id="pdf-xml-converter">
+<h1>pdf_xml_converter<a class="headerlink" href="#pdf-xml-converter" title="Permalink to this heading"></a></h1>
+<p>The pdf_xml_converter is responsible for converting pdf’s to XML format.
+Right now it’s called by pdf module, but will be seperated for extra modularity.</p>
+<section id="xml-structure">
+<h2>XML Structure<a class="headerlink" href="#xml-structure" title="Permalink to this heading"></a></h2>
+<p>The xml converter reads all lines from the given pdf and creates sections with
+bolded text from the pdf as a header and all paragraphs of unbolded text until
+the next header is found.</p>
+<p>Each section contains exactly one header element and between 0 and infinite paragraph tags.
+example of the structure:</p>
+<p>![[example_structure.png]]</p>
+<p>Additionally the XML converter also includes meta data in the <head>.
+The meta data includes:</p>
+<ul class="simple">
+<li><p>PDF file name: str</p></li>
+<li><p>initial file indicatior: bool</p></li>
+<li><p>creation date of pdf: datetime</p></li>
+<li><p>last modification date of pdf: datetime</p></li>
+</ul>
+<p>Example head structure:
+<img alt="head_structure" src="https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/pdf_module/docs/sphinx-source/head_structure.png?raw=true" /></p>
+<p>Example of whole XML:
+<img alt="whole_xml" src="https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/pdf_module/docs/sphinx-source/whole_xml.png?raw=true" /></p>
+</section>
+<section id="accessing-xml-data">
+<h2>Accessing XML data<a class="headerlink" href="#accessing-xml-data" title="Permalink to this heading"></a></h2>
+<p>The XML files can be accessed via the xml_parsing_utils.py. The functions can be called on ET.Elements nodes
+containing sections and provide a simple high level abstraction on XML node accessing allowing the programmer
+to interface with the xml contents in a more intuitive manner.</p>
+<p>Example utility function:</p>
+<p><code class="docutils literal notranslate"><span class="pre">section_contains_header_substring(&quot;substring</span> <span class="pre">to</span> <span class="pre">look</span> <span class="pre">for&quot;,</span> <span class="pre">section)</span></code></p>
+<p>instead of:
+<img alt="for_loop" src="https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/pdf_module/docs/sphinx-source/for_loop.png?raw=true" /></p>
+<p>or</p>
+<p><code class="docutils literal notranslate"><span class="pre">section_get_paragraph_text(paragraph_index,</span> <span class="pre">section)</span></code></p>
+<p>instead of:</p>
+<p><code class="docutils literal notranslate"><span class="pre">section.findall(tags.paragraph)[paragraph_index].text</span></code></p>
+<p>This method of interfacing with XML files allows the programmer to traverse all content within one pdf file once
+and immediately scrape information when relevant rather than searching through the raw text within a PDF file per attribute.
+By selecting sections that are relevant to an attribute the chance of scraping incorrect data is also reduced.</p>
+<p>Another major advantage is that it now becomes easy to add new scraping functions for specific attributes while keeping
+the code simple, clean and efficient.</p>
+<p>Example attribute scraping on XML:
+<img alt="scraping" src="https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/pdf_module/docs/sphinx-source/scraping.png?raw=true" /></p>
 <p>© Copyright Utrecht University (Department of Information and Computing Sciences)</p>
+</section>
 </section>
 
 
