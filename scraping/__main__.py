@@ -5,7 +5,7 @@ import os
 import web_scraper.__main__ as web_scraper
 import pdf_module.pdf_scraper.__main__ as pdf_scraper
 import combiner.__main__ as combiner
-import db_uploader.__main__ as db_uploader
+import db_communicator.__main__ as db_communicator
 
 
 def main():
@@ -17,11 +17,11 @@ def main():
     if not path.isdir(data_folder_directory):
         os.mkdir(data_folder_directory)
 
-    # NOTE: Uncomment any of the following modules to run the module
+    # For now only the web_scraper and pdf_scraper will be run
     web_scraper.main(data_folder_directory)
     pdf_scraper.main(data_folder_directory)
     # combiner.main(data_folder_directory)
-    # db_uploader.main(data_folder_directory)
+    # db_communicator_main.main(data_folder_directory)
 
 
 if __name__ == '__main__':

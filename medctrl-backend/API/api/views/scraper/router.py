@@ -10,6 +10,7 @@ from django.urls import path, include
 from rest_framework import routers
 from .scraper_medicine_post import ScraperMedicine
 from .scraper_urls_view import UrlsViewSet
+from .scraper_token import ScraperToken
 
 router = routers.DefaultRouter()
 router.register(r"urls", UrlsViewSet, basename="scraped_urls")
@@ -18,4 +19,5 @@ router.register(r"urls", UrlsViewSet, basename="scraped_urls")
 url_patterns = [
     path(r"medicine/", ScraperMedicine.as_view(), name="medicine"),
     path(r"", include(router.urls)),
+    path(r"token/", ScraperToken.as_view(), name="token")
 ]
