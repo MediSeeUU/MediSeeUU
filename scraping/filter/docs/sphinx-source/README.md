@@ -1,22 +1,27 @@
-# Algemene functie
-Filter checkt of alle PDF bestanden in een map met medicijnen correct zijn.
-Incorrecte PDF bestanden worden verwijderd en gelogd als een regel in filter.txt.
+# General
+Filter checks whether all PDF files in the folder with medicines are correct.
+Incorrect PDF files will be deleted and logged as a line in filter.txt.
 
 Error types:
-- corrupt (als PDF bestand niet geopend kan worden)
-- html (als de inhoud van het PDF bestanden een html site blijkt te zijn)
-- unknown (als do file niet geopend kan worden in utf8 formaat voor de HTML check)
-- wrong_doctype (als het PDF bestand niet van het type is dat in de filename staat)
+- corrupt (if PDF file cannot be opened)
+- html (if the content of the PDF files is actually an HTML file)
+- unknown (if the file can't be opened in utf8 format for the HTML check)
+- wrong_doctype (if the PDF file is a different type than the filename suggests)
 
 # Input & Output
 ## Input
-Locatie van data map met medicijnen
+Location of the data folder with medicines
 ## Output
-- filter.txt met per incorrect PDF bestand de volgende regel:
-  - "{naam van PDF}@{error type}@{URL}" voor EPAR, OMAR en Annex PDF bestanden
-  - "{naam van PDF}@{error type}@{EU nummer}@{Brand name}@{url}" voor een decision PDF
-- data folder zonder incorrecte PDF bestanden
+- filter.txt containing the following line for each incorrect PDF file:
+  - `{name of PDF}@{error type}@{URL}` for EPAR, OMAR and Annex files
+  - `{name of PDF}@{error type}@{EU number}@{Brand name}@{url}` for a decision PDF
+- data folder without the incorrect PDF files
 
-# Overige belangrijke punten
-Na een keer filter uitvoeren zijn alle incorrecte bestanden verwijderd, 
-na twee keer uitvoeren zal filter.txt dus ook leeg zijn.
+# Other points of interest
+**When calling filter directly**
+
+After one run, all incorrect PDF files will be removed.
+Therefore, filter.txt will be empty after two runs.
+Make sure to make a backup if the filtered files relevant and you want to run filter again.
+
+© Copyright Utrecht University (Department of Information and Computing Sciences)
