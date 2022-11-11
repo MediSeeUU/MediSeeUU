@@ -48,8 +48,7 @@ def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStr
         return medicine_struct
     res = get_all(filename, txt)
     medicine_struct.decisions.append(res)
-    if '_0' in filename:
-        pdf_helper.create_outputfile_dec(filename, res)
+    pdf_helper.create_outputfile_dec(filename, res)
     return medicine_struct
 
 
@@ -145,7 +144,7 @@ def get_data_human_use(filename: str, txt: str) -> dict:
     if isinstance(date, str):
         date = dec_get_date('')
 
-    filedata['eu_brand_name_initial'] = dec_get_bn(txt)
+    filedata['eu_brand_name_initial'] = dec_get_bn_human(txt)
     filedata['active_substance'] = dec_get_as(txt)
     filedata['eu_nas'] = dec_get_nas(txt, date)
     filedata['eu_atmp'] = dec_get_atmp(txt, date)
@@ -174,7 +173,7 @@ def get_data_orphan(filename: str, txt: str) -> dict:
     # if date was left blank return don't find date dependant attributes.
     if isinstance(date, str):
         date = dec_get_date('')
-    filedata['eu_brand_name_initial'] = dec_get_bn(txt, True)
+    filedata['eu_brand_name_initial'] = dec_get_bn_orphan(txt)
     filedata['eu_od_initial'] = dec_get_od(txt, date)
     filedata['eu_mah_initial'] = dec_get_mah(txt)
     filedata['eu_od_comp_date'] = dec_get_od_comp_date(txt)
@@ -221,13 +220,12 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
     return helper.get_date('')
 
 
-def dec_get_bn(txt: str, orphan: bool = False) -> str:
+def dec_get_bn_human(txt: str) -> str:
     """
     Extracts brand name out of non-orphan decision text
 
     Args:
         txt (str): plain decision pdf text
-        orphan (bool): to add extra check for orphan structure
 
     Returns:
         str: found brand name or default value
@@ -260,20 +258,36 @@ def dec_get_bn(txt: str, orphan: bool = False) -> str:
         # no active substance, so return whole name
         return section
 
-    if orphan:
-        # for orphan structure
-        if len(txt.split('relating to the designation of medicinal product')) > 1:
-            res = txt.split('relating to the designation of medicinal product', 1)[1]
-            if 'as an' in res:
-                res = res.split('as an', 1)[0]
-            if 'as  an' in res:
-                res = res.split('as  an', 1)[0]
-            res = res.replace('"', '')
-            res = res.replace('“', '')
-            res = res.replace('”', '')
-            return res.strip()
+    return 'Brand name Not Found'
+
+
+def dec_get_bn_orphan(txt: str) -> str:
+    """
+    Extracts brand name out of orphan decision text
+
+    Args:
+        txt (str): plain decision pdf text
+
+    Returns:
+        str: found brand name or default value
+    """
+    # returns a section containing just the brand name (and potentially the active substance)
+    section = get_name_section(txt)  # TODO: Do something about this, or remove unused var
+
+    # for orphan structure
+    if len(txt.split('relating to the designation of medicinal product')) > 1:
+        res = txt.split('relating to the designation of medicinal product', 1)[1]
+        if 'as an' in res:
+            res = res.split('as an', 1)[0]
+        if 'as  an' in res:
+            res = res.split('as  an', 1)[0]
+        res = res.replace('"', '')
+        res = res.replace('“', '')
+        res = res.replace('”', '')
+        return res.strip()
 
     return 'Brand name Not Found'
+
 
 def dec_get_as(txt: str) -> str:
     """extracts active substance out of decision text
@@ -426,7 +440,7 @@ def dec_get_nas(txt, date) -> str | bool:
     """
     # check if there can be a NAS.
     if date < datetime.datetime(2012, 1, 1):
-        return "NA before 2012"
+        return "NAS before 2012"
 
     if "committee for medicinal products for human use" in txt.lower() and "a new active substance" in txt.lower():
         return True

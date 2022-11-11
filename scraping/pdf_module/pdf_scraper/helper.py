@@ -80,13 +80,13 @@ def convert_roman_numbers(date: str) -> str:
     return date
 
 
-def convert_articles(articles: list[str]) -> list[str]:
+def convert_articles(articles: [str]) -> [str]:
     """
     Args:
         articles ([str]): The articles to convert to the right format
 
     Returns:
-        list[str]: The converted articles
+        [str]: The converted articles
     """
     res = []
     for article in articles:

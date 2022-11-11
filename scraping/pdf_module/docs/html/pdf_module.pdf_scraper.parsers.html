@@ -57,13 +57,13 @@
       
               <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="README.html">General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Algemene functie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html#input-output">Input &amp; Output</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="README.html#input">Input</a></li>
 <li class="toctree-l2"><a class="reference internal" href="README.html#output">Output</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="README.html#other-points-of-interest">Other points of interest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#overige-belangrijke-punten">Overige belangrijke punten</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Source Code Documentation</span></p>
 <ul class="current">
@@ -81,7 +81,8 @@
 <li class="toctree-l7"><a class="reference internal" href="#module-pdf_module.pdf_scraper.parsers.dec_parse">pdf_module.pdf_scraper.parsers.dec_parse module</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_as"><code class="docutils literal notranslate"><span class="pre">dec_get_as()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_atmp"><code class="docutils literal notranslate"><span class="pre">dec_get_atmp()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn"><code class="docutils literal notranslate"><span class="pre">dec_get_bn()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn_human"><code class="docutils literal notranslate"><span class="pre">dec_get_bn_human()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn_orphan"><code class="docutils literal notranslate"><span class="pre">dec_get_bn_orphan()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_date"><code class="docutils literal notranslate"><span class="pre">dec_get_date()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_decision_type"><code class="docutils literal notranslate"><span class="pre">dec_get_decision_type()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_mah"><code class="docutils literal notranslate"><span class="pre">dec_get_mah()</span></code></a></li>
@@ -123,6 +124,19 @@
 <li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse.get_prevalence"><code class="docutils literal notranslate"><span class="pre">get_prevalence()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse.get_significant_benefit"><code class="docutils literal notranslate"><span class="pre">get_significant_benefit()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#module-pdf_module.pdf_scraper.parsers.omar_parse_old">pdf_module.pdf_scraper.parsers.omar_parse_old module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_all"><code class="docutils literal notranslate"><span class="pre">get_all()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_alternative_treatments"><code class="docutils literal notranslate"><span class="pre">get_alternative_treatments()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_condition_attributes"><code class="docutils literal notranslate"><span class="pre">get_condition_attributes()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_conditions_number"><code class="docutils literal notranslate"><span class="pre">get_conditions_number()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_correct_condition"><code class="docutils literal notranslate"><span class="pre">get_correct_condition()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_insufficient_roi"><code class="docutils literal notranslate"><span class="pre">get_insufficient_roi()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_prevalence"><code class="docutils literal notranslate"><span class="pre">get_prevalence()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_prevalence_section"><code class="docutils literal notranslate"><span class="pre">get_prevalence_section()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_significant_benefit"><code class="docutils literal notranslate"><span class="pre">get_significant_benefit()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -310,15 +324,29 @@ bool: found result</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn">
-<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.dec_parse.</span></span><span class="sig-name descname"><span class="pre">dec_get_bn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orphan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn_human">
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.dec_parse.</span></span><span class="sig-name descname"><span class="pre">dec_get_bn_human</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn_human" title="Permalink to this definition"></a></dt>
 <dd><p>Extracts brand name out of non-orphan decision text</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>txt</strong> (<em>str</em>) – plain decision pdf text</p></li>
-<li><p><strong>orphan</strong> (<em>bool</em>) – to add extra check for orphan structure</p></li>
-</ul>
+<dd class="field-odd"><p><strong>txt</strong> (<em>str</em>) – plain decision pdf text</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>found brand name or default value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn_orphan">
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.dec_parse.</span></span><span class="sig-name descname"><span class="pre">dec_get_bn_orphan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.dec_parse.dec_get_bn_orphan" title="Permalink to this definition"></a></dt>
+<dd><p>Extracts brand name out of orphan decision text</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>txt</strong> (<em>str</em>) – plain decision pdf text</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>found brand name or default value</p>
@@ -775,7 +803,7 @@ The initial authorization date of the EMA</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.epar_parse.get_legal_basis">
-<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.epar_parse.</span></span><span class="sig-name descname"><span class="pre">get_legal_basis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.epar_parse.get_legal_basis" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.epar_parse.</span></span><span class="sig-name descname"><span class="pre">get_legal_basis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">[&lt;class</span> <span class="pre">'str'&gt;]</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.epar_parse.get_legal_basis" title="Permalink to this definition"></a></dt>
 <dd><p>Gets the attribute eu_legal_basis
 All legal articles relevant to the medicine</p>
 <dl class="field-list simple">
@@ -786,7 +814,7 @@ All legal articles relevant to the medicine</p>
 <dd class="field-even"><p>the attribute eu_legal_basis - multiple articles of the form “Article X.X”</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>list[str]</p>
+<dd class="field-odd"><p>[str]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -913,16 +941,13 @@ including the attributes of this XML file</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.omar_parse.get_alternative_treatments">
 <span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse.</span></span><span class="sig-name descname"><span class="pre">get_alternative_treatments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bullet_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse.get_alternative_treatments" title="Permalink to this definition"></a></dt>
-<dd><dl class="simple">
-<dt>Finds the bullet point that contains the appropriate information and return</dt><dd><p>short description about the findings.</p>
-</dd>
-</dl>
+<dd><p>_summary_</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>bullet_points</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – These are all the bullet points from the appropriate section.</p>
+<dd class="field-odd"><p><strong>section</strong> (<em>ET.Element</em>) – _description_</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Return a short description depending on what was found in the bullet point.</p>
+<dd class="field-even"><p>_description_</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>str</p>
@@ -941,7 +966,7 @@ including the attributes of this XML file</p>
 <dd><p>Finds the paragraph that contains the information about the prevalence of the medicine.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>bullet_points</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – These are all the bullet points from the appropriate section.</p>
+<dd class="field-odd"><p><strong>xml_data</strong> (<em>ET.Element</em>) – This is the XML part to be parsed.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Return the string with the relevant information about the prevalence or NA if it cannot be found.</p>
@@ -960,7 +985,7 @@ the result is influenced by the result of a previous attribute.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>bullet_points</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – These are all the bullet points from the appropriate section.</p></li>
+<li><p><strong>xml_data</strong> (<em>ET.Element</em>) – This is the XML part to be parsed.</p></li>
 <li><p><strong>alternative_treatment</strong> (<em>str</em>) – The result of the get_alternative_treatment function</p></li>
 </ul>
 </dd>
@@ -994,6 +1019,150 @@ the result is influenced by the result of a previous attribute.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>PIS.ParsedInfoStruct</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pdf_module.pdf_scraper.parsers.omar_parse_old">
+<span id="pdf-module-pdf-scraper-parsers-omar-parse-old-module"></span><h2>pdf_module.pdf_scraper.parsers.omar_parse_old module<a class="headerlink" href="#module-pdf_module.pdf_scraper.parsers.omar_parse_old" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.omar_parse_old.get_all">
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse_old.</span></span><span class="sig-name descname"><span class="pre">get_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xml_tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ElementTree</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_all" title="Permalink to this definition"></a></dt>
+<dd><p>This function gets all attributes of the OMAR XML and returns them in a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – name of the XML file to be scraped</p></li>
+<li><p><strong>xml_tree</strong> (<em>ET.ElementTree</em>) – the whole XML tree of the file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dictionary of all parsed attributes, named according to the bible.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.omar_parse_old.get_alternative_treatments">
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse_old.</span></span><span class="sig-name descname"><span class="pre">get_alternative_treatments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_alternative_treatments" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.omar_parse_old.get_condition_attributes">
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse_old.</span></span><span class="sig-name descname"><span class="pre">get_condition_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_condition_attributes" title="Permalink to this definition"></a></dt>
+<dd><p>This function will parse out all the attributes from a given piece of XML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>xml_data</strong> (<em>ET.Element</em>) – This is the XML part to be parsed.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a dictionary of the parsed piece of XML.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.omar_parse_old.get_conditions_number">
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse_old.</span></span><span class="sig-name descname"><span class="pre">get_conditions_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_conditions_number" title="Permalink to this definition"></a></dt>
+<dd><p>This function gets the amount conditions for an orphan medicine.
+This is necessary because certain OMARs contain multiple conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>xml_data</strong> (<em>ET.Element</em>) – This is the XML part to be parsed.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>If no section is detected which contains an indicator for multiple conditions,</dt><dd><p>then it is assumed that there is only a single condition.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.omar_parse_old.get_correct_condition">
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse_old.</span></span><span class="sig-name descname"><span class="pre">get_correct_condition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_correct_condition" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.omar_parse_old.get_insufficient_roi">
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse_old.</span></span><span class="sig-name descname"><span class="pre">get_insufficient_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_insufficient_roi" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.omar_parse_old.get_prevalence">
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse_old.</span></span><span class="sig-name descname"><span class="pre">get_prevalence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_prevalence" title="Permalink to this definition"></a></dt>
+<dd><p>Finds the paragraph that contains the information about the prevalence of the medicine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>xml_data</strong> (<em>ET.Element</em>) – This is the XML part to be parsed.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Return the string with the relevant information about the prevalence or NA if it cannot be found.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.omar_parse_old.get_prevalence_section">
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse_old.</span></span><span class="sig-name descname"><span class="pre">get_prevalence_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_prevalence_section" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.omar_parse_old.get_significant_benefit">
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse_old.</span></span><span class="sig-name descname"><span class="pre">get_significant_benefit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alternative_treatment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.get_significant_benefit" title="Permalink to this definition"></a></dt>
+<dd><p>This function parses out the significant benefit of the OMAR,
+the result is influenced by the result of a previous attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xml_data</strong> (<em>ET.Element</em>) – This is the XML part to be parsed.</p></li>
+<li><p><strong>alternative_treatment</strong> (<em>str</em>) – The result of the get_alternative_treatment function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the appropriate string, depending on what was found in the file.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_module.pdf_scraper.parsers.omar_parse_old.parse_file">
+<span class="sig-prename descclassname"><span class="pre">pdf_module.pdf_scraper.parsers.omar_parse_old.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ParsedInfoStruct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ParsedInfoStruct</span></span></span><a class="headerlink" href="#pdf_module.pdf_scraper.parsers.omar_parse_old.parse_file" title="Permalink to this definition"></a></dt>
+<dd><p>This function parses the OMAR XML file and returns an updated dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – name of the XML file to be scraped</p></li>
+<li><p><strong>medicine_struct</strong> (<em>PIS.parsed_info_struct</em>) – the dictionary of all currently scraped attributes of this medicine</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Returns a more complete dictionary of scraped attributes,</dt><dd><p>including the attributes of this XML file.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>PIS.parsed_info_struct</p>
 </dd>
 </dl>
 </dd></dl>

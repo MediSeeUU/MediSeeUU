@@ -8,8 +8,7 @@ Combiner Documentation
 .. toctree::
    :caption: Readme
 
-   README
-
+   
 .. toctree::
    :maxdepth: 3
    :caption: Source Code Documentation

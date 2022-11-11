@@ -107,37 +107,18 @@ def get_opinion_date(xml: ET.Element) -> str:
     Returns:
         str: the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format
     """
-    not_easily_scrapable = False
     for p in xml_utils.get_paragraphs_by_header("steps taken for the assessment", xml):
         if re.findall(date_pattern, p):
             date = helper.convert_months(re.findall(date_pattern, p)[-1])
+            # Date contains emea instead of month, returns not found
+            # TODO: Find correct date when emea is given
+            if re.search(r"emea", date):
+                return "not_easily_scrapable"
             return date
-        # Section is found and should always contain the CHMP opinion date
-        not_easily_scrapable = True
-    # Look below rapporteur in steps taken for the assessment when not found by default method
-    # This is needed as rapporteur is seen as a header when it is bold, causing text below to
-    # not be a part of "steps taken for the assessment" anymore.
-    right_section = False
-    below_rapp = False
-    for elem in xml.iter():
-        txt = elem.text
-        if not txt:
-            continue
-        if "steps taken for the assessment" in txt:
-            right_section = True
-        if right_section and "rapporteur" in txt:
-            below_rapp = True
-        if below_rapp and re.findall(date_pattern, txt):
-            date = helper.convert_months(re.findall(date_pattern, txt)[-1])
-            return date
-        if below_rapp and "scientific discussion" in txt:
-            return "not_easily_scrapable"
-    if not_easily_scrapable:
-        return "not_easily_scrapable"
     return "no_chmp_found"
 
 
-def get_legal_basis(xml: ET.Element) -> list[str]:
+def get_legal_basis(xml: ET.Element) -> [str]:
     """
     Gets the attribute eu_legal_basis
     All legal articles relevant to the medicine
@@ -146,7 +127,7 @@ def get_legal_basis(xml: ET.Element) -> list[str]:
         xml (ET.Element): the contents of the XML file
 
     Returns:
-        list[str]: the attribute eu_legal_basis - multiple articles of the form "Article X.X"
+        [str]: the attribute eu_legal_basis - multiple articles of the form "Article X.X"
     """
     regex_legal = r"article .+?(?=[a-z]{2,90}|\n|$)"
     found = False
@@ -167,7 +148,7 @@ def get_legal_basis(xml: ET.Element) -> list[str]:
         if found:
             count += 1
             if not right_section:
-                print("EPAR PARSER: Legal basis found before \"submission of the dossier\"")
+                print("Legal basis found before \"submission of the dossier\"")
             # Get only text after "legal basis for" if this string is in txt
             if len(txt.split("legal basis for", 1)) > 1:
                 txt = txt.split("legal basis for", 1)[1]
@@ -265,7 +246,7 @@ def get_rapp(xml: ET.Element) -> str:
                 rapporteur += txt
                 rapporteur = clean_rapporteur(rapporteur)
             if len(rapporteur) >= 4:
-                return rapporteur
+                return rapporteur[:39]
         # Find rapporteur after "rapporteur appointed by the chmp was"
         regex_str_3 = r"rapporteur appointed by the chmp was[\s\S]+"
         if re.findall(regex_str_3, txt):
@@ -273,13 +254,13 @@ def get_rapp(xml: ET.Element) -> str:
             if temp_rapp != "rapporteur" and temp_rapp:
                 return temp_rapp
         # Find rapporteur after "rapporteur:"
-        regex_str_4 = r"rapporteur:[\s\w\.]*"
+        regex_str_4 = r"rapporteur:[\s\w\.]+"
         if re.search(regex_str_4, txt) and not found:
             rapporteur = get_rapp_after(regex_str_4, txt, 12)
             if len(rapporteur) < 4:
                 found = True
             else:
-                return rapporteur
+                return rapporteur[:39]
     for elem in xml.iter():
         txt = str(elem.text)
         if "rapporteur" in txt and "co-rapporteur" not in txt:
@@ -353,7 +334,7 @@ def clean_rapporteur(rapporteur: str) -> str:
         rapporteur = rapporteur.split("  ")[0].strip()
     if rapporteur == "None":
         return ''
-    return rapporteur.strip()
+    return rapporteur
 
 
 def get_corapp(xml: ET.Element) -> str:
@@ -391,7 +372,7 @@ def get_corapp(xml: ET.Element) -> str:
                 return corapporteur
         # Find co-rapporteur after "co-rapporteur:"
         regex_str_2 = r"co-rapporteur:[\s\w\.]*"
-        if re.search(regex_str_2, txt):
+        if re.search(regex_str_2, txt) and not found:
             corapporteur = get_rapp_after(regex_str_2, txt, 15)
             if corapporteur == "n" or "n/a" in corapporteur:
                 return "no_co-rapporteur"
@@ -404,7 +385,7 @@ def get_corapp(xml: ET.Element) -> str:
             found = True
     for elem in xml.iter():
         txt = str(elem.text)
-        if "co-rapporteur" in txt or "corraporteur" in txt:
+        if "co-rapporteur" in txt:
             return "not_easily_scrapable"
     return "no_co-rapporteur"
 

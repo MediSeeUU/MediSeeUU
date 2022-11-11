@@ -78,7 +78,7 @@ def get_prevalence(bullet_points: list[str]) -> str:
     Finds the paragraph that contains the information about the prevalence of the medicine.
 
     Args:
-        bullet_points (list[str]): These are all the bullet points from the appropriate section.
+        xml_data (ET.Element): This is the XML part to be parsed.
 
     Returns:
         str: Return the string with the relevant information about the prevalence or NA if it cannot be found.
@@ -92,21 +92,21 @@ def get_prevalence(bullet_points: list[str]) -> str:
     return "NA"
 
 
-# No OMARs have been found containing this piece of information, so far.
+# Nog geen OMAR gevonden waar dit in staat dus kan nog niet gedaan worden
 def get_insufficient_roi(bullet_points: list[str]) -> str:
     return "NA"
 
 
+# WIP WIP WIP WIP WIP
 def get_alternative_treatments(bullet_points: list[str]) -> str:
     """
-    Finds the bullet point that contains the appropriate information and return
-        short description about the findings.
+    _summary_
 
     Args:
-        bullet_points (list[str]): These are all the bullet points from the appropriate section.
+        section (ET.Element): _description_
 
     Returns:
-        str: Return a short description depending on what was found in the bullet point.
+        str: _description_
     """
     for b in bullet_points:
         if "no satisfactory methods" in b:
@@ -123,7 +123,7 @@ def get_significant_benefit(bullet_points: list[str], alternative_treatment: str
     the result is influenced by the result of a previous attribute.
 
     Args:
-        bullet_points (list[str]): These are all the bullet points from the appropriate section.
+        xml_data (ET.Element): This is the XML part to be parsed.
         alternative_treatment (str): The result of the get_alternative_treatment function
 
     Returns:
