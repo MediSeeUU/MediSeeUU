@@ -23,5 +23,6 @@ def main():
     # combiner.main(data_folder_directory)
     # db_communicator_main.main(data_folder_directory)
 
+
 if __name__ == '__main__':
     main()
