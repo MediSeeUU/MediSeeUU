@@ -13,12 +13,12 @@
                 "ec_url": "https://ec.com",
                 "ema_number": "23",
                 "eu_med_type": "test_type",
-                "eu_atmp": False,
+                "eu_atmp": false,
                 "aut_url": "https://aut.com",
                 "smpc_url": "https://smpc.com",
                 "epar_url": "https://epar.com",
                 "atc_code": "atccode",
-                "ema_number_check": True,
+                "ema_number_check": true,
                 "ema_rapp": "Germany",
                 "ema_corapp": "France",
                 "eu_accel_assess_g": false,
@@ -83,4 +83,4 @@
                 ]
             }
         ]
-    }
+}
