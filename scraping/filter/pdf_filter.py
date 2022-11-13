@@ -1,17 +1,15 @@
-import json
+from joblib import Parallel, delayed
+import fitz
 import os
 import re
-
-import fitz
-import pathlib
-from joblib import Parallel, delayed
+import json
 
 
 def filter_all_pdfs(directory: str):
     """
     Go through all PDF files in the directory and remove incorrect PDF files
     Saves the names of the filtered PDF files with the error type [corrupt, html, unknown, wrong_doctype]
-    
+
     Args:
         directory (str): folder with all medicine folders to filter
     """
@@ -40,7 +38,6 @@ def filter_folder(folder: str) -> [str]:
 
     Returns:
         [str]: PDF names with error types for the folder
-
     """
     all_data = []
     for filename in os.listdir(folder):
@@ -58,7 +55,6 @@ def check_for_no_text(pdf: fitz.Document) -> bool:
 
     Returns:
         bool: True if pdf is text-free, False otherwise
-
     """
     for page in pdf:
         dict_ = page.get_text("dict")
@@ -86,7 +82,6 @@ def filter_pdf(filename: str, data_dir: str) -> str:
 
     Returns:
         str: filename@error_type
-
     """
     corrupt = False
     file_path = os.path.join(data_dir, filename)
@@ -137,7 +132,6 @@ def error_line(filename: str, error: str) -> str:
 
     Returns:
         str: filename@url@error_type OR filename@url@error_type@product_number@brand_name for decision files
-
     """
     url = get_url(filename)
     if "dec" in filename:
@@ -154,11 +148,10 @@ def get_brand_name(filename: str) -> str:
 
     Returns:
         str: Brand name of the EC decision file
-
     """
     eu_num = filename.split('_')[0]
     try:
-        with open(f'../../data/{eu_num}/{eu_num}_webdata.json') as pdf_json:
+        with open(f'../data/{eu_num}/{eu_num}_webdata.json') as pdf_json:
             web_attributes = json.load(pdf_json)
             return web_attributes['eu_brand_name_current']
     except FileNotFoundError:
@@ -168,7 +161,6 @@ def get_brand_name(filename: str) -> str:
 def get_url(filename) -> str:
     """
     Retrieve the URL for a given filename
-
     Args:
         filename (str): The name of the PDF file
 
@@ -179,7 +171,7 @@ def get_url(filename) -> str:
     try:
         json_path = "web_scraper/"
         # If file is run from webscraper locally:
-        if "web_scraper" == pathlib.Path.cwd().name:
+        if "web_scraper" in os.getcwd():
             json_path = ""
         with open(f'{json_path}JSON/urls.json') as urls_json:
             urls = json.load(urls_json)
@@ -214,7 +206,6 @@ def get_utf8_line(file_path: str) -> str:
 
     Returns:
         str: first line of the file
-
     """
     try:
         f2 = open(str(file_path), 'r', encoding="utf8")
@@ -397,6 +388,5 @@ def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
     # TODO: Add OMAR check once available
     else:
         return ''
-
 
 # filter_all_pdfs("../../data")
