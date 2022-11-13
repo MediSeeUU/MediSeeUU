@@ -42,11 +42,11 @@ def pdf_links_from_url(url: str) -> tuple[str, str]:
 
     complete_soup = soup.find(string="Initial marketing-authorisation documents")
 
-    if complete_soup is not None:
-        specific_soup = complete_soup.parent.parent.parent
-    else:
-        log.warning(f"There are no initial marketing-authorisation documents")
+    if complete_soup is None:
+        log.warning(f"{medicine_name}: No initial marketing-authorisation documents")
         return "", ""
+
+    specific_soup = complete_soup.parent.parent.parent
 
     # Compiles a list of all link tags, that link to a .pdf file.
     link_tags = specific_soup.find_all('a')
