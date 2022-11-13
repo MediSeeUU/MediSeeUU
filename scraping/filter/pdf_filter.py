@@ -155,7 +155,7 @@ def get_brand_name(filename: str) -> str:
             web_attributes = json.load(pdf_json)
             return web_attributes['eu_brand_name_current']
     except FileNotFoundError:
-        return "no_attributes_json_found"
+        return "no_wedata_json_found"
 
 
 def get_url(filename) -> str:
