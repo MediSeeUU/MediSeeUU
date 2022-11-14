@@ -339,7 +339,8 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
 
     # for each row in the json file of each medicine, get the urls for the pdfs of the decision and annexes.
     # it also checks whether each procedure row has some information about its authorization type
-    for row in procedures_json:
+    for i in range(len(procedures_json)):
+        row = procedures_json[i]
         # Checks for initial type of authorization and keeps track if it is either Exceptional or Conditional
         if "annual reassessment" in row["type"].lower():
             is_exceptional = True
@@ -379,7 +380,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
             else:
                 pdf_url_dec = \
                     f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""
-                dec_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
+                dec_url_list.append(("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec, i))
 
         if row["files_anx"]:
             if not (any('en' in d.values() for d in row["files_anx"])):
@@ -387,7 +388,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
             else:
                 pdf_url_anx = \
                     f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""
-                anx_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
+                anx_url_list.append(("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx, i))
 
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
     eu_aut_str: str = procedures_json[0]["decision"]["date"]

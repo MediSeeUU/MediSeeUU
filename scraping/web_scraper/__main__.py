@@ -63,6 +63,11 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
     dec_list, anx_list, ema_list, attributes_dict = \
         ec_scraper.scrape_medicine_page(medicine_url, ec_scraper.MedicineType(medicine_type))
 
+    # sort decisions and annexes list
+    dec_list.sort(key=lambda x: int(x[1]))
+    anx_list.sort(key=lambda x: int(x[1]))
+    dec_list = [x[0] for x in dec_list]
+    anx_list = [x[0] for x in anx_list]
     # if initial is addressed to member states, move first url to end of url list
     if attributes_dict["init_addressed_to_member_states"] == "True":
         dec_list.append(dec_list.pop(0))

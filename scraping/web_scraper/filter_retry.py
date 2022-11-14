@@ -82,7 +82,6 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
     if os.path.exists(filedates_path):
         with open(filedates_path, 'r') as f:
             filedate_dict = json.load(f)
-    print(url, eu_n)
     download.download_pdf_from_url(url, eu_n, filename_elements, data_filepath, filedate_dict, overwrite=True)
 
 
