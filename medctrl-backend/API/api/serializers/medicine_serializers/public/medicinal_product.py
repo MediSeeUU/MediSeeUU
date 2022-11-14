@@ -19,7 +19,6 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
-    HistoryEUOrphanCon,
 )
 from api.serializers.medicine_serializers.public import (
     AuthorisationStatusSerializer,
@@ -28,7 +27,6 @@ from api.serializers.medicine_serializers.public import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
-    EUOrphanConSerializer
 )
 
 
