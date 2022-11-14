@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.abspath("../../../"))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "DB Uploader"
+project = "DB Communicator"
 copyright = "2022, Medisee"
 author = "Medisee"
 release = "1.0"
@@ -22,7 +22,7 @@ release = "1.0"
 root_url = "../../../../"
 html_context = {
     "root_url": root_url,
-    "current_module": "db_uploader",
+    "current_module": "db_communicator",
     "display_super": True,
 }
 templates_path = [root_url + "docs/sphinx-source/_templates"]

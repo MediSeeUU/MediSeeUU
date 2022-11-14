@@ -23,13 +23,8 @@ html_context = {
 templates_path = ["_templates"]
 
 extensions = [
-    "sphinx.ext.intersphinx",
     "myst_parser",
     ]
-
-intersphinx_mapping = {
-  "backend": (root_url + "medctrl-backend/API/docs/html", None),
-  }
 
 include_patterns = [
     "index.rst",

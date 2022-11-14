@@ -46,7 +46,7 @@
         <li class="toctree-l1 "><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/pdf_module/docs/html/index.html">PDF Scraper</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
-        <li class="toctree-l1 "><a href="../../../../scraping/db_uploader/docs/html/index.html">DB Uploader</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/db_communicator/docs/html/index.html">DB Communicator</a></li>
         <li class="toctree-l1 current-module"><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
         <li class="toctree-l1 margin-top "><a href="../../../../tests/docs/html/index.html">Tests</a></li>
       </ul>
@@ -1043,6 +1043,16 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l7"><a class="reference internal" href="api.views.scraper.html#module-api.views.scraper.scraper_token">api.views.scraper.scraper_token module</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_token.ScraperToken"><code class="docutils literal notranslate"><span class="pre">ScraperToken</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_token.ScraperToken.delete_token"><code class="docutils literal notranslate"><span class="pre">ScraperToken.delete_token()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_token.ScraperToken.get"><code class="docutils literal notranslate"><span class="pre">ScraperToken.get()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_token.ScraperToken.post"><code class="docutils literal notranslate"><span class="pre">ScraperToken.post()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_token.ScraperToken.send_token"><code class="docutils literal notranslate"><span class="pre">ScraperToken.send_token()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="api.views.scraper.html#module-api.views.scraper.scraper_urls_view">api.views.scraper.scraper_urls_view module</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_urls_view.UrlsViewSet"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="api.views.scraper.html#api.views.scraper.scraper_urls_view.UrlsViewSet.basename"><code class="docutils literal notranslate"><span class="pre">UrlsViewSet.basename</span></code></a></li>
@@ -1720,6 +1730,13 @@
 </li>
       </ul></li>
       <li>
+    api.views.scraper.scraper_token
+
+      <ul>
+        <li><a href="api.views.scraper.html#module-api.views.scraper.scraper_token">module</a>
+</li>
+      </ul></li>
+      <li>
     api.views.scraper.scraper_urls_view
 
       <ul>
@@ -1931,6 +1948,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.views.scraper.html#api.views.scraper.scraper_token.ScraperToken.delete_token">delete_token() (api.views.scraper.scraper_token.ScraperToken method)</a>
+</li>
       <li><a href="api.views.medicine_views.html#api.views.medicine_views.medicine.MedicineViewSet.description">description (api.views.medicine_views.medicine.MedicineViewSet attribute)</a>
 
       <ul>
@@ -2174,7 +2193,11 @@
       <li><a href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyView">GenerateKeyView (class in api.views.generate_key_views.generate_api_key)</a>
 </li>
       <li><a href="api.views.other.html#api.views.other.medicine_info.Medicine_info.get">get() (api.views.other.medicine_info.Medicine_info method)</a>
+
+      <ul>
+        <li><a href="api.views.scraper.html#api.views.scraper.scraper_token.ScraperToken.get">(api.views.scraper.scraper_token.ScraperToken method)</a>
 </li>
+      </ul></li>
       <li><a href="api.management.commands.html#api.management.commands.init_setup.get_action">get_action() (in module api.management.commands.init_setup)</a>
 </li>
       <li><a href="api.views.generate_key_views.html#api.views.generate_key_views.generate_api_key.GenerateKeyView.get_context_data">get_context_data() (api.views.generate_key_views.generate_api_key.GenerateKeyView method)</a>
@@ -2797,6 +2820,8 @@
 </li>
         <li><a href="api.views.scraper.html#module-api.views.scraper.scraper_medicine_post">api.views.scraper.scraper_medicine_post</a>
 </li>
+        <li><a href="api.views.scraper.html#module-api.views.scraper.scraper_token">api.views.scraper.scraper_token</a>
+</li>
         <li><a href="api.views.scraper.html#module-api.views.scraper.scraper_urls_view">api.views.scraper.scraper_urls_view</a>
 </li>
         <li><a href="api.views.html#module-api.views.update_cache">api.views.update_cache</a>
@@ -2921,6 +2946,8 @@
       <ul>
         <li><a href="api.views.scraper.html#api.views.scraper.scraper_medicine_post.ScraperMedicine.post">(api.views.scraper.scraper_medicine_post.ScraperMedicine method)</a>
 </li>
+        <li><a href="api.views.scraper.html#api.views.scraper.scraper_token.ScraperToken.post">(api.views.scraper.scraper_token.ScraperToken method)</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -3004,9 +3031,13 @@
 </li>
       <li><a href="api.tests.unit_tests.test_scraper.html#api.tests.unit_tests.test_scraper.test_scraper_medicine.ScraperMedicineTestCase">ScraperMedicineTestCase (class in api.tests.unit_tests.test_scraper.test_scraper_medicine)</a>
 </li>
+      <li><a href="api.views.scraper.html#api.views.scraper.scraper_token.ScraperToken">ScraperToken (class in api.views.scraper.scraper_token)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.tests.integration_tests.test_views.html#api.tests.integration_tests.test_views.test_scraper_urls_view.ScraperUrlsViewTestCase">ScraperUrlsViewTestCase (class in api.tests.integration_tests.test_views.test_scraper_urls_view)</a>
+</li>
+      <li><a href="api.views.scraper.html#api.views.scraper.scraper_token.ScraperToken.send_token">send_token() (api.views.scraper.scraper_token.ScraperToken method)</a>
 </li>
       <li><a href="api.views.other.html#api.views.other.saved_selection.SavedSelectionViewSet.serializer_class">serializer_class (api.views.other.saved_selection.SavedSelectionViewSet attribute)</a>
 </li>
