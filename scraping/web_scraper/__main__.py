@@ -107,13 +107,12 @@ def get_urls_ema(eu_n: str, url: str):
         url (str): The url to an EMA page for a specific medicine.
     """
     epar_url, omar_url = ema_scraper.pdf_links_from_url(url)
-    if url_file.local_dict[eu_n]:
-        if "epar_url" in url_file.local_dict[eu_n].keys():
-            if url_file.local_dict[eu_n]['epar_url']:
-                return
-        if "omar_url" in url_file.local_dict[eu_n].keys():
-            if url_file.local_dict[eu_n]['omar_url']:
-                return
+    if "epar_url" in url_file.local_dict[eu_n].keys():
+        if url_file.local_dict[eu_n]['epar_url']:
+            return
+    if "omar_url" in url_file.local_dict[eu_n].keys():
+        if url_file.local_dict[eu_n]['omar_url']:
+            return
     pdf_url: dict[str, str] = {
         eu_n: {
             "epar_url": epar_url,
