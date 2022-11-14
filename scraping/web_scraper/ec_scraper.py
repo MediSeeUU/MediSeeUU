@@ -278,6 +278,8 @@ def set_human_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str]
             for json_obj in row["meta"]:
                 ema_url_list.append(json_obj["url"])
                 # TODO: retrieve date for every PDF
+        case "orphan_links":
+            medicine_dict["eu_orphan_con_current"]: str = row["meta"]
 
 
 def set_orphan_attributes(medicine_dict: (dict[str, str]), row: dict):
