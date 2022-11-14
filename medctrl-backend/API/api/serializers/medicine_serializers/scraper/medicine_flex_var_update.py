@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from rest_framework import serializers
-from api.models.medicine_models import Medicine
+from api.models.medicine_models import MedicinalProduct
 
 
 # serializer for the flexible fields of medicine
@@ -14,7 +14,7 @@ class MedicineFlexVarUpdateSerializer(serializers.ModelSerializer):
         """
         Metadata
         """
-        model = Medicine
+        model = MedicinalProduct
         fields = [
             "atc_code",
             "ema_number_check",

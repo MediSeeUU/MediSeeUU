@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from api.models.medicine_models import (
-    Medicine,
+    MedicinalProduct,
 )
 
 
@@ -12,5 +12,5 @@ class UrlsSerializer(serializers.ModelSerializer):
         """
         Meta information
         """
-        model = Medicine
+        model = MedicinalProduct
         fields = ("eu_pnumber", "ema_url", "ec_url", "aut_url", "smpc_url", "epar_url", "omar_url", "odwar_url")

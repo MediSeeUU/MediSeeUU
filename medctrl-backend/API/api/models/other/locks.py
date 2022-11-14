@@ -1,3 +1,4 @@
+from api.models.medicine_models import MedicinalProduct
 from django.db import models
 
 
@@ -7,7 +8,7 @@ class Locks(models.Model):
     This model is derived from a base model from the Django library.
     """
     eu_pnumber = models.ForeignKey(
-        "Medicine",
+        MedicinalProduct,
         models.CASCADE,
         db_column="eu_pnumber",
         null=False,

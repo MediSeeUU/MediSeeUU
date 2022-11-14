@@ -11,7 +11,7 @@ from rest_framework.settings import settings
 
 from api.serializers.medicine_serializers.public import PublicMedicineSerializer
 from api.serializers.medicine_serializers.scraper import UrlsSerializer
-from api.models.medicine_models import Medicine
+from api.models.medicine_models import MedicinalProduct
 import logging
 
 logger = logging.getLogger(__name__)
@@ -25,7 +25,7 @@ def update_cache():
         logger.info("Caching turned off, skipping cache update")
     else:
         try:
-            queryset = Medicine.objects.all()
+            queryset = MedicinalProduct.objects.all()
             medicine_serializer = PublicMedicineSerializer(queryset, many=True)
             cache.set(
                 "medicine_cache", medicine_serializer.data, None

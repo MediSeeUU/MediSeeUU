@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from rest_framework import serializers
 from api.models.medicine_models import (
-    Medicine,
+    MedicinalProduct,
     LegalBases,
 )
 
@@ -18,7 +18,7 @@ class MedicineSerializer(serializers.ModelSerializer):
         Meta information
         """
 
-        model = Medicine
+        model = MedicinalProduct
         fields = "__all__"
 
 

@@ -10,7 +10,7 @@
 from rest_framework import viewsets
 from rest_framework import permissions
 from api.serializers.medicine_serializers import PublicMedicineSerializer
-from api.models.medicine_models import Medicine
+from api.models.medicine_models import MedicinalProduct
 from rest_framework.response import Response
 from django.core.cache import cache
 from api.views.update_cache import update_cache
@@ -40,7 +40,7 @@ class MedicineViewSet(viewsets.ViewSet):
 
         # if the data is not present in the cache, we just obtain the data from the database
         if not cache_medicine:
-            queryset = Medicine.objects.all()
+            queryset = MedicinalProduct.objects.all()
             serializer = PublicMedicineSerializer(queryset, many=True)
             cache_medicine = serializer.data
             cache.set("medicine_cache", cache_medicine, None)

@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.contrib import admin
 from import_export import resources, admin as import_admin
-from api.models.medicine_models import Medicine
+from api.models.medicine_models import MedicinalProduct
 from api.admin.cachemodeladmin import CacheModelAdmin
 
 
@@ -16,7 +16,7 @@ class MedicineResource(resources.ModelResource):
         """
         Meta class for MedicineResource
         """
-        model = Medicine
+        model = MedicinalProduct
         import_id_fields = ("eu_pnumber",)
 
 
@@ -82,4 +82,4 @@ class MedicineAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
         super().save_model(request, obj, form, change)
 
 
-admin.site.register(Medicine, MedicineAdmin)
+admin.site.register(MedicinalProduct, MedicineAdmin)

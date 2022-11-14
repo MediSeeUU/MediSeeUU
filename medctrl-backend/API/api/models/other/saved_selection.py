@@ -9,7 +9,7 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import User
-from api.models.medicine_models import Medicine
+from api.models.medicine_models import MedicinalProduct
 
 
 class SavedSelection(models.Model):
@@ -17,7 +17,7 @@ class SavedSelection(models.Model):
     This model is used to save the selected dataset to the database.
     """    
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    eu_numbers = models.ManyToManyField(Medicine)
+    eu_numbers = models.ManyToManyField(MedicinalProduct)
     name = models.CharField(max_length=256, null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

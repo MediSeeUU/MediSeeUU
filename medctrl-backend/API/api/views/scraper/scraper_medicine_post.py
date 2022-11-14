@@ -13,7 +13,7 @@ from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.models.medicine_models import (
-    Medicine,
+    MedicinalProduct,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
@@ -64,7 +64,7 @@ class ScraperMedicine(APIView):
         Returns:
             list[medicineObject]: Returns all medicine objects found in the medicine model.
         """
-        return Medicine.objects.all()
+        return MedicinalProduct.objects.all()
 
     def post(self, request):
         """ 
@@ -89,7 +89,7 @@ class ScraperMedicine(APIView):
                 # Django will automatically roll back if any exception occurs
                 with transaction.atomic():
                     # check if medicine already exists based on eu_pnumber
-                    current_medicine = Medicine.objects.filter(
+                    current_medicine = MedicinalProduct.objects.filter(
                         eu_pnumber=medicine.get("eu_pnumber")
                     ).first()
                     # if the medicine doesn't exist or the medicine should be overriden, call add_medicine,

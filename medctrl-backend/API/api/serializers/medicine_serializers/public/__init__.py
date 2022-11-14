@@ -1,4 +1,4 @@
-from .public_history import (
+from .history import (
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,
@@ -7,7 +7,7 @@ from .public_history import (
     PrimeSerializer,
     EUOrphanConSerializer
 )
-from .public_medicine import (
+from .medicinal_product import (
     PublicMedicineSerializer,
     LegalBasesSerializer,
 )

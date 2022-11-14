@@ -2,7 +2,9 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from api.models.medicine_models import MedicinalProduct, AcceleratedAssessment, Duration
+from .medicinal_product import MedicinalProduct
+from .accelerated_assessment import AcceleratedAssessment
+from .duration import Duration
 from .common import create_dashboard_column, Category
 
 

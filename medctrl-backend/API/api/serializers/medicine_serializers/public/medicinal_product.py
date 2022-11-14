@@ -11,7 +11,7 @@
 
 from rest_framework import serializers
 from api.models.medicine_models import (
-    Medicine,
+    MedicinalProduct,
     LegalBases,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
@@ -58,14 +58,12 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
     eu_mah_current = serializers.SerializerMethodField()
     eu_od_initial = serializers.SerializerMethodField()
     eu_prime_initial = serializers.SerializerMethodField()
-    eu_orphan_con_initial = serializers.SerializerMethodField()
-    eu_orphan_con_current = serializers.SerializerMethodField()
 
     class Meta:
         """
         Meta information
         """
-        model = Medicine
+        model = MedicinalProduct
         fields = "__all__"
 
     def get_eu_legal_basis(self, legal_basis):
@@ -244,43 +242,6 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return PrimeSerializer(instance=queryset, read_only=True).data
 
-
-    def get_eu_orphan_con_initial(self, orphan_con):
-        """
-        This retrieves the initial orphan condition from the database for each medicine.
-
-        Args:
-            orphan_con (Any): The orphan condition of the medicine.
-
-        Returns:
-            str: Returns the data of the relevant serializer as JSON.
-        """   
-        queryset = HistoryEUOrphanCon.objects.filter(eu_pnumber=orphan_con.eu_pnumber)
-        try:
-            queryset = queryset[len(queryset) - 1]
-        except:
-            queryset = None
-        return EUOrphanConSerializer(instance=queryset, read_only=True).data
-
-
-    def get_eu_orphan_con_current(self, orphan_con):
-        """
-        This retrieves the current orphan condition from the database for each medicine.
-
-        Args:
-            orphan_con (Any): The orphan condition of the medicine.
-
-        Returns:
-            str: Returns the data of the relevant serializer as JSON.
-        """   
-        queryset = HistoryEUOrphanCon.objects.filter(eu_pnumber=orphan_con.eu_pnumber)
-        try:
-            queryset = queryset[0]
-        except:
-            queryset = None
-        return EUOrphanConSerializer(instance=queryset, read_only=True).data
-
-
     def to_representation(self, obj):
         """
         This function creates a one-dimensional object from multiple fields.
@@ -304,8 +265,6 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             "eu_mah_current",
             "eu_od_initial",
             "eu_prime_initial",
-            "eu_orphan_con_initial",
-            "eu_orphan_con_current",
         ]:
             field_representation = representation.pop(field)
             for key in field_representation:

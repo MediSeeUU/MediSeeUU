@@ -4,7 +4,7 @@
 from django.contrib import admin
 from import_export import resources, admin as import_admin
 from api.models.medicine_models import (
-    Medicine,
+    MedicinalProduct,
     HistoryAuthorisationType,
 )
 from api.admin.common import import_foreign_key
@@ -17,7 +17,7 @@ class HistoryAuthorisationTypeResource(resources.ModelResource):
     Has explicit foreign keys so Django import/export can automatically create the values if needed.
     ModelResource is Resource subclass for handling Django models.
     """
-    eu_pnumber = import_foreign_key("eu_pnumber", Medicine)
+    eu_pnumber = import_foreign_key("eu_pnumber", MedicinalProduct)
 
     class Meta:
         """

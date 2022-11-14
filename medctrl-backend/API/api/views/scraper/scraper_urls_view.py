@@ -10,7 +10,7 @@
 from rest_framework import viewsets
 from rest_framework import permissions
 from api.serializers.medicine_serializers import UrlsSerializer
-from api.models.medicine_models import Medicine
+from api.models.medicine_models import MedicinalProduct
 from rest_framework.response import Response
 from django.core.cache import cache
 from api.views.other import permission_filter
@@ -33,7 +33,7 @@ class UrlsViewSet(viewsets.ViewSet):
 
         # if the data is not present in the cache, we just obtain the data from the database
         if not cache_urls:
-            queryset = Medicine.objects.all()
+            queryset = MedicinalProduct.objects.all()
             serializer = UrlsSerializer(queryset, many=True)
             cache_urls = serializer.data
             cache.set("urls_cache", cache_urls, None)
