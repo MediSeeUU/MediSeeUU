@@ -1,5 +1,7 @@
 import logging
 import pathlib
+import os
+import json
 
 from scraping.filter import pdf_filter
 from scraping.web_scraper import __main__ as m
@@ -75,7 +77,13 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
     url = url_dict[key_dict[filename_elements[2]]]
     if len(filename_elements) == 4:
         url = url[int(filename_elements[3])]
-    download.download_pdf_from_url(url, eu_n, filename_elements, data_filepath, overwrite=True)
+    filedate_dict = {}
+    filedates_path = f"{data_filepath}/{eu_n}/{eu_n}_filedates.json"
+    if os.path.exists(filedates_path):
+        with open(filedates_path, 'r') as f:
+            filedate_dict = json.load(f)
+    print(url, eu_n)
+    download.download_pdf_from_url(url, eu_n, filename_elements, data_filepath, filedate_dict, overwrite=True)
 
 
 # used for testing

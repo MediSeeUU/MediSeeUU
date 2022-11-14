@@ -321,6 +321,8 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
     # This information is needed to determine the initial authorization type
     is_exceptional: bool = False
     is_conditional: bool = False
+    # This information is needed for determining the initial authorization file
+    init_has_member_states: bool = False
     # Whether the medicine contains a file with type suspension or referral
     eu_referral = False
     eu_suspension = False
@@ -341,6 +343,8 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
             is_exceptional = True
         if "annual renewal" in row["type"].lower():
             is_conditional = True
+        if "authorisation - decision addressed to member states" in row["type"].lower():
+            init_has_member_states = True
 
         # Gets the EMA number(s) per row and puts it/them in a list
         if row["ema_number"] is not None:
@@ -417,6 +421,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
     procedures_dict["eu_referral"] = str(eu_referral)
     procedures_dict["eu_suspension"] = str(eu_suspension)
     procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
+    procedures_dict["init_addressed_to_member_states"] = str(init_has_member_states)
 
     for key, value in procedures_dict.items():
         if value == "":
