@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from api.models.medicine_models import MedicinalProduct
+from .medicinal_product import MedicinalProduct
 from .common import create_dashboard_history_columns, Category
 
 
@@ -14,17 +14,24 @@ class HistoryMAH(models.Model):
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,
         models.CASCADE, 
-        db_column="eu_pnumber", 
+        db_column="eu_pnumber",
         null=False,
+        blank=False,
     )
 
     change_date = models.DateField(
-        db_column="change_date", 
-        null=True,
+        db_column="change_date",
+        null=False,
+        blank=False,
     )
 
     eu_mah = create_dashboard_history_columns(
-        models.CharField(db_column="eu_mah", max_length=255),
+        models.CharField(
+            db_column="eu_mah",
+            max_length=255,
+            null=False,
+            blank=False,
+        ),
         Category.General_Information,
         "string",
         "EU Marketing Authorisation Holder",

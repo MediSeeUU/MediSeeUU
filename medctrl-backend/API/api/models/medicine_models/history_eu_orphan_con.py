@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from api.models.medicine_models import OrphanProduct
+from .orphan_product import OrphanProduct
 from .common import create_dashboard_history_columns, Category
 
 
@@ -16,15 +16,21 @@ class HistoryEUOrphanCon(models.Model):
         models.CASCADE, 
         db_column="eu_od_number",
         null=False,
+        blank=False,
     )
 
     change_date = models.DateField(
-        db_column="change_date", 
-        null=True,
+        db_column="change_date",
+        null=False,
+        blank=False,
     )
 
     eu_orphan_con = create_dashboard_history_columns(
-        models.TextField(db_column="eu_orphan_con", null=False),
+        models.TextField(
+            db_column="eu_orphan_con",
+            null=False,
+            blank=False,
+        ),
         Category.General_Information,
         "string",
         "History EU orphan conditions",

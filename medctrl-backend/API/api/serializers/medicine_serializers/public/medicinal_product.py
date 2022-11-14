@@ -46,7 +46,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
     """
     This is the view endpoint for a medicine.
     """
-    eu_legal_basis = LegalBasesSerializer(many=True)
+    eu_legal_basis = LegalBasesSerializer(many=True, read_only=True)
     eu_aut_status = serializers.SerializerMethodField()
     eu_aut_type_initial = serializers.SerializerMethodField()
     eu_aut_type_current = serializers.SerializerMethodField()

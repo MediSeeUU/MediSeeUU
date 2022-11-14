@@ -19,56 +19,79 @@ class MarketingAuthorisation(models.Model):
     )
 
     ema_procedure_start_initial = create_dashboard_column(
-        models.DateField(db_column="ema_procedure_start_initial"),
+        models.DateField(
+            db_column="ema_procedure_start_initial",
+        ),
         Category.General_Information,
         "date",
         "Initial EMA Procedure Start Date",
     )
 
     chmp_opinion_date = create_dashboard_column(
-        models.DateField(db_column="chmp_opinion_date", null=False),
+        models.DateField(
+            db_column="chmp_opinion_date",
+            null=False,
+        ),
         Category.General_Information,
         "date",
         "Initial EMA (CHMP) Opinion Date",
     )
 
     eu_aut_date = create_dashboard_column(
-        models.DateField(db_column="eu_aut_date", null=False),
+        models.DateField(
+            db_column="eu_aut_date",
+            null=False,
+        ),
         Category.General_Information,
         "date",
         "Initial EU Authorisation Date",
     )
 
     aut_url = create_dashboard_column(
-        models.URLField(db_column="aut_url", null=False),
+        models.URLField(
+            db_column="aut_url",
+            null=False,
+        ),
         Category.General_Information,
         "link",
         "Authorisation Decision Link",
     )
 
     smpc_url = create_dashboard_column(
-        models.URLField(db_column="smpc_url", null=False),
+        models.URLField(
+            db_column="smpc_url",
+            null=False,
+        ),
         Category.General_Information,
         "link",
         "Authorisation Annex Link",
     )
 
     epar_url = create_dashboard_column(
-        models.URLField(db_column="epar_url", null=False),
+        models.URLField(
+            db_column="epar_url",
+            null=False,
+        ),
         Category.General_Information,
         "link",
         "Initial Authorisation EPAR Link",
     )
 
     ema_rapp = create_dashboard_column(
-        models.TextField(db_column="ema_rapp", null=False),
+        models.TextField(
+            db_column="ema_rapp",
+            null=False,
+        ),
         Category.General_Information,
         "string",
         "EMA rapporteur for initial authorisation",
     )
 
     ema_corapp = create_dashboard_column(
-        models.TextField(db_column="ema_corapp", null=False),
+        models.TextField(
+            db_column="ema_corapp",
+            null=False,
+        ),
         Category.General_Information,
         "string",
         "EMA co-rapporteur for initial authorisation",
@@ -87,7 +110,10 @@ class MarketingAuthorisation(models.Model):
     )
 
     ema_reexamination = create_dashboard_column(
-        models.BooleanField(db_column="ema_reexamination", null=False),
+        models.BooleanField(
+            db_column="ema_reexamination",
+            null=False,
+        ),
         Category.General_Information,
         "bool",
         "EMA re-examination performed",

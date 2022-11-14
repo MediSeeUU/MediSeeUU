@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from api.models.medicine_models import MedicinalProduct
+from .medicinal_product import MedicinalProduct
 from .common import create_dashboard_history_columns, Category, AutTypes
 
 
@@ -20,11 +20,17 @@ class HistoryAuthorisationType(models.Model):
 
     change_date = models.DateField(
         db_column="change_date", 
-        null=True,
+        null=False,
     )
 
     eu_aut_type = create_dashboard_history_columns(
-        models.CharField(db_column="eu_aut_type", max_length=11, choices=AutTypes.choices),
+        models.CharField(
+            db_column="eu_aut_type",
+            max_length=11,
+            choices=AutTypes.choices,
+            null=False,
+            blank=False,
+        ),
         Category.General_Information,
         "string",
         "EU Authorisation Type",

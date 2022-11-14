@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from api.models.medicine_models import MedicinalProduct
+from .medicinal_product import MedicinalProduct
 from .common import create_dashboard_history_column_initial, Category
 
 
@@ -14,20 +14,27 @@ class HistoryPrime(models.Model):
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,
         models.CASCADE, 
-        db_column="eu_pnumber", 
+        db_column="eu_pnumber",
         null=False,
+        blank=False,
     )
 
     change_date = models.DateField(
-        db_column="change_date", 
-        null=True,
+        db_column="change_date",
+        null=False,
+        blank=False,
     )
 
     eu_prime = create_dashboard_history_column_initial(
-        models.BooleanField(db_column="eu_prime", null=True),
+        models.BooleanField(
+            db_column="eu_prime",
+            null=False,
+            blank=False,
+        ),
         Category.General_Information,
         "bool",
         "EU Priority Medicine",
+
     )
 
     class Meta:
