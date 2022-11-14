@@ -232,11 +232,6 @@ def get_data_from_medicine_json(medicine_json: dict,
                 # Sometimes the active substance is written with italics, therefore it is removed with a RegEx
                 medicine_dict["active_substance"]: str = re.sub(re.compile('<.*?>'), '', row["value"])
 
-            case "indication":
-                # If at any point in the future, information about the indication needs to be stored,
-                # you can do that by adding code in this section
-                pass
-
             case "atc":
                 medicine_dict["atc_code"]: str = row["meta"][0][-1]["code"]
 
@@ -294,6 +289,9 @@ def set_orphan_attributes(medicine_dict: (dict[str, str]), row: dict):
     match row["title"].lower():
         case "sponsor":
             medicine_dict["sponsor"]: str = row["value"]
+    match row["type"]:
+        case "indication":
+            medicine_dict["eu_od_con"]: str = row["value"]
 
 
 def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[str, str], list[str], list[str]):
@@ -412,8 +410,12 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
     procedures_dict["eu_aut_date"] = eu_aut_date
     procedures_dict["eu_aut_type_initial"] = eu_aut_type_initial
     procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
-    procedures_dict["ema_number"] = ema_number
-    procedures_dict["ema_number_id"] = ema_number_id
+    if "od" in ema_number.lower():
+        procedures_dict["ema_od_number"] = ema_number
+        procedures_dict["ema_od_number_id"] = ema_number_id
+    else:
+        procedures_dict["ema_number"] = ema_number
+        procedures_dict["ema_number_id"] = ema_number_id
     procedures_dict["eu_referral"] = str(eu_referral)
     procedures_dict["eu_suspension"] = str(eu_suspension)
     procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
@@ -445,7 +447,8 @@ def determine_current_aut_type(last_decision_types: list[str]) -> str:
 
 
 def determine_initial_aut_type(year: int, is_exceptional: bool, is_conditional: bool) -> str:
-    """ Determines the initial authorization type, based on whether it has seen exceptional or conditional procedures
+    """
+    Determines the initial authorization type, based on whether it has seen exceptional or conditional procedures
 
     For procedures from before 2006, it is not possible to determine the initial authorization type.
     Otherwise, the procedure type van be determined, which is either exceptional, conditional or standard.
@@ -470,7 +473,8 @@ def determine_initial_aut_type(year: int, is_exceptional: bool, is_conditional: 
 
 
 def format_ema_number(ema_number: str) -> list[str]:
-    """ Formats the input into a (list of) EMA number(s)
+    """
+    Formats the input into a (list of) EMA number(s)
 
     In the procedures JSON file, there is often an EMA number present for a procedure, and sometimes multiple.
     The EMA numbers are formatted with a RegEx, that handles both EMA numbers for human use and orphan medicine.
@@ -497,7 +501,8 @@ def format_ema_number(ema_number: str) -> list[str]:
 
 
 def determine_ema_number(ema_numbers: list[str]) -> (str, float):
-    """ Determines the right EMA number from the list of procedures
+    """
+    Determines the right EMA number from the list of procedures
 
     The right EMA number is simply the EMA number that occurs most often in the procedures table.
 
