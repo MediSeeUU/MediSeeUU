@@ -16,6 +16,7 @@ class LegalBases(models.Model):
         models.CASCADE,
         db_column="eu_pnumber",
         null=False,
+        related_name="eu_legal_basis",
     )
 
     eu_legal_basis = create_dashboard_column(

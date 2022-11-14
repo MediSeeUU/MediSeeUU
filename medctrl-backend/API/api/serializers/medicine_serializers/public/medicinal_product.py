@@ -46,7 +46,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
     """
     This is the view endpoint for a medicine.
     """
-    eu_legal_basis = serializers.SerializerMethodField()
+    eu_legal_basis = LegalBasesSerializer(many=True)
     eu_aut_status = serializers.SerializerMethodField()
     eu_aut_type_initial = serializers.SerializerMethodField()
     eu_aut_type_current = serializers.SerializerMethodField()
@@ -63,21 +63,6 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         """
         model = MedicinalProduct
         fields = "__all__"
-
-    def get_eu_legal_basis(self, legal_basis):
-        """
-        This retrieves the authorisation status from the database for each medicine.
-
-        Args:
-            legal_basis (Any): The legal basis of the medicine.
-
-        Returns:
-            str: Returns the data of the relevant serializer as JSON.
-        """
-        queryset = LegalBases.objects.filter(eu_pnumber=legal_basis.eu_pnumber)
-        if len(queryset) == 0:
-            queryset = None
-        return LegalBasesSerializer(instance=queryset, read_only=True, many=True).data
 
     def get_eu_aut_status(self, authorisation_status):
         """
@@ -249,7 +234,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
 
         Returns:
             str: Returns a single JSON representation of the object.
-        """        
+        """
         representation = super().to_representation(obj)
 
         # Change the representation for all history variables
