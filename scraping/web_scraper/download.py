@@ -74,7 +74,7 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str], d
         file.write(downloaded_file.content)
         log.debug(f"DOWNLOADED {filename} for {eu_num}")
 
-    filedate_dict[filename] = get_date_from_url(filename, url, filedate_dict)
+    filedate_dict[filename] = get_date_from_url(url)
 
 
 # Download pdfs using the dictionaries created from the json file
