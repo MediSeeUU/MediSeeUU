@@ -7,6 +7,7 @@ import requests
 import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
+from itertools import repeat
 import os
 import json
 
@@ -82,24 +83,24 @@ def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_urls: list[str], med_dict: 
                      filedate_dict: dict[str, tuple[str, datetime, datetime]],
                      data_path: str):
     """
-        Downloads the pdfs of the EC website files for a specific medicine and a specific file type (decision or annex)
-        It evaluates the string in the pdf_url_dict to a list of urls which then can be used for downloading with the
-        download_pdf_from_url function.
-        The filename_elements used for structuring the filename are also specified in this function.
+    Downloads the pdfs of the EC website files for a specific medicine and a specific file type (decision or annex)
+    It evaluates the string in the pdf_url_dict to a list of urls which then can be used for downloading with the
+    download_pdf_from_url function.
+    The filename_elements used for structuring the filename are also specified in this function.
 
-        Args:
-            eu_num (str):
-                The EU number of the medicine where the files should be downloaded for.
-            pdf_type (str):
-                The type of pdf: decision or annex
-            pdf_urls (list[str]):
-                The list containing the urls to the pdf files.
-            med_dict (dict[str,str]):
-                The dictionary containing the attributes of the medicine. Used for structuring the filename
-            filedate_dict (dict[str, tuple[str, datetime, datetime]]):
-                dictionary containing the date for every file. in the format {filename : (url, date)}
-            data_path (str):
-                The path to the data folder
+    Args:
+        eu_num (str):
+            The EU number of the medicine where the files should be downloaded for.
+        pdf_type (str):
+            The type of pdf: decision or annex
+        pdf_urls (list[str]):
+            The list containing the urls to the pdf files.
+        med_dict (dict[str,str]):
+            The dictionary containing the attributes of the medicine. Used for structuring the filename
+        filedate_dict (dict[str, tuple[str, datetime, datetime]]):
+            dictionary containing the date for every file. in the format {filename : (url, date)}
+        data_path (str):
+            The path to the data folder
     """
     file_counter = 0
     for url in pdf_urls:
@@ -138,7 +139,7 @@ def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[s
     download_pdf_from_url(pdf_url, eu_num, filename_elements, data_path, filedate_dict)
 
 
-def download_medicine_files(eu_n: str, url_dict: dict[str, list[str] | str], data_path: str = "../data"):
+def download_medicine_files(eu_n: str, url_dict: dict[str, list[str] | str], data_path: str):
     """
     Downloads all the pdf files that belong to a medicine.
     Logs successful downloads and also logs if not all files could be downloaded for a specific medicine.
@@ -148,8 +149,6 @@ def download_medicine_files(eu_n: str, url_dict: dict[str, list[str] | str], dat
         url_dict (dict[str, list[str] | str]): the dictionary containing all the urls of a specific medicine
         data_path (str): The path to the data folder
     """
-    if "web_scraper" in os.getcwd():
-        data_path = "../../data"
     attr_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_webdata.json")).load_json()
     filedate_dict = {}
     filedates_path = f"{data_path}/{eu_n}/{eu_n}_filedates.json"
@@ -181,7 +180,8 @@ def download_all(data_filepath: str, urls_dict: json_helper.JsonHelper, parallel
         if parallel_download:
             tqdm_concurrent.thread_map(download_medicine_files,
                                        urls_dict.local_dict.keys(),
-                                       urls_dict.local_dict.values(), max_workers=12)
+                                       urls_dict.local_dict.values(),
+                                       repeat(data_filepath), max_workers=12)
 
         else:
             for eu_n, urls_eu_n_dict in tqdm.tqdm(urls_dict.local_dict.items()):

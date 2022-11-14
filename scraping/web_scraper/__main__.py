@@ -127,7 +127,8 @@ def get_excel_ema(url: str):
     annex10_file.overwrite_dict(excel_url)
 
 
-def main(data_filepath: str = '../data', scrape_ec: bool = True, scrape_ema: bool = True, download_files: bool = True,
+# Main web scraper function with default settings
+def main(data_filepath: str = "../data", scrape_ec: bool = True, scrape_ema: bool = True, download_files: bool = True,
          run_filter: bool = True, use_parallelization: bool = True):
     """
     Main function that controls which scrapers are activated, and if it runs parallel or not.
@@ -136,7 +137,7 @@ def main(data_filepath: str = '../data', scrape_ec: bool = True, scrape_ema: boo
     and/or downloads the scraped links.
 
     Args:
-        data_filepath (str, optional): The file path where all data needs to be stored. Defaults to '../data'.
+        data_filepath (str, optional): The file path where all data needs to be stored. Defaults to "../data".
         scrape_ec (bool): Whether EC URLs should be scraped
         scrape_ema (bool): Whether EMA URLs should be scraped | Requires scrape_ec to have been run at least once
         download_files (bool): Whether scraper should download PDFs from obtained links
