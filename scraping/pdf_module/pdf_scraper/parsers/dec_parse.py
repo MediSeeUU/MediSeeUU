@@ -49,39 +49,40 @@ def get_default_dict(filename: str) -> dict:
     """
     default = 'Not parsed'
 
-    #keys for human use
+    # keys for human use
     if '_h_' in filename:
         dic = dict.fromkeys(['filename',
-                            'eu_aut_date',
-                            'eu_brand_name_initial',
-                            'active_substance',
-                            'eu_nas',
-                            'eu_atmp',
-                            'eu_od_initial',
-                            'eu_mah_initial',
-                            'eu_aut_type_initial',
-                            'status'],
+                             'eu_aut_date',
+                             'eu_brand_name_initial',
+                             'active_substance',
+                             'eu_nas',
+                             'eu_atmp',
+                             'eu_od_initial',
+                             'eu_mah_initial',
+                             'eu_aut_type_initial',
+                             'status'],
                             default)
 
-    #keys for orphan
+    # keys for orphan
     elif '_o_' in filename:
         dic = dict.fromkeys(['filename',
-                            'eu_aut_date',
-                            'eu_brand_name_initial',
-                            'eu_od_initial',
-                            'eu_mah_initial',
-                            'eu_od_comp_date',
-                            'status'],
+                             'eu_aut_date',
+                             'eu_brand_name_initial',
+                             'eu_od_initial',
+                             'eu_mah_initial',
+                             'eu_od_comp_date',
+                             'status'],
                             default)
 
-    #invalid name, only returns name and failure
+    # invalid name, only returns name and failure
     else:
         dic = {}
-    
+
     dic['filename'] = filename
     dic['status'] = 'Failure unknown reason'
 
     return dic
+
 
 def get_data(filename: str, txt: str) -> dict:
     """fills in each attribute in a dictionary, based on type
@@ -122,6 +123,7 @@ def get_data(filename: str, txt: str) -> dict:
 
     else:
         return filedata
+
 
 # FUNCTIONS FOR EACH ATTRIBUTE
 
@@ -215,6 +217,7 @@ def dec_get_bn(txt: str, orphan: bool = False) -> str:
             return res.strip()
 
     return 'Brand name Not Found'
+
 
 def dec_get_as(txt: str) -> str:
     """extracts active substance out of decision text
