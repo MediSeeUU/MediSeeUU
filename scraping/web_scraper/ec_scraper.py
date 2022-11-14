@@ -407,7 +407,6 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
     if re.search(r'\d+/\d+', ema_number):
         ema_number_id = re.search(r'\d+/\d+', ema_number)[0].lstrip('0')
 
-    # TODO: logging when an attribute is not found
     # Currently when an attribute is not found it is simply printed to the console
     procedures_dict["eu_aut_date"] = str(eu_aut_date)
     procedures_dict["eu_aut_type_initial"] = eu_aut_type_initial
@@ -495,8 +494,7 @@ def format_ema_number(ema_number: str) -> list[str]:
             # REGEX that gets only the relevant part of the EMA numbers
             ema_number_formatted = re.findall(r"E?ME?A\/(?:H\/(?:C|\w*-\w*)\/\w*|OD\/\w*(?:\/\w*)?)", en, re.DOTALL)[0]
             ema_numbers_formatted.append(ema_number_formatted)
-        # TODO: Replace exception with specific exceptions
-        except Exception:
+        except IndexError:
             continue
 
     return ema_numbers_formatted

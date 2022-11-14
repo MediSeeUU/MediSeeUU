@@ -20,18 +20,10 @@ scrape_medicine_type: list[ec_scraper.MedicineType] = [
     ec_scraper.MedicineType.ORPHAN_WITHDRAWN
 ]
 
+log = None
+
 # TODO: Logging to monolithic main
 tqdm_format_string = "{l_bar}{bar}| {n_fmt}/{total_fmt} "
-
-# Global configuration of the log file
-log_handler_console = logging.StreamHandler()
-log_handler_file = logging.FileHandler("webscraper.log")
-
-logging.basicConfig(level=logging.INFO, handlers=[log_handler_console, log_handler_file])
-
-# TODO: To __init__? Figure some stuff out
-log = logging.getLogger("webscraper")
-logging.getLogger("urllib3.connectionpool").setLevel(logging.INFO)
 
 json_path = "web_scraper/"
 cpu_count = multiprocessing.cpu_count()
@@ -147,8 +139,6 @@ def main(data_filepath: str = "../data", scrape_ec: bool = True, scrape_ema: boo
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
     Path(f"{json_path}JSON").mkdir(exist_ok=True, parents=True)
-    # TODO: Remove mkdir filepath after it is moved to monolithic main
-    # Path(data_filepath).mkdir(exist_ok=True, parents=True)
 
     log.info("TASK SUCCESS on Generating directories")
 
