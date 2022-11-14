@@ -75,7 +75,8 @@ def pdf_links_from_url(url: str) -> tuple[str, str]:
 
 
 def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:
-    """ Finds the url with the highest priority in a list of urls
+    """
+    Finds the url with the highest priority in a list of urls
 
     Args:
         priority_list (list[str]): String that the url must contain. Strings with a lower index have higher priority
