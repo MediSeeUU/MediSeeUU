@@ -22,13 +22,13 @@ med_type_dict = {"ha": ec_scraper.MedicineType.HUMAN_USE_ACTIVE,
 log = logging.getLogger("webscraper.filter_retry")
 
 
-def run_filter(n: int, data_filepath: str = "../../data"):
+def run_filter(n: int, data_filepath: str):
     """
     calls filter and runs retry function
 
     Args:
         n (int): Number of times filter is called
-        data_filepath (str, optional): the path to the data folder. Defaults to "../../data"
+        data_filepath (str): the path to the data folder.
     """
     json_path = "web_scraper/"
     filter_path = ""
@@ -43,7 +43,7 @@ def run_filter(n: int, data_filepath: str = "../../data"):
         retry_all(f'{filter_path}filter.txt', url_file, data_filepath)
 
 
-def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str] | str]], data_filepath: str = "../../data"):
+def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str] | str]], data_filepath: str):
     """
     For every line in filter.txt, it scrapes the urls again.
     It also calls the download function for the specific file again

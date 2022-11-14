@@ -125,7 +125,8 @@ def get_ec_html(url: str) -> requests.Response:
 
 
 def get_ec_json_objects(html_active: requests.Response) -> list[json]:
-    """ Gets all the JSON objects from a web page.
+    """
+    Gets all the JSON objects from a web page.
 
     Args:
         html_active (requests.Response): The response to the HTTP request for the page where the JSONs need
@@ -159,7 +160,8 @@ def get_ec_json_objects(html_active: requests.Response) -> list[json]:
 
 
 def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], list[str], list[str], dict[str, str]):
-    """ Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.
+    """
+    Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.
 
     Args:
         url (str): The url to the medicine page for the medicine that needs to be scraped.
@@ -191,7 +193,8 @@ def get_data_from_medicine_json(medicine_json: dict,
                                 eu_num: str,
                                 medicine_type: MedicineType) \
         -> (dict[str, str], list[str]):
-    """ Gets all attribute information that is stored in the medicine JSON, and all links to the EMA website.
+    """
+    Gets all attribute information that is stored in the medicine JSON, and all links to the EMA website.
 
     The function loops through the JSON object and finds all the attributes and links,
     so that they can be used and stored. Whenever an attribute is not found, this is logged.
@@ -231,11 +234,6 @@ def get_data_from_medicine_json(medicine_json: dict,
             case "inn":
                 # Sometimes the active substance is written with italics, therefore it is removed with a RegEx
                 medicine_dict["active_substance"]: str = re.sub(re.compile('<.*?>'), '', row["value"])
-
-            case "indication":
-                # If at any point in the future, information about the indication needs to be stored,
-                # you can do that by adding code in this section
-                pass
 
             case "atc":
                 medicine_dict["atc_code"]: str = row["meta"][0][-1]["code"]
@@ -294,10 +292,14 @@ def set_orphan_attributes(medicine_dict: (dict[str, str]), row: dict):
     match row["title"].lower():
         case "sponsor":
             medicine_dict["sponsor"]: str = row["value"]
+    match row["type"]:
+        case "indication":
+            medicine_dict["eu_od_con"]: str = row["value"]
 
 
 def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[str, str], list[str], list[str]):
-    """ Gets all attribute information that is stored in the procedures JSON, and all links the decision and annex PDFs.
+    """
+    Gets all attribute information that is stored in the procedures JSON, and all links the decision and annex PDFs.
 
     The function loops through the JSON object and finds all the attributes and links,
     so that they can be used and stored. There is also some extra logic that is needed to determine some attribute
@@ -390,10 +392,8 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
     eu_aut_str: str = procedures_json[0]["decision"]["date"]
     if eu_aut_str is not None:
-        eu_aut_datetime: datetime = datetime.strptime(eu_aut_str, '%Y-%m-%d')
-        # TODO: parse to datetime instead of string
-        eu_aut_date = datetime.strftime(eu_aut_datetime, '%d-%m-%Y')
-        eu_aut_type_initial: str = determine_initial_aut_type(eu_aut_datetime.year,
+        eu_aut_date: datetime = datetime.strptime(eu_aut_str, '%Y-%m-%d')
+        eu_aut_type_initial: str = determine_initial_aut_type(eu_aut_date.year,
                                                               is_exceptional,
                                                               is_conditional)
     else:
@@ -413,11 +413,15 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
 
     # TODO: logging when an attribute is not found
     # Currently when an attribute is not found it is simply printed to the console
-    procedures_dict["eu_aut_date"] = eu_aut_date
+    procedures_dict["eu_aut_date"] = str(eu_aut_date)
     procedures_dict["eu_aut_type_initial"] = eu_aut_type_initial
     procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
-    procedures_dict["ema_number"] = ema_number
-    procedures_dict["ema_number_id"] = ema_number_id
+    if "od" in ema_number.lower():
+        procedures_dict["ema_od_number"] = ema_number
+        procedures_dict["ema_od_number_id"] = ema_number_id
+    else:
+        procedures_dict["ema_number"] = ema_number
+        procedures_dict["ema_number_id"] = ema_number_id
     procedures_dict["eu_referral"] = str(eu_referral)
     procedures_dict["eu_suspension"] = str(eu_suspension)
     procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
@@ -450,7 +454,8 @@ def determine_current_aut_type(last_decision_types: list[str]) -> str:
 
 
 def determine_initial_aut_type(year: int, is_exceptional: bool, is_conditional: bool) -> str:
-    """ Determines the initial authorization type, based on whether it has seen exceptional or conditional procedures
+    """
+    Determines the initial authorization type, based on whether it has seen exceptional or conditional procedures
 
     For procedures from before 2006, it is not possible to determine the initial authorization type.
     Otherwise, the procedure type van be determined, which is either exceptional, conditional or standard.
@@ -475,7 +480,8 @@ def determine_initial_aut_type(year: int, is_exceptional: bool, is_conditional: 
 
 
 def format_ema_number(ema_number: str) -> list[str]:
-    """ Formats the input into a (list of) EMA number(s)
+    """
+    Formats the input into a (list of) EMA number(s)
 
     In the procedures JSON file, there is often an EMA number present for a procedure, and sometimes multiple.
     The EMA numbers are formatted with a RegEx, that handles both EMA numbers for human use and orphan medicine.
@@ -502,7 +508,8 @@ def format_ema_number(ema_number: str) -> list[str]:
 
 
 def determine_ema_number(ema_numbers: list[str]) -> (str, float):
-    """ Determines the right EMA number from the list of procedures
+    """
+    Determines the right EMA number from the list of procedures
 
     The right EMA number is simply the EMA number that occurs most often in the procedures table.
 

@@ -47,7 +47,7 @@ class JsonHelper:
         """
         self.local_dict = new_dict
 
-    def merge_nested_dict(self, old_dict: dict, new_dict: dict):
+    def merge_nested_dict(self, old_dict: dict, new_dict: dict) -> dict:
         """
         Recursive function for merging two dictionaries. Merges the attributes of all nested dictionaries. Also merges
         lists in the dictionaries.
@@ -57,7 +57,8 @@ class JsonHelper:
             new_dict: Second dictionary. Non-list and -dictionary elements from this dictionary will overwrite items
                          from the old_dict
 
-        Returns: Merged dictionary from the two inputs
+        Returns:
+            dict: Merged dictionary from the two inputs
         """
         for key in new_dict.keys():
             if key in old_dict and isinstance(old_dict[key], dict) and isinstance(new_dict[key], dict):

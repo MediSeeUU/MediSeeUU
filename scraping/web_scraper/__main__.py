@@ -11,15 +11,6 @@ import tqdm.contrib.logging as tqdm_logging
 
 from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper, filter_retry
 
-# TODO: These variables are for debugging, remove in final
-# Flag variables to indicate whether the webscraper should fill the .csv files or not
-scrape_ec: bool = False
-scrape_ema: bool = True  # Requires scrape_ec to have been run at least once
-scrape_annex10: bool = False
-download_files: bool = True  # Download pdfs from the obtained links
-run_filter: bool = False
-use_parallelization: bool = True  # Parallelization is currently broken on Windows. Set to False
-
 # list of the type of medicines that will be scraped
 # NOTE: This was useful for debugging
 scrape_medicine_type: list[ec_scraper.MedicineType] = [
@@ -48,6 +39,8 @@ cpu_count = multiprocessing.cpu_count()
 if "web_scraper" in os.getcwd():
     json_path = ""
 url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
+
+scrape_annex10: bool = False
 annex10_file = json_helper.JsonHelper(path=f"{json_path}JSON/annex10.json")
 
 
@@ -112,13 +105,12 @@ def get_urls_ema(eu_n: str, url: str):
         url (str): The url to an EMA page for a specific medicine.
     """
     epar_url, omar_url = ema_scraper.pdf_links_from_url(url)
-    if url_file.local_dict[eu_n]:
-        if "epar_url" in url_file.local_dict[eu_n].keys():
-            if url_file.local_dict[eu_n]['epar_url']:
-                return
-        if "omar_url" in url_file.local_dict[eu_n].keys():
-            if url_file.local_dict[eu_n]['omar_url']:
-                return
+    if "epar_url" in url_file.local_dict[eu_n].keys():
+        if url_file.local_dict[eu_n]['epar_url']:
+            return
+    if "omar_url" in url_file.local_dict[eu_n].keys():
+        if url_file.local_dict[eu_n]['omar_url']:
+            return
     pdf_url: dict[str, str] = {
         eu_n: {
             "epar_url": epar_url,
@@ -140,7 +132,9 @@ def get_excel_ema(url: str):
     annex10_file.overwrite_dict(excel_url)
 
 
-def main(data_filepath: str = '../data'):
+# Main web scraper function with default settings
+def main(data_filepath: str = "../data", scrape_ec: bool = True, scrape_ema: bool = True, download_files: bool = True,
+         run_filter: bool = True, use_parallelization: bool = True):
     """
     Main function that controls which scrapers are activated, and if it runs parallel or not.
 
@@ -148,7 +142,12 @@ def main(data_filepath: str = '../data'):
     and/or downloads the scraped links.
 
     Args:
-        data_filepath (str, optional): The file path where all data needs to be stored. Defaults to '../data'.
+        data_filepath (str, optional): The file path where all data needs to be stored. Defaults to "../data".
+        scrape_ec (bool): Whether EC URLs should be scraped
+        scrape_ema (bool): Whether EMA URLs should be scraped | Requires scrape_ec to have been run at least once
+        download_files (bool): Whether scraper should download PDFs from obtained links
+        run_filter (bool): Whether filter should be run after downloading PDF files
+        use_parallelization (bool): Whether downloading should be parallel (faster)
     """
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
