@@ -11,25 +11,8 @@ import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
 # EC Decision document
 
 
-# Given a pdf, returns one long string of text
-def get_txt_from_pdf(pdf: fitz.Document) -> str:
-    """
-    Returns the plain text of a fitz pdf, removing all \\n that are present.
-
-    Args:
-    pdf (fitz.Document): The opened pdf document to extract text from
-
-    Returns:
-        txt (str): The plain text of a pdf document, without \\n
-    """
-    pdf_format = pdf_helper.get_text_format(pdf)
-    txt = pdf_helper.format_to_string(pdf_format)
-    return txt.replace('\n', '')
-
-
-def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStruct) -> pis.ParsedInfoStruct:
-    """
-    Opens a pdf and adds all respective attributes to the medicine_struct.
+def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct) -> PIS.parsed_info_struct:
+    """Opens a pdf and adds all respective attributes to the medicine_struct.
 
     Args:
         filename (str): filename of file to open
@@ -41,146 +24,101 @@ def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStr
     """
     try:
         pdf = fitz.open(path.join(directory, filename))
-        txt = get_txt_from_pdf(pdf)
+        txt = pdf_helper.get_text_str(pdf)
         pdf.close()
     except fitz.fitz.FileDataError:
         print("EC - Could not open PDF: " + filename)
         return medicine_struct
-    res = get_all(filename, txt)
+    res = get_data(filename, txt)
     medicine_struct.decisions.append(res)
     if '_0' in filename:
         pdf_helper.create_outputfile_dec(filename, res)
     return medicine_struct
 
 
-# Given a dictionary, fills in all attributes for EC decisions
-def get_all(filename: str, txt: str) -> dict:
-    """
-    Based on filename finds all fitting attributes
+# The default values before starting a parse.
+def get_default_dict(filename: str) -> dict:
+    """returns dictionary with default attribute values, based on type
 
     Args:
-        filename (str): filename of opened pdf file
-        txt (str): plain text of opened pdf file
+        filename (str): filename of pdf
 
     Returns:
-        dict: filled filedata
+        dict: contains default value for every attribute
     """
-    # human use file attributes
+    default = 'Not parsed'
+
+    #keys for human use
     if '_h_' in filename:
-        filedata = get_data_human_use(filename, txt)
-        return filedata
+        dic = dict.fromkeys(['filename',
+                            'eu_aut_date',
+                            'eu_brand_name_initial',
+                            'eu_nas',
+                            'eu_od_initial',
+                            'eu_mah_initial',
+                            'eu_aut_type_initial',
+                            'status'],
+                            default)
 
-    # orphan file attributes
-    if '_o_' in filename:
-        filedata = get_data_orphan(filename, txt)
-        return filedata
+    #keys for orphan
+    elif '_o_' in filename:
+        dic = dict.fromkeys(['filename',
+                            'eu_aut_date',
+                            'eu_brand_name_initial',
+                            'eu_od_initial',
+                            'eu_mah_initial',
+                            'eu_od_comp_date',
+                            'status'],
+                            default)
 
-    # if other file return data with everything 'Not parsed'
-    return get_default_human_use(filename)
+    #invalid name, only returns name and failure
+    else:
+        dic = {}
+    
+    dic['filename'] = filename
+    dic['status'] = 'Failure unknown reason'
 
+    return dic
 
-# The default values before starting a parse.
-def get_default_human_use(filename: str) -> dict:
-    """
-    Returns dictionary with default attribute values for human use
-
-    Args:
-        filename (str): filename of pdf
-
-    Returns:
-        dict: contains default value for every attribute
-    """
-    default = 'Not parsed'
-    return {'filename': filename,
-            'eu_aut_date': default,
-            'eu_brand_name_initial': default,
-            'active_substance': default,
-            'eu_nas': default,
-            'eu_atmp': default,
-            'eu_od_initial': default,
-            'eu_mah_initial': default,
-            'eu_aut_type_initial': default,
-            'status': 'Failure unknown reason'
-            }
-
-
-# The default values before starting a parse.
-def get_default_orphan(filename: str) -> dict:
-    """
-    Returns dictionary with default attribute values for orphan
-
-    Args:
-        filename (str): filename of pdf
-
-    Returns:
-        dict: contains default value for every attribute
-    """
-    default = 'Not parsed'
-    return {'filename': filename,
-            'eu_aut_date': default,
-            'eu_brand_name_initial': default,
-            'eu_od_initial': default,
-            'eu_mah_initial': default,
-            'eu_od_comp_date': default,
-            'status': 'Failure unknown reason'
-            }
-
-
-def get_data_human_use(filename: str, txt: str) -> dict:
-    """
-    Fills in each attribute in a dictionary for human use
+def get_data(filename: str, txt: str) -> dict:
+    """fills in each attribute in a dictionary, based on type
 
     Args:
         filename (str): filename of pdf
         txt (str): plain txt of pdf
 
     Returns:
-        dict: dictionary filled with parsed results
+        dict: filled dictionary with parsed results
     """
-    filedata = get_default_human_use(filename)
+    filedata = get_default_dict(filename)
     date = dec_get_date(txt)
     filedata['eu_aut_date'] = date
 
-    # if date was left blank return don't find date dependant attributes.
+    # if date was left blank use default date to not find date dependent attributes.
     if isinstance(date, str):
         date = dec_get_date('')
 
-    filedata['eu_brand_name_initial'] = dec_get_bn(txt)
-    filedata['active_substance'] = dec_get_as(txt)
-    filedata['eu_nas'] = dec_get_nas(txt, date)
-    filedata['eu_atmp'] = dec_get_atmp(txt, date)
-    filedata['eu_od_initial'] = dec_get_od(txt, date)
-    filedata['eu_mah_initial'] = dec_get_mah(txt)
-    filedata['eu_aut_type_initial'] = dec_get_decision_type(txt, date)
-    filedata['status'] = 'Parsed'
-    return filedata
+    if '_h_' in filename:
+        filedata['eu_brand_name_initial'] = dec_get_bn(txt)
+        filedata['active_substance'] = dec_get_as(txt)
+        filedata['eu_nas'] = dec_get_nas(txt, date)
+        filedata['eu_atmp'] = dec_get_atmp(txt, date)
+        filedata['eu_od_initial'] = dec_get_od(txt, date)
+        filedata['eu_mah_initial'] = dec_get_mah(txt)
+        filedata['eu_aut_type_initial'] = dec_get_decision_type(txt, date)
+        filedata['status'] = 'Parsed'
+        return filedata
 
+    elif '_o_' in filename:
+        filedata['eu_brand_name_initial'] = dec_get_bn(txt, True)
+        filedata['eu_od_initial'] = dec_get_od(txt, date)
+        filedata['eu_mah_initial'] = dec_get_mah(txt)
+        filedata['eu_od_comp_date'] = dec_get_od_comp_date(txt)
+        filedata['status'] = 'Parsed'
+        return filedata
 
-def get_data_orphan(filename: str, txt: str) -> dict:
-    """
-    Fills in each attribute in a dictionary for orphan
-
-    Args:
-        filename (str): filename of pdf
-        txt (str): plain txt of pdf
-
-    Returns:
-        dict: dictionary filled with parsed results
-    """
-    filedata = get_default_orphan(filename)
-    date = dec_get_date(txt)
-    filedata['eu_aut_date'] = date
-
-    # if date was left blank return don't find date dependant attributes.
-    if isinstance(date, str):
-        date = dec_get_date('')
-    filedata['eu_brand_name_initial'] = dec_get_bn(txt, True)
-    filedata['eu_od_initial'] = dec_get_od(txt, date)
-    filedata['eu_mah_initial'] = dec_get_mah(txt)
-    filedata['eu_od_comp_date'] = dec_get_od_comp_date(txt)
-    filedata['status'] = 'Parsed'
-    return filedata
-
+    else:
+        return filedata
 
 # FUNCTIONS FOR EACH ATTRIBUTE
 
@@ -437,7 +375,7 @@ def dec_get_od_comp_date(txt) -> datetime.datetime:
     """
     Gives date of orphan comp from decision files.
 
-     Args:
+    Args:
         txt (str): plain decision pdf text
 
     Returns:

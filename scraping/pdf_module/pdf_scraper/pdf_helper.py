@@ -41,6 +41,20 @@ def get_text(blocks: list[dict], results: list[(str, int, str)], lower: bool):
                     old_font, old_size, old_text = combine_text(lines, lower, old_font, old_size, old_text, results)
     append_text(old_text, old_size, old_font, results, lower)
 
+# Given a pdf, returns one long string of text
+def get_text_str(pdf: fitz.Document) -> str:
+    """Returns the plain text of a fitz pdf, removing all \\n that are present.
+
+    Args:
+    pdf (fitz.Document): The opened pdf document to extract text from
+
+    Returns:
+        txt (str): The plain text of a pdf document, without \\n
+    """
+    pdf_format = get_text_format(pdf)
+    txt = format_to_string(pdf_format)
+    return txt.replace('\n', '')
+
 
 def combine_text(lines: dict, lower: bool, old_font: str, old_size: int, old_text: str, results: list[tuple]):
     """
