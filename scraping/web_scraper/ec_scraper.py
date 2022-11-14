@@ -156,7 +156,7 @@ def get_ec_json_objects(html_active: requests.Response) -> list[json]:
 
     parsed_jsons: list[json] = list(map(lambda plaintext: json.loads(plaintext, strict=False), plaintext_jsons))
     return parsed_jsons
-    
+
 
 def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], list[str], list[str], dict[str, str]):
     """ Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.
@@ -190,7 +190,7 @@ def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], l
 def get_data_from_medicine_json(medicine_json: dict,
                                 eu_num: str,
                                 medicine_type: MedicineType) \
-                                -> (dict[str, str], list[str]):
+        -> (dict[str, str], list[str]):
     """ Gets all attribute information that is stored in the medicine JSON, and all links to the EMA website.
 
     The function loops through the JSON object and finds all the attributes and links,
@@ -202,11 +202,13 @@ def get_data_from_medicine_json(medicine_json: dict,
         medicine_type (MedicineType): The type of medicine that belongs to this JSON.
 
     Returns:
-        (dict[str, str], list[str]): Returns a dictionary with all the attribute values and a list
+        (dict[str, str], list[str]): Returns a dictionary containing all the attribute values and a list
             with all the links to the EMA.
     """
     medicine_dict: dict[str, str] = {}
     ema_url_list: list[str] = []
+    # Whether current web page is about a human or orphan medicine
+    human_medicine = True
 
     # Orphan medicine don't always have ATC codes, therefore it is set to a standard value
     medicine_dict["atc_code"] = ""
@@ -219,7 +221,12 @@ def get_data_from_medicine_json(medicine_json: dict,
                 medicine_dict["status_type"]: str = row["meta"]["status_type"].replace("g", "a").replace("r", "w")
 
             case "eu_num":
-                medicine_dict["eu_pnumber"]: str = row["value"]
+                if "EU/1" in row["value"]:
+                    human_medicine = True
+                    medicine_dict["eu_pnumber"]: str = row["value"]
+                else:
+                    human_medicine = False
+                    medicine_dict["eu_od_pnumber"]: str = row["value"]
 
             case "inn":
                 # Sometimes the active substance is written with italics, therefore it is removed with a RegEx
@@ -230,16 +237,15 @@ def get_data_from_medicine_json(medicine_json: dict,
                 # you can do that by adding code in this section
                 pass
 
-            case "mah":
-                medicine_dict["eu_mah_current"]: str = row["value"]
-
             case "atc":
                 medicine_dict["atc_code"]: str = row["meta"][0][-1]["code"]
 
-            case "ema_links":
-                for json_obj in row["meta"]:
-                    ema_url_list.append(json_obj["url"])
-                    # TODO: retrieve date for every PDF
+        if human_medicine:
+            # Scrapes human specific attributes
+            set_human_attributes(ema_url_list, medicine_dict, row)
+        else:
+            # Scrapes orphan specific attributes
+            set_orphan_attributes(medicine_dict, row)
 
     if medicine_type == MedicineType.HUMAN_USE_ACTIVE or medicine_type == MedicineType.HUMAN_USE_WITHDRAWN:
         medicine_dict["orphan_status"] = "h"
@@ -252,6 +258,42 @@ def get_data_from_medicine_json(medicine_json: dict,
             log.warning(f"{eu_num}: No value for {key}")
 
     return medicine_dict, ema_url_list
+
+
+def set_human_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str]), row: dict):
+    """
+    Updates medicine_dict with attributes from the EC website for human use medicines
+
+    Args:
+        ema_url_list (list[str]): List of URLs to EMA websites
+        medicine_dict (dict[str, str]): A dictionary containing all the attribute values and a list
+            with all the links to the EMA.
+        row (dict): Row in medicine_json to be searched
+    """
+    match row["type"]:
+        case "mah":
+            medicine_dict["eu_mah_current"]: str = row["value"]
+
+        case "ema_links":
+            for json_obj in row["meta"]:
+                ema_url_list.append(json_obj["url"])
+                # TODO: retrieve date for every PDF
+        case "orphan_links":
+            medicine_dict["eu_orphan_con_current"]: str = row["meta"]
+
+
+def set_orphan_attributes(medicine_dict: (dict[str, str]), row: dict):
+    """
+    Updates medicine_dict with attributes from the EC website for orphan medicines
+
+    Args:
+        medicine_dict (dict[str, str]): A dictionary containing all the attribute values and a list
+            with all the links to the EMA.
+        row (dict): Row in medicine_json to be searched
+    """
+    match row["title"].lower():
+        case "sponsor":
+            medicine_dict["sponsor"]: str = row["value"]
 
 
 def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[str, str], list[str], list[str]):
@@ -267,7 +309,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
         eu_num (str): The EU number for the medicine that belongs to this JSON
 
     Returns:
-        (dict[str, str], list[str], list[str]): Returns a dictionary with all the attribute values, a list
+        (dict[str, str], list[str], list[str]): Returns a dictionary containing all the attribute values, a list
             with all the links decisions and a list with the links to the annexes.
     """
     # The necessary urls and other data will be saved in these lists and dictionary
@@ -279,6 +321,9 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
     # This information is needed to determine the initial authorization type
     is_exceptional: bool = False
     is_conditional: bool = False
+    # Whether the medicine contains a file with type suspension or referral
+    eu_referral = False
+    eu_suspension = False
     # This information is needed to determine what the current authorization type is
     last_decision_types: list[str] = []
     last_decision_date: date = date.today() + timedelta(549)  # Safest date if there is no last_decision_date
@@ -306,6 +351,14 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
         if row["files_dec"] is None and row["files_anx"] is None:
             continue
 
+        # Check whether one procedure has type referral
+        if row["type"].lower() == "referral":
+            eu_referral = True
+
+        # Check whether one procedure has type suspension
+        if row["type"].lower() == "suspension":
+            eu_suspension = True
+
         # Parse the date, formatted as %Y-%m-%d, which looks like 1970-01-01
         decision_date: date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
         decision_id = row["id"]
@@ -323,12 +376,12 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
                 dec_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_dec)
 
         if row["files_anx"]:
-            if not(any('en' in d.values() for d in row["files_anx"])):
+            if not (any('en' in d.values() for d in row["files_anx"])):
                 log.warning(f"""No english file available for {eu_num}: anx_{decision_id}""")
             else:
                 pdf_url_anx = \
                     f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""
-                anx_url_list.append("https://ec.europa.eu/health/documents/community-register/"+pdf_url_anx)
+                anx_url_list.append("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx)
 
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
     eu_aut_str: str = procedures_json[0]["decision"]["date"]
@@ -349,12 +402,20 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
     else:
         ema_number, ema_number_certainty = "", ""
 
+    # Gets ema_number_id from ema_number, removing leading 0's
+    ema_number_id = ema_number.split('/')[-1].lstrip('0')
+    if re.search(r'\d+/\d+', ema_number):
+        ema_number_id = re.search(r'\d+/\d+', ema_number)[0].lstrip('0')
+
     # TODO: logging when an attribute is not found
     # Currently when an attribute is not found it is simply printed to the console
     procedures_dict["eu_aut_date"] = eu_aut_date
     procedures_dict["eu_aut_type_initial"] = eu_aut_type_initial
     procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
     procedures_dict["ema_number"] = ema_number
+    procedures_dict["ema_number_id"] = ema_number_id
+    procedures_dict["eu_referral"] = str(eu_referral)
+    procedures_dict["eu_suspension"] = str(eu_suspension)
     procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
 
     for key, value in procedures_dict.items():
@@ -428,9 +489,10 @@ def format_ema_number(ema_number: str) -> list[str]:
             # REGEX that gets only the relevant part of the EMA numbers
             ema_number_formatted = re.findall(r"E?ME?A\/(?:H\/(?:C|\w*-\w*)\/\w*|OD\/\w*(?:\/\w*)?)", en, re.DOTALL)[0]
             ema_numbers_formatted.append(ema_number_formatted)
+        # TODO: Replace exception with specific exceptions
         except Exception:
             continue
-        
+
     return ema_numbers_formatted
 
 
