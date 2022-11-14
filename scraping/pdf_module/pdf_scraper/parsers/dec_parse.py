@@ -6,6 +6,7 @@ import fitz
 import scraping.pdf_module.pdf_scraper.helper as helper
 import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
 import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
+import scraping.pdf_module.pdf_scraper.__main__ as m
 
 
 # EC Decision document
@@ -27,10 +28,9 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.ParsedInfoStr
         txt = pdf_helper.get_text_str(pdf)
         pdf.close()
     except fitz.fitz.FileDataError:
-        print("EC - Could not open PDF: " + filename)
+        m.log.warning("EC - Could not open PDF: " + filename)
         return medicine_struct
     res = get_data(filename, txt)
-    print(res)
     medicine_struct.decisions.append(res)
     if '_0' in filename:
         pdf_helper.create_outputfile_dec(filename, res)

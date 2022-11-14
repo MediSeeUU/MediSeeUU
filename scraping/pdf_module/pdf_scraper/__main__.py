@@ -4,6 +4,7 @@ import os.path as path
 import json
 import scraping.pdf_module.pdf_scraper.pdf_xml_converter as xml_converter
 import joblib
+from datetime import datetime
 import multiprocessing
 
 # for main
@@ -11,6 +12,14 @@ from scraping.pdf_module.pdf_scraper.parsers import dec_parse
 from scraping.pdf_module.pdf_scraper.parsers import epar_parse
 from scraping.pdf_module.pdf_scraper.parsers import omar_parse
 from scraping.pdf_module.pdf_scraper.parsers import annex_parse
+
+import logging
+
+log_handler_console = logging.StreamHandler()
+log_handler_file = logging.FileHandler("pdf_scraper.log")
+
+logging.basicConfig(level=logging.INFO, handlers=[log_handler_console, log_handler_file])
+log = logging.getLogger("pdf_scraper")
 
 
 # Main file to run all parsers
@@ -21,14 +30,14 @@ def main(directory: str):
     Args:
         directory: data folder, containing medicine folders
     """
-    print("Parsing PDF files")
+    log.info(f"=== NEW LOG {datetime.today()} ===")
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
         joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
         directory_folders)
-    print("Done!")
+    log.info("Done parsing PDF files!")
 
     # Single-threaded parsing
     # for folder in directory_folders:
@@ -91,7 +100,6 @@ def get_files(directory):
 def run_scrapers(directory: str, annex_files: list[str], decision_files: list[str], epar_files: list[str],
                  omar_files: list[str], medicine_struct):
     """
-
     Args:
         directory: directory of folder containing the files
         annex_files: list of file names for annex files
@@ -99,7 +107,6 @@ def run_scrapers(directory: str, annex_files: list[str], decision_files: list[st
         epar_files: list of file names for epar files
         omar_files: list of file names for omar files
         medicine_struct: struct to add parsed attributes to
-
     """
     for file in decision_files:
         medicine_struct = dec_parse.parse_file(file, directory, medicine_struct)
