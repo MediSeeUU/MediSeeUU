@@ -2,6 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
+from api.models.medicine_models import MedicinalProduct
 from .common import create_dashboard_column, Category, AutStatus
 
 
@@ -11,21 +12,21 @@ class HistoryAuthorisationStatus(models.Model):
     This model is derived from a base model from the Django library.
     """
     eu_pnumber = models.ForeignKey(
-        "Medicine", 
+        MedicinalProduct,
         models.CASCADE, 
-        null=False
+        null=False,
     )
 
     change_date = models.DateField(
         db_column="change_date", 
-        null=True
+        null=True,
     )
 
     eu_aut_status = create_dashboard_column(
         models.CharField(db_column="eu_aut_status", max_length=10, choices=AutStatus.choices),
         Category.General_Information,
         "string",
-        "EU Authorisation Status"
+        "EU Authorisation Status",
     )
 
     class Meta:
