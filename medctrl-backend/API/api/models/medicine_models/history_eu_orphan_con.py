@@ -13,7 +13,7 @@ class HistoryEUOrphanCon(models.Model):
     """
     eu_od_number = models.ForeignKey(
         OrphanProduct,
-        models.CASCADE, 
+        models.CASCADE,
         db_column="eu_od_number",
         null=False,
         blank=False,

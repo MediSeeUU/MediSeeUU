@@ -1,10 +1,9 @@
 # This program has been developed by students from the bachelor Computer Science at
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
-from dataclasses import Field
 from enum import Enum
 from django.db import models
-
+from typing import TypeVar, Type
 
 class Category(Enum):
     """
@@ -98,12 +97,12 @@ class DashboardColumn:
         self.data_value = data_value
 
 
-def create_dashboard_column(field: Field, category: Category, data_format: str, display_name: str):
+def create_dashboard_column(field: models.Field, category: Category, data_format: str, display_name: str):
     """
     Sets attributes on a model field that's used in medicine_info_json.
 
     Args:
-        field (Field): The type that the database attribute will have (CharField, BooleanField, etc.).
+        field (models.Field): The type that the database attribute will have (CharField, BooleanField, etc.).
         category (Category): Which category the attribute should belong to.
         data_format (str): Defines what data format the attribute should have.
         display_name (str): This is the name that the attribute displays in the database.
