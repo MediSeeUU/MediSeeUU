@@ -5,13 +5,13 @@ import datetime
 import fitz
 import scraping.pdf_module.pdf_scraper.helper as helper
 import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
-import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
+import scraping.pdf_module.pdf_scraper.parsed_info_struct as PIS
 
 
 # EC Decision document
 
 
-def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_struct) -> PIS.parsed_info_struct:
+def parse_file(filename: str, directory: str, medicine_struct: PIS.ParsedInfoStruct) -> PIS.ParsedInfoStruct:
     """Opens a pdf and adds all respective attributes to the medicine_struct.
 
     Args:
@@ -30,6 +30,7 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.parsed_info_s
         print("EC - Could not open PDF: " + filename)
         return medicine_struct
     res = get_data(filename, txt)
+    print(res)
     medicine_struct.decisions.append(res)
     if '_0' in filename:
         pdf_helper.create_outputfile_dec(filename, res)
@@ -53,7 +54,9 @@ def get_default_dict(filename: str) -> dict:
         dic = dict.fromkeys(['filename',
                             'eu_aut_date',
                             'eu_brand_name_initial',
+                            'active_substance',
                             'eu_nas',
+                            'eu_atmp',
                             'eu_od_initial',
                             'eu_mah_initial',
                             'eu_aut_type_initial',
