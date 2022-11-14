@@ -125,7 +125,8 @@ def get_ec_html(url: str) -> requests.Response:
 
 
 def get_ec_json_objects(html_active: requests.Response) -> list[json]:
-    """ Gets all the JSON objects from a web page.
+    """
+    Gets all the JSON objects from a web page.
 
     Args:
         html_active (requests.Response): The response to the HTTP request for the page where the JSONs need
@@ -159,7 +160,8 @@ def get_ec_json_objects(html_active: requests.Response) -> list[json]:
 
 
 def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], list[str], list[str], dict[str, str]):
-    """ Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.
+    """
+    Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.
 
     Args:
         url (str): The url to the medicine page for the medicine that needs to be scraped.
@@ -191,7 +193,8 @@ def get_data_from_medicine_json(medicine_json: dict,
                                 eu_num: str,
                                 medicine_type: MedicineType) \
         -> (dict[str, str], list[str]):
-    """ Gets all attribute information that is stored in the medicine JSON, and all links to the EMA website.
+    """
+    Gets all attribute information that is stored in the medicine JSON, and all links to the EMA website.
 
     The function loops through the JSON object and finds all the attributes and links,
     so that they can be used and stored. Whenever an attribute is not found, this is logged.
@@ -295,7 +298,8 @@ def set_orphan_attributes(medicine_dict: (dict[str, str]), row: dict):
 
 
 def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[str, str], list[str], list[str]):
-    """ Gets all attribute information that is stored in the procedures JSON, and all links the decision and annex PDFs.
+    """
+    Gets all attribute information that is stored in the procedures JSON, and all links the decision and annex PDFs.
 
     The function loops through the JSON object and finds all the attributes and links,
     so that they can be used and stored. There is also some extra logic that is needed to determine some attribute
@@ -384,10 +388,8 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
     eu_aut_str: str = procedures_json[0]["decision"]["date"]
     if eu_aut_str is not None:
-        eu_aut_datetime: datetime = datetime.strptime(eu_aut_str, '%Y-%m-%d')
-        # TODO: parse to datetime instead of string
-        eu_aut_date = datetime.strftime(eu_aut_datetime, '%d-%m-%Y')
-        eu_aut_type_initial: str = determine_initial_aut_type(eu_aut_datetime.year,
+        eu_aut_date: datetime = datetime.strptime(eu_aut_str, '%Y-%m-%d')
+        eu_aut_type_initial: str = determine_initial_aut_type(eu_aut_date.year,
                                                               is_exceptional,
                                                               is_conditional)
     else:
@@ -407,7 +409,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
 
     # TODO: logging when an attribute is not found
     # Currently when an attribute is not found it is simply printed to the console
-    procedures_dict["eu_aut_date"] = eu_aut_date
+    procedures_dict["eu_aut_date"] = str(eu_aut_date)
     procedures_dict["eu_aut_type_initial"] = eu_aut_type_initial
     procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
     if "od" in ema_number.lower():
