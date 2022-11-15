@@ -1,6 +1,4 @@
 import xml.etree.ElementTree as ET
-from typing import List
-
 import scraping.file_parser.xml_converter.xml_tags as tags
 
 
@@ -137,7 +135,7 @@ def section_contains_header_substring(substring: str, section: ET.Element) -> bo
     return False
 
 
-def section_contains_header_substring_set(substring_set: List[str], section: ET.Element) -> bool:
+def section_contains_header_substring_set(substring_set: list[str], section: ET.Element) -> bool:
     """
     Returns whether a xml section header contains any of the substrings within substring_set.
 
@@ -157,6 +155,13 @@ def section_contains_header_substring_set(substring_set: List[str], section: ET.
                 return True
 
     return False
+
+
+def section_contains_header_substring_set_all(substring_set: list[str], section: ET.Element) -> bool:
+    head = section.findall(tags.header)[0]
+    substring_in_header = [substring in head.text.lower() for substring in substring_set]
+
+    return all(substring_in_header)
 
 
 def section_contains_header_number(header_number: str, header: ET.Element) -> bool:

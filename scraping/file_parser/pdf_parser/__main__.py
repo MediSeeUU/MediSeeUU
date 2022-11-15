@@ -86,7 +86,7 @@ def get_files(directory):
     epar_files = [file for file in directory_files if
                   ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
     omar_files = [path.join(directory, file) for file in directory_files if
-                  "orphan-maintenance-assessment-report" in file and ".xml" in file]
+                  ("omar" in file or "orphan" in file) and ".xml" in file]
     return annex_files, decision_files, epar_files, omar_files
 
 

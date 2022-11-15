@@ -5,6 +5,7 @@ import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
 import scraping.logger as logger
 import os
+import logging
 
 log = logger.PDFLogger.log
 
@@ -55,7 +56,7 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
         # scrape attributes specific to authorization annexes
 
         # Detect a condition
-        if xml_utils.section_contains_header_substring("COMP position adopted on", section) \
+        if xml_utils.section_contains_header_substring_set_all(["comp", "adopted", "on"], section) \
                 and not xml_utils.section_is_table_of_contents(section):
 
             section_string = xml_utils.section_append_paragraphs(section)
@@ -66,12 +67,15 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
                 "prevalence": get_prevalence(bullet_points),
                 "insufficient_roi": get_insufficient_roi(bullet_points),
                 "alternative_treatments": alternative_treatments,
-                "significant_benefit": get_significant_benefit(bullet_points, alternative_treatments)
+                "significant_benefit": get_significant_benefit(bullet_points, alternative_treatments, filepath)
             }
 
             omar_attributes["conditions"].append(omar_condition_dict)
 
     medicine_struct.omars.append(omar_attributes)
+
+    if len(omar_attributes["conditions"]) == 0:
+        m.log.warning("OMAR PARSER: failed to parse condition from " + omar_attributes["pdf_file"])
 
     return medicine_struct
 
@@ -87,8 +91,8 @@ def get_prevalence(bullet_points: list[str]) -> str:
         str: Return the string with the relevant information about the prevalence or NA if it cannot be found.
     """
     for b in bullet_points:
-        if "the prevalence of" in b:
-            # Remove unnecessary whitespaces and newlines
+        if "in 10.000" in b or "in 10,000" in b:
+            # Remove unnecessary whitespaces and newlines, in addition, removes the space at the start of the string
             clean = re.sub(r'\s+', ' ', b).lstrip(" ")
             return clean
 
@@ -112,15 +116,20 @@ def get_alternative_treatments(bullet_points: list[str]) -> str:
         str: Return a short description depending on what was found in the bullet point.
     """
     for b in bullet_points:
-        if "no satisfactory methods" in b:
-            return "No Satisfactory Methods"
+        b = re.sub(r'\s+', ' ', b).lstrip(" ")
+
+        if ("no satisfactory method" in b) or ("no satisfactory treatment" in b):      
+            return "No Satisfactory Method"
         if "significant benefit" in b:
-            return "Significant Benefit"
+            if "does not hold" in b:
+                return "No Significant Benefit"
+            else:
+                return "Significant Benefit"
 
     return "NA"
 
 
-def get_significant_benefit(bullet_points: list[str], alternative_treatment: str) -> str:
+def get_significant_benefit(bullet_points: list[str], alternative_treatment: str, filepath: str) -> str:
     """
     This function parses out the significant benefit of the OMAR, 
     the result is influenced by the result of a previous attribute.
@@ -132,23 +141,35 @@ def get_significant_benefit(bullet_points: list[str], alternative_treatment: str
     Returns:
         str: Returns the appropriate string, depending on what was found in the file.
     """
-    contains = False
+    contains = False    
     result = ""
 
     for b in bullet_points:
-        if "clinically relevant advantage" in b:
-            contains = True
-            result += "Clinically Relevant Advantage"
-        if "major contribution" in b:
-            contains = True
-            if result == "":
-                result += "Major Contribution"
-            else:
-                result += " + Major Contribution"
+        b = re.sub(r'\s+', ' ', b).lstrip(" ")
 
-    # TODO: Uncomment this if logger works
-    # if not contains and alternative_treatment == "Significant Benefit":
-    # Logger.warning("Alternative treatment = Significant benefit requires result.")
+        if "clinically relevant advantage" in b:
+            if "could not establish" in b:
+                contains = False
+            else:
+                contains = True
+                result += "Clinically Relevant Advantage"
+        
+        if "significant clinical efficacy" in b:
+            contains = True
+            result += "Significant Clinical Efficacy"
+
+        if "major contribution" in b:
+            if "insufficient and inconclusive data" in b:
+                contains = False
+            else:
+                contains = True
+                if result == "":
+                    result += "Major Contribution"
+                else:
+                    result += " + Major Contribution"
+
+    if not contains and alternative_treatment == "Significant Benefit":
+        m.logging.warning("OMAR PARSER: Alternative treatment = Significant benefit requires result for " + filepath)
 
     if contains:
         return result
