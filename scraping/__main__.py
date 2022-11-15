@@ -6,6 +6,7 @@ import web_scraper.__main__ as web_scraper
 import pdf_module.pdf_scraper.__main__ as pdf_scraper
 import combiner.__main__ as combiner
 import db_communicator.__main__ as db_communicator
+import log_setup
 
 scrape_ec: bool = True            # Whether EC URLs should be scraped
 scrape_ema: bool = True           # Whether EMA URLs should be scraped | Requires scrape_ec to have been run once
@@ -31,4 +32,5 @@ def main():
 
 
 if __name__ == '__main__':
+    log_setup.init_loggers()
     main()
