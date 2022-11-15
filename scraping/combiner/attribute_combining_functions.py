@@ -1,11 +1,11 @@
-# import definitions.value as value
+import definitions.value as value
 import definitions.attributes as attr
 import json
 import os.path as path
 
 def combine_folder(filepath: str, folder_name: str):
     # with open(path.join(filepath, folder_name + "_filedates.json"), "r") as filedates_json:
-    #     filedates: dict[any, any] = json.load(filedates_json)
+    #     file_dates: dict[any, any] = json.load(filedates_json)
 
     with open(path.join(filepath, folder_name + "_pdf_parser.json"), "r") as pdf_data_json:
         pdf_data: dict[any, any] = json.load(pdf_data_json)
@@ -18,13 +18,14 @@ def combine_folder(filepath: str, folder_name: str):
 
     #TODO: try catch deez nutz
     file_dicts = {
-        "dec": decision_files[-1][1],
-        "dec_initial": decision_files[0][1],
-        "anx": annex_files[-1][1],
-        "anx_initial": annex_files[0][1],
-        # "epar": pdf_data["epars"][0]["filename"],
-        # "omar": pdf_data["omars"][0]["filename"],
-        "web": web_data
+        attr.decision: decision_files[-1][1],
+        attr.decision_initial: decision_files[0][1],
+        attr.annex: annex_files[-1][1],
+        attr.annex_initial: annex_files[0][1],
+        # attr.epar: pdf_data["epars"][0]["filename"],
+        # attr.omar: pdf_data["omars"][0]["filename"],
+        attr.web: web_data
+        # attr.file_dates: file_dates
     }
     
     combined_dict: dict[str, any] = {}
@@ -38,7 +39,7 @@ def combine_folder(filepath: str, folder_name: str):
         combined_dict[attribute.name] = value
 
         if not all_equal:
-            print("shiiit boi, log dis")
+            print("found multiple values for " + attribute.name + ": " + value + "in " + str(sources_to_dicts(attribute.sources, file_dicts)))
     
     combined_json = open(path.join(filepath, folder_name + "_combined.json"), "w")
     json.dump(combined_dict, combined_json)
@@ -54,12 +55,20 @@ def sources_to_dicts(sources: list[str], file_dicts: dict[str, dict]) -> list[di
     return source_dicts
 
 def get_attribute(attribute_name: str, dicts: list[dict], combine_attributes = False) -> tuple[str, bool]:
-    attributes: set[str] = []    
+    attributes: set[str] = []
+    print(attribute_name + ": " + str(dicts))
     for dict in dicts:
-        attributes.append(dict[attribute_name])
+        try:
+            attributes.append(dict[attribute_name])
+        except Exception:
+            print(attribute_name + " attribute id is not'st'n't contained in " + str(dict))
+
     all_equal = len(set(attributes)) == 1
 
     if combine_attributes:
         return (" / ".join(attributes), all_equal)
 
+    attributes.append(value.not_found)
     return (attributes[0], all_equal)
+
+combine_folder("D:\Git_repos\MediSeeUU\data\EU-1-99-126", "EU-1-99-126")
