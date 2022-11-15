@@ -3,7 +3,7 @@ import os
 import regex as re
 import fitz
 import datetime
-import scraping.file_scraper.pdf_scraper.parsers.dec_parse as dec_parse
+import scraping.file_parser.pdf_parser.parsers.dec_parser as dec_parser
 
 test_data_loc = "../../data"
 dec_txt = []
@@ -25,7 +25,7 @@ class TestDecParse(TestCase):
         for dec_file in dec_files:
             try:
                 pdf = fitz.open(dec_file)
-                txt = dec_parse.get_txt_from_pdf(pdf)
+                txt = dec_parser.get_txt_from_pdf(pdf)
                 pdf.close()
                 dec_txt.append((txt, dec_file))
             except fitz.fitz.FileDataError:
@@ -36,7 +36,7 @@ class TestDecParse(TestCase):
         # Call get_prime
         not_found_count = 0
         for txt, filename in dec_txt:
-            output = dec_parse.dec_get_date(txt)
+            output = dec_parser.dec_get_date(txt)
             self.assertTrue((isinstance(output, str) or isinstance(output, datetime.datetime)))
             if output == datetime.datetime(1980, 1, 1, 0, 0):
                 not_found_count += 1
@@ -58,7 +58,7 @@ class TestDecParse(TestCase):
         for txt, filename in dec_txt:
             if '_o_' in filename:
                 orphan_count += 1
-                output = dec_parse.dec_get_od_comp_date(txt)
+                output = dec_parser.dec_get_od_comp_date(txt)
                 self.assertTrue(isinstance(output, datetime.datetime))
                 if output == datetime.datetime(1980, 1, 1, 0, 0):
                     not_found_count += 1

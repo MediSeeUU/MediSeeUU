@@ -4,12 +4,12 @@ import logging
 class PDFLogger:
     """
     Create logger for writing log messages and saving them to a file.
-    Here, thile file is pdf_scraper.log
+    Here, thile file is pdf_parser.log
     """
     log_handler_console = logging.StreamHandler()
-    log_handler_file = logging.FileHandler("pdf_scraper.log")
+    log_handler_file = logging.FileHandler("pdf_parser.log")
     logging.basicConfig(level=logging.INFO, handlers=[log_handler_console, log_handler_file])
-    log = logging.getLogger("pdf_scraper")
+    log = logging.getLogger("pdf_parser")
 
 
 class WebLogger:

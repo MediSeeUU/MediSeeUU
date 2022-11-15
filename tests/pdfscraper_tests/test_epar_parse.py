@@ -2,9 +2,9 @@ from unittest import TestCase
 import regex as re
 import sys
 import os
-import scraping.file_scraper.pdf_scraper.helper as helper
+import scraping.file_parser.pdf_parser.helper as helper
 
-from scraping.file_scraper.pdf_scraper.parsers import epar_parse
+from scraping.file_parser.pdf_parser.parsers import epar_parser
 import xml.etree.ElementTree as ET
 
 
@@ -16,7 +16,7 @@ percentage_str = "Percentage found: "
 # Tests all functions of EPAR parser with all XML files
 class TestEparParse(TestCase):
     """
-    Class that contains the unit tests for scraping.file_scraper.pdf_scraper.scrapers.epar_parse
+    Class that contains the unit tests for scraping.file_parser.pdf_parser.scrapers.epar_parser
     """
     @classmethod
     def setUpClass(cls):
@@ -49,7 +49,7 @@ class TestEparParse(TestCase):
         found_count = 0
         # Call get_date
         for (xml_body, filename) in xml_bodies:
-            output = epar_parse.get_date(xml_body)
+            output = epar_parser.get_date(xml_body)
             if output != "no_date_found" and output != "not_easily_scrapable":
                 found_count += 1
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
@@ -69,7 +69,7 @@ class TestEparParse(TestCase):
         found_count = 0
         # Call get_opinion_date
         for (xml_body, filename) in xml_bodies:
-            output = epar_parse.get_opinion_date(xml_body)
+            output = epar_parser.get_opinion_date(xml_body)
             if output != "no_chmp_found" and output != "not_easily_scrapable":
                 found_count += 1
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
@@ -105,7 +105,7 @@ class TestEparParse(TestCase):
         found_count = 0
         # Call get_legal_basis
         for (xml_body, filename) in xml_bodies:
-            output = epar_parse.get_legal_basis(xml_body)
+            output = epar_parser.get_legal_basis(xml_body)
             if output != ["no_legal_basis"] and output != ["not_easily_scrapable"]:
                 found_count += 1
                 self.assertGreater(len(output), 0)
@@ -134,7 +134,7 @@ class TestEparParse(TestCase):
         na_exists = False
         # Call get_prime
         for (xml_body, filename) in xml_bodies:
-            output = epar_parse.get_prime(xml_body)
+            output = epar_parser.get_prime(xml_body)
             if output == "yes":
                 yes_exists = True
             if output == "NA":
@@ -150,7 +150,7 @@ class TestEparParse(TestCase):
         found_count = 0
         # Call get_rapp
         for (xml_body, filename) in xml_bodies:
-            output = epar_parse.get_rapp(xml_body)
+            output = epar_parser.get_rapp(xml_body)
             if not output:
                 self.fail("Rapporteur is empty")
             # No rapporteur present in file, do not count as not scraped
@@ -178,7 +178,7 @@ class TestEparParse(TestCase):
         found_count = 0
         # Call get_corapp
         for (xml_body, filename) in xml_bodies:
-            output = epar_parse.get_corapp(xml_body)
+            output = epar_parser.get_corapp(xml_body)
             if not output:
                 self.fail("Co-rapporteur is empty")
             # No rapporteur present in file, do not count as not scraped
@@ -207,7 +207,7 @@ class TestEparParse(TestCase):
         yes_exists = False
         # Call get_reexamination
         for (xml_body, filename) in xml_bodies:
-            output = epar_parse.get_reexamination(xml_body)
+            output = epar_parser.get_reexamination(xml_body)
             if output == "yes":
                 yes_exists = True
             if not output:
@@ -222,7 +222,7 @@ class TestEparParse(TestCase):
         yes_exists = False
         # Call get_accelerated_assessment
         for (xml_body, filename) in xml_bodies:
-            output = epar_parse.get_accelerated_assessment(xml_body)
+            output = epar_parser.get_accelerated_assessment(xml_body)
             if output == "yes":
                 yes_exists = True
             if not output:

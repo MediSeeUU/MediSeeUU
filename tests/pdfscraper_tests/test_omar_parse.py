@@ -3,7 +3,7 @@ import regex as re
 import sys
 import os
 
-from scraping.file_scraper.pdf_scraper.parsers import omar_parse
+from scraping.file_parser.pdf_parser.parsers import omar_parser
 import xml.etree.ElementTree as ET
 
 test_data_loc = "../../data"
@@ -15,7 +15,7 @@ percentage_str = "Percentage found: "
 # Tests all functions of OMAR parser with all XML files
 class TestOmarParse(TestCase):
     """
-    Class that contains the unit tests for scraping.file_scraper.pdf_scraper.scrapers.epar_parse
+    Class that contains the unit tests for scraping.file_parser.pdf_parser.scrapers.epar_parser
     """
 
     def setUp(self):
@@ -55,7 +55,7 @@ class TestOmarParse(TestCase):
         # correct = False
         #
         # for xml_body in xml_bodies:
-        #     output = omar_parse.get_prevalence(xml_body)
+        #     output = omar_parser.get_prevalence(xml_body)
         #     if "prevalence" in output:
         #         correct = True
         #     if output == "NA":

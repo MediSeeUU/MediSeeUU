@@ -4,14 +4,14 @@ import os.path as path
 from xml.etree.ElementInclude import include
 import regex as re
 import json
-import scraping.file_scraper.pdf_scraper.__main__ as pdf_scraper
+import scraping.file_parser.pdf_parser.__main__ as pdf_parser
 
-test_data_foldername = "test_annex_parse_data"
+test_data_foldername = "test_annex_parser_data"
 
 
 class TestAnnexParse(TestCase):
     """
-    Unit testing annex_parse attribute scraping correctness with handmade test PDF files.
+    Unit testing annex_parser attribute scraping correctness with handmade test PDF files.
 
     Tested attributes:
         - eu_type_of_medicine
@@ -27,7 +27,7 @@ class TestAnnexParse(TestCase):
         Returns:
             None
         """        
-        pdf_scraper.parse_folder(path.abspath(test_data_foldername), test_data_foldername)
+        pdf_parser.parse_folder(path.abspath(test_data_foldername), test_data_foldername)
         # TODO: Try/catch this with appropriate exception when file does not exist
         attributes_json = open(path.join(path.abspath(test_data_foldername), test_data_foldername + "_pdf_parser.json"))
 
