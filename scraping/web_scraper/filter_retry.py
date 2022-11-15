@@ -19,7 +19,7 @@ med_type_dict = {"ha": ec_scraper.MedicineType.HUMAN_USE_ACTIVE,
                  "oa": ec_scraper.MedicineType.ORPHAN_ACTIVE,
                  "ow": ec_scraper.MedicineType.ORPHAN_WITHDRAWN}
 
-log = logging.getLogger("webscraper.filter_retry")
+log = logging.getLogger("web_scraper.filter_retry")
 
 
 def run_filter(n: int, data_filepath: str):

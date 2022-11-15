@@ -5,7 +5,7 @@ import bs4
 import regex as re
 import requests
 
-log = logging.getLogger("webscraper.ema_scraper")
+log = logging.getLogger("web_scraper.ema_scraper")
 
 
 def pdf_links_from_url(url: str) -> tuple[str, str]:

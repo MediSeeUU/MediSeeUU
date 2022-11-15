@@ -14,7 +14,7 @@ import json
 from scraping.web_scraper import json_helper
 from scraping.web_scraper import utils
 
-log = logging.getLogger("webscraper.download")
+log = logging.getLogger("web_scraper.download")
 
 
 def get_date_from_url(url: str):

@@ -20,10 +20,7 @@ scrape_medicine_type: list[ec_scraper.MedicineType] = [
     ec_scraper.MedicineType.ORPHAN_WITHDRAWN
 ]
 
-log = None
-
-# TODO: Logging to monolithic main
-tqdm_format_string = "{l_bar}{bar}| {n_fmt}/{total_fmt} "
+log = logging.getLogger("web_scraper")
 
 json_path = "web_scraper/"
 cpu_count = multiprocessing.cpu_count()
@@ -221,4 +218,7 @@ def main(data_filepath: str = "../data", scrape_ec: bool = True, scrape_ema: boo
 # Keep the code locally testable by including this.
 # When running this file specifically, the main function will run.
 if __name__ == "__main__":
+    import scraping.log_setup
+    scraping.log_setup.init_loggers()
+
     main(data_filepath="../../data")

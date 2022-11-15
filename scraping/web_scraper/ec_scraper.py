@@ -7,7 +7,7 @@ import bs4
 import regex as re
 import requests
 
-log = logging.getLogger("webscraper.ec_scraper")
+log = logging.getLogger("web_scraper.ec_scraper")
 
 
 # This is an enum that indicates the medicine type
