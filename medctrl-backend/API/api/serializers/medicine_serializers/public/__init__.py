@@ -12,6 +12,7 @@ from .history import (
 from .marketing_authorisation import (
     MarketingAuthorisationSerializer,
     AcceleratedAssessmentSerializer,
+    DurationSerializer,
 )
 
 from .medicinal_product import (
