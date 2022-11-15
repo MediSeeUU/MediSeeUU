@@ -2,9 +2,9 @@ from unittest import TestCase
 import regex as re
 import sys
 import os
-import scraping.pdf_module.pdf_scraper.helper as helper
+import scraping.file_scraper.pdf_scraper.helper as helper
 
-from scraping.pdf_module.pdf_scraper.parsers import epar_parse
+from scraping.file_scraper.pdf_scraper.parsers import epar_parse
 import xml.etree.ElementTree as ET
 
 

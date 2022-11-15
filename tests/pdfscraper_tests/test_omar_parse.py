@@ -3,7 +3,7 @@ import regex as re
 import sys
 import os
 
-from scraping.pdf_module.pdf_scraper.parsers import omar_parse
+from scraping.file_scraper.pdf_scraper.parsers import omar_parse
 import xml.etree.ElementTree as ET
 
 test_data_loc = "../../data"

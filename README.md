@@ -19,9 +19,12 @@ Comment out all the modules you don’t want to test in the `__main__.py` file.
 
 The program delivered creates the discussed folder structure and fills it with pdf, xml and json files.
 
-Currently the program has most of its functionality within the web scraper, filter, xml converter and pdf scraper modules. This means that all files up until pdf_data.json from the diagram below are made. 
+Currently, the program has most of its functionality within the web scraper, filter, xml converter and pdf scraper
+modules. This means that all files up until pdf_data.json from the diagram below are made. 
 
-Combiner is still a work in progress and will not create a json file containing useful information. The database communicator has functionality built in but will not communicate with the back-end since no useful data is being generated from the combiner module.
+Combiner is still a work in progress and will not create a json file containing useful information.
+The database communicator has functionality built in but will not communicate with the back-end 
+since no useful data is being generated from the combiner module.
 
 ## Architecture Diagram
 
@@ -29,7 +32,8 @@ Combiner is still a work in progress and will not create a json file containing 
 
 ## Modules
 
-- web_scraper: This module is responsible for scraping information from the appropriate websites. This includes information from the website itself, and PDFs located on the websites. A JSON file is provided containing general information that is present on the websites themselves.
+- web_scraper: This module is responsible for scraping information from the appropriate websites. 
+- This includes information from the website itself, and PDFs located on the websites. A JSON file is provided containing general information that is present on the websites themselves.
 - filter: This module keeps track of a list of PDFs that were not successfully scraped. This list is then given back to the web_scraper to make a new attempt at scraping these files.
 - pdf_scraper: This module uses the xml_converter create PDF files, which are used to create a JSON file that contains attributes that were parsed from every XML file.
 - xml_converter: This module creates an XML file for every PDF file.

@@ -66,7 +66,7 @@ jobs:
         make clean -C docs
         make html -C docs
     
-    - name: Generate Sphinx Docs for PDF Module
+    - name: Generate Sphinx Docs for File Scraper
       working-directory: scraping/file_scraper
       run: |
         make clean -C docs

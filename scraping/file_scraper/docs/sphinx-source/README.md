@@ -1,6 +1,6 @@
 # General
-The main functionality of the PDF scraper is to parse relevant attributes from the 
-pdf files obtained by the web scraper. 
+The main functionality of the file scraper is to parse relevant attributes from the 
+PDF files and Excel files obtained by the web scraper. 
 
 PDF Types:
 - Authorisation Decision                (dec)
@@ -35,7 +35,7 @@ Visualisation of the scraped attributes: [Visualisaties PDF](MediSee_PDF_visuali
 
 # pdf_xml_converter
 The pdf_xml_converter is responsible for converting pdf's to XML format. 
-Right now it's called by pdf module, but will be seperated for extra modularity.
+Right now it's called by pdf scraper, but it will be seperated for extra modularity.
 
 ## XML Structure
 The xml converter reads all lines from the given pdf and creates sections with 
@@ -45,9 +45,9 @@ the next header is found.
 Each section contains exactly one header element and between 0 and infinite paragraph tags.
 example of the structure:
 
-![[example_structure.png]]
+![example_structure](https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/file_scraper/docs/sphinx-source/example_structure.png?raw=true)
 
-Additionally the XML converter also includes meta data in the <head>.
+Additionally, the XML converter also includes metadata in the <head>.
 The meta data includes:
 - PDF file name: str
 - initial file indicatior: bool

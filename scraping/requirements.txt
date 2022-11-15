@@ -1,7 +1,7 @@
 # Main
 pause
 
-# PDF Module
+# File scraper
 PyMuPDF
 joblib
 python-dateutil

@@ -4,7 +4,7 @@ import os.path as path
 from xml.etree.ElementInclude import include
 import regex as re
 import json
-import scraping.pdf_module.pdf_scraper.__main__ as pdf_scraper
+import scraping.file_scraper.pdf_scraper.__main__ as pdf_scraper
 
 test_data_foldername = "test_annex_parse_data"
 
