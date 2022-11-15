@@ -18,7 +18,7 @@ class TestUpdateCache(TestCase):
 
     @patch('api.views.update_cache.cache.set')
     @patch('api.views.update_cache.UrlsSerializer')
-    @patch('api.views.update_cache.PublicMedicineSerializer')
+    @patch('api.views.update_cache.PublicMedicinalProductSerializer')
     def test_update_cache(self, public_medicine_serializer, urls_serializer, cache_set):
         """
         Test update_cache() function

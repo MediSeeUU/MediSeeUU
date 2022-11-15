@@ -6,15 +6,12 @@ from api.views.other import get_medicine_info
 class MedicineInfoTestCase(TestCase):
     def test_get_medicine_info(self):
         field1 = Object()
-        setattr(field1, "db_column", "field1")
         setattr(field1, "name", "field1")
         field1 = create_dashboard_column(field1, Category.General_Information, "format1", "title1")
         field2 = Object()
-        setattr(field2, "db_column", "field2")
         setattr(field2, "name", "field2")
         field2 = create_dashboard_column(field2, Category.Additional_Resources, "format2", "title2")
         field3 = Object()
-        setattr(field3, "db_column", "field3")
         setattr(field3, "name", "field3")
         field3 = create_dashboard_column(field3, Category.General_Information, "format3", "title3")
 
