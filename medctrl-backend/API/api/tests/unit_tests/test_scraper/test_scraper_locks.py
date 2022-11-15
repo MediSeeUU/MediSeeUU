@@ -2,7 +2,13 @@ from django.test import TestCase
 from unittest.mock import patch
 from api.views.scraper.scraper_medicine_post import ScraperMedicine
 from api.models.medicine_models import (
-    Medicine,
+    MedicinalProduct,
+    IngredientsAndSubstances,
+    MarketingAuthorisation,
+    AcceleratedAssessment,
+    Duration,
+    Procedures,
+    OrphanProduct,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
@@ -38,38 +44,64 @@ class ScraperLocksTestCase(TestCase):
             status_serializer (MagicMock): The mock object for the AuthorisationStatusSerializer
         """
 
-        # sample data inserted into the database
-        self.medicine = Medicine(
-            eu_pnumber=15,
-            atc_code="C03CA01",
+        self.ingredients_and_substances = IngredientsAndSubstances(
             active_substance="ACTIVE SUBSTANCE",
+            atc_code="C03CA01",
             eu_nas=True,
-            ema_procedure_start_initial="2000-01-01",
-            chmp_opinion_date="2000-01-02",
-            eu_aut_date="2000-01-03",
+        )
+        self.ingredients_and_substances.save()
+
+        # sample data inserted into the database
+        self.medicine = MedicinalProduct(
+            eu_pnumber="15",
             ema_url="emaurl.com",
             ec_url="ecurl.com",
             ema_number="1",
             eu_med_type="med",
             eu_atmp=False,
-            aut_url="auturl.com",
-            smpc_url="smpcurl.com",
-            epar_url="eparurl.com",
             ema_number_check=True,
-            ema_rapp="ema rapp",
-            ema_corapp="ema corapp",
+        )
+        self.medicine.save()
+
+        self.accelerated_assessment = AcceleratedAssessment(
             eu_accel_assess_g=True,
             eu_accel_assess_m=False,
+        )
+        self.accelerated_assessment.save()
+
+        self.duration = Duration(
             assess_time_days_total=10,
             assess_time_days_active=5,
             assess_time_days_cstop=2,
             ec_decision_time_days=1000,
+        )
+        self.duration.save()
+
+        MarketingAuthorisation.objects.create(
+            eu_pnumber=self.medicine,
+            ema_procedure_start_initial="2000-01-01",
+            chmp_opinion_date="2000-01-02",
+            eu_aut_date="2000-01-03",
+            aut_url="auturl.com",
+            smpc_url="smpcurl.com",
+            epar_url="eparurl.com",
+            ema_rapp="ema rapp",
+            ema_corapp="ema corapp",
+            ema_accelerated_assessment=self.accelerated_assessment,
+            duration=self.duration,
             ema_reexamination=False,
-            eu_referral=True,
+        )
+
+        Procedures.objects.create(
+            eu_pnumber=self.medicine,
             eu_suspension=True,
+            eu_referral=True,
+        )
+
+        self.orphan_product = OrphanProduct(
+            eu_od_number="8",
             omar_url="omarurl.com",
             odwar_url="odwarurl.com",
-            eu_od_number="8",
             ema_od_number="500",
             eu_od_con="eu od con",
             eu_od_date="2000-01-04",
@@ -77,7 +109,7 @@ class ScraperLocksTestCase(TestCase):
             eu_od_sponsor="eu od sponsor",
             eu_od_comp_date="2000-01-05",
         )
-        self.medicine.save()
+        self.orphan_product.save()
 
         HistoryAuthorisationType.objects.create(
             eu_pnumber=self.medicine,
@@ -110,7 +142,7 @@ class ScraperLocksTestCase(TestCase):
             eu_mah="MAH 1",
         )
         HistoryEUOrphanCon.objects.create(
-            eu_pnumber=self.medicine,
+            eu_od_number=self.orphan_product,
             change_date="2022-01-08",
             eu_orphan_con="eu orphan con 1",
         )
