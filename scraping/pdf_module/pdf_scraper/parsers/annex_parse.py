@@ -3,8 +3,10 @@ import xml.etree.ElementTree as ET
 import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xml_utils
 import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
 import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
-import scraping.pdf_module.pdf_scraper.__main__ as m
+import scraping.logger as logger
 import os
+
+log = logger.PDFLogger.log
 
 
 def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
@@ -21,15 +23,15 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     Returns:
         PIS.ParsedInfoStruct: Returns an updated struct, with the current attributes added to it.
     """
-    
+
     try:
         xml_tree = ET.parse(filepath)
     except ET.ParseError:
-        m.log.warning("ANNEX PARSER: failed to open xml file " + filepath)
+        log.warning("ANNEX PARSER: failed to open xml file " + filepath)
         return medicine_struct
 
     if medicine_struct is None:
-        m.log.warning("ANNEX PARSER: medicine_struct is none at " + filepath)
+        log.warning("ANNEX PARSER: medicine_struct is none at " + filepath)
         return
 
     xml_root = xml_tree.getroot()
@@ -44,7 +46,7 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     annex_attributes: dict[str, str] = {"pdf_file": xml_utils.file_get_name_pdf(xml_header),
                                         "xml_file": os.path.basename(filepath),
                                         "is_initial": is_initial_file,
-                                        "creation_date": creation_date, 
+                                        "creation_date": creation_date,
                                         "modification_date": modification_date}
 
     # add default attribute values for initial authorization annexes

@@ -5,12 +5,13 @@ import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xml_utils
 import xml.etree.ElementTree as ET
 import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
 import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
-import scraping.pdf_module.pdf_scraper.__main__ as m
+import scraping.logger as logger
 import os.path as path
 
 date_pattern: str = r"\d{1,2} \b(?!emea\b)\w+ \d{4}|\d{1,2}\w{2} \b(?!emea\b)\w+ \d{4}"  # DD/MONTH/YYYY
 procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure
 accelerated_assessment = "accelerated assessment"
+log = logger.PDFLogger.log
 
 
 def get_all(filename: str, xml_data: ET.Element) -> dict:
@@ -53,7 +54,7 @@ def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStr
     try:
         xml_tree = ET.parse(filepath)
     except ET.ParseError:
-        m.log.warning("EPAR PARSER: failed to open XML file " + filepath)
+        log.warning("EPAR PARSER: failed to open XML file " + filepath)
         return medicine_struct
     xml_root = xml_tree.getroot()
     xml_body = xml_root[1]
@@ -168,7 +169,7 @@ def get_legal_basis(xml: ET.Element) -> list[str]:
         if found:
             count += 1
             if not right_section:
-                m.log.warning("EPAR PARSER: Legal basis found before \"submission of the dossier\"")
+                log.warning("EPAR PARSER: Legal basis found before \"submission of the dossier\"")
             # Get only text after "legal basis for" if this string is in txt
             if len(txt.split("legal basis for", 1)) > 1:
                 txt = txt.split("legal basis for", 1)[1]

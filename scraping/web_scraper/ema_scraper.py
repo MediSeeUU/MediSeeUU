@@ -75,7 +75,8 @@ def pdf_links_from_url(url: str) -> tuple[str, str]:
 
 
 def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:
-    """ Finds the url with the highest priority in a list of urls
+    """
+    Finds the url with the highest priority in a list of urls
 
     Args:
         priority_list (list[str]): String that the url must contain. Strings with a lower index have higher priority
@@ -94,7 +95,8 @@ def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:
 
 
 def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
-    """ Gets all the annex 10 files from the EMA website.
+    """
+    Gets all the annex 10 files from the EMA website.
 
     The website is scraped for all annex 10 files. Whenever this scraper runs, it checks whether it has to
     update the links in the dictionary, based on whether the document on the site was updated or not. It also
@@ -151,7 +153,8 @@ def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[s
 
 
 def find_last_updated_date(text: str) -> datetime:
-    """ Converts a piece of text with information when an excel-sheet was last updated to a datetime object
+    """
+    Converts a piece of text with information when an excel-sheet was last updated to a datetime object
 
     Args:
         text (str): text containing information when it was last updated.

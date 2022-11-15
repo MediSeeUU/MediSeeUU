@@ -3,8 +3,10 @@ import re
 import xml.etree.ElementTree as ET
 import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
 import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xml_utils
-import scraping.pdf_module.pdf_scraper.__main__ as m
+import scraping.logger as logger
 import os
+
+log = logger.PDFLogger.log
 
 
 def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
@@ -25,11 +27,11 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     try:
         xml_tree = ET.parse(filepath)
     except ET.ParseError:
-        m.log.warning("OMAR PARSER: failed to open xml file " + filepath)
+        log.warning("OMAR PARSER: failed to open xml file " + filepath)
         return medicine_struct
 
     if medicine_struct is None:
-        m.log.warning("OMAR PARSER: medicine_struct is none at " + filepath)
+        log.warning("OMAR PARSER: medicine_struct is none at " + filepath)
         return medicine_struct
 
     xml_root = xml_tree.getroot()

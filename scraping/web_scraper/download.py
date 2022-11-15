@@ -54,22 +54,22 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str], d
 # Download pdfs using the dictionaries created from the json file
 def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_urls: list[str], med_dict: dict[str, str], data_path: str):
     """
-        Downloads the pdfs of the EC website files for a specific medicine and a specific file type (decision or annex)
-        It evaluates the string in the pdf_url_dict to a list of urls which then can be used for downloading with the
-        download_pdf_from_url function.
-        The filename_elements used for structuring the filename are also specified in this function.
+    Downloads the pdfs of the EC website files for a specific medicine and a specific file type (decision or annex)
+    It evaluates the string in the pdf_url_dict to a list of urls which then can be used for downloading with the
+    download_pdf_from_url function.
+    The filename_elements used for structuring the filename are also specified in this function.
 
-        Args:
-            eu_num (str):
-                The EU number of the medicine where the files should be downloaded for.
-            pdf_type (str):
-                The type of pdf: decision or annex
-            pdf_urls (list[str]):
-                The list containing the urls to the pdf files.
-            med_dict (dict[str,str]):
-                The dictionary containing the attributes of the medicine. Used for structuring the filename
-            data_path (str):
-                The path to the data folder
+    Args:
+        eu_num (str):
+            The EU number of the medicine where the files should be downloaded for.
+        pdf_type (str):
+            The type of pdf: decision or annex
+        pdf_urls (list[str]):
+            The list containing the urls to the pdf files.
+        med_dict (dict[str,str]):
+            The dictionary containing the attributes of the medicine. Used for structuring the filename
+        data_path (str):
+            The path to the data folder
     """
     file_counter = 0
     for url in pdf_urls:

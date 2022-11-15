@@ -4,11 +4,12 @@ from typing import TextIO
 import fitz
 import scraping.pdf_module.pdf_scraper.pdf_helper as ph
 import scraping.pdf_module.pdf_scraper.xml_tags as tags
-import scraping.pdf_module.pdf_scraper.__main__ as m
+import scraping.logger as logger
 from os import path
 import re
 
 header_indicator = "|-HEADER-|"
+log = logger.PDFLogger.log
 
 
 def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
@@ -27,7 +28,7 @@ def convert_pdf_to_xml(source_filepath: str, output_filepath: str):
         sections = split_paragraphs(paragraphs)
         print_xml(sections, output_filepath, document.metadata["creationDate"], document.metadata["modDate"])
     except fitz.FileDataError:
-        m.log.warning("XML CONVERTER: Could not open PDF: " + source_filepath)
+        log.warning("XML CONVERTER: Could not open PDF: " + source_filepath)
 
 
 def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:

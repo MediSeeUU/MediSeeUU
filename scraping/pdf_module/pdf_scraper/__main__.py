@@ -3,6 +3,7 @@ from os import listdir
 import os.path as path
 import json
 import scraping.pdf_module.pdf_scraper.pdf_xml_converter as xml_converter
+import scraping.logger as logger
 import joblib
 from datetime import datetime
 import multiprocessing
@@ -13,14 +14,6 @@ from scraping.pdf_module.pdf_scraper.parsers import epar_parse
 from scraping.pdf_module.pdf_scraper.parsers import omar_parse
 from scraping.pdf_module.pdf_scraper.parsers import annex_parse
 
-import logging
-
-log_handler_console = logging.StreamHandler()
-log_handler_file = logging.FileHandler("pdf_scraper.log")
-
-logging.basicConfig(level=logging.INFO, handlers=[log_handler_console, log_handler_file])
-log = logging.getLogger("pdf_scraper")
-
 
 # Main file to run all parsers
 def main(directory: str):
@@ -30,6 +23,7 @@ def main(directory: str):
     Args:
         directory: data folder, containing medicine folders
     """
+    log = logger.PDFLogger.log
     log.info(f"=== NEW LOG {datetime.today()} ===")
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
 
