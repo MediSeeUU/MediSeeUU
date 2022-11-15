@@ -1,4 +1,7 @@
-import attribute_definitions as attr
+import attributes.id as attr_id
+import attributes.sources as attr_src
+import attributes.combine as attr_combine
+
 import json
 import os.path as path
 
@@ -13,7 +16,6 @@ def combine_folder(filepath: str, folder_name: str):
         web_data: dict[any, any] = json.load(web_data_json)
 
     decision_files = sorted([(int(dictionary["filename"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["decisions"]], key=lambda x : x[0])
-    print(decision_files)
     annex_files = sorted([(int(dictionary["pdf_file"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]], key=lambda x : x[0])
 
     #TODO: try catch deez nutz
@@ -28,8 +30,7 @@ def combine_folder(filepath: str, folder_name: str):
     }
 
     combined_dict: dict[str, any] = {}
-    print(sources_to_dicts(attr.id.eu_aut_date.value["sources"], file_dicts))
-    value, all_equal = get_attribute(attr.id.eu_aut_date.value["name"], sources_to_dicts(attr.id.eu_aut_date.value["sources"], file_dicts), attr.id.eu_aut_date.value["combine"])
+    value, all_equal = get_attribute(attr.id.eu_aut_date.value["name"], sources_to_dicts(attr_src., file_dicts), attr.id.eu_aut_date.value["combine"])
     combined_dict[attr.id.eu_aut_date.value["name"]] = value
 
     # for attribute in [attribute["name"] for attribute in dir(attr) where "__"]:
@@ -63,4 +64,9 @@ def get_attribute(attribute_name: str, dicts: list[dict], combine_attributes = F
 
     return (attributes[0], all_equal)
 
-combine_folder("D:\Git_repos\MediSeeUU\data\EU-1-99-126", "EU-1-99-126")
+# combine_folder("D:\Git_repos\MediSeeUU\data\EU-1-99-126", "EU-1-99-126")
+# print(attr.id.atc_code.value["name"])
+print(attr.atc_code_name)
+print(attr.atc_code_sources)
+all_names = [attribute for attribute in dir(attr) if "_alias" in attribute]
+print(all_names)
