@@ -10,12 +10,10 @@ class Locks(models.Model):
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,
         models.CASCADE,
-        db_column="eu_pnumber",
         null=False,
     )
 
     column_name = models.CharField(
-        db_column="column_name",
         max_length=255,
         null=False
     )

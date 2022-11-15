@@ -8,7 +8,6 @@ from .common import create_dashboard_column, Category
 class AcceleratedAssessment(models.Model):
     eu_accel_assess_g = create_dashboard_column(
         models.BooleanField(
-            db_column="eu_accel_assess_g",
             null=True,
         ),
         Category.General_Information,
@@ -18,7 +17,6 @@ class AcceleratedAssessment(models.Model):
 
     eu_accel_assess_m = create_dashboard_column(
         models.BooleanField(
-            db_column="eu_accel_assess_m",
             null=True,
         ),
         Category.General_Information,

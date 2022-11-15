@@ -14,7 +14,6 @@ class LegalBases(models.Model):
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,
         models.CASCADE,
-        db_column="eu_pnumber",
         null=False,
         blank=False,
         related_name="eu_legal_basis",
@@ -22,7 +21,6 @@ class LegalBases(models.Model):
 
     eu_legal_basis = create_dashboard_column(
         models.CharField(
-            db_column="eu_legal_basis",
             max_length=14,
             choices=LegalBasesTypes.choices,
             null=False,

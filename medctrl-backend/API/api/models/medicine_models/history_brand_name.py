@@ -14,20 +14,17 @@ class HistoryBrandName(models.Model):
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,
         models.CASCADE,
-        db_column="eu_pnumber", 
         null=False,
         blank=False,
     )
 
     change_date = models.DateField(
-        db_column="change_date", 
         null=False,
         blank=False,
     )
 
     eu_brand_name = create_dashboard_history_columns(
         models.TextField(
-            db_column="eu_brand_name",
             null=False,
             blank=False,
         ),

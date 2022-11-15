@@ -8,7 +8,6 @@ from .common import create_dashboard_column, Category
 
 class IngredientsAndSubstances(models.Model):
     active_substance_hash = models.CharField(
-        db_column="active_substance_hash",
         max_length=32,
         primary_key=True,
         null=False,
@@ -17,7 +16,6 @@ class IngredientsAndSubstances(models.Model):
 
     active_substance = create_dashboard_column(
         models.TextField(
-            db_column="active_substance",
             null=False,
             blank=False,
         ),
@@ -28,7 +26,6 @@ class IngredientsAndSubstances(models.Model):
 
     atc_code = create_dashboard_column(
         models.CharField(
-            db_column="atc_code",
             max_length=7,
             null=False,
             blank=False,
@@ -40,7 +37,6 @@ class IngredientsAndSubstances(models.Model):
 
     eu_nas = create_dashboard_column(
         models.BooleanField(
-            db_column="eu_nas",
             null=True,
             blank=False,
         ),

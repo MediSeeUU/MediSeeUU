@@ -90,9 +90,20 @@ class DashboardColumn:
     """
     Holds values used in medicine_info_json to create a column in the dashboard.
     """
-    def __init__(self, category, data_key, data_format, data_value):
+    def __init__(self, category: Category, prefix: str, suffix: str, data_format: str, data_value: str):
+        """
+        Creates a DashboardColumn
+
+        Args:
+            category (Category): Category the variable should be shown in on the dashboard.
+            prefix (str): Prefix is inserted before the field name to be displayed on the dashboard.
+            suffix (str): Suffix is inserted after the field name to be displayed on the dashboard.
+            data_format (str): Data format for the dashboard. Example: `link`.
+            data_value (str): Title for the variable to be shown on the dashboard.
+        """
         self.category = category
-        self.data_key = data_key
+        self.prefix = prefix
+        self.suffix = suffix
         self.data_format = data_format
         self.data_value = data_value
 
@@ -110,7 +121,7 @@ def create_dashboard_column(field: models.Field, category: Category, data_format
     Returns:
         Field: Returns the original field, but updated with the correct information.
     """    
-    dashboard_column = DashboardColumn(category, field.db_column, data_format, display_name)
+    dashboard_column = DashboardColumn(category, None, None, data_format, display_name)
     setattr(field, "dashboard_columns", [dashboard_column])
     return field
 
@@ -130,14 +141,16 @@ def create_dashboard_history_columns(field: models.Field, category: Category, da
     """    
     initial_dashboard_column = DashboardColumn(
         category,
-        field.db_column + "_initial",
+        None,
+        "_initial",
         data_format,
         "Initial " + display_name
     )
 
     current_dashboard_column = DashboardColumn(
         category,
-        field.db_column + "_current",
+        None,
+        "_current",
         data_format,
         "Current " + display_name
     )
@@ -160,7 +173,8 @@ def create_dashboard_history_column_initial(field: models.Field, category: Categ
     """    
     initial_dashboard_column = DashboardColumn(
         category,
-        field.db_column + "_initial",
+        None,
+        "_initial",
         data_format,
         "Initial " + display_name
     )
@@ -183,7 +197,8 @@ def create_dashboard_history_column_current(field: models.Field, category: Categ
     """   
     current_dashboard_column = DashboardColumn(
         category,
-        field.db_column + "_current",
+        None,
+        "_current",
         data_format,
         "Current " + display_name
     )

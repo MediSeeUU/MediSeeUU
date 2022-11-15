@@ -14,20 +14,17 @@ class HistoryEUOrphanCon(models.Model):
     eu_od_number = models.ForeignKey(
         OrphanProduct,
         models.CASCADE,
-        db_column="eu_od_number",
         null=False,
         blank=False,
     )
 
     change_date = models.DateField(
-        db_column="change_date",
         null=False,
         blank=False,
     )
 
     eu_orphan_con = create_dashboard_history_columns(
         models.TextField(
-            db_column="eu_orphan_con",
             null=False,
             blank=False,
         ),

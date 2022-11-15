@@ -46,9 +46,10 @@ def get_medicine_info(perm, mock=None):
     for field in models_fields:
         if hasattr(field, "dashboard_columns") and has_permission(perm, field.name):
             for dashboard_column in field.dashboard_columns:
-                if has_permission(perm, dashboard_column.data_key):
+                data_key = f"{dashboard_column.prefix or ''}{field.name}{dashboard_column.suffix or ''}"
+                if has_permission(perm, data_key):
                     data[dashboard_column.category.value].append({
-                        "data-key": dashboard_column.data_key,
+                        "data-key": data_key,
                         "data-format": dashboard_column.data_format,
                         "data-value": dashboard_column.data_value,
                     })

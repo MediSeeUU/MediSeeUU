@@ -8,7 +8,6 @@ from .common import create_dashboard_column, Category
 class Duration(models.Model):
     assess_time_days_total = create_dashboard_column(
         models.IntegerField(
-            db_column="assess_time_days_total",
             null=False,
         ),
         Category.General_Information,
@@ -18,7 +17,6 @@ class Duration(models.Model):
 
     assess_time_days_active = create_dashboard_column(
         models.IntegerField(
-            db_column="assess_time_days_active",
             null=False,
         ),
         Category.General_Information,
@@ -28,7 +26,6 @@ class Duration(models.Model):
 
     assess_time_days_cstop = create_dashboard_column(
         models.IntegerField(
-            db_column="assess_time_days_cstop",
             null=False,
         ),
         Category.General_Information,
@@ -38,7 +35,6 @@ class Duration(models.Model):
 
     ec_decision_time_days = create_dashboard_column(
         models.IntegerField(
-            db_column="ec_decision_time_days",
             null=False,
         ),
         Category.General_Information,

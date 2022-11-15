@@ -13,7 +13,6 @@ class MedicinalProduct(models.Model):
     """    
     eu_pnumber = create_dashboard_column(
         models.CharField(
-            db_column="eu_pnumber",
             max_length=255,
             primary_key=True,
             null=False,
@@ -25,18 +24,14 @@ class MedicinalProduct(models.Model):
     )
 
     ema_url = create_dashboard_column(
-        models.URLField(
-            db_column="ema_url",
-        ),
+        models.URLField(),
         Category.General_Information,
         "link",
         "EMA Product Page Link",
     )
 
     ec_url = create_dashboard_column(
-        models.URLField(
-            db_column="ec_url",
-        ),
+        models.URLField(),
         Category.General_Information,
         "link",
         "EC Product Page Link",
@@ -44,7 +39,6 @@ class MedicinalProduct(models.Model):
 
     ema_number = create_dashboard_column(
         models.CharField(
-            db_column="ema_number",
             max_length=255,
         ),
         Category.General_Information,
@@ -53,9 +47,7 @@ class MedicinalProduct(models.Model):
     )
 
     eu_med_type = create_dashboard_column(
-        models.TextField(
-            db_column="eu_med_type",
-        ),
+        models.TextField(),
         Category.General_Information,
         "string",
         "EU Medicine Type",
@@ -63,7 +55,6 @@ class MedicinalProduct(models.Model):
 
     eu_atmp = create_dashboard_column(
         models.BooleanField(
-            db_column="eu_atmp",
             null=True,
         ),
         Category.General_Information,
@@ -73,7 +64,6 @@ class MedicinalProduct(models.Model):
 
     ema_number_check = create_dashboard_column(
         models.BooleanField(
-            db_column="ema_number_check",
             null=True,
         ),
         Category.General_Information,
@@ -84,7 +74,6 @@ class MedicinalProduct(models.Model):
     ingredients_and_substances = models.ForeignKey(
         IngredientsAndSubstances,
         models.CASCADE,
-        db_column="ingredients_and_substances",
     )
 
     class Meta:

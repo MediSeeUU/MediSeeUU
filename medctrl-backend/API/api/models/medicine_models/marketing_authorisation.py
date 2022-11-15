@@ -12,7 +12,6 @@ class MarketingAuthorisation(models.Model):
     eu_pnumber = models.OneToOneField(
         MedicinalProduct,
         models.CASCADE,
-        db_column="eu_pnumber",
         primary_key=True,
         null=False,
         blank=False,
@@ -21,7 +20,7 @@ class MarketingAuthorisation(models.Model):
 
     ema_procedure_start_initial = create_dashboard_column(
         models.DateField(
-            db_column="ema_procedure_start_initial",
+            null=False,
         ),
         Category.General_Information,
         "date",
@@ -30,7 +29,6 @@ class MarketingAuthorisation(models.Model):
 
     chmp_opinion_date = create_dashboard_column(
         models.DateField(
-            db_column="chmp_opinion_date",
             null=False,
         ),
         Category.General_Information,
@@ -40,7 +38,6 @@ class MarketingAuthorisation(models.Model):
 
     eu_aut_date = create_dashboard_column(
         models.DateField(
-            db_column="eu_aut_date",
             null=False,
         ),
         Category.General_Information,
@@ -50,7 +47,6 @@ class MarketingAuthorisation(models.Model):
 
     aut_url = create_dashboard_column(
         models.URLField(
-            db_column="aut_url",
             null=False,
         ),
         Category.General_Information,
@@ -60,7 +56,6 @@ class MarketingAuthorisation(models.Model):
 
     smpc_url = create_dashboard_column(
         models.URLField(
-            db_column="smpc_url",
             null=False,
         ),
         Category.General_Information,
@@ -70,7 +65,6 @@ class MarketingAuthorisation(models.Model):
 
     epar_url = create_dashboard_column(
         models.URLField(
-            db_column="epar_url",
             null=False,
         ),
         Category.General_Information,
@@ -80,7 +74,6 @@ class MarketingAuthorisation(models.Model):
 
     ema_rapp = create_dashboard_column(
         models.TextField(
-            db_column="ema_rapp",
             null=False,
         ),
         Category.General_Information,
@@ -90,7 +83,6 @@ class MarketingAuthorisation(models.Model):
 
     ema_corapp = create_dashboard_column(
         models.TextField(
-            db_column="ema_corapp",
             null=False,
         ),
         Category.General_Information,
@@ -101,18 +93,15 @@ class MarketingAuthorisation(models.Model):
     ema_accelerated_assessment = models.OneToOneField(
         AcceleratedAssessment,
         models.CASCADE,
-        db_column="ema_accelerated_assessment",
     )
 
     duration = models.OneToOneField(
         Duration,
         models.CASCADE,
-        db_column="duration",
     )
 
     ema_reexamination = create_dashboard_column(
         models.BooleanField(
-            db_column="ema_reexamination",
             null=False,
         ),
         Category.General_Information,

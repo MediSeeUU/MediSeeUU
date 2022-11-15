@@ -14,18 +14,15 @@ class HistoryAuthorisationType(models.Model):
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,
         models.CASCADE, 
-        db_column="eu_pnumber", 
         null=False,
     )
 
     change_date = models.DateField(
-        db_column="change_date", 
         null=False,
     )
 
     eu_aut_type = create_dashboard_history_columns(
         models.CharField(
-            db_column="eu_aut_type",
             max_length=11,
             choices=AutTypes.choices,
             null=False,

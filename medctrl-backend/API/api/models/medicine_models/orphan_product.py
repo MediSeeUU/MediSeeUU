@@ -9,7 +9,6 @@ from .common import create_dashboard_column, Category
 class OrphanProduct(models.Model):
     eu_od_number = create_dashboard_column(
         models.CharField(
-            db_column="eu_od_number",
             max_length=255,
             primary_key=True,
             null=False,
@@ -22,7 +21,6 @@ class OrphanProduct(models.Model):
 
     omar_url = create_dashboard_column(
         models.URLField(
-            db_column="omar_url",
             null=False
         ),
         Category.General_Information,
@@ -32,7 +30,6 @@ class OrphanProduct(models.Model):
 
     odwar_url = create_dashboard_column(
         models.URLField(
-            db_column="odwar_url",
             null=False
         ),
         Category.General_Information,
@@ -43,12 +40,10 @@ class OrphanProduct(models.Model):
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,
         models.CASCADE,
-        db_column="eu_pnumber",
     )
 
     ema_od_number = create_dashboard_column(
         models.CharField(
-            db_column="ema_od_number",
             max_length=255,
             null=False
         ),
@@ -59,7 +54,6 @@ class OrphanProduct(models.Model):
 
     eu_od_con = create_dashboard_column(
         models.TextField(
-            db_column="eu_od_con",
             null=False
         ),
         Category.General_Information,
@@ -69,7 +63,6 @@ class OrphanProduct(models.Model):
 
     eu_od_date = create_dashboard_column(
         models.DateField(
-            db_column="eu_od_date",
             null=False
         ),
         Category.General_Information,
@@ -79,7 +72,6 @@ class OrphanProduct(models.Model):
 
     eu_od_comp_date = create_dashboard_column(
         models.DateField(
-            db_column="eu_od_comp_date",
             null=False
         ),
         Category.General_Information,
@@ -89,7 +81,6 @@ class OrphanProduct(models.Model):
 
     eu_od_pnumber = create_dashboard_column(
         models.CharField(
-            db_column="eu_od_pnumber",
             max_length=255,
             null=False
         ),
@@ -100,7 +91,6 @@ class OrphanProduct(models.Model):
 
     eu_od_sponsor = create_dashboard_column(
         models.TextField(
-            db_column="eu_od_sponsor",
             null=False
         ),
         Category.General_Information,

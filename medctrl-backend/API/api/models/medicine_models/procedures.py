@@ -10,13 +10,11 @@ class Procedures(models.Model):
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,
         models.CASCADE,
-        db_column="eu_pnumber",
         null=False,
     )
 
     eu_suspension = create_dashboard_column(
         models.BooleanField(
-            db_column="eu_suspension",
             null=False
         ),
         Category.General_Information,
@@ -26,7 +24,6 @@ class Procedures(models.Model):
 
     eu_referral = create_dashboard_column(
         models.BooleanField(
-            db_column="eu_referral",
             null=False
         ),
         Category.General_Information,

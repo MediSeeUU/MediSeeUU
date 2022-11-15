@@ -19,14 +19,12 @@ class HistoryAuthorisationStatus(models.Model):
     )
 
     change_date = models.DateField(
-        db_column="change_date", 
         null=False,
         blank=False,
     )
 
     eu_aut_status = create_dashboard_column(
         models.CharField(
-            db_column="eu_aut_status",
             max_length=10,
             choices=AutStatus.choices,
             null=False,
