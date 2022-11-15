@@ -36,4 +36,5 @@ def get_medicine_json(medicine_path: str, json_list: list):
     json_list.append(medicine_json_dir)
 
 
-compile_json_files("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\pdf_parser\\Text_scraper\\parsers\\test_data")
+# Todo: Remove this when no longer needed
+# compile_json_files("D:\\Git_repos\\PharmaVisual\\medctrl-scraper\\pdf_parser\\Text_scraper\\parsers\\test_data")
