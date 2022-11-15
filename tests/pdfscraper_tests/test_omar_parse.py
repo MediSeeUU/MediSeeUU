@@ -70,7 +70,7 @@ class TestOmarParse(TestCase):
 
         for (xml_body, xml_file) in xml_bodies:
             bullet_point = xml_to_bullet_points(xml_body)
-            result = omar_parse.get_prevalence(bullet_point)
+            result = omar_parser.get_prevalence(bullet_point)
             if result == "NA":
                 NAs_found += 1
                 print("No prevalence found in: " + xml_file)
