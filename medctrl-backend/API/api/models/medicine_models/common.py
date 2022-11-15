@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from enum import Enum
 from django.db import models
-from typing import TypeVar, Type
+
 
 class Category(Enum):
     """
@@ -114,12 +114,13 @@ def create_dashboard_column(field: models.Field, category: Category, data_format
     setattr(field, "dashboard_columns", [dashboard_column])
     return field
 
-def create_dashboard_history_columns(field: Field, category: Category, data_format: str, display_name: str):
+
+def create_dashboard_history_columns(field: models.Field, category: Category, data_format: str, display_name: str):
     """
     Creates two dashboard columns out of a single model column, an initial and a current one for histories.
 
     Args:
-        field (Field): The type that the database attribute will have (CharField, BooleanField, etc.).
+        field (models.Field): The type that the database attribute will have (CharField, BooleanField, etc.).
         category (Category): Which category the attribute should belong to.
         data_format (str): Defines what data format the attribute should have.
         display_name (str): This is the name that the attribute displays in the database.
@@ -144,12 +145,12 @@ def create_dashboard_history_columns(field: Field, category: Category, data_form
     return field
 
 
-def create_dashboard_history_column_initial(field: Field, category: Category, data_format: str, display_name: str):
+def create_dashboard_history_column_initial(field: models.Field, category: Category, data_format: str, display_name: str):
     """
     Creates the initial column for a history column.
 
     Args:
-        field (Field): The type that the database attribute will have (CharField, BooleanField, etc.).
+        field (models.Field): The type that the database attribute will have (CharField, BooleanField, etc.).
         category (Category): Which category the attribute should belong to.
         data_format (str): Defines what data format the attribute should have.
         display_name (str): This is the name that the attribute displays in the database.
@@ -167,12 +168,12 @@ def create_dashboard_history_column_initial(field: Field, category: Category, da
     return field
 
 
-def create_dashboard_history_column_current(field: Field, category: Category, data_format: str, display_name: str):
+def create_dashboard_history_column_current(field: models.Field, category: Category, data_format: str, display_name: str):
     """
     Creates the current column for a history column.
 
     Args:
-        field (Field): The type that the database attribute will have (CharField, BooleanField, etc.).
+        field (models.Field): The type that the database attribute will have (CharField, BooleanField, etc.).
         category (Category): Which category the attribute should belong to.
         data_format (str): Defines what data format the attribute should have.
         display_name (str): This is the name that the attribute displays in the database.

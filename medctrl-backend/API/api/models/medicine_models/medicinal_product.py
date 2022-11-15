@@ -81,10 +81,10 @@ class MedicinalProduct(models.Model):
         "EMA Number Check",
     )
 
-    ingredients_substance = models.ForeignKey(
+    ingredients_and_substances = models.ForeignKey(
         IngredientsAndSubstances,
         models.CASCADE,
-        db_column="ingredients_substance",
+        db_column="ingredients_and_substances",
     )
 
     class Meta:

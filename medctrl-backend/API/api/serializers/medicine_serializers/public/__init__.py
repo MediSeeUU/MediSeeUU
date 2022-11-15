@@ -7,7 +7,15 @@ from .history import (
     PrimeSerializer,
     EUOrphanConSerializer
 )
+
+
+from .marketing_authorisation import (
+    MarketingAuthorisationSerializer,
+    AcceleratedAssessmentSerializer,
+)
+
 from .medicinal_product import (
-    PublicMedicineSerializer,
+    PublicMedicinalProductSerializer,
     LegalBasesSerializer,
+    IngredientsAndSubstancesSerializer,
 )

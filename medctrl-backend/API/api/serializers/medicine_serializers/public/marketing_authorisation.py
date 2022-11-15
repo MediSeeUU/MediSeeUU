@@ -3,13 +3,23 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 from rest_framework import serializers
-from api.models.medicine_models import MarketingAuthorisation
+from api.models.medicine_models import AcceleratedAssessment, MarketingAuthorisation
 
 
-class PublicMarketingAuthorisationSerializer(serializers.ModelSerializer):
+class AcceleratedAssessmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        """
+        Meta information
+        """
+        model = AcceleratedAssessment
+        exclude = ["id", ]
+
+
+class MarketingAuthorisationSerializer(serializers.ModelSerializer):
     class Meta:
         """
         Meta information
         """
         model = MarketingAuthorisation
         fields = "__all__"
+

@@ -9,7 +9,7 @@
 
 from rest_framework import viewsets
 from rest_framework import permissions
-from api.serializers.medicine_serializers import UrlsSerializer
+from api.serializers.medicine_serializers.scraper import UrlsSerializer
 from api.models.medicine_models import MedicinalProduct
 from rest_framework.response import Response
 from django.core.cache import cache

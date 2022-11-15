@@ -16,6 +16,7 @@ class MarketingAuthorisation(models.Model):
         primary_key=True,
         null=False,
         blank=False,
+        related_name="marketing_authorisation",
     )
 
     ema_procedure_start_initial = create_dashboard_column(

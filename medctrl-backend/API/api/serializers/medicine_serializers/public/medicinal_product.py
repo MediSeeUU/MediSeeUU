@@ -13,6 +13,7 @@ from rest_framework import serializers
 from api.models.medicine_models import (
     MedicinalProduct,
     LegalBases,
+    IngredientsAndSubstances,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
@@ -21,6 +22,7 @@ from api.models.medicine_models import (
     HistoryPrime,
 )
 from api.serializers.medicine_serializers.public import (
+    MarketingAuthorisationSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,
@@ -42,11 +44,22 @@ class LegalBasesSerializer(serializers.ModelSerializer):
         fields = ("eu_legal_basis",)
 
 
-class PublicMedicineSerializer(serializers.ModelSerializer):
+class IngredientsAndSubstancesSerializer(serializers.ModelSerializer):
+    class Meta:
+        """
+        Meta information
+        """
+        model = IngredientsAndSubstances
+        exclude = ["active_substance_hash", ]
+
+
+class PublicMedicinalProductSerializer(serializers.ModelSerializer):
     """
     This is the view endpoint for a medicine.
     """
     eu_legal_basis = LegalBasesSerializer(many=True, read_only=True)
+    ingredients_and_substances = IngredientsAndSubstancesSerializer(read_only=True)
+    marketing_authorisation = MarketingAuthorisationSerializer(read_only=True)
     eu_aut_status = serializers.SerializerMethodField()
     eu_aut_type_initial = serializers.SerializerMethodField()
     eu_aut_type_current = serializers.SerializerMethodField()
@@ -64,7 +77,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         model = MedicinalProduct
         fields = "__all__"
 
-    def get_eu_aut_status(self, authorisation_status):
+    def get_eu_aut_status(self, authorisation_status) -> dict:
         """
         This retrieves the authorisation status from the database for each medicine.
 
@@ -72,7 +85,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             authorisation_status (Any): The autherisation status of the medicine.
 
         Returns:
-            str: Returns the data of the relevant serializer as JSON.
+            dict: Returns the data of the relevant serializer as a dict.
         """        
         queryset = HistoryAuthorisationStatus.objects.filter(eu_pnumber=authorisation_status.eu_pnumber)
         try:
@@ -81,8 +94,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return AuthorisationStatusSerializer(instance=queryset, read_only=True).data
 
-
-    def get_eu_aut_type_initial(self, authorisation_type):
+    def get_eu_aut_type_initial(self, authorisation_type) -> dict:
         """
         This retrieves the initial authorisation type from the database for each medicine.
 
@@ -90,7 +102,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             authorisation_type (Any): The autherisation status of the medicine.
 
         Returns:
-            str: Returns the data of the relevant serializer as JSON.
+            dict: Returns the data of the relevant serializer as a dict.
         """        
         queryset = HistoryAuthorisationType.objects.filter(eu_pnumber=authorisation_type.eu_pnumber)
         try:
@@ -99,8 +111,8 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return AuthorisationTypeSerializer(instance=queryset, read_only=True).data
 
-
-    def get_eu_aut_type_current(self, authorisation_type):
+    @staticmethod
+    def get_eu_aut_type_current(authorisation_type) -> dict:
         """
         This retrieves the current authorisation type from the database for each medicine.
 
@@ -108,7 +120,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             authorisation_type (Any): The autherisation type of the medicine.
 
         Returns:
-            str: Returns the data of the relevant serializer as JSON.
+            dict: Returns the data of the relevant serializer as a dict.
         """   
         queryset = HistoryAuthorisationType.objects.filter(eu_pnumber=authorisation_type.eu_pnumber)
         try:
@@ -118,7 +130,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         return AuthorisationTypeSerializer(instance=queryset, read_only=True).data
 
 
-    def get_eu_brand_name_initial(self, brand_name):
+    def get_eu_brand_name_initial(self, brand_name) -> dict:
         """
         This retrieves the initial brand name from the database for each medicine.
 
@@ -126,7 +138,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             brand_name (Any): The brand name of the medicine.
 
         Returns:
-            str: Returns the data of the relevant serializer as JSON.
+            dict: Returns the data of the relevant serializer as a dict.
         """   
         queryset = HistoryBrandName.objects.filter(eu_pnumber=brand_name.eu_pnumber)
         try:
@@ -136,7 +148,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         return BrandNameSerializer(instance=queryset, read_only=True).data
 
 
-    def get_eu_brand_name_current(self, brand_name):
+    def get_eu_brand_name_current(self, brand_name) -> dict:
         """
         This retrieves the current brand name from the database for each medicine.
 
@@ -144,7 +156,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             brand_name (Any): The brand name of the medicine.
 
         Returns:
-            str: Returns the data of the relevant serializer as JSON.
+            dict: Returns the data of the relevant serializer as a dict.
         """   
         queryset = HistoryBrandName.objects.filter(eu_pnumber=brand_name.eu_pnumber)
         try:
@@ -154,7 +166,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         return BrandNameSerializer(instance=queryset, read_only=True).data
 
 
-    def get_eu_mah_initial(self, mah):
+    def get_eu_mah_initial(self, mah) -> dict:
         """
         This retrieves the initial marketing autherisation holder from the database for each medicine.
 
@@ -162,7 +174,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             mah (Any): The marketing autherisation holder of the medicine.
 
         Returns:
-            str: Returns the data of the relevant serializer as JSON.
+            dict: Returns the data of the relevant serializer as a dict.
         """   
         queryset = HistoryMAH.objects.filter(eu_pnumber=mah.eu_pnumber)
         try:
@@ -172,7 +184,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         return MAHSerializer(instance=queryset, read_only=True).data
 
 
-    def get_eu_mah_current(self, mah):
+    def get_eu_mah_current(self, mah) -> dict:
         """
         This retrieves the current marketing autherisation holder from the database for each medicine.
 
@@ -180,7 +192,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             mah (Any): The marketing autherisation holder of the medicine.
 
         Returns:
-            str: Returns the data of the relevant serializer as JSON.
+            dict: Returns the data of the relevant serializer as a dict.
         """   
         queryset = HistoryMAH.objects.filter(eu_pnumber=mah.eu_pnumber)
         try:
@@ -190,7 +202,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         return MAHSerializer(instance=queryset, read_only=True).data
 
 
-    def get_eu_od_initial(self, orphan_designation):
+    def get_eu_od_initial(self, orphan_designation) -> dict:
         """
         This retrieves the initial orphan designation from the database for each medicine.
 
@@ -198,7 +210,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             orphan_designation (Any): The orphan designation of the medicine.
 
         Returns:
-            str: Returns the data of the relevant serializer as JSON.
+            dict: Returns the data of the relevant serializer as a dict.
         """   
         queryset = HistoryOD.objects.filter(eu_pnumber=orphan_designation.eu_pnumber)
         try:
@@ -208,7 +220,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
         return OrphanDesignationSerializer(instance=queryset, read_only=True).data
 
 
-    def get_eu_prime_initial(self, prime):
+    def get_eu_prime_initial(self, prime) -> dict:
         """
         This retrieves the initial priority medicine designation from the database for each medicine.
 
@@ -216,7 +228,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             prime (Any): The priority medicine designation of the medicine.
 
         Returns:
-            str: Returns the data of the relevant serializer as JSON.
+            dict: Returns the data of the relevant serializer as a dict.
         """   
         queryset = HistoryPrime.objects.filter(eu_pnumber=prime.eu_pnumber)
         try:
@@ -225,7 +237,7 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             queryset = None
         return PrimeSerializer(instance=queryset, read_only=True).data
 
-    def to_representation(self, obj):
+    def to_representation(self, obj) -> dict:
         """
         This function creates a one-dimensional object from multiple fields.
 
@@ -233,9 +245,19 @@ class PublicMedicineSerializer(serializers.ModelSerializer):
             obj (Any): Takes an object to be transformed.
 
         Returns:
-            str: Returns a single JSON representation of the object.
+            dict: Returns a single dict representation of the object.
         """
         representation = super().to_representation(obj)
+
+        # Change the representation for all foreign key fields
+        for field in [
+            "ingredients_and_substances",
+            "marketing_authorisation",
+        ]:
+            field_representation = representation.pop(field)
+            if field_representation:
+                for key in field_representation:
+                    representation[key] = field_representation[key]
 
         # Change the representation for all history variables
         for field in [

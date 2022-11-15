@@ -9,7 +9,7 @@
 from django.core.cache import cache
 from rest_framework.settings import settings
 
-from api.serializers.medicine_serializers.public import PublicMedicineSerializer
+from api.serializers.medicine_serializers.public import PublicMedicinalProductSerializer
 from api.serializers.medicine_serializers.scraper import UrlsSerializer
 from api.models.medicine_models import MedicinalProduct
 import logging
@@ -26,7 +26,7 @@ def update_cache():
     else:
         try:
             queryset = MedicinalProduct.objects.all()
-            medicine_serializer = PublicMedicineSerializer(queryset, many=True)
+            medicine_serializer = PublicMedicinalProductSerializer(queryset, many=True)
             cache.set(
                 "medicine_cache", medicine_serializer.data, None
             )  # We set cache timeout to none so it never expires
