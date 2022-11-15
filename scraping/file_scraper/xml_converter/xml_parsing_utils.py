@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 from typing import List
 
-import scraping.pdf_module.pdf_scraper.xml_tags as tags
+import scraping.file_scraper.xml_converter.xml_tags as tags
 
 
 def file_is_initial(xml_head: ET.Element) -> bool:

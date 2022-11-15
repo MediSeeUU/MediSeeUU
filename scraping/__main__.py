@@ -4,7 +4,7 @@ import pause
 from datetime import datetime, timedelta
 
 import web_scraper.__main__ as web_scraper
-import pdf_module.pdf_scraper.__main__ as pdf_scraper
+import file_scraper.pdf_scraper.__main__ as pdf_scraper
 import combiner.__main__ as combiner
 import db_communicator.__main__ as db_communicator
 
@@ -17,6 +17,7 @@ def main():
     while run:
         start_time = datetime.now()
         run_all()
+        run = False
         pause.until(start_time + timedelta(days=7))  # Wait for seven days until the next scrape cycle
 
 
@@ -29,11 +30,12 @@ def run_all():
     if not path.isdir(data_folder_directory):
         os.mkdir(data_folder_directory)
 
-    web_scraper.main(data_folder_directory)
+    # web_scraper.main(data_folder_directory)
     pdf_scraper.main(data_folder_directory)
     # combiner.main(data_folder_directory)
     # db_communicator_main.main(data_folder_directory)
 
 
 if __name__ == '__main__':
-    main()
+    run_all()  # TODO:  Replace this with "main()" when moved to server
+    # main()

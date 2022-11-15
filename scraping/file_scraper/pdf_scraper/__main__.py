@@ -1,18 +1,18 @@
-import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
+import scraping.file_scraper.pdf_scraper.parsed_info_struct as pis
 from os import listdir
 import os.path as path
 import json
-import scraping.pdf_module.pdf_scraper.pdf_xml_converter as xml_converter
+import scraping.file_scraper.xml_converter.pdf_xml_converter as xml_converter
 import scraping.logger as logger
 import joblib
 from datetime import datetime
 import multiprocessing
 
 # for main
-from scraping.pdf_module.pdf_scraper.parsers import dec_parse
-from scraping.pdf_module.pdf_scraper.parsers import epar_parse
-from scraping.pdf_module.pdf_scraper.parsers import omar_parse
-from scraping.pdf_module.pdf_scraper.parsers import annex_parse
+from scraping.file_scraper.pdf_scraper.parsers import dec_parse
+from scraping.file_scraper.pdf_scraper.parsers import epar_parse
+from scraping.file_scraper.pdf_scraper.parsers import omar_parse
+from scraping.file_scraper.pdf_scraper.parsers import annex_parse
 
 
 # Main file to run all parsers

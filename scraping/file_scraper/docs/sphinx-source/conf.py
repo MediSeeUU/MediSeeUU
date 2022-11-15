@@ -22,7 +22,7 @@ release = "1.0"
 root_url = "../../../../"
 html_context = {
     "root_url": root_url,
-    "current_module": "pdf_module",
+    "current_module": "file_scraper",
     "display_super": True,
 }
 templates_path = [root_url + "docs/sphinx-source/_templates"]

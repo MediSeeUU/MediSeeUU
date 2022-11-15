@@ -1,10 +1,10 @@
 # EPAR parser
 import re
-import scraping.pdf_module.pdf_scraper.helper as helper
-import scraping.pdf_module.pdf_scraper.xml_parsing_utils as xml_utils
+import scraping.file_scraper.pdf_scraper.helper as helper
+import scraping.file_scraper.xml_converter.xml_parsing_utils as xml_utils
 import xml.etree.ElementTree as ET
-import scraping.pdf_module.pdf_scraper.parsed_info_struct as pis
-import scraping.pdf_module.pdf_scraper.pdf_helper as pdf_helper
+import scraping.file_scraper.pdf_scraper.parsed_info_struct as pis
+import scraping.file_scraper.pdf_scraper.pdf_helper as pdf_helper
 import scraping.logger as logger
 import os.path as path
 
