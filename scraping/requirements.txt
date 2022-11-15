@@ -5,6 +5,8 @@ pause
 PyMuPDF
 joblib
 python-dateutil
+pandas
+openpyxl
 
 # Web Scraper
 tqdm

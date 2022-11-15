@@ -39,7 +39,7 @@ def get_all(filename: str, xml_data: ET.Element) -> dict:
 
 def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStruct) -> pis.ParsedInfoStruct:
     """
-    Scrapes all attributes from the EPAR XML file after parsing it
+    Gets all attributes from the EPAR XML file after parsing it
 
     Args:
         filename (str): name of the XML file to be scraped
