@@ -9,7 +9,6 @@ from datetime import datetime
 import logging
 import scraping.file_parser.debugging_tools.json_compiler as json_compiler
 
-annex_folder_name = "annex_10"
 log = logging.getLogger("file_parser.annex_10_parser")
 
 
@@ -30,7 +29,7 @@ def get_all(filename: str, excel_file: pd.DataFrame, data_dir: str) -> dict:
     return annex10
 
 
-def parse_file(filename: str, directory: str, annex10s: list[dict], data_dir: str):
+def parse_file(filename: str, directory: str, annex10s: list[dict], data_dir: str) -> list[dict]:
     """
     Gets all attributes from the annex 10 Excel file after parsing it
 
@@ -162,12 +161,13 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
     return False, ""
 
 
-def main(data_folder_directory):
+def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
     """
     Scrape all annex 10 files
 
     Args:
         data_folder_directory (str): Data folder, containing medicine folders
+        annex_folder_name (str): Name of the folder containing the annex 10 files
     """
     json_compiler.compile_json_files(data_folder_directory)
     annex_10_folder = path.join(data_folder_directory, annex_folder_name)
