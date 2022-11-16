@@ -109,7 +109,7 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
         product_name_found, eu_num = product_name_in_epars(product_name.lower(), all_data)
         if product_name_found:
             res.append({
-                "product_name": eu_num,
+                "eu_number": eu_num,
                 "active_time_elapsed": active_time_elapsed,
                 "clock_stop_elapsed": clock_stop_elapsed
             })
