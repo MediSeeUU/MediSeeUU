@@ -145,7 +145,7 @@ def product_name_in_epars(product_name: str, all_data: list[dict]) -> (bool, str
     return False, ""
 
 
-def run(data_folder_directory):
+def main(data_folder_directory):
     """
     Scrape all annex 10 files
 
@@ -165,4 +165,4 @@ def run(data_folder_directory):
 
 
 if __name__ == "__main__":
-    run("../../../data")
+    main("../../../data")

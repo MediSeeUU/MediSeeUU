@@ -5,8 +5,10 @@ import fitz
 import scraping.file_parser.pdf_parser.pdf_helper as ph
 import scraping.file_parser.xml_converter.xml_tags as tags
 import scraping.logger as logger
-from os import path
+from os import path, listdir
 import re
+import joblib
+import multiprocessing
 
 header_indicator = "|-HEADER-|"
 log = logger.PDFLogger.log
@@ -258,3 +260,42 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
     print_xml_tag_close(tags.body, xml_file)
     print_xml_tag_close(tags.xml, xml_file)
     xml_file.close()
+
+
+def convert_folder(directory: str, folder_name: str):
+    """
+    Given a folder containing medicines, parse_folder walks creates an XML file for each PDF when it doesn't exist.
+    After this, a parser for each pdf/xml file is called,
+    writing a json file containing the scraped attributes to the folder.
+
+    Args:
+        directory: location of folder to parse
+        folder_name: name of medicine folder to parse
+    """
+
+    directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
+    for file in directory_files:
+        # Skip over all XML files and non-PDF files
+        if ".xml" in file or ".pdf" not in file:
+            continue
+        # Skip file if XML is already created (temporary)
+        # if file[:len(file) - 4] + ".xml" in directory_files:
+        #     continue
+
+        file_path = path.join(directory, file)
+        convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
+
+
+def main(directory: str):
+    """
+    Given a folder containing medicine folders, converts each PDF file to XML for all Annex files, EPARs and OMARs.
+
+    Args:
+        directory: data folder, containing medicine folders
+    """
+    directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
+
+    # Use all the system's threads to maximize use of all hyper-threads
+    joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
+        joblib.delayed(convert_folder)(path.join(directory, folder_name), folder_name) for folder_name in
+        directory_folders)

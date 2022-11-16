@@ -2,7 +2,6 @@ import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 from os import listdir
 import os.path as path
 import json
-import scraping.file_parser.xml_converter.pdf_xml_converter as xml_converter
 import scraping.logger as logger
 import joblib
 from datetime import datetime
@@ -39,31 +38,18 @@ def main(directory: str):
 
 
 # scraping on medicine folder level
-def parse_folder(directory: str, folder_name):
+def parse_folder(directory: str, folder_name: str):
     """
     Given a folder containing medicines, parse_folder walks creates an XML file for each PDF when it doesn't exist.
         After this, a parser for each pdf/xml file is called,
         writing a json file containing the scraped attributes to the folder.
 
     Args:
-        directory: location of folder to parse
-        folder_name: name of medicine folder to parse
+        directory (str): location of folder to parse
+        folder_name (st): name of medicine folder to parse
     """
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing
     medicine_struct = pis.ParsedInfoStruct(folder_name)
-
-    # do xml conversion on annex, epar and omar files
-    directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
-    for file in directory_files:
-        # Skip over all XML files and non-PDF files
-        if ".xml" in file or ".pdf" not in file:
-            continue
-        # Skip file if XML is already created (temporary)
-        if file[:len(file) - 4] + ".xml" in directory_files:
-            continue
-
-        file_path = path.join(directory, file)
-        xml_converter.convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
     # update list of files and filter out relevant files for each parser
     annex_files, decision_files, epar_files, omar_files = get_files(directory)
@@ -78,8 +64,16 @@ def parse_folder(directory: str, folder_name):
     json_file.close()
 
 
-# Get all PDF and XML files per PDF type
-def get_files(directory):
+def get_files(directory: str) -> (list[str], list[str], list[str], list[str]):
+    """
+    Get all PDF and XML files per PDF type
+
+    Args:
+        directory (str): Location of the medicine containing PDF files
+
+    Returns:
+        (list[str], list[str], list[str], list[str]): List of PDF file names for each of the 4 PDF types
+    """
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
     decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file]
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
@@ -90,17 +84,21 @@ def get_files(directory):
     return annex_files, decision_files, epar_files, omar_files
 
 
-# scraping all XML or PDF files and updating medicine_struct with the scraped attributes
 def run_scrapers(directory: str, annex_files: list[str], decision_files: list[str], epar_files: list[str],
-                 omar_files: list[str], medicine_struct):
+                 omar_files: list[str], medicine_struct: pis.ParsedInfoStruct):
     """
+    Scraping all XML or PDF files and updating medicine_struct with the scraped attributes
+
     Args:
-        directory: directory of folder containing the files
-        annex_files: list of file names for annex files
-        decision_files: list of file names for decisions files
-        epar_files: list of file names for epar files
-        omar_files: list of file names for omar files
-        medicine_struct: struct to add parsed attributes to
+        directory (list[str]): directory of folder containing the files
+        annex_files (list[str]): list of file names for annex files
+        decision_files (list[str]): list of file names for decisions files
+        epar_files (list[str]): list of file names for epar files
+        omar_files (list[str]): list of file names for omar files
+        medicine_struct (pis.ParsedInfoStruct): struct to add parsed attributes to
+
+    Returns:
+        pis.ParsedInfoStruct: Medicine structure containing scraped attributes
     """
     for file in decision_files:
         medicine_struct = dec_parser.parse_file(file, directory, medicine_struct)
@@ -113,13 +111,13 @@ def run_scrapers(directory: str, annex_files: list[str], decision_files: list[st
     return medicine_struct
 
 
-# datetime to string serializer for json dumping
 def datetime_serializer(date: pis.datetime.datetime):
     """
-    convert datetime.datetime to string
+    Datetime to string serializer for json dumping
+    Convert datetime.datetime to string
 
     Args:
-        date (datetime.datetime): date to convert to string
+        date (pis.datetime.datetime): date to convert to string
 
     """
     if isinstance(date, pis.datetime.datetime):
