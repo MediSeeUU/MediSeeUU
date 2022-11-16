@@ -98,7 +98,8 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
     clock_stop_elapseds = (excel_data["Clock Stop Elapsed"].tolist())
 
     # Load all medicine data from all_json_results.json, created by json_compiler
-    all_json_results = open(path.join(data_dir, "all_json_results.json"), "r", encoding="utf-8")
+    scraping_dir = data_dir.split('data')[0].strip('/') + "/scraping"
+    all_json_results = open(path.join(scraping_dir, "all_json_results.json"), "r", encoding="utf-8")
     all_data = json.load(all_json_results)
     all_json_results.close()
 
@@ -124,19 +125,28 @@ def product_name_in_epars(product_name: str, all_data: list[dict]) -> bool:
 
     Returns:
         bool: True if product_name is found in one of the EPAR brand names
-
     """
+    eu_num = ""
     for medicine in all_data:
-        # Check if product_name in brand_name
-        for decision in medicine["decisions"]:
-            if product_name in decision["eu_brand_name_initial"].lower() or \
-                    decision["eu_brand_name_initial"].lower() in product_name:
-                if medicine["epars"]:
-                    return True
+        # Check if product_name in brand_name and get EU number
+        if "eu_brand_name_current" in medicine.keys():
+            if product_name in medicine["eu_brand_name_current"].lower() or \
+                    medicine["eu_brand_name_current"].lower() in product_name:
+                eu_num = medicine["eu_pnumber"]
+    for medicine in all_data:
+        # Check if found EU number has an EPAR
+        if "eu_number" not in medicine.keys():
+            continue
+        if medicine["eu_number"] != eu_num.replace("/", "-"):
+            continue
+        if medicine["epars"]:
+            return True
     return False
 
 
 def run(data_folder_directory):
+    # json_compiler.compile_json_files(data_folder_directory)
+
     annex10s = []
     for filename in os.listdir(test_location):
         annex10s = parse_file(filename, test_location, annex10s, data_folder_directory)
