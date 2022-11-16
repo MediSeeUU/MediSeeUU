@@ -5,11 +5,12 @@ import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import os
 from os import path
 import json
-import datetime
+from datetime import datetime
+import logging
 import scraping.file_parser.debugging_tools.json_compiler as json_compiler
 
 annex_folder_name = "annex_10"
-log = logging.getLogger("file_parser.excel_parser")
+log = logging.getLogger("file_parser.annex_10_parser")
 
 
 def get_all(filename: str, excel_file: pd.DataFrame, data_dir: str) -> dict:
@@ -131,8 +132,9 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
         (bool, str): (True, EU_num) if product_name is found in one of the EPAR brand names, otherwise (False, "")
     """
     eu_num = ""
-    if type(opinion_date) == datetime.datetime:
+    if type(opinion_date) == datetime:
         opinion_date = opinion_date.strftime("%d/%m/%Y")
+    opinion_date = datetime.strptime(opinion_date, '%d/%m/%Y')
 
     for medicine in all_data:
         # Check if product_name in brand_name and get EU number
@@ -148,8 +150,15 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
             continue
         if not medicine["epars"]:
             continue
-        if medicine["epars"][0]["chmp_opinion_date"].lstrip("0") == opinion_date.lstrip("0"):
+        chmp_opinion_date = medicine["epars"][0]["chmp_opinion_date"]
+        if chmp_opinion_date == "no_chmp_found":
+            log.warning("Annex_10_parser: no_chmp_found")
+            continue
+        chmp_opinion_date = datetime.strptime(chmp_opinion_date, '%d/%m/%Y')
+        # Check if the chmp_opinion_date and opinion_date are within 4 days of each other
+        if abs((chmp_opinion_date - opinion_date).days) < 4:
             return True, eu_num
+        # print(eu_num + " - " + product_name + " - " + str(chmp_opinion_date).split(" ")[0] + " - " + str(opinion_date).split(" ")[0])
     return False, ""
 
 
