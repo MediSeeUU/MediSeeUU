@@ -121,6 +121,7 @@ def get_opinion_date(xml: ET.Element) -> str:
     # not be a part of "steps taken for the assessment" anymore.
     right_section = False
     below_rapp = False
+    date = ""
     for elem in xml.iter():
         txt = elem.text
         if not txt:
@@ -131,10 +132,14 @@ def get_opinion_date(xml: ET.Element) -> str:
             below_rapp = True
         if below_rapp and re.findall(date_pattern, txt):
             date = helper.convert_months(re.findall(date_pattern, txt)[-1])
-            return date
-        if below_rapp and "scientific discussion" in txt:
-            return "not_easily_scrapable"
-    if not_easily_scrapable:
+        if below_rapp and "scientific discussion" in txt and elem.tag == "header":
+            if date != "":
+                return date
+            else:
+                return "not_easily_scrapable"
+    if date != "":
+        return date
+    elif not_easily_scrapable:
         return "not_easily_scrapable"
     return "no_chmp_found"
 

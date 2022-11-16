@@ -279,8 +279,8 @@ def convert_folder(directory: str, folder_name: str):
         if ".xml" in file or ".pdf" not in file:
             continue
         # Skip file if XML is already created (temporary)
-        # if file[:len(file) - 4] + ".xml" in directory_files:
-        #     continue
+        if file[:len(file) - 4] + ".xml" in directory_files:
+            continue
 
         file_path = path.join(directory, file)
         convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")

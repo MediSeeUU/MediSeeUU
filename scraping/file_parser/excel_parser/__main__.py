@@ -5,6 +5,7 @@ import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import os
 from os import path
 import json
+import datetime
 import scraping.file_parser.debugging_tools.json_compiler as json_compiler
 
 annex_folder_name = "annex_10"
@@ -94,6 +95,7 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
 
     # Get all relevant data from columns
     product_names = (excel_data["Product Name"].tolist())
+    opinion_dates = (excel_data["Opinion Date"].tolist())
     active_time_elapseds = (excel_data["Active Time Elapsed"].tolist())
     clock_stop_elapseds = (excel_data["Clock Stop Elapsed"].tolist())
 
@@ -104,9 +106,9 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
     all_json_results.close()
 
     # Append info as dictionary
-    for product_name, active_time_elapsed, clock_stop_elapsed in \
-            zip(product_names, active_time_elapseds, clock_stop_elapseds):
-        product_name_found, eu_num = product_name_in_epars(product_name.lower(), all_data)
+    for product_name, opinion_date, active_time_elapsed, clock_stop_elapsed in \
+            zip(product_names, opinion_dates, active_time_elapseds, clock_stop_elapseds):
+        product_name_found, eu_num = product_name_in_epars(product_name.lower(), all_data, opinion_date)
         if product_name_found:
             res.append({
                 "eu_number": eu_num,
@@ -116,18 +118,22 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
     return res
 
 
-def product_name_in_epars(product_name: str, all_data: list[dict]) -> (bool, str):
+def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date: str) -> (bool, str):
     """
     Check if EPAR exists for pdf_parser json containing a similar brand name to the product name
 
     Args:
         product_name (str): Product Name to check for in pdf_parser json
         all_data (list[dict]): All attributes from pdf_parser in one JSON file
+        opinion_date (str): Opinion date of the product, to be checked with chml_opinion_date in EPAR file
 
     Returns:
         (bool, str): (True, EU_num) if product_name is found in one of the EPAR brand names, otherwise (False, "")
     """
     eu_num = ""
+    if type(opinion_date) == datetime.datetime:
+        opinion_date = opinion_date.strftime("%d/%m/%Y")
+
     for medicine in all_data:
         # Check if product_name in brand_name and get EU number
         if "eu_brand_name_current" in medicine.keys():
@@ -140,7 +146,9 @@ def product_name_in_epars(product_name: str, all_data: list[dict]) -> (bool, str
             continue
         if medicine["eu_number"] != eu_num:
             continue
-        if medicine["epars"]:
+        if not medicine["epars"]:
+            continue
+        if medicine["epars"][0]["chmp_opinion_date"].lstrip("0") == opinion_date.lstrip("0"):
             return True, eu_num
     return False, ""
 

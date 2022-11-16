@@ -32,7 +32,7 @@ def run_all():
         os.mkdir(data_folder_directory)
 
     # web_scraper.main(data_folder_directory)
-    xml_converter.main(data_folder_directory)
+    # xml_converter.main(data_folder_directory)
     pdf_parser.main(data_folder_directory)
     # combiner.main(data_folder_directory)
     # db_communicator_main.main(data_folder_directory)
