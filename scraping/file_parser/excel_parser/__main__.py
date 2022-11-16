@@ -7,7 +7,7 @@ from os import path
 import json
 import scraping.file_parser.debugging_tools.json_compiler as json_compiler
 
-test_location = "test_annex10_data"
+annex_folder_name = "annex_10"
 log = logging.getLogger("file_parser.excel_parser")
 
 
@@ -146,15 +146,23 @@ def product_name_in_epars(product_name: str, all_data: list[dict]) -> (bool, str
 
 
 def run(data_folder_directory):
-    # json_compiler.compile_json_files(data_folder_directory)
+    """
+    Scrape all annex 10 files
+
+    Args:
+        data_folder_directory (str): Data folder, containing medicine folders
+    """
+    json_compiler.compile_json_files(data_folder_directory)
+    annex_10_folder = path.join(data_folder_directory, annex_folder_name)
 
     annex10s = []
-    for filename in os.listdir(test_location):
-        annex10s = parse_file(filename, test_location, annex10s, data_folder_directory)
+    for filename in os.listdir(annex_10_folder):
+        annex10s = parse_file(filename, annex_10_folder, annex10s, data_folder_directory)
 
     f = open("annex10_parser.json", "w")
     f.write(str(annex10s))
     f.close()
 
 
-run("../../../data")
+if __name__ == "__main__":
+    run("../../../data")
