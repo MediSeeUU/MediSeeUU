@@ -9,6 +9,7 @@ import file_parser.xml_converter.__main__ as xml_converter
 import file_parser.pdf_parser.__main__ as pdf_parser
 import combiner.__main__ as combiner
 import db_communicator.__main__ as db_communicator
+import log_setup
 
 
 def main():
@@ -41,5 +42,6 @@ def run_all():
 
 
 if __name__ == '__main__':
+    log_setup.init_loggers()
     run_all()  # TODO:  Replace this with "main()" when moved to server
     # main()
