@@ -1,3 +1,5 @@
+import scraping.combiner.attribute_combining_functions as acf
+
 # All sources :D
 decision = "dec"
 decision_initial = "dec_initial"
