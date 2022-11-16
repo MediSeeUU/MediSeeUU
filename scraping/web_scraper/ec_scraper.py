@@ -359,11 +359,11 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
             continue
 
         # Check whether one procedure has type referral
-        if "referral" in row["type"].lower:
+        if "referral" in row["type"].lower():
             eu_referral = True
 
         # Check whether one procedure has type suspension
-        if "suspension" in row["type"].lower:
+        if "suspension" in row["type"].lower():
             eu_suspension = True
 
         # Parse the date, formatted as %Y-%m-%d, which looks like 1970-01-01
