@@ -127,8 +127,9 @@ def get_excel_ema(url: str):
 
 
 # Main web scraper function with default settings
-def main(data_filepath: str = "../data", scrape_ec: bool = True, scrape_ema: bool = True, download_files: bool = True,
-         run_filter: bool = True, use_parallelization: bool = True):
+def main(data_filepath: str = "../data",
+         scrape_ec: bool = True, scrape_ema: bool = True, download_files: bool = True, run_filter: bool = True,
+         use_parallelization: bool = True, medicine_codes: (list[(str, str, int, str)]) | None = None):
     """
     Main function that controls which scrapers are activated, and if it runs parallel or not.
 
@@ -136,6 +137,8 @@ def main(data_filepath: str = "../data", scrape_ec: bool = True, scrape_ema: boo
     and/or downloads the scraped links.
 
     Args:
+        medicine_codes (list[(str, str, int, str)]) | None:
+            The list of all medicines that will be scraped. When it is not defined, it takes all the medicines
         data_filepath (str, optional): The file path where all data needs to be stored. Defaults to "../data".
         scrape_ec (bool): Whether EC URLs should be scraped
         scrape_ema (bool): Whether EMA URLs should be scraped | Requires scrape_ec to have been run at least once
@@ -143,13 +146,14 @@ def main(data_filepath: str = "../data", scrape_ec: bool = True, scrape_ema: boo
         run_filter (bool): Whether filter should be run after downloading PDF files
         use_parallelization (bool): Whether downloading should be parallel (faster)
     """
+    if medicine_codes is None:
+        medicine_codes = ec_scraper.scrape_medicines_list()
+
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
     Path(f"{json_path}JSON").mkdir(exist_ok=True, parents=True)
 
     log.info("TASK SUCCESS on Generating directories")
-
-    medicine_codes: list[(str, str, int, str)] = ec_scraper.scrape_medicines_list()
 
     if scrape_annex10:
         log.info("TASK START scraping all annex10 files on the EMA website")
@@ -197,7 +201,7 @@ def main(data_filepath: str = "../data", scrape_ec: bool = True, scrape_ema: boo
                 tqdm_concurrent.thread_map(get_urls_ema, *unzipped_ema_urls, max_workers=cpu_count)
 
             else:
-                for eu_n, url in tqdm.tqdm(ema_urls, bar_format=tqdm_format_string):
+                for eu_n, url in tqdm.tqdm(ema_urls):
                     get_urls_ema(eu_n, url)
 
         url_file.save_dict()
