@@ -106,16 +106,17 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
     # Append info as dictionary
     for product_name, active_time_elapsed, clock_stop_elapsed in \
             zip(product_names, active_time_elapseds, clock_stop_elapseds):
-        if product_name_in_epars(product_name.lower(), all_data):
+        product_name_found, eu_num = product_name_in_epars(product_name.lower(), all_data)
+        if product_name_found:
             res.append({
-                "product_name": product_name,
+                "product_name": eu_num,
                 "active_time_elapsed": active_time_elapsed,
                 "clock_stop_elapsed": clock_stop_elapsed
             })
     return res
 
 
-def product_name_in_epars(product_name: str, all_data: list[dict]) -> bool:
+def product_name_in_epars(product_name: str, all_data: list[dict]) -> (bool, str):
     """
     Check if EPAR exists for pdf_parser json containing a similar brand name to the product name
 
@@ -124,7 +125,7 @@ def product_name_in_epars(product_name: str, all_data: list[dict]) -> bool:
         all_data (list[dict]): All attributes from pdf_parser in one JSON file
 
     Returns:
-        bool: True if product_name is found in one of the EPAR brand names
+        (bool, str): (True, EU_num) if product_name is found in one of the EPAR brand names, otherwise (False, "")
     """
     eu_num = ""
     for medicine in all_data:
@@ -132,16 +133,16 @@ def product_name_in_epars(product_name: str, all_data: list[dict]) -> bool:
         if "eu_brand_name_current" in medicine.keys():
             if product_name in medicine["eu_brand_name_current"].lower() or \
                     medicine["eu_brand_name_current"].lower() in product_name:
-                eu_num = medicine["eu_pnumber"]
+                eu_num = medicine["eu_pnumber"].replace("/", "-")
     for medicine in all_data:
         # Check if found EU number has an EPAR
         if "eu_number" not in medicine.keys():
             continue
-        if medicine["eu_number"] != eu_num.replace("/", "-"):
+        if medicine["eu_number"] != eu_num:
             continue
         if medicine["epars"]:
-            return True
-    return False
+            return True, eu_num
+    return False, ""
 
 
 def run(data_folder_directory):
