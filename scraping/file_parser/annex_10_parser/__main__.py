@@ -46,7 +46,7 @@ def parse_file(filename: str, directory: str, annex10s: list[dict], data_dir: st
     filepath = path.join(directory, filename)
     try:
         excel_data = pd.read_excel(filepath)
-    except FileNotFoundError:  # TODO: Replace with pandas error
+    except FileNotFoundError:
         log.warning("ANNEX 10 PARSER: File not found - " + filepath)
         return annex10s
     excel_data = clean_df(excel_data)
@@ -161,6 +161,34 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
     return False, ""
 
 
+def annexes_already_parsed(annex_10_folder: str) -> bool:
+    """
+    Return True if file already exists and last annex is included
+
+    Args:
+        annex_10_folder (str): folder containing annex 10 Excel files
+
+    Returns:
+        bool: True if file already exists and last annex is included, False otherwise
+    """
+    all_annexes_parsed = False
+    if os.path.exists("annex10_parser.json"):
+        try:
+            f = open("annex10_parser.json", "r", encoding="utf-8")
+            parsed_data = json.load(f)
+            for filename in os.listdir(annex_10_folder):
+                if filename.split(".")[0] in parsed_data:
+                    all_annexes_parsed = True
+        except FileNotFoundError:
+            log.error("Annex10_parser.json not found.")
+        except json.decoder.JSONDecodeError as error:
+            log.error("Can't open annex10_parser.json: Decode error | " + str(error))
+        if all_annexes_parsed:
+            log.info("All annexes in folder were already parsed")
+            return True
+    return False
+
+
 def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
     """
     Scrape all annex 10 files
@@ -169,6 +197,16 @@ def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
         data_folder_directory (str): Data folder, containing medicine folders
         annex_folder_name (str): Name of the folder containing the annex 10 files
     """
+    annex_10_folder = path.join(data_folder_directory, annex_folder_name)
+
+    if not os.path.exists(annex_10_folder):
+        log.error(f"Annex 10 folder {annex_10_folder} does not exists")
+        return
+
+    # Skip if file already exists and last annex is included
+    if annexes_already_parsed(annex_10_folder):
+        return
+
     json_compiler.compile_json_files(data_folder_directory)
     annex_10_folder = path.join(data_folder_directory, annex_folder_name)
 
@@ -177,7 +215,8 @@ def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
         annex10s = parse_file(filename, annex_10_folder, annex10s, data_folder_directory)
 
     f = open("annex10_parser.json", "w")
-    f.write(str(annex10s))
+    json_to_write = json.dumps(str(annex10s))
+    f.write(json_to_write)
     f.close()
 
 
