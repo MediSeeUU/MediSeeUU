@@ -23,35 +23,67 @@ def main(directory: str):
     #     parse_folder(path.join(directory, folder), folder)
 
 
+# TODO: handel de try catches beter af
 def combine_folder(filepath: str, folder_name: str):
-    # with open(path.join(filepath, folder_name + "_filedates.json"), "r") as filedates_json:
-    #     file_dates: dict[any, any] = json.load(filedates_json)
 
-    with open(path.join(filepath, folder_name + "_pdf_parser.json"), "r") as pdf_data_json:
-        pdf_data: dict[any, any] = json.load(pdf_data_json)
+    file_dicts = {
+        attr.decision: {},
+        attr.decision_initial: {},
+        attr.annex: {},
+        attr.annex_initial: {},
+        attr.epar: {},
+        attr.omar: {},
+        attr.web: {},
+        attr.file_dates: {}
+    }
+    combined_dict: dict[str, any] = {}
 
-    with open(path.join(filepath, folder_name + "_webdata.json"), "r") as web_data_json:
-        web_data: dict[any, any] = json.load(web_data_json)
+    try:
+        with open(path.join(filepath, folder_name + "_filedates.json"), "r") as filedates_json:
+            file_dates: dict[any, any] = json.load(filedates_json)
+    except Exception:
+        file_dates = {}
+        print("COMBINER: no file_dates.json found in " + filepath)
 
+    try:
+        with open(path.join(filepath, folder_name + "_pdf_parser.json"), "r") as pdf_data_json:
+            pdf_data: dict[any, any] = json.load(pdf_data_json)
+    except Exception:
+        pdf_data = {}
+        print("COMBINER: no pdf_parser.json found in " + filepath)
+
+    try:
+        with open(path.join(filepath, folder_name + "_webdata.json"), "r") as web_data_json:
+            web_data: dict[any, any] = json.load(web_data_json)
+    except Exception:
+        web_data = {}
+        print("COMBINER: no web_data.json found in " + filepath)
+
+    # TODO: waarom sorten als we het er ook gewoon uit kunnen lezen
     decision_files = sorted([(int(dictionary["filename"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["decisions"]], key=lambda x : x[0])
     annex_files = sorted([(int(dictionary["pdf_file"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]], key=lambda x : x[0])
 
-    #TODO: try catch deez nutz
-    file_dicts = {
-        attr.decision: decision_files[-1][1],
-        attr.decision_initial: decision_files[0][1],
-        attr.annex: annex_files[-1][1],
-        attr.annex_initial: annex_files[0][1],
-        # attr.epar: pdf_data["epars"][0]["filename"],
-        # attr.omar: pdf_data["omars"][0]["filename"],
-        attr.web: web_data
-        # attr.file_dates: file_dates
-    }
+    if len(decision_files) > 0:
+        file_dicts[attr.decision] = decision_files[-1][1]
+    if len(decision_files) > 0:
+        file_dates[attr.decision_initial] = decision_files[0][1]
+    if len(annex_files) > 0:    
+        file_dicts[attr.annex] = annex_files[-1][1]
+    if len(annex_files) > 0:
+        file_dicts[attr.annex_initial] = annex_files[0][1]
+    file_dicts[attr.web] = web_data
+    file_dicts[attr.file_dates] = file_dates
+
+    try:
+        file_dicts[attr.epar] = pdf_data["epars"][0]["filename"] #try-except
+    except Exception:
+        print("COMBINER: no epar found in pdf_data for " + folder_name)
+    try:
+        file_dicts[attr.omar] = pdf_data["omars"][0]["filename"] #try-except
+    except Exception:
+        print("COMBINER: no omar found in pdf_data for " + folder_name)
+
     
-    combined_dict: dict[str, any] = {}
-    #__TEST__
-    # value, all_equal = get_attribute(attr.id.eu_aut_date.value["name"], sources_to_dicts(attr_src., file_dicts), attr.id.eu_aut_date.value["combine"])
-    # combined_dict[attr.id.eu_aut_date.value["name"]] = value
 
     for key in attr.all_attributes.keys():
         attribute = attr.all_attributes[key]
@@ -76,12 +108,13 @@ def sources_to_dicts(sources: list[str], file_dicts: dict[str, dict]) -> list[di
 
 def get_attribute(attribute_name: str, dicts: list[dict], combine_attributes = False) -> tuple[str, bool]:
     attributes: set[str] = []
-    print(attribute_name + ": " + str(dicts))
+    # print(attribute_name + ": " + str(dicts))
     for dict in dicts:
         try:
             attributes.append(dict[attribute_name])
         except Exception:
-            print(attribute_name + " attribute id is not'st'n't contained in " + str(dict))
+            print(attribute_name + ": " + str(dicts))
+            print(attribute_name + " not found")
 
     all_equal = len(set(attributes)) == 1
 
