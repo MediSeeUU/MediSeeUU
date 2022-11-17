@@ -165,6 +165,9 @@ def main(data_filepath: str = "../data",
         log.info("TASK FINISHED annex10 scrape")
 
     if scrape_ec:
+        # make sure tests start with empty dict, because url_file is global variable only way to do this is here.
+        if "test" in os.getcwd():
+            url_file.overwrite_dict({})
         log.info("TASK START scraping all medicines on the EC website")
         # Transform zipped list into individual lists for thread_map function
         # The last element of the medicine_codes tuple is not of interest, thus we pop()
@@ -197,7 +200,7 @@ def main(data_filepath: str = "../data",
         unzipped_ema_urls = [list(t) for t in zip(*ema_urls)]
 
         with tqdm_logging.logging_redirect_tqdm():
-            if use_parallelization:
+            if use_parallelization and len(unzipped_ema_urls) > 0:
                 tqdm_concurrent.thread_map(get_urls_ema, *unzipped_ema_urls, max_workers=cpu_count)
 
             else:

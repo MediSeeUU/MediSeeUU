@@ -243,7 +243,7 @@ def get_data_from_medicine_json(medicine_json: dict,
             set_human_attributes(ema_url_list, medicine_dict, row)
         else:
             # Scrapes orphan specific attributes
-            set_orphan_attributes(medicine_dict, row)
+            set_orphan_attributes(ema_url_list, medicine_dict, row)
 
     if medicine_type == MedicineType.HUMAN_USE_ACTIVE or medicine_type == MedicineType.HUMAN_USE_WITHDRAWN:
         medicine_dict["orphan_status"] = "h"
@@ -280,11 +280,12 @@ def set_human_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str]
             medicine_dict["eu_orphan_con_current"]: str = row["meta"]
 
 
-def set_orphan_attributes(medicine_dict: (dict[str, str]), row: dict):
+def set_orphan_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str]), row: dict):
     """
     Updates medicine_dict with attributes from the EC website for orphan medicines
 
     Args:
+        ema_url_list (list[str]): List of URLs to EMA websites
         medicine_dict (dict[str, str]): A dictionary containing all the attribute values and a list
             with all the links to the EMA.
         row (dict): Row in medicine_json to be searched
@@ -295,6 +296,10 @@ def set_orphan_attributes(medicine_dict: (dict[str, str]), row: dict):
     match row["type"]:
         case "indication":
             medicine_dict["eu_od_con"]: str = row["value"]
+        case "ema_links":
+            for json_obj in row["meta"]:
+                ema_url_list.append(json_obj["url"])
+                # TODO: retrieve date for every PDF
 
 
 def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[str, str], list[str], list[str]):

@@ -103,14 +103,15 @@ def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_urls: list[str], med_dict: 
             The path to the data folder
     """
     file_counter = 0
-    for url in pdf_urls[:-1]:
+    if len(pdf_urls) > 0:
+        for url in pdf_urls[:-1]:
+            filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type, str(file_counter)]
+            download_pdf_from_url(url, eu_num, filename_elements, data_path, filedate_dict)
+            file_counter += 1
+        if med_dict["init_addressed_to_member_states"] == "True":
+            file_counter = -1
         filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type, str(file_counter)]
-        download_pdf_from_url(url, eu_num, filename_elements, data_path, filedate_dict)
-        file_counter += 1
-    if med_dict["init_addressed_to_member_states"] == "True":
-        file_counter = -1
-    filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type, str(file_counter)]
-    download_pdf_from_url(pdf_urls[-1], eu_num, filename_elements, data_path, filedate_dict)
+        download_pdf_from_url(pdf_urls[-1], eu_num, filename_elements, data_path, filedate_dict)
 
 
 def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[str, str],
