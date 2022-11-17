@@ -61,3 +61,5 @@ jobs:
     - name: Run Backend Tests
       working-directory: medctrl-backend/API
       run: python manage.py test
+      env: 
+        DB_PORT: ${{ job.services.mysql.ports['3306'] }}
