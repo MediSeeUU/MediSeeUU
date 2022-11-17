@@ -10,6 +10,7 @@
 # ---------------------------------------------------
 
 from rest_framework import serializers
+from api.serializers.medicine_serializers.common import FlattenMixin
 from api.models.medicine_models import (
     MedicinalProduct,
     LegalBases,
@@ -53,13 +54,11 @@ class IngredientsAndSubstancesSerializer(serializers.ModelSerializer):
         exclude = ["active_substance_hash", ]
 
 
-class PublicMedicinalProductSerializer(serializers.ModelSerializer):
+class PublicMedicinalProductSerializer(FlattenMixin, serializers.ModelSerializer):
     """
     This is the view endpoint for a medicine.
     """
     eu_legal_basis = LegalBasesSerializer(many=True, read_only=True)
-    ingredients_and_substances = IngredientsAndSubstancesSerializer(read_only=True)
-    marketing_authorisation = MarketingAuthorisationSerializer(read_only=True)
     eu_aut_status = serializers.SerializerMethodField()
     eu_aut_type_initial = serializers.SerializerMethodField()
     eu_aut_type_current = serializers.SerializerMethodField()
@@ -76,6 +75,11 @@ class PublicMedicinalProductSerializer(serializers.ModelSerializer):
         """
         model = MedicinalProduct
         fields = "__all__"
+        # Serializers to be added and flattened
+        flatten = [
+            ("ingredients_and_substances", IngredientsAndSubstancesSerializer),
+            ("marketing_authorisation", MarketingAuthorisationSerializer),
+        ]
 
     def get_eu_aut_status(self, authorisation_status) -> dict:
         """
@@ -236,53 +240,3 @@ class PublicMedicinalProductSerializer(serializers.ModelSerializer):
         except:
             queryset = None
         return PrimeSerializer(instance=queryset, read_only=True).data
-
-    def to_representation(self, obj) -> dict:
-        """
-        This function creates a one-dimensional object from multiple fields.
-
-        Args:
-            obj (Any): Takes an object to be transformed.
-
-        Returns:
-            dict: Returns a single dict representation of the object.
-        """
-        representation = super().to_representation(obj)
-
-        # Change the representation for all foreign key fields
-        for field in [
-            "ingredients_and_substances",
-            "marketing_authorisation",
-        ]:
-            field_representation = representation.pop(field)
-            if field_representation:
-                for key in field_representation:
-                    representation[key] = field_representation[key]
-
-        # Change the representation for all history variables
-        for field in [
-            "eu_aut_status",
-            "eu_aut_type_initial",
-            "eu_aut_type_current",
-            "eu_brand_name_initial",
-            "eu_brand_name_current",
-            "eu_mah_initial",
-            "eu_mah_current",
-            "eu_od_initial",
-            "eu_prime_initial",
-        ]:
-            field_representation = representation.pop(field)
-            for key in field_representation:
-                representation[field] = field_representation[key]
-
-        # Change the representation for all list variables
-        for field in [
-            "eu_legal_basis",
-        ]:
-            field_representation = representation.pop(field)
-            representation[field] = []
-            for key in field_representation:
-                for value in key.values():
-                    representation[field].append(value)
-
-        return representation
