@@ -5,10 +5,11 @@ import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import os
 from os import path
 import json
+from datetime import datetime
+import logging
 import scraping.file_parser.debugging_tools.json_compiler as json_compiler
 
-annex_folder_name = "annex_10"
-log = logging.getLogger("file_parser.excel_parser")
+log = logging.getLogger("file_parser.annex_10_parser")
 
 
 def get_all(filename: str, excel_file: pd.DataFrame, data_dir: str) -> dict:
@@ -28,7 +29,7 @@ def get_all(filename: str, excel_file: pd.DataFrame, data_dir: str) -> dict:
     return annex10
 
 
-def parse_file(filename: str, directory: str, annex10s: list[dict], data_dir: str):
+def parse_file(filename: str, directory: str, annex10s: list[dict], data_dir: str) -> list[dict]:
     """
     Gets all attributes from the annex 10 Excel file after parsing it
 
@@ -45,7 +46,7 @@ def parse_file(filename: str, directory: str, annex10s: list[dict], data_dir: st
     filepath = path.join(directory, filename)
     try:
         excel_data = pd.read_excel(filepath)
-    except FileNotFoundError:  # TODO: Replace with pandas error
+    except FileNotFoundError:
         log.warning("ANNEX 10 PARSER: File not found - " + filepath)
         return annex10s
     excel_data = clean_df(excel_data)
@@ -94,6 +95,7 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
 
     # Get all relevant data from columns
     product_names = (excel_data["Product Name"].tolist())
+    opinion_dates = (excel_data["Opinion Date"].tolist())
     active_time_elapseds = (excel_data["Active Time Elapsed"].tolist())
     clock_stop_elapseds = (excel_data["Clock Stop Elapsed"].tolist())
 
@@ -104,9 +106,9 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
     all_json_results.close()
 
     # Append info as dictionary
-    for product_name, active_time_elapsed, clock_stop_elapsed in \
-            zip(product_names, active_time_elapseds, clock_stop_elapseds):
-        product_name_found, eu_num = product_name_in_epars(product_name.lower(), all_data)
+    for product_name, opinion_date, active_time_elapsed, clock_stop_elapsed in \
+            zip(product_names, opinion_dates, active_time_elapseds, clock_stop_elapseds):
+        product_name_found, eu_num = product_name_in_epars(product_name.lower(), all_data, opinion_date)
         if product_name_found:
             res.append({
                 "eu_number": eu_num,
@@ -116,18 +118,23 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
     return res
 
 
-def product_name_in_epars(product_name: str, all_data: list[dict]) -> (bool, str):
+def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date: str) -> (bool, str):
     """
     Check if EPAR exists for pdf_parser json containing a similar brand name to the product name
 
     Args:
         product_name (str): Product Name to check for in pdf_parser json
         all_data (list[dict]): All attributes from pdf_parser in one JSON file
+        opinion_date (str): Opinion date of the product, to be checked with chml_opinion_date in EPAR file
 
     Returns:
         (bool, str): (True, EU_num) if product_name is found in one of the EPAR brand names, otherwise (False, "")
     """
     eu_num = ""
+    if type(opinion_date) == datetime:
+        opinion_date = opinion_date.strftime("%d/%m/%Y")
+    opinion_date = datetime.strptime(opinion_date, '%d/%m/%Y')
+
     for medicine in all_data:
         # Check if product_name in brand_name and get EU number
         if "eu_brand_name_current" in medicine.keys():
@@ -140,18 +147,66 @@ def product_name_in_epars(product_name: str, all_data: list[dict]) -> (bool, str
             continue
         if medicine["eu_number"] != eu_num:
             continue
-        if medicine["epars"]:
+        if not medicine["epars"]:
+            continue
+        chmp_opinion_date = medicine["epars"][0]["chmp_opinion_date"]
+        if chmp_opinion_date == "no_chmp_found":
+            log.warning("Annex_10_parser: no_chmp_found")
+            continue
+        chmp_opinion_date = datetime.strptime(chmp_opinion_date, '%d/%m/%Y')
+        # Check if the chmp_opinion_date and opinion_date are within 4 days of each other
+        if abs((chmp_opinion_date - opinion_date).days) < 4:
             return True, eu_num
+        # print(eu_num + " - " + product_name + " - " + str(chmp_opinion_date).split(" ")[0] + " - " + str(opinion_date).split(" ")[0])
     return False, ""
 
 
-def main(data_folder_directory):
+def annexes_already_parsed(annex_10_folder: str) -> bool:
+    """
+    Return True if file already exists and last annex is included
+
+    Args:
+        annex_10_folder (str): folder containing annex 10 Excel files
+
+    Returns:
+        bool: True if file already exists and last annex is included, False otherwise
+    """
+    all_annexes_parsed = False
+    if os.path.exists("annex10_parser.json"):
+        try:
+            f = open("annex10_parser.json", "r", encoding="utf-8")
+            parsed_data = json.load(f)
+            for filename in os.listdir(annex_10_folder):
+                if filename.split(".")[0] in parsed_data:
+                    all_annexes_parsed = True
+        except FileNotFoundError:
+            log.error("Annex10_parser.json not found.")
+        except json.decoder.JSONDecodeError as error:
+            log.error("Can't open annex10_parser.json: Decode error | " + str(error))
+        if all_annexes_parsed:
+            log.info("All annexes in folder were already parsed")
+            return True
+    return False
+
+
+def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
     """
     Scrape all annex 10 files
 
     Args:
         data_folder_directory (str): Data folder, containing medicine folders
+        annex_folder_name (str): Name of the folder containing the annex 10 files
     """
+    annex_10_folder = path.join(data_folder_directory, annex_folder_name)
+
+    if not os.path.exists(annex_10_folder):
+        log.error(f"Annex 10 folder {annex_10_folder} does not exists")
+        return
+
+    # Skip if file already exists and last annex is included
+    if annexes_already_parsed(annex_10_folder):
+        return
+
     json_compiler.compile_json_files(data_folder_directory)
     annex_10_folder = path.join(data_folder_directory, annex_folder_name)
 
@@ -160,7 +215,8 @@ def main(data_folder_directory):
         annex10s = parse_file(filename, annex_10_folder, annex10s, data_folder_directory)
 
     f = open("annex10_parser.json", "w")
-    f.write(str(annex10s))
+    json_to_write = json.dumps(str(annex10s))
+    f.write(json_to_write)
     f.close()
 
 

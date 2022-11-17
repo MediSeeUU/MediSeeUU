@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 test_data_loc = "../../data"
 xml_bodies = []
 
+
 # Tests all functions of OMAR parser with all XML files
 def xml_to_bullet_points(xml_body: ET.Element) -> list[str]:
     for section in xml_body:
@@ -74,13 +75,12 @@ class TestOmarParse(TestCase):
             if result == "NA":
                 NAs_found += 1
                 print("No prevalence found in: " + xml_file)
-            if "10.000" or "10,000" in result:
+            if "10.000" in result or "10,000" in result:
                 prevalence_found += 1
-            
-        percentage_found = prevalence_found / (prevalence_found + NAs_found) * 100
-        print("Prevalence found in " + str(round(percentage_found, 2)) + '%' +" of all files.")
-        self.assertGreater(percentage_found, 90)
 
+        percentage_found = prevalence_found / (prevalence_found + NAs_found) * 100
+        print("Prevalence found in " + str(round(percentage_found, 2)) + '%' + " of all files.")
+        self.assertGreater(percentage_found, 90)
 
     def test_get_alternative_treatments(self):
         """
@@ -88,9 +88,29 @@ class TestOmarParse(TestCase):
         Returns:
             None
         """
+        NAs_found = 0
+        wrong_found = 0
 
-        self.assertTrue(True)
+        for (xml_body, xml_file) in xml_bodies:
+            bullet_point = xml_to_bullet_points(xml_body)
+            result = omar_parser.get_alternative_treatments(bullet_point)
+            if result == "NA":
+                NAs_found += 1
+                print("No alternative treatment information found in: " + xml_file)
+            if (("no satisfactory method" in bullet_point) or ("no satisfactory treatment" in bullet_point)) \
+                    and result != "No Satisfactory Method":
+                wrong_found += 1
+            if "significant benefit" in bullet_point:
+                if result != "Significant Benefit":
+                    wrong_found += 1
+                if "does not hold" in bullet_point and result != "No Significant Benefit":
+                    wrong_found += 1
 
+        print("NAs found: " + str(NAs_found))
+        print("Wrong parses found: " + str(wrong_found))
+        self.assertLess(wrong_found, 1)
+
+    # Need more information about this attribute for it to be tested properly.
     def test_get_significant_benefit(self):
 
         self.assertTrue(True)

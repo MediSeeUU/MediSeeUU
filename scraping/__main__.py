@@ -4,10 +4,12 @@ import pause
 from datetime import datetime, timedelta
 
 import web_scraper.__main__ as web_scraper
-import file_parser.pdf_parser.__main__ as pdf_parser
+import file_parser.annex_10_parser.__main__ as annex_10_parser
 import file_parser.xml_converter.__main__ as xml_converter
+import file_parser.pdf_parser.__main__ as pdf_parser
 import combiner.__main__ as combiner
 import db_communicator.__main__ as db_communicator
+import log_setup
 
 
 def main():
@@ -32,6 +34,7 @@ def run_all():
         os.mkdir(data_folder_directory)
 
     # web_scraper.main(data_folder_directory)
+    annex_10_parser.main(data_folder_directory)
     xml_converter.main(data_folder_directory)
     pdf_parser.main(data_folder_directory)
     # combiner.main(data_folder_directory)
@@ -39,5 +42,6 @@ def run_all():
 
 
 if __name__ == '__main__':
+    log_setup.init_loggers()
     run_all()  # TODO:  Replace this with "main()" when moved to server
     # main()

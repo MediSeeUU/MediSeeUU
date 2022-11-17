@@ -75,7 +75,7 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     medicine_struct.omars.append(omar_attributes)
 
     if len(omar_attributes["conditions"]) == 0:
-        m.log.warning("OMAR PARSER: failed to parse condition from " + omar_attributes["pdf_file"])
+        log.warning("OMAR PARSER: failed to parse condition from " + omar_attributes["pdf_file"])
 
     return medicine_struct
 
@@ -169,7 +169,7 @@ def get_significant_benefit(bullet_points: list[str], alternative_treatment: str
                     result += " + Major Contribution"
 
     if not contains and alternative_treatment == "Significant Benefit":
-        m.logging.warning("OMAR PARSER: Alternative treatment = Significant benefit requires result for " + filepath)
+        log.warning("OMAR PARSER: Alternative treatment = Significant benefit requires result for " + filepath)
 
     if contains:
         return result

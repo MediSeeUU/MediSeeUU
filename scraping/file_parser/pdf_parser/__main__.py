@@ -48,6 +48,10 @@ def parse_folder(directory: str, folder_name: str):
         directory (str): location of folder to parse
         folder_name (st): name of medicine folder to parse
     """
+    # Annex 10 folder should be skipped
+    if "annex" in directory:
+        return
+
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing
     medicine_struct = pis.ParsedInfoStruct(folder_name)
 
