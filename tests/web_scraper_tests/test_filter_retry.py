@@ -34,7 +34,7 @@ class TestFilterRetry(unittest.TestCase):
         temp = tempfile.TemporaryFile()
         temp.write(file_content)
         temp.seek(0)
-        self.assertIsNone(filter_retry.retry_all(temp.name, url_file))
+        self.assertIsNone(filter_retry.retry_all(temp.name, url_file, data_filepath))
 
     @parameterized.expand([
         ["EU-1-04-273", ["h", "a", "anx", "0"]],  # normal

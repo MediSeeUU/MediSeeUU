@@ -88,7 +88,7 @@ class TestEcScraper(unittest.TestCase):
     @parameterized.expand([
         [
             "h477",
-            "07-10-2008",
+            "2008-10-07 00:00:00",
             "exceptional",
             "",
             "",
@@ -108,7 +108,6 @@ class TestEcScraper(unittest.TestCase):
             f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm")
         _, procedures_json, *_ = ec.get_ec_json_objects(html_active)
         procedures_dict, *_ = ec.get_data_from_procedures_json(procedures_json, eu_num_short)
-
         self.assertEqual(procedures_dict["eu_aut_date"], exp_eu_aut_date, msg="authorization dates are not equal")
         self.assertEqual(procedures_dict["eu_aut_type_initial"], exp_aut_type_initial, msg="not equal")
         # assert procedures_dict["eu_aut_date"] == exp_eu_aut_date
@@ -172,6 +171,9 @@ class TestEcScraper(unittest.TestCase):
             'https://ec.europa.eu/health/documents/community-register/2021/20210322150898/anx_150898_en.pdf'
         ]
         dec_result, anx_result, ema_result, _ = ec.scrape_medicine_page(url, ec.MedicineType.HUMAN_USE_ACTIVE)
+        dec_result = [x[0] for x in dec_result]
+        anx_result = [x[0] for x in anx_result]
+
         self.assertEqual(ema, ema_result, "incorrect EMA result")
         self.assertEqual(decision, dec_result, "incorrect decision result")
         self.assertEqual(annex, anx_result, "incorrect annex result")

@@ -1,4 +1,5 @@
 import logging
+from os import path
 from datetime import datetime
 import regex as re
 from unittest import TestCase, mock
@@ -49,6 +50,7 @@ class TestDownload(TestCase):
                                 "/anx_154987_en.pdf"]]
                            ])
     def test_download_pdfs_ec(self, eu_n, pdf_type, pdf_url):
+        assert path.exists(f"{data_path}/{eu_n}/{eu_n}_webdata.json"), f"can't run test, no webdata file for {eu_n}"
         med_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_webdata.json")).load_json()
         self.assertIsNone(download.download_pdfs_ec(eu_n, pdf_type, pdf_url, med_dict, {}, data_path))
 
@@ -61,6 +63,7 @@ class TestDownload(TestCase):
                             ""]
                            ])
     def test_download_pdfs_ema(self, eu_n, pdf_type, pdf_url):
+        assert path.exists(f"{data_path}/{eu_n}/{eu_n}_webdata.json"), f"can't run test, no webdata file for {eu_n}"
         med_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_webdata.json")).load_json()
         self.assertIsNone(download.download_pdfs_ema(eu_n, pdf_type, pdf_url, med_dict, {}, data_path))
 
@@ -76,4 +79,5 @@ class TestDownload(TestCase):
                              "omar_url": ""}
                             ]])
     def test_download_medicine_files(self, eu_n, url_dict):
+        assert path.exists(f"{data_path}/{eu_n}/{eu_n}_webdata.json"), f"can't run test, no webdata file for {eu_n}"
         self.assertIsNone(download.download_medicine_files(eu_n, url_dict, data_path))
