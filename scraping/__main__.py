@@ -6,6 +6,7 @@ import web_scraper.__main__ as web_scraper
 import pdf_module.pdf_scraper.__main__ as pdf_scraper
 import combiner.__main__ as combiner
 import db_communicator.__main__ as db_communicator
+import log_setup
 
 
 def main():
@@ -25,4 +26,5 @@ def main():
 
 
 if __name__ == '__main__':
+    log_setup.init_loggers()
     main()
