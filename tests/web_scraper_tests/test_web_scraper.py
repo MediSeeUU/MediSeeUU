@@ -15,6 +15,7 @@ class TestWebScraper(TestCase):
     """
     Class that runs web, mostly checks if files get downloaded
     """
+
     # Rename data to data_old
     @classmethod
     def setUpClass(cls):
@@ -36,16 +37,15 @@ class TestWebScraper(TestCase):
     def test_run_web_check_all(self, parallel, medicine_codes):
         shutil.rmtree(data_path)
         os.mkdir(data_path)
+        shutil.rmtree('JSON')
 
         self.parallel = parallel
         self.medicine_codes = medicine_codes
         self.eu_n = self.medicine_codes[0][1]
         self.run_ec_scraper()
         self.run_ema_scraper()
-        #self.run_download()
-        #self.run_filter()
-
-        shutil.rmtree('JSON')
+        self.run_download()
+        self.run_filter()
 
     @parameterized.expand([[True, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
                                     'EU-1-04-273', 0, 'h273')]],
@@ -70,13 +70,12 @@ class TestWebScraper(TestCase):
     def test_run_web_no_checks(self, parallel, medicine_codes):
         shutil.rmtree(data_path)
         os.mkdir(data_path)
+        shutil.rmtree("JSON")
 
         self.parallel = parallel
         self.medicine_codes = medicine_codes
         web.main(data_filepath=data_path, scrape_ec=True, scrape_ema=True, download_files=True, run_filter=True,
                  use_parallelization=self.parallel, medicine_codes=self.medicine_codes)
-
-        shutil.rmtree('JSON')
 
     def run_ec_scraper(self):
         web.main(data_filepath=data_path, scrape_ec=True, scrape_ema=False, download_files=False, run_filter=False,
@@ -130,4 +129,5 @@ class TestWebScraper(TestCase):
     def tearDownClass(cls):
         shutil.rmtree(data_path)
         os.rename(f"{data_path}_old", data_path)
-        os.remove('filter.txt')
+        if os.path.exists('filter.txt'):
+            os.remove('filter.txt')

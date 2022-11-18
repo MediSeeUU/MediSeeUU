@@ -4,17 +4,19 @@ from datetime import datetime
 import bs4
 import regex as re
 import requests
+import scraping.web_scraper.utils as utils
 
 log = logging.getLogger("web_scraper.ema_scraper")
 
 
-def pdf_links_from_url(url: str) -> tuple[str, str]:
+def pdf_links_from_url(url: str, html_active: requests.Response) -> tuple[str, str]:
     """
     Gets the pdf link on the EMA website that is the highest on the priority list
     and a link to the OMAR document if it exists
 
     Args:
         url (str): Link to the medicine page on the EMA website
+        html_active (requests.Response): html object that contains html of the EMA page for a medicine
 
     Raises:
         Exception: If nothing is found, we throw an exception. This also passes all found URLs on newlines
@@ -22,17 +24,13 @@ def pdf_links_from_url(url: str) -> tuple[str, str]:
     Returns:
         str: The pdf link that is the highest on the priority list
     """
-    # Expecting a link scraped from the EC website. Link should look like this
-    # https://www.ema.europa.eu/en/medicines/human/EPAR/tandemact
-    html_obj = requests.get(url)
-
     # Last part of the url, contains the medicine name
     medicine_name: str = url.split('&')[0].split('/')[-1]
 
     # TODO: Graceful handling
-    html_obj.raise_for_status()
+    html_active.raise_for_status()
 
-    soup = bs4.BeautifulSoup(html_obj.text, "html.parser")
+    soup = bs4.BeautifulSoup(html_active.text, "html.parser")
 
     # The documents we search are under the header
     #   Initial marketing-authorisation documents
@@ -109,12 +107,9 @@ def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[s
     Returns:
         dict[int, dict[str, str]]: Amended annex_dict
     """
-    html_obj = requests.get(url)
+    html_active = utils.get_html_object(url)
 
-    # TODO: Graceful handling
-    html_obj.raise_for_status()
-
-    soup = bs4.BeautifulSoup(html_obj.text, "html.parser")
+    soup = bs4.BeautifulSoup(html_active.text, "html.parser")
         
     start_year: int = 2005                       # Starts looking for annex 10 files from this year,
     current_year: int = datetime.now().year         # up to the current year
@@ -137,7 +132,7 @@ def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[s
         year_s = str(year)
         if year_s in annex_dict.keys():
             last_updated_local: datetime = datetime.strptime(annex_dict[year_s]["last_updated"], '%d/%m/%Y')
-            last_updated_site: datetime = find_last_updated_date(specific_soup.find_all('small')[1].get_text())
+            last_updated_site: datetime = find_last_updated_date_annex10(specific_soup.find_all('small')[1].get_text())
 
             # ignore files that have not changed since last time downloading
             if last_updated_local > last_updated_site:
@@ -151,7 +146,23 @@ def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[s
     return annex_dict
 
 
-def find_last_updated_date(text: str) -> datetime:
+def find_last_updated_date(html_active: requests.Response) -> datetime:
+    """ Finds the date when a medicine page was last updated
+
+    Args:
+        html_active (): html object that contains raw html for a webpage for a medicine on the EMA website
+
+    Returns:
+        datetime: When the medicine page on the EMA website was last updated
+    """
+    soup = bs4.BeautifulSoup(html_active.text, "html.parser")
+    last_updated_element = soup.find("meta", property="og:updated_time")["content"]
+    last_updated_text = last_updated_element.split('T')[0]
+    last_updated_datetime = datetime.strptime(last_updated_text, '%Y-%m-%d')
+    return last_updated_datetime
+
+
+def find_last_updated_date_annex10(text: str) -> datetime:
     """ Converts a piece of text with information when an excel-sheet was last updated to a datetime object
 
     Args:

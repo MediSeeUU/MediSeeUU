@@ -3,6 +3,8 @@ import sys
 import json
 import pytest
 import regex as re
+import requests
+import scraping.web_scraper.utils as utils
 from scraping.web_scraper import ec_scraper as ec
 from parameterized import parameterized
 
@@ -170,7 +172,9 @@ class TestEcScraper(unittest.TestCase):
             'https://ec.europa.eu/health/documents/community-register/2019/20190919146015/anx_146015_en.pdf',
             'https://ec.europa.eu/health/documents/community-register/2021/20210322150898/anx_150898_en.pdf'
         ]
-        dec_result, anx_result, ema_result, _ = ec.scrape_medicine_page(url, ec.MedicineType.HUMAN_USE_ACTIVE)
+        html_active: requests.Response = utils.get_html_object(url)
+        dec_result, anx_result, ema_result, _ = ec.scrape_medicine_page(url, html_active,
+                                                                        ec.MedicineType.HUMAN_USE_ACTIVE)
         dec_result = [x[0] for x in dec_result]
         anx_result = [x[0] for x in anx_result]
 
@@ -267,7 +271,7 @@ class TestEcScraper(unittest.TestCase):
                 "EMEA/H/C/000572",
                 "EMEA/H/C/572",
                 "EMEA/H/C/IG1126",
-                "EMEA/H/C/572"
+                "EMEA/H/C/572",
                 "EMEA/H/C/IG1055",
                 "EMEA/H/C/572",
                 "EMEA/H/C/572",
@@ -280,7 +284,7 @@ class TestEcScraper(unittest.TestCase):
                 "EMEA/H/C/572"
             ],
             "EMEA/H/C/572",
-            0.7333333333333333
+            0.75
         ]
     ])
     def test_determine_ema_number(self, ema_numbers, exp_ema_number, exp_fraction):

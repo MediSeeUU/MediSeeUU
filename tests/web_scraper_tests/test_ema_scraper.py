@@ -1,6 +1,7 @@
 import unittest
 from datetime import datetime
 from scraping.web_scraper import ema_scraper as em
+import scraping.web_scraper.utils as utils
 from parameterized import parameterized
 
 
@@ -33,7 +34,8 @@ class TestEMAScraper(unittest.TestCase):
         ]
     ])
     def test_pdf_links_from_url(self, url: str, exp_epar: str, exp_omar: str):
-        epar, omar = em.pdf_links_from_url(url)
+        html_active = utils.get_html_object(url)
+        epar, omar = em.pdf_links_from_url(url, html_active)
         self.assertEqual(exp_epar, epar, msg="epar is not correct")
         self.assertEqual(exp_omar, omar, msg="omar is not correct")
 
@@ -54,15 +56,12 @@ class TestEMAScraper(unittest.TestCase):
         self.assertEqual(exp_result, result, msg="priority link was not found")
 
     @parameterized.expand([
-        [datetime.strptime("10/06/2022", '%d/%m/%Y')]
+        ["https://www.ema.europa.eu/en/medicines/human/EPAR/alymsys",
+         datetime.strptime("06/07/2022", '%d/%m/%Y')]
     ])
-    def test_find_last_updated_date(self, exp_output):
-
-        # Gets the text similar as on the ec website
-        with open("last_updated_date_text.html", "r") as f:
-            text = f.read()
-
-        output = em.find_last_updated_date(text)
+    def test_find_last_updated_date(self, url, exp_output):
+        html_active = utils.get_html_object(url)
+        output = em.find_last_updated_date(html_active)
 
         self.assertEqual(exp_output, output, msg="output is not as expected")
 

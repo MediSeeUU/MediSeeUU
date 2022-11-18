@@ -6,6 +6,7 @@ from enum import Enum
 import bs4
 import regex as re
 import requests
+import scraping.web_scraper.utils as utils
 
 log = logging.getLogger("web_scraper.ec_scraper")
 
@@ -91,7 +92,6 @@ def scrape_active_withdrawn_jsons() -> list[dict]:
                                               get_ec_json_objects(get_ec_html(HUMAN_USE_WITHDRAWN_URL))[0],
                                               get_ec_json_objects(get_ec_html(ORPHAN_ACTIVE_URL))[0],
                                               get_ec_json_objects(get_ec_html(ORPHAN_WITHDRAWN_URL))[0]]
-
     return active_withdrawn_json_list
 
 
@@ -106,7 +106,6 @@ def scrape_refused_jsons() -> list[dict]:
     """
     refused_json_list: list[dict] = [get_ec_json_objects(get_ec_html(HUMAN_USE_REFUSED_URL))[0],
                                      get_ec_json_objects(get_ec_html(ORPHAN_REFUSED_URL))[0]]
-
     return refused_json_list
 
 
@@ -164,12 +163,29 @@ def get_ec_json_objects(html_active: requests.Response) -> list[dict]:
     return parsed_jsons
 
 
-def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], list[str], list[str], dict[str, str]):
+def get_last_updated_date(html_active: requests.Response) -> datetime:
+    """
+    Gets the last updated date for a medicine on the EC website
+
+    Args:
+        html_active (requests.Response): html object for the webpage. Contains a string with 'Last updated on '##/##/####'
+
+    Returns:
+        (str): The date in the aforementioned string
+    """
+    soup = bs4.BeautifulSoup(html_active.text, "html.parser")
+    last_updated_soup = soup.find(string=re.compile(f"Last updated on.*"))
+    last_updated_string = last_updated_soup.text[:-1]
+    return datetime.strptime(last_updated_string.split()[-1], '%d/%m/%Y')
+
+
+def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type: MedicineType) -> (list[str], list[str], list[str], dict[str, str]):
     """
     Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.
 
     Args:
         url (str): The url to the medicine page for the medicine that needs to be scraped.
+        html_active (requests.Response): html object that contains all html text
         medicine_type (MedicineType): The type of medicine this medicine is.
 
     Returns:
@@ -179,7 +195,6 @@ def scrape_medicine_page(url: str, medicine_type: MedicineType) -> (list[str], l
             stored in a dictionary.
     """
     # Retrieves the html from the European Commission product page
-    html_active = get_ec_html(url)
     medicine_json, procedures_json, *_ = get_ec_json_objects(html_active)
 
     # Gets the short EU number from the url
@@ -280,9 +295,12 @@ def set_human_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str]
             medicine_dict["eu_mah_current"]: str = row["value"]
 
         case "ema_links":
+            # ema_url_list.append(row["meta"][0]["url"])
+
             for json_obj in row["meta"]:
                 ema_url_list.append(json_obj["url"])
-                # TODO: retrieve date for every PDF
+
+            # TODO: retrieve date for every PDF
         case "orphan_links":
             medicine_dict["eu_orphan_con_current"]: str = row["meta"]
 

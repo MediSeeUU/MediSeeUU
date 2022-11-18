@@ -3,9 +3,13 @@ import os.path
 
 
 class JsonHelper:
-    def __init__(self, path: str):
+    def __init__(self, path: str, init_dict: dict = None):
         self.path = path
-        self.local_dict: dict = self.load_json()
+        if init_dict or init_dict == {}:
+            self.local_dict: dict = init_dict
+            self.save_dict()
+        else:
+            self.local_dict: dict = self.load_json()
 
     def save_dict(self):
         """

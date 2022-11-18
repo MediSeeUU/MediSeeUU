@@ -81,10 +81,10 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str], d
 # Download pdfs using the dictionaries created from the json file
 def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_urls: list[str], med_dict: dict[str, str],
                      filedate_dict: dict[str, tuple[str, datetime, datetime]],
-                     data_path: str):
+                     data_path: str, urls_dict: json_helper.JsonHelper, overwrite: bool = False):
     """
     Downloads the pdfs of the EC website files for a specific medicine and a specific file type (decision or annex)
-    It evaluates the string in the pdf_url_dict to a list of urls which then can be used for downloading with the
+    It evaluates the string in the pdf_urls_dict to a list of urls which then can be used for downloading with the
     download_pdf_from_url function.
     The filename_elements used for structuring the filename are also specified in this function.
 
@@ -101,6 +101,8 @@ def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_urls: list[str], med_dict: 
             dictionary containing the date for every file. in the format {filename : (url, date)}
         data_path (str):
             The path to the data folder
+        urls_dict (json_helper.JsonHelper): the dictionary containing all the urls of a specific medicine
+        overwrite (bool): If true overwrites the current files in the medicine folder
     """
     file_counter = 0
     if len(pdf_urls) > 0:
@@ -111,11 +113,21 @@ def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_urls: list[str], med_dict: 
         if med_dict["init_addressed_to_member_states"] == "True":
             file_counter = -1
         filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type, str(file_counter)]
-        download_pdf_from_url(pdf_urls[-1], eu_num, filename_elements, data_path, filedate_dict)
+        download_pdf_from_url(pdf_urls[-1], eu_num, filename_elements, data_path, filedate_dict, overwrite)
+
+    if pdf_type == "anx":
+        overwrite_dict: json = {
+            eu_num: {
+                "overwrite_ec_files": "False"
+            }
+        }
+        urls_dict.add_to_dict(overwrite_dict)
+        urls_dict.save_dict()
 
 
 def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[str, str],
-                      filedate_dict: dict[str, tuple[str, datetime, datetime]], data_path: str):
+                      filedate_dict: dict[str, tuple[str, datetime, datetime]], data_path: str,
+                      overwrite: bool = False):
     """
     Downloads the pdfs of the EMA website files for a specific medicine.
     It gets the url from the epar dictionary which is used for downloading with the download_pdf_from_url function.
@@ -124,13 +136,14 @@ def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[s
     Args:
         eu_num (str): The EU number of the medicine where the files should be downloaded for.
         pdf_type (str): The type of pdf, epar or omar
-        pdf_url (str) The url to the pdf file
+        pdf_url (str): The url to the pdf file
         med_dict (dict[str,str]): The dictionary containing the attributes of the medicine.
             Used for structuring the filename
         filedate_dict (dict[str, tuple[str, datetime, datetime]]):
             dictionary containing the date for every file. in the format {filename : (url, date)}
         data_path (str):
             The path to the data folder
+        overwrite (bool): If true overwrites the current files in the medicine folder
     """
     if pdf_url == '':
         log.info(f"no {pdf_type} available for {eu_num}")
@@ -141,17 +154,19 @@ def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[s
         except IndexError:
             log.warning(f"no filetype found for {pdf_url}")
     filename_elements = [med_dict["orphan_status"], med_dict["status_type"], pdf_type]
-    download_pdf_from_url(pdf_url, eu_num, filename_elements, data_path, filedate_dict)
+    download_pdf_from_url(pdf_url, eu_num, filename_elements, data_path, filedate_dict, overwrite)
 
 
-def download_medicine_files(eu_n: str, url_dict: dict[str, list[str] | str], data_path: str):
+def download_medicine_files(eu_n: str, urls_dict: dict[str, list[str] | str], urls_json: json_helper.JsonHelper,
+                            data_path: str):
     """
     Downloads all the pdf files that belong to a medicine.
     Logs successful downloads and also logs if not all files could be downloaded for a specific medicine.
 
     Args:
         eu_n (str): The EU number of the medicine where we want to download the files of
-        url_dict (dict[str, list[str] | str]): the dictionary containing all the urls of a specific medicine
+        urls_dict (dict[str, list[str] | str]): the dictionary containing all the urls of a specific medicine
+        urls_json (json_helper.JsonHelper): The dictionary containing the urls of all medicine files
         data_path (str): The path to the data folder
     """
     attr_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_webdata.json")).load_json()
@@ -162,10 +177,19 @@ def download_medicine_files(eu_n: str, url_dict: dict[str, list[str] | str], dat
             filedate_dict = json.load(f)
     download_list = [("dec", "aut_url"), ("anx", "smpc_url"), ('epar', "epar_url"), ('omar', "omar_url")]
     for (filetype, key) in download_list:
-        if key in url_dict.keys() and filetype in ["dec", "anx"]:
-            download_pdfs_ec(eu_n, filetype, url_dict[key], attr_dict, filedate_dict, data_path)
-        if key in url_dict.keys() and filetype in ['epar', 'omar']:
-            download_pdfs_ema(eu_n, filetype, url_dict[key], attr_dict, filedate_dict, data_path)
+        if key in urls_dict.keys() and filetype in ["dec", "anx"] and \
+                urls_dict.get("overwrite_ec_files", "True") == "True":
+            download_pdfs_ec(eu_n, filetype, urls_dict[key], attr_dict, filedate_dict, data_path, urls_json, True)
+        if key in urls_dict.keys() and filetype in ['epar', 'omar'] and \
+                urls_dict.get("overwrite_ema_files", "True") == "True":
+            download_pdfs_ema(eu_n, filetype, urls_dict[key], attr_dict, filedate_dict, data_path)
+
+        # if key in url_dict.keys() and filetype in ["dec", "anx"]:
+        #     download_pdfs_ec(eu_n, filetype, url_dict[key], attr_dict, filedate_dict, data_path)
+        # if key in url_dict.keys() and filetype in ['epar', 'omar']:
+        #     download_pdfs_ema(eu_n, filetype, url_dict[key], attr_dict, filedate_dict, data_path)
+
+
     with open(filedates_path, 'w') as f:
         json.dump(filedate_dict, f, indent=4, default=str)
     log.info(f"Finished download for {eu_n}")
@@ -186,8 +210,9 @@ def download_all(data_filepath: str, urls_dict: json_helper.JsonHelper, parallel
             tqdm_concurrent.thread_map(download_medicine_files,
                                        urls_dict.local_dict.keys(),
                                        urls_dict.local_dict.values(),
+                                       repeat(urls_dict),
                                        repeat(data_filepath), max_workers=12)
 
         else:
             for eu_n, urls_eu_n_dict in tqdm.tqdm(urls_dict.local_dict.items()):
-                download_medicine_files(eu_n, urls_eu_n_dict, data_filepath)
+                download_medicine_files(eu_n, urls_eu_n_dict, urls_dict, data_filepath)
