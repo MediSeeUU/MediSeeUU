@@ -31,9 +31,10 @@ class TestFilterRetry(unittest.TestCase):
                                                 "-epar-scientific-discussion_en.pdf",
                                     "omar_url": ""}}
         # Make a temporary file and test for key error if eu number is not in the url dictionary
-        temp = tempfile.TemporaryFile()
-        temp.write(file_content)
+        temp = tempfile.NamedTemporaryFile(mode='w', delete=False)
+        temp.write(str(file_content))
         temp.seek(0)
+        temp.close()
         self.assertIsNone(filter_retry.retry_all(temp.name, url_file, data_filepath))
 
     @parameterized.expand([
