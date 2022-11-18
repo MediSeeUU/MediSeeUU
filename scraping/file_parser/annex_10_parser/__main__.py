@@ -200,7 +200,7 @@ def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
     annex_10_folder = path.join(data_folder_directory, annex_folder_name)
 
     if not os.path.exists(annex_10_folder):
-        log.error(f"Annex 10 folder {annex_10_folder} does not exists")
+        log.error(f"Annex 10 folder {annex_10_folder} does not exist")
         return
 
     # Skip if file already exists and last annex is included
