@@ -5,6 +5,7 @@ import json
 from unittest import TestCase
 from scraping.web_scraper import __main__ as web
 from parameterized import parameterized
+
 data_path = "../../data"
 if not path.isdir(data_path):
     os.mkdir(data_path)
@@ -15,44 +16,66 @@ class TestWebScraper(TestCase):
     Class that runs web, mostly checks if files get downloaded
     """
 
-    @parameterized.expand([[True, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
-                                   'EU-1-04-273', 0, 'h273')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
-                                    'EU-1-04-273', 0, 'h273')]]])
-    def test_run_web_check_all(self, parallel, medicine_codes):
-        assert not path.exists(f"{data_path}_old"), "can't rename data folder for test"
+    # Rename data to data_old
+    @classmethod
+    def setUpClass(cls):
         os.rename(data_path, f"{data_path}_old")
         os.mkdir(data_path)
+
+    @parameterized.expand([[True, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
+                                    'EU-1-04-273', 0, 'h273')]],
+                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
+                                     'EU-1-04-273', 0, 'h273')]],
+                           [True, [('https://ec.europa.eu/health/documents/community-register/html/h283.htm',
+                                    'EU-1-04-283', 1, 'h283')]],
+                           [True, [('https://ec.europa.eu/health/documents/community-register/html/o005.htm',
+                                    'EU-3-00-005', 2, 'o005')]],
+                           [True, [('https://ec.europa.eu/health/documents/community-register/html/o101.htm',
+                                    'EU-3-02-101', 3, 'o101')]],
+                           [True, [('https://ec.europa.eu/health/documents/community-register/html/h131.htm',
+                                    'EU-1-00-131', 1, 'h131')]]])
+    def test_run_web_check_all(self, parallel, medicine_codes):
+        shutil.rmtree(data_path)
+        os.mkdir(data_path)
+        shutil.rmtree('JSON')
+
         self.parallel = parallel
         self.medicine_codes = medicine_codes
-        self.eu_n = medicine_codes[0][1]
-
+        self.eu_n = self.medicine_codes[0][1]
         self.run_ec_scraper()
         self.run_ema_scraper()
         self.run_download()
         self.run_filter()
 
-        shutil.rmtree(data_path)
-        os.rename(f"{data_path}_old", data_path)
-        shutil.rmtree('JSON')
-        os.remove('filter.txt')
-
     @parameterized.expand([[True, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
-                                   'EU-1-04-273', 0, 'h273')]],
+                                    'EU-1-04-273', 0, 'h273')]],
                            [False, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
-                                    'EU-1-04-273', 0, 'h273')]]])
+                                     'EU-1-04-273', 0, 'h273')]],
+                           [True, [('https://ec.europa.eu/health/documents/community-register/html/h283.htm',
+                                    'EU-1-04-283', 1, 'h283')]],
+                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h283.htm',
+                                     'EU-1-04-283', 1, 'h283')]],
+                           [True, [('https://ec.europa.eu/health/documents/community-register/html/o005.htm',
+                                    'EU-3-00-005', 2, 'o005')]],
+                           [False, [('https://ec.europa.eu/health/documents/community-register/html/o005.htm',
+                                     'EU-3-00-005', 2, 'o005')]],
+                           [True, [('https://ec.europa.eu/health/documents/community-register/html/o101.htm',
+                                    'EU-3-02-101', 3, 'o101')]],
+                           [False, [('https://ec.europa.eu/health/documents/community-register/html/o101.htm',
+                                     'EU-3-02-101', 3, 'o101')]],
+                           [True, [('https://ec.europa.eu/health/documents/community-register/html/h131.htm',
+                                    'EU-1-00-131', 1, 'h131')]],
+                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h131.htm',
+                                     'EU-1-00-131', 1, 'h131')]]])
     def test_run_web_no_checks(self, parallel, medicine_codes):
-        assert not path.exists(f"{data_path}_old"), "can't rename data folder for test"
-        os.rename(data_path, f"{data_path}_old")
+        shutil.rmtree(data_path)
         os.mkdir(data_path)
+        shutil.rmtree("JSON")
+
         self.parallel = parallel
         self.medicine_codes = medicine_codes
         web.main(data_filepath=data_path, scrape_ec=True, scrape_ema=True, download_files=True, run_filter=True,
                  use_parallelization=self.parallel, medicine_codes=self.medicine_codes)
-        shutil.rmtree(data_path)
-        os.rename(f"{data_path}_old", data_path)
-        shutil.rmtree('JSON')
-        os.remove('filter.txt')
 
     def run_ec_scraper(self):
         web.main(data_filepath=data_path, scrape_ec=True, scrape_ema=False, download_files=False, run_filter=False,
@@ -72,7 +95,7 @@ class TestWebScraper(TestCase):
                  use_parallelization=self.parallel, medicine_codes=self.medicine_codes)
         with open(f"JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
-        assert "epar_url" in url_dict.keys() and "omar_url" in url_dict.keys(), "ema urls not in urls.json"
+        assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url']), "ema urls not in urls.json"
 
     def run_download(self):
         web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=False, download_files=True, run_filter=False,
@@ -88,7 +111,7 @@ class TestWebScraper(TestCase):
             filecount += 1
         if url_dict["omar_url"]:
             filecount += 1
-        assert len(os.listdir(data_folder)) == filecount+2, "not all files are downloaded"
+        assert len(os.listdir(data_folder)) == filecount + 2, "not all files are downloaded"
         # check filedates.json contents
         with open(f"{data_folder}/{self.eu_n}_filedates.json") as f:
             filedates_dict = json.load(f)
@@ -101,3 +124,10 @@ class TestWebScraper(TestCase):
                  use_parallelization=self.parallel, medicine_codes=self.medicine_codes)
         # check if filter.txt exists
         assert path.exists("filter.txt"), "filter.txt does not exist"
+
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(data_path)
+        os.rename(f"{data_path}_old", data_path)
+        if os.path.exists('filter.txt'):
+            os.remove('filter.txt')
