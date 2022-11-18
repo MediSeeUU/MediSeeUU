@@ -28,26 +28,28 @@ def main(directory: str):
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
+        joblib.delayed(parse_folder)(directory, folder) for folder in
         directory_folders)
     log.info("Done parsing PDF files!")
 
     # Single-threaded parsing
     # for folder in directory_folders:
-    #     parse_folder(path.join(directory, folder), folder)
+    #     parse_folder(directory, folder)
 
 
 # scraping on medicine folder level
-def parse_folder(directory: str, folder_name: str):
+def parse_folder(main_directory: str, folder_name: str):
     """
     Given a folder containing medicines, parse_folder walks creates an XML file for each PDF when it doesn't exist.
         After this, a parser for each pdf/xml file is called,
         writing a json file containing the scraped attributes to the folder.
 
     Args:
-        directory (str): location of folder to parse
+        main_directory (str): data folder containing medicines
         folder_name (st): name of medicine folder to parse
     """
+    directory = path.join(main_directory, folder_name)
+
     # Annex 10 folder should be skipped
     if "annex" in directory:
         return
@@ -56,7 +58,7 @@ def parse_folder(directory: str, folder_name: str):
     medicine_struct = pis.ParsedInfoStruct(folder_name)
 
     # update list of files and filter out relevant files for each parser
-    annex_files, decision_files, epar_files, omar_files = get_files(directory)
+    annex_files, decision_files, epar_files, omar_files = get_files(main_directory, folder_name)
 
     # call scrapers on correct files and update medicine struct
     medicine_struct = run_scrapers(directory, annex_files, decision_files, epar_files, omar_files, medicine_struct)
@@ -68,21 +70,32 @@ def parse_folder(directory: str, folder_name: str):
     json_file.close()
 
 
-def get_files(directory: str) -> (list[str], list[str], list[str], list[str]):
+def get_files(main_directory: str, folder_name: str) -> (list[str], list[str], list[str], list[str]):
     """
     Get all PDF and XML files per PDF type
 
     Args:
-        directory (str): Location of the medicine containing PDF files
+        main_directory (str): Location of the data folder
+        folder_name (str): Name of medicine folder to be parsed
 
     Returns:
         (list[str], list[str], list[str], list[str]): List of PDF file names for each of the 4 PDF types
     """
-    directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
+    directory = path.join(main_directory, folder_name)
+
+    eu_numbers = []
+    if path.exists(f"{main_directory}/eu_numbers.json"):
+        with open(f"{main_directory}/eu_numbers.json", mode='r') as eu_numbers_file:
+            eu_numbers = json.load(eu_numbers_file)
+
+    # Only medicines in eu_numbers should be parsed, as only those medicines have been updated
+    directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file)) and
+                       file.split("_")[0] in eu_numbers]
     decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file]
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
     epar_files = [file for file in directory_files if
                   ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
+
     omar_files = [path.join(directory, file) for file in directory_files if
                   ("omar" in file or "orphan" in file) and ".xml" in file]
     return annex_files, decision_files, epar_files, omar_files
