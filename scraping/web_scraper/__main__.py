@@ -358,6 +358,7 @@ def main(data_filepath: str = "../data",
 
         download.download_all(data_filepath, url_refused_file, parallel_download=use_parallelization)
 
+        url_refused_file.save_dict()
         log.info("TASK FINISHED downloading refused PDF files")
 
     if run_filter:

@@ -144,6 +144,7 @@ def download_pdfs_ec(medicine_identifier: str, pdf_type: str, pdf_urls: list[str
         }
         urls_dict.add_to_dict(overwrite_dict)
 
+
 def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[str, str],
                       filedate_dict: dict[str, tuple[str, datetime, datetime]], target_path: str,
                       overwrite: bool = False):
@@ -210,11 +211,12 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
     for (filetype, key) in download_list:
         if key in url_dict.keys() and filetype in ["dec", "anx"] and \
                 url_dict.get("overwrite_ec_files", "True") == "True":
-            download_pdfs_ec(medicine_identifier, filetype, url_dict[key], attr_dict, filedate_dict, data_path, urls_json,
-                             url_dict.get("overwrite_ec_files", "True") == "True")
+            download_pdfs_ec(medicine_identifier, filetype, url_dict[key], attr_dict, filedate_dict, target_path,
+                             urls_json, url_dict.get("overwrite_ec_files", "True") == "True")
         if key in url_dict.keys() and filetype in ['epar', 'omar'] and \
                 url_dict.get("overwrite_ema_files", "True") == "True":
-            download_pdfs_ema(medicine_identifier, filetype, url_dict[key], attr_dict, filedate_dict, data_path)
+            download_pdfs_ema(medicine_identifier, filetype, url_dict[key], attr_dict, filedate_dict, target_path)
+
     with open(filedates_path, 'w') as f:
         json.dump(filedate_dict, f, indent=4, default=str)
 
