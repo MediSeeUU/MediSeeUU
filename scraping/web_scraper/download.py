@@ -35,6 +35,25 @@ def get_date_from_url(url: str):
     return tuple((url, date, datetime.now()))
 
 
+def save_new_eu_numbers(data_path: str):
+    """
+    Writes EU numbers of medicines that contain new files to f"{data_path}/eu_numbers.json"
+
+    Args:
+        data_path (str): The path to the data folder
+    """
+    # Get all logging lines as list after latest "NEW LOG"
+    parent_path = data_path.split("data")[0]
+    with open(f'{parent_path}scraping/logging_web_scraper.log', 'r') as log_file:
+        full_log = log_file.read().split("=== NEW LOG ")[-1].split("\n")
+    # Only get "New medicine: " lines
+    filtered = filter(lambda line: "New medicine: " in line, full_log)
+    # Get and write new EU numbers
+    eu_numbers = list(map(lambda line: line.split(" ")[2], list(filtered)))
+    with open(f'{data_path}/eu_numbers.json', 'w') as outfile:
+        json.dump(eu_numbers, outfile)
+
+
 @utils.exception_retry(logging_instance=log)
 def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str], data_path: str,
                           filedate_dict: dict[str, tuple[str, datetime, datetime]],
@@ -62,6 +81,8 @@ def download_pdf_from_url(url: str, eu_num: str, filename_elements: list[str], d
         filepath = Path(f"{data_path}/{eu_num}/{filename}")
         if os.path.exists(filepath):
             return
+    # Adds eu_num to set of EU_numbers that contain newly downloaded files
+    log.info(f"New medicine: {eu_num}")
 
     downloaded_file = requests.get(url)
     if downloaded_file.status_code != 200:
@@ -122,7 +143,6 @@ def download_pdfs_ec(eu_num: str, pdf_type: str, pdf_urls: list[str], med_dict: 
             }
         }
         urls_dict.add_to_dict(overwrite_dict)
-        urls_dict.save_dict()
 
 
 def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[str, str],
@@ -177,19 +197,12 @@ def download_medicine_files(eu_n: str, urls_dict: dict[str, list[str] | str], ur
             filedate_dict = json.load(f)
     download_list = [("dec", "aut_url"), ("anx", "smpc_url"), ('epar', "epar_url"), ('omar', "omar_url")]
     for (filetype, key) in download_list:
-        if key in urls_dict.keys() and filetype in ["dec", "anx"] and \
-                urls_dict.get("overwrite_ec_files", "True") == "True":
-            download_pdfs_ec(eu_n, filetype, urls_dict[key], attr_dict, filedate_dict, data_path, urls_json, True)
+        if key in urls_dict.keys() and filetype in ["dec", "anx"]:
+            download_pdfs_ec(eu_n, filetype, urls_dict[key], attr_dict, filedate_dict, data_path, urls_json,
+                             urls_dict.get("overwrite_ec_files", "True") == "True")
         if key in urls_dict.keys() and filetype in ['epar', 'omar'] and \
                 urls_dict.get("overwrite_ema_files", "True") == "True":
             download_pdfs_ema(eu_n, filetype, urls_dict[key], attr_dict, filedate_dict, data_path)
-
-        # if key in url_dict.keys() and filetype in ["dec", "anx"]:
-        #     download_pdfs_ec(eu_n, filetype, url_dict[key], attr_dict, filedate_dict, data_path)
-        # if key in url_dict.keys() and filetype in ['epar', 'omar']:
-        #     download_pdfs_ema(eu_n, filetype, url_dict[key], attr_dict, filedate_dict, data_path)
-
-
     with open(filedates_path, 'w') as f:
         json.dump(filedate_dict, f, indent=4, default=str)
     log.info(f"Finished download for {eu_n}")

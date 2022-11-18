@@ -7,6 +7,7 @@ import requests
 import scraping.web_scraper.utils as utils
 
 log = logging.getLogger("web_scraper.ema_scraper")
+html_parser_str = "html.parser"
 
 
 def pdf_links_from_url(url: str, html_active: requests.Response) -> tuple[str, str]:
@@ -30,7 +31,7 @@ def pdf_links_from_url(url: str, html_active: requests.Response) -> tuple[str, s
     # TODO: Graceful handling
     html_active.raise_for_status()
 
-    soup = bs4.BeautifulSoup(html_active.text, "html.parser")
+    soup = bs4.BeautifulSoup(html_active.text, html_parser_str)
 
     # The documents we search are under the header
     #   Initial marketing-authorisation documents
@@ -109,11 +110,11 @@ def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[s
     """
     html_active = utils.get_html_object(url)
 
-    soup = bs4.BeautifulSoup(html_active.text, "html.parser")
-        
-    start_year: int = 2005                       # Starts looking for annex 10 files from this year,
-    current_year: int = datetime.now().year         # up to the current year
-    
+    soup = bs4.BeautifulSoup(html_active.text, html_parser_str)
+
+    start_year: int = 2005  # Starts looking for annex 10 files from this year,
+    current_year: int = datetime.now().year  # up to the current year
+
     # Checks for each year if there is an annex 10 Excel file and if the Excel link needs to be updated
     for year in range(start_year, current_year + 1):
         # Get the element that contains annex 10 text
@@ -155,7 +156,7 @@ def find_last_updated_date(html_active: requests.Response) -> datetime:
     Returns:
         datetime: When the medicine page on the EMA website was last updated
     """
-    soup = bs4.BeautifulSoup(html_active.text, "html.parser")
+    soup = bs4.BeautifulSoup(html_active.text, html_parser_str)
     last_updated_element = soup.find("meta", property="og:updated_time")["content"]
     last_updated_text = last_updated_element.split('T')[0]
     last_updated_datetime = datetime.strptime(last_updated_text, '%Y-%m-%d')
@@ -182,6 +183,5 @@ def find_last_updated_date_annex10(text: str) -> datetime:
         updated_date: str = new_text[2]
 
     return datetime.strptime(updated_date, '%d/%m/%Y')
-
 
 # print(pdf_links_from_url(""))
