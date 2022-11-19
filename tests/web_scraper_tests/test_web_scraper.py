@@ -2,6 +2,7 @@ import os.path as path
 import os
 import shutil
 import json
+from pathlib import Path
 from unittest import TestCase
 from scraping.web_scraper import __main__ as web
 from parameterized import parameterized
@@ -19,9 +20,10 @@ class TestWebScraper(TestCase):
     # Rename data to data_old
     @classmethod
     def setUpClass(cls):
-        os.rename(data_path, f"{data_path}_old")
+        if not os.path.exists(f"{data_path}_old"):
+            os.rename(data_path, f"{data_path}_old")
         os.mkdir(data_path)
-        os.mkdir('JSON')
+        Path("JSON").mkdir(parents=True, exist_ok=True)
 
     @parameterized.expand([[True, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
                                     'EU-1-04-273', 0, 'h273')]],
