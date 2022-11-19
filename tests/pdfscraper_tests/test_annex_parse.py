@@ -6,7 +6,7 @@ import regex as re
 import json
 import scraping.file_parser.pdf_parser.__main__ as pdf_parser
 
-test_data_foldername = "test_annex_parser_data"
+test_data_foldername = "test_annex_parse_data"
 
 
 class TestAnnexParse(TestCase):

@@ -11,17 +11,20 @@ percentage_str = "Percentage found: "
 
 
 # Tests all functions of EPAR parser with all XML files
+# TODO: Fix unittests now that get_txt_from_pdf is gone
 class TestDecParse(TestCase):
     @classmethod
     def setUpClass(cls):
         files = []
         for folder in os.listdir(test_data_loc):
+            if not os.path.isdir(os.path.join(test_data_loc, folder)):
+                continue
             for file in os.listdir(os.path.join(test_data_loc, folder)):
                 path = os.path.join(test_data_loc, folder, file)
                 if os.path.isfile(path):
                     files.append(path)
         dec_files = [file for file in files if "dec_0" in file and ".pdf" in file]
-        # Get XML bodies, assuming there are XML files
+        # Get content of PDF files
         for dec_file in dec_files:
             try:
                 pdf = fitz.open(dec_file)

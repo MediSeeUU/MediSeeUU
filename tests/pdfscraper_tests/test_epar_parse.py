@@ -26,6 +26,8 @@ class TestEparParse(TestCase):
         files = []
 
         for folder in os.listdir(test_data_loc):
+            if not os.path.isdir(os.path.join(test_data_loc, folder)):
+                continue
             for file in os.listdir(os.path.join(test_data_loc, folder)):
                 path = os.path.join(test_data_loc, folder, file)
 
@@ -70,6 +72,8 @@ class TestEparParse(TestCase):
         # Call get_opinion_date
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_opinion_date(xml_body)
+            if not output:
+                self.fail(f"No output found for {filename}")
             if output != "no_chmp_found" and output != "not_easily_scrapable":
                 found_count += 1
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
