@@ -21,6 +21,7 @@ class TestWebScraper(TestCase):
     def setUpClass(cls):
         os.rename(data_path, f"{data_path}_old")
         os.mkdir(data_path)
+        os.mkdir('JSON')
 
     @parameterized.expand([[True, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
                                     'EU-1-04-273', 0, 'h273')]],
