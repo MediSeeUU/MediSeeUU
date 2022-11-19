@@ -23,7 +23,7 @@ scrape_medicine_type: list[ec_scraper.MedicineType] = [
 log = logging.getLogger("web_scraper")
 
 json_path = "web_scraper/"
-cpu_count = multiprocessing.cpu_count()
+cpu_count = multiprocessing.cpu_count() * 2
 # If file is run locally:
 if "web_scraper" in os.getcwd():
     json_path = ""
@@ -86,13 +86,11 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
         return
 
     # Retrieves the date the EC medicine page was last updated
-    html_active: str = utils.get_html_object(medicine_url)
+    html_active = utils.get_html_object(medicine_url)
     medicine_last_updated_date = ec_scraper.get_last_updated_date(html_active)
 
     # Checks whether attributes and files need to be scraped from the EC web page
-    if check_scrape_page(eu_n, medicine_last_updated_date, "ec_last_scraped"):
-        pass
-    else:
+    if not check_scrape_page(eu_n, medicine_last_updated_date, "ec_last_scraped"):
         return
 
     log.info(eu_n + ": EC page has been updated since last scrape cycle")
@@ -148,19 +146,22 @@ def get_urls_ema(eu_n: str, url: str):
     medicine_last_updated_date: datetime = ema_scraper.find_last_updated_date(html_active)
 
     # Checks whether attributes and files need to be scraped from the EMA web page
-    if check_scrape_page(eu_n, medicine_last_updated_date, "ema_last_scraped"):
-        pass
-    else:
+    if not check_scrape_page(eu_n, medicine_last_updated_date, "ema_last_scraped"):
         return
 
     log.info(eu_n + ": EMA page has been updated since last scrape cycle")
 
     epar_url, omar_url = ema_scraper.pdf_links_from_url(url, html_active)
+
     if "epar_url" in url_file.local_dict[eu_n].keys():
         if url_file.local_dict[eu_n]['epar_url']:
+            if epar_url:
+                log.info(epar_url)
             return
     if "omar_url" in url_file.local_dict[eu_n].keys():
         if url_file.local_dict[eu_n]['omar_url']:
+            if omar_url:
+                log.info(omar_url)
             return
     pdf_url: dict[str, list[str] | str] = {
         eu_n: {
@@ -197,7 +198,7 @@ def main(data_filepath: str = "../data",
 
     Args:
         medicine_codes (list[(str, str, int, str)]) | None:
-            The list of all medicines that will be scraped. When it is not defined, it takes all the medicines
+            The list of all medicines that will be scraped. When it is not defined, it takes all medicines.
         data_filepath (str, optional): The file path where all data needs to be stored. Defaults to "../data".
         scrape_ec (bool): Whether EC URLs should be scraped
         scrape_ema (bool): Whether EMA URLs should be scraped | Requires scrape_ec to have been run at least once
@@ -271,7 +272,9 @@ def main(data_filepath: str = "../data",
 
     if download_files:
         log.info("TASK START downloading PDF files from fetched urls from EC and EMA")
+
         download.download_all(data_filepath, url_file, parallel_download=use_parallelization)
+        download.save_new_eu_numbers(data_filepath)
 
         url_file.save_dict()
         log.info("TASK FINISHED downloading PDF files")
