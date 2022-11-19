@@ -92,25 +92,18 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
 @utils.exception_retry(logging_instance=log)
 def get_urls_ema(eu_n: str, url: str):
     """
-    Gets all the pdf urls from the EMA website and writes it to a CSV file.
+    Gets all the pdf urls from the EMA website and writes it to a file.
 
     Args:
         eu_n (str): The EU number of the medicine.
         url (str): The url to an EMA page for a specific medicine.
     """
-    epar_url, omar_url = ema_scraper.pdf_links_from_url(url)
-    if "epar_url" in url_file.local_dict[eu_n].keys():
-        if url_file.local_dict[eu_n]['epar_url']:
-            return
-    if "omar_url" in url_file.local_dict[eu_n].keys():
-        if url_file.local_dict[eu_n]['omar_url']:
-            return
-    pdf_url: dict[str, str] = {
-        eu_n: {
-            "epar_url": epar_url,
-            "omar_url": omar_url
-        }
+    ema_urls: dict[str, str | list[str]] = ema_scraper.scrape_medicine_page(url)
+
+    pdf_url: dict[str, dict] = {
+        eu_n: ema_urls
     }
+
     url_file.add_to_dict(pdf_url)
 
 
@@ -138,7 +131,7 @@ def main(data_filepath: str = "../data",
 
     Args:
         medicine_codes (list[(str, str, int, str)]) | None:
-            The list of all medicines that will be scraped. When it is not defined, it takes all the medicines
+            The list of all medicines that will be scraped. When it is not defined, it takes all medicines
         data_filepath (str, optional): The file path where all data needs to be stored. Defaults to "../data".
         scrape_ec (bool): Whether EC URLs should be scraped
         scrape_ema (bool): Whether EMA URLs should be scraped | Requires scrape_ec to have been run at least once
@@ -190,11 +183,13 @@ def main(data_filepath: str = "../data",
             url_file.load_json()
 
         # Transform JSON object into list of (eu_n, url)
-        ema_urls = [(eu_n, url)
-                    for eu_n, value_dict in url_file.local_dict.items()
-                    for url in value_dict["ema_url"]]
+        ema_urls: list[tuple[str, str]] = [
+            (eu_n, url)
+            for eu_n, value_dict in url_file.local_dict.items()
+            for url in value_dict["ema_url"]
+        ]
 
-        unzipped_ema_urls = [list(t) for t in zip(*ema_urls)]
+        unzipped_ema_urls: list[list[str]] = [list(t) for t in zip(*ema_urls)]
 
         with tqdm_logging.logging_redirect_tqdm():
             if use_parallelization:

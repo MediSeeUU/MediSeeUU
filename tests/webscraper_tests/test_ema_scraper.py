@@ -33,7 +33,7 @@ class TestEMAScraper(unittest.TestCase):
         ]
     ])
     def test_pdf_links_from_url(self, url: str, exp_epar: str, exp_omar: str):
-        epar, omar = em.pdf_links_from_url(url)
+        epar, omar = em.scrape_medicine_page(url)
         self.assertEqual(exp_epar, epar, msg="epar is not correct")
         self.assertEqual(exp_omar, omar, msg="omar is not correct")
 

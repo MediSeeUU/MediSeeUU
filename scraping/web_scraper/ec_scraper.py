@@ -376,7 +376,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
 
         if row["files_dec"]:
             if not (any('en' in d.values() for d in row["files_dec"])):
-                log.warning(f"""No english file available for {eu_num}: dec_{decision_id}""")
+                log.warning(f"""{eu_num}: No english file available for dec_{decision_id}""")
             else:
                 pdf_url_dec = \
                     f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""
@@ -384,7 +384,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
 
         if row["files_anx"]:
             if not (any('en' in d.values() for d in row["files_anx"])):
-                log.warning(f"""No english file available for {eu_num}: anx_{decision_id}""")
+                log.warning(f"""{eu_num}: No english file available for anx_{decision_id}""")
             else:
                 pdf_url_anx = \
                     f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""

@@ -8,22 +8,21 @@ import requests
 log = logging.getLogger("web_scraper.ema_scraper")
 
 
-def pdf_links_from_url(url: str) -> tuple[str, str]:
+def scrape_medicine_page(url: str) -> dict[str, str | list[str]]:
     """
-    Gets the pdf link on the EMA website that is the highest on the priority list
-    and a link to the OMAR document if it exists
+    Given an url to an EMA medicine page, the method will return an EPAR, OMAR, and ODWAR in case they exist.
+    All other market authorisation documents will also be returned as a list. The special files mentioned above
+    are excluded from this list.
 
     Args:
-        url (str): Link to the medicine page on the EMA website
-
-    Raises:
-        Exception: If nothing is found, we throw an exception. This also passes all found URLs on newlines
+        url (str):
+            Link to the medicine page on the EMA website. Expecting a link like this:
+            https://www.ema.europa.eu/en/medicines/.../...
 
     Returns:
-        str: The pdf link that is the highest on the priority list
+        dict[str | list[str]: Dictionary of links to PDF files of interest from the EMA website.
     """
-    # Expecting a link scraped from the EC website. Link should look like this
-    # https://www.ema.europa.eu/en/medicines/human/EPAR/tandemact
+
     html_obj = requests.get(url)
 
     # Last part of the url, contains the medicine name
@@ -44,14 +43,13 @@ def pdf_links_from_url(url: str) -> tuple[str, str]:
 
     if complete_soup is None:
         log.warning(f"{medicine_name}: No initial marketing-authorisation documents")
-        return "", ""
+        return {}
 
     specific_soup = complete_soup.parent.parent.parent
 
-    # Compiles a list of all link tags, that link to a .pdf file.
     link_tags = specific_soup.find_all('a')
 
-    # Get all links to pdf files from the
+    # Transform HTML elements into the urls from the href attribute
     url_list: list[str] = list(map(lambda a: a["href"], link_tags))
 
     # Files named 'public-assessment-report' will be the highest priority in the search.
@@ -60,18 +58,30 @@ def pdf_links_from_url(url: str) -> tuple[str, str]:
         "scientific-discussion",
         "procedural-steps-taken-authorisation"
     ]
+
     omar_priority_list: list[str] = [
         "orphan-maintenance-assessment-report",
         "orphan-medicine-assessment-report"
     ]
-    epar_link = find_priority_link(epar_priority_list, url_list)
-    omar_link = find_priority_link(omar_priority_list, url_list)
 
-    # gives a warning if it hasn't found an epar or omar document
-    if epar_link == "":
-        log.warning(f"No EPAR for {medicine_name}. The searched URLs are {url_list}")
+    odwar_priority_list: list[str] = [
+        "orphan-designation-withdrawal-assessment-report"
+    ]
 
-    return epar_link, omar_link
+    result_dict: dict[str, str | list[str]] = {
+        "epar_url": find_priority_link(epar_priority_list, url_list),
+        "omar_url": find_priority_link(omar_priority_list, url_list),
+        "odwar_url": find_priority_link(odwar_priority_list, url_list)
+    }
+
+    # All links that are not saved into the dictionary already
+    result_dict["other_ema_urls"] = [link for link in url_list if link not in result_dict.values()]
+
+    # Gives a warning if it hasn't found an epar or omar document
+    if result_dict["epar_url"] == "":
+        log.warning(f"{medicine_name}: No EPAR. Potential URLs are: {url_list}")
+
+    return result_dict
 
 
 def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:
@@ -89,9 +99,9 @@ def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:
     for type_of_report in priority_list:
         for url in url_list:
             if type_of_report in url:
-                return url
+                return url  # Success return condition
 
-    return ""
+    return ""  # Failure return condition
 
 
 def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
@@ -173,4 +183,4 @@ def find_last_updated_date(text: str) -> datetime:
     return datetime.strptime(updated_date, '%d/%m/%Y')
 
 
-# print(pdf_links_from_url(""))
+# print(scrape_medicine_page(""))
