@@ -225,6 +225,8 @@ def main(data_filepath: str = "../data",
         log.info("TASK FINISHED annex10 scrape")
 
     if scrape_ec:
+        with open("no_english_available.txt", 'w', encoding="utf-8") as f:
+            pass  # open/clean no_english_available file
         # make sure tests start with empty dict, because url_file is global variable only way to do this is here.
         if "test" in os.getcwd():
             url_file.overwrite_dict({})

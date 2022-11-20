@@ -408,6 +408,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
         if row["files_dec"]:
             if not (any('en' in d.values() for d in row["files_dec"])):
                 log.warning(f"""No english file available for {eu_num}: dec_{decision_id}""")
+                add_to_non_english_file(eu_num, decision_date, "dec", row["type"].lower())
             else:
                 pdf_url_dec = \
                     f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""
@@ -416,6 +417,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
         if row["files_anx"]:
             if not (any('en' in d.values() for d in row["files_anx"])):
                 log.warning(f"""No english file available for {eu_num}: anx_{decision_id}""")
+                add_to_non_english_file(eu_num, decision_date, "anx", row["type"].lower())
             else:
                 pdf_url_anx = \
                     f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""
@@ -463,6 +465,22 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
             log.warning(f"{eu_num}: No value for {key}")
 
     return procedures_dict, dec_url_list, anx_url_list
+
+
+def add_to_non_english_file(eu_n: str, decision_date: datetime.date, filetype: str, procedure_type: str):
+    """
+    This function appends a line to the no_english_available.txt to make an overview of all files that don't have an
+    english version.
+    Args:
+        eu_n (str): The short eu_n, used to form the url to the medicine page
+        decision_date (datetime.date): The date of the decision.
+        filetype (str): The type of the file (decision or annex)
+        procedure_type (str): The procedure type of the file (as stated on the ec website)
+    """
+    url = f"https://ec.europa.eu/health/documents/community-register/html/{eu_n}.htm"
+    with open(f"no_english_available.txt", "a") as f:
+        f.write(f"{procedure_type}@{filetype}@{decision_date}@{url}\n")
+        return
 
 
 def determine_current_aut_type(last_decision_types: list[str]) -> str:
