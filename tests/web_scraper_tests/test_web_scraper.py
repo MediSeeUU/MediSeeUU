@@ -134,3 +134,5 @@ class TestWebScraper(TestCase):
         os.rename(f"{data_path}_old", data_path)
         if os.path.exists('filter.txt'):
             os.remove('filter.txt')
+        if os.path.exists('no_english_available.txt'):
+            os.remove('no_english_available.txt')
