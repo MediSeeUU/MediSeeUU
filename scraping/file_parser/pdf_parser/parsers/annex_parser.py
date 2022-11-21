@@ -4,6 +4,7 @@ import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
 import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
 import scraping.logger as logger
+import scraping.definitions.attributes as attr
 import os
 
 log = logger.PDFLogger.log
@@ -51,8 +52,8 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
 
     # add default attribute values for initial authorization annexes
     if is_initial_file:
-        annex_attributes["initial_type_of_eu_authorization"] = "standard"
-        annex_attributes["eu_type_of_medicine"] = "small molecule"
+        annex_attributes[attr.initial_type_of_eu_authorization] = "standard"
+        annex_attributes[attr.eu_type_of_medicine] = "small molecule"
 
     # loop through sections and parse section if conditions met
     for section in xml_body:
@@ -61,17 +62,17 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
             # initial type of eu authorization
             # override default value of "standard" if "specific obligation" is present anywhere in text
             if xml_utils.section_contains_substring("specific obligation", section) and \
-                    annex_attributes["initial_type_of_eu_authorization"] != "conditional":
-                annex_attributes["initial_type_of_eu_authorization"] = "exceptional or conditional"
+                    annex_attributes[attr.initial_type_of_eu_authorization] != "conditional":
+                annex_attributes[attr.initial_type_of_eu_authorization] = "exceptional or conditional"
 
             # definitely conditional if "conditional approval" anywhere in text
             if xml_utils.section_contains_substring("conditional approval", section):
-                annex_attributes["initial_type_of_eu_authorization"] = "conditional"
+                annex_attributes[attr.initial_type_of_eu_authorization] = "conditional"
 
             # EU type of medicine
             # override default value of "small molecule" if traceability header is present
             if xml_utils.section_contains_substring("traceability", section):
-                annex_attributes["eu_type_of_medicine"] = "biologicals"
+                annex_attributes[attr.eu_type_of_medicine] = "biologicals"
 
         # TODO: to add attributes, initial EU conditions and current EU conditions, 50 and 51 in bible
 

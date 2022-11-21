@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
 import scraping.logger as logger
+import scraping.definitions.attributes as attr
 import os.path as path
 
 date_pattern: str = r"\d{1,2} \b(?!emea\b)\w+ \d{4}|\d{1,2}\w{2} \b(?!emea\b)\w+ \d{4}"  # DD/MONTH/YYYY
@@ -26,14 +27,14 @@ def get_all(filename: str, xml_data: ET.Element) -> dict:
         dict: Dictionary of all scraped attributes, named according to the bible
     """
     epar = {"filename": filename[:len(filename) - 4],  # removes extension
-            "ema_procedure_start_initial": get_date(xml_data),
-            "chmp_opinion_date": get_opinion_date(xml_data),
-            "eu_legal_basis": get_legal_basis(xml_data),
-            "eu_prime_initial": get_prime(xml_data),
-            "ema_rapp": get_rapp(xml_data),
-            "ema_corapp": get_corapp(xml_data),
-            "ema_reexamination": get_reexamination(xml_data),
-            "eu_accel_assess_g": get_accelerated_assessment(xml_data)}
+            attr.ema_procedure_start_initial: get_date(xml_data),
+            attr.chmp_opinion_date: get_opinion_date(xml_data),
+            attr.eu_legal_basis: get_legal_basis(xml_data),
+            attr.eu_prime_initial: get_prime(xml_data),
+            attr.ema_rapp: get_rapp(xml_data),
+            attr.ema_corapp: get_corapp(xml_data),
+            attr.ema_reexamination: get_reexamination(xml_data),
+            attr.eu_accel_assess_g: get_accelerated_assessment(xml_data)}
     return epar
 
 

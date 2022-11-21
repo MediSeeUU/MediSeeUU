@@ -7,6 +7,7 @@ import scraping.file_parser.pdf_parser.helper as helper
 import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
 import scraping.file_parser.pdf_parser.parsed_info_struct as PIS
 import scraping.logger as logger
+import scraping.definitions.attributes as attr
 
 log = logger.PDFLogger.log
 
@@ -51,25 +52,25 @@ def get_default_dict(filename: str) -> dict:
     # keys for human use
     if '_h_' in filename:
         dic = dict.fromkeys(['filename',
-                             'eu_aut_date',
-                             'eu_brand_name_initial',
-                             'active_substance',
-                             'eu_nas',
-                             'eu_atmp',
-                             'eu_od_initial',
-                             'eu_mah_initial',
-                             'eu_aut_type_initial',
+                             attr.eu_aut_date,
+                             attr.eu_brand_name_initial,
+                             attr.active_substance,
+                             attr.eu_nas,
+                             attr.eu_atmp,
+                             attr.eu_od_initial,
+                             attr.eu_mah_initial,
+                             attr.eu_aut_type_initial,
                              'status'],
                             default)
 
     # keys for orphan
     elif '_o_' in filename:
         dic = dict.fromkeys(['filename',
-                             'eu_aut_date',
-                             'eu_brand_name_initial',
-                             'eu_od_initial',
-                             'eu_mah_initial',
-                             'eu_od_comp_date',
+                             attr.eu_aut_date,
+                             attr.eu_brand_name_initial,
+                             attr.eu_od_initial,
+                             attr.eu_mah_initial,
+                             attr.eu_od_comp_date,
                              'status'],
                             default)
 
@@ -95,28 +96,28 @@ def get_data(filename: str, txt: str) -> dict:
     """
     filedata = get_default_dict(filename)
     date = dec_get_date(txt)
-    filedata['eu_aut_date'] = date
+    filedata[attr.eu_aut_date] = date
 
     # if date was left blank use default date to not find date dependent attributes.
     if isinstance(date, str):
         date = dec_get_date('')
 
     if '_h_' in filename:
-        filedata['eu_brand_name_initial'] = dec_get_bn(txt)
-        filedata['active_substance'] = dec_get_as(txt)
-        filedata['eu_nas'] = dec_get_nas(txt, date)
-        filedata['eu_atmp'] = dec_get_atmp(txt, date)
-        filedata['eu_od_initial'] = dec_get_od(txt, date)
-        filedata['eu_mah_initial'] = dec_get_mah(txt)
-        filedata['eu_aut_type_initial'] = dec_get_decision_type(txt, date)
+        filedata[attr.eu_brand_name_initial] = dec_get_bn(txt)
+        filedata[attr.active_substance] = dec_get_as(txt)
+        filedata[attr.eu_nas] = dec_get_nas(txt, date)
+        filedata[attr.eu_atmp] = dec_get_atmp(txt, date)
+        filedata[attr.eu_od_initial] = dec_get_od(txt, date)
+        filedata[attr.eu_mah_initial] = dec_get_mah(txt)
+        filedata[attr.eu_aut_type_initial] = dec_get_decision_type(txt, date)
         filedata['status'] = 'Parsed'
         return filedata
 
     elif '_o_' in filename:
-        filedata['eu_brand_name_initial'] = dec_get_bn(txt, True)
-        filedata['eu_od_initial'] = dec_get_od(txt, date)
-        filedata['eu_mah_initial'] = dec_get_mah(txt)
-        filedata['eu_od_comp_date'] = dec_get_od_comp_date(txt)
+        filedata[attr.eu_brand_name_initial] = dec_get_bn(txt, True)
+        filedata[attr.eu_od_initial] = dec_get_od(txt, date)
+        filedata[attr.eu_mah_initial] = dec_get_mah(txt)
+        filedata[attr.eu_od_comp_date] = dec_get_od_comp_date(txt)
         filedata['status'] = 'Parsed'
         return filedata
 
