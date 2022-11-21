@@ -12,32 +12,49 @@ class TestEMAScraper(unittest.TestCase):
 
     @parameterized.expand([
         [
+            "EPAR and OMAR",
             "https://www.ema.europa.eu/en/medicines/human/EPAR/zynteglo",
             "https://www.ema.europa.eu/documents/assessment-report/zynteglo-epar-public-assessment-report_en.pdf",
             "https://www.ema.europa.eu/documents/orphan-maintenance-report/zynteglo-orphan-maintenance-assessment-"
-            "report-initial-authorisation_en.pdf"
-        ],
-        [
-            "https://www.ema.europa.eu/en/medicines/human/EPAR/daklinza",
-            "https://www.ema.europa.eu/documents/assessment-report/daklinza-epar-public-assessment-report_en.pdf",
+            "report-initial-authorisation_en.pdf",
             ""
         ],
         [
-            "https://www.ema.europa.eu/en/medicines/human/orphan-designations/eu-3-21-2406",
+            "EPAR only",
+            "https://www.ema.europa.eu/en/medicines/human/EPAR/daklinza",
+            "https://www.ema.europa.eu/documents/assessment-report/daklinza-epar-public-assessment-report_en.pdf",
             "",
             ""
         ],
         [
+            "No EPAR and OMAR",
+            "https://www.ema.europa.eu/en/medicines/human/orphan-designations/eu-3-21-2406",
+            "",
+            "",
+            ""
+        ],
+        [
+            "EPAR only",
             "https://www.ema.europa.eu/en/medicines/human/EPAR/alymsys",
             "https://www.ema.europa.eu/documents/assessment-report/alymsys-epar-public-assessment-report_en.pdf",
+            "",
             ""
+        ],
+        [
+            "ODWAR",
+            "https://www.ema.europa.eu/en/medicines/human/EPAR/brukinsa",
+            "https://www.ema.europa.eu/documents/assessment-report/brukinsa-epar-public-assessment-report_en.pdf",
+            "",
+            "https://www.ema.europa.eu/documents/orphan-maintenance-report/brukinsa-orphan-designation-withdrawal-"
+            "assessment-report-initial-authorisation_en.pdf"
         ]
     ])
-    def test_pdf_links_from_url(self, url: str, exp_epar: str, exp_omar: str):
+    def test_pdf_links_from_url(self, _, url: str, exp_epar: str, exp_omar: str, exp_odwar: str):
         """
         Checks whether the correct epar and omar urls are found.
 
         Args:
+            _: Discard argument. Allows you to add a name to testcases in the `parameterized.expand`
             url (str): URL for the medicine to be checked.
             exp_epar (str): The expected epar file.
             exp_omar (str): The expected omar file.
@@ -47,9 +64,10 @@ class TestEMAScraper(unittest.TestCase):
 
         """
         html_active = utils.get_html_object(url)
-        epar, omar = em.pdf_links_from_url(url, html_active)
-        self.assertEqual(exp_epar, epar, msg="epar is not correct")
-        self.assertEqual(exp_omar, omar, msg="omar is not correct")
+        ema_links: dict = em.scrape_medicine_page(url, html_active)
+        self.assertEqual(exp_epar, ema_links.get("epar_url", ""), msg="epar is not correct")
+        self.assertEqual(exp_omar, ema_links.get("omar_url", ""), msg="omar is not correct")
+        self.assertEqual(exp_odwar, ema_links.get("odwar_url", ""), msg="odwar is not correct")
 
     @parameterized.expand([
         [

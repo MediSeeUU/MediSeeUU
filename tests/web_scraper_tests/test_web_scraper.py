@@ -121,7 +121,8 @@ class TestWebScraper(TestCase):
                  use_parallelization=self.parallel, medicine_list=self.medicine_list)
         with open(f"JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
-        assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url']), "ema urls not in urls.json"
+        assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url', 'odwar_url', 'other_ema_urls']), \
+               "ema urls not in urls.json"
 
     def run_download(self):
         """
@@ -129,19 +130,26 @@ class TestWebScraper(TestCase):
         """
         web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=False, download_files=True, run_filter=False,
                  use_parallelization=self.parallel, medicine_list=self.medicine_list)
-        # check if filedates.json exists
+
+        # check if `filedates.json` exists
         data_folder = f"{data_path}/{self.eu_n}"
         assert path.exists(f"{data_folder}/{self.eu_n}_filedates.json")
+
         # check if all files from urls.json are downloaded:
         with open(f"JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
-        filecount = len(url_dict["aut_url"]) + len(url_dict["smpc_url"])
+        filecount = len(url_dict["aut_url"]) + len(url_dict["smpc_url"]) + len(url_dict["other_ema_urls"])
+
         if url_dict["epar_url"]:
             filecount += 1
         if url_dict["omar_url"]:
             filecount += 1
+        if url_dict["odwar_url"]:
+            filecount += 1
+
         assert len(os.listdir(data_folder)) == filecount + 2, "not all files are downloaded"
-        # check filedates.json contents
+
+        # check `filedates.json` contents
         with open(f"{data_folder}/{self.eu_n}_filedates.json") as f:
             filedates_dict = json.load(f)
         for file in os.listdir(data_folder):
