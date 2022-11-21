@@ -24,11 +24,19 @@ def main(directory: str):
     """
     log = logger.PDFLogger.log
     log.info(f"=== NEW LOG {datetime.today()} ===")
-    directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
+
+    eu_numbers = []
+    if path.exists(f"{directory}/eu_numbers.json"):
+        with open(f"{directory}/eu_numbers.json", mode='r') as eu_numbers_file:
+            eu_numbers = json.load(eu_numbers_file)
+
+    # Get medicine folders that have to be scraped, so only medicines in the eu_numbers.json file
+    directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder)) and
+                         folder in eu_numbers]
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(parse_folder)(path.join(directory, folder_name), folder_name) for folder_name in
+        joblib.delayed(parse_folder)(path.join(directory, folder), folder) for folder in
         directory_folders)
     log.info("Done parsing PDF files!")
 
@@ -73,7 +81,7 @@ def get_files(directory: str) -> (list[str], list[str], list[str], list[str]):
     Get all PDF and XML files per PDF type
 
     Args:
-        directory (str): Location of the medicine containing PDF files
+        directory (str): Location of the data folder
 
     Returns:
         (list[str], list[str], list[str], list[str]): List of PDF file names for each of the 4 PDF types
