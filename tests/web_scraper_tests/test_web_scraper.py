@@ -20,6 +20,9 @@ class TestWebScraper(TestCase):
     # Rename data to data_old
     @classmethod
     def setUpClass(cls):
+        """
+        Set up the class to make sure the integration test can run without changing existing data.
+        """
         if not os.path.exists(f"{data_path}_old"):
             os.rename(data_path, f"{data_path}_old")
         os.mkdir(data_path)
@@ -38,6 +41,12 @@ class TestWebScraper(TestCase):
                            [True, [('https://ec.europa.eu/health/documents/community-register/html/h131.htm',
                                     'EU-1-00-131', 1, 'h131')]]])
     def test_run_web_check_all(self, parallel, medicine_codes):
+        """
+        Runs webscraper and checks output in between different scripts
+        Args:
+            parallel: if web should run parallel or not
+            medicine_codes: The medicine that is tested
+        """
         shutil.rmtree(data_path)
         os.mkdir(data_path)
         shutil.rmtree('JSON')
@@ -71,6 +80,12 @@ class TestWebScraper(TestCase):
                            [False, [('https://ec.europa.eu/health/documents/community-register/html/h131.htm',
                                      'EU-1-00-131', 1, 'h131')]]])
     def test_run_web_no_checks(self, parallel, medicine_list):
+        """
+        Runs webscraper and passes if no errors occur.
+        Args:
+            parallel: if web should run parallel or not
+            medicine_list: The medicine that is tested
+        """
         shutil.rmtree(data_path)
         os.mkdir(data_path)
         shutil.rmtree("JSON")
@@ -82,6 +97,9 @@ class TestWebScraper(TestCase):
                  medicine_list=self.medicine_list)
 
     def run_ec_scraper(self):
+        """
+        Runs EC scraper and checks if everything works and correct files are created.
+        """
         web.main(data_filepath=data_path, scrape_ec=True, scrape_ema=False, download_files=False,
                  download_refused_files=True, run_filter=False, use_parallelization=self.parallel,
                  medicine_list=self.medicine_list)
@@ -96,6 +114,9 @@ class TestWebScraper(TestCase):
         assert path.getsize(f"JSON/urls.json") > 2, f"urls.json is empty"
 
     def run_ema_scraper(self):
+        """
+        Runs EMA scraper and checks if everything works and correct files are created.
+        """
         web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=True, download_files=False, run_filter=False,
                  use_parallelization=self.parallel, medicine_list=self.medicine_list)
         with open(f"JSON/urls.json") as f:
@@ -103,6 +124,9 @@ class TestWebScraper(TestCase):
         assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url']), "ema urls not in urls.json"
 
     def run_download(self):
+        """
+        Runs download and checks if all files are downloaded and correct files are created.
+        """
         web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=False, download_files=True, run_filter=False,
                  use_parallelization=self.parallel, medicine_list=self.medicine_list)
         # check if filedates.json exists
@@ -125,6 +149,9 @@ class TestWebScraper(TestCase):
                 assert file in filedates_dict.keys(), f"{file} does not exist in filedates.json"
 
     def run_filter(self):
+        """
+        Runs filter_retry and checks if filter.txt is created
+        """
         web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=False, download_files=False, run_filter=True,
                  use_parallelization=self.parallel, medicine_list=self.medicine_list)
         # check if filter.txt exists
@@ -132,6 +159,9 @@ class TestWebScraper(TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        """
+        Runs after class is run, makes sure test data is deleted and backup data is set back to its original place
+        """
         shutil.rmtree(data_path)
         os.rename(f"{data_path}_old", data_path)
         if os.path.exists('filter.txt'):
