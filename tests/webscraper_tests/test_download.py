@@ -4,7 +4,7 @@ from requests.exceptions import Timeout
 from scraping.web_scraper import download, json_helper
 from parameterized import parameterized
 
-data_path = "../../data"
+data_path = "../../test_data"
 
 
 class TestDownload(TestCase):
@@ -56,8 +56,7 @@ class TestDownload(TestCase):
                             "ema_url": ["https://www.ema.europa.eu/en/medicines/human/EPAR/dasatinib-accordpharma"],
                             "epar_url": "https://www.ema.europa.eu/documents/assessment-report/dasatinib-accordpharma"
                                         "-epar-public-assessment-report_en.pdf",
-                            "omar_url": ""}
-                           ]])
+                            "omar_url": ""}]])
     def test_download_medicine_files(self, eu_n, url_dict):
         self.assertIsNone(download.download_medicine_files(eu_n, url_dict, data_path))
 

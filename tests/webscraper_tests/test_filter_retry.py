@@ -4,7 +4,7 @@ from scraping.web_scraper import filter_retry
 from parameterized import parameterized
 
 
-data_filepath = "../../data"
+data_filepath = "../../test_data"
 
 
 class TestFilterRetry(unittest.TestCase):

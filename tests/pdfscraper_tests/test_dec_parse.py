@@ -6,7 +6,7 @@ import datetime
 import scraping.file_parser.pdf_parser.parsers.dec_parser as dec_parser
 import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
 
-test_data_loc = "../../data"
+test_data_loc = "../../test_data"
 dec_txt = []
 percentage_str = "Percentage found: "
 

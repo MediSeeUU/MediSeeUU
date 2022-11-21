@@ -159,3 +159,11 @@ scraping/orphan_initial_dec.txt
 *.pdf
 *.xml
 scraping/failed.txt
+
+# do not ignore test data
+!test_data/*/*.pdf
+!test_data/*/*.xml
+!test_data/*/*.json
+
+
+
