@@ -7,6 +7,8 @@ import bs4
 import regex as re
 import requests
 
+import scraping.definitions.attributes as attr
+
 log = logging.getLogger("webscraper.ec_scraper")
 
 
@@ -209,21 +211,21 @@ def get_data_from_medicine_json(medicine_json: dict,
     ema_url_list: list[str] = []
 
     # Orphan medicine don't always have ATC codes, therefore it is set to a standard value
-    medicine_dict["atc_code"] = ""
+    medicine_dict[attr.atc_code] = ""
 
     for row in medicine_json:
         match row["type"]:
             case "name":
-                medicine_dict["eu_aut_status"]: str = row["meta"]["status_name"]
-                medicine_dict["eu_brand_name_current"]: str = row["value"]
-                medicine_dict["status_type"]: str = row["meta"]["status_type"].replace("g", "a").replace("r", "w")
+                medicine_dict[attr.eu_aut_status]: str = row["meta"]["status_name"]
+                medicine_dict[attr.eu_brand_name_current]: str = row["value"]
+                medicine_dict[attr.status_type]: str = row["meta"]["status_type"].replace("g", "a").replace("r", "w")
 
             case "eu_num":
-                medicine_dict["eu_pnumber"]: str = row["value"]
+                medicine_dict[attr.eu_pnumber]: str = row["value"]
 
             case "inn":
                 # Sometimes the active substance is written with italics, therefore it is removed with a RegEx
-                medicine_dict["active_substance"]: str = re.sub(re.compile('<.*?>'), '', row["value"])
+                medicine_dict[attr.active_substance]: str = re.sub(re.compile('<.*?>'), '', row["value"])
 
             case "indication":
                 # If at any point in the future, information about the indication needs to be stored,
@@ -231,10 +233,10 @@ def get_data_from_medicine_json(medicine_json: dict,
                 pass
 
             case "mah":
-                medicine_dict["eu_mah_current"]: str = row["value"]
+                medicine_dict[attr.eu_mah_current]: str = row["value"]
 
             case "atc":
-                medicine_dict["atc_code"]: str = row["meta"][0][-1]["code"]
+                medicine_dict[attr.atc_code]: str = row["meta"][0][-1]["code"]
 
             case "ema_links":
                 for json_obj in row["meta"]:
@@ -245,7 +247,7 @@ def get_data_from_medicine_json(medicine_json: dict,
         medicine_dict["orphan_status"] = "h"
     else:
         medicine_dict["orphan_status"] = "o"
-        medicine_dict["atc_code"] = "not applicable"
+        medicine_dict[attr.atc_code] = "not applicable"
 
     for key, value in medicine_dict.items():
         if value == "":
@@ -298,8 +300,8 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
             is_conditional = True
 
         # Gets the EMA number(s) per row and puts it/them in a list
-        if row["ema_number"] is not None:
-            ema_numbers_row = format_ema_number(row["ema_number"])
+        if row[attr.ema_number] is not None:
+            ema_numbers_row = format_ema_number(row[attr.ema_number])
             for en in ema_numbers_row:
                 ema_numbers.append(en)
 
@@ -351,11 +353,11 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
 
     # TODO: logging when an attribute is not found
     # Currently when an attribute is not found it is simply printed to the console
-    procedures_dict["eu_aut_date"] = eu_aut_date
-    procedures_dict["eu_aut_type_initial"] = eu_aut_type_initial
-    procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
-    procedures_dict["ema_number"] = ema_number
-    procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
+    procedures_dict[attr.eu_aut_date] = eu_aut_date
+    procedures_dict[attr.eu_aut_type_initial] = eu_aut_type_initial
+    procedures_dict[attr.eu_aut_type_current] = determine_current_aut_type(last_decision_types)
+    procedures_dict[attr.ema_number] = ema_number
+    procedures_dict[attr.ema_number_certainty] = str(ema_number_certainty)
 
     for key, value in procedures_dict.items():
         if value == "":

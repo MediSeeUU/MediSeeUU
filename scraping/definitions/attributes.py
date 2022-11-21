@@ -1,4 +1,4 @@
-import scraping.combiner.attribute_combining_functions as acf
+# import scraping.combiner.attribute_combining_functions as acf
 
 # All sources :D
 decision = "dec"
@@ -71,7 +71,7 @@ ema_number = attribute_factory(all_attributes, "ema_number", [web])
 ema_number_id = attribute_factory(all_attributes, "ema_number_id", [web])
 ema_number_certainty = attribute_factory(all_attributes, "ema_number_certainty", [web])
 ema_number_check = attribute_factory(all_attributes, "ema_number_check", [web])
-eu_mah = attribute_factory(all_attributes, "eu_mah", )
+# eu_mah = attribute_factory(all_attributes, "eu_mah", )
 eu_mah_current = attribute_factory(all_attributes, "eu_mah_current", [web])
 eu_mah_initial = attribute_factory(all_attributes, "eu_mah_initial", [decision_initial])
 eu_mah_history = attribute_factory(all_attributes, "eu_mah_history", [web])
@@ -85,10 +85,10 @@ ema_rapp = attribute_factory(all_attributes, "ema_rapp", [epar])
 ema_corapp = attribute_factory(all_attributes, "ema_corapp", [epar])
 eu_accel_assess_g = attribute_factory(all_attributes, "eu_accel_assess_g", [epar])
 eu_accel_assess_m = attribute_factory(all_attributes, "eu_accel_assess_m", [epar])
-assess_time_days_total = attribute_factory(all_attributes, "assess_time_days_total", )
-assess_time_days_active = attribute_factory(all_attributes, "assess_time_days_active", )
-assess_time_days_cstop = attribute_factory(all_attributes, "assess_time_days_cstop", )
-ec_sources.decision_time_days = attribute_factory(all_attributes, "ec_sources.decision_time_days", )
+# assess_time_days_total = attribute_factory(all_attributes, "assess_time_days_total", )
+# assess_time_days_active = attribute_factory(all_attributes, "assess_time_days_active", )
+# assess_time_days_cstop = attribute_factory(all_attributes, "assess_time_days_cstop", )
+# ec_sources.decision_time_days = attribute_factory(all_attributes, "ec_sources.decision_time_days", )
 ema_reexamination = attribute_factory(all_attributes, "ema_reexamination", [epar])
 eu_orphan_con_initial = attribute_factory(all_attributes, "eu_orphan_con_initial", [web])
 eu_orphan_con_current = attribute_factory(all_attributes, "eu_orphan_con_current", [web])
