@@ -284,7 +284,7 @@ def check_annex(filename: str, file_path: str, pdf: fitz.Document) -> str:
     txt = first_page.get_text()
 
     # checks if the PDF is of the right type
-    if "THE MEDICINAL PRODUCT TO BE IMPLEMENTED BY THE MEMBER STATES" in txt.lower():
+    if "implemented by the member states" in txt.lower():
         pdf.close()
         safe_remove(file_path)
         return error_line(filename, wrong_doctype_str)

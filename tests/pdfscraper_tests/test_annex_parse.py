@@ -19,13 +19,10 @@ class TestAnnexParse(TestCase):
     """
     annex_attributes: dict[str, str]
 
-    def setUp(self) -> None:
+    def setUp(self):
         """
         Sets up the xml files from test pdf's and then scrapes data from them into a json and reads it so other
         functions can use the data. Automatically run when whoe test class is used.
-
-        Returns:
-            None
         """        
         pdf_parser.parse_folder(path.abspath(test_data_foldername), test_data_foldername)
         # TODO: Try/catch this with appropriate exception when file does not exist
@@ -40,9 +37,6 @@ class TestAnnexParse(TestCase):
         Unit test for scraping initial_type_of_eu_authorization attribute. This test checks whether this attribute is
         only read in initial authorization annex files and whether the value is correct and found in all applicable
         cases.
-
-        Returns:
-            None
         """        
         incorrect_files = False
         incorrect_values = False
@@ -89,10 +83,7 @@ class TestAnnexParse(TestCase):
         """
         Unit test for scraping eu_type_of_medicine attribute. This test checks whether this attribute is only read in
         initial authorization annex files and whether the value is correct and found in all applicable cases.
-
-        Returns:
-            None
-        """      
+        """
         incorrect_files = False
         incorrect_values = False
 
