@@ -11,8 +11,8 @@ import combiner.__main__ as combiner
 import db_communicator.__main__ as db_communicator
 import log_setup
 
-scrape_ec: bool = True            # Whether EC URLs should be scraped
-scrape_ema: bool = True           # Whether EMA URLs should be scraped | Requires scrape_ec to have been run once
+scrape_ec: bool = False           # Whether EC URLs should be scraped
+scrape_ema: bool = False          # Whether EMA URLs should be scraped | Requires scrape_ec to have been run once
 download_files: bool = False      # Whether scraper should download PDFs from obtained links
 download_refused_files = False    # Whether scraper should download refused PDFs from obtained links
 download_annex10_files = True     # Whether scraper should download annex10 files from obtained links
