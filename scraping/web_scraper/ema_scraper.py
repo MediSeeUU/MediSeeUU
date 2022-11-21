@@ -94,7 +94,8 @@ def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:
 
 
 def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
-    """ Gets all the annex 10 files from the EMA website.
+    """
+    Gets all the annex 10 files from the EMA website.
 
     The website is scraped for all annex 10 files. Whenever this scraper runs, it checks whether it has to
     update the links in the dictionary, based on whether the document on the site was updated or not. It also
