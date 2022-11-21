@@ -10,7 +10,11 @@
 # ---------------------------------------------------
 
 from rest_framework import serializers
-from api.serializers.medicine_serializers.common import FlattenMixin, HistoryMixin
+from api.serializers.medicine_serializers.common import (
+    RelatedMixin,
+    ListMixin,
+    HistoryMixin,
+)
 from api.models.medicine_models import (
     MedicinalProduct,
     LegalBases,
@@ -55,12 +59,10 @@ class IngredientsAndSubstancesSerializer(serializers.ModelSerializer):
         exclude = ["active_substance_hash", ]
 
 
-class PublicMedicinalProductSerializer(FlattenMixin, HistoryMixin, serializers.ModelSerializer):
+class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, serializers.ModelSerializer):
     """
     This is the view endpoint for a medicine.
     """
-    eu_legal_basis = LegalBasesSerializer(many=True, read_only=True)
-
     class Meta:
         """
         Meta information
@@ -68,9 +70,12 @@ class PublicMedicinalProductSerializer(FlattenMixin, HistoryMixin, serializers.M
         model = MedicinalProduct
         fields = "__all__"
         # Serializers to be added and flattened
-        flatten = [
+        related = [
             ("ingredients_and_substances", IngredientsAndSubstancesSerializer),
             ("marketing_authorisation", MarketingAuthorisationSerializer),
+        ]
+        list = [
+            ("eu_legal_basis", LegalBasesSerializer),
         ]
         history = [
             ("eu_aut_status", AuthorisationStatusSerializer, HistoryAuthorisationStatus),
