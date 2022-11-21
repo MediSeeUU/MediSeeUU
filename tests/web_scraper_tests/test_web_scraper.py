@@ -138,11 +138,15 @@ class TestWebScraper(TestCase):
         # check if all files from urls.json are downloaded:
         with open(f"JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
-        filecount = len(url_dict["aut_url"]) + len(url_dict["smpc_url"])
+        filecount = len(url_dict["aut_url"]) + len(url_dict["smpc_url"]) + len(url_dict["other_ema_urls"])
+
         if url_dict["epar_url"]:
             filecount += 1
         if url_dict["omar_url"]:
             filecount += 1
+        if url_dict["odwar_url"]:
+            filecount += 1
+
         assert len(os.listdir(data_folder)) == filecount + 2, "not all files are downloaded"
 
         # check `filedates.json` contents
