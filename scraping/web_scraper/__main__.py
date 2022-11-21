@@ -23,8 +23,8 @@ scrape_medicine_type: list[ec_scraper.MedicineType] = [
 
 log = logging.getLogger("web_scraper")
 
-json_path = "web_scraper/"
-cpu_count = multiprocessing.cpu_count() * 2
+json_path: str = "web_scraper/"
+cpu_count: int = multiprocessing.cpu_count() * 2
 # If file is run locally:
 if "web_scraper" in os.getcwd():
     json_path = ""
@@ -126,14 +126,13 @@ def set_active_refused_save_parameters(eu_n: str, medicine_url: str, dec_list: l
     system correctly.
 
     Args:
-        eu_n (str):
-        medicine_url (str):
-        dec_list (list[str]):
-        anx_list (list[str]):
-        ema_list (list[str]):
-        attributes_dict (dict[str, str]):
-        data_path (str):
-
+        eu_n (str): EU number of the medicine.
+        medicine_url (str): url to a medicine page for a specific medicine.
+        dec_list (list[str]): List of urls to decisions on the EC website.
+        anx_list (list[str]): List of urls to annexes on the EC website.
+        ema_list (list[str]): List of urls to EMA pages on the EC website.
+        attributes_dict (dict[str, str]): Dictionary of scraped attributes on the EC website
+        data_path (str): The path where the JSON files need to be stored.
     """
     # Sets parameter values for active and withdrawn medicines that need to be saved
     if attributes_dict["eu_aut_status"] != "REFUSED":
@@ -168,14 +167,15 @@ def save_medicine_urls_and_attributes(medicine_identifier: str, medicine_url: st
     the right url JSON files.
 
     Args:
-        medicine_identifier (str):
-        medicine_url (str):
-        dec_list (list[str]):
-        anx_list (list[str]):
-        ema_list (list[str]):
-        attributes_dict (dict[str, str]):
-        file (json_helper.JsonHelper):
-        target_path (str):
+        medicine_identifier (str): Identifier for a medicine. An EU number for non-refused medicine, EMA number for
+            refused medicine
+        medicine_url (str): url to a medicine page for a specific medicine.
+        dec_list (list[str]): List of urls to decisions on the EC website.
+        anx_list (list[str]): List of urls to annexes on the EC website.
+        ema_list (list[str]): List of urls to EMA pages on the EC website.
+        attributes_dict (dict[str, str]): Dictionary of scraped attributes on the EC website
+        file (json_helper.JsonHelper): The url json where all the data needs to be stored.
+        target_path (str): Directory where the json needs to be stored.
     """
     # TODO: Common name structure?
     url_json: dict[str, list[str]] = {

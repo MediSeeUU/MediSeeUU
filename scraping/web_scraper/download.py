@@ -17,16 +17,16 @@ from scraping.web_scraper import utils
 log = logging.getLogger("web_scraper.download")
 
 
-def get_date_from_url(url: str):
+def get_date_from_url(url: str) -> tuple[str, datetime, datetime]:
     """
     Retrieves the date from a file (for filedates.json) based on an url. If no date in the url is found, the scrape date
     is used.
 
     Args:
-        url: the url where the date should be retrieved from
+        url (str): the url where the date should be retrieved from
 
     Returns:
-        A tuple containing the url, the date of the url and the datetime of the scrape
+        (tuple[str, datetime, datetime]): A tuple containing the url, the date of the url and the datetime of the scrape
     """
     date = datetime.now()
     url_date = (re.findall(r"\d{8}", url))
