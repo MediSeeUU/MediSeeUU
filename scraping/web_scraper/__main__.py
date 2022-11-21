@@ -120,7 +120,7 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
 
 
 def set_active_refused_save_parameters(eu_n: str, medicine_url: str, dec_list: list[str], anx_list: list[str],
-                                       ema_list: list[str], attributes_dict: dict[str, str], data_path: str) -> None:
+                                       ema_list: list[str], attributes_dict: dict[str, str], data_path: str):
     """
     Based on whether the medicine is refused or not, it will set the parameters, so that it can be saved to the file
     system correctly.
@@ -133,9 +133,6 @@ def set_active_refused_save_parameters(eu_n: str, medicine_url: str, dec_list: l
         ema_list (list[str]):
         attributes_dict (dict[str, str]):
         data_path (str):
-
-    Returns:
-        None: This function returns nothing
 
     """
     # Sets parameter values for active and withdrawn medicines that need to be saved
@@ -165,7 +162,7 @@ def set_active_refused_save_parameters(eu_n: str, medicine_url: str, dec_list: l
 
 def save_medicine_urls_and_attributes(medicine_identifier: str, medicine_url: str, dec_list: list[str],
                                       anx_list: list[str], ema_list: list[str], attributes_dict: dict[str, str],
-                                      file: json_helper.JsonHelper, target_path: str) -> None:
+                                      file: json_helper.JsonHelper, target_path: str):
     """
     Saves a JSON file in the correct location, containing scraped attributes from the EC website. It also adds urls to
     the right url JSON files.
@@ -179,9 +176,6 @@ def save_medicine_urls_and_attributes(medicine_identifier: str, medicine_url: st
         attributes_dict (dict[str, str]):
         file (json_helper.JsonHelper):
         target_path (str):
-
-    Returns:
-        None: This function returns nothing
     """
     # TODO: Common name structure?
     url_json: dict[str, list[str]] = {
