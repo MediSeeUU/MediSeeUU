@@ -7,6 +7,7 @@ import multiprocessing
 import scraping.definitions.value as value
 import scraping.definitions.attributes as attr
 
+
 # Main file to run all parsers
 def main(directory: str):
     print("Combining JSON files")
@@ -25,7 +26,7 @@ def main(directory: str):
 
 # TODO: handel de try catches beter af
 def combine_folder(filepath: str, folder_name: str):
-
+    # ToDo refactor naar dictionary form list with 1 default value.
     file_dicts = {
         attr.decision: {},
         attr.decision_initial: {},
@@ -60,14 +61,18 @@ def combine_folder(filepath: str, folder_name: str):
         print("COMBINER: no web_data.json found in " + filepath)
 
     # TODO: waarom sorten als we het er ook gewoon uit kunnen lezen
-    decision_files = sorted([(int(dictionary["filename"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["decisions"]], key=lambda x : x[0])
-    annex_files = sorted([(int(dictionary["pdf_file"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]], key=lambda x : x[0])
+    decision_files = sorted(
+        [(int(dictionary["filename"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["decisions"]],
+        key=lambda x: x[0])
+    annex_files = sorted(
+        [(int(dictionary["pdf_file"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]],
+        key=lambda x: x[0])
 
     if len(decision_files) > 0:
         file_dicts[attr.decision] = decision_files[-1][1]
     if len(decision_files) > 0:
         file_dates[attr.decision_initial] = decision_files[0][1]
-    if len(annex_files) > 0:    
+    if len(annex_files) > 0:
         file_dicts[attr.annex] = annex_files[-1][1]
     if len(annex_files) > 0:
         file_dicts[attr.annex_initial] = annex_files[0][1]
@@ -75,24 +80,24 @@ def combine_folder(filepath: str, folder_name: str):
     file_dicts[attr.file_dates] = file_dates
 
     try:
-        file_dicts[attr.epar] = pdf_data["epars"][0]["filename"] #try-except
+        file_dicts[attr.epar] = pdf_data["epars"][0]["filename"]  # try-except
     except Exception:
         print("COMBINER: no epar found in pdf_data for " + folder_name)
     try:
-        file_dicts[attr.omar] = pdf_data["omars"][0]["filename"] #try-except
+        file_dicts[attr.omar] = pdf_data["omars"][0]["filename"]  # try-except
     except Exception:
         print("COMBINER: no omar found in pdf_data for " + folder_name)
 
-    
-
     for key in attr.all_attributes.keys():
         attribute = attr.all_attributes[key]
-        value, all_equal = get_attribute(attribute.name, sources_to_dicts(attribute.sources, file_dicts), attribute.combine)
+        value, all_equal = get_attribute(attribute.name, sources_to_dicts(attribute.sources, file_dicts),
+                                         attribute.combine)
         combined_dict[attribute.name] = value
 
         if not all_equal:
-            print("found multiple values for " + attribute.name + ": " + value + "in " + str(sources_to_dicts(attribute.sources, file_dicts)))
-    
+            print("found multiple values for " + attribute.name + ": " + value + "in " + str(
+                sources_to_dicts(attribute.sources, file_dicts)))
+
     combined_json = open(path.join(filepath, folder_name + "_combined.json"), "w")
     json.dump(combined_dict, combined_json)
     combined_json.close()
@@ -103,10 +108,11 @@ def sources_to_dicts(sources: list[str], file_dicts: dict[str, dict]) -> list[di
 
     for source in sources:
         source_dicts.append(file_dicts[source])
-    
+
     return source_dicts
 
-def get_attribute(attribute_name: str, dicts: list[dict], combine_attributes = False) -> tuple[str, bool]:
+
+def get_attribute(attribute_name: str, dicts: list[dict], combine_attributes=False) -> tuple[str, bool]:
     attributes: set[str] = []
     # print(attribute_name + ": " + str(dicts))
     for dict in dicts:

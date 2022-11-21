@@ -25,7 +25,6 @@ def AttributeFactory(all_attributes: dict[str, ScraperAttribute], name: str, sou
     all_attributes[name] = attr
     return name
 
-
 # Initialize all attribute objects
 all_attributes = {}
 atc_code = AttributeFactory(all_attributes, "atc_code", [web])
