@@ -80,7 +80,7 @@ def combine_folder(filepath: str, folder_name: str):
         combined_dict[attribute.name] = value
 
         if not all_equal:
-            print("found multiple values for " + attribute.name + ": " + value + "in " + str(
+            print("found multiple values for " + attribute.name + ": " + value + " in " + str(
                 sources_to_dicts(attribute.sources, file_dicts)))
 
     combined_json = open(path.join(filepath, folder_name + "_combined.json"), "w")
