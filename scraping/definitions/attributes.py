@@ -11,16 +11,28 @@ web = "web"
 file_dates = "filedates"
 
 
-# struct class
 class ScraperAttribute:
+    """
+    struct class for attributes
+    """
     def __init__(self, name: str, sources: list[str], combine):
         self.name = name
         self.sources = sources
         self.combine = combine
 
 
-# add new ScraperAttribute to all_attributes and return name of ScraperAttribute
 def AttributeFactory(all_attributes: dict[str, ScraperAttribute], name: str, sources: list[str], combine=False):
+    """
+    add new ScraperAttribute to all_attributes and return name of ScraperAttribute
+    Args:
+        all_attributes:
+        name:
+        sources:
+        combine:
+
+    Returns:
+
+    """
     attr = ScraperAttribute(name, sources, combine)
     all_attributes[name] = attr
     return name
