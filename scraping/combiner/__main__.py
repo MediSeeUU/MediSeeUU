@@ -39,26 +39,11 @@ def combine_folder(filepath: str, folder_name: str):
 
     combined_dict: dict[str, any] = {}
 
-    try:
-        with open(path.join(filepath, folder_name + "_filedates.json"), "r") as filedates_json:
-            file_dates: dict[any, any] = json.load(filedates_json)
-    except Exception:
-        file_dates = {}
-        print("COMBINER: no file_dates.json found in " + filepath)
-
-    try:
-        with open(path.join(filepath, folder_name + "_pdf_parser.json"), "r") as pdf_data_json:
-            pdf_data: dict[any, any] = json.load(pdf_data_json)
-    except Exception:
-        pdf_data = {}
-        print("COMBINER: no pdf_parser.json found in " + filepath)
-
-    try:
-        with open(path.join(filepath, folder_name + "_webdata.json"), "r") as web_data_json:
-            web_data: dict[any, any] = json.load(web_data_json)
-    except Exception:
-        web_data = {}
-        print("COMBINER: no web_data.json found in " + filepath)
+    # try to get sources
+    # TODO: dit zou gelijk samen kunnen met attr. enzo
+    file_dates = fetch_source('filedates', filepath, folder_name)
+    pdf_data = fetch_source('pdf_parser', filepath, folder_name)
+    web_data = fetch_source('webdata', filepath, folder_name)
 
     # TODO: waarom sorten als we het er ook gewoon uit kunnen lezen
     decision_files = sorted(
@@ -67,6 +52,7 @@ def combine_folder(filepath: str, folder_name: str):
     annex_files = sorted(
         [(int(dictionary["pdf_file"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]],
         key=lambda x: x[0])
+
 
     if len(decision_files) > 0:
         file_dicts[attr.decision] = decision_files[-1][1]
@@ -78,6 +64,8 @@ def combine_folder(filepath: str, folder_name: str):
         file_dicts[attr.annex_initial] = annex_files[0][1]
     file_dicts[attr.web] = web_data
     file_dicts[attr.file_dates] = file_dates
+
+
 
     try:
         file_dicts[attr.epar] = pdf_data["epars"][0]["filename"]  # try-except
@@ -102,6 +90,15 @@ def combine_folder(filepath: str, folder_name: str):
     json.dump(combined_dict, combined_json)
     combined_json.close()
 
+def fetch_source(source: str, filepath: str, folder_name: str) -> dict
+    try:
+        with open(path.join(filepath, folder_name + f"_{source}.json"), "r") as source_json:
+            res: dict[any, any] = json.load(source_json)
+            return res
+    except FileNotFoundError:
+        res = {}
+        print(f"COMBINER: no {source}.json found in " + filepath)
+        return res
 
 def sources_to_dicts(sources: list[str], file_dicts: dict[str, dict]) -> list[dict]:
     source_dicts: list[str] = []
