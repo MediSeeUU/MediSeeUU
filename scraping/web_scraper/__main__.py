@@ -1,9 +1,9 @@
 import json
-import logging
 from pathlib import Path
 from datetime import datetime
 import os
 import multiprocessing
+import logging
 
 import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
