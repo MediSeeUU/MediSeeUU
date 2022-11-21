@@ -29,7 +29,6 @@ cpu_count = multiprocessing.cpu_count() * 2
 if "web_scraper" in os.getcwd():
     json_path = ""
 
-
 # Files where the urls for normal and refused files are stored
 url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
 url_refused_file = json_helper.JsonHelper(path=f"{json_path}JSON/refused_urls.json")
