@@ -43,8 +43,8 @@ class TestWebScraper(TestCase):
         shutil.rmtree('JSON')
 
         self.parallel = parallel
-        self.medicine_codes = medicine_codes
-        self.eu_n = self.medicine_codes[0][1]
+        self.medicine_list = medicine_codes
+        self.eu_n = self.medicine_list[0][1]
         self.run_ec_scraper()
         self.run_ema_scraper()
         self.run_download()
@@ -70,19 +70,21 @@ class TestWebScraper(TestCase):
                                     'EU-1-00-131', 1, 'h131')]],
                            [False, [('https://ec.europa.eu/health/documents/community-register/html/h131.htm',
                                      'EU-1-00-131', 1, 'h131')]]])
-    def test_run_web_no_checks(self, parallel, medicine_codes):
+    def test_run_web_no_checks(self, parallel, medicine_list):
         shutil.rmtree(data_path)
         os.mkdir(data_path)
         shutil.rmtree("JSON")
 
         self.parallel = parallel
-        self.medicine_codes = medicine_codes
-        web.main(data_filepath=data_path, scrape_ec=True, scrape_ema=True, download_files=True, run_filter=True,
-                 use_parallelization=self.parallel, medicine_codes=self.medicine_codes)
+        self.medicine_list = medicine_list
+        web.main(data_filepath=data_path, scrape_ec=True, scrape_ema=True, download_files=True,
+                 download_refused_files=True, run_filter=True, use_parallelization=self.parallel,
+                 medicine_list=self.medicine_list)
 
     def run_ec_scraper(self):
-        web.main(data_filepath=data_path, scrape_ec=True, scrape_ema=False, download_files=False, run_filter=False,
-                 use_parallelization=self.parallel, medicine_codes=self.medicine_codes)
+        web.main(data_filepath=data_path, scrape_ec=True, scrape_ema=False, download_files=False,
+                 download_refused_files=True, run_filter=False, use_parallelization=self.parallel,
+                 medicine_list=self.medicine_list)
         # check if data folder for eu_n exists and is filled
         data_folder = f"{data_path}/{self.eu_n}"
         assert path.exists(data_folder), f"data folder for {self.eu_n} does not exist"
@@ -95,14 +97,14 @@ class TestWebScraper(TestCase):
 
     def run_ema_scraper(self):
         web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=True, download_files=False, run_filter=False,
-                 use_parallelization=self.parallel, medicine_codes=self.medicine_codes)
+                 use_parallelization=self.parallel, medicine_list=self.medicine_list)
         with open(f"JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
         assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url']), "ema urls not in urls.json"
 
     def run_download(self):
         web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=False, download_files=True, run_filter=False,
-                 use_parallelization=self.parallel, medicine_codes=self.medicine_codes)
+                 use_parallelization=self.parallel, medicine_list=self.medicine_list)
         # check if filedates.json exists
         data_folder = f"{data_path}/{self.eu_n}"
         assert path.exists(f"{data_folder}/{self.eu_n}_filedates.json")
@@ -124,7 +126,7 @@ class TestWebScraper(TestCase):
 
     def run_filter(self):
         web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=False, download_files=False, run_filter=True,
-                 use_parallelization=self.parallel, medicine_codes=self.medicine_codes)
+                 use_parallelization=self.parallel, medicine_list=self.medicine_list)
         # check if filter.txt exists
         assert path.exists("filter.txt"), "filter.txt does not exist"
 
