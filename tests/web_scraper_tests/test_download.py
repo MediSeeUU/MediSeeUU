@@ -103,7 +103,9 @@ class TestDownload(TestCase):
                              "ema_url": ["https://www.ema.europa.eu/en/medicines/human/EPAR/dasatinib-accordpharma"],
                              "epar_url": "https://www.ema.europa.eu/documents/assessment-report/dasatinib-accordpharma"
                                          "-epar-public-assessment-report_en.pdf",
-                             "omar_url": ""}
+                             "omar_url": "",
+                             "odwar_url":"",
+                             "other_ema_urls": []}
                             ]])
     def test_download_medicine_files(self, eu_n, url_dict):
         """
