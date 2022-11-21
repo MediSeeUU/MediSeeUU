@@ -15,6 +15,14 @@ class TestEcScraper(unittest.TestCase):
     Class that contains al the test for scraping.webscraper.ec_scraper
     """
     def test_scrape_medicines_list(self):
+        """
+        Checks whether the medicine codes from the EC website are retrieved, and whether they are stored in the correct
+        format. This is done by making use of a regex.
+
+        Returns:
+            None: This function returns nothing.
+
+        """
         url_list = ec.scrape_medicines_list()
         self.assertIsNotNone(url_list, msg="url list is empty")
         first_url = url_list[0][3]
@@ -70,6 +78,24 @@ class TestEcScraper(unittest.TestCase):
             exp_eu_mah_current,
             medicine_type
     ):
+        """
+        Based on a couple of test medicine, checks whether the attributes that are scraped from the medicine JSON are
+        correct.
+
+        Args:
+            eu_num_short (str): The short identifier for a medicine.
+            exp_atc_code (str): The expected ATC code for the medicine.
+            exp_active_substance (str):  The expected active substance for the medicine.
+            exp_eu_pnumber (str): The expected EU product number for the medicine.
+            exp_eu_aut_status (str): The expected authorization status for the medicine.
+            exp_eu_brand_name_current (str): The expected brand name for the medicine.
+            exp_eu_mah_current (str): The expected marketing authorization holder for the medicine.
+            medicine_type (MedicineType): The type of medicine that is being scraped.
+
+        Returns:
+            None: This function returns nothing.
+
+        """
         html_active = ec.get_ec_html(
             f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm")
         medicine_json, *_ = ec.get_ec_json_objects(html_active)
@@ -107,6 +133,22 @@ class TestEcScraper(unittest.TestCase):
             exp_ema_number,
             exp_ema_number_certainty
     ):
+        """
+        Based on a couple of test medicine, checks whether the attributes that are scraped from the procedures JSON are
+        correct.
+
+        Args:
+            eu_num_short (str): The short identifier for a medicine.
+            exp_eu_aut_date (str): The expected authorization date for a medicine.
+            exp_aut_type_initial: (str)  The expected initial authorization type for a medicine.
+            exp_aut_type_current (str): The expected current authorization type for a medicine.
+            exp_ema_number (str): The expected ema number for a medicine.
+            exp_ema_number_certainty (str): The expected ema number certainty for a medicine.
+
+        Returns:
+            None: This function returns nothing.
+
+        """
         html_active = ec.get_ec_html(
             f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm")
         _, procedures_json, *_ = ec.get_ec_json_objects(html_active)
@@ -120,10 +162,23 @@ class TestEcScraper(unittest.TestCase):
         # assert procedures_dict["ema_number_certainty"] = exp_ema_number_certainty
 
     def test_scrape_active_withdrawn_jsons(self):
+        """
+        Checks whether the active and withdrawn medicine lists are not empty.
+
+        Returns:
+            None: This function returns nothing.
+
+        """
         json_list: list[json] = ec.scrape_active_withdrawn_jsons()
         self.assertIsNotNone(json_list, msg="json list is empty")
 
     def test_scrape_refused_jsons(self):
+        """
+        Checks whether the refused medicine lists are not empty.
+
+        Returns:
+            None: This function returns nothing.
+        """
         json_list: list[json] = ec.scrape_refused_jsons()
         self.assertIsNotNone(json_list, msg="json list is empty")
 
@@ -136,12 +191,28 @@ class TestEcScraper(unittest.TestCase):
         ["ho26270"]             # orphan refused
     ])
     def test_get_ec_json_objects(self, eu_num_short):
+        """
+        Based on a couple of test medicine, checks whether it retrieves JSON objects from a medicine page.
+
+        Args:
+            eu_num_short (str): The short identifier for a medicine.
+:
+        Returns:
+            None: This function returns nothing.
+
+        """
         html_active = ec.get_ec_html(
             f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm")
         json_list: list[json] = ec.get_ec_json_objects(html_active)
         self.assertIsNotNone(json_list, msg="json list is empty")
 
     def test_scrape_medicine_page(self):
+        """
+        Checks whether the medicine page contains the expected data.
+
+        Returns:
+            None: This function returns nothing.
+        """
         url = 'https://ec.europa.eu/health/documents/community-register/html/h273.htm'
         ema = ['http://www.ema.europa.eu/ema/index.jsp?curl=pages/medicines/human/medicines/000521/human_med_000895'
                '.jsp&murl=menus/medicines/medicines.jsp&mid=WC0b01ac058001d124',
@@ -205,6 +276,17 @@ class TestEcScraper(unittest.TestCase):
         ]
     )
     def test_determine_current_aut_type(self, last_decision_types, exp_output):
+        """
+        Tests whether the logic for determining the current authorization type is correct.
+
+        Args:
+            last_decision_types (list[str]): String for the last decision types.
+            exp_output: Expected output for the function.
+
+        Returns:
+            None: This function returns nothing.
+
+        """
         output = ec.determine_current_aut_type(last_decision_types)
         self.assertEqual(output, exp_output, msg="decision type is wrong")
 
@@ -262,6 +344,16 @@ class TestEcScraper(unittest.TestCase):
         ]
     ])
     def test_format_ema_number(self, ema_number, exp_output):
+        """
+        Tests whether EMA numbers are formatted correctly.
+
+        Args:
+            ema_number: EMA number to be formatted.
+            exp_output: The expected output, how the EMA number should be formatted.
+
+        Returns:
+            None: This function returns nothing.
+        """
         output = ec.format_ema_number(ema_number)
         self.assertEqual(output, exp_output, msg="output is not as expected")
 
@@ -289,6 +381,18 @@ class TestEcScraper(unittest.TestCase):
         ]
     ])
     def test_determine_ema_number(self, ema_numbers, exp_ema_number, exp_fraction):
+        """
+        Tests whether the correct EMA number is chosen from a list of EMA numbers. Also checks whether the EMA number
+        certainty is correct.
+
+        Args:
+            ema_numbers: List of EMA numbers to check.
+            exp_ema_number: Expected EMA number.
+            exp_fraction: Expected EMA number certainty.
+
+        Returns:
+            None: This function returns nothing.
+        """
         ema_number, fraction = ec.determine_ema_number(ema_numbers)
         self.assertEqual(ema_number, exp_ema_number, msg="ema number is not right")
         self.assertEqual(fraction, exp_fraction, msg="fraction is not right")

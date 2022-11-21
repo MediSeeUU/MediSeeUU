@@ -32,7 +32,7 @@ def main(directory: str):
 
     # Get medicine folders that have to be scraped, so only medicines in the eu_numbers.json file
     directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder)) and
-                         folder in eu_numbers]
+                         (folder in eu_numbers or folder_has_no_pdf_json(directory, folder))]
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
@@ -121,6 +121,23 @@ def run_scrapers(directory: str, annex_files: list[str], decision_files: list[st
     for file in omar_files:
         medicine_struct = omar_parser.parse_file(file, medicine_struct)
     return medicine_struct
+
+
+def folder_has_no_pdf_json(directory: str, folder: str) -> bool:
+    """
+    Returns whether the given directory already has a pdf_parser.json file
+
+    Args:
+        directory (str): Main data directory
+        folder (str): Medicine folder that might have a pdf_parser.json file
+
+    Returns:
+        bool: True if the given directory already has a pdf_parser.json file, False otherwise
+    """
+    for filename in listdir(path.join(directory, folder)):
+        if "pdf_parser" in filename:
+            return False
+    return True
 
 
 def datetime_serializer(date: pis.datetime.datetime):

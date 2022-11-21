@@ -34,6 +34,18 @@ class TestEMAScraper(unittest.TestCase):
         ]
     ])
     def test_pdf_links_from_url(self, url: str, exp_epar: str, exp_omar: str):
+        """
+        Checks whether the correct epar and omar urls are found.
+
+        Args:
+            url (str): URL for the medicine to be checked.
+            exp_epar (str): The expected epar file.
+            exp_omar (str): The expected omar file.
+
+        Returns:
+            None: This function returns nothing.
+
+        """
         html_active = utils.get_html_object(url)
         epar, omar = em.scrape_medicine_page(url, html_active)
         self.assertEqual(exp_epar, epar, msg="epar is not correct")
@@ -52,6 +64,17 @@ class TestEMAScraper(unittest.TestCase):
         ]
     ])
     def test_find_priority_link(self, priority_list: list[str], strings: list[str], exp_result):
+        """
+        Checks whether the correct priority links are found.
+
+        Args:
+            priority_list (list[str]): List of priority links.
+            strings (list[str]): List of strings to be checked.
+            exp_result (str): Expected link result.
+
+        Returns:
+
+        """
         result: str = em.find_priority_link(priority_list, strings)
         self.assertEqual(exp_result, result, msg="priority link was not found")
 
@@ -60,6 +83,17 @@ class TestEMAScraper(unittest.TestCase):
          datetime.strptime("06/07/2022", '%d/%m/%Y')]
     ])
     def test_find_last_updated_date(self, url, exp_output):
+        """
+        Checks whether the correct last updated date is found.
+
+        Args:
+            url (str): URL for the medicine to be checked.
+            exp_output (str): Expected last updated date.
+:
+
+        Returns:
+            None: This function returns nothing.
+        """
         html_active = utils.get_html_object(url)
         output = em.find_last_updated_date(html_active)
 

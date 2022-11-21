@@ -8,7 +8,7 @@ from scraping.file_parser.pdf_parser.parsers import epar_parser
 import xml.etree.ElementTree as ET
 
 
-test_data_loc = "../../data"
+test_data_loc = "../../test_data"
 xml_bodies = []
 percentage_str = "Percentage found: "
 
@@ -16,7 +16,7 @@ percentage_str = "Percentage found: "
 # Tests all functions of EPAR parser with all XML files
 class TestEparParse(TestCase):
     """
-    Class that contains the unit tests for scraping.file_parser.pdf_parser.scrapers.epar_parser
+    Class that contains the unit tests for scraping.file_parser.pdf_parser.parsers.epar_parser
     """
     @classmethod
     def setUpClass(cls):
@@ -62,7 +62,7 @@ class TestEparParse(TestCase):
                 print("Found but not scrapable: " + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 98)
+        self.assertGreater(percentage_found, 90)
 
     def test_get_opinion_date(self):
         """
@@ -84,7 +84,7 @@ class TestEparParse(TestCase):
                 print("Found but not scrapable: " + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 98)
+        self.assertGreater(percentage_found, 90)
 
     def check_date(self, day: str, month: str, year: str):
         """
@@ -128,7 +128,7 @@ class TestEparParse(TestCase):
                 print("Found but not scrapable: " + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 97)
+        self.assertGreater(percentage_found, 90)
 
     def test_get_prime(self):
         """
@@ -173,7 +173,7 @@ class TestEparParse(TestCase):
                 print("Found but not scrapable: " + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 97)
+        self.assertGreater(percentage_found, 90)
 
     def test_get_corapp(self):
         """
@@ -202,7 +202,7 @@ class TestEparParse(TestCase):
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         # There aren't a lot of co-rapporteurs, just to make sure the function keeps working correctly
-        self.assertGreater(percentage_found, 98)
+        self.assertGreater(percentage_found, 90)
 
     def test_get_reexamination(self):
         """
