@@ -10,6 +10,7 @@ import logging
 import scraping.file_parser.debugging_tools.json_compiler as json_compiler
 
 log = logging.getLogger("file_parser.annex_10_parser")
+annex10_json_file = "annex10_parser.json"
 
 
 def get_all(filename: str, excel_file: pd.DataFrame, data_dir: str) -> dict:
@@ -157,6 +158,7 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
         # Check if the chmp_opinion_date and opinion_date are within 4 days of each other
         if abs((chmp_opinion_date - opinion_date).days) < 4:
             return True, eu_num
+        # Print EU number, Product name, optinion date from EPAR, and opinion date from Excel file
         # print(eu_num + " - " + product_name + " - " + str(chmp_opinion_date).split(" ")[0] + " - " + str(opinion_date).split(" ")[0])
     return False, ""
 
@@ -172,17 +174,17 @@ def annexes_already_parsed(annex_10_folder: str) -> bool:
         bool: True if file already exists and last annex is included, False otherwise
     """
     all_annexes_parsed = False
-    if os.path.exists("annex10_parser.json"):
+    if os.path.exists(annex10_json_file):
         try:
-            f = open("annex10_parser.json", "r", encoding="utf-8")
+            f = open(annex10_json_file, "r", encoding="utf-8")
             parsed_data = json.load(f)
             for filename in os.listdir(annex_10_folder):
                 if filename.split(".")[0] in parsed_data:
                     all_annexes_parsed = True
         except FileNotFoundError:
-            log.error("Annex10_parser.json not found.")
+            log.error(f"{annex10_json_file} not found.")
         except json.decoder.JSONDecodeError as error:
-            log.error("Can't open annex10_parser.json: Decode error | " + str(error))
+            log.error(f"Can't open {annex10_json_file}: Decode error | " + str(error))
         if all_annexes_parsed:
             log.info("All annexes in folder were already parsed")
             return True
@@ -207,14 +209,14 @@ def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
     if annexes_already_parsed(annex_10_folder):
         return
 
-    json_compiler.compile_json_files(data_folder_directory)
+    json_compiler.compile_json_files(data_folder_directory, add_webdata=True, add_pdfdata=True)
     annex_10_folder = path.join(data_folder_directory, annex_folder_name)
 
     annex10s = []
     for filename in os.listdir(annex_10_folder):
         annex10s = parse_file(filename, annex_10_folder, annex10s, data_folder_directory)
 
-    f = open("annex10_parser.json", "w")
+    f = open(annex10_json_file, "w")
     json_to_write = json.dumps(str(annex10s))
     f.write(json_to_write)
     f.close()
