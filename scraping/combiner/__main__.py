@@ -26,17 +26,17 @@ def main(directory: str):
 
 # TODO: handel de try catches beter af
 def combine_folder(filepath: str, folder_name: str):
-    # ToDo refactor naar dictionary form list with 1 default value.
-    file_dicts = {
-        attr.decision: {},
-        attr.decision_initial: {},
-        attr.annex: {},
-        attr.annex_initial: {},
-        attr.epar: {},
-        attr.omar: {},
-        attr.web: {},
-        attr.file_dates: {}
-    }
+    file_dicts = dict.fromkeys([
+        attr.decision,
+        attr.decision_initial,
+        attr.annex,
+        attr.annex_initial,
+        attr.epar,
+        attr.omar,
+        attr.web,
+        attr.file_dates],
+        {})
+
     combined_dict: dict[str, any] = {}
 
     try:
