@@ -24,7 +24,6 @@ def main(directory: str):
     #     parse_folder(path.join(directory, folder), folder)
 
 
-# TODO: handel de try catches beter af
 def combine_folder(filepath: str, folder_name: str):
     file_dicts = dict.fromkeys([
         attr.decision,
@@ -53,29 +52,27 @@ def combine_folder(filepath: str, folder_name: str):
         [(int(dictionary["pdf_file"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]],
         key=lambda x: x[0])
 
-
     if len(decision_files) > 0:
         file_dicts[attr.decision] = decision_files[-1][1]
-    if len(decision_files) > 0:
         file_dates[attr.decision_initial] = decision_files[0][1]
     if len(annex_files) > 0:
         file_dicts[attr.annex] = annex_files[-1][1]
-    if len(annex_files) > 0:
         file_dicts[attr.annex_initial] = annex_files[0][1]
+
     file_dicts[attr.web] = web_data
     file_dicts[attr.file_dates] = file_dates
 
-
+    try:
+        file_dicts[attr.epar] = pdf_data["epars"][0]["filename"]
+    except IndexError:
+        print(f"COMBINER: no epar found in pdf_data for {folder_name}")
 
     try:
-        file_dicts[attr.epar] = pdf_data["epars"][0]["filename"]  # try-except
-    except Exception:
-        print("COMBINER: no epar found in pdf_data for " + folder_name)
-    try:
-        file_dicts[attr.omar] = pdf_data["omars"][0]["filename"]  # try-except
-    except Exception:
+        file_dicts[attr.omar] = pdf_data["omars"][0]["filename"]
+    except IndexError:
         print("COMBINER: no omar found in pdf_data for " + folder_name)
 
+    # TODO: hier een functie van
     for key in attr.all_attributes.keys():
         attribute = attr.all_attributes[key]
         value, all_equal = get_attribute(attribute.name, sources_to_dicts(attribute.sources, file_dicts),
@@ -90,7 +87,8 @@ def combine_folder(filepath: str, folder_name: str):
     json.dump(combined_dict, combined_json)
     combined_json.close()
 
-def fetch_source(source: str, filepath: str, folder_name: str) -> dict
+# TODO: misschien andere except dan filenotfounderror?
+def fetch_source(source: str, filepath: str, folder_name: str) -> dict :
     try:
         with open(path.join(filepath, folder_name + f"_{source}.json"), "r") as source_json:
             res: dict[any, any] = json.load(source_json)
@@ -138,4 +136,4 @@ def date_serializer(date: datetime.date):
 #     main('..\..\..\data')
 
 
-combine_folder("D:\Git_repos\MediSeeUU\data\EU-1-99-126", "EU-1-99-126")
+combine_folder("..\\..\\data\\EU-1-99-126", "EU-1-99-126")
