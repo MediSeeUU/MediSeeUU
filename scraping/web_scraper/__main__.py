@@ -42,7 +42,7 @@ annex10_file = json_helper.JsonHelper(path=f"{json_path}JSON/annex10.json")
 def check_scrape_page(eu_n: str, medicine_last_updated_date: datetime, last_scraped_type: str) -> bool:
     """
     Checks whether the medicine page (either EC or EMA) has been updated since last scrape cycle, or that the page has
-    never been scraped at all. Based on this it returns a boolen that indicates whether attributes and files need to be
+    never been scraped at all. Based on this it returns a boolean that indicates whether attributes and files need to be
     fetched from the html
 
     Args:
@@ -103,14 +103,17 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
 
     # dec_ anx_ and ema_list are lists of URLs to PDF files
     # Attributes_dict is a dictionary containing the attributes scraped from the EC page
-    dec_list, anx_list, ema_list, attributes_dict = \
+    dec_list_indexed, anx_list_indexed, ema_list, attributes_dict = \
         ec_scraper.scrape_medicine_page(medicine_url, html_active, ec_scraper.MedicineType(medicine_type))
 
-    # sort decisions and annexes list
-    dec_list.sort(key=lambda x: int(x[1]))
-    anx_list.sort(key=lambda x: int(x[1]))
-    dec_list = [x[0] for x in dec_list]
-    anx_list = [x[0] for x in anx_list]
+    # Sort decisions and annexes list
+    dec_list_indexed.sort(key=lambda x: int(x[1]))
+    anx_list_indexed.sort(key=lambda x: int(x[1]))
+
+    # Lift url out of tuple and ignore index. [(str, int)] -> [str]
+    dec_list = [x[0] for x in dec_list_indexed]
+    anx_list = [x[0] for x in anx_list_indexed]
+
     # if initial is addressed to member states, move first url to end of url list
     if attributes_dict["init_addressed_to_member_states"] == "True":
         dec_list.append(dec_list.pop(0))
@@ -201,7 +204,7 @@ def save_medicine_urls_and_attributes(medicine_identifier: str, medicine_url: st
 @utils.exception_retry(logging_instance=log)
 def get_urls_ema(eu_n: str, url: str):
     """
-    Gets all the pdf urls from the EMA website and writes it to a CSV file.
+    Gets all the pdf urls from the EMA website and writes it to a file.
 
     Args:
         eu_n (str): The EU number of the medicine.
@@ -218,26 +221,12 @@ def get_urls_ema(eu_n: str, url: str):
 
     log.info(eu_n + ": EMA page has been updated since last scrape cycle")
 
-    epar_url, omar_url = ema_scraper.pdf_links_from_url(url, html_active)
+    ema_urls: dict[str, str | list[str]] = ema_scraper.scrape_medicine_page(url, html_active)
 
-    if "epar_url" in url_file.local_dict[eu_n].keys():
-        if url_file.local_dict[eu_n]['epar_url']:
-            if epar_url:
-                log.info(epar_url)
-            return
-    if "omar_url" in url_file.local_dict[eu_n].keys():
-        if url_file.local_dict[eu_n]['omar_url']:
-            if omar_url:
-                log.info(omar_url)
-            return
-    pdf_url: dict[str, list[str] | str] = {
-        eu_n: {
-            "epar_url": epar_url,
-            "omar_url": omar_url,
-            "ema_last_scraped": datetime.strftime(datetime.today(), '%d/%m/%Y'),
-            "overwrite_ema_files": "True"
-        }
+    pdf_url: dict[str, dict] = {
+        eu_n: ema_urls
     }
+
     url_file.add_to_dict(pdf_url)
 
 
@@ -325,11 +314,13 @@ def main(data_filepath: str = "../data",
             url_file.load_json()
 
         # Transform JSON object into list of (eu_n, url)
-        ema_urls = [(eu_n, url)
-                    for eu_n, value_dict in url_file.local_dict.items()
-                    for url in value_dict["ema_url"]]
+        ema_urls: list[tuple[str, str]] = [
+            (eu_n, url)
+            for eu_n, value_dict in url_file.local_dict.items()
+            for url in value_dict["ema_url"]
+        ]
 
-        unzipped_ema_urls = [list(t) for t in zip(*ema_urls)]
+        unzipped_ema_urls: list[list[str]] = [list(t) for t in zip(*ema_urls)]
 
         with tqdm_logging.logging_redirect_tqdm():
             if use_parallelization and len(unzipped_ema_urls) > 0:

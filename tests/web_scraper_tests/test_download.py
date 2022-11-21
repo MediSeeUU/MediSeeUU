@@ -46,7 +46,8 @@ class TestDownload(TestCase):
             eu_n: The eu number of the file that needs to be downloaded
             filename_elements: The filename elements
         """
-        self.assertIsNone(download.download_pdf_from_url(url, eu_n, filename_elements, data_path, {}, overwrite=True))
+        target_path = f"{data_path}/{eu_n}"
+        self.assertIsNone(download.download_pdf_from_url(url, eu_n, filename_elements, target_path, {}, overwrite=True))
 
     @parameterized.expand([["EU-1-21-1541",
                             "dec",
@@ -69,7 +70,8 @@ class TestDownload(TestCase):
         assert path.exists(f"{data_path}/{eu_n}/{eu_n}_webdata.json"), f"can't run test, no webdata file for {eu_n}"
         med_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_webdata.json")).load_json()
         url_json: json_helper.JsonHelper = json_helper.JsonHelper(path="test_json.json", init_dict={})
-        self.assertIsNone(download.download_pdfs_ec(eu_n, pdf_type, pdf_url, med_dict, {}, data_path, url_json, True))
+        target_path = f"{data_path}/{eu_n}"
+        self.assertIsNone(download.download_pdfs_ec(eu_n, pdf_type, pdf_url, med_dict, {}, target_path, url_json, True))
         remove("test_json.json")
 
     @parameterized.expand([["EU-1-21-1541",
@@ -89,7 +91,8 @@ class TestDownload(TestCase):
         """
         assert path.exists(f"{data_path}/{eu_n}/{eu_n}_webdata.json"), f"can't run test, no webdata file for {eu_n}"
         med_dict = (json_helper.JsonHelper(path=f"{data_path}/{eu_n}/{eu_n}_webdata.json")).load_json()
-        self.assertIsNone(download.download_pdfs_ema(eu_n, pdf_type, pdf_url, med_dict, {}, data_path))
+        target_path = f"{data_path}/{eu_n}"
+        self.assertIsNone(download.download_pdfs_ema(eu_n, pdf_type, pdf_url, med_dict, {}, target_path))
 
     @parameterized.expand([["EU-1-21-1541",
                             {"ec_url": "https://ec.europa.eu/health/documents/community-register/html/h1541.htm",
