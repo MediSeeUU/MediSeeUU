@@ -137,6 +137,7 @@ def get_significant_benefit(bullet_points: list[str], alternative_treatment: str
     Args:
         bullet_points (list[str]): These are all the bullet points from the appropriate section.
         alternative_treatment (str): The result of the get_alternative_treatment function
+        filepath (str): Filepath of OMAR file
 
     Returns:
         str: Returns the appropriate string, depending on what was found in the file.
