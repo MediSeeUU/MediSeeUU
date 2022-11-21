@@ -119,7 +119,7 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
     return res
 
 
-def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date: str) -> (bool, str):
+def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date: str) -> tuple[bool, str]:
     """
     Check if EPAR exists for pdf_parser json containing a similar brand name to the product name
 
@@ -129,7 +129,7 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
         opinion_date (str): Opinion date of the product, to be checked with chml_opinion_date in EPAR file
 
     Returns:
-        (bool, str): (True, EU_num) if product_name is found in one of the EPAR brand names, otherwise (False, "")
+        (tuple[bool, str]): (True, EU_num) if product_name is found in one of the EPAR brand names, otherwise (False, "")
     """
     eu_num = ""
     if type(opinion_date) == datetime:
