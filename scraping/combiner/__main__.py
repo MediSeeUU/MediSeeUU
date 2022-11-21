@@ -25,26 +25,26 @@ def main(directory: str):
 
 
 def combine_folder(filepath: str, folder_name: str):
-    file_dicts = dict.fromkeys([
-        attr.decision,
-        attr.decision_initial,
-        attr.annex,
-        attr.annex_initial,
-        attr.epar,
-        attr.omar,
-        attr.web,
-        attr.file_dates],
-        {})
+    """
 
+    Args:
+        filepath:
+        folder_name:
+
+    Returns:
+
+    """
+    file_dicts_keys = [attr.decision, attr.decision_initial, attr.annex, attr.annex_initial,
+                    attr.epar, attr.omar, attr.web, attr.file_dates]
+    file_dicts = dict.fromkeys(file_dicts_keys,{})
     combined_dict: dict[str, any] = {}
 
     # try to get sources
     # TODO: dit zou gelijk samen kunnen met attr. enzo
-    file_dates = fetch_source('filedates', filepath, folder_name)
-    pdf_data = fetch_source('pdf_parser', filepath, folder_name)
-    web_data = fetch_source('webdata', filepath, folder_name)
+    pdf_data = get_dict('pdf_parser', filepath, folder_name)
+    file_dicts[attr.file_dates] = get_dict('filedates', filepath, folder_name)
+    file_dicts[attr.web] = get_dict('webdata', filepath, folder_name)
 
-    # TODO: waarom sorten als we het er ook gewoon uit kunnen lezen
     decision_files = sorted(
         [(int(dictionary["filename"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["decisions"]],
         key=lambda x: x[0])
@@ -52,53 +52,68 @@ def combine_folder(filepath: str, folder_name: str):
         [(int(dictionary["pdf_file"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]],
         key=lambda x: x[0])
 
+
+    # TODO: functie met len
     if len(decision_files) > 0:
         file_dicts[attr.decision] = decision_files[-1][1]
-        file_dates[attr.decision_initial] = decision_files[0][1]
+        file_dicts[attr.decision_initial] = decision_files[0][1]
     if len(annex_files) > 0:
         file_dicts[attr.annex] = annex_files[-1][1]
         file_dicts[attr.annex_initial] = annex_files[0][1]
 
-    file_dicts[attr.web] = web_data
-    file_dicts[attr.file_dates] = file_dates
-
     try:
-        file_dicts[attr.epar] = pdf_data["epars"][0]["filename"]
+        file_dicts[attr.epar] = pdf_data["epars"][0]
     except IndexError:
         print(f"COMBINER: no epar found in pdf_data for {folder_name}")
 
     try:
-        file_dicts[attr.omar] = pdf_data["omars"][0]["filename"]
+        file_dicts[attr.omar] = pdf_data["omars"][0]
     except IndexError:
-        print("COMBINER: no omar found in pdf_data for " + folder_name)
+        print(f"COMBINER: no omar found in pdf_data for {folder_name}")
 
     # TODO: hier een functie van
-    for key in attr.all_attributes.keys():
-        attribute = attr.all_attributes[key]
+    for attribute in attr.all_attributes:
         value, all_equal = get_attribute(attribute.name, sources_to_dicts(attribute.sources, file_dicts),
                                          attribute.combine)
         combined_dict[attribute.name] = value
 
-        if not all_equal:
-            print("found multiple values for " + attribute.name + ": " + value + " in " + str(
-                sources_to_dicts(attribute.sources, file_dicts)))
+        # if not all_equal:
+            # print("found multiple values for " + attribute.name + ": " + value + " in " + str(
+            #     sources_to_dicts(attribute.sources, file_dicts)))
 
     combined_json = open(path.join(filepath, folder_name + "_combined.json"), "w")
     json.dump(combined_dict, combined_json)
     combined_json.close()
 
 # TODO: misschien andere except dan filenotfounderror?
-def fetch_source(source: str, filepath: str, folder_name: str) -> dict :
+def get_dict(source: str, filepath: str, folder_name: str) -> dict :
+    """
+
+    Args:
+        source:
+        filepath:
+        folder_name:
+
+    Returns:
+
+    """
     try:
         with open(path.join(filepath, folder_name + f"_{source}.json"), "r") as source_json:
-            res: dict[any, any] = json.load(source_json)
-            return res
+            return json.load(source_json)
     except FileNotFoundError:
-        res = {}
         print(f"COMBINER: no {source}.json found in " + filepath)
-        return res
+        return {}
 
 def sources_to_dicts(sources: list[str], file_dicts: dict[str, dict]) -> list[dict]:
+    """
+
+    Args:
+        sources:
+        file_dicts:
+
+    Returns:
+
+    """
     source_dicts: list[str] = []
 
     for source in sources:
@@ -108,14 +123,25 @@ def sources_to_dicts(sources: list[str], file_dicts: dict[str, dict]) -> list[di
 
 
 def get_attribute(attribute_name: str, dicts: list[dict], combine_attributes=False) -> tuple[str, bool]:
+    """
+
+    Args:
+        attribute_name:
+        dicts:
+        combine_attributes:
+
+    Returns:
+
+    """
     attributes: set[str] = []
     # print(attribute_name + ": " + str(dicts))
     for dict in dicts:
         try:
             attributes.append(dict[attribute_name])
         except Exception:
-            print(attribute_name + ": " + str(dicts))
-            print(attribute_name + " not found")
+            print()
+            # print(attribute_name + ": " + str(dicts))
+            # print(attribute_name + " not found")
 
     all_equal = len(set(attributes)) == 1
 
@@ -127,7 +153,15 @@ def get_attribute(attribute_name: str, dicts: list[dict], combine_attributes=Fal
 
 
 # datetime to string serializer for json dumping
-def date_serializer(date: datetime.date):
+def date_serializer(date: datetime.date) -> str:
+    """
+
+    Args:
+        date:
+
+    Returns:
+
+    """
     if isinstance(date, datetime.date):
         return date.__str__()
 
@@ -137,3 +171,6 @@ def date_serializer(date: datetime.date):
 
 
 combine_folder("..\\..\\data\\EU-1-99-126", "EU-1-99-126")
+print(type(attr.all_attributes))
+print(attr.all_attributes)
+

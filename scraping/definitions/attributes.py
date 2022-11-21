@@ -20,13 +20,13 @@ class ScraperAttribute:
 
 
 # add new ScraperAttribute to all_attributes and return name of ScraperAttribute
-def AttributeFactory(all_attributes: dict[str, ScraperAttribute], name: str, sources: list[str], combine=False):
+def AttributeFactory(all_attributes: set[ScraperAttribute], name: str, sources: list[str], combine=False):
     attr = ScraperAttribute(name, sources, combine)
-    all_attributes[name] = attr
+    all_attributes.add(attr)
     return name
 
 # Initialize all attribute objects
-all_attributes = {}
+all_attributes: set[ScraperAttribute] = set()
 atc_code = AttributeFactory(all_attributes, "atc_code", [web])
 # atc_name_l1 = AttributeFactory(all_attributes, "atc_name_l1", [web])
 # atc_name_l2 = AttributeFactory(all_attributes, "atc_name_l2", [web])
