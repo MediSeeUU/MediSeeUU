@@ -16,6 +16,10 @@ class TestFilterRetry(unittest.TestCase):
          b"/dec_10805_en.pdf@corrupt@EU/3/05/339@no_pdf_json_found"]
     ])
     def test_retry_all(self, file_content):
+        """
+        Args:
+            file_content: The mocked content of filter.txt
+        """
         url_file = {"EU-3-05-339": {"ec_url": "https://ec.europa.eu/health/documents/community-register/html/o339.htm",
                                     "aut_url": ["https://ec.europa.eu/health/documents/community-register/2005"
                                                 "/2005122310805/dec_10805_en.pdf"],
@@ -31,10 +35,11 @@ class TestFilterRetry(unittest.TestCase):
                                                 "-epar-scientific-discussion_en.pdf",
                                     "omar_url": ""}}
         # Make a temporary file and test for key error if eu number is not in the url dictionary
-        temp = tempfile.TemporaryFile()
-        temp.write(file_content)
+        temp = tempfile.NamedTemporaryFile(mode='w', delete=False)
+        temp.write(str(file_content))
         temp.seek(0)
-        self.assertIsNone(filter_retry.retry_all(temp.name, url_file))
+        temp.close()
+        self.assertIsNone(filter_retry.retry_all(temp.name, url_file, data_filepath))
 
     @parameterized.expand([
         ["EU-1-04-273", ["h", "a", "anx", "0"]],  # normal
@@ -43,6 +48,11 @@ class TestFilterRetry(unittest.TestCase):
         ["EU-3-05-339", ["o", "w", "dec", "0"]]  # orphan, in filter.txt
     ])
     def test_retry_download(self, eu_n, filename_el):
+        """
+        Args:
+            eu_n: The eu nummer of the tested medicine
+            filename_el: The filename elements for a specific file
+        """
         url_file = {'EU-1-00-129': {'ec_url': 'https://ec.europa.eu/health/documents/community-register/html/h129.htm',
                                     'aut_url': [''],
                                     'smpc_url': ['https://ec.europa.eu/health/documents/community-register/2000'

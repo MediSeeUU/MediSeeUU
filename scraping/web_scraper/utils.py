@@ -59,6 +59,24 @@ def count_unique(input_list: list):
         zip(list(input_list), [list(input_list).count(i) for i in list(input_list)])
     )
 
+
+def get_html_object(url: str) -> requests.Response:
+    """ Fetches the html from a website.
+
+    Args:
+        url (str): The link to the page where the html is needed from.
+
+    Returns:
+        requests.Response: Returns a Response object that contains the response to the HTTP request.
+    """
+    html_active: requests.Response = requests.get(url)
+
+    # If an http error occurred, throw error
+    # TODO: Graceful handling
+    html_active.raise_for_status()
+
+    return html_active
+
 # TODO (Maybe): Logging context which adds the ThreadID to the logs.
 #               Makes it easier to see if a program is multi threaded
 #               https://stackoverflow.com/a/2357652/20321120

@@ -4,11 +4,18 @@ import json
 
 
 def compile_json_files(directory: str, add_webdata: bool = False, add_pdfdata: bool = True):
+    """
+    Combines JSONs from PDF scraper and/or web scraper
+
+    Args:
+        directory (str): Data folder containing medicines:
+        add_webdata (bool): Whether to add web data json files
+        add_pdfdata (bool): Whether to add pdf data json files
+    """
     subdirectories = [subdirectory for subdirectory in listdir(directory) if
                       path.isdir(path.join(directory, subdirectory))]
 
     medicine_json_list = []
-    webdata_json_list = []
 
     for subdirectory in subdirectories:
         get_medicine_json(path.join(directory, subdirectory), medicine_json_list, add_webdata, add_pdfdata)
@@ -20,7 +27,15 @@ def compile_json_files(directory: str, add_webdata: bool = False, add_pdfdata: b
     all_json_results.close()
 
 
-def get_medicine_json(medicine_path: str, json_list: list, add_webdata: bool, add_pdfdata: bool):
+def get_medicine_json(medicine_path: str, json_list: list[dict], add_webdata: bool, add_pdfdata: bool):
+    """
+
+    Args:
+        medicine_path (str): Path to medicine folder containing json files
+        json_list (list[dict]): List of dictionaries from all json files
+        add_webdata (bool): Whether to add web data json files
+        add_pdfdata (bool): Whether to add pdf data json files
+    """
     medicine_jsons = [file for file in listdir(medicine_path) if path.isfile(path.join(medicine_path, file))]
     if add_webdata and add_pdfdata:
         medicine_jsons = [file for file in medicine_jsons if "webdata.json" in file or "pdf_parser.json" in file]
