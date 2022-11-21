@@ -11,12 +11,14 @@ class RelatedMixin(object):
     Specify a field name and a serializer.
 
     Example:
-        class yourSerializer(RelatedMixin, serializers.ModelSerializer)
-            class Meta:
-                related = [
-                    ("ingredients_and_substances", IngredientsAndSubstancesSerializer),
-                    ("marketing_authorisation", MarketingAuthorisationSerializer),
-                ]
+        .. code-block:: python
+
+            class yourSerializer(RelatedMixin, serializers.ModelSerializer)
+                class Meta:
+                    related = [
+                        ("ingredients_and_substances", IngredientsAndSubstancesSerializer),
+                        ("marketing_authorisation", MarketingAuthorisationSerializer),
+                    ]
     """
 
     def to_representation(self, obj):
@@ -44,11 +46,13 @@ class ListMixin(object):
     Specify a field name and a serializer.
 
     Example:
-        class yourSerializer(ListMixin, serializers.ModelSerializer)
-            class Meta:
-                list = [
-                    ("eu_legal_basis", LegalBasesSerializer),
-                ]
+        .. code-block:: python
+
+            class yourSerializer(ListMixin, serializers.ModelSerializer)
+                class Meta:
+                    list = [
+                        ("eu_legal_basis", LegalBasesSerializer),
+                    ]
     """
     def to_representation(self, obj):
         # Get the current object representation
@@ -77,12 +81,14 @@ class HistoryMixin(object):
     Otherwise, it will select the current one.
 
     Example:
-        class yourSerializer(HistoryMixin, serializers.ModelSerializer)
-            class Meta:
-                history = [
-                    ("eu_aut_type_initial", AuthorisationTypeSerializer, HistoryAuthorisationType),
-                    ("eu_aut_type_current", AuthorisationTypeSerializer, HistoryAuthorisationType),
-                ]
+        .. code-block:: python
+
+            class yourSerializer(HistoryMixin, serializers.ModelSerializer)
+                class Meta:
+                    history = [
+                        ("eu_aut_type_initial", AuthorisationTypeSerializer, HistoryAuthorisationType),
+                        ("eu_aut_type_current", AuthorisationTypeSerializer, HistoryAuthorisationType),
+                    ]
     """
     def to_representation(self, obj):
         representation = super().to_representation(obj)

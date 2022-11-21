@@ -13,4 +13,4 @@ class UrlsSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = MedicinalProduct
-        fields = ("eu_pnumber", "ema_url", "ec_url", "aut_url", "smpc_url", "epar_url", "omar_url", "odwar_url")
+        fields = ("eu_pnumber", "ema_url", "ec_url")
