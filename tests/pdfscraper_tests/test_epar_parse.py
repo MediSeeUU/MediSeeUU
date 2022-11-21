@@ -16,7 +16,7 @@ percentage_str = "Percentage found: "
 # Tests all functions of EPAR parser with all XML files
 class TestEparParse(TestCase):
     """
-    Class that contains the unit tests for scraping.file_parser.pdf_parser.scrapers.epar_parser
+    Class that contains the unit tests for scraping.file_parser.pdf_parser.parsers.epar_parser
     """
     @classmethod
     def setUpClass(cls):
