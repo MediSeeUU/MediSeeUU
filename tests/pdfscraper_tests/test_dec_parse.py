@@ -4,6 +4,7 @@ import regex as re
 import fitz
 import datetime
 import scraping.file_parser.pdf_parser.parsers.dec_parser as dec_parser
+import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
 
 test_data_loc = "../../data"
 dec_txt = []
@@ -25,7 +26,7 @@ class TestDecParse(TestCase):
         for dec_file in dec_files:
             try:
                 pdf = fitz.open(dec_file)
-                txt = dec_parser.get_txt_from_pdf(pdf)
+                txt = pdf_helper.get_text_str(pdf)
                 pdf.close()
                 dec_txt.append((txt, dec_file))
             except fitz.fitz.FileDataError:
