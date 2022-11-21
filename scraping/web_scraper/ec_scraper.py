@@ -32,7 +32,8 @@ ORPHAN_REFUSED_URL: str = "https://ec.europa.eu/health/documents/community-regis
 
 
 def scrape_medicines_list() -> list[(str, str, int, str)]:
-    """ Scrape the EC website, and construct urls to all individual medicine pages.
+    """
+    Scrape the EC website, and construct urls to all individual medicine pages.
 
     From the EC website, the JSON files for active and withdrawn medicine are scraped. The JSONs
     contain information about the medicine that is needed to construct a link to each individual medicine page.
@@ -75,7 +76,8 @@ def scrape_medicines_list() -> list[(str, str, int, str)]:
 
 
 def scrape_active_withdrawn_jsons() -> list[dict]:
-    """ Scrape the EC website for active and withdrawn medicine JSONs.
+    """
+    Scrape the EC website for active and withdrawn medicine JSONs.
 
     The JSON files that are scraped are needed to construct the url to each individual medicine page.
 
