@@ -41,7 +41,7 @@ annex10_file = json_helper.JsonHelper(path=f"{json_path}JSON/annex10.json")
 
 def check_scrape_page(eu_n: str, medicine_last_updated_date: datetime, last_scraped_type: str) -> bool:
     """
-    Checks whether the medicine page (either EC or EMA) has been udpated since last scrape cycle, or that the page has
+    Checks whether the medicine page (either EC or EMA) has been updated since last scrape cycle, or that the page has
     never been scraped at all. Based on this it returns a boolen that indicates whether attributes and files need to be
     fetched from the html
 
@@ -51,7 +51,7 @@ def check_scrape_page(eu_n: str, medicine_last_updated_date: datetime, last_scra
         last_scraped_type (str): The page type (either EC or EMA)
 
     Returns:
-        bool: False indicates that the
+        bool: False indicates that the website has not been updated since the last scrape cycle
     """
     # Logic to decide whether this function should search for new files and attributes for a medicine
     try:
