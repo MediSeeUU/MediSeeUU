@@ -45,7 +45,7 @@
       <ul>
         <li class="toctree-l1 "><a href="../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
         <li class="toctree-l1 "><a href="../../scraping/filter/docs/html/index.html">Filter</a></li>
-        <li class="toctree-l1 "><a href="../../scraping/file_parser/docs/html/index.html">PDF Scraper</a></li>
+        <li class="toctree-l1 "><a href="../../scraping/file_parser/docs/html/index.html">File Parser</a></li>
         <li class="toctree-l1 "><a href="../../scraping/combiner/docs/html/index.html">Combiner</a></li>
         <li class="toctree-l1 "><a href="../../scraping/db_communicator/docs/html/index.html">DB Communicator</a></li>
         <li class="toctree-l1 "><a href="../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
@@ -79,6 +79,7 @@
              
   <section id="scraper-and-dashboard-to-make-data-on-regulation-of-medicines-openly-available">
 <h1>Scraper and Dashboard to make data on regulation of medicines openly available<a class="headerlink" href="#scraper-and-dashboard-to-make-data-on-regulation-of-medicines-openly-available" title="Permalink to this heading"></a></h1>
+<p><a class="reference external" href="https://mediseeuu.github.io/MediSeeUU/">Documentation can be viewed online here</a></p>
 <section id="how-to-install">
 <h2>How to install<a class="headerlink" href="#how-to-install" title="Permalink to this heading"></a></h2>
 <p>Install python 3.10.7.
@@ -98,12 +99,28 @@ All the dependencies for the scraping modules are in the requirements.txt file i
 <section id="functionality">
 <h2>Functionality<a class="headerlink" href="#functionality" title="Permalink to this heading"></a></h2>
 <p>The program delivered creates the discussed folder structure and fills it with pdf, xml and json files.</p>
-<p>Currently the program has most of its functionality within the web scraper, filter, xml converter and pdf scraper modules. This means that all files up until pdf_data.json from the diagram below are made.</p>
-<p>Combiner is still a work in progress and will not create a json file containing useful information. The database communicator has functionality built in but will not communicate with the back-end since no useful data is being generated from the combiner module.</p>
+<p>Currently, the program has most of its functionality within the web scraper, filter, xml converter and pdf scraper
+modules. This means that all files up until pdf_data.json from the diagram below are made.</p>
+<p>Combiner is still a work in progress and will not create a json file containing useful information.
+The database communicator has functionality built in but will not communicate with the back-end
+since no useful data is being generated from the combiner module.</p>
 </section>
 <section id="architecture-diagram">
 <h2>Architecture Diagram<a class="headerlink" href="#architecture-diagram" title="Permalink to this heading"></a></h2>
-<p><img alt="alt text" src="_images/architecture_diagram.svg" /></p>
+<p><img alt="alt text" src="docs/architecture_diagram.svg" /></p>
+</section>
+<section id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>web_scraper: This module is responsible for scraping information from the appropriate websites.</p></li>
+<li><p>This includes information from the website itself, and PDFs located on the websites. A JSON file is provided containing general information that is present on the websites themselves.</p></li>
+<li><p>filter: This module keeps track of a list of PDFs that were not successfully scraped. This list is then given back to the web_scraper to make a new attempt at scraping these files.</p></li>
+<li><p>pdf_parser: This module uses the xml_converter create PDF files, which are used to create a JSON file that contains attributes that were parsed from every XML file.</p></li>
+<li><p>xml_converter: This module creates an XML file for every PDF file.</p></li>
+<li><p>combiner: This module merges the JSONs from the web_scraper and pdf_parser into an easily read JSON.</p></li>
+<li><p>db_uploader: The module takes the JSON from the combiner and passes it onto the back_end.</p></li>
+<li><p>back_end: The back_end is responsible for communication with the front_end (the dashboard) and the database. Making sure that the data is passed on properly.</p></li>
+</ul>
 </section>
 <section id="copyright-statement">
 <h2>Copyright statement<a class="headerlink" href="#copyright-statement" title="Permalink to this heading"></a></h2>

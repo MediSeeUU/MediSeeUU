@@ -47,7 +47,7 @@
       <ul>
         <li class="toctree-l1 "><a href="../../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
         <li class="toctree-l1 "><a href="../../../scraping/filter/docs/html/index.html">Filter</a></li>
-        <li class="toctree-l1 "><a href="../../../scraping/file_parser/docs/html/index.html">PDF Scraper</a></li>
+        <li class="toctree-l1 "><a href="../../../scraping/file_parser/docs/html/index.html">File Parser</a></li>
         <li class="toctree-l1 "><a href="../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
         <li class="toctree-l1 "><a href="../../../scraping/db_communicator/docs/html/index.html">DB Communicator</a></li>
         <li class="toctree-l1 "><a href="../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
@@ -85,48 +85,50 @@
 </li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">tests.pdfscraper_tests package</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#module-tests.pdfscraper_tests.test_annex_parser">tests.pdfscraper_tests.test_annex_parser module</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#tests.pdfscraper_tests.test_annex_parser.TestAnnexParse"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_annex_parser.TestAnnexParse.annex_attributes"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse.annex_attributes</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_annex_parser.TestAnnexParse.setUp"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse.setUp()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_annex_parser.TestAnnexParse.test_get_eu_type_of_medicine"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse.test_get_eu_type_of_medicine()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_annex_parser.TestAnnexParse.test_get_initial_type_of_eu_authorization"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse.test_get_initial_type_of_eu_authorization()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-tests.pdfscraper_tests.test_annex_parse">tests.pdfscraper_tests.test_annex_parse module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.annex_attributes"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse.annex_attributes</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.setUp"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse.setUp()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.test_get_eu_type_of_medicine"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse.test_get_eu_type_of_medicine()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.test_get_initial_type_of_eu_authorization"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse.test_get_initial_type_of_eu_authorization()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="#module-tests.pdfscraper_tests.test_dec_parser">tests.pdfscraper_tests.test_dec_parser module</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#tests.pdfscraper_tests.test_dec_parser.TestDecParse"><code class="docutils literal notranslate"><span class="pre">TestDecParse</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_dec_parser.TestDecParse.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestDecParse.setUpClass()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_dec_parser.TestDecParse.test_get_date"><code class="docutils literal notranslate"><span class="pre">TestDecParse.test_get_date()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_dec_parser.TestDecParse.test_get_od_comp_date"><code class="docutils literal notranslate"><span class="pre">TestDecParse.test_get_od_comp_date()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-tests.pdfscraper_tests.test_dec_parse">tests.pdfscraper_tests.test_dec_parse module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#tests.pdfscraper_tests.test_dec_parse.TestDecParse"><code class="docutils literal notranslate"><span class="pre">TestDecParse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_dec_parse.TestDecParse.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestDecParse.setUpClass()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_dec_parse.TestDecParse.test_get_date"><code class="docutils literal notranslate"><span class="pre">TestDecParse.test_get_date()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_dec_parse.TestDecParse.test_get_od_comp_date"><code class="docutils literal notranslate"><span class="pre">TestDecParse.test_get_od_comp_date()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="#module-tests.pdfscraper_tests.test_epar_parser">tests.pdfscraper_tests.test_epar_parser module</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse"><code class="docutils literal notranslate"><span class="pre">TestEparParse</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.check_date"><code class="docutils literal notranslate"><span class="pre">TestEparParse.check_date()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestEparParse.setUpClass()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_accelerated_assessment"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_accelerated_assessment()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_corapp"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_corapp()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_date"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_date()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_legal_basis"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_legal_basis()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_opinion_date"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_opinion_date()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_prime"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_prime()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_rapp"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_rapp()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_reexamination"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_reexamination()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-tests.pdfscraper_tests.test_epar_parse">tests.pdfscraper_tests.test_epar_parse module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse"><code class="docutils literal notranslate"><span class="pre">TestEparParse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.check_date"><code class="docutils literal notranslate"><span class="pre">TestEparParse.check_date()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestEparParse.setUpClass()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_accelerated_assessment"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_accelerated_assessment()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_corapp"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_corapp()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_date"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_date()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_legal_basis"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_legal_basis()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_opinion_date"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_opinion_date()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_prime"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_prime()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_rapp"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_rapp()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_reexamination"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_reexamination()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="#module-tests.pdfscraper_tests.test_omar_parser">tests.pdfscraper_tests.test_omar_parser module</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#tests.pdfscraper_tests.test_omar_parser.TestOmarParse"><code class="docutils literal notranslate"><span class="pre">TestOmarParse</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_omar_parser.TestOmarParse.setUp"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.setUp()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_omar_parser.TestOmarParse.test_get_alternative_treatments"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_alternative_treatments()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_omar_parser.TestOmarParse.test_get_prevalence"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_prevalence()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-tests.pdfscraper_tests.test_omar_parse">tests.pdfscraper_tests.test_omar_parse module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#tests.pdfscraper_tests.test_omar_parse.TestOmarParse"><code class="docutils literal notranslate"><span class="pre">TestOmarParse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.setUpClass()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_alternative_treatments"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_alternative_treatments()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_prevalence"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_prevalence()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_significant_benefit"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_significant_benefit()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#tests.pdfscraper_tests.test_omar_parse.xml_to_bullet_points"><code class="docutils literal notranslate"><span class="pre">xml_to_bullet_points()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -262,11 +264,11 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-tests.pdfscraper_tests.test_annex_parser">
-<span id="tests-pdfscraper-tests-test-annex-parse-module"></span><h2>tests.pdfscraper_tests.test_annex_parser module<a class="headerlink" href="#module-tests.pdfscraper_tests.test_annex_parser" title="Permalink to this heading"></a></h2>
+<section id="module-tests.pdfscraper_tests.test_annex_parse">
+<span id="tests-pdfscraper-tests-test-annex-parse-module"></span><h2>tests.pdfscraper_tests.test_annex_parse module<a class="headerlink" href="#module-tests.pdfscraper_tests.test_annex_parse" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_annex_parser.TestAnnexParse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.pdfscraper_tests.test_annex_parser.</span></span><span class="sig-name descname"><span class="pre">TestAnnexParse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_annex_parser.TestAnnexParse" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_annex_parse.TestAnnexParse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.pdfscraper_tests.test_annex_parse.</span></span><span class="sig-name descname"><span class="pre">TestAnnexParse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <p>Unit testing annex_parser attribute scraping correctness with handmade test PDF files.</p>
 <dl class="simple">
@@ -277,85 +279,73 @@
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_annex_parser.TestAnnexParse.annex_attributes">
-<span class="sig-name descname"><span class="pre">annex_attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#tests.pdfscraper_tests.test_annex_parser.TestAnnexParse.annex_attributes" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.annex_attributes">
+<span class="sig-name descname"><span class="pre">annex_attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.annex_attributes" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_annex_parser.TestAnnexParse.setUp">
-<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#tests.pdfscraper_tests.test_annex_parser.TestAnnexParse.setUp" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.setUp" title="Permalink to this definition"></a></dt>
 <dd><p>Sets up the xml files from test pdf’s and then scrapes data from them into a json and reads it so other
 functions can use the data. Automatically run when whoe test class is used.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>None</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_annex_parser.TestAnnexParse.test_get_eu_type_of_medicine">
-<span class="sig-name descname"><span class="pre">test_get_eu_type_of_medicine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_annex_parser.TestAnnexParse.test_get_eu_type_of_medicine" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.test_get_eu_type_of_medicine">
+<span class="sig-name descname"><span class="pre">test_get_eu_type_of_medicine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.test_get_eu_type_of_medicine" title="Permalink to this definition"></a></dt>
 <dd><p>Unit test for scraping eu_type_of_medicine attribute. This test checks whether this attribute is only read in
 initial authorization annex files and whether the value is correct and found in all applicable cases.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>None</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_annex_parser.TestAnnexParse.test_get_initial_type_of_eu_authorization">
-<span class="sig-name descname"><span class="pre">test_get_initial_type_of_eu_authorization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_annex_parser.TestAnnexParse.test_get_initial_type_of_eu_authorization" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.test_get_initial_type_of_eu_authorization">
+<span class="sig-name descname"><span class="pre">test_get_initial_type_of_eu_authorization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.test_get_initial_type_of_eu_authorization" title="Permalink to this definition"></a></dt>
 <dd><p>Unit test for scraping initial_type_of_eu_authorization attribute. This test checks whether this attribute is
 only read in initial authorization annex files and whether the value is correct and found in all applicable
 cases.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>None</p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
-<section id="module-tests.pdfscraper_tests.test_dec_parser">
-<span id="tests-pdfscraper-tests-test-dec-parse-module"></span><h2>tests.pdfscraper_tests.test_dec_parser module<a class="headerlink" href="#module-tests.pdfscraper_tests.test_dec_parser" title="Permalink to this heading"></a></h2>
+<section id="module-tests.pdfscraper_tests.test_dec_parse">
+<span id="tests-pdfscraper-tests-test-dec-parse-module"></span><h2>tests.pdfscraper_tests.test_dec_parse module<a class="headerlink" href="#module-tests.pdfscraper_tests.test_dec_parse" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_dec_parser.TestDecParse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.pdfscraper_tests.test_dec_parser.</span></span><span class="sig-name descname"><span class="pre">TestDecParse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_dec_parser.TestDecParse" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_dec_parse.TestDecParse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.pdfscraper_tests.test_dec_parse.</span></span><span class="sig-name descname"><span class="pre">TestDecParse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_dec_parse.TestDecParse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>Class that contains the unit tests for scraping.file_parser.pdf_parser.parsers.dec_parser</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_dec_parser.TestDecParse.setUpClass">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setUpClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_dec_parser.TestDecParse.setUpClass" title="Permalink to this definition"></a></dt>
-<dd><p>Hook method for setting up class fixture before running tests in the class.</p>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_dec_parse.TestDecParse.setUpClass">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setUpClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_dec_parse.TestDecParse.setUpClass" title="Permalink to this definition"></a></dt>
+<dd><p>Prepare a list of XML files in the global variable xml_bodies</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_dec_parser.TestDecParse.test_get_date">
-<span class="sig-name descname"><span class="pre">test_get_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_dec_parser.TestDecParse.test_get_date" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_dec_parse.TestDecParse.test_get_date">
+<span class="sig-name descname"><span class="pre">test_get_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_dec_parse.TestDecParse.test_get_date" title="Permalink to this definition"></a></dt>
+<dd><p>Testing format of get_date function</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_dec_parser.TestDecParse.test_get_od_comp_date">
-<span class="sig-name descname"><span class="pre">test_get_od_comp_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_dec_parser.TestDecParse.test_get_od_comp_date" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_dec_parse.TestDecParse.test_get_od_comp_date">
+<span class="sig-name descname"><span class="pre">test_get_od_comp_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_dec_parse.TestDecParse.test_get_od_comp_date" title="Permalink to this definition"></a></dt>
+<dd><p>Testing format of get_od_comp_date function</p>
+</dd></dl>
 
 </dd></dl>
 
 </section>
-<section id="module-tests.pdfscraper_tests.test_epar_parser">
-<span id="tests-pdfscraper-tests-test-epar-parse-module"></span><h2>tests.pdfscraper_tests.test_epar_parser module<a class="headerlink" href="#module-tests.pdfscraper_tests.test_epar_parser" title="Permalink to this heading"></a></h2>
+<section id="module-tests.pdfscraper_tests.test_epar_parse">
+<span id="tests-pdfscraper-tests-test-epar-parse-module"></span><h2>tests.pdfscraper_tests.test_epar_parse module<a class="headerlink" href="#module-tests.pdfscraper_tests.test_epar_parse" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parser.TestEparParse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.pdfscraper_tests.test_epar_parser.</span></span><span class="sig-name descname"><span class="pre">TestEparParse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parse.TestEparParse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.pdfscraper_tests.test_epar_parse.</span></span><span class="sig-name descname"><span class="pre">TestEparParse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
-<p>Class that contains the unit tests for scraping.file_parser.pdf_parser.scrapers.epar_parser</p>
+<p>Class that contains the unit tests for scraping.file_parser.pdf_parser.parsers.epar_parser</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parser.TestEparParse.check_date">
-<span class="sig-name descname"><span class="pre">check_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">day</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">month</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.check_date" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parse.TestEparParse.check_date">
+<span class="sig-name descname"><span class="pre">check_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">day</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">month</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.check_date" title="Permalink to this definition"></a></dt>
 <dd><p>Check for reasonable dates
 :param day: day to check from scraped date
 :type day: str
@@ -366,91 +356,101 @@ cases.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parser.TestEparParse.setUpClass">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setUpClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.setUpClass" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parse.TestEparParse.setUpClass">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setUpClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.setUpClass" title="Permalink to this definition"></a></dt>
 <dd><p>Prepare a list of XML files in the global variable xml_bodies</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_accelerated_assessment">
-<span class="sig-name descname"><span class="pre">test_get_accelerated_assessment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_accelerated_assessment" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_accelerated_assessment">
+<span class="sig-name descname"><span class="pre">test_get_accelerated_assessment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_accelerated_assessment" title="Permalink to this definition"></a></dt>
 <dd><p>Test getting eu_accel_assess_g</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_corapp">
-<span class="sig-name descname"><span class="pre">test_get_corapp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_corapp" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_corapp">
+<span class="sig-name descname"><span class="pre">test_get_corapp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_corapp" title="Permalink to this definition"></a></dt>
 <dd><p>Test getting ema_corapp</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_date">
-<span class="sig-name descname"><span class="pre">test_get_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_date" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_date">
+<span class="sig-name descname"><span class="pre">test_get_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_date" title="Permalink to this definition"></a></dt>
 <dd><p>Test getting ema_procedure_start_initial</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_legal_basis">
-<span class="sig-name descname"><span class="pre">test_get_legal_basis</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_legal_basis" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_legal_basis">
+<span class="sig-name descname"><span class="pre">test_get_legal_basis</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_legal_basis" title="Permalink to this definition"></a></dt>
 <dd><p>Test getting eu_legal_basis</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_opinion_date">
-<span class="sig-name descname"><span class="pre">test_get_opinion_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_opinion_date" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_opinion_date">
+<span class="sig-name descname"><span class="pre">test_get_opinion_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_opinion_date" title="Permalink to this definition"></a></dt>
 <dd><p>Test getting chmp_opinion_date</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_prime">
-<span class="sig-name descname"><span class="pre">test_get_prime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_prime" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_prime">
+<span class="sig-name descname"><span class="pre">test_get_prime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_prime" title="Permalink to this definition"></a></dt>
 <dd><p>Test getting eu_prime_initial</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_rapp">
-<span class="sig-name descname"><span class="pre">test_get_rapp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_rapp" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_rapp">
+<span class="sig-name descname"><span class="pre">test_get_rapp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_rapp" title="Permalink to this definition"></a></dt>
 <dd><p>Test getting ema_rapp</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_reexamination">
-<span class="sig-name descname"><span class="pre">test_get_reexamination</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parser.TestEparParse.test_get_reexamination" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_reexamination">
+<span class="sig-name descname"><span class="pre">test_get_reexamination</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_reexamination" title="Permalink to this definition"></a></dt>
 <dd><p>Test getting ema_reexamination</p>
 </dd></dl>
 
 </dd></dl>
 
 </section>
-<section id="module-tests.pdfscraper_tests.test_omar_parser">
-<span id="tests-pdfscraper-tests-test-omar-parse-module"></span><h2>tests.pdfscraper_tests.test_omar_parser module<a class="headerlink" href="#module-tests.pdfscraper_tests.test_omar_parser" title="Permalink to this heading"></a></h2>
+<section id="module-tests.pdfscraper_tests.test_omar_parse">
+<span id="tests-pdfscraper-tests-test-omar-parse-module"></span><h2>tests.pdfscraper_tests.test_omar_parse module<a class="headerlink" href="#module-tests.pdfscraper_tests.test_omar_parse" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_omar_parser.TestOmarParse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.pdfscraper_tests.test_omar_parser.</span></span><span class="sig-name descname"><span class="pre">TestOmarParse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_omar_parser.TestOmarParse" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_omar_parse.TestOmarParse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.pdfscraper_tests.test_omar_parse.</span></span><span class="sig-name descname"><span class="pre">TestOmarParse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_omar_parse.TestOmarParse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <p>Class that contains the unit tests for scraping.file_parser.pdf_parser.scrapers.epar_parser</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_omar_parser.TestOmarParse.setUp">
-<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_omar_parser.TestOmarParse.setUp" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_omar_parse.TestOmarParse.setUpClass">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setUpClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.setUpClass" title="Permalink to this definition"></a></dt>
 <dd><p>Prepare a list of XML files in the global variable xml_bodies
 :returns: None</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_omar_parser.TestOmarParse.test_get_alternative_treatments">
-<span class="sig-name descname"><span class="pre">test_get_alternative_treatments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_omar_parser.TestOmarParse.test_get_alternative_treatments" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_alternative_treatments">
+<span class="sig-name descname"><span class="pre">test_get_alternative_treatments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_alternative_treatments" title="Permalink to this definition"></a></dt>
 <dd><p>Test getting omar_alternative_treatments
 :returns: None</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_omar_parser.TestOmarParse.test_get_prevalence">
-<span class="sig-name descname"><span class="pre">test_get_prevalence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_omar_parser.TestOmarParse.test_get_prevalence" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_prevalence">
+<span class="sig-name descname"><span class="pre">test_get_prevalence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_prevalence" title="Permalink to this definition"></a></dt>
 <dd><p>Test getting omar_alternative_treatments
 :returns: None</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_significant_benefit">
+<span class="sig-name descname"><span class="pre">test_get_significant_benefit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_significant_benefit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.pdfscraper_tests.test_omar_parse.xml_to_bullet_points">
+<span class="sig-prename descclassname"><span class="pre">tests.pdfscraper_tests.test_omar_parse.</span></span><span class="sig-name descname"><span class="pre">xml_to_bullet_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.pdfscraper_tests.test_omar_parse.xml_to_bullet_points" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </section>
 </section>
