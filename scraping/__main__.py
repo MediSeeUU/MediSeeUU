@@ -11,12 +11,12 @@ import combiner.__main__ as combiner
 import db_communicator.__main__ as db_communicator
 import log_setup
 
-scrape_ec: bool = False            # Whether EC URLs should be scraped
-scrape_ema: bool = False           # Whether EMA URLs should be scraped | Requires scrape_ec to have been run once
+scrape_ec: bool = True            # Whether EC URLs should be scraped
+scrape_ema: bool = True           # Whether EMA URLs should be scraped | Requires scrape_ec to have been run once
 download_files: bool = False      # Whether scraper should download PDFs from obtained links
-download_refused_files = False     # Whether scraper should download refused PDFs from obtained links
-download_annex10_files = True            # Whether scraper should download annex10 files from obtained links
-run_filter: bool = False           # Whether filter should be run after downloading PDF files
+download_refused_files = False    # Whether scraper should download refused PDFs from obtained links
+download_annex10_files = True     # Whether scraper should download annex10 files from obtained links
+run_filter: bool = False          # Whether filter should be run after downloading PDF files
 use_parallelization: bool = True  # Whether downloading should be parallel (faster)
 
 
@@ -44,8 +44,8 @@ def run_all():
     web_scraper.main(data_folder_directory, scrape_ec, scrape_ema, download_files, download_refused_files,
                      download_annex10_files, run_filter, use_parallelization)
     annex_10_parser.main(data_folder_directory)
-    xml_converter.main(data_folder_directory)
-    pdf_parser.main(data_folder_directory)
+    # xml_converter.main(data_folder_directory)
+    # pdf_parser.main(data_folder_directory)
     # combiner.main(data_folder_directory)
     # db_communicator_main.main(data_folder_directory)
 
@@ -68,7 +68,7 @@ def create_data_folders() -> str:
         os.mkdir(data_folder_refused_directory)
 
     # Creates the Annex 10 subdirectory if it does not exist
-    data_folder_annex10_directory = data_folder_directory + "/annex10"
+    data_folder_annex10_directory = data_folder_directory + "/annex_10"
     if not path.isdir(data_folder_annex10_directory):
         os.mkdir(data_folder_annex10_directory)
 

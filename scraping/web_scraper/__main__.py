@@ -270,6 +270,7 @@ def main(data_filepath: str = "../data",
         download_files (bool): Whether scraper should download PDFs from obtained links
         download_refused_files (bool): Whether scraper should download refused PDFs from obtained links
         run_filter (bool): Whether filter should be run after downloading PDF files
+        download_annex10_files (bool): Whether annex10 files should be downloaded
         use_parallelization (bool): Whether downloading should be parallel (faster)
         medicine_list (list[(str, str, int, str)] | None): List of medicine elements
     """
