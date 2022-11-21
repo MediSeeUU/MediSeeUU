@@ -44,7 +44,7 @@
       <ul>
         <li class="toctree-l1 "><a href="../../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
         <li class="toctree-l1 "><a href="../../../scraping/filter/docs/html/index.html">Filter</a></li>
-        <li class="toctree-l1 "><a href="../../../scraping/pdf_module/docs/html/index.html">PDF Scraper</a></li>
+        <li class="toctree-l1 "><a href="../../../scraping/file_parser/docs/html/index.html">File Parser</a></li>
         <li class="toctree-l1 "><a href="../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
         <li class="toctree-l1 "><a href="../../../scraping/db_communicator/docs/html/index.html">DB Communicator</a></li>
         <li class="toctree-l1 "><a href="../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
@@ -119,11 +119,13 @@
 </li>
 <li class="toctree-l5"><a class="reference internal" href="tests.pdfscraper_tests.html#module-tests.pdfscraper_tests.test_omar_parse">tests.pdfscraper_tests.test_omar_parse module</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse"><code class="docutils literal notranslate"><span class="pre">TestOmarParse</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.setUp"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.setUp()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.setUpClass()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_alternative_treatments"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_alternative_treatments()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_prevalence"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_prevalence()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_significant_benefit"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_significant_benefit()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.xml_to_bullet_points"><code class="docutils literal notranslate"><span class="pre">xml_to_bullet_points()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -261,6 +263,7 @@
  | <a href="#M"><strong>M</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#X"><strong>X</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -324,17 +327,13 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.setUp">setUp() (tests.pdfscraper_tests.test_annex_parse.TestAnnexParse method)</a>
-
-      <ul>
-        <li><a href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.setUp">(tests.pdfscraper_tests.test_omar_parse.TestOmarParse method)</a>
 </li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_dec_parse.TestDecParse.setUpClass">setUpClass() (tests.pdfscraper_tests.test_dec_parse.TestDecParse class method)</a>
 
       <ul>
         <li><a href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.setUpClass">(tests.pdfscraper_tests.test_epar_parse.TestEparParse class method)</a>
+</li>
+        <li><a href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.setUpClass">(tests.pdfscraper_tests.test_omar_parse.TestOmarParse class method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -463,9 +462,11 @@
 </li>
       <li><a href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_rapp">test_get_rapp() (tests.pdfscraper_tests.test_epar_parse.TestEparParse method)</a>
 </li>
+      <li><a href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_reexamination">test_get_reexamination() (tests.pdfscraper_tests.test_epar_parse.TestEparParse method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_reexamination">test_get_reexamination() (tests.pdfscraper_tests.test_epar_parse.TestEparParse method)</a>
+      <li><a href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_significant_benefit">test_get_significant_benefit() (tests.pdfscraper_tests.test_omar_parse.TestOmarParse method)</a>
 </li>
       <li><a href="tests.combiner_tests.html#tests.combiner_tests.test_combiner.TestCombiner.test_main">test_main() (tests.combiner_tests.test_combiner.TestCombiner method)</a>
 
@@ -632,6 +633,14 @@
         <li><a href="tests.webscraper_tests.html#module-tests.webscraper_tests.test_filter_retry">module</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.xml_to_bullet_points">xml_to_bullet_points() (in module tests.pdfscraper_tests.test_omar_parse)</a>
+</li>
   </ul></td>
 </tr></table>
 
