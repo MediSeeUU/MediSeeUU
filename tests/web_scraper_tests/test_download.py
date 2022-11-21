@@ -40,6 +40,12 @@ class TestDownload(TestCase):
                             "EU-1-21-1541",
                             ["h", "a", "dec", "0"]]])
     def test_download_pdf_from_url(self, url, eu_n, filename_elements):
+        """
+        Args:
+            url: The url that needs to be downloaded
+            eu_n: The eu number of the file that needs to be downlaoded
+            filename_elements: The filename elements
+        """
         self.assertIsNone(download.download_pdf_from_url(url, eu_n, filename_elements, data_path, {}, overwrite=True))
 
     @parameterized.expand([["EU-1-21-1541",
