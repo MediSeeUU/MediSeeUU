@@ -4,6 +4,8 @@ import os
 import re
 import json
 
+wrong_doctype_str = "@wrong_doctype"
+
 
 def filter_all_pdfs(directory: str):
     """
@@ -15,10 +17,9 @@ def filter_all_pdfs(directory: str):
     """
     print(f'Filtering all PDF files...')
     f = open("filter.txt", 'w', encoding="utf-8")  # open/clean output file
-    data_dir = directory
     all_data = Parallel(n_jobs=8)(
-        delayed(filter_folder)(os.path.join(data_dir, folder)) for folder in
-        os.listdir(data_dir))
+        delayed(filter_folder)(os.path.join(directory, folder)) for folder in
+        os.listdir(directory) if os.path.isdir(os.path.join(directory, folder)))
 
     # Write the error of each PDF file to the output file
     # Each line in filter.txt: filename@error_type
@@ -83,19 +84,13 @@ def filter_pdf(filename: str, data_dir: str) -> str:
     Returns:
         str: filename@error_type
     """
-    corrupt = False
     file_path = os.path.join(data_dir, filename)
-
-    # try to open
-    try:
-        fitz.open(file_path)  # open document
-    except fitz.fitz.FileDataError:
-        corrupt = True
 
     # check if file is readable
     try:
         pdf = fitz.open(file_path)
         # when readable check if its type matches
+
         if check_readable(pdf):
             return file_type_check(filename, file_path, pdf)
 
@@ -104,6 +99,7 @@ def filter_pdf(filename: str, data_dir: str) -> str:
             pdf.close()
             safe_remove(file_path)
             return error_line(filename, '@corrupt')
+
     # could not parse
     except fitz.fitz.FileDataError:
         # check if html
@@ -112,14 +108,9 @@ def filter_pdf(filename: str, data_dir: str) -> str:
             safe_remove(file_path)
             return error_line(filename, '@html')
 
-        # check if PDF was corrupt
-        if corrupt:
-            safe_remove(file_path)
-            return error_line(filename, '@corrupt')
-        # other parse error (uses default 'Failure unknown reason')
-        else:
-            safe_remove(file_path)
-            return error_line(filename, '@unknown')
+        # PDF is not HTML, but can't be opened
+        safe_remove(file_path)
+        return error_line(filename, '@corrupt')
 
 
 def error_line(filename: str, error: str) -> str:
@@ -273,7 +264,7 @@ def check_decision(filename: str, file_path: str, pdf: fitz.Document) -> str:
             return ''
     pdf.close()
     safe_remove(file_path)
-    return error_line(filename, '@wrong_doctype')
+    return error_line(filename, wrong_doctype_str)
 
 
 def check_annex(filename: str, file_path: str, pdf: fitz.Document) -> str:
@@ -288,6 +279,16 @@ def check_annex(filename: str, file_path: str, pdf: fitz.Document) -> str:
     Returns:
         str: @wrong_doctype if it is an annex file, empty string otherwise
     """
+    # gets text of first page
+    first_page = pdf[0]
+    txt = first_page.get_text()
+
+    # checks if the PDF is of the right type
+    if "THE MEDICINAL PRODUCT TO BE IMPLEMENTED BY THE MEMBER STATES" in txt.lower():
+        pdf.close()
+        safe_remove(file_path)
+        return error_line(filename, wrong_doctype_str)
+
     return check_pdf_type(file_path, filename, pdf, ['annex', 'name of the medicinal product',
                                                      'summary of product characteristics'])
 
@@ -353,14 +354,15 @@ def check_pdf_type(file_path: str, filename: str, pdf: fitz.Document, texts: [st
     # gets text of first page
     first_page = pdf[0]
     txt = first_page.get_text()
+
     # checks if the PDF is of the right type
     for text in texts:
         if text in txt.lower():
             pdf.close()
-            return ''
+            return ""
     pdf.close()
     safe_remove(file_path)
-    return error_line(filename, '@wrong_doctype')
+    return error_line(filename, wrong_doctype_str)
 
 
 def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
@@ -389,4 +391,5 @@ def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
     else:
         return ''
 
-# filter_all_pdfs("../../data")
+
+#  filter_all_pdfs("../../data")
