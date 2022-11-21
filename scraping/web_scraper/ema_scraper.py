@@ -149,10 +149,11 @@ def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[s
 
 
 def find_last_updated_date(html_active: requests.Response) -> datetime:
-    """ Finds the date when a medicine page was last updated
+    """
+    Finds the date when a medicine page was last updated
 
     Args:
-        html_active (): html object that contains raw html for a webpage for a medicine on the EMA website
+        html_active (requests.Response): html object that contains raw html for a webpage for a medicine on the EMA website
 
     Returns:
         datetime: When the medicine page on the EMA website was last updated
@@ -165,7 +166,8 @@ def find_last_updated_date(html_active: requests.Response) -> datetime:
 
 
 def find_last_updated_date_annex10(text: str) -> datetime:
-    """ Converts a piece of text with information when an excel-sheet was last updated to a datetime object
+    """
+    Converts a piece of text with information when an excel-sheet was last updated to a datetime object
 
     Args:
         text (str): text containing information when it was last updated.
