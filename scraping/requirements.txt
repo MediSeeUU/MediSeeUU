@@ -1,7 +1,12 @@
-# PDF Module
+# Main
+pause
+
+# File scraper
 PyMuPDF
 joblib
 python-dateutil
+pandas
+openpyxl
 
 # Web Scraper
 tqdm
