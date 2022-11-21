@@ -69,6 +69,8 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
         "orphan-designation-withdrawal-assessment-report"
     ]
 
+    # Final dict that will be returned.
+    # Filled with values here, last attribute "other_ema_urls" filled after
     result_dict: dict[str, str | list[str]] = {
         "epar_url": find_priority_link(epar_priority_list, url_list),
         "omar_url": find_priority_link(omar_priority_list, url_list),
@@ -165,7 +167,8 @@ def find_last_updated_date(html_active: requests.Response) -> datetime:
     Finds the date when a medicine page was last updated
 
     Args:
-        html_active (requests.Response): html object that contains raw html for a webpage for a medicine on the EMA website
+        html_active (requests.Response):
+            html object that contains raw html for a webpage for a medicine on the EMA website
 
     Returns:
         datetime: When the medicine page on the EMA website was last updated

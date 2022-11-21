@@ -209,7 +209,8 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
 
     download_list_ec = [("dec", "aut_url"), ("anx", "smpc_url")]
     for (filetype, key) in download_list_ec:
-        download_pdfs_ec(medicine_identifier, filetype, url_dict[key], attr_dict, filedate_dict, data_path, urls_json, url_dict.get("overwrite_ec_files", "True") == "True")
+        download_pdfs_ec(medicine_identifier, filetype, url_dict[key], attr_dict, filedate_dict, data_path, urls_json,
+                         url_dict.get("overwrite_ec_files", "True") == "True")
 
     download_list_ema = [('epar', "epar_url"), ('omar', "omar_url"), ("odwar", "odwar_url")]
     for (filetype, key) in download_list_ema:

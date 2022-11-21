@@ -42,7 +42,7 @@ annex10_file = json_helper.JsonHelper(path=f"{json_path}JSON/annex10.json")
 def check_scrape_page(eu_n: str, medicine_last_updated_date: datetime, last_scraped_type: str) -> bool:
     """
     Checks whether the medicine page (either EC or EMA) has been updated since last scrape cycle, or that the page has
-    never been scraped at all. Based on this it returns a boolen that indicates whether attributes and files need to be
+    never been scraped at all. Based on this it returns a boolean that indicates whether attributes and files need to be
     fetched from the html
 
     Args:
@@ -103,14 +103,17 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
 
     # dec_ anx_ and ema_list are lists of URLs to PDF files
     # Attributes_dict is a dictionary containing the attributes scraped from the EC page
-    dec_list, anx_list, ema_list, attributes_dict = \
+    dec_list_indexed, anx_list_indexed, ema_list, attributes_dict = \
         ec_scraper.scrape_medicine_page(medicine_url, html_active, ec_scraper.MedicineType(medicine_type))
 
-    # sort decisions and annexes list
-    dec_list.sort(key=lambda x: int(x[1]))
-    anx_list.sort(key=lambda x: int(x[1]))
-    dec_list = [x[0] for x in dec_list]
-    anx_list = [x[0] for x in anx_list]
+    # Sort decisions and annexes list
+    dec_list_indexed.sort(key=lambda x: int(x[1]))
+    anx_list_indexed.sort(key=lambda x: int(x[1]))
+
+    # Lift url out of tuple and ignore index. [(str, int)] -> [str]
+    dec_list = [x[0] for x in dec_list_indexed]
+    anx_list = [x[0] for x in anx_list_indexed]
+
     # if initial is addressed to member states, move first url to end of url list
     if attributes_dict["init_addressed_to_member_states"] == "True":
         dec_list.append(dec_list.pop(0))
@@ -218,7 +221,7 @@ def get_urls_ema(eu_n: str, url: str):
 
     log.info(eu_n + ": EMA page has been updated since last scrape cycle")
 
-    ema_urls: dict[str, str | list[str]] = ema_scraper.scrape_medicine_page(url)
+    ema_urls: dict[str, str | list[str]] = ema_scraper.scrape_medicine_page(url, html_active)
 
     pdf_url: dict[str, dict] = {
         eu_n: ema_urls

@@ -164,7 +164,8 @@ def get_last_updated_date(html_active: requests.Response) -> datetime:
     Gets the last updated date for a medicine on the EC website
 
     Args:
-        html_active (requests.Response): html object for the webpage. Contains a string with 'Last updated on '##/##/####'
+        html_active (requests.Response):
+            html object for the webpage. Contains a string with 'Last updated on '##/##/####'
 
     Returns:
         (str): The date in the aforementioned string
@@ -175,7 +176,8 @@ def get_last_updated_date(html_active: requests.Response) -> datetime:
     return datetime.strptime(last_updated_string.split()[-1], '%d/%m/%Y')
 
 
-def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type: MedicineType) -> (list[str], list[str], list[str], dict[str, str]):
+def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type: MedicineType) \
+                                           -> (list[(str, int)], list[(str, int)], list[str], dict[str, str]):
     """
     Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.
 
@@ -185,7 +187,7 @@ def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type
         medicine_type (MedicineType): The type of medicine this medicine is.
 
     Returns:
-        (list[str], list[str], list[str], dict[str, str]):
+        (list[(str, int)], list[(str, int)], list[str], dict[str, str]):
             All the links to PDFs for decisions and annexes are
             stored in lists and returned. The same is done for all links to the ema website. All attributes are
             stored in a dictionary.
@@ -198,6 +200,7 @@ def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type
 
     # Gets all the necessary information from the medicine_json and procedures_json objects
     medicine_dict, ema_url_list = get_data_from_medicine_json(medicine_json, eu_num, medicine_type)
+
     procedures_dict, dec_url_list, anx_url_list = get_data_from_procedures_json(procedures_json, eu_num)
 
     # combine the attributes from both dictionaries files in a single JSON file
@@ -330,7 +333,8 @@ def set_orphan_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str
                 # TODO: retrieve date for every PDF
 
 
-def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[str, str], list[str], list[str]):
+def get_data_from_procedures_json(procedures_json: dict, eu_num: str) \
+                                 -> (dict[str, str], list[(str, int)], list[(str, int)]):
     """
     Gets all attribute information that is stored in the procedures JSON, and all links the decision and annex PDFs.
 
@@ -344,13 +348,13 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
         eu_num (str): The EU number for the medicine that belongs to this JSON
 
     Returns:
-        (dict[str, str], list[str], list[str]):
+        (dict[str, str], list[(str, int)], list[(str, int)]):
             Returns a dictionary with all the attribute values, a list
             with all the links decisions and a list with the links to the annexes.
     """
     # The necessary urls and other data will be saved in these lists and dictionary
-    dec_url_list: list[str] = []
-    anx_url_list: list[str] = []
+    dec_url_list: list[(str, int)] = []
+    anx_url_list: list[(str, int)] = []
     procedures_dict: dict[str, str] = {}
     # The list of ema numbers will be saved, so that the right EMA number can be chosen
     ema_numbers: list[str] = []
@@ -373,8 +377,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) -> (dict[s
 
     # for each row in the json file of each medicine, get the urls for the pdfs of the decision and annexes.
     # it also checks whether each procedure row has some information about its authorization type
-    for i in range(len(procedures_json)):
-        row = procedures_json[i]
+    for i, row in enumerate(procedures_json):
         # Checks for initial type of authorization and keeps track if it is either Exceptional or Conditional
         if "annual reassessment" in row["type"].lower():
             is_exceptional = True
