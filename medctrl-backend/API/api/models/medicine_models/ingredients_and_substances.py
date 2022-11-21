@@ -46,7 +46,7 @@ class IngredientsAndSubstances(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        self.active_substance_hash = md5(self.active_substance.encode())
+        self.active_substance_hash = md5(self.active_substance.encode()).hexdigest()
         super().save(*args, **kwargs)
 
     class Meta:

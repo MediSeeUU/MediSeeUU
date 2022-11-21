@@ -62,13 +62,8 @@ class MedicinalProduct(models.Model):
         "EU ATMP",
     )
 
-    ema_number_check = create_dashboard_column(
-        models.BooleanField(
-            null=True,
-        ),
-        Category.General_Information,
-        "bool",
-        "EMA Number Check",
+    ema_number_check = models.BooleanField(
+        null=True,
     )
 
     ingredients_and_substances = models.ForeignKey(

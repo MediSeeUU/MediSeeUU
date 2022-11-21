@@ -98,9 +98,9 @@ class HistoryMixin(object):
                 queryset = model.objects.filter(eu_pnumber=obj.eu_pnumber)
                 if queryset:
                     if field.endswith("initial"):
-                        queryset = queryset[0]
-                    else:
                         queryset = queryset[len(queryset) - 1]
+                    else:
+                        queryset = queryset[0]
                     data = serializer(instance=queryset, read_only=True).data
                     for key in data:
                         representation[field] = data[key]

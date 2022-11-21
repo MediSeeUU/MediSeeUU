@@ -68,7 +68,7 @@ class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, se
         Meta information
         """
         model = MedicinalProduct
-        fields = "__all__"
+        exclude = ("ema_number_check",)
         # Serializers to be added and flattened
         related = [
             ("ingredients_and_substances", IngredientsAndSubstancesSerializer),

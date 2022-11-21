@@ -60,6 +60,7 @@ class ScraperLocksTestCase(TestCase):
             eu_med_type="med",
             eu_atmp=False,
             ema_number_check=True,
+            ingredients_and_substances=self.ingredients_and_substances,
         )
         self.medicine.save()
 
