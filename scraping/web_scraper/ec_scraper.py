@@ -19,7 +19,7 @@ class MedicineType(Enum):
     ORPHAN_ACTIVE = 2
     ORPHAN_WITHDRAWN = 3
     HUMAN_USE_REFUSED = 4
-    ORPHAN_REFUSE = 5
+    ORPHAN_REFUSED = 5
 
 
 # links to the ec pages that contain medicine codes
@@ -45,7 +45,7 @@ def scrape_medicines_list() -> list[(str, str, int, str)]:
             the medicine type and a short EU number.
 
     """
-    url_list: list[(str, str, int, str)] = []
+    medicine_list: list[(str, str, int, str)] = []
 
     # Loops over all the JSON objects that contain the short eu numbers, so that they can be stored
     # The first JSON object is for active human use medicine, the second for withdrawn human use,
@@ -60,23 +60,19 @@ def scrape_medicines_list() -> list[(str, str, int, str)]:
             eu_num_full: str = (row['eu_num']['display']).replace("/", "-")
 
             ec_link = f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm"
-            url_list.append((ec_link, eu_num_full, medicine_type, eu_num_short))
+            medicine_list.append((ec_link, eu_num_full, medicine_type, eu_num_short))
         medicine_type += 1
 
-    # If anyone ever wants to scrape the refused medicine, the urls to these medicine can be added with this piece
-    # of code
-    """
     for parsed_json in scrape_refused_jsons():
         for row in parsed_json:
             eu_num_short: str = row['name']['pre'] + str(row['name']['id'])
             eu_num_full: str = "REFUSED-" + row['name']['display']
 
             ec_link = f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm"
-            url_list.append((ec_link, eu_num_full))
-            print(eu_num_full)
-    """
+            medicine_list.append((ec_link, eu_num_full, medicine_type, eu_num_short))
+        medicine_type += 1
 
-    return url_list
+    return medicine_list
 
 
 def scrape_active_withdrawn_jsons() -> list[dict]:
@@ -157,9 +153,9 @@ def get_ec_json_objects(html_active: requests.Response) -> list[dict]:
     #   matches '[', all items in between, and ']'
     #   and if it is closed with ;
     #   which returns the values of the two JSON objects "dataSet_product_information" and "dataSet_proc"
-    plaintext_jsons = re.findall(r"var .+?\K\[.*?\](?=;)", script_tag.string, re.DOTALL)
+    plaintext_jsons = re.findall(r"var dataSet.+?\K\[.*?\](?=;)", script_tag.string, re.DOTALL)
+    parsed_jsons: list[dict] = list(map(lambda plaintext: json.loads(plaintext, strict=False), plaintext_jsons))
 
-    parsed_jsons: list[json] = list(map(lambda plaintext: json.loads(plaintext, strict=False), plaintext_jsons))
     return parsed_jsons
 
 
@@ -235,7 +231,9 @@ def get_data_from_medicine_json(medicine_json: dict,
     # Whether current web page is about a human or orphan medicine
     human_medicine = True
 
-    # Orphan medicine don't always have ATC codes, therefore it is set to a standard value
+    # Refused medicine never have an EU number, therefore it is set to a standard value
+    medicine_dict["eu_pnumber"]: str = ""
+    # Orphan and refused medicine don't always have ATC codes, therefore it is set to a standard value
     medicine_dict["atc_code"] = ""
 
     for row in medicine_json:
@@ -243,12 +241,15 @@ def get_data_from_medicine_json(medicine_json: dict,
             case "name":
                 medicine_dict["eu_aut_status"]: str = row["meta"]["status_name"]
                 medicine_dict["eu_brand_name_current"]: str = row["value"]
-                medicine_dict["status_type"]: str = row["meta"]["status_type"].replace("g", "a").replace("r", "w")
+                if row["meta"]["status_name"] != "REFUSED":
+                    medicine_dict["status_type"]: str = row["meta"]["status_type"].replace("g", "a").replace("r", "w")
+                else:
+                    medicine_dict["status_type"]: str = row["meta"]["status_type"]
 
             case "eu_num":
                 if "EU/1" in row["value"]:
                     human_medicine = True
-                    medicine_dict["eu_pnumber"]: str = row["value"]
+                    medicine_dict["eu_pnumber"] = row["value"]
                 else:
                     human_medicine = False
                     medicine_dict["eu_od_pnumber"]: str = row["value"]
@@ -267,7 +268,8 @@ def get_data_from_medicine_json(medicine_json: dict,
             # Scrapes orphan specific attributes
             set_orphan_attributes(ema_url_list, medicine_dict, row)
 
-    if medicine_type == MedicineType.HUMAN_USE_ACTIVE or medicine_type == MedicineType.HUMAN_USE_WITHDRAWN:
+    if medicine_type == MedicineType.HUMAN_USE_ACTIVE or medicine_type == MedicineType.HUMAN_USE_WITHDRAWN\
+       or medicine_type == MedicineType.HUMAN_USE_REFUSED:
         medicine_dict["orphan_status"] = "h"
     else:
         medicine_dict["orphan_status"] = "o"
@@ -301,6 +303,7 @@ def set_human_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str]
                 ema_url_list.append(json_obj["url"])
 
             # TODO: retrieve date for every PDF
+
         case "orphan_links":
             medicine_dict["eu_orphan_con_current"]: str = row["meta"]
 
@@ -484,7 +487,8 @@ def add_to_non_english_file(eu_n: str, decision_date: datetime.date, filetype: s
 
 
 def determine_current_aut_type(last_decision_types: list[str]) -> str:
-    """ Determines the current authorization type for a medicine
+    """
+    Determines the current authorization type for a medicine
 
     Args:
         last_decision_types (list[str]): The decision types from the last year and a half

@@ -12,12 +12,13 @@ import tqdm.contrib.logging as tqdm_logging
 from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper, filter_retry
 
 # list of the type of medicines that will be scraped
-# NOTE: This was useful for debugging
 scrape_medicine_type: list[ec_scraper.MedicineType] = [
     ec_scraper.MedicineType.HUMAN_USE_ACTIVE,
     ec_scraper.MedicineType.HUMAN_USE_WITHDRAWN,
     ec_scraper.MedicineType.ORPHAN_ACTIVE,
-    ec_scraper.MedicineType.ORPHAN_WITHDRAWN
+    ec_scraper.MedicineType.ORPHAN_WITHDRAWN,
+    ec_scraper.MedicineType.HUMAN_USE_REFUSED,
+    ec_scraper.MedicineType.ORPHAN_REFUSED
 ]
 
 log = logging.getLogger("web_scraper")
@@ -27,9 +28,14 @@ cpu_count = multiprocessing.cpu_count() * 2
 # If file is run locally:
 if "web_scraper" in os.getcwd():
     json_path = ""
-url_file: json_helper.JsonHelper = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
+
+
+# Files where the urls for normal and refused files are stored
+url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
+url_refused_file = json_helper.JsonHelper(path=f"{json_path}JSON/refused_urls.json")
 
 scrape_annex10: bool = False
+# File where Annex 10 data are stored
 annex10_file = json_helper.JsonHelper(path=f"{json_path}JSON/annex10.json")
 
 
@@ -110,9 +116,76 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
         dec_list.append(dec_list.pop(0))
         anx_list.append(anx_list.pop(0))
 
+    set_active_refused_save_parameters(eu_n, medicine_url, dec_list, anx_list, ema_list, attributes_dict, data_path)
+
+
+def set_active_refused_save_parameters(eu_n: str, medicine_url: str, dec_list: list[str], anx_list: list[str],
+                                       ema_list: list[str], attributes_dict: dict[str, str], data_path: str) -> None:
+    """
+    Based on whether the medicine is refused or not, it will set the parameters, so that it can be saved to the file
+    system correctly.
+
+    Args:
+        eu_n (str):
+        medicine_url (str):
+        dec_list (list[str]):
+        anx_list (list[str]):
+        ema_list (list[str]):
+        attributes_dict (dict[str, str]):
+        data_path (str):
+
+    Returns:
+        None: This function returns nothing
+
+    """
+    # Sets parameter values for active and withdrawn medicines that need to be saved
+    if attributes_dict["eu_aut_status"] != "REFUSED":
+        medicine_identifier: str = eu_n
+        target_path: str = f"{data_path}/{medicine_identifier}"
+        save_medicine_urls_and_attributes(medicine_identifier, medicine_url, dec_list, anx_list, ema_list,
+                                          attributes_dict, url_file, target_path)
+    # Sets parameter values for refused medicines that need to be saved
+    else:
+        # Checks if the medicine is a human or orphan one, and based on that picks the right EMA number
+        if attributes_dict["orphan_status"] == "h":
+            ema_number: str = "ema_number"
+        else:
+            ema_number: str = "ema_od_number"
+
+        # Based on whether there is an EMA number, sets the medicine identifier to the EMA number or the product name
+        if attributes_dict[ema_number] != "":
+            medicine_identifier: str = "REFUSED-" + attributes_dict[ema_number].replace('/', '-')
+        else:
+            medicine_identifier: str = "REFUSED-" + attributes_dict["eu_brand_name_current"].replace('/', '-')
+
+        target_path: str = f"{data_path}/refused/{medicine_identifier}"
+        save_medicine_urls_and_attributes(medicine_identifier, medicine_url, dec_list, anx_list, ema_list,
+                                          attributes_dict, url_refused_file, target_path)
+
+
+def save_medicine_urls_and_attributes(medicine_identifier: str, medicine_url: str, dec_list: list[str],
+                                      anx_list: list[str], ema_list: list[str], attributes_dict: dict[str, str],
+                                      file: json_helper.JsonHelper, target_path: str) -> None:
+    """
+    Saves a JSON file in the correct location, containing scraped attributes from the EC website. It also adds urls to
+    the right url JSON files.
+
+    Args:
+        medicine_identifier (str):
+        medicine_url (str):
+        dec_list (list[str]):
+        anx_list (list[str]):
+        ema_list (list[str]):
+        attributes_dict (dict[str, str]):
+        file (json_helper.JsonHelper):
+        target_path (str):
+
+    Returns:
+        None: This function returns nothing
+    """
     # TODO: Common name structure?
     url_json: dict[str, list[str]] = {
-        eu_n: {
+        medicine_identifier: {
             "ec_url": medicine_url,
             "aut_url": dec_list,
             "smpc_url": anx_list,
@@ -122,12 +195,12 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
         }
     }
 
-    url_file.add_to_dict(url_json)
+    file.add_to_dict(url_json)
 
     # Creates a directory if the medicine doesn't exist yet,
     # otherwise it just adds the json file to the existing directory
-    Path(f"{data_path}/{eu_n}").mkdir(exist_ok=True)
-    with open(f"{data_path}/{eu_n}/{eu_n}_webdata.json", 'w') as f:
+    Path(f"{target_path}").mkdir(exist_ok=True)
+    with open(f"{target_path}/{medicine_identifier}_webdata.json", 'w') as f:
         json.dump(attributes_dict, f, indent=4)
 
 
@@ -181,15 +254,15 @@ def get_excel_ema(url: str):
     Args:
         url (str): link to where all annex10 files are stored
     """
-
     excel_url: dict[str, dict[str, str]] = ema_scraper.get_annex10_files(url, annex10_file.load_json())
     annex10_file.overwrite_dict(excel_url)
 
 
 # Main web scraper function with default settings
 def main(data_filepath: str = "../data",
-         scrape_ec: bool = True, scrape_ema: bool = True, download_files: bool = True, run_filter: bool = True,
-         use_parallelization: bool = True, medicine_codes: (list[(str, str, int, str)]) | None = None):
+         scrape_ec: bool = True, scrape_ema: bool = True, download_files: bool = True,
+         download_refused_files: bool = True, run_filter: bool = True, use_parallelization: bool = True,
+         medicine_list: (list[(str, str, int, str)]) | None = None):
     """
     Main function that controls which scrapers are activated, and if it runs parallel or not.
 
@@ -197,17 +270,17 @@ def main(data_filepath: str = "../data",
     and/or downloads the scraped links.
 
     Args:
-        medicine_codes (list[(str, str, int, str)]) | None:
-            The list of all medicines that will be scraped. When it is not defined, it takes all medicines.
         data_filepath (str, optional): The file path where all data needs to be stored. Defaults to "../data".
         scrape_ec (bool): Whether EC URLs should be scraped
         scrape_ema (bool): Whether EMA URLs should be scraped | Requires scrape_ec to have been run at least once
         download_files (bool): Whether scraper should download PDFs from obtained links
+        download_refused_files (bool): Whether scraper should download refused PDFs from obtained links
         run_filter (bool): Whether filter should be run after downloading PDF files
         use_parallelization (bool): Whether downloading should be parallel (faster)
+        medicine_list (list[(str, str, int, str)] | None): List of medicine elements
     """
-    if medicine_codes is None:
-        medicine_codes = ec_scraper.scrape_medicines_list()
+    if medicine_list is None:
+        medicine_list = ec_scraper.scrape_medicines_list()
 
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
@@ -236,16 +309,18 @@ def main(data_filepath: str = "../data",
 
         with tqdm_logging.logging_redirect_tqdm():
             if use_parallelization:
-                unzipped_medicine_codes = [list(t) for t in zip(*medicine_codes)]
-                unzipped_medicine_codes.pop()
+                unzipped_medicine_list = [list(t) for t in zip(*medicine_list)]
+                unzipped_medicine_list.pop()
                 tqdm_concurrent.thread_map(get_urls_ec,
-                                           *unzipped_medicine_codes,
-                                           [data_filepath] * len(medicine_codes), max_workers=cpu_count)
+                                           *unzipped_medicine_list,
+                                           [data_filepath] * len(medicine_list), max_workers=cpu_count)
             else:
-                for (medicine_url, eu_n, medicine_type, _) in tqdm.tqdm(medicine_codes):
+                for (medicine_url, eu_n, medicine_type, _) in tqdm.tqdm(medicine_list):
                     get_urls_ec(medicine_url, eu_n, medicine_type, data_filepath)
 
         url_file.save_dict()
+        url_refused_file.save_dict()
+
         log.info("TASK FINISHED EC scrape")
 
     if scrape_ema:
@@ -280,6 +355,14 @@ def main(data_filepath: str = "../data",
 
         url_file.save_dict()
         log.info("TASK FINISHED downloading PDF files")
+
+    if download_refused_files:
+        log.info("TASK START downloading refused PDF files from fetched urls from EC and EMA")
+
+        download.download_all(data_filepath, url_refused_file, parallel_download=use_parallelization)
+
+        url_refused_file.save_dict()
+        log.info("TASK FINISHED downloading refused PDF files")
 
     if run_filter:
         filter_retry.run_filter(3, data_filepath)

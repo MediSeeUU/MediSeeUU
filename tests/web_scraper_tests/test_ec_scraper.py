@@ -3,6 +3,7 @@ import sys
 import json
 import pytest
 import regex as re
+from datetime import datetime
 import requests
 import scraping.web_scraper.utils as utils
 from scraping.web_scraper import ec_scraper as ec
@@ -17,10 +18,11 @@ class TestEcScraper(unittest.TestCase):
         url_list = ec.scrape_medicines_list()
         self.assertIsNotNone(url_list, msg="url list is empty")
         first_url = url_list[0][3]
-        check = re.findall(r"[ho]\d+", first_url)[0]
+        check = re.findall(r"[(ho]\d+", first_url)[0]
         self.assertEqual(check, first_url, msg="first url not in correct format")
         last_url = url_list[-1][3]
-        check = re.findall(r"[ho]\d+", last_url)[0]
+        print(last_url)
+        check = re.findall(r"h*[ho]\d+", last_url)[0]
         self.assertEqual(check, last_url, msg="last url not in correct format")
 
     # Unit test that checks whether the correct data is retrieved for a certain medicine.
@@ -85,7 +87,6 @@ class TestEcScraper(unittest.TestCase):
         self.assertEqual(medicine_dict["eu_aut_status"], exp_eu_aut_status, msg="authorization statuses are not equal")
         self.assertEqual(medicine_dict["eu_brand_name_current"], exp_eu_brand_name_current, msg="current brand names "
                                                                                                 "are not equal")
-
 
     @parameterized.expand([
         [
