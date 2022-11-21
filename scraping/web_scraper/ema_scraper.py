@@ -44,7 +44,14 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
 
     if complete_soup is None:
         log.warning(f"{medicine_name}: No initial marketing-authorisation documents")
-        return {}
+        # Code relies on the attributes being present in the dictionary.
+        # Fill with empty string for later code.
+        return {
+            "epar_url": "",
+            "omar_url": "",
+            "odwar_url": "",
+            "other_ema_urls": []
+        }
 
     specific_soup = complete_soup.parent.parent.parent
 
