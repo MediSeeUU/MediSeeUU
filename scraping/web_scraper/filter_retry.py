@@ -41,6 +41,8 @@ def run_filter(n: int, data_filepath: str):
         pdf_filter.filter_all_pdfs(data_filepath)
         url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json").load_json()
         retry_all(f'{filter_path}filter.txt', url_file, data_filepath)
+    # remove files that can't go to the pdf parser
+    pdf_filter.filter_all_pdfs(data_filepath)
 
 
 def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str] | str]], data_filepath: str):
@@ -80,10 +82,12 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
         url = url[int(filename_elements[3])]
     filedate_dict = {}
     filedates_path = f"{data_filepath}/{eu_n}/{eu_n}_filedates.json"
+    target_path: str = f"{data_filepath}/{eu_n}"
     if os.path.exists(filedates_path):
         with open(filedates_path, 'r') as f:
             filedate_dict = json.load(f)
-    download.download_pdf_from_url(url, eu_n, filename_elements, data_filepath, filedate_dict, overwrite=True)
+    download.download_pdf_from_url(url, eu_n, filename_elements, target_path, data_filepath, filedate_dict,
+                                   overwrite=True)
 
 
 # used for testing
