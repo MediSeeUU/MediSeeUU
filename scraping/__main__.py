@@ -14,7 +14,8 @@ import log_setup
 scrape_ec: bool = False            # Whether EC URLs should be scraped
 scrape_ema: bool = False           # Whether EMA URLs should be scraped | Requires scrape_ec to have been run once
 download_files: bool = False      # Whether scraper should download PDFs from obtained links
-download_refused_files = True     # Whether scraper should download refused PDFs from obtained links
+download_refused_files = False     # Whether scraper should download refused PDFs from obtained links
+download_annex10_files = True            # Whether scraper should download annex10 files from obtained links
 run_filter: bool = False           # Whether filter should be run after downloading PDF files
 use_parallelization: bool = True  # Whether downloading should be parallel (faster)
 
@@ -39,9 +40,9 @@ def run_all():
     # Creates the data directory if it does not exist
     data_folder_directory = create_data_folders()
 
-    # Any module can be commented or uncommented here, as the modules they work seperately
-    web_scraper.main(data_folder_directory, scrape_ec, scrape_ema, download_files, download_refused_files, run_filter,
-                     use_parallelization)
+    # Any module can be commented or uncommented here, as the modules they work separately
+    web_scraper.main(data_folder_directory, scrape_ec, scrape_ema, download_files, download_refused_files,
+                     download_annex10_files, run_filter, use_parallelization)
     annex_10_parser.main(data_folder_directory)
     xml_converter.main(data_folder_directory)
     pdf_parser.main(data_folder_directory)
@@ -49,14 +50,28 @@ def run_all():
     # db_communicator_main.main(data_folder_directory)
 
 
-def create_data_folders():
+def create_data_folders() -> str:
+    """
+    Creates the necessary data folders if they don't exist.
+
+    Returns:
+        str: Returns the data folder directory.
+
+    """
     data_folder_directory = '../data'
     if not path.isdir(data_folder_directory):
         os.mkdir(data_folder_directory)
+
     # Creates the refused subdirectory if it does not exist
     data_folder_refused_directory = data_folder_directory + "/refused"
     if not path.isdir(data_folder_refused_directory):
         os.mkdir(data_folder_refused_directory)
+
+    # Creates the Annex 10 subdirectory if it does not exist
+    data_folder_annex10_directory = data_folder_directory + "/annex10"
+    if not path.isdir(data_folder_annex10_directory):
+        os.mkdir(data_folder_annex10_directory)
+
     return data_folder_directory
 
 

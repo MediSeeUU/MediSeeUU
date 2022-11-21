@@ -255,8 +255,8 @@ def get_excel_ema(url: str):
 # Main web scraper function with default settings
 def main(data_filepath: str = "../data",
          scrape_ec: bool = True, scrape_ema: bool = True, download_files: bool = True,
-         download_refused_files: bool = True, run_filter: bool = True, use_parallelization: bool = True,
-         medicine_list: (list[(str, str, int, str)]) | None = None):
+         download_refused_files: bool = True, download_annex10_files: bool = True, run_filter: bool = True,
+         use_parallelization: bool = True,  medicine_list: (list[(str, str, int, str)]) | None = None):
     """
     Main function that controls which scrapers are activated, and if it runs parallel or not.
 
@@ -357,6 +357,13 @@ def main(data_filepath: str = "../data",
 
         url_refused_file.save_dict()
         log.info("TASK FINISHED downloading refused PDF files")
+
+    if download_annex10_files:
+        log.info("TASK START downloading Annex 10 Excel files from fetched urls from EC and EMA")
+
+        download.download_annex10_files(data_filepath, annex10_file)
+
+        log.info("TASK FINISHED downloading Annex 10 Excel files")
 
     if run_filter:
         filter_retry.run_filter(3, data_filepath)
