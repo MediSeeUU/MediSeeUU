@@ -46,7 +46,7 @@
       <ul>
         <li class="toctree-l1 "><a href="../../../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
-        <li class="toctree-l1 "><a href="../../../../scraping/pdf_module/docs/html/index.html">PDF Scraper</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/file_parser/docs/html/index.html">File Parser</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
         <li class="toctree-l1 current-module"><a href="../../../../scraping/db_communicator/docs/html/index.html">DB Communicator</a></li>
         <li class="toctree-l1 "><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
@@ -78,6 +78,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">db_communicator</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">db_communicator package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-db_communicator.__main__">db_communicator.__main__ module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#db_communicator.__main__.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#module-db_communicator.db_communicator">db_communicator.db_communicator module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator"><code class="docutils literal notranslate"><span class="pre">DbCommunicator</span></code></a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator.key_valid"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.key_valid()</span></code></a></li>
@@ -124,6 +128,20 @@
 <span id="db-communicator-package"></span><h1>db_communicator package<a class="headerlink" href="#module-db_communicator" title="Permalink to this heading"></a></h1>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-db_communicator.__main__">
+<span id="db-communicator-main-module"></span><h2>db_communicator.__main__ module<a class="headerlink" href="#module-db_communicator.__main__" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="db_communicator.__main__.main">
+<span class="sig-prename descclassname"><span class="pre">db_communicator.__main__.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.__main__.main" title="Permalink to this definition"></a></dt>
+<dd><p>Sends all combined data in the data folder to the database in separate requests</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>directory</strong> (<em>string</em>) – The base directory containing all data</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-db_communicator.db_communicator">
 <span id="db-communicator-db-communicator-module"></span><h2>db_communicator.db_communicator module<a class="headerlink" href="#module-db_communicator.db_communicator" title="Permalink to this heading"></a></h2>
