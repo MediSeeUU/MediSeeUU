@@ -41,6 +41,8 @@ def filter_folder(folder: str) -> [str]:
         [str]: PDF names with error types for the folder
     """
     all_data = []
+    if not os.path.isdir(folder):
+        return all_data
     for filename in os.listdir(folder):
         if '.pdf' in filename:
             data = filter_pdf(filename, folder)

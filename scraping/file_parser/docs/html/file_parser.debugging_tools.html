@@ -281,12 +281,32 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="file_parser.debugging_tools.json_compiler.compile_json_files">
 <span class="sig-prename descclassname"><span class="pre">file_parser.debugging_tools.json_compiler.</span></span><span class="sig-name descname"><span class="pre">compile_json_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_webdata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_pdfdata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#file_parser.debugging_tools.json_compiler.compile_json_files" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Combines JSONs from PDF scraper and/or web scraper</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directory</strong> (<em>str</em>) – Data folder containing medicines:</p></li>
+<li><p><strong>add_webdata</strong> (<em>bool</em>) – Whether to add web data json files</p></li>
+<li><p><strong>add_pdfdata</strong> (<em>bool</em>) – Whether to add pdf data json files</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="file_parser.debugging_tools.json_compiler.get_medicine_json">
-<span class="sig-prename descclassname"><span class="pre">file_parser.debugging_tools.json_compiler.</span></span><span class="sig-name descname"><span class="pre">get_medicine_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">medicine_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_webdata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_pdfdata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#file_parser.debugging_tools.json_compiler.get_medicine_json" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">file_parser.debugging_tools.json_compiler.</span></span><span class="sig-name descname"><span class="pre">get_medicine_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">medicine_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_webdata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_pdfdata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#file_parser.debugging_tools.json_compiler.get_medicine_json" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>medicine_path</strong> (<em>str</em>) – Path to medicine folder containing json files</p></li>
+<li><p><strong>json_list</strong> (<em>list</em><em>[</em><em>dict</em><em>]</em>) – List of dictionaries from all json files</p></li>
+<li><p><strong>add_webdata</strong> (<em>bool</em>) – Whether to add web data json files</p></li>
+<li><p><strong>add_pdfdata</strong> (<em>bool</em>) – Whether to add pdf data json files</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 </section>

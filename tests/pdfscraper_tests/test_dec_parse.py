@@ -61,7 +61,7 @@ class TestDecParse(TestCase):
         percentage_found = (len(dec_txt) - not_found_count) / len(dec_txt) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         print(f"Amount not found: {not_found_count}")
-        self.assertGreater(percentage_found, 90)
+        self.assertGreater(percentage_found, 89)
 
     def test_get_od_comp_date(self):
         """
@@ -83,4 +83,4 @@ class TestDecParse(TestCase):
         percentage_found = (orphan_count - not_found_count) / orphan_count * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         print(f"Amount not found: {not_found_count}")
-        self.assertGreater(percentage_found, 90)
+        self.assertGreater(percentage_found, 75)
