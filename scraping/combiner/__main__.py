@@ -166,6 +166,12 @@ def date_serializer(date: datetime.date) -> str:
         return date.__str__()
 
 
+def datetime_converter(datetime: str) -> str:
+    """
+
+    """
+    return datetime.split('+')[0]
+
 # if __name__ == "__main__":
 #     main('..\..\..\data')
 
