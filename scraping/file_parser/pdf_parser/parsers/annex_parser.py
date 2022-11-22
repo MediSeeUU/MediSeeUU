@@ -80,7 +80,10 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
         # TODO: to add attributes, initial EU conditions and current EU conditions, 50 and 51 in bible
 
     medicine_struct.annexes.append(annex_attributes)
+
+    #TODO: remove this
     filename = xml_utils.file_get_name_pdf(xml_header)
     if '_0' in filename:
         pdf_helper.create_outputfile(filename, 'annex_results.txt', annex_attributes)
+        
     return medicine_struct
