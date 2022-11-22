@@ -8,6 +8,9 @@ from api.models.medicine_models import AcceleratedAssessment, Duration, Marketin
 
 
 class AcceleratedAssessmentSerializer(serializers.ModelSerializer):
+    """
+    This serializer serializes the :py:class:`.AcceleratedAssessment` model.
+    """
     class Meta:
         """
         Meta information
@@ -17,6 +20,9 @@ class AcceleratedAssessmentSerializer(serializers.ModelSerializer):
 
 
 class DurationSerializer(serializers.ModelSerializer):
+    """
+    This serializer serializes the :py:class:`.Duration` model.
+    """
     class Meta:
         """
         Meta information
@@ -26,6 +32,9 @@ class DurationSerializer(serializers.ModelSerializer):
 
 
 class MarketingAuthorisationSerializer(RelatedMixin, serializers.ModelSerializer):
+    """
+    This serializer serializes the :py:class:`.MarketingAuthorisation` model.
+    """
     class Meta:
         """
         Meta information

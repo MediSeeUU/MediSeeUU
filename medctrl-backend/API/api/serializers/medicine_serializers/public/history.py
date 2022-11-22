@@ -12,7 +12,7 @@ from api.models.medicine_models import (
 
 class AuthorisationStatusSerializer(serializers.ModelSerializer):
     """
-    Authorisation Status table serializer for the view endpoint medicine
+    This serializer serializes the :py:class:`.HistoryAuthorisationStatus` model.
     """
     class Meta:
         """
@@ -25,7 +25,7 @@ class AuthorisationStatusSerializer(serializers.ModelSerializer):
 
 class AuthorisationTypeSerializer(serializers.ModelSerializer):
     """
-    Authorisation Type table serializer for the view endpoint medicine
+    This serializer serializes the :py:class:`.HistoryAuthorisationType` model.
     """
     class Meta:
         """
@@ -38,7 +38,7 @@ class AuthorisationTypeSerializer(serializers.ModelSerializer):
 
 class BrandNameSerializer(serializers.ModelSerializer):
     """
-    Brand Name table serializer for the view endpoint medicine
+    This serializer serializes the :py:class:`.HistoryBrandName` model.
     """
     class Meta:
         """
@@ -51,7 +51,7 @@ class BrandNameSerializer(serializers.ModelSerializer):
 
 class MAHSerializer(serializers.ModelSerializer):
     """
-    Marketing Authorisation Holder table serializer for the view endpoint medicine
+    This serializer serializes the :py:class:`.HistoryMAH` model.
     """
     class Meta:
         """
@@ -64,7 +64,7 @@ class MAHSerializer(serializers.ModelSerializer):
 
 class OrphanDesignationSerializer(serializers.ModelSerializer):
     """
-    Orphan Designation table serializer for the view endpoint medicine
+    This serializer serializes the :py:class:`.HistoryOD` model.
     """
     class Meta:
         """
@@ -77,7 +77,7 @@ class OrphanDesignationSerializer(serializers.ModelSerializer):
 
 class PrimeSerializer(serializers.ModelSerializer):
     """
-    Priority Medicine Designation table serializer for the view endpoint medicine
+    This serializer serializes the :py:class:`.HistoryPrime` model.
     """
     class Meta:
         """
@@ -90,7 +90,7 @@ class PrimeSerializer(serializers.ModelSerializer):
 
 class EUOrphanConSerializer (serializers.ModelSerializer):
     """
-    Orphan Condition table serializer for the view endpoint medicine
+    This serializer serializes the :py:class:`.HistoryEUOrphanCon` model.
     """
     class Meta:
         """

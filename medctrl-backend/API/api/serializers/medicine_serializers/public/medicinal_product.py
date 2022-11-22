@@ -39,7 +39,7 @@ from api.serializers.medicine_serializers.public import (
 
 class LegalBasesSerializer(serializers.ModelSerializer):
     """
-    Legal bases table serializer for the view endpoint medicine
+    This serializer serializes the :py:class:`.LegalBases` model.
     """
 
     class Meta:
@@ -51,6 +51,9 @@ class LegalBasesSerializer(serializers.ModelSerializer):
 
 
 class IngredientsAndSubstancesSerializer(serializers.ModelSerializer):
+    """
+    This serializer serializes the :py:class:`.IngredientsAndSubstances` model.
+    """
     class Meta:
         """
         Meta information
@@ -61,7 +64,7 @@ class IngredientsAndSubstancesSerializer(serializers.ModelSerializer):
 
 class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, serializers.ModelSerializer):
     """
-    This is the view endpoint for a medicine.
+    This serializer serializers all the needed data for the medicine view from the :py:class:`.MedicinalProduct` model.
     """
     class Meta:
         """
