@@ -10,6 +10,7 @@ import file_parser.pdf_parser.__main__ as pdf_parser
 import combiner.__main__ as combiner
 import db_communicator.__main__ as db_communicator
 import log_setup
+import config_objects
 
 scrape_ec: bool = False            # Whether EC URLs should be scraped
 scrape_ema: bool = False           # Whether EMA URLs should be scraped | Requires scrape_ec to have been run once
@@ -39,9 +40,12 @@ def run_all():
     # Creates the data directory if it does not exist
     data_folder_directory = create_data_folders()
 
+    # Standard config is to run all. Uncomment line below to use custom setup.
+    web_config = config_objects.WebConfig().run_all().set_parallel()
+    # web_config = config_objects.WebConfig().run_custom(scrape_ec=True, scrape_ema=True).set_parallel()
+
     # Any module can be commented or uncommented here, as the modules they work separately
-    web_scraper.main(data_folder_directory, scrape_ec, scrape_ema, download_files, download_refused_files, run_filter,
-                     use_parallelization)
+    web_scraper.main(web_config)
     annex_10_parser.main(data_folder_directory)
     xml_converter.main(data_folder_directory)
     pdf_parser.main(data_folder_directory)

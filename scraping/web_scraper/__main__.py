@@ -10,6 +10,7 @@ import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 
 from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper, filter_retry
+import scraping.config_objects as config_objects
 
 # list of the type of medicines that will be scraped
 scrape_medicine_type: list[ec_scraper.MedicineType] = [
@@ -242,10 +243,7 @@ def get_excel_ema(url: str):
 
 
 # Main web scraper function with default settings
-def main(data_filepath: str = "../data",
-         scrape_ec: bool = True, scrape_ema: bool = True, download_files: bool = True,
-         download_refused_files: bool = True, run_filter: bool = True, use_parallelization: bool = True,
-         medicine_list: (list[(str, str, int, str)]) | None = None):
+def main(config: config_objects.WebConfig):
     """
     Main function that controls which scrapers are activated, and if it runs parallel or not.
 
@@ -253,15 +251,9 @@ def main(data_filepath: str = "../data",
     and/or downloads the scraped links.
 
     Args:
-        data_filepath (str, optional): The file path where all data needs to be stored. Defaults to "../data".
-        scrape_ec (bool): Whether EC URLs should be scraped
-        scrape_ema (bool): Whether EMA URLs should be scraped | Requires scrape_ec to have been run at least once
-        download_files (bool): Whether scraper should download PDFs from obtained links
-        download_refused_files (bool): Whether scraper should download refused PDFs from obtained links
-        run_filter (bool): Whether filter should be run after downloading PDF files
-        use_parallelization (bool): Whether downloading should be parallel (faster)
-        medicine_list (list[(str, str, int, str)] | None): List of medicine elements
+        config (config_objects.WebConfig): Object that contains the variables that define the behaviour of webscraper
     """
+    medicine_list = config.medicine_list
     if medicine_list is None:
         medicine_list = ec_scraper.scrape_medicines_list()
 
@@ -280,7 +272,7 @@ def main(data_filepath: str = "../data",
 
         log.info("TASK FINISHED annex10 scrape")
 
-    if scrape_ec:
+    if config.run_scrape_ec:
         with open("no_english_available.txt", 'w', encoding="utf-8") as f:
             pass  # open/clean no_english_available file
         # make sure tests start with empty dict, because url_file is global variable only way to do this is here.
@@ -291,25 +283,25 @@ def main(data_filepath: str = "../data",
         # The last element of the medicine_codes tuple is not of interest, thus we pop()
 
         with tqdm_logging.logging_redirect_tqdm():
-            if use_parallelization:
+            if config.parallelized:
                 unzipped_medicine_list = [list(t) for t in zip(*medicine_list)]
                 unzipped_medicine_list.pop()
                 tqdm_concurrent.thread_map(get_urls_ec,
                                            *unzipped_medicine_list,
-                                           [data_filepath] * len(medicine_list), max_workers=cpu_count)
+                                           [config.path_data] * len(medicine_list), max_workers=cpu_count)
             else:
                 for (medicine_url, eu_n, medicine_type, _) in tqdm.tqdm(medicine_list):
-                    get_urls_ec(medicine_url, eu_n, medicine_type, data_filepath)
+                    get_urls_ec(medicine_url, eu_n, medicine_type, config.path_data)
 
         url_file.save_dict()
         url_refused_file.save_dict()
 
         log.info("TASK FINISHED EC scrape")
 
-    if scrape_ema:
+    if config.run_scrape_ema:
         log.info("Scraping all individual medicine pages of EMA")
 
-        if not scrape_ec:
+        if not config.run_scrape_ec:
             url_file.load_json()
 
         # Transform JSON object into list of (eu_n, url)
@@ -322,7 +314,7 @@ def main(data_filepath: str = "../data",
         unzipped_ema_urls: list[list[str]] = [list(t) for t in zip(*ema_urls)]
 
         with tqdm_logging.logging_redirect_tqdm():
-            if use_parallelization and len(unzipped_ema_urls) > 0:
+            if config.parallelized and len(unzipped_ema_urls) > 0:
                 tqdm_concurrent.thread_map(get_urls_ema, *unzipped_ema_urls, max_workers=cpu_count)
 
             else:
@@ -332,25 +324,26 @@ def main(data_filepath: str = "../data",
         url_file.save_dict()
         log.info("TASK FINISHED EMA scrape")
 
-    if download_files:
+    if config.run_download:
         log.info("TASK START downloading PDF files from fetched urls from EC and EMA")
 
-        download.download_all(data_filepath, url_file, parallel_download=use_parallelization)
-        download.save_new_eu_numbers(data_filepath)
+        download.download_all(config.path_data, url_file, parallel_download=config.parallelized)
+        download.save_new_eu_numbers(config.path_data)
 
         url_file.save_dict()
         log.info("TASK FINISHED downloading PDF files")
 
-    if download_refused_files:
+    if config.run_download_refused:
         log.info("TASK START downloading refused PDF files from fetched urls from EC and EMA")
 
-        download.download_all(data_filepath, url_refused_file, parallel_download=use_parallelization)
+        download.download_all(config.path_data, url_refused_file, parallel_download=config.parallelized)
 
         url_refused_file.save_dict()
         log.info("TASK FINISHED downloading refused PDF files")
 
-    if run_filter:
-        filter_retry.run_filter(3, data_filepath)
+    if config.run_filter:
+        filter_retry.run_filter(3, config.path_data)
+
     log.info("=== LOG FINISH ===")
 
 
@@ -360,4 +353,4 @@ if __name__ == "__main__":
     import scraping.log_setup
     scraping.log_setup.init_loggers()
 
-    main(data_filepath="../../data")
+    main(config_objects.WebConfig().run_custom(scrape_ec=True, scrape_ema=True).set_to_parallel())
