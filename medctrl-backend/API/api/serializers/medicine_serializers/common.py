@@ -75,7 +75,7 @@ class HistoryMixin(object):
     Selects the items of the specified related history object and inserts it in a flat representation.
 
     Use it in a serializer by inheriting from this class and specifying a history attribute in the Meta class.
-    Specify a field name and a serializer.
+    Specify a field name and a serializer. The serializer must be sorted by date.
 
     If the field name ends with initial, the HistoryMixin will select the first item in the history object.
     Otherwise, it will select the current one.
@@ -98,8 +98,10 @@ class HistoryMixin(object):
                 queryset = model.objects.filter(eu_pnumber=obj.eu_pnumber)
                 if queryset:
                     if field.endswith("initial"):
+                        # select earliest
                         queryset = queryset[len(queryset) - 1]
                     else:
+                        # select latest
                         queryset = queryset[0]
                     data = serializer(instance=queryset, read_only=True).data
                     for key in data:
