@@ -159,3 +159,7 @@ scraping/orphan_initial_dec.txt
 *.pdf
 *.xml
 scraping/failed.txt
+scraping/no_english_available.txt
+tests/web_scraper_tests/no_english_available.txt
+tests/web_scraper_tests/filter.txt
+scraping/filter.txt
