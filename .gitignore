@@ -158,12 +158,14 @@ scraping/orphan_initial_dec.txt
 *.json
 *.pdf
 *.xml
+
 scraping/failed.txt
+scraping/no_english_available.txt
+tests/web_scraper_tests/no_english_available.txt
+tests/web_scraper_tests/filter.txt
+scraping/filter.txt
 
 # do not ignore test data
 !test_data/*/*.pdf
 !test_data/*/*.xml
 !test_data/*/*.json
-
-
-
