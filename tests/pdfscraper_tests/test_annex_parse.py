@@ -1,13 +1,16 @@
 from operator import contains
 from unittest import TestCase
+import os
 import os.path as path
 from xml.etree.ElementInclude import include
 import regex as re
 import json
 import scraping.file_parser.pdf_parser.__main__ as pdf_parser
 
-test_data_foldername = "test_annex_parse_data"
-
+test_data_folder_path = "pdfscraper_tests/test_annex_parse_data"
+if "pdfscraper_tests" in os.getcwd():
+    test_data_folder_path = "test_annex_parse_data"
+test_data_folder_name = "test_annex_parse_data"
 
 class TestAnnexParse(TestCase):
     """
@@ -23,11 +26,10 @@ class TestAnnexParse(TestCase):
         """
         Sets up the xml files from test pdf's and then scrapes data from them into a json and reads it so other
         functions can use the data. Automatically run when whoe test class is used.
-        """        
-        pdf_parser.parse_folder(path.abspath(test_data_foldername), test_data_foldername)
+        """
+        pdf_parser.parse_folder(path.abspath(test_data_folder_path), test_data_folder_name)
         # TODO: Try/catch this with appropriate exception when file does not exist
-        attributes_json = open(path.join(path.abspath(test_data_foldername), test_data_foldername + "_pdf_parser.json"))
-
+        attributes_json = open(path.join(path.abspath(test_data_folder_path), test_data_folder_name + "_pdf_parser.json"))
         self.annex_attributes = json.load(attributes_json)["annexes"]
         attributes_json.close()
         return super().setUp()

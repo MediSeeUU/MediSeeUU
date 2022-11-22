@@ -7,9 +7,16 @@ from unittest import TestCase
 from scraping.web_scraper import __main__ as web
 from parameterized import parameterized
 
-data_path = "../../data"
+data_path = "../test_data"
+if "web_scraper_tests" in os.getcwd():
+    data_path = "../../test_data"
+
 if not path.isdir(data_path):
     os.mkdir(data_path)
+
+json_path = "web_scraper_tests/"
+if "web_scraper_tests" in os.getcwd():
+    json_path = ""
 
 
 class TestWebScraper(TestCase):
@@ -25,8 +32,9 @@ class TestWebScraper(TestCase):
         """
         if not os.path.exists(f"{data_path}_old"):
             os.rename(data_path, f"{data_path}_old")
-        os.mkdir(data_path)
-        Path("JSON").mkdir(parents=True, exist_ok=True)
+        if not path.isdir(data_path):
+            os.mkdir(data_path)
+        Path(f"{json_path}JSON").mkdir(parents=True, exist_ok=True)
 
     @parameterized.expand([[True, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
                                     'EU-1-04-273', 0, 'h273')]],
@@ -49,7 +57,7 @@ class TestWebScraper(TestCase):
         """
         shutil.rmtree(data_path)
         os.mkdir(data_path)
-        shutil.rmtree('JSON')
+        shutil.rmtree(f'{json_path}JSON')
 
         self.parallel = parallel
         self.medicine_list = medicine_codes
@@ -88,7 +96,7 @@ class TestWebScraper(TestCase):
         """
         shutil.rmtree(data_path)
         os.mkdir(data_path)
-        shutil.rmtree("JSON")
+        shutil.rmtree(f"{json_path}JSON")
 
         self.parallel = parallel
         self.medicine_list = medicine_list
@@ -111,7 +119,7 @@ class TestWebScraper(TestCase):
         # check if webdata is empty
         assert path.getsize(f"{data_folder}/{self.eu_n}_webdata.json") > 2, f"webdata.json is empty for {self.eu_n}"
         # check if urls.json is empty
-        assert path.getsize(f"JSON/urls.json") > 2, f"urls.json is empty"
+        assert path.getsize(f"{json_path}JSON/urls.json") > 2, f"urls.json is empty"
 
     def run_ema_scraper(self):
         """
@@ -119,7 +127,7 @@ class TestWebScraper(TestCase):
         """
         web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=True, download_files=False, run_filter=False,
                  use_parallelization=self.parallel, medicine_list=self.medicine_list)
-        with open(f"JSON/urls.json") as f:
+        with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
         assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url', 'odwar_url', 'other_ema_urls']), \
                "ema urls not in urls.json"
@@ -136,7 +144,7 @@ class TestWebScraper(TestCase):
         assert path.exists(f"{data_folder}/{self.eu_n}_filedates.json")
 
         # check if all files from urls.json are downloaded:
-        with open(f"JSON/urls.json") as f:
+        with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
         filecount = len(url_dict["aut_url"]) + len(url_dict["smpc_url"])
 

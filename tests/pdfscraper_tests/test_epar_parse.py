@@ -8,7 +8,9 @@ from scraping.file_parser.pdf_parser.parsers import epar_parser
 import xml.etree.ElementTree as ET
 
 
-test_data_loc = "../../test_data"
+test_data_loc = "../test_data"
+if "pdfscraper_tests" in os.getcwd():
+    test_data_loc = "../../test_data"
 xml_bodies = []
 percentage_str = "Percentage found: "
 
