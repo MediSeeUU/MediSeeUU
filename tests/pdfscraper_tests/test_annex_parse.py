@@ -104,7 +104,7 @@ class TestAnnexParse(TestCase):
             # test for attribute values
             if file_attributes["is_initial"]:
                 incorrect_value |= "small molecule" in pdf_file and medicine_type != "small molecule"
-                incorrect_value |= "biologicals" in pdf_file and medicine_type != "biologicals"
+                incorrect_value |= not ("biologicals header" in pdf_file and (medicine_type != "biologicals" or medicine_type != "ATMP"))
 
             # print errors
             if incorrect_file:
