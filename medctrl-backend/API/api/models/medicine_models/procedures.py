@@ -7,6 +7,20 @@ from .common import create_dashboard_column, Category
 
 
 class Procedures(models.Model):
+    """
+    This is the model class for the Procedures table. New attributes can be added here.
+    This model is derived from a base model from the Django library.
+
+     Attributes:
+        eu_pnumber (models.ForeignKey):
+            Foreign Key to the :py:class:`.MedicinalProduct` model
+        eu_suspension (models.BooleanField):
+            BooleanField indicating if this procedure is a suspension procedure.
+            On the dashboard, it is shown as True if there is any suspension procedure.
+        eu_referral (models.BooleanField):
+            BooleanField indicating if this procedure is a referral procedure.
+            On the dashboard, it is shown as True if there is any referral procedure.
+    """
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,
         models.CASCADE,

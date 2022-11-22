@@ -7,6 +7,30 @@ from .common import create_dashboard_column, Category
 
 
 class OrphanProduct(models.Model):
+    """
+    This is the model class for the Orphan Product table. New attributes can be added here.
+    This model is derived from a base model from the Django library.
+
+    Attributes:
+        eu_od_number (models.CharField):
+            CharField containing the EU orphan designation number. Shown on the dashboard.
+        omar_url (models.URLField):
+            URLField containing an url to the orphan maintenance assessment report. Shown on the dashboard.
+        odwar_url (models.URLField):
+            URLField containing an url to the orphan designation withdrawal assessment report. Shown on the dashboard.
+        eu_pnumber (models.ForeignKey):
+            Foreign Key to the :py:class:`.MedicinalProduct` model. Optional. Shown on the dashboard.
+        ema_od_number (models.CharField):
+            CharField containing the EMA orphan designation number. Shown on the dashboard.
+        eu_od_con (models.TextField):
+            TextField containing the EU orphan designation condition. Shown on the dashboard.
+        eu_od_date (models.DateField):
+            DateField containing the EU orphan designation date. Shown on the dashboard.
+        eu_od_comp_date (models.DateField):
+            DateField containing the EU orphan designation COMP decision date. Shown on the dashboard.
+        eu_od_sponsor (models.TextField):
+            TextField containing the EU orphan designation sponsor. Shown on the dashboard.
+    """
     eu_od_number = create_dashboard_column(
         models.CharField(
             max_length=255,
@@ -77,16 +101,6 @@ class OrphanProduct(models.Model):
         Category.General_Information,
         "date",
         "COMP decision date (for EU orphan designation)",
-    )
-
-    eu_od_pnumber = create_dashboard_column(
-        models.CharField(
-            max_length=255,
-            null=False
-        ),
-        Category.General_Information,
-        "string",
-        "EU product number for orphan designation",
     )
 
     eu_od_sponsor = create_dashboard_column(

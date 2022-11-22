@@ -10,6 +10,13 @@ class LegalBases(models.Model):
     """
     This is the model class for the Legal Base table. New attributes can be added here.
     This model is derived from a base model from the Django library.
+
+    Attributes:
+        eu_pnumber (models.ForeignKey):
+            Foreign Key to the :py:class:`.MedicinalProduct` model
+        eu_legal_basis (models.CharField):
+            CharField containing one of the EU legal bases for a medicine.
+            Restricted by the options from :py:class:`.LegalBasesTypes`. Shown on the dashboard.
     """
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,

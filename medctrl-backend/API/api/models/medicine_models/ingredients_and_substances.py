@@ -7,6 +7,22 @@ from .common import create_dashboard_column, Category
 
 
 class IngredientsAndSubstances(models.Model):
+    """
+    This is the model class for the Ingredients and Substances table. New attributes can be added here.
+    This model is derived from a base model from the Django library.
+
+    Attributes:
+        active_substance_hash (models.CharField):
+            The active_substance is the primary key. However, a models.TextField cannot be used as the primary key.
+            That's why we create a hash from the active_substance and use that as the primary key.
+            Not shown on the dashboard.
+        active_substance (models.TextField):
+            TextField containing the active_substance. Shown on the dashboard.
+        atc_code (models.CharField):
+            CharField containing the atc_code. Shown on the dashboard.
+        eu_nas (models.BooleanField):
+            BooleanField containing eu_nas. Shown on the dashboard.
+    """
     active_substance_hash = models.CharField(
         max_length=32,
         primary_key=True,
@@ -46,6 +62,13 @@ class IngredientsAndSubstances(models.Model):
     )
 
     def save(self, *args, **kwargs):
+        """
+        Overrides the default save function to add the active_substance_hash field
+
+        Args:
+            *args: all function parameters
+            **kwargs: all keyword arguments
+        """
         self.active_substance_hash = md5(self.active_substance.encode()).hexdigest()
         super().save(*args, **kwargs)
 

@@ -6,6 +6,23 @@ from .common import create_dashboard_column, Category
 
 
 class Duration(models.Model):
+    """
+    This is the model class for the Duration table. New attributes can be added here.
+    This model is derived from a base model from the Django library.
+
+    Attributes:
+        assess_time_days_total (models.IntegerField):
+            IntegerField containing the total days of the duration of the
+            initial EU authorisation assessment procedure. Shown on the dashboard.
+        assess_time_days_active (models.IntegerField):
+            IntegerField containing the active days of the duration of the
+            initial EU authorisation assessment procedure. Shown on the dashboard.
+        assess_time_days_cstop (models.IntegerField):
+            IntegerField containing the clock-stop days of the duration of the
+            initial EU authorisation assessment procedure. Shown on the dashboard.
+        ec_decision_time_days (models.IntegerField):
+            IntegerField containing the EC decision time in days. Shown on the dashboard.
+    """
     assess_time_days_total = create_dashboard_column(
         models.IntegerField(
             null=False,

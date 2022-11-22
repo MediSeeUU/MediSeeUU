@@ -9,6 +9,36 @@ from .common import create_dashboard_column, Category
 
 
 class MarketingAuthorisation(models.Model):
+    """
+    This is the model class for the Marketing Authorisation table. New attributes can be added here.
+    This model is derived from a base model from the Django library.
+
+    Attributes:
+        eu_pnumber (models.OneToOneField):
+            Unique Foreign Key to the :py:class:`.MedicinalProduct` model
+        ema_procedure_start_initial (models.DateField):
+            DateField containing the date the EMA procedure started. Shown on the dashboard.
+        chmp_opinion_date (models.DateField):
+            DateField containing the date of the CHMP opinion. Shown on the dashboard.
+        eu_aut_date (models.DateField):
+            DateField containing the date of the EU authorisation. Shown on the dashboard.
+        aut_url (models.URLField):
+            URLField containing an url to the authorisation decision. Shown on the dashboard.
+        smpc_url (models.URLField):
+            URLField containing an url to the SMPC. Shown on the dashboard.
+        epar_url (models.URLField):
+            URLField containing an url to EPAR. Shown on the dashboard.
+        ema_rapp (models.TextField):
+            TextField containing the EMA rapporteur. Shown on the dashboard.
+        ema_corapp (models.TextField):
+            TextField containing the EMA co-rapporteur. Shown on the dashboard.
+        ema_accelerated_assessment (models.OneToOneField):
+            Unique Foreign Key to the :py:class:`.AcceleratedAssessment` model
+        duration (models.OneToOneField):
+            Unique Foreign Key to the :py:class:`.Duration` model
+        ema_reexamination (models.BooleanField):
+            BooleanField indicating if the EMA re-examination has been performed. Shown on the dashboard.
+    """
     eu_pnumber = models.OneToOneField(
         MedicinalProduct,
         models.CASCADE,

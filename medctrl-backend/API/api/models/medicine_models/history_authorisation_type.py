@@ -10,6 +10,15 @@ class HistoryAuthorisationType(models.Model):
     """
     This is the model class for the Authorisation Type history table. New attributes can be added here.
     This model is derived from a base model from the Django library.
+
+    Attributes:
+        eu_pnumber (models.ForeignKey):
+            Foreign Key to the :py:class:`.MedicinalProduct` model
+        change_date (models.DateField):
+            DateField containing the date of the entry.
+        eu_aut_type (models.CharField):
+            CharField containing the authorisation type. Restricted by the options from :py:class:`.AutTypes`
+            Initial and current shown on the dashboard.
     """
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,

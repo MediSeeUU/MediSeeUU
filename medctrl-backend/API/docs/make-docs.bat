@@ -25,6 +25,7 @@ if errorlevel 9009 (
 
 if "%1" == "" goto help
 
+set SPHINX_APIDOC_OPTIONS=members,show-inheritance,private-members
 sphinx-apidoc --module-first -P -f -o %SOURCEDIR% ../api ../api/migrations/
 %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
 goto end

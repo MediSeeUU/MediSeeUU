@@ -10,6 +10,14 @@ class HistoryEUOrphanCon(models.Model):
     """
     This is the model class for the Orphan Condition history table. New attributes can be added here.
     This model is derived from a base model from the Django library.
+
+    Attributes:
+        eu_od_number (models.ForeignKey):
+            Foreign Key to the :py:class:`.OrphanProduct` model
+        change_date (models.DateField):
+            DateField containing the date of the entry.
+        eu_orphan_con (models.TextField):
+            TextField containing the EU orphan condition. Initial and current shown on the dashboard.
     """
     eu_od_number = models.ForeignKey(
         OrphanProduct,

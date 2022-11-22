@@ -10,6 +10,14 @@ class HistoryOD(models.Model):
     """
     This is the model class for the Orphan Designation history table. New attributes can be added here.
     This model is derived from a base model from the Django library.
+
+    Attributes:
+        eu_pnumber (models.ForeignKey):
+            Foreign Key to the :py:class:`.MedicinalProduct` model
+        change_date (models.DateField):
+            DateField containing the date of the entry.
+        eu_od (models.BooleanField):
+            BooleanField indicating if the medicine has an EU orphan designation. Initial shown on the dashboard.
     """
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,

@@ -56,7 +56,6 @@ class TestUpdateCache(TestCase):
             ema_od_number="500",
             eu_od_con="eu od con",
             eu_od_date="2000-01-04",
-            eu_od_pnumber="80",
             eu_od_sponsor="eu od sponsor",
             eu_od_comp_date="2000-01-05",
         )

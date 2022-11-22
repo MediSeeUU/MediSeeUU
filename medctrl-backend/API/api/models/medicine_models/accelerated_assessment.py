@@ -6,6 +6,16 @@ from .common import create_dashboard_column, Category
 
 
 class AcceleratedAssessment(models.Model):
+    """
+    This is the model class for the EMA Accelerated Assessment table. New attributes can be added here.
+    This model is derived from a base model from the Django library.
+
+    Attributes:
+        eu_accel_assess_g (models.BooleanField):
+            BooleanField indicating if accelerated assessment has been granted. Shown on the dashboard.
+        eu_accel_assess_m (models.BooleanField):
+            BooleanField indicating if accelerated assessment has been maintained. Shown on the dashboard.
+    """
     eu_accel_assess_g = create_dashboard_column(
         models.BooleanField(
             null=True,
