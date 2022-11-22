@@ -285,12 +285,13 @@ def check_annex(filename: str, file_path: str, pdf: fitz.Document) -> str:
     first_page = pdf[0]
     txt = first_page.get_text()
 
-    # checks if the PDF is of the right type
-    if "implemented by the member states" in txt.lower():
+    # checks if first page of initial annex file contains "implemented by the member states", if so, filters it
+    if "implemented by the member states" in txt.lower() and "anx_0" in filename:
         pdf.close()
         safe_remove(file_path)
         return error_line(filename, wrong_doctype_str)
 
+    # checks if the first page is characteristic on an annex file
     return check_pdf_type(file_path, filename, pdf, ['annex', 'name of the medicinal product',
                                                      'summary of product characteristics'])
 
