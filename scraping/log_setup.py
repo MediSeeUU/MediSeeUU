@@ -13,7 +13,7 @@ def init_loggers(logging_path: str = ".") -> None:
     Returns: None
 
     """
-    web_path: str = "webscraper"  # TODO: Change to underscore
+    web_path: str = "web_scraper"
     pdf_path: str = "pdf_parser"
 
     # --- Root logger ---

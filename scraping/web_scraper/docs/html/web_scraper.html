@@ -46,7 +46,7 @@
       <ul>
         <li class="toctree-l1 current-module"><a href="../../../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
-        <li class="toctree-l1 "><a href="../../../../scraping/file_parser/docs/html/index.html">PDF Scraper</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/file_parser/docs/html/index.html">File Parser</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/db_communicator/docs/html/index.html">DB Communicator</a></li>
         <li class="toctree-l1 "><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
@@ -76,9 +76,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">web_scraper</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">web_scraper package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.db_helper">web_scraper.db_helper module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#web_scraper.db_helper.load_urls"><code class="docutils literal notranslate"><span class="pre">load_urls()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#web_scraper.db_helper.save_urls"><code class="docutils literal notranslate"><span class="pre">save_urls()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.__main__">web_scraper.__main__ module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.__main__.check_scrape_page"><code class="docutils literal notranslate"><span class="pre">check_scrape_page()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.__main__.get_excel_ema"><code class="docutils literal notranslate"><span class="pre">get_excel_ema()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.__main__.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.__main__.save_medicine_urls_and_attributes"><code class="docutils literal notranslate"><span class="pre">save_medicine_urls_and_attributes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.__main__.set_active_refused_save_parameters"><code class="docutils literal notranslate"><span class="pre">set_active_refused_save_parameters()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.download">web_scraper.download module</a><ul>
@@ -86,6 +89,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_medicine_files"><code class="docutils literal notranslate"><span class="pre">download_medicine_files()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_pdfs_ec"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ec()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_pdfs_ema"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ema()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.get_date_from_url"><code class="docutils literal notranslate"><span class="pre">get_date_from_url()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.save_new_eu_numbers"><code class="docutils literal notranslate"><span class="pre">save_new_eu_numbers()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.ec_scraper">web_scraper.ec_scraper module</a><ul>
@@ -94,10 +99,11 @@
 <li class="toctree-l5"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType.HUMAN_USE_REFUSED"><code class="docutils literal notranslate"><span class="pre">MedicineType.HUMAN_USE_REFUSED</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType.HUMAN_USE_WITHDRAWN"><code class="docutils literal notranslate"><span class="pre">MedicineType.HUMAN_USE_WITHDRAWN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType.ORPHAN_ACTIVE"><code class="docutils literal notranslate"><span class="pre">MedicineType.ORPHAN_ACTIVE</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType.ORPHAN_REFUSE"><code class="docutils literal notranslate"><span class="pre">MedicineType.ORPHAN_REFUSE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType.ORPHAN_REFUSED"><code class="docutils literal notranslate"><span class="pre">MedicineType.ORPHAN_REFUSED</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType.ORPHAN_WITHDRAWN"><code class="docutils literal notranslate"><span class="pre">MedicineType.ORPHAN_WITHDRAWN</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.add_to_non_english_file"><code class="docutils literal notranslate"><span class="pre">add_to_non_english_file()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.determine_current_aut_type"><code class="docutils literal notranslate"><span class="pre">determine_current_aut_type()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.determine_ema_number"><code class="docutils literal notranslate"><span class="pre">determine_ema_number()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.determine_initial_aut_type"><code class="docutils literal notranslate"><span class="pre">determine_initial_aut_type()</span></code></a></li>
@@ -106,17 +112,21 @@
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.get_data_from_procedures_json"><code class="docutils literal notranslate"><span class="pre">get_data_from_procedures_json()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.get_ec_html"><code class="docutils literal notranslate"><span class="pre">get_ec_html()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.get_ec_json_objects"><code class="docutils literal notranslate"><span class="pre">get_ec_json_objects()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.get_last_updated_date"><code class="docutils literal notranslate"><span class="pre">get_last_updated_date()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.scrape_active_withdrawn_jsons"><code class="docutils literal notranslate"><span class="pre">scrape_active_withdrawn_jsons()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.scrape_medicine_page"><code class="docutils literal notranslate"><span class="pre">scrape_medicine_page()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.scrape_medicines_list"><code class="docutils literal notranslate"><span class="pre">scrape_medicines_list()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.scrape_refused_jsons"><code class="docutils literal notranslate"><span class="pre">scrape_refused_jsons()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.set_human_attributes"><code class="docutils literal notranslate"><span class="pre">set_human_attributes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.ec_scraper.set_orphan_attributes"><code class="docutils literal notranslate"><span class="pre">set_orphan_attributes()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.ema_scraper">web_scraper.ema_scraper module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ema_scraper.find_last_updated_date"><code class="docutils literal notranslate"><span class="pre">find_last_updated_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.ema_scraper.find_last_updated_date_annex10"><code class="docutils literal notranslate"><span class="pre">find_last_updated_date_annex10()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ema_scraper.find_priority_link"><code class="docutils literal notranslate"><span class="pre">find_priority_link()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ema_scraper.get_annex10_files"><code class="docutils literal notranslate"><span class="pre">get_annex10_files()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#web_scraper.ema_scraper.pdf_links_from_url"><code class="docutils literal notranslate"><span class="pre">pdf_links_from_url()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.ema_scraper.scrape_medicine_page"><code class="docutils literal notranslate"><span class="pre">scrape_medicine_page()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.filter_retry">web_scraper.filter_retry module</a><ul>
@@ -139,6 +149,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.utils">web_scraper.utils module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.utils.count_unique"><code class="docutils literal notranslate"><span class="pre">count_unique()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.utils.exception_retry"><code class="docutils literal notranslate"><span class="pre">exception_retry()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.utils.get_html_object"><code class="docutils literal notranslate"><span class="pre">get_html_object()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -178,17 +189,105 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-web_scraper.db_helper">
-<span id="web-scraper-db-helper-module"></span><h2>web_scraper.db_helper module<a class="headerlink" href="#module-web_scraper.db_helper" title="Permalink to this heading"></a></h2>
+<section id="module-web_scraper.__main__">
+<span id="web-scraper-main-module"></span><h2>web_scraper.__main__ module<a class="headerlink" href="#module-web_scraper.__main__" title="Permalink to this heading"></a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="web_scraper.db_helper.load_urls">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.db_helper.</span></span><span class="sig-name descname"><span class="pre">load_urls</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict[str,</span> <span class="pre">[&lt;class</span> <span class="pre">'dict'&gt;]]</span></span></span><a class="headerlink" href="#web_scraper.db_helper.load_urls" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="web_scraper.__main__.check_scrape_page">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.__main__.</span></span><span class="sig-name descname"><span class="pre">check_scrape_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_last_updated_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_scraped_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#web_scraper.__main__.check_scrape_page" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the medicine page (either EC or EMA) has been updated since last scrape cycle, or that the page has
+never been scraped at all. Based on this it returns a boolean that indicates whether attributes and files need to be
+fetched from the html</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_n</strong> (<em>str</em>) – EU number of the medicine</p></li>
+<li><p><strong>medicine_last_updated_date</strong> (<em>datetime</em>) – Date since the page was last updated</p></li>
+<li><p><strong>last_scraped_type</strong> (<em>str</em>) – The page type (either EC or EMA)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>False indicates that the website has not been updated since the last scrape cycle</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="web_scraper.db_helper.save_urls">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.db_helper.</span></span><span class="sig-name descname"><span class="pre">save_urls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">url_dict_list:</span> <span class="pre">dict[str,</span> <span class="pre">[&lt;class</span> <span class="pre">'dict'&gt;]]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.db_helper.save_urls" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="web_scraper.__main__.get_excel_ema">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.__main__.</span></span><span class="sig-name descname"><span class="pre">get_excel_ema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.__main__.get_excel_ema" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all annex10 files from the EMA website</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – link to where all annex10 files are stored</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.__main__.main">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.__main__.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'../data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scrape_ec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scrape_ema</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_refused_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_parallelization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.__main__.main" title="Permalink to this definition"></a></dt>
+<dd><p>Main function that controls which scrapers are activated, and if it runs parallel or not.</p>
+<p>Based on some variables declared at the top of the file, it will scrape the EC website, the EMA website
+and/or downloads the scraped links.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_filepath</strong> (<em>str</em><em>, </em><em>optional</em>) – The file path where all data needs to be stored. Defaults to “../data”.</p></li>
+<li><p><strong>scrape_ec</strong> (<em>bool</em>) – Whether EC URLs should be scraped</p></li>
+<li><p><strong>scrape_ema</strong> (<em>bool</em>) – Whether EMA URLs should be scraped | Requires scrape_ec to have been run at least once</p></li>
+<li><p><strong>download_files</strong> (<em>bool</em>) – Whether scraper should download PDFs from obtained links</p></li>
+<li><p><strong>download_refused_files</strong> (<em>bool</em>) – Whether scraper should download refused PDFs from obtained links</p></li>
+<li><p><strong>run_filter</strong> (<em>bool</em>) – Whether filter should be run after downloading PDF files</p></li>
+<li><p><strong>use_parallelization</strong> (<em>bool</em>) – Whether downloading should be parallel (faster)</p></li>
+<li><p><strong>medicine_list</strong> (<em>list</em><em>[</em><em>(</em><em>str</em><em>, </em><em>str</em><em>, </em><em>int</em><em>, </em><em>str</em><em>)</em><em>] </em><em>| </em><em>None</em>) – List of medicine elements</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.__main__.save_medicine_urls_and_attributes">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.__main__.</span></span><span class="sig-name descname"><span class="pre">save_medicine_urls_and_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">medicine_identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anx_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ema_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JsonHelper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.__main__.save_medicine_urls_and_attributes" title="Permalink to this definition"></a></dt>
+<dd><p>Saves a JSON file in the correct location, containing scraped attributes from the EC website. It also adds urls to
+the right url JSON files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>medicine_identifier</strong> (<em>str</em>) – Identifier for a medicine. An EU number for non-refused medicine, EMA number for
+refused medicine</p></li>
+<li><p><strong>medicine_url</strong> (<em>str</em>) – url to a medicine page for a specific medicine.</p></li>
+<li><p><strong>dec_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of urls to decisions on the EC website.</p></li>
+<li><p><strong>anx_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of urls to annexes on the EC website.</p></li>
+<li><p><strong>ema_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of urls to EMA pages on the EC website.</p></li>
+<li><p><strong>attributes_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – Dictionary of scraped attributes on the EC website</p></li>
+<li><p><strong>file</strong> (<a class="reference internal" href="#web_scraper.json_helper.JsonHelper" title="web_scraper.json_helper.JsonHelper"><em>json_helper.JsonHelper</em></a>) – The url json where all the data needs to be stored.</p></li>
+<li><p><strong>target_path</strong> (<em>str</em>) – Directory where the json needs to be stored.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.__main__.set_active_refused_save_parameters">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.__main__.</span></span><span class="sig-name descname"><span class="pre">set_active_refused_save_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anx_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ema_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.__main__.set_active_refused_save_parameters" title="Permalink to this definition"></a></dt>
+<dd><p>Based on whether the medicine is refused or not, it will set the parameters, so that it can be saved to the file
+system correctly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_n</strong> (<em>str</em>) – EU number of the medicine.</p></li>
+<li><p><strong>medicine_url</strong> (<em>str</em>) – url to a medicine page for a specific medicine.</p></li>
+<li><p><strong>dec_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of urls to decisions on the EC website.</p></li>
+<li><p><strong>anx_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of urls to annexes on the EC website.</p></li>
+<li><p><strong>ema_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of urls to EMA pages on the EC website.</p></li>
+<li><p><strong>attributes_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – Dictionary of scraped attributes on the EC website</p></li>
+<li><p><strong>data_path</strong> (<em>str</em>) – The path where the JSON files need to be stored.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-web_scraper.download">
@@ -211,14 +310,15 @@ First it reads the CSV files, and then calls download_medicine_files function fo
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.download_medicine_files">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_medicine_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'../data'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_medicine_files" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_medicine_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">medicine_identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urls_json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JsonHelper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_medicine_files" title="Permalink to this definition"></a></dt>
 <dd><p>Downloads all the pdf files that belong to a medicine.
 Logs successful downloads and also logs if not all files could be downloaded for a specific medicine.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>eu_n</strong> (<em>str</em>) – The EU number of the medicine where we want to download the files of</p></li>
+<li><p><strong>medicine_identifier</strong> (<em>str</em>) – The EU number of the medicine where we want to download the files of</p></li>
 <li><p><strong>url_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>str</em><em>]</em>) – the dictionary containing all the urls of a specific medicine</p></li>
+<li><p><strong>urls_json</strong> (<a class="reference internal" href="#web_scraper.json_helper.JsonHelper" title="web_scraper.json_helper.JsonHelper"><em>json_helper.JsonHelper</em></a>) – The dictionary containing the urls of all medicine files</p></li>
 <li><p><strong>data_path</strong> (<em>str</em>) – The path to the data folder</p></li>
 </ul>
 </dd>
@@ -227,19 +327,22 @@ Logs successful downloads and also logs if not all files could be downloaded for
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.download_pdfs_ec">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_pdfs_ec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_urls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_pdfs_ec" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_pdfs_ec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">medicine_identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_urls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filedate_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urls_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JsonHelper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_pdfs_ec" title="Permalink to this definition"></a></dt>
 <dd><p>Downloads the pdfs of the EC website files for a specific medicine and a specific file type (decision or annex)
-It evaluates the string in the pdf_url_dict to a list of urls which then can be used for downloading with the
+It evaluates the string in the pdf_urls_dict to a list of urls which then can be used for downloading with the
 download_pdf_from_url function.
 The filename_elements used for structuring the filename are also specified in this function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>eu_num</strong> (<em>str</em>) – The EU number of the medicine where the files should be downloaded for.</p></li>
+<li><p><strong>medicine_identifier</strong> (<em>str</em>) – The EU number of the medicine where the files should be downloaded for.</p></li>
 <li><p><strong>pdf_type</strong> (<em>str</em>) – The type of pdf: decision or annex</p></li>
 <li><p><strong>pdf_urls</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – The list containing the urls to the pdf files.</p></li>
 <li><p><strong>med_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>,</em><em>str</em><em>]</em>) – The dictionary containing the attributes of the medicine. Used for structuring the filename</p></li>
-<li><p><strong>data_path</strong> (<em>str</em>) – The path to the data folder</p></li>
+<li><p><strong>filedate_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>tuple</em><em>[</em><em>str</em><em>, </em><em>datetime</em><em>, </em><em>datetime</em><em>]</em><em>]</em>) – dictionary containing the date for every file. in the format {filename : (url, date)}</p></li>
+<li><p><strong>target_path</strong> (<em>str</em>) – The path to the data folder</p></li>
+<li><p><strong>urls_dict</strong> (<a class="reference internal" href="#web_scraper.json_helper.JsonHelper" title="web_scraper.json_helper.JsonHelper"><em>json_helper.JsonHelper</em></a>) – the dictionary containing all the urls of a specific medicine</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em>) – If true overwrites the current files in the medicine folder</p></li>
 </ul>
 </dd>
 </dl>
@@ -247,7 +350,7 @@ The filename_elements used for structuring the filename are also specified in th
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.download.download_pdfs_ema">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_pdfs_ema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_pdfs_ema" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_pdfs_ema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filedate_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_pdfs_ema" title="Permalink to this definition"></a></dt>
 <dd><p>Downloads the pdfs of the EMA website files for a specific medicine.
 It gets the url from the epar dictionary which is used for downloading with the download_pdf_from_url function.
 The filename_elements used for structuring the filename are also specified in this function.</p>
@@ -255,12 +358,43 @@ The filename_elements used for structuring the filename are also specified in th
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>eu_num</strong> (<em>str</em>) – The EU number of the medicine where the files should be downloaded for.</p></li>
-<li><p><strong>pdf_type</strong> (<em>str</em>) – The type of pdf, epar or omar</p></li>
+<li><p><strong>pdf_type</strong> (<em>str</em>) – The type of pdf. epar, omar or odwar</p></li>
 <li><p><strong>pdf_url</strong> (<em>str</em>) – </p></li>
 <li><p><strong>med_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>,</em><em>str</em><em>]</em>) – The dictionary containing the attributes of the medicine.
 Used for structuring the filename</p></li>
-<li><p><strong>data_path</strong> (<em>str</em>) – The path to the data folder</p></li>
+<li><p><strong>filedate_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>tuple</em><em>[</em><em>str</em><em>, </em><em>datetime</em><em>, </em><em>datetime</em><em>]</em><em>]</em>) – dictionary containing the date for every file. in the format {filename : (url, date)}</p></li>
+<li><p><strong>target_path</strong> (<em>str</em>) – The path to the data folder</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em>) – If true overwrites the current files in the medicine folder</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.download.get_date_from_url">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">get_date_from_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#web_scraper.download.get_date_from_url" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the date from a file (for filedates.json) based on an url. If no date in the url is found, the scrape date
+is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – the url where the date should be retrieved from</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A tuple containing the url, the date of the url and the datetime of the scrape</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(tuple[str, datetime, datetime])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.download.save_new_eu_numbers">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">save_new_eu_numbers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.save_new_eu_numbers" title="Permalink to this definition"></a></dt>
+<dd><p>Writes EU numbers of medicines that contain new files to f”{data_path}/eu_numbers.json”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_path</strong> (<em>str</em>) – The path to the data folder</p>
 </dd>
 </dl>
 </dd></dl>
@@ -294,8 +428,8 @@ Used for structuring the filename</p></li>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="web_scraper.ec_scraper.MedicineType.ORPHAN_REFUSE">
-<span class="sig-name descname"><span class="pre">ORPHAN_REFUSE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#web_scraper.ec_scraper.MedicineType.ORPHAN_REFUSE" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="web_scraper.ec_scraper.MedicineType.ORPHAN_REFUSED">
+<span class="sig-name descname"><span class="pre">ORPHAN_REFUSED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#web_scraper.ec_scraper.MedicineType.ORPHAN_REFUSED" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -303,6 +437,21 @@ Used for structuring the filename</p></li>
 <span class="sig-name descname"><span class="pre">ORPHAN_WITHDRAWN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#web_scraper.ec_scraper.MedicineType.ORPHAN_WITHDRAWN" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.ec_scraper.add_to_non_english_file">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">add_to_non_english_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decision_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">procedure_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.ec_scraper.add_to_non_english_file" title="Permalink to this definition"></a></dt>
+<dd><p>This function appends a line to the no_english_available.txt to make an overview of all files that don’t have an
+english version.
+:param eu_n: The short eu_n, used to form the url to the medicine page
+:type eu_n: str
+:param decision_date: The date of the decision.
+:type decision_date: datetime.date
+:param filetype: The type of the file (decision or annex)
+:type filetype: str
+:param procedure_type: The procedure type of the file (as stated on the ec website)
+:type procedure_type: str</p>
 </dd></dl>
 
 <dl class="py function">
@@ -332,11 +481,8 @@ Used for structuring the filename</p></li>
 <dd class="field-odd"><p><strong>ema_numbers</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – The list of formatted EMA numbers in the JSON file</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>The function returns the EMA number that occurs the most, and a fraction how often</dt><dd><p>this EMA number is present in the list.</p>
-</dd>
-</dl>
-</p>
+<dd class="field-even"><p>The function returns the EMA number that occurs the most,
+and a fraction how often this EMA number is present in the list.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>(str, float)</p>
@@ -354,12 +500,13 @@ Otherwise, the procedure type van be determined, which is either exceptional, co
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>year</strong> (<em>int</em>) – The year of the first procedure.</p></li>
-<li><p><strong>is_exceptional</strong> (<em>bool</em>) – _description_</p></li>
-<li><p><strong>is_conditional</strong> (<em>bool</em>) – _description_</p></li>
+<li><p><strong>is_exceptional</strong> (<em>bool</em>) – “Annual Reassessment” is among the procedures</p></li>
+<li><p><strong>is_conditional</strong> (<em>bool</em>) – “Annual renewal” is among the procedures</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>_description_</p>
+<dd class="field-even"><p>Initial type of EU authorization.
+Can be “pre_2006”, “exceptional_conditional”, “exceptional”, “conditional”, or “standard”.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>str</p>
@@ -395,17 +542,14 @@ so that they can be used and stored. Whenever an attribute is not found, this is
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>medicine_json</strong> (<em>json</em>) – The JSON object that contains all relevant attributes and links.</p></li>
+<li><p><strong>medicine_json</strong> (<em>dict</em>) – The JSON object that contains all relevant attributes and links.</p></li>
 <li><p><strong>eu_num</strong> (<em>str</em>) – The EU number for the medicine that belongs to this JSON.</p></li>
 <li><p><strong>medicine_type</strong> (<a class="reference internal" href="#web_scraper.ec_scraper.MedicineType" title="web_scraper.ec_scraper.MedicineType"><em>MedicineType</em></a>) – The type of medicine that belongs to this JSON.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>Returns a dictionary with all the attribute values and a list</dt><dd><p>with all the links to the EMA.</p>
-</dd>
-</dl>
-</p>
+<dd class="field-even"><p>First item in the tuple is a dictionary with all the attribute values.
+The second item in the tuple is a list with all the links to the EMA.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>(dict[str, str], list[str])</p>
@@ -424,19 +568,16 @@ Whenever an attribute is not found, this is logged.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>procedures_json</strong> (<em>json</em>) – The JSON object that contains all relevant attributes and links</p></li>
+<li><p><strong>procedures_json</strong> (<em>dict</em>) – The JSON object that contains all relevant attributes and links</p></li>
 <li><p><strong>eu_num</strong> (<em>str</em>) – The EU number for the medicine that belongs to this JSON</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>Returns a dictionary with all the attribute values, a list</dt><dd><p>with all the links decisions and a list with the links to the annexes.</p>
-</dd>
-</dl>
-</p>
+<dd class="field-even"><p>Returns a dictionary with all the attribute values, a list
+with all the links decisions and a list with the links to the annexes.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(dict[str, str], list[str], list[str])</p>
+<dd class="field-odd"><p>(dict[str, str], list[(str, int)], list[(str, int)])</p>
 </dd>
 </dl>
 </dd></dl>
@@ -460,7 +601,7 @@ Whenever an attribute is not found, this is logged.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.ec_scraper.get_ec_json_objects">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">get_ec_json_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">html_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list[&lt;module</span> <span class="pre">'json'</span> <span class="pre">from</span> <span class="pre">'/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/json/__init__.py'&gt;]</span></span></span><a class="headerlink" href="#web_scraper.ec_scraper.get_ec_json_objects" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">get_ec_json_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">html_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#web_scraper.ec_scraper.get_ec_json_objects" title="Permalink to this definition"></a></dt>
 <dd><p>Gets all the JSON objects from a web page.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -471,14 +612,31 @@ to be fetched from.</p>
 <dd class="field-even"><p>All the JSONs on the web page are returned in a list.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>list[json]</p>
+<dd class="field-odd"><p>list[dict]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.ec_scraper.get_last_updated_date">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">get_last_updated_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">html_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#web_scraper.ec_scraper.get_last_updated_date" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the last updated date for a medicine on the EC website</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>html_active</strong> (<em>requests.Response</em>) – html object for the webpage. Contains a string with ‘Last updated on ‘##/##/####’</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The date in the aforementioned string</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(str)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.ec_scraper.scrape_active_withdrawn_jsons">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">scrape_active_withdrawn_jsons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list[&lt;module</span> <span class="pre">'json'</span> <span class="pre">from</span> <span class="pre">'/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/json/__init__.py'&gt;]</span></span></span><a class="headerlink" href="#web_scraper.ec_scraper.scrape_active_withdrawn_jsons" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">scrape_active_withdrawn_jsons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#web_scraper.ec_scraper.scrape_active_withdrawn_jsons" title="Permalink to this definition"></a></dt>
 <dd><p>Scrape the EC website for active and withdrawn medicine JSONs.</p>
 <p>The JSON files that are scraped are needed to construct the url to each individual medicine page.</p>
 <dl class="field-list simple">
@@ -486,32 +644,30 @@ to be fetched from.</p>
 <dd class="field-odd"><p>The list of JSONs that for active and withdrawn, human use and orphan medicine.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>list[json]</p>
+<dd class="field-even"><p>list[dict]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.ec_scraper.scrape_medicine_page">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">scrape_medicine_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType" title="web_scraper.ec_scraper.MedicineType"><span class="pre">MedicineType</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.ec_scraper.scrape_medicine_page" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">scrape_medicine_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">html_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType" title="web_scraper.ec_scraper.MedicineType"><span class="pre">MedicineType</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.ec_scraper.scrape_medicine_page" title="Permalink to this definition"></a></dt>
 <dd><p>Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>url</strong> (<em>str</em>) – The url to the medicine page for the medicine that needs to be scraped.</p></li>
+<li><p><strong>html_active</strong> (<em>requests.Response</em>) – html object that contains all html text</p></li>
 <li><p><strong>medicine_type</strong> (<a class="reference internal" href="#web_scraper.ec_scraper.MedicineType" title="web_scraper.ec_scraper.MedicineType"><em>MedicineType</em></a>) – The type of medicine this medicine is.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>All the links to PDFs for decisions and annexes are</dt><dd><p>stored in lists and returned. The same is done for all links to the ema website. All attributes are
+<dd class="field-even"><p>All the links to PDFs for decisions and annexes are
+stored in lists and returned. The same is done for all links to the ema website. All attributes are
 stored in a dictionary.</p>
 </dd>
-</dl>
-</p>
-</dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(list[str], list[str], list[str], dict[str, str])</p>
+<dd class="field-odd"><p>(list[(str, int)], list[(str, int)], list[str], dict[str, str])</p>
 </dd>
 </dl>
 </dd></dl>
@@ -525,11 +681,8 @@ contain information about the medicine that is needed to construct a link to eac
 It does so for all active and withdrawn, orphan and human use medicine.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><dl class="simple">
-<dt>The links to the medicine pages are stored in a list, along with the full EU number,</dt><dd><p>the medicine type and a short EU number.</p>
-</dd>
-</dl>
-</p>
+<dd class="field-odd"><p>The links to the medicine pages are stored in a list, along with the full EU number,
+the medicine type and a short EU number.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>list[(str, str, int, str)]</p>
@@ -539,7 +692,7 @@ It does so for all active and withdrawn, orphan and human use medicine.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.ec_scraper.scrape_refused_jsons">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">scrape_refused_jsons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list[&lt;module</span> <span class="pre">'json'</span> <span class="pre">from</span> <span class="pre">'/opt/hostedtoolcache/Python/3.10.8/x64/lib/python3.10/json/__init__.py'&gt;]</span></span></span><a class="headerlink" href="#web_scraper.ec_scraper.scrape_refused_jsons" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">scrape_refused_jsons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#web_scraper.ec_scraper.scrape_refused_jsons" title="Permalink to this definition"></a></dt>
 <dd><p>Scrape the EC website for refused medicine JSONs.</p>
 <p>The JSON files that are scraped are needed to construct the url to each individual medicine page.</p>
 <dl class="field-list simple">
@@ -547,7 +700,39 @@ It does so for all active and withdrawn, orphan and human use medicine.</p>
 <dd class="field-odd"><p>The list of JSONs that for refused, human use and orphan medicine.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>list[json]</p>
+<dd class="field-even"><p>list[dict]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.ec_scraper.set_human_attributes">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">set_human_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ema_url_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.ec_scraper.set_human_attributes" title="Permalink to this definition"></a></dt>
+<dd><p>Updates medicine_dict with attributes from the EC website for human use medicines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ema_url_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of URLs to EMA websites</p></li>
+<li><p><strong>medicine_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – A dictionary containing all the attribute values and a list
+with all the links to the EMA.</p></li>
+<li><p><strong>row</strong> (<em>dict</em>) – Row in medicine_json to be searched</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.ec_scraper.set_orphan_attributes">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">set_orphan_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ema_url_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.ec_scraper.set_orphan_attributes" title="Permalink to this definition"></a></dt>
+<dd><p>Updates medicine_dict with attributes from the EC website for orphan medicines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ema_url_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of URLs to EMA websites</p></li>
+<li><p><strong>medicine_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – A dictionary containing all the attribute values and a list
+with all the links to the EMA.</p></li>
+<li><p><strong>row</strong> (<em>dict</em>) – Row in medicine_json to be searched</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -557,7 +742,24 @@ It does so for all active and withdrawn, orphan and human use medicine.</p>
 <span id="web-scraper-ema-scraper-module"></span><h2>web_scraper.ema_scraper module<a class="headerlink" href="#module-web_scraper.ema_scraper" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.ema_scraper.find_last_updated_date">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.ema_scraper.</span></span><span class="sig-name descname"><span class="pre">find_last_updated_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#web_scraper.ema_scraper.find_last_updated_date" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ema_scraper.</span></span><span class="sig-name descname"><span class="pre">find_last_updated_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">html_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#web_scraper.ema_scraper.find_last_updated_date" title="Permalink to this definition"></a></dt>
+<dd><p>Finds the date when a medicine page was last updated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>html_active</strong> (<em>requests.Response</em>) – html object that contains raw html for a webpage for a medicine on the EMA website</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>When the medicine page on the EMA website was last updated</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.ema_scraper.find_last_updated_date_annex10">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ema_scraper.</span></span><span class="sig-name descname"><span class="pre">find_last_updated_date_annex10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#web_scraper.ema_scraper.find_last_updated_date_annex10" title="Permalink to this definition"></a></dt>
 <dd><p>Converts a piece of text with information when an excel-sheet was last updated to a datetime object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -617,22 +819,26 @@ and when they were last updated</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="web_scraper.ema_scraper.pdf_links_from_url">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.ema_scraper.</span></span><span class="sig-name descname"><span class="pre">pdf_links_from_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#web_scraper.ema_scraper.pdf_links_from_url" title="Permalink to this definition"></a></dt>
-<dd><p>Gets the pdf link on the EMA website that is the highest on the priority list
-and a link to the OMAR document if it exists</p>
+<dt class="sig sig-object py" id="web_scraper.ema_scraper.scrape_medicine_page">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ema_scraper.</span></span><span class="sig-name descname"><span class="pre">scrape_medicine_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">html_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#web_scraper.ema_scraper.scrape_medicine_page" title="Permalink to this definition"></a></dt>
+<dd><p>Given an url to an EMA medicine page, the method will return an EPAR, OMAR, and ODWAR in case they exist.
+All other market authorisation documents will also be returned as a list. The special files mentioned above
+are excluded from this list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – Link to the medicine page on the EMA website</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>str</em>) – Link to the medicine page on the EMA website</p></li>
+<li><p><strong>html_active</strong> (<em>requests.Response</em>) – html object that contains html of the EMA page for a medicine</p></li>
+</ul>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>Exception</strong> – If nothing is found, we throw an exception. This also passes all found URLs on newlines</p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The pdf link that is the highest on the priority list</p>
+<dd class="field-odd"><p>Dictionary of links to PDF files of interest from the EMA website.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
+<dd class="field-even"><p>dict[str | list[str]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -642,7 +848,7 @@ and a link to the OMAR document if it exists</p>
 <span id="web-scraper-filter-retry-module"></span><h2>web_scraper.filter_retry module<a class="headerlink" href="#module-web_scraper.filter_retry" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.filter_retry.retry_all">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.filter_retry.</span></span><span class="sig-name descname"><span class="pre">retry_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urls_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'../../data'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.filter_retry.retry_all" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.filter_retry.</span></span><span class="sig-name descname"><span class="pre">retry_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urls_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.filter_retry.retry_all" title="Permalink to this definition"></a></dt>
 <dd><p>For every line in filter.txt, it scrapes the urls again.
 It also calls the download function for the specific file again</p>
 <dl class="field-list simple">
@@ -659,26 +865,28 @@ It also calls the download function for the specific file again</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.filter_retry.retry_download">
 <span class="sig-prename descclassname"><span class="pre">web_scraper.filter_retry.</span></span><span class="sig-name descname"><span class="pre">retry_download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.filter_retry.retry_download" title="Permalink to this definition"></a></dt>
-<dd><p>Calls the download function for a specific file
-:param eu_n: eu number used for calling the download function
-:type eu_n: str
-:param filename_elements: filename elements, used as parameter in the download function
-:type filename_elements: list[str]
-:param url_dict: dictionary that contains the url where to download from
-:type url_dict: dict[str, list[str]] | dict[str, str]
-:param data_filepath: the path to the data folder
-:type data_filepath: str</p>
+<dd><p>Calls the download function for a specific file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_n</strong> (<em>str</em>) – eu number used for calling the download function</p></li>
+<li><p><strong>filename_elements</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – filename elements, used as parameter in the download function</p></li>
+<li><p><strong>url_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>list</em><em>[</em><em>str</em><em>]</em><em>] </em><em>| </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – dictionary that contains the url where to download from</p></li>
+<li><p><strong>data_filepath</strong> (<em>str</em>) – the path to the data folder</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.filter_retry.run_filter">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.filter_retry.</span></span><span class="sig-name descname"><span class="pre">run_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'../../data'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.filter_retry.run_filter" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.filter_retry.</span></span><span class="sig-name descname"><span class="pre">run_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.filter_retry.run_filter" title="Permalink to this definition"></a></dt>
 <dd><p>calls filter and runs retry function</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<em>int</em>) – Number of times filter is called</p></li>
-<li><p><strong>data_filepath</strong> (<em>str</em><em>, </em><em>optional</em>) – the path to the data folder. Defaults to “../../data”</p></li>
+<li><p><strong>data_filepath</strong> (<em>str</em>) – the path to the data folder.</p></li>
 </ul>
 </dd>
 </dl>
@@ -689,15 +897,17 @@ It also calls the download function for the specific file again</p>
 <span id="web-scraper-json-helper-module"></span><h2>web_scraper.json_helper module<a class="headerlink" href="#module-web_scraper.json_helper" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="web_scraper.json_helper.JsonHelper">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">web_scraper.json_helper.</span></span><span class="sig-name descname"><span class="pre">JsonHelper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.json_helper.JsonHelper" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">web_scraper.json_helper.</span></span><span class="sig-name descname"><span class="pre">JsonHelper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.json_helper.JsonHelper" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Helper class for creating, editing, merging and saving JSON files.
+Contains a path for the JSON file and a local dictionary for that JSON.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="web_scraper.json_helper.JsonHelper.add_to_dict">
 <span class="sig-name descname"><span class="pre">add_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.json_helper.JsonHelper.add_to_dict" title="Permalink to this definition"></a></dt>
 <dd><p>Wrapper for merge_nested_dict. Used the self.local_dict as old_dict</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>new_dict</strong> – Dictionary used as second dictionary in merge_nested_dict</p>
+<dd class="field-odd"><p><strong>new_dict</strong> (<em>dict</em>) – Dictionary used as second dictionary in merge_nested_dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -707,24 +917,36 @@ It also calls the download function for the specific file again</p>
 <span class="sig-name descname"><span class="pre">load_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict[str,</span> <span class="pre">[&lt;class</span> <span class="pre">'dict'&gt;]]</span></span></span><a class="headerlink" href="#web_scraper.json_helper.JsonHelper.load_json" title="Permalink to this definition"></a></dt>
 <dd><p>Loads the json from disk with the path given on class initialization
 If no json file exists at the path, return an empty dictionary.</p>
-<p>Returns: Dictionary representing the json at the path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Dictionary representing the json at the path</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(dict[str, [dict]])</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="web_scraper.json_helper.JsonHelper.merge_nested_dict">
-<span class="sig-name descname"><span class="pre">merge_nested_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.json_helper.JsonHelper.merge_nested_dict" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">merge_nested_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#web_scraper.json_helper.JsonHelper.merge_nested_dict" title="Permalink to this definition"></a></dt>
 <dd><p>Recursive function for merging two dictionaries. Merges the attributes of all nested dictionaries. Also merges
 lists in the dictionaries.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>old_dict</strong> – First dictionary. Non-list and -dictionary elements get overwritten by elements from new_dict.</p></li>
-<li><p><strong>new_dict</strong> – Second dictionary. Non-list and -dictionary elements from this dictionary will overwrite items
+<li><p><strong>old_dict</strong> (<em>dict</em>) – First dictionary. Non-list and -dictionary elements get overwritten by elements from new_dict.</p></li>
+<li><p><strong>new_dict</strong> (<em>dict</em>) – Second dictionary. Non-list and -dictionary elements from this dictionary will overwrite items
 from the old_dict</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Merged dictionary from the two inputs</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
 </dl>
-<p>Returns: Merged dictionary from the two inputs</p>
 </dd></dl>
 
 <dl class="py method">
@@ -733,7 +955,7 @@ from the old_dict</p></li>
 <dd><p>Overwrites the dictionary stored in the class with the input</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>new_dict</strong> – Dictionary to replace the existing dictionary</p>
+<dd class="field-odd"><p><strong>new_dict</strong> (<em>dict</em>) – Dictionary to replace the existing dictionary</p>
 </dd>
 </dl>
 </dd></dl>
@@ -768,6 +990,23 @@ Meant to be run when no more changes are expected to be made.</p>
 </dd>
 </dl>
 <p>Returns: The result of func. Returns None when the function did not return after the maximum attempts.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.utils.get_html_object">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.utils.</span></span><span class="sig-name descname"><span class="pre">get_html_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Response</span></span></span><a class="headerlink" href="#web_scraper.utils.get_html_object" title="Permalink to this definition"></a></dt>
+<dd><p>Fetches the html from a website.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – The link to the page where the html is needed from.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a Response object that contains the response to the HTTP request.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>requests.Response</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

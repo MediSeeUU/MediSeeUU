@@ -30,6 +30,7 @@ months = {
     "august": "08",
     "september": "09",
     "sept": "09",
+    "sep": "09",
     "october": "10",
     "november": "11",
     "december": "12"

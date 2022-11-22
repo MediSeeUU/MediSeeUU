@@ -132,7 +132,7 @@ def get_opinion_date(xml: ET.Element) -> str:
             below_rapp = True
         if below_rapp and re.findall(date_pattern, txt):
             date = helper.convert_months(re.findall(date_pattern, txt)[-1])
-        if below_rapp and "scientific discussion" in txt and elem.tag == "header":
+        if below_rapp and ("scientific discussion" in txt and elem.tag == "header" or txt == "scientific discussion"):
             if date != "":
                 return date
             else:
