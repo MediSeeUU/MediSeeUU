@@ -165,3 +165,8 @@ tests/web_scraper_tests/filter.txt
 scraping/filter.txt
 tests/no_english_available.txt
 tests/filter_tests/filter.txt
+
+
+# do not ignore test data
+!test_data/*/*
+!test_data_filter/*/*
