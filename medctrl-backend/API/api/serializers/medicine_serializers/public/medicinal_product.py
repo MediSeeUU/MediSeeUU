@@ -18,12 +18,6 @@ from api.models.medicine_models import (
     MedicinalProduct,
     LegalBases,
     IngredientsAndSubstances,
-    HistoryAuthorisationStatus,
-    HistoryAuthorisationType,
-    HistoryBrandName,
-    HistoryMAH,
-    HistoryOD,
-    HistoryPrime,
 )
 from api.serializers.medicine_serializers.public import (
     MarketingAuthorisationSerializer,

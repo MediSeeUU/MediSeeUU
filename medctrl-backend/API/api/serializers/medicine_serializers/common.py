@@ -2,9 +2,10 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from collections import OrderedDict
+import django.db.models
 
 
-class RelatedMixin(object):
+class RelatedMixin:
     """
     Selects the fields of the specified related object and inserts it in a flat representation.
 
@@ -21,8 +22,18 @@ class RelatedMixin(object):
                         ("marketing_authorisation", MarketingAuthorisationSerializer),
                     ]
     """
-    def to_representation(self, obj) -> OrderedDict:
+    def to_representation(self, obj: django.db.models.Model) -> OrderedDict:
+        """
+        Overrides the default `to_representation` method to add the related fields
+
+        Args:
+            obj (django.db.models.Model): An instance of the model being serialized
+
+        Returns:
+            OrderedDict: The representation with the related fields added
+        """
         # Get the current object representation
+        raise Exception(type(obj))
         representation = super().to_representation(obj)
         if hasattr(self.Meta, "related"):
             # Iterate the specified related objects with their serializer
@@ -38,7 +49,7 @@ class RelatedMixin(object):
         return representation
 
 
-class ListMixin(object):
+class ListMixin:
     """
     Selects the items of the specified related list object and inserts it in a flat representation.
 
@@ -55,6 +66,15 @@ class ListMixin(object):
                     ]
     """
     def to_representation(self, obj) -> OrderedDict:
+        """
+        Overrides the default `to_representation` method to add the list fields
+
+        Args:
+            obj (django.db.models.Model): An instance of the model being serialized
+
+        Returns:
+            OrderedDict: The representation with the list fields added
+        """
         # Get the current object representation
         representation = super().to_representation(obj)
         if hasattr(self.Meta, "list"):
@@ -70,7 +90,7 @@ class ListMixin(object):
         return representation
 
 
-class HistoryMixin(object):
+class HistoryMixin:
     """
     Selects the items of the specified related history object and inserts it in a flat representation.
 
@@ -94,6 +114,15 @@ class HistoryMixin(object):
                     ]
     """
     def to_representation(self, obj) -> OrderedDict:
+        """
+        Overrides the default `to_representation` method to add the history fields
+
+        Args:
+            obj (django.db.models.Model): An instance of the model being serialized
+
+        Returns:
+            OrderedDict: The representation with the history fields added
+        """
         # Get the current object representation
         representation = super().to_representation(obj)
         if hasattr(self.Meta, "history"):
