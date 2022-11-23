@@ -170,3 +170,4 @@ tests/filter_tests/filter.txt
 # do not ignore test data
 !test_data/*/*
 !test_data_filter/*/*
+scraping/filter/filter.txt

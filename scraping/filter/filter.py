@@ -173,16 +173,14 @@ def get_url(filename: str, directory: str) -> str:
     # Get upper directory of data directory
     scraping_dir = directory.split('data')[0]
     # When testing, remove test_ from path
-    scraping_dir = directory.split('test_')[0]
+    scraping_dir = scraping_dir.split('test_')[0]
     # Add scraping to path
     scraping_dir = scraping_dir + "scraping"
     try:
         # JSON is in scraping directory/web_scraper/JSON
         json_path = f"{scraping_dir}/web_scraper/JSON/"
-        print(json_path)
         # If file is run from webscraper locally:
         with open(f'{json_path}urls.json') as urls_json:
-            print("JOOOO")
             urls = json.load(urls_json)
             try:
                 if 'dec' in filename:
@@ -419,4 +417,4 @@ def file_type_check(filename: str, file_path: str, pdf: fitz.Document, directory
         return ''
 
 
-# main("../../data")
+#  filter_all_pdfs("../../data")
