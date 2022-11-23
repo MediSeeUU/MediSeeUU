@@ -1,7 +1,7 @@
 from unittest import TestCase
 import pytest
 import os
-from scraping.filter import __main__ as filter
+from scraping.filter import filter
 import fitz
 import sys
 from distutils.dir_util import copy_tree
@@ -41,7 +41,7 @@ class TestFilter(TestCase):
         """
         Checks whether the length of filter.txt is equal to the number of removed files
         """
-        filter.main(test_data_filter_loc)
+        filter.filter_all_pdfs(test_data_filter_loc)
         with open("filter.txt", 'r', encoding="utf-8") as f:
             filtered_files = f.read().split("\n")
         filtered_count = len([file for file in filtered_files if len(file) > 1])
@@ -53,7 +53,7 @@ class TestFilter(TestCase):
         """
         Checks whether all files in filter.txt have been removed, and all removed files are in filter.txt
         """
-        filter.main(test_data_filter_loc)
+        filter.filter_all_pdfs(test_data_filter_loc)
         with open("filter.txt", 'r', encoding="utf-8") as f:
             filtered_files = f.read().split("\n")
         filtered_filenames = [file.split('@')[0] for file in filtered_files if file != '']
