@@ -10,7 +10,7 @@ import logging
 import scraping.file_parser.debugging_tools.json_compiler as json_compiler
 
 log = logging.getLogger("file_parser.annex_10_parser")
-annex10_json_file = "annex10_parser.json"
+annex_10_json_file = "annex_10_parser.json"
 
 
 def get_all(filename: str, excel_file: pd.DataFrame, data_dir: str) -> dict:
@@ -174,17 +174,17 @@ def annexes_already_parsed(annex_10_folder: str) -> bool:
         bool: True if file already exists and last annex is included, False otherwise
     """
     all_annexes_parsed = False
-    if os.path.exists(annex10_json_file):
+    if os.path.exists(annex_10_json_file):
         try:
-            f = open(annex10_json_file, "r", encoding="utf-8")
+            f = open(annex_10_json_file, "r", encoding="utf-8")
             parsed_data = json.load(f)
             for filename in os.listdir(annex_10_folder):
                 if filename.split(".")[0] in parsed_data:
                     all_annexes_parsed = True
         except FileNotFoundError:
-            log.error(f"{annex10_json_file} not found.")
+            log.error(f"{annex_10_json_file} not found.")
         except json.decoder.JSONDecodeError as error:
-            log.error(f"Can't open {annex10_json_file}: Decode error | " + str(error))
+            log.error(f"Can't open {annex_10_json_file}: Decode error | " + str(error))
         if all_annexes_parsed:
             log.info("All annexes in folder were already parsed")
             return True
@@ -216,7 +216,7 @@ def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
     for filename in os.listdir(annex_10_folder):
         annex10s = parse_file(filename, annex_10_folder, annex10s, data_folder_directory)
 
-    f = open(annex10_json_file, "w")
+    f = open(annex_10_json_file, "w")
     json_to_write = json.dumps(annex10s)
     f.write(json_to_write)
     f.close()
