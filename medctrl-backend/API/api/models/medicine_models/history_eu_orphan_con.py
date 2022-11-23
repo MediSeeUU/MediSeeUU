@@ -24,6 +24,7 @@ class HistoryEUOrphanCon(models.Model):
         models.CASCADE,
         null=False,
         blank=False,
+        related_name="eu_orphan_con",
     )
 
     change_date = models.DateField(

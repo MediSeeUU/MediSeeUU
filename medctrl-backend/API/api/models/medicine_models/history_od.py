@@ -24,6 +24,7 @@ class HistoryOD(models.Model):
         models.CASCADE, 
         null=False,
         blank=False,
+        related_name="eu_od",
     )
 
     change_date = models.DateField(

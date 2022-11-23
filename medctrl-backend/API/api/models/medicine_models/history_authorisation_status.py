@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
-from .common import create_dashboard_column, Category, AutStatus
+from .common import create_dashboard_history_column_current, Category, AutStatus
 
 
 class HistoryAuthorisationStatus(models.Model):
@@ -25,6 +25,7 @@ class HistoryAuthorisationStatus(models.Model):
         models.CASCADE,
         null=False,
         blank=False,
+        related_name="eu_aut_status",
     )
 
     change_date = models.DateField(
@@ -32,7 +33,7 @@ class HistoryAuthorisationStatus(models.Model):
         blank=False,
     )
 
-    eu_aut_status = create_dashboard_column(
+    eu_aut_status = create_dashboard_history_column_current(
         models.CharField(
             max_length=10,
             choices=AutStatus.choices,

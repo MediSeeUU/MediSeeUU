@@ -24,6 +24,7 @@ class HistoryMAH(models.Model):
         models.CASCADE, 
         null=False,
         blank=False,
+        related_name="eu_mah",
     )
 
     change_date = models.DateField(

@@ -76,17 +76,16 @@ class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, se
             ("ingredients_and_substances", IngredientsAndSubstancesSerializer),
             ("marketing_authorisation", MarketingAuthorisationSerializer),
         ]
+        # serializers to be added as a list and flattened
         list = [
             ("eu_legal_basis", LegalBasesSerializer),
         ]
+        # serializer to be added as a history variable and flattened
         history = [
-            ("eu_aut_status", AuthorisationStatusSerializer, HistoryAuthorisationStatus),
-            ("eu_aut_type_initial", AuthorisationTypeSerializer, HistoryAuthorisationType),
-            ("eu_aut_type_current", AuthorisationTypeSerializer, HistoryAuthorisationType),
-            ("eu_brand_name_initial", BrandNameSerializer, HistoryBrandName),
-            ("eu_brand_name_current", BrandNameSerializer, HistoryBrandName),
-            ("eu_mah_initial", MAHSerializer, HistoryMAH),
-            ("eu_mah_current", MAHSerializer, HistoryMAH),
-            ("eu_od_initial", OrphanDesignationSerializer, HistoryOD),
-            ("eu_prime_initial", PrimeSerializer, HistoryPrime),
+            ("eu_aut_status", AuthorisationStatusSerializer, False, True),
+            ("eu_aut_type", AuthorisationTypeSerializer, True, True),
+            ("eu_brand_name", BrandNameSerializer, True, True),
+            ("eu_mah", MAHSerializer, True, True),
+            ("eu_od", OrphanDesignationSerializer, True, False),
+            ("eu_prime", PrimeSerializer, True, False),
         ]

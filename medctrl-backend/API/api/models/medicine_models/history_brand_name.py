@@ -24,6 +24,7 @@ class HistoryBrandName(models.Model):
         models.CASCADE,
         null=False,
         blank=False,
+        related_name="eu_brand_name",
     )
 
     change_date = models.DateField(

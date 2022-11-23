@@ -24,6 +24,7 @@ class HistoryPrime(models.Model):
         models.CASCADE, 
         null=False,
         blank=False,
+        related_name="eu_prime",
     )
 
     change_date = models.DateField(

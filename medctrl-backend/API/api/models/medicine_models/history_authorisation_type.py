@@ -24,6 +24,7 @@ class HistoryAuthorisationType(models.Model):
         MedicinalProduct,
         models.CASCADE, 
         null=False,
+        related_name="eu_aut_type",
     )
 
     change_date = models.DateField(
