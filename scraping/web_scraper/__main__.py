@@ -210,7 +210,6 @@ def get_urls_ema(eu_n: str, url: str):
         eu_n (str): The EU number of the medicine.
         url (str): The url to an EMA page for a specific medicine.
     """
-
     # Retrieves the date the EMA medicine page was last updated
     html_active = utils.get_html_object(url)
     medicine_last_updated_date: datetime = ema_scraper.find_last_updated_date(html_active)
@@ -220,7 +219,6 @@ def get_urls_ema(eu_n: str, url: str):
         return
 
     log.info(eu_n + ": EMA page has been updated since last scrape cycle")
-
     ema_urls: dict[str, str | list[str]] = ema_scraper.scrape_medicine_page(url, html_active)
 
     pdf_url: dict[str, dict] = {
@@ -322,6 +320,9 @@ def main(data_filepath: str = "../data",
 
         unzipped_ema_urls: list[list[str]] = [list(t) for t in zip(*ema_urls)]
 
+        for eu_n in url_file.local_dict:
+            init_ema_dict(eu_n)
+
         with tqdm_logging.logging_redirect_tqdm():
             if use_parallelization and len(unzipped_ema_urls) > 0:
                 tqdm_concurrent.thread_map(get_urls_ema, *unzipped_ema_urls, max_workers=cpu_count)
@@ -360,6 +361,25 @@ def main(data_filepath: str = "../data",
     if run_filter:
         filter_retry.run_filter(3, data_filepath)
     log.info("=== LOG FINISH ===")
+
+
+def init_ema_dict(eu_n):
+    """
+    Set default empty values for if website does not exist
+
+    Args:
+        eu_n (str): eu_number of medicine
+    """
+    ema_urls: dict[str, str | list[str]] = {
+        "epar_url": "",
+        "omar_url": "",
+        "odwar_url": "",
+        "other_ema_urls": []
+    }
+    pdf_url: dict[str, dict] = {
+        eu_n: ema_urls
+    }
+    url_file.add_to_dict(pdf_url)
 
 
 # Keep the code locally testable by including this.

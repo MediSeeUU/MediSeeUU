@@ -217,7 +217,7 @@ def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
         annex10s = parse_file(filename, annex_10_folder, annex10s, data_folder_directory)
 
     f = open(annex10_json_file, "w")
-    json_to_write = json.dumps(str(annex10s))
+    json_to_write = json.dumps(annex10s)
     f.write(json_to_write)
     f.close()
 
