@@ -20,7 +20,7 @@ def main(directory: str):
     Args:
         directory (str): folder with all medicine folders to filter
     """
-    print(f'Filtering all PDF files...')
+    log.info(f'Filtering all PDF files...')
     main_directory = directory
     f = open("filter.txt", 'w', encoding="utf-8")  # open/clean output file
     all_data = Parallel(n_jobs=cpu_count)(
@@ -33,7 +33,7 @@ def main(directory: str):
         f.writelines(pdfdata)
 
     f.close()  # close output file.
-    print('Done filtering files')
+    log.info('Done filtering files')
 
 
 def filter_folder(folder: str) -> [str]:
@@ -213,7 +213,7 @@ def get_utf8_line(file_path: str) -> str:
         f2.close()  # close opened file
         return first_line
     except FileNotFoundError:
-        print("file_not_found")
+        log.error(f"Can't open file: file_not_found @ {file_path}")
         return "file_not_found"
 
 
@@ -226,7 +226,7 @@ def safe_remove(file_path: str):
         log.info(f"Filter: Removed {file_path}")
         os.remove(file_path)
     except FileNotFoundError:
-        print("Can't remove file: file_not_found")
+        log.error(f"Can't remove file: file_not_found @ {file_path}")
 
 
 def check_readable(pdf: fitz.Document) -> bool:
