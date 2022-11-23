@@ -42,8 +42,8 @@ class TestFilter(TestCase):
         Checks whether the length of filter.txt is equal to the number of removed files
         """
         filter.filter_all_pdfs(test_data_filter_loc)
-        with open("filter.txt", 'r', encoding="utf-8") as f:
-            filtered_files = f.read().split("\n")
+        with open("filter.txt", 'r', encoding="utf-8") as file:
+            filtered_files = file.read().split("\n")
         filtered_count = len([file for file in filtered_files if len(file) > 1])
         removed_files = get_removed_files()
         print(removed_files)
@@ -54,8 +54,8 @@ class TestFilter(TestCase):
         Checks whether all files in filter.txt have been removed, and all removed files are in filter.txt
         """
         filter.filter_all_pdfs(test_data_filter_loc)
-        with open("filter.txt", 'r', encoding="utf-8") as f:
-            filtered_files = f.read().split("\n")
+        with open("filter.txt", 'r', encoding="utf-8") as file:
+            filtered_files = file.read().split("\n")
         filtered_filenames = [file.split('@')[0] for file in filtered_files if file != '']
         removed_files = get_removed_files()
         self.assertEqual(set(filtered_filenames), removed_files)
