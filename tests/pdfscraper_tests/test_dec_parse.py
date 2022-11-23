@@ -12,7 +12,6 @@ percentage_str = "Percentage found: "
 
 
 # Tests all functions of EPAR parser with all XML files
-# TODO: Fix unittests now that get_txt_from_pdf is gone
 class TestDecParse(TestCase):
     """
     Class that contains the unit tests for scraping.file_parser.pdf_parser.parsers.dec_parser

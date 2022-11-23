@@ -3,11 +3,16 @@ import fitz
 import os
 import re
 import json
+import multiprocessing
+import logging
 
 wrong_doctype_str = "@wrong_doctype"
+main_directory = ""
+cpu_count: int = multiprocessing.cpu_count()
+log = logging.getLogger("web_scraper")
 
 
-def filter_all_pdfs(directory: str):
+def main(directory: str):
     """
     Go through all PDF files in the directory and remove incorrect PDF files
     Saves the names of the filtered PDF files with the error type [corrupt, html, unknown, wrong_doctype]
@@ -16,8 +21,9 @@ def filter_all_pdfs(directory: str):
         directory (str): folder with all medicine folders to filter
     """
     print(f'Filtering all PDF files...')
+    main_directory = directory
     f = open("filter.txt", 'w', encoding="utf-8")  # open/clean output file
-    all_data = Parallel(n_jobs=8)(
+    all_data = Parallel(n_jobs=cpu_count)(
         delayed(filter_folder)(os.path.join(directory, folder)) for folder in
         os.listdir(directory) if os.path.isdir(os.path.join(directory, folder)))
 
@@ -144,7 +150,7 @@ def get_brand_name(filename: str) -> str:
     """
     eu_num = filename.split('_')[0]
     try:
-        with open(f'../data/{eu_num}/{eu_num}_webdata.json') as pdf_json:
+        with open(f'{main_directory}/{eu_num}/{eu_num}_webdata.json') as pdf_json:
             web_attributes = json.load(pdf_json)
             return web_attributes['eu_brand_name_current']
     except FileNotFoundError:
@@ -161,8 +167,9 @@ def get_url(filename) -> str:
         str: url of the filename
     """
     eu_num = filename.split('_')[0]
+    scraping_dir = main_directory.split('data')[0] + "scraping"
     try:
-        json_path = "web_scraper/"
+        json_path = f"{scraping_dir}/web_scraper/"
         # If file is run from webscraper locally:
         if "web_scraper" in os.getcwd():
             json_path = ""
@@ -216,6 +223,7 @@ def safe_remove(file_path: str):
         file_path (str): Path of the file to remove
     """
     try:
+        log.info(f"Filter: Removed {file_path}")
         os.remove(file_path)
     except FileNotFoundError:
         print("Can't remove file: file_not_found")
@@ -395,4 +403,4 @@ def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
         return ''
 
 
-#  filter_all_pdfs("../../data")
+# main("../../data")
