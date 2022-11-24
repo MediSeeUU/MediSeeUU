@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from collections import OrderedDict
-import django.db.models
+from django.db.models import Model
 
 
 class RelatedMixin:
@@ -22,18 +22,17 @@ class RelatedMixin:
                         ("marketing_authorisation", MarketingAuthorisationSerializer),
                     ]
     """
-    def to_representation(self, obj: django.db.models.Model) -> OrderedDict:
+    def to_representation(self, obj: Model) -> OrderedDict[str, str]:
         """
         Overrides the default `to_representation` method to add the related fields
 
         Args:
-            obj (django.db.models.Model): An instance of the model being serialized
+            obj (Model): An instance of the model being serialized
 
         Returns:
-            OrderedDict: The representation with the related fields added
+            OrderedDict[str, str]: The representation with the related fields added
         """
         # Get the current object representation
-        raise Exception(type(obj))
         representation = super().to_representation(obj)
         if hasattr(self.Meta, "related"):
             # Iterate the specified related objects with their serializer
@@ -65,15 +64,15 @@ class ListMixin:
                         ("eu_legal_basis", LegalBasesSerializer),
                     ]
     """
-    def to_representation(self, obj) -> OrderedDict:
+    def to_representation(self, obj: Model) -> OrderedDict[str, str]:
         """
         Overrides the default `to_representation` method to add the list fields
 
         Args:
-            obj (django.db.models.Model): An instance of the model being serialized
+            obj (Model): An instance of the model being serialized
 
         Returns:
-            OrderedDict: The representation with the list fields added
+            OrderedDict[str, str]: The representation with the list fields added
         """
         # Get the current object representation
         representation = super().to_representation(obj)
@@ -113,15 +112,15 @@ class HistoryMixin:
                         ("eu_aut_type", AuthorisationTypeSerializer, True, True),
                     ]
     """
-    def to_representation(self, obj) -> OrderedDict:
+    def to_representation(self, obj: Model) -> OrderedDict[str, str]:
         """
         Overrides the default `to_representation` method to add the history fields
 
         Args:
-            obj (django.db.models.Model): An instance of the model being serialized
+            obj (Model): An instance of the model being serialized
 
         Returns:
-            OrderedDict: The representation with the history fields added
+            OrderedDict[str, str]: The representation with the history fields added
         """
         # Get the current object representation
         representation = super().to_representation(obj)
