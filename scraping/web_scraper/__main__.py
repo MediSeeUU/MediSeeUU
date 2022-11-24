@@ -25,7 +25,9 @@ log = logging.getLogger("web_scraper")
 
 json_path: str = "web_scraper/"
 cpu_count: int = multiprocessing.cpu_count() * 2
-# If file is run locally:
+# If file is run locally or tested:
+if "tests" in os.getcwd():
+    json_path = "web_scraper_tests/"
 if "web_scraper" in os.getcwd():
     json_path = ""
 

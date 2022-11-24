@@ -1,0 +1,29 @@
+{
+    "atc_code": "A16AX05",
+    "eu_aut_status": "ACTIVE",
+    "eu_brand_name_current": "Wilzin",
+    "status_type": "a",
+    "eu_pnumber": "EU/1/04/286",
+    "active_substance": "Zinc acetate dihydrate",
+    "eu_mah_current": "Recordati Rare Diseases",
+    "eu_orphan_con_current": [
+        {
+            "pre": "o",
+            "id": "050",
+            "eu_num": "EU/3/01/050",
+            "indication": "Treatment of Wilson&#180;s disease",
+            "link_date": "2004-10-18",
+            "end_date": "2014-10-19"
+        }
+    ],
+    "orphan_status": "h",
+    "eu_aut_date": "2004-10-13 00:00:00",
+    "eu_aut_type_initial": "pre_2006",
+    "eu_aut_type_current": "standard",
+    "ema_number": "EMEA/H/C/535",
+    "ema_number_id": "535",
+    "eu_referral": "False",
+    "eu_suspension": "False",
+    "ema_number_certainty": "1.0",
+    "init_addressed_to_member_states": "False"
+}

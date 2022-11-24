@@ -10,6 +10,10 @@ import shutil
 test_data_loc = "../../test_data_filter"
 test_data_filter_loc = "../../test_data_filter_temp"
 
+data_dir = "../test_data"
+if "pdfscraper_tests" in os.getcwd():
+    data_dir = "../../test_data"
+
 
 def get_removed_files() -> set[str]:
     """
@@ -30,6 +34,7 @@ class TestFilter(TestCase):
     """
     Class to test Filter using integration tests.
     """
+
     def setUp(self):
         """
         Set up the class to make sure the integration test can run without changing existing data.

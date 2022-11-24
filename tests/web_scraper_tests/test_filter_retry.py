@@ -2,9 +2,11 @@ import unittest
 import tempfile
 from scraping.web_scraper import filter_retry
 from parameterized import parameterized
+import os
 
-
-data_filepath = "../../data"
+data_filepath = "../test_data"
+if "web_scraper_tests" in os.getcwd():
+    data_filepath = "../../test_data"
 
 
 class TestFilterRetry(unittest.TestCase):

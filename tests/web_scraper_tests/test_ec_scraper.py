@@ -1,9 +1,6 @@
 import unittest
-import sys
 import json
-import pytest
 import regex as re
-from datetime import datetime
 import requests
 import scraping.web_scraper.utils as utils
 from scraping.web_scraper import ec_scraper as ec

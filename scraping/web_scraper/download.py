@@ -43,15 +43,16 @@ def save_new_eu_numbers(data_path: str):
         data_path (str): The path to the data folder
     """
     # Get all logging lines as list after latest "NEW LOG"
-    parent_path = data_path.split("data")[0]
-    with open(f'{parent_path}scraping/logging_web_scraper.log', 'r') as log_file:
-        full_log = log_file.read().split("=== NEW LOG ")[-1].split("\n")
-    # Only get "New medicine: " lines
-    filtered = filter(lambda line: "New medicine: " in line, full_log)
-    # Get and write new EU numbers
-    eu_numbers = list(map(lambda line: line.split(" ")[2], list(filtered)))
-    with open(f'{data_path}/eu_numbers.json', 'w') as outfile:
-        json.dump(eu_numbers, outfile)
+    parent_path = "/".join((data_path.split("/")[:-1])) + "/"
+    if os.path.exists(f'{parent_path}scraping/logging_web_scraper.log'):
+        with open(f'{parent_path}scraping/logging_web_scraper.log', 'r') as log_file:
+            full_log = log_file.read().split("=== NEW LOG ")[-1].split("\n")
+        # Only get "New medicine: " lines
+        filtered = filter(lambda line: "New medicine: " in line, full_log)
+        # Get and write new EU numbers
+        eu_numbers = list(map(lambda line: line.split(" ")[2], list(filtered)))
+        with open(f'{data_path}/eu_numbers.json', 'w') as outfile:
+            json.dump(eu_numbers, outfile)
 
 
 @utils.exception_retry(logging_instance=log)
