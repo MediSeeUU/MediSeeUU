@@ -4,7 +4,7 @@ import json
 import os
 import pandas as pd
 
-data_loc = "../../data"
+data_loc = "../../test_data"
 annex_10_data = {}
 
 
