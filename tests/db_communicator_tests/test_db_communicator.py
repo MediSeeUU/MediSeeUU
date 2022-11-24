@@ -4,6 +4,8 @@ import datetime
 import unittest
 from unittest.mock import patch, MagicMock
 from scraping.db_communicator import DbCommunicator
+import logging
+log = logging.getLogger("db_communicator.temporary_tests")
 
 
 class TestDbCommunicator(unittest.TestCase):

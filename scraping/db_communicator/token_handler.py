@@ -3,6 +3,8 @@ import datetime
 import json
 import requests
 import time
+import logging
+log = logging.getLogger("db_communicator.token_handler")
 
 app = Flask(__name__)
 api_key = ''
@@ -27,11 +29,11 @@ def request_token() -> requests.models.Response:
     api_endpoint = 'http://localhost:8000/api/scraper/token/'
     response = requests.get(api_endpoint)
     if response.status_code == 200:
-        print("Successfully requested a token")
+        log.info("Successfully requested a token")
     else:
         global error_state
         error_state = True
-        print("Something went wrong when requesting a token")
+        log.error("Something went wrong when requesting a token, is the backend server running?")
     return response
 
 
@@ -49,7 +51,7 @@ def receive_token() -> requests.models.Response | tuple:
         Response: The response object of the request
     """
     token = request.form['token']
-    print("Token received")
+    log.info("Token received")
     global api_key
     api_key = "Token " + token
     success_response = json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
@@ -88,7 +90,6 @@ def check_key() -> bool:
         return False
 
     time_left = last_key_request + datetime.timedelta(days=expiry_days) - datetime.datetime.now()
-    print("Time left: " + str(time_left.seconds))
     if time_left.seconds < 3600:
         request_token()
     return True

@@ -15,6 +15,7 @@ def init_loggers(logging_path: str = ".") -> None:
     """
     web_path: str = "web_scraper"
     pdf_path: str = "pdf_parser"
+    db_comm_path: str = "db_communicator"
 
     # --- Root logger ---
     root_handler_stream = logging.StreamHandler()
@@ -41,4 +42,11 @@ def init_loggers(logging_path: str = ".") -> None:
 
     log_pdf_file_handler = logging.FileHandler(f"{logging_path}/logging_{pdf_path}.log")
     log_pdf.addHandler(log_pdf_file_handler)
+    # ---
+
+    # --- Logging module of the db communicator ---
+    log_db_comm = logging.getLogger(db_comm_path)
+
+    log_db_comm_file_handler = logging.FileHandler(f"{logging_path}/logging_{db_comm_path}.log")
+    log_db_comm.addHandler(log_db_comm_file_handler)
     # ---
