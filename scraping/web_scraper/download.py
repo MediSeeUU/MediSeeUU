@@ -223,6 +223,36 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
     log.info(f"Finished download for {medicine_identifier}")
 
 
+def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper):
+    """
+    Downloads all the Annex 10 files from the EC website
+
+    Args:
+        data_filepath (str): Path to the data folder
+        urls_dict: The dictionary containing the URLs of the Annex 10 files.
+
+    Returns:
+        None: This function returns nothing.
+
+    """
+    target_path = data_filepath + "/annex_10"
+
+    for year, url_dict in tqdm.tqdm(urls_dict.local_dict.items()):
+        url: str = url_dict["annex10_url"]
+        downloaded_file = requests.get(url)
+
+        # TODO: Refactor this function and download_pdfs_from_url, so that code is not duplicated.
+        if downloaded_file.status_code != 200:
+            with open(f"failed.txt", "a") as f:
+                f.write(f"annex10_{year}@{url}@{downloaded_file.status_code}\n")
+                return
+
+        Path(f"{target_path}").mkdir(exist_ok=True)
+        with open(f"{target_path}/annex10_{year}.xlsx", "wb") as file:
+            file.write(downloaded_file.content)
+            log.debug(f"DOWNLOADED Annex 10 for {year}")
+
+
 def download_all(data_filepath: str, urls_dict: json_helper.JsonHelper, parallel_download: bool):
     """
     Downloads all files for all medicines. Can be done parallel or sequential.

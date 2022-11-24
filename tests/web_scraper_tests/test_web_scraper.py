@@ -47,7 +47,11 @@ class TestWebScraper(TestCase):
                            [True, [('https://ec.europa.eu/health/documents/community-register/html/o101.htm',
                                     'EU-3-02-101', 3, 'o101')]],
                            [True, [('https://ec.europa.eu/health/documents/community-register/html/h131.htm',
-                                    'EU-1-00-131', 1, 'h131')]]])
+                                    'EU-1-00-131', 1, 'h131')]],
+                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h1257.htm',
+                                    'EU-1-17-1257', 0, 'h1257')]],
+                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h1587.htm',
+                                     'EU-1-21-1587', 0, 'h1587')]]])
     def test_run_web_check_all(self, parallel, medicine_codes):
         """
         Runs webscraper and checks output in between different scripts
@@ -57,7 +61,6 @@ class TestWebScraper(TestCase):
         """
         shutil.rmtree(data_path)
         os.mkdir(data_path)
-        shutil.rmtree(f'{json_path}JSON')
 
         self.parallel = parallel
         self.medicine_list = medicine_codes
@@ -96,7 +99,6 @@ class TestWebScraper(TestCase):
         """
         shutil.rmtree(data_path)
         os.mkdir(data_path)
-        shutil.rmtree(f"{json_path}JSON")
 
         self.parallel = parallel
         self.medicine_list = medicine_list
