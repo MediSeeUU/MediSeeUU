@@ -53,6 +53,7 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     if is_initial_file:
         annex_attributes["initial_type_of_eu_authorization"] = "standard"
         annex_attributes["eu_type_of_medicine"] = "small molecule"
+        annex_attributes["eu_indication_initial"] = "no section 4.1 therapeutic indication(s) found in authorization annex"
 
     # loop through sections and parse section if conditions met
     for section in xml_body:
@@ -73,11 +74,11 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
             if xml_utils.section_contains_header_substring("traceability", section):
                 annex_attributes["eu_type_of_medicine"] = "biologicals"
                 
-            # section 4.1 therapeutic indications from annex I of initial annex
+            # section 4.1 eu_indication_initial from annex I of initial annex
             if xml_utils.section_contains_substring("therapeutic indication", section):
-                annex_attributes["therapeutic_indications"] = xml_utils.section_append_paragraphs(section)
+                annex_attributes["eu_indication_initial"] = xml_utils.section_append_paragraphs(section)
 
-        # TODO: to add attributes, initial EU conditions and current EU conditions, 50 and 51 in bible
+        # TODO: add attributes, initial EU conditions and current EU conditions, 50 and 51 in bible
 
     medicine_struct.annexes.append(annex_attributes)
 
