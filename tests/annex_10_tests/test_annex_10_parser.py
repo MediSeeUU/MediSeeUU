@@ -27,7 +27,7 @@ def clean_df(excel_data: pd.DataFrame) -> pd.DataFrame:
     # Set column names
     excel_data.columns = excel_data.iloc[0]
     excel_data = excel_data.truncate(before=1).reset_index()
-    # Remove redundant columns
+    # Remove redundant columns, only the last two columns contain the clock times we need.
     excel_data = excel_data.iloc[:, 2:]
 
     return excel_data
