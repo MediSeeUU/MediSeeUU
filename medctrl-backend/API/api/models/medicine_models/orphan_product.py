@@ -30,6 +30,8 @@ class OrphanProduct(models.Model):
             DateField containing the EU orphan designation COMP decision date. Shown on the dashboard.
         eu_od_sponsor (models.TextField):
             TextField containing the EU orphan designation sponsor. Shown on the dashboard.
+        eu_orphan_con_initial (models.OneToOneField):
+            Unique Foreign Key to the initial item in the :py:class:`.HistoryEUOrphanCon` model. Shown on the dashboard.
     """
     eu_od_number = create_dashboard_column(
         models.CharField(
@@ -110,6 +112,12 @@ class OrphanProduct(models.Model):
         Category.General_Information,
         "string",
         "Sponsor for EU orphan designation",
+    )
+
+    eu_orphan_con_initial = models.OneToOneField(
+        "HistoryEUOrphanCon",
+        models.SET_NULL,
+        null=True,
     )
 
     class Meta:
