@@ -68,7 +68,7 @@ class TestAnnex10Parser(TestCase):
             # Clean the data
             excel_data = clean_df(excel_data)
             excel_data = excel_data[~excel_data["Active Time Elapsed"].isnull()]
-            # Get all relevant data from columns
+            # Get one column to find amount of rows in Excel
             product_names = (excel_data["Product Name"].tolist())
             total_attributes = len(product_names)
 
