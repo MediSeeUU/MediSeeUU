@@ -36,22 +36,17 @@ class TestWebScraper(TestCase):
             os.mkdir(data_path)
         Path(f"{json_path}JSON").mkdir(parents=True, exist_ok=True)
 
-    @parameterized.expand([[True, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
-                                    'EU-1-04-273', 0, 'h273')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
-                                     'EU-1-04-273', 0, 'h273')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/h283.htm',
-                                    'EU-1-04-283', 1, 'h283')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/o005.htm',
-                                    'EU-3-00-005', 2, 'o005')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/o101.htm',
-                                    'EU-3-02-101', 3, 'o101')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/h131.htm',
-                                    'EU-1-00-131', 1, 'h131')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h1257.htm',
-                                    'EU-1-17-1257', 0, 'h1257')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h1587.htm',
-                                     'EU-1-21-1587', 0, 'h1587')]]])
+    medicine_list_checks = \
+        [('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
+         ('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
+         ('https://ec.europa.eu/health/documents/community-register/html/h283.htm', 'EU-1-04-283', 1, 'h283'),
+         ('https://ec.europa.eu/health/documents/community-register/html/o005.htm', 'EU-3-00-005', 2, 'o005'),
+         ('https://ec.europa.eu/health/documents/community-register/html/o101.htm', 'EU-3-02-101', 3, 'o101'),
+         ('https://ec.europa.eu/health/documents/community-register/html/h131.htm', 'EU-1-00-131', 1, 'h131'),
+         ('https://ec.europa.eu/health/documents/community-register/html/h1257.htm', 'EU-1-17-1257', 0, 'h1257'),
+         ('https://ec.europa.eu/health/documents/community-register/html/h1587.htm', 'EU-1-21-1587', 0, 'h1587')]
+
+    @parameterized.expand([[True, medicine_list_checks], [False, medicine_list_checks]])
     def test_run_web_check_all(self, parallel, medicine_codes):
         """
         Runs webscraper and checks output in between different scripts
@@ -70,26 +65,19 @@ class TestWebScraper(TestCase):
         self.run_download()
         self.run_filter()
 
-    @parameterized.expand([[True, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
-                                    'EU-1-04-273', 0, 'h273')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
-                                     'EU-1-04-273', 0, 'h273')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/h283.htm',
-                                    'EU-1-04-283', 1, 'h283')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h283.htm',
-                                     'EU-1-04-283', 1, 'h283')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/o005.htm',
-                                    'EU-3-00-005', 2, 'o005')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/o005.htm',
-                                     'EU-3-00-005', 2, 'o005')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/o101.htm',
-                                    'EU-3-02-101', 3, 'o101')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/o101.htm',
-                                     'EU-3-02-101', 3, 'o101')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/h131.htm',
-                                    'EU-1-00-131', 1, 'h131')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h131.htm',
-                                     'EU-1-00-131', 1, 'h131')]]])
+    medicine_list_no_checks = \
+        [('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
+         ('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
+         ('https://ec.europa.eu/health/documents/community-register/html/h283.htm', 'EU-1-04-283', 1, 'h283'),
+         ('https://ec.europa.eu/health/documents/community-register/html/h283.htm', 'EU-1-04-283', 1, 'h283'),
+         ('https://ec.europa.eu/health/documents/community-register/html/o005.htm', 'EU-3-00-005', 2, 'o005'),
+         ('https://ec.europa.eu/health/documents/community-register/html/o005.htm', 'EU-3-00-005', 2, 'o005'),
+         ('https://ec.europa.eu/health/documents/community-register/html/o101.htm', 'EU-3-02-101', 3, 'o101'),
+         ('https://ec.europa.eu/health/documents/community-register/html/o101.htm', 'EU-3-02-101', 3, 'o101'),
+         ('https://ec.europa.eu/health/documents/community-register/html/h131.htm', 'EU-1-00-131', 1, 'h131'),
+         ('https://ec.europa.eu/health/documents/community-register/html/h131.htm', 'EU-1-00-131', 1, 'h131')]
+
+    @parameterized.expand([[True, medicine_list_no_checks], [False, medicine_list_no_checks]])
     def test_run_web_no_checks(self, parallel, medicine_list):
         """
         Runs webscraper and passes if no errors occur.
@@ -132,7 +120,7 @@ class TestWebScraper(TestCase):
         with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
         assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url', 'odwar_url', 'other_ema_urls']), \
-               "ema urls not in urls.json"
+            "ema urls not in urls.json"
 
     def run_download(self):
         """
