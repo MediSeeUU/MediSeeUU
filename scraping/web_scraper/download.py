@@ -51,7 +51,7 @@ def save_new_eu_numbers(data_path: str):
         filtered = filter(lambda line: "New medicine: " in line, full_log)
 
         # Get and write new EU numbers
-        eu_numbers = list(set(map(lambda line: line.split(" ")[2], list(filtered))))
+        eu_numbers = list(map(lambda line: line.split(" ")[2], list(filtered)))
         with open(f'{data_path}/eu_numbers.json', 'w') as outfile:
             json.dump(eu_numbers, outfile)
 

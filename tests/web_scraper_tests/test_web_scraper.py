@@ -28,7 +28,7 @@ def check_new_eu_numbers(self):
     This should be the case, as all medicines are new, since they are downloaded for the first time in each test run.
     """
     with open(f"{data_path}/eu_numbers.json") as f:
-        eu_numbers = json.load(f)
+        eu_numbers = set(json.load(f))
 
     self.assertEqual(self.eu_numbers, eu_numbers)
 
@@ -53,12 +53,9 @@ class TestWebScraper(TestCase):
 
     medicine_list_checks = \
         [('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
-         ('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
          ('https://ec.europa.eu/health/documents/community-register/html/h283.htm', 'EU-1-04-283', 1, 'h283'),
          ('https://ec.europa.eu/health/documents/community-register/html/o005.htm', 'EU-3-00-005', 2, 'o005'),
          ('https://ec.europa.eu/health/documents/community-register/html/o101.htm', 'EU-3-02-101', 3, 'o101'),
-         ('https://ec.europa.eu/health/documents/community-register/html/h131.htm', 'EU-1-00-131', 1, 'h131'),
-         ('https://ec.europa.eu/health/documents/community-register/html/h1257.htm', 'EU-1-17-1257', 0, 'h1257'),
          ('https://ec.europa.eu/health/documents/community-register/html/h1587.htm', 'EU-1-21-1587', 0, 'h1587')]
 
     @parameterized.expand([[True, medicine_list_checks], [False, medicine_list_checks]])
@@ -75,25 +72,13 @@ class TestWebScraper(TestCase):
         self.parallel = parallel
         self.medicine_list = medicine_codes
         self.eu_n = self.medicine_list[0][1]
-        self.eu_numbers = [x[1] for x in self.medicine_list_checks]
+        self.eu_numbers = set([x[1] for x in self.medicine_list_checks])
         self.run_ec_scraper()
         self.run_ema_scraper()
         self.run_download()
         self.run_filter()
 
-    medicine_list_no_checks = \
-        [('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
-         ('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
-         ('https://ec.europa.eu/health/documents/community-register/html/h283.htm', 'EU-1-04-283', 1, 'h283'),
-         ('https://ec.europa.eu/health/documents/community-register/html/h283.htm', 'EU-1-04-283', 1, 'h283'),
-         ('https://ec.europa.eu/health/documents/community-register/html/o005.htm', 'EU-3-00-005', 2, 'o005'),
-         ('https://ec.europa.eu/health/documents/community-register/html/o005.htm', 'EU-3-00-005', 2, 'o005'),
-         ('https://ec.europa.eu/health/documents/community-register/html/o101.htm', 'EU-3-02-101', 3, 'o101'),
-         ('https://ec.europa.eu/health/documents/community-register/html/o101.htm', 'EU-3-02-101', 3, 'o101'),
-         ('https://ec.europa.eu/health/documents/community-register/html/h131.htm', 'EU-1-00-131', 1, 'h131'),
-         ('https://ec.europa.eu/health/documents/community-register/html/h131.htm', 'EU-1-00-131', 1, 'h131')]
-
-    @parameterized.expand([[True, medicine_list_no_checks], [False, medicine_list_no_checks]])
+    @parameterized.expand([[True, medicine_list_checks], [False, medicine_list_checks]])
     def test_run_web_no_checks(self, parallel, medicine_list):
         """
         Runs webscraper and passes if no errors occur.
