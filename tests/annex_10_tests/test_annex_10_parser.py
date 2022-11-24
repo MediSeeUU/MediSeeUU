@@ -10,6 +10,9 @@ annex_10_data = {}
 
 def clean_df(excel_data: pd.DataFrame) -> pd.DataFrame:
     """
+    Cleans the Excel file by removing null lines, starting rows from first Product Name value,
+    naming the columns, and removing other columns than the last two
+
     Args:
         excel_data (pd.DataFrame): the contents of the Excel file
 
@@ -18,10 +21,10 @@ def clean_df(excel_data: pd.DataFrame) -> pd.DataFrame:
     """
     # Clean null lines
     excel_data = excel_data[~excel_data["Unnamed: 0"].isnull()]
-    # Remove all before "Product Name"
+    # Remove all rows before "Product Name"
     x = excel_data.index[excel_data["Unnamed: 0"] == "Product Name"].tolist()[0]
     excel_data = excel_data.truncate(before=x).reset_index()
-    # Set index to first row
+    # Set column names
     excel_data.columns = excel_data.iloc[0]
     excel_data = excel_data.truncate(before=1).reset_index()
     # Remove redundant columns
