@@ -3,7 +3,7 @@ import pathlib
 import os
 import json
 
-from scraping.filter import pdf_filter
+from scraping.filter import filter
 from scraping.web_scraper import __main__ as m
 from scraping.web_scraper import download, ec_scraper, json_helper
 
@@ -38,11 +38,11 @@ def run_filter(n: int, data_filepath: str):
         filter_path = "../"
 
     for _ in range(n):
-        pdf_filter.filter_all_pdfs(data_filepath)
+        filter.filter_all_pdfs(data_filepath)
         url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json").load_json()
         retry_all(f'{filter_path}filter.txt', url_file, data_filepath)
     # remove files that can't go to the pdf parser
-    pdf_filter.filter_all_pdfs(data_filepath)
+    filter.filter_all_pdfs(data_filepath)
 
 
 def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str] | str]], data_filepath: str):

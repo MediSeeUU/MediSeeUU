@@ -1,0 +1,21 @@
+{
+    "eu_pnumber": "",
+    "atc_code": "not applicable",
+    "eu_aut_status": "EXPIRED",
+    "eu_brand_name_current": "EU/3/05/339",
+    "status_type": "w",
+    "eu_od_pnumber": "EU/3/05/339",
+    "active_substance": "Dasatinib",
+    "eu_od_con": "Treatment of chronic myeloid leukaemia",
+    "sponsor": "Bristol-Myers Squibb Pharma EEIG",
+    "orphan_status": "o",
+    "eu_aut_date": "2005-12-23 00:00:00",
+    "eu_aut_type_initial": "pre_2006",
+    "eu_aut_type_current": "standard",
+    "ema_od_number": "EMEA/OD/075/05",
+    "ema_od_number_id": "75/05",
+    "eu_referral": "False",
+    "eu_suspension": "False",
+    "ema_number_certainty": "1.0",
+    "init_addressed_to_member_states": "False"
+}

@@ -3,8 +3,12 @@ import fitz
 import os
 import re
 import json
+import multiprocessing
+import logging
 
 wrong_doctype_str = "@wrong_doctype"
+cpu_count: int = multiprocessing.cpu_count()
+log = logging.getLogger("web_scraper")
 
 
 def filter_all_pdfs(directory: str):
@@ -15,10 +19,10 @@ def filter_all_pdfs(directory: str):
     Args:
         directory (str): folder with all medicine folders to filter
     """
-    print(f'Filtering all PDF files...')
+    log.info(f'Filtering all PDF files...')
     f = open("filter.txt", 'w', encoding="utf-8")  # open/clean output file
-    all_data = Parallel(n_jobs=8)(
-        delayed(filter_folder)(os.path.join(directory, folder)) for folder in
+    all_data = Parallel(n_jobs=cpu_count)(
+        delayed(filter_folder)(os.path.join(directory, folder), directory) for folder in
         os.listdir(directory) if os.path.isdir(os.path.join(directory, folder)))
 
     # Write the error of each PDF file to the output file
@@ -27,15 +31,16 @@ def filter_all_pdfs(directory: str):
         f.writelines(pdfdata)
 
     f.close()  # close output file.
-    print('Done filtering files')
+    log.info('Done filtering files')
 
 
-def filter_folder(folder: str) -> [str]:
+def filter_folder(folder: str, directory: str) -> [str]:
     """
     Filters a medicine folder containing PDF files
 
     Args:
         folder (str): name of the folder to filter
+        directory (str): folder with all medicine folders to filter
 
     Returns:
         [str]: PDF names with error types for the folder
@@ -45,7 +50,7 @@ def filter_folder(folder: str) -> [str]:
         return all_data
     for filename in os.listdir(folder):
         if '.pdf' in filename:
-            data = filter_pdf(filename, folder)
+            data = filter_pdf(filename, folder, directory)
             if data:
                 all_data.append(data + '\n')
     return all_data
@@ -74,7 +79,7 @@ def check_for_no_text(pdf: fitz.Document) -> bool:
     return True
 
 
-def filter_pdf(filename: str, data_dir: str) -> str:
+def filter_pdf(filename: str, data_dir: str, directory: str) -> str:
     """
     Checks whether the PDF is readable, or gives an error
     Deletes PDF files with an error and returns the filename as well as the error in a string
@@ -82,6 +87,7 @@ def filter_pdf(filename: str, data_dir: str) -> str:
     Args:
         filename (str): The name of the PDF file
         data_dir (str): The directory where the PDF is stored
+        directory (str): folder with all medicine folders to filter
 
     Returns:
         str: filename@error_type
@@ -94,13 +100,13 @@ def filter_pdf(filename: str, data_dir: str) -> str:
         # when readable check if its type matches
 
         if check_readable(pdf):
-            return file_type_check(filename, file_path, pdf)
+            return file_type_check(filename, file_path, pdf, directory)
 
         # file not readable
         else:
             pdf.close()
             safe_remove(file_path)
-            return error_line(filename, '@corrupt')
+            return error_line(filename, '@corrupt', directory)
 
     # could not parse
     except fitz.fitz.FileDataError:
@@ -108,65 +114,73 @@ def filter_pdf(filename: str, data_dir: str) -> str:
         first_line = get_utf8_line(file_path)
         if 'html' in first_line.lower():
             safe_remove(file_path)
-            return error_line(filename, '@html')
+            return error_line(filename, '@html', directory)
 
         # PDF is not HTML, but can't be opened
         safe_remove(file_path)
-        return error_line(filename, '@corrupt')
+        return error_line(filename, '@corrupt', directory)
 
 
-def error_line(filename: str, error: str) -> str:
+def error_line(filename: str, error: str, directory: str) -> str:
     """
     Gives the error line to be written to filter.txt
 
     Args:
         filename (str): The name of the PDF file
         error (str): The error message of the PDF file
+        directory (str): folder with all medicine folders to filter
 
     Returns:
         str: filename@url@error_type OR filename@url@error_type@product_number@brand_name for decision files
     """
-    url = get_url(filename)
+    url = get_url(filename, directory)
     if "dec" in filename:
         eu_num = filename[:11].replace("-", "/")
-        brand_name = get_brand_name(filename)
+        brand_name = get_brand_name(filename, directory)
         return f"{filename}{error}@{eu_num}@{brand_name}@{url}"
     return f"{filename}{error}@{url}"
 
 
-def get_brand_name(filename: str) -> str:
+def get_brand_name(filename: str, directory: str) -> str:
     """
     Args:
         filename (str): The name of the PDF file
+        directory (str): folder with all medicine folders to filter
 
     Returns:
         str: Brand name of the EC decision file
     """
     eu_num = filename.split('_')[0]
     try:
-        with open(f'../data/{eu_num}/{eu_num}_webdata.json') as pdf_json:
+        with open(f'{directory}/{eu_num}/{eu_num}_webdata.json') as pdf_json:
             web_attributes = json.load(pdf_json)
             return web_attributes['eu_brand_name_current']
     except FileNotFoundError:
         return "no_webdata_json_found"
 
 
-def get_url(filename) -> str:
+def get_url(filename: str, directory: str) -> str:
     """
     Retrieve the URL for a given filename
     Args:
         filename (str): The name of the PDF file
+        directory (str): folder with all medicine folders to filter
 
     Returns:
         str: url of the filename
     """
     eu_num = filename.split('_')[0]
+    # Get upper directory of data directory
+    scraping_dir = directory.split('data')[0]
+    # When testing, remove test_ from path
+    scraping_dir = scraping_dir.split('test_')[0]
+    # Add scraping to path
+    scraping_dir = scraping_dir + "scraping"
     try:
-        json_path = "web_scraper/"
+        # JSON is in scraping directory/web_scraper/JSON
+        json_path = f"{scraping_dir}/web_scraper/JSON/"
         # If file is run from webscraper locally:
-        if "web_scraper" in os.getcwd():
-            json_path = ""
-        with open(f'{json_path}JSON/urls.json') as urls_json:
+        with open(f'{json_path}urls.json') as urls_json:
             urls = json.load(urls_json)
             try:
                 if 'dec' in filename:
@@ -206,7 +220,7 @@ def get_utf8_line(file_path: str) -> str:
         f2.close()  # close opened file
         return first_line
     except FileNotFoundError:
-        print("file_not_found")
+        log.error(f"Can't open file: file_not_found @ {file_path}")
         return "file_not_found"
 
 
@@ -216,9 +230,10 @@ def safe_remove(file_path: str):
         file_path (str): Path of the file to remove
     """
     try:
+        log.info(f"Filter: Removed {file_path}")
         os.remove(file_path)
     except FileNotFoundError:
-        print("Can't remove file: file_not_found")
+        log.error(f"Can't remove file: file_not_found @ {file_path}")
 
 
 def check_readable(pdf: fitz.Document) -> bool:
@@ -238,7 +253,7 @@ def check_readable(pdf: fitz.Document) -> bool:
     return True
 
 
-def check_decision(filename: str, file_path: str, pdf: fitz.Document) -> str:
+def check_decision(filename: str, file_path: str, pdf: fitz.Document, directory: str) -> str:
     """
     Check if the file is a decision file
 
@@ -246,6 +261,7 @@ def check_decision(filename: str, file_path: str, pdf: fitz.Document) -> str:
         filename (str): filename of the supposed decision file
         file_path (str): path to the decision file
         pdf (fitz.Document): PDF file to check
+        directory (str): folder with all medicine folders to filter
 
     Returns:
         str: "@wrong_doctype" if the file is not a decision file, otherwise empty string
@@ -266,10 +282,10 @@ def check_decision(filename: str, file_path: str, pdf: fitz.Document) -> str:
             return ''
     pdf.close()
     safe_remove(file_path)
-    return error_line(filename, wrong_doctype_str)
+    return error_line(filename, wrong_doctype_str, directory)
 
 
-def check_annex(filename: str, file_path: str, pdf: fitz.Document) -> str:
+def check_annex(filename: str, file_path: str, pdf: fitz.Document, directory: str) -> str:
     """
     Checks if it is an annex file
 
@@ -277,6 +293,7 @@ def check_annex(filename: str, file_path: str, pdf: fitz.Document) -> str:
         filename (str): filename of supposed annex file to check
         file_path (str): path of annex file to check
         pdf (fitz.Document): pdf of annex file to check
+        directory (str): folder with all medicine folders to filter
 
     Returns:
         str: @wrong_doctype if it is an annex file, empty string otherwise
@@ -285,17 +302,18 @@ def check_annex(filename: str, file_path: str, pdf: fitz.Document) -> str:
     first_page = pdf[0]
     txt = first_page.get_text()
 
-    # checks if the PDF is of the right type
-    if "implemented by the member states" in txt.lower():
+    # checks if first page of initial annex file contains "implemented by the member states", if so, filters it
+    if "implemented by the member states" in txt.lower() and "anx_0" in filename:
         pdf.close()
         safe_remove(file_path)
-        return error_line(filename, wrong_doctype_str)
+        return error_line(filename, wrong_doctype_str, directory)
 
+    # checks if the first page is characteristic on an annex file
     return check_pdf_type(file_path, filename, pdf, ['annex', 'name of the medicinal product',
-                                                     'summary of product characteristics'])
+                                                     'summary of product characteristics'], directory)
 
 
-def check_procedural(filename: str, file_path: str, pdf: fitz.Document) -> str:
+def check_procedural(filename: str, file_path: str, pdf: fitz.Document, directory: str) -> str:
     """
     Check if it is a procedural steps file (from EPAR)
 
@@ -303,14 +321,15 @@ def check_procedural(filename: str, file_path: str, pdf: fitz.Document) -> str:
         filename (str): filename of supposed procedural steps pdf to check
         file_path (str): path to the file to check
         pdf (fitz.Document): pdf to check
+        directory (str): folder with all medicine folders to filter
 
     Returns:
         str: @wrong_doctype if it is a procedural steps file, empty string otherwise
     """
-    return check_pdf_type(file_path, filename, pdf, ['background information'])
+    return check_pdf_type(file_path, filename, pdf, ['background information'], directory)
 
 
-def check_epar(filename: str, file_path: str, pdf: fitz.Document) -> str:
+def check_epar(filename: str, file_path: str, pdf: fitz.Document, directory: str) -> str:
     """
     Check if it is an EPAR file
 
@@ -318,14 +337,15 @@ def check_epar(filename: str, file_path: str, pdf: fitz.Document) -> str:
         filename (str): filename of the supposed EPAR file to check
         file_path (str): path to the EPAR file
         pdf (fitz.Document): PDF file to check
+        directory (str): folder with all medicine folders to filter
 
     Returns:
         str: @wrong_doctype if it is an EPAR file, empty string otherwise
     """
-    return check_pdf_type(file_path, filename, pdf, ['assessment report'])
+    return check_pdf_type(file_path, filename, pdf, ['assessment report'], directory)
 
 
-def check_scientific(filename: str, file_path: str, pdf: fitz.Document) -> str:
+def check_scientific(filename: str, file_path: str, pdf: fitz.Document, directory: str) -> str:
     """
     Check if it is a scientific discussion file
 
@@ -333,14 +353,15 @@ def check_scientific(filename: str, file_path: str, pdf: fitz.Document) -> str:
         filename (str): filename of the supposed scientific discussion file to check
         file_path (str): path to the scientific discussion file
         pdf (fitz.Document): PDF file to check
+        directory (str): folder with all medicine folders to filter
 
     Returns:
         str: @wrong_doctype if it is a scientific discussion file, empty string otherwise
     """
-    return check_pdf_type(file_path, filename, pdf, ['scientific discussion'])
+    return check_pdf_type(file_path, filename, pdf, ['scientific discussion'], directory)
 
 
-def check_pdf_type(file_path: str, filename: str, pdf: fitz.Document, texts: [str]) -> str:
+def check_pdf_type(file_path: str, filename: str, pdf: fitz.Document, texts: [str], directory: str) -> str:
     """
     Check if the file is of the correct type - helper function
 
@@ -349,6 +370,7 @@ def check_pdf_type(file_path: str, filename: str, pdf: fitz.Document, texts: [st
         file_path (str): path to the file
         pdf (fitz.Document): PDF file to check
         texts (list): check if any of these strings is in PDF
+        directory (str): folder with all medicine folders to filter
 
     Returns:
         str: @wrong_doctype if the file has the wrong type, empty string otherwise
@@ -364,10 +386,10 @@ def check_pdf_type(file_path: str, filename: str, pdf: fitz.Document, texts: [st
             return ""
     pdf.close()
     safe_remove(file_path)
-    return error_line(filename, wrong_doctype_str)
+    return error_line(filename, wrong_doctype_str, directory)
 
 
-def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
+def file_type_check(filename: str, file_path: str, pdf: fitz.Document, directory: str) -> str:
     """
     Checks if any PDF file is of the right type
 
@@ -375,20 +397,21 @@ def file_type_check(filename: str, file_path: str, pdf: fitz.Document) -> str:
         filename (str): name of the PDF file
         file_path (str): path of the PDF file
         pdf (fitz.Document): PDF document
+        directory (str): folder with all medicine folders to filter
 
     Returns:
         str: @wrong_doctype if the file has the wrong type, empty string otherwise
     """
     if 'dec' in filename:
-        return check_decision(filename, file_path, pdf)
+        return check_decision(filename, file_path, pdf, directory)
     if 'anx' in filename:
-        return check_annex(filename, file_path, pdf)
+        return check_annex(filename, file_path, pdf, directory)
     if 'procedural-steps-taken-authorisation' in filename:
-        return check_procedural(filename, file_path, pdf)
+        return check_procedural(filename, file_path, pdf, directory)
     if 'public-assessment-report' in filename:
-        return check_epar(filename, file_path, pdf)
+        return check_epar(filename, file_path, pdf, directory)
     if 'scientific-discussion' in filename:
-        return check_scientific(filename, file_path, pdf)
+        return check_scientific(filename, file_path, pdf, directory)
     # TODO: Add OMAR check once available
     else:
         return ''
