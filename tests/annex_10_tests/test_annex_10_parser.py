@@ -4,7 +4,9 @@ import json
 import os
 import pandas as pd
 
-data_loc = "../../test_data"
+data_loc = "../test_data"
+if "annex_10_tests" in os.getcwd():
+    data_loc = "../../test_data"
 annex_10_data = {}
 
 
@@ -44,9 +46,13 @@ class TestAnnex10Parser(TestCase):
         Run annex 10 parser
         """
         annex_10_parser.main(data_loc)
-        file = open("../annex_10_parser.json", "r")
+        parser_json_path = "annex_10_tests/annex_10_parser_test.json"
+        if "annex_10_tests" in os.getcwd():
+            parser_json_path = "annex_10_parser_test.json"
+        file = open(parser_json_path, "r")
         global annex_10_data
         annex_10_data = json.load(file)
+        print(annex_10_data)
 
     def test_percentage(self):
         """
