@@ -8,7 +8,9 @@ import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
 from scraping.file_parser.pdf_parser.parsers import omar_parser
 import xml.etree.ElementTree as ET
 
-test_data_loc = "../../test_data"
+test_data_loc = "../test_data"
+if "pdfscraper_tests" in os.getcwd():
+    test_data_loc = "../../test_data"
 xml_bodies = []
 
 

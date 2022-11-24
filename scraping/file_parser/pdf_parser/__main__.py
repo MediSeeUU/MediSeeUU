@@ -57,7 +57,7 @@ def parse_folder(directory: str, folder_name: str):
         folder_name (st): name of medicine folder to parse
     """
     # Annex 10 folder should be skipped
-    if "annex" in directory:
+    if "annex_10" in directory:
         return
 
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing
