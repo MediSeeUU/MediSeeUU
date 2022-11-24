@@ -43,7 +43,7 @@ class TestDownload(TestCase):
         """
         Args:
             url: The url that needs to be downloaded
-            eu_n: The eu number of the file that needs to be downlaoded
+            eu_n: The eu number of the file that needs to be downloaded
             filename_elements: The filename elements
         """
         target_path = f"{data_path}/{eu_n}"
