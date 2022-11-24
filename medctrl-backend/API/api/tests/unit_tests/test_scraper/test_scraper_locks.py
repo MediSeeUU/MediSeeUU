@@ -18,7 +18,7 @@ from api.models.medicine_models import (
     HistoryEUOrphanCon,
     LegalBases,
 )
-from api.models.other.locks import Locks
+from api.models.other.medicine_locks import Locks
 from api.models.medicine_models.common import (
     AutStatus,
     AutTypes,

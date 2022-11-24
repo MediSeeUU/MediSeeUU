@@ -3,4 +3,4 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 from .saved_selection import SavedSelectionSerializer
-from .locks import LocksSerializer
+from .locks import MedicineLocksSerializer

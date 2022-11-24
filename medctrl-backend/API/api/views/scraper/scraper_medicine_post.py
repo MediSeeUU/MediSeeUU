@@ -23,7 +23,7 @@ from api.models.medicine_models import (
     HistoryEUOrphanCon,
     LegalBases,
 )
-from api.models.other.locks import Locks
+from api.models.other.medicine_locks import MedicineLocks
 from api.serializers.medicine_serializers.scraper import (
     MedicinalProductSerializer,
     MedicineFlexVarUpdateSerializer,
@@ -97,7 +97,7 @@ class ScraperMedicine(APIView):
                     override = medicine.get("override")
 
                     # if variable is locked, delete it from the data
-                    locks = Locks.objects.filter(
+                    locks = MedicineLocks.objects.filter(
                         eu_pnumber=medicine.get("eu_pnumber")
                     ).values_list("column_name", flat=True)
                     medicine = {key: value for key, value in medicine.items() if key not in locks}

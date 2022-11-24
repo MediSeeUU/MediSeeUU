@@ -5,12 +5,12 @@
 # This file contains the serializer for the locks model
 # ------------------------------------------------------
 from rest_framework import serializers
-from api.models.other import Locks
+from api.models.other import MedicineLocks
 
 
-class LocksSerializer(serializers.ModelSerializer):
+class MedicineLocksSerializer(serializers.ModelSerializer):
     """
-    Serializer for the Locks model
+    Serializer for the MedicineLocks model
     """
 
     class Meta:
@@ -18,5 +18,5 @@ class LocksSerializer(serializers.ModelSerializer):
         Meta class, return all fields by default
         """
 
-        model = Locks
+        model = MedicineLocks
         fields = "__all__"

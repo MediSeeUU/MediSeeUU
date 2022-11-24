@@ -2,10 +2,17 @@ from api.models.medicine_models import MedicinalProduct
 from django.db import models
 
 
-class Locks(models.Model):
+class MedicineLocks(models.Model):
     """
-    This is the model class for the Locks table. It is used to store locked attributes for a medicine object.
+    This is the model class for the Medicine Locks table.
+    It is used to store locked attributes for a :py:class:`.MedicinalProduct` object.
     This model is derived from a base model from the Django library.
+
+    Attributes:
+        eu_pnumber (models.ForeignKey):
+            Foreign Key to the :py:class:`.MedicinalProduct` object the lock is for.
+        column_name (models.CharField):
+            CharField containing the name of the column that needs to be locked.
     """
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,
@@ -19,7 +26,7 @@ class Locks(models.Model):
     )
 
     class Meta:
-        db_table = "locks"
+        db_table = "medicine_locks"
         constraints = [
             models.UniqueConstraint(
                 fields=['eu_pnumber', 'column_name'],
