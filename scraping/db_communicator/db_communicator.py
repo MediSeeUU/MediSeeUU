@@ -7,22 +7,26 @@ class DbCommunicator:
     """
     Handles all communication between the database and the modules
     """
-    def __init__(self):
+
+    def __init__(self, start_with_key=True):
         """
         The init of the class which is invoked when a new DBCommunicator is created. It declares global variables
         `api_key` of type string, `last_retrieval` of type datetime and `tries` of type int. Then it sends a get request
         for this key to the token_handler
+
+        Args:
+            start_with_key (bool): Whether to initialize the class with a key or not. Standard value is true
         """
         # Initialize values
         self.api_key = ""
         self.last_retrieval = datetime.datetime(2000, 1, 1, 12, 0, 00, 0)
         self.tries = 0
 
-        # Updates the api_key and the last_retrieval value
-        success = self.request_token()
+        if start_with_key:
+            success = self.request_token()
 
-        if success:
-            print("Terminate the class, not implemented yet")
+            if success:
+                print("Terminate the class, not implemented yet")
 
     def request_token(self) -> bool:
         """
@@ -47,7 +51,7 @@ class DbCommunicator:
             time.sleep(1)
             self.request_token()
         else:
-            print("Could not retrieve token, are the flask server and the backend server running?")
+            print("Could not retrieve token, is the flask server and the backend server running?")
             return False
 
     def send_data(self, data: str) -> str | tuple:
@@ -55,12 +59,15 @@ class DbCommunicator:
         Sends all data received in the argument to the database using a valid api_key
 
         Args:
-            data (dict): The data which is sent to the database
+            data (str): The data which is sent to the database
 
         Returns:
             Response: The response object of the request
         """
         post_url = 'http://localhost:8000/api/scraper/medicine/'
+
+        print(data)
+        print(type(data))
 
         if not self.key_valid():
             print("token not valid")
@@ -75,6 +82,8 @@ class DbCommunicator:
 
         requests.post(url=post_url, headers=api_headers, data=data)
         return "correct", 200
+
+    # def add_override
 
     # Not fully functional
     def key_valid(self) -> bool:
