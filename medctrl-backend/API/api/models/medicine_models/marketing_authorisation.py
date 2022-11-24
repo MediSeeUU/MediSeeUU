@@ -5,6 +5,8 @@ from django.db import models
 from .medicinal_product import MedicinalProduct
 from .accelerated_assessment import AcceleratedAssessment
 from .duration import Duration
+from .history_authorisation_type import HistoryAuthorisationType
+from .history_mah import HistoryMAH
 from .common import create_dashboard_column, Category
 
 
@@ -38,6 +40,12 @@ class MarketingAuthorisation(models.Model):
             Unique Foreign Key to the :py:class:`.Duration` model
         ema_reexamination (models.BooleanField):
             BooleanField indicating if the EMA re-examination has been performed. Shown on the dashboard.
+        eu_aut_type_initial (models.OneToOneField):
+            Unique Foreign Key to the initial item in the :py:class:`.HistoryAuthorisationType` model.
+            Shown on the dashboard.
+        eu_mah_initial (models.OneToOneField):
+            Unique Foreign Key to the initial item in the :py:class:`.HistoryMAH` model.
+            Shown on the dashboard.
     """
     eu_pnumber = models.OneToOneField(
         MedicinalProduct,
@@ -122,12 +130,12 @@ class MarketingAuthorisation(models.Model):
 
     ema_accelerated_assessment = models.OneToOneField(
         AcceleratedAssessment,
-        models.CASCADE,
+        models.PROTECT,
     )
 
     duration = models.OneToOneField(
         Duration,
-        models.CASCADE,
+        models.PROTECT,
     )
 
     ema_reexamination = create_dashboard_column(
@@ -137,6 +145,18 @@ class MarketingAuthorisation(models.Model):
         Category.General_Information,
         "bool",
         "EMA re-examination performed",
+    )
+
+    eu_aut_type_initial = models.OneToOneField(
+        HistoryAuthorisationType,
+        models.SET_NULL,
+        null=True,
+    )
+
+    eu_mah_initial = models.OneToOneField(
+        HistoryMAH,
+        models.SET_NULL,
+        null=True,
     )
 
     class Meta:

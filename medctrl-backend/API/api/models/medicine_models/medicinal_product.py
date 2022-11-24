@@ -28,8 +28,13 @@ class MedicinalProduct(models.Model):
             BooleanField containing the EMA Number Check. Not shown on the dashboard.
         ingredients_and_substances (models.ForeignKey):
             ForeignKey to the :py:class:`.IngredientsAndSubstances` model
-
-    """    
+        eu_brand_name_initial (models.OneToOneField):
+            Unique Foreign Key to the initial item in the :py:class:`.HistoryBrandName` model. Shown on the dashboard.
+        eu_od_initial (models.OneToOneField):
+            Unique Foreign Key to the initial item in the :py:class:`.HistoryOD` model. Shown on the dashboard.
+        eu_prime_initial (models.OneToOneField):
+            Unique Foreign Key to the initial item in the :py:class:`.HistoryPrime` model. Shown on the dashboard.
+    """
     eu_pnumber = create_dashboard_column(
         models.CharField(
             max_length=255,
@@ -87,7 +92,25 @@ class MedicinalProduct(models.Model):
 
     ingredients_and_substances = models.ForeignKey(
         IngredientsAndSubstances,
-        models.CASCADE,
+        models.PROTECT,
+    )
+
+    eu_brand_name_initial = models.OneToOneField(
+        "HistoryBrandName",
+        models.SET_NULL,
+        null=True,
+    )
+
+    eu_od_initial = models.OneToOneField(
+        "HistoryOD",
+        models.SET_NULL,
+        null=True,
+    )
+
+    eu_prime_initial = models.OneToOneField(
+        "HistoryPrime",
+        models.SET_NULL,
+        null=True,
     )
 
     class Meta:
