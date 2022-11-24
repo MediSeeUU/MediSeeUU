@@ -81,5 +81,6 @@ class TestAnnex10Parser(TestCase):
         for annex_10_file in annex_10_data:
             found_attributes = annex_10_file['active_clock_elapseds']
             for med in found_attributes:
+                # Check if active time elapsed and clock stop elapsed are integers for all medicines and all annex files
                 self.assertTrue(type(med['active_time_elapsed']) == int)
                 self.assertTrue(type(med['clock_stop_elapsed']) == int)
