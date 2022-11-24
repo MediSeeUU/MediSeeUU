@@ -45,14 +45,17 @@ class TestAnnex10Parser(TestCase):
         global annex_10_data
         annex_10_data = json.load(file)
 
-    def test_annex_10(self):
+    def test_percentage(self):
         """
         Checks whether more than a certain percentage of attributes can be found
         """
+        # Loop through all annex files and corresponding years
         for annex_10_file, year in zip(annex_10_data, [2015, 2016, 2017, 2018, 2019, 2020, 2021]):
+            # Get number of medicines of current annex 10 file
             found_attributes = len(annex_10_file['active_clock_elapseds'])
-            annex_path = "../../data/annex_10"
+            annex_path = f"{data_loc}/annex_10"
             filepath = ""
+            # Get filepath of current annex 10 file (dictated by loop)
             for filename in os.listdir(annex_path):
                 if str(year) in filename:
                     filepath = os.path.join(annex_path, filename)
@@ -71,3 +74,10 @@ class TestAnnex10Parser(TestCase):
             found_percentage = found_attributes/total_attributes * 100
             print(str(round(found_percentage, 2)) + '%')
             self.assertGreater(found_percentage, 79)
+
+    def test_integer_results(self):
+        for annex_10_file in annex_10_data:
+            found_attributes = annex_10_file['active_clock_elapseds']
+            for med in found_attributes:
+                self.assertTrue(type(med['active_time_elapsed']) == int)
+                self.assertTrue(type(med['clock_stop_elapsed']) == int)
