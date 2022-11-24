@@ -14,7 +14,7 @@ from api.models.medicine_models import (
 )
 
 
-class MedicineSerializer(serializers.ModelSerializer):
+class MedicinalProductSerializer(serializers.ModelSerializer):
     """
     Medicine table serializer for the scraper endpoints
     """

@@ -25,7 +25,7 @@ from api.models.medicine_models import (
 )
 from api.models.other.locks import Locks
 from api.serializers.medicine_serializers.scraper import (
-    MedicineSerializer,
+    MedicinalProductSerializer,
     MedicineFlexVarUpdateSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
@@ -150,7 +150,7 @@ class ScraperMedicine(APIView):
             ValueError: Invalid data in data argument
         """
         # initialise serializers for addition
-        serializer = MedicineSerializer(current_medicine, data=data, partial=True)
+        serializer = MedicinalProductSerializer(current_medicine, data=data, partial=True)
 
         # add medicine and authorisation
         if serializer.is_valid():
