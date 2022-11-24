@@ -104,7 +104,7 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
     clock_stop_elapseds = (excel_data["Clock Stop Elapsed"].tolist())
 
     # Load all medicine data from all_json_results.json, created by json_compiler
-    scraping_dir = data_dir.split('data')[0].strip('/') + "/scraping"
+    scraping_dir = data_dir.split('data')[0].strip('/').strip("test_/") + "/scraping"
     all_json_results = open(path.join(scraping_dir, "all_json_results.json"), "r", encoding="utf-8")
     all_data = json.load(all_json_results)
     all_json_results.close()

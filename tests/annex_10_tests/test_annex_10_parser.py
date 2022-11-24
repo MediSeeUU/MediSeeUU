@@ -44,7 +44,7 @@ class TestAnnex10Parser(TestCase):
         Run annex 10 parser
         """
         annex_10_parser.main(data_loc)
-        file = open("annex_10_parser.json", "r")
+        file = open("../annex_10_parser.json", "r")
         global annex_10_data
         annex_10_data = json.load(file)
 
