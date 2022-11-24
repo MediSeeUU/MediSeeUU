@@ -24,4 +24,4 @@ def cc_equal(v1: any, v2: any) -> bool:
 
     Returns (bool): result of check
     """
-    return v1 != None and v1 == v2
+    return v1 is not None and v1 == v2
