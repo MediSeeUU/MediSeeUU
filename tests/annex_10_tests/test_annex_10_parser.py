@@ -60,10 +60,12 @@ class TestAnnex10Parser(TestCase):
                 if str(year) in filename:
                     filepath = os.path.join(annex_path, filename)
             try:
+                # Load Excel file
                 excel_data = pd.read_excel(filepath)
             except FileNotFoundError:
                 log.warning("ANNEX 10 PARSER: File not found - " + filepath)
                 return annex10s
+            # Clean the data
             excel_data = clean_df(excel_data)
             excel_data = excel_data[~excel_data["Active Time Elapsed"].isnull()]
             # Get all relevant data from columns
