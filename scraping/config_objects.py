@@ -1,5 +1,10 @@
-web_default_path_logging = "./logs"
-web_default_path_data = "./data"
+import logging
+
+
+default_path_logging: str = "./logs"
+default_path_data: str = "./data"
+
+logging_level: int = logging.INFO
 
 
 class WebConfig:
@@ -16,8 +21,8 @@ class WebConfig:
     medicine_list: (list[(str, str, int, str)] | None) = None
 
     # Paths
-    path_logging = web_default_path_logging
-    path_data = web_default_path_data
+    path_logging = default_path_logging
+    path_data = default_path_data
 
     def __init__(self):
         """
@@ -25,8 +30,8 @@ class WebConfig:
         This method is here because adjusting the values of `web_default_path_...`
         does not adjust the values in the class
         """
-        self.path_logging = web_default_path_logging
-        self.path_data = web_default_path_data
+        self.path_logging = default_path_logging
+        self.path_data = default_path_data
 
     def run_all(self):
         """
@@ -99,4 +104,3 @@ class WebConfig:
         """
         self.medicine_list = medicine_list
         return self
-

@@ -32,8 +32,8 @@ class TestWebScraper(TestCase):
         os.mkdir(data_path)
         Path("JSON").mkdir(parents=True, exist_ok=True)
 
-        config.web_default_path_data = data_path
-        config.web_default_path_logging = "../../logs"
+        config.default_path_data = data_path
+        config.default_path_logging = "../../logs"
 
     @parameterized.expand([[True, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
                                     'EU-1-04-273', 0, 'h273')]],
