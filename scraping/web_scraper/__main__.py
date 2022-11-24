@@ -34,7 +34,6 @@ if "web_scraper" in os.getcwd():
 url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
 url_refused_file = json_helper.JsonHelper(path=f"{json_path}JSON/refused_urls.json")
 
-scrape_annex10: bool = False
 # File where Annex 10 data are stored
 annex10_file = json_helper.JsonHelper(path=f"{json_path}JSON/annex10.json")
 
@@ -270,7 +269,7 @@ def main(data_filepath: str = "../data",
 
     log.info("TASK SUCCESS on Generating directories")
 
-    if scrape_annex10:
+    if download_annex10_files:
         log.info("TASK START scraping all annex10 files on the EMA website")
 
         get_excel_ema("https://www.ema.europa.eu/en/about-us/annual-reports-work-programmes")
