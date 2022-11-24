@@ -7,12 +7,11 @@ import sys
 from distutils.dir_util import copy_tree
 import shutil
 
-test_data_loc = "../../test_data_filter"
-test_data_filter_loc = "../../test_data_filter_temp"
-
-data_dir = "../test_data"
-if "pdfscraper_tests" in os.getcwd():
-    data_dir = "../../test_data"
+test_data_loc = "../test_data_filter"
+test_data_filter_loc = "../test_data_filter_temp"
+if "filter_tests" in os.getcwd():
+    test_data_loc = "../../test_data_filter"
+    test_data_filter_loc = "../../test_data_filter_temp"
 
 
 def get_removed_files() -> set[str]:
