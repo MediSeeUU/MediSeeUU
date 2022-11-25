@@ -158,6 +158,16 @@ def section_contains_header_substring_set(substring_set: list[str], section: ET.
 
 
 def section_contains_header_substring_set_all(substring_set: list[str], section: ET.Element) -> bool:
+    """_summary_
+    Returns whether a xml section header contains all of the substrings within substring_set.
+
+    Args:
+        header_number (str): String value of a header number in the form of x.y.z with no dot at the end.
+        header (xml.etree.ElementTree.Element): A xml Element of the <header>...</header> node within a section.
+
+    Returns:
+        bool: bool indicating whether the section contains all of the substrings in substring_set.
+    """    
     head = section.findall(tags.header)[0]
     substring_in_header = [substring in head.text.lower() for substring in substring_set]
 
@@ -226,6 +236,15 @@ def section_contains_paragraph_substring_set(substring_set: list[str], section: 
 
 
 def section_is_table_of_contents(section: ET.Element) -> bool:
+    """
+    Returns whether a section is part of the table of contents.
+
+    Args:
+        section (ET.Element): A xml Element of the <section>...</section> node.
+
+    Returns:
+        bool: Returns whether a section is part of the table of contents.
+    """
     return section.findall(tags.header)[0].text.count('.') >= 3
 
 
@@ -290,3 +309,43 @@ def section_get_paragraph_text(index: int, section: ET.Element) -> str:
     """
 
     return section.findall(tags.paragraph)[index].text
+
+
+def get_section_header(section: ET.Element) -> str:
+    """
+    This function gets the <header>...</header> text from a section.
+
+    Args:
+        section (ET.Element): A xml Element of the <section>...</section> node.
+
+    Returns:
+        str: Returns the text of the <header>...</header> text from a section.
+    """    
+    return section.findall(tags.header)[0].text
+
+
+def get_body_section_by_index(index: int, xml_body: ET.Element) -> ET.Element:
+    """
+    This function returns a section based on index (0-based index).
+
+    Args:
+        section (ET.Element): A xml Element of the <section>...</section> node.
+
+    Returns:
+        ET.Element: Returns a section based on index.
+    """    
+    return xml_body.findall(tags.section)[index]
+
+
+def get_body_section_count(xml_body: ET.Element) -> int:
+    """
+    This function returns the total amount of sections.
+
+    Args:
+        section (ET.Element): A xml Element of the <section>...</section> node.
+
+    Returns:
+        int: Returns the count of all the sections.
+    """    
+    return len(xml_body.findall(tags.section))
+

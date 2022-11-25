@@ -3,9 +3,12 @@ import re
 import xml.etree.ElementTree as ET
 import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
+import scraping.file_parser.pdf_parser.helper as helper
+import scraping.definitions.value as values
+import scraping.definitions.attributes as attr
 import scraping.logger as logger
 import os
-import logging
+import datetime
 
 log = logger.PDFLogger.log
 
@@ -39,45 +42,142 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     xml_header = xml_root[0]
     xml_body = xml_root[1]
 
+    pdf_file = xml_utils.file_get_name_pdf(xml_header)
+    xml_file = os.path.basename(filepath)
     creation_date = xml_utils.file_get_creation_date(xml_header)
     modification_date = xml_utils.file_get_modification_date(xml_header)
+    report_date = get_report_date(xml_body, pdf_file)
 
-    # create annex attribute dictionary with default values
+    # Create the initial dictionary without the attributes per condition
     omar_attributes = {
-        "pdf_file": xml_utils.file_get_name_pdf(xml_header),
-        "xml_file": os.path.basename(filepath),
+        "pdf_file": pdf_file,
+        "xml_file": xml_file,
         "creation_date": creation_date,
         "modification_date": modification_date,
+        "report_date": report_date,
         "conditions": []
     }
 
-    # loop through sections and parse section if conditions met
+    # When a comp header has been found, sections split on eu number should be found instead.
+    has_comp = False
+    # When a final comp has been found, no other comps should be parsed.
+    has_final = False
+
+    # Loop through all the sections of the xml body to parse all the attributes
     for section in xml_body:
-        # scrape attributes specific to authorization annexes
 
-        # Detect a condition
-        if xml_utils.section_contains_header_substring_set_all(["comp", "adopted", "on"], section) \
-                and not xml_utils.section_is_table_of_contents(section):
+        # Detecting a final position in the table of contents means the other comp positions should be skipped.
+        if xml_utils.section_contains_header_substring_set_all(["comp", "adopted", "on", "final"], section) \
+                and xml_utils.section_is_table_of_contents(section):
+            has_final = True
+            log.info("OMAR PARSER: A COMP final position document has been found: " + pdf_file)
 
-            section_string = xml_utils.section_append_paragraphs(section)
-            bullet_points = section_string.split("•")
-
-            alternative_treatments = get_alternative_treatments(bullet_points)
-            omar_condition_dict = {
-                "prevalence": get_prevalence(bullet_points),
-                "insufficient_roi": get_insufficient_roi(bullet_points),
-                "alternative_treatments": alternative_treatments,
-                "significant_benefit": get_significant_benefit(bullet_points, alternative_treatments, filepath)
+            final_attributes = {
+                "eu_od_number": values.not_found,
+                "ema_prevalence": values.not_found,
+                "ema_alternative_treatments": values.not_found,
+                "ema_significant_benefit": values.not_found
             }
 
-            omar_attributes["conditions"].append(omar_condition_dict)
+            omar_attributes["conditions"].append(final_attributes)
+
+        # Find comp position sections and scrap attributes from it.
+        if xml_utils.section_contains_header_substring_set_all(["comp", "adopted", "on"], section) \
+                and not xml_utils.section_is_table_of_contents(section) \
+                and not has_final:
+
+            has_comp = True
+
+            attributes = get_attributes(section, False)
+
+            if attributes:
+                omar_attributes["conditions"].append(attributes)
+
+        # Occasionally a file appears that has a different structure, this is used to handle one of those.
+        if xml_utils.section_contains_header_substring_set(["eu/"], section) \
+                and not xml_utils.section_is_table_of_contents(section) \
+                and has_comp:
+
+            attributes = get_attributes(section, has_comp)
+
+            if attributes:
+                omar_attributes["conditions"].append(attributes)
 
     medicine_struct.omars.append(omar_attributes)
 
+    # When no conditions have been found it will be logged.
     if len(omar_attributes["conditions"]) == 0:
-        log.warning("OMAR PARSER: failed to parse condition from " + omar_attributes["pdf_file"])
+        log.warning("OMAR PARSER: failed to parse condition from " + pdf_file)
 
     return medicine_struct
+
+
+def get_report_date(xml_body: ET.Element, pdf_file: str) -> datetime.datetime:
+    section = xml_utils.get_body_section_by_index(0, xml_body)
+    header = xml_utils.get_section_header(section)
+
+    date_string = re.findall(r"(\d{1,2}\s[a-z]+\s\d{4})", header)
+
+    if len(date_string) > 0:
+        return helper.get_date(date_string[0])
+    else:
+        log.warning("OMAR PARSER: failed to parse report date from " + pdf_file)
+        return helper.get_date('')
+
+
+def get_attributes(section: ET.Element, eu_od_flag: bool) -> dict[str, str]:
+    """
+    This function returns the dictionary with all the parsed attributes in it.
+
+    Args:
+        section (ET.Element): Section (ET.Element): This is the section obtained with the xml converter.
+        eu_od_flag (bool): This boolean represents the presence of a comp section.
+
+    Returns:
+        dict[str, str]: Return a dictionary with the parsed attributes.
+    """
+    section_string = xml_utils.section_append_paragraphs(section)
+
+    if not section_string:
+        return {}
+
+    bullet_points = section_string.split("•")
+
+    alternative_treatments = get_alternative_treatments(bullet_points)
+    omar_attributes = {
+        "eu_od_number": get_eu_od_number(section, eu_od_flag),
+        "ema_prevalence": get_prevalence(bullet_points),
+        "ema_alternative_treatments": alternative_treatments,
+        "ema_significant_benefit": get_significant_benefit(bullet_points, alternative_treatments)
+    }
+
+    return omar_attributes
+
+
+def get_eu_od_number(section: ET.Element, eu_od_flag: bool) -> str:
+    """
+    This function finds the orphan designation number that belongs to a condition.
+
+    Args:
+        section (ET.Element): This is the section obtained with the xml converter.
+        eu_od_flag (bool): This boolean represents the presence of a comp section.
+
+    Returns:
+        str: Returns an eu orphan designation number.
+    """
+    header = xml_utils.get_section_header(section)
+
+    if eu_od_flag:
+        return header
+
+    section_string = xml_utils.section_append_paragraphs(section)
+
+    eu_od_number = re.findall(r"eu/\d+/\d+/\d+", section_string)
+
+    if len(eu_od_number) > 0:
+        return eu_od_number[0]
+    else:
+        return values.not_found
 
 
 def get_prevalence(bullet_points: list[str]) -> str:
@@ -96,12 +196,7 @@ def get_prevalence(bullet_points: list[str]) -> str:
             clean = re.sub(r'\s+', ' ', b).lstrip(" ")
             return clean
 
-    return "NA"
-
-
-# No OMARs have been found containing this piece of information, so far.
-def get_insufficient_roi(bullet_points: list[str]) -> str:
-    return "NA"
+    return values.not_found
 
 
 def get_alternative_treatments(bullet_points: list[str]) -> str:
@@ -118,7 +213,7 @@ def get_alternative_treatments(bullet_points: list[str]) -> str:
     for b in bullet_points:
         b = re.sub(r'\s+', ' ', b).lstrip(" ")
 
-        if ("no satisfactory method" in b) or ("no satisfactory treatment" in b):      
+        if ("no satisfactory method" in b) or ("no satisfactory treatment" in b):
             return "No Satisfactory Method"
         if "significant benefit" in b:
             if "does not hold" in b:
@@ -126,53 +221,54 @@ def get_alternative_treatments(bullet_points: list[str]) -> str:
             else:
                 return "Significant Benefit"
 
-    return "NA"
+    return values.not_found
 
 
-def get_significant_benefit(bullet_points: list[str], alternative_treatment: str, filepath: str) -> str:
+def get_significant_benefit(bullet_points: list[str], alternative_treatment: str) -> str:
     """
-    This function parses out the significant benefit of the OMAR, 
-    the result is influenced by the result of a previous attribute.
+    This function finds the piece of text that supports the reason for the orphan medicine to be 
+    of significant benefit.
 
     Args:
         bullet_points (list[str]): These are all the bullet points from the appropriate section.
         alternative_treatment (str): The result of the get_alternative_treatment function
-        filepath (str): Filepath of OMAR file
 
     Returns:
         str: Returns the appropriate string, depending on what was found in the file.
     """
-    contains = False    
-    result = ""
+    # The sentence required for this will be found based on this matching key.
+    # Adding the start of the sentence to this list will allow the function to find the sentence. 
+    matching_key = [
+        "the sponsor",
+        "this is based on",
+        "it was demonstrated",
+        "based on",
+        "a post-hoc",
+        "significant benefit",
+        "when the product"
+    ]
 
+    if alternative_treatment == "No Significant Benefit":
+        return "No Significant Benefit"
+
+    # Loop through all the bullet points and if a paragraph contains certain words, it will
+    # look for a sentence that explains it.
     for b in bullet_points:
         b = re.sub(r'\s+', ' ', b).lstrip(" ")
 
-        if "clinically relevant advantage" in b:
-            if "could not establish" in b:
-                contains = False
-            else:
-                contains = True
-                result += "Clinically Relevant Advantage"
-        
-        if "significant clinical efficacy" in b:
-            contains = True
-            result += "Significant Clinical Efficacy"
+        if ("no satisfactory method" in b) or \
+                ("no satisfactory treatment" in b) or \
+                ("significant benefit" in b):
 
-        if "major contribution" in b:
-            if "insufficient and inconclusive data" in b:
-                contains = False
-            else:
-                contains = True
-                if result == "":
-                    result += "Major Contribution"
-                else:
-                    result += " + Major Contribution"
+            key_suffixed = [s + ".*?\." for s in matching_key]
 
-    if not contains and alternative_treatment == "Significant Benefit":
-        log.warning("OMAR PARSER: Alternative treatment = Significant benefit requires result for " + filepath)
+            joined_regex = "|".join(key_suffixed)
 
-    if contains:
-        return result
-    else:
-        return "NA"
+            pattern = r"(?<=\. )(" + joined_regex + r")"
+
+            result = re.findall(pattern, b)
+
+            if len(result) > 0:
+                return result[0]
+
+    return values.not_found
