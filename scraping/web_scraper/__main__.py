@@ -31,7 +31,6 @@ if "tests" in os.getcwd():
 if "web_scraper" in os.getcwd():
     json_path = ""
 
-
 # Files where the urls for normal and refused files are stored
 url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
 url_refused_file = json_helper.JsonHelper(path=f"{json_path}JSON/refused_urls.json")
@@ -244,7 +243,7 @@ def get_excel_ema(url: str):
 def main(data_filepath: str = "../data",
          scrape_ec: bool = True, scrape_ema: bool = True, download_files: bool = True,
          download_refused_files: bool = True, download_annex10_files: bool = True, run_filter: bool = True,
-         use_parallelization: bool = True,  medicine_list: (list[(str, str, int, str)]) | None = None):
+         use_parallelization: bool = True, medicine_list: (list[(str, str, int, str)]) | None = None):
     """
     Main function that controls which scrapers are activated, and if it runs parallel or not.
 
@@ -300,6 +299,10 @@ def main(data_filepath: str = "../data",
             else:
                 for (medicine_url, eu_n, medicine_type, _) in tqdm.tqdm(medicine_list):
                     get_urls_ec(medicine_url, eu_n, medicine_type, data_filepath)
+
+        # Set empty EMA values for refused_file
+        for eu_n in url_refused_file.local_dict:
+            init_ema_dict(eu_n)
 
         url_file.save_dict()
         url_refused_file.save_dict()
@@ -388,5 +391,4 @@ def init_ema_dict(eu_n):
 if __name__ == "__main__":
     import scraping.log_setup
     scraping.log_setup.init_loggers()
-
     main(data_filepath="../../data")
