@@ -21,7 +21,6 @@ med_type_dict = {"ha": ec_scraper.MedicineType.HUMAN_USE_ACTIVE,
 
 log = logging.getLogger("web_scraper.filter_retry")
 
-
 def run_filter(n: int, data_filepath: str):
     """
     calls filter and runs retry function
@@ -86,8 +85,7 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
     if os.path.exists(filedates_path):
         with open(filedates_path, 'r') as f:
             filedate_dict = json.load(f)
-    download.download_pdf_from_url(url, eu_n, filename_elements, target_path, data_filepath, filedate_dict,
-                                   overwrite=True)
+    download.download_pdf_from_url(url, eu_n, filename_elements, target_path, filedate_dict, overwrite=True)
 
 
 # used for testing
