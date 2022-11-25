@@ -10,6 +10,11 @@ from .history_serializers import (
 from .medicine_flex_var_update import MedicineFlexVarUpdateSerializer
 from .medicine import (
     MedicinalProductSerializer,
+    MarketingAuthorisationSerializer,
+    AcceleratedAssessmentSerializer,
+    DurationSerializer,
+    OrphanProductSerializer,
+    ProceduresSerializer,
     LegalBasesSerializer,
 )
 from .urls import UrlsSerializer

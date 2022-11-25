@@ -88,26 +88,29 @@ class ScraperMedicine(APIView):
                 # atomic transaction so if there is any error all changes are rolled back
                 # Django will automatically roll back if any exception occurs
                 with transaction.atomic():
-                    # check if medicine already exists based on eu_pnumber
-                    current_medicine = MedicinalProduct.objects.filter(
-                        eu_pnumber=medicine.get("eu_pnumber")
-                    ).first()
-                    # if the medicine doesn't exist or the medicine should be overriden, call add_medicine,
-                    # otherwise update the flexible variables and the null values
-                    override = medicine.get("override")
-
-                    # if variable is locked, delete it from the data
-                    locks = MedicineLocks.objects.filter(
-                        eu_pnumber=medicine.get("eu_pnumber")
-                    ).values_list("column_name", flat=True)
-                    medicine = {key: value for key, value in medicine.items() if key not in locks}
-                    if current_medicine is None or override:
-                        self.add_or_override_medicine(medicine, current_medicine)
+                    if medicine.get("orphan"):
+                        pass
                     else:
-                        self.update_flex_medicine(medicine, current_medicine)
-                        self.update_null_values(medicine, current_medicine)
-                    self.history_variables(medicine)
-                    self.list_variables(medicine)
+                        # check if medicine already exists based on eu_pnumber
+                        current_medicine = MedicinalProduct.objects.filter(
+                            eu_pnumber=medicine.get("eu_pnumber")
+                        ).first()
+                        # if the medicine doesn't exist or the medicine should be overriden, call add_medicine,
+                        # otherwise update the flexible variables and the null values
+                        override = medicine.get("override")
+
+                        # if variable is locked, delete it from the data
+                        locks = MedicineLocks.objects.filter(
+                            eu_pnumber=medicine.get("eu_pnumber")
+                        ).values_list("column_name", flat=True)
+                        medicine = {key: value for key, value in medicine.items() if key not in locks}
+                        if current_medicine is None or override:
+                            self.add_or_override_medicine(medicine, current_medicine)
+                        else:
+                            self.update_flex_medicine(medicine, current_medicine)
+                            self.update_null_values_medicine(medicine, current_medicine)
+                        self.medicine_history_variables(medicine)
+                        self.medicine_list_variables(medicine)
             except Exception as e:
                 medicine["errors"] = str(e)
                 failed_medicines.append(medicine)
@@ -158,7 +161,7 @@ class ScraperMedicine(APIView):
         else:
             raise ValueError(serializer.errors)
 
-    def update_null_values(self, data, current_medicine):
+    def update_null_values_medicine(self, data, current_medicine):
         """
         Updates all null values for an existing medicine using the data given in its
         argument "data".
@@ -179,7 +182,7 @@ class ScraperMedicine(APIView):
         if len(new_data.keys()) > 1:
             self.add_or_override_medicine(new_data, current_medicine)
 
-    def list_variables(self, data):
+    def medicine_list_variables(self, data):
         """
         Creates new list variables for the history models using the data given in its
         argument "data". It expects the input data for the list variable to be formed like this:
@@ -188,7 +191,7 @@ class ScraperMedicine(APIView):
         Args:
             data (medicineObject): The new medicine data.
         """
-        self.add_list(
+        self.add_medicine_list(
             LegalBases,
             LegalBasesSerializer,
             "eu_legal_basis",
@@ -197,7 +200,7 @@ class ScraperMedicine(APIView):
         )
 
     @staticmethod
-    def add_list(model, serializer, name, data, replace):
+    def add_medicine_list(model, serializer, name, data, replace):
         """
         Add a new object to the given list model.
 
@@ -228,58 +231,67 @@ class ScraperMedicine(APIView):
                 else:
                     raise ValueError(f"{name} contains invalid data! {serializer.errors}")
 
-    def history_variables(self, data):
+    def medicine_history_variables(self, data):
         """
-        Creates new history variables for the history models using the data given in its
+        Creates new history variables for the medicinal product history models using the data given in its
         argument "data". It expects the input data for the history variable to be formed like this:
         ``name: [{name: value, change_date: date}, ...]``
 
         Args:
             data (medicineObject): The new medicine data.
         """
-        self.add_history(
+        self.add_medicine_history(
             HistoryAuthorisationType,
             AuthorisationTypeSerializer,
             "eu_aut_type",
             data,
         )
 
-        self.add_history(
+        self.add_medicine_history(
             HistoryAuthorisationStatus,
             AuthorisationStatusSerializer,
             "eu_aut_status",
             data,
         )
 
-        self.add_history(
+        self.add_medicine_history(
             HistoryBrandName,
             BrandNameSerializer,
             "eu_brand_name",
             data,
         )
 
-        self.add_history(
+        self.add_medicine_history(
             HistoryOD,
             OrphanDesignationSerializer,
             "eu_od",
             data,
         )
 
-        self.add_history(
+        self.add_medicine_history(
             HistoryPrime,
             PrimeSerializer,
             "eu_prime",
             data,
         )
 
-        self.add_history(
+        self.add_medicine_history(
             HistoryMAH,
             MAHSerializer,
             "eu_mah",
             data,
         )
 
-        self.add_history(
+    def orphan_history_variables(self, data):
+        """
+        Creates new history variables for the orphan product history models using the data given in its
+        argument "data". It expects the input data for the history variable to be formed like this:
+        ``name: [{name: value, change_date: date}, ...]``
+
+        Args:
+            data (medicineObject): The new medicine data.
+        """
+        self.add_orphan_history(
             HistoryEUOrphanCon,
             EUOrphanConSerializer,
             "eu_orphan_con",
@@ -287,7 +299,7 @@ class ScraperMedicine(APIView):
         )
 
     @staticmethod
-    def add_history(model, serializer, name, data):
+    def add_medicine_history(model, serializer, name, data):
         """
         Add a new object to the given history model.
 
@@ -310,6 +322,40 @@ class ScraperMedicine(APIView):
                 if not model_data or item.get(name) != getattr(model_data, name):
                     serializer = serializer(
                         None, {name: item.get(name), "change_date": item.get("change_date"), "eu_pnumber": eu_pnumber}
+                    )
+                    if serializer.is_valid():
+                        serializer.save()
+                    else:
+                        raise ValueError(f"{name} contains invalid data! {serializer.errors}")
+
+    @staticmethod
+    def add_orphan_history(model, serializer, name, data):
+        """
+        Add a new object to the given history model.
+
+        Args:
+            model (medicine_model): The history model of the history object you want to add.
+            serializer (medicine_serializer): The applicable serializer.
+            name (string): The name of the attribute.
+            data (medicineObject): The new medicine data.
+
+        Raises:
+            ValueError: Invalid data in data argument
+            ValueError: Data does not exist in the given data argument
+        """
+        eu_od_number = data.get("eu_od_number")
+        items = data.get(name)
+        model_data = model.objects.filter(eu_od_number=eu_od_number).order_by("change_date").first()
+
+        if items is not None and len(items) > 0:
+            for item in items:
+                if not model_data or item.get(name) != getattr(model_data, name):
+                    serializer = serializer(
+                        None, {
+                            name: item.get(name),
+                            "change_date": item.get("change_date"),
+                            "eu_od_number": eu_od_number
+                        }
                     )
                     if serializer.is_valid():
                         serializer.save()
