@@ -69,7 +69,7 @@ class TestEcScraper(unittest.TestCase):
             eu_num_short,
             exp_atc_code,
             exp_active_substance,
-            exp_eu_pnumber,
+            exp_eu_number,
             exp_eu_aut_status,
             exp_eu_brand_name_current,
             exp_eu_mah_current,
@@ -83,7 +83,7 @@ class TestEcScraper(unittest.TestCase):
             eu_num_short (str): The short identifier for a medicine.
             exp_atc_code (str): The expected ATC code for the medicine.
             exp_active_substance (str):  The expected active substance for the medicine.
-            exp_eu_pnumber (str): The expected EU product number for the medicine.
+            exp_eu_number (str): The expected EU product number for the medicine.
             exp_eu_aut_status (str): The expected authorization status for the medicine.
             exp_eu_brand_name_current (str): The expected brand name for the medicine.
             exp_eu_mah_current (str): The expected marketing authorization holder for the medicine.
@@ -102,10 +102,10 @@ class TestEcScraper(unittest.TestCase):
         self.assertEqual(medicine_dict["active_substance"], exp_active_substance, msg="active substances are not equal")
         # check orphan specific attributes for orphan medicines, and human specific attributes for human medicines
         if "o" in eu_num_short:
-            self.assertEqual(medicine_dict["eu_od_pnumber"], exp_eu_pnumber, msg="product numbers are not equal")
+            self.assertEqual(medicine_dict["eu_od_number"], exp_eu_number, msg="product numbers are not equal")
             self.assertEqual(medicine_dict["sponsor"], exp_eu_mah_current, msg="current mahs are not equal")
         else:
-            self.assertEqual(medicine_dict["eu_pnumber"], exp_eu_pnumber, msg="product numbers are not equal")
+            self.assertEqual(medicine_dict["eu_pnumber"], exp_eu_number, msg="product numbers are not equal")
             self.assertEqual(medicine_dict["eu_mah_current"], exp_eu_mah_current, msg="current mahs are not equal")
         self.assertEqual(medicine_dict["eu_aut_status"], exp_eu_aut_status, msg="authorization statuses are not equal")
         self.assertEqual(medicine_dict["eu_brand_name_current"], exp_eu_brand_name_current, msg="current brand names "
