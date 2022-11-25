@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 import logging
 from pathlib import Path
 
@@ -44,15 +44,24 @@ def save_new_eu_numbers(data_path: str):
     """
     # Get all logging lines as list after latest "NEW LOG"
     parent_path = "/".join((data_path.split("/")[:-1])) + "/"
-    if os.path.exists(f'{parent_path}scraping/logging_web_scraper.log'):
-        with open(f'{parent_path}scraping/logging_web_scraper.log', 'r') as log_file:
+    if os.path.exists(f"{parent_path}scraping/logging_web_scraper.log"):
+        with open(f"{parent_path}scraping/logging_web_scraper.log", 'r') as log_file:
             full_log = log_file.read().split("=== NEW LOG ")[-1].split("\n")
         # Only get "New medicine: " lines
         filtered = filter(lambda line: "New medicine: " in line, full_log)
 
         # Get and write new EU numbers
         eu_numbers = list(map(lambda line: line.split(" ")[2], list(filtered)))
-        with open(f'{data_path}/eu_numbers.json', 'w') as outfile:
+        eu_numbers_path = ""
+        eu_numbers_base_path = f"{data_path}/{date.today()}_eu_numbers"
+
+        file_exists = True
+        i = 0
+        while file_exists:
+            eu_numbers_path = eu_numbers_base_path + f"_{i}.json"
+            i += 1
+            file_exists = os.path.exists(eu_numbers_path)
+        with open(eu_numbers_path, 'w') as outfile:
             json.dump(eu_numbers, outfile)
 
 

@@ -4,6 +4,7 @@ import shutil
 import json
 from pathlib import Path
 from unittest import TestCase
+from datetime import date
 from scraping.web_scraper import __main__ as web
 import scraping.log_setup as log_setup
 from parameterized import parameterized
@@ -27,7 +28,17 @@ def check_new_eu_numbers(self):
     Check whether EU numbers in eu_number.json are equal to the eu_numbers of the medicines being downloaded.
     This should be the case, as all medicines are new, since they are downloaded for the first time in each test run.
     """
-    with open(f"{data_path}/eu_numbers.json") as f:
+    eu_numbers_path = ""
+    eu_numbers_base_path = f"{data_path}/{date.today()}_eu_numbers"
+
+    file_exists = True
+    i = 0
+    while file_exists:
+        eu_numbers_path = eu_numbers_base_path + f"_{i}.json"
+        i += 1
+        file_exists = os.path.exists(eu_numbers_base_path + f"_{i}.json")
+
+    with open(eu_numbers_path) as f:
         eu_numbers = set(json.load(f))
 
     self.assertEqual(self.eu_numbers, eu_numbers)
