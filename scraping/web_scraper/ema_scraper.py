@@ -40,25 +40,11 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
     # Get parent thrice to find the tag that the PDFs are located in.
     # Parent of the found object is considered <span>
 
-    complete_soup = soup.find(string="Initial marketing-authorisation documents")
+    complete_soup_init = soup.find(string="Initial marketing-authorisation documents")
+    complete_soup_hist = soup.find(string="Initial marketing-authorisation documents")
 
-    if complete_soup is None:
-        log.warning(f"{medicine_name}: No initial marketing-authorisation documents")
-        # Code relies on the attributes being present in the dictionary.
-        # Fill with empty string for later code.
-        return {
-            "epar_url": "",
-            "omar_url": "",
-            "odwar_url": "",
-            "other_ema_urls": []
-        }
-
-    specific_soup = complete_soup.parent.parent.parent
-
-    link_tags = specific_soup.find_all('a')
-
-    # Transform HTML elements into the urls from the href attribute
-    url_list: list[str] = list(map(lambda a: a["href"], link_tags))
+    url_list_init = create_url_list(complete_soup_init, medicine_name, "No initial marketing-authorisation documents")
+    url_list_init = create_url_list(complete_soup_hist, medicine_name, "No initial marketing-authorisation documents")
 
     # Files named 'public-assessment-report' will be the highest priority in the search.
     epar_priority_list: list[str] = [
@@ -79,19 +65,43 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
     # Final dict that will be returned.
     # Filled with values here, last attribute "other_ema_urls" filled after
     result_dict: dict[str, str | list[str]] = {
-        "epar_url": find_priority_link(epar_priority_list, url_list),
-        "omar_url": find_priority_link(omar_priority_list, url_list),
-        "odwar_url": find_priority_link(odwar_priority_list, url_list)
+        "epar_url": find_priority_link(epar_priority_list, url_list_init),
+        "omar_url": find_priority_link(omar_priority_list, url_list_init),
+        "odwar_url": find_priority_link(odwar_priority_list, url_list_init)
     }
 
     # All links that are not saved into the dictionary already
-    result_dict["other_ema_urls"] = [link for link in url_list if link not in result_dict.values()]
+    result_dict["other_ema_urls"] = [link for link in url_list_init if link not in result_dict.values()]
 
     # Gives a warning if it hasn't found an epar or omar document
     if result_dict["epar_url"] == "":
-        log.warning(f"{medicine_name}: No EPAR. Potential URLs are: {url_list}")
+        log.warning(f"{medicine_name}: No EPAR. Potential URLs are: {url_list_init}")
 
     return result_dict
+
+
+def create_url_list(complete_soup: bs4.BeautifulSoup, medicine_name: str, message: str) -> list[str]:
+    """
+    Creates a list of urls of medicines in a specific section
+    
+    Args:
+        complete_soup (bs4.BeautifulSoup): Section of HTML site
+        medicine_name (str): Name of medicine, obtained from URL
+        message (str): Message to be printed when no URLs are found
+
+    Returns:
+        list[str]: url_list of the urls found in the website section
+    """
+    if complete_soup is None:
+        log.warning(f"{medicine_name}: {message}")
+        # Code relies on the attributes being present in the dictionary.
+        # Fill with empty string for later code.
+        return []
+    specific_soup = complete_soup.parent.parent.parent
+    link_tags = specific_soup.find_all('a')
+    # Transform HTML elements into the urls from the href attribute
+    url_list: list[str] = list(map(lambda a: a["href"], link_tags))
+    return url_list
 
 
 def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:

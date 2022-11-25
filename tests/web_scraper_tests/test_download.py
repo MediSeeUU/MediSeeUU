@@ -35,11 +35,11 @@ class TestDownload(TestCase):
     @parameterized.expand([["https://ec.europa.eu/health/documents/community-register/2022/20220324154987"
                             "/dec_154987_en.pdf",
                             "EU-1-21-1541",
-                            ["h", "a", "anx", "0"]],
+                            ["h", "anx", "0"]],
                            ["https://ec.europa.eu/health/documents/community-register/2022/20220324154987"
                             "/anx_154987_en.pdf",
                             "EU-1-21-1541",
-                            ["h", "a", "dec", "0"]]])
+                            ["h", "dec", "0"]]])
     def test_download_pdf_from_url(self, url, eu_n, filename_elements):
         """
         Args:

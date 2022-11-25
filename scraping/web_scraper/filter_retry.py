@@ -21,6 +21,7 @@ med_type_dict = {"ha": ec_scraper.MedicineType.HUMAN_USE_ACTIVE,
 
 log = logging.getLogger("web_scraper.filter_retry")
 
+
 def run_filter(n: int, data_filepath: str):
     """
     calls filter and runs retry function
@@ -37,7 +38,7 @@ def run_filter(n: int, data_filepath: str):
         filter_path = "../"
 
     for _ in range(n):
-        filter.filter_all_pdfs(data_filepath)
+        # filter.filter_all_pdfs(data_filepath)
         url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json").load_json()
         retry_all(f'{filter_path}filter.txt', url_file, data_filepath)
     # remove files that can't go to the pdf parser
@@ -60,8 +61,9 @@ def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str] | str]]
             filename_list = filename.split('_')
             eu_n = filename_list[0]
             filename_elements = filename_list[1:]
+            print(filename_elements)
             if eu_n in urls_file:
-                m.get_urls_ec(urls_file[eu_n]["ec_url"], eu_n, med_type_dict[''.join(filename_elements[:2])],
+                m.get_urls_ec(urls_file[eu_n]["ec_url"], eu_n, med_type_dict[f"{filename_elements[0]}a"],
                               data_filepath)
                 retry_download(eu_n, filename_elements, urls_file[eu_n], data_filepath)
 
@@ -76,9 +78,9 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
         url_dict (dict[str, list[str]] | dict[str, str]): dictionary that contains the url where to download from
         data_filepath (str): the path to the data folder
     """
-    url = url_dict[key_dict[filename_elements[2]]]
-    if len(filename_elements) == 4:
-        url = url[int(filename_elements[3])]
+    url = url_dict[key_dict[filename_elements[1]]]
+    if len(filename_elements) == 3:
+        url = url[int(filename_elements[2])]
     filedate_dict = {}
     filedates_path = f"{data_filepath}/{eu_n}/{eu_n}_filedates.json"
     target_path: str = f"{data_filepath}/{eu_n}"
@@ -86,7 +88,6 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
         with open(filedates_path, 'r') as f:
             filedate_dict = json.load(f)
     download.download_pdf_from_url(url, eu_n, filename_elements, target_path, filedate_dict, overwrite=True)
-
 
 # used for testing
 # run_filter(1)
