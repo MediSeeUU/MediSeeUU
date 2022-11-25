@@ -25,12 +25,15 @@ class TestDownload(TestCase):
         Args:
             url: url of a file that needs to be tested
         """
-        (url_out, date1, date2) = download.get_date_from_url(url)
+        filedates_dict = download.get_date_from_url(url)
+        url_out = filedates_dict["file_link"]
+        date1 = filedates_dict["file_date"]
+        date2 = filedates_dict["medicine_updated"]
+
         self.assertTrue(url == url_out)
         if len((re.findall(r"\d{8}", url))) > 0:
             self.assertTrue(date1.date() != datetime.now().date())
         self.assertTrue(date2.date() == datetime.now().date())
-
 
     @parameterized.expand([["https://ec.europa.eu/health/documents/community-register/2022/20220324154987"
                             "/dec_154987_en.pdf",
@@ -105,7 +108,7 @@ class TestDownload(TestCase):
                              "epar_url": "https://www.ema.europa.eu/documents/assessment-report/dasatinib-accordpharma"
                                          "-epar-public-assessment-report_en.pdf",
                              "omar_url": "",
-                             "odwar_url":"",
+                             "odwar_url": "",
                              "other_ema_urls": []}
                             ]])
     def test_download_medicine_files(self, eu_n, url_dict):
