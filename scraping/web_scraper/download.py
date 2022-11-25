@@ -225,6 +225,8 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
 
     download_list_ema = [('epar', "epar_url"), ('omar', "omar_url"), ("odwar", "odwar_url")]
     for (filetype, key) in download_list_ema:
+        if key not in url_dict.keys():
+            log.error(f"Key {key} not in keys of url_dict. url_dict: {url_dict}")
         download_pdfs_ema(medicine_identifier, filetype, url_dict[key], attr_dict, filedate_dict, target_path)
 
     with open(filedates_path, 'w') as f:
