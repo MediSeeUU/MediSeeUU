@@ -61,7 +61,6 @@ def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str] | str]]
             filename_list = filename.split('_')
             eu_n = filename_list[0]
             filename_elements = filename_list[1:]
-            print(filename_elements)
             if eu_n in urls_file:
                 m.get_urls_ec(urls_file[eu_n]["ec_url"], eu_n, med_type_dict[f"{filename_elements[0]}a"],
                               data_filepath)
