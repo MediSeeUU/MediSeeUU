@@ -34,9 +34,9 @@ def check_new_eu_numbers(self):
     file_exists = True
     i = 0
     while file_exists:
-        eu_numbers_path = eu_numbers_base_path + f"_{i}.json"
+        eu_numbers_path = f"{eu_numbers_base_path}_{i}.json"
         i += 1
-        file_exists = os.path.exists(eu_numbers_base_path + f"_{i}.json")
+        file_exists = os.path.exists(f"{eu_numbers_base_path}_{i}.json")
 
     with open(eu_numbers_path) as f:
         eu_numbers = set(json.load(f))
