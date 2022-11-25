@@ -280,7 +280,7 @@ def main(data_filepath: str = "../data",
         log.info("TASK FINISHED annex10 scrape")
 
     if scrape_ec:
-        with open("no_english_available.txt", 'w', encoding="utf-8") as f:
+        with open("no_english_available.txt", 'w', encoding="utf-8"):
             pass  # open/clean no_english_available file
         # make sure tests start with empty dict, because url_file is global variable only way to do this is here.
         if "test" in os.getcwd():
@@ -302,7 +302,7 @@ def main(data_filepath: str = "../data",
 
         # Set empty EMA values for refused_file
         for eu_n in url_refused_file.local_dict:
-            init_ema_dict(eu_n)
+            init_ema_dict(eu_n, url_refused_file)
 
         url_file.save_dict()
         url_refused_file.save_dict()
@@ -325,7 +325,7 @@ def main(data_filepath: str = "../data",
         unzipped_ema_urls: list[list[str]] = [list(t) for t in zip(*ema_urls)]
 
         for eu_n in url_file.local_dict:
-            init_ema_dict(eu_n)
+            init_ema_dict(eu_n, url_file)
 
         with tqdm_logging.logging_redirect_tqdm():
             if use_parallelization and len(unzipped_ema_urls) > 0:
@@ -367,12 +367,13 @@ def main(data_filepath: str = "../data",
     log.info("=== LOG FINISH ===")
 
 
-def init_ema_dict(eu_n):
+def init_ema_dict(eu_n: str, file: json_helper.JsonHelper):
     """
     Set default empty values for if website does not exist
 
     Args:
         eu_n (str): eu_number of medicine
+        file (json_helper.JsonHelper): Dictionary that is being initialized
     """
     ema_urls: dict[str, str | list[str]] = {
         "epar_url": "",
@@ -383,7 +384,7 @@ def init_ema_dict(eu_n):
     pdf_url: dict[str, dict] = {
         eu_n: ema_urls
     }
-    url_file.add_to_dict(pdf_url)
+    file.add_to_dict(pdf_url)
 
 
 # Keep the code locally testable by including this.
