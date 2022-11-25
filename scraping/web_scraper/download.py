@@ -29,9 +29,11 @@ def get_date_from_url(url: str) -> dict[str, str]:
         (dict[str, str]): A tuple containing the url, the date of the url and the datetime of the scrape
     """
     file_date = datetime.now()
-    url_date = (re.findall(r"\d{8}", url))
-    if len(url_date) > 0:
-        file_date = datetime.strptime(url_date[0], '%Y%m%d')
+    url_date = re.findall(r"\d{8}", url)
+    if url_date:
+        url_date = url_date[0]
+        if url_date[:2] == "19" or url_date[:2] == "20":
+            file_date = datetime.strptime(url_date, '%Y%m%d')
     return {
         "file_link": url,
         "file_date": file_date,
@@ -94,9 +96,9 @@ def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements:
         filepath = Path(f"{target_path}/{filename}")
         if os.path.exists(filepath):
             return
+
     # Adds eu_num to set of EU_numbers that contain newly downloaded files
     log.info(f"New medicine: {medicine_identifier}")
-
     downloaded_file = requests.get(url)
     if downloaded_file.status_code != 200:
         with open(f"failed.txt", "a") as f:
@@ -234,6 +236,9 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
         if key not in url_dict.keys():
             log.error(f"Key {key} not in keys of url_dict with identifier {medicine_identifier}. url_dict: {url_dict}")
         download_pdfs_ema(medicine_identifier, filetype, url_dict[key], attr_dict, filedate_dict, target_path)
+    for url, filetype in url_dict["other_ema_urls"]:
+        download_pdfs_ema(medicine_identifier, filetype, url, attr_dict, filedate_dict, target_path)
+
     with open(filedates_path, 'w') as f:
         json.dump(filedate_dict, f, indent=4, default=str)
 

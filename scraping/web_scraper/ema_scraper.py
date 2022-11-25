@@ -41,21 +41,26 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
     # Parent of the found object is considered <span>
 
     complete_soup_init = soup.find(string="Initial marketing-authorisation documents")
-    complete_soup_hist = soup.find(string="Initial marketing-authorisation documents")
+    complete_soup_hist = soup.find(string="Changes since initial authorisation of medicine")
 
+    # Get url_list for initial and history section, print given message when no URLs are found
     url_list_init = create_url_list(complete_soup_init, medicine_name, "No initial marketing-authorisation documents")
-    url_list_init = create_url_list(complete_soup_hist, medicine_name, "No initial marketing-authorisation documents")
+    url_list_hist = create_url_list(complete_soup_hist, medicine_name, "No documents in assessment history")
 
     # Files named 'public-assessment-report' will be the highest priority in the search.
     epar_priority_list: list[str] = [
         "public-assessment-report",
+        "procedural-steps-taken-authorisation",
         "scientific-discussion",
-        "procedural-steps-taken-authorisation"
+        "epar",
+        "procedural-steps"
     ]
 
     omar_priority_list: list[str] = [
         "orphan-maintenance-assessment-report",
-        "orphan-medicine-assessment-report"
+        "orphan-medicine-assessment-report",
+        "orphan-medicine",
+        "orphan-designation-assessment-report"
     ]
 
     odwar_priority_list: list[str] = [
@@ -64,20 +69,71 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
 
     # Final dict that will be returned.
     # Filled with values here, last attribute "other_ema_urls" filled after
-    result_dict: dict[str, str | list[str]] = {
-        "epar_url": find_priority_link(epar_priority_list, url_list_init),
+    result_dict: dict[str, str | list[tuple]] = {
+        "odwar_url": find_priority_link(odwar_priority_list, url_list_init),
         "omar_url": find_priority_link(omar_priority_list, url_list_init),
-        "odwar_url": find_priority_link(odwar_priority_list, url_list_init)
+        "epar_url": find_priority_link(epar_priority_list, url_list_init)
     }
 
-    # All links that are not saved into the dictionary already
-    result_dict["other_ema_urls"] = [link for link in url_list_init if link not in result_dict.values()]
+    # All links that are not saved into the dictionary already, as well as the links under assessment history
+    other_ema_urls = url_list_hist + [link for link in url_list_init if link not in result_dict.values()]
+    other_ema_urls_types = []
+    i = 0
+    for url in other_ema_urls:
+        if len(url) < 4:
+            continue
+        ema_url_type = get_url_type(epar_priority_list, odwar_priority_list, omar_priority_list, url)
+        if ema_url_type == "":
+            continue
+        other_ema_urls_types.append((url, f"{ema_url_type}_other_{i}"))
+        i += 1
+
+    result_dict["other_ema_urls"] = other_ema_urls_types
 
     # Gives a warning if it hasn't found an epar or omar document
     if result_dict["epar_url"] == "":
-        log.warning(f"{medicine_name}: No EPAR. Potential URLs are: {url_list_init}")
+        if url_list_init:
+            log.warning(f"{medicine_name}: No EPAR. Potential URLs are: {url_list_init}")
+        else:
+            log.warning(f"{medicine_name}: No EPAR.")
 
     return result_dict
+
+
+def get_url_type(epar_priority_list: list[str], odwar_priority_list: list[str], omar_priority_list: list[str],
+                 url: str) -> str:
+    """
+    Gets the file type of a given URL
+
+    Args:
+        epar_priority_list (list[str]): list of strings that could be in a EPAR url
+        odwar_priority_list (list[str]): list of strings that could be in a ODWAR url
+        omar_priority_list (list[str]): list of strings that could be in a OMAR url
+        url (str): url used to determine file type
+
+    Returns:
+        str: type of the url
+    """
+    for type_str in epar_priority_list:
+        if type_str in url:
+            return "epar"
+    for type_str in omar_priority_list:
+        if type_str in url:
+            return "omar"
+    for type_str in odwar_priority_list:
+        if type_str in url:
+            return "odwar"
+    # File types in languages other than english are currently skipped
+    if "smop" in url:
+        return ""
+    if "questions-answers" in url:
+        return ""
+    # Other EMA file types that are useful to download
+    for type_str in ["chmp", "scientific-conclusion", "variation-report", "referral", "assessment-report"]:
+        if type_str in url:
+            return type_str
+    log.error(f"No type found for url {url}, please add this type in the code above this error.")
+    return ""
 
 
 def create_url_list(complete_soup: bs4.BeautifulSoup, medicine_name: str, message: str) -> list[str]:

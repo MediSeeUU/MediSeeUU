@@ -39,7 +39,7 @@ url_refused_file = json_helper.JsonHelper(path=f"{json_path}JSON/refused_urls.js
 annex10_file = json_helper.JsonHelper(path=f"{json_path}JSON/annex10.json")
 
 
-def check_scrape_page(eu_n: str, medicine_last_updated_date: datetime, last_scraped_type: str) -> bool:
+def check_scrape_page(eu_n: str, medicine_last_updated: datetime, last_scraped_type: str) -> bool:
     """
     Checks whether the medicine page (either EC or EMA) has been updated since last scrape cycle, or that the page has
     never been scraped at all. Based on this it returns a boolean that indicates whether attributes and files need to be
@@ -47,7 +47,7 @@ def check_scrape_page(eu_n: str, medicine_last_updated_date: datetime, last_scra
 
     Args:
         eu_n (str): EU number of the medicine
-        medicine_last_updated_date (datetime): Date since the page was last updated
+        medicine_last_updated (datetime): Date since the page was last updated
         last_scraped_type (str): The page type (either EC or EMA)
 
     Returns:
@@ -57,8 +57,9 @@ def check_scrape_page(eu_n: str, medicine_last_updated_date: datetime, last_scra
     try:
         # If the last medicine updated date is later than the date of the last scrape cycle, the url.json should be
         # updated
-        if medicine_last_updated_date.date() > datetime.strptime(url_file.local_dict[eu_n][last_scraped_type],
-                                                                 '%d/%m/%Y').date():
+        if medicine_last_updated.date() > datetime.strptime(url_file.local_dict[eu_n]
+                                                            [f"{last_scraped_type}_last_scraped"], '%d/%m/%Y').date():
+            log.info(f"{eu_n}: {last_scraped_type.upper()} page has been updated since last scrape cycle")
             return True
         # Otherwise, it returns this function, since there are no new files or attributes
         else:
@@ -96,10 +97,8 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
     medicine_last_updated_date = ec_scraper.get_last_updated_date(html_active)
 
     # Checks whether attributes and files need to be scraped from the EC web page
-    if not check_scrape_page(eu_n, medicine_last_updated_date, "ec_last_scraped"):
+    if not check_scrape_page(eu_n, medicine_last_updated_date, "ec"):
         return
-
-    log.info(eu_n + ": EC page has been updated since last scrape cycle")
 
     # dec_ anx_ and ema_list are lists of URLs to PDF files
     # Attributes_dict is a dictionary containing the attributes scraped from the EC page
@@ -215,11 +214,10 @@ def get_urls_ema(eu_n: str, url: str):
     medicine_last_updated_date: datetime = ema_scraper.find_last_updated_date(html_active)
 
     # Checks whether attributes and files need to be scraped from the EMA web page
-    if not check_scrape_page(eu_n, medicine_last_updated_date, "ema_last_scraped"):
+    if not check_scrape_page(eu_n, medicine_last_updated_date, "ema"):
         return
 
-    log.info(eu_n + ": EMA page has been updated since last scrape cycle")
-    ema_urls: dict[str, str | list[str]] = ema_scraper.scrape_medicine_page(url, html_active)
+    ema_urls: dict[str, str | list[tuple]] = ema_scraper.scrape_medicine_page(url, html_active)
 
     pdf_url: dict[str, dict] = {
         eu_n: ema_urls
@@ -375,7 +373,7 @@ def init_ema_dict(eu_n: str, file: json_helper.JsonHelper):
         eu_n (str): eu_number of medicine
         file (json_helper.JsonHelper): Dictionary that is being initialized
     """
-    ema_urls: dict[str, str | list[str]] = {
+    ema_urls: dict[str, str | list[list[str]]] = {
         "epar_url": "",
         "omar_url": "",
         "odwar_url": "",

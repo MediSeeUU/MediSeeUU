@@ -159,6 +159,8 @@ class TestWebScraper(TestCase):
             filecount += 1
         if url_dict["odwar_url"]:
             filecount += 1
+        for x in url_dict["other_ema_urls"]:
+            filecount += 1
 
         assert len(os.listdir(data_folder)) == filecount + 2, "not all files are downloaded"
 

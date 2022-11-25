@@ -86,7 +86,8 @@ def get_files(directory: str) -> (list[str], list[str], list[str], list[str]):
     Returns:
         (list[str], list[str], list[str], list[str]): List of PDF file names for each of the 4 PDF types
     """
-    directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
+    directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))
+                       and "other" not in file]
     decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file]
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
     epar_files = [file for file in directory_files if

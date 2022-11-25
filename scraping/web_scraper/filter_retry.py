@@ -38,7 +38,7 @@ def run_filter(n: int, data_filepath: str):
         filter_path = "../"
 
     for _ in range(n):
-        # filter.filter_all_pdfs(data_filepath)
+        filter.filter_all_pdfs(data_filepath)
         url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json").load_json()
         retry_all(f'{filter_path}filter.txt', url_file, data_filepath)
     # remove files that can't go to the pdf parser
