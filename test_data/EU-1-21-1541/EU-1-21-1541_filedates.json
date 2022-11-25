@@ -8,5 +8,20 @@
         "https://ec.europa.eu/health/documents/community-register/2022/20220324154987/anx_154987_en.pdf",
         "2022-03-24 00:00:00",
         "2022-11-24 22:47:01.325503"
+    ],
+    "EU-1-21-1541_h_dec_0.pdf": [
+        "https://ec.europa.eu/health/documents/community-register/2022/20220324154987/dec_154987_en.pdf",
+        "2022-03-24 00:00:00",
+        "2022-11-25 15:54:46.560108"
+    ],
+    "EU-1-21-1541_h_anx_0.pdf": [
+        "https://ec.europa.eu/health/documents/community-register/2022/20220324154987/anx_154987_en.pdf",
+        "2022-03-24 00:00:00",
+        "2022-11-25 15:54:46.722181"
+    ],
+    "EU-1-21-1541_h_public-assessment-report.pdf": [
+        "https://www.ema.europa.eu/documents/assessment-report/dasatinib-accordpharma-epar-public-assessment-report_en.pdf",
+        "2022-11-25 15:54:46.991949",
+        "2022-11-25 15:54:46.991949"
     ]
 }

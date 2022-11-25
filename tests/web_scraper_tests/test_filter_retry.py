@@ -44,10 +44,10 @@ class TestFilterRetry(unittest.TestCase):
         self.assertIsNone(filter_retry.retry_all(temp.name, url_file, data_filepath))
 
     @parameterized.expand([
-        ["EU-1-04-273", ["h", "a", "anx", "0"]],  # normal
-        ["EU-1-04-273", ["h", "a", "an", "0"]],  # typo in pdf_type
-        ["EU-1-00-129", ["h", "a", "dec", "0"]],  # no url available
-        ["EU-3-05-339", ["o", "w", "dec", "0"]]  # orphan, in filter.txt
+        ["EU-1-04-273", ["h", "anx", "0"]],  # normal
+        ["EU-1-04-273", ["h", "an", "0"]],  # typo in pdf_type
+        ["EU-1-00-129", ["h", "dec", "0"]],  # no url available
+        ["EU-3-05-339", ["o", "dec", "0"]]  # orphan, in filter.txt
     ])
     def test_retry_download(self, eu_n, filename_el):
         """

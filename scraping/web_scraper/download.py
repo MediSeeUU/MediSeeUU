@@ -17,7 +17,7 @@ from scraping.web_scraper import utils
 log = logging.getLogger("web_scraper.download")
 
 
-def get_date_from_url(url: str) -> tuple[str, datetime, datetime]:
+def get_date_from_url(url: str) -> dict[str, str]:
     """
     Retrieves the date from a file (for filedates.json) based on an url. If no date in the url is found, the scrape date
     is used.
@@ -26,13 +26,17 @@ def get_date_from_url(url: str) -> tuple[str, datetime, datetime]:
         url (str): the url where the date should be retrieved from
 
     Returns:
-        (tuple[str, datetime, datetime]): A tuple containing the url, the date of the url and the datetime of the scrape
+        (dict[str, str]): A tuple containing the url, the date of the url and the datetime of the scrape
     """
     date = datetime.now()
     url_date = (re.findall(r"\d{8}", url))
     if len(url_date) > 0:
         date = datetime.strptime(url_date[0], '%Y%m%d')
-    return tuple((url, date, datetime.now()))
+    return {
+        "file_link": url,
+        "file_date": date,
+        "medicine_updated": datetime.now()
+    }
 
 
 def save_new_eu_numbers(data_path: str):
@@ -67,7 +71,7 @@ def save_new_eu_numbers(data_path: str):
 
 @utils.exception_retry(logging_instance=log)
 def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements: list[str], target_path: str,
-                          filedate_dict: dict[str, tuple[str, datetime, datetime]],
+                          filedate_dict: dict[str, str],
                           overwrite: bool = False):
     """
     Downloads a PDF file given an url. It also gives the file a specific name based on the input.
@@ -80,8 +84,7 @@ def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements:
         filename_elements (list[str]): list containing the filename elements: human/orphan, active/withdrawn, pdf type
             and file_index
         target_path (str): the path where the pdf should be downloaded to
-        filedate_dict (dict[str, tuple[str, datetime, datetime]]): dictionary containing the date for every file. in the
-            format {filename : (url, date)}
+        filedate_dict (dict[str, str]): dictionary containing the date for every file.
         overwrite (bool): if true, files will be downloaded again if they exist
     """
     filename: str = f"{medicine_identifier}_{'_'.join(filename_elements)}.pdf"
@@ -104,7 +107,7 @@ def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements:
         file.write(downloaded_file.content)
         log.debug(f"DOWNLOADED {filename} for {medicine_identifier}")
 
-    filedate_dict[filename] = get_date_from_url(url)
+    filedate_dict[filename]: get_date_from_url(url)
 
 
 # Download pdfs using the dictionaries created from the json file
@@ -157,7 +160,7 @@ def download_pdfs_ec(medicine_identifier: str, pdf_type: str, pdf_urls: list[str
 
 
 def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[str, str],
-                      filedate_dict: dict[str, tuple[str, datetime, datetime]], target_path: str,
+                      filedate_dict: dict[str, str], target_path: str,
                       overwrite: bool = False):
     """
     Downloads the pdfs of the EMA website files for a specific medicine.
@@ -170,8 +173,7 @@ def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[s
         pdf_url (str) The url to the pdf file
         med_dict (dict[str,str]): The dictionary containing the attributes of the medicine.
             Used for structuring the filename
-        filedate_dict (dict[str, tuple[str, datetime, datetime]]):
-            dictionary containing the date for every file. in the format {filename : (url, date)}
+        filedate_dict (dict[str, str]): dictionary containing the date for every file.
         target_path (str):
             The path to the data folder
         overwrite (bool): If true overwrites the current files in the medicine folder
