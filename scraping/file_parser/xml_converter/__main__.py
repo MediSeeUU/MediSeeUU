@@ -291,11 +291,16 @@ def main(directory: str):
     Given a folder containing medicine folders, converts each PDF file to XML for all Annex files, EPARs and OMARs.
 
     Args:
-        directory: data folder, containing medicine folders
+        directory: data folder, containing medicine-category folders that contain the medicines
     """
-    directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
+    med_folders = []
+    category_folders = [path.join(directory, folder) for folder in listdir(directory) if
+                        path.isdir(path.join(directory, folder))]
+    for category in category_folders:
+        med_folders += [path.join(category, med_folder) for med_folder in listdir(category) if
+                        path.isdir(path.join(category, med_folder))]
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
         joblib.delayed(convert_folder)(path.join(directory, folder_name), folder_name) for folder_name in
-        directory_folders)
+        med_folders)

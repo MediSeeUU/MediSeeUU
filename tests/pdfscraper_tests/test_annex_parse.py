@@ -12,6 +12,7 @@ if "pdfscraper_tests" in os.getcwd():
     test_data_folder_path = "test_annex_parse_data"
 test_data_folder_name = "test_annex_parse_data"
 
+
 class TestAnnexParse(TestCase):
     """
     Unit testing annex_parser attribute scraping correctness with handmade test PDF files.
@@ -29,7 +30,8 @@ class TestAnnexParse(TestCase):
         """
         pdf_parser.parse_folder(path.abspath(test_data_folder_path), test_data_folder_name)
         # TODO: Try/catch this with appropriate exception when file does not exist
-        attributes_json = open(path.join(path.abspath(test_data_folder_path), test_data_folder_name + "_pdf_parser.json"))
+        attributes_json = open(
+            path.join(path.abspath(test_data_folder_path), test_data_folder_name + "_pdf_parser.json"))
         self.annex_attributes = json.load(attributes_json)["annexes"]
         attributes_json.close()
         return super().setUp()
@@ -39,7 +41,7 @@ class TestAnnexParse(TestCase):
         Unit test for scraping initial_type_of_eu_authorization attribute. This test checks whether this attribute is
         only read in initial authorization annex files and whether the value is correct and found in all applicable
         cases.
-        """        
+        """
         incorrect_files = False
         incorrect_values = False
 

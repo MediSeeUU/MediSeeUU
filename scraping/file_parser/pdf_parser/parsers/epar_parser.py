@@ -158,6 +158,7 @@ def get_legal_basis(xml: ET.Element) -> list[str]:
     regex_legal = r"article .+?(?=[a-z]{2,90}|\n|$)"
     found = False
     right_section = False
+    legal_basis_exists = False
     count = 0
     for elem in xml.iter():
         txt = elem.text
@@ -167,6 +168,7 @@ def get_legal_basis(xml: ET.Element) -> list[str]:
             right_section = True
         if "legal basis for" in txt:
             found = True
+            legal_basis_exists = True
             count = 0
         # For when "legal basis for" appears in the table of contents, triggering found
         if count > 3:
@@ -186,7 +188,7 @@ def get_legal_basis(xml: ET.Element) -> list[str]:
             elif articles2:
                 return helper.convert_articles([articles2[0]])
 
-    if found:
+    if legal_basis_exists:
         return ["not_easily_scrapable"]
     return ["no_legal_basis"]
 
@@ -226,7 +228,7 @@ def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_y
             bool: True if scraped date is before given date, False otherwise
         """
     date = get_date(xml)
-    if date != "no_date_found" and date != "not_easily_scrapable":
+    if date != "no_date_found" and date != "not_easily_scrapable" and len(date.split("/")) < 3:
         day = int(''.join(filter(str.isdigit, date.split("/")[0])))
         month = int(date.split("/")[1])
         year = int(date.split("/")[2])

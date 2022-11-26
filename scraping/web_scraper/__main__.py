@@ -139,7 +139,7 @@ def set_active_refused_save_parameters(eu_n: str, medicine_url: str, dec_list: l
     # Sets parameter values for active and withdrawn medicines that need to be saved
     if attributes_dict["eu_aut_status"] != "REFUSED":
         medicine_identifier: str = eu_n
-        target_path: str = f"{data_path}/{medicine_identifier}"
+        target_path: str = f"{data_path}/active_withdrawn/{medicine_identifier}"
         save_medicine_urls_and_attributes(medicine_identifier, medicine_url, dec_list, anx_list, ema_list,
                                           attributes_dict, url_file, target_path)
     # Sets parameter values for refused medicines that need to be saved

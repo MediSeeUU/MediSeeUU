@@ -12,6 +12,7 @@ from parameterized import parameterized
 data_path = "../test_data"
 if "web_scraper_tests" in os.getcwd():
     data_path = "../../test_data"
+data_path_local = f"{data_path}/active_withdrawn"
 
 if not path.isdir(data_path):
     os.mkdir(data_path)
@@ -60,6 +61,8 @@ class TestWebScraper(TestCase):
             os.rename(data_path, f"{data_path}_old")
         if not path.isdir(data_path):
             os.mkdir(data_path)
+        if not path.isdir(data_path_local):
+            os.mkdir(data_path_local)
         Path(f"{json_path}JSON").mkdir(parents=True, exist_ok=True)
 
     medicine_list_checks = \
@@ -77,8 +80,8 @@ class TestWebScraper(TestCase):
             parallel: if web should run parallel or not
             medicine_codes: The medicine that is tested
         """
-        shutil.rmtree(data_path)
-        os.mkdir(data_path)
+        shutil.rmtree(data_path_local)
+        os.mkdir(data_path_local)
 
         self.parallel = parallel
         self.medicine_list = medicine_codes
@@ -97,8 +100,8 @@ class TestWebScraper(TestCase):
             parallel: if web should run parallel or not
             medicine_list: The medicine that is tested
         """
-        shutil.rmtree(data_path)
-        os.mkdir(data_path)
+        shutil.rmtree(data_path_local)
+        os.mkdir(data_path_local)
 
         self.parallel = parallel
         self.medicine_list = medicine_list
@@ -114,7 +117,7 @@ class TestWebScraper(TestCase):
                  download_refused_files=True, run_filter=False, use_parallelization=self.parallel,
                  medicine_list=self.medicine_list)
         # check if data folder for eu_n exists and is filled
-        data_folder = f"{data_path}/{self.eu_n}"
+        data_folder = f"{data_path_local}/{self.eu_n}"
         assert path.exists(data_folder), f"data folder for {self.eu_n} does not exist"
         assert path.isdir(data_folder), f"{data_folder} is not a directory"
         assert len(os.listdir(data_folder)) > 0, f"{data_folder} is empty"
@@ -142,7 +145,7 @@ class TestWebScraper(TestCase):
                  use_parallelization=self.parallel, medicine_list=self.medicine_list)
 
         # check if `filedates.json` exists
-        data_folder = f"{data_path}/{self.eu_n}"
+        data_folder = f"{data_path_local}/{self.eu_n}"
         assert path.exists(f"{data_folder}/{self.eu_n}_filedates.json")
 
         # check if eu_numbers in eu_numbers.json equals all medicines, as all medicines should be new.
@@ -159,7 +162,7 @@ class TestWebScraper(TestCase):
             filecount += 1
         if url_dict["odwar_url"]:
             filecount += 1
-        for x in url_dict["other_ema_urls"]:
+        for _ in url_dict["other_ema_urls"]:
             filecount += 1
 
         assert len(os.listdir(data_folder)) == filecount + 2, "not all files are downloaded"

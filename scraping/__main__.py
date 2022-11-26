@@ -60,18 +60,15 @@ def create_data_folders() -> str:
 
     """
     data_folder_directory = '../data'
-    if not path.isdir(data_folder_directory):
-        os.mkdir(data_folder_directory)
-
-    # Creates the refused subdirectory if it does not exist
+    data_folder_active_withdrawn = data_folder_directory + "/active_withdrawn"
     data_folder_refused_directory = data_folder_directory + "/refused"
-    if not path.isdir(data_folder_refused_directory):
-        os.mkdir(data_folder_refused_directory)
-
-    # Creates the Annex 10 subdirectory if it does not exist
     data_folder_annex10_directory = data_folder_directory + "/annex_10"
-    if not path.isdir(data_folder_annex10_directory):
-        os.mkdir(data_folder_annex10_directory)
+    folders = [data_folder_directory, data_folder_active_withdrawn, data_folder_refused_directory,
+               data_folder_annex10_directory]
+
+    for folder in folders:
+        if not path.isdir(folder):
+            os.mkdir(folder)
 
     return data_folder_directory
 

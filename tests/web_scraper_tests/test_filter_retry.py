@@ -4,9 +4,9 @@ from scraping.web_scraper import filter_retry
 from parameterized import parameterized
 import os
 
-data_filepath = "../test_data"
+data_filepath = "../test_data/active_withdrawn"
 if "web_scraper_tests" in os.getcwd():
-    data_filepath = "../../test_data"
+    data_filepath = "../../test_data/active_withdrawn"
 
 
 class TestFilterRetry(unittest.TestCase):

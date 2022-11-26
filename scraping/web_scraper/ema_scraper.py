@@ -51,9 +51,9 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
     epar_priority_list: list[str] = [
         "public-assessment-report",
         "procedural-steps-taken-authorisation",
-        "scientific-discussion",
         "epar",
-        "procedural-steps"
+        "procedural-steps",
+        "scientific-discussion"
     ]
 
     omar_priority_list: list[str] = [
@@ -85,7 +85,8 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
         ema_url_type = get_url_type(epar_priority_list, odwar_priority_list, omar_priority_list, url)
         if ema_url_type == "":
             continue
-        other_ema_urls_types.append((url, f"{ema_url_type}_other_{i}"))
+        if f"-other_{i}" not in str(other_ema_urls_types):
+            other_ema_urls_types.append((url, f"{ema_url_type}-other_{i}"))
         i += 1
 
     result_dict["other_ema_urls"] = other_ema_urls_types

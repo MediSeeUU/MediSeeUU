@@ -90,7 +90,6 @@ def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements:
         overwrite (bool): if true, files will be downloaded again if they exist
     """
     filename: str = f"{medicine_identifier}_{'_'.join(filename_elements)}.pdf"
-    filedate_dict[filename] = get_date_from_url(url)
 
     if not overwrite:
         filepath = Path(f"{target_path}/{filename}")
@@ -214,7 +213,7 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
     if "REFUSED" in medicine_identifier:
         target_path = f"{data_path}/refused/{medicine_identifier}"
     else:
-        target_path: str = f"{data_path}/{medicine_identifier}"
+        target_path: str = f"{data_path}/active_withdrawn/{medicine_identifier}"
 
     # Gets the attribute dictionary for a medicine
     attr_dict = (json_helper.JsonHelper(path=f"{target_path}/{medicine_identifier}_webdata.json")).load_json()
@@ -236,6 +235,7 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
         if key not in url_dict.keys():
             log.error(f"Key {key} not in keys of url_dict with identifier {medicine_identifier}. url_dict: {url_dict}")
         download_pdfs_ema(medicine_identifier, filetype, url_dict[key], attr_dict, filedate_dict, target_path)
+
     for url, filetype in url_dict["other_ema_urls"]:
         download_pdfs_ema(medicine_identifier, filetype, url, attr_dict, filedate_dict, target_path)
 

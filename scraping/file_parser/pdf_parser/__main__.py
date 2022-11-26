@@ -4,7 +4,7 @@ import os.path as path
 import json
 import scraping.logger as logger
 import joblib
-from datetime import datetime
+from datetime import datetime, date
 import multiprocessing
 
 # for main
@@ -25,18 +25,32 @@ def main(directory: str):
     log = logger.PDFLogger.log
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
-    eu_numbers = []
-    if path.exists(f"{directory}/eu_numbers.json"):
-        with open(f"{directory}/eu_numbers.json", mode='r') as eu_numbers_file:
-            eu_numbers = json.load(eu_numbers_file)
+    eu_numbers_path = ""
+    eu_numbers_base_path = f"{directory}/{date.today()}_eu_numbers"
+
+    file_exists = True
+    i = 0
+    while file_exists:
+        eu_numbers_path = eu_numbers_base_path + f"_{i}.json"
+        i += 1
+        file_exists = path.exists(eu_numbers_base_path + f"_{i}.json")
+
+    with open(eu_numbers_path) as f:
+        eu_numbers = set(json.load(f))
+
+    meds_dir = directory + "/active_withdrawn"
 
     # Get medicine folders that have to be scraped, so only medicines in the eu_numbers.json file
-    directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder)) and
-                         (folder in eu_numbers or folder_has_no_pdf_json(directory, folder))]
+    directory_folders = [folder for folder in listdir(meds_dir) if path.isdir(path.join(meds_dir, folder)) and
+                         (folder in eu_numbers or folder_has_no_pdf_json(meds_dir, folder))]
+
+    # For debugging, this list of folders will not check if the medicine is recently updated before scraping
+    # Does not check whether eu_number of medicine is in eu_numbers.json
+    # directory_folders = [folder for folder in listdir(meds_dir) if path.isdir(path.join(meds_dir, folder))]
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(parse_folder)(path.join(directory, folder), folder) for folder in
+        joblib.delayed(parse_folder)(path.join(meds_dir, folder), folder) for folder in
         directory_folders)
     log.info("Done parsing PDF files!")
 

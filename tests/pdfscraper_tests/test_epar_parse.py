@@ -8,9 +8,9 @@ from scraping.file_parser.pdf_parser.parsers import epar_parser
 import xml.etree.ElementTree as ET
 
 
-test_data_loc = "../test_data"
+test_data_loc = "../test_data/active_withdrawn"
 if "pdfscraper_tests" in os.getcwd():
-    test_data_loc = "../../test_data"
+    test_data_loc = "../../test_data/active_withdrawn"
 xml_bodies = []
 percentage_str = "Percentage found: "
 
@@ -33,7 +33,7 @@ class TestEparParse(TestCase):
             for file in os.listdir(os.path.join(test_data_loc, folder)):
                 path = os.path.join(test_data_loc, folder, file)
 
-                if os.path.isfile(path):
+                if os.path.isfile(path) and "-other" not in file:
                     files.append(path)
         xml_files = [file for file in files if ".xml" in file and ("procedural-steps" in file or
                                                                    "public-assessment" in file)]
@@ -110,10 +110,12 @@ class TestEparParse(TestCase):
         """
         found_count = 0
         # Call get_legal_basis
+        available_count = 0
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_legal_basis(xml_body)
             if output != ["no_legal_basis"] and output != ["not_easily_scrapable"]:
                 found_count += 1
+                available_count += 1
                 self.assertGreater(len(output), 0)
                 for article in output:
                     # Check if article is of correct format
@@ -128,7 +130,8 @@ class TestEparParse(TestCase):
                         print(f"Legal basis {article} not in list for file {filename}")
             elif output == ["not_easily_scrapable"]:
                 print("Found but not scrapable: " + filename)
-        percentage_found = found_count / len(xml_bodies) * 100
+                available_count += 1
+        percentage_found = found_count / available_count * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 90)
 

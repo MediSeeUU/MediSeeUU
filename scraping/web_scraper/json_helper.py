@@ -34,7 +34,6 @@ class JsonHelper:
         """
         if not os.path.isfile(self.path):
             return {}
-
         with open(self.path, 'r') as file:
             return json.load(file)
 
