@@ -146,7 +146,7 @@ class TestEparParse(TestCase):
                 yes_exists = True
             if output == values.no_str:
                 na_exists = True
-            self.assertIn(output, 'yesnoNA')
+            self.assertIn(output, f'{values.yes_str}{values.no_str}{values.NA_before}')
         # TODO: Add medicine to test_data containing prime = "yes
         # self.assertTrue(yes_exists)
         self.assertTrue(na_exists)
@@ -220,7 +220,7 @@ class TestEparParse(TestCase):
                 yes_exists = True
             if not output:
                 self.fail("No output found")
-            self.assertIn(output, 'yesno')
+            self.assertIn(output, f'{values.yes_str}{values.no_str}')
         # TODO: Add medicine to test_data containing reexamination = "yes"
         # self.assertTrue(yes_exists)
 
@@ -236,6 +236,6 @@ class TestEparParse(TestCase):
                 yes_exists = True
             if not output:
                 self.fail("No output found")
-            self.assertIn(output, 'yesnoNA')
+            self.assertIn(output, f'{values.yes_str}{values.no_str}{values.NA_before}')
 
         self.assertTrue(yes_exists)

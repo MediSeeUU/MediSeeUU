@@ -55,11 +55,12 @@ class TestDecParse(TestCase):
             if output == values.default_date:
                 not_found_count += 1
                 print(f"{filename} date not found")
-            if isinstance(output, datetime.datetime):
-                self.assertGreater(datetime.datetime(2050, 1, 1, 0, 0), output)
-                self.assertGreater(output, datetime.datetime(1985, 1, 1, 0, 0))
-            if isinstance(output, str):
-                self.assertTrue(output == values.eu_aut_date_blank)
+            else:
+                if isinstance(output, datetime.datetime):
+                    self.assertGreater(datetime.datetime(2050, 1, 1, 0, 0), output)
+                    self.assertGreater(output, datetime.datetime(1985, 1, 1, 0, 0))
+                if isinstance(output, str):
+                    self.assertTrue(output == values.eu_aut_date_blank)
         percentage_found = (len(dec_txt) - not_found_count) / len(dec_txt) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         print(f"Amount not found: {not_found_count}")
