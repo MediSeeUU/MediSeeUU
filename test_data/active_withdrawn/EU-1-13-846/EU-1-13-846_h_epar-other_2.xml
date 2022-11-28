@@ -1,0 +1,2147 @@
+<?xml version="1.1" encoding="UTF-8" standalone="yes"?><xml><head><creation_date>D:20210420154333+02'00'</creation_date><modification_date>D:20210420154811+02'00'</modification_date><initial_authorization>False</initial_authorization><pdf_file>EU-1-13-846_h_epar-other_2.pdf</pdf_file></head><body><section><header>official address  domenico scarlattilaan 6  ●  1083 hs amsterdam  ●  the netherlands an agency of the european union     address for visits and deliveries  refer to www.ema.europa.eu/how-to-find-us  send us a question  go to www.ema.europa.eu/contact  telephone +31 (0)88 781 6000   
+ © european medicines agency, 2021. reproduction is authorised provided the source is acknowledged. 
+ 25 february 2021 ema/202601/2021  
+ committee for medicinal products for human use (chmp)  
+ assessment report</header></section><section><header>xtandi</header><p>international non-proprietary name: enzalutamide procedure no. emea/h/c/002639/ii/0047/g</p></section><section><header>note</header><p>variation assessment report as adopted by the chmp with all information of a commercially confidential nature deleted.</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 2/100</p></section><section><header>table of contents</header></section><section><header n="1">1. background information on the procedure .............................................6</header><p>1.1. type ii group of variations .................................................................................... 6 1.2. steps taken for the assessment of the product......................................................... 7</p></section><section><header n="2">2. scientific discussion ..............................................................................7</header><p>2.1. introduction ........................................................................................................ 7 2.1.1. problem statement ............................................................................................ 7 2.1.2. about the product ............................................................................................. 9 2.1.3. the development programme/compliance with chmp guidance/scientific advice ...... 10 2.1.4. general comments on compliance with gcp ........................................................ 10 2.2. non-clinical aspects ............................................................................................ 10 2.2.1. pharmacology ................................................................................................. 10 2.2.2. pharmacokinetics ............................................................................................ 10 2.2.3. toxicology ...................................................................................................... 10 2.2.4. ecotoxicity/environmental risk assessment ......................................................... 12 2.2.5. discussion on non-clinical aspects ..................................................................... 13 2.2.6. conclusion on the non-clinical aspects................................................................ 14 2.3. clinical aspects .................................................................................................. 14 2.3.1. introduction .................................................................................................... 14 2.3.2. clinical pharmacology ...................................................................................... 15 2.3.3. discussion and conclusion on clinical pharmacology ............................................. 15 2.4. clinical efficacy .................................................................................................. 15 2.4.1. dose response study ........................................................................................ 15 2.4.2. main study...................................................................................................... 16 2.4.3. discussion on clinical efficacy ............................................................................ 67 2.4.4. conclusions on the clinical efficacy .................................................................... 71 2.5. clinical safety .................................................................................................... 72 2.5.1. discussion on clinical safety .............................................................................. 90 2.5.2. conclusions on clinical safety ............................................................................ 93 2.5.3. psur cycle ..................................................................................................... 93 2.6. risk management plan ....................................................................................... 93 2.7. update of the product information ........................................................................ 94 2.7.1. user consultation ............................................................................................ 95</p></section><section><header n="3">3. benefit-risk balance ............................................................................ 95</header><p>3.1. therapeutic context ........................................................................................... 95 3.1.1. disease or condition ........................................................................................ 95 3.1.2. available therapies and unmet medical need ....................................................... 95 3.1.3. main clinical studies ......................................................................................... 95 3.2. favourable effects .............................................................................................. 96 3.3. uncertainties and limitations about favourable effects ............................................. 96 3.4. unfavourable effects ........................................................................................... 96 3.5. uncertainties and limitations about unfavourable effects ......................................... 97 3.6. effects table ...................................................................................................... 97 3.7. benefit-risk assessment and discussion ................................................................. 98</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 3/100 
+ 3.7.1. importance of favourable and unfavourable effects .............................................. 98 3.7.2. balance of benefits and risks............................................................................. 99 3.7.3. additional considerations on the benefit-risk balance ........................................... 99 3.8. conclusions ....................................................................................................... 99</p></section><section><header n="4">4. recommendations ............................................................................... 99</header><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 4/100</p></section><section><header>list of abbreviations</header><p>ace-27</p><p>adult comorbidity evaluation 
+ adt</p><p>
+ androgen deprivation therapy 
+ ae</p><p>
+ adverse event 
+ anzup</p><p>australian and new zealand urogenital and prostate 
+ ar</p><p>
+ androgen receptor 
+ bpi-sf</p><p>brief pain inventory-short form 
+ ci</p><p>
+ confidence interval 
+ cr</p><p>
+ complete response 
+ crpc</p><p>castration-resistant prostate cancer 
+ csr</p><p>
+ clinical study report 
+ cyp</p><p>
+ cytochrome p450 
+ drf</p><p>
+ dose-range finding 
+ ecog</p><p>eastern cooperative oncology group 
+ eq-5d-5l</p><p>
+ euroqol group 5-dimension 5-level 
+ eu</p><p>
+ european union 
+ fact-p</p><p>functional assessment of cancer therapy - prostate 
+ hr</p><p>
+ hazard ratio 
+ hrqol</p><p>health-related quality of life 
+ icr</p><p>
+ independent central review 
+ idsmc</p><p>independent data and safety monitoring committee 
+ iss</p><p>
+ integrated summary of safety 
+ itt</p><p>
+ intent-to-treat 
+ lhrh</p><p>luteinizing-hormone releasing hormone 
+ mfs</p><p>
+ metastasis-free survival 
+ mhspc</p><p>
+ metastatic hormone-sensitive prostate cancer 
+ nhmrc ctc</p><p>
+ national health and medical research council clinical trials centre 
+ nsaa</p><p>nonsteroidal antiandrogen 
+ orr</p><p>
+ objective response rate 
+ os</p><p>
+ overall survival 
+ pcwg2</p><p>
+ prostate cancer clinical trials working group 2 
+ pfs</p><p>
+ progression-free survival 
+ pr</p><p>
+ partial response</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 5/100 
+ pres</p><p>posterior reversible encephalopathy syndrome pro</p><p>
+ patient-reported outcomes 
+ psa</p><p>
+ prostate-specific antigen 
+ psa pfs</p><p>
+ prostate-specific antigen progression-free survival 
+ qlq-pr25</p><p>
+ quality of life questionnaire-prostate 25 
+ qol</p><p>
+ quality of life 
+ recist 1.1</p><p>
+ response evaluation criteria in solid tumours version 1.1 
+ rpfs</p><p>
+ radiographic progression-free survival 
+ sae</p><p>
+ serious adverse event 
+ sap</p><p>
+ statistical analysis plan 
+ sse</p><p>
+ symptomatic skeletal event 
+ stopcap</p><p>
+ systemic treatment options for cancer of the prostate 
+ teae</p><p>treatment-emergent adverse event</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 6/100</p></section><section><header n="1">1.  
+ background information on the procedure</header></section><section><header n="1.1">1.1.  
+ type ii group of variations</header><p>pursuant to article 7.2 of commission regulation (ec) no 1234/2008, astellas pharma europe b.v. submitted to the european medicines agency on 1 july 2019 an application for a group of variations.</p><p>
+ the following variations were requested in the group:</p></section><section><header>variations requested type 
+ annexes 
+ affected</header><p>c.i.4</p><p>c.i.4 - change(s) in the spc, labelling or pl due to new 
+ quality, preclinical, clinical or pharmacovigilance data</p><p>
+ type ii 
+ i 
+ c.i.6.a</p><p>
+ c.i.6.a - change(s) to therapeutic indication(s) - addition 
+ of a new therapeutic indication or modification of an 
+ approved one</p><p>
+ type ii 
+ i and iiib</p><p>
+ c.1.6: extension of indication to include the treatment of adult men with metastatic hormone-sensitive 
+ prostate cancer (mhspc) for xtandi in combination with androgen deprivation therapy; as a 
+ consequence, sections 4.1, 4.7, 4.8, 5.1, 5.3 and 6.6 of the smpc are updated. furthermore, the mah 
+ took the opportunity to make corrections to section 4.7. the package leaflet is updated in accordance.</p><p>
+ the rmp version 13.0 has also been submitted.</p><p>
+ c.1.4: update of section 5.1 of the smpc based the 5-year overall survival (os) results obtained from 
+ the prevail study (mdv310003), a phase 3 study of enzalutamide in chemotherapy naïve patients with 
+ metastatic prostate cancer that progressed on adt.</p><p>
+ the group of variations requested amendments to the summary of product characteristics and package 
+ leaflet and to the risk management plan (rmp).</p></section><section><header>information on paediatric requirements</header><p>pursuant to article 8 of regulation (ec) no 1901/2006, the application included an ema decision(s) cw/0001/2015 on the granting of a class waiver.</p></section><section><header>information relating to orphan market exclusivity similarity</header><p>pursuant to article 8 of regulation (ec) no. 141/2000 and article 3 of commission regulation (ec) no 847/2000, the mah did not submit a critical report addressing the possible similarity with authorised 
+ orphan medicinal products because there is no authorised orphan medicinal product for a condition 
+ related to the proposed indication.</p></section><section><header>scientific advice</header><p>the mah received scientific advice from the chmp on 24 september 2015 (emea/h/sa/1612/1/fu/5/2015/ii). the scientific advice pertained to clinical aspects of the dossier.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 7/100</p></section><section><header n="1.2">1.2.  
+ steps taken for the assessment of the product</header><p>the rapporteur and co-rapporteur appointed by the chmp were: rapporteur: 
+ maria concepcion prieto yerro</p></section><section><header>timetable actual dates</header><p>submission date 1 july 2019 
+ start of procedure: 
+ 20 july 2019 
+ chmp rapporteur assessment report 
+ 30 september 2019 
+ prac rapporteur assessment report 
+ 24 september 2019 
+ prac outcome 
+ 3 october 2019 
+ chmp members comments 
+ 7 october 2019 
+ updated chmp rapporteur(s) (joint) assessment report 
+ 14 october 2019 
+ request for supplementary information (rsi) 
+ 17 october 2019 
+ chmp rapporteur assessment report 
+ 4 may 2020 
+ chmp members comments 
+ n/a 
+ an oral explanation took place on: 
+ 26 may 2020 
+ request for supplementary information (rsi) 
+ 28 may 2020 
+ summary report of the inspection carried out at the following site(s) 
+ astellas pharma global development, us and parexel medical imaging, 
+ spain between 18 january 2021 and 5 february 2021 was issued on</p><p>
+ 19 february 2021 
+ chmp rapporteur assessment report 
+ 12 mar 2021 
+ chmp members comments 
+ 15 mar 2021 
+ updated chmp rapporteur assessment report 
+ 18 mar 2021 
+ opinion 
+ 25 mar 2021</p></section><section><header n="2">2.  
+ scientific discussion</header></section><section><header n="2.1">2.1.  
+ introduction</header></section><section><header n="2.1.1">2.1.1.  
+ problem statement 
+ disease or condition</header><p>this application is to extend the indication of xtandi (enzalutamide) to include the treatment of adult men with metastatic hormone-sensitive prostate cancer (mhspc) in combination with androgen deprivation 
+ therapy. hormone-sensitive prostate cancer is defined as the absence of evidence of castration 
+ resistance, defined as prostate cancer that progresses despite castrate levels of testosterone while on</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 8/100 
+ treatment with a luteinizing-hormone releasing hormone analogue (lhrha), or following bilateral orchiectomy (j clin oncol. 2008;26:1148–59).</p></section><section><header>epidemiology</header><p>worldwide, prostate cancer ranks second in cancer incidence and fifth in cancer mortality in men (bray et al, 2018). in europe, the estimated number of new prostate cancer cases was approximately 473,344 in 
+ 2020 and the number of deaths was approximately 108,088 in 2020 (globocan, 2020).</p></section><section><header>clinical presentation, diagnosis and stage/prognosis</header><p>prostate cancer may present as localised disease, locally advanced disease or metastatic disease at initial diagnosis. despite intense use of prostate-specific antigen (psa) for screening and early detection of 
+ prostate cancer, 2% to 43% of patients initially present with metastatic disease (cancer research uk, 
+ 2019; siegel et al, 2019; schröder et al, 2012; tombal, 2012). 
+ staging of prostate cancer is done using the clinical tumour node metastasis (tnm) classification, the 
+ gleason score and/or current</p><p>international society of urological pathology (isup) grading system (n 
+ mottet, 2018 guidelines for staging of prostate cancer). 
+ the prognosis of men with prostate cancer drops considerably upon the development of metastases (5-
+ year os rate of 30%) (noone et al, 2018; james et al, 2016). moreover, death of patients with 
+ metastatic crpc typically occurs within 24 to 48 months after the onset of metastatic castration 
+ resistance and is commonly preceded by a sequence of landmark events associated with deterioration of 
+ overall health and worsening symptoms including pain and cachexia (beer et al, 2017; devlin et al, 2017; 
+ basch et al, 2013; logothetis et al, 2012). prognostic factors that influence survival in metastatic 
+ castration-sensitive prostate cancer (mcspc) include high prostate specific antigen (psa) concentration 
+ at diagnosis, high gleason score, higher primary tumour stage, worse world health organization (who) 
+ performance status, younger age, and the presence of bone metastases.</p></section><section><header>management</header><p>localised disease may be amenable to curative primary intervention such as surgery or radiation therapy, however, a significant proportion of patients have a recurrence of disease and require systemic 
+ treatment. early in the disease, prostate cancer is dependent on androgen for growth and survival. 
+ therefore, depriving prostate cancer cells of androgen is a primary form of therapy. such prostate 
+ cancers are referred to as androgen-dependent or hormone-sensitive and treatments that decrease 
+ androgen levels or block androgen activity can inhibit their growth.</p><p>
+ patients with recurrent disease after primary treatment, or those who present with more advanced or 
+ metastatic disease, are usually treated with androgen deprivation therapy (adt). initially, most patients 
+ are sensitive to androgen deprivation (castration), but eventually there is a progression from hormone-
+ sensitive prostate cancer to castration-resistant prostate cancer (crpc), where crpc is defined as 
+ disease progression in the setting of castrate levels of testosterone (&lt;50 ng/dl). 
+ as metastatic hormone-sensitive prostate cancer is dependent on androgen for growth and survival, 
+ depriving prostate cancer cells of androgen is a primary form of therapy for mhspc patients. adt has 
+ been the basis for the treatment of patients with mhspc, and results in a median overall survival of 3-4 
+ years. adt is defined as surgical castration by bilateral orchiectomy or medical castration with</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 9/100 
+ gonadotropin-releasing hormone (gnrh) agonists or antagonists (eau, esmo, nccn 2018, fizazi 2017). the aim of these approaches is to reduce testosterone concentrations. although the majority of mhspc 
+ patients have an initial response to treatment with adt, most men progress to castration-resistant 
+ prostate cancer within a median of approximately 1 year. 
+ treatment options for men with mhspc have expanded beyond adt alone. two studies (stampede arm 
+ c and chaarted) provide evidence that combining a short course of docetaxel chemotherapy with adt 
+ in mcspc resulted in prolonged survival compared with treatment with adt alone. docetaxel is currently 
+ approved in combination with adt, with or without prednisone or prednisolone, for the treatment of 
+ patients with metastatic hormone-sensitive prostate cancer (see epar docetaxel). additionally, the 
+ stampede arm g and latitude studies showed that abiraterone acetate plus low-dose prednisone 
+ (aap) added to adt was effective in prolonging overall survival (os) compared with adt alone. 
+ abiraterone acetate is indicated with prednisone or prednisolone for the treatment of newly diagnosed 
+ high risk metastatic hormone sensitive prostate cancer (mhspc) in adult men in combination with 
+ androgen deprivation therapy (adt) (see epar zytiga). both adt plus docetaxel and adt plus 
+ abiraterone/prednisone are recommended by esmo guideline as first-line treatment of metastatic, 
+ hormone-naïve disease (esmo 2015; esmo eupdate 2019). 
+ furthermore, apalutamide has also recently been approved in adult men for the treatment of metastatic 
+ hormone-sensitive prostate cancer (mhspc) in combination with androgen deprivation therapy (adt) 
+ (see epar erleada).</p></section><section><header n="2.1.2">2.1.2.  
+ about the product</header><p>enzalutamide is a potent androgen receptor signalling inhibitor that blocks several steps in the androgen receptor signalling pathway. enzalutamide competitively inhibits androgen binding to androgen receptors, 
+ and consequently; inhibits nuclear translocation of activated receptors and inhibits the association of the 
+ activated androgen receptor with dna even in the setting of androgen receptor overexpression and in 
+ prostate cancer cells resistant to anti androgens. enzalutamide treatment decreases the growth of 
+ prostate cancer cells and can induce cancer cell death and tumour regression. in preclinical studies 
+ enzalutamide lacks androgen receptor agonist activity (see smpc section 5.1). 
+ enzalutamide was approved in the eu in june 2013. enzalutamide is currently approved for the treatment 
+ of adult men with metastatic crpc who are asymptomatic or mildly symptomatic after failure of androgen 
+ deprivation therapy in whom chemotherapy is not yet clinically indicated and for those whose disease has 
+ progressed on or after docetaxel therapy. enzalutamide is also authorised for the treatment of adult men 
+ with high-risk non-metastatic crpc (see smpc 4.1). 
+ the mah applied for an extension of indication for xtandi as follows: “xtandi is indicated for the treatment 
+ of adult men with metastatic hormone-sensitive prostate cancer (mhspc) in combination with androgen 
+ deprivation therapy (see section 5.1).” 
+ the recommended dose is 160 mg enzalutamide (four 40 mg soft capsules) as a single oral daily dose.</p><p>
+ medical castration with a luteinising hormone-releasing hormone (lhrh) analogue should be continued 
+ during treatment of patients not surgically castrated. 
+ additionally, the mah provided the updated 5-year overall survival results obtained from the prevail 
+ study (mdv3100-03) in chemo-naïve mcrpc for inclusion in the smpc.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 10/100</p></section><section><header n="2.1.3">2.1.3.  
+ the development programme/compliance with chmp 
+ guidance/scientific advice</header><p>scientific advice was sought from chmp on the adequacy of the design and statistical analysis of a phase 3 study to support the proposed indication. the proposed study (study 9785-cl-0335) was a 
+ multinational, phase 3, randomized, double-blind, placebo-controlled study to evaluate the efficacy and 
+ safety of enzalutamide plus adt versus placebo plus adt in patients with mhspc.</p></section><section><header n="2.1.4">2.1.4.  
+ general comments on compliance with gcp</header><p>a request for gcp inspection was adopted for the following study: study 9785-cl-0335 (arches). the outcome of this inspection was satisfactory and no critical findings that could have compromised the 
+ integrity of the trial were found.</p></section><section><header n="2.2">2.2.  
+ non-clinical aspects</header></section><section><header n="2.2.1">2.2.1.  
+ pharmacology</header><p>no additional nonclinical pharmacology studies were submitted to support the current application (see non-clinical discussion).</p></section><section><header n="2.2.2">2.2.2.  
+ pharmacokinetics</header><p>no additional nonclinical pharmacokinetics studies were submitted to support the current application (see non-clinical discussion).</p></section><section><header n="2.2.3">2.2.3.  
+ toxicology 
+ carcinogenicity</header><p>the mah had previously submitted the report for the 26-week definitive carcinogenicity study in the tg rash2 mouse (emea/h/c/002639/ii/0039/g). the current submission completes the carcinogenicity 
+ evaluation of enzalutamide by providing data in both sexes from a preliminary 13-week dose-range finding 
+ (drf) study in wistar hannover (wh)rats and a definitive 104-week carcinogenicity study in wh rats.</p></section><section><header>13-week drf study [9785-tx-0016]:</header><p>wistar hannover rats (12/gender/group, 6 weeks of age at the start of treatment) were treated with enzalutamide for 13 weeks (once a day), at dose levels of 0 (water for injection), 0 (vehicle, labrasol), 
+ 50, 100 and 200 mg/kg/day. clinical observation, body weight, food consumption, ophthalmology, 
+ urinalysis, haematology, clinical chemistry, organ weight, necropsy and histopathological examination 
+ were conducted. in addition, systemic exposure was evaluated by determining plasma concentrations of 
+ enzalutamide and its metabolites on day 1 (first administration), in week 4 and in week 13 of 
+ administration in the satellite animals.</p><p>
+ enzalutamide was well tolerated in rats for 13 weeks at dose levels up to 200 mg/kg/day. enzalutamide-
+ related findings in males included increases in absolute and relative weights of the testes, and decreases</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 11/100 
+ in absolute and relative weights of the prostate, epididymides and seminal vesicles; associated decreases in the sizes of the prostate and seminal vesicles, as well as microscopic findings of diffuse leydig cell 
+ hyperplasia in the testes and minimal atrophy of the prostate and seminal vesicles (≥ 50 mg/kg/day). 
+ necropsy revealed calculi in the urinary bladder in males. in the kidney, enzalutamide-related findings 
+ included increases in kidney weight (≥ 100 mg/kg/day, males; ≥50 mg/kg/day, females) and microscopic 
+ findings of pelvic crystals (200 mg/kg/day, male), dilatation of the distal tubules and collecting ducts (≥ 
+ 50 mg/kg/day, males), regeneration of collecting duct in papilla (≥ 100 mg/kg/day, both sexes), and 
+ urothelial hyperplasia (≥ 100 mg/kg/day, both sexes). 
+ these findings were associated with increases in plasma creatinine (≥ 50 mg/kg/day, males) and blood 
+ urea nitrogen (≥ 100 mg/kg/day, males). in the urinary bladder, there were crystals (≥ 100 mg/kg/day, 
+ males) and urothelial hyperplasia (≥ 50 mg/kg/day, males). urinalysis indicated unidentified needle-like 
+ crystals in the urinary sediments (≥ 50 mg/kg/day, both sexes). 
+ based on the saturation of absorption, lack of exposure increase and generally similar findings between 
+ 100 and 200 mg/kg/day in the 13-week dose range finding study, 100 mg/kg/day was selected as the 
+ highest dose for the 2-year carcinogenicity study. the low (10 mg/kg/day) and mid (30 mg/kg/day) 
+ doses were selected to cover a wide range of clinical exposure margins and study dose responses.</p></section><section><header>104-week (104-week) carcinogenicity study [9785-tx-0017]:</header><p>a 2-year carcinogenicity study in rats was conducted with wistar han (both sexes). in this study dose levels: 0, 10, 30 and 100 mg/kg were given per day. survival rates in the control ii (labrasol vehicle) 
+ group were 51.4% in males and 55.7% in females. survival rates in the 100 mg/kg/day (high dose) dose 
+ group were slightly lower in males (38.6%) compared to concurrent male controls and to the female high 
+ dose group (40.0%). the mortality in males at 100 mg/kg/day was largely attributed to urinary bladder 
+ tumours, which were occasionally accompanied by reddish urine and additional non-neoplastic renal and 
+ urogenital tract findings, without palpable masses. 
+ daily dosing of rats for two years with enzalutamide at 10–100 mg/kg/day produced an increased incidence 
+ of neoplastic findings (compared to control).</p><p>enzalutamide-related neoplastic findings can be divided into 1) tumours that were potentially related to 
+ the primary pharmacology and 2) tumours in males that were likely secondary to the continuous irritation 
+ caused by the urinary crystals and calculi in the rat kidney and urinary bladder. the tumours related to 
+ the primary pharmacology included benign thymoma of the thymus, fibroadenoma of the mammary 
+ glands, and benign leydig cell tumours of the testes in males; benign granulosa cell tumours of the 
+ ovaries in females; and adenoma of the pituitary pars distalis in both sexes. the tumours that were 
+ considered secondary to irritation caused by crystals/calculi included urothelial papilloma/carcinoma of 
+ the urinary bladder in males. the dose-specific animal to human exposure margins for each sex in the 
+ carcinogenicity study are summarized in</p><p>
+ table 1. 
+ table 1: summary of animal to human exposure multiples for enzalutamide and its metabolites in rats</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 12/100</p></section><section><header n="2.2.4">2.2.4.  
+ ecotoxicity/environmental risk assessment</header><p>table 2: summary of main study results</p></section><section><header>substance (inn/invented name): enzalutamide (xtandi) cas-number (if available): 873857-62-6 
+ pbt screening</header><p>result</p></section><section><header>conclusion</header><p>bioaccumulation potential- log kow oecd107</p><p>2.99 at ph7 
+ potential pbt 
+ (no)</p></section><section><header>pbt-assessment parameter 
+ result relevant 
+ for conclusion 
+  
+ conclusion</header><p>bioaccumulation</p><p>
+ log 
+ kow</p><p>2.99 at ph7 not b 
+ bcf 
+ not determined</p><p>
+ persistence 
+ dt50 or ready 
+ biodegradability 
+ &lt; 40 days fresh water 
+ &gt;180 days in fresh 
+ sediment 
+ vp</p></section><section><header>pbt-statement :</header><p>the compound is not considered vp</p></section><section><header>phase i  calculation
+  
+ value 
+ unit 
+ conclusion</header><p>pec surfacewater , default or refined (e.g. prevalence, 
+ literature) 
+ 0.047 
+ µg/l &gt; 0.01 threshold</p><p>
+ other concerns (e.g. chemical 
+ class)</p><p>
+ potential 
+ endocrine 
+ disruptor</p></section><section><header>phase ii physical-chemical properties and fate study type 
+ test protocol 
+ results 
+ remarks</header><p>adsorption-desorption oecd 106</p><p>
+ koc (sandy loam) =436</p><p>koc (clay loam) =612</p><p>koc (clay loam) =238</p><p>koc (sludge)=945</p><p>koc (sludge)=870</p><p>phase ii tier b 
+ terrestrial 
+ compartment 
+ studies are not 
+ necessary 
+ ready biodegradability test 
+ oecd 301 
+ not conducted 
+ considered not 
+ ready 
+ biodegradable 
+ aerobic and anaerobic 
+ transformation in aquatic 
+ sediment systems 
+ oecd 308 
+ calwich abbey lake 
+ dt
+ 50, water (20º) =21.2 d dt
+ 50, sediment (20º) =178 d dt
+ 50, whole system (20º) =242 d dt
+ 50, water (12º) =44.9 d dt
+ 50, sediment (12º) =378.8 d dt
+ 50, whole system (12º) =515 d</p><p>
+ swiss lake 
+ dt
+ 50, water (20º) =24.9 d dt
+ 50, whole system (20º) =198 d dt
+ 50, water (12º) =53 d dt
+ 50, whole system (12º) =421 d vp in the aquatic 
+ environment</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 13/100</p><p>% shifting to sediment =57.5%</p><p>and 51.9% at 
+ d103</p></section><section><header>phase iia effect studies  study type 
+  test protocol 
+ endpoint
+  value 
+ unit 
+ remarks</header><p>algae, growth inhibition test/
+ species</p><p>oecd 201 noec 
+ 1370 
+ µg/l 
+ pseudokirchneriella subcapitata.</p><p>daphnia sp. reproduction test</p><p>
+ oecd 211 
+ noec 
+ 318 
+ µg/l 
+ daphnia magna</p><p>fish, early life stage toxicity test/
+ species</p><p>oecd 210 noec 
+ 971 
+ µg/l 
+ brachydanio rerio activated sludge, respiration inhibition test</p><p>
+ oecd 209</p><p>noec 
+ 1x10
+ 6 µg/l</p><p>
+ fish sexual 
+ development test 
+ oecd 234 
+ noec 
+ 890 
+ µg/l 
+ pimephales promelas</p></section><section><header>phase iib studies</header><p>sediment dwelling organism</p><p>oecd 218 
+ noec 
+ 23.4 
+ mg/
+ kg 
+ chironomus riparius</p><p>enzalutamide is not a pbt substance. considering the above data, enzalutamide is not expected to pose a risk to the environment.</p></section><section><header n="2.2.5">2.2.5.  
+ discussion on non-clinical aspects</header><p>no additional nonclinical pharmacology and pharmacokinetic studies were submitted. this is acceptable since the nonclinical data available from previous submissions are considered sufficient to support the 
+ newly claimed indication. 
+ with regards to carcinogenicity, the daily oral administration of enzalutamide for 26 weeks did not 
+ demonstrate any neoplastic findings, indicative of a lack of carcinogenic potential in the tg rash2 mice at 
+ a dose of ≤ 20 mg/kg per day. however, taking into account that the plasma exposure levels at 
+ 20 mg/kg/day (348 µg.h/ml and 286 µg.h/ml, in females and males respectively) were similar to the 
+ clinical exposure in metastatic crpc patients receiving 160 mg/kg/day (322 µg.h/ml) and, the auc24h 
+ for m1 and m2 ranged from 0.08 to 0.21-fold of those in humans, the carcinogenicity potential of 
+ enzalutamide cannot be discarded.</p><p>
+ in the 13-week drf study in wistar han (wh) rats, enzalutamide was found to be well-tolerated. based 
+ on the saturation of absorption, as evidenced by a lack of a dose-dependent exposure increase and 
+ generally similar findings at 100 and 200 mg/kg/day, the 100 mg/kg/day was selected as the high dose 
+ for the 104-week carcinogenicity study, with the low (10 mg/kg/day) and mid (30 mg/kg/day) dose levels 
+ selected to cover a wide range of clinical exposure margins and study dose responses.</p><p>
+ a 2 year carcinogenicity study in rats wistar han (both sexes) has been completed in line with ich s1a 
+ guideline. in this study (dose levels: 0, 10, 30 and 100 mg/kg per day), the increased incidences of the 
+ following tumours were considered treatment-related in male wistar han (wh) rats: leydig cell tumour in 
+ the testis (≥10 mg/kg per day); benign thymoma in the thymus (≥10 mg/kg per day); and urothelial 
+ papilloma/carcinoma in the urinary bladder, adenoma of pars distalis in the pituitary and fibroadenoma in 
+ the mammary gland (100 mg/kg per day). 
+ in female wh rats, treatment-related increases in adenoma of pars distalis in the pituitary (≥ 30 mg/kg 
+ per day) and benign granulosa cell tumour in the ovary (100 mg/kg per day) were noted.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 14/100 
+ except for the urinary bladder, these tumours were observed in organs that are regulated via the hypothalamic-pituitary-gonadal hormone axis and may be related to the pharmacological activity of 
+ enzalutamide. leydig cell tumours in rats are generally accepted as not relevant to humans [cook et al, 
+ 1999].</p><p>the human relevance of thymoma, pituitary adenoma, granulosa cell tumour in the ovary and 
+ mammary fibroadenoma in rats cannot be ruled out. 
+ urothelial papilloma/carcinoma in the urinary bladder could be induced by continuous local irritation of 
+ the epithelium by crystals or calculi that consist of excreted carboxylic acid metabolite. calculi and 
+ crystals were observed in rat urinary bladders. however, no obvious mechanistic rationale to explain 
+ specifically this malignancy can be established. at 10, 30 and 100 mg/kg per day, the exposure multiples 
+ of enzalutamide in male rats were 0.28-, 0.76- and 1.4-fold, respectively, of the exposure in humans 
+ taking enzalutamide 160 mg/day, while those of the inactive carboxylic acid metabolite were 0.17-, 0.44- 
+ and 1.7-fold, respectively. at all dose levels, the exposure multiple of the active metabolite, n-desmethyl 
+ enzalutamide, in male rats was less than 0.12-fold. in conclusion, taking into account that exposure 
+ levels, based on auc, achieved in the study, for enzalutamide plus its metabolite m2, were less than or 
+ similar to those in prostate cancer patients at the recommended dose of 160 mg/day (322 µg.h/ml), 
+ urinary bladder carcinogenicity potential of enzalutamide in human cannot be excluded .</p><p>results of 
+ prosper clinical trial, assessed as part of the procedure emea/h/c/002639/ii/0049, support that the 
+ clinical relevance of these types of tumours observed in rats cannot be ruled out. the results of the 
+ carcinogenicity study have been reflected in section 5.3 of the smpc as part of variation 
+ emea/h/c/002639/ii/0049. 
+ the mah has submitted an updated era to consider the potential impact of the increased patient 
+ population from the new indication on the environmental risk assessment of enzalutamide. furthermore, 
+ in the original era, the degradation half-lives in aquatic sediment systems were reported at 20°c. the 
+ current guidance is to report half-lives at 12°c which more accurately reflects the temperature of 
+ european surface waters. this amendment quotes the degradation half-lives at 12°c and considers the 
+ environmental impact of these extrapolated half-lives. based on the assessment of the updated era, 
+ enzalutamide is unlikely to represent a risk to the aquatic or terrestrial environments.</p></section><section><header n="2.2.6">2.2.6.  
+ conclusion on the non-clinical aspects</header><p>overall, the non-clinical package is considered adequate to support this application to extend the indication to patients with metastatic hormone sensitive prostate cancer. 
+ considering the above data, enzalutamide is not expected to pose a risk to the environment.</p></section><section><header n="2.3">2.3.  
+ clinical aspects</header></section><section><header n="2.3.1">2.3.1.  
+ introduction 
+ gcp</header><p>the clinical trials were performed in accordance with gcp as claimed by the applicant. the mah has provided a statement to the effect that clinical trials conducted outside the community were 
+ carried out in accordance with the ethical standards of directive 2001/20/ec.</p><p>
+ table 3: tabular overview of clinical studies</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 15/100</p></section><section><header n="2.3.2">2.3.2.  
+ clinical pharmacology</header><p>no new pharmacology data were submitted in support of this application.</p></section><section><header n="2.3.3">2.3.3.  
+ discussion and conclusion on clinical pharmacology</header><p>no additional data have been provided with this submission which is considered acceptable as the clinical pharmacology properties of enzalutamide were described in detail in the original marketing application 
+ and previous supplemental applications with new clinical data consistent with results in the original 
+ marketing application. all studies included in support of this application used enzalutamide at the 
+ approved dose of 160 mg/day, which has been established as a generally safe and efficacious dose in 
+ patients with crpc and mhspc. available clinical pharmacology data are considered sufficient to support 
+ this application.</p></section><section><header n="2.4">2.4.  
+ clinical efficacy</header></section><section><header n="2.4.1">2.4.1.  
+ dose response study</header><p>no new dose responses studies were submitted with this application. the posology for the proposed indication (enzalutamide 160 mg administered orally once daily) is the daily dose authorised for other 
+ indications.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 16/100</p></section><section><header n="2.4.2">2.4.2.  
+ main study</header></section><section><header>arches (study 9785-cl-0335): a multinational, phase 3, randomized, double-blind, placebo-controlled study evaluating the efficacy and safety of enzalutamide plus adt vs placebo plus 
+ adt in patients with mhspc</header><p>while on study treatment, patients returned to the study site at weeks 5 and 13 and every 12 weeks thereafter. at week 5, general activities included brief physical examination, vital signs, clinical laboratory and psa testing, 
+ assessment of ecog performance status, adverse events, concomitant medications reviews and study drug dispensing. 
+ at week 13 and every 12 weeks thereafter until treatment discontinuation, general activities included radiographic 
+ assessments (including a chest x-ray or ct/mri), testosterone testing and completion of patient-reported outcome 
+ questionnaires in addition to the activities performed at week 5. 
+ ct: computed tomography; ecog: eastern cooperative oncology group; lhrh: luteinizing hormone-releasing hormone; mri: magnetic resonance imaging; psa: prostate-specific antigen; 
+ rpfs: radiographic progression-free survival 
+ figure 1: arches study schematic</p></section><section><header>methods  study participants</header><p>inclusion criteria</p><p>1.</p><p>approved written informed consent and privacy language as per national regulations must have been 
+ obtained from the patient or legally authorized representative prior to any study-related procedures 
+ (including withdrawal of prohibited medication, if applicable). 
+ 2.</p><p>patient was considered an adult according to local regulation at the time of signing informed consent. 
+ 3.</p><p>histologically or cytologically confirmed adenocarcinoma of the prostate without neuroendocrine 
+ differentiation, signet cell or small cell histology. specific to patients enrolled in france, histological 
+ diagnosis was required. 
+ 4.</p><p>metastatic prostate cancer documented by positive bone scan (for bone disease) or metastatic lesions 
+ on ct or mri scan (for soft tissue). patients whose disease spread was limited to regional pelvic 
+ lymph nodes were not eligible.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 17/100 
+ 5. once randomized at day 1, patient maintained adt with an lhrh agonist or antagonist during study 
+ treatment or had a history of bilateral orchiectomy (i.e., medical or surgical castration). 
+ 6. ecog performance status of 0 or 1 at screening. 
+ 7. estimated life expectancy of 
+ ≥ 12 months as assessed by the investigator. 8. patient able to swallow the study drug and comply with study requirements. 
+ 9. used 2 acceptable methods of birth control (1 of which must include a condom as a barrier method of 
+ contraception) from screening through 3 months after the last dose of study drug 
+ 10. used a condom throughout the study if engaging in sexual intercourse with a pregnant woman. 
+ 11. agreement of not to donate sperm from first dose of study drug through 3 months after the last dose 
+ of study drug. 
+ 12. agreement of not to participate in another interventional study while on treatment. 
+ exclusion criteria 
+ 1. patient had received any prior pharmacotherapy, radiation therapy or surgery for metastatic 
+ prostate cancer (the following exceptions are permitted): 
+ • up to 3 months of adt with lhrh agonists or antagonists or orchiectomy with or without concurrent antiandrogens prior to day 1, with no radiographic evidence of disease 
+ progression or rising psa levels prior to day 1;</p><p>
+ • patient could have had 1 course of palliative radiation or surgical therapy to treat symptoms resulting from metastatic disease (m1) if it was administered at least 4 weeks 
+ prior to day 1; 
+ • up to 6 cycles of docetaxel therapy with final treatment administration completed within 2 months of day 1 and no evidence of disease progression during or after the completion of 
+ docetaxel therapy;</p><p>
+ • up to 6 months of adt with lhrh agonists or antagonists or orchiectomy with or without concurrent antiandrogens prior to day1 if patient was treated with docetaxel, with no 
+ radiographic evidence of disease progression or rising psa levels prior to day 1;</p><p>
+ • prior adt given for &lt; 39 months in duration and &gt; 9 months before randomization as neoadjuvant/adjuvant therapy.</p><p>
+ 2.</p><p>major surgery within 4 weeks prior to day 1. 
+ 3.</p><p>treatment with 5-α reductase inhibitors (finasteride, dutasteride) within 4 weeks prior to day 1. 
+ 4.</p><p>patient had received treatment with estrogens, cyproterone acetate or androgens within 4 weeks 
+ prior to day 1. 
+ 5.</p><p>treatment with systemic glucocorticoids greater than the equivalent of 10 mg per day of 
+ prednisone within 4 weeks prior to day 1, intended for the treatment of prostate cancer. 
+ 6.</p><p>treatment with herbal medications that have known hormonal antiprostate cancer activity and/or 
+ are known to decrease psa levels within 4 weeks prior to day 1.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 18/100 
+ 7. prior aminoglutethimide, ketoconazole, abiraterone acetate or enzalutamide for the treatment of 
+ prostate cancer or participation in a clinical study of an investigational agent that inhibits the ar 
+ or androgen synthesis. 
+ 8. patient received investigational agent within 4 weeks prior to day 1. 
+ 9. known or suspected brain metastasis or active leptomeningeal disease 
+ 10. history of another invasive cancer within 3 years of screening, with the exception of fully treated 
+ cancers with a remote probability of recurrence based on investigator assessment. 
+ 11. absolute neutrophil count &lt; 1500/μl, platelet count &lt; 100000/μl or haemoglobin &lt;10 g/dl (6.2 
+ mmol/l) at screening. note: may not have received any growth factors within 7days or blood 
+ transfusions within 28 days prior to the haematology values obtained at screening.</p><p>
+ 12. total bilirubin ≥ 1.5 x the upper limit of normal (uln) (except patients with documented gilbert’s 
+ disease), or alanine aminotransferase (alt) or aspartate aminotransferase (ast) ≥ 2.5 x the uln 
+ at screening. creatinine &gt; 2 mg/dl (177 μmol/l) at screening. albumin &lt; 3.0 g/dl (30 g/l) at 
+ screening. 
+ 13. creatinine &gt; 2 mg/dl (177 μmol/l) at screening 
+ 14. albumin &lt; 3.0 g/dl (30 g/l) at screening 
+ 15. history of seizure or any condition that may predispose to seizure (e.g., prior cortical stroke or 
+ significant brain trauma, brain arteriovenous malformation).</p><p>
+ 16. history of loss of consciousness or transient ischemic attack within 12 months prior to day 1.</p><p>
+ 17. clinically significant cardiovascular disease, including the following: myocardial infarction within 6 
+ months prior to screening; unstable angina within 3 months prior to screening; new york heart 
+ association class iii or iv congestive heart failure or a history of new york heart association class 
+ iii or iv congestive heart failure unless a screening echocardiogram or multigated acquisition 
+ scan performed within 3 months before the randomization date demonstrates a left ventricular 
+ ejection fraction ≥45%; history of clinically significant ventricular arrhythmias (e.g., sustained 
+ ventricular tachycardia, ventricular fibrillation, torsades de pointes); history of mobitz ii second-
+ degree or third-degree heart block without a permanent pacemaker in place; hypotension as 
+ indicated by systolic blood pressure &lt; 86 mmhg at screening; bradycardia as indicated by a heart 
+ rate of ≤ 45 beats per minute on the screening ecg; uncontrolled hypertension as indicated by a 
+ minimum of 2 consecutive blood pressure measurements showing systolic blood pressure &gt; 170 
+ mmhg or diastolic blood pressure &gt;105mmhg at screening. 
+ 18. gastrointestinal disorder affecting absorption 
+ 19. concurrent disease, infection or comorbid condition that interfered with the ability of the patient 
+ to participate in the study, 
+ 20. patient had received bisphosphonates or denosumab within 2 weeks prior to day 1 unless 
+ administered at stable dose or to treat diagnosed osteoporosis.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 19/100 
+ 21. hypersensitivity reaction to the active pharmaceutical ingredient or any of the study capsule 
+ components</p></section><section><header>treatments</header><p>study drug consisted of enzalutamide provided as 40-mg capsules or tablets to be taken as 160 mg (4 capsules or tablets) orally once daily or enzalutamide-matching placebo. treatment was to be continued 
+ until the radiographic disease progression was documented, the patient started another investigational 
+ agent or new therapy for treatment of prostate cancer, unacceptable toxicity or any other discontinuation 
+ criteria were met. all subjects were required to maintain adt during study treatment, either using an 
+ lhrh agonist/antagonist or having a history of bilateral orchiectomy. 
+ during the study, subjects who experience a national cancer institute (nci)-common terminology 
+ criteria for adverse events (ctcae) guidelines (version 4.03) grade 3 or higher ae (except liver function 
+ test [lft] ae) toxicity that is attributed to the study drug and cannot be ameliorated by the use of 
+ adequate medical intervention and/or dose reduction may interrupt study drug treatment for 1 week or 
+ until the toxicity grade improves to grade 2 or lower in severity. study drug may be restarted at the 
+ original dose (160 mg/day) or a reduced dose (120 mg or 80 mg/day) in consultation with the medical 
+ monitor. after dose reduction, based on subject tolerance, study drug may be increased to a maximum 
+ dose of 160 mg/day per investigator discretion. 
+ enzalutamide must be interrupted during the evaluation of symptoms suspicious of posterior reversible 
+ encephalopathy syndrome (pres) (headache, lethargy, confusion, blindness and other visual and 
+ neurological disturbances, with or without associated hypertension). 
+ restarting treatment at a reduced dose or after treatment interruption for &gt; 2 weeks must be discussed 
+ with the medical monitor.</p></section><section><header>objectives</header><p>primary objective the primary objective was to determine the benefit of enzalutamide plus adt as compared to placebo 
+ plus adt as assessed by radiographic progression-free survival (rpfs) based on independent central 
+ review (icr). 
+ secondary objectives 
+ key secondary objectives of the study were to evaluate the benefit of enzalutamide plus adt compared 
+ with placebo plus adt as measured by overall survival (os), time to psa progression, time to start of 
+ new antineoplastic therapy, psa undetectable (&lt; 0.2 ng/ml) rate, overall response rate (orr) and time 
+ to deterioration of urinary symptoms.</p><p>
+ additional secondary objectives were to compare time to first symptomatic skeletal event (sse); time to 
+ castration resistance; quality of life (qol) as measured by quality of life questionnaire-prostate 25 
+ (qlq-pr25), functional assessment of cancer therapy – prostate (fact-p) and euroqol group 5-
+ dimension 5-level (eq-5d-5l), and in particular the time to deterioration in qol using the fact-p global 
+ score; worsening of pain assessed by brief pain inventory-short form (bpi-sf); and to evaluate safety of 
+ enzalutamide plus adt as compared to placebo plus adt. 
+ exploratory objective (north america sites only) 
+ the study also included an exploratory objective to determine gene mutations potentially related to 
+ resistance of enzalutamide plus adt as assessed by dna mutation testing (i.e., sequence analysis of</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 20/100 
+ circulating free tumour dna) in plasma. this objective was limited to patients who signed a separate genotyping informed consent form at north american sites.</p></section><section><header>outcomes/endpoints</header><p>primary endpoint the primary endpoint was rpfs (based on central review), where rpfs events were defined as objective 
+ evidence of radiographic progression disease (rpd) as assessed by icr or death, as follows:</p><p>
+ - death from any cause within 24 weeks (2 scan cycles) from study drug discontinuation.</p><p>- rpd was defined by recist 1.1 for soft tissue disease or the appearance of 2 or more new bone lesions on bone scan. unconfirmed disease progression on a bone scan at week 13 was not to be 
+ considered an event. the study-specified documentation and confirmation required for the 
+ determination of rpd are listed in table 4. the date of rpd was the date the first objective 
+ evidence of rpd was documented rpfs (based on central review). 
+ table 4 study-specified documentation for radiographic evidence of disease progression vs pcwg2 criteria</p><p> in patients with an rpfs event, rpfs was to be calculated as the time from the date of randomisation to the first objective evidence of rpd at any time or death up to 24 weeks after study drug discontinuation 
+ without documented radiographic progression, whichever occurred first. in patients with no rpfs event, 
+ rpfs was to be censored on the date of last evaluable radiographic assessment prior to the data analysis 
+ cut-off date. in patients with no baseline radiographic assessment, with no postbaseline radiographic 
+ assessments or with all postbaseline radiographic assessments documented as “not evaluable (ne),” the 
+ rpfs was to be censored on the date of randomisation. 
+ key secondary endpoints 
+ • overall survival (os)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 21/100 
+ os was defined as the time from randomisation to death from any cause. all events of death were included. for patients who were alive at the time of the data cut-off date, os time was to be censored 
+ on the last date the patient was known to be alive or the cut-off date, whichever occurred first. 
+ • time to psa progression time to psa progression was calculated as the time from randomisation to the date of first 
+ observation of psa progression. a psa progression was defined as a ≥ 25% increase and an absolute 
+ increase of ≥ 2 ng/ml above the nadir (i.e., lowest psa value observed postbaseline or at baseline), 
+ which was confirmed by a second consecutive value at least 3 weeks later. only results from psa 
+ samples taken before the start of any new prostate cancer therapy after the start of study drug were 
+ to be considered. 
+ • time to start of new antineoplastic therapy time to start of new antineoplastic therapy was defined as the time from randomisation to the date of 
+ first dose administration of the first antineoplastic therapy. in patients with no new antineoplastic 
+ therapy initiated for prostate cancer after randomisation, time to start of new antineoplastic therapy 
+ was to be censored on the last visit date or the date of randomisation, whichever occurred last. 
+ • psa undetectable rate psa undetectable rate was defined as the percentage of patients with detectable (≥0.2 ng/ml) psa at 
+ baseline, which became undetectable (&lt;0.2 ng/ml) during study treatment. only results from psa 
+ samples taken before the start of any new prostate cancer therapy were to be considered. 
+ • overall response rate (orr) this was defined as the percentage of intent-to-treat (itt) patients with measurable disease at 
+ baseline who achieved a complete response (cr) or partial response (pr) (unconfirmed responses) in 
+ their soft tissue disease using the recist 1.1 criteria. in addition to orr, the best overall response 
+ was also determined for each patient based on a combined response assessment. the best combined 
+ (i.e., overall) response was the best response assessment, based on the recist 1.1 assessment for 
+ soft tissue lesions on ct/mri and the response assessment for bone lesions on bone scans, reported 
+ at any time during the study. bone lesions were assessed for cr, non-cr/non-pd and pd.</p><p>as bone 
+ lesions were evaluated differently than soft tissue lesions, the possible categories changed when 
+ considering bone and soft tissue responses together.</p><p>“cr” reflects patients with cr for all pre-
+ existing metastases and “pd” reflects patients with pd in either soft tissue or bone. in this setting, 
+ “pr” includes patients with cr or pr in soft tissue and who remained non-cr/non-pd in bone lesions 
+ and those patients with pr in soft tissue-only disease. 
+ • time to deterioration of urinary symptoms the deterioration of urinary symptoms was based on responses to a selected subset of symptoms 
+ from the “urinary symptoms” subscale of the qlq-pr25 questionnaire (3 items: q31 to q33). 
+ deterioration in urinary symptoms was defined as an increase in the urinary symptoms’ subscale 
+ score by ≥ 50% of the standard deviation observed in the urinary symptoms’ subscale score at 
+ baseline. the time to confirmed deterioration in urinary symptoms was defined as the time interval to 
+ the first deterioration in urinary symptoms that was confirmed by a second consecutive assessment of 
+ the deterioration. 
+ other secondary endpoints 
+ • time to castration resistance: defined as the time from randomisation to the first castration resistance event. a castration resistance event was defined as the occurrence of rpd by icr, psa 
+ progression, or sse, whichever occurred first, with castrate levels of testosterone (&lt;50 ng/dl).</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 22/100 
+ • time to deterioration of quality of life (fact-p): the time to deterioration of qol was defined as the time interval from the date of randomization to the first date a decline from baseline of 
+ 10 points or more in the fact-p total score was recorded. 
+ • time to first symptomatic skeletal event (sse): an sse was defined as radiation to bone, surgery to bone, a clinically apparent pathological bone fracture or a spinal cord compression. in patients 
+ with an sse, the time to the first sse was defined as the time from randomisation to the 
+ occurrence of the first sse prior to the data analysis cut-off date. 
+ • time to pain progression: defined as time from randomization to the first pain progression event, which was an increase of ≥ 30% from baseline in the average brief pain inventory-short form 
+ (bpi-sf) item scores. 
+ • patient reported outcomes (pro) using fact-p, eq-5d-5l, qlq-pr25, bpi-sf.</p></section><section><header>sample size</header><p>approximately 1,100 patients (550 patients per treatment group) were planned to be randomised in the study. the final analysis of the primary endpoint (rpfs) was to be conducted when a minimum of 
+ 262 progression events had occurred, based on the following considerations:</p><p>
+ 1.</p><p>a target hazard ratio (hr) was 0.67. the expected median rpfs for the placebo plus adt group was 
+ 20 months as measured from the date of randomisation. under the assumption of an exponential 
+ distribution, a target hr of 0.67 corresponds to approximately 50% increase in median rpfs for 
+ the enzalutamide plus adt group relative to the placebo plus adt group (approximately 30 vs 20 
+ months).</p><p>
+ 2.</p><p>262 rpfs events (radiographic progression at any time or death from any cause within 24 weeks after 
+ study drug discontinuation, whichever occurred first) provide 90% power to detect the target hr 
+ based on a 2-sided log-rank test and a significance level of 0.05. 
+ in addition, the study was powered for os. specifically, 342 death events were required to provide 80% 
+ power to detect a target hr of 0.73 with a target difference in kaplan-meier estimated median of 
+ approximately 15 months (40 months for placebo plus adt vs 55 months for enzalutamide plus adt) at 
+ the 0.04 significance level under the assumption of an exponential distribution. this significance level was 
+ chosen to apply a parallel testing strategy between os and some other secondary endpoints (with 
+ allocated type i error rate of 0.01).</p></section><section><header>randomisation</header><p>randomisation was performed via the interactive response technology (irt) system and treatment assigned in a 1:1 ratio to enzalutamide 160 mg/day or placebo. subjects were to be stratified by prior 
+ docetaxel (none, 1-5 cycles, 6 cycles) and disease volume (low versus high). high-volume disease was 
+ defined as metastases involving the viscera or, in the absence of visceral lesions, the presence of 4 or 
+ more bone lesions, at least 1 of which in a bony structure beyond the vertebral column and pelvic bone. 
+ prior docetaxel therapy was defined as 1 or more cycles of docetaxel but no more than 6 cycles. 
+ the categories ‘1-5 cycles’ and ‘6 cycles’ used at randomisation for the stratification factor ‘prior 
+ docetaxel use’ were regrouped in the stratified analyses because of the small number of randomized 
+ patients with 1 to 5 cycles of docetaxel as prior medication. this stratification factor therefore became 
+ prior docetaxel use (yes versus no) in the stratified analyses.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 23/100</p></section><section><header>blinding (masking)</header><p>this was a double-blind study.</p><p>based on substantial amendment 2</p><p>(dated 14 dec 2017), unblinding of study treatment assignment could 
+ be performed to determine the next course of therapy if a patient discontinued due to disease 
+ progression.</p><p>
+ at the time of primary endpoint analysis and recommendation of the data safety monitoring board 
+ (dsmb) on study continuation, patients were eligible to transition to an optional open-label extension 
+ portion of the current study. the open-label extension period was added in substantial amendment 3 to 
+ the study protocol.</p></section><section><header>statistical methods</header><p>the following analysis sets were used for the analyses:</p><p>1.</p><p>the itt population, defined as all patients who were randomised in this study. the itt population 
+ was analysed by treatment group as randomised (i.e., treatment group based on randomization 
+ assignment) regardless of study drug administration. unless otherwise specified, efficacy analyses 
+ were performed on the itt population.</p><p>
+ 2.</p><p>the safety population, defined as all randomised patients who received at least 1 dose of study drug. 
+ the safety population was used to conduct safety analyses by treatment group as treated (i.e., 
+ based on the actual study drug the patient received for the greater number of days rather than 
+ the study drug to which the patient was randomised). 
+ primary efficacy endpoint: rpfs 
+ the effect of enzalutamide plus adt compared to placebo plus adt was tested using a stratified log-rank 
+ test at the level of significance of 0.05 (2-sided). the stratification factors were prior docetaxel use (yes 
+ vs no) and disease volume (low vs high); both factors were used at randomisation. the analysis was to 
+ be conducted when at least 262 rpfs events had occurred.</p><p>
+ kaplan-meier methods were used to estimate the distribution of rpfs events by treatment group. the 
+ median rpfs was estimated using the corresponding 50
+ th percentile of kaplan-meier estimates. a 2-sided 95% confidence interval (ci) was provided for this estimate by use of the brookmeyer and crowley 
+ method. the benefit of enzalutamide plus adt compared to placebo plus adt was summarised by a 
+ single hr with its 95% ci based on a cox regression model stratified for prior docetaxel use and disease 
+ volume. 
+ the following sensitivity analyses were performed to evaluate the robustness of the rpfs results:</p><p>
+ • sensitivity analysis 1: impact of study drug discontinuation as an additional event.</p><p>• sensitivity analysis 2: impact of new antineoplastic therapy and occurrence of an sse as additional events.</p><p>
+ • sensitivity analysis 3: impact of all deaths (with no time limit) as events • sensitivity analysis 4: impact of rpd documented between per-protocol visits • sensitivity analysis 5: ‘missing’ data impact – last scan not documented as not evaluable • sensitivity analysis 6: ‘missing’ data impact – absence of 2 consecutive scans • sensitivity analysis 7: censoring rpd on competing risks: new antineoplastic therapy and occurrence of an sse</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 24/100 
+ • sensitivity analysis 8: ‘missing’ data impact and censoring rpd on competing risks: new antineoplastic therapy, occurrence of an sse and study drug discontinuation in patients with m1 
+ based on icr assessments 
+ • sensitivity analysis 9: limited to m1 patients who were identified from the baseline assessments made by icr 
+ • sensitivity analysis 10: impact of rpd documented by the investigators • sensitivity analysis 11: impact of rpd according to pcwg2 criteria [ryan et al, 2012] and documented by the investigators 
+ • sensitivity analysis 12: impact of rpd according to pcwg2 criteria and documented by icr these sensitivity analyses were conducted on the itt population using the same analysis methods as 
+ described for the primary analysis. 
+ subgroup analyses of rpfs were performed to determine whether the treatment effect was concordant 
+ among subgroups. subgroup analyses were not adjusted for the stratification factors used at 
+ randomisation. subgroup assessments included the following: age (&lt;65 years vs ≥65years), geographic 
+ region, eastern cooperative oncology group (ecog) performance status at baseline (0 vs 1), gleason 
+ score at initial diagnosis (&lt;8 vs ≥8), disease location at baseline (bone only, soft tissue only, both bone 
+ and soft tissue), baseline psa (≤ overall median vs &gt; overall median), volume of disease at baseline (low 
+ vs high), prior docetaxel use (yes vs no) and prior use of adt or orchiectomy (yes vs no). 
+ key secondary efficacy endpoint analyses 
+ all secondary endpoint analyses were performed at the time of the rpfs final analysis (i.e., when at least 
+ 262 rpfs events had occurred).</p><p>
+ the primary rpfs endpoint was tested at a 0.05 (2-sided) significance level. once testing confirmed this 
+ primary endpoint was statistically significant, the 6 key secondary endpoints were tested utilizing a 
+ method to preserve the family-wise 2-sided type i error rate at 0.05. a parallel testing strategy was used 
+ to test os with an allocated type i error rate of 0.04 and the remaining 5 key secondary endpoints (time 
+ to psa progression, time to start of a new antineoplastic therapy, rate of psa decline to &lt;0.2ng/ml, orr 
+ and time to deterioration in urinary symptoms from the qlq-pr25) with an allocated type i error rate of 
+ 0.01.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 25/100</p><p>figure 2: testing strategy for the primary and key secondary efficacy endpoints</p><p>one interim analysis and a final analysis were planned for os. the interim analysis of os was to be performed at the time of the rpfs final analysis (i.e., when at least 262 rpfs events had occurred). the 
+ exact significance level for this analysis, calculated using the o’brien-fleming alpha spending function 
+ [lan &amp; demets, 1983], was used to determine the stopping boundaries based on the number of events 
+ observed at the interim analysis and control the overall 2-sided alpha at 0.05 or at 0.04. if the interim 
+ analysis of os was not statistically significant, the final analysis of os was planned for when 
+ approximately 342 deaths were observed to ensure an adequate number of events. at the time of the 
+ planned final analysis of os, no additional analyses of other efficacy endpoints were to be conducted. 
+ additional secondary endpoint analyses 
+ time to first sse, time to castration resistance, time to deterioration of qol based on fact-p and time to 
+ pain progression were to be analysed using the same analysis methods as for rpfs. all qol assessment 
+ data were also summarized descriptively by study visit.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 26/100</p></section><section><header>results participant flow</header></section><section><header>figure 1.</header><p> patient disposition (all randomised patients) a total of 1146 (99.7%) patients received at least 1 dose of study drug (572 [99.7%] in the enzalutamide 
+ plus adt group and 574 [99.7%] in the placebo plus adt group) and were included in the safety 
+ population. a total of 769 (66.9%) patients remained on study drug as of the data cut-off date (437 
+ [76.1%] in the enzalutamide plus adt group and 332 [57.6%] in the placebo plus adt group.</p></section><section><header>recruitment</header><p>from 21 march 2016 to 14 october 2018 (the study data cut-off date), 1150 patients were randomly assigned at a 1:1 ratio to treatment with enzalutamide plus adt (574 patients) or placebo plus adt (576 
+ patients); 1146 patients received at least 1 dose of enzalutamide plus adt (572 patients) or placebo plus</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 27/100 
+ adt (574 patients). there were 204 study sites in 24 countries in north and south america, europe, the asia-pacific region and israel that randomised patients in this study. the countries with the highest 
+ patient enrolment were the russian federation (139, 12.1%), the us (122, 10.6%), japan (92, 8.0%) 
+ and slovakia (81,7.0%). enrolment by site ranged from 1 to 40 patients.</p></section><section><header>conduct of the study</header><p>analysis sets table 5 analysis sets (all randomised patients)</p><p>protocol amendments the original study protocol was dated 10 nov 2015. there were 6 amendments to the protocol, including 
+ 3 substantial amendments. major changes from the substantial amendments are summarised below. 
+ substantial amendment 1 (dated 02 jun 2016) included the following major changes:</p><p>1.</p><p>added 2 exclusion criteria to exclude patients who had not received bisphosphonates or denosumab 
+ at a stable dose (unless diagnosed with osteoporosis) and exclude patients who had shown a 
+ hypersensitivity reaction to any of the study capsule components. 
+ 2.</p><p>revised test drug information to remove information related to tablet formulations and add 
+ information related to the capsule formulation of study drug and placebo (chemical name, 
+ physical description and storage requirements). 
+ substantial amendment 2 (dated 14 dec 2017) included the following major changes:</p><p>1.</p><p>revised the number of events required for the primary endpoint to reflect that primary analysis was 
+ to occur when 262 rpd events were confirmed by independent central imaging review. all 
+ secondary endpoints were to be evaluated at the time of primary analysis</p><p>
+ 2.</p><p>specified a step-wise approach for the statistical testing of the key secondary endpoints. to maintain 
+ the family-wise 2-sided type i error rate at 0.05, a parallel testing strategy between os (with 
+ allocated type i error rate 0.04) and the other 4 endpoints (with allocated type i error rate 0.01) 
+ was developed. if the interim results of the os analysis were statistically significant, no further 
+ analysis of os would be completed.</p><p>
+ 3.</p><p>specified that unblinding of study treatment assignment could have been performed if a patient 
+ discontinued due to disease progression and in the investigator’s opinion this information was 
+ necessary to determine the next course of therapy.</p><p>
+ substantial amendment 3 (dated 10 dec 2018) included the following major changes:</p><p>1.</p><p>added an open-label extension period. following unblinding at the end of the double-blind period and 
+ demonstration of a statistically significant advantage of enzalutamide over placebo when added to</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 28/100 
+ adt, as assessed by the primary endpoint, all eligible patients could be treated on study with open-label enzalutamide at the discretion of the patient and investigator.</p><p>
+ 2.</p><p>specific qol assessments related to deterioration of urinary symptoms and qol were added to the 
+ secondary endpoints.</p><p>
+ the majority of patients were enrolled under protocol version 2.0 incorporating substantial amendment 1 
+ table 6.</p><p>
+ table 6. number of patients enrolled by protocol version (all patients)</p><p>three country-specific non-substantial protocol amendments were implemented during the study. a non-substantial amendment was implemented on 21 apr 2016 to require a histological diagnosis of 
+ adenocarcinoma of the prostate (in inclusion criterion 3) for entry into the study in france. a second non-
+ substantial amendment was also implemented on 21 apr 2016 to provide a concise summary of risk-
+ benefit assessment and modify the risk mitigation strategy that the sponsor would maintain throughout 
+ the study to ensure safety of the subjects. a third and final non-substantial amendment was implemented 
+ on 04 oct 2017 for canada and the us. an exploratory objective to assess genetic mutations related to 
+ resistance of enzalutamide plus adt was added to the study protocol. gene mutations were to be 
+ assessed in plasma samples requiring an additional 10ml of blood to be collected at randomization, week 
+ 49, and at study treatment discontinuation. this applied only to those patients who consented to 
+ participate in this optional, exploratory analysis. 
+ protocol deviations 
+ a total of 152 (13.2%) patients, 70 (12.2%) in the enzalutamide plus adt group and 82 (14.2%) in the 
+ placebo plus adt group, had 1 or more major protocol deviations during the study.</p><p>
+ major protocol deviations are grouped into the following 4 categories:</p><p>
+ 1.</p><p>pd1 entered into the study even though they did not satisfy entry criteria</p><p>
+ 2.</p><p>pd2 developed withdrawal criteria during the study and was not withdrawn</p><p>
+ 3.</p><p>pd3 received wrong treatment or incorrect dose</p><p>
+ 4.</p><p>pd4 received excluded concomitant treatment 
+ table 7</p></section><section><header n="">.</header><p>summary of major protocol deviations (all randomized patients)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 29/100</p><p>additionally, after database lock the sponsor was notified that 2 patients at 1 site each received the incorrect treatment (1 patient in the placebo group received enzalutamide, 1 patient in the enzalutamide 
+ group received placebo) for approximately 3 months between 2 study visits.</p><p>
+ protocol deviations categorised with respect to violations of inclusion/exclusion criteria are presented in 
+ table 8. the most frequently violated criterion was exclusion criterion 1 (patient had received any prior 
+ pharmacotherapy, radiation therapy or surgery for metastatic prostate cancer) occurring in 38 (3.3%) 
+ patients in total, followed by exclusion criterion 17 (patient had clinically significant cardiovascular 
+ disease) in 12 (1.0%) patients, inclusion criterion 4 (patient had metastatic prostate cancer documented 
+ by positive bone scan or metastatic lesions on ct or mri scan) in 12 (1.0%) patients and exclusion 
+ criterion 11 (patient had absolute neutrophil count &lt;1500/μl, platelet count &lt;100000/μl or haemoglobin 
+ &lt;10 g/dl [6.2 mmol/l] at screening) in 11 (1.0%) patients. all other inclusion/exclusion criteria 
+ violations occurred in &lt;1% of patients in total. 
+ table 8</p></section><section><header n="">.</header><p>summary of inclusion and exclusion criteria deviations (all randomized patients)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 30/100</p></section><section><header>baseline data</header><p>table 9</p></section><section><header n="">.</header><p>arches study</p></section><section><header n="">.</header><p>demographic and baseline characteristics. data cut-off 14 october 2018</p><p> table 10</p></section><section><header n="">.</header><p> prostate cancer disease history</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 31/100</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 32/100</p><p>table 11</p></section><section><header n="">.</header><p>radiation and surgical prostate cancer treatment history</p><p>table 12</p></section><section><header n="">.</header><p>prior drug therapies for prostate cancer (in at least 5% of patients in either treatment group)</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 33/100</p></section><section><header>numbers analysed</header><p>the final analysis of rpfs was conducted with 287 rpfs events. the data cut-off date for the final analysis was 14 oct 2018.</p></section><section><header>outcomes and estimation</header><p>primary endpoint rpd was defined by recist 1.1 for soft tissue disease or the appearance of 2 or more new bone lesions 
+ on bone scan. unconfirmed disease progression on a bone scan at week 13 was not to be considered an 
+ event. the study-specified documentation and confirmation required for the determination of rpd are 
+ listed in table 4. however, the icr did not follow table 4 for bone scans and reported disease progression 
+ based on bone scan according to pcwg2 criteria [scher et al, 2008] instead. the icr assessed 
+ radiographic progression on bone scan solely on the appearance of bone lesion(s) which were new 
+ compared to baseline of week 13.</p><p>
+ treatment with enzalutamide plus adt demonstrated a statistically significant 61% reduction in the risk 
+ of a patient experiencing an rpfs event compared with placebo plus adt treatment (hr=0.39 [95% ci: 
+ 0.30, 0.50]; p&lt;0.0001). this analysis is based upon the data provided by the icr.. 
+ rpfs data were censored for a higher proportion of patients in the enzalutamide plus adt group 
+ compared with the placebo plus adt group (84.49% vs 65.63%). in both treatment groups, the most 
+ frequent reason for censoring rpfs data was that there was no evidence of radiographic disease 
+ progression at the data cut-off date (448/485 [92.37%] for the enzalutamide plus adt group vs 348/378 
+ [92.06%] for the placebo plus adt group).</p><p>
+ table 13. rpfs -primary efficacy analysis based on icr assessment (itt population)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 34/100</p><p>figure 3 kaplan-meier plot of rpfs based on icr assessment in arches (itt population)</p><p>secondary endpoints • time to psa progression table 14 time to psa progression – key secondary efficacy analysis (itt population)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 35/100</p><p> unless otherwise specified, efficacy analyses were performed on the itt population, which was defined as all patients who were 
+ randomized in the study.</p><p>
+ the analysis data cut-off date was 14 oct 2018.</p><p>
+ adt: androgen deprivation therapy; ci: confidence interval; cum: cumulative; itt: intent-to-treat; ne: not estimable; psa: prostate-specific antigen</p><p> figure 4</p></section><section><header n="">.</header><p> kaplan-meier plot of time to psa progression – key secondary efficacy analysis (itt population)</p><p>• time to start of new antineoplastic therapy table 15. time to start of new antineoplastic therapy – key secondary efficacy analysis (itt population)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 36/100</p><p> unless otherwise specified, efficacy analyses were performed on the itt population, which was defined as all patients who were 
+ randomized in the study.</p><p>
+ data cut-off date: 14 oct 2018</p><p>
+ adt: androgen deprivation therapy; ci: confidence interval; cum: cumulative; itt: intent-to-treat; ne: not estimable 
+ figure 5</p></section><section><header n="">.</header><p> kaplan-meier plot of time to start of new antineoplastic therapy – key secondary efficacy analysis (itt population)</p><p>table 16. selected new systemic antineoplastic therapies for prostate cancer (itt population)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 37/100</p><p>• psa undetectable rate table 17. psa undetectable rate – key secondary efficacy analysis (itt population)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 38/100</p><p> • objective response rate (orr) table 18. orr – key secondary efficacy analysis (itt population)</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 39/100</p><p> • time to deterioration of urinary symptoms table 19. time to deterioration of urinary symptoms based on qlq-pr25 score – key secondary efficacy analysis (itt population)</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 40/100</p><p>unless otherwise specified, efficacy analyses were performed on the itt population, which was defined as all patients who were 
+ randomized in the study.</p><p>
+ the analysis data cut-off date was 14oct2018.</p><p>
+ a deterioration in urinary symptoms was defined as an increase in the qlq-pr25 modified urinary symptoms score (i.e., q31 to q33) 
+ by ≥ 50% of the standard deviation observed in the qlq-pr25 modified urinary symptoms score at baseline. in patients with a 
+ deterioration, the time to deterioration was defined as the time interval between randomization and the first deterioration in urinary 
+ symptoms at any postbaseline visit. in patients without a deterioration in urinary symptoms, the time to deterioration in urinary 
+ symptoms was censored on the date the last urinary symptom qlq-pr25 score was calculable.</p><p>
+ adt: androgen deprivation therapy; itt: intent-to-treat; ne: not estimated; qlq-pr25: quality of life questionnaire-prostate25 figure 6 kaplan-meier curves for time to deterioration of urinary symptoms based on qlq-pr25 score -key secondary efficacy analysis (itt population)</p><p>• overall survival the prespecified interim analysis of the os endpoint was planned to occur at the time of the final rpfs 
+ analysis. the results of the interim analysis of os (data cut off 14 oct 2018) based on a total of 84 
+ deaths (24.6% of the 342 events required for the final analysis) are presented below. the stopping 
+ boundary for os at the interim analysis was 0.0000054.</p><p>
+ table 20</p></section><section><header n="">.</header><p> overall survival – key secondary efficacy analysis (itt population)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 41/100</p><p> unless otherwise specified, efficacy analyses were performed on the itt population, which was defined as all patients who were 
+ randomized in the study.</p><p>
+ data cut-off date: 14 oct 2018</p><p>
+ time from randomization to death from any cause. for patients still alive at the date of the analysis cut-off point, overall survival was 
+ censored on the last date the patient was known to be alive.</p><p>
+ adt: androgen deprivation therapy; ci: confidence interval; cum.: cumulative; itt: intent-to-treat; ne: not estimable 
+ figure 7 kaplan-meier plot of overall survival –key secondary efficacy analysis (itt population)</p><p>additional secondary endpoints</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 42/100 
+ in the analyses of other secondary endpoints, nominal p values were provided for descriptive purposes only. 
+ • time to first sse table 21</p></section><section><header n="">.</header><p> time to first sse (itt population)</p><p> unless otherwise specified, efficacy analyses were performed on the itt population, which was defined as all patients who were randomized in the study. 
+ the analysis data cut-off date was 14 oct 2018.</p><p>
+ an sse was defined as a radiation or surgery to bone, clinically apparent pathological bone fracture and spinal cord compression, 
+ whichever occurred first. time to first sse was the time from randomization to the occurrence of the first sse.</p><p>in patients with no sse 
+ by the time of the data cut-off point, time to sse was censored on the last visit date or the date of randomization, whichever occurred 
+ last.</p><p>
+ adt: androgen deprivation therapy; ci: confidential interval; cum: cumulative; itt: intent-to-treat; ne: not estimated; sse: symptomatic skeletal event</p><p> figure 8</p></section><section><header n="">.</header><p>kaplan-meier plot of time to first sse (itt population)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 43/100</p><p>• time to castration resistance table 22</p></section><section><header n="">.</header><p> time to castration resistance (itt population)</p><p>unless otherwise specified, efficacy analyses were performed on the itt population, which was defined as all patients who were randomized in the study.</p><p>
+ the analysis data cut-off date was 14oct2018.</p><p>
+ adt: androgen deprivation therapy; ci: confidence interval; hr: hazard ratio; icr: independent central review; itt: intent-to-treat; 
+ nr: not reached; psa: prostate-specific antigen; sse: symptomatic skeletal event 
+ † a castration-resistance event was defined as any of the following in the presence of castration levels of testosterone (&lt;50ng/dl): 
+ radiographic disease progression by icr, psa progression or sse, whichever occurred first.</p><p>in patients with castration resistance event, 
+ time to castration resistance was defined as the time from randomization to the first castration-resistant event.</p><p>in patients with no 
+ documented castration resistance event, the time to castration resistance was censored on the latest date from: the date of last 
+ radiologic assessment, the last psa sample taken prior to the start of any new prostate cancer therapy and prior to 2 or more 
+ consecutive missed psa assessments (if applicable), and the last visit date performed.</p><p>
+ ‡ calculated by brookmeyer and crowley method</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 44/100 
+ unless otherwise specified, efficacy analyses were performed on the itt population, which was defined as all patients who were 
+ randomized in the study.</p><p>
+ data cut-off date: 14 oct 2018</p><p>
+ adt: androgen deprivation therapy; ci: confidence interval; cum.: cumulative; icr: independent central review; itt: intent-to-treat; 
+ ne: not estimated; psa: prostate-specific antigen; sse: symptomatic skeletal event. 
+ figure 9</p></section><section><header n="">.</header><p>kaplan-meier plot of time to castration resistance (itt population)</p><p>• time to deterioration of qol</p><p>table 23</p></section><section><header n="">.</header><p> time to deterioration of qol based on fact-p total score (itt population)</p><p>• time to pain progression table 24</p></section><section><header n="">.</header><p>time to pain progression (itt population)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 45/100</p><p>other efficacy results • combined response (soft tissue lesions and bone lesions)</p><p>
+ table 25. best overall response (itt population)</p><p>• psa reduction table 26. psa reductions from baseline (itt population)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 46/100</p></section><section><header>ancillary analyses</header><p>subgroup analyses of rpfs figure 10 forest plot of rpfs – subgroup analyses (itt population)</p><p>sensitivity analyses of rpfs table 27. summary of rpfs sensitivity analyses (itt population)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 47/100</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 48/100</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 49/100</p><p> figure 11</p></section><section><header n="">.</header><p>forest plot of rpfs sensitivity analyses (itt population)</p></section><section><header>summary of main study</header><p>the following table summarises the efficacy results from the main study supporting the present application. these summaries should be read in conjunction with the discussion on clinical efficacy as well 
+ as the benefit risk assessment (see later sections).</p><p>
+ table 28</p></section><section><header n="">.</header><p>summary of efficacy for trial arches (study 9785-cl-0335)</p></section><section><header>title: arches, a multinational, phase 3, randomised, double-blind, placebo-controlled efficacy and safety study of enzalutamide plus androgen deprivation therapy (adt) versus 
+ placebo plus adt in patients with metastatic hormone sensitive prostate cancer (mhspc)</header><p>study identifier protocol number 9785-cl-0335; phase 3; eudract 2015-003869-28</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 50/100 
+ design randomised, double-blind</p><p>
+ hypothesis 
+ superiority 
+ treatments groups</p><p>
+ enzalutamide + adt</p><p>
+ enzalutamide 160 mg once daily + adt until 
+ radiographic disease progression, start of 
+ another therapy for prostate cancer, 
+ unacceptable toxicity or any other 
+ discontinuation criteria are met; n=574 
+ placebo + adt 
+ placebo for enzalutamide + adt until 
+ radiographic dp, start of another therapy for 
+ prostate cancer, unacceptable toxicity or any 
+ other discontinuation criteria are met; n=576 
+ endpoints and 
+ definitions</p><p>
+ primary 
+ endpoint</p><p>
+ rpfs 
+ time from the date of randomisation to the 
+ date of first objective evidence of rpd at any 
+ time or death from any cause within 24 weeks 
+ from study drug discontinuation, whichever 
+ occurs first. rpd was defined as progressive 
+ disease by recist 1.1 for soft tissue disease 
+ or by appearance of 2 or more new lesions on 
+ bone scan 
+ secondary 
+ endpoint</p><p>
+ os 
+ time from randomisation to death from any 
+ cause 
+ secondary 
+ endpoint</p><p>
+ time to psa 
+ progression</p><p>
+ time from randomisation to the date of first 
+ observation of psa progression, defined as a 
+ ≥25% increase and an absolute increase of ≥2 
+ ng/ml above the nadir, confirmed by a second 
+ consecutive value at least 3 weeks later. 
+ secondary 
+ endpoint</p><p>
+ time to start 
+ of new 
+ antineoplastic 
+ therapy 
+ time from randomisation to the date of first 
+ dose administration of the first antineoplastic 
+ therapy. 
+ secondary 
+ endpoint 
+ psa 
+ undetectable 
+ rate 
+ percentage of patients with detectable (≥0.2 
+ ng /ml) psa at baseline which became 
+ undetectable (&lt;0.2 ng/ml) during study 
+ treatment. 
+ secondary 
+ endpoint</p><p>
+ orr 
+ percentage of itt patients with measurable 
+ disease at baseline who achieved a cr or pr 
+ (unconfirmed responses) in their soft tissue 
+ disease using recist 1.1 criteria 
+ secondary 
+ endpoint 
+ time to 
+ deterioration 
+ of urinary 
+ symptoms 
+ increase in the urinary symptoms’ subscale 
+ score of the qlq-pr25 questionnaire (3 items: 
+ q31 to q33) by ≥50% of the standard 
+ deviation observed in the urinary symptoms’ 
+ subscale score at baseline. 
+ database lock 
+ 14 oct 2018</p></section><section><header>results and analysis  analysis 
+ description 
+ primary analysis</header><p>analysis population and time point 
+ description 
+ intent to treat 
+ descriptive statistics 
+ and estimate 
+ variability 
+ treatment group 
+ enzalutamide + adt</p><p>
+ placebo + adt</p><p>
+ number of 
+ subjects 
+ 574 
+ 576</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 51/100 
+ rpfs* (median – 
+ months)</p><p> nr 
+ 19.0</p><p>95% ci 
+ nr 
+ (16.59, 22.24) 
+ time to psa 
+ progression 
+ (median – 
+ months)</p><p> nr 
+ nr 
+ 95% ci 
+ (nr, nr) 
+ (16.59, nr) 
+ time to start of 
+ new 
+ antineoplastic 
+ therapy 
+ (median – 
+ months)</p><p> 30.2 
+ nr 
+ 95% ci 
+ (nr, nr) 
+ (21.06, nr) 
+ psa 
+ undetectable 
+ rate 
+ (patients with 
+ detectable psa 
+ at baseline)</p><p> 511 
+ 506 
+ n (%) 
+ 348 (68.1) 
+ 89 (17.6) 
+ objective 
+ response rate 
+ (patients with 
+ measurable 
+ disease)</p><p> 177 
+ 182 
+ n (%) 
+ 147 (83.1) 
+ 116 (63.7) 
+ time to 
+ deterioration of 
+ urinary 
+ symptoms 
+ (median – 
+ months)</p><p> nr 
+ 16.8 
+ 95% ci 
+ (19.35, nr) 
+ (14.06, nr) 
+ overall survival 
+ (median – 
+ months)</p><p> nr 
+ nr 
+ 95% ci 
+ nr 
+ nr 
+ effect estimate per 
+ comparison</p><p>
+ primary 
+ endpoint: 
+ rpfs</p><p>
+ comparison groups 
+ &lt;1 favours enza+adt 
+ hazard ratio</p><p>
+ 0.39</p><p>
+ (95% ci)</p><p> (0.30, 0.50) 
+ p-value 
+ &lt;0.0001 
+ key secondary: 
+ time to psa 
+ progression</p><p>
+ comparison groups 
+ &lt;1 favours enza+adt 
+ hazard ratio</p><p>
+ 0.19</p><p>
+ (95% ci)</p><p> (0.13, 0.26) 
+ p-value 
+ &lt;0.0001 
+ key secondary: 
+ time to start of 
+ new 
+ antineoplastic 
+ therapy 
+ comparison groups 
+ &lt;1 favours enza+adt 
+ hazard ratio</p><p>
+ 0.28 
+ (95% ci)</p><p> 
+ (0.20, 0.40) 
+ p-value 
+ &lt;0.0001 
+ key secondary: 
+ psa undetectable 
+ rate 
+ comparison groups</p><p>
+ difference</p><p>
+ 50.5%</p><p>
+ (95% ci)</p><p> (45.3, 55.7) 
+ p-value 
+ &lt;0.0001 
+ key secondary: 
+ objective 
+ response rate</p><p>
+ comparison groups</p><p>
+ difference in response 
+ rates</p><p>
+ 19.3%</p><p>
+ (95% ci)</p><p> (10.4, 28.2) 
+ p-value 
+ &lt;0.0001</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 52/100 
+ key secondary: time to 
+ deterioration of 
+ urinary 
+ symptoms 
+ comparison groups</p><p>
+ hazard ratio</p><p>
+ 0.88 
+ (95% ci)</p><p> 
+ (0.72, 1.08) 
+ p-value 
+ 0.2162 
+ key secondary: 
+ overall survival</p><p>
+ comparison groups</p><p>
+ hazard ratio</p><p>
+ 0.81 
+ (95% ci)</p><p> 
+ (0.53, 1.25) 
+ p-value 
+ 0.3361 
+ * per protocol-specified criteria</p></section><section><header>analysis performed across trials (pooled analyses and meta-analysis)</header><p>side-by-side comparisons of the efficacy results for arches and enzamet, both of which were conducted in patients with mhspc, and the previous placebo-controlled phase 3 studies in patients with metastatic 
+ crpc (affirm, prevail, asian prevail) and nonmetastatic crpc (prosper) are presented in this 
+ section. 
+ table 29</p></section><section><header n="">.</header><p>key elements in the study design for phase 3 enzalutamide studies in patients with prostate cancer</p><p> table 30</p></section><section><header n="">.</header><p>key elements in the patient population for phase 3 enzalutamide studies in patients with prostate cancer</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 53/100</p><p>comparison of efficacy results table 31</p></section><section><header n="">.</header><p>interim overall survival results in patients with mhspc: arches and enzamet</p><p>table 32. comparison of selected efficacy endpoints in patients with mhspc (arches) and patients with 
+ metastatic crpc (affirm, prevail, asian prevail) or nonmetastatic crpc (prosper)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 54/100</p></section><section><header>clinical studies in special populations</header><p>n/a</p></section><section><header>supportive studies</header></section><section><header>study enzamet (anzup 1304)</header><p>this is a multicenter, open-label, randomised, phase 3 study in 1,125 patients with mhspc starting first-</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 55/100 
+ line adt for metastatic prostate cancer. the study is being led by anzup cancer trials group in collaboration with the university of sydney (sponsor) acting through the national health and medical 
+ research council clinical trials centre (nhmrc ctc).</p><p>
+ methods patients were randomized 1:1 to enzalutamide 160 mg daily by mouth or a conventional nonsteroidal antiandrogen -nsaa (bicalutamide, nilutamide or flutamide) by mouth; all patients were also treated with 
+ an lhrh analogue or surgical castration. patients were allowed up to 6 cycles of concomitant docetaxel 
+ (75 mg/m
+ 2), as long as the decision to use early docetaxel was made and specified prior to randomisation and the patients received no more than 2 cycles prior to randomisation.</p><p>
+ treatment was to continue until disease progression or prohibitive toxicity.</p><p>
+ randomisation was stratified for volume of disease (high vs low), study site, concomitant antiresorptive 
+ therapy (yes vs no), comorbidities according to the adult comorbidity evaluation [ace-27] score (0 to 1 
+ vs 2 to 3) and early planned use of docetaxel (yes vs no). high volume of disease was defined as 4 or 
+ more bone metastases, 1 of which was outside the vertebral column and pelvis and/or visceral 
+ metastases. lymph node involvement of bladder invasion did not qualify as visceral disease. 
+ antiresorptive therapy referred to concomitant therapy to delay skeletal-related events when 
+ commencing adt (denosumab, zoledronic acid or any other therapy at doses proven to prevent skeletal-
+ related events). ace-27 score intervals of 0 to 1 vs 2 to 3 were used for the stratification. early planned 
+ use of docetaxel was defined as the use of docetaxel in conjunction with initiation of adt.</p><p> 
+ figure 12. enzamet study schematic 
+ eligible patients had metastatic adenocarcinoma of the prostate defined by documented histopathology or 
+ cytopathology of prostate adenocarcinoma from a biopsy of a metastatic site; or documented 
+ histopathology of prostate adenocarcinoma from a transrectal ultrasound-guided biopsy, radical 
+ prostatectomy or transurethral resection of the prostate and metastatic disease consistent with prostate 
+ cancer; or metastatic disease typical of prostate cancer (i.e., involving bone or pelvic lymph nodes or</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 56/100 
+ para-aortic lymph nodes) and a serum psa concentration that is rising and is &gt;20 ng/ml, have received prior adt or prior cytotoxic chemotherapy for prostate cancer, with the following exceptions:</p><p>
+ - adt could have been started &lt;12 weeks prior to randomization, with psa stable or falling. - prior adt was allowed in the adjuvant setting, where the completion of adjuvant hormonal therapy was &gt;12 months prior to randomisation and the total duration of hormonal treatment did 
+ not exceed 24 months.</p><p>
+ - up to 2 cycles of docetaxel chemotherapy for metastatic disease were permitted prior to randomisation; continued treatment with docetaxel was allowed for a total of up to 6cycles. 
+ the primary objective was to determine the effect of enzalutamide plus adt on os (defined as death 
+ from any cause). secondary objectives were to determine the effects of enzalutamide plus adt on the 
+ following: psa pfs (based on the first evidence of psa progression, clinical progression or death from any 
+ cause), clinical pfs (based on evidence of radiographic progression using pcwg2 for bone lesions and 
+ recist 1.1 for soft tissue, development of symptoms attributable to cancer progression or initiation of 
+ another anticancer treatment for prostate cancer), adverse events (aes) and hrqol (utilizing european 
+ organization for research and treatment of cancer quality of life questionnaire core-30, qlq-pr25 and 
+ eq-5d-5l health questionnaires). 
+ the primary analysis population for efficacy was the itt population, defined as all randomised patients. 
+ the itt population was analysed by treatment group according to study treatment assigned at the time 
+ of randomization. 
+ the study design included a provision for up to 3 interim efficacy analyses on os at 50%, 67% and 80% 
+ of the maximum number of events being sought (i.e., 470).</p><p>the interim analyses allowed for early 
+ rejection of the null hypothesis according to an alpha spending function with an o’brien-fleming boundary 
+ shape. 
+ table 33. indicative boundary for rejection of the null hypothesis</p><p>results 
+ from 31 mar 2014 to 24 mar 2017 (the last date of randomisation), 1,125 patients were randomly assigned at a 1:1 ratio to treatment with enzalutamide plus adt (563 patients) or nsaa plus adt (562 
+ patients); 1121 patients received at least 1 dose of enzalutamide plus adt (563 patients) or nsaa plus 
+ adt (558 patients) figure 13. there were 79 study sites in 6 countries (australia, canada, ireland, new 
+ zealand, uk and the us) in 3 regions: australia/new zealand, europe and north america.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 57/100</p><p>figure 13. patient disposition (all randomised patients)</p><p>the original study protocol (dated 11 nov 2013) was amended twice (07 nov 2014 and 01 mar 2018). 
+ use of docetaxel was introduced with amendment 1 of the protocol.</p><p>
+ there were 134 patients (11.9%) who had at least 1 major protocol deviation. protocol deviations were 
+ more frequent in the enzalutamide arm compared to the nsaa arm (16.2% vs 7.7%). differences were 
+ mainly driven by pd4 (i.e. received excluded concomitant treatment) with only 2 (0.4%) patients in the 
+ control arm and 34 patients (6.0%) in the experimental arm. the higher number of protocol deviations 
+ observed in the enzalutamide arm was due to patients continuing prior anti-androgen therapy post-
+ randomisation (31 of the 34 deviations). in the majority of the cases (28/31), adt therapy was 
+ discontinued within 7 days after randomisation.</p><p> table 34. demographic characteristics for patients in enzamet</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 58/100</p><p> table 35. prostate cancer disease history</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 59/100</p><p>the majority of the patients included in the enzamet study received adt in the metastatic setting (79% of patients on the enzalutamide arm versus 81.5% in the control arm)h, i.e., within 12 weeks prior to</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 60/100 
+ randomisation, according to inclusion/exclusion criteria</p><p>furthermore, there were around 9% of patients that received adjuvant adt.</p><p>table 36. radiation and surgical treatment history for prostate cancer (itt population)</p><p>table 37. prior drug therapy for prostate cancer (itt population)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 61/100</p><p>for the analysis of os, a total of 245 deaths occurred and included 102 deaths (18.1%) in the enzalutamide plus adt group and 143 deaths (25.4%) in the nsaa plus adt group. a statistically 
+ significant 33% reduction in the risk of death was observed in patients treated with enzalutamide plus 
+ adt compared with a conventional nsaa plus adt, with an hr of 0.67 (95%ci:0.52,0.86; p=0.002) 
+ table 38]. this interim analysis, based on a median follow-up of 33.8 months, showed that the efficacy 
+ stopping boundary was crossed. there were not enough death events in either arm to estimate the 
+ median os. survival at 36 months was 79.7% in the enzalutamide plus adt group vs 72.4% in the nsaa 
+ plus adt group. a sensitivity analysis using a stratified log-rank test and cox regression model showed 
+ an hr of 0.68 (95% ci: 0.52, 0.87, p=0.0008). 
+ the patients continue on-study and continue to be followed for survival; an updated os analysis is 
+ currently planned when at least 470 deaths have been reported. 
+ table 38. interim analysis of overall survival (itt population)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 62/100</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 63/100 
+ figure 14 kaplan-meier plot of overall survival (itt population)</p><p>prespecified subgroup analyses included the following: gleason score (&lt;8, ≥8), age (&lt;70 years, ≥70 years), ecog performance status (0, 1 to 2), visceral disease (no, yes), prior local treatment (missing, 
+ yes), docetaxel chemotherapy (no, yes), volume of disease (high, low), antiresorptive therapy (no, yes), 
+ ace-27 (0 to 1, 2 to 3), region (europe, australia/new zealand, north america).</p><p>
+ figure 15 forest plot of os – subgroup analyses (itt population)</p></section><section><header>study prevail (mdv3100-03)</header><p>in addition to the extension of indication to include mhspc the mah has provided updated 5-year os results from study prevail in chemo-naïve mcrpc to update section 5.1 of the smpc. 
+ prevail was a multinational, randomised, double-blind, phase 3, placebo-controlled study of 
+ enzalutamide in chemotherapy-naïve patients with mcrpc. the coprimary efficacy endpoints were os 
+ and rpfs.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 64/100 
+ the first patient was randomly assigned on 28 sep 2010 and the last patient was randomly assigned on 07 sep 2012. on 21 oct 2013, after a protocol-specified interim analysis was performed following 
+ 540 death events, the external independent data monitoring committee (dmc) offered access to open-
+ label enzalutamide to patients randomly assigned to placebo. in jan 2014, placebo-treated patients 
+ began crossing over to enzalutamide treatment in the open-label period of the study.</p><p>
+ as of the 5-year analysis data cut-off date of 30 sep 2017, a total of 871 patients in the enzalutamide 
+ group, 844 patients in the placebo group and 234 patients on placebo who crossed over to enzalutamide 
+ received at least 1 dose or partial dose of study drug.</p><p>
+ the number of patients enrolled in the open-label extension or long-term follow-up of prevail as of the 
+ 5-year analysis data cut-off date of 30 sep 2017 was 520 patients (59.6%) in the enzalutamide group 
+ and 435 patients (51.5%) in the placebo group. 
+ as of the 5-year analysis data cut-off date of 30 sep 2017, 62 patients (7.1%) in the enzalutamide group 
+ and 26 placebo patients (11.1%) who crossed over to enzalutamide were still receiving study treatment. 
+ as of the 5-year analysis data cut-off date, the number of patients who had come off their primary 
+ treatment and continued in long-term follow-up for os included 157 patients (18.0%) in the 
+ enzalutamide group, 53 patients (6.3%) in the placebo group and 63 placebo patients (26.9%) who 
+ crossed over to enzalutamide. 
+ table 39</p></section><section><header n="">.</header><p> summary of patients enrolled in the prevail open-label extension 
+ the median treatment duration was 17.7 months for the enzalutamide group, 4.6 months for the placebo group and 9.8 months on enzalutamide for patients who crossed over from placebo. most patients in the 
+ enzalutamide group (591[67.9%]) received study drug for at least 12 months and most patients in the 
+ placebo group (526 [62.3%]) received study drug for less than 6 months. approximately 37% of 
+ enzalutamide-treated patients received study drug for at least 2 years. approximately 20% of placebo 
+ patients who crossed over to enzalutamide received enzalutamide for at least 2 years. 
+ results of os as of the data cut-off date of 30 sep 2017 are presented in table 40. table 38 
+ table 40</p></section><section><header n="">.</header><p>updated analysis of overall survival in prevail – 5-year follow-up</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 65/100</p><p>all patients randomly assigned to treatment (itt population). 
+ the analysis data cut-off date was 30 sep 2017. 
+ ci: confidence interval; itt: intent-to-treat 
+ † patients who were not known to have died at the analysis date were censored at date last known alive or data 
+ analysis cut-off date, whichever occurred first. 
+ ‡ based on kaplan-meier estimates.</p><p>
+ § p value was based on an unstratified log-rank test. hazard ratio was based on an unstratified cox regression 
+ model (with treatment as the only covariate) and was relative to placebo with &lt; 1 favouring enzalutamide. 
+ ¶ calculated as (date last known alive or data analysis cut-off date, whichever occurred first – randomization 
+ date + 1)/30.4375. 
+ table 41. updated kaplan-meier plot of overall survival in prevail – 5-year follow-up</p><p>all patients randomly assigned to treatment (itt population).</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 66/100 
+ the analysis data cut-off date was 30 sep 2017. hazard ratio was based on an unstratified cox regression model (with treatment as the only covariate) and is 
+ relative to placebo with &lt;1 favouring enzalutamide. 
+ ci: confidence interval; itt: intent-to-treat; ref: reference</p><p>
+ table 42</p></section><section><header n="">.</header><p> updated forest plot for duration of overall survival: subgroup analysis in prevail</p><p>the incidence of subsequent antineoplastic therapy use for prostate cancer was lower in the enzalutamide group (610 patients [70.0%]) compared with the placebo group (678 patients [80.2%]), reflective of the 
+ higher proportion of patients in the placebo group who had disease progression compared with the 
+ enzalutamide group the most common subsequent antineoplastic therapies for prostate cancer were 
+ docetaxel (481 enzalutamide patients [55.2%], 520 placebo patients [61.5%]), abiraterone acetate (362 
+ enzalutamide patients [41.5%], 431 placebo patients [51.0%]) and cabazitaxel (151 enzalutamide 
+ patients [17.3%], 172 placebo patients [20.4%]). 
+ table 43</p></section><section><header n="">.</header><p>selected subsequent antineoplastic therapy use in prevail</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 67/100</p></section><section><header n="2.4.3">2.4.3.  
+ discussion on clinical efficacy</header><p>enzalutamide is currently approved for the treatment of patients with metastatic (pre and post chemotherapy) and non-metastatic crpc (see smpc section 4.1). enzalutamide is an androgen receptor 
+ inhibitor that targets the ar signalling pathway. within this application the mah is seeking approval for 
+ the treatment of patients with metastatic prostate cancer prior to development of castration resistant 
+ disease (i.e., hormone-sensitive prostate cancer) in combination with adt.</p><p>
+ additionally, the mah proposes an update in section 5.1 of the smpc based on the 5-year overall survival 
+ (os) results obtained from the prevail (md v310003) study, a phase 3 study of enzalutamide in 
+ chemotherapy naïve patients with metastatic prostate cancer that progressed on adt.</p></section><section><header>design and conduct of clinical studies</header><p>the submission of this type ii variation for the extension of indication is based on the study 9785-cl-0335 (arches), a phase 3, randomised, double-blind, placebo-controlled study of enzalutamide plus adt 
+ versus placebo plus adt in 1,150 patients with mhspc. additionally, os results from the first interim 
+ analysis of the study enzamet, a phase 3, randomised, open-label, active-comparator study of 
+ enzalutamide plus adt versus nonsteroidal antiandrogen (nsaa) plus adt led by anzup cancer trials 
+ group in collaboration with the university of sydney as sponsor, have been provided as supportive 
+ information.</p><p>
+ focusing on the study arches, eligibility criteria allowed the inclusion of patients with metastatic 
+ adenocarcinoma of the prostate (newly diagnosed or diagnosed in a previous stage), regardless of volume 
+ disease. patients with an ecog performance status &gt;1 and those with known or suspected brain 
+ metastasis or active leptomeningeal disease and with history of seizure or any condition that may 
+ predispose to seizure were excluded from the study. patients who have received up to 6 cycles of 
+ docetaxel and prior treatment with adt (either lhrh agonists or antagonists or orchiectomy with or 
+ without concurrent antiandrogens), up to 3 months (6 months if patient was treated with docetaxel), and</p><p>
+ patients who have received prior adt in the neoadjuvant/adjuvant setting (up to 39 months in 
+ duration)were allowed in the trial.</p><p>moreover, 1 course of palliative radiation or surgical therapy to treat</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 68/100 
+ symptoms from metastatic disease were allowed. no other prior treatment for the metastatic disease was allowed.</p><p>
+ patients were randomised in a 1:1 ratio to enzalutamide (160 mg once daily) + adt or matching placebo 
+ + adt. while the use of adt alone as comparator could be acceptable in this setting, the add-on of 
+ docetaxel might have been a preferable choice, as it was suggested in the chmp scientific advice 
+ (ema/chmp/sawp/596561/2015). based on the stampede and chaarted trials, in which docetaxel plus 
+ adt improved os in men with metastatic, hormone-naïve disease (sweeney c, 2014; james nd, 2015), 
+ adt plus docetaxel with or without prednisone or prednisolone is currently authorised for the treatment of 
+ patients with metastatic hormone-sensitive prostate cancer (docetaxel epar). 
+ patients were stratified by prior docetaxel (none, 1-5 cycles, 5 cycles), and disease volume (low vs high). 
+ radiographic pfs (rpfs), as assessed by icr, was chosen as the primary endpoint. radiographic 
+ progression disease (rpd) was defined by recist 1.1 criteria for soft tissue and by the appearance of 2 
+ or more new bone lesions on bone scan. the assessment of rpfs was performed at week 13 and 
+ thereafter every 12 weeks. as per protocol, if progression was identified at week 13 (bone lesion), 
+ confirmation was required ≥ 6 weeks after that or at week 25 visit. the latter is considered appropriate to 
+ avoid false positive of progression. progression was to be confirmed if there were ≥ 2 new bone lesions 
+ on bone scan compared to week 13 scan (≥ 4 new lesions compared to baseline bone scan). at week 25 
+ or later no confirmatory scan was required for bone lesions and rpd on bone scans was planned to be 
+ assessed by comparison to best response on treatment. however, according to the applicant the icr 
+ assessed rpd on bone scan solely on the appearance of bone lesion(s) which were new compared to 
+ baseline or to week 13 (i.e. according to pcwg2 criteria – scher et al, 2008). this analysis was initially 
+ planned as a sensitivity analysis but not as the primary analysis. this was considered a major deviation 
+ from the protocol and statistical analysis plan (sap), and matter of concern. according to the mah this 
+ change in the method of analysis was due to an unintentional error which affected 66 of the 1150 
+ patients included in the arches study. a gcp inspection was conducted and no findings impacting 
+ negatively the data quality were identified. 
+ overall, secondary endpoints are considered acceptable, although the addition of pfs2 as a secondary 
+ endpoint would have been informative. it should be pointed out that “time to deterioration in urinary 
+ symptoms” was added as a secondary endpoint with amendment 3 (dated 10 dec 2018), after the data 
+ cut-off. nevertheless, according to the mah the inclusion of “time to deterioration in urinary symptoms” 
+ as a secondary endpoint was included in the final version of the sap, dated 15 nov 2018, while data were 
+ still unblinded (database lock 14 dec 2018).</p><p>
+ overall, the statistical methods seem appropriate. the efficacy analyses were performed on the itt 
+ population. the primary efficacy endpoint is the rpfs with a multiplicity control for the 6 key secondary 
+ endpoints, including os once rpfs was demonstrated to be statistically significant. key secondary 
+ endpoints, other than os, were sequentially tested at a 1% significance level.</p><p>
+ a total of 152 (13.2%) patients (70 [12.2%] in the enzalutamide arm and 82 [14.2%] in the placebo 
+ arm) had 1 or more major protocol deviations during the study and the majority of them were related to 
+ violation of inclusion criteria. overall, percentages of major protocol deviations were balanced between 
+ treatment arms, apart from the violation of the</p><p>exclusion criterion 1 (patient had received any prior 
+ pharmacotherapy, radiation therapy or surgery for metastatic prostate cancer), where the proportion of 
+ patients in the control arm was double compared to the enzalutamide arm (26 [4.5%] vs 12 [2.1%], 
+ respectively. exclusion criterion 1 deviations more frequent in the placebo plus adt group compared to 
+ the enzalutamide plus adt group were: treated with docetaxel and received &gt;6 months adt prior to day 
+ 1, received &gt; 3 months of adt prior to day 1,and had final administration of docetaxel &gt;2 months prior 
+ to day 1. no patterns have been identified to explain the larger number of deviations in the placebo plus</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 69/100 
+ adt group vs enzalutamide plus adt group. taking into account the small number of patients and the results observed, this imbalance does not appear to have a great impact on the results. 
+ regarding baseline characteristics, the population was balanced between treatment arms. the median 
+ age was 70 years (range: 42, 92), with nearly 30% of patients being 75 years or older. the majority of 
+ patients were white (80.5%) and had a good performance status (77.5% ecog 0). the majority of 
+ patients had high volume of disease (63%) and a gleason score at initial diagnosis ≥8 (66%). median 
+ serum psa was 5.21 ng/ml, with some patients with a psa level of 0. the mean psa at baseline for 
+ enzalutamide group was 75.37 ng/ml which may question whether the population was castration 
+ sensitive. however, patients with evidence of disease progression (i.e. radiographic or psa) in the context 
+ of adt were excluded from the study, thus the population included in study arches can be considered 
+ castration sensitive.</p><p>
+ most of the patients had distant metastasis at diagnosis (66.7%). the majority of patients received prior 
+ treatment with adt (90%) and around 18% of patients received prior treatment with docetaxel. other 
+ prior therapies included radiation (16.5%) and surgery (33.5%). a high number of patients received 
+ subsequent antineoplastic therapy for prostate cancer in the control arm compared to the enzalutamide 
+ arm (8.0% vs 23.1%), which seems reasonable taking into account the results of the primary analysis. 
+ docetaxel (1.9% vs 9.0%), abiraterone (2.3% vs 4.9%) and enzalutamide (0.7% vs 4.9%) were the 
+ most commonly used subsequently in the control arm. 
+ the study enzamet included a total of 1,125 patients who were randomised 1:1 to treatment with 
+ enzalutamide plus adt (563 patients) or nsaa plus adt (562 patients). randomisation was stratified for 
+ volume of disease (high vs low), study site, concomitant antiresorptive therapy (yes vs no), comorbidities 
+ according to the ace-27 score (0 to 1 vs 2 to 3) and early planned use of docetaxel (yes vs no). 
+ the primary endpoint was os without multiplicity control for the secondary endpoints. three interim 
+ analyses were proposed for os, once 50%, 67% and 80% of the required events were observed. an 
+ alpha spending function with an o’brien-fleming boundary shape was used with a final alpha value of 
+ 0.042. the enzamet study design is overall considered adequate. 
+ the population included in the study enzamet is not completely comparable to the population of arches 
+ study. patients in the study enzamet could receive early docetaxel use (i.e. a total of 6 cycles of 
+ docetaxel, of which 0-2 cycles were allowed before randomisation) while in the study arches treatment 
+ with docetaxel was only allowed prior randomisation (i.e. up to 6 cycles of docetaxel therapy with final 
+ treatment administration completed within 2 months of day 1) (see table 29). according to the data 
+ provided by the mah, 45.1% of patients in the enzalutamide arm in study enzamet had early docetaxel 
+ use (i.e. use of docetaxel in conjunction with initiation of adt), of whom approximately 43% received at 
+ least 1 dose of early docetaxel. moreover, 15.8% of patients received docetaxel for metastatic disease 
+ prior to randomisation.</p></section><section><header>efficacy data and additional analyses</header><p>the primary analysis of study arches was performed at the data cut-off date of 14 oct 2018. this was the only planned analysis for rpfs (primary endpoint) and the first interim analysis for os (secondary 
+ endpoint).</p><p>
+ with 287 rpfs events (89 [15.51%] in the enzalutamide arm and 198 [34.38%] in the placebo arm), 
+ based on icr assessment, the study met its primary objective with a hr of 0.39 (95% ci: 0.3, 0.5). 
+ median rpfs was not reached in the enzalutamide arm and was of 19.4 months in the placebo arm. 
+ according to kaplan-meier plot, the benefit of adding enzalutamide to adt treatment is observed after the 
+ third month, when the curves separate and maintained separated thereafter. rpfs data is however not</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 70/100 
+ very mature, with nearly 85% and 66% censoring in the enzalutamide and placebo arms, respectively. the main reason for censoring in both arms was no rpfs event at the data cut-off date.</p><p>
+ as previously mentioned, results of the primary analysis were based on irc assessment as per pcwg2 
+ criteria (against of what was specified in the protocol). a reanalysis of rpfs as per protocol was also 
+ provided. results of this analysis were in line with the primary analysis (hr 0.39 [95% ci: 0.30, 0.50]), 
+ with 91 events (15.85%) in the enzalutamide plus adt group and 201 (34.9%) in the placebo plus adt 
+ group. median pfs was not reached in the enzalutamide arm and was 19.0 months [95% ci: 16.59, 
+ 22.24]. 
+ subgroup analyses for the primary endpoint showed consistent results in all subgroup analysed, including 
+ the subgroup of patients previously treated with docetaxel. the mah was requested to provide rpfs data 
+ for both newly diagnosed patients (i.e. patients whose initial diagnosis of prostate cancer was within 3 
+ months of the first dose of randomized treatment) and recurrent disease patients (i.e. patients with prior 
+ local treatment) (data not shown). overall, rpfs results in both subgroups were consistent with that of 
+ the overall population.</p><p>
+ moreover, several sensitivity analyses of rpfs were performed and all of them supported the primary 
+ analysis. the sensitivity analysis analysing rpfs based on investigator´s assessment, in principle 
+ according to the protocol-specified criteria, showed a hr of 0.46 [95% ci: 0.36, 0.59]), with a 
+ concordance rate between the icr and the investigator of around 90%.</p><p>
+ os was a secondary endpoint in study arches. os was assessed based on an allocated 2-sided alpha of 
+ 0.04. for the first interim analysis the stopping boundary was 0.0000054. at the time of the data cut-off 
+ date, the number of deaths was 84 (39 [6.8%] in the enzalutamide arm and 45 [7.8%] in the placebo 
+ arm). considering the immaturity of data, median os was not reached in any arm and while a 
+ detrimental effect on os is excluded, the statistical significance was not reached (hr 0.81 [95% ci: 0.53, 
+ 1.25]; p=0.3361). therefore, the mah is recommended to provide updated os data when available. final 
+ os results are expected by march 2022 (rec).</p><p> 
+ other main secondary endpoints were: time to psa progression, time to start of a new antineoplastic 
+ therapy, psa undetectable rate, orr and time to deterioration in urinary symptoms. the prespecified 
+ level of significance for these key secondary endpoints was 0.01. overall, all these secondary endpoints 
+ favoured the enzalutamide arm, with statistically significant results, except for the time to deterioration in 
+ urinary symptoms (hr 0.88 [95% ci: 0.72, 1.08]; p=0.2162) where no statistically significant 
+ differences were observed between treatment arms.</p><p>
+ in addition, time to symptomatic skeletal event, time to castration resistance, quality of life and time to 
+ pain progression (assessed by bpi-sf) were also assessed as secondary endpoints, although the “p” 
+ values provided were only for descriptive purposes and should not be used to assess statistical 
+ significance. adding enzalutamide to adt treatment appears to delay time to castration resistance and 
+ time to first symptomatic skeletal event. however, there seems to be no differences in terms of time to 
+ deterioration of qol or time to progression between treatments arms. 
+ the enzamet study has been provided to support the results of the arches study. within this 
+ application the mah is providing results of the first os interim analysis. no additional efficacy data have 
+ been submitted. 
+ this first interim analysis for os was conducted when 245 events had occurred (52% of 470 planned 
+ events for the final analysis). os analysis was statistically significant, since the pre-specified alpha 
+ boundary of 0.003 was crossed (hr 0.669 [95% ci: 0.518, 0.862]; p=0.0018; unstratified analysis).</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 71/100 
+ however, these data are considered immature (82% and 75% of censures in the experimental and control arm, respectively) and median os had not been reached in either treatment arm. at the time of 
+ the data cut-off, the median follow-up time was 14.4 months in arches vs. 33.8 months in enzamet. 
+ with regard to subgroup analysis, an apparently lack of benefit was observed in the subgroup of patients 
+ receiving early treatment with docetaxel (hr 0.9 [95% ci: 0.615, 1.315]), especially in those patients 
+ with high volume of disease (hr 0.967 [95% ci: 0.638, 1.464]). moreover, a similar pattern is observed 
+ in the subgroup of patients with visceral disease (hr 1.048 [95% ci: 0.542, 2.028]), concomitant use of 
+ anti-resorptive therapy (hr 1.767 [95% ci: 0.837, 3.890]) and the subgroup of european patients (hr 
+ 1.041 [95% ci: 0.572, 1.891]). however, data are limited due to the low number of events. 
+ in the subgroup of patients not receiving early treatment with docetaxel, which may be more similar to 
+ the population of study arches, the results were in line with the primary analysis (hr 0.528 [95% ci: 
+ 0,370, 0,743]). 
+ despite the inherent limitations of subgroup analyses, it is considered that the data from the subgroup of 
+ patients without planned early use of docetaxel can be considered convincing in accordance with the 
+ guideline on the investigation of subgroups in confirmatory clinical trials (ema/chmp/539146/2013) and 
+ therefore supportive of the current application. 
+ within this submission the mah has also provided 5-year os data from the study prevail. the study 
+ prevail was a randomised, double-blind, phase 3 study in 1,717 patients with metastatic castration 
+ resistant prostate cancer (mcrpc) who were chemotherapy naïve. patients were randomised in a 1:1 
+ ratio to receive either enzalutamide [160 mg once daily] (n=872) or placebo (n=845). in this study, os 
+ and rpfs were co-primary efficacy endpoints.</p><p>
+ an interim analysis for os was performed when 540 events had occurred, in which enzalutamide 
+ demonstrated a statistically significant improvement in os compared to placebo (hr 0.706 [95% ci: 
+ 0.60, 0.84]). after this specified interim analysis, the patients randomly assigned to placebo have been 
+ offered by the independent dmc to pass to the enzalutamide treatment in the open-label period of the 
+ study.</p><p>
+ through this variation, the mah has provided 5-year os data based on data cut-off date of 30 sep 2017. 
+ at the data cut-off, the number of patients enrolled in the open-label extension period was 520 (59.6%) 
+ in the enzalutamide arm and 435 (51.5%) in the placebo arm. there were 234 patients (27,7%) on 
+ placebo who crossed over to enzalutamide and received at least one dose or partial dose of study drug. 
+ results of this final analysis, when 1,382 deaths had occurred (689 [79.0%] in the enzalutamide arm and 
+ 693 [82%] in the placebo arm), were statistically significant, with a hr of 0.835 [95% ci: 0.751, 0.928] 
+ and a os median of 35.5 months in the enzalutamide arm versus 31.4% in the placebo arm.</p><p>
+ these results confirm the clinical benefit of enzalutamide over placebo in the treatment of patients with 
+ mcrpc chemotherapy naïve.</p><p>
+ these results do not change the benefit/risk ratio (b/r) for enzalutamide and have been adequately 
+ reflected in section 5.1 of the smpc. the b/r of enzalutamide remains positive.</p></section><section><header n="2.4.4">2.4.4.  
+ conclusions on the clinical efficacy</header><p>in study arches a statistically significant 61% reduction in the risk of an rpfs event was observed for enzalutamide + adt compared to placebo + adt [hr = 0.39 (95% ci: 0.30, 0.50); p &lt; 0.0001].</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 72/100 
+ there is no indication of detrimental effect in survival. nevertheless, the os data are immature and the mah is recommended to provide updated os data from study arches.</p><p>
+ the results of study arches are supported by preliminary results from a subgroup of patients from study 
+ enzamet which is close to the population enrolled in study arches. 
+ regarding results of study prevail, data with a 5-year follow up confirm the clinical benefit of 
+ enzalutamide in the treatment of patients with mcrpc chemotherapy naïve.</p></section><section><header n="2.5">2.5.  
+ clinical safety 
+ introduction</header><p>the safety profile of enzalutamide (mdv3100, asp9785) in support of its use for the treatment of patients with mhspc, is based on the safety results from the pivotal study arches (9785-cl-0335). in addition to 
+ the arches study, safety data from the following studies have been included: 
+ • a phase 3 randomized, placebo-controlled study in patients with metastatic crpc previously treated with docetaxel-based chemotherapy (affirm [crpc2]). 
+ • two phase 3 randomised, placebo-controlled, studies in chemotherapy-naïve patients with metastatic crpc (prevail [mdv3100-03] and asian prevail [9785-cl-0232]). the prevail study 
+ provides long-term follow-up data (after all patients have been followed for a minimum of 5 years, 
+ died, or were otherwise lost to follow-up or had withdrawn consent). in the asian prevail study, 
+ data from site 105 was excluded due to data quality concerns. 
+ • two randomised, bicalutamide-controlled, phase 2 studies in patients with metastatic crpc (terrain [9785-cl-0222]) and with nonmetastatic or metastatic crpc (strive [mdv3100-09]). 
+ • a phase 3 randomised, placebo-controlled study in patients with nonmetastatic crpc (prosper [mdv3100-14]). 
+ • a phase 3 randomised, study in patients with mhspc receiving treatment with first-line medical or surgical adt and optional concurrent docetaxel for metastatic prostate cancer (enzamet). as 
+ enzamet was an investigator-initiated study conducted by a collaborative group (australian and 
+ new zealand urogenital and prostate cancer trials group ltd. [anzup]) that maintains the 
+ database for the study, these data are presented standalone as the safety data in this study were 
+ not collected/handled in the same way as the other studies. only grade 3 and 4 adverse events 
+ (aes), serious adverse events (saes) of any severity and death data are presented for the enzamet 
+ study. 
+ safety data are summarised for arches and 2 pools of studies with the presentation of a total of 5 groups 
+ in order to provide a comprehensive summary of the clinical safety of enzalutamide in these studies. 
+ table 44. description of integrated safety groups study or pool studies included 
+ treatment 
+ groups 
+ presented</p><p>arches (placebo-controlled)</p><p>
+ arches</p><p>
+ enzalutamide +adt (n = 572) 
+ placebo+adt (n = 574)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 73/100</p><p>other phase 3 studies (placebo-controlled)</p><p>
+ affirm 
+ prevail 
+ asian prevail 
+ prosper</p><p>
+ enzalutamide (n = 2799) 
+ placebo (n = 1898)</p><p>
+ total enzalutamide 
+ (phase 2 and 3 studies)</p><p>
+ arches 
+ affirm 
+ prevail 
+ asian prevail 
+ terrain 
+ strive 
+ prosper</p><p>
+ enzalutamide (n = 4081) 
+ together these studies of enzalutamide plus standard of care included 4081 patients treated with enzalutamide 160 mg/per day that make up the integrated safety population and 2474 patients treated 
+ with placebo plus standard of care.</p></section><section><header>patient exposure</header><p>in the arches enzalutamide plus adt group, 572 patients received at least 1 dose or partial dose of enzalutamide. in the phase 3 crpc enzalutamide group and in the total enzalutamide group, 2799 and 
+ 4081 patients, respectively, received at least 1 dose or partial dose of enzalutamide. 
+ table 45. extent of exposure- across all groups</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 74/100</p><p>all enrolled patients who received any amount of study drug (enzalutamide or placebo) in their respective study (safety population). data cut-off dates were as follows: arches: 14 oct 2018; affirm: 20 feb 2018; prevail: 30 sep 2017; asian prevail: 20 sep 2015; 
+ prosper: 29 sep 2017; terrain: 
+ 17 feb 2018 and strive: 30 may 2018. 
+ treatment duration was defined as [(the date of last dosing) - (the date of first dosing) +1] / 30.4375 for patients who discontinued 
+ treatment and [(the data cut-off date)-(the date of first 
+ dosing) +1] / 30.4375 for patients still on treatment by the data cut-off date. 
+ adt: androgen deprivation therapy; crpc: castration-resistant prostate cancer; mhspc: metastatic hormone-sensitive prostate cancer. 
+ † the phase 3 crpc studies include prevail, affirm, asian prevail and prosper. 
+ ‡ total enzalutamide summarizes all enzalutamide-treated patients from double-blind phase of studies arches, prosper, prevail, 
+ affirm, asian prevail, terrain, 
+ strive and open-label phase of studies prevail, affirm, terrain and strive. 
+ § patients with multiple reasons for dosing interruptions/reductions were counted only once for each reason. 
+ table 46. enzamet treatment exposure- (safety population)</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 75/100</p><p>all randomized patients who received at least 1 administration of study drug, in which study drug includes enzalutamide and conventional nsaa (safety population) data cut-off date: 28 feb 2019. adt: androgen deprivation therapy; max: maximum; min: minimum; nsaa: 
+ non-steroidal antiandrogen patient medication compliance was formally determined by a count of tablets performed at the time of clinic 
+ review and out of sight of the patient at week 4 and at week 12 after randomization. † duration of study drug in months = (min [cut-off 
+ date, last dose date] - first dose date)/ (365.25/12). ‡ included only incidentally missed days; did not include prescribed treatment 
+ interruptions. source: enzamet end-of-text tables 12.2.1 and 12.2.3</p><p> table 47. docetaxel exposure (enzamet safety population)</p><p>all randomized patients who received at least 1 administration of study drug, in which study drug includes enzalutamide and conventional nsaa (safety population). data cut-off date: 28 feb 2019 
+ adt: androgen deprivation therapy; max: maximum; min: minimum; nsaa: nonsteroidal antiandrogen 
+ † although patients were stratified based on planned docetaxel use, 11 patients in each of the enzalutamide plus adt and 
+ nsaa plus adt treatment groups in the planned docetaxel group did not receive early docetaxel. 
+ ‡ percentage was calculated based on the total number of patients in each treatment group 
+ § docetaxel commenced prior to study entry is included. 
+ ¶ duration of docetaxel (months) = (min [cut-off date, last dose date of docetaxel + 21] - first dose date of docetaxel since 
+ randomization)/ (365.25/12).</p></section><section><header>adverse events</header><p>table 48. overall summary of treatment-emergent adverse events</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 76/100</p><p>all enrolled patients who received any amount of study drug (enzalutamide or placebo) in their respective study (safety population). data cut-off dates were as follows: arches: 14 oct 2018; affirm: 20 feb 2018; prevail: 30 sep 2017; asian prevail: 20 sep 2015; 
+ prosper: 29 sep 2017; terrain: 17 feb 2018 and strive: 30 may 2018. number of patients (n) reporting and percentage of patients 
+ (%) are shown. adt: androgen deprivation therapy; crpc: castration-resistant prostate cancer; mhspc: metastatic hormone-sensitive 
+ prostate cancer; teae: treatment-emergent adverse event. † the phase 3 crpc studies include prevail, affirm, asian prevail and 
+ prosper. ‡ total enzalutamide summarizes all enzalutamide-treated patients from double-blind phase of studies arches, prosper, 
+ prevail, affirm, asian prevail, terrain, strive and open-label phase of studies prevail, affirm, terrain, strive. 
+ § teae identified as primary reason for study drug discontinuation is from the treatment discontinuation case report form. 
+ ¶ teae leading to study drug discontinuation is from adverse event case report form and includes teaes with action taken of permanent 
+ discontinuation. 
+ †† grade ≥ 3, based on national cancer institute common terminology criteria for adverse events, v4.03. 
+ ‡‡ study drug-related teaes are teaes that were judged by the investigator as possibly, probably, or definitely related to study drug.</p><p>
+ table 49. overall summary of grade 3 or 4 aes, saes of any grade and deaths in enzamet</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 77/100</p></section><section><header>common teaes</header><p>table 50.</p><p>treatment-emergent adverse events experienced by ≥ 5% of patients in the arches enzalutamide plus adt group by soc and preferred term</p></section><section><header>grade 3 or higher teaes</header><p>in the arches study, the incidence of grade ≥ 3 teaes was 24.3% in the enzalutamide plus adt group and 25.6% in the placebo plus adt group. the incidence of grade ≥ 3 teaes in the phase 3 crpc 
+ enzalutamide group was 43.2%.</p><p>
+ in the phase 3 studies, there were 20 preferred terms noted as grade ≥ 3 teaes occurring in ≥ 1% of 
+ patients in the enzalutamide or placebo groups [
+ table 51]. table 51. grade ≥ 3 treatment-emergent adverse events experienced by ≥ 1% of patients in the phase 3 enzalutamide or placebo groups</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 78/100</p><p> all enrolled patients who received any amount of study drug (enzalutamide or placebo) in their respective study (safety population). data cut-off dates were as follows: arches: 14 oct 2018; affirm: 20 feb 2018; prevail: 30 sep 2017; asian prevail: 20 sep 2015; 
+ prosper: 29 sep 2017; terrain: 17 feb 2018 and strive: 30 may 2018. 
+ patients with multiple events for a given preferred term were counted only once for each preferred term. number of patients (n) reporting 
+ and percentage of patients (%) are shown. the preferred terms were coded by meddra v 21.0. preferred term values highlighted in bold 
+ are grade ≥ 3 teaes that occurred in ≥ 1% of patients in the phase 3 enzalutamide group and ≥ 0.5% higher incidence than the phase 
+ 3 placebo group.</p><p>
+ adt: androgen deprivation therapy; crpc: castration-resistant prostate cancer; mhspc: metastatic hormone-sensitive prostate cancer.</p><p>
+ † the phase 3 crpc studies include prevail, affirm, asian prevail and prosper.</p><p>
+ ‡ total enzalutamide summarizes all enzalutamide-treated patients from double-blind phase of studies arches, prosper, prevail, 
+ affirm, asian prevail, terrain, strive and open-label phase of studies prevail, affirm, terrain, strive.</p><p>in the phase 3 studies, the median time to first grade ≥ 3 teae was 24.9 months for the enzalutamide group and 17.7 months for the placebo group. 
+ table 52. grade 3 or grade 4 aes by preferred term experienced by ≥ 1% of patients in the enzalutamide plus adt or nsaa plus adt group in enzamet</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 79/100</p></section><section><header>study drug-related teaes</header><p>study drug-related teaes were teaes of any grade that were assessed by the investigator as possibly, probably or definitely related to study drug. the proportion of patients with any study drug-related teae is 
+ presented in the table below.</p><p>
+ table 53. study drug-related treatment-emergent adverse events experienced by ≥ 2% of patients in the arches enzalutamide plus adt or placebo plus adt groups</p><p>all enrolled patients who received any amount of study drug (enzalutamide or placebo) in their respective study (safety population).data cut-off dates were as follows: arches: 14 oct 2018; affirm: 20 feb 2018; prevail: 30 sep 2017; asian prevail: 20 sep 2015; 
+ prosper: 29 sep 2017; terrain: 17 feb 2018 and strive: 30 may 2018. patients with multiple events for a given preferred term were 
+ counted only once for each preferred term. number of patients (n) reporting and percentage of patients (%) are shown. the preferred 
+ terms were coded by meddra v 21.0. events are sorted by decreasing frequency of preferred term in the enzalutamide group in the 
+ arches study. study drug-related teaes are teaes that were judged by the investigator as possibly, probably, or definitely related to 
+ study drug.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 80/100 
+ adt: androgen deprivation therapy; crpc: castration-resistant prostate cancer; mhspc: metastatic hormone-sensitive prostate cancer; teae: treatment-emergent adverse event. 
+ † the phase 3 crpc studies include affirm, prevail, asian prevail and prosper. 
+ ‡ total enzalutamide summarizes all enzalutamide-treated patients from double-blind phase of arches, affirm, prevail, asian 
+ prevail, terrain, strive, prosper, and open-label phase of studies prevail, affirm, terrain and strive.</p></section><section><header>adverse events of special interest (aeosis)</header><p>the prespecified teaes of special interest described are convulsions (seizure), hypertension, neutrophil count decreased, cognitive and memory impairment, ischemic heart disease, other selected cardiovascular 
+ events (haemorrhagic central nervous system vascular conditions, ischemic central nervous system 
+ vascular conditions and cardiac failure), posterior reversible encephalopathy syndrome (pres), second 
+ primary malignancies, falls, fracture, fatigue, loss of consciousness, thrombocytopenia, musculoskeletal 
+ events, severe cutaneous adverse reactions, angioedema, and rash. in addition, teaes of hepatic and renal 
+ disorders are described as teaes of clinical interest. 
+ table 54. overall summary of teaes of special interest</p><p>other selected cardiovascular events: cardiac failure, cardiac failure chronic, cardiopulmonary failure, carotid arteriosclerosis, carotid artery stenosis cerebellar 
+ infarction, cerebral arteriosclerosis cerebral haemorrhage cerebral infarction cerebral ischaemia cerebrovascular accident cerebrovascular disorder ischaemic 
+ stroke pulmonary oedema subarachnoid haemorrhage subdural haematoma transient ischaemic attack</p><p>
+ table 55</p></section><section><header n="">.</header><p>overall summary of grade 3 or 4 aes of special interest and all saes of special interest in enzamet</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 81/100</p></section><section><header>serious adverse event/deaths/other significant events</header></section><section><header>deaths</header><p>in the arches study, the proportion of patients who died on-treatment and during survival follow-up was 6.8% (39/572) in the enzalutamide plus adt group and 7.8% (45/574) in the placebo plus adt group.</p><p>
+ the proportion of patients who died on-treatment and during survival follow-up in the phase 3 crpc 
+ enzalutamide group was 49.8% (1393/2799). differences in treatment duration as well as difference in the 
+ follow-up for os and the corresponding safety reporting periods were observed between the studies.</p><p>
+ table 56</p></section><section><header n="">.</header><p> summary of all deaths</p><p>all enrolled patients who received any amount of study drug (enzalutamide or placebo) in their respective study (safety population). data cut-off dates were as follows: arches: 14 oct 2018; affirm: 20 feb 2018; prevail: 30 sep 2017; asian prevail: 20 sep 015; 
+ prosper: 29 sep 2017; terrain: 17 feb 2018 and strive: 30 may 2018. all deaths up to and including the analysis data cut-off date 
+ are included. number of patients (n) reporting and percentage of patients (%) are shown. table is based on data from the end-of-study 
+ crf. adt: androgen deprivation therapy; crpc: castration-resistant prostate cancer; mhspc: metastatic hormone-sensitive prostate 
+ cancer. † the phase 3 crpc studies include affirm, prevail and asian prevail and prosper. ‡ total enzalutamide summarizes all 
+ enzalutamide-treated patients from double-blind phase of arches, affirm, prevail, asian prevail, terrain, strive, prosper, and 
+ open-label phase of studies prevail, affirm, terrain, strive. § all known primary causes of death other than disease progression</p><p>
+ overall, the most common cause of death was disease progression. the cause of death was generally categorized as due to disease progression, other or unknown.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 82/100 
+ in the arches study, teaes leading to death were reported in 14 (2.4%) patients in the enzalutamide plus adt group and 10 (1.7%) patients in the placebo plus adt group. no patient in the enzalutamide plus adt 
+ group had a fatal teae that was considered to be study drug-related. one patient in the placebo plus adt 
+ group had a teae leading to death that was considered by the investigator to be study drug-related (general 
+ physical health deterioration).</p><p>
+ in the phase 3 studies in patients with crpc, teaes leading to death were reported in 127 (4.5%) patients 
+ in the enzalutamide group; 5 patients had teaes leading to death that were considered by the investigator 
+ to be study drug-related. 
+ in the arches study, preferred terms leading to death in ≥ 2 patients were malignant neoplasm 
+ progression (4 [0.7%] patients in the enzalutamide plus adt group and 2 [0.3%] patients in the placebo 
+ plus adt group) and pulmonary embolism (2 [0.3%] patients in the enzalutamide plus adt group).</p><p>
+ table 57. treatment-emergent adverse events resulting in death by preferred term in ≥ 2 patients in the total enzalutamide group</p><p>all enrolled patients who received any amount of study drug (enzalutamide or placebo) in their respective study (safety population). data cut-off dates were as follows: arches: 14 oct 2018; affirm: 20 feb 2018; prevail: 30 sep 2017; asian prevail: 20 sep 2015; 
+ prosper: 29 sep 2017; terrain: 17 feb 2018 and strive: 30 may 2018. number of patients (n) reporting and percentage of patients 
+ (%) are shown. the preferred terms were coded by meddra v 21.0. events are sorted by decreasing frequency of preferred term in the 
+ enzalutamide group in the arches study. adt: androgen deprivation therapy; crpc: castration-resistant prostate cancer; mhspc: 
+ metastatic hormone-sensitive prostate cancer; teae: treatment-emergent adverse event. † the phase 3 crpc studies include affirm, 
+ prevail, asian prevail and prosper. ‡ total enzalutamide summarizes all enzalutamide-treated patients from double-blind phase of 
+ arches, affirm, prevail, asian prevail, terrain, strive, prosper, and open-label phase of studies prevail, affirm, terrain 
+ and strive.</p></section><section><header>serious adverse events</header><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 83/100 
+ in the arches study, the incidence of serious teaes was 18.2% in the enzalutamide plus adt group and 19.5% in the placebo plus adt group. the incidence of serious teaes in the phase 3 crpc enzalutamide 
+ group was 34.1% and 27.4% in the placebo group. 
+ table 58. serious treatment-emergent adverse events reported in at least 0.5% of patients in either treatment group (safety population)</p><p> serious teaes were considered drug-related by the investigator in 22 (3.8%) patients in the enzalutamide plus adt group and 16 patients (2.8%) patients in the placebo plus adt group. 
+ table 59</p></section><section><header n="">.</header><p>drug-related serious treatment-emergent adverse events reported in at least 2 patients in either treatment group (safety population)</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 84/100 
+ table 60</p></section><section><header n="">.</header><p>serious adverse events of any grade experienced by ≥ 1% of patients in the enzalutamide plus adt or nsaa plus adt groups (enzamet safety population)</p><p> the proportion of patients with any study drug-related sae was 3.0% in the enzalutamide plus adt group and 0.4% in the nsaa plus adt group. no study drug-related saes were fatal. most saes occurred in 1 
+ patient, the events that occurred in ≥ 2 patients in the enzalutamide plus adt group were seizure (5 
+ [0.9%] patients), hypertension (3 [0.5%] patients) and fatigue (2 [0.4%] patients). two preferred terms 
+ (alanine aminotransferase increased and pneumonitis) were noted as study drug-related saes in the 
+ nsaa plus adt group.</p></section><section><header>laboratory findings</header><p>haematology a summary of postbaseline grade 3 and 4 haematology laboratory abnormalities is provided in table 62</p><p>
+ table 61</p></section><section><header n="">.</header><p> haematology results: summary of grade 3 and 4 postbaseline laboratory abnormalities</p><p>all enrolled patients who received any amount of study drug (enzalutamide or placebo) in their respective study (safety population). data cut-off dates were as follows: arches: 14 oct 2018; affirm: 20 feb 2018; prevail: 30 sep 2017; asian prevail: 20 sep 2015; 
+ prosper: 29 sep 2017; terrain: 17 feb 2018 and strive: 30 may 2018. 
+ grade 3 and 4 toxicities were graded using national cancer institute common terminology criteria for adverse events (nci-ctcae) 
+ v4.03. patients were generally counted only once for each parameter. however, for parameters with both high and low criteria, patients 
+ were counted only once for each criterion (high or low), so a single patient could count towards both high and low criteria if the patient 
+ had laboratory values meeting each criterion. summaries are based on all test results collected in 
+ the treatment-emergent period.adt: androgen deprivation therapy; crpc: castration-resistant prostate cancer; mhspc: metastatic 
+ hormone-sensitive prostate cancer. † the phase 3 crpc studies include prevail, affirm, asian prevail and prosper.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 85/100 
+ ‡ total enzalutamide summarizes all enzalutamide-treated patients from double-blind phase of arches, affirm, prevail, asian prevail, terrain, strive and prosper;the open-label phase of prevail, affirm, terrain and strive are not included. 
+ chemistry a summary of postbaseline grade 3 and 4 chemistry laboratory abnormalities is provided in table 63 in the 
+ arches study, the most frequently reported grade 3 and 4 postbaseline chemistry laboratory abnormality 
+ was high alp (in the enzalutamide plus adt group was 4.2% compared to 8.0% in the placebo plus adt 
+ group). 
+ table 62</p></section><section><header n="">.</header><p>blood chemistry results: summary of grade 3 and 4 postbaseline laboratory abnormalities</p><p>all enrolled patients who received any amount of study drug (enzalutamide or placebo) in their respective study (safety population). data cut-off dates were as follows: arches: 14 oct 2018; affirm: 20 feb 2018; prevail: 30 sep 2017; asian prevail: 20 sep 2015; 
+ prosper: 29 sep 2017; terrain: 17 feb 2018 and strive: 30 may 2018. patients were generally counted only once for each parameter. 
+ however, for parameters with both high and low criteria, patients were counted only once for each criterion (high or low), so a single 
+ patient could count towards both high and low criteria if the patient had laboratory values meeting each criterion. summaries are based 
+ on all test results collected in the treatment-emergent period. adt: androgen deprivation therapy; crpc: castration-resistant prostate 
+ cancer; mhspc: metastatic hormone-sensitive prostate cancer. † the phase 3 crpc studies include prevail, affirm, asian prevail 
+ and prosper. ‡ total enzalutamide summarizes all enzalutamide-treated patients from double-blind phase of arches, affirm, prevail, 
+ asian prevail, terrain, strive and prosper; the open-label phase of prevail, affirm, terrain and strive are not included.</p><p>
+ in the arches study, the investigator or the central laboratory was required to report any occurrences of severe liver function test abnormalities, defined as alt or ast &gt; 3 × uln and total bilirubin &gt; 2 × uln.</p><p>
+ one patient in the arches placebo plus adt group had alt or ast ≥ 3 × uln and total bilirubin ≥ 2 × 
+ uln. overall, no patients in the arches study met hy’s law case criteria. one patient in the placebo plus 
+ adt group had alt 11.0 × uln, ast 11.3 × uln and total bilirubin 3.3 × uln; this patient did not meet 
+ the criteria for hy’s law. 
+ table 63. treatment-emergent liver function test elevations</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 86/100</p><p> all enrolled patients who received any amount of study drug (enzalutamide or placebo) in their respective study (safety population). data cut-off dates were as follows: arches: 14 oct 2018; affirm: 20 feb 2018; prevail: 30 sep 2017; asian prevail: 20 sep 2015; 
+ prosper: 29 sep 2017; terrain: 17 feb 2018 and strive: 30 may 2018. adt: androgen deprivation therapy; alp: alkaline 
+ phosphatase; alt: alanine aminotransferase; ast: aspartate aminotransferase; crpc: castration-resistant prostate cancer; mhspc: 
+ metastatic hormone-sensitive prostate cancer; uln: upper limit of normal. † the phase 3 crpc studies include prevail, affirm, asian 
+ prevail and prosper.</p><p>
+ ‡ total enzalutamide summarizes all enzalutamide-treated patients from double-blind phase of arches, affirm, prevail, asian 
+ prevail, terrain, strive and prosper; the open-label phase of prevail, affirm, terrain and strive are not included.</p></section><section><header>safety in special populations</header><p>the impacts of demographic subgroups of age (data not shown), baseline weight, geographic region, history of hypertension and history of significant cardiovascular disease on the safety of enzalutamide were 
+ evaluated in the arches and the integrated safety group. 
+ table 64. treatment-emergent adverse events by age group safety related to drug-drug interactions and other interactions</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 87/100</p></section><section><header>discontinuation due to adverse events</header><p>in the arches study, the incidence of teaes leading to permanent study drug discontinuation was 7.2% in the enzalutamide plus adt group and 5.2% in the placebo plus adt group. the incidence of teaes 
+ leading to study drug discontinuation in the phase 3 crpc enzalutamide group was 16.9%.</p><p>
+ table 65. treatment-emergent adverse events reported as the primary reason for permanent treatment discontinuation in ≥ 1 patient in the arches enzalutamide plus adt or placebo plus adt groups</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 88/100</p><p>all enrolled patients who received any amount of study drug (enzalutamide or placebo) in their respective study (safety population). 
+ data cut-off dates were as follows: arches: 14 oct 2018; affirm: 20 feb 2018; prevail: 30 sep 2017; asian prevail: 20 sep 2015; 
+ prosper: 29 sep 2017; terrain: 17 feb 2018 and strive: 30 may 2018. 
+ patients with multiple events for a given preferred term were counted only once for each preferred term. number of patients (n) reporting 
+ and percentage of patients (%) are shown. the preferred terms were coded by meddra v 21.0. events are sorted by decreasing frequency 
+ of preferred term in the enzalutamide group in the arches study. adt: androgen deprivation therapy; crpc: castration-resistant prostate 
+ cancer; mhspc: metastatic hormone-sensitive prostate cancer; teae: treatment-emergent adverse event. 
+ † the phase 3 crpc studies include affirm, prevail, asian prevail and prosper. 
+ ‡ total enzalutamide summarizes all enzalutamide-treated patients from double-blind phase of arches, affirm, prevail, asian 
+ prevail, terrain, strive, prosper, and open-label phase of studies prevail, affirm, terrain and strive. 
+ § teae identified as primary reason for study drug discontinuation is from the treatment discontinuation case report form.</p></section><section><header>treatment-emergent adverse events leading to dose modification</header><p>dosing interruptions table 66. treatment-emergent adverse events leading to a dosing interruption reported in ≥ 2 patients in the arches enzalutamide plus adt or placebo plus adt groups</p><p>assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 89/100 
+ all enrolled patients who received any amount of study drug (enzalutamide or placebo) in their respective study (safety population).</p><p>data cut-off dates were as follows: arches: 14 oct 2018; affirm: 20 feb 2018; prevail: 30 sep 2017; asian prevail: 20 sep 2015; 
+ prosper: 29 sep 2017; terrain: 17 feb 2018 and strive: 30 may 2018. patients with multiple events for a given preferred term were 
+ counted only once for each preferred term. number of patients (n) reporting and percentage of patients (%) are shown. the preferred 
+ terms were coded by meddra v 21.0. events are sorted by decreasing frequency of preferred term in the enzalutamide group in the 
+ arches study. adt: androgen deprivation therapy; crpc: castration-resistant prostate cancer; mhspc: metastatic hormone-sensitive 
+ prostate cancer; teae: treatment-emergent adverse event. † the phase 3 crpc studies include affirm, prevail, asian prevail and 
+ prosper. ‡ total enzalutamide summarizes all enzalutamide-treated patients from double-blind phase of arches, affirm, prevail, 
+ asian prevail, terrain, strive, prosper, and open-label phase of studies prevail, affirm, terrain and strive.</p><p>
+ dose reductions table 67. treatment-emergent adverse events leading to dose reduction in the arches enzalutamide 
+ plus adt or placebo plus adt groups</p><p>all enrolled patients who received any amount of study drug (enzalutamide or placebo) in their respective study (safety population). data cut-off dates were as follows: arches: 14 oct 2018; affirm: 20 feb 2018; prevail: 30 sep 2017; asian prevail: 20 sep 2015; 
+ prosper: 29 sep 2017; terrain:17 feb 2018 and strive: 30 may 2018. patients with multiple events for a given preferred term were 
+ counted only once for each preferred term. number of patients (n) reporting and percentage of patients (%) are shown. the preferred 
+ terms were coded by meddra v 21.0. events are sorted by decreasing frequency of preferred term in the enzalutamide group in the 
+ arches study. adt: androgen deprivation therapy; crpc: castration-resistant prostate cancer; mhspc: metastatic hormone-sensitive 
+ prostate cancer; teae: treatment-emergent adverse event. † the phase 3 crpc studies include affirm, prevail, asian prevail and 
+ prosper. ‡ total enzalutamide summarizes all enzalutamide-treated patients from double-blind phase of arches, affirm, prevail, 
+ asian prevail, terrain, strive, prosper, and open-label phase of studies prevail, affirm, terrain and strive.</p></section><section><header>post marketing experience</header><p>in europe, enzalutamide was initially approved in june 2013, but was made available in france through a temporary authorization for use from april 2013.</p><p>
+ the enzalutamide post-marketing exposure estimates are based on internal sales data for all countries. 
+ table 68. cumulative exposure in patient treatment-years by region</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 90/100</p><p>seven psurs for xtandi (enzalutamide) have been submitted to regulatory authorities since august 2012. in the current psur (dated 29 october 2018), a cumulative review and evaluation of post-marketing 
+ adrs for enzalutamide was performed for all cases reported through 30 august 2018. cumulatively, a 
+ total of 107540 adrs have been reported from post-marketing data sources. during the reporting period 
+ for psur (dated 29 october 2018), an assessment of post-marketing events revealed no safety concerns 
+ related to the following important identified risks (seizure, pres, hypertension, neutrophil count 
+ decreased, cognitive/memory impairment, fall and nonpathological fracture) and the following important 
+ identified interactions (interactions with strong inhibitors or inducers of cytochrome p450 (cyp) 2c8 and 
+ interactions with medicinal products that are substrates of cyp3a4, cyp2c9 or cyp2c19) listed in the 
+ current enzalutamide eu risk management plan (v 12.5, 15 november 2018).</p></section><section><header n="2.5.1">2.5.1.  
+ discussion on clinical safety</header><p>the safety profile of enzalutamide in patients with mhspc is based mainly on data from the pivotal phase 3 study arches in which 1,146 patients were treated with either enzalutamide + adt (n=572) or 
+ placebo + adt (n=574). additionally, pooled data from 6 additional clinical trials (four phase 3 placebo-
+ controlled studies in patients with crpc and two phase 2 studies in metastatic crpc) have been provided. 
+ in total, the integrated safety population includes 4,081 patients treated with enzalutamide 160 mg/day 
+ plus standard of care. of these, 24.7% had nonmetastatic prostate cancer and 75.3% had metastatic 
+ disease. moreover, safety data from the phase 3 study enzamet, have been provided separately. in 
+ study enzamet 563 patients were treated with enzalutamide + adt and 558 patients with nonsteroidal 
+ antiandrogen + adt. 
+ in the study arches the median duration of treatment was 12.8 months in the enzalutamide arm and 
+ 11.55 months in the placebo arm, with nearly 57% and 47% of patients being exposed ≥12 months to 
+ &lt;24 months, in the enzalutamide and placebo arm, respectively. only 7 patients (6 enzalutamide and 1 
+ placebo) received study drug ≥24 months. in the phase 3 studies pool, the extent of exposure was 
+ longer, with 791 (28%) patients being exposed ≥24 months. to adjust for the duration of treatment, the 
+ event rate of aes per 100 patient-years of exposure was also analysed (data not shown). at the time of 
+ the data cut-off date 76% of patients in the enzalutamide arm and 57% in the placebo arm were still on 
+ treatment.</p><p>
+ the study arches included patients with a median age of 70 years [range: 42, 92] (30% were ≥ 75 
+ years). the majority of patients were white and had a good performance status (77.5% had ecog 0). 
+ more than half of patients had a medical history of hypertension. patients with any clinically significant 
+ cardiovascular disease as well as those with past history of seizure or any condition that may predispose 
+ to seizure were excluded from the study (see smpc section 4.4).</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 91/100 
+ overall incidence of treatment emergent adverse events (teaes) was similar between treatment arms (&gt;85%) although teaes considered related to study drug were more frequent in the enzalutamide arm 
+ (53% vs 47%). the most commonly reported (≥10%) teaes in the enzalutamide group were hot flush 
+ (27.1% enzalutamide vs 22.3% placebo), fatigue (19.6% vs 15.3%) and arthralgia (12.2% vs 10.6%).</p><p>
+ grade 3 or higher teaes were reported in 24.3% of patients in the enzalutamide arm and 25.6% in the 
+ placebo arm. the most frequently reported teaes of grade ≥3 were hypertension (3.3% enzalutamide vs 
+ 1.7% placebo), asthenia (1% vs 0.5%), malignant neoplasm progression (1% vs 0.5%) and syncope (1% 
+ vs 0.2%).</p><p>
+ teaes of special interest for enzalutamide are: seizure, hypertension, neutrophil count decreased, 
+ cognitive and memory impairment, ischemic heart disease, other selected cardiovascular events, pres, 
+ secondary primary malignancies, falls, fracture, fatigue, loss of consciousness, thrombocytopenia, 
+ musculoskeletal events, severe cutaneous adverse reactions, angioedema and rash. teaes of special 
+ interest with a higher incidence (&gt;2% or double) in the enzalutamide arm compared to placebo arm 
+ were: hypertension (8.6% vs 6.3%), cognitive and memory impairment (4.5% vs 2.1%), fatigue (24.1% 
+ vs 19.5%), fractures (6.5% vs 4.2%), loss of consciousness (1.6% vs 0.2%) and angioedema (1.2% vs 
+ 0.2%). at study entry, more than half of patients had hypertension at baseline. among these, the 
+ incidence of hypertension was 9% in the enzalutamide arm compared to 5.3% in the placebo arm.</p><p>
+ no events of pres or severe cutaneous reactions were reported in the enzalutamide arm and there was 
+ one event of dermatitis bullous in the placebo arm. 
+ there were 2 (0.3%) events of seizure in each treatment arm. in the enzalutamide arm both events were 
+ considered to be related to study drug and led to treatment discontinuation. a warning on seizure is 
+ included in current the smpc.</p><p>
+ ischemic heart disease is included as an adr in the smpc. in study arches, 10 (1.7%) patients in the 
+ enzalutamide arm (8 [1.4%] in the placebo arm) reported an event of ischemic heart disease, being 
+ angina pectoris the most frequently reported (4 [0.7%] enzalutamide vs none in the placebo arm). 
+ additionally, there were 12 (2.3%) patients that reported other selected cardiovascular event, with 
+ cardiac failure as the most commonly reported. cardiac failure was reported in 7 [1.2%] patients in the 
+ enzalutamide arm and 3 (0.5%) patients in the placebo arm. in most of these cases several confounding 
+ factors were present. however, the potential contribution of enzalutamide to events of cardiac failure 
+ cannot be ruled out taking into account that patients with clinically significant cardiovascular disease were 
+ excluded from the study. nevertheless, it is not possible to draw any conclusion on the possible causal 
+ relationship with enzalutamide based on the available data. cardiac failure should be monitored through 
+ routine pharmacovigilance activities.</p><p>
+ in patients with a baseline history of other selected cardiovascular events (23.3% in the enzalutamide 
+ arm and 19.9% in the placebo arm), no differences were observed between treatment arms whereas in 
+ patients without a baseline history the incidence was higher in the enzalutamide arm (8 [1.4%] vs 3 
+ [0.5%]). overall, the incidence of cardiovascular adverse events in study arches was low, however, it 
+ should be taken into account that patients with clinically significant cardiovascular disease (i.e. 
+ myocardial infarction within 6 months prior to screening, unstable angina within 3 months prior to 
+ screening, etc) were excluded from the study (see smpc section 4.4).</p><p>
+ in the arches study second primary malignancies were reported in 10 (1.7%) patients in the 
+ enzalutamide arm and 11 (1.9%) patients in the placebo arm. in previous phase 3 clinical trials, the 
+ incidence of second primary malignancies in the enzalutamide arm compared to placebo was 2.9% vs 
+ 0.9%, respectively. despite the number of events reported is low, it should be kept in mind that 
+ enzalutamide has shown to be carcinogenic in non-clinical trials (see discussion on non-clinical aspects). 
+ in non-clinical trials, the most prominent neoplastic findings were benign leydig cell tumours, urothelium</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 92/100 
+ papilloma, and carcinoma of urinary bladder. a similar pattern is observed in clinical trials. in the total enzalutamide population (n=4081) bladder cancer was the most frequently reported malignancy (9 
+ [0.2%]). the mechanism is not completely elucidated. although a causal relationship is not formally 
+ established, the potential risk of enzalutamide to develop second primary malignancies, especially urinary 
+ bladder cancer, cannot be ruled out. section 4.4 of the smpc was recently updated 
+ (emea/h/c/002639/ii/0049) to include a warning mentioning that patients should be advised to promptly 
+ seek the attention of their physician if they notice signs of gastrointestinal bleeding, macroscopic 
+ haematuria, or other symptoms such as dysuria or urinary urgency develop during treatment with 
+ enzalutamide. 
+ with regard to deaths, at the time of data cut-off, 39 (6.8%) patients in the enzalutamide arm and 
+ 45 (7.8%) patients in the placebo arm had died. disease progression was the leading cause in both 
+ treatment arms (4.5% vs 7.8%, enzalutamide and placebo, respectively). deaths due to teaes were 
+ slightly higher in the enzalutamide arm (14 [2.4%] vs 10 [1.7%]). malignant neoplasm progression was 
+ the leading cause (4 [0.7%] and there were 3 deaths related to cardiac disorders (cardio-respiratory 
+ arrest, cardiopulmonary failure and myocardial infarction). no patient in the enzalutamide plus adt group 
+ had a fatal teae that was considered to be study drug-related. 
+ serious teaes were reported by 18.2% of patients in the enzalutamide arm and 19.5% in the placebo 
+ group. in the enzalutamide arm, malignant neoplasm progression was the only serious teae reported in 
+ at least 1% of patients. serious teaes were considered drug-related by the investigator in 22 (3.8%) 
+ patients in the enzalutamide plus adt group and 16 patients (2.8%) patients in the placebo plus adt 
+ group. 
+ overall, enzalutamide appears to be well tolerated, taking into account the relatively low rate of 
+ treatment discontinuations (7.2% enzalutamide vs 5.2% placebo) as well as dose reductions (4.4% 
+ enzalutamide vs 1.9% placebo) and dose interruptions (7.3% enzalutamide vs 6.3% placebo). 
+ regarding safety in special populations, no major differences in terms of teaes, saes and grade ≥3 
+ teaes according to baseline weight, geographic region, history of hypertension, age and history of 
+ significant cv disease were observed (data not shown) considering teaes of special interest, in the study 
+ arches a slightly higher incidence of memory impairment was reported in the subgroup of patients ≥85 
+ years treated with enzalutamide. memory impairment is a common adverse reaction included in section 
+ 4.8 of the smpc. 
+ during the procedure, updated safety data, with three months of additional follow-up, were provided for 
+ study arches. at the time of the new data cut-off (3 jan 2019), median treatment exposure in the 
+ enzalutamide+adp arm was of 15.90 months and 13.80 months in the placebo+adt arm (data not 
+ shown). no major differences were observed in the safety profile of enzalutamide plus adt compared to 
+ previous data submitted, apart from a slight increase in the incidence of several teaes. however, this is 
+ not unexpected since updated data add only 3 months of additional follow-up. therefore, and taking into 
+ account that a high percentage of patients remained on treatment at the time of the data cut-off (around 
+ 71% in the enzalutamide plus adt group) the mah is recommended to provide an updated safety 
+ analysis with final results of the arches study (rec). 
+ overall, the safety profile of enzalutamide in the arches study was in line with its already known safety 
+ profile. the incidence of adverse events was generally lower in the arches study compared to phase 3 
+ studies. pharmacovigilance activities in place are considered sufficient to address the risks associated with 
+ enzalutamide. within this application the mah is also proposing a minor change in section 4.7 effects on 
+ ability to drive and use machines of the smpc which is considered in line with the safety profile of xtandi.</p><p>
+ moreover section point 6.6 of the smpc has been updated to clarify to precaution of handling for woman 
+ who are or might become pregnant, in line with section 5.3 of the smpc.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 93/100</p></section><section><header n="2.5.2">2.5.2.  
+ conclusions on clinical safety</header><p>overall, the safety profile of enzalutamide in combination with adt in the treatment of patients with mhspc was in line with the already known safety profile of enzalutamide and no worrisome findings have 
+ been identified. however, considering a high number of patients remained on treatment at the time of the 
+ new data cut-off, an updated safety analysis is recommended to be provided with the final results of the 
+ arches study.</p></section><section><header n="2.5.3">2.5.3.  
+ psur cycle</header><p>the requirements for submission of periodic safety update reports for this medicinal product are set out in the list of union reference dates (eurd list) provided for under article 107c(7) of directive 2001/83/ec 
+ and any subsequent updates published on the european medicines web-portal.</p></section><section><header n="2.6">2.6.  
+ risk management plan</header><p>the chmp endorsed the risk management plan version 13.0 with the following content:</p></section><section><header>safety concerns</header><p>table 69. summary of the safety concerns</p></section><section><header>summary of safety concerns</header><p>important identified risks seizure 
+ fall 
+ non-pathological fracture 
+ ischemic heart disease 
+ important potential risks 
+ none 
+ missing information 
+ none</p></section><section><header>pharmacovigilance plan</header><p>table 70. ongoing and planned additional pharmacovigilance activities</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 94/100</p></section><section><header>risk minimisation measures</header><p>table 71.summary table of pharmacovigilance activities and risk minimization activities by safety concern.</p></section><section><header n="2.7">2.7.  
+ update of the product information</header><p>as a consequence of this new indication, sections 4.1, 4.2, 5.1, and 6.6 of the smpc have been updated.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 95/100 
+ the package leaflet has been updated accordingly.</p></section><section><header n="2.7.1">2.7.1.  
+ user consultation</header><p>a justification for not performing a full user consultation with target patient groups on the package leaflet has been submitted by the mah and has been found acceptable for the following reasons: results from 
+ the readability testing study of the parent package leaflet can be extrapolated to the daughter package 
+ leaflet as the differences between the two have little impact on readability.</p></section><section><header n="3">3.  
+ benefit-risk balance</header></section><section><header n="3.1">3.1.  
+ therapeutic context</header></section><section><header n="3.1.1">3.1.1.  
+ disease or condition</header><p>the claimed indication is for the treatment of adult men with metastatic hormone-sensitive prostate cancer (mhspc) in combination with androgen deprivation therapy (adt). 
+ for patients with this advanced stage of the disease, the aim of treatment is to improve the symptoms in 
+ particular pain and to extend the time during which the disease can be controlled with androgen 
+ deprivation therapy to delay progression.</p></section><section><header n="3.1.2">3.1.2.  
+ available therapies and unmet medical need</header><p>adt has been the basis for the treatment of patients with locally advanced and metastatic hspc. adt is defined as surgical castration by bilateral orchiectomy or medical castration with gonadotropin-releasing 
+ hormone (gnrh) agonists or antagonists. the aim of adt treatment is to reduce testosterone 
+ concentrations. even though the majority of patients have an initial response to treatment with adt, 
+ most men progress to castration-resistant prostate cancer. 
+ treatment options for men with mhspc have expanded beyond adt alone. docetaxel (75 mg/m
+ 2 every 3 weeks for 6 cycles) has been shown to improve overall survival (os) and failure-free survival (ffs) in 
+ patients with mhspc in multiple studies, including chaarted and arm c of the stampede trial and has 
+ been approved for the treatment of mhspc.</p><p>
+ furthermore, abiraterone in combination with adt and prednisone or prednisolone was authorised in eu 
+ for the treatment of adult men with newly diagnosed high risk metastatic hormone sensitive prostate 
+ cancer. 
+ recently apalutamide has also been approved in adult men for the treatment of metastatic hormone-
+ sensitive prostate cancer (mhspc) in combination with androgen deprivation therapy (adt) (see epar 
+ erleada).</p></section><section><header n="3.1.3">3.1.3.  
+ main clinical studies</header><p>the efficacy data in support of this application for the extension of indication is based mainly on the study 9785-cl-0335 (arches), a phase 3, randomised, double-blind, placebo-controlled study of 
+ enzalutamide plus adt versus placebo plus adt in 1,150 patients with mhspc.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 96/100 
+ patients received enzalutamide at 160 mg once daily (n=574) or placebo (n=576). patients with metastatic prostate cancer documented by positive bone scan (for bone disease) or metastatic lesions on 
+ ct or mri scan (for soft tissue) were eligible. patients whose disease spread was limited to regional pelvic 
+ lymph nodes were not eligible. patients were allowed to receive up to 6 cycles of docetaxel therapy with 
+ final treatment administration completed within 2 months of day 1 and no evidence of disease 
+ progression during or after the completion of docetaxel therapy. 
+ radiographic progression-free survival (rpfs), based on independent central review, was the primary 
+ endpoint defined as the time from randomisation to the first objective evidence of radiographic disease 
+ progression or death whichever occurred first.</p></section><section><header n="3.2">3.2.  
+ favourable effects</header><p>results from the study arches at the data cut-off date of 14 oct 2018 include the main planned analysis for rpfs based on independent central review assessment (primary endpoint) and the first interim 
+ analysis for os (secondary endpoint).</p><p>
+ a statistically significant treatment effect on rpfs in favour of enzalutamide was observed, with a hr of 
+ 0.39 (95% ci: 0.3, 0.5). at the time of data cut-off median rpfs was not reached in the enzalutamide 
+ arm and was of 19.0 months in the placebo arm. overall, subgroup analysis and several sensitivity 
+ analyses performed support the results of the primary analysis. 
+ to adjust for multiplicity, a parallel testing strategy was used to test os with an allocated type i error 
+ rate of 0.04 and the remaining 5 key secondary endpoints (time to psa progression, time to start of a 
+ new antineoplastic therapy, rate of psa decline to &lt;0.2 ng/ml, orr and time to deterioration in urinary 
+ symptoms from the qlq-pr25) with an allocated type i error rate of 0.01.</p><p>
+ statistically significant improvements in patients treated with enzalutamide compared to placebo were 
+ observed for all key secondary endpoints except time to deterioration in urinary symptoms from the qlq-
+ pr25. 
+ regarding os, at the time of data cut-off, data were still immature and the statistical significance was not 
+ reached (hr 0.81 [95% ci: 0.53, 1.25]; p=0.3361). a trend in favour of enzalutamide was observed.</p></section><section><header n="3.3">3.3.  
+ uncertainties and limitations about favourable effects</header><p>based on os analysis submitted at the data cut off 14 oct 2018 on a total of 84 deaths (24.6% of the 342 events required for the final analysis) the effect of enzalutamide on os is uncertain. nevertheless, 
+ based on the totality of data (effect on rpfs and secondary endpoint) a detrimental effect on os can be 
+ excluded. further os data are expected to be submitted as soon as available (rec).</p></section><section><header n="3.4">3.4.  
+ unfavourable effects</header><p>in the study arches, the median duration of treatment was 12.8 months in the enzalutamide arm and 11.55 months in the placebo arm.</p><p>
+ the most frequently reported (≥10%) teaes in the enzalutamide arm were hot flush (27.1% 
+ enzalutamide vs 22.3% placebo) and fatigue (19.6% vs 15.3%).</p><p>
+ grade 3 or higher teaes were reported by 24.3% of patients in the enzalutamide arm and 25.6% in the 
+ placebo arm. the most frequently reported teaes of grade ≥3 were hypertension (3.3% enzalutamide vs 
+ 1.7% placebo), asthenia (1% vs 0.5%), malignant neoplasm progression (1% vs 0.5%) and syncope (1% 
+ vs 0.2%).</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 97/100 
+ serious teaes were reported by 18.2% of patients in the enzalutamide arm and 19.5% in the placebo group. serious teaes were considered drug-related by the investigator in 22 (3.8%) patients in the 
+ enzalutamide plus adt group and 16 patients (2.8%) patients in the placebo plus adt group. 
+ treatment was discontinued due to a teae in 7.2% of patients in the enzalutamide arm and 5.2% in the 
+ placebo arm. decreased appetite, diarrhoea and fatigue were the main teaes that led to treatment 
+ discontinuation.</p><p>
+ dose reductions and dose interruptions were required, respectively, in 4.4% and 7.3% of patients in the 
+ enzalutamide arm compared to 1.9% and 6.3% of patients in the placebo arm. 
+ teaes of special interest for enzalutamide are: seizure, hypertension, neutrophil count decreased, 
+ cognitive and memory impairment, ischemic heart disease, other selected cardiovascular events 
+ (hemorrhagic central nervous system vascular conditions, ischemic central nervous system vascular 
+ conditions and cardiac failure), pres, secondary primary malignancies, falls, fracture, fatigue, , 
+ thrombocytopenia, musculoskeletal events, severe cutaneous adverse reactions and rash.</p></section><section><header n="3.5">3.5.  
+ uncertainties and limitations about unfavourable effects</header><p>not applicable.</p></section><section><header n="3.6">3.6.  
+ effects table</header><p>table 72 effects table for xtandi in the treatment of mhspc patients along with adt (data cut-off: 14 oct 
+ 2018)</p></section><section><header>effect short description 
+ u
+ ni
+ t 
+ treatment 
+ control 
+ uncertainties /  
+ strength of evidence 
+ references 
+ favourable effects</header><p>rpfs* time from 
+ randomisation 
+ to the date of 
+ first objective 
+ evidence of 
+ radiographic 
+ progressive 
+ disease or 
+ death due to 
+ any cause 
+ within 24 weeks 
+ from study drug 
+ discontinuation 
+ media
+ n - 
+ mont
+ hs 
+ (ci 
+ 95%) 
+ nr 
+ 19.0</p><p>
+ (16.59, 
+ 22.24)</p><p>
+ hr 0.39</p><p>
+ (95% ci: 0.30, 
+ 0.50) 
+ arches 
+ (study 
+ 9785-cl-
+ 0335) 
+ os 
+ time from 
+ randomisation 
+ to death from 
+ any cause 
+ media
+ n - 
+ mont
+ hs 
+ (ci 
+ 95%) 
+ nr 
+ nr 
+ hr 0.81</p><p>
+ (95% ci: 0.53, 
+ 1.25)</p><p>
+ first interim 
+ analysis. 
+ os data immature</p></section><section><header>unfavourable effects</header><p>teaes overall 
+ incidence of aes 
+ % 
+ 85.1 
+ 85.9</p><p>
+ arches 
+ (study 9785-
+ cl-0335) 
+ grade ≥ 3 
+ teaes 
+ incidence of 
+ aes of grade ≥3 
+ all causality 
+ drug-related</p><p>
+ %</p><p>
+ 24.3 
+ 9.8</p><p>
+ 25.6 
+ 6.1</p><p>
+ discontinuatio
+ incidence of 
+ % 
+ 7.2 
+ 5.2</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 98/100</p></section><section><header>effect short description 
+ u
+ ni
+ t 
+ treatment 
+ control 
+ uncertainties /  
+ strength of evidence 
+ references</header><p>n aes leading to 
+ discontinuation</p><p>seizure 
+ ae special 
+ interest</p><p>
+ %</p><p>
+ 0.3</p><p>0.3</p><p>
+ hypertension 
+ ae special 
+ interest 
+ % 8.6 6.3</p><p>cognitive and 
+ memory 
+ impairment</p><p>ae special</p><p>
+ interest</p><p>4.5 
+ 2.1</p><p>ischemic 
+ heart disease 
+ ae special 
+ interest 
+ % 1.7 1.4</p><p>falls 
+ ae special 
+ interest 
+ % 3.7 2.6</p><p>fractures 
+ ae special 
+ interest</p><p>6.5 
+ 4.2</p><p>second 
+ primary 
+ malignancies 
+ ae special 
+ interest 
+ % 1.7 1.9</p><p>abbreviations: nr: not reached; orr: objective response rate 
+ notes: the primary efficacy endpoint is the rpfs with a multiplicity control for the 6 key secondary endpoints. key 
+ secondary endpoints, other than os, were sequentially tested at a 1% significance level 
+ * per protocol-specified criteria</p></section><section><header n="3.7">3.7.  
+ benefit-risk assessment and discussion</header></section><section><header n="3.7.1">3.7.1.  
+ importance of favourable and unfavourable effects</header><p>enzalutamide plus adt has shown a clinically relevant increase in terms of rpfs. these results are supported by almost all key secondary endpoints and several sensitivity analyses.</p><p>
+ nevertheless, the os data are immature and the mah is recommended to provide updated os data from 
+ study arches.</p><p>
+ despite the immaturity of survival data, there is no indication of detrimental effect in survival.. in support 
+ of the results of study arches, os results from study enzamet at the first interim analysis were 
+ submitted.. despite the inherent limitations of subgroup analyses, results in the subgroup of patients 
+ without planned early docetaxel treatment were considered convincing in accordance with the guideline 
+ on the investigation of subgroups in confirmatory clinical trials (ema/chmp/539146/2013) and thus 
+ supportive of the results from study arches. 
+ the overall safety profile of enzalutamide in the treatment of adult men with mhspc is consistent with 
+ the already known safety profile of enzalutamide in other settings and no new unexpected findings have 
+ been identified.</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 99/100</p></section><section><header n="3.7.2">3.7.2.  
+ balance of benefits and risks</header><p>the use of enzalutamide in combination with adt has led to a substantial longer rpfs based on the results of study arches. even though there are uncertainties on the magnitude of the benefit in terms of 
+ os, the results are considered clinically relevant. overall, the risks associated with enzalutamide in this 
+ setting are considered manageable and in line with the already known safety profile of the drug. in view 
+ of the favourable effects, the benefit-risk balance is considered positive.</p></section><section><header n="3.7.3">3.7.3.  
+ additional considerations on the benefit-risk balance</header><p>not applicable.</p></section><section><header n="3.8">3.8.  
+ conclusions</header><p>the overall b/r of xtandi in the treatment of adult men with metastatic hormone-sensitive prostate cancer (mhspc) in combination with androgen deprivation therapy is positive.</p></section><section><header n="4">4.  
+ recommendations</header></section><section><header>outcome</header><p>based on the review of the submitted data, the chmp considers the following group of variations acceptable and therefore recommends the variations to the terms of the marketing authorisation, 
+ concerning the following changes:</p></section><section><header>variations accepted type 
+ annexes 
+ affected</header><p>c.i.6.a</p><p>c.i.6.a - change(s) to therapeutic indication(s) - addition 
+ of a new therapeutic indication or modification of an 
+ approved one</p><p>
+ type ii 
+ i and iiib 
+ c.i.4</p><p>
+ c.i.4 - change(s) in the spc, labelling or pl due to new 
+ quality, preclinical, clinical or pharmacovigilance data</p><p>
+ type ii 
+ i 
+ c.1.6: extension of indication to include the treatment of adult men with metastatic hormone-sensitive 
+ prostate cancer (mhspc) for xtandi in combination with androgen deprivation therapy based on the data 
+ of study 9785-cl-0335 (arches). as a consequence, sections 4.1, 4.2, 5.1, and 6.6 of the smpc are 
+ updated. furthermore the mah took the opportunity to make corrections to section 4.7. the package 
+ leaflet is updated in accordance.</p><p>
+ the rmp version 13.0 is approved.</p><p>
+ c.1.4: update of section 5.1 of the smpc based the 5-year overall survival (os) results obtained from 
+ the prevail study (mdv310003), a phase 3 study of enzalutamide in chemotherapy naïve patients with 
+ metastatic prostate cancer that progressed on adt.</p><p>
+ the group of variations leads to amendments to the summary of product characteristics and package 
+ leaflet and to the risk management plan (rmp).</p><p> assessment report</p><p>
+ ema/202601/2021</p><p>
+ page 100/100</p></section><section><header>amendments to the marketing authorisation</header><p>in view of the data submitted with the group of variations, amendments to annexes i and iiib and to the risk management plan are recommended.</p></section></body></xml>

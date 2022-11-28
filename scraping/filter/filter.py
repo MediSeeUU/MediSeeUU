@@ -197,6 +197,10 @@ def get_url(filename: str, directory: str) -> str:
                     return urls[eu_num]['epar_url']
                 if 'scientific-discussion' in filename:
                     return urls[eu_num]['epar_url']
+                if 'other' in filename:
+                    num = filename.split('_')[-1]
+                    num = int(num[:len(num) - 4])
+                    return urls[eu_num]['other_ema_urls'][num][0]
             except KeyError:
                 return "no_url_found"
     except FileNotFoundError:
@@ -222,6 +226,9 @@ def get_utf8_line(file_path: str) -> str:
     except FileNotFoundError:
         log.error(f"Can't open file: file_not_found @ {file_path}")
         return "file_not_found"
+    except UnicodeDecodeError:
+        log.error(f"UnicodeDecodeError while decoding the first line in {file_path}")
+        return "decode_error"
 
 
 def safe_remove(file_path: str):
@@ -417,4 +424,4 @@ def file_type_check(filename: str, file_path: str, pdf: fitz.Document, directory
         return ''
 
 
-#  filter_all_pdfs("../../data")
+# filter_all_pdfs("../../data/active_withdrawn")
