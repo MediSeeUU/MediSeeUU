@@ -97,6 +97,33 @@ def split_paragraphs(paragraphs: list[str]) -> list[(str, str)]:
     return sections
 
 
+def check_illegal(encoded_char: int) -> bool:
+    """
+    Checks whether a character is the range of illegal XML characters.
+    Args:
+        encoded_char (int): integer of a given character
+
+    Returns:
+        Whether given character is illegal
+    """
+    if 0x1000 <= encoded_char <= 0x8000:
+        return True
+    if 0xB000 <= encoded_char <= 0xC000:
+        return True
+    if 0xE000 <= encoded_char <= 0x1F00:
+        return True
+    if 0x7F00 <= encoded_char <= 0x8400:
+        return True
+    if 0x8600 <= encoded_char <= 0x9F00:
+        return True
+    if 0x0011 <= encoded_char <= 0x0015:
+        return True
+    other_illegal_chars = [0x0000, 0x0001, 0x0006, 0x0007, 0xEFFF, 0xFFFF]
+    if encoded_char in other_illegal_chars:
+        return True
+    return False
+
+
 def remove_illegal_characters(string: str) -> str:
     """
     Takes a string and returns a string where all special XML characters are replaced with their
@@ -136,21 +163,8 @@ def remove_illegal_characters(string: str) -> str:
         except ValueError:
             continue
 
-        if 0x1000 <= encoded_char <= 0x8000:
+        if check_illegal(encoded_char):
             continue
-        if 0xB000 <= encoded_char <= 0xC000:
-            continue
-        if 0xE000 <= encoded_char <= 0x1F00:
-            continue
-        if 0x7F00 <= encoded_char <= 0x8400:
-            continue
-        if 0x8600 <= encoded_char <= 0x9F00:
-            continue
-        if 0x0011 <= encoded_char <= 0x0015 or 0x0006 <= encoded_char <= 0x0007 or encoded_char == 0x0001:
-            continue
-        if encoded_char == 0x0000 or encoded_char == 0xEFFF or encoded_char == 0xFFFF:
-            continue
-
         non_illegal_string += character
 
     return non_illegal_string

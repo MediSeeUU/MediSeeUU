@@ -13,6 +13,8 @@ from scraping.file_parser.pdf_parser.parsers import epar_parser
 from scraping.file_parser.pdf_parser.parsers import omar_parser
 from scraping.file_parser.pdf_parser.parsers import annex_parser
 
+log = logging.getLogger("pdf_parser")
+
 
 # Main file to run all parsers
 def main(directory: str):
@@ -22,7 +24,6 @@ def main(directory: str):
     Args:
         directory: data folder, containing medicine folders
     """
-    log = logging.getLogger("pdf_parser")
     log.info(f"=== NEW LOG {datetime.datetime.today()} ===")
 
     eu_numbers_path = ""
@@ -74,9 +75,6 @@ def parse_folder(directory: str, folder_name: str):
         directory (str): location of folder to parse
         folder_name (st): name of medicine folder to parse
     """
-    # Annex 10 folder should be skipped
-    if "annex_10" in directory:
-        return
 
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing
     medicine_struct = pis.ParsedInfoStruct(folder_name)
@@ -131,12 +129,16 @@ def run_scrapers(directory: str, annex_files: list[str], decision_files: list[st
     Returns:
         pis.ParsedInfoStruct: Medicine structure containing scraped attributes
     """
+    log.info("Decision parser started")
     for file in decision_files:
         medicine_struct = dec_parser.parse_file(file, directory, medicine_struct)
+    log.info("Annex parser started")
     for file in annex_files:
         medicine_struct = annex_parser.parse_file(file, medicine_struct)
+    log.info("EPAR parser started")
     for file in epar_files:
         medicine_struct = epar_parser.parse_file(file, directory, medicine_struct)
+    log.info("OMAR parser started")
     for file in omar_files:
         medicine_struct = omar_parser.parse_file(file, medicine_struct)
     return medicine_struct

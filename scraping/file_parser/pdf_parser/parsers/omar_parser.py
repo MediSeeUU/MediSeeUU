@@ -65,7 +65,6 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
 
     # Loop through all the sections of the xml body to parse all the attributes
     for section in xml_body:
-
         # Detecting a final position in the table of contents means the other comp positions should be skipped.
         if xml_utils.section_contains_header_substring_set_all(["comp", "adopted", "on", "final"], section) \
                 and xml_utils.section_is_table_of_contents(section):
