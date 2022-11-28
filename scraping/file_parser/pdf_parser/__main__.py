@@ -42,7 +42,7 @@ def main(directory: str):
         eu_numbers = {}
         log.warning(f"No eu_numbers.json file found at location {eu_numbers_path}. Did you run web scraper?")
 
-    meds_dir = directory + "/active_withdrawn"
+    meds_dir = f"{directory}/active_withdrawn"
 
     # Get medicine folders that have to be scraped, so only medicines in the eu_numbers.json file
     directory_folders = [folder for folder in listdir(meds_dir) if path.isdir(path.join(meds_dir, folder)) and

@@ -40,7 +40,7 @@ def run_filter(n: int, data_filepath: str):
         n (int): Number of times filter is called
         data_filepath (str): the path to the data folder.
     """
-    data_filepath += "/active_withdrawn"
+    data_filepath = f"{data_filepath}/active_withdrawn"
     json_path = "web_scraper/"
     filter_path = ""
     # If file is run locally:

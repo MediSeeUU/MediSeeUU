@@ -8,11 +8,11 @@ def compile_json_files(directory: str, add_webdata: bool = True, add_pdfdata: bo
     Combines JSONs from PDF scraper and/or web scraper
 
     Args:
-        directory (str): Data folder categories of medicines:
+        directory (str): Data folder containing the categories of medicines:
         add_webdata (bool): Whether to add web data json files
         add_pdfdata (bool): Whether to add pdf data json files
     """
-    meds_dir = directory + "/active_withdrawn"
+    meds_dir = f"{directory}/active_withdrawn"
 
     subdirectories = [subdirectory for subdirectory in listdir(meds_dir) if
                       path.isdir(path.join(meds_dir, subdirectory))]

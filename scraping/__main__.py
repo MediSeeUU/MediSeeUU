@@ -59,9 +59,9 @@ def create_data_folders() -> str:
 
     """
     data_folder_directory = '../data'
-    data_folder_active_withdrawn = data_folder_directory + "/active_withdrawn"
-    data_folder_refused_directory = data_folder_directory + "/refused"
-    data_folder_annex10_directory = data_folder_directory + "/annex_10"
+    data_folder_active_withdrawn = f"{data_folder_directory}/active_withdrawn"
+    data_folder_refused_directory = f"{data_folder_directory}/refused"
+    data_folder_annex10_directory = f"{data_folder_directory}/annex_10"
     folders = [data_folder_directory, data_folder_active_withdrawn, data_folder_refused_directory,
                data_folder_annex10_directory]
 
