@@ -176,13 +176,13 @@ def get_last_updated_date(html_active: requests.Response) -> datetime:
     return datetime.strptime(last_updated_string.split()[-1], '%d/%m/%Y')
 
 
-def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type: MedicineType) \
+def scrape_medicine_page(eu_num: str, html_active: requests.Response, medicine_type: MedicineType) \
                                            -> (list[(str, int)], list[(str, int)], list[str], dict[str, str]):
     """
     Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.
 
     Args:
-        url (str): The url to the medicine page for the medicine that needs to be scraped.
+        eu_num (str): Number that identifies the medicine
         html_active (requests.Response): html object that contains all html text
         medicine_type (MedicineType): The type of medicine this medicine is.
 
@@ -194,9 +194,6 @@ def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type
     """
     # Retrieves the html from the European Commission product page
     medicine_json, procedures_json, *_ = get_ec_json_objects(html_active)
-
-    # Gets the short EU number from the url
-    eu_num = url.split('/')[-1].replace(".htm", "")
 
     # Gets all the necessary information from the medicine_json and procedures_json objects
     medicine_dict, ema_url_list = get_data_from_medicine_json(medicine_json, eu_num, medicine_type)

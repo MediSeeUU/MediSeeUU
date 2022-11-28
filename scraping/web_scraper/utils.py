@@ -16,7 +16,6 @@ def exception_retry(max_attempts: int = 4, logging_instance: logging.getLoggerCl
 
     Returns: The result of func. Returns None when the function did not return after the maximum attempts.
     """
-
     # Decorators are a little tricky. if you want to pass arguments to a function with the @exception_retry notation,
     # You need to split the decorator into two functions. The first function catches the arguments, and returns a
     # function. The second calls the first function with the argument of the function that has to be retried.
@@ -71,12 +70,7 @@ def get_html_object(url: str) -> requests.Response:
     """
     html_active: requests.Response = requests.get(url)
 
-    # If an http error occurred, throw error
-    # TODO: Graceful handling
+    # If a http error occurred, throw error
     html_active.raise_for_status()
 
     return html_active
-
-# TODO (Maybe): Logging context which adds the ThreadID to the logs.
-#               Makes it easier to see if a program is multi threaded
-#               https://stackoverflow.com/a/2357652/20321120

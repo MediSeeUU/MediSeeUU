@@ -105,7 +105,7 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
     # dec_ anx_ and ema_list are lists of URLs to PDF files
     # Attributes_dict is a dictionary containing the attributes scraped from the EC page
     dec_list_indexed, anx_list_indexed, ema_list, attributes_dict = \
-        ec_scraper.scrape_medicine_page(medicine_url, html_active, ec_scraper.MedicineType(medicine_type))
+        ec_scraper.scrape_medicine_page(eu_n, html_active, medicine_type)
 
     # Sort decisions and annexes list
     dec_list_indexed.sort(key=lambda x: int(x[1]))
