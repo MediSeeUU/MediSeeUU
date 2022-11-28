@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tests.web_scraper_tests package &mdash; Tests 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="tests.pdfscraper_tests package" href="tests.pdfscraper_tests.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+<a href="../../../docs/html/README.html">
+  <img src="_static/medisee.svg" class="logo" alt="Logo"/>
+</a>
+
+
+  
+  
+
+
+
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+      <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+      <ul>
+        <li class="toctree-l1 "><a href="../../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
+        <li class="toctree-l1 "><a href="../../../scraping/filter/docs/html/index.html">Filter</a></li>
+        <li class="toctree-l1 "><a href="../../../scraping/file_parser/docs/html/index.html">File Parser</a></li>
+        <li class="toctree-l1 "><a href="../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
+        <li class="toctree-l1 "><a href="../../../scraping/db_communicator/docs/html/index.html">DB Communicator</a></li>
+        <li class="toctree-l1 "><a href="../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
+        <li class="toctree-l1 margin-top current-module"><a href="../../../tests/docs/html/index.html">Tests</a></li>
+      </ul>
+    </div>  
+    
+      
+              <p class="caption" role="heading"><span class="caption-text">Source Code Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">tests</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tests.html">tests package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="tests.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="tests.annex_10_tests.html">tests.annex_10_tests package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tests.annex_10_tests.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="tests.annex_10_tests.html#module-tests.annex_10_tests.test_annex_10_parser">tests.annex_10_tests.test_annex_10_parser module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="tests.annex_10_tests.html#tests.annex_10_tests.test_annex_10_parser.TestAnnex10Parser"><code class="docutils literal notranslate"><span class="pre">TestAnnex10Parser</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="tests.annex_10_tests.html#tests.annex_10_tests.test_annex_10_parser.TestAnnex10Parser.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestAnnex10Parser.setUpClass()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.annex_10_tests.html#tests.annex_10_tests.test_annex_10_parser.TestAnnex10Parser.test_integer_results"><code class="docutils literal notranslate"><span class="pre">TestAnnex10Parser.test_integer_results()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.annex_10_tests.html#tests.annex_10_tests.test_annex_10_parser.TestAnnex10Parser.test_percentage"><code class="docutils literal notranslate"><span class="pre">TestAnnex10Parser.test_percentage()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="tests.annex_10_tests.html#tests.annex_10_tests.test_annex_10_parser.clean_df"><code class="docutils literal notranslate"><span class="pre">clean_df()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="tests.combiner_tests.html">tests.combiner_tests package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tests.combiner_tests.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="tests.combiner_tests.html#module-tests.combiner_tests.test_combiner">tests.combiner_tests.test_combiner module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="tests.combiner_tests.html#tests.combiner_tests.test_combiner.TestCombiner"><code class="docutils literal notranslate"><span class="pre">TestCombiner</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="tests.combiner_tests.html#tests.combiner_tests.test_combiner.TestCombiner.test_main"><code class="docutils literal notranslate"><span class="pre">TestCombiner.test_main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="tests.db_communicator_tests.html">tests.db_communicator_tests package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tests.db_communicator_tests.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="tests.db_communicator_tests.html#module-tests.db_communicator_tests.test_db_communicator">tests.db_communicator_tests.test_db_communicator module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="tests.db_communicator_tests.html#tests.db_communicator_tests.test_db_communicator.TestDbCommunicator"><code class="docutils literal notranslate"><span class="pre">TestDbCommunicator</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="tests.db_communicator_tests.html#tests.db_communicator_tests.test_db_communicator.TestDbCommunicator.test_main"><code class="docutils literal notranslate"><span class="pre">TestDbCommunicator.test_main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="tests.filter_tests.html">tests.filter_tests package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tests.filter_tests.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="tests.filter_tests.html#module-tests.filter_tests.test_pdf_filter">tests.filter_tests.test_pdf_filter module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="tests.filter_tests.html#tests.filter_tests.test_pdf_filter.TestFilter"><code class="docutils literal notranslate"><span class="pre">TestFilter</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="tests.filter_tests.html#tests.filter_tests.test_pdf_filter.TestFilter.setUp"><code class="docutils literal notranslate"><span class="pre">TestFilter.setUp()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.filter_tests.html#tests.filter_tests.test_pdf_filter.TestFilter.tearDownClass"><code class="docutils literal notranslate"><span class="pre">TestFilter.tearDownClass()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.filter_tests.html#tests.filter_tests.test_pdf_filter.TestFilter.test_pdf_filter_length"><code class="docutils literal notranslate"><span class="pre">TestFilter.test_pdf_filter_length()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.filter_tests.html#tests.filter_tests.test_pdf_filter.TestFilter.test_pdf_filter_writing"><code class="docutils literal notranslate"><span class="pre">TestFilter.test_pdf_filter_writing()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="tests.filter_tests.html#tests.filter_tests.test_pdf_filter.get_removed_files"><code class="docutils literal notranslate"><span class="pre">get_removed_files()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="tests.pdfscraper_tests.html">tests.pdfscraper_tests package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tests.pdfscraper_tests.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="tests.pdfscraper_tests.html#module-tests.pdfscraper_tests.test_annex_parse">tests.pdfscraper_tests.test_annex_parse module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.annex_attributes"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse.annex_attributes</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.setUp"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse.setUp()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.test_get_eu_type_of_medicine"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse.test_get_eu_type_of_medicine()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_annex_parse.TestAnnexParse.test_get_initial_type_of_eu_authorization"><code class="docutils literal notranslate"><span class="pre">TestAnnexParse.test_get_initial_type_of_eu_authorization()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="tests.pdfscraper_tests.html#module-tests.pdfscraper_tests.test_dec_parse">tests.pdfscraper_tests.test_dec_parse module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_dec_parse.TestDecParse"><code class="docutils literal notranslate"><span class="pre">TestDecParse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_dec_parse.TestDecParse.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestDecParse.setUpClass()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_dec_parse.TestDecParse.test_get_date"><code class="docutils literal notranslate"><span class="pre">TestDecParse.test_get_date()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_dec_parse.TestDecParse.test_get_od_comp_date"><code class="docutils literal notranslate"><span class="pre">TestDecParse.test_get_od_comp_date()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="tests.pdfscraper_tests.html#module-tests.pdfscraper_tests.test_epar_parse">tests.pdfscraper_tests.test_epar_parse module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse"><code class="docutils literal notranslate"><span class="pre">TestEparParse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.check_date"><code class="docutils literal notranslate"><span class="pre">TestEparParse.check_date()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestEparParse.setUpClass()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_accelerated_assessment"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_accelerated_assessment()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_corapp"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_corapp()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_date"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_date()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_legal_basis"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_legal_basis()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_opinion_date"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_opinion_date()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_prime"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_prime()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_rapp"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_rapp()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_epar_parse.TestEparParse.test_get_reexamination"><code class="docutils literal notranslate"><span class="pre">TestEparParse.test_get_reexamination()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="tests.pdfscraper_tests.html#module-tests.pdfscraper_tests.test_omar_parse">tests.pdfscraper_tests.test_omar_parse module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse"><code class="docutils literal notranslate"><span class="pre">TestOmarParse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.setUpClass()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_alternative_treatments"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_alternative_treatments()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_prevalence"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_prevalence()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.TestOmarParse.test_get_significant_benefit"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_significant_benefit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="tests.pdfscraper_tests.html#tests.pdfscraper_tests.test_omar_parse.xml_to_bullet_points"><code class="docutils literal notranslate"><span class="pre">xml_to_bullet_points()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">tests.web_scraper_tests package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-tests.web_scraper_tests.test_download">tests.web_scraper_tests.test_download module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload"><code class="docutils literal notranslate"><span class="pre">TestDownload</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_medicine_files"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_download_medicine_files</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_medicine_files_0_EU_1_21_1541"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_download_medicine_files_0_EU_1_21_1541()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdf_from_url"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_download_pdf_from_url</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdf_from_url_0_https_ec_europa_eu_health_documents_community_register_2022_20220324154987_dec_154987_en_pdf"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_download_pdf_from_url_0_https_ec_europa_eu_health_documents_community_register_2022_20220324154987_dec_154987_en_pdf()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdf_from_url_1_https_ec_europa_eu_health_documents_community_register_2022_20220324154987_anx_154987_en_pdf"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_download_pdf_from_url_1_https_ec_europa_eu_health_documents_community_register_2022_20220324154987_anx_154987_en_pdf()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ec"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_download_pdfs_ec</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ec_0_EU_1_21_1541"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_download_pdfs_ec_0_EU_1_21_1541()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ec_1_EU_1_21_1541"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_download_pdfs_ec_1_EU_1_21_1541()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ema"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_download_pdfs_ema</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ema_0_EU_1_21_1541"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_download_pdfs_ema_0_EU_1_21_1541()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ema_1_EU_1_21_1541"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_download_pdfs_ema_1_EU_1_21_1541()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_get_date_from_url"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_get_date_from_url</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_get_date_from_url_0_https_ec_europa_eu_health_documents_community_register_2000_200010185296_dec_5296_en_pdf"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_get_date_from_url_0_https_ec_europa_eu_health_documents_community_register_2000_200010185296_dec_5296_en_pdf()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_download.TestDownload.test_get_date_from_url_1_https_www_ema_europa_eu_documents_orphan_maintenance_report_mylotarg_orphan_maintenance_assessment_report_initial_authorisation_en_pdf"><code class="docutils literal notranslate"><span class="pre">TestDownload.test_get_date_from_url_1_https_www_ema_europa_eu_documents_orphan_maintenance_report_mylotarg_orphan_maintenance_assessment_report_initial_authorisation_en_pdf()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-tests.web_scraper_tests.test_ec_scraper">tests.web_scraper_tests.test_ec_scraper module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper"><code class="docutils literal notranslate"><span class="pre">TestEcScraper</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_determine_current_aut_type</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type_0"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_determine_current_aut_type_0()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type_1"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_determine_current_aut_type_1()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type_2"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_determine_current_aut_type_2()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type_3"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_determine_current_aut_type_3()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_ema_number"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_determine_ema_number</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_ema_number_0"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_determine_ema_number_0()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_determine_initial_aut_type</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_0"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_determine_initial_aut_type_0()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_1"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_determine_initial_aut_type_1()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_2"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_determine_initial_aut_type_2()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_3"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_determine_initial_aut_type_3()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_4"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_determine_initial_aut_type_4()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_format_ema_number"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_format_ema_number</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_format_ema_number_0_EMEA_H_C_000674_IA_0142_G"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_format_ema_number_0_EMEA_H_C_000674_IA_0142_G()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_format_ema_number_1_EMA_OD_020_02"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_format_ema_number_1_EMA_OD_020_02()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_format_ema_number_2_EMEA_H_C_000674_IA_0142_G_EMA_OD_020_02"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_format_ema_number_2_EMEA_H_C_000674_IA_0142_G_EMA_OD_020_02()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_medicine_json"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_get_data_from_medicine_json</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_medicine_json_0_h412"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_get_data_from_medicine_json_0_h412()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_medicine_json_1_h477"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_get_data_from_medicine_json_1_h477()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_medicine_json_2_o1230"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_get_data_from_medicine_json_2_o1230()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_procedures_json"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_get_data_from_procedures_json</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_procedures_json_0_h477"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_get_data_from_procedures_json_0_h477()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_get_ec_json_objects</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_0_h944"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_get_ec_json_objects_0_h944()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_1_h313"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_get_ec_json_objects_1_h313()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_2_ho24765"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_get_ec_json_objects_2_ho24765()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_3_o1384"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_get_ec_json_objects_3_o1384()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_4_o200"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_get_ec_json_objects_4_o200()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_5_ho26270"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_get_ec_json_objects_5_ho26270()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_scrape_active_withdrawn_jsons"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_scrape_active_withdrawn_jsons()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_scrape_medicine_page"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_scrape_medicine_page()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_scrape_medicines_list"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_scrape_medicines_list()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_scrape_refused_jsons"><code class="docutils literal notranslate"><span class="pre">TestEcScraper.test_scrape_refused_jsons()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-tests.web_scraper_tests.test_ema_scraper">tests.web_scraper_tests.test_ema_scraper module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper"><code class="docutils literal notranslate"><span class="pre">TestEMAScraper</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_last_updated_date"><code class="docutils literal notranslate"><span class="pre">TestEMAScraper.test_find_last_updated_date</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_last_updated_date_0_https_www_ema_europa_eu_en_medicines_human_EPAR_alymsys"><code class="docutils literal notranslate"><span class="pre">TestEMAScraper.test_find_last_updated_date_0_https_www_ema_europa_eu_en_medicines_human_EPAR_alymsys()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_priority_link"><code class="docutils literal notranslate"><span class="pre">TestEMAScraper.test_find_priority_link</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_priority_link_0"><code class="docutils literal notranslate"><span class="pre">TestEMAScraper.test_find_priority_link_0()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_priority_link_1"><code class="docutils literal notranslate"><span class="pre">TestEMAScraper.test_find_priority_link_1()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url"><code class="docutils literal notranslate"><span class="pre">TestEMAScraper.test_pdf_links_from_url</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_0_EPAR_and_OMAR"><code class="docutils literal notranslate"><span class="pre">TestEMAScraper.test_pdf_links_from_url_0_EPAR_and_OMAR()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_1_EPAR_only"><code class="docutils literal notranslate"><span class="pre">TestEMAScraper.test_pdf_links_from_url_1_EPAR_only()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_2_No_EPAR_and_OMAR"><code class="docutils literal notranslate"><span class="pre">TestEMAScraper.test_pdf_links_from_url_2_No_EPAR_and_OMAR()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_3_EPAR_only"><code class="docutils literal notranslate"><span class="pre">TestEMAScraper.test_pdf_links_from_url_3_EPAR_only()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_4_ODWAR"><code class="docutils literal notranslate"><span class="pre">TestEMAScraper.test_pdf_links_from_url_4_ODWAR()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-tests.web_scraper_tests.test_filter_retry">tests.web_scraper_tests.test_filter_retry module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry"><code class="docutils literal notranslate"><span class="pre">TestFilterRetry</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_all"><code class="docutils literal notranslate"><span class="pre">TestFilterRetry.test_retry_all</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_all_0"><code class="docutils literal notranslate"><span class="pre">TestFilterRetry.test_retry_all_0()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_all_1"><code class="docutils literal notranslate"><span class="pre">TestFilterRetry.test_retry_all_1()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download"><code class="docutils literal notranslate"><span class="pre">TestFilterRetry.test_retry_download</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download_0_EU_1_04_273"><code class="docutils literal notranslate"><span class="pre">TestFilterRetry.test_retry_download_0_EU_1_04_273()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download_1_EU_1_04_273"><code class="docutils literal notranslate"><span class="pre">TestFilterRetry.test_retry_download_1_EU_1_04_273()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download_2_EU_1_00_129"><code class="docutils literal notranslate"><span class="pre">TestFilterRetry.test_retry_download_2_EU_1_00_129()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download_3_EU_3_05_339"><code class="docutils literal notranslate"><span class="pre">TestFilterRetry.test_retry_download_3_EU_3_05_339()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-tests.web_scraper_tests.test_web_scraper">tests.web_scraper_tests.test_web_scraper module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper"><code class="docutils literal notranslate"><span class="pre">TestWebScraper</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.medicine_list_checks"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.medicine_list_checks</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_download"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.run_download()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_ec_scraper"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.run_ec_scraper()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_ema_scraper"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.run_ema_scraper()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_filter"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.run_filter()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.setUpClass()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.tearDownClass"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.tearDownClass()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.test_run_web_check_all</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all_0"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.test_run_web_check_all_0()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all_1"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.test_run_web_check_all_1()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.test_run_web_no_checks</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks_0"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.test_run_web_no_checks_0()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks_1"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.test_run_web_no_checks_1()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.check_new_eu_numbers"><code class="docutils literal notranslate"><span class="pre">check_new_eu_numbers()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tests</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">tests</a></li>
+          <li class="breadcrumb-item"><a href="tests.html">tests package</a></li>
+      <li class="breadcrumb-item active">tests.web_scraper_tests package</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-tests.web_scraper_tests">
+<span id="tests-web-scraper-tests-package"></span><h1>tests.web_scraper_tests package<a class="headerlink" href="#module-tests.web_scraper_tests" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-tests.web_scraper_tests.test_download">
+<span id="tests-web-scraper-tests-test-download-module"></span><h2>tests.web_scraper_tests.test_download module<a class="headerlink" href="#module-tests.web_scraper_tests.test_download" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.web_scraper_tests.test_download.</span></span><span class="sig-name descname"><span class="pre">TestDownload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>Class that contains all the tests for scraping.webscraper.download</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_download_medicine_files">
+<span class="sig-name descname"><span class="pre">test_download_medicine_files</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_medicine_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_download_medicine_files_0_EU_1_21_1541">
+<span class="sig-name descname"><span class="pre">test_download_medicine_files_0_EU_1_21_1541</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_medicine_files_0_EU_1_21_1541" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with eu_n=’EU-1-21-1541’, url_dict={‘ec_url’: ‘<a class="reference external" href="https://ec.europa.eu..._url">https://ec.europa.eu…_url</a>’: ‘’, ‘other_ema_urls’: []}]
+eu_n: The eu number of the tested medicine
+url_dict: The dictionary containing the urls for a specific medicine</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_download_pdf_from_url">
+<span class="sig-name descname"><span class="pre">test_download_pdf_from_url</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdf_from_url" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_download_pdf_from_url_0_https_ec_europa_eu_health_documents_community_register_2022_20220324154987_dec_154987_en_pdf">
+<span class="sig-name descname"><span class="pre">test_download_pdf_from_url_0_https_ec_europa_eu_health_documents_community_register_2022_20220324154987_dec_154987_en_pdf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdf_from_url_0_https_ec_europa_eu_health_documents_community_register_2022_20220324154987_dec_154987_en_pdf" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with url=’<a class="reference external" href="https://ec.europa.eu/health/doc...0220324154987/dec_154987_en.pdf">https://ec.europa.eu/health/doc…0220324154987/dec_154987_en.pdf</a>’, eu_n=’EU-1-21-1541’, filename_elements=[‘h’, ‘anx’, ‘0’]]
+url: The url that needs to be downloaded
+eu_n: The eu number of the file that needs to be downloaded
+filename_elements: The filename elements</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_download_pdf_from_url_1_https_ec_europa_eu_health_documents_community_register_2022_20220324154987_anx_154987_en_pdf">
+<span class="sig-name descname"><span class="pre">test_download_pdf_from_url_1_https_ec_europa_eu_health_documents_community_register_2022_20220324154987_anx_154987_en_pdf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdf_from_url_1_https_ec_europa_eu_health_documents_community_register_2022_20220324154987_anx_154987_en_pdf" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with url=’<a class="reference external" href="https://ec.europa.eu/health/doc...0220324154987/anx_154987_en.pdf">https://ec.europa.eu/health/doc…0220324154987/anx_154987_en.pdf</a>’, eu_n=’EU-1-21-1541’, filename_elements=[‘h’, ‘dec’, ‘0’]]
+url: The url that needs to be downloaded
+eu_n: The eu number of the file that needs to be downloaded
+filename_elements: The filename elements</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ec">
+<span class="sig-name descname"><span class="pre">test_download_pdfs_ec</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ec" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ec_0_EU_1_21_1541">
+<span class="sig-name descname"><span class="pre">test_download_pdfs_ec_0_EU_1_21_1541</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ec_0_EU_1_21_1541" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with eu_n=’EU-1-21-1541’, pdf_type=’dec’, pdf_url=[’<a class="reference external" href="https://ec.europa.eu/health/do...220324154987/dec_154987_en.pdf">https://ec.europa.eu/health/do…220324154987/dec_154987_en.pdf</a>’]]
+eu_n: The eu nummer of the tested medicine
+pdf_type: The type of the pdf, dec or anx
+pdf_url: The url of the pdf</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ec_1_EU_1_21_1541">
+<span class="sig-name descname"><span class="pre">test_download_pdfs_ec_1_EU_1_21_1541</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ec_1_EU_1_21_1541" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with eu_n=’EU-1-21-1541’, pdf_type=’anx’, pdf_url=[’<a class="reference external" href="https://ec.europa.eu/health/do...220324154987/anx_154987_en.pdf">https://ec.europa.eu/health/do…220324154987/anx_154987_en.pdf</a>’]]
+eu_n: The eu nummer of the tested medicine
+pdf_type: The type of the pdf, dec or anx
+pdf_url: The url of the pdf</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ema">
+<span class="sig-name descname"><span class="pre">test_download_pdfs_ema</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ema" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ema_0_EU_1_21_1541">
+<span class="sig-name descname"><span class="pre">test_download_pdfs_ema_0_EU_1_21_1541</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ema_0_EU_1_21_1541" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with eu_n=’EU-1-21-1541’, pdf_type=’epar’, pdf_url=’<a class="reference external" href="https://www.ema.europa.eu/docum...public-assessment-report_en.pdf">https://www.ema.europa.eu/docum…public-assessment-report_en.pdf</a>’]
+eu_n: The eu nummer of the tested medicine
+pdf_type: The type of pdf, epar or omar
+pdf_url: The url of the pdf</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ema_1_EU_1_21_1541">
+<span class="sig-name descname"><span class="pre">test_download_pdfs_ema_1_EU_1_21_1541</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_download_pdfs_ema_1_EU_1_21_1541" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with eu_n=’EU-1-21-1541’, pdf_type=’omar’, pdf_url=’’]
+eu_n: The eu nummer of the tested medicine
+pdf_type: The type of pdf, epar or omar
+pdf_url: The url of the pdf</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_get_date_from_url">
+<span class="sig-name descname"><span class="pre">test_get_date_from_url</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_get_date_from_url" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_get_date_from_url_0_https_ec_europa_eu_health_documents_community_register_2000_200010185296_dec_5296_en_pdf">
+<span class="sig-name descname"><span class="pre">test_get_date_from_url_0_https_ec_europa_eu_health_documents_community_register_2000_200010185296_dec_5296_en_pdf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_get_date_from_url_0_https_ec_europa_eu_health_documents_community_register_2000_200010185296_dec_5296_en_pdf" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with url=’<a class="reference external" href="https://ec.europa.eu/health/doc...00/200010185296/dec_5296_en.pdf">https://ec.europa.eu/health/doc…00/200010185296/dec_5296_en.pdf</a>’]
+url: url of a file that needs to be tested</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_download.TestDownload.test_get_date_from_url_1_https_www_ema_europa_eu_documents_orphan_maintenance_report_mylotarg_orphan_maintenance_assessment_report_initial_authorisation_en_pdf">
+<span class="sig-name descname"><span class="pre">test_get_date_from_url_1_https_www_ema_europa_eu_documents_orphan_maintenance_report_mylotarg_orphan_maintenance_assessment_report_initial_authorisation_en_pdf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_download.TestDownload.test_get_date_from_url_1_https_www_ema_europa_eu_documents_orphan_maintenance_report_mylotarg_orphan_maintenance_assessment_report_initial_authorisation_en_pdf" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with url=’<a class="reference external" href="https://www.ema.europa.eu/docum...rt-initial-authorisation_en.pdf">https://www.ema.europa.eu/docum…rt-initial-authorisation_en.pdf</a>’]
+url: url of a file that needs to be tested</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tests.web_scraper_tests.test_ec_scraper">
+<span id="tests-web-scraper-tests-test-ec-scraper-module"></span><h2>tests.web_scraper_tests.test_ec_scraper module<a class="headerlink" href="#module-tests.web_scraper_tests.test_ec_scraper" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.web_scraper_tests.test_ec_scraper.</span></span><span class="sig-name descname"><span class="pre">TestEcScraper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>Class that contains al the test for scraping.webscraper.ec_scraper</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type">
+<span class="sig-name descname"><span class="pre">test_determine_current_aut_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type_0">
+<span class="sig-name descname"><span class="pre">test_determine_current_aut_type_0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type_0" title="Permalink to this definition"></a></dt>
+<dd><p>Tests whether the logic for determining the current authorization type is correct [with last_decision_types=[], exp_output=’standard’].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>last_decision_types</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – String for the last decision types.</p></li>
+<li><p><strong>exp_output</strong> – Expected output for the function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type_1">
+<span class="sig-name descname"><span class="pre">test_determine_current_aut_type_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type_1" title="Permalink to this definition"></a></dt>
+<dd><p>Tests whether the logic for determining the current authorization type is correct [with last_decision_types=[‘Annual Renewal’], exp_output=’conditional’].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>last_decision_types</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – String for the last decision types.</p></li>
+<li><p><strong>exp_output</strong> – Expected output for the function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type_2">
+<span class="sig-name descname"><span class="pre">test_determine_current_aut_type_2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type_2" title="Permalink to this definition"></a></dt>
+<dd><p>Tests whether the logic for determining the current authorization type is correct [with last_decision_types=[‘Annual Reassessment’], exp_output=’exceptional’].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>last_decision_types</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – String for the last decision types.</p></li>
+<li><p><strong>exp_output</strong> – Expected output for the function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type_3">
+<span class="sig-name descname"><span class="pre">test_determine_current_aut_type_3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_current_aut_type_3" title="Permalink to this definition"></a></dt>
+<dd><p>Tests whether the logic for determining the current authorization type is correct [with last_decision_types=[‘something else’, ‘bla bla’], exp_output=’standard’].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>last_decision_types</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – String for the last decision types.</p></li>
+<li><p><strong>exp_output</strong> – Expected output for the function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_ema_number">
+<span class="sig-name descname"><span class="pre">test_determine_ema_number</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_ema_number" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_ema_number_0">
+<span class="sig-name descname"><span class="pre">test_determine_ema_number_0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_ema_number_0" title="Permalink to this definition"></a></dt>
+<dd><p>Tests whether the correct EMA number is chosen from a list of EMA numbers. Also checks whether the EMA number [with ema_numbers=[‘EMEA/H/C/000572’, ‘EMEA/H/C/00… ‘EMEA/H/C/572’, ‘EMEA/H/C/572’], exp_ema_number=’EMEA/H/C/572’, exp_fraction=0.75]
+certainty is correct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ema_numbers</strong> – List of EMA numbers to check.</p></li>
+<li><p><strong>exp_ema_number</strong> – Expected EMA number.</p></li>
+<li><p><strong>exp_fraction</strong> – Expected EMA number certainty.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type">
+<span class="sig-name descname"><span class="pre">test_determine_initial_aut_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_0">
+<span class="sig-name descname"><span class="pre">test_determine_initial_aut_type_0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_1">
+<span class="sig-name descname"><span class="pre">test_determine_initial_aut_type_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_2">
+<span class="sig-name descname"><span class="pre">test_determine_initial_aut_type_2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_3">
+<span class="sig-name descname"><span class="pre">test_determine_initial_aut_type_3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_4">
+<span class="sig-name descname"><span class="pre">test_determine_initial_aut_type_4</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_determine_initial_aut_type_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_format_ema_number">
+<span class="sig-name descname"><span class="pre">test_format_ema_number</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_format_ema_number" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_format_ema_number_0_EMEA_H_C_000674_IA_0142_G">
+<span class="sig-name descname"><span class="pre">test_format_ema_number_0_EMEA_H_C_000674_IA_0142_G</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_format_ema_number_0_EMEA_H_C_000674_IA_0142_G" title="Permalink to this definition"></a></dt>
+<dd><p>Tests whether EMA numbers are formatted correctly [with ema_number=’EMEA/H/C/000674/IA/0142/G’, exp_output=[‘EMEA/H/C/000674’]].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ema_number</strong> – EMA number to be formatted.</p></li>
+<li><p><strong>exp_output</strong> – The expected output, how the EMA number should be formatted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_format_ema_number_1_EMA_OD_020_02">
+<span class="sig-name descname"><span class="pre">test_format_ema_number_1_EMA_OD_020_02</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_format_ema_number_1_EMA_OD_020_02" title="Permalink to this definition"></a></dt>
+<dd><p>Tests whether EMA numbers are formatted correctly [with ema_number=’EMA/OD/020/02’, exp_output=[‘EMA/OD/020/02’]].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ema_number</strong> – EMA number to be formatted.</p></li>
+<li><p><strong>exp_output</strong> – The expected output, how the EMA number should be formatted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_format_ema_number_2_EMEA_H_C_000674_IA_0142_G_EMA_OD_020_02">
+<span class="sig-name descname"><span class="pre">test_format_ema_number_2_EMEA_H_C_000674_IA_0142_G_EMA_OD_020_02</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_format_ema_number_2_EMEA_H_C_000674_IA_0142_G_EMA_OD_020_02" title="Permalink to this definition"></a></dt>
+<dd><p>Tests whether EMA numbers are formatted correctly [with ema_number=’EMEA/H/C/000674/IA/0142/G, EMA/OD/020/02’, exp_output=[‘EMEA/H/C/000674’, ‘EMA/OD/020/02’]].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ema_number</strong> – EMA number to be formatted.</p></li>
+<li><p><strong>exp_output</strong> – The expected output, how the EMA number should be formatted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_medicine_json">
+<span class="sig-name descname"><span class="pre">test_get_data_from_medicine_json</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_medicine_json" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_medicine_json_0_h412">
+<span class="sig-name descname"><span class="pre">test_get_data_from_medicine_json_0_h412</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_medicine_json_0_h412" title="Permalink to this definition"></a></dt>
+<dd><p>Based on a couple of test medicine, checks whether the attributes that are scraped from the medicine JSON are [with eu_num_short=’h412’, exp_atc_code=’B03XA01’, exp_active_substance=’epoetin alfa’, exp_eu_number=’EU/1/07/412’, exp_eu_aut_status=’ACTIVE’, exp_eu_brand_name_current=’Abseamed’, exp_eu_mah_current=’Medice Arzneimittel P&amp;#252;tter GmbH &amp;amp; Co KG’, medicine_type=&lt;MedicineType.HUMAN_USE_ACTIVE: 0&gt;]
+correct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_num_short</strong> (<em>str</em>) – The short identifier for a medicine.</p></li>
+<li><p><strong>exp_atc_code</strong> (<em>str</em>) – The expected ATC code for the medicine.</p></li>
+<li><p><strong>exp_active_substance</strong> (<em>str</em>) – The expected active substance for the medicine.</p></li>
+<li><p><strong>exp_eu_number</strong> (<em>str</em>) – The expected EU product number for the medicine.</p></li>
+<li><p><strong>exp_eu_aut_status</strong> (<em>str</em>) – The expected authorization status for the medicine.</p></li>
+<li><p><strong>exp_eu_brand_name_current</strong> (<em>str</em>) – The expected brand name for the medicine.</p></li>
+<li><p><strong>exp_eu_mah_current</strong> (<em>str</em>) – The expected marketing authorization holder for the medicine.</p></li>
+<li><p><strong>medicine_type</strong> (<em>MedicineType</em>) – The type of medicine that is being scraped.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_medicine_json_1_h477">
+<span class="sig-name descname"><span class="pre">test_get_data_from_medicine_json_1_h477</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_medicine_json_1_h477" title="Permalink to this definition"></a></dt>
+<dd><p>Based on a couple of test medicine, checks whether the attributes that are scraped from the medicine JSON are [with eu_num_short=’h477’, exp_atc_code=’L03AX14’, exp_active_substance=’Histamine dihydrochloride’, exp_eu_number=’EU/1/08/477’, exp_eu_aut_status=’ACTIVE’, exp_eu_brand_name_current=’Ceplene’, exp_eu_mah_current=’Laboratoires Delbert’, medicine_type=&lt;MedicineType.HUMAN_USE_ACTIVE: 0&gt;]
+correct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_num_short</strong> (<em>str</em>) – The short identifier for a medicine.</p></li>
+<li><p><strong>exp_atc_code</strong> (<em>str</em>) – The expected ATC code for the medicine.</p></li>
+<li><p><strong>exp_active_substance</strong> (<em>str</em>) – The expected active substance for the medicine.</p></li>
+<li><p><strong>exp_eu_number</strong> (<em>str</em>) – The expected EU product number for the medicine.</p></li>
+<li><p><strong>exp_eu_aut_status</strong> (<em>str</em>) – The expected authorization status for the medicine.</p></li>
+<li><p><strong>exp_eu_brand_name_current</strong> (<em>str</em>) – The expected brand name for the medicine.</p></li>
+<li><p><strong>exp_eu_mah_current</strong> (<em>str</em>) – The expected marketing authorization holder for the medicine.</p></li>
+<li><p><strong>medicine_type</strong> (<em>MedicineType</em>) – The type of medicine that is being scraped.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_medicine_json_2_o1230">
+<span class="sig-name descname"><span class="pre">test_get_data_from_medicine_json_2_o1230</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_medicine_json_2_o1230" title="Permalink to this definition"></a></dt>
+<dd><p>Based on a couple of test medicine, checks whether the attributes that are scraped from the medicine JSON are [with eu_num_short=’o1230’, exp_atc_code=’not applicable’, exp_active_substance=’(2R,3R,4S,5R)-2-(6-amino-9H-pur…methyl)tetrahydrofuran-3,4-diol’, exp_eu_number=’EU/3/13/1230’, exp_eu_aut_status=’ACTIVE’, exp_eu_brand_name_current=’EU/3/13/1230’, exp_eu_mah_current=’Voisin Consulting Life Sciences’, medicine_type=&lt;MedicineType.ORPHAN_ACTIVE: 2&gt;]
+correct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_num_short</strong> (<em>str</em>) – The short identifier for a medicine.</p></li>
+<li><p><strong>exp_atc_code</strong> (<em>str</em>) – The expected ATC code for the medicine.</p></li>
+<li><p><strong>exp_active_substance</strong> (<em>str</em>) – The expected active substance for the medicine.</p></li>
+<li><p><strong>exp_eu_number</strong> (<em>str</em>) – The expected EU product number for the medicine.</p></li>
+<li><p><strong>exp_eu_aut_status</strong> (<em>str</em>) – The expected authorization status for the medicine.</p></li>
+<li><p><strong>exp_eu_brand_name_current</strong> (<em>str</em>) – The expected brand name for the medicine.</p></li>
+<li><p><strong>exp_eu_mah_current</strong> (<em>str</em>) – The expected marketing authorization holder for the medicine.</p></li>
+<li><p><strong>medicine_type</strong> (<em>MedicineType</em>) – The type of medicine that is being scraped.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_procedures_json">
+<span class="sig-name descname"><span class="pre">test_get_data_from_procedures_json</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_procedures_json" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_procedures_json_0_h477">
+<span class="sig-name descname"><span class="pre">test_get_data_from_procedures_json_0_h477</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_data_from_procedures_json_0_h477" title="Permalink to this definition"></a></dt>
+<dd><p>Based on a couple of test medicine, checks whether the attributes that are scraped from the procedures JSON are [with eu_num_short=’h477’, exp_eu_aut_date=’2008-10-07 00:00:00’, exp_aut_type_initial=’exceptional’, exp_aut_type_current=’’, exp_ema_number=’’, exp_ema_number_certainty=’’]
+correct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_num_short</strong> (<em>str</em>) – The short identifier for a medicine.</p></li>
+<li><p><strong>exp_eu_aut_date</strong> (<em>str</em>) – The expected authorization date for a medicine.</p></li>
+<li><p><strong>exp_aut_type_initial</strong> – (str)  The expected initial authorization type for a medicine.</p></li>
+<li><p><strong>exp_aut_type_current</strong> (<em>str</em>) – The expected current authorization type for a medicine.</p></li>
+<li><p><strong>exp_ema_number</strong> (<em>str</em>) – The expected ema number for a medicine.</p></li>
+<li><p><strong>exp_ema_number_certainty</strong> (<em>str</em>) – The expected ema number certainty for a medicine.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects">
+<span class="sig-name descname"><span class="pre">test_get_ec_json_objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_0_h944">
+<span class="sig-name descname"><span class="pre">test_get_ec_json_objects_0_h944</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_0_h944" title="Permalink to this definition"></a></dt>
+<dd><p>Based on a couple of test medicine, checks whether it retrieves JSON objects from a medicine page [with eu_num_short=’h944’].</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Args:</dt><dd><p>eu_num_short (str): The short identifier for a medicine.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>:</dt><dd><dl class="simple">
+<dt>Returns:</dt><dd><p>None: This function returns nothing.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_1_h313">
+<span class="sig-name descname"><span class="pre">test_get_ec_json_objects_1_h313</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_1_h313" title="Permalink to this definition"></a></dt>
+<dd><p>Based on a couple of test medicine, checks whether it retrieves JSON objects from a medicine page [with eu_num_short=’h313’].</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Args:</dt><dd><p>eu_num_short (str): The short identifier for a medicine.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>:</dt><dd><dl class="simple">
+<dt>Returns:</dt><dd><p>None: This function returns nothing.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_2_ho24765">
+<span class="sig-name descname"><span class="pre">test_get_ec_json_objects_2_ho24765</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_2_ho24765" title="Permalink to this definition"></a></dt>
+<dd><p>Based on a couple of test medicine, checks whether it retrieves JSON objects from a medicine page [with eu_num_short=’ho24765’].</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Args:</dt><dd><p>eu_num_short (str): The short identifier for a medicine.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>:</dt><dd><dl class="simple">
+<dt>Returns:</dt><dd><p>None: This function returns nothing.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_3_o1384">
+<span class="sig-name descname"><span class="pre">test_get_ec_json_objects_3_o1384</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_3_o1384" title="Permalink to this definition"></a></dt>
+<dd><p>Based on a couple of test medicine, checks whether it retrieves JSON objects from a medicine page [with eu_num_short=’o1384’].</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Args:</dt><dd><p>eu_num_short (str): The short identifier for a medicine.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>:</dt><dd><dl class="simple">
+<dt>Returns:</dt><dd><p>None: This function returns nothing.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_4_o200">
+<span class="sig-name descname"><span class="pre">test_get_ec_json_objects_4_o200</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_4_o200" title="Permalink to this definition"></a></dt>
+<dd><p>Based on a couple of test medicine, checks whether it retrieves JSON objects from a medicine page [with eu_num_short=’o200’].</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Args:</dt><dd><p>eu_num_short (str): The short identifier for a medicine.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>:</dt><dd><dl class="simple">
+<dt>Returns:</dt><dd><p>None: This function returns nothing.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_5_ho26270">
+<span class="sig-name descname"><span class="pre">test_get_ec_json_objects_5_ho26270</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_get_ec_json_objects_5_ho26270" title="Permalink to this definition"></a></dt>
+<dd><p>Based on a couple of test medicine, checks whether it retrieves JSON objects from a medicine page [with eu_num_short=’ho26270’].</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Args:</dt><dd><p>eu_num_short (str): The short identifier for a medicine.</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>:</dt><dd><dl class="simple">
+<dt>Returns:</dt><dd><p>None: This function returns nothing.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_scrape_active_withdrawn_jsons">
+<span class="sig-name descname"><span class="pre">test_scrape_active_withdrawn_jsons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_scrape_active_withdrawn_jsons" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the active and withdrawn medicine lists are not empty.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_scrape_medicine_page">
+<span class="sig-name descname"><span class="pre">test_scrape_medicine_page</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_scrape_medicine_page" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the medicine page contains the expected data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_scrape_medicines_list">
+<span class="sig-name descname"><span class="pre">test_scrape_medicines_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_scrape_medicines_list" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the medicine codes from the EC website are retrieved, and whether they are stored in the correct
+format. This is done by making use of a regex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_scrape_refused_jsons">
+<span class="sig-name descname"><span class="pre">test_scrape_refused_jsons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ec_scraper.TestEcScraper.test_scrape_refused_jsons" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the refused medicine lists are not empty.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tests.web_scraper_tests.test_ema_scraper">
+<span id="tests-web-scraper-tests-test-ema-scraper-module"></span><h2>tests.web_scraper_tests.test_ema_scraper module<a class="headerlink" href="#module-tests.web_scraper_tests.test_ema_scraper" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ema_scraper.TestEMAScraper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.web_scraper_tests.test_ema_scraper.</span></span><span class="sig-name descname"><span class="pre">TestEMAScraper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>Class that contains the tests for scraping.webscraper.ema_scraper</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_last_updated_date">
+<span class="sig-name descname"><span class="pre">test_find_last_updated_date</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_last_updated_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_last_updated_date_0_https_www_ema_europa_eu_en_medicines_human_EPAR_alymsys">
+<span class="sig-name descname"><span class="pre">test_find_last_updated_date_0_https_www_ema_europa_eu_en_medicines_human_EPAR_alymsys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_last_updated_date_0_https_www_ema_europa_eu_en_medicines_human_EPAR_alymsys" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the correct last updated date is found [with url=’<a class="reference external" href="https://www.ema.europa.eu/en/medicines/human/EPAR/alymsys">https://www.ema.europa.eu/en/medicines/human/EPAR/alymsys</a>’, exp_output=datetime.datetime(2022, 7, 6, 0, 0)].</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Args:</dt><dd><p>url (str): URL for the medicine to be checked.
+exp_output (str): Expected last updated date.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Returns:</dt><dd><p>None: This function returns nothing.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_priority_link">
+<span class="sig-name descname"><span class="pre">test_find_priority_link</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_priority_link" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_priority_link_0">
+<span class="sig-name descname"><span class="pre">test_find_priority_link_0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_priority_link_0" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the correct priority links are found [with priority_list=[‘first’, ‘second’, ‘third’], strings=[‘third’, ‘second’, ‘first’], exp_result=’first’].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>priority_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of priority links.</p></li>
+<li><p><strong>strings</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of strings to be checked.</p></li>
+<li><p><strong>exp_result</strong> (<em>str</em>) – Expected link result.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_priority_link_1">
+<span class="sig-name descname"><span class="pre">test_find_priority_link_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_find_priority_link_1" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the correct priority links are found [with priority_list=[‘first’, ‘second’, ‘third’], strings=[‘fourth’, ‘fifth’, ‘sixth’], exp_result=’’].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>priority_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of priority links.</p></li>
+<li><p><strong>strings</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of strings to be checked.</p></li>
+<li><p><strong>exp_result</strong> (<em>str</em>) – Expected link result.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url">
+<span class="sig-name descname"><span class="pre">test_pdf_links_from_url</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_0_EPAR_and_OMAR">
+<span class="sig-name descname"><span class="pre">test_pdf_links_from_url_0_EPAR_and_OMAR</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_0_EPAR_and_OMAR" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the correct epar and omar urls are found [with _=’EPAR and OMAR’, url=’<a class="reference external" href="https://www.ema.europa.eu/en/medicines/human/EPAR/zynteglo">https://www.ema.europa.eu/en/medicines/human/EPAR/zynteglo</a>’, exp_epar=’<a class="reference external" href="https://www.ema.europa.eu/docum...public-assessment-report_en.pdf">https://www.ema.europa.eu/docum…public-assessment-report_en.pdf</a>’, exp_omar=’<a class="reference external" href="https://www.ema.europa.eu/docum...rt-initial-authorisation_en.pdf">https://www.ema.europa.eu/docum…rt-initial-authorisation_en.pdf</a>’, exp_odwar=’’].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_</strong> – Discard argument. Allows you to add a name to testcases in the <cite>parameterized.expand</cite></p></li>
+<li><p><strong>url</strong> (<em>str</em>) – URL for the medicine to be checked.</p></li>
+<li><p><strong>exp_epar</strong> (<em>str</em>) – The expected epar file.</p></li>
+<li><p><strong>exp_omar</strong> (<em>str</em>) – The expected omar file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_1_EPAR_only">
+<span class="sig-name descname"><span class="pre">test_pdf_links_from_url_1_EPAR_only</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_1_EPAR_only" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the correct epar and omar urls are found [with _=’EPAR only’, url=’<a class="reference external" href="https://www.ema.europa.eu/en/medicines/human/EPAR/daklinza">https://www.ema.europa.eu/en/medicines/human/EPAR/daklinza</a>’, exp_epar=’<a class="reference external" href="https://www.ema.europa.eu/docum...public-assessment-report_en.pdf">https://www.ema.europa.eu/docum…public-assessment-report_en.pdf</a>’, exp_omar=’’, exp_odwar=’’].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_</strong> – Discard argument. Allows you to add a name to testcases in the <cite>parameterized.expand</cite></p></li>
+<li><p><strong>url</strong> (<em>str</em>) – URL for the medicine to be checked.</p></li>
+<li><p><strong>exp_epar</strong> (<em>str</em>) – The expected epar file.</p></li>
+<li><p><strong>exp_omar</strong> (<em>str</em>) – The expected omar file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_2_No_EPAR_and_OMAR">
+<span class="sig-name descname"><span class="pre">test_pdf_links_from_url_2_No_EPAR_and_OMAR</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_2_No_EPAR_and_OMAR" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the correct epar and omar urls are found [with _=’No EPAR and OMAR’, url=’<a class="reference external" href="https://www.ema.europa.eu/en/me...rphan-designations/eu-3-21-2406">https://www.ema.europa.eu/en/me…rphan-designations/eu-3-21-2406</a>’, exp_epar=’’, exp_omar=’’, exp_odwar=’’].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_</strong> – Discard argument. Allows you to add a name to testcases in the <cite>parameterized.expand</cite></p></li>
+<li><p><strong>url</strong> (<em>str</em>) – URL for the medicine to be checked.</p></li>
+<li><p><strong>exp_epar</strong> (<em>str</em>) – The expected epar file.</p></li>
+<li><p><strong>exp_omar</strong> (<em>str</em>) – The expected omar file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_3_EPAR_only">
+<span class="sig-name descname"><span class="pre">test_pdf_links_from_url_3_EPAR_only</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_3_EPAR_only" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the correct epar and omar urls are found [with _=’EPAR only’, url=’<a class="reference external" href="https://www.ema.europa.eu/en/medicines/human/EPAR/alymsys">https://www.ema.europa.eu/en/medicines/human/EPAR/alymsys</a>’, exp_epar=’<a class="reference external" href="https://www.ema.europa.eu/docum...public-assessment-report_en.pdf">https://www.ema.europa.eu/docum…public-assessment-report_en.pdf</a>’, exp_omar=’’, exp_odwar=’’].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_</strong> – Discard argument. Allows you to add a name to testcases in the <cite>parameterized.expand</cite></p></li>
+<li><p><strong>url</strong> (<em>str</em>) – URL for the medicine to be checked.</p></li>
+<li><p><strong>exp_epar</strong> (<em>str</em>) – The expected epar file.</p></li>
+<li><p><strong>exp_omar</strong> (<em>str</em>) – The expected omar file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_4_ODWAR">
+<span class="sig-name descname"><span class="pre">test_pdf_links_from_url_4_ODWAR</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_ema_scraper.TestEMAScraper.test_pdf_links_from_url_4_ODWAR" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the correct epar and omar urls are found [with _=’ODWAR’, url=’<a class="reference external" href="https://www.ema.europa.eu/en/medicines/human/EPAR/brukinsa">https://www.ema.europa.eu/en/medicines/human/EPAR/brukinsa</a>’, exp_epar=’<a class="reference external" href="https://www.ema.europa.eu/docum...public-assessment-report_en.pdf">https://www.ema.europa.eu/docum…public-assessment-report_en.pdf</a>’, exp_omar=’’, exp_odwar=’<a class="reference external" href="https://www.ema.europa.eu/docum...rt-initial-authorisation_en.pdf">https://www.ema.europa.eu/docum…rt-initial-authorisation_en.pdf</a>’].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_</strong> – Discard argument. Allows you to add a name to testcases in the <cite>parameterized.expand</cite></p></li>
+<li><p><strong>url</strong> (<em>str</em>) – URL for the medicine to be checked.</p></li>
+<li><p><strong>exp_epar</strong> (<em>str</em>) – The expected epar file.</p></li>
+<li><p><strong>exp_omar</strong> (<em>str</em>) – The expected omar file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tests.web_scraper_tests.test_filter_retry">
+<span id="tests-web-scraper-tests-test-filter-retry-module"></span><h2>tests.web_scraper_tests.test_filter_retry module<a class="headerlink" href="#module-tests.web_scraper_tests.test_filter_retry" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_filter_retry.TestFilterRetry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.web_scraper_tests.test_filter_retry.</span></span><span class="sig-name descname"><span class="pre">TestFilterRetry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_all">
+<span class="sig-name descname"><span class="pre">test_retry_all</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_all" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_all_0">
+<span class="sig-name descname"><span class="pre">test_retry_all_0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_all_0" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with <a class="reference external" href="mailto:file_content=b'EU-1-00-000_o_w_dec_0&#46;pdf&#37;&#52;&#48;http">file_content=b’EU-1-00-000_o_w_dec_0<span>&#46;</span>pdf<span>&#64;</span>http</a>…t&#64;EU/<a class="reference external" href="mailto:3/05/339&#37;&#52;&#48;no_pdf_json_found">3/05/339<span>&#64;</span>no_pdf_json_found</a>’]
+file_content: The mocked content of filter.txt</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_all_1">
+<span class="sig-name descname"><span class="pre">test_retry_all_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_all_1" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with <a class="reference external" href="mailto:file_content=b'EU-3-05-339_o_w_dec_0&#46;pdf&#37;&#52;&#48;http">file_content=b’EU-3-05-339_o_w_dec_0<span>&#46;</span>pdf<span>&#64;</span>http</a>…t&#64;EU/<a class="reference external" href="mailto:3/05/339&#37;&#52;&#48;no_pdf_json_found">3/05/339<span>&#64;</span>no_pdf_json_found</a>’]
+file_content: The mocked content of filter.txt</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download">
+<span class="sig-name descname"><span class="pre">test_retry_download</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download_0_EU_1_04_273">
+<span class="sig-name descname"><span class="pre">test_retry_download_0_EU_1_04_273</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download_0_EU_1_04_273" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with eu_n=’EU-1-04-273’, filename_el=[‘h’, ‘anx’, ‘0’]]
+eu_n: The eu nummer of the tested medicine
+filename_el: The filename elements for a specific file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download_1_EU_1_04_273">
+<span class="sig-name descname"><span class="pre">test_retry_download_1_EU_1_04_273</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download_1_EU_1_04_273" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with eu_n=’EU-1-04-273’, filename_el=[‘h’, ‘an’, ‘0’]]
+eu_n: The eu nummer of the tested medicine
+filename_el: The filename elements for a specific file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download_2_EU_1_00_129">
+<span class="sig-name descname"><span class="pre">test_retry_download_2_EU_1_00_129</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download_2_EU_1_00_129" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with eu_n=’EU-1-00-129’, filename_el=[‘h’, ‘dec’, ‘0’]]
+eu_n: The eu nummer of the tested medicine
+filename_el: The filename elements for a specific file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download_3_EU_3_05_339">
+<span class="sig-name descname"><span class="pre">test_retry_download_3_EU_3_05_339</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_filter_retry.TestFilterRetry.test_retry_download_3_EU_3_05_339" title="Permalink to this definition"></a></dt>
+<dd><p>Args: [with eu_n=’EU-3-05-339’, filename_el=[‘o’, ‘dec’, ‘0’]]
+eu_n: The eu nummer of the tested medicine
+filename_el: The filename elements for a specific file</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tests.web_scraper_tests.test_web_scraper">
+<span id="tests-web-scraper-tests-test-web-scraper-module"></span><h2>tests.web_scraper_tests.test_web_scraper module<a class="headerlink" href="#module-tests.web_scraper_tests.test_web_scraper" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.web_scraper_tests.test_web_scraper.</span></span><span class="sig-name descname"><span class="pre">TestWebScraper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>Class that runs web, mostly checks if files get downloaded</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.medicine_list_checks">
+<span class="sig-name descname"><span class="pre">medicine_list_checks</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('https://ec.europa.eu/health/documents/community-register/html/h273.htm',</span> <span class="pre">'EU-1-04-273',</span> <span class="pre">0,</span> <span class="pre">'h273'),</span> <span class="pre">('https://ec.europa.eu/health/documents/community-register/html/h283.htm',</span> <span class="pre">'EU-1-04-283',</span> <span class="pre">1,</span> <span class="pre">'h283'),</span> <span class="pre">('https://ec.europa.eu/health/documents/community-register/html/o005.htm',</span> <span class="pre">'EU-3-00-005',</span> <span class="pre">2,</span> <span class="pre">'o005'),</span> <span class="pre">('https://ec.europa.eu/health/documents/community-register/html/o101.htm',</span> <span class="pre">'EU-3-02-101',</span> <span class="pre">3,</span> <span class="pre">'o101'),</span> <span class="pre">('https://ec.europa.eu/health/documents/community-register/html/h1587.htm',</span> <span class="pre">'EU-1-21-1587',</span> <span class="pre">0,</span> <span class="pre">'h1587')]</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.medicine_list_checks" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_download">
+<span class="sig-name descname"><span class="pre">run_download</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_download" title="Permalink to this definition"></a></dt>
+<dd><p>Runs download and checks if all files are downloaded and correct files are created.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_ec_scraper">
+<span class="sig-name descname"><span class="pre">run_ec_scraper</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_ec_scraper" title="Permalink to this definition"></a></dt>
+<dd><p>Runs EC scraper and checks if everything works and correct files are created.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_ema_scraper">
+<span class="sig-name descname"><span class="pre">run_ema_scraper</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_ema_scraper" title="Permalink to this definition"></a></dt>
+<dd><p>Runs EMA scraper and checks if everything works and correct files are created.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_filter">
+<span class="sig-name descname"><span class="pre">run_filter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_filter" title="Permalink to this definition"></a></dt>
+<dd><p>Runs filter_retry and checks if filter.txt is created</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.setUpClass">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setUpClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.setUpClass" title="Permalink to this definition"></a></dt>
+<dd><p>Set up the class to make sure the integration test can run without changing existing data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.tearDownClass">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tearDownClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.tearDownClass" title="Permalink to this definition"></a></dt>
+<dd><p>Runs after class is run, makes sure test data is deleted and backup data is set back to its original place</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all">
+<span class="sig-name descname"><span class="pre">test_run_web_check_all</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all_0">
+<span class="sig-name descname"><span class="pre">test_run_web_check_all_0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all_0" title="Permalink to this definition"></a></dt>
+<dd><p>Runs webscraper and checks output in between different scripts [with parallel=True, medicine_codes=[(’<a class="reference external" href="https://ec.europa.eu/health/d...m">https://ec.europa.eu/health/d…m</a>’, ‘EU-1-21-1587’, 0, ‘h1587’)]]
+:param parallel: if web should run parallel or not
+:param medicine_codes: The medicine that is tested</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all_1">
+<span class="sig-name descname"><span class="pre">test_run_web_check_all_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all_1" title="Permalink to this definition"></a></dt>
+<dd><p>Runs webscraper and checks output in between different scripts [with parallel=False, medicine_codes=[(’<a class="reference external" href="https://ec.europa.eu/health/d...m">https://ec.europa.eu/health/d…m</a>’, ‘EU-1-21-1587’, 0, ‘h1587’)]]
+:param parallel: if web should run parallel or not
+:param medicine_codes: The medicine that is tested</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks">
+<span class="sig-name descname"><span class="pre">test_run_web_no_checks</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks_0">
+<span class="sig-name descname"><span class="pre">test_run_web_no_checks_0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks_0" title="Permalink to this definition"></a></dt>
+<dd><p>Runs webscraper and passes if no errors occur [with parallel=True, medicine_list=[(’<a class="reference external" href="https://ec.europa.eu/health/d...m">https://ec.europa.eu/health/d…m</a>’, ‘EU-1-21-1587’, 0, ‘h1587’)]].
+:param parallel: if web should run parallel or not
+:param medicine_list: The medicine that is tested</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks_1">
+<span class="sig-name descname"><span class="pre">test_run_web_no_checks_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks_1" title="Permalink to this definition"></a></dt>
+<dd><p>Runs webscraper and passes if no errors occur [with parallel=False, medicine_list=[(’<a class="reference external" href="https://ec.europa.eu/health/d...m">https://ec.europa.eu/health/d…m</a>’, ‘EU-1-21-1587’, 0, ‘h1587’)]].
+:param parallel: if web should run parallel or not
+:param medicine_list: The medicine that is tested</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.check_new_eu_numbers">
+<span class="sig-prename descclassname"><span class="pre">tests.web_scraper_tests.test_web_scraper.</span></span><span class="sig-name descname"><span class="pre">check_new_eu_numbers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.check_new_eu_numbers" title="Permalink to this definition"></a></dt>
+<dd><p>Check whether EU numbers in eu_number.json are equal to the eu_numbers of the medicines being downloaded.
+This should be the case, as all medicines are new, since they are downloaded for the first time in each test run.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tests.pdfscraper_tests.html" class="btn btn-neutral float-left" title="tests.pdfscraper_tests package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Medisee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

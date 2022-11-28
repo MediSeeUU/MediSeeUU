@@ -1,12 +1,16 @@
 from operator import contains
 from unittest import TestCase
+import os
 import os.path as path
 from xml.etree.ElementInclude import include
 import regex as re
 import json
 import scraping.file_parser.pdf_parser.__main__ as pdf_parser
 
-test_data_foldername = "test_annex_parse_data"
+test_data_folder_path = "pdfscraper_tests/test_annex_parse_data"
+if "pdfscraper_tests" in os.getcwd():
+    test_data_folder_path = "test_annex_parse_data"
+test_data_folder_name = "test_annex_parse_data"
 
 
 class TestAnnexParse(TestCase):
@@ -19,18 +23,15 @@ class TestAnnexParse(TestCase):
     """
     annex_attributes: dict[str, str]
 
-    def setUp(self) -> None:
+    def setUp(self):
         """
         Sets up the xml files from test pdf's and then scrapes data from them into a json and reads it so other
         functions can use the data. Automatically run when whoe test class is used.
-
-        Returns:
-            None
-        """        
-        pdf_parser.parse_folder(path.abspath(test_data_foldername), test_data_foldername)
+        """
+        pdf_parser.parse_folder(path.abspath(test_data_folder_path), test_data_folder_name)
         # TODO: Try/catch this with appropriate exception when file does not exist
-        attributes_json = open(path.join(path.abspath(test_data_foldername), test_data_foldername + "_pdf_parser.json"))
-
+        attributes_json = open(
+            path.join(path.abspath(test_data_folder_path), test_data_folder_name + "_pdf_parser.json"))
         self.annex_attributes = json.load(attributes_json)["annexes"]
         attributes_json.close()
         return super().setUp()
@@ -40,10 +41,7 @@ class TestAnnexParse(TestCase):
         Unit test for scraping initial_type_of_eu_authorization attribute. This test checks whether this attribute is
         only read in initial authorization annex files and whether the value is correct and found in all applicable
         cases.
-
-        Returns:
-            None
-        """        
+        """
         incorrect_files = False
         incorrect_values = False
 
@@ -89,10 +87,7 @@ class TestAnnexParse(TestCase):
         """
         Unit test for scraping eu_type_of_medicine attribute. This test checks whether this attribute is only read in
         initial authorization annex files and whether the value is correct and found in all applicable cases.
-
-        Returns:
-            None
-        """      
+        """
         incorrect_files = False
         incorrect_values = False
 
@@ -113,12 +108,12 @@ class TestAnnexParse(TestCase):
             # test for attribute values
             if file_attributes["is_initial"]:
                 incorrect_value |= "small molecule" in pdf_file and medicine_type != "small molecule"
-                incorrect_value |= "biologicals" in pdf_file and medicine_type != "biologicals"
+                incorrect_value |= "biologicals header" in pdf_file and medicine_type not in ["biologicals", "ATMP"]
 
             # print errors
             if incorrect_file:
                 print("\nTEST ERROR: " + str(
-                    pdf_file) + " incorrect presence of eu_type_of_medicine | presence: " + contains_attribute)
+                    pdf_file) + " incorrect presence of eu_type_of_medicine | presence: " + str(contains_attribute))
 
             if incorrect_value:
                 print(

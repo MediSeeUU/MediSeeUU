@@ -1,13 +1,3 @@
-from datetime import datetime
-from os import listdir
-import os.path as path
-import json
-import joblib
-import multiprocessing
-import scraping.definitions.value as value
-import scraping.definitions.attributes as attr
-
-
 # Main file to run all parsers
 def main(directory: str):
     print("Combining JSON files")
@@ -179,4 +169,3 @@ def datetime_converter(datetime: str) -> str:
 combine_folder("..\\..\\data\\EU-1-99-126", "EU-1-99-126")
 print(type(attr.all_attributes))
 print(attr.all_attributes)
-

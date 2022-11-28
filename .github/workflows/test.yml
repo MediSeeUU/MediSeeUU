@@ -1,0 +1,66 @@
+on:
+  push:
+    branches:
+      - 'development'
+  pull_request:
+
+name: Run Tests
+
+env:
+  SECRET_KEY: notsecret
+  DB_USERNAME: root
+  DB_PASSWORD: 1234
+  DB_HOST: 127.0.0.1
+  DB_DATABASE: mydatabase
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.DB_PASSWORD }}
+          MYSQL_DATABASE: ${{ env.DB_DATABASE }}
+        ports: ['3306:3306']
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10' 
+        cache: 'pip'
+        
+    - name: Install Scraper Dependencies
+      working-directory: scraping
+      run: pip install -r requirements.txt    
+    
+    - name: Install Tests Dependencies
+      working-directory: tests
+      run: pip install -r requirements.txt
+    
+    - name: Run Scraper Tests
+      working-directory: tests
+      run: pytest .
+
+    - name: Install Backend Dependencies
+      working-directory: medctrl-backend/API
+      run: |
+        pip install -r ../requirements.txt
+    
+    - name: Set up Backend
+      working-directory: medctrl-backend/API
+      run: |
+        python manage.py makemigrations api
+        python manage.py migrate
+      env: 
+        DB_PORT: ${{ job.services.mysql.ports['3306'] }}
+    
+    - name: Run Backend Tests
+      working-directory: medctrl-backend/API
+      run: python manage.py test
+      env: 
+        DB_PORT: ${{ job.services.mysql.ports['3306'] }}
