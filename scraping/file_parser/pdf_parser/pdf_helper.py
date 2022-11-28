@@ -70,32 +70,27 @@ def combine_text(lines: dict, lower: bool, old_font: str, old_size: int, old_tex
         old_text (str): The current text to which lines['text'] can be added
         results (list[tuple]): The final results list of tuples of texts, font sizes, and font names
     """
-    text = lines['text']
-    size = lines['size']
-    font = lines['font']
+    text = lines["text"]
+    size = lines["size"]
+    font = lines["font"]
     # Start new line when a header number is found after
     # another header number with text behind it
     if header_split_check(old_text, text):
         append_text(old_text, old_size, old_font, results, lower)
-        old_font, old_size, old_text = font, size, text
     # Combine text that has the same size and font
     # Also combine text that has the same size and is Bold
     elif round(old_size) == round(size) and \
-            (old_font == font or 'Bold' in old_font and 'Bold' in font):
-        old_text += text + '\n '
-        old_size, old_font = size, font
+            (old_font == font or "Bold" in old_font and "Bold" in font):
+        text = old_text + text + "\n "
     # Add all spaces at the end
     # Sometimes, spaces are of a different font randomly
     elif text.isspace():
-        old_text += text
-    # Old text becomes new text to be added in a next iteration
-    elif old_text == '':
-        old_font, old_size, old_text = font, size, text
+        text = old_text + text
+        font, size = old_font, old_size
     # Text is different format, add old_text to results and replace it with new text
-    else:
+    elif old_text:
         append_text(old_text, old_size, old_font, results, lower)
-        old_font, old_size, old_text = font, size, text
-    return old_font, old_size, old_text
+    return font, size, text
 
 
 def header_split_check(old_text: str, text: str) -> bool:
@@ -160,42 +155,23 @@ def create_outputfile_dec(filename: str, res: dict):
         filename (str): Name of the PDF file
         res (dict): dictionary containing all attributes of the PDF file
     """
-    write = False
     if '_h_' in filename:
-        f = open('human_initial_dec.txt', 'a', encoding="utf-8")  # open/clean output file
-        write = True
+        res_to_file('human_initial_dec.txt', res, filename)
     elif '_o_' in filename:
-        f = open('orphan_initial_dec.txt', 'a', encoding="utf-8")  # open/clean output file
-        write = True
-    if write:
-        res_to_file(f, res, filename)
-        f.close()
+        res_to_file('orphan_initial_dec.txt', res, filename)
 
 
-def create_outputfile(filename: str, outputname: str, res: dict):
+def res_to_file(outputname: str, res: dict, filename: str):
     """
     Args:
-        filename (str): Name of the PDF file
         outputname (str): Name to be written to
         res (dict): dictionary containing all attributes of the PDF file
-    """
-    attributes_file = open(outputname, 'a', encoding="utf-8")  # open/clean output file
-    print(type(attributes_file))
-    res_to_file(attributes_file, res, filename)
-    attributes_file.close()
-
-
-def res_to_file(file: io.TextIOWrapper, res: dict, filename: str):
-    """
-    Args:
-        file (io.TextIOWrapper): File to write results to for visualisation of the attributes
-        res (dict): dictionary containing all attributes of the PDF file
         filename (str): Name of the PDF file
     """
-    print(type(file))
     write_string = filename
     for value in res.values():
-        write_string += '@'
-        write_string += str(value)
-    file.writelines(write_string)
-    file.writelines('\n')
+        write_string = f"{write_string}@{str(value)}"
+    outputfile = open(outputname, 'a', encoding="utf-8")  # open/clean output file
+    outputfile.writelines(write_string)
+    outputfile.writelines('\n')
+    outputfile.close()

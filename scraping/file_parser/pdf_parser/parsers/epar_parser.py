@@ -62,7 +62,7 @@ def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStr
     xml_body = xml_root[1]
     res = get_all(filename, xml_body)
     medicine_struct.epars.append(res)
-    pdf_helper.create_outputfile(filename, 'epar_results.txt', res)
+    pdf_helper.res_to_file('epar_results.txt', res, filename)
     return medicine_struct
 
 

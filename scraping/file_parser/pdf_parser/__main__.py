@@ -4,7 +4,7 @@ import os.path as path
 import json
 import logging
 import joblib
-from datetime import datetime, date
+import datetime
 import multiprocessing
 
 # for main
@@ -23,10 +23,10 @@ def main(directory: str):
         directory: data folder, containing medicine folders
     """
     log = logging.getLogger("pdf_parser")
-    log.info(f"=== NEW LOG {datetime.today()} ===")
+    log.info(f"=== NEW LOG {datetime.datetime.today()} ===")
 
     eu_numbers_path = ""
-    eu_numbers_base_path = f"{directory}/{date.today()}_eu_numbers"
+    eu_numbers_base_path = f"{directory}/{datetime.date.today()}_eu_numbers"
 
     file_exists = True
     i = 0
@@ -159,16 +159,16 @@ def folder_has_no_pdf_json(directory: str, folder: str) -> bool:
     return True
 
 
-def datetime_serializer(date: pis.datetime.datetime):
+def datetime_serializer(date: datetime.datetime):
     """
     Datetime to string serializer for json dumping
     Convert datetime.datetime to string
 
     Args:
-        date (pis.datetime.datetime): date to convert to string
+        date (datetime.datetime): date to convert to string
 
     """
-    if isinstance(date, pis.datetime.datetime):
+    if isinstance(date, datetime.datetime):
         return date.__str__()
 
 

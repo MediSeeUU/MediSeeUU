@@ -190,38 +190,60 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
     Args:
         sections (list[str, str)]): List of section text tuples in form of (header_text, paragraph_text).
         output_filepath (str): Filepath of the file to be written in form of `*.xml`, where * is a wildcard.
-        document_creation_date (str): Meta-data creation date of original pdf in string form from pyMuPDF.
-        document_modification_date (str): Meta-data modification date of original pdf in string form from pyMuPDF.
+        document_creation_date (str): Meta-data creation date of original pdf in string form from PyMuPDF.
+        document_modification_date (str): Meta-data modification date of original pdf in string form from PyMuPDF.
     """
     # start printing xml file
     xml_file = open(output_filepath, "w", encoding="utf-8")
 
     xml_file.write("<?xml version=\"1.1\" encoding=\"UTF-8\" standalone=\"yes\"?>")
     print_xml_tag_open(tags.xml, xml_file)
-    print_xml_tag_open(tags.head, xml_file)
+    print_xml_head(document_creation_date, document_modification_date, output_filepath, xml_file)
+    print_xml_body(sections, xml_file)
+    print_xml_tag_close(tags.xml, xml_file)
+    xml_file.close()
 
+
+def print_xml_head(document_creation_date: str, document_modification_date: str, output_filepath: str,
+                   xml_file: TextIO):
+    """
+    Prints entire XML head, writing it to output_filepath.
+    Contains a given document_creation_date and document_modification_date from PDF metadata.
+
+    Args:
+        document_creation_date (str): Meta-data creation date of original pdf in string form from PyMuPDF.
+        document_modification_date (str): Meta-data modification date of original pdf in string form from PyMuPDF.
+        output_filepath (str): Filepath of the file to be written in form of `*.xml`, where * is a wildcard.
+        xml_file (TextIO): File to write the XML tags to
+    """
+    print_xml_tag_open(tags.head, xml_file)
     print_xml_tag_open(tags.creation_date, xml_file)
     xml_file.write(document_creation_date)
     print_xml_tag_close(tags.creation_date, xml_file)
-
     print_xml_tag_open(tags.modification_date, xml_file)
     xml_file.write(document_modification_date)
     print_xml_tag_close(tags.modification_date, xml_file)
-
     # whether the original pdf was an initial authorization file
     print_xml_tag_open(tags.initial_authorization, xml_file)
     is_initial_file = output_filepath.split(".")[-2].split("_")[-1] == "0"
     xml_file.write(str(is_initial_file))
     print_xml_tag_close(tags.initial_authorization, xml_file)
-
     # original pdf name
     print_xml_tag_open(tags.pdf_file, xml_file)
     xml_file.write(path.basename(output_filepath).split(".")[0].strip() + ".pdf")
     print_xml_tag_close(tags.pdf_file, xml_file)
-
     print_xml_tag_close(tags.head, xml_file)
-    print_xml_tag_open(tags.body, xml_file)
 
+
+def print_xml_body(sections, xml_file):
+    """
+    Prints entire XML body, writing the PDF file contents as XML to output_filepath.
+
+    Args:
+        sections (list[str, str)]): List of section text tuples in form of (header_text, paragraph_text).
+        xml_file (TextIO): File to write the XML tags to
+    """
+    print_xml_tag_open(tags.body, xml_file)
     for section in sections:
         section_header = remove_illegal_characters(section[0])
         section_paragraphs = remove_illegal_characters(section[1]).split("  ")
@@ -230,13 +252,12 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
         split_header = section_header.strip().split()
         header_attribute = ""
 
-        if split_header:
-            if all(character.isnumeric() or character == "." for character in split_header[0]):
-                chapter_number_attribute = split_header[0]
-                if chapter_number_attribute[-1] == ".":
-                    chapter_number_attribute = chapter_number_attribute[:-1]
+        if split_header and all(character.isnumeric() or character == "." for character in split_header[0]):
+            chapter_number_attribute = split_header[0]
+            if chapter_number_attribute[-1] == ".":
+                chapter_number_attribute = chapter_number_attribute[:-1]
 
-                header_attribute = f" n=\"{chapter_number_attribute}\""
+            header_attribute = f" n=\"{chapter_number_attribute}\""
 
         # print the section from xml_elements taking sections and subsections into account
         print_xml_tag_open(tags.section, xml_file)
@@ -251,10 +272,7 @@ def print_xml(sections: list[(str, str)], output_filepath: str, document_creatio
                 print_xml_tag_close(tags.paragraph, xml_file)
 
         print_xml_tag_close(tags.section, xml_file)
-
     print_xml_tag_close(tags.body, xml_file)
-    print_xml_tag_close(tags.xml, xml_file)
-    xml_file.close()
 
 
 def convert_folder(directory: str):

@@ -86,6 +86,6 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     # TODO: remove this
     filename = xml_utils.file_get_name_pdf(xml_header)
     if '_0' in filename:
-        pdf_helper.create_outputfile(filename, 'annex_results.txt', annex_attributes)
+        pdf_helper.res_to_file('annex_results.txt', annex_attributes, filename)
 
     return medicine_struct
