@@ -13,8 +13,8 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     Returns: None
 
     """
-    web_path: str = "web_scraper"
-    pdf_path: str = "pdf_parser"
+    web_path: str = "../../web_scraper"
+    pdf_path: str = "../../pdf_parser"
 
     # --- Root logger ---
     root_handler_stream = logging.StreamHandler()

@@ -3,9 +3,9 @@ import re
 import os.path as path
 import datetime
 import fitz
-import scraping.file_parser.pdf_parser.helper as helper
-import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
-import scraping.file_parser.pdf_parser.parsed_info_struct as PIS
+from scraping.utilities.pdf import helper as helper
+from scraping.utilities.pdf import pdf_helper as pdf_helper
+import scraping.pdf_parser.parsed_info_struct as PIS
 import logging
 
 log = logging.getLogger("pdf_parser")

@@ -1,4 +1,4 @@
-import scraping.file_parser.pdf_parser.parsed_info_struct as pis
+import scraping.pdf_parser.parsed_info_struct as pis
 from os import listdir
 import os.path as path
 import json
@@ -8,10 +8,10 @@ import datetime
 import multiprocessing
 
 # for main
-from scraping.file_parser.pdf_parser.parsers import dec_parser
-from scraping.file_parser.pdf_parser.parsers import epar_parser
-from scraping.file_parser.pdf_parser.parsers import omar_parser
-from scraping.file_parser.pdf_parser.parsers import annex_parser
+from scraping.pdf_parser.parsers import dec_parser
+from scraping.pdf_parser.parsers import epar_parser
+from scraping.pdf_parser.parsers import omar_parser
+from scraping.pdf_parser.parsers import annex_parser
 
 log = logging.getLogger("pdf_parser")
 
@@ -76,7 +76,7 @@ def parse_folder(directory: str, folder_name: str):
         folder_name (st): name of medicine folder to parse
     """
     # Annex 10 folder should be skipped
-    if "annex_10" in directory:
+    if "json" in directory:
         return
 
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing

@@ -1,13 +1,10 @@
-import re
 import pandas as pd
-import logging
-import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import os
 from os import path
 import json
 from datetime import datetime
 import logging
-import scraping.file_parser.debugging_tools.json_compiler as json_compiler
+import scraping.utilities.json.json_compiler as json_compiler
 
 log = logging.getLogger("file_parser.annex_10_parser")
 annex_10_json_file = "annex_10_parser.json"
@@ -45,6 +42,8 @@ def parse_file(filename: str, directory: str, annex10s: list[dict], data_dir: st
         list[dict]: all attributes contained in one dictionary per file, now updated
     """
     filepath = path.join(directory, filename)
+    if ".xlsx" not in filepath:
+        return annex10s
     try:
         excel_data = pd.read_excel(filepath)
     except FileNotFoundError:
@@ -104,8 +103,7 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
     clock_stop_elapseds = (excel_data["Clock Stop Elapsed"].tolist())
 
     # Load all medicine data from all_json_results.json, created by json_compiler
-    scraping_dir = data_dir.split('data')[0].strip('/').strip("test_/") + "/scraping"
-    all_json_results = open(path.join(scraping_dir, "all_json_results.json"), "r", encoding="utf-8")
+    all_json_results = open(path.join(f"{data_dir}/annex_10", "all_json_results.json"), "r", encoding="utf-8")
     all_data = json.load(all_json_results)
     all_json_results.close()
 
@@ -194,7 +192,7 @@ def annexes_already_parsed(annex_10_folder: str) -> bool:
     return False
 
 
-def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
+def main(data_folder_directory: str, annex_folder_name: str = "json"):
     """
     Scrape all annex 10 files
 
@@ -212,7 +210,7 @@ def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
     if annexes_already_parsed(annex_10_folder):
         return
 
-    json_compiler.compile_json_files(data_folder_directory, add_webdata=True, add_pdfdata=True)
+    json_compiler.compile_json_files(data_folder_directory, annex_10_folder, add_webdata=True, add_pdfdata=True)
     annex_10_folder = path.join(data_folder_directory, annex_folder_name)
 
     annex10s = []

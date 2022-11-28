@@ -4,8 +4,8 @@ from unittest import TestCase
 
 import regex as re
 
-import scraping.file_parser.pdf_parser.helper as helper
-from scraping.file_parser.pdf_parser.parsers import epar_parser
+import scraping.pdf_parser.helper as helper
+from scraping.pdf_parser import epar_parser
 
 test_data_loc = "../test_data/active_withdrawn"
 if "pdfscraper_tests" in os.getcwd():

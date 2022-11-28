@@ -1,11 +1,8 @@
-from operator import contains
 from unittest import TestCase
 import os
 import os.path as path
-from xml.etree.ElementInclude import include
-import regex as re
 import json
-import scraping.file_parser.pdf_parser.__main__ as pdf_parser
+import scraping.pdf_parser.__main__ as pdf_parser
 
 test_data_folder_path = "pdfscraper_tests/test_annex_parse_data"
 if "pdfscraper_tests" in os.getcwd():

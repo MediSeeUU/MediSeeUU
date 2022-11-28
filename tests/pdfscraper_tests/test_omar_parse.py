@@ -1,11 +1,8 @@
 from unittest import TestCase
-import regex as re
-import sys
 import os
-import scraping.file_parser.pdf_parser.helper as helper
-import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
+import scraping.utilities.xml.xml_parsing_utils as xml_utils
 
-from scraping.file_parser.pdf_parser.parsers import omar_parser
+from scraping.pdf_parser.parsers import omar_parser
 import xml.etree.ElementTree as ET
 
 test_data_loc = "../test_data/active_withdrawn"

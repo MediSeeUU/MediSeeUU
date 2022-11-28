@@ -1,15 +1,11 @@
-import multiprocessing
-from os import path, listdir
 from typing import TextIO
 
 import fitz
-import joblib
 
-import scraping.file_parser.pdf_parser.pdf_helper as ph
-import scraping.file_parser.xml_converter.xml_tags as tags
+from scraping.utilities.pdf import pdf_helper as ph
+import scraping.utilities.definitions.xml_tags as tags
 import logging
 from os import path, listdir
-import re
 import joblib
 import multiprocessing
 

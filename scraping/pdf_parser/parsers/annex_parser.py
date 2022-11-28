@@ -1,8 +1,7 @@
-import scraping.file_parser.xml_converter.__main__ as xml_converter
 import xml.etree.ElementTree as ET
-import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
-import scraping.file_parser.pdf_parser.parsed_info_struct as pis
-import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
+import scraping.utilities.xml.xml_parsing_utils as xml_utils
+import scraping.pdf_parser.parsed_info_struct as pis
+from scraping.utilities.pdf import pdf_helper as pdf_helper
 import logging
 import os
 

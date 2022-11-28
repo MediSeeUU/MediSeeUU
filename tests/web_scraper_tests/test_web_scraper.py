@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest import TestCase
 from datetime import date
 from scraping.web_scraper import __main__ as web
-import scraping.log_setup as log_setup
+import scraping.utilities.log.log_setup as log_setup
 from parameterized import parameterized
 
 data_path = "../test_data"

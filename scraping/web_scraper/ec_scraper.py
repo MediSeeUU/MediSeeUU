@@ -6,7 +6,7 @@ from enum import Enum
 import bs4
 import regex as re
 import requests
-import scraping.web_scraper.utils as utils
+from scraping.utilities.web import web_utils as utils
 
 log = logging.getLogger("web_scraper.ec_scraper")
 

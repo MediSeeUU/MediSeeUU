@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-import scraping.file_parser.xml_converter.xml_tags as tags
+import scraping.utilities.definitions.xml_tags as tags
 
 
 def file_is_initial(xml_head: ET.Element) -> bool:

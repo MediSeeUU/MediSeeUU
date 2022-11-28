@@ -12,7 +12,7 @@ import os
 import json
 
 from scraping.web_scraper import json_helper
-from scraping.web_scraper import utils
+from scraping.utilities.web import web_utils as utils
 
 log = logging.getLogger("web_scraper.download")
 
@@ -256,7 +256,7 @@ def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper
     Returns:
         None: This function returns nothing.
     """
-    target_path = data_filepath + "/annex_10"
+    target_path = data_filepath + "/json"
 
     for year, url_dict in tqdm.tqdm(urls_dict.local_dict.items()):
         url: str = url_dict["annex10_url"]

@@ -9,7 +9,7 @@ import requests
 def exception_retry(max_attempts: int = 4, logging_instance: logging.getLoggerClass() = None):
     """
     Decorator function to make a function parallelized. The function will have the code retry if it throws an exception.
-    
+
     Args:
         max_attempts: The amount of times a function can be retried. The default value is 4.
         logging_instance: If errors need to be reported, the logging instance from the caller can be attached
@@ -76,7 +76,6 @@ def get_html_object(url: str) -> requests.Response:
     html_active.raise_for_status()
 
     return html_active
-
 
 # TODO (Maybe): Logging context which adds the ThreadID to the logs.
 #               Makes it easier to see if a program is multi threaded

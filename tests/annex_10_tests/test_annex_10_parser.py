@@ -1,5 +1,5 @@
 from unittest import TestCase
-from scraping.file_parser.annex_10_parser import __main__ as annex_10_parser
+from scraping.annex_10_parser import __main__ as annex_10_parser
 import json
 import os
 import pandas as pd

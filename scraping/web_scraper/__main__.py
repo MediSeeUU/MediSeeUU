@@ -9,7 +9,8 @@ import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 
-from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper, filter_retry
+from scraping.web_scraper import download, ec_scraper, ema_scraper, json_helper, filter_retry
+from scraping.utilities.web import web_utils as utils
 
 # list of the type of medicines that will be scraped
 scrape_medicine_type: list[ec_scraper.MedicineType] = [
@@ -388,6 +389,6 @@ def init_ema_dict(eu_n: str, file: json_helper.JsonHelper):
 # Keep the code locally testable by including this.
 # When running this file specifically, the main function will run.
 if __name__ == "__main__":
-    import scraping.log_setup
-    scraping.log_setup.init_loggers()
+    import scraping.utilities.log.log_setup
+    scraping.utilities.log.log_setup.init_loggers()
     main(data_filepath="../../data")

@@ -1,14 +1,11 @@
 # OMAR parser
 import re
 import xml.etree.ElementTree as ET
-import scraping.file_parser.pdf_parser.parsed_info_struct as pis
-import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
-import scraping.file_parser.pdf_parser.helper as helper
-import scraping.definitions.value as values
+import scraping.pdf_parser.parsed_info_struct as pis
+import scraping.utilities.xml.xml_parsing_utils as xml_utils
 # import scraping.definitions.attributes as attr
 import logging
 import os
-import datetime
 
 log = logging.getLogger("pdf_parser")
 
