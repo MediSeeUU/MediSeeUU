@@ -5,12 +5,12 @@ import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
 import scraping.file_parser.pdf_parser.helper as helper
 import scraping.definitions.value as values
-import scraping.definitions.attributes as attr
-import scraping.logger as logger
+# import scraping.definitions.attributes as attr
+import logging
 import os
 import datetime
 
-log = logger.PDFLogger.log
+log = logging.getLogger("pdf_parser")
 
 
 def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):

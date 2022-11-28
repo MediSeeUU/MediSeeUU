@@ -6,7 +6,7 @@ import typing
 @dataclass
 class ParsedInfoStruct:
     """
-    Class continaining all information for a certain medicine:
+    Class containing all information for a certain medicine:
     - EU number
     - Date of parsing the file
     - Attributes for each decision file

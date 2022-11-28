@@ -15,6 +15,7 @@ def init_loggers(logging_path: str = ".") -> None:
     """
     web_path: str = "web_scraper"
     pdf_path: str = "pdf_parser"
+    xml_path: str = "xml_converter"
 
     # --- Root logger ---
     root_handler_stream = logging.StreamHandler()
@@ -41,4 +42,12 @@ def init_loggers(logging_path: str = ".") -> None:
 
     log_pdf_file_handler = logging.FileHandler(f"{logging_path}/logging_{pdf_path}.log")
     log_pdf.addHandler(log_pdf_file_handler)
+    # ---
+
+    # --- Logging module of the XML converter ---
+    log_xml = logging.getLogger(xml_path)
+    log_xml.setLevel(logging.INFO)
+
+    log_xml_file_handler = logging.FileHandler(f"{logging_path}/logging_{xml_path}.log")
+    log_xml.addHandler(log_xml_file_handler)
     # ---

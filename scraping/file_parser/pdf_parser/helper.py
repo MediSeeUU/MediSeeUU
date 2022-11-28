@@ -111,7 +111,7 @@ def convert_articles(articles: list[str]) -> list[str]:
         # Add '.' between number and letter in legal basis, IE 10b -> 10.b
         if re.search(r"\d+[a-z]", new_num):
             i = len(new_num) - 1
-            new_num = new_num[:i] + '.' + new_num [i:]
+            new_num = new_num[:i] + '.' + new_num[i:]
         res.append('article ' + new_num)
     return list(set(res))
 

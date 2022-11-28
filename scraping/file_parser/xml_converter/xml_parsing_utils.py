@@ -342,10 +342,9 @@ def get_body_section_count(xml_body: ET.Element) -> int:
     This function returns the total amount of sections.
 
     Args:
-        section (ET.Element): A xml Element of the <section>...</section> node.
+        xml_body (ET.Element): A xml Element of the <section>...</section> node.
 
     Returns:
         int: Returns the count of all the sections.
     """    
     return len(xml_body.findall(tags.section))
-

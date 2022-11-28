@@ -15,6 +15,7 @@ def append_text(text: str, size: int, font: str, results: list[(str, int, str)],
         results (list[(str, int, str)]): The final results list of tuples of texts, font sizes, and font names
         lower (bool): Determines whether the text should be lowercase or not
     """
+    text = text.replace("\\\\", "\\")
     if lower:
         results.append((text.lower(), size, font))
     else:
@@ -40,6 +41,7 @@ def get_text(blocks: list[dict], results: list[(str, int, str)], lower: bool):
                 for lines in data:
                     old_font, old_size, old_text = combine_text(lines, lower, old_font, old_size, old_text, results)
     append_text(old_text, old_size, old_font, results, lower)
+
 
 # Given a pdf, returns one long string of text
 def get_text_str(pdf: fitz.Document) -> str:
@@ -74,7 +76,7 @@ def combine_text(lines: dict, lower: bool, old_font: str, old_size: int, old_tex
     # Start new line when a header number is found after
     # another header number with text behind it
     if header_split_check(old_text, text):
-        append_text(old_text.replace("\\\\", "\\"), old_size, old_font, results, lower)
+        append_text(old_text, old_size, old_font, results, lower)
         old_font, old_size, old_text = font, size, text
     # Combine text that has the same size and font
     # Also combine text that has the same size and is Bold
@@ -91,7 +93,7 @@ def combine_text(lines: dict, lower: bool, old_font: str, old_size: int, old_tex
         old_font, old_size, old_text = font, size, text
     # Text is different format, add old_text to results and replace it with new text
     else:
-        append_text(old_text.replace("\\\\", "\\"), old_size, old_font, results, lower)
+        append_text(old_text, old_size, old_font, results, lower)
         old_font, old_size, old_text = font, size, text
     return old_font, old_size, old_text
 
@@ -177,21 +179,23 @@ def create_outputfile(filename: str, outputname: str, res: dict):
         outputname (str): Name to be written to
         res (dict): dictionary containing all attributes of the PDF file
     """
-    f = open(outputname, 'a', encoding="utf-8")  # open/clean output file
-    res_to_file(f, res, filename)
-    f.close()
+    attributes_file = open(outputname, 'a', encoding="utf-8")  # open/clean output file
+    print(type(attributes_file))
+    res_to_file(attributes_file, res, filename)
+    attributes_file.close()
 
 
-def res_to_file(f: io.TextIOWrapper, res: dict, filename: str):
+def res_to_file(file: io.TextIOWrapper, res: dict, filename: str):
     """
     Args:
-        f (io.TextIOWrapper): File to write results to for visualisation of the attributes
+        file (io.TextIOWrapper): File to write results to for visualisation of the attributes
         res (dict): dictionary containing all attributes of the PDF file
         filename (str): Name of the PDF file
     """
+    print(type(file))
     write_string = filename
     for value in res.values():
         write_string += '@'
         write_string += str(value)
-    f.writelines(write_string)
-    f.writelines('\n')
+    file.writelines(write_string)
+    file.writelines('\n')

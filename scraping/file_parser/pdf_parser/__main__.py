@@ -2,7 +2,7 @@ import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 from os import listdir
 import os.path as path
 import json
-import scraping.logger as logger
+import logging
 import joblib
 from datetime import datetime
 import multiprocessing
@@ -22,7 +22,7 @@ def main(directory: str):
     Args:
         directory: data folder, containing medicine folders
     """
-    log = logger.PDFLogger.log
+    log = logging.getLogger("pdf_parser")
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
     eu_numbers = []

@@ -6,9 +6,9 @@ import fitz
 import scraping.file_parser.pdf_parser.helper as helper
 import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
 import scraping.file_parser.pdf_parser.parsed_info_struct as PIS
-import scraping.logger as logger
+import logging
 
-log = logger.PDFLogger.log
+log = logging.getLogger("pdf_parser")
 
 
 def parse_file(filename: str, directory: str, medicine_struct: PIS.ParsedInfoStruct) -> PIS.ParsedInfoStruct:

@@ -3,10 +3,10 @@ import xml.etree.ElementTree as ET
 import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
 import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
-import scraping.logger as logger
+import logging
 import os
 
-log = logger.PDFLogger.log
+log = logging.getLogger("pdf_parser")
 
 
 def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
@@ -53,7 +53,8 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     if is_initial_file:
         annex_attributes["initial_type_of_eu_authorization"] = "standard"
         annex_attributes["eu_type_of_medicine"] = "small molecule"
-        annex_attributes["eu_indication_initial"] = "no section 4.1 therapeutic indication(s) found in authorization annex"
+        annex_attributes[
+            "eu_indication_initial"] = "no section 4.1 therapeutic indication(s) found in authorization annex"
 
     # loop through sections and parse section if conditions met
     for section in xml_body:
@@ -73,7 +74,7 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
             # override default value of "small molecule" if traceability header is present
             if xml_utils.section_contains_header_substring("traceability", section):
                 annex_attributes["eu_type_of_medicine"] = "biologicals"
-                
+
             # section 4.1 eu_indication_initial from annex I of initial annex
             if xml_utils.section_contains_substring("therapeutic indication", section):
                 annex_attributes["eu_indication_initial"] = xml_utils.section_append_paragraphs(section)
@@ -82,9 +83,9 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
 
     medicine_struct.annexes.append(annex_attributes)
 
-    #TODO: remove this
+    # TODO: remove this
     filename = xml_utils.file_get_name_pdf(xml_header)
     if '_0' in filename:
         pdf_helper.create_outputfile(filename, 'annex_results.txt', annex_attributes)
-        
+
     return medicine_struct
