@@ -100,7 +100,7 @@ def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements:
     log.info(f"New medicine: {medicine_identifier}")
     downloaded_file = requests.get(url)
     if downloaded_file.status_code != 200:
-        with open(f"failed.txt", "a") as f:
+        with open(f"../logs/txt_files/failed.txt", "a") as f:
             f.write(f"{filename}@{url}@{downloaded_file.status_code}\n")
             return
 

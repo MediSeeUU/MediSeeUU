@@ -3,10 +3,10 @@ import xml.etree.ElementTree as ET
 import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
 import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
-import scraping.logger as logger
+import logging
 import os
 
-log = logger.PDFLogger.log
+log = logging.getLogger("pdf_scraper")
 
 
 def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
@@ -84,6 +84,5 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     #TODO: remove this
     filename = xml_utils.file_get_name_pdf(xml_header)
     if '_0' in filename:
-        pdf_helper.create_outputfile(filename, 'annex_results.txt', annex_attributes)
-        
+        pdf_helper.res_to_file("../logs/txt_files/annex_results.txt", annex_attributes, filename)
     return medicine_struct

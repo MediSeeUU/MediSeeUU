@@ -7,10 +7,14 @@ import joblib
 
 import scraping.file_parser.pdf_parser.pdf_helper as ph
 import scraping.file_parser.xml_converter.xml_tags as tags
-import scraping.logger as logger
+import logging
+from os import path, listdir
+import re
+import joblib
+import multiprocessing
 
 header_indicator = "|-HEADER-|"
-log = logger.PDFLogger.log
+log = logging.getLogger("xml_converter")
 
 
 def convert_pdf_to_xml(source_filepath: str, output_filepath: str):

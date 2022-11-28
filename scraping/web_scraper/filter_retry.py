@@ -42,16 +42,14 @@ def run_filter(n: int, data_filepath: str):
     """
     data_filepath = f"{data_filepath}/active_withdrawn"
     json_path = "web_scraper/"
-    filter_path = ""
     # If file is run locally:
     if "web_scraper" == pathlib.Path.cwd().name:
         json_path = ""
-        filter_path = "../"
 
     for _ in range(n):
         filter.filter_all_pdfs(data_filepath)
         url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json").load_json()
-        retry_all(f'{filter_path}filter.txt', url_file, data_filepath)
+        retry_all("../logs/txt_files/filter.txt", url_file, data_filepath)
     # remove files that can't go to the pdf parser
     filter.filter_all_pdfs(data_filepath)
 

@@ -160,38 +160,22 @@ def create_outputfile_dec(filename: str, res: dict):
     """
     write = False
     if '_h_' in filename:
-        f = open('human_initial_dec.txt', 'a', encoding="utf-8")  # open/clean output file
-        write = True
+        res_to_file("../logs/txt_files/human_initial_dec.txt", res, filename)
     elif '_o_' in filename:
-        f = open('orphan_initial_dec.txt', 'a', encoding="utf-8")  # open/clean output file
-        write = True
-    if write:
-        res_to_file(f, res, filename)
-        f.close()
+        res_to_file("../logs/txt_files/orphan_initial_dec.txt", res, filename)
 
 
-def create_outputfile(filename: str, outputname: str, res: dict):
+def res_to_file(output_path: str, res: dict, filename: str):
     """
     Args:
-        filename (str): Name of the PDF file
-        outputname (str): Name to be written to
-        res (dict): dictionary containing all attributes of the PDF file
-    """
-    f = open(outputname, 'a', encoding="utf-8")  # open/clean output file
-    res_to_file(f, res, filename)
-    f.close()
-
-
-def res_to_file(f: io.TextIOWrapper, res: dict, filename: str):
-    """
-    Args:
-        f (io.TextIOWrapper): File to write results to for visualisation of the attributes
+        output_path (str): Path of the outputfile
         res (dict): dictionary containing all attributes of the PDF file
         filename (str): Name of the PDF file
     """
     write_string = filename
     for value in res.values():
-        write_string += '@'
-        write_string += str(value)
-    f.writelines(write_string)
-    f.writelines('\n')
+        write_string = f"{write_string}@{str(value)}"
+    outputfile = open(output_path, 'a', encoding="utf-8")  # open/clean output file
+    outputfile.writelines(write_string)
+    outputfile.writelines('\n')
+    outputfile.close()

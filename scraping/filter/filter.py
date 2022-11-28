@@ -20,7 +20,7 @@ def filter_all_pdfs(directory: str):
         directory (str): folder with all medicine folders to filter
     """
     log.info(f'Filtering all PDF files...')
-    f = open("filter.txt", 'w', encoding="utf-8")  # open/clean output file
+    f = open("../logs/txt_files/filter.txt", 'w', encoding="utf-8")  # open/clean output file
     all_data = Parallel(n_jobs=cpu_count)(
         delayed(filter_folder)(os.path.join(directory, folder), directory) for folder in
         os.listdir(directory) if os.path.isdir(os.path.join(directory, folder)))

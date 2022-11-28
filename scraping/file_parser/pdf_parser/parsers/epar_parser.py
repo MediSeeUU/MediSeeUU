@@ -5,14 +5,15 @@ import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
 import xml.etree.ElementTree as ET
 import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
-import scraping.logger as logger
+import logging
 import os.path as path
 
 date_pattern: str = r"\d{1,2} \b(?!emea\b)\w+ \d{4}|\d{1,2}\w{2} \b(?!emea\b)\w+ \d{4}"  # DD/MONTH/YYYY
 procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure
 accelerated_assessment = "accelerated assessment"
 steps_taken_assessment_str = "steps taken for the assessment"
-log = logger.PDFLogger.log
+
+log = logging.getLogger("pdf_parser")
 
 
 def get_all(filename: str, xml_data: ET.Element) -> dict:
@@ -61,7 +62,7 @@ def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStr
     xml_body = xml_root[1]
     res = get_all(filename, xml_body)
     medicine_struct.epars.append(res)
-    pdf_helper.create_outputfile(filename, 'epar_results.txt', res)
+    pdf_helper.res_to_file("../logs/txt_files/epar_results.txt", res, filename)
     return medicine_struct
 
 

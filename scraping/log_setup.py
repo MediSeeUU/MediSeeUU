@@ -1,7 +1,7 @@
 import logging
 
 
-def init_loggers(logging_path: str = ".") -> None:
+def init_loggers(logging_path: str = "../logs/log_files") -> None:
     """
     Function that runs the necessary commands to set up the loggers.
     All logs go through the root logger StreamHandler and file handler.
