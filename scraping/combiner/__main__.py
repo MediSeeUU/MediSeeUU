@@ -4,6 +4,7 @@ import os.path as path
 import json
 import joblib
 import multiprocessing
+import scraping.combiner.attribute_combining_functions as acf
 import scraping.definitions.value as value
 import scraping.definitions.attributes as attr
 
@@ -35,7 +36,7 @@ def combine_folder(filepath: str, folder_name: str):
 
     """
     file_dicts_keys = [attr.decision, attr.decision_initial, attr.annex, attr.annex_initial,
-                    attr.epar, attr.omar, attr.web, attr.file_dates]
+                    attr.annex_10, attr.epar, attr.omar, attr.web, attr.file_dates]
     file_dicts = dict.fromkeys(file_dicts_keys,{})
     combined_dict: dict[str, any] = {}
 
@@ -51,6 +52,15 @@ def combine_folder(filepath: str, folder_name: str):
     annex_files = sorted(
         [(int(dictionary["pdf_file"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]],
         key=lambda x: x[0])
+    
+    file_dicts[attr.decision_initial][attr.file_date] = attr.decision_initial
+    file_dicts[attr.decision][attr.file_date] = attr.decision
+    file_dicts[attr.annex_initial][attr.file_date] = attr.annex_initial
+    file_dicts[attr.annex][attr.file_date] = attr.annex
+    file_dicts[attr.epar][attr.file_date] = attr.epar
+    file_dicts[attr.omar][attr.file_date] = attr.omar
+    file_dicts[attr.web][attr.file_date] = attr.web
+    file_dicts[attr.file_dates][attr.file_date] = attr.file_dates
 
 
     # TODO: functie met len
@@ -73,9 +83,8 @@ def combine_folder(filepath: str, folder_name: str):
 
     # TODO: hier een functie van
     for attribute in attr.all_attributes:
-        value, all_equal = get_attribute(attribute.name, sources_to_dicts(attribute.sources, file_dicts),
-                                         attribute.combine)
-        combined_dict[attribute.name] = value
+        value = attribute.combine_function(attribute.name, attribute.sources, file_dicts)
+        combined_dict[attribute.name] = attribute.json_function(value, )
 
         # if not all_equal:
             # print("found multiple values for " + attribute.name + ": " + value + " in " + str(
@@ -101,7 +110,7 @@ def get_dict(source: str, filepath: str, folder_name: str) -> dict :
         with open(path.join(filepath, folder_name + f"_{source}.json"), "r") as source_json:
             return json.load(source_json)
     except FileNotFoundError:
-        print(f"COMBINER: no {source}.json found in " + filepath)
+        print(f"COMBINER: no {source}.json found in {filepath}")
         return {}
 
 def sources_to_dicts(sources: list[str], file_dicts: dict[str, dict]) -> list[dict]:
@@ -121,37 +130,6 @@ def sources_to_dicts(sources: list[str], file_dicts: dict[str, dict]) -> list[di
 
     return source_dicts
 
-
-def get_attribute(attribute_name: str, dicts: list[dict], combine_attributes=False) -> tuple[str, bool]:
-    """
-
-    Args:
-        attribute_name:
-        dicts:
-        combine_attributes:
-
-    Returns:
-
-    """
-    attributes: set[str] = []
-    # print(attribute_name + ": " + str(dicts))
-    for dict in dicts:
-        try:
-            attributes.append(dict[attribute_name])
-        except Exception:
-            print()
-            # print(attribute_name + ": " + str(dicts))
-            # print(attribute_name + " not found")
-
-    all_equal = len(set(attributes)) == 1
-
-    if combine_attributes:
-        return (" / ".join(attributes), all_equal)
-
-    attributes.append(value.not_found)
-    return (attributes[0], all_equal)
-
-
 # datetime to string serializer for json dumping
 def date_serializer(date: datetime.date) -> str:
     """
@@ -167,9 +145,14 @@ def date_serializer(date: datetime.date) -> str:
 
 
 def datetime_converter(datetime: str) -> str:
-    """
+    """_summary_
 
-    """
+    Args:
+        datetime (str): _description_
+
+    Returns:
+        str: _description_
+    """    
     return datetime.split('+')[0]
 
 # if __name__ == "__main__":
