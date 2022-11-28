@@ -1,4 +1,5 @@
-import scraping.combiner.attribute_combining_functions as acf
+# TODO: remove this import when merging with combiner
+# import scraping.combiner.attribute_combining_functions as acf
 
 # All sources :D
 decision = "dec"
@@ -43,10 +44,10 @@ def attribute_factory(all_attributes: dict[str, ScraperAttribute], name: str, so
 # Initialize all attribute objects
 all_attributes = {}
 atc_code = attribute_factory(all_attributes, "atc_code", [web])
-atc_name_l1 = attribute_factory(all_attributes, "atc_name_l1", [web])
-atc_name_l2 = attribute_factory(all_attributes, "atc_name_l2", [web])
-atc_name_l3 = attribute_factory(all_attributes, "atc_name_l3", [web])
-atc_name_l4 = attribute_factory(all_attributes, "atc_name_l4", [web])
+# atc_name_l1 = attribute_factory(all_attributes, "atc_name_l1", [web])
+# atc_name_l2 = attribute_factory(all_attributes, "atc_name_l2", [web])
+# atc_name_l3 = attribute_factory(all_attributes, "atc_name_l3", [web])
+# atc_name_l4 = attribute_factory(all_attributes, "atc_name_l4", [web])
 active_substance = attribute_factory(all_attributes, "active_substance", [web, decision_initial])
 eu_nas = attribute_factory(all_attributes, "eu_nas", [decision_initial])
 ema_procedure_start_initial = attribute_factory(all_attributes, "ema_procedure_start_initial", [epar])
@@ -71,7 +72,7 @@ ema_number = attribute_factory(all_attributes, "ema_number", [web])
 ema_number_id = attribute_factory(all_attributes, "ema_number_id", [web])
 ema_number_certainty = attribute_factory(all_attributes, "ema_number_certainty", [web])
 ema_number_check = attribute_factory(all_attributes, "ema_number_check", [web])
-eu_mah = attribute_factory(all_attributes, "eu_mah", )
+# eu_mah = attribute_factory(all_attributes, "eu_mah", )
 eu_mah_current = attribute_factory(all_attributes, "eu_mah_current", [web])
 eu_mah_initial = attribute_factory(all_attributes, "eu_mah_initial", [decision_initial])
 eu_mah_history = attribute_factory(all_attributes, "eu_mah_history", [web])
@@ -85,10 +86,10 @@ ema_rapp = attribute_factory(all_attributes, "ema_rapp", [epar])
 ema_corapp = attribute_factory(all_attributes, "ema_corapp", [epar])
 eu_accel_assess_g = attribute_factory(all_attributes, "eu_accel_assess_g", [epar])
 eu_accel_assess_m = attribute_factory(all_attributes, "eu_accel_assess_m", [epar])
-assess_time_days_total = attribute_factory(all_attributes, "assess_time_days_total", )
-assess_time_days_active = attribute_factory(all_attributes, "assess_time_days_active", )
-assess_time_days_cstop = attribute_factory(all_attributes, "assess_time_days_cstop", )
-ec_sources.decision_time_days = attribute_factory(all_attributes, "ec_sources.decision_time_days", )
+# assess_time_days_total = attribute_factory(all_attributes, "assess_time_days_total", )
+# assess_time_days_active = attribute_factory(all_attributes, "assess_time_days_active", )
+# assess_time_days_cstop = attribute_factory(all_attributes, "assess_time_days_cstop", )
+# ec_sources.decision_time_days = attribute_factory(all_attributes, "ec_sources.decision_time_days", )
 ema_reexamination = attribute_factory(all_attributes, "ema_reexamination", [epar])
 eu_orphan_con_initial = attribute_factory(all_attributes, "eu_orphan_con_initial", [web])
 eu_orphan_con_current = attribute_factory(all_attributes, "eu_orphan_con_current", [web])
@@ -103,3 +104,8 @@ eu_od_date = attribute_factory(all_attributes, "eu_od_date", [file_dates])
 eu_od_pnumber = attribute_factory(all_attributes, "eu_od_pnumber", [web])
 eu_od_sponsor = attribute_factory(all_attributes, "eu_od_sponsor", [web])
 eu_od_comp_date = attribute_factory(all_attributes, "eu_od_comp_date", [file_dates])
+
+#TODO: checks for the following new attrs
+eu_therapeutic_indications = attribute_factory(all_attributes, "eu_therapeutic_indications", [])
+active_time_elapsed = attribute_factory(all_attributes, "active_time_elapsed", [])
+clock_stop_elapsed = attribute_factory(all_attributes, "clock_stop_elapsed", [])
