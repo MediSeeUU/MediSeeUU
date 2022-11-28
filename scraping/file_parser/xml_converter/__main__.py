@@ -41,7 +41,7 @@ def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
             font info tuple line_text: str, line_font_size: float, line_font_type: str)
 
     Returns:
-        list[str]: list of paragraphs in the format of "bolded_text | -HEADER- | unbolded_text"
+        list[str]: list of paragraphs in the format of `bolded_text | -HEADER- | unbolded_text`
     """
     # concatenate list of lines into list of paragraphs and mark bolded lines
     paragraphs = []
@@ -66,11 +66,11 @@ def get_marked_paragraphs(lines: list[(str, float, str)]) -> list[str]:
 def split_paragraphs(paragraphs: list[str]) -> list[(str, str)]:
     """
     Returns a list of (header, paragraph) tuples from a list of paragraphs in
-    format "bolded_text | -HEADER- | unbolded_text", meant to take get_marked_paragraph's return value as input.
+    format `bolded_text | -HEADER- | unbolded_text`, meant to take get_marked_paragraph's return value as input.
 
     Args:
         paragraphs (list[str]): a list of paragraphs in the format returned by
-            get_marked_paragraphs: "bolded_text | -HEADER- | unbolded_text"
+            get_marked_paragraphs: `bolded_text | -HEADER- | unbolded_text`
 
     Returns:
         list[(str, str)]: list of XML section text in form of (header, paragraph)
