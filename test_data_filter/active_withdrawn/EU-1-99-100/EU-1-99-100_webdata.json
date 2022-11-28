@@ -1,0 +1,19 @@
+{
+    "eu_pnumber": "EU/1/99/100",
+    "atc_code": "H01CC02",
+    "eu_aut_status": "ACTIVE",
+    "eu_brand_name_current": "Cetrotide",
+    "status_type": "a",
+    "active_substance": "Cetrorelix (as acetate)",
+    "eu_mah_current": "Merck Europe B.V.",
+    "orphan_status": "h",
+    "eu_aut_date": "1999-04-13 00:00:00",
+    "eu_aut_type_initial": "pre_2006",
+    "eu_aut_type_current": "standard",
+    "ema_number": "EMEA/H/C/233",
+    "ema_number_id": "233",
+    "eu_referral": "False",
+    "eu_suspension": "False",
+    "ema_number_certainty": "0.9791666666666666",
+    "init_addressed_to_member_states": "False"
+}

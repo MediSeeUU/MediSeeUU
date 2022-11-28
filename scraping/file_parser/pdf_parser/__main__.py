@@ -35,8 +35,12 @@ def main(directory: str):
         i += 1
         file_exists = path.exists(eu_numbers_base_path + f"_{i}.json")
 
-    with open(eu_numbers_path) as f:
-        eu_numbers = set(json.load(f))
+    if path.exists(eu_numbers_path):
+        with open(eu_numbers_path) as f:
+            eu_numbers = set(json.load(f))
+    else:
+        eu_numbers = {}
+        log.warning(f"No eu_numbers.json file found at location {eu_numbers_path}. Did you run web scraper?")
 
     meds_dir = directory + "/active_withdrawn"
 

@@ -11,6 +11,7 @@ import os.path as path
 date_pattern: str = r"\d{1,2} \b(?!emea\b)\w+ \d{4}|\d{1,2}\w{2} \b(?!emea\b)\w+ \d{4}"  # DD/MONTH/YYYY
 procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure
 accelerated_assessment = "accelerated assessment"
+steps_taken_assessment_str = "steps taken for the assessment"
 log = logger.PDFLogger.log
 
 
@@ -83,15 +84,14 @@ def get_date(xml: ET.Element) -> str:
 
     for elem in xml.iter():
         txt = elem.text
-        if not txt:
-            continue
+
         if count >= 0:
             count += 1
-        if "steps taken for the assessment" in txt:
+        if steps_taken_assessment_str in txt:
             count = 0
         if found and regex_date.search(txt) and count < 30:
             return helper.convert_months(re.search(date_pattern, txt)[0])
-        if txt and (regex_ema.search(txt) or regex_ema2.search(txt)):
+        if regex_ema.search(txt) or regex_ema2.search(txt):
             found = True
             if regex_date.search(txt):
                 return helper.convert_months(re.search(date_pattern, txt)[0])
@@ -109,13 +109,13 @@ def get_opinion_date(xml: ET.Element) -> str:
     Returns:
         str: the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format
     """
-    not_easily_scrapable = False
-    for p in xml_utils.get_paragraphs_by_header("steps taken for the assessment", xml):
+    not_easily_scrapeable = False
+    for p in xml_utils.get_paragraphs_by_header(steps_taken_assessment_str, xml):
         if re.findall(date_pattern, p):
             date = helper.convert_months(re.findall(date_pattern, p)[-1])
             return date
         # Section is found and should always contain the CHMP opinion date
-        not_easily_scrapable = True
+        not_easily_scrapeable = True
     # Look below rapporteur in steps taken for the assessment when not found by default method
     # This is needed as rapporteur is seen as a header when it is bold, causing text below to
     # not be a part of "steps taken for the assessment" anymore.
@@ -124,9 +124,8 @@ def get_opinion_date(xml: ET.Element) -> str:
     date = ""
     for elem in xml.iter():
         txt = elem.text
-        if not txt:
-            continue
-        if "steps taken for the assessment" in txt:
+
+        if steps_taken_assessment_str in txt:
             right_section = True
         if right_section and "rapporteur" in txt:
             below_rapp = True
@@ -136,11 +135,11 @@ def get_opinion_date(xml: ET.Element) -> str:
             if date != "":
                 return date
             else:
-                return "not_easily_scrapable"
+                return "not_easily_scrapeable"
     if date != "":
         return date
-    elif not_easily_scrapable:
-        return "not_easily_scrapable"
+    elif not_easily_scrapeable:
+        return "not_easily_scrapeable"
     return "no_chmp_found"
 
 
@@ -156,17 +155,18 @@ def get_legal_basis(xml: ET.Element) -> list[str]:
         list[str]: the attribute eu_legal_basis - multiple articles of the form "Article X.X"
     """
     regex_legal = r"article .+?(?=[a-z]{2,90}|\n|$)"
+    legal_basis_str = "legal basis for"
     found = False
     right_section = False
     legal_basis_exists = False
     count = 0
+
     for elem in xml.iter():
         txt = elem.text
-        if not txt:
-            continue
+
         if "submission of the dossier" in txt:
             right_section = True
-        if "legal basis for" in txt:
+        if legal_basis_str in txt:
             found = True
             legal_basis_exists = True
             count = 0
@@ -178,8 +178,8 @@ def get_legal_basis(xml: ET.Element) -> list[str]:
             if not right_section:
                 log.warning("EPAR PARSER: Legal basis found before \"submission of the dossier\"")
             # Get only text after "legal basis for" if this string is in txt
-            if len(txt.split("legal basis for", 1)) > 1:
-                txt = txt.split("legal basis for", 1)[1]
+            if len(txt.split(legal_basis_str, 1)) > 1:
+                txt = txt.split(legal_basis_str, 1)[1]
             articles = re.findall(regex_legal, txt[:75], re.DOTALL)
             articles2 = re.findall(regex_legal, txt, re.DOTALL)
             if articles:
@@ -189,7 +189,7 @@ def get_legal_basis(xml: ET.Element) -> list[str]:
                 return helper.convert_articles([articles2[0]])
 
     if legal_basis_exists:
-        return ["not_easily_scrapable"]
+        return ["not_easily_scrapeable"]
     return ["no_legal_basis"]
 
 
@@ -207,7 +207,7 @@ def get_prime(xml: ET.Element) -> str:
     if check_date_before(xml, 1, 3, 2016):
         return "NA"
     for p in xml_utils.get_paragraphs_by_header("submission of the dossier", xml):
-        if re.findall(r" prime ", p):
+        if re.findall(r" prime ", p) and not re.findall(r"prime importance", p):
             return "yes"
         if re.findall(r"priority medicine", p):
             return "yes"
@@ -228,7 +228,7 @@ def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_y
             bool: True if scraped date is before given date, False otherwise
         """
     date = get_date(xml)
-    if date != "no_date_found" and date != "not_easily_scrapable" and len(date.split("/")) < 3:
+    if date != "no_date_found" and date != "not_easily_scrapeable" and len(date.split("/")) >= 3:
         day = int(''.join(filter(str.isdigit, date.split("/")[0])))
         month = int(date.split("/")[1])
         year = int(date.split("/")[2])
@@ -292,7 +292,7 @@ def get_rapp(xml: ET.Element) -> str:
     for elem in xml.iter():
         txt = str(elem.text)
         if "rapporteur" in txt and "co-rapporteur" not in txt:
-            return "not_easily_scrapable"
+            return "not_easily_scrapeable"
 
     return "no_rapporteur"
 
@@ -414,7 +414,7 @@ def get_corapp(xml: ET.Element) -> str:
     for elem in xml.iter():
         txt = str(elem.text)
         if "co-rapporteur" in txt or "corraporteur" in txt:
-            return "not_easily_scrapable"
+            return "not_easily_scrapeable"
     return "no_co-rapporteur"
 
 

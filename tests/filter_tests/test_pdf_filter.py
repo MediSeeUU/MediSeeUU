@@ -1,11 +1,9 @@
-from unittest import TestCase
-import pytest
 import os
-from scraping.filter import filter
-import fitz
-import sys
-from distutils.dir_util import copy_tree
 import shutil
+from distutils.dir_util import copy_tree
+from unittest import TestCase
+
+from scraping.filter import filter
 
 test_data_loc = "../test_data_filter/active_withdrawn"
 test_data_filter_loc = "../test_data_filter/active_withdrawn_temp"
