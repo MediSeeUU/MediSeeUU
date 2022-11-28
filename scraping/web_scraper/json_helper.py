@@ -34,7 +34,6 @@ class JsonHelper:
         """
         if not os.path.isfile(self.path):
             return {}
-
         with open(self.path, 'r') as file:
             return json.load(file)
 
@@ -79,7 +78,10 @@ class JsonHelper:
                 old_list = old_dict[key]
                 old_list.extend(new_dict[key])
                 merged_list = old_list
-                no_dup_list = list(dict.fromkeys(merged_list))  # remove duplicates but keep ordering
+                # Keep ordering, remove duplicates
+                seen = set()
+                seen_add = seen.add
+                no_dup_list = [x for x in merged_list if not (tuple(x) in seen or seen_add(tuple(x)))]
                 old_dict[key] = no_dup_list
 
             else:

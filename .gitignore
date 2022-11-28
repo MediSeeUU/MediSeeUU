@@ -149,17 +149,15 @@ data_old/
 !**/docs/sphinx-source/index.rst
 **/docs/doctrees
 **/docs/html/_sources
-*/annex_results.txt
-*/epar_results.txt
-*/human_initial_dec.txt
-tests/pdfscraper_tests/annex_results.txt
 data filtered and xml 31 okt.zip
-scraping/orphan_initial_dec.txt
 *.json
 *.pdf
 *.xml
-scraping/failed.txt
-scraping/no_english_available.txt
-tests/web_scraper_tests/no_english_available.txt
-tests/web_scraper_tests/filter.txt
-scraping/filter.txt
+*.txt
+
+
+# do not ignore test data
+!test_data/*/*/*
+!test_data_filter/*/*/*
+!tests/annex_10_tests/annex_10_parser_test.json
+scraping/filter/filter.txt

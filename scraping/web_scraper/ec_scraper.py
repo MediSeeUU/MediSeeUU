@@ -252,7 +252,7 @@ def get_data_from_medicine_json(medicine_json: dict,
                     medicine_dict["eu_pnumber"] = row["value"]
                 else:
                     human_medicine = False
-                    medicine_dict["eu_od_pnumber"]: str = row["value"]
+                    medicine_dict["eu_od_number"]: str = row["value"]
 
             case "inn":
                 # Sometimes the active substance is written with italics, therefore it is removed with a RegEx
@@ -260,6 +260,9 @@ def get_data_from_medicine_json(medicine_json: dict,
 
             case "atc":
                 medicine_dict["atc_code"]: str = row["meta"][0][-1]["code"]
+
+            case "mp_link":
+                medicine_dict["eu_od_pnumber"]: str = row["meta"]["eu_num"]
 
         if human_medicine:
             # Scrapes human specific attributes
@@ -403,6 +406,9 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) \
         # Parse the date, formatted as %Y-%m-%d, which looks like 1970-01-01
         decision_date: date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
         decision_id = row["id"]
+
+        if "orphan designation" == row["type"].lower():
+            procedures_dict["eu_od_date"] = str(decision_date)
 
         # Puts all the decisions from the last one and a half year in a list to determine the current authorization type
         if last_decision_date - decision_date < timedelta(days=548):

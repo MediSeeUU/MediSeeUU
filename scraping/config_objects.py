@@ -14,6 +14,7 @@ class WebConfig:
     run_scrape_ema: bool = False
     run_download: bool = False
     run_download_refused: bool = False
+    run_download_annex10: bool = False
     run_filter: bool = False
 
     # Arguments for tasks
@@ -44,6 +45,7 @@ class WebConfig:
         self.run_scrape_ema = True
         self.run_download = True
         self.run_download_refused = True
+        self.run_download_annex10 = True
         self.run_filter = True
         return self
 
@@ -52,6 +54,7 @@ class WebConfig:
                    scrape_ema: bool = False,
                    download: bool = False,
                    download_refused: bool = False,
+                   download_annex10: bool = False,
                    filtering: bool = False):
         """
         Method to set up a config class with the desired functions to run.
@@ -67,6 +70,8 @@ class WebConfig:
                 Download all the saved links. This has no effect when one of the previous tasks has not been run.
             download_refused:
                 Refused files are an edge case, and can slow us down. They are not parsed by the PDF module.
+            download_annex10:
+                Annex10 is
             filtering:
                 Retry failed downloads. This has no effect is download has not been run.
 
@@ -77,6 +82,7 @@ class WebConfig:
         self.run_scrape_ema = scrape_ema
         self.run_download = download
         self.run_download_refused = download_refused
+        self.run_download_annex10 = download_annex10
         self.run_filter = filtering
         return self
 

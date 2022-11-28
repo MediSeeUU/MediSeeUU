@@ -59,7 +59,7 @@
               <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="README.html">Web Scraper</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="README.html#algemene-functie">Algemene Functie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#general-function">General Function</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="README.html#ec-scraper-py">ec_scraper.py</a></li>
 <li class="toctree-l3"><a class="reference internal" href="README.html#ema-scraper-py">ema_scraper.py</a></li>
 <li class="toctree-l3"><a class="reference internal" href="README.html#download-py">download.py</a></li>
@@ -68,7 +68,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="README.html#input-output">Input &amp; Output</a></li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#overige-belangrijke-punten">Overige belangrijke punten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#other-important-notes">Other important notes</a></li>
 </ul>
 </li>
 </ul>
@@ -80,6 +80,7 @@
 <li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.__main__">web_scraper.__main__ module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.__main__.check_scrape_page"><code class="docutils literal notranslate"><span class="pre">check_scrape_page()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.__main__.get_excel_ema"><code class="docutils literal notranslate"><span class="pre">get_excel_ema()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.__main__.init_ema_dict"><code class="docutils literal notranslate"><span class="pre">init_ema_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.__main__.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.__main__.save_medicine_urls_and_attributes"><code class="docutils literal notranslate"><span class="pre">save_medicine_urls_and_attributes()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.__main__.set_active_refused_save_parameters"><code class="docutils literal notranslate"><span class="pre">set_active_refused_save_parameters()</span></code></a></li>
@@ -87,6 +88,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.download">web_scraper.download module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_all"><code class="docutils literal notranslate"><span class="pre">download_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_annex10_files"><code class="docutils literal notranslate"><span class="pre">download_annex10_files()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_medicine_files"><code class="docutils literal notranslate"><span class="pre">download_medicine_files()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_pdfs_ec"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ec()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_pdfs_ema"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ema()</span></code></a></li>
@@ -123,10 +125,12 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.ema_scraper">web_scraper.ema_scraper module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.create_url_list"><code class="docutils literal notranslate"><span class="pre">create_url_list()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.find_last_updated_date"><code class="docutils literal notranslate"><span class="pre">find_last_updated_date()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.find_last_updated_date_annex10"><code class="docutils literal notranslate"><span class="pre">find_last_updated_date_annex10()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.find_priority_link"><code class="docutils literal notranslate"><span class="pre">find_priority_link()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.get_annex10_files"><code class="docutils literal notranslate"><span class="pre">get_annex10_files()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.get_url_type"><code class="docutils literal notranslate"><span class="pre">get_url_type()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.ema_scraper.scrape_medicine_page"><code class="docutils literal notranslate"><span class="pre">scrape_medicine_page()</span></code></a></li>
 </ul>
 </li>

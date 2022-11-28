@@ -8,7 +8,9 @@ import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
 from scraping.file_parser.pdf_parser.parsers import omar_parser
 import xml.etree.ElementTree as ET
 
-test_data_loc = "../../test_data"
+test_data_loc = "../test_data/active_withdrawn"
+if "pdfscraper_tests" in os.getcwd():
+    test_data_loc = "../../test_data/active_withdrawn"
 xml_bodies = []
 
 
@@ -31,7 +33,7 @@ class TestOmarParse(TestCase):
     Class that contains the unit tests for scraping.file_parser.pdf_parser.scrapers.epar_parser
     """
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls):
         """
         Prepare a list of XML files in the global variable xml_bodies
         Returns:
@@ -45,7 +47,7 @@ class TestOmarParse(TestCase):
             for file in os.listdir(os.path.join(test_data_loc, folder)):
                 path = os.path.join(test_data_loc, folder, file)
 
-                if os.path.isfile(path):
+                if os.path.isfile(path) and "-other" not in file:
                     files.append(path)
         xml_files = [file for file in files if "omar" in file and ".xml" in file]
 

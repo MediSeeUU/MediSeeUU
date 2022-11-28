@@ -26,21 +26,21 @@ log = logging.getLogger("web_scraper")
 
 json_path: str = "web_scraper/"
 cpu_count: int = multiprocessing.cpu_count() * 2
-# If file is run locally:
+# If file is run locally or tested:
+if "tests" in os.getcwd():
+    json_path = "web_scraper_tests/"
 if "web_scraper" in os.getcwd():
     json_path = ""
-
 
 # Files where the urls for normal and refused files are stored
 url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
 url_refused_file = json_helper.JsonHelper(path=f"{json_path}JSON/refused_urls.json")
 
-scrape_annex10: bool = False
 # File where Annex 10 data are stored
 annex10_file = json_helper.JsonHelper(path=f"{json_path}JSON/annex10.json")
 
 
-def check_scrape_page(eu_n: str, medicine_last_updated_date: datetime, last_scraped_type: str) -> bool:
+def check_scrape_page(eu_n: str, medicine_last_updated: datetime, last_scraped_type: str) -> bool:
     """
     Checks whether the medicine page (either EC or EMA) has been updated since last scrape cycle, or that the page has
     never been scraped at all. Based on this it returns a boolean that indicates whether attributes and files need to be
@@ -48,7 +48,7 @@ def check_scrape_page(eu_n: str, medicine_last_updated_date: datetime, last_scra
 
     Args:
         eu_n (str): EU number of the medicine
-        medicine_last_updated_date (datetime): Date since the page was last updated
+        medicine_last_updated (datetime): Date since the page was last updated
         last_scraped_type (str): The page type (either EC or EMA)
 
     Returns:
@@ -58,8 +58,9 @@ def check_scrape_page(eu_n: str, medicine_last_updated_date: datetime, last_scra
     try:
         # If the last medicine updated date is later than the date of the last scrape cycle, the url.json should be
         # updated
-        if medicine_last_updated_date.date() > datetime.strptime(url_file.local_dict[eu_n][last_scraped_type],
-                                                                 '%d/%m/%Y').date():
+        if medicine_last_updated.date() > datetime.strptime(url_file.local_dict[eu_n]
+                                                            [f"{last_scraped_type}_last_scraped"], '%d/%m/%Y').date():
+            log.info(f"{eu_n}: {last_scraped_type.upper()} page has been updated since last scrape cycle")
             return True
         # Otherwise, it returns this function, since there are no new files or attributes
         else:
@@ -97,10 +98,8 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
     medicine_last_updated_date = ec_scraper.get_last_updated_date(html_active)
 
     # Checks whether attributes and files need to be scraped from the EC web page
-    if not check_scrape_page(eu_n, medicine_last_updated_date, "ec_last_scraped"):
+    if not check_scrape_page(eu_n, medicine_last_updated_date, "ec"):
         return
-
-    log.info(eu_n + ": EC page has been updated since last scrape cycle")
 
     # dec_ anx_ and ema_list are lists of URLs to PDF files
     # Attributes_dict is a dictionary containing the attributes scraped from the EC page
@@ -141,7 +140,7 @@ def set_active_refused_save_parameters(eu_n: str, medicine_url: str, dec_list: l
     # Sets parameter values for active and withdrawn medicines that need to be saved
     if attributes_dict["eu_aut_status"] != "REFUSED":
         medicine_identifier: str = eu_n
-        target_path: str = f"{data_path}/{medicine_identifier}"
+        target_path: str = f"{data_path}/active_withdrawn/{medicine_identifier}"
         save_medicine_urls_and_attributes(medicine_identifier, medicine_url, dec_list, anx_list, ema_list,
                                           attributes_dict, url_file, target_path)
     # Sets parameter values for refused medicines that need to be saved
@@ -211,18 +210,15 @@ def get_urls_ema(eu_n: str, url: str):
         eu_n (str): The EU number of the medicine.
         url (str): The url to an EMA page for a specific medicine.
     """
-
     # Retrieves the date the EMA medicine page was last updated
     html_active = utils.get_html_object(url)
     medicine_last_updated_date: datetime = ema_scraper.find_last_updated_date(html_active)
 
     # Checks whether attributes and files need to be scraped from the EMA web page
-    if not check_scrape_page(eu_n, medicine_last_updated_date, "ema_last_scraped"):
+    if not check_scrape_page(eu_n, medicine_last_updated_date, "ema"):
         return
 
-    log.info(eu_n + ": EMA page has been updated since last scrape cycle")
-
-    ema_urls: dict[str, str | list[str]] = ema_scraper.scrape_medicine_page(url, html_active)
+    ema_urls: dict[str, str | list[tuple]] = ema_scraper.scrape_medicine_page(url, html_active)
 
     pdf_url: dict[str, dict] = {
         eu_n: ema_urls
@@ -263,7 +259,7 @@ def main(config: config_objects.WebConfig):
 
     log.info("TASK SUCCESS on Generating directories")
 
-    if scrape_annex10:
+    if config.run_download_annex10:
         log.info("TASK START scraping all annex10 files on the EMA website")
 
         get_excel_ema("https://www.ema.europa.eu/en/about-us/annual-reports-work-programmes")
@@ -273,7 +269,7 @@ def main(config: config_objects.WebConfig):
         log.info("TASK FINISHED annex10 scrape")
 
     if config.run_scrape_ec:
-        with open("no_english_available.txt", 'w', encoding="utf-8") as f:
+        with open("no_english_available.txt", 'w', encoding="utf-8"):
             pass  # open/clean no_english_available file
         # make sure tests start with empty dict, because url_file is global variable only way to do this is here.
         if "test" in os.getcwd():
@@ -292,6 +288,10 @@ def main(config: config_objects.WebConfig):
             else:
                 for (medicine_url, eu_n, medicine_type, _) in tqdm.tqdm(medicine_list):
                     get_urls_ec(medicine_url, eu_n, medicine_type, config.path_data)
+
+        # Set empty EMA values for refused_file
+        for eu_n in url_refused_file.local_dict:
+            init_ema_dict(eu_n, url_refused_file)
 
         url_file.save_dict()
         url_refused_file.save_dict()
@@ -312,6 +312,9 @@ def main(config: config_objects.WebConfig):
         ]
 
         unzipped_ema_urls: list[list[str]] = [list(t) for t in zip(*ema_urls)]
+
+        for eu_n in url_file.local_dict:
+            init_ema_dict(eu_n, url_file)
 
         with tqdm_logging.logging_redirect_tqdm():
             if config.parallelized and len(unzipped_ema_urls) > 0:
@@ -341,10 +344,36 @@ def main(config: config_objects.WebConfig):
         url_refused_file.save_dict()
         log.info("TASK FINISHED downloading refused PDF files")
 
+    if config.run_download_annex10:
+        log.info("TASK START downloading Annex 10 Excel files from fetched urls from EC and EMA")
+
+        download.download_annex10_files(config.path_data, annex10_file)
+
+        log.info("TASK FINISHED downloading Annex 10 Excel files")
+
     if config.run_filter:
         filter_retry.run_filter(3, config.path_data)
-
     log.info("=== LOG FINISH ===")
+
+
+def init_ema_dict(eu_n: str, file: json_helper.JsonHelper):
+    """
+    Set default empty values for if website does not exist
+
+    Args:
+        eu_n (str): eu_number of medicine
+        file (json_helper.JsonHelper): Dictionary that is being initialized
+    """
+    ema_urls: dict[str, str | list[list[str]]] = {
+        "epar_url": "",
+        "omar_url": "",
+        "odwar_url": "",
+        "other_ema_urls": []
+    }
+    pdf_url: dict[str, dict] = {
+        eu_n: ema_urls
+    }
+    file.add_to_dict(pdf_url)
 
 
 # Keep the code locally testable by including this.
