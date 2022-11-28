@@ -7,7 +7,7 @@ def file_is_initial(xml_head: ET.Element) -> bool:
     Returns whether a xml file is an initial authorization.
 
     Args:
-        xml_head (xml.etree.ElementTree.Element): A xml Element of the <head>...</head> node.
+        xml_head (ET.Element): A xml Element of the <head>...</head> node.
 
     Returns:
         bool: is_initial flag bool value in the xml head node.
@@ -22,7 +22,7 @@ def file_get_name_pdf(xml_head: ET.Element) -> str:
     Returns file name of the pdf from which the xml file was made.
 
     Args:
-        xml_head (xml.etree.ElementTree.Element): A xml Element of the <head>...</head> node.
+        xml_head (ET.Element): A xml Element of the <head>...</head> node.
 
     Returns:
         str: Name of the pdf file in string format.
@@ -36,7 +36,7 @@ def file_get_creation_date(xml_head: ET.Element) -> str:
     Returns creation date of a xml file.
 
     Args:
-        xml_head (xml.etree.ElementTree.Element): A xml Element of the <head>...</head> node.
+        xml_head (ET.Element): A xml Element of the <head>...</head> node.
 
     Returns:
         str: String representing the creation datetime in the original pdf metadata, can be null.
@@ -53,7 +53,7 @@ def get_paragraphs_by_header(header: str, xml: ET.Element) -> list[str]:
 
     Args:
         header (str): Substring to search for in the section header.
-        xml (xml.etree.ElementTree.Element): The entire xml document.
+        xml (ET.Element): The entire xml document.
 
     Returns:
         list[str]: List of all paragraphs contained by the given header
@@ -72,7 +72,7 @@ def file_get_modification_date(xml_head: ET.Element) -> str:
     Returns modification date of a xml file.
 
     Args:
-        xml_head (xml.etree.ElementTree.Element): A xml Element of the <head>...</head> node.
+        xml_head (ET.Element): A xml Element of the <head>...</head> node.
 
     Returns:
         str: String representing the modification datetime in the original pdf metadata, can be null.
@@ -89,7 +89,7 @@ def section_contains_substring(substring: str, section: ET.Element) -> bool:
 
     Args:
         substring (str): Substring to search for in the section.
-        section (xml.etree.ElementTree.Element): A xml Element of the <section>...</section> node.
+        section (ET.Element): A xml Element of the format <section>...</section>
 
     Returns:
         bool: bool indicating whether the section contains the substring.
@@ -105,7 +105,7 @@ def section_contains_substring_set(substring_set: list[str], section: ET.Element
 
     Args:
         substring_set (list[str]): List of substrings to search for in the section.
-        section (xml.etree.ElementTree.Element): A xml Element of the <section>...</section> node.
+        section (ET.Element): A xml Element of the format <section>...</section>
 
     Returns:
         bool: bool indicating whether the section contains any of the substrings.
@@ -121,7 +121,7 @@ def section_contains_header_substring(substring: str, section: ET.Element) -> bo
 
     Args:
         substring (str): substring to search for in the section header.
-        section (xml.etree.ElementTree.Element): A xml Element of the <header>...</header> node within a section.
+        section (ET.Element): A xml Element of the format <section>...</section>
 
     Returns:
         bool: bool indicating whether the section header contains the substring.
@@ -141,7 +141,7 @@ def section_contains_header_substring_set(substring_set: list[str], section: ET.
 
     Args:
         substring_set (list[str]): List of substrings to search for in the section header.
-        section (xml.etree.ElementTree.Element): A xml Element of the <header>...</header> node within a section.
+        section (ET.Element): A xml Element of the format <section>...</section>
 
     Returns:
         bool: bool indicating whether the section contains any of the substrings in substring_set.
@@ -158,15 +158,15 @@ def section_contains_header_substring_set(substring_set: list[str], section: ET.
 
 
 def section_contains_header_substring_set_all(substring_set: list[str], section: ET.Element) -> bool:
-    """_summary_
-    Returns whether a xml section header contains all of the substrings within substring_set.
+    """
+    Returns whether a xml section header contains all the substrings within substring_set.
 
     Args:
-        header_number (str): String value of a header number in the form of x.y.z with no dot at the end.
-        header (xml.etree.ElementTree.Element): A xml Element of the <header>...</header> node within a section.
+        substring_set (list[str]): List of substrings to search for in the section.
+        section (ET.Element): A xml Element of the format <section>...</section>
 
     Returns:
-        bool: bool indicating whether the section contains all of the substrings in substring_set.
+        bool: bool indicating whether the section contains all the substrings in substring_set.
     """    
     head = section.findall(tags.header)[0]
     substring_in_header = [substring in head.text.lower() for substring in substring_set]
@@ -180,7 +180,7 @@ def section_contains_header_number(header_number: str, header: ET.Element) -> bo
 
     Args:
         header_number (str): String value of a header number in the form of x.y.z with no dot at the end.
-        header (xml.etree.ElementTree.Element): A xml Element of the <header>...</header> node within a section.
+        header (ET.Element): A xml Element of the <header>...</header> node within a section.
 
     Returns:
         bool: bool indicating whether the section contains an attribute n with value number.
@@ -329,7 +329,9 @@ def get_body_section_by_index(index: int, xml_body: ET.Element) -> ET.Element:
     This function returns a section based on index (0-based index).
 
     Args:
-        section (ET.Element): A xml Element of the <section>...</section> node.
+        index (int): Index describing which section to get
+        xml_body (ET.Element): A xml Element of the <body>...</body> node.
+
 
     Returns:
         ET.Element: Returns a section based on index.
@@ -342,7 +344,7 @@ def get_body_section_count(xml_body: ET.Element) -> int:
     This function returns the total amount of sections.
 
     Args:
-        xml_body (ET.Element): A xml Element of the <section>...</section> node.
+        xml_body (ET.Element): A xml Element of the <body>...</body> node.
 
     Returns:
         int: Returns the count of all the sections.
