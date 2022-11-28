@@ -1,0 +1,19 @@
+{
+    "eu_pnumber": "EU/1/21/1541",
+    "atc_code": "L01EA02",
+    "eu_aut_status": "ACTIVE",
+    "eu_brand_name_current": "Dasatinib Accordpharma",
+    "status_type": "a",
+    "active_substance": "dasatinib",
+    "eu_mah_current": "Accord Healthcare S.L.U.",
+    "orphan_status": "h",
+    "eu_aut_date": "2022-03-24 00:00:00",
+    "eu_aut_type_initial": "standard",
+    "eu_aut_type_current": "standard",
+    "ema_number": "EMEA/H/C/005317",
+    "ema_number_id": "5317",
+    "eu_referral": "False",
+    "eu_suspension": "False",
+    "ema_number_certainty": "1.0",
+    "init_addressed_to_member_states": "False"
+}

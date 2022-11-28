@@ -3,22 +3,24 @@ import os.path as path
 import json
 
 
-def compile_json_files(directory: str, add_webdata: bool = False, add_pdfdata: bool = True):
+def compile_json_files(directory: str, add_webdata: bool = True, add_pdfdata: bool = True):
     """
     Combines JSONs from PDF scraper and/or web scraper
 
     Args:
-        directory (str): Data folder containing medicines:
+        directory (str): Data folder containing the categories of medicines:
         add_webdata (bool): Whether to add web data json files
         add_pdfdata (bool): Whether to add pdf data json files
     """
-    subdirectories = [subdirectory for subdirectory in listdir(directory) if
-                      path.isdir(path.join(directory, subdirectory))]
+    meds_dir = f"{directory}/active_withdrawn"
+
+    subdirectories = [subdirectory for subdirectory in listdir(meds_dir) if
+                      path.isdir(path.join(meds_dir, subdirectory))]
 
     medicine_json_list = []
 
     for subdirectory in subdirectories:
-        get_medicine_json(path.join(directory, subdirectory), medicine_json_list, add_webdata, add_pdfdata)
+        get_medicine_json(path.join(meds_dir, subdirectory), medicine_json_list, add_webdata, add_pdfdata)
 
     # print(medicine_json_list)
     scraping_dir = directory.split('data')[0].strip('/').strip('test_') + "/scraping"

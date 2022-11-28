@@ -40,36 +40,27 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
     # Get parent thrice to find the tag that the PDFs are located in.
     # Parent of the found object is considered <span>
 
-    complete_soup = soup.find(string="Initial marketing-authorisation documents")
+    complete_soup_init = soup.find(string="Initial marketing-authorisation documents")
+    complete_soup_hist = soup.find(string="Changes since initial authorisation of medicine")
 
-    if complete_soup is None:
-        log.warning(f"{medicine_name}: No initial marketing-authorisation documents")
-        # Code relies on the attributes being present in the dictionary.
-        # Fill with empty string for later code.
-        return {
-            "epar_url": "",
-            "omar_url": "",
-            "odwar_url": "",
-            "other_ema_urls": []
-        }
-
-    specific_soup = complete_soup.parent.parent.parent
-
-    link_tags = specific_soup.find_all('a')
-
-    # Transform HTML elements into the urls from the href attribute
-    url_list: list[str] = list(map(lambda a: a["href"], link_tags))
+    # Get url_list for initial and history section, print given message when no URLs are found
+    url_list_init = create_url_list(complete_soup_init, medicine_name, "No initial marketing-authorisation documents")
+    url_list_hist = create_url_list(complete_soup_hist, medicine_name, "No documents in assessment history")
 
     # Files named 'public-assessment-report' will be the highest priority in the search.
     epar_priority_list: list[str] = [
         "public-assessment-report",
-        "scientific-discussion",
-        "procedural-steps-taken-authorisation"
+        "procedural-steps-taken-authorisation",
+        "epar",
+        "procedural-steps",
+        "scientific-discussion"
     ]
 
     omar_priority_list: list[str] = [
         "orphan-maintenance-assessment-report",
-        "orphan-medicine-assessment-report"
+        "orphan-medicine-assessment-report",
+        "orphan-medicine",
+        "orphan-designation-assessment-report"
     ]
 
     odwar_priority_list: list[str] = [
@@ -78,20 +69,96 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
 
     # Final dict that will be returned.
     # Filled with values here, last attribute "other_ema_urls" filled after
-    result_dict: dict[str, str | list[str]] = {
-        "epar_url": find_priority_link(epar_priority_list, url_list),
-        "omar_url": find_priority_link(omar_priority_list, url_list),
-        "odwar_url": find_priority_link(odwar_priority_list, url_list)
+    result_dict: dict[str, str | list[tuple]] = {
+        "odwar_url": find_priority_link(odwar_priority_list, url_list_init),
+        "omar_url": find_priority_link(omar_priority_list, url_list_init),
+        "epar_url": find_priority_link(epar_priority_list, url_list_init)
     }
 
-    # All links that are not saved into the dictionary already
-    result_dict["other_ema_urls"] = [link for link in url_list if link not in result_dict.values()]
+    # All links that are not saved into the dictionary already, as well as the links under assessment history
+    other_ema_urls = url_list_hist + [link for link in url_list_init if link not in result_dict.values()]
+    other_ema_urls_types = []
+    i = 0
+    for url in other_ema_urls:
+        if len(url) < 4:
+            continue
+        ema_url_type = get_url_type(epar_priority_list, odwar_priority_list, omar_priority_list, url)
+        if ema_url_type == "":
+            continue
+        if f"-other_{i}" not in str(other_ema_urls_types):
+            other_ema_urls_types.append((url, f"{ema_url_type}-other_{i}"))
+        i += 1
+
+    result_dict["other_ema_urls"] = other_ema_urls_types
 
     # Gives a warning if it hasn't found an epar or omar document
     if result_dict["epar_url"] == "":
-        log.warning(f"{medicine_name}: No EPAR. Potential URLs are: {url_list}")
+        if url_list_init:
+            log.warning(f"{medicine_name}: No EPAR. Potential URLs are: {url_list_init}")
+        else:
+            log.warning(f"{medicine_name}: No EPAR.")
 
     return result_dict
+
+
+def get_url_type(epar_priority_list: list[str], odwar_priority_list: list[str], omar_priority_list: list[str],
+                 url: str) -> str:
+    """
+    Gets the file type of a given URL
+
+    Args:
+        epar_priority_list (list[str]): list of strings that could be in a EPAR url
+        odwar_priority_list (list[str]): list of strings that could be in a ODWAR url
+        omar_priority_list (list[str]): list of strings that could be in a OMAR url
+        url (str): url used to determine file type
+
+    Returns:
+        str: type of the url
+    """
+    for type_str in epar_priority_list:
+        if type_str in url:
+            return "epar"
+    for type_str in omar_priority_list:
+        if type_str in url:
+            return "omar"
+    for type_str in odwar_priority_list:
+        if type_str in url:
+            return "odwar"
+    # File types in languages other than english are currently skipped
+    if "smop" in url:
+        return ""
+    if "questions-answers" in url:
+        return ""
+    # Other EMA file types that are useful to download
+    for type_str in ["chmp", "scientific-conclusion", "variation-report", "referral", "assessment-report"]:
+        if type_str in url:
+            return type_str
+    log.error(f"No type found for url {url}, please add this type in the code above this error.")
+    return ""
+
+
+def create_url_list(complete_soup: bs4.BeautifulSoup, medicine_name: str, message: str) -> list[str]:
+    """
+    Creates a list of urls of medicines in a specific section
+    
+    Args:
+        complete_soup (bs4.BeautifulSoup): Section of HTML site
+        medicine_name (str): Name of medicine, obtained from URL
+        message (str): Message to be printed when no URLs are found
+
+    Returns:
+        list[str]: url_list of the urls found in the website section
+    """
+    if complete_soup is None:
+        log.warning(f"{medicine_name}: {message}")
+        # Code relies on the attributes being present in the dictionary.
+        # Fill with empty string for later code.
+        return []
+    specific_soup = complete_soup.parent.parent.parent
+    link_tags = specific_soup.find_all('a')
+    # Transform HTML elements into the urls from the href attribute
+    url_list: list[str] = list(map(lambda a: a["href"], link_tags))
+    return url_list
 
 
 def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:
