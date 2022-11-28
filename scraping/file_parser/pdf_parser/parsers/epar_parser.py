@@ -84,7 +84,8 @@ def get_date(xml: ET.Element) -> str:
 
     for elem in xml.iter():
         txt = elem.text
-
+        if not txt:
+            continue
         if count >= 0:
             count += 1
         if steps_taken_assessment_str in txt:
@@ -124,7 +125,8 @@ def get_opinion_date(xml: ET.Element) -> str:
     date = ""
     for elem in xml.iter():
         txt = elem.text
-
+        if not txt:
+            continue
         if steps_taken_assessment_str in txt:
             right_section = True
         if right_section and "rapporteur" in txt:
@@ -163,7 +165,8 @@ def get_legal_basis(xml: ET.Element) -> list[str]:
 
     for elem in xml.iter():
         txt = elem.text
-
+        if not txt:
+            continue
         if "submission of the dossier" in txt:
             right_section = True
         if legal_basis_str in txt:
@@ -256,7 +259,9 @@ def get_rapp(xml: ET.Element) -> str:
     found = False
     rapporteur = ""
     for elem in xml.iter():
-        txt = str(elem.text)
+        txt = elem.text
+        if not txt:
+            continue
         # Find rapporteur between "rapporteur:" and "co-rapporteur"
         if find_rapp_between_rapp_and_corapp(txt) is not None:
             return find_rapp_between_rapp_and_corapp(txt)
