@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 from rest_framework import serializers
-from api.serializers.medicine_serializers.common import RelatedMixin
+from api.serializers.medicine_serializers.public.common import RelatedMixin
 from api.models.medicine_models import AcceleratedAssessment, Duration, MarketingAuthorisation
 
 

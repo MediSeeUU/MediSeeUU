@@ -7,14 +7,11 @@ from .history import (
     PrimeSerializer,
     EUOrphanConSerializer
 )
-
-
 from .marketing_authorisation import (
     MarketingAuthorisationSerializer,
     AcceleratedAssessmentSerializer,
     DurationSerializer,
 )
-
 from .medicinal_product import (
     PublicMedicinalProductSerializer,
     LegalBasesSerializer,

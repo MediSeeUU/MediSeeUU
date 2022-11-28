@@ -9,7 +9,7 @@ has to access all different tables and merge all this data in a one dimensional 
 """
 
 from rest_framework import serializers
-from api.serializers.medicine_serializers.common import (
+from api.serializers.medicine_serializers.public.common import (
     RelatedMixin,
     ListMixin,
     HistoryMixin,

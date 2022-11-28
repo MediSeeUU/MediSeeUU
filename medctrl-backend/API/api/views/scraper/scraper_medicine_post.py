@@ -24,6 +24,7 @@ from api.models.medicine_models import (
     LegalBases,
 )
 from api.models.other.medicine_locks import MedicineLocks
+from api.models.other.orphan_locks import OrphanLocks
 from api.serializers.medicine_serializers.scraper import (
     MedicinalProductSerializer,
     MedicineFlexVarUpdateSerializer,
@@ -88,29 +89,31 @@ class ScraperMedicine(APIView):
                 # atomic transaction so if there is any error all changes are rolled back
                 # Django will automatically roll back if any exception occurs
                 with transaction.atomic():
+                    override = medicine.get("override")
+
                     if medicine.get("orphan"):
                         pass
                     else:
-                        # check if medicine already exists based on eu_pnumber
-                        current_medicine = MedicinalProduct.objects.filter(
-                            eu_pnumber=medicine.get("eu_pnumber")
-                        ).first()
-                        # if the medicine doesn't exist or the medicine should be overriden, call add_medicine,
-                        # otherwise update the flexible variables and the null values
-                        override = medicine.get("override")
+                        if eu_pnumber := medicine.get("eu_pnumber"):
+                            # check if medicine already exists based on eu_pnumber
+                            current_medicine = MedicinalProduct.objects.filter(
+                                eu_pnumber=eu_pnumber
+                            ).first()
+                            # if the medicine doesn't exist or the medicine should be overriden, call add_medicine,
+                            # otherwise update the flexible variables and the null values
 
-                        # if variable is locked, delete it from the data
-                        locks = MedicineLocks.objects.filter(
-                            eu_pnumber=medicine.get("eu_pnumber")
-                        ).values_list("column_name", flat=True)
-                        medicine = {key: value for key, value in medicine.items() if key not in locks}
-                        if current_medicine is None or override:
-                            self.add_or_override_medicine(medicine, current_medicine)
-                        else:
-                            self.update_flex_medicine(medicine, current_medicine)
-                            self.update_null_values_medicine(medicine, current_medicine)
-                        self.medicine_history_variables(medicine)
-                        self.medicine_list_variables(medicine)
+                            # if variable is locked, delete it from the data
+                            locks = MedicineLocks.objects.filter(
+                                eu_pnumber=eu_pnumber
+                            ).values_list("column_name", flat=True)
+                            medicine = {key: value for key, value in medicine.items() if key not in locks}
+                            if current_medicine is None or override:
+                                self.add_or_override_medicine(medicine, current_medicine)
+                            else:
+                                self.update_flex_medicine(medicine, current_medicine)
+                                self.update_null_values_medicine(medicine, current_medicine)
+                            self.medicine_history_variables(medicine)
+                            self.medicine_list_variables(medicine)
             except Exception as e:
                 medicine["errors"] = str(e)
                 failed_medicines.append(medicine)
