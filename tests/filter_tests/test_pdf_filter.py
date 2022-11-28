@@ -1,17 +1,15 @@
-from unittest import TestCase
-import pytest
 import os
-from scraping.filter import filter
-import fitz
-import sys
-from distutils.dir_util import copy_tree
 import shutil
+from distutils.dir_util import copy_tree
+from unittest import TestCase
 
-test_data_loc = "../test_data_filter"
-test_data_filter_loc = "../test_data_filter_temp"
+from scraping.filter import filter
+
+test_data_loc = "../test_data_filter/active_withdrawn"
+test_data_filter_loc = "../test_data_filter/active_withdrawn_temp"
 if "filter_tests" in os.getcwd():
-    test_data_loc = "../../test_data_filter"
-    test_data_filter_loc = "../../test_data_filter_temp"
+    test_data_loc = "../../test_data_filter/active_withdrawn"
+    test_data_filter_loc = "../../test_data_filter/active_withdrawn_temp"
 
 
 def get_removed_files() -> set[str]:

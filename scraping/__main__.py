@@ -12,15 +12,6 @@ import db_communicator.__main__ as db_communicator
 import log_setup
 
 
-scrape_ec: bool = True            # Whether EC URLs should be scraped
-scrape_ema: bool = True           # Whether EMA URLs should be scraped | Requires scrape_ec to have been run once
-download_files: bool = True       # Whether scraper should download PDFs from obtained links
-download_refused_files = True     # Whether scraper should download refused PDFs from obtained links
-run_filter: bool = True           # Whether filter should be run after downloading PDF files
-download_annex10_files = True     # Whether scraper should download annex10 files from obtained links
-use_parallelization: bool = True  # Whether downloading should be parallel (faster)
-
-
 def main():
     """
     Runs the entire scraping process on the specified directory every week
@@ -38,6 +29,14 @@ def run_all():
     Runs all modules of MediSee
     For now only the web_scraper and pdf_parser will be run.
     """
+    scrape_ec: bool = False            # Whether EC URLs should be scraped
+    scrape_ema: bool = False           # Whether EMA URLs should be scraped | Requires scrape_ec to have been run once
+    download_files: bool = True       # Whether scraper should download PDFs from obtained links
+    download_refused_files = True     # Whether scraper should download refused PDFs from obtained links
+    run_filter: bool = False           # Whether filter should be run after downloading PDF files
+    download_annex10_files = True     # Whether scraper should download annex10 files from obtained links
+    use_parallelization: bool = True  # Whether downloading should be parallel (faster)
+
     # Creates the data directory if it does not exist
     data_folder_directory = create_data_folders()
 
@@ -60,18 +59,15 @@ def create_data_folders() -> str:
 
     """
     data_folder_directory = '../data'
-    if not path.isdir(data_folder_directory):
-        os.mkdir(data_folder_directory)
+    data_folder_active_withdrawn = f"{data_folder_directory}/active_withdrawn"
+    data_folder_refused_directory = f"{data_folder_directory}/refused"
+    data_folder_annex10_directory = f"{data_folder_directory}/annex_10"
+    folders = [data_folder_directory, data_folder_active_withdrawn, data_folder_refused_directory,
+               data_folder_annex10_directory]
 
-    # Creates the refused subdirectory if it does not exist
-    data_folder_refused_directory = data_folder_directory + "/refused"
-    if not path.isdir(data_folder_refused_directory):
-        os.mkdir(data_folder_refused_directory)
-
-    # Creates the Annex 10 subdirectory if it does not exist
-    data_folder_annex10_directory = data_folder_directory + "/annex_10"
-    if not path.isdir(data_folder_annex10_directory):
-        os.mkdir(data_folder_annex10_directory)
+    for folder in folders:
+        if not path.isdir(folder):
+            os.mkdir(folder)
 
     return data_folder_directory
 
