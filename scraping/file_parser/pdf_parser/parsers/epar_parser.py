@@ -27,7 +27,7 @@ def get_all(filename: str, xml_data: ET.Element) -> dict:
     Returns:
         dict: Dictionary of all scraped attributes, named according to the bible
     """
-    epar = {values.filename: filename[:len(filename) - 4],  # removes extension
+    epar = {attr.filename: filename[:len(filename) - 4],  # removes extension
             attr.ema_procedure_start_initial: get_date(xml_data),
             attr.chmp_opinion_date: get_opinion_date(xml_data),
             attr.eu_legal_basis: get_legal_basis(xml_data),

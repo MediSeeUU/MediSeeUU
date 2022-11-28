@@ -52,7 +52,7 @@ def get_default_dict(filename: str) -> dict:
 
     # keys for human use
     if '_h_' in filename:
-        dic = dict.fromkeys([values.filename,
+        dic = dict.fromkeys([attr.filename,
                              attr.eu_aut_date,
                              attr.eu_brand_name_initial,
                              attr.active_substance,
@@ -65,7 +65,7 @@ def get_default_dict(filename: str) -> dict:
 
     # keys for orphan
     elif '_o_' in filename:
-        dic = dict.fromkeys([values.filename,
+        dic = dict.fromkeys([attr.filename,
                              attr.eu_aut_date,
                              attr.eu_brand_name_initial,
                              attr.eu_od_initial,
@@ -76,7 +76,7 @@ def get_default_dict(filename: str) -> dict:
     # invalid name, only returns name and failure
     else:
         dic = {}
-    dic[values.filename] = filename
+    dic[attr.filename] = filename
     return dic
 
 
@@ -247,16 +247,16 @@ def dec_get_decision_type(txt: str, date: datetime.datetime) -> str:
     """
     # check if there can be a CMA.
     if date < datetime.datetime(2006, 1, 1):
-        return values.authorization_type_NA
+        return values.NA_before
 
     exceptional = re.search(r"article\s+14\W8", txt.lower())  # exceptional: Article 14(8) or alt. (e.g. Article 14.8)
     # conditional
     if "507/2006" in txt or "conditional marketing authorisation" in txt.lower():
-        return values.authorization_type_conditional
+        return values.aut_type_conditional
 
     # exceptional
     elif "exceptional circumstances" in txt.lower() or exceptional is not None:
-        return values.authorization_type_exceptional
+        return values.aut_type_exceptional
     else:
         return values.not_found
 

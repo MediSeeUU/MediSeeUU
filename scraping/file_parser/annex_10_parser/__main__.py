@@ -27,8 +27,8 @@ def get_all(filename: str, excel_file: pd.DataFrame, data_dir: str) -> dict:
     Returns:
         dict: Dictionary of all scraped attributes, named according to the bible
     """
-    annex10 = {values.filename: filename[:len(filename.split('.')[0])],  # removes extension
-               "active_clock_elapseds": get_active_clock_elapsed(excel_file, data_dir)}
+    annex10 = {attr.filename: filename[:len(filename.split('.')[0])],  # removes extension
+               attr.active_clock_elapseds: get_active_clock_elapsed(excel_file, data_dir)}
     return annex10
 
 

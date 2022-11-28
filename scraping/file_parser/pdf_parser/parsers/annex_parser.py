@@ -45,16 +45,16 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     modification_date = xml_utils.file_get_modification_date(xml_header)
 
     # create annex attribute dictionary with default values
-    annex_attributes: dict[str, str] = {values.pdf_file: xml_utils.file_get_name_pdf(xml_header),
-                                        values.xml_file: os.path.basename(filepath),
-                                        values.is_initial: is_initial_file,
-                                        values.creation_date: creation_date,
-                                        values.modification_date: modification_date}
+    annex_attributes: dict[str, str] = {attr.pdf_file: xml_utils.file_get_name_pdf(xml_header),
+                                        attr.xml_file: os.path.basename(filepath),
+                                        attr.is_initial: is_initial_file,
+                                        attr.creation_date: creation_date,
+                                        attr.modification_date: modification_date}
 
     # add default attribute values for initial authorization annexes
     if is_initial_file:
-        annex_attributes[attr.initial_type_of_eu_authorization] = values.authorization_type_standard
-        annex_attributes[attr.eu_med_type] = values.eu_med_type_molecule
+        annex_attributes[attr.eu_aut_type_initial] = values.aut_type_standard
+        annex_attributes[attr.eu_med_type] = values.eu_med_type_small_molecule
 
     # loop through sections and parse section if conditions met
     for section in xml_body:
@@ -63,12 +63,12 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
             # initial type of eu authorization
             # override default value of "standard" if "specific obligation" is present anywhere in text
             if xml_utils.section_contains_substring("specific obligation", section) and \
-                    annex_attributes[attr.initial_type_of_eu_authorization] != values.authorization_type_conditional:
-                annex_attributes[attr.initial_type_of_eu_authorization] = values.authorization_type_unknown
+                    annex_attributes[attr.eu_aut_type_initial] != values.aut_type_conditional:
+                annex_attributes[attr.eu_aut_type_initial] = values.authorization_type_unknown
 
             # definitely conditional if "conditional approval" anywhere in text
             if xml_utils.section_contains_substring("conditional approval", section):
-                annex_attributes[attr.initial_type_of_eu_authorization] = values.authorization_type_conditional
+                annex_attributes[attr.eu_aut_type_initial] = values.aut_type_conditional
 
             # EU type of medicine
             # override default value of "small molecule" if traceability header is present
