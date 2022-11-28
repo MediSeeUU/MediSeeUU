@@ -17,7 +17,7 @@ class ParsedInfoStruct:
     eu_number: str = field(default_factory=str)
     parse_date: datetime.datetime = datetime.datetime.now()
 
-    attr.decision: list[typing.Dict[str, str]] = field(default_factory=list)
-    attr.annex: list[typing.Dict[str, str]] = field(default_factory=list)
-    attr.epar: list[typing.Dict[str, str]] = field(default_factory=list)
-    attr.omar: list[typing.Dict[str, str]] = field(default_factory=list)
+    decisions: list[typing.Dict[str, str]] = field(default_factory=list)
+    annexes: list[typing.Dict[str, str]] = field(default_factory=list)
+    epars: list[typing.Dict[str, str]] = field(default_factory=list)
+    omars: list[typing.Dict[str, str]] = field(default_factory=list)

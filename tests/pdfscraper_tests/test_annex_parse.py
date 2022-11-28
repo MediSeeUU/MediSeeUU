@@ -6,6 +6,8 @@ from xml.etree.ElementInclude import include
 import regex as re
 import json
 import scraping.file_parser.pdf_parser.__main__ as pdf_parser
+import scraping.definitions.attributes as attr
+import scraping.definitions.value as values
 
 test_data_folder_path = "pdfscraper_tests/test_annex_parse_data"
 if "pdfscraper_tests" in os.getcwd():
@@ -45,26 +47,24 @@ class TestAnnexParse(TestCase):
 
         for file_attributes in self.annex_attributes:
             # setup file check
-            pdf_file = file_attributes["pdf_file"]
-            contains_attribute = "initial_type_of_eu_authorization" in file_attributes.keys()
+            pdf_file = file_attributes[attr.pdf_file]
+            contains_attribute = attr.eu_aut_type_initial in file_attributes.keys()
             authorization_type = ""
             if contains_attribute:
-                authorization_type = file_attributes["initial_type_of_eu_authorization"]
+                authorization_type = file_attributes[attr.eu_aut_type_initial]
 
             incorrect_file = False
             incorrect_value = False
 
             # test whether attributes are in the right files
-            incorrect_file |= not (file_attributes["is_initial"] == contains_attribute)
+            incorrect_file |= not (file_attributes[attr.is_initial] == contains_attribute)
 
             # test for attribute values
-            if file_attributes["is_initial"]:
-                incorrect_value |= "specific obligation" in pdf_file and authorization_type != "exceptional or " \
-                                                                                               "conditional"
-                incorrect_value |= "specific obligations" in pdf_file and authorization_type != "exceptional or " \
-                                                                                                "conditional"
-                incorrect_value |= "conditional approval" in pdf_file and authorization_type != "conditional"
-                incorrect_value |= "standard approval" in pdf_file and authorization_type != "standard"
+            if file_attributes[attr.is_initial]:
+                incorrect_value |= "specific obligation" in pdf_file and authorization_type != values.authorization_type_unknown
+                incorrect_value |= "specific obligations" in pdf_file and authorization_type != values.authorization_type_unknown
+                incorrect_value |= "conditional approval" in pdf_file and authorization_type != values.aut_type_conditional
+                incorrect_value |= "standard approval" in pdf_file and authorization_type != values.aut_type_standard
 
             # print errors
             if incorrect_file:
@@ -91,22 +91,22 @@ class TestAnnexParse(TestCase):
 
         for file_attributes in self.annex_attributes:
             # setup file check
-            pdf_file = file_attributes["pdf_file"]
-            contains_attribute = "eu_type_of_medicine" in file_attributes.keys()
+            pdf_file = file_attributes[attr.pdf_file]
+            contains_attribute = attr.eu_med_type in file_attributes.keys()
             medicine_type = ""
             if contains_attribute:
-                medicine_type = file_attributes["eu_type_of_medicine"]
+                medicine_type = file_attributes[attr.eu_med_type]
 
             incorrect_file = False
             incorrect_value = False
 
             # test whether attributes are in the right files
-            incorrect_file |= not (file_attributes["is_initial"] == contains_attribute)
+            incorrect_file |= not (file_attributes[attr.is_initial] == contains_attribute)
 
             # test for attribute values
-            if file_attributes["is_initial"]:
-                incorrect_value |= "small molecule" in pdf_file and medicine_type != "small molecule"
-                incorrect_value |= "biologicals header" in pdf_file and medicine_type not in ["biologicals", "ATMP"]
+            if file_attributes[attr.is_initial]:
+                incorrect_value |= values.eu_med_type_small_molecule in pdf_file and medicine_type != values.eu_med_type_small_molecule
+                incorrect_value |= "biologicals header" in pdf_file and medicine_type not in [values.eu_med_type_biologicals, values.eu_med_type_atmp]
 
             # print errors
             if incorrect_file:

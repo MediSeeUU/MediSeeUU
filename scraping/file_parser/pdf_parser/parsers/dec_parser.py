@@ -55,12 +55,14 @@ def get_default_dict(filename: str) -> dict:
         dic = dict.fromkeys([attr.filename,
                              attr.eu_aut_date,
                              attr.eu_brand_name_initial,
+                             attr.eu_brand_name_current,
                              attr.active_substance,
                              attr.eu_nas,
                              attr.eu_atmp,
                              attr.eu_od_initial,
                              attr.eu_mah_initial,
-                             attr.eu_aut_type_initial],
+                             attr.eu_aut_type_initial,
+                             attr.eu_aut_type_current],
                             default)
 
     # keys for orphan
@@ -68,8 +70,10 @@ def get_default_dict(filename: str) -> dict:
         dic = dict.fromkeys([attr.filename,
                              attr.eu_aut_date,
                              attr.eu_brand_name_initial,
+                             attr.eu_brand_name_current,
                              attr.eu_od_initial,
                              attr.eu_mah_initial,
+                             attr.eu_mah_current,
                              attr.eu_od_comp_date],
                             default)
 
@@ -103,16 +107,23 @@ def get_data(filename: str, txt: str) -> dict:
         filedata[attr.active_substance] = dec_get_as(txt)
         filedata[attr.eu_nas] = dec_get_nas(txt, date)
         filedata[attr.eu_atmp] = dec_get_atmp(txt, date)
-        filedata[attr.eu_od_initial] = dec_get_od(txt, date)
-        filedata[attr.eu_mah_initial] = dec_get_mah(txt)
-        filedata[attr.eu_aut_type_initial] = dec_get_decision_type(txt, date)
+        if '_0' in filename:
+            filedata[attr.eu_od_initial] = dec_get_od(txt, date)
+            filedata[attr.eu_mah_initial] = dec_get_mah(txt)
+            filedata[attr.eu_aut_type_initial] = dec_get_decision_type(txt, date)
+        else:
+            filedata[attr.eu_mah_current] = dec_get_mah(txt)
+            filedata[attr.eu_aut_type_current] = dec_get_decision_type(txt, date)
         return filedata
 
     elif '_o_' in filename:
         filedata[attr.eu_brand_name_initial] = dec_get_bn(txt, True)
-        filedata[attr.eu_od_initial] = dec_get_od(txt, date)
-        filedata[attr.eu_mah_initial] = dec_get_mah(txt)
         filedata[attr.eu_od_comp_date] = dec_get_od_comp_date(txt)
+        if '_0' in filename:
+            filedata[attr.eu_od_initial] = dec_get_od(txt, date)
+            filedata[attr.eu_mah_initial] = dec_get_mah(txt)
+        else:
+            filedata[attr.eu_mah_current] = dec_get_mah(txt)
         return filedata
 
     else:

@@ -6,6 +6,7 @@ import scraping.file_parser.pdf_parser.helper as helper
 
 from scraping.file_parser.pdf_parser.parsers import epar_parser
 import xml.etree.ElementTree as ET
+import scraping.definitions.value as values
 
 
 test_data_loc = "../test_data"
@@ -54,13 +55,13 @@ class TestEparParse(TestCase):
         # Call get_date
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_date(xml_body)
-            if output != "no_date_found" and output != "not_easily_scrapable":
+            if output != values.not_found and output != values.not_scrapeable:
                 found_count += 1
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
                 month = re.search(r"/\d{2}/", output)[0][1:3].strip()
                 year = re.search(r"\d{4}", output)[0].strip()
                 self.check_date(day, month, year)
-            elif output == "not_easily_scrapable":
+            elif output == values.not_scrapeable:
                 print("Found but not scrapable: " + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
@@ -76,13 +77,13 @@ class TestEparParse(TestCase):
             output = epar_parser.get_opinion_date(xml_body)
             if not output:
                 self.fail(f"No output found for {filename}")
-            if output != "no_chmp_found" and output != "not_easily_scrapable":
+            if output != values.not_found and output != values.not_scrapeable:
                 found_count += 1
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
                 month = re.search(r"/\d{2}/", output)[0][1:3].strip()
                 year = re.search(r"\d{4}", output)[0].strip()
                 self.check_date(day, month, year)
-            elif output == "not_easily_scrapable":
+            elif output == values.not_scrapeable:
                 print("Found but not scrapable: " + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
@@ -96,7 +97,7 @@ class TestEparParse(TestCase):
             month (str): month to check from scraped date
             year (str): year to check from scraped date
         """
-        self.assertGreater(int(year), 1980)
+        self.assertGreater(int(year), 1985)
         # Make sure to check this in the future :D
         self.assertGreater(3000, int(year))
         self.assertGreater(int(month), 0)
@@ -112,7 +113,7 @@ class TestEparParse(TestCase):
         # Call get_legal_basis
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_legal_basis(xml_body)
-            if output != ["no_legal_basis"] and output != ["not_easily_scrapable"]:
+            if output != [values.not_found] and output != [values.not_scrapeable]:
                 found_count += 1
                 self.assertGreater(len(output), 0)
                 for article in output:
@@ -126,7 +127,7 @@ class TestEparParse(TestCase):
                     # The article should be in the list of legal bases
                     if article not in helper.legal_bases:
                         print(f"Legal basis {article} not in list for file {filename}")
-            elif output == ["not_easily_scrapable"]:
+            elif output == [values.not_scrapeable]:
                 print("Found but not scrapable: " + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
@@ -141,9 +142,9 @@ class TestEparParse(TestCase):
         # Call get_prime
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_prime(xml_body)
-            if output == "yes":
+            if output == values.yes_str:
                 yes_exists = True
-            if output == "NA":
+            if output == values.no_str:
                 na_exists = True
             self.assertIn(output, 'yesnoNA')
         # TODO: Add medicine to test_data containing prime = "yes
@@ -161,9 +162,9 @@ class TestEparParse(TestCase):
             if not output:
                 self.fail("Rapporteur is empty")
             # No rapporteur present in file, do not count as not scraped
-            elif output == "no_rapporteur":
+            elif output == values.not_found:
                 found_count += 1
-            elif output != "no_rapporteur" and output != "not_easily_scrapable":
+            elif output != values.not_found and output != values.not_scrapeable:
                 found_count += 1
                 # Check if rapporteur name is of reasonable length
                 self.assertGreater(len(output), 2)
@@ -172,7 +173,7 @@ class TestEparParse(TestCase):
                 # Check if rapporteur is of correct format
                 rapp_format = re.search(r'[\w\s]+', output)
                 self.assertTrue(rapp_format)
-            elif output == "not_easily_scrapable":
+            elif output == values.not_scrapeable:
                 print("Found but not scrapable: " + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
@@ -189,9 +190,9 @@ class TestEparParse(TestCase):
             if not output:
                 self.fail("Co-rapporteur is empty")
             # No rapporteur present in file, do not count as not scraped
-            elif output == "no_co-rapporteur":
+            elif output == values.not_found:
                 found_count += 1
-            elif output != "not_easily_scrapable":
+            elif output != values.not_scrapeable:
                 found_count += 1
                 # Check if co-rapporteur name is of reasonable length
                 self.assertGreater(len(output), 2)
@@ -200,7 +201,7 @@ class TestEparParse(TestCase):
                 # Check if rapporteur is of correct format
                 rapp_format = re.search(r'[\w\s]+', output)
                 self.assertTrue(rapp_format)
-            elif output == "not_easily_scrapable":
+            elif output == values.not_scrapeable:
                 print("Found but not scrapable: " + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
@@ -215,7 +216,7 @@ class TestEparParse(TestCase):
         # Call get_reexamination
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_reexamination(xml_body)
-            if output == "yes":
+            if output == values.yes_str:
                 yes_exists = True
             if not output:
                 self.fail("No output found")
@@ -231,7 +232,7 @@ class TestEparParse(TestCase):
         # Call get_accelerated_assessment
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_accelerated_assessment(xml_body)
-            if output == "yes":
+            if output == values.yes_str:
                 yes_exists = True
             if not output:
                 self.fail("No output found")

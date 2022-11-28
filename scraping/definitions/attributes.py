@@ -24,7 +24,7 @@ modification_date = "modification_date"
 
 # struct class
 class ScraperAttribute:
-    def __init__(self, name: str, sources: list[str], combine_function: function = acf.combine_best_source, json_function: function = acf.json_static):
+    def __init__(self, name: str, sources: list[str], combine_function, json_function):
         self.name = name
         self.sources = sources
         self.combine_function = combine_function
@@ -32,7 +32,7 @@ class ScraperAttribute:
 
 
 # add new ScraperAttribute to all_attributes and return name of ScraperAttribute
-def AttributeFactory(all_attributes: set[ScraperAttribute], name: str, sources: list[str], combine_function, json_function):
+def AttributeFactory(all_attributes: set[ScraperAttribute], name: str, sources: list[str], combine_function = acf.combine_best_source, json_function = acf.json_static):
     attr = ScraperAttribute(name, sources, combine_function, json_function)
     all_attributes.add(attr)
     return name
@@ -110,7 +110,6 @@ clock_stop_elapsed = AttributeFactory(all_attributes, "clock_stop_elapsed", [])
 
 ema_prevalence = "ema_prevalence"
 ema_alternative_treatments = "ema_alternative_treatments"
-ema_significant_benefit = "ema_significant_benefit"
 ema_insufficient_roi = "ema_insufficient_roi" #TODO: check
 active_clock_elapseds = "active_clock_elapseds"
 
