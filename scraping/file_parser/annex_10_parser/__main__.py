@@ -157,7 +157,7 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
             continue
         chmp_opinion_date = medicine[attr.epar][0][attr.chmp_opinion_date]
         if chmp_opinion_date == values.not_found:
-            log.warning("Annex_10_parser: no_chmp_found")
+            log.warning(f"Annex_10_parser: no chmp opinion date found in EPAR for {eu_num}")
             continue
         chmp_opinion_date = datetime.strptime(chmp_opinion_date, '%d/%m/%Y')
         # Check if the chmp_opinion_date and opinion_date are within 4 days of each other

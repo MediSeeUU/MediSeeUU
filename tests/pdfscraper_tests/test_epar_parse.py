@@ -1,19 +1,19 @@
-from unittest import TestCase
-import regex as re
-import sys
 import os
-import scraping.file_parser.pdf_parser.helper as helper
-
-from scraping.file_parser.pdf_parser.parsers import epar_parser
 import xml.etree.ElementTree as ET
+from unittest import TestCase
+
+import regex as re
+
+import scraping.file_parser.pdf_parser.helper as helper
+from scraping.file_parser.pdf_parser.parsers import epar_parser
 import scraping.definitions.value as values
 
-
-test_data_loc = "../test_data"
+test_data_loc = "../test_data/active_withdrawn"
 if "pdfscraper_tests" in os.getcwd():
-    test_data_loc = "../../test_data"
+    test_data_loc = "../../test_data/active_withdrawn"
 xml_bodies = []
 percentage_str = "Percentage found: "
+found_not_scrapeable_string = "Found but not scrapeable: "
 
 
 # Tests all functions of EPAR parser with all XML files
@@ -34,7 +34,7 @@ class TestEparParse(TestCase):
             for file in os.listdir(os.path.join(test_data_loc, folder)):
                 path = os.path.join(test_data_loc, folder, file)
 
-                if os.path.isfile(path):
+                if os.path.isfile(path) and "-other" not in file:
                     files.append(path)
         xml_files = [file for file in files if ".xml" in file and ("procedural-steps" in file or
                                                                    "public-assessment" in file)]
@@ -62,7 +62,7 @@ class TestEparParse(TestCase):
                 year = re.search(r"\d{4}", output)[0].strip()
                 self.check_date(day, month, year)
             elif output == values.not_scrapeable:
-                print("Found but not scrapable: " + filename)
+                print(found_not_scrapeable_string + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 90)
@@ -84,7 +84,7 @@ class TestEparParse(TestCase):
                 year = re.search(r"\d{4}", output)[0].strip()
                 self.check_date(day, month, year)
             elif output == values.not_scrapeable:
-                print("Found but not scrapable: " + filename)
+                print(found_not_scrapeable_string + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 90)
@@ -111,10 +111,13 @@ class TestEparParse(TestCase):
         """
         found_count = 0
         # Call get_legal_basis
+        available_count = 0
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_legal_basis(xml_body)
             if output != [values.not_found] and output != [values.not_scrapeable]:
                 found_count += 1
+                available_count += 1
+
                 self.assertGreater(len(output), 0)
                 for article in output:
                     # Check if article is of correct format
@@ -128,8 +131,9 @@ class TestEparParse(TestCase):
                     if article not in helper.legal_bases:
                         print(f"Legal basis {article} not in list for file {filename}")
             elif output == [values.not_scrapeable]:
-                print("Found but not scrapable: " + filename)
-        percentage_found = found_count / len(xml_bodies) * 100
+                print(found_not_scrapeable_string + filename)
+                available_count += 1
+        percentage_found = found_count / available_count * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 90)
 
@@ -147,8 +151,7 @@ class TestEparParse(TestCase):
             if output == values.no_str:
                 na_exists = True
             self.assertIn(output, f'{values.yes_str}{values.no_str}{values.NA_before}')
-        # TODO: Add medicine to test_data containing prime = "yes
-        # self.assertTrue(yes_exists)
+        self.assertTrue(yes_exists)
         self.assertTrue(na_exists)
 
     def test_get_rapp(self):
@@ -174,7 +177,7 @@ class TestEparParse(TestCase):
                 rapp_format = re.search(r'[\w\s]+', output)
                 self.assertTrue(rapp_format)
             elif output == values.not_scrapeable:
-                print("Found but not scrapable: " + filename)
+                print(found_not_scrapeable_string + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         self.assertGreater(percentage_found, 90)
@@ -202,7 +205,7 @@ class TestEparParse(TestCase):
                 rapp_format = re.search(r'[\w\s]+', output)
                 self.assertTrue(rapp_format)
             elif output == values.not_scrapeable:
-                print("Found but not scrapable: " + filename)
+                print(found_not_scrapeable_string + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         # There aren't a lot of co-rapporteurs, just to make sure the function keeps working correctly
@@ -221,8 +224,7 @@ class TestEparParse(TestCase):
             if not output:
                 self.fail("No output found")
             self.assertIn(output, f'{values.yes_str}{values.no_str}')
-        # TODO: Add medicine to test_data containing reexamination = "yes"
-        # self.assertTrue(yes_exists)
+        self.assertTrue(yes_exists)
 
     def test_get_accelerated_assessment(self):
         """
