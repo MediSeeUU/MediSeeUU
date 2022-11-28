@@ -1,0 +1,19 @@
+{
+    "atc_code": "L01BA04",
+    "eu_aut_status": "ACTIVE",
+    "eu_brand_name_current": "Alimta",
+    "status_type": "a",
+    "eu_pnumber": "EU/1/04/290",
+    "active_substance": "pemetrexed",
+    "eu_mah_current": "Eli Lilly Nederland B.V.",
+    "orphan_status": "h",
+    "eu_aut_date": "2004-09-20 00:00:00",
+    "eu_aut_type_initial": "pre_2006",
+    "eu_aut_type_current": "standard",
+    "ema_number": "EMEA/H/C/564",
+    "ema_number_id": "564",
+    "eu_referral": "False",
+    "eu_suspension": "False",
+    "ema_number_certainty": "0.9148936170212766",
+    "init_addressed_to_member_states": "False"
+}

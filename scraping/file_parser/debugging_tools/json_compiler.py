@@ -21,7 +21,7 @@ def compile_json_files(directory: str, add_webdata: bool = False, add_pdfdata: b
         get_medicine_json(path.join(directory, subdirectory), medicine_json_list, add_webdata, add_pdfdata)
 
     # print(medicine_json_list)
-    scraping_dir = directory.split('data')[0].strip('/') + "/scraping"
+    scraping_dir = directory.split('data')[0].strip('/').strip('test_') + "/scraping"
     all_json_results = open(path.join(scraping_dir, "all_json_results.json"), "w")
     json.dump(medicine_json_list, all_json_results)
     all_json_results.close()

@@ -1,0 +1,20 @@
+{
+    "atc_code": "not applicable",
+    "eu_aut_status": "ACTIVE",
+    "eu_brand_name_current": "EU/3/22/2681",
+    "status_type": "a",
+    "eu_od_pnumber": "EU/3/22/2681",
+    "active_substance": "Autologous human bone marrow-derived haematopoietic and mesenchymal stem cells depleted of erythrocytes, monocytes and lymphocytes",
+    "eu_od_con": "Treatment of frontotemporal dementia",
+    "sponsor": "Neuroplast B.V.",
+    "orphan_status": "o",
+    "eu_aut_date": "2022-08-10 00:00:00",
+    "eu_aut_type_initial": "standard",
+    "eu_aut_type_current": "standard",
+    "ema_od_number": "EMA/OD/0000090545",
+    "ema_od_number_id": "90545",
+    "eu_referral": "False",
+    "eu_suspension": "False",
+    "ema_number_certainty": "1.0",
+    "init_addressed_to_member_states": "False"
+}

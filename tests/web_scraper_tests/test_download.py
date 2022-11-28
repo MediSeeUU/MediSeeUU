@@ -1,13 +1,14 @@
-import logging
 from os import path, remove
+import os
 from datetime import datetime
 import regex as re
-from unittest import TestCase, mock
-from requests.exceptions import Timeout
+from unittest import TestCase
 from scraping.web_scraper import download, json_helper
 from parameterized import parameterized
 
-data_path = "../../data"
+data_path = "../test_data"
+if "web_scraper_tests" in os.getcwd():
+    data_path = "../../test_data"
 
 
 class TestDownload(TestCase):
@@ -43,7 +44,7 @@ class TestDownload(TestCase):
         """
         Args:
             url: The url that needs to be downloaded
-            eu_n: The eu number of the file that needs to be downlaoded
+            eu_n: The eu number of the file that needs to be downloaded
             filename_elements: The filename elements
         """
         target_path = f"{data_path}/{eu_n}"

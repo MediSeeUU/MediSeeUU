@@ -58,7 +58,7 @@
               <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="README.html">Web Scraper</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="README.html#algemene-functie">Algemene Functie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#general-function">General Function</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="README.html#ec-scraper-py">ec_scraper.py</a></li>
 <li class="toctree-l3"><a class="reference internal" href="README.html#ema-scraper-py">ema_scraper.py</a></li>
 <li class="toctree-l3"><a class="reference internal" href="README.html#download-py">download.py</a></li>
@@ -67,7 +67,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="README.html#input-output">Input &amp; Output</a></li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#overige-belangrijke-punten">Overige belangrijke punten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#other-important-notes">Other important notes</a></li>
 </ul>
 </li>
 </ul>
@@ -79,6 +79,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.__main__">web_scraper.__main__ module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.__main__.check_scrape_page"><code class="docutils literal notranslate"><span class="pre">check_scrape_page()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.__main__.get_excel_ema"><code class="docutils literal notranslate"><span class="pre">get_excel_ema()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.__main__.init_ema_dict"><code class="docutils literal notranslate"><span class="pre">init_ema_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.__main__.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.__main__.save_medicine_urls_and_attributes"><code class="docutils literal notranslate"><span class="pre">save_medicine_urls_and_attributes()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.__main__.set_active_refused_save_parameters"><code class="docutils literal notranslate"><span class="pre">set_active_refused_save_parameters()</span></code></a></li>
@@ -86,6 +87,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.download">web_scraper.download module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_all"><code class="docutils literal notranslate"><span class="pre">download_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_annex10_files"><code class="docutils literal notranslate"><span class="pre">download_annex10_files()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_medicine_files"><code class="docutils literal notranslate"><span class="pre">download_medicine_files()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_pdfs_ec"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ec()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_pdfs_ema"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ema()</span></code></a></li>
@@ -226,8 +228,19 @@ fetched from the html</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.__main__.init_ema_dict">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.__main__.</span></span><span class="sig-name descname"><span class="pre">init_ema_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.__main__.init_ema_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Set default empty values for if website does not exist</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eu_n</strong> (<em>str</em>) – eu_number of medicine</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.__main__.main">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.__main__.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'../data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scrape_ec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scrape_ema</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_refused_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_parallelization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.__main__.main" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.__main__.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'../data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scrape_ec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scrape_ema</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_refused_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_annex10_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_parallelization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.__main__.main" title="Permalink to this definition"></a></dt>
 <dd><p>Main function that controls which scrapers are activated, and if it runs parallel or not.</p>
 <p>Based on some variables declared at the top of the file, it will scrape the EC website, the EMA website
 and/or downloads the scraped links.</p>
@@ -240,6 +253,7 @@ and/or downloads the scraped links.</p>
 <li><p><strong>download_files</strong> (<em>bool</em>) – Whether scraper should download PDFs from obtained links</p></li>
 <li><p><strong>download_refused_files</strong> (<em>bool</em>) – Whether scraper should download refused PDFs from obtained links</p></li>
 <li><p><strong>run_filter</strong> (<em>bool</em>) – Whether filter should be run after downloading PDF files</p></li>
+<li><p><strong>download_annex10_files</strong> (<em>bool</em>) – Whether annex10 files should be downloaded</p></li>
 <li><p><strong>use_parallelization</strong> (<em>bool</em>) – Whether downloading should be parallel (faster)</p></li>
 <li><p><strong>medicine_list</strong> (<em>list</em><em>[</em><em>(</em><em>str</em><em>, </em><em>str</em><em>, </em><em>int</em><em>, </em><em>str</em><em>)</em><em>] </em><em>| </em><em>None</em>) – List of medicine elements</p></li>
 </ul>
@@ -304,6 +318,26 @@ First it reads the CSV files, and then calls download_medicine_files function fo
 <li><p><strong>urls_dict</strong> (<a class="reference internal" href="#web_scraper.json_helper.JsonHelper" title="web_scraper.json_helper.JsonHelper"><em>json_helper.JsonHelper</em></a>) – The dictionary containing the urls of all medicine files</p></li>
 <li><p><strong>parallel_download</strong> (<em>bool</em>) – If this boolean is set to True, the files will be downloaded parallel</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.download.download_annex10_files">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_annex10_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urls_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JsonHelper</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_annex10_files" title="Permalink to this definition"></a></dt>
+<dd><p>Downloads all the Annex 10 files from the EC website</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_filepath</strong> (<em>str</em>) – Path to the data folder</p></li>
+<li><p><strong>urls_dict</strong> – The dictionary containing the URLs of the Annex 10 files.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>This function returns nothing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
 </dd>
 </dl>
 </dd></dl>

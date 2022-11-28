@@ -59,7 +59,7 @@
               <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Web Scraper</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#algemene-functie">Algemene Functie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-function">General Function</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ec-scraper-py">ec_scraper.py</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ema-scraper-py">ema_scraper.py</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#download-py">download.py</a></li>
@@ -68,7 +68,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#input-output">Input &amp; Output</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#overige-belangrijke-punten">Overige belangrijke punten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-important-notes">Other important notes</a></li>
 </ul>
 </li>
 </ul>
@@ -80,6 +80,7 @@
 <li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.__main__">web_scraper.__main__ module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.__main__.check_scrape_page"><code class="docutils literal notranslate"><span class="pre">check_scrape_page()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.__main__.get_excel_ema"><code class="docutils literal notranslate"><span class="pre">get_excel_ema()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.__main__.init_ema_dict"><code class="docutils literal notranslate"><span class="pre">init_ema_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.__main__.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.__main__.save_medicine_urls_and_attributes"><code class="docutils literal notranslate"><span class="pre">save_medicine_urls_and_attributes()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.__main__.set_active_refused_save_parameters"><code class="docutils literal notranslate"><span class="pre">set_active_refused_save_parameters()</span></code></a></li>
@@ -87,6 +88,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="web_scraper.html#module-web_scraper.download">web_scraper.download module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_all"><code class="docutils literal notranslate"><span class="pre">download_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_annex10_files"><code class="docutils literal notranslate"><span class="pre">download_annex10_files()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_medicine_files"><code class="docutils literal notranslate"><span class="pre">download_medicine_files()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_pdfs_ec"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ec()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="web_scraper.html#web_scraper.download.download_pdfs_ema"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ema()</span></code></a></li>
@@ -186,38 +188,38 @@
              
   <section id="web-scraper">
 <h1>Web Scraper<a class="headerlink" href="#web-scraper" title="Permalink to this heading"></a></h1>
-<section id="algemene-functie">
-<h2>Algemene Functie<a class="headerlink" href="#algemene-functie" title="Permalink to this heading"></a></h2>
-<p>De webscraper zorgt ervoor dat alle relevante informatie over het beoordelingsproces van medicijnen van het internet wordt gehaald. De scraper haalt (op dit moment) informatie van twee verschillende bronnen: de website van de Europese Commissie (EC) en het European Medicine Agency (EMA). Op de website van de EC is er voor ieder medicijn een unieke pagina die informatie bevat over dat medicijn, aangevuld met bestanden (pdf’s) die extra informatie bevatten over beoordelingsprocedures. Daarnaast wordt er ook doorgelinkt naar de EMA website die ook een aparte pagina heeft voor dat medicijn, eveneens met extra informatie en bestanden.<br />
-Er zijn 5 belangrijke python bestanden die ervoor zorgen dat de informatie van deze websites wordt gehaald; ec_scraper.py, ema_scraper.py, download.py, filter_retry.py en <strong>main</strong>.py.</p>
+<section id="general-function">
+<h2>General Function<a class="headerlink" href="#general-function" title="Permalink to this heading"></a></h2>
+<p>The web scraper ensures that all relevant information about the medicine assessment process is retrieved from the internet. The scraper (currently) obtains information from two different sources: the website of the European Commission (EC) and the European Medicine Agency (EMA). The EC website has a unique page for each medicine that contains information about that medicine, supplemented with files (PDFs) that contain additional information about assessment procedures. In addition, there is also a link to the EMA website, which also has a separate page for that medicine, also with extra information and files.
+There are 5 major python files that ensure that the information is extracted from these websites; ec_scraper.py, ema_scraper.py, download.py, filter_retry.py, and <strong>main</strong>.py.</p>
 <section id="ec-scraper-py">
 <h3>ec_scraper.py<a class="headerlink" href="#ec-scraper-py" title="Permalink to this heading"></a></h3>
-<p>Het script voor de EC website heeft twee verschillende functionaliteiten. Ten eerste haalt het een lijst op van medicijnen die moet worden gescraped. Voor ieder van deze medicijnen wordt een mapje aangemaakt waar de nodige informatie van het medicijn tijdelijk wordt opgeslagen. Daarnaast zorgt de EC scraper er daadwerkelijk ook voor dat alle nodige informatie van de EC website wordt gehaald. Deze informatie bestaat uit een aantal datapunten voor een medicijn (attributen), links naar extra procedure bestanden (decisions en annexes) en links naar de website van de EMA. De attributen van een medicijn worden in de eerder genoemde map, in een JSON opgeslagen. De links naar decision documenten en annex documenten  voor alle medicijnen worden in één enkele JSON opgeslagen. Dit bestand bevat ook links naar de EMA en wordt later aangevuld door de EMA scraper.</p>
+<p>The script for the EC website has two different functionalities. First, it fetches a list of medicines to scrape. For each of these medicines, a folder is created where the necessary information about the medicine is temporarily stored. In addition, the EC scraper actually ensures that all necessary information is retrieved from the EC website. This information consists of a number of data points for a medicine (attributes), links to additional procedure files (decisions and annexes) and links to the EMA website. The attributes of a medicine are stored in the aforementioned folder, in a JSON. The links to decision documents and annex documents for all medicines are stored in a single JSON (urls.json). This file also contains links to the EMA and the EMA scraper will add to this file too.</p>
 </section>
 <section id="ema-scraper-py">
 <h3>ema_scraper.py<a class="headerlink" href="#ema-scraper-py" title="Permalink to this heading"></a></h3>
-<p>ema_scraper.py heeft een soortgelijke functie als de scraper voor de Europese Commissie. Het haalt voor ieder medicijn een aantal attributen op van de website zelf, en het slaat alle linkjes naar bestanden, zodat deze lijst later kan worden gedownload. De attributen worden in de JSON bijgevoegd, evenals de linkjes naar EPAR en OMAR bestanden. Van de EMA website moet ook een lijst van Annex 10 bestanden worden gedownload. Hier is een begin aan gemaakt, maar is nog niet af.</p>
+<p>ema_scraper.py has a similar function as the scraper for the European Commission. It retrieves a number of attributes for each drug from the website itself, and it stores all links to files so that this list can be downloaded later. The attributes are included in the JSON per medicine, as are the links to EPAR and OMAR files in the urls JSON if they exist. A list of Annex 10 files must also be downloaded from the EMA website. A start has been made on this, but is not yet finished.</p>
 </section>
 <section id="download-py">
 <h3>download.py<a class="headerlink" href="#download-py" title="Permalink to this heading"></a></h3>
-<p>Het downloadscript zorgt ervoor dat de JSON met linkjes naar bestanden (die zijn gescraped door ec_scraper.py en ema_scraper.py) ook daadwerkelijk worden opgeslagen. Het download ieder decision, annex, EPAR of OMAR bestand naar de juiste medicijnmap. Ieder bestand dat niet kon worden gedownload wordt gelogd.</p>
+<p>The download script ensures that files in the JSON with links to files (scraped by ec_scraper.py and ema_scraper.py) are actually saved. It downloads any decision, annex, EPAR or OMAR file to the appropriate medicine folder. Any file that could not be downloaded is logged in a text file: failed.txt</p>
 </section>
 <section id="filter-retry-py">
 <h3>filter_retry.py<a class="headerlink" href="#filter-retry-py" title="Permalink to this heading"></a></h3>
-<p>Gebaseerd op het .txt bestand dat de filtermodule aan de webscraper geeft, wordt voor de bestanden die in eerste instantie niet gedownload konden worden en nieuwe poging gedaan om ze te downloaden.</p>
+<p>Based on the .txt file that the filter module provides to the web scraper, the files that could not be downloaded initially will get scraped and downloaded again. On default, the filter module runs three times.</p>
 </section>
 <section id="main-py">
 <h3><strong>main</strong>.py<a class="headerlink" href="#main-py" title="Permalink to this heading"></a></h3>
-<p>Dit script is wat de volledige webscraper aanstuurt. Het kan bepaalde delen van de webscraper aan en uit zetten, zodat het niet altijd in zijn volledigheid loopt. Als alles wel aan staat, zal eerst de lijst met te scrapen medicijnen van de EC website worden gehaald. Vervolgens wordt alle benodigde informatie voor ieder van deze medicijnen van de EC website gehaald. Dit bevat dus ook linkjes naar de EMA website. Met deze linkjes kan vervolgens de EMA website worden gescraped. Als laatste worden alle linkjes naar bestanden op de EC en EMA website gedownload.</p>
+<p>This script is what controls the entire web scraper. It can turn certain parts of the web scraper on and off so that it doesn’t always run in its entirety. If everything is activated, the list of medicines to be scraped will first be scraped from the EC website. Subsequently, all necessary information for each of these medicines is retrieved from the EC website. This also contains links to the EMA website. The EMA website can then be scraped with these links. Finally, all links to files on the EC and EMA website are downloaded and after this the filter and download retry is called three times.</p>
 </section>
 </section>
 <section id="input-output">
 <h2>Input &amp; Output<a class="headerlink" href="#input-output" title="Permalink to this heading"></a></h2>
-<p>Deze module start, wanneer deze voor het eerst wordt aangeroepen, zonder input. Het haalt alle benodigde informatie van de EC website af, en kan daarmee zelfstandig aan de slag. Voor ieder medicijn wordt een apart mapje gemaakt waar alle informatie omtrent dat medicijn wordt opgeslagen. Alle attributen die rechtstreeks van de EC en EMA websites af worden gehaald worden in een JSON bestand gezet. Ook worden alle procedure bestanden voor een medicijn in diezelfde map opgeslagen wanneer ze worden gedownload. De bestanden die in de mapjes staan worden door de filter module onder handen genomen. Het kan namelijk zijn dat het bestand dat is gedownload corrupt, een html pagina, of een plaatje is. De filter maakt een lijst met alle bestanden die niet goed zijn en koppelt dit terug aan de websraper, zodat deze bestanden opnieuw gedownload kunnen worden.
-De goede pdf-bestanden die in de mapjes staan worden onder handen genomen door de pdf scraper, die op zijn beurt ook weer attributen voor medicijnen ophaalt. De JSON met attributen die direct van de website zijn gehaald, de JSON met attributen uit de pdf scraper en JSON’s van externe bronnen worden aan de combiner gegeven, zodat inconsistente informatie correct kan worden opgeslagen in de database.</p>
+<p>This module, when first called, starts with no input. It retrieves all necessary information from the EC website, and can use it independently. A separate folder is created for each medicine where all information about that medicine is stored. All attributes that are taken directly from the EC and EMA websites are put in a JSON file. Also, all procedure files for a medicine are stored in that same folder when they are downloaded. The files in the folders are handled by the filter module. It is possible that the file that has been downloaded is corrupt, a html page, or an image. The filter lists all files that are not good and feeds it back to the web scraper so that these files can be downloaded again.
+The good PDF files that are in the folders are handled by the PDF scraper, which in turn also retrieves attributes for medicines. The JSON with attributes taken directly from the website, the JSON with attributes from the pdf scraper, and JSONs from external sources are provided to the combiner so that inconsistent information can be properly stored in the database.</p>
 </section>
-<section id="overige-belangrijke-punten">
-<h2>Overige belangrijke punten<a class="headerlink" href="#overige-belangrijke-punten" title="Permalink to this heading"></a></h2>
+<section id="other-important-notes">
+<h2>Other important notes<a class="headerlink" href="#other-important-notes" title="Permalink to this heading"></a></h2>
 <p>This program has been developed by students from the bachelor Computer Science at Utrecht University within the Software Project course.</p>
 <p>© Copyright Utrecht University (Department of Information and Computing Sciences)</p>
 </section>

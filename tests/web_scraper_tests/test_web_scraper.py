@@ -5,11 +5,32 @@ import json
 from pathlib import Path
 from unittest import TestCase
 from scraping.web_scraper import __main__ as web
+import scraping.log_setup as log_setup
 from parameterized import parameterized
 
-data_path = "../../data"
+data_path = "../test_data"
+if "web_scraper_tests" in os.getcwd():
+    data_path = "../../test_data"
+
 if not path.isdir(data_path):
     os.mkdir(data_path)
+
+json_path = "web_scraper_tests/"
+if "web_scraper_tests" in os.getcwd():
+    json_path = ""
+
+parent_path = "/".join((data_path.split("/")[:-1])) + "/"
+
+
+def check_new_eu_numbers(self):
+    """
+    Check whether EU numbers in eu_number.json are equal to the eu_numbers of the medicines being downloaded.
+    This should be the case, as all medicines are new, since they are downloaded for the first time in each test run.
+    """
+    with open(f"{data_path}/eu_numbers.json") as f:
+        eu_numbers = set(json.load(f))
+
+    self.assertEqual(self.eu_numbers, eu_numbers)
 
 
 class TestWebScraper(TestCase):
@@ -23,23 +44,21 @@ class TestWebScraper(TestCase):
         """
         Set up the class to make sure the integration test can run without changing existing data.
         """
+        log_setup.init_loggers(f"{parent_path}/scraping")
         if not os.path.exists(f"{data_path}_old"):
             os.rename(data_path, f"{data_path}_old")
-        os.mkdir(data_path)
-        Path("JSON").mkdir(parents=True, exist_ok=True)
+        if not path.isdir(data_path):
+            os.mkdir(data_path)
+        Path(f"{json_path}JSON").mkdir(parents=True, exist_ok=True)
 
-    @parameterized.expand([[True, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
-                                    'EU-1-04-273', 0, 'h273')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
-                                     'EU-1-04-273', 0, 'h273')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/h283.htm',
-                                    'EU-1-04-283', 1, 'h283')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/o005.htm',
-                                    'EU-3-00-005', 2, 'o005')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/o101.htm',
-                                    'EU-3-02-101', 3, 'o101')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/h131.htm',
-                                    'EU-1-00-131', 1, 'h131')]]])
+    medicine_list_checks = \
+        [('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
+         ('https://ec.europa.eu/health/documents/community-register/html/h283.htm', 'EU-1-04-283', 1, 'h283'),
+         ('https://ec.europa.eu/health/documents/community-register/html/o005.htm', 'EU-3-00-005', 2, 'o005'),
+         ('https://ec.europa.eu/health/documents/community-register/html/o101.htm', 'EU-3-02-101', 3, 'o101'),
+         ('https://ec.europa.eu/health/documents/community-register/html/h1587.htm', 'EU-1-21-1587', 0, 'h1587')]
+
+    @parameterized.expand([[True, medicine_list_checks], [False, medicine_list_checks]])
     def test_run_web_check_all(self, parallel, medicine_codes):
         """
         Runs webscraper and checks output in between different scripts
@@ -49,36 +68,17 @@ class TestWebScraper(TestCase):
         """
         shutil.rmtree(data_path)
         os.mkdir(data_path)
-        shutil.rmtree('JSON')
 
         self.parallel = parallel
         self.medicine_list = medicine_codes
         self.eu_n = self.medicine_list[0][1]
+        self.eu_numbers = set([x[1] for x in self.medicine_list_checks])
         self.run_ec_scraper()
         self.run_ema_scraper()
         self.run_download()
         self.run_filter()
 
-    @parameterized.expand([[True, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
-                                    'EU-1-04-273', 0, 'h273')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h273.htm',
-                                     'EU-1-04-273', 0, 'h273')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/h283.htm',
-                                    'EU-1-04-283', 1, 'h283')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h283.htm',
-                                     'EU-1-04-283', 1, 'h283')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/o005.htm',
-                                    'EU-3-00-005', 2, 'o005')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/o005.htm',
-                                     'EU-3-00-005', 2, 'o005')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/o101.htm',
-                                    'EU-3-02-101', 3, 'o101')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/o101.htm',
-                                     'EU-3-02-101', 3, 'o101')]],
-                           [True, [('https://ec.europa.eu/health/documents/community-register/html/h131.htm',
-                                    'EU-1-00-131', 1, 'h131')]],
-                           [False, [('https://ec.europa.eu/health/documents/community-register/html/h131.htm',
-                                     'EU-1-00-131', 1, 'h131')]]])
+    @parameterized.expand([[True, medicine_list_checks], [False, medicine_list_checks]])
     def test_run_web_no_checks(self, parallel, medicine_list):
         """
         Runs webscraper and passes if no errors occur.
@@ -88,7 +88,6 @@ class TestWebScraper(TestCase):
         """
         shutil.rmtree(data_path)
         os.mkdir(data_path)
-        shutil.rmtree("JSON")
 
         self.parallel = parallel
         self.medicine_list = medicine_list
@@ -111,7 +110,7 @@ class TestWebScraper(TestCase):
         # check if webdata is empty
         assert path.getsize(f"{data_folder}/{self.eu_n}_webdata.json") > 2, f"webdata.json is empty for {self.eu_n}"
         # check if urls.json is empty
-        assert path.getsize(f"JSON/urls.json") > 2, f"urls.json is empty"
+        assert path.getsize(f"{json_path}JSON/urls.json") > 2, f"urls.json is empty"
 
     def run_ema_scraper(self):
         """
@@ -119,10 +118,10 @@ class TestWebScraper(TestCase):
         """
         web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=True, download_files=False, run_filter=False,
                  use_parallelization=self.parallel, medicine_list=self.medicine_list)
-        with open(f"JSON/urls.json") as f:
+        with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
         assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url', 'odwar_url', 'other_ema_urls']), \
-               "ema urls not in urls.json"
+            "ema urls not in urls.json"
 
     def run_download(self):
         """
@@ -135,8 +134,11 @@ class TestWebScraper(TestCase):
         data_folder = f"{data_path}/{self.eu_n}"
         assert path.exists(f"{data_folder}/{self.eu_n}_filedates.json")
 
+        # check if eu_numbers in eu_numbers.json equals all medicines, as all medicines should be new.
+        check_new_eu_numbers(self)
+
         # check if all files from urls.json are downloaded:
-        with open(f"JSON/urls.json") as f:
+        with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
         filecount = len(url_dict["aut_url"]) + len(url_dict["smpc_url"])
 

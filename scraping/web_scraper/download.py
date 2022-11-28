@@ -43,15 +43,17 @@ def save_new_eu_numbers(data_path: str):
         data_path (str): The path to the data folder
     """
     # Get all logging lines as list after latest "NEW LOG"
-    parent_path = data_path.split("data")[0]
-    with open(f'{parent_path}scraping/logging_web_scraper.log', 'r') as log_file:
-        full_log = log_file.read().split("=== NEW LOG ")[-1].split("\n")
-    # Only get "New medicine: " lines
-    filtered = filter(lambda line: "New medicine: " in line, full_log)
-    # Get and write new EU numbers
-    eu_numbers = list(map(lambda line: line.split(" ")[2], list(filtered)))
-    with open(f'{data_path}/eu_numbers.json', 'w') as outfile:
-        json.dump(eu_numbers, outfile)
+    parent_path = "/".join((data_path.split("/")[:-1])) + "/"
+    if os.path.exists(f'{parent_path}scraping/logging_web_scraper.log'):
+        with open(f'{parent_path}scraping/logging_web_scraper.log', 'r') as log_file:
+            full_log = log_file.read().split("=== NEW LOG ")[-1].split("\n")
+        # Only get "New medicine: " lines
+        filtered = filter(lambda line: "New medicine: " in line, full_log)
+
+        # Get and write new EU numbers
+        eu_numbers = list(map(lambda line: line.split(" ")[2], list(filtered)))
+        with open(f'{data_path}/eu_numbers.json', 'w') as outfile:
+            json.dump(eu_numbers, outfile)
 
 
 @utils.exception_retry(logging_instance=log)
@@ -220,6 +222,36 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
         json.dump(filedate_dict, f, indent=4, default=str)
 
     log.info(f"Finished download for {medicine_identifier}")
+
+
+def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper):
+    """
+    Downloads all the Annex 10 files from the EC website
+
+    Args:
+        data_filepath (str): Path to the data folder
+        urls_dict: The dictionary containing the URLs of the Annex 10 files.
+
+    Returns:
+        None: This function returns nothing.
+
+    """
+    target_path = data_filepath + "/annex_10"
+
+    for year, url_dict in tqdm.tqdm(urls_dict.local_dict.items()):
+        url: str = url_dict["annex10_url"]
+        downloaded_file = requests.get(url)
+
+        # TODO: Refactor this function and download_pdfs_from_url, so that code is not duplicated.
+        if downloaded_file.status_code != 200:
+            with open(f"failed.txt", "a") as f:
+                f.write(f"annex10_{year}@{url}@{downloaded_file.status_code}\n")
+                return
+
+        Path(f"{target_path}").mkdir(exist_ok=True)
+        with open(f"{target_path}/annex10_{year}.xlsx", "wb") as file:
+            file.write(downloaded_file.content)
+            log.debug(f"DOWNLOADED Annex 10 for {year}")
 
 
 def download_all(data_filepath: str, urls_dict: json_helper.JsonHelper, parallel_download: bool):
