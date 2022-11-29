@@ -1,4 +1,4 @@
-import scraping.file_parser.xml_converter.__main__ as xml_converter
+import scraping.xml_converter.__main__ as xml_converter
 import xml.etree.ElementTree as ET
 import scraping.utilities.xml.xml_parsing_utils as xml_utils
 import scraping.pdf_parser.parsed_info_struct as pis

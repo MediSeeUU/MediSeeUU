@@ -1,7 +1,7 @@
 import re
 import pandas as pd
 import logging
-import scraping.file_parser.pdf_parser.parsed_info_struct as pis
+import scraping.pdf_parser.parsed_info_struct as pis
 import os
 from os import path
 import json
