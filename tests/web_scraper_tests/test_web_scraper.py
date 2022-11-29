@@ -56,15 +56,21 @@ class TestWebScraper(TestCase):
         """
         Set up the class to make sure the integration test can run without changing existing data.
         """
+        if os.path.exists(f"{parent_path}/tests/logs/log_files"):
+            shutil.rmtree(f"{parent_path}/tests/logs/log_files")
+        if os.path.exists(f"{parent_path}/tests/logs/txt_files"):
+            shutil.rmtree(f"{parent_path}/tests/logs/txt_files")
+
         log_setup.init_loggers(f"{parent_path}/tests/logs/log_files")
+
         if not os.path.exists(f"{data_path}_old"):
             os.rename(data_path, f"{data_path}_old")
         if not path.isdir(data_path):
             os.mkdir(data_path)
         if not path.isdir(data_path_local):
             os.mkdir(data_path_local)
-        if not path.isdir(f"{parent_path}/tests/logs/txt_files"):
-            os.mkdir(f"{parent_path}/tests/logs/txt_files")
+        os.mkdir(f"{parent_path}/tests/logs/txt_files")
+
         Path(f"{json_path}JSON").mkdir(parents=True, exist_ok=True)
 
     def setUp(self):
@@ -73,10 +79,6 @@ class TestWebScraper(TestCase):
         """
         shutil.rmtree(data_path_local)
         os.mkdir(data_path_local)
-        shutil.rmtree(f"{parent_path}/tests/logs/txt_files")
-        os.mkdir(f"{parent_path}/tests/logs/txt_files")
-        shutil.rmtree(f"{parent_path}/tests/logs/log_files")
-        os.mkdir(f"{parent_path}/tests/logs/log_files")
 
     medicine_list_checks = \
         [('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
@@ -196,9 +198,3 @@ class TestWebScraper(TestCase):
         """
         shutil.rmtree(data_path)
         os.rename(f"{data_path}_old", data_path)
-        shutil.rmtree(f"{parent_path}/tests/logs/txt_files")
-        os.mkdir(f"{parent_path}/tests/logs/txt_files")
-        shutil.rmtree(f"{parent_path}/tests/logs/log_files")
-        os.mkdir(f"{parent_path}/tests/logs/log_files")
-        if os.path.exists('no_english_available.txt'):
-            os.remove('no_english_available.txt')

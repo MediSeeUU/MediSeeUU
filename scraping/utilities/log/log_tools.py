@@ -1,4 +1,5 @@
 import logging
+import os
 
 
 def init_loggers(logging_path: str = "../logs/log_files") -> None:
@@ -10,7 +11,7 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     Args:
         logging_path (str): Path in which the log files will be saved.
     """
-    if not path.isdir(logging_path):
+    if not os.path.isdir(logging_path):
         os.mkdir(logging_path)
     web_name: str = "web_scraper"
     pdf_name: str = "pdf_parser"

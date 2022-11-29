@@ -22,7 +22,8 @@ class ScraperAttribute:
         self.combine = combine
 
 
-def attribute_factory(all_attributes: dict[str, ScraperAttribute], name: str, sources: list[str], combine=False) -> str:
+def attribute_factory(all_attributes: dict[str, ScraperAttribute], name: str, sources: list[str],
+                      combine: bool = False) -> str:
     """
     add new ScraperAttribute to all_attributes and return name of ScraperAttribute
     Args:
