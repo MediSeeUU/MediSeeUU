@@ -158,7 +158,6 @@ def create_outputfile_dec(filename: str, res: dict):
         filename (str): Name of the PDF file
         res (dict): dictionary containing all attributes of the PDF file
     """
-    write = False
     if '_h_' in filename:
         res_to_file("../logs/txt_files/human_initial_dec.txt", res, filename)
     elif '_o_' in filename:

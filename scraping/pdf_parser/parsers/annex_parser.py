@@ -76,12 +76,12 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
             if xml_utils.section_contains_substring("therapeutic indication", section):
                 annex_attributes["therapeutic_indications"] = xml_utils.section_append_paragraphs(section)
 
-        # TODO: to add attributes, initial EU conditions and current EU conditions, 50 and 51 in bible
+        #  TODO: to add attributes, initial EU conditions and current EU conditions, 50 and 51 in bible
 
     medicine_struct.annexes.append(annex_attributes)
 
-    #TODO: remove this
-    filename = xml_utils.file_get_name_pdf(xml_header)
-    if '_0' in filename:
-        pdf_helper.res_to_file("../logs/txt_files/annex_results.txt", annex_attributes, filename)
+    #  TODO: remove this, used for debugging. Uncomment for usage
+    # filename = xml_utils.file_get_name_pdf(xml_header)
+    # if '_0' in filename:
+    #     pdf_helper.res_to_file("../logs/txt_files/annex_results.txt", annex_attributes, filename)
     return medicine_struct

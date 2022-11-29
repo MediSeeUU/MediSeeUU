@@ -31,8 +31,9 @@ def parse_file(filename: str, directory: str, medicine_struct: PIS.ParsedInfoStr
         return medicine_struct
     res = get_data(filename, txt)
     medicine_struct.decisions.append(res)
-    if '_0' in filename:
-        pdf_helper.create_outputfile_dec(filename, res)
+    #  TODO: remove this, used for debugging. Uncomment for usage
+    # if '_0' in filename:
+    #     pdf_helper.create_outputfile_dec(filename, res)
     return medicine_struct
 
 
