@@ -24,12 +24,11 @@ from .history_prime import HistoryPrime
 from .history_eu_orphan_con import HistoryEUOrphanCon
 from .legal_bases import LegalBases
 
-# place all models here
-models = [
+# place all medicine models here
+medicine_models = [
     MedicinalProduct,
     MarketingAuthorisation,
     Procedures,
-    OrphanProduct,
     AcceleratedAssessment,
     IngredientsAndSubstances,
     Duration,
@@ -39,6 +38,12 @@ models = [
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
-    HistoryEUOrphanCon,
     LegalBases,
 ]
+
+orphan_models = [
+    OrphanProduct,
+    HistoryEUOrphanCon,
+]
+
+models = medicine_models + orphan_models
