@@ -1,9 +1,10 @@
 from unittest import TestCase
-from scraping.file_parser.annex_10_parser import __main__ as annex_10_parser
-import scraping.definitions.attributes as attr
+from scraping.annex_10_parser import __main__ as annex_10_parser
 import json
 import os
 import pandas as pd
+import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.definitions.value as values
 
 data_loc = "../test_data"
 if "annex_10_tests" in os.getcwd():
@@ -73,8 +74,7 @@ class TestAnnex10Parser(TestCase):
                 # Load Excel file
                 excel_data = pd.read_excel(filepath)
             except FileNotFoundError:
-                log.warning("ANNEX 10 PARSER: File not found - " + filepath)
-                return annex10s
+                print("ANNEX 10 PARSER: File not found - " + filepath)
             # Clean the data
             excel_data = clean_df(excel_data)
             excel_data = excel_data[~excel_data["Active Time Elapsed"].isnull()]

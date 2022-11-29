@@ -1,6 +1,7 @@
-#import definitions.value as values
-#import definitions.attributes as attr
+# import definitions.value as values
+# import definitions.attributes as attr
 from difflib import SequenceMatcher as SM
+
 
 def check_all_equal(values: list[any]) -> bool:
     """
@@ -48,8 +49,9 @@ def combine_best_source(attribute_name: str, sources: list[str], file_dicts: dic
 
 
 # For combine functions
-#TODO: fix datum
-def combine_select_string_overlap(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]], min_matching_fraction: float = 0.8) -> bool:
+# TODO: fix datum
+def combine_select_string_overlap(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]],
+                                  min_matching_fraction: float = 0.8) -> bool:
     """
     compares two strings to see if a percentage of the shortest string is identical to the longest string
     Args:
@@ -67,7 +69,6 @@ def combine_select_string_overlap(attribute_name: str, sources: list[str], file_
         except Exception:
             print("COMBINER: can't find value for ", attribute_name, " in ", source)
             # print("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
-
 
     overlap = SM.find_longest_match(strings[0], strings[1])
 
@@ -96,7 +97,7 @@ def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dic
 
     if eu_med_type == values.eu_med_type_biologicals and eu_atmp:
         return (values.eu_med_type_atmp, eu_med_type_date)
-    
+
     return (eu_med_type, eu_med_type_date)
 
 
@@ -116,4 +117,3 @@ def get_file_date(source_dict: dict[str, any], file_dicts: dict[str, dict[str, a
     file_name = source_dict[attr.pdf_file]
     file_dates = file_dicts[attr.file_dates]
     return file_dates[file_name][attr.file_date]
-

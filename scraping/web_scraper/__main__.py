@@ -9,7 +9,9 @@ import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 
-from scraping.web_scraper import download, ec_scraper, ema_scraper, utils, json_helper, filter_retry
+from scraping.web_scraper import download, ec_scraper, ema_scraper, json_helper, filter_retry
+import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.web import web_utils as utils
 import scraping.config_objects as config_objects
 
 # list of the type of medicines that will be scraped
@@ -104,7 +106,7 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
     # dec_ anx_ and ema_list are lists of URLs to PDF files
     # Attributes_dict is a dictionary containing the attributes scraped from the EC page
     dec_list_indexed, anx_list_indexed, ema_list, attributes_dict = \
-        ec_scraper.scrape_medicine_page(eu_n, html_active, medicine_type)
+        ec_scraper.scrape_medicine_page(eu_n, html_active, medicine_type, data_path)
 
     # Sort decisions and annexes list
     dec_list_indexed.sort(key=lambda x: int(x[1]))
@@ -269,7 +271,9 @@ def main(config: config_objects.WebConfig):
         log.info("TASK FINISHED annex10 scrape")
 
     if config.run_scrape_ec:
-        with open("no_english_available.txt", 'w', encoding="utf-8"):
+        log_path = log_tools.get_log_path("no_english_available.txt", config_objects.default_path_data)
+        print(log_path)  # TODO: Why print??
+        with open(log_path, 'w', encoding="utf-8"):
             pass  # open/clean no_english_available file
         # make sure tests start with empty dict, because url_file is global variable only way to do this is here.
         if "test" in os.getcwd():
@@ -379,7 +383,7 @@ def init_ema_dict(eu_n: str, file: json_helper.JsonHelper):
 # Keep the code locally testable by including this.
 # When running this file specifically, the main function will run.
 if __name__ == "__main__":
-    import scraping.log_setup
-    scraping.log_setup.init_loggers()
+    import scraping.utilities.log.log_tools
+    scraping.utilities.log.log_setup.init_loggers()
 
     main(config_objects.WebConfig().run_custom(scrape_ec=True, scrape_ema=True).set_to_parallel())

@@ -12,7 +12,8 @@ import os
 import json
 
 from scraping.web_scraper import json_helper
-from scraping.web_scraper import utils
+from scraping.utilities.web import web_utils as utils
+import scraping.utilities.log.log_tools as log_tools
 
 log = logging.getLogger("web_scraper.download")
 
@@ -49,10 +50,11 @@ def save_new_eu_numbers(data_path: str):
         data_path (str): The path to the data folder
     """
     # Get all logging lines as list after latest "NEW LOG"
-    parent_path = "/".join((data_path.split("/")[:-1])) + "/"
-    if os.path.exists(f"{parent_path}scraping/logging_web_scraper.log"):
-        with open(f"{parent_path}scraping/logging_web_scraper.log", 'r') as log_file:
+    log_path = log_tools.get_log_path("logging_web_scraper.log", data_path)
+    if os.path.exists(log_path):
+        with open(log_path, 'r') as log_file:
             full_log = log_file.read().split("=== NEW LOG ")[-1].split("\n")
+
         # Only get "New medicine: " lines
         filtered = filter(lambda line: "New medicine: " in line, full_log)
 
@@ -67,6 +69,7 @@ def save_new_eu_numbers(data_path: str):
             eu_numbers_path = f"{eu_numbers_base_path}_{i}.json"
             i += 1
             file_exists = os.path.exists(eu_numbers_path)
+
         with open(eu_numbers_path, 'w') as outfile:
             json.dump(eu_numbers, outfile)
 
@@ -100,7 +103,9 @@ def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements:
     log.info(f"New medicine: {medicine_identifier}")
     downloaded_file = requests.get(url)
     if downloaded_file.status_code != 200:
-        with open(f"failed.txt", "a") as f:
+        data_path = target_path.split("active_withdrawn")[0]
+        log_path = log_tools.get_log_path("failed.txt", data_path)
+        with open(log_path, "a") as f:
             f.write(f"{filename}@{url}@{downloaded_file.status_code}\n")
             return
 
@@ -256,7 +261,7 @@ def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper
     Returns:
         None: This function returns nothing.
     """
-    target_path = data_filepath + "/annex_10"
+    target_path = data_filepath + "/json"
 
     for year, url_dict in tqdm.tqdm(urls_dict.local_dict.items()):
         url: str = url_dict["annex10_url"]
@@ -264,7 +269,8 @@ def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper
 
         # TODO: Refactor this function and download_pdfs_from_url, so that code is not duplicated.
         if downloaded_file.status_code != 200:
-            with open(f"failed.txt", "a") as f:
+            log_path = log_tools.get_log_path("failed.txt", data_filepath)
+            with open(log_path, "a") as f:
                 f.write(f"annex10_{year}@{url}@{downloaded_file.status_code}\n")
                 return
 

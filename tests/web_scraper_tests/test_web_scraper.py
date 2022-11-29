@@ -9,8 +9,9 @@ from unittest import TestCase
 from parameterized import parameterized
 
 import scraping.config_objects as config
-import scraping.log_setup as log_setup
 from scraping.web_scraper import __main__ as web
+import scraping.utilities.log.log_tools as log_setup
+from parameterized import parameterized
 
 data_path = "../test_data"
 if "web_scraper_tests" in os.getcwd():
@@ -24,7 +25,8 @@ json_path = "web_scraper_tests/"
 if "web_scraper_tests" in os.getcwd():
     json_path = ""
 
-parent_path = "/".join((data_path.split("/")[:-1])) + "/"
+parent_path = "/".join((data_path.split("/")[:-1]))
+filter_path = f"{parent_path}/tests/logs/txt_files/filter.txt"
 
 
 def check_new_eu_numbers(self):
@@ -41,7 +43,6 @@ def check_new_eu_numbers(self):
         eu_numbers_path = f"{eu_numbers_base_path}_{i}.json"
         i += 1
         file_exists = os.path.exists(f"{eu_numbers_base_path}_{i}.json")
-
     with open(eu_numbers_path) as f:
         eu_numbers = set(json.load(f))
 
@@ -60,16 +61,31 @@ class TestWebScraper(TestCase):
         Set up the class to make sure the integration test can run without changing existing data.
         """
         config.default_path_data = data_path
-        config.default_path_logging = f"{parent_path}/scraping"
+        config.default_path_logging = f"{parent_path}/tests/logs/log_files"
+
+        if os.path.exists(f"{parent_path}/tests/logs/log_files"):
+            shutil.rmtree(f"{parent_path}/tests/logs/log_files")
+        if os.path.exists(f"{parent_path}/tests/logs/txt_files"):
+            shutil.rmtree(f"{parent_path}/tests/logs/txt_files")
 
         log_setup.init_loggers()
+
         if not os.path.exists(f"{data_path}_old"):
             os.rename(data_path, f"{data_path}_old")
         if not path.isdir(data_path):
             os.mkdir(data_path)
         if not path.isdir(data_path_local):
             os.mkdir(data_path_local)
+        os.mkdir(f"{parent_path}/tests/logs/txt_files")
+
         Path(f"{json_path}JSON").mkdir(parents=True, exist_ok=True)
+
+    def setUp(self):
+        """
+        Create required folders for data and logs
+        """
+        shutil.rmtree(data_path_local)
+        os.mkdir(data_path_local)
 
     medicine_list_checks = \
         [('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
@@ -86,9 +102,6 @@ class TestWebScraper(TestCase):
             parallel: if web should run parallel or not
             medicine_codes: The medicine that is tested
         """
-        shutil.rmtree(data_path_local)
-        os.mkdir(data_path_local)
-
         self.parallel = parallel
         self.medicine_list = medicine_codes
         self.eu_n = self.medicine_list[0][1]
@@ -106,9 +119,6 @@ class TestWebScraper(TestCase):
             parallel: if web should run parallel or not
             medicine_list: The medicine that is tested
         """
-        shutil.rmtree(data_path_local)
-        os.mkdir(data_path_local)
-
         self.parallel = parallel
         self.medicine_list = medicine_list
         web.main(config.WebConfig().run_all().supply_medicine_list(self.medicine_list))
@@ -174,7 +184,6 @@ class TestWebScraper(TestCase):
             filecount += 1
 
         assert len(os.listdir(data_folder)) == filecount + 2, "not all files are downloaded"
-
         # check `filedates.json` contents
         with open(f"{data_folder}/{self.eu_n}_filedates.json") as f:
             filedates_dict = json.load(f)
@@ -191,7 +200,7 @@ class TestWebScraper(TestCase):
                                    .supply_medicine_list(self.medicine_list))
 
         # check if filter.txt exists
-        assert path.exists("filter.txt"), "filter.txt does not exist"
+        assert path.exists(filter_path), "filter.txt does not exist"
 
     @classmethod
     def tearDownClass(cls):
@@ -200,7 +209,3 @@ class TestWebScraper(TestCase):
         """
         shutil.rmtree(data_path)
         os.rename(f"{data_path}_old", data_path)
-        if os.path.exists('filter.txt'):
-            os.remove('filter.txt')
-        if os.path.exists('no_english_available.txt'):
-            os.remove('no_english_available.txt')
