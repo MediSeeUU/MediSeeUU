@@ -4,9 +4,11 @@ import fitz
 import datetime
 import scraping.pdf_parser.parsers.dec_parser as dec_parser
 import scraping.utilities.pdf.pdf_helper as pdf_helper
+import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.definitions.value as values
 
 test_data_loc = "../test_data/active_withdrawn"
-if "pdf_parser_tests" in os.getcwd():
+if "pdfscraper_tests" in os.getcwd():
     test_data_loc = "../../test_data/active_withdrawn"
 dec_txt = []
 percentage_str = "Percentage found: "
@@ -15,7 +17,7 @@ percentage_str = "Percentage found: "
 # Tests all functions of EPAR parser with all XML files
 class TestDecParse(TestCase):
     """
-    Class that contains the unit tests for scraping.file_parser.pdf_parser.parsers.dec_parser
+    Class that contains the unit tests for scraping.pdf_parser.pdf_parser.parsers.dec_parser
     """
     @classmethod
     def setUpClass(cls):
@@ -50,14 +52,15 @@ class TestDecParse(TestCase):
         for txt, filename in dec_txt:
             output = dec_parser.dec_get_date(txt)
             self.assertTrue((isinstance(output, str) or isinstance(output, datetime.datetime)))
-            if output == datetime.datetime(1980, 1, 1, 0, 0):
+            if output == values.default_date:
                 not_found_count += 1
                 print(f"{filename} date not found")
-            if isinstance(output, datetime.datetime):
-                self.assertGreater(datetime.datetime(2050, 1, 1, 0, 0), output)
-                self.assertGreater(output, datetime.datetime(1979, 1, 1, 0, 0))
-            if isinstance(output, str):
-                self.assertTrue(output == 'Date is blank')
+            else:
+                if isinstance(output, datetime.datetime):
+                    self.assertGreater(datetime.datetime(2050, 1, 1, 0, 0), output)
+                    self.assertGreater(output, datetime.datetime(1985, 1, 1, 0, 0))
+                if isinstance(output, str):
+                    self.assertTrue(output == values.eu_aut_date_blank)
         percentage_found = (len(dec_txt) - not_found_count) / len(dec_txt) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         print(f"Amount not found: {not_found_count}")
@@ -74,12 +77,12 @@ class TestDecParse(TestCase):
                 orphan_count += 1
                 output = dec_parser.dec_get_od_comp_date(txt)
                 self.assertTrue(isinstance(output, datetime.datetime))
-                if output == datetime.datetime(1980, 1, 1, 0, 0):
+                if output == values.default_date:
                     not_found_count += 1
                     print(f"{filename} date not found")
                 else:
                     self.assertGreater(datetime.datetime(2050, 1, 1, 0, 0), output)
-                    self.assertGreater(output, datetime.datetime(1979, 1, 1, 0, 0))
+                    self.assertGreater(output, datetime.datetime(1985, 1, 1, 0, 0))
         percentage_found = (orphan_count - not_found_count) / orphan_count * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         print(f"Amount not found: {not_found_count}")
