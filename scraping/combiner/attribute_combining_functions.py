@@ -108,15 +108,25 @@ def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dic
 
 
 def json_static(value: any, date: str) -> any:
+    print("json_static")
+    print(value)
     return value
 
 
 def json_history_current(value: any, date: str) -> dict[str, any]:
-    return {"value": value, "date": date}
+    print("history")
+    json_dict = {}
+    json_dict["value"] = value
+    json_dict["date"] = date
+    return json_dict
 
 
 def json_history_initial(value: any, date: str) -> list[dict[str, any]]:
-    return [{"value": value, "date": date}]
+    print("history_initial")
+    json_dict = {}
+    json_dict["value"] = value
+    json_dict["date"] = date
+    return [json_dict]
 
 
 def get_attribute_date(source_dict: str, file_dicts: dict[str, dict[str, any]]) -> str:

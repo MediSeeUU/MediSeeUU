@@ -85,16 +85,21 @@ def combine_folder(filepath: str, folder_name: str):
 
     # TODO: hier een functie van
     for attribute in attr_obj.all_attributes:
-        value = attribute.combine_function(attribute.name, attribute.sources, file_dicts)
-        date = acf.get_attribute_date(attribute.sources[0], file_dicts)
+        value, date = attribute.combine_function(attribute.name, attribute.sources, file_dicts)
+        # date = acf.get_attribute_date(attribute.sources[0], file_dicts)
+        print(attribute.name)
+        print(attribute.combine_function)
+        print(attribute.json_function)
+        print(attribute.json_function(value, date))
         combined_dict[attribute.name] = attribute.json_function(value, date)
+        print(combined_dict[attribute.name])
 
         # if not all_equal:
             # print("found multiple values for " + attribute.name + ": " + value + " in " + str(
             #     sources_to_dicts(attribute.sources, file_dicts)))
 
     combined_json = open(path.join(filepath, folder_name + "_combined.json"), "w")
-    json.dump(combined_dict, combined_json)
+    json.dump(combined_dict, combined_json, default=str)
     combined_json.close()
 
 # TODO: misschien andere except dan filenotfounderror?
