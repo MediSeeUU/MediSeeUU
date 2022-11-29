@@ -5,6 +5,12 @@ import requests
 import scraping.utilities.web.web_utils as utils
 from scraping.web_scraper import ec_scraper as ec
 from parameterized import parameterized
+import os
+
+
+data_path = "../test_data"
+if "test_ec_scraper" in os.getcwd():
+    data_path = "../../test_data"
 
 
 class TestEcScraper(unittest.TestCase):
@@ -149,7 +155,7 @@ class TestEcScraper(unittest.TestCase):
         html_active = ec.get_ec_html(
             f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm")
         _, procedures_json, *_ = ec.get_ec_json_objects(html_active)
-        procedures_dict, *_ = ec.get_data_from_procedures_json(procedures_json, eu_num_short)
+        procedures_dict, *_ = ec.get_data_from_procedures_json(procedures_json, eu_num_short, data_path)
         self.assertEqual(procedures_dict["eu_aut_date"], exp_eu_aut_date, msg="authorization dates are not equal")
         self.assertEqual(procedures_dict["eu_aut_type_initial"], exp_aut_type_initial, msg="not equal")
         # assert procedures_dict["eu_aut_date"] == exp_eu_aut_date
@@ -243,7 +249,7 @@ class TestEcScraper(unittest.TestCase):
         ]
         html_active: requests.Response = utils.get_html_object(url)
         dec_result, anx_result, ema_result, _ = ec.scrape_medicine_page(url, html_active,
-                                                                        ec.MedicineType.HUMAN_USE_ACTIVE)
+                                                                        ec.MedicineType.HUMAN_USE_ACTIVE, data_path)
         dec_result = [x[0] for x in dec_result]
         anx_result = [x[0] for x in anx_result]
 

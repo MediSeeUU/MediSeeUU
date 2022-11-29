@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest import TestCase
 from datetime import date
 from scraping.web_scraper import __main__ as web
-import scraping.utilities.log.log_setup as log_setup
+import scraping.utilities.log.log_tools as log_setup
 from parameterized import parameterized
 
 data_path = "../test_data"
@@ -21,7 +21,8 @@ json_path = "web_scraper_tests/"
 if "web_scraper_tests" in os.getcwd():
     json_path = ""
 
-parent_path = "/".join((data_path.split("/")[:-1])) + "/"
+parent_path = "/".join((data_path.split("/")[:-1]))
+filter_path = f"{parent_path}/tests/logs/txt_files/filter.txt"
 
 
 def check_new_eu_numbers(self):
@@ -55,7 +56,7 @@ class TestWebScraper(TestCase):
         """
         Set up the class to make sure the integration test can run without changing existing data.
         """
-        log_setup.init_loggers(f"{parent_path}/tests/web_scraper_tests")
+        log_setup.init_loggers(f"{parent_path}/tests/logs/log_files")
         if not os.path.exists(f"{data_path}_old"):
             os.rename(data_path, f"{data_path}_old")
         if not path.isdir(data_path):
@@ -165,7 +166,6 @@ class TestWebScraper(TestCase):
             filecount += 1
 
         assert len(os.listdir(data_folder)) == filecount + 2, "not all files are downloaded"
-
         # check `filedates.json` contents
         with open(f"{data_folder}/{self.eu_n}_filedates.json") as f:
             filedates_dict = json.load(f)
@@ -180,7 +180,7 @@ class TestWebScraper(TestCase):
         web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=False, download_files=False, run_filter=True,
                  use_parallelization=self.parallel, medicine_list=self.medicine_list)
         # check if filter.txt exists
-        assert path.exists("filter.txt"), "filter.txt does not exist"
+        assert path.exists(filter_path), "filter.txt does not exist"
 
     @classmethod
     def tearDownClass(cls):
@@ -189,7 +189,7 @@ class TestWebScraper(TestCase):
         """
         shutil.rmtree(data_path)
         os.rename(f"{data_path}_old", data_path)
-        if os.path.exists('filter.txt'):
-            os.remove('filter.txt')
+        if os.path.exists(filter_path):
+            os.remove(filter_path)
         if os.path.exists('no_english_available.txt'):
             os.remove('no_english_available.txt')

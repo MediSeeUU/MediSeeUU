@@ -4,12 +4,14 @@ from distutils.dir_util import copy_tree
 from unittest import TestCase
 
 from scraping.filter import filter
+import scraping.utilities.log.log_tools as log_tools
 
 test_data_loc = "../test_data_filter/active_withdrawn"
 test_data_filter_loc = "../test_data_filter/active_withdrawn_temp"
 if "filter_tests" in os.getcwd():
     test_data_loc = "../../test_data_filter/active_withdrawn"
     test_data_filter_loc = "../../test_data_filter/active_withdrawn_temp"
+test_data_path = test_data_loc.split("active_withdrawn")[0]
 
 
 def get_removed_files() -> set[str]:
@@ -44,7 +46,8 @@ class TestFilter(TestCase):
         Checks whether the length of filter.txt is equal to the number of removed files
         """
         filter.filter_all_pdfs(test_data_filter_loc)
-        with open("../logs/txt_files/filter.txt", 'r', encoding="utf-8") as file:
+        filter_path = log_tools.get_log_path("filter.txt", test_data_path)
+        with open(filter_path, 'r', encoding="utf-8") as file:
             filtered_files = file.read().split("\n")
         filtered_count = len([file for file in filtered_files if len(file) > 1])
         removed_files = get_removed_files()
@@ -56,7 +59,8 @@ class TestFilter(TestCase):
         Checks whether all files in filter.txt have been removed, and all removed files are in filter.txt
         """
         filter.filter_all_pdfs(test_data_filter_loc)
-        with open("../logs/txt_files/filter.txt", 'r', encoding="utf-8") as file:
+        filter_path = log_tools.get_log_path("filter.txt", test_data_path)
+        with open(filter_path, 'r', encoding="utf-8") as file:
             filtered_files = file.read().split("\n")
         filtered_filenames = [file.split('@')[0] for file in filtered_files if file != '']
         removed_files = get_removed_files()

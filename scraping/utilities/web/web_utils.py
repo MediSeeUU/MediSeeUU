@@ -76,7 +76,3 @@ def get_html_object(url: str) -> requests.Response:
     html_active.raise_for_status()
 
     return html_active
-
-# TODO (Maybe): Logging context which adds the ThreadID to the logs.
-#               Makes it easier to see if a program is multi threaded
-#               https://stackoverflow.com/a/2357652/20321120

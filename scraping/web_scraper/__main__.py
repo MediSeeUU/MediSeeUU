@@ -10,6 +10,7 @@ import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 
 from scraping.web_scraper import download, ec_scraper, ema_scraper, json_helper, filter_retry
+import scraping.utilities.log.log_tools as log_tools
 from scraping.utilities.web import web_utils as utils
 
 # list of the type of medicines that will be scraped
@@ -104,7 +105,7 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: ec_scraper.Medicine
     # dec_ anx_ and ema_list are lists of URLs to PDF files
     # Attributes_dict is a dictionary containing the attributes scraped from the EC page
     dec_list_indexed, anx_list_indexed, ema_list, attributes_dict = \
-        ec_scraper.scrape_medicine_page(medicine_url, html_active, ec_scraper.MedicineType(medicine_type))
+        ec_scraper.scrape_medicine_page(medicine_url, html_active, ec_scraper.MedicineType(medicine_type), data_path)
 
     # Sort decisions and annexes list
     dec_list_indexed.sort(key=lambda x: int(x[1]))
@@ -279,7 +280,8 @@ def main(data_filepath: str = "../data",
         log.info("TASK FINISHED annex10 scrape")
 
     if scrape_ec:
-        with open("no_english_available.txt", 'w', encoding="utf-8"):
+        log_path = log_tools.get_log_path("no_english_available.txt", data_filepath)
+        with open(log_path, 'w', encoding="utf-8"):
             pass  # open/clean no_english_available file
         # make sure tests start with empty dict, because url_file is global variable only way to do this is here.
         if "test" in os.getcwd():
@@ -389,6 +391,6 @@ def init_ema_dict(eu_n: str, file: json_helper.JsonHelper):
 # Keep the code locally testable by including this.
 # When running this file specifically, the main function will run.
 if __name__ == "__main__":
-    import scraping.utilities.log.log_setup
+    import scraping.utilities.log.log_tools
     scraping.utilities.log.log_setup.init_loggers()
     main(data_filepath="../../data")

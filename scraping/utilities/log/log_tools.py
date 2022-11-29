@@ -51,3 +51,25 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     log_xml_file_handler = logging.FileHandler(f"{logging_path}/logging_{xml_name}.log")
     log_xml.addHandler(log_xml_file_handler)
     # ---
+
+
+def get_log_path(filename: str, data_path: str) -> str:
+    """
+    Args:
+        filename (str): Name of the logging file
+        data_path (str): Path of the data folder
+
+    Returns:
+        str: Path of the location of the logging file, based on whether the main or tests are being run
+    """
+    parent_path = "/".join((data_path.strip('/').split('/')[:-1]))
+    if "test" in data_path:
+        if ".log" in filename:
+            return f"{parent_path}/tests/logs/log_files/{filename}"
+        elif ".txt" in filename:
+            return f"{parent_path}/tests/logs/txt_files/{filename}"
+    else:
+        if ".log" in filename:
+            return f"{parent_path}/logs/log_files/{filename}"
+        elif ".txt" in filename:
+            return f"{parent_path}/logs/txt_files/{filename}"

@@ -13,6 +13,7 @@ import json
 
 from scraping.web_scraper import json_helper
 from scraping.utilities.web import web_utils as utils
+import scraping.utilities.log.log_tools as log_tools
 
 log = logging.getLogger("web_scraper.download")
 
@@ -49,11 +50,7 @@ def save_new_eu_numbers(data_path: str):
         data_path (str): The path to the data folder
     """
     # Get all logging lines as list after latest "NEW LOG"
-    parent_path = "/".join((data_path.split("/")[:-1])) + "/"
-    if "test" in data_path:
-        log_path = f"{parent_path}tests/web_scraper_tests/web_scraper.log"
-    else:
-        log_path = "../logs/log_files/logging_web_scraper.log"
+    log_path = log_tools.get_log_path("logging_web_scraper.log", data_path)
     if os.path.exists(log_path):
         with open(log_path, 'r') as log_file:
             full_log = log_file.read().split("=== NEW LOG ")[-1].split("\n")
@@ -106,7 +103,9 @@ def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements:
     log.info(f"New medicine: {medicine_identifier}")
     downloaded_file = requests.get(url)
     if downloaded_file.status_code != 200:
-        with open(f"../logs/txt_files/failed.txt", "a") as f:
+        data_path = target_path.split("active_withdrawn")[0]
+        log_path = log_tools.get_log_path("failed.txt", data_path)
+        with open(log_path, "a") as f:
             f.write(f"{filename}@{url}@{downloaded_file.status_code}\n")
             return
 
@@ -270,7 +269,8 @@ def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper
 
         # TODO: Refactor this function and download_pdfs_from_url, so that code is not duplicated.
         if downloaded_file.status_code != 200:
-            with open(f"failed.txt", "a") as f:
+            log_path = log_tools.get_log_path("failed.txt", data_filepath)
+            with open(log_path, "a") as f:
                 f.write(f"annex10_{year}@{url}@{downloaded_file.status_code}\n")
                 return
 

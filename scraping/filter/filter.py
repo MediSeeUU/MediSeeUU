@@ -5,6 +5,7 @@ import re
 import json
 import multiprocessing
 import logging
+import scraping.utilities.log.log_tools as log_tools
 
 wrong_doctype_str = "@wrong_doctype"
 cpu_count: int = multiprocessing.cpu_count()
@@ -20,7 +21,9 @@ def filter_all_pdfs(directory: str):
         directory (str): folder with all medicine folders to filter
     """
     log.info(f'Filtering all PDF files...')
-    f = open("../logs/txt_files/filter.txt", 'w', encoding="utf-8")  # open/clean output file
+    data_path = directory.split("active_withdrawn")[0]
+    log_path = log_tools.get_log_path("filter.txt", data_path)
+    f = open(log_path, 'w', encoding="utf-8")  # open/clean output file
     all_data = Parallel(n_jobs=cpu_count)(
         delayed(filter_folder)(os.path.join(directory, folder), directory) for folder in
         os.listdir(directory) if os.path.isdir(os.path.join(directory, folder)))

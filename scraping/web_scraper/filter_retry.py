@@ -6,6 +6,7 @@ import json
 from scraping.filter import filter
 from scraping.web_scraper import __main__ as m
 from scraping.web_scraper import download, ec_scraper, json_helper
+import scraping.utilities.log.log_tools as log_tools
 
 # dictionaries used for mapping
 key_dict = {"dec": "aut_url",
@@ -49,7 +50,9 @@ def run_filter(n: int, data_filepath: str):
     for _ in range(n):
         filter.filter_all_pdfs(data_filepath)
         url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json").load_json()
-        retry_all("../logs/txt_files/filter.txt", url_file, data_filepath)
+        data_folder = data_filepath.split("active_withdrawn")[0]
+        filter_path = log_tools.get_log_path("filter.txt", data_folder)
+        retry_all(filter_path, url_file, data_filepath)
     # remove files that can't go to the pdf parser
     filter.filter_all_pdfs(data_filepath)
 
