@@ -6,8 +6,6 @@ from datetime import date
 from pathlib import Path
 from unittest import TestCase
 
-from parameterized import parameterized
-
 import scraping.config_objects as config
 from scraping.web_scraper import __main__ as web
 import scraping.utilities.log.log_tools as log_setup
