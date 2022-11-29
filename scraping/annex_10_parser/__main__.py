@@ -1,10 +1,15 @@
+import re
 import pandas as pd
+import logging
+import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import os
 from os import path
 import json
 from datetime import datetime
 import logging
 import scraping.utilities.json.json_compiler as json_compiler
+import scraping.utilities.definitions.value as values
+import scraping.utilities.definitions.attributes as attr
 
 log = logging.getLogger("annex_10_parser")
 annex_10_json_file = "annex_10_parser.json"
@@ -22,8 +27,8 @@ def get_all(filename: str, excel_file: pd.DataFrame, data_dir: str) -> dict:
     Returns:
         dict: Dictionary of all scraped attributes, named according to the bible
     """
-    annex10 = {"filename": filename[:len(filename.split('.')[0])],  # removes extension
-               "active_clock_elapseds": get_active_clock_elapsed(excel_file, data_dir)}
+    annex10 = {attr.filename: filename[:len(filename.split('.')[0])],  # removes extension
+               attr.active_clock_elapseds: get_active_clock_elapsed(excel_file, data_dir)}
     return annex10
 
 
@@ -113,9 +118,9 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
         product_name_found, eu_num = product_name_in_epars(product_name.lower(), all_data, opinion_date)
         if product_name_found:
             res.append({
-                "eu_number": eu_num,
-                "active_time_elapsed": active_time_elapsed,
-                "clock_stop_elapsed": clock_stop_elapsed
+                attr.eu_pnumber: eu_num,
+                attr.active_time_elapsed: active_time_elapsed,
+                attr.clock_stop_elapsed: clock_stop_elapsed
             })
     return res
 
@@ -139,10 +144,10 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
 
     for medicine in all_data:
         # Check if product_name in brand_name and get EU number
-        if "eu_brand_name_current" in medicine.keys():
-            if product_name in medicine["eu_brand_name_current"].lower() or \
-                    medicine["eu_brand_name_current"].lower() in product_name:
-                eu_num = medicine["eu_pnumber"].replace("/", "-")
+        if attr.eu_brand_name_current in medicine.keys():
+            if product_name in medicine[attr.eu_brand_name_current].lower() or \
+                    medicine[attr.eu_brand_name_current].lower() in product_name:
+                eu_num = medicine[attr.eu_pnumber].replace("/", "-")
     for medicine in all_data:
         # Check if found EU number has an EPAR
         if "eu_number" not in medicine.keys():
@@ -151,8 +156,8 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
             continue
         if not medicine["epars"]:
             continue
-        chmp_opinion_date = medicine["epars"][0]["chmp_opinion_date"]
-        if chmp_opinion_date == "no_chmp_found":
+        chmp_opinion_date = medicine["epars"][0][attr.chmp_opinion_date]
+        if chmp_opinion_date == values.not_found:
             log.warning(f"Annex_10_parser: no chmp opinion date found in EPAR for {eu_num}")
             continue
         chmp_opinion_date = datetime.strptime(chmp_opinion_date, '%d/%m/%Y')
