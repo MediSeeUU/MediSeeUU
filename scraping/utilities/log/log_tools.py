@@ -17,6 +17,7 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     pdf_name: str = "pdf_parser"
     xml_name: str = "xml_converter"
     annex_10_name: str = "annex_10_parser"
+    db_comm_name: str = "db_communicator"
 
     # --- Root logger ---
     root_handler_stream = logging.StreamHandler()
@@ -38,7 +39,7 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     # ---
 
     # Create logging module for all other modules
-    logging_names = [web_name, pdf_name, xml_name, annex_10_name]
+    logging_names = [web_name, pdf_name, xml_name, annex_10_name, db_comm_name]
     for log_name in logging_names:
         log = logging.getLogger(log_name)
         log.setLevel(logging.INFO)
