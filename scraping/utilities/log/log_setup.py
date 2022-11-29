@@ -13,8 +13,9 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     Returns: None
 
     """
-    web_path: str = "../../web_scraper"
-    pdf_path: str = "../../pdf_parser"
+    web_name: str = "web_scraper"
+    pdf_name: str = "pdf_parser"
+    pdf_name: str = "pdf_parser"
 
     # --- Root logger ---
     root_handler_stream = logging.StreamHandler()
@@ -26,19 +27,27 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     # ---
 
     # --- Logging module of the web scraper ---
-    log_web = logging.getLogger(web_path)
+    log_web = logging.getLogger(web_name)
     log_web.setLevel(logging.INFO)
 
-    log_web_handler_file = logging.FileHandler(f"{logging_path}/logging_{web_path}.log")
+    log_web_handler_file = logging.FileHandler(f"{logging_path}/logging_{web_name}.log")
     log_web.addHandler(log_web_handler_file)
 
     logging.getLogger("urllib3.connectionpool").setLevel(logging.INFO)  # Avoid urllib3 DEBUG messages
     # ---
 
     # --- Logging module of the PDF parser ---
-    log_pdf = logging.getLogger(pdf_path)
+    log_pdf = logging.getLogger(pdf_name)
     log_pdf.setLevel(logging.INFO)
 
-    log_pdf_file_handler = logging.FileHandler(f"{logging_path}/logging_{pdf_path}.log")
+    log_pdf_file_handler = logging.FileHandler(f"{logging_path}/logging_{pdf_name}.log")
+    log_pdf.addHandler(log_pdf_file_handler)
+    # ---
+
+    # --- Logging module of the XML converter ---
+    log_pdf = logging.getLogger(pdf_name)
+    log_pdf.setLevel(logging.INFO)
+
+    log_pdf_file_handler = logging.FileHandler(f"{logging_path}/logging_{pdf_name}.log")
     log_pdf.addHandler(log_pdf_file_handler)
     # ---

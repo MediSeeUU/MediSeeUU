@@ -38,7 +38,6 @@ def check_new_eu_numbers(self):
         eu_numbers_path = f"{eu_numbers_base_path}_{i}.json"
         i += 1
         file_exists = os.path.exists(f"{eu_numbers_base_path}_{i}.json")
-
     with open(eu_numbers_path) as f:
         eu_numbers = set(json.load(f))
 
@@ -56,7 +55,7 @@ class TestWebScraper(TestCase):
         """
         Set up the class to make sure the integration test can run without changing existing data.
         """
-        log_setup.init_loggers(f"{parent_path}/scraping")
+        log_setup.init_loggers(f"{parent_path}/tests/web_scraper_tests")
         if not os.path.exists(f"{data_path}_old"):
             os.rename(data_path, f"{data_path}_old")
         if not path.isdir(data_path):

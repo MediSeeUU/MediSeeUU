@@ -2,7 +2,7 @@ import unittest
 import json
 import regex as re
 import requests
-import scraping.web_scraper.utils as utils
+import scraping.utilities.web.web_utils as utils
 from scraping.web_scraper import ec_scraper as ec
 from parameterized import parameterized
 

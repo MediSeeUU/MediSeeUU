@@ -50,9 +50,14 @@ def save_new_eu_numbers(data_path: str):
     """
     # Get all logging lines as list after latest "NEW LOG"
     parent_path = "/".join((data_path.split("/")[:-1])) + "/"
-    if os.path.exists(f"{parent_path}scraping/logging_web_scraper.log"):
-        with open(f"{parent_path}scraping/logging_web_scraper.log", 'r') as log_file:
+    if "test" in data_path:
+        log_path = f"{parent_path}tests/web_scraper_tests/web_scraper.log"
+    else:
+        log_path = "../logs/log_files/logging_web_scraper.log"
+    if os.path.exists(log_path):
+        with open(log_path, 'r') as log_file:
             full_log = log_file.read().split("=== NEW LOG ")[-1].split("\n")
+
         # Only get "New medicine: " lines
         filtered = filter(lambda line: "New medicine: " in line, full_log)
 
@@ -67,6 +72,7 @@ def save_new_eu_numbers(data_path: str):
             eu_numbers_path = f"{eu_numbers_base_path}_{i}.json"
             i += 1
             file_exists = os.path.exists(eu_numbers_path)
+
         with open(eu_numbers_path, 'w') as outfile:
             json.dump(eu_numbers, outfile)
 

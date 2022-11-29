@@ -4,12 +4,12 @@ from unittest import TestCase
 
 import regex as re
 
-import scraping.pdf_parser.helper as helper
-from scraping.pdf_parser import epar_parser
+import scraping.utilities.pdf.helper as helper
+from scraping.pdf_parser.parsers import epar_parser
 
 test_data_loc = "../test_data/active_withdrawn"
 if "pdfscraper_tests" in os.getcwd():
-    test_data_loc = "../../test_data/active_withdrawn"
+    test_data_loc = "../../test_data/active_with_drawn"
 xml_bodies = []
 percentage_str = "Percentage found: "
 found_not_scrapeable_string = "Found but not scrapeable: "

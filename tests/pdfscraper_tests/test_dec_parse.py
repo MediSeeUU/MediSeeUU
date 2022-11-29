@@ -3,7 +3,7 @@ import os
 import fitz
 import datetime
 import scraping.pdf_parser.parsers.dec_parser as dec_parser
-import scraping.pdf_parser.pdf_helper as pdf_helper
+import scraping.utilities.pdf.pdf_helper as pdf_helper
 
 test_data_loc = "../test_data/active_withdrawn"
 if "pdfscraper_tests" in os.getcwd():

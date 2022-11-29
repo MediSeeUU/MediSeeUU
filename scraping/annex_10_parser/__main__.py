@@ -192,7 +192,7 @@ def annexes_already_parsed(annex_10_folder: str) -> bool:
     return False
 
 
-def main(data_folder_directory: str, annex_folder_name: str = "json"):
+def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
     """
     Scrape all annex 10 files
 
