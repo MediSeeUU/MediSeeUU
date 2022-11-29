@@ -32,12 +32,12 @@ class TestPdfParser(TestCase):
         log_tools.init_loggers(f"{parent_path}/tests/logs/log_files")
         os.mkdir(f"{parent_path}/tests/logs/txt_files")
 
-    # def test_pdf_parser_no_checks(self):
-    #     """
-    #     Runs PDF parser and passes if no errors occur.
-    #     """
-    #     pdf_parser.main(data_path, parse_all=False)
-    #     pdf_parser.main(data_path, parse_all=True)
+    def test_pdf_parser_no_checks(self):
+        """
+        Runs PDF parser and passes if no errors occur.
+        """
+        pdf_parser.main(data_path, parse_all=False)
+        pdf_parser.main(data_path, parse_all=True)
 
     def test_pdf_parser_with_checks(self):
         """
