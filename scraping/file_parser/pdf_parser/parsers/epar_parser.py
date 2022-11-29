@@ -6,6 +6,8 @@ import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
 import xml.etree.ElementTree as ET
 import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
+import scraping.definitions.attributes as attr
+import scraping.definitions.value as values
 import os.path as path
 
 date_pattern: str = r"\d{1,2} \b(?!emea\b)\w+ \d{4}|\d{1,2}\w{2} \b(?!emea\b)\w+ \d{4}"  # DD/MONTH/YYYY
@@ -27,15 +29,15 @@ def get_all(filename: str, xml_data: ET.Element) -> dict:
     Returns:
         dict: Dictionary of all scraped attributes, named according to the bible
     """
-    epar = {"filename": filename[:len(filename) - 4],  # removes extension
-            "ema_procedure_start_initial": get_date(xml_data),
-            "chmp_opinion_date": get_opinion_date(xml_data),
-            "eu_legal_basis": get_legal_basis(xml_data),
-            "eu_prime_initial": get_prime(xml_data),
-            "ema_rapp": get_rapp(xml_data),
-            "ema_corapp": get_corapp(xml_data),
-            "ema_reexamination": get_reexamination(xml_data),
-            "eu_accel_assess_g": get_accelerated_assessment(xml_data)}
+    epar = {attr.filename: filename[:len(filename) - 4],  # removes extension
+            attr.ema_procedure_start_initial: get_date(xml_data),
+            attr.chmp_opinion_date: get_opinion_date(xml_data),
+            attr.eu_legal_basis: get_legal_basis(xml_data),
+            attr.eu_prime_initial: get_prime(xml_data),
+            attr.ema_rapp: get_rapp(xml_data),
+            attr.ema_corapp: get_corapp(xml_data),
+            attr.ema_reexamination: get_reexamination(xml_data),
+            attr.eu_accel_assess_g: get_accelerated_assessment(xml_data)}
     return epar
 
 
@@ -97,7 +99,7 @@ def get_date(xml: ET.Element) -> str:
             found = True
             if regex_date.search(txt):
                 return helper.convert_months(re.search(date_pattern, txt)[0])
-    return "no_date_found"
+    return values.not_found
 
 
 def get_opinion_date(xml: ET.Element) -> str:
@@ -138,12 +140,12 @@ def get_opinion_date(xml: ET.Element) -> str:
             if date != "":
                 return date
             else:
-                return "not_easily_scrapeable"
+                return values.not_scrapeable
     if date != "":
         return date
     elif not_easily_scrapeable:
-        return "not_easily_scrapeable"
-    return "no_chmp_found"
+        return values.not_scrapeable
+    return values.not_found
 
 
 def get_legal_basis(xml: ET.Element) -> list[str]:
@@ -193,8 +195,8 @@ def get_legal_basis(xml: ET.Element) -> list[str]:
                 return helper.convert_articles([articles2[0]])
 
     if legal_basis_exists:
-        return ["not_easily_scrapeable"]
-    return ["no_legal_basis"]
+        return [values.not_scrapeable]
+    return [values.not_found]
 
 
 def get_prime(xml: ET.Element) -> str:
@@ -209,13 +211,13 @@ def get_prime(xml: ET.Element) -> str:
         str: the attribute eu_prime_initial - "yes" or "no", "NA" if ema_procedure_start_initial before 01-03-2016
     """
     if check_date_before(xml, 1, 3, 2016):
-        return "NA"
+        return values.NA_before
     for p in xml_utils.get_paragraphs_by_header("submission of the dossier", xml):
         if re.findall(r" prime ", p) and not re.findall(r"prime importance", p):
-            return "yes"
+            return values.yes_str
         if re.findall(r"priority medicine", p):
-            return "yes"
-    return "no"
+            return values.yes_str
+    return values.no_str
 
 
 def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_year: int) -> bool:
@@ -232,7 +234,7 @@ def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_y
             bool: True if scraped date is before given date, False otherwise
         """
     date = get_date(xml)
-    if date != "no_date_found" and date != "not_easily_scrapeable" and len(date.split("/")) >= 3:
+    if date != values.not_found and date != values.not_scrapeable and len(date.split("/")) >= 3:
         day = int(''.join(filter(str.isdigit, date.split("/")[0])))
         month = int(date.split("/")[1])
         year = int(date.split("/")[2])
@@ -298,9 +300,9 @@ def get_rapp(xml: ET.Element) -> str:
     for elem in xml.iter():
         txt = str(elem.text)
         if "rapporteur" in txt and "co-rapporteur" not in txt:
-            return "not_easily_scrapeable"
+            return values.not_scrapeable
 
-    return "no_rapporteur"
+    return values.not_found
 
 
 def find_rapp_between_rapp_and_corapp(txt: str) -> str | None:
@@ -401,7 +403,7 @@ def get_corapp(xml: ET.Element) -> str:
                 corapporteur += txt
                 corapporteur = clean_rapporteur(corapporteur)
                 if corapporteur == "n" or "n/a" in corapporteur:
-                    return "no_co-rapporteur"
+                    return values.not_found
             if len(corapporteur) >= 4:
                 return corapporteur
         # Find co-rapporteur after "co-rapporteur:"
@@ -409,7 +411,7 @@ def get_corapp(xml: ET.Element) -> str:
         if re.search(regex_str_2, txt):
             corapporteur = get_rapp_after(regex_str_2, txt, 15)
             if corapporteur == "n" or "n/a" in corapporteur:
-                return "no_co-rapporteur"
+                return values.not_found
             if len(corapporteur) < 4:
                 found = True
             else:
@@ -420,8 +422,8 @@ def get_corapp(xml: ET.Element) -> str:
     for elem in xml.iter():
         txt = str(elem.text)
         if "co-rapporteur" in txt or "corraporteur" in txt:
-            return "not_easily_scrapeable"
-    return "no_co-rapporteur"
+            return values.not_scrapeable
+    return values.not_found
 
 
 def get_reexamination(xml: ET.Element) -> str:
@@ -438,10 +440,10 @@ def get_reexamination(xml: ET.Element) -> str:
     for elem in xml.iter():
         txt = str(elem.text)
         if "reexamination" in txt:
-            return "yes"
+            return values.yes_str
         if "re-examination" in txt:
-            return "yes"
-    return "no"
+            return values.yes_str
+    return values.no_str
 
 
 def get_accelerated_assessment(xml: ET.Element) -> str:
@@ -457,14 +459,14 @@ def get_accelerated_assessment(xml: ET.Element) -> str:
         str: the attribute eu_accel_assess_g - "yes" or "no", "NA" if ema_procedure_start_initial before 20-05-2004
     """
     if check_date_before(xml, 20, 5, 2004):
-        return "NA"
+        return values.NA_before
     found = False
     for elem in xml.iter():
         txt = str(elem.text)
         if accelerated_assessment in txt:
             found = True
     if not found:
-        return "no"
+        return values.no_str
 
     text_elements = 20
     # Check whether the word "agreed" is at most 20 text elements before "accelerated assessment"
@@ -476,7 +478,7 @@ def get_accelerated_assessment(xml: ET.Element) -> str:
         return found_before
     if found_after:
         return found_after
-    return "no"
+    return values.yes_str
 
 
 def agreed_before_accelerated_assessment(xml: ET.Element, text_elements: int) -> str:
@@ -498,11 +500,11 @@ def agreed_before_accelerated_assessment(xml: ET.Element, text_elements: int) ->
         if counter != -1:
             counter += 1
             if accelerated_assessment in txt and counter <= text_elements:
-                return "yes"
+                return values.yes_str
         if "agreed" in txt:
             # Return no if accelerated assessment is not agreed
             if "not agreed" in txt:
-                return "no"
+                return values.no_str
             # Start counter
             counter = 0
 
@@ -528,8 +530,8 @@ def agreed_after_accelerated_assessment(xml: ET.Element, text_elements: int) -> 
             if "agreed" in txt and counter <= text_elements:
                 # Return no if accelerated assessment is not agreed
                 if "not agreed" in txt:
-                    return "no"
-                return "yes"
+                    return values.no_str
+                return values.yes_str
         if accelerated_assessment in txt:
             # Start counter
             counter = 0

@@ -3,6 +3,8 @@ import re
 import xml.etree.ElementTree as ET
 import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
+import scraping.definitions.attributes as attr
+import scraping.definitions.value as values
 import os
 import logging
 
@@ -43,11 +45,11 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
 
     # create annex attribute dictionary with default values
     omar_attributes = {
-        "pdf_file": xml_utils.file_get_name_pdf(xml_header),
-        "xml_file": os.path.basename(filepath),
-        "creation_date": creation_date,
-        "modification_date": modification_date,
-        "conditions": []
+        attr.pdf_file: xml_utils.file_get_name_pdf(xml_header),
+        attr.xml_file: os.path.basename(filepath),
+        attr.creation_date: creation_date,
+        attr.modification_date: modification_date,
+        attr.ema_omar_condition: []
     }
 
     # loop through sections and parse section if conditions met
@@ -63,18 +65,18 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
 
             alternative_treatments = get_alternative_treatments(bullet_points)
             omar_condition_dict = {
-                "prevalence": get_prevalence(bullet_points),
-                "insufficient_roi": get_insufficient_roi(bullet_points),
-                "alternative_treatments": alternative_treatments,
-                "significant_benefit": get_significant_benefit(bullet_points, alternative_treatments, filepath)
+                attr.ema_prevalence: get_prevalence(bullet_points),
+                attr.ema_insufficient_roi: get_insufficient_roi(bullet_points),
+                attr.ema_alternative_treatments: alternative_treatments,
+                attr.ema_significant_benefit: get_significant_benefit(bullet_points, alternative_treatments, filepath)
             }
 
-            omar_attributes["conditions"].append(omar_condition_dict)
+            omar_attributes[attr.ema_omar_condition].append(omar_condition_dict)
 
     medicine_struct.omars.append(omar_attributes)
 
-    if len(omar_attributes["conditions"]) == 0:
-        log.warning("OMAR PARSER: failed to parse condition from " + omar_attributes["pdf_file"])
+    if len(omar_attributes[attr.ema_omar_condition]) == 0:
+        log.warning("OMAR PARSER: failed to parse condition from " + omar_attributes[attr.pdf_file])
 
     return medicine_struct
 
@@ -95,12 +97,12 @@ def get_prevalence(bullet_points: list[str]) -> str:
             clean = re.sub(r'\s+', ' ', b).lstrip(" ")
             return clean
 
-    return "NA"
+    return values.not_found
 
 
 # No OMARs have been found containing this piece of information, so far.
 def get_insufficient_roi(bullet_points: list[str]) -> str:
-    return "NA"
+    return values.not_found
 
 
 def get_alternative_treatments(bullet_points: list[str]) -> str:
@@ -121,11 +123,11 @@ def get_alternative_treatments(bullet_points: list[str]) -> str:
             return "No Satisfactory Method"
         if "significant benefit" in b:
             if "does not hold" in b:
-                return "No Significant Benefit"
+                return values.eu_alt_treatment_no_benefit
             else:
-                return "Significant Benefit"
+                return values.eu_alt_treatment_benefit
 
-    return "NA"
+    return values.not_found
 
 
 def get_significant_benefit(bullet_points: list[str], alternative_treatment: str, filepath: str) -> str:
@@ -174,4 +176,4 @@ def get_significant_benefit(bullet_points: list[str], alternative_treatment: str
     if contains:
         return result
     else:
-        return "NA"
+        return values.not_found

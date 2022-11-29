@@ -1,5 +1,6 @@
 from unittest import TestCase
 from scraping.file_parser.annex_10_parser import __main__ as annex_10_parser
+import scraping.definitions.attributes as attr
 import json
 import os
 import pandas as pd
@@ -61,7 +62,7 @@ class TestAnnex10Parser(TestCase):
         # Loop through all annex files and corresponding years
         for annex_10_file, year in zip(annex_10_data, [2015, 2016, 2017, 2018, 2019, 2020, 2021]):
             # Get number of medicines of current annex 10 file
-            found_attributes = len(annex_10_file['active_clock_elapseds'])
+            found_attributes = len(annex_10_file[attr.active_clock_elapseds])
             annex_path = f"{data_loc}/annex_10"
             filepath = ""
             # Get filepath of current annex 10 file (dictated by loop)
@@ -88,8 +89,8 @@ class TestAnnex10Parser(TestCase):
 
     def test_integer_results(self):
         for annex_10_file in annex_10_data:
-            found_attributes = annex_10_file['active_clock_elapseds']
+            found_attributes = annex_10_file[attr.active_clock_elapseds]
             for med in found_attributes:
                 # Check if active time elapsed and clock stop elapsed are integers for all medicines and all annex files
-                self.assertTrue(type(med['active_time_elapsed']) == int)
-                self.assertTrue(type(med['clock_stop_elapsed']) == int)
+                self.assertTrue(type(med[attr.active_time_elapsed]) == int)
+                self.assertTrue(type(med[attr.clock_stop_elapsed]) == int)

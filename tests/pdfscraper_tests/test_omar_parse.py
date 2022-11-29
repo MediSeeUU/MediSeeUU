@@ -4,6 +4,7 @@ import sys
 import os
 import scraping.file_parser.pdf_parser.helper as helper
 import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
+import scraping.definitions.value as values
 
 from scraping.file_parser.pdf_parser.parsers import omar_parser
 import xml.etree.ElementTree as ET
@@ -76,7 +77,7 @@ class TestOmarParse(TestCase):
         for (xml_body, xml_file) in xml_bodies:
             bullet_point = xml_to_bullet_points(xml_body)
             result = omar_parser.get_prevalence(bullet_point)
-            if result == "NA":
+            if result == values.not_found:
                 NAs_found += 1
                 print("No prevalence found in: " + xml_file)
             if "10.000" in result or "10,000" in result:
@@ -98,16 +99,16 @@ class TestOmarParse(TestCase):
         for (xml_body, xml_file) in xml_bodies:
             bullet_point = xml_to_bullet_points(xml_body)
             result = omar_parser.get_alternative_treatments(bullet_point)
-            if result == "NA":
+            if result == values.not_found:
                 NAs_found += 1
                 print("No alternative treatment information found in: " + xml_file)
             if (("no satisfactory method" in bullet_point) or ("no satisfactory treatment" in bullet_point)) \
                     and result != "No Satisfactory Method":
                 wrong_found += 1
             if "significant benefit" in bullet_point:
-                if result != "Significant Benefit":
+                if result != values.eu_alt_treatment_benefit:
                     wrong_found += 1
-                if "does not hold" in bullet_point and result != "No Significant Benefit":
+                if "does not hold" in bullet_point and result != values.eu_alt_treatment_no_benefit:
                     wrong_found += 1
 
         print("NAs found: " + str(NAs_found))
