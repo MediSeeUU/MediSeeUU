@@ -63,8 +63,9 @@ def combine_best_source(attribute_name: str, sources: list[str], file_dicts: dic
 
 
 # For combine functions
-#TODO: fix datum
-def combine_select_string_overlap(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]], min_matching_fraction: float = 0.8) -> bool:
+# TODO: fix datum
+def combine_select_string_overlap(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]],
+                                  min_matching_fraction: float = 0.8) -> bool:
     """
     compares two strings to see if a percentage of the shortest string is identical to the longest string
     Args:
@@ -117,7 +118,7 @@ def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dic
 
     if eu_med_type == values.eu_med_type_biologicals and eu_atmp:
         return (values.eu_med_type_atmp, eu_med_type_date)
-    
+
     return (eu_med_type, eu_med_type_date)
 
 

@@ -46,13 +46,13 @@
       <ul>
         <li class="toctree-l1 current-module"><a href="../../../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
-        <li class="toctree-l1 "><a href="../../../../scraping/file_parser/docs/html/index.html">File Parser</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/pdf_parser/docs/html/index.html">File Parser</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/db_communicator/docs/html/index.html">DB Communicator</a></li>
         <li class="toctree-l1 "><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
         <li class="toctree-l1 margin-top "><a href="../../../../tests/docs/html/index.html">Tests</a></li>
       </ul>
-    </div>  
+    </div>
     
       
               <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
@@ -148,12 +148,6 @@
 <li class="toctree-l5"><a class="reference internal" href="#web_scraper.json_helper.JsonHelper.save_dict"><code class="docutils literal notranslate"><span class="pre">JsonHelper.save_dict()</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.utils">web_scraper.utils module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#web_scraper.utils.count_unique"><code class="docutils literal notranslate"><span class="pre">count_unique()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#web_scraper.utils.exception_retry"><code class="docutils literal notranslate"><span class="pre">exception_retry()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#web_scraper.utils.get_html_object"><code class="docutils literal notranslate"><span class="pre">get_html_object()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -480,7 +474,7 @@ is used.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.ec_scraper.add_to_non_english_file">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">add_to_non_english_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decision_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">procedure_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.ec_scraper.add_to_non_english_file" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">add_to_non_english_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decision_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">procedure_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.ec_scraper.add_to_non_english_file" title="Permalink to this definition"></a></dt>
 <dd><p>This function appends a line to the no_english_available.txt to make an overview of all files that don’t have an
 english version.
 :param eu_n: The short eu_n, used to form the url to the medicine page
@@ -490,7 +484,9 @@ english version.
 :param filetype: The type of the file (decision or annex)
 :type filetype: str
 :param procedure_type: The procedure type of the file (as stated on the ec website)
-:type procedure_type: str</p>
+:type procedure_type: str
+:param data: Path to the data folder
+:type data: str</p>
 </dd></dl>
 
 <dl class="py function">
@@ -598,7 +594,7 @@ The second item in the tuple is a list with all the links to the EMA.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.ec_scraper.get_data_from_procedures_json">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">get_data_from_procedures_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">procedures_json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.ec_scraper.get_data_from_procedures_json" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">get_data_from_procedures_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">procedures_json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.ec_scraper.get_data_from_procedures_json" title="Permalink to this definition"></a></dt>
 <dd><p>Gets all attribute information that is stored in the procedures JSON, and all links the decision and annex PDFs.</p>
 <p>The function loops through the JSON object and finds all the attributes and links,
 so that they can be used and stored. There is also some extra logic that is needed to determine some attribute
@@ -609,6 +605,7 @@ Whenever an attribute is not found, this is logged.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>procedures_json</strong> (<em>dict</em>) – The JSON object that contains all relevant attributes and links</p></li>
 <li><p><strong>eu_num</strong> (<em>str</em>) – The EU number for the medicine that belongs to this JSON</p></li>
+<li><p><strong>data_folder</strong> (<em>str</em>) – Path to the data folder</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -690,7 +687,7 @@ to be fetched from.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.ec_scraper.scrape_medicine_page">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">scrape_medicine_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">html_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType" title="web_scraper.ec_scraper.MedicineType"><span class="pre">MedicineType</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.ec_scraper.scrape_medicine_page" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">scrape_medicine_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">html_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#web_scraper.ec_scraper.MedicineType" title="web_scraper.ec_scraper.MedicineType"><span class="pre">MedicineType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.ec_scraper.scrape_medicine_page" title="Permalink to this definition"></a></dt>
 <dd><p>Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -698,6 +695,7 @@ to be fetched from.</p>
 <li><p><strong>url</strong> (<em>str</em>) – The url to the medicine page for the medicine that needs to be scraped.</p></li>
 <li><p><strong>html_active</strong> (<em>requests.Response</em>) – html object that contains all html text</p></li>
 <li><p><strong>medicine_type</strong> (<a class="reference internal" href="#web_scraper.ec_scraper.MedicineType" title="web_scraper.ec_scraper.MedicineType"><em>MedicineType</em></a>) – The type of medicine this medicine is.</p></li>
+<li><p><strong>data_folder</strong> (<em>str</em>) – Path to the data folder</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1049,46 +1047,6 @@ from the old_dict</p></li>
 Meant to be run when no more changes are expected to be made.</p>
 </dd></dl>
 
-</dd></dl>
-
-</section>
-<section id="module-web_scraper.utils">
-<span id="web-scraper-utils-module"></span><h2>web_scraper.utils module<a class="headerlink" href="#module-web_scraper.utils" title="Permalink to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="web_scraper.utils.count_unique">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.utils.</span></span><span class="sig-name descname"><span class="pre">count_unique</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.utils.count_unique" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="web_scraper.utils.exception_retry">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.utils.</span></span><span class="sig-name descname"><span class="pre">exception_retry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_attempts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Logger</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.utils.exception_retry" title="Permalink to this definition"></a></dt>
-<dd><p>Decorator function to make a function parallelized. The function will have the code retry if it throws an exception.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>max_attempts</strong> – The amount of times a function can be retried. The default value is 4.</p></li>
-<li><p><strong>logging_instance</strong> – If errors need to be reported, the logging instance from the caller can be attached</p></li>
-</ul>
-</dd>
-</dl>
-<p>Returns: The result of func. Returns None when the function did not return after the maximum attempts.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="web_scraper.utils.get_html_object">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.utils.</span></span><span class="sig-name descname"><span class="pre">get_html_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Response</span></span></span><a class="headerlink" href="#web_scraper.utils.get_html_object" title="Permalink to this definition"></a></dt>
-<dd><p>Fetches the html from a website.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – The link to the page where the html is needed from.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Returns a Response object that contains the response to the HTTP request.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>requests.Response</p>
-</dd>
-</dl>
 </dd></dl>
 
 </section>
