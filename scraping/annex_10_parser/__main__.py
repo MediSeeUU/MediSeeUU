@@ -163,7 +163,7 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
         # Check if the chmp_opinion_date and opinion_date are within 4 days of each other
         if abs((chmp_opinion_date - opinion_date).days) < 4:
             return True, eu_num
-        # Print EU number, Product name, optinion date from EPAR, and opinion date from Excel file
+        # Print EU number, Product name, opinion date from EPAR, and opinion date from Excel file
         # print(eu_num + " - " + product_name + " - " + str(chmp_opinion_date).split(" ")[0] + " - " + str(opinion_date).split(" ")[0])
     return False, ""
 
