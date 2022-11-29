@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
-from .dashboard_columns import create_dashboard_history_current_column, Category
+from api.models.dashboard_columns import create_dashboard_history_current_column, Category
 
 
 class HistoryMAH(models.Model):

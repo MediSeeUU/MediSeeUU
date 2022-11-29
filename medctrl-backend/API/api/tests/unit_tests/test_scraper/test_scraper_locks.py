@@ -19,7 +19,7 @@ from api.models.medicine_models import (
     LegalBases,
 )
 from api.models.other.medicine_locks import Locks
-from api.models.medicine_models.common import (
+from api.models.common import (
     AutStatus,
     AutTypes,
     LegalBasesTypes,

@@ -9,7 +9,7 @@
 # and additional medicine information page among others.
 # ----------------------------------------------------------------------------
 
-from api.models.medicine_models.common import Category
+from api.models.common import Category
 from api.models.medicine_models import models
 
 

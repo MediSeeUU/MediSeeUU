@@ -6,17 +6,15 @@ from api.models.medicine_models import (
     AcceleratedAssessment,
     Duration,
     Procedures,
-    OrphanProduct,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
-    HistoryEUOrphanCon,
     LegalBases,
 )
-from api.models.medicine_models.common import (
+from api.models.common import (
     AutStatus,
     AutTypes,
     LegalBasesTypes,

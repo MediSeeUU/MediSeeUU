@@ -12,7 +12,7 @@ from api.models.medicine_models import (
     HistoryEUOrphanCon,
     LegalBases,
 )
-from api.models.medicine_models.common import (
+from api.models.common import (
     AutStatus,
     AutTypes,
     LegalBasesTypes

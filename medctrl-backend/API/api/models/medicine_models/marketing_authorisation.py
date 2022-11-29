@@ -7,7 +7,7 @@ from .accelerated_assessment import AcceleratedAssessment
 from .duration import Duration
 from .history_authorisation_type import HistoryAuthorisationType
 from .history_mah import HistoryMAH
-from .dashboard_columns import create_dashboard_column, Category
+from api.models.dashboard_columns import create_dashboard_column, Category
 
 
 class MarketingAuthorisation(models.Model):

@@ -1,5 +1,5 @@
 from django.test import TestCase
-from api.models.medicine_models.common import Category, create_dashboard_column
+from api.models.common import Category, create_dashboard_column
 
 class DashboardColumnTestCase(TestCase):
     def test_create_dashboard_column1(self):

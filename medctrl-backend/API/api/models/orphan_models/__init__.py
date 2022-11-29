@@ -1,13 +1,17 @@
 """
-| The models package contains all the models for the backend.
+| The medicine_models package contains all the orphan models for the backend.
 | Django uses the models to create the database. Each models maps to a database table.
-| The models are divided into a medicine_models package and an other package.
+| The medicine models are used to store information about medicines received from the scraper
+| and used to provide medicine information to the dashboard.
 | Read more about models here: https://docs.djangoproject.com/en/4.1/topics/db/models/
 """
 # This program has been developed by students from the bachelor Computer Science at
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
+from .orphan_product import OrphanProduct
+from .history_eu_orphan_con import HistoryEUOrphanCon
 
-from .medicine_models import models as medicine_models
-from .orphan_models import models as orphan_models
-models = medicine_models + orphan_models
+models = [
+    OrphanProduct,
+    HistoryEUOrphanCon,
+]

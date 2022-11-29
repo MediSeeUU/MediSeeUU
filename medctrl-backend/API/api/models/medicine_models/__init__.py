@@ -11,7 +11,6 @@
 from .medicinal_product import MedicinalProduct
 from .marketing_authorisation import MarketingAuthorisation
 from .procedures import Procedures
-from .orphan_product import OrphanProduct
 from .accelerated_assessment import AcceleratedAssessment
 from .ingredients_and_substances import IngredientsAndSubstances
 from .duration import Duration
@@ -21,11 +20,10 @@ from .history_brand_name import HistoryBrandName
 from .history_mah import HistoryMAH
 from .history_od import HistoryOD
 from .history_prime import HistoryPrime
-from .history_eu_orphan_con import HistoryEUOrphanCon
 from .legal_bases import LegalBases
 
 # place all medicine models here
-medicine_models = [
+models = [
     MedicinalProduct,
     MarketingAuthorisation,
     Procedures,
@@ -40,10 +38,3 @@ medicine_models = [
     HistoryPrime,
     LegalBases,
 ]
-
-orphan_models = [
-    OrphanProduct,
-    HistoryEUOrphanCon,
-]
-
-models = medicine_models + orphan_models

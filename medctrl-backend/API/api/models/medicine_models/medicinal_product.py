@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from .dashboard_columns import create_dashboard_column, Category
+from api.models.dashboard_columns import create_dashboard_column, Category
 from .ingredients_and_substances import IngredientsAndSubstances
 
 
