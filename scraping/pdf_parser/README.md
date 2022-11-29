@@ -45,7 +45,7 @@ the next header is found.
 Each section contains exactly one header element and between 0 and infinite paragraph tags.
 example of the structure:
 
-![example_structure](https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/file_parser/docs/sphinx-source/example_structure.png?raw=true)
+![example_structure](https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/pdf_parser/docs/sphinx-source/example_structure.png?raw=true)
 
 Additionally, the XML converter also includes metadata in the <head>.
 The meta data includes:
@@ -55,10 +55,10 @@ The meta data includes:
 - last modification date of pdf: datetime
 
 Example head structure:
-![head_structure](https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/file_parser/docs/sphinx-source/head_structure.png?raw=true)
+![head_structure](https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/pdf_parser/docs/sphinx-source/head_structure.png?raw=true)
 
 Example of whole XML:
-![whole_xml](https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/file_parser/docs/sphinx-source/whole_xml.png?raw=true)
+![whole_xml](https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/pdf_parser/docs/sphinx-source/whole_xml.png?raw=true)
 
 ## Accessing XML data
 The XML files can be accessed via the xml_parsing_utils.py. The functions can be called on ET.Elements nodes 
@@ -70,7 +70,7 @@ Example utility function:
 `section_contains_header_substring("substring to look for", section)` 
 
 instead of:
-![for_loop](https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/file_parser/docs/sphinx-source/for_loop.png?raw=true)
+![for_loop](https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/pdf_parser/docs/sphinx-source/for_loop.png?raw=true)
 
 or
 
@@ -88,6 +88,6 @@ Another major advantage is that it now becomes easy to add new scraping function
 the code simple, clean and efficient.
 
 Example attribute scraping on XML:
-![scraping](https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/file_parser/docs/sphinx-source/scraping.png?raw=true)
+![scraping](https://github.com/MediSeeUU/MediSeeUU/blob/development/scraping/pdf_parser/docs/sphinx-source/scraping.png?raw=true)
 
 © Copyright Utrecht University (Department of Information and Computing Sciences)

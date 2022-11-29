@@ -27,7 +27,7 @@ def xml_to_bullet_points(xml_body: ET.Element) -> list[str]:
 
 class TestOmarParse(TestCase):
     """
-    Class that contains the unit tests for scraping.file_parser.pdf_parser.scrapers.epar_parser
+    Class that contains the unit tests for scraping.pdf_parser.pdf_parser.scrapers.epar_parser
     """
     @classmethod
     def setUpClass(cls):
