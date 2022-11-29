@@ -113,7 +113,7 @@ class TestEparParse(TestCase):
         available_count = 0
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_legal_basis(xml_body)
-            if output != ["no_legal_basis"] and output != ["not_easily_scrapeable"]:
+            if output != ["|->NOT FOUND<-|"] and output != ["not_easily_scrapeable"]:
                 found_count += 1
                 available_count += 1
 
@@ -147,9 +147,9 @@ class TestEparParse(TestCase):
             output = epar_parser.get_prime(xml_body)
             if output == "yes":
                 yes_exists = True
-            if output == "NA":
+            if output == "NA_at_release_date":
                 na_exists = True
-            self.assertIn(output, 'yesnoNA')
+            self.assertIn(output, 'yesnoNA_at_release_date')
         self.assertTrue(yes_exists)
         self.assertTrue(na_exists)
 
@@ -237,6 +237,6 @@ class TestEparParse(TestCase):
                 yes_exists = True
             if not output:
                 self.fail("No output found")
-            self.assertIn(output, 'yesnoNA')
+            self.assertIn(output, 'yesnoNA_at_release_date')
 
         self.assertTrue(yes_exists)
