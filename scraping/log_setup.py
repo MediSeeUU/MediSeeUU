@@ -1,5 +1,5 @@
 import logging
-import config_objects as config
+import scraping.config_objects as config
 
 
 all_loggers: list[logging.getLoggerClass()] = []

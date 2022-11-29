@@ -59,7 +59,10 @@ class TestWebScraper(TestCase):
         """
         Set up the class to make sure the integration test can run without changing existing data.
         """
-        log_setup.init_loggers(f"{parent_path}/scraping")
+        config.default_path_data = data_path
+        config.default_path_logging = f"{parent_path}/scraping"
+
+        log_setup.init_loggers()
         if not os.path.exists(f"{data_path}_old"):
             os.rename(data_path, f"{data_path}_old")
         if not path.isdir(data_path):
@@ -67,9 +70,6 @@ class TestWebScraper(TestCase):
         if not path.isdir(data_path_local):
             os.mkdir(data_path_local)
         Path(f"{json_path}JSON").mkdir(parents=True, exist_ok=True)
-
-    config.default_path_data = data_path
-    config.default_path_logging = "../../logs"
 
     medicine_list_checks = \
         [('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
@@ -139,7 +139,7 @@ class TestWebScraper(TestCase):
                                    .set_parallel(self.parallel)
                                    .supply_medicine_list(self.medicine_list))
 
-        with open(f"{json_path}urls.json") as f:
+        with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
         assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url', 'odwar_url', 'other_ema_urls']), \
             "ema urls not in urls.json"
