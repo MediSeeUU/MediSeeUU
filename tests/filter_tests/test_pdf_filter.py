@@ -33,13 +33,18 @@ class TestFilter(TestCase):
     """
     Class to test Filter using integration tests.
     """
-
     def setUp(self):
         """
         Set up the class to make sure the integration test can run without changing existing data.
         Copies test_data folder to test_data_filter [since filter removes files]
         """
         copy_tree(test_data_loc, test_data_filter_loc)
+        parent_path = "/".join((test_data_path.strip('/').split('/')[:-1]))
+        logs_path = f"{parent_path}/tests/logs"
+        if not os.path.isdir(logs_path):
+            os.mkdir(logs_path)
+        if not os.path.isdir(f"{logs_path}/txt_files"):
+            os.mkdir(f"{logs_path}/txt_files")
 
     def test_pdf_filter_length(self):
         """
