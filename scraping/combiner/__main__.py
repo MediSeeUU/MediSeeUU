@@ -5,10 +5,10 @@ import json
 import joblib
 import multiprocessing
 import scraping.combiner.attribute_combining_functions as acf
-import scraping.definitions.values as values
-import scraping.definitions.attributes as attr
-import scraping.definitions.attribute_objects as attr_obj
-import scraping.definitions.sources as src
+import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.definitions.attribute_objects as attr_obj
+import scraping.utilities.definitions.sources as src
 
 
 # Main file to run all parsers

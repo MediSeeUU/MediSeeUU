@@ -1,6 +1,6 @@
-import scraping.definitions.values as values
-import scraping.definitions.sources as src
-import scraping.definitions.attributes as attr
+import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.sources as src
+import scraping.utilities.definitions.attributes as attr
 from difflib import SequenceMatcher as SM
 
 # TODO: remove try catch
