@@ -54,20 +54,29 @@ class TestWebScraper(TestCase):
         """
         Set up the class to make sure the integration test can run without changing existing data.
         """
-        if os.path.exists(f"{parent_path}/tests/logs/log_files"):
-            shutil.rmtree(f"{parent_path}/tests/logs/log_files")
-        if os.path.exists(f"{parent_path}/tests/logs/txt_files"):
-            shutil.rmtree(f"{parent_path}/tests/logs/txt_files")
+        log_files_folder = f"{parent_path}/tests/logs/log_files"
+        txt_files_folder = f"{parent_path}/tests/logs/txt_files"
+        try:
+            if os.path.exists(log_files_folder):
+                shutil.rmtree(log_files_folder)
+        except PermissionError:
+            print(f"{log_files_folder} in use.")
 
-        log_tools.init_loggers(f"{parent_path}/tests/logs/log_files")
+        try:
+            if os.path.exists(txt_files_folder):
+                shutil.rmtree(txt_files_folder)
+        except PermissionError:
+            print(f"{txt_files_folder} in use.")
 
+        log_tools.init_loggers(log_files_folder)
+    
         if not os.path.exists(f"{data_path}_old"):
             os.rename(data_path, f"{data_path}_old")
         if not path.isdir(data_path):
             os.mkdir(data_path)
         if not path.isdir(data_path_local):
             os.mkdir(data_path_local)
-        os.mkdir(f"{parent_path}/tests/logs/txt_files")
+        os.mkdir(txt_files_folder)
 
         Path(f"{json_path}JSON").mkdir(parents=True, exist_ok=True)
 
