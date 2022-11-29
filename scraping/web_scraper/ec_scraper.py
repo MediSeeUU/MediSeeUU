@@ -177,7 +177,7 @@ def get_last_updated_date(html_active: requests.Response) -> datetime:
     return datetime.strptime(last_updated_string.split()[-1], '%d/%m/%Y')
 
 
-def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type: MedicineType, data_folder) \
+def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type: MedicineType, data_folder: str) \
                                            -> (list[(str, int)], list[(str, int)], list[str], dict[str, str]):
     """
     Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.
