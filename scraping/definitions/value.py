@@ -16,6 +16,9 @@ aut_type_exceptional = "exceptional"
 # TODO: dit soort dingen afspreken
 authorization_type_unknown = "exceptional or conditional"
 
+eu_od_type_adopted = "adopted"
+eu_od_type_appointed = "appointed"
+
 eu_aut_date_blank = "date_is_blank"
 
 eu_med_type_biologicals = "biologicals"

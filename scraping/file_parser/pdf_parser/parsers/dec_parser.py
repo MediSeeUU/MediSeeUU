@@ -330,9 +330,9 @@ def dec_get_od(txt: str, date: datetime.datetime) -> str:
     if 'orphan medicinal product' in txt.lower():
         txt = txt.lower().split('orphan medicinal product', 1)[1]
         if 'has adopted this decision' in txt.lower():
-            return 'adopted'
-        return 'appointed'
-    return 'OD Not Found'
+            return values.eu_od_type_adopted
+        return values.eu_od_type_appointed
+    return values.not_found
 
 
 def dec_get_atmp(txt: str, date: datetime.datetime) -> str | bool:

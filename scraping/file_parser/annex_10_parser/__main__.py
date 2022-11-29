@@ -149,13 +149,13 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
                 eu_num = medicine[attr.eu_pnumber].replace("/", "-")
     for medicine in all_data:
         # Check if found EU number has an EPAR
-        if attr.eu_pnumber not in medicine.keys():
+        if "eu_number" not in medicine.keys():
             continue
-        if medicine[attr.eu_pnumber] != eu_num:
+        if medicine["eu_number"] != eu_num:
             continue
-        if not medicine[attr.epar]:
+        if not medicine["epars"]:
             continue
-        chmp_opinion_date = medicine[attr.epar][0][attr.chmp_opinion_date]
+        chmp_opinion_date = medicine["epars"][0][attr.chmp_opinion_date]
         if chmp_opinion_date == values.not_found:
             log.warning(f"Annex_10_parser: no chmp opinion date found in EPAR for {eu_num}")
             continue
