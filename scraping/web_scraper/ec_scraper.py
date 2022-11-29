@@ -6,7 +6,8 @@ from enum import Enum
 import bs4
 import regex as re
 import requests
-import scraping.web_scraper.utils as utils
+import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.web import web_utils as utils
 
 log = logging.getLogger("web_scraper.ec_scraper")
 
@@ -176,7 +177,7 @@ def get_last_updated_date(html_active: requests.Response) -> datetime:
     return datetime.strptime(last_updated_string.split()[-1], '%d/%m/%Y')
 
 
-def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type: MedicineType) \
+def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type: MedicineType, data_folder: str) \
                                            -> (list[(str, int)], list[(str, int)], list[str], dict[str, str]):
     """
     Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.
@@ -185,6 +186,7 @@ def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type
         url (str): The url to the medicine page for the medicine that needs to be scraped.
         html_active (requests.Response): html object that contains all html text
         medicine_type (MedicineType): The type of medicine this medicine is.
+        data_folder (str): Path to the data folder
 
     Returns:
         (list[(str, int)], list[(str, int)], list[str], dict[str, str]):
@@ -201,7 +203,7 @@ def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type
     # Gets all the necessary information from the medicine_json and procedures_json objects
     medicine_dict, ema_url_list = get_data_from_medicine_json(medicine_json, eu_num, medicine_type)
 
-    procedures_dict, dec_url_list, anx_url_list = get_data_from_procedures_json(procedures_json, eu_num)
+    procedures_dict, dec_url_list, anx_url_list = get_data_from_procedures_json(procedures_json, eu_num, data_folder)
 
     # combine the attributes from both dictionaries files in a single JSON file
     all_attributes_dict = medicine_dict | procedures_dict
@@ -255,7 +257,7 @@ def get_data_from_medicine_json(medicine_json: dict,
                     medicine_dict["eu_pnumber"] = row["value"]
                 else:
                     human_medicine = False
-                    medicine_dict["eu_od_pnumber"]: str = row["value"]
+                    medicine_dict["eu_od_number"]: str = row["value"]
 
             case "inn":
                 # Sometimes the active substance is written with italics, therefore it is removed with a RegEx
@@ -263,6 +265,9 @@ def get_data_from_medicine_json(medicine_json: dict,
 
             case "atc":
                 medicine_dict["atc_code"]: str = row["meta"][0][-1]["code"]
+
+            case "mp_link":
+                medicine_dict["eu_od_pnumber"]: str = row["meta"]["eu_num"]
 
         if human_medicine:
             # Scrapes human specific attributes
@@ -333,7 +338,7 @@ def set_orphan_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str
                 # TODO: retrieve date for every PDF
 
 
-def get_data_from_procedures_json(procedures_json: dict, eu_num: str) \
+def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folder: str) \
                                  -> (dict[str, str], list[(str, int)], list[(str, int)]):
     """
     Gets all attribute information that is stored in the procedures JSON, and all links the decision and annex PDFs.
@@ -346,6 +351,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) \
     Args:
         procedures_json (dict): The JSON object that contains all relevant attributes and links
         eu_num (str): The EU number for the medicine that belongs to this JSON
+        data_folder (str): Path to the data folder
 
     Returns:
         (dict[str, str], list[(str, int)], list[(str, int)]):
@@ -407,6 +413,9 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) \
         decision_date: date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
         decision_id = row["id"]
 
+        if "orphan designation" == row["type"].lower():
+            procedures_dict["eu_od_date"] = str(decision_date)
+
         # Puts all the decisions from the last one and a half year in a list to determine the current authorization type
         if last_decision_date - decision_date < timedelta(days=548):
             last_decision_types.append(row["type"])
@@ -414,7 +423,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) \
         if row["files_dec"]:
             if not (any('en' in d.values() for d in row["files_dec"])):
                 log.warning(f"""{eu_num}: No english file available for dec_{decision_id}""")
-                add_to_non_english_file(eu_num, decision_date, "dec", row["type"].lower())
+                add_to_non_english_file(eu_num, decision_date, "dec", row["type"].lower(), data_folder)
             else:
                 pdf_url_dec = \
                     f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/dec_{decision_id}_en.pdf"""
@@ -423,7 +432,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) \
         if row["files_anx"]:
             if not (any('en' in d.values() for d in row["files_anx"])):
                 log.warning(f"""{eu_num}: No english file available for anx_{decision_id}""")
-                add_to_non_english_file(eu_num, decision_date, "anx", row["type"].lower())
+                add_to_non_english_file(eu_num, decision_date, "anx", row["type"].lower(), data_folder)
             else:
                 pdf_url_anx = \
                     f"""{decision_date.year}/{decision_date.strftime("%Y%m%d")}{decision_id}/anx_{decision_id}_en.pdf"""
@@ -473,7 +482,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str) \
     return procedures_dict, dec_url_list, anx_url_list
 
 
-def add_to_non_english_file(eu_n: str, decision_date: datetime.date, filetype: str, procedure_type: str):
+def add_to_non_english_file(eu_n: str, decision_date: datetime.date, filetype: str, procedure_type: str, data: str):
     """
     This function appends a line to the no_english_available.txt to make an overview of all files that don't have an
     english version.
@@ -482,9 +491,12 @@ def add_to_non_english_file(eu_n: str, decision_date: datetime.date, filetype: s
         decision_date (datetime.date): The date of the decision.
         filetype (str): The type of the file (decision or annex)
         procedure_type (str): The procedure type of the file (as stated on the ec website)
+        data (str): Path to the data folder
     """
     url = f"https://ec.europa.eu/health/documents/community-register/html/{eu_n}.htm"
-    with open(f"no_english_available.txt", "a") as f:
+    log_path = log_tools.get_log_path("no_english_available.txt", data)
+    print(log_path)
+    with open(log_path, "a") as f:
         f.write(f"{procedure_type}@{filetype}@{decision_date}@{url}\n")
         return
 

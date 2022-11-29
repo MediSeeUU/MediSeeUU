@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pdf_parser package &mdash; PDF Scraper 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pdf_parser.docs package" href="pdf_parser.docs.html" />
+    <link rel="prev" title="pdf_parser" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+<a href="../../../../docs/html/README.html">
+  <img src="_static/medisee.svg" class="logo" alt="Logo"/>
+</a>
+
+
+  
+  
+
+
+
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+      <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+      <ul>
+        <li class="toctree-l1 "><a href="../../../../scraping/web_scraper/docs/html/index.html">Web Scraper</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/filter/docs/html/index.html">Filter</a></li>
+        <li class="toctree-l1 current-module"><a href="../../../../scraping/pdf_parser/docs/html/index.html">File Parser</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
+        <li class="toctree-l1 "><a href="../../../../scraping/db_communicator/docs/html/index.html">DB Communicator</a></li>
+        <li class="toctree-l1 "><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
+        <li class="toctree-l1 margin-top "><a href="../../../../tests/docs/html/index.html">Tests</a></li>
+      </ul>
+    </div>
+    
+      
+              <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#input-output">Input &amp; Output</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#input">Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#other-points-of-interest">Other points of interest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#pdf-xml-converter">pdf_xml_converter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#xml-structure">XML Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#accessing-xml-data">Accessing XML data</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Source Code Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pdf_parser</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pdf_parser package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pdf_parser.docs.html">pdf_parser.docs package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="pdf_parser.docs.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.docs.sphinx-source.html">pdf_parser.docs.sphinx-source package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="pdf_parser.docs.sphinx-source.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="pdf_parser.docs.sphinx-source.html#pdf-parser-docs-sphinx-source-conf-module">pdf_parser.docs.sphinx-source.conf module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="pdf_parser.parsers.html">pdf_parser.parsers package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="pdf_parser.parsers.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pdf_parser.parsers.html#module-pdf_parser.parsers.annex_parser">pdf_parser.parsers.annex_parser module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.annex_parser.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="pdf_parser.parsers.html#module-pdf_parser.parsers.dec_parser">pdf_parser.parsers.dec_parser module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_as"><code class="docutils literal notranslate"><span class="pre">dec_get_as()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_atmp"><code class="docutils literal notranslate"><span class="pre">dec_get_atmp()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_bn"><code class="docutils literal notranslate"><span class="pre">dec_get_bn()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_date"><code class="docutils literal notranslate"><span class="pre">dec_get_date()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_decision_type"><code class="docutils literal notranslate"><span class="pre">dec_get_decision_type()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_mah"><code class="docutils literal notranslate"><span class="pre">dec_get_mah()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_nas"><code class="docutils literal notranslate"><span class="pre">dec_get_nas()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_od"><code class="docutils literal notranslate"><span class="pre">dec_get_od()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_od_comp_date"><code class="docutils literal notranslate"><span class="pre">dec_get_od_comp_date()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.get_data"><code class="docutils literal notranslate"><span class="pre">get_data()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.get_default_dict"><code class="docutils literal notranslate"><span class="pre">get_default_dict()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.get_name_section"><code class="docutils literal notranslate"><span class="pre">get_name_section()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="pdf_parser.parsers.html#module-pdf_parser.parsers.epar_parser">pdf_parser.parsers.epar_parser module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.agreed_after_accelerated_assessment"><code class="docutils literal notranslate"><span class="pre">agreed_after_accelerated_assessment()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.agreed_before_accelerated_assessment"><code class="docutils literal notranslate"><span class="pre">agreed_before_accelerated_assessment()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.check_date_before"><code class="docutils literal notranslate"><span class="pre">check_date_before()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.clean_rapporteur"><code class="docutils literal notranslate"><span class="pre">clean_rapporteur()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.find_rapp_between_rapp_and_corapp"><code class="docutils literal notranslate"><span class="pre">find_rapp_between_rapp_and_corapp()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_accelerated_assessment"><code class="docutils literal notranslate"><span class="pre">get_accelerated_assessment()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_all"><code class="docutils literal notranslate"><span class="pre">get_all()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_corapp"><code class="docutils literal notranslate"><span class="pre">get_corapp()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_date"><code class="docutils literal notranslate"><span class="pre">get_date()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_legal_basis"><code class="docutils literal notranslate"><span class="pre">get_legal_basis()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_opinion_date"><code class="docutils literal notranslate"><span class="pre">get_opinion_date()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_prime"><code class="docutils literal notranslate"><span class="pre">get_prime()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_rapp"><code class="docutils literal notranslate"><span class="pre">get_rapp()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_rapp_after"><code class="docutils literal notranslate"><span class="pre">get_rapp_after()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_reexamination"><code class="docutils literal notranslate"><span class="pre">get_reexamination()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="pdf_parser.parsers.html#module-pdf_parser.parsers.omar_parser">pdf_parser.parsers.omar_parser module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.omar_parser.get_alternative_treatments"><code class="docutils literal notranslate"><span class="pre">get_alternative_treatments()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.omar_parser.get_insufficient_roi"><code class="docutils literal notranslate"><span class="pre">get_insufficient_roi()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.omar_parser.get_prevalence"><code class="docutils literal notranslate"><span class="pre">get_prevalence()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.omar_parser.get_significant_benefit"><code class="docutils literal notranslate"><span class="pre">get_significant_benefit()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.omar_parser.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pdf_parser.__main__">pdf_parser.__main__ module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pdf_parser.__main__.datetime_serializer"><code class="docutils literal notranslate"><span class="pre">datetime_serializer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pdf_parser.__main__.folder_has_no_pdf_json"><code class="docutils literal notranslate"><span class="pre">folder_has_no_pdf_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pdf_parser.__main__.get_files"><code class="docutils literal notranslate"><span class="pre">get_files()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pdf_parser.__main__.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pdf_parser.__main__.parse_folder"><code class="docutils literal notranslate"><span class="pre">parse_folder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pdf_parser.__main__.run_scrapers"><code class="docutils literal notranslate"><span class="pre">run_scrapers()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pdf_parser.parsed_info_struct">pdf_parser.parsed_info_struct module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct.annexes"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.annexes</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct.decisions"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.decisions</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct.epars"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.epars</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct.eu_number"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.eu_number</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct.omars"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.omars</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct.parse_date"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.parse_date</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PDF Scraper</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">pdf_parser</a></li>
+      <li class="breadcrumb-item active">pdf_parser package</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pdf_parser">
+<span id="pdf-parser-package"></span><h1>pdf_parser package<a class="headerlink" href="#module-pdf_parser" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pdf_parser.docs.html">pdf_parser.docs package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdf_parser.docs.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.docs.sphinx-source.html">pdf_parser.docs.sphinx-source package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pdf_parser.docs.sphinx-source.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdf_parser.docs.sphinx-source.html#pdf-parser-docs-sphinx-source-conf-module">pdf_parser.docs.sphinx-source.conf module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdf_parser.parsers.html">pdf_parser.parsers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdf_parser.parsers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdf_parser.parsers.html#module-pdf_parser.parsers.annex_parser">pdf_parser.parsers.annex_parser module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.annex_parser.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdf_parser.parsers.html#module-pdf_parser.parsers.dec_parser">pdf_parser.parsers.dec_parser module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_as"><code class="docutils literal notranslate"><span class="pre">dec_get_as()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_atmp"><code class="docutils literal notranslate"><span class="pre">dec_get_atmp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_bn"><code class="docutils literal notranslate"><span class="pre">dec_get_bn()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_date"><code class="docutils literal notranslate"><span class="pre">dec_get_date()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_decision_type"><code class="docutils literal notranslate"><span class="pre">dec_get_decision_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_mah"><code class="docutils literal notranslate"><span class="pre">dec_get_mah()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_nas"><code class="docutils literal notranslate"><span class="pre">dec_get_nas()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_od"><code class="docutils literal notranslate"><span class="pre">dec_get_od()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.dec_get_od_comp_date"><code class="docutils literal notranslate"><span class="pre">dec_get_od_comp_date()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.get_data"><code class="docutils literal notranslate"><span class="pre">get_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.get_default_dict"><code class="docutils literal notranslate"><span class="pre">get_default_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.get_name_section"><code class="docutils literal notranslate"><span class="pre">get_name_section()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.dec_parser.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdf_parser.parsers.html#module-pdf_parser.parsers.epar_parser">pdf_parser.parsers.epar_parser module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.agreed_after_accelerated_assessment"><code class="docutils literal notranslate"><span class="pre">agreed_after_accelerated_assessment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.agreed_before_accelerated_assessment"><code class="docutils literal notranslate"><span class="pre">agreed_before_accelerated_assessment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.check_date_before"><code class="docutils literal notranslate"><span class="pre">check_date_before()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.clean_rapporteur"><code class="docutils literal notranslate"><span class="pre">clean_rapporteur()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.find_rapp_between_rapp_and_corapp"><code class="docutils literal notranslate"><span class="pre">find_rapp_between_rapp_and_corapp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_accelerated_assessment"><code class="docutils literal notranslate"><span class="pre">get_accelerated_assessment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_all"><code class="docutils literal notranslate"><span class="pre">get_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_corapp"><code class="docutils literal notranslate"><span class="pre">get_corapp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_date"><code class="docutils literal notranslate"><span class="pre">get_date()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_legal_basis"><code class="docutils literal notranslate"><span class="pre">get_legal_basis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_opinion_date"><code class="docutils literal notranslate"><span class="pre">get_opinion_date()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_prime"><code class="docutils literal notranslate"><span class="pre">get_prime()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_rapp"><code class="docutils literal notranslate"><span class="pre">get_rapp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_rapp_after"><code class="docutils literal notranslate"><span class="pre">get_rapp_after()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.get_reexamination"><code class="docutils literal notranslate"><span class="pre">get_reexamination()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.epar_parser.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdf_parser.parsers.html#module-pdf_parser.parsers.omar_parser">pdf_parser.parsers.omar_parser module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.omar_parser.get_alternative_treatments"><code class="docutils literal notranslate"><span class="pre">get_alternative_treatments()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.omar_parser.get_insufficient_roi"><code class="docutils literal notranslate"><span class="pre">get_insufficient_roi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.omar_parser.get_prevalence"><code class="docutils literal notranslate"><span class="pre">get_prevalence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.omar_parser.get_significant_benefit"><code class="docutils literal notranslate"><span class="pre">get_significant_benefit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdf_parser.parsers.html#pdf_parser.parsers.omar_parser.parse_file"><code class="docutils literal notranslate"><span class="pre">parse_file()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-pdf_parser.__main__">
+<span id="pdf-parser-main-module"></span><h2>pdf_parser.__main__ module<a class="headerlink" href="#module-pdf_parser.__main__" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_parser.__main__.datetime_serializer">
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.__main__.</span></span><span class="sig-name descname"><span class="pre">datetime_serializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pdf_parser.__main__.datetime_serializer" title="Permalink to this definition"></a></dt>
+<dd><p>Datetime to string serializer for json dumping
+Convert datetime.datetime to string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>date</strong> (<em>pis.datetime.datetime</em>) – date to convert to string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_parser.__main__.folder_has_no_pdf_json">
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.__main__.</span></span><span class="sig-name descname"><span class="pre">folder_has_no_pdf_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pdf_parser.__main__.folder_has_no_pdf_json" title="Permalink to this definition"></a></dt>
+<dd><p>Returns whether the given directory already has a pdf_parser.json file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directory</strong> (<em>str</em>) – Main data directory</p></li>
+<li><p><strong>folder</strong> (<em>str</em>) – Medicine folder that might have a pdf_parser.json file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the given directory already has a pdf_parser.json file, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_parser.__main__.get_files">
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.__main__.</span></span><span class="sig-name descname"><span class="pre">get_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pdf_parser.__main__.get_files" title="Permalink to this definition"></a></dt>
+<dd><p>Get all PDF and XML files per PDF type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>directory</strong> (<em>str</em>) – Location of the data folder</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of PDF file names for each of the 4 PDF types</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(list[str], list[str], list[str], list[str])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_parser.__main__.main">
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.__main__.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pdf_parser.__main__.main" title="Permalink to this definition"></a></dt>
+<dd><p>given a folder containing medicine folders, parses each folder in parallel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>directory</strong> – data folder, containing medicine folders</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_parser.__main__.parse_folder">
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.__main__.</span></span><span class="sig-name descname"><span class="pre">parse_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pdf_parser.__main__.parse_folder" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Given a folder containing medicines, parse_folder walks creates an XML file for each PDF when it doesn’t exist.</dt><dd><p>After this, a parser for each pdf/xml file is called,
+writing a json file containing the scraped attributes to the folder.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directory</strong> (<em>str</em>) – location of folder to parse</p></li>
+<li><p><strong>folder_name</strong> (<em>st</em>) – name of medicine folder to parse</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pdf_parser.__main__.run_scrapers">
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.__main__.</span></span><span class="sig-name descname"><span class="pre">run_scrapers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annex_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decision_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epar_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omar_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ParsedInfoStruct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pdf_parser.__main__.run_scrapers" title="Permalink to this definition"></a></dt>
+<dd><p>Scraping all XML or PDF files and updating medicine_struct with the scraped attributes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directory</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – directory of folder containing the files</p></li>
+<li><p><strong>annex_files</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – list of file names for annex files</p></li>
+<li><p><strong>decision_files</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – list of file names for decisions files</p></li>
+<li><p><strong>epar_files</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – list of file names for epar files</p></li>
+<li><p><strong>omar_files</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – list of file names for omar files</p></li>
+<li><p><strong>medicine_struct</strong> (<em>pis.ParsedInfoStruct</em>) – struct to add parsed attributes to</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Medicine structure containing scraped attributes</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pis.ParsedInfoStruct</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pdf_parser.parsed_info_struct">
+<span id="pdf-parser-parsed-info-struct-module"></span><h2>pdf_parser.parsed_info_struct module<a class="headerlink" href="#module-pdf_parser.parsed_info_struct" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pdf_parser.parsed_info_struct.ParsedInfoStruct">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pdf_parser.parsed_info_struct.</span></span><span class="sig-name descname"><span class="pre">ParsedInfoStruct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_number:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse_date:</span> <span class="pre">~datetime.datetime</span> <span class="pre">=</span> <span class="pre">datetime.datetime(2022</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">29</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">27</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">959795)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decisions:</span> <span class="pre">list[typing.Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annexes:</span> <span class="pre">list[typing.Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epars:</span> <span class="pre">list[typing.Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omars:</span> <span class="pre">list[typing.Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class continaining all information for a certain medicine:
+- EU number
+- Date of parsing the file
+- Attributes for each decision file
+- Attributes for each annex file
+- Attributes for each EPAR file
+- Attributes for each OMAR file</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pdf_parser.parsed_info_struct.ParsedInfoStruct.annexes">
+<span class="sig-name descname"><span class="pre">annexes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct.annexes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pdf_parser.parsed_info_struct.ParsedInfoStruct.decisions">
+<span class="sig-name descname"><span class="pre">decisions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct.decisions" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pdf_parser.parsed_info_struct.ParsedInfoStruct.epars">
+<span class="sig-name descname"><span class="pre">epars</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct.epars" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pdf_parser.parsed_info_struct.ParsedInfoStruct.eu_number">
+<span class="sig-name descname"><span class="pre">eu_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct.eu_number" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pdf_parser.parsed_info_struct.ParsedInfoStruct.omars">
+<span class="sig-name descname"><span class="pre">omars</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct.omars" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pdf_parser.parsed_info_struct.ParsedInfoStruct.parse_date">
+<span class="sig-name descname"><span class="pre">parse_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">datetime.datetime(2022,</span> <span class="pre">11,</span> <span class="pre">29,</span> <span class="pre">14,</span> <span class="pre">27,</span> <span class="pre">1,</span> <span class="pre">959795)</span></em><a class="headerlink" href="#pdf_parser.parsed_info_struct.ParsedInfoStruct.parse_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="pdf_parser" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pdf_parser.docs.html" class="btn btn-neutral float-right" title="pdf_parser.docs package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Medisee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,19 +1,80 @@
-import pytest
 import os
-from scraping.filter import pdf_filter
-import fitz
-import sys
+import shutil
+from distutils.dir_util import copy_tree
+from unittest import TestCase
+
+from scraping.filter import filter
+import scraping.utilities.log.log_tools as log_tools
+
+test_data_loc = "../test_data_filter/active_withdrawn"
+test_data_filter_loc = "../test_data_filter/active_withdrawn_temp"
+if "filter_tests" in os.getcwd():
+    test_data_loc = "../../test_data_filter/active_withdrawn"
+    test_data_filter_loc = "../../test_data_filter/active_withdrawn_temp"
+test_data_path = test_data_loc.split("active_withdrawn")[0]
 
 
-class TestFilter:
-    def test_check_for_no_text(self, pdf_name, status):
-        file_path = os.path.join(data_dir, pdf_name.strip())
+def get_removed_files() -> set[str]:
+    """
+    Returns:
+        set[str]: Set of files that are present in original data directory, but not in the filtered directory.
+    """
+    original: set = set()
+    filtered: set = set()
+    for folder in os.listdir(test_data_loc):
+        folder_orig = os.path.join(test_data_loc, folder)
+        folder_filter = os.path.join(test_data_filter_loc, folder)
+        original = original.union(set(os.listdir(folder_orig)))
+        filtered = filtered.union(set(os.listdir(folder_filter)))
+    return original.difference(filtered)
 
-        pdf = fitz.open(file_path)
-        print(pdf)
-        if status.strip() == 'no_text':
-            assert (pdf_filter.check_for_no_text(pdf))
 
-        else:
-            assert not (pdf_filter.check_for_no_text(pdf))
-        print("Testing pdf filter")
+class TestFilter(TestCase):
+    """
+    Class to test Filter using integration tests.
+    """
+    def setUp(self):
+        """
+        Set up the class to make sure the integration test can run without changing existing data.
+        Copies test_data folder to test_data_filter [since filter removes files]
+        """
+        copy_tree(test_data_loc, test_data_filter_loc)
+        parent_path = "/".join((test_data_path.strip('/').split('/')[:-1]))
+        logs_path = f"{parent_path}/tests/logs"
+        if not os.path.isdir(logs_path):
+            os.mkdir(logs_path)
+        if not os.path.isdir(f"{logs_path}/txt_files"):
+            os.mkdir(f"{logs_path}/txt_files")
+
+    def test_pdf_filter_length(self):
+        """
+        Checks whether the length of filter.txt is equal to the number of removed files
+        """
+        filter.filter_all_pdfs(test_data_filter_loc)
+        filter_path = log_tools.get_log_path("filter.txt", test_data_path)
+        with open(filter_path, 'r', encoding="utf-8") as file:
+            filtered_files = file.read().split("\n")
+        filtered_count = len([file for file in filtered_files if len(file) > 1])
+        removed_files = get_removed_files()
+        print(removed_files)
+        self.assertEqual(filtered_count, len(removed_files))
+
+    def test_pdf_filter_writing(self):
+        """
+        Checks whether all files in filter.txt have been removed, and all removed files are in filter.txt
+        """
+        filter.filter_all_pdfs(test_data_filter_loc)
+        filter_path = log_tools.get_log_path("filter.txt", test_data_path)
+        with open(filter_path, 'r', encoding="utf-8") as file:
+            filtered_files = file.read().split("\n")
+        filtered_filenames = [file.split('@')[0] for file in filtered_files if file != '']
+        removed_files = get_removed_files()
+        self.assertEqual(set(filtered_filenames), removed_files)
+
+    @classmethod
+    def tearDownClass(cls):
+        """
+        Remove copy of test_data_filter folder at end of testing
+        """
+        if os.path.exists(test_data_filter_loc):
+            shutil.rmtree(test_data_filter_loc)

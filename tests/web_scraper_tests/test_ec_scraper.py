@@ -1,13 +1,16 @@
 import unittest
-import sys
 import json
-import pytest
 import regex as re
-from datetime import datetime
 import requests
-import scraping.web_scraper.utils as utils
+import scraping.utilities.web.web_utils as utils
 from scraping.web_scraper import ec_scraper as ec
 from parameterized import parameterized
+import os
+
+
+data_path = "../test_data"
+if "test_ec_scraper" in os.getcwd():
+    data_path = "../../test_data"
 
 
 class TestEcScraper(unittest.TestCase):
@@ -72,7 +75,7 @@ class TestEcScraper(unittest.TestCase):
             eu_num_short,
             exp_atc_code,
             exp_active_substance,
-            exp_eu_pnumber,
+            exp_eu_number,
             exp_eu_aut_status,
             exp_eu_brand_name_current,
             exp_eu_mah_current,
@@ -86,7 +89,7 @@ class TestEcScraper(unittest.TestCase):
             eu_num_short (str): The short identifier for a medicine.
             exp_atc_code (str): The expected ATC code for the medicine.
             exp_active_substance (str):  The expected active substance for the medicine.
-            exp_eu_pnumber (str): The expected EU product number for the medicine.
+            exp_eu_number (str): The expected EU product number for the medicine.
             exp_eu_aut_status (str): The expected authorization status for the medicine.
             exp_eu_brand_name_current (str): The expected brand name for the medicine.
             exp_eu_mah_current (str): The expected marketing authorization holder for the medicine.
@@ -105,10 +108,10 @@ class TestEcScraper(unittest.TestCase):
         self.assertEqual(medicine_dict["active_substance"], exp_active_substance, msg="active substances are not equal")
         # check orphan specific attributes for orphan medicines, and human specific attributes for human medicines
         if "o" in eu_num_short:
-            self.assertEqual(medicine_dict["eu_od_pnumber"], exp_eu_pnumber, msg="product numbers are not equal")
+            self.assertEqual(medicine_dict["eu_od_number"], exp_eu_number, msg="product numbers are not equal")
             self.assertEqual(medicine_dict["sponsor"], exp_eu_mah_current, msg="current mahs are not equal")
         else:
-            self.assertEqual(medicine_dict["eu_pnumber"], exp_eu_pnumber, msg="product numbers are not equal")
+            self.assertEqual(medicine_dict["eu_pnumber"], exp_eu_number, msg="product numbers are not equal")
             self.assertEqual(medicine_dict["eu_mah_current"], exp_eu_mah_current, msg="current mahs are not equal")
         self.assertEqual(medicine_dict["eu_aut_status"], exp_eu_aut_status, msg="authorization statuses are not equal")
         self.assertEqual(medicine_dict["eu_brand_name_current"], exp_eu_brand_name_current, msg="current brand names "
@@ -152,7 +155,7 @@ class TestEcScraper(unittest.TestCase):
         html_active = ec.get_ec_html(
             f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm")
         _, procedures_json, *_ = ec.get_ec_json_objects(html_active)
-        procedures_dict, *_ = ec.get_data_from_procedures_json(procedures_json, eu_num_short)
+        procedures_dict, *_ = ec.get_data_from_procedures_json(procedures_json, eu_num_short, data_path)
         self.assertEqual(procedures_dict["eu_aut_date"], exp_eu_aut_date, msg="authorization dates are not equal")
         self.assertEqual(procedures_dict["eu_aut_type_initial"], exp_aut_type_initial, msg="not equal")
         # assert procedures_dict["eu_aut_date"] == exp_eu_aut_date
@@ -246,7 +249,7 @@ class TestEcScraper(unittest.TestCase):
         ]
         html_active: requests.Response = utils.get_html_object(url)
         dec_result, anx_result, ema_result, _ = ec.scrape_medicine_page(url, html_active,
-                                                                        ec.MedicineType.HUMAN_USE_ACTIVE)
+                                                                        ec.MedicineType.HUMAN_USE_ACTIVE, data_path)
         dec_result = [x[0] for x in dec_result]
         anx_result = [x[0] for x in anx_result]
 

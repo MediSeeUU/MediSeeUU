@@ -1,0 +1,29 @@
+{
+    "eu_pnumber": "EU/1/06/353",
+    "atc_code": "C02KX03",
+    "eu_aut_status": "WITHDRAWN",
+    "eu_brand_name_current": "Thelin",
+    "status_type": "w",
+    "active_substance": "Sitaxentan sodium",
+    "eu_mah_current": "Pfizer Limited",
+    "eu_orphan_con_current": [
+        {
+            "pre": "o",
+            "id": "234",
+            "eu_num": "EU/3/04/234",
+            "indication": "Treatment of pulmonary arterial hypertension and chronic thromboembolic pulmonary hypertension",
+            "link_date": "2006-08-11",
+            "end_date": "2011-01-11"
+        }
+    ],
+    "orphan_status": "h",
+    "eu_aut_date": "2006-08-10 00:00:00",
+    "eu_aut_type_initial": "standard",
+    "eu_aut_type_current": "standard",
+    "ema_number": "EMEA/H/C/679",
+    "ema_number_id": "679",
+    "eu_referral": "False",
+    "eu_suspension": "False",
+    "ema_number_certainty": "1.0",
+    "init_addressed_to_member_states": "True"
+}
