@@ -7,6 +7,8 @@ import scraping.file_parser.pdf_parser.helper as helper
 import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
 import scraping.file_parser.pdf_parser.parsed_info_struct as PIS
 import scraping.logger as logger
+import scraping.definitions.attributes as attr
+import scraping.definitions.value as values
 
 log = logger.PDFLogger.log
 
@@ -50,36 +52,35 @@ def get_default_dict(filename: str) -> dict:
 
     # keys for human use
     if '_h_' in filename:
-        dic = dict.fromkeys(['filename',
-                             'eu_aut_date',
-                             'eu_brand_name_initial',
-                             'active_substance',
-                             'eu_nas',
-                             'eu_atmp',
-                             'eu_od_initial',
-                             'eu_mah_initial',
-                             'eu_aut_type_initial',
-                             'status'],
+        dic = dict.fromkeys([attr.filename,
+                             attr.eu_aut_date,
+                             attr.eu_brand_name_initial,
+                             attr.eu_brand_name_current,
+                             attr.active_substance,
+                             attr.eu_nas,
+                             attr.eu_atmp,
+                             attr.eu_od_initial,
+                             attr.eu_mah_initial,
+                             attr.eu_aut_type_initial,
+                             attr.eu_aut_type_current],
                             default)
 
     # keys for orphan
     elif '_o_' in filename:
-        dic = dict.fromkeys(['filename',
-                             'eu_aut_date',
-                             'eu_brand_name_initial',
-                             'eu_od_initial',
-                             'eu_mah_initial',
-                             'eu_od_comp_date',
-                             'status'],
+        dic = dict.fromkeys([attr.filename,
+                             attr.eu_aut_date,
+                             attr.eu_brand_name_initial,
+                             attr.eu_brand_name_current,
+                             attr.eu_od_initial,
+                             attr.eu_mah_initial,
+                             attr.eu_mah_current,
+                             attr.eu_od_comp_date],
                             default)
 
     # invalid name, only returns name and failure
     else:
         dic = {}
-
-    dic['filename'] = filename
-    dic['status'] = 'Failure unknown reason'
-
+    dic[attr.filename] = filename
     return dic
 
 
@@ -95,29 +96,34 @@ def get_data(filename: str, txt: str) -> dict:
     """
     filedata = get_default_dict(filename)
     date = dec_get_date(txt)
-    filedata['eu_aut_date'] = date
+    filedata[attr.eu_aut_date] = date
 
     # if date was left blank use default date to not find date dependent attributes.
     if isinstance(date, str):
         date = dec_get_date('')
 
     if '_h_' in filename:
-        filedata['eu_brand_name_initial'] = dec_get_bn(txt)
-        filedata['active_substance'] = dec_get_as(txt)
-        filedata['eu_nas'] = dec_get_nas(txt, date)
-        filedata['eu_atmp'] = dec_get_atmp(txt, date)
-        filedata['eu_od_initial'] = dec_get_od(txt, date)
-        filedata['eu_mah_initial'] = dec_get_mah(txt)
-        filedata['eu_aut_type_initial'] = dec_get_decision_type(txt, date)
-        filedata['status'] = 'Parsed'
+        filedata[attr.eu_brand_name_initial] = dec_get_bn(txt)
+        filedata[attr.active_substance] = dec_get_as(txt)
+        filedata[attr.eu_nas] = dec_get_nas(txt, date)
+        filedata[attr.eu_atmp] = dec_get_atmp(txt, date)
+        if '_0' in filename:
+            filedata[attr.eu_od_initial] = dec_get_od(txt, date)
+            filedata[attr.eu_mah_initial] = dec_get_mah(txt)
+            filedata[attr.eu_aut_type_initial] = dec_get_decision_type(txt, date)
+        else:
+            filedata[attr.eu_mah_current] = dec_get_mah(txt)
+            filedata[attr.eu_aut_type_current] = dec_get_decision_type(txt, date)
         return filedata
 
     elif '_o_' in filename:
-        filedata['eu_brand_name_initial'] = dec_get_bn(txt, True)
-        filedata['eu_od_initial'] = dec_get_od(txt, date)
-        filedata['eu_mah_initial'] = dec_get_mah(txt)
-        filedata['eu_od_comp_date'] = dec_get_od_comp_date(txt)
-        filedata['status'] = 'Parsed'
+        filedata[attr.eu_brand_name_initial] = dec_get_bn(txt, True)
+        filedata[attr.eu_od_comp_date] = dec_get_od_comp_date(txt)
+        if '_0' in filename:
+            filedata[attr.eu_od_initial] = dec_get_od(txt, date)
+            filedata[attr.eu_mah_initial] = dec_get_mah(txt)
+        else:
+            filedata[attr.eu_mah_current] = dec_get_mah(txt)
         return filedata
 
     else:
@@ -143,7 +149,7 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
         section = re.split('of ', txt, 1)[1]
         section = section[:17]
         if '...' in section or '(date)' in section or 'xxx' in section:
-            return 'Date is blank'
+            return values.eu_aut_date_blank
         if '/' in section:
             section = section.replace('/', '-')
 
@@ -157,7 +163,7 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
             section = re.split('of ', next_page, 1)[1]
             section = section[:17]
             if '...' in section or '(date)' in section or 'xxx' in section:
-                return 'Date is blank'
+                return values.eu_aut_date_blank
             return helper.get_date(section)
 
     return helper.get_date('')
@@ -215,7 +221,7 @@ def dec_get_bn(txt: str, orphan: bool = False) -> str:
             res = res.replace('”', '')
             return res.strip()
 
-    return 'Brand name Not Found'
+    return values.not_found
 
 
 def dec_get_as(txt: str) -> str:
@@ -236,7 +242,7 @@ def dec_get_as(txt: str) -> str:
         if '– ' in section:
             return section.split('– ')[-1].strip()
 
-    return 'Active Substance Not Found'
+    return values.not_found
 
 
 def dec_get_decision_type(txt: str, date: datetime.datetime) -> str:
@@ -252,18 +258,18 @@ def dec_get_decision_type(txt: str, date: datetime.datetime) -> str:
     """
     # check if there can be a CMA.
     if date < datetime.datetime(2006, 1, 1):
-        return "CMA not available before 2006"
+        return values.NA_before
 
     exceptional = re.search(r"article\s+14\W8", txt.lower())  # exceptional: Article 14(8) or alt. (e.g. Article 14.8)
     # conditional
     if "507/2006" in txt or "conditional marketing authorisation" in txt.lower():
-        return "conditional"
+        return values.aut_type_conditional
 
     # exceptional
     elif "exceptional circumstances" in txt.lower() or exceptional is not None:
-        return "exceptional"
+        return values.aut_type_exceptional
     else:
-        return "CMA Not Found"
+        return values.not_found
 
 
 def dec_get_mah(txt: str) -> str:
@@ -303,7 +309,7 @@ def dec_get_mah(txt: str) -> str:
 
             return mah.strip()
         else:
-            return 'MAH Not Found'
+            return values.not_found
 
 
 def dec_get_od(txt: str, date: datetime.datetime) -> str:
@@ -319,14 +325,14 @@ def dec_get_od(txt: str, date: datetime.datetime) -> str:
     """
     # check if there can be a NAS.
     if date < datetime.datetime(2000, 4, 28):
-        return "NA before 2000"
+        return values.NA_before
 
     if 'orphan medicinal product' in txt.lower():
         txt = txt.lower().split('orphan medicinal product', 1)[1]
         if 'has adopted this decision' in txt.lower():
-            return 'adopted'
-        return 'appointed'
-    return 'OD Not Found'
+            return values.eu_od_type_adopted
+        return values.eu_od_type_appointed
+    return values.not_found
 
 
 def dec_get_atmp(txt: str, date: datetime.datetime) -> str | bool:
@@ -343,7 +349,7 @@ def dec_get_atmp(txt: str, date: datetime.datetime) -> str | bool:
     """
     # check if there can be a ATMP.
     if date < datetime.datetime(2007, 12, 30):
-        return "NA before 2012"
+        return values.NA_before
 
     regulation = "Regulation (EC) No 1394/2007"
     fn_idx = txt.find("regulation as last amended by")  # sometimes regulation is mentioned in footnote
@@ -369,7 +375,7 @@ def dec_get_nas(txt, date) -> str | bool:
     """
     # check if there can be a NAS.
     if date < datetime.datetime(2012, 1, 1):
-        return "NA before 2012"
+        return values.NA_before
 
     if "committee for medicinal products for human use" in txt.lower() and "a new active substance" in txt.lower():
         return True

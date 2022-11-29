@@ -156,6 +156,7 @@
 <li class="toctree-l5"><a class="reference internal" href="file_parser.pdf_parser.html#submodules">Submodules</a></li>
 <li class="toctree-l5"><a class="reference internal" href="file_parser.pdf_parser.html#module-file_parser.pdf_parser.__main__">file_parser.pdf_parser.__main__ module</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="file_parser.pdf_parser.html#file_parser.pdf_parser.__main__.datetime_serializer"><code class="docutils literal notranslate"><span class="pre">datetime_serializer()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="file_parser.pdf_parser.html#file_parser.pdf_parser.__main__.folder_has_no_pdf_json"><code class="docutils literal notranslate"><span class="pre">folder_has_no_pdf_json()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="file_parser.pdf_parser.html#file_parser.pdf_parser.__main__.get_files"><code class="docutils literal notranslate"><span class="pre">get_files()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="file_parser.pdf_parser.html#file_parser.pdf_parser.__main__.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="file_parser.pdf_parser.html#file_parser.pdf_parser.__main__.parse_folder"><code class="docutils literal notranslate"><span class="pre">parse_folder()</span></code></a></li>
@@ -278,16 +279,13 @@
 <span id="file-parser-xml-converter-main-module"></span><h2>file_parser.xml_converter.__main__ module<a class="headerlink" href="#module-file_parser.xml_converter.__main__" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="file_parser.xml_converter.__main__.convert_folder">
-<span class="sig-prename descclassname"><span class="pre">file_parser.xml_converter.__main__.</span></span><span class="sig-name descname"><span class="pre">convert_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#file_parser.xml_converter.__main__.convert_folder" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">file_parser.xml_converter.__main__.</span></span><span class="sig-name descname"><span class="pre">convert_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#file_parser.xml_converter.__main__.convert_folder" title="Permalink to this definition"></a></dt>
 <dd><p>Given a folder containing medicines, parse_folder walks creates an XML file for each PDF when it doesn’t exist.
 After this, a parser for each pdf/xml file is called,
 writing a json file containing the scraped attributes to the folder.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>directory</strong> – location of folder to parse</p></li>
-<li><p><strong>folder_name</strong> – name of medicine folder to parse</p></li>
-</ul>
+<dd class="field-odd"><p><strong>directory</strong> – location of folder to parse</p>
 </dd>
 </dl>
 </dd></dl>
@@ -316,7 +314,7 @@ writing a json file containing the scraped attributes to the folder.</p>
 font info tuple line_text: str, line_font_size: float, line_font_type: str)</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>list of paragraphs in the format of “bolded_text | -HEADER- | unbolded_text”</p>
+<dd class="field-even"><p>list of paragraphs in the format of <cite>bolded_text | -HEADER- | unbolded_text</cite></p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>list[str]</p>
@@ -330,7 +328,7 @@ font info tuple line_text: str, line_font_size: float, line_font_type: str)</p>
 <dd><p>Given a folder containing medicine folders, converts each PDF file to XML for all Annex files, EPARs and OMARs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>directory</strong> – data folder, containing medicine folders</p>
+<dd class="field-odd"><p><strong>directory</strong> – data folder, containing medicine-category folders that contain the medicines</p>
 </dd>
 </dl>
 </dd></dl>
@@ -403,11 +401,11 @@ delimited version and all illegal UTF-8 characters removed.</p>
 <dt class="sig sig-object py" id="file_parser.xml_converter.__main__.split_paragraphs">
 <span class="sig-prename descclassname"><span class="pre">file_parser.xml_converter.__main__.</span></span><span class="sig-name descname"><span class="pre">split_paragraphs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paragraphs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#file_parser.xml_converter.__main__.split_paragraphs" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a list of (header, paragraph) tuples from a list of paragraphs in
-format “bolded_text | -HEADER- | unbolded_text”, meant to take get_marked_paragraph’s return value as input.</p>
+format <cite>bolded_text | -HEADER- | unbolded_text</cite>, meant to take get_marked_paragraph’s return value as input.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>paragraphs</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – a list of paragraphs in the format returned by
-get_marked_paragraphs: “bolded_text | -HEADER- | unbolded_text”</p>
+get_marked_paragraphs: <cite>bolded_text | -HEADER- | unbolded_text</cite></p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>list of XML section text in form of (header, paragraph)</p>

@@ -8,9 +8,11 @@ import json
 from datetime import datetime
 import logging
 import scraping.file_parser.debugging_tools.json_compiler as json_compiler
+import scraping.definitions.value as values
+import scraping.definitions.attributes as attr
 
 log = logging.getLogger("file_parser.annex_10_parser")
-annex10_json_file = "annex10_parser.json"
+annex_10_json_file = "annex_10_parser.json"
 
 
 def get_all(filename: str, excel_file: pd.DataFrame, data_dir: str) -> dict:
@@ -25,8 +27,8 @@ def get_all(filename: str, excel_file: pd.DataFrame, data_dir: str) -> dict:
     Returns:
         dict: Dictionary of all scraped attributes, named according to the bible
     """
-    annex10 = {"filename": filename[:len(filename.split('.')[0])],  # removes extension
-               "active_clock_elapseds": get_active_clock_elapsed(excel_file, data_dir)}
+    annex10 = {attr.filename: filename[:len(filename.split('.')[0])],  # removes extension
+               attr.active_clock_elapseds: get_active_clock_elapsed(excel_file, data_dir)}
     return annex10
 
 
@@ -58,6 +60,9 @@ def parse_file(filename: str, directory: str, annex10s: list[dict], data_dir: st
 
 def clean_df(excel_data: pd.DataFrame) -> pd.DataFrame:
     """
+    Cleans the Excel file by removing null lines, starting rows from first Product Name value,
+    naming the columns, and removing other columns than the last two
+
     Args:
         excel_data (pd.DataFrame): the contents of the Excel file
 
@@ -66,13 +71,13 @@ def clean_df(excel_data: pd.DataFrame) -> pd.DataFrame:
     """
     # Clean null lines
     excel_data = excel_data[~excel_data["Unnamed: 0"].isnull()]
-    # Remove all before "Product Name"
+    # Remove all rows before "Product Name"
     x = excel_data.index[excel_data["Unnamed: 0"] == "Product Name"].tolist()[0]
     excel_data = excel_data.truncate(before=x).reset_index()
-    # Set index to first row
+    # Set column names
     excel_data.columns = excel_data.iloc[0]
     excel_data = excel_data.truncate(before=1).reset_index()
-    # Remove redundant columns
+    # Remove redundant columns, only the last two columns contain the clock times we need.
     excel_data = excel_data.iloc[:, 2:]
 
     return excel_data
@@ -101,7 +106,7 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
     clock_stop_elapseds = (excel_data["Clock Stop Elapsed"].tolist())
 
     # Load all medicine data from all_json_results.json, created by json_compiler
-    scraping_dir = data_dir.split('data')[0].strip('/') + "/scraping"
+    scraping_dir = data_dir.split('data')[0].strip('/').strip("test_/") + "/scraping"
     all_json_results = open(path.join(scraping_dir, "all_json_results.json"), "r", encoding="utf-8")
     all_data = json.load(all_json_results)
     all_json_results.close()
@@ -112,9 +117,9 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
         product_name_found, eu_num = product_name_in_epars(product_name.lower(), all_data, opinion_date)
         if product_name_found:
             res.append({
-                "eu_number": eu_num,
-                "active_time_elapsed": active_time_elapsed,
-                "clock_stop_elapsed": clock_stop_elapsed
+                attr.eu_pnumber: eu_num,
+                attr.active_time_elapsed: active_time_elapsed,
+                attr.clock_stop_elapsed: clock_stop_elapsed
             })
     return res
 
@@ -138,10 +143,10 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
 
     for medicine in all_data:
         # Check if product_name in brand_name and get EU number
-        if "eu_brand_name_current" in medicine.keys():
-            if product_name in medicine["eu_brand_name_current"].lower() or \
-                    medicine["eu_brand_name_current"].lower() in product_name:
-                eu_num = medicine["eu_pnumber"].replace("/", "-")
+        if attr.eu_brand_name_current in medicine.keys():
+            if product_name in medicine[attr.eu_brand_name_current].lower() or \
+                    medicine[attr.eu_brand_name_current].lower() in product_name:
+                eu_num = medicine[attr.eu_pnumber].replace("/", "-")
     for medicine in all_data:
         # Check if found EU number has an EPAR
         if "eu_number" not in medicine.keys():
@@ -150,9 +155,9 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
             continue
         if not medicine["epars"]:
             continue
-        chmp_opinion_date = medicine["epars"][0]["chmp_opinion_date"]
-        if chmp_opinion_date == "no_chmp_found":
-            log.warning("Annex_10_parser: no_chmp_found")
+        chmp_opinion_date = medicine["epars"][0][attr.chmp_opinion_date]
+        if chmp_opinion_date == values.not_found:
+            log.warning(f"Annex_10_parser: no chmp opinion date found in EPAR for {eu_num}")
             continue
         chmp_opinion_date = datetime.strptime(chmp_opinion_date, '%d/%m/%Y')
         # Check if the chmp_opinion_date and opinion_date are within 4 days of each other
@@ -174,17 +179,17 @@ def annexes_already_parsed(annex_10_folder: str) -> bool:
         bool: True if file already exists and last annex is included, False otherwise
     """
     all_annexes_parsed = False
-    if os.path.exists(annex10_json_file):
+    if os.path.exists(annex_10_json_file):
         try:
-            f = open(annex10_json_file, "r", encoding="utf-8")
+            f = open(annex_10_json_file, "r", encoding="utf-8")
             parsed_data = json.load(f)
             for filename in os.listdir(annex_10_folder):
                 if filename.split(".")[0] in parsed_data:
                     all_annexes_parsed = True
         except FileNotFoundError:
-            log.error(f"{annex10_json_file} not found.")
+            log.error(f"{annex_10_json_file} not found.")
         except json.decoder.JSONDecodeError as error:
-            log.error(f"Can't open {annex10_json_file}: Decode error | " + str(error))
+            log.error(f"Can't open {annex_10_json_file}: Decode error | " + str(error))
         if all_annexes_parsed:
             log.info("All annexes in folder were already parsed")
             return True
@@ -216,8 +221,8 @@ def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
     for filename in os.listdir(annex_10_folder):
         annex10s = parse_file(filename, annex_10_folder, annex10s, data_folder_directory)
 
-    f = open(annex10_json_file, "w")
-    json_to_write = json.dumps(str(annex10s))
+    f = open(annex_10_json_file, "w")
+    json_to_write = json.dumps(annex10s)
     f.write(json_to_write)
     f.close()
 

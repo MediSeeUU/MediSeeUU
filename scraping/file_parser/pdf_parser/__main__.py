@@ -4,7 +4,7 @@ import os.path as path
 import json
 import scraping.logger as logger
 import joblib
-from datetime import datetime
+from datetime import datetime, date
 import multiprocessing
 
 # for main
@@ -25,18 +25,36 @@ def main(directory: str):
     log = logger.PDFLogger.log
     log.info(f"=== NEW LOG {datetime.today()} ===")
 
-    eu_numbers = []
-    if path.exists(f"{directory}/eu_numbers.json"):
-        with open(f"{directory}/eu_numbers.json", mode='r') as eu_numbers_file:
-            eu_numbers = json.load(eu_numbers_file)
+    eu_numbers_path = ""
+    eu_numbers_base_path = f"{directory}/{date.today()}_eu_numbers"
+
+    file_exists = True
+    i = 0
+    while file_exists:
+        eu_numbers_path = eu_numbers_base_path + f"_{i}.json"
+        i += 1
+        file_exists = path.exists(eu_numbers_base_path + f"_{i}.json")
+
+    if path.exists(eu_numbers_path):
+        with open(eu_numbers_path) as f:
+            eu_numbers = set(json.load(f))
+    else:
+        eu_numbers = {}
+        log.warning(f"No eu_numbers.json file found at location {eu_numbers_path}. Did you run web scraper?")
+
+    meds_dir = f"{directory}/active_withdrawn"
 
     # Get medicine folders that have to be scraped, so only medicines in the eu_numbers.json file
-    directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder)) and
-                         folder in eu_numbers]
+    directory_folders = [folder for folder in listdir(meds_dir) if path.isdir(path.join(meds_dir, folder)) and
+                         (folder in eu_numbers or folder_has_no_pdf_json(meds_dir, folder))]
+
+    # For debugging, this list of folders will not check if the medicine is recently updated before scraping
+    # Does not check whether eu_number of medicine is in eu_numbers.json
+    # directory_folders = [folder for folder in listdir(meds_dir) if path.isdir(path.join(meds_dir, folder))]
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(parse_folder)(path.join(directory, folder), folder) for folder in
+        joblib.delayed(parse_folder)(path.join(meds_dir, folder), folder) for folder in
         directory_folders)
     log.info("Done parsing PDF files!")
 
@@ -57,7 +75,7 @@ def parse_folder(directory: str, folder_name: str):
         folder_name (st): name of medicine folder to parse
     """
     # Annex 10 folder should be skipped
-    if "annex" in directory:
+    if "annex_10" in directory:
         return
 
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing
@@ -86,7 +104,8 @@ def get_files(directory: str) -> (list[str], list[str], list[str], list[str]):
     Returns:
         (list[str], list[str], list[str], list[str]): List of PDF file names for each of the 4 PDF types
     """
-    directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
+    directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))
+                       and "other" not in file]
     decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file]
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
     epar_files = [file for file in directory_files if
@@ -121,6 +140,23 @@ def run_scrapers(directory: str, annex_files: list[str], decision_files: list[st
     for file in omar_files:
         medicine_struct = omar_parser.parse_file(file, medicine_struct)
     return medicine_struct
+
+
+def folder_has_no_pdf_json(directory: str, folder: str) -> bool:
+    """
+    Returns whether the given directory already has a pdf_parser.json file
+
+    Args:
+        directory (str): Main data directory
+        folder (str): Medicine folder that might have a pdf_parser.json file
+
+    Returns:
+        bool: True if the given directory already has a pdf_parser.json file, False otherwise
+    """
+    for filename in listdir(path.join(directory, folder)):
+        if "pdf_parser" in filename:
+            return False
+    return True
 
 
 def datetime_serializer(date: pis.datetime.datetime):
