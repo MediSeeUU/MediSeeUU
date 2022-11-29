@@ -1,3 +1,4 @@
+import logging
 import multiprocessing
 from os import path, listdir
 from typing import TextIO
@@ -7,10 +8,9 @@ import joblib
 
 import scraping.file_parser.pdf_parser.pdf_helper as ph
 import scraping.file_parser.xml_converter.xml_tags as tags
-import scraping.logger as logger
 
 header_indicator = "|-HEADER-|"
-log = logger.PDFLogger.log
+log = logging.getLogger("pdf_parser.xml")
 
 
 def convert_pdf_to_xml(source_filepath: str, output_filepath: str):

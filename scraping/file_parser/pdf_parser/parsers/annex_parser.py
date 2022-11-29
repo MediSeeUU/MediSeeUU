@@ -1,12 +1,13 @@
+import logging
+
 import scraping.file_parser.xml_converter.__main__ as xml_converter
 import xml.etree.ElementTree as ET
 import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
 import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
-import scraping.logger as logger
 import os
 
-log = logger.PDFLogger.log
+log = logging.getLogger("pdf_parser.annex_parser")
 
 
 def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):

@@ -1,18 +1,19 @@
 # EPAR parser
+import logging
 import re
 import scraping.file_parser.pdf_parser.helper as helper
 import scraping.file_parser.xml_converter.xml_parsing_utils as xml_utils
 import xml.etree.ElementTree as ET
 import scraping.file_parser.pdf_parser.parsed_info_struct as pis
 import scraping.file_parser.pdf_parser.pdf_helper as pdf_helper
-import scraping.logger as logger
 import os.path as path
 
 date_pattern: str = r"\d{1,2} \b(?!emea\b)\w+ \d{4}|\d{1,2}\w{2} \b(?!emea\b)\w+ \d{4}"  # DD/MONTH/YYYY
 procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure
 accelerated_assessment = "accelerated assessment"
 steps_taken_assessment_str = "steps taken for the assessment"
-log = logger.PDFLogger.log
+
+log = logging.getLogger("pdf_parser.epar_parser")
 
 
 def get_all(filename: str, xml_data: ET.Element) -> dict:
