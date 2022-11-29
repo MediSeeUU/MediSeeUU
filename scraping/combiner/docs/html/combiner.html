@@ -74,6 +74,17 @@
 <li class="toctree-l4"><a class="reference internal" href="#combiner.__main__.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#module-combiner.attribute_combining_functions">combiner.attribute_combining_functions module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.check_all_equal"><code class="docutils literal notranslate"><span class="pre">check_all_equal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_best_source"><code class="docutils literal notranslate"><span class="pre">combine_best_source()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_eu_med_type"><code class="docutils literal notranslate"><span class="pre">combine_eu_med_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_select_string_overlap"><code class="docutils literal notranslate"><span class="pre">combine_select_string_overlap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.get_file_date"><code class="docutils literal notranslate"><span class="pre">get_file_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.json_history_current"><code class="docutils literal notranslate"><span class="pre">json_history_current()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.json_history_initial"><code class="docutils literal notranslate"><span class="pre">json_history_initial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.json_static"><code class="docutils literal notranslate"><span class="pre">json_static()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -116,6 +127,85 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="combiner.__main__.main">
 <span class="sig-prename descclassname"><span class="pre">combiner.__main__.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#combiner.__main__.main" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-combiner.attribute_combining_functions">
+<span id="combiner-attribute-combining-functions-module"></span><h2>combiner.attribute_combining_functions module<a class="headerlink" href="#module-combiner.attribute_combining_functions" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.check_all_equal">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">check_all_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.check_all_equal" title="Permalink to this definition"></a></dt>
+<dd><p>checks if two values are equal and not None
+:param v1: value to compare
+:type v1: any
+:param v2: value to compare
+:type v2: any</p>
+<p>Returns (bool): result of check</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_best_source">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_best_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">attribute_name:</span> <span class="pre">str,</span> <span class="pre">sources:</span> <span class="pre">list[str],</span> <span class="pre">file_dicts:</span> <span class="pre">dict[str,</span> <span class="pre">dict[str,</span> <span class="pre">any]])</span> <span class="pre">-&gt;</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">any&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_best_source" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attribute_name</strong> – </p></li>
+<li><p><strong>dicts</strong> – </p></li>
+<li><p><strong>combine_attributes</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_eu_med_type">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_eu_med_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_eu_med_type" title="Permalink to this definition"></a></dt>
+<dd><p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filedicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>any</em><em>]</em><em>]</em>) – Dictionary of all source dictionaries generated by combine_folder()</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_select_string_overlap">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_select_string_overlap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_matching_fraction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.8</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_select_string_overlap" title="Permalink to this definition"></a></dt>
+<dd><p>compares two strings to see if a percentage of the shortest string is identical to the longest string
+:param s1: first string
+:type s1: str
+:param s2: second string
+:type s2: str
+:param perc: percentage float between 0 and 1
+:type perc: float</p>
+<p>Returns (bool): bool indicating equality</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.get_file_date">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">get_file_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.get_file_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.json_history_current">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">json_history_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.json_history_current" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.json_history_initial">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">json_history_initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.json_history_initial" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.json_static">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">json_static</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">any</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.json_static" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
