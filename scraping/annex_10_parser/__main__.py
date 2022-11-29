@@ -6,7 +6,7 @@ from datetime import datetime
 import logging
 import scraping.utilities.json.json_compiler as json_compiler
 
-log = logging.getLogger("file_parser.annex_10_parser")
+log = logging.getLogger("annex_10_parser")
 annex_10_json_file = "annex_10_parser.json"
 
 

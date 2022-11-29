@@ -63,7 +63,20 @@ class TestWebScraper(TestCase):
             os.mkdir(data_path)
         if not path.isdir(data_path_local):
             os.mkdir(data_path_local)
+        if not path.isdir(f"{parent_path}/tests/logs/txt_files"):
+            os.mkdir(f"{parent_path}/tests/logs/txt_files")
         Path(f"{json_path}JSON").mkdir(parents=True, exist_ok=True)
+
+    def setUp(self):
+        """
+        Create required folders for data and logs
+        """
+        shutil.rmtree(data_path_local)
+        os.mkdir(data_path_local)
+        shutil.rmtree(f"{parent_path}/tests/logs/txt_files")
+        os.mkdir(f"{parent_path}/tests/logs/txt_files")
+        shutil.rmtree(f"{parent_path}/tests/logs/log_files")
+        os.mkdir(f"{parent_path}/tests/logs/log_files")
 
     medicine_list_checks = \
         [('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
@@ -80,9 +93,6 @@ class TestWebScraper(TestCase):
             parallel: if web should run parallel or not
             medicine_codes: The medicine that is tested
         """
-        shutil.rmtree(data_path_local)
-        os.mkdir(data_path_local)
-
         self.parallel = parallel
         self.medicine_list = medicine_codes
         self.eu_n = self.medicine_list[0][1]
@@ -100,9 +110,6 @@ class TestWebScraper(TestCase):
             parallel: if web should run parallel or not
             medicine_list: The medicine that is tested
         """
-        shutil.rmtree(data_path_local)
-        os.mkdir(data_path_local)
-
         self.parallel = parallel
         self.medicine_list = medicine_list
         web.main(data_filepath=data_path, scrape_ec=True, scrape_ema=True, download_files=True,
@@ -189,7 +196,9 @@ class TestWebScraper(TestCase):
         """
         shutil.rmtree(data_path)
         os.rename(f"{data_path}_old", data_path)
-        if os.path.exists(filter_path):
-            os.remove(filter_path)
+        shutil.rmtree(f"{parent_path}/tests/logs/txt_files")
+        os.mkdir(f"{parent_path}/tests/logs/txt_files")
+        shutil.rmtree(f"{parent_path}/tests/logs/log_files")
+        os.mkdir(f"{parent_path}/tests/logs/log_files")
         if os.path.exists('no_english_available.txt'):
             os.remove('no_english_available.txt')

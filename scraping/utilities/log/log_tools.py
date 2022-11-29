@@ -9,13 +9,13 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
 
     Args:
         logging_path (str): Path in which the log files will be saved.
-
-    Returns: None
-
     """
+    if not path.isdir(logging_path):
+        os.mkdir(logging_path)
     web_name: str = "web_scraper"
     pdf_name: str = "pdf_parser"
     xml_name: str = "xml_converter"
+    annex_10_name: str = "annex_10_parser"
 
     # --- Root logger ---
     root_handler_stream = logging.StreamHandler()
@@ -36,21 +36,14 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     logging.getLogger("urllib3.connectionpool").setLevel(logging.INFO)  # Avoid urllib3 DEBUG messages
     # ---
 
-    # --- Logging module of the PDF parser ---
-    log_pdf = logging.getLogger(pdf_name)
-    log_pdf.setLevel(logging.INFO)
+    # Create logging module for all other modules
+    logging_names = [web_name, pdf_name, xml_name, annex_10_name]
+    for log_name in logging_names:
+        log = logging.getLogger(log_name)
+        log.setLevel(logging.INFO)
 
-    log_pdf_file_handler = logging.FileHandler(f"{logging_path}/logging_{pdf_name}.log")
-    log_pdf.addHandler(log_pdf_file_handler)
-    # ---
-
-    # --- Logging module of the XML converter ---
-    log_xml = logging.getLogger(xml_name)
-    log_xml.setLevel(logging.INFO)
-
-    log_xml_file_handler = logging.FileHandler(f"{logging_path}/logging_{xml_name}.log")
-    log_xml.addHandler(log_xml_file_handler)
-    # ---
+        log_file_handler = logging.FileHandler(f"{logging_path}/logging_{log_name}.log")
+        log.addHandler(log_file_handler)
 
 
 def get_log_path(filename: str, data_path: str) -> str:

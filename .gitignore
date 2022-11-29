@@ -160,4 +160,5 @@ data filtered and xml 31 okt.zip
 !test_data/*/*/*
 !test_data_filter/*/*/*
 !tests/annex_10_tests/annex_10_parser_test.json
+!tests/pdf_parser_tests/test_annex_parse_data/*
 scraping/filter/filter.txt
