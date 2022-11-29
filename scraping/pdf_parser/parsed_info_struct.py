@@ -1,7 +1,7 @@
 import datetime
 from dataclasses import dataclass, field, asdict
 import typing
-import scraping.definitions.attributes as attr
+import scraping.utilities.definitions.attributes as attr
 
 @dataclass
 class ParsedInfoStruct:

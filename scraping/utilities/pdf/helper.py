@@ -2,7 +2,7 @@ import datetime
 import re
 
 import dateutil.parser as dateparser
-import scraping.definitions.value as values
+import scraping.utilities.definitions.value as values
 
 roman_numbers = {
     "i": "1",
