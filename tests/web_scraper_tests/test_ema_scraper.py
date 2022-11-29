@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime
 from scraping.web_scraper import ema_scraper as em
-import scraping.web_scraper.utils as utils
+import scraping.utilities.web.web_utils as utils
 from parameterized import parameterized
 
 
