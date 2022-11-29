@@ -2,6 +2,7 @@ import datetime
 import re
 
 import dateutil.parser as dateparser
+import scraping.definitions.value as values
 
 roman_numbers = {
     "i": "1",
@@ -145,4 +146,4 @@ def get_date(txt: str) -> datetime.datetime:
         except dateparser._parser.ParserError:
             pass
 
-    return datetime.datetime(1980, 1, 1, 0, 0)
+    return values.default_date

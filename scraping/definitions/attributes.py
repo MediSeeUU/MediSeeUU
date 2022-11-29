@@ -8,98 +8,109 @@ annex_initial = "anx_initial"
 epar = "epar"
 omar = "omar"
 web = "web"
-file_dates = "filedates"
+file_dates = "file_dates"
+source_file = "source_file"
+annex_10 = "annex_10"
+
+# metadata attributes in json files
+file_date = "file_date"
+filename = "filename"
+pdf_file = "pdf_file"
+xml_file = "xml_file"
+is_initial = "is_initial"
+creation_date = "creation_date"
+modification_date = "modification_date"
 
 
+# struct class
 class ScraperAttribute:
-    """
-    struct class for attributes
-    """
-
-    def __init__(self, name: str, sources: list[str], combine):
+    def __init__(self, name: str, sources: list[str], combine_function, json_function):
         self.name = name
         self.sources = sources
-        self.combine = combine
+        self.combine_function = combine_function
+        self.json_function = json_function
 
 
-def attribute_factory(all_attributes: dict[str, ScraperAttribute], name: str, sources: list[str], combine=False) -> str:
-    """
-    add new ScraperAttribute to all_attributes and return name of ScraperAttribute
-    Args:
-        all_attributes (dict[str, ScraperAttribute]): Dictionary of all attribute names, combined with this name as
-            string and a list of sources for that attribute
-        name (str): Name of ScraperAttribute
-        sources (list[str]): List of sources for ScraperAttribute
-        combine (bool): Whether to cross-check attributes from different sources
-
-    Returns:
-        str: Name of the attribute
-    """
-    attr = ScraperAttribute(name, sources, combine)
-    all_attributes[name] = attr
+# add new ScraperAttribute to all_attributes and return name of ScraperAttribute
+def AttributeFactory(all_attributes: set[ScraperAttribute], name: str, sources: list[str], combine_function = acf.combine_best_source, json_function = acf.json_static):
+    attr = ScraperAttribute(name, sources, combine_function, json_function)
+    all_attributes.add(attr)
     return name
 
-
 # Initialize all attribute objects
-all_attributes = {}
-atc_code = attribute_factory(all_attributes, "atc_code", [web])
-atc_name_l1 = attribute_factory(all_attributes, "atc_name_l1", [web])
-atc_name_l2 = attribute_factory(all_attributes, "atc_name_l2", [web])
-atc_name_l3 = attribute_factory(all_attributes, "atc_name_l3", [web])
-atc_name_l4 = attribute_factory(all_attributes, "atc_name_l4", [web])
-active_substance = attribute_factory(all_attributes, "active_substance", [web, decision_initial])
-eu_nas = attribute_factory(all_attributes, "eu_nas", [decision_initial])
-ema_procedure_start_initial = attribute_factory(all_attributes, "ema_procedure_start_initial", [epar])
-chmp_opinion_date = attribute_factory(all_attributes, "chmp_opinion_date", [epar])
-eu_aut_date = attribute_factory(all_attributes, "eu_aut_date", [web, decision_initial])
-eu_aut_type_initial = attribute_factory(all_attributes, "eu_aut_type_initial", [decision_initial, annex_initial, web])
-eu_aut_type_current = attribute_factory(all_attributes, "eu_aut_type_current", [web])
-eu_brand_name_initial = attribute_factory(all_attributes, "eu_brand_name_initial", [decision_initial])
-eu_pnumber = attribute_factory(all_attributes, "eu_pnumber", [web])
-eu_pnumber_id = attribute_factory(all_attributes, "eu_pnumber_id", [web])
-eu_legal_basis = attribute_factory(all_attributes, "eu_legal_basis", [epar])
-aut_url = attribute_factory(all_attributes, "aut_url", [file_dates])
-smpc_url = attribute_factory(all_attributes, "smpc_url", [file_dates])
-epar_url = attribute_factory(all_attributes, "epar_url", [file_dates])
-eu_atmp = attribute_factory(all_attributes, "eu_atmp", [decision])
-eu_med_type = attribute_factory(all_attributes, "eu_med_type", [annex_initial])
-eu_aut_status = attribute_factory(all_attributes, "eu_aut_status", [web])  # niet web web pls
-eu_brand_name = attribute_factory(all_attributes, "eu_brand_name", [web])
-eu_brand_name_current = attribute_factory(all_attributes, "eu_brand_name_current", [web])
-eu_brand_name_history = attribute_factory(all_attributes, "eu_brand_name_history", [web])
-ema_number = attribute_factory(all_attributes, "ema_number", [web])
-ema_number_id = attribute_factory(all_attributes, "ema_number_id", [web])
-ema_number_certainty = attribute_factory(all_attributes, "ema_number_certainty", [web])
-ema_number_check = attribute_factory(all_attributes, "ema_number_check", [web])
-eu_mah = attribute_factory(all_attributes, "eu_mah", )
-eu_mah_current = attribute_factory(all_attributes, "eu_mah_current", [web])
-eu_mah_initial = attribute_factory(all_attributes, "eu_mah_initial", [decision_initial])
-eu_mah_history = attribute_factory(all_attributes, "eu_mah_history", [web])
-eu_prime_initial = attribute_factory(all_attributes, "eu_prime_initial", [epar])
-eu_prime_history = attribute_factory(all_attributes, "eu_prime_history", [epar])
-eu_od_initial = attribute_factory(all_attributes, "eu_od_initial", [decision_initial])
-eu_od_history = attribute_factory(all_attributes, "eu_od_history", [decision])  # ?
-ema_url = attribute_factory(all_attributes, "ema_url", [file_dates])
-ec_url = attribute_factory(all_attributes, "ec_url", [file_dates])
-ema_rapp = attribute_factory(all_attributes, "ema_rapp", [epar])
-ema_corapp = attribute_factory(all_attributes, "ema_corapp", [epar])
-eu_accel_assess_g = attribute_factory(all_attributes, "eu_accel_assess_g", [epar])
-eu_accel_assess_m = attribute_factory(all_attributes, "eu_accel_assess_m", [epar])
-assess_time_days_total = attribute_factory(all_attributes, "assess_time_days_total", )
-assess_time_days_active = attribute_factory(all_attributes, "assess_time_days_active", )
-assess_time_days_cstop = attribute_factory(all_attributes, "assess_time_days_cstop", )
-ec_sources.decision_time_days = attribute_factory(all_attributes, "ec_sources.decision_time_days", )
-ema_reexamination = attribute_factory(all_attributes, "ema_reexamination", [epar])
-eu_orphan_con_initial = attribute_factory(all_attributes, "eu_orphan_con_initial", [web])
-eu_orphan_con_current = attribute_factory(all_attributes, "eu_orphan_con_current", [web])
-eu_referral = attribute_factory(all_attributes, "eu_referral", [web])
-eu_suspension = attribute_factory(all_attributes, "eu_suspension", [web])
-omar_url = attribute_factory(all_attributes, "omar_url", [file_dates])
-odwar_url = attribute_factory(all_attributes, "odwar_url", [file_dates])
-eu_od_number = attribute_factory(all_attributes, "eu_od_number", [web])
-ema_od_number = attribute_factory(all_attributes, "ema_od_number", [web])
-eu_od_con = attribute_factory(all_attributes, "eu_od_con", [web])
-eu_od_date = attribute_factory(all_attributes, "eu_od_date", [file_dates])
-eu_od_pnumber = attribute_factory(all_attributes, "eu_od_pnumber", [web])
-eu_od_sponsor = attribute_factory(all_attributes, "eu_od_sponsor", [web])
-eu_od_comp_date = attribute_factory(all_attributes, "eu_od_comp_date", [file_dates])
+all_attributes: set[ScraperAttribute] = set()
+atc_code = AttributeFactory(all_attributes, "atc_code", [web])
+# atc_name_l1 = AttributeFactory(all_attributes, "atc_name_l1", [web])
+# atc_name_l2 = AttributeFactory(all_attributes, "atc_name_l2", [web])
+# atc_name_l3 = AttributeFactory(all_attributes, "atc_name_l3", [web])
+# atc_name_l4 = AttributeFactory(all_attributes, "atc_name_l4", [web])
+active_substance = AttributeFactory(all_attributes, "active_substance", [web, decision_initial], acf.combine_select_string_overlap)
+eu_nas = AttributeFactory(all_attributes, "eu_nas", [decision_initial])
+ema_procedure_start_initial = AttributeFactory(all_attributes, "ema_procedure_start_initial", [epar])
+chmp_opinion_date = AttributeFactory(all_attributes, "chmp_opinion_date", [epar])
+eu_aut_date = AttributeFactory(all_attributes, "eu_aut_date", [web, decision_initial], acf.check_all_equal)
+eu_aut_type_initial = AttributeFactory(all_attributes, "eu_aut_type_initial", [decision_initial, annex_initial, web])
+eu_aut_type_current = AttributeFactory(all_attributes, "eu_aut_type_current", [web])
+eu_pnumber = AttributeFactory(all_attributes, "eu_pnumber", [web])
+eu_pnumber_id = AttributeFactory(all_attributes, "eu_pnumber_id", [web])
+eu_legal_basis = AttributeFactory(all_attributes, "eu_legal_basis", [epar])
+aut_url = AttributeFactory(all_attributes, "aut_url", [file_dates])
+smpc_url = AttributeFactory(all_attributes, "smpc_url", [file_dates])
+epar_url = AttributeFactory(all_attributes, "epar_url", [file_dates])
+eu_atmp = AttributeFactory(all_attributes, "eu_atmp", [decision])
+eu_med_type = AttributeFactory(all_attributes, "eu_med_type", [annex_initial], acf.combine_eu_med_type)
+eu_aut_status = AttributeFactory(all_attributes, "eu_aut_status", [web])
+eu_brand_name = AttributeFactory(all_attributes, "eu_brand_name", [web])
+eu_brand_name_current = AttributeFactory(all_attributes, "eu_brand_name_current", [web])
+# eu_brand_name_history = AttributeFactory(all_attributes, "eu_brand_name_history", [web])
+eu_brand_name_initial = AttributeFactory(all_attributes, "eu_brand_name_initial", [decision_initial])
+ema_number = AttributeFactory(all_attributes, "ema_number", [web])
+ema_number_id = AttributeFactory(all_attributes, "ema_number_id", [web])
+ema_number_certainty = AttributeFactory(all_attributes, "ema_number_certainty", [web])
+ema_number_check = AttributeFactory(all_attributes, "ema_number_check", [web])
+# eu_mah = AttributeFactory(all_attributes, "eu_mah", )
+eu_mah_current = AttributeFactory(all_attributes, "eu_mah_current", [web], acf.combine_best_source, acf.json_history_current)
+eu_mah_initial = AttributeFactory(all_attributes, "eu_mah_initial", [decision_initial], acf.combine_best_source, acf.json_history_initial)
+# eu_mah_history = AttributeFactory(all_attributes, "eu_mah_history", [web])
+eu_prime_initial = AttributeFactory(all_attributes, "eu_prime_initial", [epar])
+# eu_prime_history = AttributeFactory(all_attributes, "eu_prime_history", [epar])
+eu_od_initial = AttributeFactory(all_attributes, "eu_od_initial", [decision_initial])
+# eu_od_history = AttributeFactory(all_attributes, "eu_od_history", [decision])  # ?
+ema_url = AttributeFactory(all_attributes, "ema_url", [file_dates])
+ec_url = AttributeFactory(all_attributes, "ec_url", [file_dates])
+ema_rapp = AttributeFactory(all_attributes, "ema_rapp", [epar])
+ema_corapp = AttributeFactory(all_attributes, "ema_corapp", [epar])
+eu_accel_assess_g = AttributeFactory(all_attributes, "eu_accel_assess_g", [epar])
+eu_accel_assess_m = AttributeFactory(all_attributes, "eu_accel_assess_m", [epar])
+assess_time_days_total = AttributeFactory(all_attributes, "assess_time_days_total", [annex_10])
+assess_time_days_active = AttributeFactory(all_attributes, "assess_time_days_active", [annex_10])
+assess_time_days_cstop = AttributeFactory(all_attributes, "assess_time_days_cstop", [annex_10])
+decision_time_days = AttributeFactory(all_attributes, "decision_time_days", [annex_10])
+ema_reexamination = AttributeFactory(all_attributes, "ema_reexamination", [epar])
+eu_orphan_con_initial = AttributeFactory(all_attributes, "eu_orphan_con_initial", [web])
+eu_orphan_con_current = AttributeFactory(all_attributes, "eu_orphan_con_current", [web])
+eu_referral = AttributeFactory(all_attributes, "eu_referral", [web])
+eu_suspension = AttributeFactory(all_attributes, "eu_suspension", [web])
+omar_url = AttributeFactory(all_attributes, "omar_url", [file_dates])
+odwar_url = AttributeFactory(all_attributes, "odwar_url", [file_dates])
+eu_od_number = AttributeFactory(all_attributes, "eu_od_number", [web])
+ema_od_number = AttributeFactory(all_attributes, "ema_od_number", [web])
+eu_od_con = AttributeFactory(all_attributes, "eu_od_con", [web])
+eu_od_date = AttributeFactory(all_attributes, "eu_od_date", [file_dates])
+eu_od_pnumber = AttributeFactory(all_attributes, "eu_od_pnumber", [web])
+eu_od_sponsor = AttributeFactory(all_attributes, "eu_od_sponsor", [web])
+eu_od_comp_date = AttributeFactory(all_attributes, "eu_od_comp_date", [file_dates])
+eu_indication_initial = AttributeFactory(all_attributes, "eu_indication_initial", [annex_initial])
+ema_omar_condition = AttributeFactory(all_attributes, "ema_omar_condition", [omar])
+
+#TODO: check
+eu_therapeutic_indications = AttributeFactory(all_attributes, "eu_therapeutic_indications", [annex]) #or initial?
+active_time_elapsed = AttributeFactory(all_attributes, "active_time_elapsed", [])
+clock_stop_elapsed = AttributeFactory(all_attributes, "clock_stop_elapsed", [])
+
+ema_prevalence = "ema_prevalence"
+ema_alternative_treatments = "ema_alternative_treatments"
+ema_insufficient_roi = "ema_insufficient_roi" #TODO: check
+active_clock_elapseds = "active_clock_elapseds"
+
+
