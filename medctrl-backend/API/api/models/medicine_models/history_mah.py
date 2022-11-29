@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
-from .common import create_dashboard_history_columns, Category
+from .dashboard_columns import create_dashboard_history_current_column, Category
 
 
 class HistoryMAH(models.Model):
@@ -32,7 +32,7 @@ class HistoryMAH(models.Model):
         blank=False,
     )
 
-    eu_mah = create_dashboard_history_columns(
+    eu_mah = create_dashboard_history_current_column(
         models.CharField(
             max_length=255,
             null=False,

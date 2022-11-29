@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from hashlib import md5
 from django.db import models
-from .common import create_dashboard_column, Category
+from .dashboard_columns import create_dashboard_column, Category
 
 
 class IngredientsAndSubstances(models.Model):

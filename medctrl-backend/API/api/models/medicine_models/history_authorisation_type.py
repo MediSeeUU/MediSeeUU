@@ -3,7 +3,8 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
-from .common import create_dashboard_history_columns, Category, AutTypes
+from .dashboard_columns import create_dashboard_history_current_column, Category
+from .common import AutTypes
 
 
 class HistoryAuthorisationType(models.Model):
@@ -31,7 +32,7 @@ class HistoryAuthorisationType(models.Model):
         null=False,
     )
 
-    eu_aut_type = create_dashboard_history_columns(
+    eu_aut_type = create_dashboard_history_current_column(
         models.CharField(
             max_length=11,
             choices=AutTypes.choices,

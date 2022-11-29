@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
-from .common import create_dashboard_column, Category
+from .dashboard_columns import create_dashboard_column, Category
 
 
 class OrphanProduct(models.Model):

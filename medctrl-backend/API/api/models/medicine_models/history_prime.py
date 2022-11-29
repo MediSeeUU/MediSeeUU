@@ -3,8 +3,6 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
-from .common import create_dashboard_history_column_initial, Category
-
 
 class HistoryPrime(models.Model):
     """
@@ -32,15 +30,9 @@ class HistoryPrime(models.Model):
         blank=False,
     )
 
-    eu_prime = create_dashboard_history_column_initial(
-        models.BooleanField(
-            null=False,
-            blank=False,
-        ),
-        Category.General_Information,
-        "bool",
-        "EU Priority Medicine",
-
+    eu_prime = models.BooleanField(
+        null=False,
+        blank=False,
     )
 
     class Meta:

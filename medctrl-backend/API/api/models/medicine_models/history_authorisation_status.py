@@ -3,7 +3,8 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
-from .common import create_dashboard_history_column_current, Category, AutStatus
+from .dashboard_columns import create_dashboard_history_current_column, Category
+from .common import AutStatus
 
 
 class HistoryAuthorisationStatus(models.Model):
@@ -33,7 +34,7 @@ class HistoryAuthorisationStatus(models.Model):
         blank=False,
     )
 
-    eu_aut_status = create_dashboard_history_column_current(
+    eu_aut_status = create_dashboard_history_current_column(
         models.CharField(
             max_length=10,
             choices=AutStatus.choices,

@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .orphan_product import OrphanProduct
-from .common import create_dashboard_history_columns, Category
+from .dashboard_columns import create_dashboard_history_current_column, Category
 
 
 class HistoryEUOrphanCon(models.Model):
@@ -32,7 +32,7 @@ class HistoryEUOrphanCon(models.Model):
         blank=False,
     )
 
-    eu_orphan_con = create_dashboard_history_columns(
+    eu_orphan_con = create_dashboard_history_current_column(
         models.TextField(
             null=False,
             blank=False,
