@@ -1,5 +1,6 @@
-import definitions.value as values
-import definitions.attributes as attr
+import scraping.definitions.values as values
+import scraping.definitions.sources as src
+import scraping.definitions.attributes as attr
 from difflib import SequenceMatcher as SM
 
 def check_all_equal(values: list[any]) -> bool:
@@ -36,14 +37,14 @@ def combine_best_source(attribute_name: str, sources: list[str], file_dicts: dic
 
     for source in sources:
         dict = file_dicts[source]
-        source_date = get_file_date(source, file_dicts)
+        source_date = get_attribute_date(source, file_dicts)
         try:
             attributes.append((dict[attribute_name], source_date))
         except Exception:
             print("COMBINER: can't find value for ", attribute_name, " in ", source)
             # print("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
 
-    attributes.append(values.not_found, values.invalid_date)
+    attributes.append((values.not_found, values.default_date))
     return attributes[0]
 
 
@@ -68,14 +69,20 @@ def combine_select_string_overlap(attribute_name: str, sources: list[str], file_
             print("COMBINER: can't find value for ", attribute_name, " in ", source)
             # print("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
 
-
-    overlap = SM.find_longest_match(strings[0], strings[1])
+    old_string = strings[0]
+    new_string = strings[1]
+    sequence_matcher = SM(None, old_string.lower(), new_string.lower())
+    overlap = sequence_matcher.find_longest_match(0, len(old_string) - 1, 0, len(new_string) - 1)
 
     for string in strings[1:]:
-        overlap = SM.find_longest_match(overlap, string)
+        old_string = new_string
+        new_string = string
+        sequence_matcher = SM(None, old_string.lower(), new_string.lower())
+        overlap = sequence_matcher.find_longest_match(0, len(old_string), 0, len(new_string))
+
 
     if len(min(strings, key=len)) / len(overlap) >= min_matching_fraction:
-        return (overlap, values.invalid_date)
+        return (overlap, values.default_date)
 
     return (values.insufficient_overlap, values.invalid_date)
 
@@ -89,10 +96,10 @@ def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dic
     Returns:
         str: _description_
     """
-    annex_initial_dict = file_dicts[attr.annex_initial]
+    annex_initial_dict = file_dicts[src.annex_initial]
     eu_med_type = annex_initial_dict[attr.eu_med_type]
-    eu_med_type_date = get_file_date(annex_initial_dict, file_dicts)
-    eu_atmp = file_dicts[attr.decision][attr.eu_atmp]
+    eu_med_type_date = get_attribute_date(annex_initial_dict, file_dicts)
+    eu_atmp = file_dicts[src.decision][attr.eu_atmp]
 
     if eu_med_type == values.eu_med_type_biologicals and eu_atmp:
         return (values.eu_med_type_atmp, eu_med_type_date)
@@ -112,8 +119,18 @@ def json_history_initial(value: any, date: str) -> list[dict[str, any]]:
     return [{"value": value, "date": date}]
 
 
-def get_file_date(source_dict: dict[str, any], file_dicts: dict[str, dict[str, any]]) -> str:
-    file_name = source_dict[attr.pdf_file]
-    file_dates = file_dicts[attr.file_dates]
-    return file_dates[file_name][attr.file_date]
+def get_attribute_date(source_dict: str, file_dicts: dict[str, dict[str, any]]) -> str:
+    if source_dict == src.web:
+        try:
+            return file_dicts[src.web][attr.scrape_date_web]
+        except Exception:
+            print("not right file")
+    else:
+        try:
+            file_name = file_dicts[source_dict][attr.meta_pdf_file]
+            return file_dicts[src.web][file_name][attr.meta_file_date]
+        except:
+            # print(file_dicts[source_dict])
+            print(source_dict)
+            print(file_dicts)
 

@@ -5,8 +5,10 @@ import json
 import joblib
 import multiprocessing
 import scraping.combiner.attribute_combining_functions as acf
-import scraping.definitions.value as value
+import scraping.definitions.values as values
 import scraping.definitions.attributes as attr
+import scraping.definitions.attribute_objects as attr_obj
+import scraping.definitions.sources as src
 
 
 # Main file to run all parsers
@@ -35,16 +37,16 @@ def combine_folder(filepath: str, folder_name: str):
     Returns:
 
     """
-    file_dicts_keys = [attr.decision, attr.decision_initial, attr.annex, attr.annex_initial,
-                    attr.annex_10, attr.epar, attr.omar, attr.web, attr.file_dates]
+    file_dicts_keys = [src.decision, src.decision_initial, src.annex, src.annex_initial,
+                    src.annex_10, src.epar, src.omar, src.web, src.file_dates]
     file_dicts = dict.fromkeys(file_dicts_keys,{})
     combined_dict: dict[str, any] = {}
 
     # try to get sources
     # TODO: dit zou gelijk samen kunnen met attr. enzo
     pdf_data = get_dict('pdf_parser', filepath, folder_name)
-    file_dicts[attr.file_dates] = get_dict('filedates', filepath, folder_name)
-    file_dicts[attr.web] = get_dict('webdata', filepath, folder_name)
+    file_dicts[src.file_dates] = get_dict('filedates', filepath, folder_name)
+    file_dicts[src.web] = get_dict('webdata', filepath, folder_name)
 
     decision_files = sorted(
         [(int(dictionary["filename"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["decisions"]],
@@ -53,38 +55,39 @@ def combine_folder(filepath: str, folder_name: str):
         [(int(dictionary["pdf_file"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]],
         key=lambda x: x[0])
     
-    file_dicts[attr.decision_initial][attr.file_date] = attr.decision_initial
-    file_dicts[attr.decision][attr.file_date] = attr.decision
-    file_dicts[attr.annex_initial][attr.file_date] = attr.annex_initial
-    file_dicts[attr.annex][attr.file_date] = attr.annex
-    file_dicts[attr.epar][attr.file_date] = attr.epar
-    file_dicts[attr.omar][attr.file_date] = attr.omar
-    file_dicts[attr.web][attr.file_date] = attr.web
-    file_dicts[attr.file_dates][attr.file_date] = attr.file_dates
+    file_dicts[src.decision_initial][attr.meta_file_date] = src.decision_initial
+    file_dicts[src.decision][attr.meta_file_date] = src.decision
+    file_dicts[src.annex_initial][attr.meta_file_date] = src.annex_initial
+    file_dicts[src.annex][attr.meta_file_date] = src.annex
+    file_dicts[src.epar][attr.meta_file_date] = src.epar
+    file_dicts[src.omar][attr.meta_file_date] = src.omar
+    file_dicts[src.web][attr.meta_file_date] = src.web
+    file_dicts[src.file_dates][attr.meta_file_date] = src.file_dates
 
 
     # TODO: functie met len
     if len(decision_files) > 0:
-        file_dicts[attr.decision] = decision_files[-1][1]
-        file_dicts[attr.decision_initial] = decision_files[0][1]
+        file_dicts[src.decision] = decision_files[-1][1]
+        file_dicts[src.decision_initial] = decision_files[0][1]
     if len(annex_files) > 0:
-        file_dicts[attr.annex] = annex_files[-1][1]
-        file_dicts[attr.annex_initial] = annex_files[0][1]
+        file_dicts[src.annex] = annex_files[-1][1]
+        file_dicts[src.annex_initial] = annex_files[0][1]
 
     try:
-        file_dicts[attr.epar] = pdf_data["epars"][0]
+        file_dicts[src.epar] = pdf_data["epars"][0]
     except IndexError:
         print(f"COMBINER: no epar found in pdf_data for {folder_name}")
 
     try:
-        file_dicts[attr.omar] = pdf_data["omars"][0]
+        file_dicts[src.omar] = pdf_data["omars"][0]
     except IndexError:
         print(f"COMBINER: no omar found in pdf_data for {folder_name}")
 
     # TODO: hier een functie van
-    for attribute in attr.all_attributes:
+    for attribute in attr_obj.all_attributes:
         value = attribute.combine_function(attribute.name, attribute.sources, file_dicts)
-        combined_dict[attribute.name] = attribute.json_function(value, )
+        date = acf.get_attribute_date(attribute.sources[0], file_dicts)
+        combined_dict[attribute.name] = attribute.json_function(value, date)
 
         # if not all_equal:
             # print("found multiple values for " + attribute.name + ": " + value + " in " + str(
@@ -159,7 +162,7 @@ def datetime_converter(datetime: str) -> str:
 #     main('..\..\..\data')
 
 
-combine_folder("..\\..\\data\\EU-1-99-126", "EU-1-99-126")
-print(type(attr.all_attributes))
-print(attr.all_attributes)
+combine_folder("..\\..\\data\\EU-1-00-130", "EU-1-00-130")
+print(type(attr_obj.all_attributes))
+print(attr_obj.all_attributes)
 
