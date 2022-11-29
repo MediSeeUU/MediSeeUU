@@ -1,7 +1,5 @@
 # Scraper and Dashboard to make data on regulation of medicines openly available
 
-[Documentation can be viewed online here](https://mediseeuu.github.io/MediSeeUU/)
-
 ## How to install
 
 Install python 3.10.7.
@@ -28,7 +26,7 @@ since no useful data is being generated from the combiner module.
 
 ## Architecture Diagram
 
-![alt text](docs/architecture_diagram.svg "Architecture Diagram")
+![alt text](../architecture_diagram.svg "Architecture Diagram")
 
 ## Modules
 
