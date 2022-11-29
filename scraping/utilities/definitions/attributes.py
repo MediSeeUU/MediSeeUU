@@ -110,5 +110,6 @@ clock_stop_elapsed = attribute_factory(all_attributes, "clock_stop_elapsed", [])
 
 ema_prevalence = "ema_prevalence"
 ema_alternative_treatments = "ema_alternative_treatments"
+ema_significant_benefit = "ema_significant_benefit"
 ema_insufficient_roi = "ema_insufficient_roi" #TODO: check
 active_clock_elapseds = "active_clock_elapseds"
