@@ -3,6 +3,7 @@ from dataclasses import dataclass, field, asdict
 import typing
 import scraping.utilities.definitions.attributes as attr
 
+
 @dataclass
 class ParsedInfoStruct:
     """

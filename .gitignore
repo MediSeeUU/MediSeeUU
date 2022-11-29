@@ -157,7 +157,8 @@ data filtered and xml 31 okt.zip
 
 
 # do not ignore test data
-!test_data/*/*/*
+!test_data/*/*/.xml
+!test_data/*/*/.pdf
 !test_data_filter/*/*/*
 !tests/annex_10_tests/annex_10_parser_test.json
 !tests/pdf_parser_tests/test_annex_parse_data/*

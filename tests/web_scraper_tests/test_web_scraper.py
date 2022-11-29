@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest import TestCase
 from datetime import date
 from scraping.web_scraper import __main__ as web
-import scraping.utilities.log.log_tools as log_setup
+import scraping.utilities.log.log_tools as log_tools
 from parameterized import parameterized
 
 data_path = "../test_data"
@@ -21,7 +21,7 @@ json_path = "web_scraper_tests/"
 if "web_scraper_tests" in os.getcwd():
     json_path = ""
 
-parent_path = "/".join((data_path.split("/")[:-1]))
+parent_path = "/".join((data_path.split('/')[:-1]))
 filter_path = f"{parent_path}/tests/logs/txt_files/filter.txt"
 
 
@@ -49,8 +49,6 @@ class TestWebScraper(TestCase):
     """
     Class that runs web, mostly checks if files get downloaded
     """
-
-    # Rename data to data_old
     @classmethod
     def setUpClass(cls):
         """
@@ -61,7 +59,7 @@ class TestWebScraper(TestCase):
         if os.path.exists(f"{parent_path}/tests/logs/txt_files"):
             shutil.rmtree(f"{parent_path}/tests/logs/txt_files")
 
-        log_setup.init_loggers(f"{parent_path}/tests/logs/log_files")
+        log_tools.init_loggers(f"{parent_path}/tests/logs/log_files")
 
         if not os.path.exists(f"{data_path}_old"):
             os.rename(data_path, f"{data_path}_old")

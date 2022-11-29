@@ -15,13 +15,15 @@ from scraping.pdf_parser.parsers import annex_parser
 
 log = logging.getLogger("pdf_parser")
 
+
 # Main file to run all parsers
-def main(directory: str):
+def main(directory: str, parse_all: bool = False):
     """
     given a folder containing medicine folders, parses each folder in parallel
 
     Args:
         directory: data folder, containing medicine folders
+        parse_all: Whether to parse all medicines, regardless of the eu_numbers.json
     """
     log.info(f"=== NEW LOG {datetime.datetime.today()} ===")
 
@@ -44,23 +46,18 @@ def main(directory: str):
 
     meds_dir = f"{directory}/active_withdrawn"
 
-    # Get medicine folders that have to be scraped, so only medicines in the eu_numbers.json file
-    directory_folders = [folder for folder in listdir(meds_dir) if path.isdir(path.join(meds_dir, folder)) and
-                         (folder in eu_numbers or folder_has_no_pdf_json(meds_dir, folder))]
-
-    # For debugging, this list of folders will not check if the medicine is recently updated before scraping
-    # Does not check whether eu_number of medicine is in eu_numbers.json
-    # directory_folders = [folder for folder in listdir(meds_dir) if path.isdir(path.join(meds_dir, folder))]
+    if parse_all:
+        directory_folders = [folder for folder in listdir(meds_dir) if path.isdir(path.join(meds_dir, folder))]
+    else:
+        # Get medicine folders that have yet to be scraped, so only medicines in the eu_numbers.json file
+        directory_folders = [folder for folder in listdir(meds_dir) if path.isdir(path.join(meds_dir, folder)) and
+                             (folder in eu_numbers or folder_has_no_pdf_json(meds_dir, folder))]
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
         joblib.delayed(parse_folder)(path.join(meds_dir, folder), folder) for folder in
         directory_folders)
     log.info("Done parsing PDF files!")
-
-    # Single-threaded parsing
-    # for folder in directory_folders:
-    #     parse_folder(path.join(directory, folder), folder)
 
 
 # scraping on medicine folder level
@@ -106,7 +103,8 @@ def get_files(directory: str) -> (list[str], list[str], list[str], list[str]):
     decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file]
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
     epar_files = [file for file in directory_files if
-                  ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
+                  ("public-assessment-report" in file or "procedural-steps-taken" in file or "epar" in file)
+                  and ".xml" in file]
     omar_files = [path.join(directory, file) for file in directory_files if
                   ("omar" in file or "orphan" in file) and ".xml" in file]
     return annex_files, decision_files, epar_files, omar_files

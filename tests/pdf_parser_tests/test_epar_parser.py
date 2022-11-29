@@ -9,7 +9,7 @@ from scraping.pdf_parser.parsers import epar_parser
 
 test_data_loc = "../test_data/active_withdrawn"
 if "pdf_parser_tests" in os.getcwd():
-    test_data_loc = "../../test_data/active_with_drawn"
+    test_data_loc = "../../test_data/active_withdrawn"
 xml_bodies = []
 percentage_str = "Percentage found: "
 found_not_scrapeable_string = "Found but not scrapeable: "
