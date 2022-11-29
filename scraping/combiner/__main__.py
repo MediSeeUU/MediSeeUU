@@ -85,14 +85,9 @@ def combine_folder(filepath: str, folder_name: str):
 
     # TODO: hier een functie van
     for attribute in attr_obj.all_attributes:
-        value, date = attribute.combine_function(attribute.name, attribute.sources, file_dicts)
-        # date = acf.get_attribute_date(attribute.sources[0], file_dicts)
-        print(attribute.name)
-        print(attribute.combine_function)
-        print(attribute.json_function)
-        print(attribute.json_function(value, date))
+        value = attribute.combine_function(attribute.name, attribute.sources, file_dicts)
+        date = acf.get_attribute_date(attribute.sources[0], file_dicts)
         combined_dict[attribute.name] = attribute.json_function(value, date)
-        print(combined_dict[attribute.name])
 
         # if not all_equal:
             # print("found multiple values for " + attribute.name + ": " + value + " in " + str(
@@ -161,7 +156,7 @@ def datetime_converter(datetime: str) -> str:
     Returns:
         str: _description_
     """    
-    return datetime.split('+')[0]
+    return datetime.split('+').split(" ")[0]
 
 # if __name__ == "__main__":
 #     main('..\..\..\data')

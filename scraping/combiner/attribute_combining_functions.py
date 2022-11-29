@@ -3,6 +3,21 @@ import scraping.definitions.sources as src
 import scraping.definitions.attributes as attr
 from difflib import SequenceMatcher as SM
 
+# TODO: remove try catch
+def get_attribute_date(source_dict: str, file_dicts: dict[str, dict[str, any]]) -> str:
+    if source_dict == src.web:
+        try:
+            return file_dicts[src.web][attr.scrape_date_web]
+        except Exception:
+            return values.default_date
+    else:
+        try:
+            file_name = file_dicts[source_dict][attr.meta_pdf_file]
+            return file_dicts[src.web][file_name][attr.meta_file_date]
+        except:
+            return values.default_date
+
+
 def check_all_equal(values: list[any]) -> bool:
     """
     checks if two values are equal and not None
@@ -22,7 +37,7 @@ def check_all_equal(values: list[any]) -> bool:
     return all_same and values[0] is not None
 
 
-def combine_best_source(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> (any, str):
+def combine_best_source(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> any:
     """
 
     Args:
@@ -37,14 +52,13 @@ def combine_best_source(attribute_name: str, sources: list[str], file_dicts: dic
 
     for source in sources:
         dict = file_dicts[source]
-        source_date = get_attribute_date(source, file_dicts)
         try:
-            attributes.append((dict[attribute_name], source_date))
+            attributes.append(dict[attribute_name])
         except Exception:
             print("COMBINER: can't find value for ", attribute_name, " in ", source)
             # print("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
 
-    attributes.append((values.not_found, values.default_date))
+    attributes.append(values.not_found)
     return attributes[0]
 
 
@@ -81,10 +95,10 @@ def combine_select_string_overlap(attribute_name: str, sources: list[str], file_
         overlap = sequence_matcher.find_longest_match(0, len(old_string), 0, len(new_string))
 
 
-    if len(min(strings, key=len)) / len(overlap) >= min_matching_fraction:
-        return (overlap, values.default_date)
+    if float(overlap.size / len(strings[0])) >= min_matching_fraction:
+        return (strings[0][overlap.a:overlap.a + overlap.size], values.default_date)
 
-    return (values.insufficient_overlap, values.invalid_date)
+    return (values.insufficient_overlap, get_attribute_date(sources[0], file_dicts))
 
 
 def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> str:
@@ -118,7 +132,7 @@ def json_history_current(value: any, date: str) -> dict[str, any]:
     json_dict = {}
     json_dict["value"] = value
     json_dict["date"] = date
-    return json_dict
+    return [json_dict]
 
 
 def json_history_initial(value: any, date: str) -> list[dict[str, any]]:
@@ -126,21 +140,4 @@ def json_history_initial(value: any, date: str) -> list[dict[str, any]]:
     json_dict = {}
     json_dict["value"] = value
     json_dict["date"] = date
-    return [json_dict]
-
-
-def get_attribute_date(source_dict: str, file_dicts: dict[str, dict[str, any]]) -> str:
-    if source_dict == src.web:
-        try:
-            return file_dicts[src.web][attr.scrape_date_web]
-        except Exception:
-            print("not right file")
-    else:
-        try:
-            file_name = file_dicts[source_dict][attr.meta_pdf_file]
-            return file_dicts[src.web][file_name][attr.meta_file_date]
-        except:
-            # print(file_dicts[source_dict])
-            print(source_dict)
-            print(file_dicts)
-
+    return json_dict
