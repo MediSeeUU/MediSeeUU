@@ -24,12 +24,12 @@ def compile_json_dict(compile_dir: str, incl_substr: list[str], excl_substr: lis
             try:
                 with open(file) as json_file:
                     json_dict = json.load(json_file)
-                    file_dicts.append((path.basename(file), json_dict))
+                    file_dicts.append({path.basename(file): json_dict})
             except Exception:
                 print("failed to open or load \"", file + "\"", "in compile_json_dict")
 
-    compiled_dict[path.basename(compile_dir)] = {"files": file_dicts, "subdirectories": subdir_dicts}
-    return compiled_dict
+    compiled_dict[path.basename(compile_dir)] = {"directory": compile_dir, "files": file_dicts, "subdirectories": subdir_dicts}
+    return {"directory": compile_dir, "files": file_dicts, "subdirectories": subdir_dicts}
 
 def compile_json_file(compile_dir: str, save_dir: str, incl_substr: list[str], excl_substr: list[str] = [], recursive: bool = True):
     directory_content = [path.join(compile_dir, content) for content in listdir(compile_dir)]
@@ -53,14 +53,14 @@ def compile_json_file(compile_dir: str, save_dir: str, incl_substr: list[str], e
             try:
                 with open(file) as json_file:
                     json_dict = json.load(json_file)
-                    file_dicts.append((path.basename(file), json_dict))
+                    file_dicts.append({path.basename(file): json_dict})
             except Exception:
                 print("failed to open or load \"", file + "\"", "in compile_json_dict")
 
-    compiled_dict[path.basename(compile_dir)] = {"files": file_dicts, "subdirectories": subdir_dicts}
+    compiled_dict[path.basename(compile_dir)] = {"directory": compile_dir, "files": file_dicts, "subdirectories": subdir_dicts}
 
     with open(path.join(save_dir, "compiled.json"), "w") as compiled_json:
-        json.dump(compiled_dict, compiled_json)
+        json.dump({"directory": compile_dir, "files": file_dicts, "subdirectories": subdir_dicts}, compiled_json)
 
     print("compiled.json written.")
 
