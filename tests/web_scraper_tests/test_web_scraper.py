@@ -64,7 +64,6 @@ class TestWebScraper(TestCase):
         safe_io.rename(data_path, f"{data_path}_old")
         safe_io.create_folder(data_path)
         safe_io.create_folder(data_path_local)
-        safe_io.create_folder(txt_files_folder)
 
         Path(f"{json_path}JSON").mkdir(parents=True, exist_ok=True)
 

@@ -29,7 +29,6 @@ class TestPdfParser(TestCase):
         safe_io.delete_folder(f"{parent_path}/tests/logs/log_files")
 
         log_tools.init_loggers(f"{parent_path}/tests/logs/log_files")
-        safe_io.create_folder(f"{parent_path}/tests/logs/txt_files")
 
     def test_pdf_parser_no_checks(self):
         """

@@ -13,6 +13,11 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     """
     if not os.path.isdir(logging_path):
         os.mkdir(logging_path)
+    logs_path = logging_path.split("log_files")[0]
+    txt_path = f"{logs_path}txt_files"
+
+    if not os.path.isdir(txt_path):
+        os.mkdir(txt_path)
 
     # --- Root logger ---
     root_handler_stream = logging.StreamHandler()
