@@ -1,6 +1,9 @@
 # import definitions.value as values
 # import definitions.attributes as attr
 from difflib import SequenceMatcher as SM
+import logging
+
+log = logging.getLogger("combiner")
 
 
 def check_all_equal(values: list[any]) -> bool:
@@ -41,8 +44,8 @@ def combine_best_source(attribute_name: str, sources: list[str], file_dicts: dic
         try:
             attributes.append((dict[attribute_name], source_date))
         except Exception:
-            print("COMBINER: can't find value for ", attribute_name, " in ", source)
-            # print("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
+            log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
+            # log.warning("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
 
     attributes.append(values.not_found, values.invalid_date)
     return attributes[0]
@@ -64,11 +67,12 @@ def combine_select_string_overlap(attribute_name: str, sources: list[str], file_
     strings = []
     for source in sources:
         dict = file_dicts[source]
+        # TODO: Replace try/except with if statements
         try:
             strings.append(dict[attribute_name])
         except Exception:
-            print("COMBINER: can't find value for ", attribute_name, " in ", source)
-            # print("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
+            log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
+            # log.warning("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
 
     overlap = SM.find_longest_match(strings[0], strings[1])
 

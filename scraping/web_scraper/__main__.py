@@ -281,7 +281,6 @@ def main(data_filepath: str = "../data",
 
     if scrape_ec:
         log_path = log_tools.get_log_path("no_english_available.txt", data_filepath)
-        print(log_path)
         with open(log_path, 'w', encoding="utf-8"):
             pass  # open/clean no_english_available file
         # make sure tests start with empty dict, because url_file is global variable only way to do this is here.

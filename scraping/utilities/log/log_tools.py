@@ -40,7 +40,7 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     # ---
 
     # Create logging module for all other modules
-    logging_names = ["pdf_parser", "xml_converter", "annex_10_parser", "safe_io"]
+    logging_names = ["pdf_parser", "annex_10_parser", "xml_converter", "combiner", "db_communicator", "safe_io"]
     for log_name in logging_names:
         log = logging.getLogger(log_name)
         log.setLevel(logging.INFO)

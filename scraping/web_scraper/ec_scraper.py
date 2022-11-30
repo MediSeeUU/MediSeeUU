@@ -495,7 +495,6 @@ def add_to_non_english_file(eu_n: str, decision_date: datetime.date, filetype: s
     """
     url = f"https://ec.europa.eu/health/documents/community-register/html/{eu_n}.htm"
     log_path = log_tools.get_log_path("no_english_available.txt", data)
-    print(log_path)
     with open(log_path, "a") as f:
         f.write(f"{procedure_type}@{filetype}@{decision_date}@{url}\n")
         return

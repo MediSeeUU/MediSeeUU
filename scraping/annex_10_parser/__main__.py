@@ -139,7 +139,6 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
     eu_num = ""
     if type(opinion_date) == datetime:
         opinion_date = opinion_date.strftime("%d/%m/%Y")
-    opinion_date = datetime.strptime(opinion_date, '%d/%m/%Y')
 
     for medicine in all_data:
         # Check if product_name in brand_name and get EU number
@@ -159,12 +158,11 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
         if chmp_opinion_date == values.not_found:
             log.warning(f"Annex_10_parser: no chmp opinion date found in EPAR for {eu_num}")
             continue
-        chmp_opinion_date = datetime.strptime(chmp_opinion_date, '%d/%m/%Y')
         # Check if the chmp_opinion_date and opinion_date are within 4 days of each other
         if abs((chmp_opinion_date - opinion_date).days) < 4:
             return True, eu_num
         # Print EU number, Product name, opinion date from EPAR, and opinion date from Excel file
-        # print(eu_num + " - " + product_name + " - " + str(chmp_opinion_date).split(" ")[0] + " - " + str(opinion_date).split(" ")[0])
+        # log.info(eu_num + " - " + product_name + " - " + str(chmp_opinion_date).split(" ")[0] + " - " + str(opinion_date).split(" ")[0])
     return False, ""
 
 

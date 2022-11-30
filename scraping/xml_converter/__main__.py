@@ -8,6 +8,7 @@ import logging
 from os import path, listdir
 import joblib
 import multiprocessing
+from tqdm import tqdm
 
 header_indicator = "|-HEADER-|"
 log = logging.getLogger("xml_converter")
@@ -307,7 +308,7 @@ def convert_folder(directory: str):
         convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
 
-def main(directory: str):
+def main(directory: str, ):
     """
     Given a folder containing medicine folders, converts each PDF file to XML for all Annex files, EPARs and OMARs.
 
@@ -323,4 +324,4 @@ def main(directory: str):
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(convert_folder)(folder_name) for folder_name in med_folders)
+        joblib.delayed(convert_folder)(folder_name) for folder_name in tqdm(med_folders))

@@ -56,6 +56,7 @@ class TestEparParse(TestCase):
             output = epar_parser.get_date(xml_body)
             if output != "no_date_found" and output != "not_easily_scrapeable":
                 found_count += 1
+                output = output.strftime("%d/%m/%Y")
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
                 month = re.search(r"/\d{2}/", output)[0][1:3].strip()
                 year = re.search(r"\d{4}", output)[0].strip()
@@ -78,6 +79,7 @@ class TestEparParse(TestCase):
                 self.fail(f"No output found for {filename}")
             if output != "no_chmp_found" and output != "not_easily_scrapeable":
                 found_count += 1
+                output = output.strftime("%d/%m/%Y")
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
                 month = re.search(r"/\d{2}/", output)[0][1:3].strip()
                 year = re.search(r"\d{4}", output)[0].strip()

@@ -138,11 +138,11 @@ def get_opinion_date(xml: ET.Element) -> datetime | str:
         if below_rapp and re.findall(date_pattern, txt):
             date = helper.convert_months(re.findall(date_pattern, txt)[-1])
         if below_rapp and ("scientific discussion" in txt and elem.tag == "header" or txt == "scientific discussion"):
-            if date != values.not_found:
+            if date and date != values.not_found:
                 return date
             else:
                 return values.not_scrapeable
-    if date != values.not_found:
+    if date and date != values.not_found:
         return date
     elif not_easily_scrapeable:
         return values.not_scrapeable

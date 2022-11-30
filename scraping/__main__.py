@@ -43,7 +43,7 @@ def run_all():
     web_scraper.main(data_folder_directory, scrape_ec, scrape_ema, download_files, download_refused_files,
                      download_annex10_files, run_filter, use_parallelization)
     xml_converter.main(data_folder_directory)
-    pdf_parser.main(data_folder_directory)
+    pdf_parser.main(data_folder_directory, True)
     annex_10_parser.main(data_folder_directory)
     # combiner.main(data_folder_directory)
     # db_communicator_main.main(data_folder_directory)
