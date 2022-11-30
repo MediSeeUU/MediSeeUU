@@ -8,8 +8,6 @@ import os
 data_filepath = "../test_data/active_withdrawn"
 if "web_scraper_tests" in os.getcwd():
     data_filepath = "../../test_data/active_withdrawn"
-json_filepath = data_filepath.split('test_data/active_withdrawn')[0] + "tests/web_scraper_tests/JSON"
-
 
 class TestFilterRetry(unittest.TestCase):
 
@@ -38,8 +36,8 @@ class TestFilterRetry(unittest.TestCase):
                                     "epar_url": "https://www.ema.europa.eu/documents/scientific-discussion/sprycel"
                                                 "-epar-scientific-discussion_en.pdf",
                                     "omar_url": ""}}
-        url_file = json_helper.JsonHelper(init_dict=url_dict, path=f"{json_filepath}/urls_download.json")
-        url_refused_file = json_helper.JsonHelper(init_dict={}, path=f"{json_filepath}/refused_urls_download.json")
+        url_file = json_helper.JsonHelper(init_dict=url_dict, path=f"urls_download.json")
+        url_refused_file = json_helper.JsonHelper(init_dict={}, path=f"refused_urls_download.json")
         # Make a temporary file and test for key error if eu number is not in the url dictionary
         temp = tempfile.NamedTemporaryFile(mode='w', delete=False)
         temp.write(str(file_content))

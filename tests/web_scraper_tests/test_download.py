@@ -17,7 +17,6 @@ class TestDownload(TestCase):
     """
     Class that contains all the tests for scraping.webscraper.download
     """
-
     @parameterized.expand([["https://ec.europa.eu/health/documents/community-register/2000/200010185296/"
                             "dec_5296_en.pdf"],
                            ["https://www.ema.europa.eu/documents/orphan-maintenance-report/mylotarg-orphan"
