@@ -55,6 +55,7 @@ class TestPdfParser(TestCase):
             omar_files = [file for file in files if ("omar" in file or "orphan" in file) and ".xml" in file]
             pdf_json_path = f"{medicine_path}/{folder}_pdf_parser.json"
             assert os.path.exists(pdf_json_path)
+
             with open(pdf_json_path) as pdf_json:
                 pdf_data: dict = json.load(pdf_json)
                 anx_count = len(pdf_data["annexes"])
