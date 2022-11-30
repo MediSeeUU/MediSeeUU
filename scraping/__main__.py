@@ -7,6 +7,7 @@ import web_scraper.__main__ as web_scraper
 import scraping.annex_10_parser.__main__ as annex_10_parser
 import scraping.xml_converter.__main__ as xml_converter
 import scraping.pdf_parser.__main__ as pdf_parser
+import scraping.combiner.__main__ as combiner
 from scraping.utilities.log import log_tools
 
 
@@ -39,12 +40,12 @@ def run_all():
     data_folder_directory = create_data_folders()
 
     # Any module can be commented or uncommented here, as the modules they work separately
-    web_scraper.main(data_folder_directory, scrape_ec, scrape_ema, download_files, download_refused_files,
-                     download_annex10_files, run_filter, use_parallelization)
-    xml_converter.main(data_folder_directory)
-    pdf_parser.main(data_folder_directory)
-    annex_10_parser.main(data_folder_directory)
-    # combiner.main(data_folder_directory)
+    # web_scraper.main(data_folder_directory, scrape_ec, scrape_ema, download_files, download_refused_files,
+    #                  download_annex10_files, run_filter, use_parallelization)
+    # xml_converter.main(data_folder_directory)
+    # pdf_parser.main(data_folder_directory)
+    # annex_10_parser.main(data_folder_directory)
+    combiner.main(path.join(data_folder_directory, "active_withdrawn"))
     # db_communicator_main.main(data_folder_directory)
 
 
@@ -71,6 +72,6 @@ def create_data_folders() -> str:
 
 
 if __name__ == '__main__':
-    log_tools.init_loggers()
+    # log_tools.init_loggers()
     run_all()  # TODO:  Replace this with "main()" when moved to server
     # main()
