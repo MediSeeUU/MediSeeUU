@@ -254,7 +254,27 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="#module-tests.web_scraper_tests.test_web_scraper">tests.web_scraper_tests.test_web_scraper module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-tests.web_scraper_tests.test_web_scraper">tests.web_scraper_tests.test_web_scraper module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper"><code class="docutils literal notranslate"><span class="pre">TestWebScraper</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.medicine_list_checks"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.medicine_list_checks</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_download"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.run_download()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_ec_scraper"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.run_ec_scraper()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_ema_scraper"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.run_ema_scraper()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_filter"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.run_filter()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.setUp"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.setUp()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.setUpClass()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.tearDownClass"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.tearDownClass()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.test_run_web_check_all</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all_0"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.test_run_web_check_all_0()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all_1"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.test_run_web_check_all_1()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.test_run_web_no_checks</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks_0"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.test_run_web_no_checks_0()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks_1"><code class="docutils literal notranslate"><span class="pre">TestWebScraper.test_run_web_no_checks_1()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#tests.web_scraper_tests.test_web_scraper.check_new_eu_numbers"><code class="docutils literal notranslate"><span class="pre">check_new_eu_numbers()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1171,6 +1191,109 @@ filename_el: The filename elements for a specific file</p>
 </section>
 <section id="module-tests.web_scraper_tests.test_web_scraper">
 <span id="tests-web-scraper-tests-test-web-scraper-module"></span><h2>tests.web_scraper_tests.test_web_scraper module<a class="headerlink" href="#module-tests.web_scraper_tests.test_web_scraper" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.web_scraper_tests.test_web_scraper.</span></span><span class="sig-name descname"><span class="pre">TestWebScraper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>Class that runs web, mostly checks if files get downloaded</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.medicine_list_checks">
+<span class="sig-name descname"><span class="pre">medicine_list_checks</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('https://ec.europa.eu/health/documents/community-register/html/h273.htm',</span> <span class="pre">'EU-1-04-273',</span> <span class="pre">0,</span> <span class="pre">'h273'),</span> <span class="pre">('https://ec.europa.eu/health/documents/community-register/html/h283.htm',</span> <span class="pre">'EU-1-04-283',</span> <span class="pre">1,</span> <span class="pre">'h283'),</span> <span class="pre">('https://ec.europa.eu/health/documents/community-register/html/o005.htm',</span> <span class="pre">'EU-3-00-005',</span> <span class="pre">2,</span> <span class="pre">'o005'),</span> <span class="pre">('https://ec.europa.eu/health/documents/community-register/html/o101.htm',</span> <span class="pre">'EU-3-02-101',</span> <span class="pre">3,</span> <span class="pre">'o101'),</span> <span class="pre">('https://ec.europa.eu/health/documents/community-register/html/h1587.htm',</span> <span class="pre">'EU-1-21-1587',</span> <span class="pre">0,</span> <span class="pre">'h1587')]</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.medicine_list_checks" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_download">
+<span class="sig-name descname"><span class="pre">run_download</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_download" title="Permalink to this definition"></a></dt>
+<dd><p>Runs download and checks if all files are downloaded and correct files are created.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_ec_scraper">
+<span class="sig-name descname"><span class="pre">run_ec_scraper</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_ec_scraper" title="Permalink to this definition"></a></dt>
+<dd><p>Runs EC scraper and checks if everything works and correct files are created.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_ema_scraper">
+<span class="sig-name descname"><span class="pre">run_ema_scraper</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_ema_scraper" title="Permalink to this definition"></a></dt>
+<dd><p>Runs EMA scraper and checks if everything works and correct files are created.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_filter">
+<span class="sig-name descname"><span class="pre">run_filter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.run_filter" title="Permalink to this definition"></a></dt>
+<dd><p>Runs filter_retry and checks if filter.txt is created</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.setUp" title="Permalink to this definition"></a></dt>
+<dd><p>Create required folders for data and logs</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.setUpClass">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setUpClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.setUpClass" title="Permalink to this definition"></a></dt>
+<dd><p>Set up the class to make sure the integration test can run without changing existing data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.tearDownClass">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tearDownClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.tearDownClass" title="Permalink to this definition"></a></dt>
+<dd><p>Runs after class is run, makes sure test data is deleted and backup data is set back to its original place</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all">
+<span class="sig-name descname"><span class="pre">test_run_web_check_all</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all_0">
+<span class="sig-name descname"><span class="pre">test_run_web_check_all_0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all_0" title="Permalink to this definition"></a></dt>
+<dd><p>Runs webscraper and checks output in between different scripts [with parallel=True, medicine_codes=[(’<a class="reference external" href="https://ec.europa.eu/health/d...m">https://ec.europa.eu/health/d…m</a>’, ‘EU-1-21-1587’, 0, ‘h1587’)]]
+:param parallel: if web should run parallel or not
+:param medicine_codes: The medicine that is tested</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all_1">
+<span class="sig-name descname"><span class="pre">test_run_web_check_all_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_check_all_1" title="Permalink to this definition"></a></dt>
+<dd><p>Runs webscraper and checks output in between different scripts [with parallel=False, medicine_codes=[(’<a class="reference external" href="https://ec.europa.eu/health/d...m">https://ec.europa.eu/health/d…m</a>’, ‘EU-1-21-1587’, 0, ‘h1587’)]]
+:param parallel: if web should run parallel or not
+:param medicine_codes: The medicine that is tested</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks">
+<span class="sig-name descname"><span class="pre">test_run_web_no_checks</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks_0">
+<span class="sig-name descname"><span class="pre">test_run_web_no_checks_0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks_0" title="Permalink to this definition"></a></dt>
+<dd><p>Runs webscraper and passes if no errors occur [with parallel=True, medicine_list=[(’<a class="reference external" href="https://ec.europa.eu/health/d...m">https://ec.europa.eu/health/d…m</a>’, ‘EU-1-21-1587’, 0, ‘h1587’)]].
+:param parallel: if web should run parallel or not
+:param medicine_list: The medicine that is tested</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks_1">
+<span class="sig-name descname"><span class="pre">test_run_web_no_checks_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.TestWebScraper.test_run_web_no_checks_1" title="Permalink to this definition"></a></dt>
+<dd><p>Runs webscraper and passes if no errors occur [with parallel=False, medicine_list=[(’<a class="reference external" href="https://ec.europa.eu/health/d...m">https://ec.europa.eu/health/d…m</a>’, ‘EU-1-21-1587’, 0, ‘h1587’)]].
+:param parallel: if web should run parallel or not
+:param medicine_list: The medicine that is tested</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.web_scraper_tests.test_web_scraper.check_new_eu_numbers">
+<span class="sig-prename descclassname"><span class="pre">tests.web_scraper_tests.test_web_scraper.</span></span><span class="sig-name descname"><span class="pre">check_new_eu_numbers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.web_scraper_tests.test_web_scraper.check_new_eu_numbers" title="Permalink to this definition"></a></dt>
+<dd><p>Check whether EU numbers in eu_number.json are equal to the eu_numbers of the medicines being downloaded.
+This should be the case, as all medicines are new, since they are downloaded for the first time in each test run.</p>
+</dd></dl>
+
 </section>
 </section>
 
