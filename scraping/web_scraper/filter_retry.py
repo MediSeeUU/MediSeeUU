@@ -46,7 +46,7 @@ def run_filter(n: int, data_filepath: str):
     # If file is run locally:
     if "web_scraper" == pathlib.Path.cwd().name:
         json_path = ""
-
+    filter.filter_all_pdfs(data_filepath)
     for _ in range(n):
         filter.filter_all_pdfs(data_filepath)
         url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json").load_json()
@@ -68,7 +68,8 @@ def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str] | str]]
         data_filepath (str): the path to the data folder
     """
     with open(filter_path, "r") as f:
-        for line in f:
+        medicine_names = f.read().split('\n')
+        for line in medicine_names:
             filename = line.split(".pdf@")[0]
             filename_list = filename.split('_')
             eu_n = filename_list[0]
@@ -89,7 +90,6 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
         url_dict (dict[str, list[str]] | dict[str, str]): dictionary that contains the url where to download from
         data_filepath (str): the path to the data folder
     """
-    url = ""
     filename_type = filename_elements[1]
     if filename_type in key_dict.keys():
         url = url_dict[key_dict[filename_type]]

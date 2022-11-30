@@ -286,14 +286,15 @@ def print_xml_body(sections, xml_file):
     print_xml_tag_close(tags.body, xml_file)
 
 
-def convert_folder(directory: str):
+def convert_folder(directory: str, convert_all: bool):
     """
     Given a folder containing medicines, parse_folder walks creates an XML file for each PDF when it doesn't exist.
     After this, a parser for each pdf/xml file is called,
     writing a json file containing the scraped attributes to the folder.
 
     Args:
-        directory: location of folder to parse
+        directory (str): location of folder to parse
+        convert_all (bool): Convert all PDF files to XML, even if they have already been converted
     """
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))]
     for file in directory_files:
@@ -301,19 +302,20 @@ def convert_folder(directory: str):
         if ".xml" in file or ".pdf" not in file:
             continue
         # Skip file if XML is already created (temporary)
-        if file[:len(file) - 4] + ".xml" in directory_files:
+        if not convert_all and file[:len(file) - 4] + ".xml" in directory_files:
             continue
 
         file_path = path.join(directory, file)
         convert_pdf_to_xml(file_path, file_path[:len(file_path) - 4] + ".xml")
 
 
-def main(directory: str, ):
+def main(directory: str, convert_all: bool = False):
     """
     Given a folder containing medicine folders, converts each PDF file to XML for all Annex files, EPARs and OMARs.
 
     Args:
-        directory: data folder, containing medicine-category folders that contain the medicines
+        directory (str): data folder, containing medicine-category folders that contain the medicines
+        convert_all (bool): Convert all PDF files to XML, even if they have already been converted
     """
     med_folders = []
     category_folders = [path.join(directory, folder) for folder in listdir(directory) if
@@ -324,4 +326,4 @@ def main(directory: str, ):
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(convert_folder)(folder_name) for folder_name in tqdm(med_folders))
+        joblib.delayed(convert_folder)(folder_name, convert_all) for folder_name in tqdm(med_folders))

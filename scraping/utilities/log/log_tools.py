@@ -1,5 +1,6 @@
 import logging
 import os
+from scraping.utilities.io import safe_io
 
 
 def init_loggers(logging_path: str = "../logs/log_files") -> None:
@@ -11,13 +12,11 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     Args:
         logging_path (str): Path in which the log files will be saved.
     """
-    if not os.path.isdir(logging_path):
-        os.mkdir(logging_path)
+    safe_io.create_folder(logging_path)
     logs_path = logging_path.split("log_files")[0]
     txt_path = f"{logs_path}txt_files"
 
-    if not os.path.isdir(txt_path):
-        os.mkdir(txt_path)
+    safe_io.create_folder(txt_path)
 
     # --- Root logger ---
     root_handler_stream = logging.StreamHandler()

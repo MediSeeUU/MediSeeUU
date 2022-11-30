@@ -124,14 +124,14 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
     return res
 
 
-def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date: str) -> tuple[bool, str]:
+def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date: str | datetime) -> tuple[bool, str]:
     """
     Check if EPAR exists for pdf_parser json containing a similar brand name to the product name
 
     Args:
         product_name (str): Product Name to check for in pdf_parser json
         all_data (list[dict]): All attributes from pdf_parser in one JSON file
-        opinion_date (str): Opinion date of the product, to be checked with chml_opinion_date in EPAR file
+        opinion_date (str| datetime): Opinion date of the product, to be checked with chmp_opinion_date in EPAR file
 
     Returns:
         (tuple[bool, str]): (True, EU_num) if product_name is found in one of the EPAR brand names, otherwise (False, "")
@@ -139,6 +139,7 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
     eu_num = ""
     if type(opinion_date) == datetime:
         opinion_date = opinion_date.strftime("%d/%m/%Y")
+    opinion_date = datetime.strptime(opinion_date, '%d/%m/%Y')
 
     for medicine in all_data:
         # Check if product_name in brand_name and get EU number
@@ -159,10 +160,11 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
             log.warning(f"Annex_10_parser: no chmp opinion date found in EPAR for {eu_num}")
             continue
         # Check if the chmp_opinion_date and opinion_date are within 4 days of each other
+        chmp_opinion_date = datetime.strptime(chmp_opinion_date, "%Y-%m-%d %H:%M:%S")
         if abs((chmp_opinion_date - opinion_date).days) < 4:
             return True, eu_num
         # Print EU number, Product name, opinion date from EPAR, and opinion date from Excel file
-        # log.info(eu_num + " - " + product_name + " - " + str(chmp_opinion_date).split(" ")[0] + " - " + str(opinion_date).split(" ")[0])
+        # print(eu_num + " - " + product_name + " - " + str(chmp_opinion_date).split(" ")[0] + " - " + str(opinion_date).split(" ")[0])
     return False, ""
 
 
