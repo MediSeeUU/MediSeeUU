@@ -18,7 +18,7 @@ log = logging.getLogger("pdf_parser")
 
 
 # Main file to run all parsers
-def main(directory: str, parse_all: bool = True):
+def main(directory: str, parse_all: bool = False):
     """
     given a folder containing medicine folders, parses each folder in parallel
 
