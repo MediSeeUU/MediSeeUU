@@ -12,7 +12,7 @@ def get_attribute_date(source_dict: str, file_dicts: dict[str, dict[str, any]]) 
             return values.default_date
     else:
         try:
-            file_name = file_dicts[source_dict][attr.meta_pdf_file]
+            file_name = file_dicts[source_dict][attr.pdf_file]
             return file_dicts[src.web][file_name][attr.meta_file_date]
         except:
             return values.default_date

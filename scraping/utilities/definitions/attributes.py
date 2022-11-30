@@ -1,6 +1,10 @@
 # metadata attributes in json files
 meta_file_date = "file_date"
-meta_pdf_file = "pdf_file"
+pdf_file = "pdf_file"
+xml_file = "xml_file"
+is_initial = "is_initial"
+creation_date = "creation_date"
+modification_date = "modification_date"
 
 # Initialize all attribute objects
 atc_code = "atc_code"
@@ -70,6 +74,7 @@ ema_omar_condition = "ema_omar_condition"
 ema_prevalence = "ema_prevalence"
 ema_alternative_treatments = "ema_alternative_treatments"
 ema_significant_benefit = "ema_significant_benefit"
+ema_insufficient_roi = "ema_insufficient_roi"
 active_clock_elapseds = "active_clock_elapseds"
 scrape_date_web = "scrape_date_web"
 filedates_web = "filedates"

@@ -14,7 +14,7 @@ import scraping.utilities.definitions.sources as src
 # Main file to run all parsers
 def main(directory: str):
     print("Combining JSON files")
-    directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder))]
+    directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder)) and "EU" in folder]
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
@@ -49,10 +49,10 @@ def combine_folder(filepath: str, folder_name: str):
     file_dicts[src.web] = get_dict('webdata', filepath, folder_name)
 
     decision_files = sorted(
-        [(int(dictionary["filename"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["decisions"]],
+        [(int(dictionary[attr.pdf_file][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["decisions"]],
         key=lambda x: x[0])
     annex_files = sorted(
-        [(int(dictionary["pdf_file"][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]],
+        [(int(dictionary[attr.pdf_file][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]],
         key=lambda x: x[0])
     
     file_dicts[src.decision_initial][attr.meta_file_date] = src.decision_initial
@@ -85,9 +85,12 @@ def combine_folder(filepath: str, folder_name: str):
 
     # TODO: hier een functie van
     for attribute in attr_obj.all_attributes:
-        value = attribute.combine_function(attribute.name, attribute.sources, file_dicts)
-        date = acf.get_attribute_date(attribute.sources[0], file_dicts)
-        combined_dict[attribute.name] = attribute.json_function(value, date)
+        try:
+            value = attribute.combine_function(attribute.name, attribute.sources, file_dicts)
+            date = acf.get_attribute_date(attribute.sources[0], file_dicts)
+            combined_dict[attribute.name] = attribute.json_function(value, date)
+        except Exception:
+            print("COMBINER: failed to get", attribute, "in", folder_name)
 
         # if not all_equal:
             # print("found multiple values for " + attribute.name + ": " + value + " in " + str(
@@ -162,7 +165,7 @@ def datetime_converter(datetime: str) -> str:
 #     main('..\..\..\data')
 
 
-combine_folder("..\\..\\data\\EU-1-00-130", "EU-1-00-130")
-print(type(attr_obj.all_attributes))
-print(attr_obj.all_attributes)
+# combine_folder("..\\..\\data\\EU-1-00-130", "EU-1-00-130")
+# print(type(attr_obj.all_attributes))
+# print(attr_obj.all_attributes)
 
