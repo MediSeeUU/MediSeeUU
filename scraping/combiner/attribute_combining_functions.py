@@ -83,21 +83,23 @@ def combine_select_string_overlap(attribute_name: str, sources: list[str], file_
         except Exception:
             print("COMBINER: can't find value for ", attribute_name, " in ", source)
             # print("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
-
-    old_string = strings[0]
-    new_string = strings[1]
-    sequence_matcher = SM(None, old_string.lower(), new_string.lower())
-    overlap = sequence_matcher.find_longest_match(0, len(old_string) - 1, 0, len(new_string) - 1)
-
-    for string in strings[1:]:
-        old_string = new_string
-        new_string = string
+    try:
+        old_string = strings[0]
+        new_string = strings[1]
         sequence_matcher = SM(None, old_string.lower(), new_string.lower())
-        overlap = sequence_matcher.find_longest_match(0, len(old_string), 0, len(new_string))
+        overlap = sequence_matcher.find_longest_match(0, len(old_string) - 1, 0, len(new_string) - 1)
+
+        for string in strings[1:]:
+            old_string = new_string
+            new_string = string
+            sequence_matcher = SM(None, old_string.lower(), new_string.lower())
+            overlap = sequence_matcher.find_longest_match(0, len(old_string), 0, len(new_string))
 
 
-    if float(overlap.size / len(strings[0])) >= min_matching_fraction:
-        return (strings[0][overlap.a:overlap.a + overlap.size], values.default_date)
+        if float(overlap.size / len(strings[0])) >= min_matching_fraction:
+            return (strings[0][overlap.a:overlap.a + overlap.size], values.default_date)
+    except Exception:
+        print("no second string")
 
     return (values.insufficient_overlap, get_attribute_date(sources[0], file_dicts))
 
