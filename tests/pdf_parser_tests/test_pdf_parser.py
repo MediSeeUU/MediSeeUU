@@ -42,7 +42,6 @@ class TestPdfParser(TestCase):
         Runs PDF parser and checks whether the amount of parsed files equals the number of PDF files in the medicine
         folder
         """
-
         pdf_parser.main(data_path, parse_all=True)
         for folder in os.listdir(active_withdrawn_dir):
             medicine_path = f"{active_withdrawn_dir}/{folder}"
@@ -54,7 +53,9 @@ class TestPdfParser(TestCase):
                           ("public-assessment-report" in file or "procedural-steps-taken" in file or "epar" in file)
                           and ".xml" in file]
             omar_files = [file for file in files if ("omar" in file or "orphan" in file) and ".xml" in file]
-            with open(f"{active_withdrawn_dir}/{folder}/{folder}_pdf_parser.json") as pdf_json:
+            pdf_json_path = f"{medicine_path}/{folder}_pdf_parser.json"
+            assert os.path.exists(pdf_json_path)
+            with open(pdf_json_path) as pdf_json:
                 pdf_data: dict = json.load(pdf_json)
                 anx_count = len(pdf_data["annexes"])
                 dec_count = len(pdf_data["decisions"])
@@ -62,4 +63,5 @@ class TestPdfParser(TestCase):
                 omar_count = len(pdf_data["omars"])
                 for files, count in zip([annex_files, decision_files, epar_files, omar_files],
                                         [anx_count, dec_count, epar_count, omar_count]):
+                    # There should be an entry in the pdf_parser.json for each file
                     assert len(files) == count
