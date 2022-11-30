@@ -7,7 +7,7 @@ import json
 from datetime import datetime
 import logging
 import scraping.utilities.json.json_compiler as json_compiler
-import scraping.utilities.definitions.value as values
+import scraping.utilities.definitions.values as values
 import scraping.utilities.definitions.attributes as attr
 
 log = logging.getLogger("annex_10_parser")
