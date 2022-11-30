@@ -159,7 +159,7 @@ data filtered and xml 31 okt.zip
 # do not ignore test data
 !test_data/*/*/*.xml
 !test_data/*/*/*.pdf
-!test_data/*/*/*.json
+!test_data/*/*/*webdata.json
 !test_data_filter/*/*/*.xml
 !test_data_filter/*/*/*.pdf
 !test_data_filter/*/*/*.json
