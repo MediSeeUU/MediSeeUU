@@ -28,11 +28,11 @@ def run_all():
     Runs all modules of MediSee
     For now only the web_scraper and pdf_parser will be run.
     """
-    scrape_ec: bool = False            # Whether EC URLs should be scraped
-    scrape_ema: bool = False           # Whether EMA URLs should be scraped | Requires scrape_ec to have been run once
+    scrape_ec: bool = True            # Whether EC URLs should be scraped
+    scrape_ema: bool = True           # Whether EMA URLs should be scraped | Requires scrape_ec to have been run once
     download_files: bool = True       # Whether scraper should download PDFs from obtained links
     download_refused_files = True     # Whether scraper should download refused PDFs from obtained links
-    run_filter: bool = False           # Whether filter should be run after downloading PDF files
+    run_filter: bool = True           # Whether filter should be run after downloading PDF files
     download_annex10_files = True     # Whether scraper should download annex10 files from obtained links
     use_parallelization: bool = True  # Whether downloading should be parallel (faster)
 
