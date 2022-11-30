@@ -7,7 +7,7 @@ import scraping.pdf_parser.parsed_info_struct as pis
 from scraping.utilities.pdf import pdf_helper as pdf_helper
 import logging
 import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.value as values
+import scraping.utilities.definitions.values as values
 import os.path as path
 
 date_pattern: str = r"\d{1,2} \b(?!emea\b)\w+ \d{4}|\d{1,2}\w{2} \b(?!emea\b)\w+ \d{4}"  # DD/MONTH/YYYY

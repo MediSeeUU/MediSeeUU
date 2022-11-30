@@ -4,7 +4,7 @@ import scraping.utilities.xml.xml_parsing_utils as xml_utils
 import scraping.pdf_parser.parsed_info_struct as pis
 from scraping.utilities.pdf import pdf_helper as pdf_helper
 import logging
-import scraping.utilities.definitions.value as values
+import scraping.utilities.definitions.values as values
 import scraping.utilities.definitions.attributes as attr
 import os
 
