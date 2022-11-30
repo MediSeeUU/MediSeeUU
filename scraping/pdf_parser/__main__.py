@@ -6,6 +6,7 @@ import logging
 import joblib
 import datetime
 import multiprocessing
+from tqdm import tqdm
 
 # for main
 from scraping.pdf_parser.parsers import dec_parser
@@ -17,7 +18,7 @@ log = logging.getLogger("pdf_parser")
 
 
 # Main file to run all parsers
-def main(directory: str, parse_all: bool = False):
+def main(directory: str, parse_all: bool = True):
     """
     given a folder containing medicine folders, parses each folder in parallel
 
@@ -56,7 +57,7 @@ def main(directory: str, parse_all: bool = False):
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
         joblib.delayed(parse_folder)(path.join(meds_dir, folder), folder) for folder in
-        directory_folders)
+        tqdm(directory_folders))
     log.info("Done parsing PDF files!")
 
 

@@ -392,6 +392,5 @@ def init_ema_dict(eu_n: str, file: json_helper.JsonHelper):
 # Keep the code locally testable by including this.
 # When running this file specifically, the main function will run.
 if __name__ == "__main__":
-    from scraping.utilities.log import log_tools
-    scraping.utilities.log.log_setup.init_loggers()
+    log_tools.init_loggers()
     main(data_filepath="../../data")
