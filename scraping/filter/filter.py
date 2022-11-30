@@ -5,7 +5,7 @@ import re
 import json
 import multiprocessing
 import logging
-import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.log import log_tools
 
 wrong_doctype_str = "@wrong_doctype"
 cpu_count: int = multiprocessing.cpu_count()

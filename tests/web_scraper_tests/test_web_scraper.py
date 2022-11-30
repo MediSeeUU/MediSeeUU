@@ -6,7 +6,8 @@ from pathlib import Path
 from unittest import TestCase
 from datetime import date
 from scraping.web_scraper import __main__ as web
-import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.log import log_tools
+from scraping.utilities.io import safe_io
 from parameterized import parameterized
 
 data_path = "../test_data"
@@ -14,8 +15,7 @@ if "web_scraper_tests" in os.getcwd():
     data_path = "../../test_data"
 data_path_local = f"{data_path}/active_withdrawn"
 
-if not path.isdir(data_path):
-    os.mkdir(data_path)
+safe_io.create_folder(data_path)
 
 json_path = "web_scraper_tests/"
 if "web_scraper_tests" in os.getcwd():
@@ -56,27 +56,15 @@ class TestWebScraper(TestCase):
         """
         log_files_folder = f"{parent_path}/tests/logs/log_files"
         txt_files_folder = f"{parent_path}/tests/logs/txt_files"
-        try:
-            if os.path.exists(log_files_folder):
-                shutil.rmtree(log_files_folder)
-        except PermissionError:
-            print(f"{log_files_folder} in use.")
-
-        try:
-            if os.path.exists(txt_files_folder):
-                shutil.rmtree(txt_files_folder)
-        except PermissionError:
-            print(f"{txt_files_folder} in use.")
+        safe_io.delete_folder(log_files_folder)
+        safe_io.delete_folder(txt_files_folder)
 
         log_tools.init_loggers(log_files_folder)
-    
-        if not os.path.exists(f"{data_path}_old"):
-            os.rename(data_path, f"{data_path}_old")
-        if not path.isdir(data_path):
-            os.mkdir(data_path)
-        if not path.isdir(data_path_local):
-            os.mkdir(data_path_local)
-        os.mkdir(txt_files_folder)
+
+        safe_io.rename(data_path, f"{data_path}_old")
+        safe_io.create_folder(data_path)
+        safe_io.create_folder(data_path_local)
+        safe_io.create_folder(txt_files_folder)
 
         Path(f"{json_path}JSON").mkdir(parents=True, exist_ok=True)
 
@@ -84,8 +72,8 @@ class TestWebScraper(TestCase):
         """
         Create required folders for data and logs
         """
-        shutil.rmtree(data_path_local)
-        os.mkdir(data_path_local)
+        safe_io.delete_folder(data_path_local)
+        safe_io.create_folder(data_path_local)
 
     medicine_list_checks = \
         [('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
@@ -203,5 +191,5 @@ class TestWebScraper(TestCase):
         """
         Runs after class is run, makes sure test data is deleted and backup data is set back to its original place
         """
-        shutil.rmtree(data_path)
-        os.rename(f"{data_path}_old", data_path)
+        safe_io.delete_folder(data_path)
+        safe_io.rename(f"{data_path}_old", data_path)

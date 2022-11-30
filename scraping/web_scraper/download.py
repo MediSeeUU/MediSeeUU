@@ -13,7 +13,8 @@ import json
 
 from scraping.web_scraper import json_helper
 from scraping.utilities.web import web_utils as utils
-import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.log import log_tools
+from scraping.utilities.io import safe_io
 
 log = logging.getLogger("web_scraper.download")
 

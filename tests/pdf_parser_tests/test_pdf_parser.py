@@ -6,6 +6,7 @@ import json
 from scraping.pdf_parser import __main__ as pdf_parser
 from scraping.pdf_parser import parsed_info_struct as pis
 from scraping.utilities.log import log_tools
+from scraping.utilities.io import safe_io
 
 data_path = "../test_data"
 if "pdf_parser_tests" in os.getcwd():
@@ -24,13 +25,11 @@ class TestPdfParser(TestCase):
         """
         Set up the class to make sure the integration test can run without changing existing data.
         """
-        if os.path.exists(f"{parent_path}/tests/logs/txt_files"):
-            shutil.rmtree(f"{parent_path}/tests/logs/txt_files")
-        if os.path.exists(f"{parent_path}/tests/logs/log_files"):
-            shutil.rmtree(f"{parent_path}/tests/logs/log_files")
+        safe_io.delete_folder(f"{parent_path}/tests/logs/txt_files")
+        safe_io.delete_folder(f"{parent_path}/tests/logs/log_files")
 
         log_tools.init_loggers(f"{parent_path}/tests/logs/log_files")
-        os.mkdir(f"{parent_path}/tests/logs/txt_files")
+        safe_io.create_folder(f"{parent_path}/tests/logs/txt_files")
 
     def test_pdf_parser_no_checks(self):
         """

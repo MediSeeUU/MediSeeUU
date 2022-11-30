@@ -4,7 +4,7 @@ from distutils.dir_util import copy_tree
 from unittest import TestCase
 
 from scraping.filter import filter
-import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.log import log_tools
 
 test_data_loc = "../test_data_filter/active_withdrawn"
 test_data_filter_loc = "../test_data_filter/active_withdrawn_temp"

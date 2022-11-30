@@ -6,7 +6,7 @@ import json
 from scraping.filter import filter
 from scraping.web_scraper import __main__ as m
 from scraping.web_scraper import download, ec_scraper, json_helper
-import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.log import log_tools
 
 # dictionaries used for mapping
 key_dict = {"dec": "aut_url",

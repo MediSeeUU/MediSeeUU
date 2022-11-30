@@ -13,10 +13,6 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     """
     if not os.path.isdir(logging_path):
         os.mkdir(logging_path)
-    web_name: str = "web_scraper"
-    pdf_name: str = "pdf_parser"
-    xml_name: str = "xml_converter"
-    annex_10_name: str = "annex_10_parser"
 
     # --- Root logger ---
     root_handler_stream = logging.StreamHandler()
@@ -28,6 +24,7 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     # ---
 
     # --- Logging module of the web scraper ---
+    web_name = "web_scraper"
     log_web = logging.getLogger(web_name)
     log_web.setLevel(logging.INFO)
 
@@ -38,7 +35,7 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     # ---
 
     # Create logging module for all other modules
-    logging_names = [web_name, pdf_name, xml_name, annex_10_name]
+    logging_names = ["pdf_parser", "xml_converter", "annex_10_parser", "safe_io"]
     for log_name in logging_names:
         log = logging.getLogger(log_name)
         log.setLevel(logging.INFO)

@@ -8,6 +8,7 @@ import scraping.annex_10_parser.__main__ as annex_10_parser
 import scraping.xml_converter.__main__ as xml_converter
 import scraping.pdf_parser.__main__ as pdf_parser
 from scraping.utilities.log import log_tools
+from scraping.utilities.io import safe_io
 
 
 def main():
@@ -64,8 +65,7 @@ def create_data_folders() -> str:
                data_folder_annex10_directory]
 
     for folder in folders:
-        if not path.isdir(folder):
-            os.mkdir(folder)
+        safe_io.create_folder(folder)
 
     return data_folder_directory
 
