@@ -9,8 +9,8 @@
 # and additional medicine information page among others.
 # ----------------------------------------------------------------------------
 
-from api.models.common import Category
-from api.models.medicine_models import models
+from api.models.create_dashboard_columns import Category
+from api.models import models
 
 
 # returns a list of json components using medicine_models,
@@ -46,7 +46,7 @@ def get_medicine_info(perm, mock=None):
     for field in models_fields:
         if hasattr(field, "dashboard_columns") and has_permission(perm, field.name):
             for dashboard_column in field.dashboard_columns:
-                data_key = f"{dashboard_column.prefix or ''}{field.name}{dashboard_column.suffix or ''}"
+                data_key = dashboard_column.get_data_key(field.name)
                 if has_permission(perm, data_key):
                     data[dashboard_column.category.value].append({
                         "data-key": data_key,

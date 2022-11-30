@@ -1,4 +1,4 @@
-from api.models.medicine_models import OrphanProduct
+from api.models.orphan_models import OrphanProduct
 from django.db import models
 
 

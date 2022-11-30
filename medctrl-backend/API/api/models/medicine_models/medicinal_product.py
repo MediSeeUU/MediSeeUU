@@ -2,7 +2,11 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from api.models.dashboard_columns import create_dashboard_column, Category
+from api.models.create_dashboard_columns import (
+    create_dashboard_column,
+    create_dashboard_history_initial_column,
+    Category,
+)
 from .ingredients_and_substances import IngredientsAndSubstances
 
 
@@ -95,22 +99,43 @@ class MedicinalProduct(models.Model):
         models.PROTECT,
     )
 
-    eu_brand_name_initial = models.OneToOneField(
-        "HistoryBrandName",
-        models.SET_NULL,
-        null=True,
+    eu_brand_name_initial = create_dashboard_history_initial_column(
+        models.OneToOneField(
+            "HistoryBrandName",
+            models.SET_NULL,
+            null=True,
+        ),
+        Category.General_Information,
+        "string",
+        "Initial EU brand name",
+        None,
+        None,
     )
 
-    eu_od_initial = models.OneToOneField(
-        "HistoryOD",
-        models.SET_NULL,
-        null=True,
+    eu_od_initial = create_dashboard_history_initial_column(
+        models.OneToOneField(
+            "HistoryOD",
+            models.SET_NULL,
+            null=True,
+        ),
+        Category.General_Information,
+        "bool",
+        "EU orphan designation at authorisation",
+        None,
+        None,
     )
 
-    eu_prime_initial = models.OneToOneField(
-        "HistoryPrime",
-        models.SET_NULL,
-        null=True,
+    eu_prime_initial = create_dashboard_history_initial_column(
+        models.OneToOneField(
+            "HistoryPrime",
+            models.SET_NULL,
+            null=True,
+        ),
+        Category.General_Information,
+        "bool",
+        "EU Priority Medicine at authorisation",
+        None,
+        None,
     )
 
     class Meta:

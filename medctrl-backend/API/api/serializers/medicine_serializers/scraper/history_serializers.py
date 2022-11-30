@@ -14,9 +14,10 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
-    HistoryEUOrphanCon
 )
-
+from api.models.orphan_models import (
+    HistoryEUOrphanCon,
+)
 
 class AuthorisationStatusSerializer(serializers.ModelSerializer):
     """

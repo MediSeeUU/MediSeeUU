@@ -8,11 +8,12 @@ from api.models.medicine_models import (
     MarketingAuthorisation,
     AcceleratedAssessment,
     Duration,
-    OrphanProduct,
     Procedures,
     LegalBases,
 )
-
+from api.models.orphan_models import (
+    OrphanProduct,
+)
 
 class MedicinalProductSerializer(serializers.ModelSerializer):
     """

@@ -165,7 +165,7 @@ def create_dashboard_history_current_column(field: models.Field, category: Categ
     Returns:
         Field: Returns the original field, but updated with the correct information.
     """
-    dashboard_column = DashBoardHistoryInitialColumn(category, data_format, display_name,
+    dashboard_column = DashBoardHistoryCurrentColumn(category, data_format, display_name,
                                                      public_serializer, scraper_serializer)
 
     setattr(field, "dashboard_columns", [dashboard_column])

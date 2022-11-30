@@ -20,8 +20,10 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
-    HistoryEUOrphanCon,
     LegalBases,
+)
+from api.models.orphan_models import (
+    HistoryEUOrphanCon,
 )
 from api.models.other.medicine_locks import MedicineLocks
 from api.models.other.orphan_locks import OrphanLocks

@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
-from api.models.dashboard_columns import create_dashboard_column, Category
+from api.models.create_dashboard_columns import create_dashboard_column, Category
 from api.models.common import LegalBasesTypes
 
 

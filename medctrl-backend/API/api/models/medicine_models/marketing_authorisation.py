@@ -7,7 +7,11 @@ from .accelerated_assessment import AcceleratedAssessment
 from .duration import Duration
 from .history_authorisation_type import HistoryAuthorisationType
 from .history_mah import HistoryMAH
-from api.models.dashboard_columns import create_dashboard_column, Category
+from api.models.create_dashboard_columns import (
+    create_dashboard_column,
+    create_dashboard_history_initial_column,
+    Category,
+)
 
 
 class MarketingAuthorisation(models.Model):
@@ -147,16 +151,30 @@ class MarketingAuthorisation(models.Model):
         "EMA re-examination performed",
     )
 
-    eu_aut_type_initial = models.OneToOneField(
-        HistoryAuthorisationType,
-        models.SET_NULL,
-        null=True,
+    eu_aut_type_initial = create_dashboard_history_initial_column(
+        models.OneToOneField(
+            HistoryAuthorisationType,
+            models.SET_NULL,
+            null=True,
+        ),
+        Category.General_Information,
+        "string",
+        "Initial type of EU authorisation",
+        None,
+        None,
     )
 
-    eu_mah_initial = models.OneToOneField(
-        HistoryMAH,
-        models.SET_NULL,
-        null=True,
+    eu_mah_initial = create_dashboard_history_initial_column(
+        models.OneToOneField(
+            HistoryMAH,
+            models.SET_NULL,
+            null=True,
+        ),
+        Category.General_Information,
+        "string",
+        "Initial EU marketing authorisation holder",
+        None,
+        None,
     )
 
     class Meta:

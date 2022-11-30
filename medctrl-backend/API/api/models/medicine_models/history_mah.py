@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
-from api.models.dashboard_columns import create_dashboard_history_current_column, Category
+from api.models.create_dashboard_columns import create_dashboard_history_current_column, Category
 
 
 class HistoryMAH(models.Model):
@@ -41,6 +41,8 @@ class HistoryMAH(models.Model):
         Category.General_Information,
         "string",
         "EU Marketing Authorisation Holder",
+        None,
+        None,
     )
 
     class Meta:

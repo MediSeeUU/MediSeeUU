@@ -3,10 +3,8 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.contrib import admin
 from import_export import resources, admin as import_admin
-from api.models.medicine_models import (
-    MedicinalProduct,
-    HistoryEUOrphanCon,
-)
+from api.models.medicine_models import MedicinalProduct
+from api.models.orphan_models import HistoryEUOrphanCon
 from api.admin.common import import_foreign_key
 from api.admin.cachemodeladmin import CacheModelAdmin
 
