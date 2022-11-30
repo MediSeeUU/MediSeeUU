@@ -1,6 +1,6 @@
 import logging
 import os
-import scraping.config_objects as config
+import scraping.utilities.web.config_objects as config
 
 
 all_loggers: list[logging.getLoggerClass()] = []

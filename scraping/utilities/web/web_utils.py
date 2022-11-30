@@ -1,5 +1,6 @@
 import logging
 import requests
+from scraping.utilities.web import json_helper
 
 
 # This method makes use of Decorators.
@@ -74,3 +75,24 @@ def get_html_object(url: str) -> requests.Response:
     html_active.raise_for_status()
 
     return html_active
+
+
+def init_ema_dict(eu_n: str, file: json_helper.JsonHelper):
+    """
+    Set default empty values for if website does not exist
+
+    Args:
+        eu_n (str): eu_number of medicine
+        file (json_helper.JsonHelper): Dictionary that is being initialized
+    """
+    ema_urls: dict[str, str | list[list[str]]] = {
+        "epar_url": "",
+        "omar_url": "",
+        "odwar_url": "",
+        "other_ema_urls": []
+    }
+    pdf_url: dict[str, dict] = {
+        eu_n: ema_urls
+    }
+    file.add_to_dict(pdf_url)
+

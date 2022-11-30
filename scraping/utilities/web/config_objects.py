@@ -1,8 +1,8 @@
 import logging
 
 
-default_path_logging: str = "./logs"
-default_path_data: str = "./data"
+default_path_logging: str = "../logs"
+default_path_data: str = "../data"
 
 logging_level: int = logging.INFO
 
@@ -62,20 +62,21 @@ class WebConfig:
         So for example, run the function as `run_custom(scrape_ec=True)` for extra clarity.
 
         Args:
-            scrape_ec:
+            scrape_ec (bool):
                 Scrape the list of all medicines from the EC, and all individual medicine pages
-            scrape_ema:
+            scrape_ema (bool):
                 Scrape the individual medicine pages from the EMA. This has no effect when scrape_ec has not been run
-            download:
+            download (bool):
                 Download all the saved links. This has no effect when one of the previous tasks has not been run.
-            download_refused:
+            download_refused (bool):
                 Refused files are an edge case, and can slow us down. They are not parsed by the PDF module.
-            download_annex10:
+            download_annex10 (bool):
                 Annex10 is
-            filtering:
+            filtering (bool):
                 Retry failed downloads. This has no effect is download has not been run.
 
-        Returns: Modified config class
+        Returns:
+            Modified config class
 
         """
         self.run_scrape_ec = scrape_ec
@@ -90,7 +91,11 @@ class WebConfig:
         """
         Sets the parallelized flag to true. Simply here to allow Config class oneliners.
 
-        Returns: Modified Config class
+        Args:
+            enabled (bool): Boolean determining whether scraper runs tasks in parallel
+
+        Returns:
+            Modified Config class
 
         """
         self.parallelized = enabled
@@ -103,7 +108,8 @@ class WebConfig:
         Comes in handy if you want to test a smaller set of medicines.
 
         Args:
-            medicine_list: A list of medicines, structured as `{url, eu_num_full, medicine_type, eu_num_short}`
+            medicine_list (list[(str, str, int, str)]): A list of medicines, structured as
+                `{url, eu_num_full, medicine_type, eu_num_short}`
 
         Returns: Modified Config class
 

@@ -3,7 +3,8 @@ import os
 from datetime import datetime
 import regex as re
 from unittest import TestCase
-from scraping.web_scraper import download, json_helper
+from scraping.web_scraper import download
+from scraping.utilities.web import json_helper
 from parameterized import parameterized
 
 data_path = "../test_data"
@@ -72,7 +73,8 @@ class TestDownload(TestCase):
             pdf_type: The type of the pdf, dec or anx
             pdf_url: The url of the pdf
         """
-        assert path.exists(f"{data_path_local}/{eu_n}/{eu_n}_webdata.json"), f"can't run test, no webdata file for {eu_n}"
+        assert path.exists(f"{data_path_local}/{eu_n}/{eu_n}_webdata.json"), \
+            f"can't run test, no webdata file for {eu_n}"
         med_dict = (json_helper.JsonHelper(path=f"{data_path_local}/{eu_n}/{eu_n}_webdata.json")).load_json()
         url_json: json_helper.JsonHelper = json_helper.JsonHelper(path="test_json.json", init_dict={})
         target_path = f"{data_path_local}/{eu_n}"
@@ -94,7 +96,8 @@ class TestDownload(TestCase):
             pdf_type: The type of pdf, epar or omar
             pdf_url: The url of the pdf
         """
-        assert path.exists(f"{data_path_local}/{eu_n}/{eu_n}_webdata.json"), f"can't run test, no webdata file for {eu_n}"
+        assert path.exists(f"{data_path_local}/{eu_n}/{eu_n}_webdata.json"), \
+            f"can't run test, no webdata file for {eu_n}"
         med_dict = (json_helper.JsonHelper(path=f"{data_path_local}/{eu_n}/{eu_n}_webdata.json")).load_json()
         target_path = f"{data_path_local}/{eu_n}"
         self.assertIsNone(download.download_pdfs_ema(eu_n, pdf_type, pdf_url, med_dict, {}, target_path))
@@ -119,6 +122,7 @@ class TestDownload(TestCase):
             url_dict: The dictionary containing the urls for a specific medicine
         """
         url_json: json_helper.JsonHelper = json_helper.JsonHelper(path="urls.json", init_dict=url_dict)
-        assert path.exists(f"{data_path_local}/{eu_n}/{eu_n}_webdata.json"), f"can't run test, no webdata file for {eu_n}"
+        assert path.exists(f"{data_path_local}/{eu_n}/{eu_n}_webdata.json"), \
+            f"can't run test, no webdata file for {eu_n}"
         self.assertIsNone(download.download_medicine_files(eu_n, url_dict, url_json, data_path))
         remove("urls.json")

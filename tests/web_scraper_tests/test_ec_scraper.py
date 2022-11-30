@@ -3,6 +3,7 @@ import json
 import regex as re
 import requests
 import scraping.utilities.web.web_utils as utils
+from scraping.utilities.web.medicine_type import MedicineType
 from scraping.web_scraper import ec_scraper as ec
 from parameterized import parameterized
 import os
@@ -46,7 +47,7 @@ class TestEcScraper(unittest.TestCase):
             "ACTIVE",
             "Abseamed",
             "Medice Arzneimittel P&#252;tter GmbH &amp; Co KG",
-            ec.MedicineType.HUMAN_USE_ACTIVE
+            MedicineType.HUMAN_USE_ACTIVE
         ],
         [
             "h477",
@@ -56,7 +57,7 @@ class TestEcScraper(unittest.TestCase):
             "ACTIVE",
             "Ceplene",
             "Laboratoires Delbert",
-            ec.MedicineType.HUMAN_USE_ACTIVE
+            MedicineType.HUMAN_USE_ACTIVE
         ],
         [
             "o1230",
@@ -67,7 +68,7 @@ class TestEcScraper(unittest.TestCase):
             "ACTIVE",
             "EU/3/13/1230",
             "Voisin Consulting Life Sciences",
-            ec.MedicineType.ORPHAN_ACTIVE
+            MedicineType.ORPHAN_ACTIVE
         ]
     ])
     def test_get_data_from_medicine_json(
@@ -249,7 +250,7 @@ class TestEcScraper(unittest.TestCase):
         ]
         html_active: requests.Response = utils.get_html_object(url)
         dec_result, anx_result, ema_result, _ = ec.scrape_medicine_page(url, html_active,
-                                                                        ec.MedicineType.HUMAN_USE_ACTIVE, data_path)
+                                                                        MedicineType.HUMAN_USE_ACTIVE, data_path)
         dec_result = [x[0] for x in dec_result]
         anx_result = [x[0] for x in anx_result]
 

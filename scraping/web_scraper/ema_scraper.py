@@ -4,10 +4,17 @@ from datetime import datetime
 import bs4
 import regex as re
 import requests
-from scraping.utilities.web import web_utils as utils
+import multiprocessing
+from scraping.utilities.web import web_utils as utils, json_helper, config_objects
+import tqdm.contrib.concurrent as tqdm_concurrent
+import tqdm.contrib.logging as tqdm_logging
+from scraping.web_scraper import url_scraper
+from itertools import repeat
+from tqdm import tqdm
 
 log = logging.getLogger("web_scraper.ema_scraper")
 html_parser_str = "html.parser"
+cpu_count: int = multiprocessing.cpu_count() * 2
 
 
 def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, str | list[str]]:
@@ -181,7 +188,7 @@ def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:
     return ""  # Failure return condition
 
 
-def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
+def get_annex10_data(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
     """
     Gets all the annex 10 files from the EMA website.
 
@@ -275,3 +282,36 @@ def find_last_updated_date_annex10(text: str) -> datetime:
         updated_date: str = new_text[2]
 
     return datetime.strptime(updated_date, '%d/%m/%Y')
+
+
+def scrape_ema(config: config_objects.WebConfig, url_file: json_helper.JsonHelper):
+    """
+    Scrapes all medicine URLs and medicine data from the EMA website
+
+    Args:
+        config (config_objects.WebConfig): Object that contains the variables that define the behaviour of webscraper
+        url_file (json_helper.JsonHelper): the dictionary containing all the urls of a specific medicine
+
+    """
+    log.info("Scraping all individual medicine pages of EMA")
+    if not config.run_scrape_ec:
+        url_file.load_json()
+    # Transform JSON object into list of (eu_n, url)
+    ema_urls: list[tuple[str, str]] = [
+        (eu_n, url)
+        for eu_n, value_dict in url_file.local_dict.items()
+        for url in value_dict["ema_url"]
+    ]
+    unzipped_ema_urls: list[list[str]] = [list(t) for t in zip(*ema_urls)]
+    for eu_n in url_file.local_dict:
+        utils.init_ema_dict(eu_n, url_file)
+    with tqdm_logging.logging_redirect_tqdm():
+        if config.parallelized and len(unzipped_ema_urls) > 0:
+            tqdm_concurrent.thread_map(url_scraper.get_urls_ema, *unzipped_ema_urls, repeat(url_file),
+                                       max_workers=cpu_count)
+
+        else:
+            for eu_n, url in tqdm(ema_urls):
+                url_scraper.get_urls_ema(eu_n, url, url_file)
+    url_file.save_dict()
+    log.info("TASK FINISHED EMA scrape")

@@ -8,7 +8,7 @@ import scraping.annex_10_parser.__main__ as annex_10_parser
 import scraping.xml_converter.__main__ as xml_converter
 import scraping.pdf_parser.__main__ as pdf_parser
 from scraping.utilities.log import log_tools
-import config_objects
+from scraping.utilities.web import config_objects
 
 
 def main():
