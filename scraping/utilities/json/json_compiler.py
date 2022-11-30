@@ -2,6 +2,69 @@ from os import listdir
 import os.path as path
 import json
 
+def compile_json_dict(compile_dir: str, incl_substr: list[str], excl_substr: list[str] = [], recursive: bool = True) -> dict[str, dict]:
+    dir_content = [path.join(compile_dir, content) for content in listdir(compile_dir)]
+
+    files = [file for file in dir_content if path.isfile(file)]
+    subdirs = [subdir for subdir in dir_content if path.isdir(subdir)]
+    compiled_dict = {}
+    file_dicts = []
+    subdir_dicts = []
+
+    if recursive:
+        for subdir in subdirs:
+            subdir_dicts.append(compile_json_dict(subdir, incl_substr, excl_substr, recursive))
+
+    for file in files:
+        contains_included = any(substring in path.basename(file) for substring in incl_substr)
+        contains_excluded = any(substring in path.basename(file) for substring in excl_substr)
+        is_json_file = ".json" in path.basename(file)
+
+        if is_json_file and contains_included and not contains_excluded:
+            try:
+                with open(file) as json_file:
+                    json_dict = json.load(json_file)
+                    file_dicts.append((path.basename(file), json_dict))
+            except Exception:
+                print("failed to open or load \"", file + "\"", "in compile_json_dict")
+
+    compiled_dict[path.basename(compile_dir)] = {"files": file_dicts, "subdirectories": subdir_dicts}
+    return compiled_dict
+
+def compile_json_file(compile_dir: str, save_dir: str, incl_substr: list[str], excl_substr: list[str] = [], recursive: bool = True):
+    directory_content = [path.join(compile_dir, content) for content in listdir(compile_dir)]
+
+    files = [file for file in directory_content if path.isfile(file)]
+    subdirs = [subdir for subdir in directory_content if path.isdir(subdir)]
+    compiled_dict = {}
+    file_dicts = []
+    subdir_dicts = []
+
+    if recursive:
+        for subdir in subdirs:
+            subdir_dicts.append(compile_json_dict(subdir, incl_substr, excl_substr, recursive))
+
+    for file in files:
+        contains_included = any(substring in path.basename(file) for substring in incl_substr)
+        contains_excluded = any(substring in path.basename(file) for substring in excl_substr)
+        is_json_file = ".json" in path.basename(file)
+
+        if is_json_file and contains_included and not contains_excluded:
+            try:
+                with open(file) as json_file:
+                    json_dict = json.load(json_file)
+                    file_dicts.append((path.basename(file), json_dict))
+            except Exception:
+                print("failed to open or load \"", file + "\"", "in compile_json_dict")
+
+    compiled_dict[path.basename(compile_dir)] = {"files": file_dicts, "subdirectories": subdir_dicts}
+
+    with open(path.join(save_dir, "compiled.json"), "w") as compiled_json:
+        json.dump(compiled_dict, compiled_json)
+
+    print("compiled.json written.")
+
+
 
 def compile_json_files(directory: str, save_dir: str, add_webdata: bool = True, add_pdfdata: bool = True):
     """
