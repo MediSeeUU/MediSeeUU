@@ -5,6 +5,7 @@ from django.db import models
 from api.models.medicine_models.medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import (
     create_dashboard_column,
+    create_dashboard_history_initial_column,
     Category,
 )
 
@@ -117,7 +118,7 @@ class OrphanProduct(models.Model):
         "Sponsor for EU orphan designation",
     )
 
-    eu_orphan_con_initial = create_dashboard_column(
+    eu_orphan_con_initial = create_dashboard_history_initial_column(
         models.OneToOneField(
             "HistoryEUOrphanCon",
             models.SET_NULL,

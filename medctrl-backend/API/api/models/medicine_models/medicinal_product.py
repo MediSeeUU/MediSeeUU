@@ -4,6 +4,7 @@
 from django.db import models
 from api.models.create_dashboard_columns import (
     create_dashboard_column,
+    create_dashboard_history_initial_column,
     Category,
 )
 from .ingredients_and_substances import IngredientsAndSubstances
@@ -98,7 +99,7 @@ class MedicinalProduct(models.Model):
         models.PROTECT,
     )
 
-    eu_brand_name_initial = create_dashboard_column(
+    eu_brand_name_initial = create_dashboard_history_initial_column(
         models.OneToOneField(
             "HistoryBrandName",
             models.SET_NULL,
@@ -109,7 +110,7 @@ class MedicinalProduct(models.Model):
         "Initial EU brand name",
     )
 
-    eu_od_initial = create_dashboard_column(
+    eu_od_initial = create_dashboard_history_initial_column(
         models.OneToOneField(
             "HistoryOD",
             models.SET_NULL,
@@ -120,7 +121,7 @@ class MedicinalProduct(models.Model):
         "EU orphan designation at authorisation",
     )
 
-    eu_prime_initial = create_dashboard_column(
+    eu_prime_initial = create_dashboard_history_initial_column(
         models.OneToOneField(
             "HistoryPrime",
             models.SET_NULL,

@@ -9,6 +9,7 @@ from .history_authorisation_type import HistoryAuthorisationType
 from .history_mah import HistoryMAH
 from api.models.create_dashboard_columns import (
     create_dashboard_column,
+    create_dashboard_history_initial_column,
     Category,
 )
 
@@ -150,7 +151,7 @@ class MarketingAuthorisation(models.Model):
         "EMA re-examination performed",
     )
 
-    eu_aut_type_initial = create_dashboard_column(
+    eu_aut_type_initial = create_dashboard_history_initial_column(
         models.OneToOneField(
             HistoryAuthorisationType,
             models.SET_NULL,
@@ -161,7 +162,7 @@ class MarketingAuthorisation(models.Model):
         "Initial type of EU authorisation",
     )
 
-    eu_mah_initial = create_dashboard_column(
+    eu_mah_initial = create_dashboard_history_initial_column(
         models.OneToOneField(
             HistoryMAH,
             models.SET_NULL,

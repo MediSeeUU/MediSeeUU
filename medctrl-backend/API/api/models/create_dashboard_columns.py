@@ -42,6 +42,10 @@ class DashboardColumn:
         return field_name
 
 
+class DashBoardHistoryInitialColumn(DashboardColumn):
+    pass
+
+
 class DashBoardHistoryCurrentColumn(DashboardColumn):
     def __init__(self, category: Category, data_format: str, data_value: str, suffix: str = "_current"):
         super().__init__(category, data_format, data_value)
@@ -66,6 +70,25 @@ def create_dashboard_column(field: models.Field, category: Category, data_format
         Field: Returns the original field, but updated with the correct information.
     """
     dashboard_column = DashboardColumn(category, data_format, display_name)
+    setattr(field, "dashboard_columns", [dashboard_column])
+    return field
+
+
+def create_dashboard_history_initial_column(field: models.Field, category: Category, data_format: str,
+                                            display_name: str) -> models.Field:
+    """
+    Sets attributes on a model field that's used in medicine_info_json.
+
+    Args:
+        field (models.Field): The type that the database attribute will have (CharField, BooleanField, etc.).
+        category (Category): Which category the attribute should belong to.
+        data_format (str): Defines what data format the attribute should have.
+        display_name (str): This is the name that the attribute displays in the database.
+
+    Returns:
+        Field: Returns the original field, but updated with the correct information.
+    """
+    dashboard_column = DashBoardHistoryInitialColumn(category, data_format, display_name)
     setattr(field, "dashboard_columns", [dashboard_column])
     return field
 
