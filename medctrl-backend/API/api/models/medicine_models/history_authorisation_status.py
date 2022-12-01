@@ -44,8 +44,6 @@ class HistoryAuthorisationStatus(models.Model):
         Category.General_Information,
         "string",
         "EU Authorisation Status",
-        None,
-        None,
     )
 
     class Meta:

@@ -41,8 +41,6 @@ class HistoryMAH(models.Model):
         Category.General_Information,
         "string",
         "EU Marketing Authorisation Holder",
-        None,
-        None,
     )
 
     class Meta:

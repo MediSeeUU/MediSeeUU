@@ -6,7 +6,6 @@ from api.models.medicine_models.medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import (
     create_dashboard_column,
     Category,
-    create_dashboard_history_initial_column,
 )
 
 
@@ -118,7 +117,7 @@ class OrphanProduct(models.Model):
         "Sponsor for EU orphan designation",
     )
 
-    eu_orphan_con_initial = create_dashboard_history_initial_column(
+    eu_orphan_con_initial = create_dashboard_column(
         models.OneToOneField(
             "HistoryEUOrphanCon",
             models.SET_NULL,
@@ -127,8 +126,6 @@ class OrphanProduct(models.Model):
         Category.General_Information,
         "string",
         "Initial EU orphan conditions",
-        None,
-        None,
     )
 
     class Meta:

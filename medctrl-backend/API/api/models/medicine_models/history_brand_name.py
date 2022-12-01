@@ -40,8 +40,6 @@ class HistoryBrandName(models.Model):
         Category.General_Information,
         "string",
         "EU Brand Name",
-        None,
-        None,
     )
 
     class Meta:

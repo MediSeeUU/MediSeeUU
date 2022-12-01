@@ -40,8 +40,6 @@ class HistoryEUOrphanCon(models.Model):
         Category.General_Information,
         "string",
         "History EU orphan conditions",
-        None,
-        None,
     )
 
     class Meta:

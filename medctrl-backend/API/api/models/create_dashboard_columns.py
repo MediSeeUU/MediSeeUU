@@ -42,43 +42,13 @@ class DashboardColumn:
         return field_name
 
 
-class DashBoardSerializerColumn(DashboardColumn):
-    def __init__(self, category: Category, data_format: str, data_value: str, public_serializer, scraper_serializer):
-        """
-        Creates a DashboardColumn
-
-        Args:
-            category (Category): Category the variable should be shown in on the dashboard.
-            data_format (str): Data format for the dashboard. Example: `link`.
-            data_value (str): Title for the variable to be shown on the dashboard.
-        """
+class DashBoardHistoryCurrentColumn(DashboardColumn):
+    def __init__(self, category: Category, data_format: str, data_value: str, suffix: str = "_current"):
         super().__init__(category, data_format, data_value)
-        self.public_serializer = public_serializer
-        self.scraper_serializer = scraper_serializer
+        self.suffix = suffix
 
-
-class RelatedColumn:
-    def __init__(self, public_serializer, scraper_serializer):
-        self.public_serializer = public_serializer
-        self.scraper_serializer = scraper_serializer
-
-
-class DashboardRelatedColumn(DashBoardSerializerColumn):
-    pass
-
-
-class DashboardListColumn(DashBoardSerializerColumn):
-    pass
-
-
-class DashBoardHistoryInitialColumn(DashBoardSerializerColumn):
-    pass
-
-
-class DashBoardHistoryCurrentColumn(DashBoardSerializerColumn):
-    @staticmethod
-    def get_data_key(field_name: str) -> str:
-        return f"{field_name}_current"
+    def get_data_key(self, field_name: str) -> str:
+        return f"{field_name}{self.suffix}"
 
 
 def create_dashboard_column(field: models.Field, category: Category, data_format: str,
@@ -100,69 +70,8 @@ def create_dashboard_column(field: models.Field, category: Category, data_format
     return field
 
 
-def create_dashboard_related_column(field: models.Field, category: Category, data_format: str,
-                                    display_name: str, public_serializer, scraper_serializer) -> models.Field:
-    """
-
-    Args:
-        field:
-        category:
-        data_format:
-        display_name:
-        public_serializer:
-        scraper_serializer:
-
-    Returns:
-
-    """
-    dashboard_column = DashboardRelatedColumn(category, data_format, display_name,
-                                              public_serializer, scraper_serializer)
-    setattr(field, "dashboard_columns", [dashboard_column])
-    return field
-
-
-def create_dashboard_list_column(field: models.Field, category: Category, data_format: str,
-                                 display_name: str, public_serializer, scraper_serializer) -> models.Field:
-    """
-
-    Args:
-        field:
-        category:
-        data_format:
-        display_name:
-        public_serializer:
-        scraper_serializer:
-
-    Returns:
-
-    """
-    dashboard_column = DashboardListColumn(category, data_format, display_name, public_serializer, scraper_serializer)
-    setattr(field, "dashboard_columns", [dashboard_column])
-    return field
-
-
-def create_dashboard_history_initial_column(field: models.Field, category: Category, data_format: str,
-                                            display_name: str, public_serializer, scraper_serializer) -> models.Field:
-    """
-    Creates the initial column for a Foreign Key to a history model.
-
-    Args:
-        field (models.Field): The type that the database attribute will have (CharField, BooleanField, etc.).
-        category (Category): Which category the attribute should belong to.
-        data_format (str): Defines what data format the attribute should have.
-        display_name (str): This is the name that the attribute displays in the database.
-
-    Returns:
-        Field: Returns the original field, but updated with the correct information.
-    """
-    dashboard_column = DashBoardHistoryInitialColumn(category, data_format, display_name,
-                                                     public_serializer, scraper_serializer)
-    setattr(field, "dashboard_columns", [dashboard_column])
-    return field
-
-
-def create_dashboard_history_current_column(field: models.Field, category: Category, data_format: str,
-                                            display_name: str, public_serializer, scraper_serializer) -> models.Field:
+def create_dashboard_history_current_column(field: models.Field, category: Category,
+                                            data_format: str, display_name: str) -> models.Field:
     """
     Creates the current column for a history column in a history model.
 
@@ -175,8 +84,7 @@ def create_dashboard_history_current_column(field: models.Field, category: Categ
     Returns:
         Field: Returns the original field, but updated with the correct information.
     """
-    dashboard_column = DashBoardHistoryCurrentColumn(category, data_format, display_name,
-                                                     public_serializer, scraper_serializer)
+    dashboard_column = DashBoardHistoryCurrentColumn(category, data_format, display_name)
 
     setattr(field, "dashboard_columns", [dashboard_column])
     return field
