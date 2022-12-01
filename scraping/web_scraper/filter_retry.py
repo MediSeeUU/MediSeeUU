@@ -4,31 +4,19 @@ import os
 import json
 
 from scraping.filter import filter
-from scraping.web_scraper import __main__ as m
-from scraping.web_scraper import download, ec_scraper, json_helper
+from scraping.web_scraper import download, ec_scraper, url_scraper
+from scraping.utilities.web import json_helper, medicine_type as med_type
+from scraping.utilities.web.medicine_type import MedicineType
 from scraping.utilities.log import log_tools
 
 # dictionaries used for mapping
 key_dict = {"dec": "aut_url",
-            "anx": "smpc_url",
-            "public-assessment-report": "epar_url",
-            "public-assessment-report-article-31": "epar_url",
-            "public-assessment-report-article-20-procedure": "epar_url",
-            "public-assessment-report-withdrawn": "epar_url",
-            "public-assessmente-report": "epar_url",
-            "procedural-steps-taken-authorisation": "epar_url",
-            "scientific-discussion": "epar_url",
-            "assessment-report": "epar_url",
-            "epar": "epar_url",
-            "omar": "omar_url",
-            "orphan-maintenance-assessment-report": "omar_url",
-            "orphan-maintenance-assessment-report-post-authorisation": "omar_url",
-            "odwar": "odwar_url"}
+            "anx": "smpc_url"}
 
-med_type_dict = {"ha": ec_scraper.MedicineType.HUMAN_USE_ACTIVE,
-                 "hw": ec_scraper.MedicineType.HUMAN_USE_WITHDRAWN,
-                 "oa": ec_scraper.MedicineType.ORPHAN_ACTIVE,
-                 "ow": ec_scraper.MedicineType.ORPHAN_WITHDRAWN}
+med_type_dict = {"ha": MedicineType.HUMAN_USE_ACTIVE,
+                 "hw": MedicineType.HUMAN_USE_WITHDRAWN,
+                 "oa": MedicineType.ORPHAN_ACTIVE,
+                 "ow": MedicineType.ORPHAN_WITHDRAWN}
 
 log = logging.getLogger("web_scraper.filter_retry")
 
@@ -49,23 +37,27 @@ def run_filter(n: int, data_filepath: str):
     filter.filter_all_pdfs(data_filepath)
     for _ in range(n):
         filter.filter_all_pdfs(data_filepath)
-        url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json").load_json()
+        url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
+        url_refused_file = json_helper.JsonHelper(path=f"{json_path}JSON/refused_urls.json")
         data_folder = data_filepath.split("active_withdrawn")[0]
         filter_path = log_tools.get_log_path("filter.txt", data_folder)
-        retry_all(filter_path, url_file, data_filepath)
+        retry_all(filter_path, url_file, data_filepath, url_refused_file)
     # remove files that can't go to the pdf parser
     filter.filter_all_pdfs(data_filepath)
 
 
-def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str] | str]], data_filepath: str):
+def retry_all(filter_path: str, url_file: json_helper.JsonHelper, data_filepath: str,
+              url_refused_file: json_helper.JsonHelper):
     """
     For every line in filter.txt, it scrapes the urls again.
     It also calls the download function for the specific file again
 
     Args:
         filter_path (str): path to filter file
-        urls_file (dict[str, dict[str, list[str] | str]]): the dictionary with all the urls
+        url_file (json_helper.JsonHelper): the dictionary with all the urls
         data_filepath (str): the path to the data folder
+        url_refused_file (json_helper.JsonHelper): dictionary with all refused urls
+
     """
     with open(filter_path, "r") as f:
         medicine_names = f.read().split('\n')
@@ -74,10 +66,11 @@ def retry_all(filter_path: str, urls_file: dict[str, dict[str, list[str] | str]]
             filename_list = filename.split('_')
             eu_n = filename_list[0]
             filename_elements = filename_list[1:]
-            if eu_n in urls_file:
-                m.get_urls_ec(urls_file[eu_n]["ec_url"], eu_n, med_type_dict[f"{filename_elements[0]}a"],
-                              data_filepath)
-                retry_download(eu_n, filename_elements, urls_file[eu_n], data_filepath)
+            url_dict = url_file.load_json()
+            if eu_n in url_dict:
+                url_scraper.get_urls_ec(url_dict[eu_n]["ec_url"], eu_n, med_type_dict[f"{filename_elements[0]}a"],
+                                        data_filepath, url_file, url_refused_file)
+                retry_download(eu_n, filename_elements, url_dict[eu_n], data_filepath)
 
 
 def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, list[str]], data_filepath: str):
@@ -91,6 +84,16 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
         data_filepath (str): the path to the data folder
     """
     filename_type = filename_elements[1]
+
+    for epar_str in med_type.epar_priority_list:
+        key_dict[epar_str]: "epar_url"
+    for omar_str in med_type.omar_priority_list:
+        key_dict[omar_str]: "omar_url"
+    for odwar_str in med_type.odwar_priority_list:
+        key_dict[odwar_str]: "odwar_url"
+
+    # print(key_dict)
+
     if filename_type in key_dict.keys():
         url = url_dict[key_dict[filename_type]]
         if len(filename_elements) == 3:

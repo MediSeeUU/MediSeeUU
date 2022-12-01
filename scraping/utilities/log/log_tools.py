@@ -1,16 +1,19 @@
 import logging
 import os
 from scraping.utilities.io import safe_io
+import scraping.utilities.web.config_objects as config
 
 
-def init_loggers(logging_path: str = "../logs/log_files") -> None:
+all_loggers: list[logging.getLoggerClass()] = []
+
+
+def init_loggers():
     """
     Function that runs the necessary commands to set up the loggers.
     All logs go through the root logger StreamHandler and file handler.
     The root file handler only saves warning messages or higher.
 
-    Args:
-        logging_path (str): Path in which the log files will be saved.
+    Returns: None
     """
     safe_io.create_folder(logging_path)
     logs_path = logging_path.split("log_files")[0]
@@ -19,12 +22,14 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     safe_io.create_folder(txt_path)
 
     # --- Root logger ---
+    # Root logger has level NOTSET, all messages that the sub-loggers want to pass along will be passed along.
+    # Check https://docs.python.org/3/library/logging.html#logging.Logger.setLevel for details
     root_handler_stream = logging.StreamHandler()
 
-    root_handler_file = logging.FileHandler(f"{logging_path}/logging_global.log")
+    root_handler_file = logging.FileHandler(f"{config.default_path_logging}/logging_global.log")
     root_handler_file.setLevel(logging.ERROR)
 
-    logging.basicConfig(level=logging.INFO, handlers=[root_handler_stream, root_handler_file])
+    logging.basicConfig(handlers=[root_handler_stream, root_handler_file])
     # ---
 
     # --- Logging module of the web scraper ---
@@ -36,16 +41,31 @@ def init_loggers(logging_path: str = "../logs/log_files") -> None:
     log_web.addHandler(log_web_handler_file)
 
     logging.getLogger("urllib3.connectionpool").setLevel(logging.INFO)  # Avoid urllib3 DEBUG messages
-    # ---
 
     # Create logging module for all other modules
     logging_names = ["pdf_parser", "annex_10_parser", "xml_converter", "combiner", "db_communicator", "safe_io"]
     for log_name in logging_names:
         log = logging.getLogger(log_name)
-        log.setLevel(logging.INFO)
 
-        log_file_handler = logging.FileHandler(f"{logging_path}/logging_{log_name}.log")
+        log_file_handler = logging.FileHandler(f"{config.default_path_logging}/logging_{log_name}.log")
         log.addHandler(log_file_handler)
+
+        all_loggers.append(log)
+
+    set_level_loggers(config.logging_level)
+
+
+def set_level_loggers(log_level: int):
+    """
+    Set the level of all the submodule loggers to the specified level.
+    The logging level is an integer, but it is better to specify these as logger levels as they are specified in the
+    logging module. Check https://docs.python.org/3/library/logging.html#logging-levels for details.
+
+    Args:
+        log_level (int): Logging level to use. For clarity, use a value like `logging.DEBUG`.
+    """
+    for logging_obj in all_loggers:
+        logging_obj.setLevel(log_level)
 
 
 def get_log_path(filename: str, data_path: str) -> str:

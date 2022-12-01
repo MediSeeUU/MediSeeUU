@@ -1,10 +1,12 @@
-import os.path as path
-import os
-import shutil
 import json
+import os
+import os.path as path
+import shutil
+from datetime import date
 from pathlib import Path
 from unittest import TestCase
-from datetime import date
+
+import scraping.utilities.web.config_objects as config
 from scraping.web_scraper import __main__ as web
 from scraping.utilities.log import log_tools
 from scraping.utilities.io import safe_io
@@ -54,12 +56,15 @@ class TestWebScraper(TestCase):
         """
         Set up the class to make sure the integration test can run without changing existing data.
         """
+        config.default_path_data = data_path
+        config.default_path_logging = f"{parent_path}/tests/logs/log_files"
+
         log_files_folder = f"{parent_path}/tests/logs/log_files"
         txt_files_folder = f"{parent_path}/tests/logs/txt_files"
         safe_io.delete_folder(log_files_folder)
         safe_io.delete_folder(txt_files_folder)
 
-        log_tools.init_loggers(log_files_folder)
+        log_setup.init_loggers()
 
         safe_io.rename(data_path, f"{data_path}_old")
         safe_io.create_folder(data_path)
@@ -108,17 +113,16 @@ class TestWebScraper(TestCase):
         """
         self.parallel = parallel
         self.medicine_list = medicine_list
-        web.main(data_filepath=data_path, scrape_ec=True, scrape_ema=True, download_files=True,
-                 download_refused_files=True, run_filter=True, use_parallelization=self.parallel,
-                 medicine_list=self.medicine_list)
+        web.main(config.WebConfig().run_all().supply_medicine_list(self.medicine_list))
 
     def run_ec_scraper(self):
         """
         Runs EC scraper and checks if everything works and correct files are created.
         """
-        web.main(data_filepath=data_path, scrape_ec=True, scrape_ema=False, download_files=False,
-                 download_refused_files=True, run_filter=False, use_parallelization=self.parallel,
-                 medicine_list=self.medicine_list)
+        web.main(config.WebConfig().run_custom(scrape_ec=True, download_refused=True)
+                                   .set_parallel(self.parallel)
+                                   .supply_medicine_list(self.medicine_list))
+
         # check if data folder for eu_n exists and is filled
         data_folder = f"{data_path_local}/{self.eu_n}"
         assert path.exists(data_folder), f"data folder for {self.eu_n} does not exist"
@@ -133,8 +137,10 @@ class TestWebScraper(TestCase):
         """
         Runs EMA scraper and checks if everything works and correct files are created.
         """
-        web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=True, download_files=False, run_filter=False,
-                 use_parallelization=self.parallel, medicine_list=self.medicine_list)
+        web.main(config.WebConfig().run_custom(scrape_ema=True)
+                                   .set_parallel(self.parallel)
+                                   .supply_medicine_list(self.medicine_list))
+
         with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
         assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url', 'odwar_url', 'other_ema_urls']), \
@@ -144,8 +150,9 @@ class TestWebScraper(TestCase):
         """
         Runs download and checks if all files are downloaded and correct files are created.
         """
-        web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=False, download_files=True, run_filter=False,
-                 use_parallelization=self.parallel, medicine_list=self.medicine_list)
+        web.main(config.WebConfig().run_custom(download=True)
+                                   .set_parallel(self.parallel)
+                                   .supply_medicine_list(self.medicine_list))
 
         # check if `filedates.json` exists
         data_folder = f"{data_path_local}/{self.eu_n}"
@@ -180,8 +187,10 @@ class TestWebScraper(TestCase):
         """
         Runs filter_retry and checks if filter.txt is created
         """
-        web.main(data_filepath=data_path, scrape_ec=False, scrape_ema=False, download_files=False, run_filter=True,
-                 use_parallelization=self.parallel, medicine_list=self.medicine_list)
+        web.main(config.WebConfig().run_custom(filtering=True)
+                                   .set_parallel(self.parallel)
+                                   .supply_medicine_list(self.medicine_list))
+
         # check if filter.txt exists
         assert path.exists(filter_path), "filter.txt does not exist"
 
