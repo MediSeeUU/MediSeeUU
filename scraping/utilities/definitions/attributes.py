@@ -71,6 +71,7 @@ eu_od_comp_date = "eu_od_comp_date"
 eu_indication_initial = "eu_indication_initial"
 ema_omar_condition = "ema_omar_condition"
 
+ema_report_date = "ema_report_date"
 ema_prevalence = "ema_prevalence"
 ema_alternative_treatments = "ema_alternative_treatments"
 ema_significant_benefit = "ema_significant_benefit"

@@ -104,6 +104,19 @@ def combine_select_string_overlap(attribute_name: str, sources: list[str], file_
     return (values.insufficient_overlap, get_attribute_date(sources[0], file_dicts))
 
 
+def combine_get_file_url(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]):
+    print("search_url")
+    try:
+        for source in sources:
+            print(file_dicts[src.web][attr.filedates_web])
+            print(file_dicts[source][attr.pdf_file])
+            return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["pdf_link"] #TODO: becomes will ["file_link"]
+    except Exception:
+        print("failed")
+
+    return values.url_not_found
+
+
 def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> str:
     """_summary_
 

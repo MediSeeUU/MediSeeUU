@@ -32,9 +32,9 @@ AttributeFactory(all_attributes, attr.eu_aut_type_current, [src.web], acf.combin
 AttributeFactory(all_attributes, attr.eu_pnumber, [src.web])
 AttributeFactory(all_attributes, attr.eu_pnumber_id, [src.web])
 AttributeFactory(all_attributes, attr.eu_legal_basis, [src.epar]) #TODO: initial and current split?
-AttributeFactory(all_attributes, attr.aut_url, [src.file_dates])
-AttributeFactory(all_attributes, attr.smpc_url, [src.file_dates])
-AttributeFactory(all_attributes, attr.epar_url, [src.file_dates])
+AttributeFactory(all_attributes, attr.aut_url, [src.decision_initial], acf.combine_get_file_url, acf.json_history_current)
+AttributeFactory(all_attributes, attr.smpc_url, [src.annex_initial], acf.combine_get_file_url, acf.json_history_current)
+AttributeFactory(all_attributes, attr.epar_url, [src.epar], acf.combine_get_file_url, acf.json_history_current)
 AttributeFactory(all_attributes, attr.eu_atmp, [src.decision])
 AttributeFactory(all_attributes, attr.eu_med_type, [src.annex_initial], acf.combine_eu_med_type)
 AttributeFactory(all_attributes, attr.eu_aut_status, [src.web]) #TODO: initial and current split?
@@ -54,8 +54,8 @@ AttributeFactory(all_attributes, attr.eu_prime_initial, [src.epar], acf.combine_
 # AttributeFactory(all_attributes, attr.eu_prime_history, [src.epar]) #TODO: naar current?
 AttributeFactory(all_attributes, attr.eu_od_initial, [src.decision_initial], acf.combine_best_source, acf.json_history_initial)
 # AttributeFactory(all_attributes, attr.eu_od_history, [decision])  # TODO: naar current?
-AttributeFactory(all_attributes, attr.ema_url, [src.file_dates])
-AttributeFactory(all_attributes, attr.ec_url, [src.file_dates])
+# AttributeFactory(all_attributes, attr.ema_url, [src.web], acf.combine_get_file_url, acf.json_history_current) #TODO: scrape links to webpages
+# AttributeFactory(all_attributes, attr.ec_url, [src.web], acf.combine_get_file_url, acf.json_history_current)
 AttributeFactory(all_attributes, attr.ema_rapp, [src.epar])
 AttributeFactory(all_attributes, attr.ema_corapp, [src.epar])
 AttributeFactory(all_attributes, attr.eu_accel_assess_g, [src.epar])
@@ -69,14 +69,14 @@ AttributeFactory(all_attributes, attr.eu_orphan_con_initial, [src.web], acf.comb
 AttributeFactory(all_attributes, attr.eu_orphan_con_current, [src.web], acf.combine_best_source, acf.json_history_current)
 AttributeFactory(all_attributes, attr.eu_referral, [src.web])
 AttributeFactory(all_attributes, attr.eu_suspension, [src.web])
-AttributeFactory(all_attributes, attr.omar_url, [src.file_dates])
-AttributeFactory(all_attributes, attr.odwar_url, [src.file_dates])
+AttributeFactory(all_attributes, attr.omar_url, [src.omar], acf.combine_get_file_url, acf.json_history_current)
+# AttributeFactory(all_attributes, attr.odwar_url, [src.web], acf.combine_get_file_url, acf.json_history_current) #TODO: add odwar
 AttributeFactory(all_attributes, attr.eu_od_number, [src.web])
 AttributeFactory(all_attributes, attr.ema_od_number, [src.web])
 AttributeFactory(all_attributes, attr.eu_od_con, [src.web])
-AttributeFactory(all_attributes, attr.eu_od_date, [src.file_dates])
+AttributeFactory(all_attributes, attr.eu_od_date, [src.web])
 AttributeFactory(all_attributes, attr.eu_od_pnumber, [src.web])
 AttributeFactory(all_attributes, attr.eu_od_sponsor, [src.web])
-AttributeFactory(all_attributes, attr.eu_od_comp_date, [src.file_dates])
+AttributeFactory(all_attributes, attr.eu_od_comp_date, [src.web])
 AttributeFactory(all_attributes, attr.eu_indication_initial, [src.annex_initial], acf.combine_best_source, acf.json_history_initial)
 AttributeFactory(all_attributes, attr.ema_omar_condition, [src.omar])

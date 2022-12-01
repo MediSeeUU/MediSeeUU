@@ -1,13 +1,24 @@
 import datetime
 
 # default values
-not_found = "|->NOT FOUND<-|"
+not_found = "____________"
+url_not_found = "404_url_not_found"
+omar_not_found = "404_omar_not_found"
+epar_not_found = "epar_not_found"
+decision_initial_not_found = "404_decision_initial_not_found"
+decision_not_found = "404_decision_initial_not_found"
+annex_initial_not_found = "404_annex_initial_not_found"
+annex_not_found = "404_annex_not_found"
+webdata_not_found = "404_webdata_not_found"
+annex_10_not_found = "404_annex_10_not_found"
+
 insufficient_overlap = "|->INSUFFICIENT OVERLAP<-|"
-default_date = datetime.datetime.min
 NA_before = "NA_at_release_date"
 not_scrapeable = "not_easily_scrapeable"
 yes_str = "yes"
 no_str = "no"
+
+default_date = datetime.datetime.min
 
 # attribute values:
 aut_type_standard = "standard"
