@@ -1,13 +1,13 @@
 import unittest
 import tempfile
 from scraping.web_scraper import filter_retry
+from scraping.utilities.web import json_helper
 from parameterized import parameterized
 import os
 
 data_filepath = "../test_data/active_withdrawn"
 if "web_scraper_tests" in os.getcwd():
     data_filepath = "../../test_data/active_withdrawn"
-
 
 class TestFilterRetry(unittest.TestCase):
 
@@ -22,7 +22,7 @@ class TestFilterRetry(unittest.TestCase):
         Args:
             file_content: The mocked content of filter.txt
         """
-        url_file = {"EU-3-05-339": {"ec_url": "https://ec.europa.eu/health/documents/community-register/html/o339.htm",
+        url_dict = {"EU-3-05-339": {"ec_url": "https://ec.europa.eu/health/documents/community-register/html/o339.htm",
                                     "aut_url": ["https://ec.europa.eu/health/documents/community-register/2005"
                                                 "/2005122310805/dec_10805_en.pdf"],
                                     "smpc_url": [],
@@ -36,12 +36,14 @@ class TestFilterRetry(unittest.TestCase):
                                     "epar_url": "https://www.ema.europa.eu/documents/scientific-discussion/sprycel"
                                                 "-epar-scientific-discussion_en.pdf",
                                     "omar_url": ""}}
+        url_file = json_helper.JsonHelper(init_dict=url_dict, path=f"urls_download.json")
+        url_refused_file = json_helper.JsonHelper(init_dict={}, path=f"refused_urls_download.json")
         # Make a temporary file and test for key error if eu number is not in the url dictionary
         temp = tempfile.NamedTemporaryFile(mode='w', delete=False)
         temp.write(str(file_content))
         temp.seek(0)
         temp.close()
-        self.assertIsNone(filter_retry.retry_all(temp.name, url_file, data_filepath))
+        self.assertIsNone(filter_retry.retry_all(temp.name, url_file, data_filepath, url_refused_file))
 
     @parameterized.expand([
         ["EU-1-04-273", ["h", "anx", "0"]],  # normal

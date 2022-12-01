@@ -36,14 +36,14 @@ def run_filter(n: int, data_filepath: str):
         json_path = ""
 
     for _ in range(n):
-        #filter.filter_all_pdfs(data_filepath)
+        filter.filter_all_pdfs(data_filepath)
         url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
         url_refused_file = json_helper.JsonHelper(path=f"{json_path}JSON/refused_urls.json")
         data_folder = data_filepath.split("active_withdrawn")[0]
         filter_path = log_tools.get_log_path("filter.txt", data_folder)
         retry_all(filter_path, url_file, data_filepath, url_refused_file)
     # remove files that can't go to the pdf parser
-    #filter.filter_all_pdfs(data_filepath)
+    filter.filter_all_pdfs(data_filepath)
 
 
 def retry_all(filter_path: str, url_file: json_helper.JsonHelper, data_filepath: str,
@@ -57,6 +57,7 @@ def retry_all(filter_path: str, url_file: json_helper.JsonHelper, data_filepath:
         url_file (json_helper.JsonHelper): the dictionary with all the urls
         data_filepath (str): the path to the data folder
         url_refused_file (json_helper.JsonHelper): dictionary with all refused urls
+
     """
     with open(filter_path, "r") as f:
         for line in f:
@@ -90,7 +91,7 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
     for odwar_str in med_type.odwar_priority_list:
         key_dict[odwar_str]: "odwar_url"
 
-    print(key_dict)
+    # print(key_dict)
 
     if filename_type in key_dict.keys():
         url = url_dict[key_dict[filename_type]]
