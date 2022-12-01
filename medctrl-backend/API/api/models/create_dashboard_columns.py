@@ -42,7 +42,7 @@ class DashboardColumn:
         return field_name
 
 
-class DashboardRelatedColumn(DashboardColumn):
+class DashBoardSerializerColumn(DashboardColumn):
     def __init__(self, category: Category, data_format: str, data_value: str, public_serializer, scraper_serializer):
         """
         Creates a DashboardColumn
@@ -57,15 +57,25 @@ class DashboardRelatedColumn(DashboardColumn):
         self.scraper_serializer = scraper_serializer
 
 
-class DashboardListColumn(DashboardRelatedColumn):
+class RelatedColumn:
+    def __init__(self, public_serializer, scraper_serializer):
+        self.public_serializer = public_serializer
+        self.scraper_serializer = scraper_serializer
+
+
+class DashboardRelatedColumn(DashBoardSerializerColumn):
     pass
 
 
-class DashBoardHistoryInitialColumn(DashboardRelatedColumn):
+class DashboardListColumn(DashBoardSerializerColumn):
     pass
 
 
-class DashBoardHistoryCurrentColumn(DashboardRelatedColumn):
+class DashBoardHistoryInitialColumn(DashBoardSerializerColumn):
+    pass
+
+
+class DashBoardHistoryCurrentColumn(DashBoardSerializerColumn):
     @staticmethod
     def get_data_key(field_name: str) -> str:
         return f"{field_name}_current"
