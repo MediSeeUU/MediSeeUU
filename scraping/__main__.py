@@ -8,6 +8,7 @@ import scraping.annex_10_parser.__main__ as annex_10_parser
 import scraping.xml_converter.__main__ as xml_converter
 import scraping.pdf_parser.__main__ as pdf_parser
 from scraping.utilities.log import log_tools
+from scraping.utilities.web import config_objects
 
 
 def main():
@@ -27,20 +28,15 @@ def run_all():
     Runs all modules of MediSee
     For now only the web_scraper and pdf_parser will be run.
     """
-    scrape_ec: bool = False            # Whether EC URLs should be scraped
-    scrape_ema: bool = False           # Whether EMA URLs should be scraped | Requires scrape_ec to have been run once
-    download_files: bool = True       # Whether scraper should download PDFs from obtained links
-    download_refused_files = True     # Whether scraper should download refused PDFs from obtained links
-    run_filter: bool = False           # Whether filter should be run after downloading PDF files
-    download_annex10_files = True     # Whether scraper should download annex10 files from obtained links
-    use_parallelization: bool = True  # Whether downloading should be parallel (faster)
-
     # Creates the data directory if it does not exist
     data_folder_directory = create_data_folders()
 
+    # Standard config is to run all. Uncomment line below to use custom setup.
+    web_config = config_objects.WebConfig().run_all().set_parallel()
+    # web_config = config_objects.WebConfig().run_custom(scrape_ec=True, scrape_ema=True).set_parallel()
+
     # Any module can be commented or uncommented here, as the modules they work separately
-    web_scraper.main(data_folder_directory, scrape_ec, scrape_ema, download_files, download_refused_files,
-                     download_annex10_files, run_filter, use_parallelization)
+    web_scraper.main(web_config)
     xml_converter.main(data_folder_directory)
     pdf_parser.main(data_folder_directory)
     annex_10_parser.main(data_folder_directory)
