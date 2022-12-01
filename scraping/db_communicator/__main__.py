@@ -2,6 +2,7 @@ import json
 import os
 from .db_communicator import DbCommunicator
 import logging
+
 log = logging.getLogger("db_communicator")
 
 

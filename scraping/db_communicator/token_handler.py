@@ -4,7 +4,6 @@ import json
 import requests
 import time
 import logging
-log = logging.getLogger("db_communicator.token_handler")
 
 app = Flask(__name__)
 api_key = ''
@@ -12,6 +11,8 @@ expiry_days = 2
 error_state = False
 # Arbitrary date from the past
 last_key_request = datetime.datetime(2000, 1, 1, 10, 0, 0, 0)
+
+log = logging.getLogger("db_communicator")
 
 
 def request_token() -> requests.models.Response:
@@ -90,6 +91,7 @@ def check_key() -> bool:
         return False
 
     time_left = last_key_request + datetime.timedelta(days=expiry_days) - datetime.datetime.now()
+    log.info("Time left: " + str(time_left.seconds))
     if time_left.seconds < 3600:
         request_token()
     return True
@@ -106,7 +108,7 @@ def wait_key() -> bool:
     tries = 1
     max_tries = 5
     while api_key == "" and tries <= max_tries:
-        print(str(tries) + " of " + str(max_tries) + " tries.")
+        log.info(str(tries) + " of " + str(max_tries) + " tries.")
         tries += 1
         time.sleep(1)
     if api_key == "":
@@ -129,9 +131,9 @@ def delete_token() -> bool:
         'Accept': 'application/json',
         'Authorization': api_key
     }
-    print("send request for deleting the token")
+    log.info("send request for deleting the token")
     response = requests.post(url=post_url, headers=api_headers)
-    print(response)
+    log.info(response)
     if response.status_code == 200:
         return True
     return False

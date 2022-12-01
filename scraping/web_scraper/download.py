@@ -11,9 +11,9 @@ from itertools import repeat
 import os
 import json
 
-from scraping.web_scraper import json_helper
-from scraping.utilities.web import web_utils as utils
+from scraping.utilities.web import web_utils as utils, json_helper
 import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.io import safe_io
 
 log = logging.getLogger("web_scraper.download")
 
@@ -250,6 +250,7 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
     log.info(f"Finished download for {medicine_identifier}")
 
 
+@utils.exception_retry(logging_instance=log)
 def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper):
     """
     Downloads all the Annex 10 files from the EC website
@@ -257,11 +258,8 @@ def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper
     Args:
         data_filepath (str): Path to the data folder
         urls_dict: The dictionary containing the URLs of the Annex 10 files.
-
-    Returns:
-        None: This function returns nothing.
     """
-    target_path = data_filepath + "/json"
+    target_path = f"{data_filepath}/annex_10"
 
     for year, url_dict in tqdm.tqdm(urls_dict.local_dict.items()):
         url: str = url_dict["annex10_url"]
@@ -301,3 +299,7 @@ def download_all(data_filepath: str, urls_dict: json_helper.JsonHelper, parallel
         else:
             for eu_n, urls_eu_n_dict in tqdm.tqdm(urls_dict.local_dict.items()):
                 download_medicine_files(eu_n, urls_eu_n_dict, urls_dict, data_filepath)
+
+    save_new_eu_numbers(data_filepath)
+
+    log.info("TASK FINISHED downloading PDF files")

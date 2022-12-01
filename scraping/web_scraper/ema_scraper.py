@@ -4,10 +4,17 @@ from datetime import datetime
 import bs4
 import regex as re
 import requests
-from scraping.utilities.web import web_utils as utils
+import multiprocessing
+from scraping.utilities.web import web_utils as utils, json_helper, config_objects, medicine_type as med_type
+import tqdm.contrib.concurrent as tqdm_concurrent
+import tqdm.contrib.logging as tqdm_logging
+from scraping.web_scraper import url_scraper
+from itertools import repeat
+from tqdm import tqdm
 
 log = logging.getLogger("web_scraper.ema_scraper")
 html_parser_str = "html.parser"
+cpu_count: int = multiprocessing.cpu_count() * 2
 
 
 def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, str | list[str]]:
@@ -47,32 +54,12 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
     url_list_init = create_url_list(complete_soup_init, medicine_name, "No initial marketing-authorisation documents")
     url_list_hist = create_url_list(complete_soup_hist, medicine_name, "No documents in assessment history")
 
-    # Files named 'public-assessment-report' will be the highest priority in the search.
-    epar_priority_list: list[str] = [
-        "public-assessment-report",
-        "procedural-steps-taken-authorisation",
-        "epar",
-        "procedural-steps",
-        "scientific-discussion"
-    ]
-
-    omar_priority_list: list[str] = [
-        "orphan-maintenance-assessment-report",
-        "orphan-medicine-assessment-report",
-        "orphan-medicine",
-        "orphan-designation-assessment-report"
-    ]
-
-    odwar_priority_list: list[str] = [
-        "orphan-designation-withdrawal-assessment-report"
-    ]
-
     # Final dict that will be returned.
     # Filled with values here, last attribute "other_ema_urls" filled after
     result_dict: dict[str, str | list[tuple]] = {
-        "odwar_url": find_priority_link(odwar_priority_list, url_list_init),
-        "omar_url": find_priority_link(omar_priority_list, url_list_init),
-        "epar_url": find_priority_link(epar_priority_list, url_list_init)
+        "odwar_url": find_priority_link(med_type.odwar_priority_list, url_list_init),
+        "omar_url": find_priority_link(med_type.omar_priority_list, url_list_init),
+        "epar_url": find_priority_link(med_type.epar_priority_list, url_list_init)
     }
 
     # All links that are not saved into the dictionary already, as well as the links under assessment history
@@ -82,7 +69,8 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
     for url in other_ema_urls:
         if len(url) < 4:
             continue
-        ema_url_type = get_url_type(epar_priority_list, odwar_priority_list, omar_priority_list, url)
+        ema_url_type = get_url_type(med_type.epar_priority_list, med_type.odwar_priority_list,
+                                    med_type.omar_priority_list, url)
         if ema_url_type == "":
             continue
         if f"-other_{i}" not in str(other_ema_urls_types):
@@ -181,7 +169,8 @@ def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:
     return ""  # Failure return condition
 
 
-def get_annex10_files(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
+@utils.exception_retry(logging_instance=log)
+def get_annex10_data(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
     """
     Gets all the annex 10 files from the EMA website.
 
@@ -275,3 +264,36 @@ def find_last_updated_date_annex10(text: str) -> datetime:
         updated_date: str = new_text[2]
 
     return datetime.strptime(updated_date, '%d/%m/%Y')
+
+
+def scrape_ema(config: config_objects.WebConfig, url_file: json_helper.JsonHelper):
+    """
+    Scrapes all medicine URLs and medicine data from the EMA website
+
+    Args:
+        config (config_objects.WebConfig): Object that contains the variables that define the behaviour of webscraper
+        url_file (json_helper.JsonHelper): the dictionary containing all the urls of a specific medicine
+
+    """
+    log.info("Scraping all individual medicine pages of EMA")
+    if not config.run_scrape_ec:
+        url_file.load_json()
+    # Transform JSON object into list of (eu_n, url)
+    ema_urls: list[tuple[str, str]] = [
+        (eu_n, url)
+        for eu_n, value_dict in url_file.local_dict.items()
+        for url in value_dict["ema_url"]
+    ]
+    unzipped_ema_urls: list[list[str]] = [list(t) for t in zip(*ema_urls)]
+    for eu_n in url_file.local_dict:
+        utils.init_ema_dict(eu_n, url_file)
+    with tqdm_logging.logging_redirect_tqdm():
+        if config.parallelized and len(unzipped_ema_urls) > 0:
+            tqdm_concurrent.thread_map(url_scraper.get_urls_ema, *unzipped_ema_urls, repeat(url_file),
+                                       max_workers=cpu_count)
+
+        else:
+            for eu_n, url in tqdm(ema_urls):
+                url_scraper.get_urls_ema(eu_n, url, url_file)
+    url_file.save_dict()
+    log.info("TASK FINISHED EMA scrape")

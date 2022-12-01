@@ -55,7 +55,7 @@ class DbCommunicator:
             time.sleep(1)
             self.request_token()
         else:
-            log.error("Could not retrieve token, is the flask server and the backend server running?")
+            log.info("Could not retrieve token, are the flask server and the backend server running?")
             return False
 
     def send_data(self, data: str) -> str | tuple:
