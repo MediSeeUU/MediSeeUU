@@ -32,7 +32,7 @@ class TestPdfParser(TestCase):
         config.default_path_data = data_path
         config.default_path_logging = f"{parent_path}/tests/logs/log_files"
 
-        log_tools.init_loggers(f"{parent_path}/tests/logs/log_files")
+        log_tools.init_loggers()
 
     def test_pdf_parser_no_checks(self):
         """

@@ -64,7 +64,7 @@ class TestWebScraper(TestCase):
         safe_io.delete_folder(log_files_folder)
         safe_io.delete_folder(txt_files_folder)
 
-        log_tools.init_loggers(f"{parent_path}/tests/logs/log_files")
+        log_tools.init_loggers()
 
         safe_io.rename(data_path, f"{data_path}_old")
         safe_io.create_folder(data_path)
