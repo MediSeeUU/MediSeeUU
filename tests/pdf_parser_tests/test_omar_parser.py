@@ -74,8 +74,9 @@ class TestOmarParse(TestCase):
             if result == values.not_found or result == "":
                 wrong_found += 1
 
-        print("Wrong parses found: " + str(wrong_found))
+        print("Incorrect get_report_date parses found: " + str(wrong_found))
         self.assertLess(wrong_found, 1)
+
 
     def test_get_eu_od_number(self):
         """
@@ -83,20 +84,17 @@ class TestOmarParse(TestCase):
         Returns:
             None
         """
-        # TODO Fix this
-        # NAs_found = 0
-        #
-        # for (xml_body, xml_file) in xml_bodies:
-        #     bullet_points = xml_to_bullet_points(xml_body)
-        #     result = omar_parser.get_eu_od_number(bullet_points, True)
-        #     if result == values.not_found:
-        #         NAs_found += 1
-        #         print("No OD number found in: " + xml_file)
-        #
-        # print("No parses found: " + str(NAs_found))
-        # self.assertLess(NAs_found, 1)
+        NAs_found = 0
 
-        self.assertTrue(True)
+        for (xml_body, xml_file) in xml_bodies:
+            for section in xml_body:
+                result = omar_parser.get_eu_od_number(section, True)
+                if result == values.not_found:
+                    NAs_found += 1
+                    print("No OD number found in: " + xml_file)
+
+        print("Incorrect get_eu_od_number parses found: " + str(NAs_found))
+        self.assertLess(NAs_found, 1)
 
     def test_get_prevalence(self):
         """
@@ -144,8 +142,8 @@ class TestOmarParse(TestCase):
                 if "does not hold" in bullet_point and result != "No Significant Benefit":
                     wrong_found += 1
 
-        print("NAs found: " + str(NAs_found))
-        print("Wrong parses found: " + str(wrong_found))
+        print("NAs found in get_alternative_treatments: " + str(NAs_found))
+        print("Incorrect get_alternative_treatments parses found: " + str(wrong_found))
         self.assertLess(wrong_found, 1)
 
     def test_get_significant_benefit(self):
