@@ -65,7 +65,7 @@ def save_webdata(medicine_identifier: str, medicine_url: str, dec_list: list[str
         target_path (str): Directory where the json needs to be stored.
     """
     # TODO: Common name structure?
-    url_json: dict[str, list[str]] = {
+    url_json: dict[str, list[str] | str, str] = {
         medicine_identifier: {
             "ec_url": medicine_url,
             "aut_url": dec_list,
@@ -82,4 +82,5 @@ def save_webdata(medicine_identifier: str, medicine_url: str, dec_list: list[str
     # otherwise it just adds the json file to the existing directory
     Path(f"{target_path}").mkdir(exist_ok=True)
     with open(f"{target_path}/{medicine_identifier}_webdata.json", 'w') as f:
+        attributes_dict["scrape_date_web"] = datetime.strftime(datetime.today(), '%d/%m/%Y')
         json.dump(attributes_dict, f, indent=4)
