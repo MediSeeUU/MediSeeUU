@@ -7,6 +7,7 @@ from scraping.pdf_parser import __main__ as pdf_parser
 from scraping.pdf_parser import parsed_info_struct as pis
 from scraping.utilities.log import log_tools
 from scraping.utilities.io import safe_io
+import scraping.utilities.web.config_objects as config
 
 data_path = "../test_data"
 if "pdf_parser_tests" in os.getcwd():
@@ -27,6 +28,9 @@ class TestPdfParser(TestCase):
         """
         safe_io.delete_folder(f"{parent_path}/tests/logs/txt_files")
         safe_io.delete_folder(f"{parent_path}/tests/logs/log_files")
+
+        config.default_path_data = data_path
+        config.default_path_logging = f"{parent_path}/tests/logs/log_files"
 
         log_tools.init_loggers(f"{parent_path}/tests/logs/log_files")
 

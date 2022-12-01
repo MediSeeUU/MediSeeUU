@@ -7,13 +7,14 @@ import scraping.utilities.web.config_objects as config
 all_loggers: list[logging.getLoggerClass()] = []
 
 
-def init_loggers():
+def init_loggers(logging_path: str):
     """
     Function that runs the necessary commands to set up the loggers.
     All logs go through the root logger StreamHandler and file handler.
     The root file handler only saves warning messages or higher.
 
-    Returns: None
+    Args:
+        logging_path (str): Path of log_files
     """
     safe_io.create_folder(logging_path)
     logs_path = logging_path.split("log_files")[0]
