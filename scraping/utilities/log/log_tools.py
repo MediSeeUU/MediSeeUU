@@ -16,7 +16,7 @@ def init_loggers():
     logging_path = config.default_path_logging
     safe_io.create_folder(logging_path)
     logs_path = logging_path.split("log_files")[0]
-    txt_path = f"{logs_path}txt_files"
+    txt_path = f"{logs_path}/txt_files"
 
     safe_io.create_folder(txt_path)
 
