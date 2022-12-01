@@ -191,6 +191,69 @@ def section_contains_header_number(header_number: str, header: ET.Element) -> bo
 
     return header.attrib["n"] == header_number
 
+def section_get_header_number(section: ET.Element) -> tuple[bool, str]:
+    """
+    Returns tuple indicating whether the header of a section contains a header number and the headernumber as string.
+    If the section header contains a header number ending on a dot then the last dot will be removed. 
+    
+    <header>"4.1. Therapeutic indications"</header> returns (True, "4.1")
+    <header>"4.1  Therapeutic indications"</header> returns (True, "4.1")
+    <header>"Therapeutic indications"</header>  returns (False, "")
+
+    Args:
+        section (ET.Element): A xml Element of the <section>...</section> node within a xml_body.
+
+    Returns:
+        tuple[bool, str]: bool indicating the section contains an attribute n. 
+                          str is the value of n, empty string if no attribute n.
+    """
+
+    header = section.findall(tags.header)[0]
+    if len(header.attrib) == 0:
+        return (False, "")
+
+    return (True, header.attrib["n"])
+
+def section_get_header_text(section: ET.Element) -> str:
+    """
+    Returns string containing the text within the header of the given section.
+
+    e.g.:
+    <header>"4.1. Therapeutic indications"</header> returns "4.1. Therapeutic indications"
+
+    Args:
+        section (ET.Element): A xml Element of the <section>...</section> node within a xml_body.
+
+    Returns:
+        str: text contained within the header of given section.
+    """
+
+    header = section.findall(tags.header)[0]
+    return header.text
+
+
+def section_get_header_text_numberless(section: ET.Element) -> str:
+    """
+    Returns string containing the text within the header of the given section without header / chapter numbers.
+
+    e.g.:
+    <header>"4.1. Therapeutic indications"</header> returns "Therapeutic indications"
+
+    Args:
+        section (ET.Element): A xml Element of the <section>...</section> node within a xml_body.
+
+    Returns:
+        str: text contained within the header of given section without header number.
+    """
+
+    contains_number, header_number = section_get_header_number(section)
+    header_text = section_get_header_text(section)
+    
+    if contains_number:
+        header_text.replace(header_number + ".", "")
+        header_text.replace(header_number, "")
+
+    return header_text
 
 def section_contains_paragraph_substring(substring: str, section: ET.Element) -> bool:
     """
