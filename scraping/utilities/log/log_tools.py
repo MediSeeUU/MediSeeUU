@@ -1,5 +1,6 @@
 import logging
 import os
+from pathlib import Path
 import scraping.utilities.web.config_objects as config
 
 
@@ -16,11 +17,16 @@ def init_loggers():
     Function that runs the necessary commands to set up the loggers.
     All logs go through the root logger StreamHandler and file handler.
     The root file handler only saves warning messages or higher.
-
-    Returns: None
     """
-    if not os.path.isdir(config.default_path_logging):
-        os.mkdir(config.default_path_logging)
+    logging_path = config.default_path_logging
+
+    # TODO: Refactor
+    #       Would prefer to have config.default_path_logging point to the global log folder
+    logs_path = logging_path.split("log_files")[0]
+    txt_path = f"{logs_path}/txt_files"
+
+    Path(logging_path).mkdir(parents=True, exist_ok=True)
+    Path(txt_path).mkdir(parents=True, exist_ok=True)
 
     # --- Root logger ---
     # Root logger has level NOTSET, all messages that the sub-loggers want to pass along will be passed along.
@@ -36,7 +42,8 @@ def init_loggers():
     logging.getLogger("urllib3.connectionpool").setLevel(logging.INFO)  # Avoid urllib3 DEBUG messages
 
     # Create logging module for all other modules
-    logging_names = [web_name, pdf_name, xml_name, annex_10_name]
+    logging_names = ["web_scraper", "pdf_parser", "annex_10_parser", "xml_converter",
+                     "combiner", "db_communicator", "safe_io"]
     for log_name in logging_names:
         log = logging.getLogger(log_name)
 
