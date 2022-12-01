@@ -68,9 +68,6 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
         # Find comp position sections and scrape attributes from it.
         if xml_utils.section_contains_header_substring_set_all(["comp", "adopted", "on"], section) \
                 and not xml_utils.section_is_table_of_contents(section):
-            section_string = xml_utils.section_append_paragraphs(section)
-            bullet_points = section_string.split("•")
-            alternative_treatments = get_alternative_treatments(bullet_points)
 
             has_comp = True
 
