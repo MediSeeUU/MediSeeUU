@@ -38,8 +38,8 @@ class WebConfig:
         """
         Sets all tasks to run to true. This is the safest way to run the program.
 
-        Returns: Modified Config class
-
+        Returns:
+            config (WebConfig): Object that contains the variables that define the behaviour of webscraper
         """
         self.run_scrape_ec = True
         self.run_scrape_ema = True
@@ -95,8 +95,7 @@ class WebConfig:
             enabled (bool): Boolean determining whether scraper runs tasks in parallel
 
         Returns:
-            Modified Config class
-
+            config (WebConfig): Object that contains the variables that define the behaviour of webscraper
         """
         self.parallelized = enabled
         return self
@@ -111,8 +110,8 @@ class WebConfig:
             medicine_list (list[(str, str, int, str)]): A list of medicines, structured as
                 `{url, eu_num_full, medicine_type, eu_num_short}`
 
-        Returns: Modified Config class
-
+        Returns:
+            config (WebConfig): Object that contains the variables that define the behaviour of webscraper
         """
         self.medicine_list = medicine_list
         return self

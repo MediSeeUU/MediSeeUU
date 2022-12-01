@@ -256,11 +256,8 @@ def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper
     Args:
         data_filepath (str): Path to the data folder
         urls_dict: The dictionary containing the URLs of the Annex 10 files.
-
-    Returns:
-        None: This function returns nothing.
     """
-    target_path = data_filepath + "/annex_10"
+    target_path = f"{data_filepath}/annex_10"
 
     for year, url_dict in tqdm.tqdm(urls_dict.local_dict.items()):
         url: str = url_dict["annex10_url"]

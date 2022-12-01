@@ -13,15 +13,6 @@ import scraping.utilities.log.log_tools as log_tools
 key_dict = {"dec": "aut_url",
             "anx": "smpc_url"}
 
-for epar_str in med_type.epar_priority_list:
-    key_dict[epar_str]: "epar_url"
-for omar_str in med_type.omar_priority_list:
-    key_dict[omar_str]: "omar_url"
-for odwar_str in med_type.odwar_priority_list:
-    key_dict[odwar_str]: "odwar_url"
-
-print(key_dict)
-
 med_type_dict = {"ha": MedicineType.HUMAN_USE_ACTIVE,
                  "hw": MedicineType.HUMAN_USE_WITHDRAWN,
                  "oa": MedicineType.ORPHAN_ACTIVE,
@@ -91,6 +82,16 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
         data_filepath (str): the path to the data folder
     """
     filename_type = filename_elements[1]
+
+    for epar_str in med_type.epar_priority_list:
+        key_dict[epar_str]: "epar_url"
+    for omar_str in med_type.omar_priority_list:
+        key_dict[omar_str]: "omar_url"
+    for odwar_str in med_type.odwar_priority_list:
+        key_dict[odwar_str]: "odwar_url"
+
+    print(key_dict)
+
     if filename_type in key_dict.keys():
         url = url_dict[key_dict[filename_type]]
         if len(filename_elements) == 3:
