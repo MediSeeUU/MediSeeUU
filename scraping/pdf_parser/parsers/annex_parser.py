@@ -74,12 +74,12 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
             # override default value of "small molecule" if traceability header is present
             if xml_utils.section_contains_header_substring("traceability", section):
                 annex_attributes[attr.eu_med_type] = values.eu_med_type_biologicals
-                
+
             # section 4.1 therapeutic indications from annex I of initial annex
             if xml_utils.section_contains_substring(attr.eu_indication_initial, section):
                 annex_attributes[attr.eu_therapeutic_indications] = xml_utils.section_append_paragraphs(section)
 
-        # TODO: to add attributes, initial EU conditions and current EU conditions, 50 and 51 in bible
+        # TODO: add attributes, initial EU conditions and current EU conditions, 50 and 51 in bible
 
     medicine_struct.annexes.append(annex_attributes)
 

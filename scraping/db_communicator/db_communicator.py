@@ -1,6 +1,9 @@
 import requests
 import datetime
 import time
+import logging
+
+log = logging.getLogger("db_communicator")
 
 
 class DbCommunicator:
@@ -22,7 +25,7 @@ class DbCommunicator:
         success = self.request_token()
 
         if success:
-            print("Terminate the class, not implemented yet")
+            log.info("Terminate the class, not implemented yet")
 
     def request_token(self) -> bool:
         """
@@ -39,15 +42,15 @@ class DbCommunicator:
             self.api_key = response.json()['key']
             self.last_retrieval = datetime.datetime.now()
             self.tries = 0
-            print("New api key acquired")
+            log.info("New api key acquired")
             return True
         elif response.status_code == 503 and self.tries < 5:
             self.tries += 1
-            print("Failed to retrieve key, retrying...")
+            log.info("Failed to retrieve key, retrying...")
             time.sleep(1)
             self.request_token()
         else:
-            print("Could not retrieve token, are the flask server and the backend server running?")
+            log.info("Could not retrieve token, are the flask server and the backend server running?")
             return False
 
     def send_data(self, data: str) -> str | tuple:
@@ -63,7 +66,7 @@ class DbCommunicator:
         post_url = 'http://localhost:8000/api/scraper/medicine/'
 
         if not self.key_valid():
-            print("token not valid")
+            log.info("token not valid")
             return "No token"
 
         # This should not be duplicate code
