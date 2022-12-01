@@ -76,8 +76,7 @@ class WebConfig:
                 Retry failed downloads. This has no effect is download has not been run.
 
         Returns:
-            Modified config class
-
+            config (WebConfig): Object that contains the variables that define the behaviour of webscraper
         """
         self.run_scrape_ec = scrape_ec
         self.run_scrape_ema = scrape_ema
