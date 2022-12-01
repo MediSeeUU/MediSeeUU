@@ -5,6 +5,11 @@ import scraping.utilities.web.config_objects as config
 
 all_loggers: list[logging.getLoggerClass()] = []
 
+web_name: str = "web_scraper"
+pdf_name: str = "pdf_parser"
+xml_name: str = "xml_converter"
+annex_10_name: str = "annex_10_parser"
+
 
 def init_loggers():
     """
@@ -16,11 +21,6 @@ def init_loggers():
     """
     if not os.path.isdir(config.default_path_logging):
         os.mkdir(config.default_path_logging)
-
-    web_name: str = "web_scraper"
-    pdf_name: str = "pdf_parser"
-    xml_name: str = "xml_converter"
-    annex_10_name: str = "annex_10_parser"
 
     # --- Root logger ---
     # Root logger has level NOTSET, all messages that the sub-loggers want to pass along will be passed along.

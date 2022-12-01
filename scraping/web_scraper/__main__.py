@@ -1,6 +1,5 @@
 import logging
 import multiprocessing
-import os
 from datetime import datetime
 from pathlib import Path
 
@@ -12,20 +11,25 @@ from scraping.web_scraper import url_scraper
 
 log = logging.getLogger("web_scraper")
 
-json_path: str = "web_scraper/"
 cpu_count: int = multiprocessing.cpu_count() * 2
-# If file is run locally or tested:
-if "tests" in os.getcwd():
-    json_path = "web_scraper_tests/"
-if "web_scraper" in os.getcwd():
-    json_path = ""
 
-# Files where the urls for normal and refused files are stored
-url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
-url_refused_file = json_helper.JsonHelper(path=f"{json_path}JSON/refused_urls.json")
+# We want to save the JSON in the same location through different runs
+# This code makes sure it is always the same location
+# TODO: Specify in some config file?
+match Path.cwd().name:
+    case "tests":                                   # Running as a test
+        json_path_prefix = "web_scraper_tests/"
+    case "web_scraper":                             # Running from the web_scraper module instead of global main
+        json_path_prefix = ""
+    case _:                                         # Running from global main
+        json_path_prefix = "web_scraper/"
 
-# File where Annex 10 data are stored
-annex10_file = json_helper.JsonHelper(path=f"{json_path}JSON/annex10.json")
+json_path = json_path_prefix + "JSON/"
+
+
+url_file = json_helper.JsonHelper(json_path + "urls.json")
+url_refused_file = json_helper.JsonHelper(json_path + "refused_urls.json")
+annex10_file = json_helper.JsonHelper(json_path + "annex10.json")
 
 
 # Main web scraper function with default settings
@@ -39,13 +43,13 @@ def main(config: config_objects.WebConfig):
     Args:
         config (config_objects.WebConfig): Object that contains the variables that define the behaviour of webscraper
     """
+    log.info(f"=== NEW LOG {datetime.today()} ===")
+
     medicine_list = config.medicine_list
     if medicine_list is None:
         medicine_list = ec_scraper.scrape_medicines_list()
 
-    log.info(f"=== NEW LOG {datetime.today()} ===")
-
-    Path(f"{json_path}JSON").mkdir(exist_ok=True, parents=True)
+    Path(json_path).mkdir(exist_ok=True, parents=True)
 
     log.info("TASK SUCCESS on Generating directories")
 
