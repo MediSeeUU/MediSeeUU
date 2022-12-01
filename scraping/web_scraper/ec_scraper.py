@@ -1,20 +1,21 @@
 import json
 import logging
+import multiprocessing
+import os
 from datetime import date, datetime, timedelta
+from itertools import repeat
 
 import bs4
 import regex as re
 import requests
-import os
-import scraping.utilities.log.log_tools as log_tools
-from scraping.utilities.web import web_utils as utils, config_objects, json_helper
-from scraping.utilities.web.medicine_type import MedicineType
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 from tqdm import tqdm
+
+import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.web import web_utils as utils, config_objects, json_helper
+from scraping.utilities.web.medicine_type import MedicineType
 from scraping.web_scraper import url_scraper
-import multiprocessing
-from itertools import repeat
 
 log = logging.getLogger("web_scraper.ec_scraper")
 cpu_count: int = multiprocessing.cpu_count() * 2

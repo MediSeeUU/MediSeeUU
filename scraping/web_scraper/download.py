@@ -1,5 +1,8 @@
-from datetime import datetime, date
+import json
 import logging
+import os
+from datetime import datetime, date
+from itertools import repeat
 from pathlib import Path
 
 import regex as re
@@ -7,12 +10,9 @@ import requests
 import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
-from itertools import repeat
-import os
-import json
 
-from scraping.utilities.web import web_utils as utils, json_helper
 import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.web import web_utils as utils, json_helper
 
 log = logging.getLogger("web_scraper.download")
 

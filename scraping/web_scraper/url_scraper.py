@@ -1,8 +1,9 @@
 import logging
-from scraping.web_scraper import ema_scraper, ec_scraper, save_webdata
-from scraping.utilities.web import web_utils as utils, json_helper, config_objects
-from scraping.utilities.web.medicine_type import MedicineType
 from datetime import datetime
+
+from scraping.utilities.web import web_utils as utils, json_helper
+from scraping.utilities.web.medicine_type import MedicineType
+from scraping.web_scraper import ema_scraper, ec_scraper, save_webdata
 
 log = logging.getLogger("web_scraper")
 

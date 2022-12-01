@@ -1,13 +1,13 @@
-import logging
-import pathlib
-import os
 import json
+import logging
+import os
+import pathlib
 
+import scraping.utilities.log.log_tools as log_tools
 from scraping.filter import filter
-from scraping.web_scraper import download, ec_scraper, url_scraper
 from scraping.utilities.web import json_helper, medicine_type as med_type
 from scraping.utilities.web.medicine_type import MedicineType
-import scraping.utilities.log.log_tools as log_tools
+from scraping.web_scraper import download, url_scraper
 
 # dictionaries used for mapping
 key_dict = {"dec": "aut_url",

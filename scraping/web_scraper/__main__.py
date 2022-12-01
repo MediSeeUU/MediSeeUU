@@ -1,18 +1,14 @@
-import json
-from pathlib import Path
-from datetime import datetime
-import os
-import multiprocessing
 import logging
+import multiprocessing
+import os
+from datetime import datetime
+from pathlib import Path
 
-
-from scraping.web_scraper import download, ec_scraper, ema_scraper, filter_retry, save_webdata
-from scraping.utilities.web.medicine_type import MedicineType
 import scraping.utilities.log.log_tools as log_tools
-from scraping.utilities.web import json_helper
 import scraping.utilities.web.config_objects as config_objects
+from scraping.utilities.web import json_helper
+from scraping.web_scraper import download, ec_scraper, ema_scraper, filter_retry
 from scraping.web_scraper import url_scraper
-
 
 log = logging.getLogger("web_scraper")
 
