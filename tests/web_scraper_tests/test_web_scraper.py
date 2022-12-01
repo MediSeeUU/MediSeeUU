@@ -1,30 +1,31 @@
 import json
 import os
 import os.path as path
-import shutil
 from datetime import date
 from pathlib import Path
 from unittest import TestCase
 
-import scraping.utilities.web.config_objects as config
-from scraping.web_scraper import __main__ as web
-from scraping.utilities.log import log_tools
-from scraping.utilities.io import safe_io
 from parameterized import parameterized
 
+import scraping.utilities.web.config_objects as config
+from scraping.utilities.io import safe_io
+from scraping.utilities.log import log_tools
+from scraping.web_scraper import __main__ as web
+
 data_path = "../test_data"
-if "web_scraper_tests" in os.getcwd():
+json_path = "web_scraper_tests/JSON"
+scraping_root_path = str(Path.cwd().parent)
+
+# Different paths needed when running tests from the web_scraper folder
+# instead of the parent tests folder
+if Path.cwd().name == "web_scraper_tests":
     data_path = "../../test_data"
-data_path_local = f"{data_path}/active_withdrawn"
+    json_path = "JSON"
+    scraping_root_path = str(Path.cwd().parent.parent)
 
-safe_io.create_folder(data_path)
+data_path_local = data_path + "active_withdrawn"
 
-json_path = "web_scraper_tests/"
-if "web_scraper_tests" in os.getcwd():
-    json_path = ""
-
-parent_path = "/".join((data_path.split('/')[:-1]))
-filter_path = f"{parent_path}/tests/logs/txt_files/filter.txt"
+filter_path = scraping_root_path + "tests/logs/txt_files/filter.txt"
 
 
 def check_new_eu_numbers(self):
@@ -37,10 +38,12 @@ def check_new_eu_numbers(self):
 
     file_exists = True
     i = 0
+
     while file_exists:
         eu_numbers_path = f"{eu_numbers_base_path}_{i}.json"
         i += 1
-        file_exists = os.path.exists(f"{eu_numbers_base_path}_{i}.json")
+        file_exists = Path(f"{eu_numbers_base_path}_{i}.json").exists()
+
     with open(eu_numbers_path) as f:
         eu_numbers = set(json.load(f))
 
@@ -57,20 +60,22 @@ class TestWebScraper(TestCase):
         Set up the class to make sure the integration test can run without changing existing data.
         """
         config.default_path_data = data_path
-        config.default_path_logging = f"{parent_path}/tests/logs/log_files"
+        config.default_path_logging = f"{scraping_root_path}/tests/logs/log_files"
 
-        log_files_folder = f"{parent_path}/tests/logs/log_files"
-        txt_files_folder = f"{parent_path}/tests/logs/txt_files"
-        safe_io.delete_folder(log_files_folder)
+        log_files_folder = f"{scraping_root_path}/tests/logs/log_files"
+        txt_files_folder = f"{scraping_root_path}/tests/logs/txt_files"
+
+        safe_io.remove_path(Path(log_files_folder))
         safe_io.delete_folder(txt_files_folder)
 
         log_tools.init_loggers()
 
-        safe_io.rename(data_path, f"{data_path}_old")
-        safe_io.create_folder(data_path)
-        safe_io.create_folder(data_path_local)
+        Path(data_path).rename(f"{data_path}_old")
 
-        Path(f"{json_path}JSON").mkdir(parents=True, exist_ok=True)
+        # exists_ok flag is off, we want to throw an error when the path exists beforehand
+        Path(data_path).mkdir(parents=True)
+        Path(data_path_local).mkdir(parents=True)
+        Path(json_path).mkdir(parents=True)
 
     def setUp(self):
         """
@@ -131,7 +136,7 @@ class TestWebScraper(TestCase):
         # check if webdata is empty
         assert path.getsize(f"{data_folder}/{self.eu_n}_webdata.json") > 2, f"webdata.json is empty for {self.eu_n}"
         # check if urls.json is empty
-        assert path.getsize(f"{json_path}JSON/urls.json") > 2, f"urls.json is empty"
+        assert path.getsize(json_path + "/urls.json") > 2, f"urls.json is empty"
 
     def run_ema_scraper(self):
         """
@@ -141,7 +146,7 @@ class TestWebScraper(TestCase):
                                    .set_parallel(self.parallel)
                                    .supply_medicine_list(self.medicine_list))
 
-        with open(f"{json_path}JSON/urls.json") as f:
+        with open(json_path + "/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
         assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url', 'odwar_url', 'other_ema_urls']), \
             "ema urls not in urls.json"
@@ -162,7 +167,7 @@ class TestWebScraper(TestCase):
         check_new_eu_numbers(self)
 
         # check if all files from urls.json are downloaded:
-        with open(f"{json_path}JSON/urls.json") as f:
+        with open(json_path + "/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
         filecount = len(url_dict["aut_url"]) + len(url_dict["smpc_url"])
 
