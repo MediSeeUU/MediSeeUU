@@ -34,7 +34,6 @@ def run_filter(n: int, data_filepath: str):
     # If file is run locally:
     if "web_scraper" == pathlib.Path.cwd().name:
         json_path = ""
-    filter.filter_all_pdfs(data_filepath)
     for _ in range(n):
         filter.filter_all_pdfs(data_filepath)
         url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
