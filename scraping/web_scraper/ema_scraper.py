@@ -169,6 +169,7 @@ def find_priority_link(priority_list: list[str], url_list: list[str]) -> str:
     return ""  # Failure return condition
 
 
+@utils.exception_retry(logging_instance=log)
 def get_annex10_data(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
     """
     Gets all the annex 10 files from the EMA website.
