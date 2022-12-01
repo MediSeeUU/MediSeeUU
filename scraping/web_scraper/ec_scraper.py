@@ -1,26 +1,23 @@
 import json
 import logging
 from datetime import date, datetime, timedelta
-from enum import Enum
 
 import bs4
 import regex as re
 import requests
+import os
 import scraping.utilities.log.log_tools as log_tools
-from scraping.utilities.web import web_utils as utils
+from scraping.utilities.web import web_utils as utils, config_objects, json_helper
+from scraping.utilities.web.medicine_type import MedicineType
+import tqdm.contrib.concurrent as tqdm_concurrent
+import tqdm.contrib.logging as tqdm_logging
+from tqdm import tqdm
+from scraping.web_scraper import url_scraper
+import multiprocessing
+from itertools import repeat
 
 log = logging.getLogger("web_scraper.ec_scraper")
-
-
-# This is an enum that indicates the medicine type
-# TODO: file that contains all enums so that every script can make use of it
-class MedicineType(Enum):
-    HUMAN_USE_ACTIVE = 0
-    HUMAN_USE_WITHDRAWN = 1
-    ORPHAN_ACTIVE = 2
-    ORPHAN_WITHDRAWN = 3
-    HUMAN_USE_REFUSED = 4
-    ORPHAN_REFUSED = 5
+cpu_count: int = multiprocessing.cpu_count() * 2
 
 
 # links to the ec pages that contain medicine codes
@@ -177,13 +174,13 @@ def get_last_updated_date(html_active: requests.Response) -> datetime:
     return datetime.strptime(last_updated_string.split()[-1], '%d/%m/%Y')
 
 
-def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type: MedicineType, data_folder: str) \
+def scrape_medicine_page(eu_num: str, html_active: requests.Response, medicine_type: MedicineType, data_folder: str) \
                                            -> (list[(str, int)], list[(str, int)], list[str], dict[str, str]):
     """
     Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.
 
     Args:
-        url (str): The url to the medicine page for the medicine that needs to be scraped.
+        eu_num (str): Number that identifies the medicine
         html_active (requests.Response): html object that contains all html text
         medicine_type (MedicineType): The type of medicine this medicine is.
         data_folder (str): Path to the data folder
@@ -196,9 +193,6 @@ def scrape_medicine_page(url: str, html_active: requests.Response, medicine_type
     """
     # Retrieves the html from the European Commission product page
     medicine_json, procedures_json, *_ = get_ec_json_objects(html_active)
-
-    # Gets the short EU number from the url
-    eu_num = url.split('/')[-1].replace(".htm", "")
 
     # Gets all the necessary information from the medicine_json and procedures_json objects
     medicine_dict, ema_url_list = get_data_from_medicine_json(medicine_json, eu_num, medicine_type)
@@ -258,7 +252,6 @@ def get_data_from_medicine_json(medicine_json: dict,
                 else:
                     human_medicine = False
                     medicine_dict["eu_od_number"]: str = row["value"]
-
             case "inn":
                 # Sometimes the active substance is written with italics, therefore it is removed with a RegEx
                 medicine_dict["active_substance"]: str = re.sub(re.compile('<.*?>'), '', row["value"])
@@ -268,7 +261,6 @@ def get_data_from_medicine_json(medicine_json: dict,
 
             case "mp_link":
                 medicine_dict["eu_od_pnumber"]: str = row["meta"]["eu_num"]
-
         if human_medicine:
             # Scrapes human specific attributes
             set_human_attributes(ema_url_list, medicine_dict, row)
@@ -276,8 +268,8 @@ def get_data_from_medicine_json(medicine_json: dict,
             # Scrapes orphan specific attributes
             set_orphan_attributes(ema_url_list, medicine_dict, row)
 
-    if medicine_type == MedicineType.HUMAN_USE_ACTIVE or medicine_type == MedicineType.HUMAN_USE_WITHDRAWN\
-       or medicine_type == MedicineType.HUMAN_USE_REFUSED:
+    if MedicineType(medicine_type) == MedicineType.HUMAN_USE_ACTIVE or MedicineType(medicine_type) == \
+            MedicineType.HUMAN_USE_WITHDRAWN or MedicineType(medicine_type) == MedicineType.HUMAN_USE_REFUSED:
         medicine_dict["orphan_status"] = "h"
     else:
         medicine_dict["orphan_status"] = "o"
@@ -495,10 +487,8 @@ def add_to_non_english_file(eu_n: str, decision_date: datetime.date, filetype: s
     """
     url = f"https://ec.europa.eu/health/documents/community-register/html/{eu_n}.htm"
     log_path = log_tools.get_log_path("no_english_available.txt", data)
-    print(log_path)
     with open(log_path, "a") as f:
         f.write(f"{procedure_type}@{filetype}@{decision_date}@{url}\n")
-        return
 
 
 def determine_current_aut_type(last_decision_types: list[str]) -> str:
@@ -604,6 +594,46 @@ def determine_ema_number(ema_numbers: list[str]) -> (str, float):
     fraction: float = (ema_numbers_dict.get(most_occurring_item) + 1) / (len(ema_numbers) + 1)
 
     return most_occurring_item, fraction
+
+
+def scrape_ec(config: config_objects.WebConfig, medicine_list: list[(str, str, int, str)],
+              url_file: json_helper.JsonHelper, url_refused_file: json_helper.JsonHelper):
+    """
+    Scrapes all medicine URLs and medicine data from the EC website
+
+    Args:
+        config (config_objects.WebConfig): Object that contains the variables that define the behaviour of webscraper
+        medicine_list (list[(str, str, int, str)]): A list of medicines, structured as
+            `{url, eu_num_full, medicine_type, eu_num_short}
+        url_file (json_helper.JsonHelper): the dictionary containing all the urls of a specific medicine
+        url_refused_file (json_helper.JsonHelper): The dictionary containing the urls of all refused files
+    """
+    log_path = log_tools.get_log_path("no_english_available.txt", config_objects.default_path_data)
+    with open(log_path, 'w', encoding="utf-8"):
+        pass  # open/clean no_english_available file
+    # make sure tests start with empty dict, because url_file is global variable only way to do this is here.
+    if "test" in os.getcwd():
+        url_file.overwrite_dict({})
+    log.info("TASK START scraping all medicine data and URLs from the EC website")
+    # Transform zipped list into individual lists for thread_map function
+    # The last element of the medicine_codes tuple is not of interest, thus we pop()
+    with tqdm_logging.logging_redirect_tqdm():
+        if config.parallelized:
+            unzipped_medicine_list = [list(t) for t in zip(*medicine_list)]
+            unzipped_medicine_list.pop()
+            tqdm_concurrent.thread_map(url_scraper.get_urls_ec,
+                                       *unzipped_medicine_list,
+                                       repeat(config.path_data), repeat(url_file), repeat(url_refused_file),
+                                       max_workers=cpu_count)
+        else:
+            for (medicine_url, eu_n, medicine_type, _) in tqdm(medicine_list):
+                url_scraper.get_urls_ec(medicine_url, eu_n, medicine_type, config.path_data, url_file, url_refused_file)
+    # Set empty EMA values for refused_file
+    for eu_n in url_refused_file.local_dict:
+        utils.init_ema_dict(eu_n, url_refused_file)
+    url_file.save_dict()
+    url_refused_file.save_dict()
+    log.info("TASK FINISHED EC scrape")
 
 
 # uncomment this when you want to test if data is retrieved for a certain medicine
