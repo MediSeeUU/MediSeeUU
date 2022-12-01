@@ -33,7 +33,7 @@ class TestEcScraper(unittest.TestCase):
         check = re.findall(r"[(ho]\d+", first_url)[0]
         self.assertEqual(check, first_url, msg="first url not in correct format")
         last_url = url_list[-1][3]
-        print(last_url)
+        print(f"Last url: {last_url}")
         check = re.findall(r"h*[ho]\d+", last_url)[0]
         self.assertEqual(check, last_url, msg="last url not in correct format")
 

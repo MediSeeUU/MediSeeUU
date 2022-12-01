@@ -13,6 +13,7 @@ import json
 
 from scraping.utilities.web import web_utils as utils, json_helper
 import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.io import safe_io
 
 log = logging.getLogger("web_scraper.download")
 
@@ -242,6 +243,7 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
     log.info(f"Finished download for {medicine_identifier}")
 
 
+@utils.exception_retry(logging_instance=log)
 def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper):
     """
     Downloads all the Annex 10 files from the EC website
