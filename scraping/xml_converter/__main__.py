@@ -9,7 +9,6 @@ from os import path, listdir
 import joblib
 import multiprocessing
 from tqdm import tqdm
-from itertools import repeat
 
 header_indicator = "|-HEADER-|"
 log = logging.getLogger("xml_converter")
@@ -327,4 +326,4 @@ def main(directory: str, convert_all: bool = False):
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(convert_folder)(folder_name, repeat(convert_all)) for folder_name in tqdm(med_folders))
+        joblib.delayed(convert_folder)(folder_name, *[convert_all]) for folder_name in tqdm(med_folders))
