@@ -86,13 +86,11 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
     filename_type = filename_elements[1]
 
     for epar_str in med_type.epar_priority_list:
-        key_dict[epar_str]: "epar_url"
+        key_dict[epar_str] = "epar_url"
     for omar_str in med_type.omar_priority_list:
-        key_dict[omar_str]: "omar_url"
+        key_dict[omar_str] = "omar_url"
     for odwar_str in med_type.odwar_priority_list:
-        key_dict[odwar_str]: "odwar_url"
-
-    # print(key_dict)
+        key_dict[odwar_str] = "odwar_url"
 
     if filename_type in key_dict.keys():
         url = url_dict[key_dict[filename_type]]
