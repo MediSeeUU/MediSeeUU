@@ -5,26 +5,22 @@ import json
 
 from scraping.filter import filter
 from scraping.web_scraper import download, ec_scraper, url_scraper
-from scraping.utilities.web import json_helper
+from scraping.utilities.web import json_helper, medicine_type as med_type
 from scraping.utilities.web.medicine_type import MedicineType
 import scraping.utilities.log.log_tools as log_tools
 
 # dictionaries used for mapping
 key_dict = {"dec": "aut_url",
-            "anx": "smpc_url",
-            "public-assessment-report": "epar_url",
-            "public-assessment-report-article-31": "epar_url",
-            "public-assessment-report-article-20-procedure": "epar_url",
-            "public-assessment-report-withdrawn": "epar_url",
-            "public-assessmente-report": "epar_url",
-            "procedural-steps-taken-authorisation": "epar_url",
-            "scientific-discussion": "epar_url",
-            "assessment-report": "epar_url",
-            "epar": "epar_url",
-            "omar": "omar_url",
-            "orphan-maintenance-assessment-report": "omar_url",
-            "orphan-maintenance-assessment-report-post-authorisation": "omar_url",
-            "odwar": "odwar_url"}
+            "anx": "smpc_url"}
+
+for epar_str in med_type.epar_priority_list:
+    key_dict[epar_str]: "epar_url"
+for omar_str in med_type.omar_priority_list:
+    key_dict[omar_str]: "omar_url"
+for odwar_str in med_type.odwar_priority_list:
+    key_dict[odwar_str]: "odwar_url"
+
+print(key_dict)
 
 med_type_dict = {"ha": MedicineType.HUMAN_USE_ACTIVE,
                  "hw": MedicineType.HUMAN_USE_WITHDRAWN,

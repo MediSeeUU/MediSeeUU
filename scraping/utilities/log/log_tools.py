@@ -56,8 +56,6 @@ def set_level_loggers(log_level: int):
 
     Args:
         log_level (int): Logging level to use. For clarity, use a value like `logging.DEBUG`.
-
-    Returns: None
     """
     for logging_obj in all_loggers:
         logging_obj.setLevel(log_level)
