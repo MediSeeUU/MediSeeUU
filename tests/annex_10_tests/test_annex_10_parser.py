@@ -4,7 +4,7 @@ import json
 import os
 import pandas as pd
 import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.value as values
+import scraping.utilities.definitions.values as values
 
 data_loc = "../test_data"
 if "annex_10_tests" in os.getcwd():

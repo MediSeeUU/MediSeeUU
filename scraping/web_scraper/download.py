@@ -13,6 +13,7 @@ import json
 
 from scraping.utilities.web import web_utils as utils, json_helper
 import scraping.utilities.log.log_tools as log_tools
+import scraping.utilities.definitions.attributes as attr
 from scraping.utilities.io import safe_io
 
 log = logging.getLogger("web_scraper.download")
@@ -228,14 +229,14 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
         with open(filedates_path, 'r') as f:
             filedate_dict = json.load(f)
 
-    download_list_ec = [("dec", "aut_url"), ("anx", "smpc_url")]
+    download_list_ec = [("dec", attr.aut_url), ("anx", attr.smpc_url)]
     for (filetype, key) in download_list_ec:
         if key not in url_dict.keys():
             log.error(f"Key {key} not in keys of url_dict with identifier {medicine_identifier}. url_dict: {url_dict}")
         download_pdfs_ec(medicine_identifier, filetype, url_dict[key], attr_dict, filedate_dict, target_path, urls_json,
                          url_dict.get("overwrite_ec_files", "True") == "True")
 
-    download_list_ema = [('epar', "epar_url"), ('omar', "omar_url"), ("odwar", "odwar_url")]
+    download_list_ema = [('epar', attr.epar_url), ('omar', attr.omar_url), ("odwar", attr.odwar_url)]
     for (filetype, key) in download_list_ema:
         if key not in url_dict.keys():
             log.error(f"Key {key} not in keys of url_dict with identifier {medicine_identifier}. url_dict: {url_dict}")
@@ -262,7 +263,7 @@ def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper
     target_path = f"{data_filepath}/annex_10"
 
     for year, url_dict in tqdm.tqdm(urls_dict.local_dict.items()):
-        url: str = url_dict["annex10_url"]
+        url: str = url_dict[attr.annex10_url]
         downloaded_file = requests.get(url)
 
         # TODO: Refactor this function and download_pdfs_from_url, so that code is not duplicated.
