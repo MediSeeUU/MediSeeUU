@@ -9,6 +9,8 @@ import os
 import scraping.utilities.log.log_tools as log_tools
 from scraping.utilities.web import web_utils as utils, config_objects, json_helper
 from scraping.utilities.web.medicine_type import MedicineType
+import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.definitions.values as values
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 from tqdm import tqdm
@@ -231,15 +233,15 @@ def get_data_from_medicine_json(medicine_json: dict,
     human_medicine = True
 
     # Refused medicine never have an EU number, therefore it is set to a standard value
-    medicine_dict["eu_pnumber"]: str = ""
+    medicine_dict[attr.eu_pnumber]: str = values.not_found
     # Orphan and refused medicine don't always have ATC codes, therefore it is set to a standard value
-    medicine_dict["atc_code"] = ""
+    medicine_dict[attr.atc_code] = values.not_found
 
     for row in medicine_json:
         match row["type"]:
             case "name":
-                medicine_dict["eu_aut_status"]: str = row["meta"]["status_name"]
-                medicine_dict["eu_brand_name_current"]: str = row["value"]
+                medicine_dict[attr.eu_aut_status]: str = row["meta"]["status_name"]
+                medicine_dict[attr.eu_brand_name_current]: str = row["value"]
                 if row["meta"]["status_name"] != "REFUSED":
                     medicine_dict["status_type"]: str = row["meta"]["status_type"].replace("g", "a").replace("r", "w")
                 else:
@@ -248,19 +250,19 @@ def get_data_from_medicine_json(medicine_json: dict,
             case "eu_num":
                 if "EU/1" in row["value"]:
                     human_medicine = True
-                    medicine_dict["eu_pnumber"] = row["value"]
+                    medicine_dict[attr.eu_pnumber] = row["value"]
                 else:
                     human_medicine = False
-                    medicine_dict["eu_od_number"]: str = row["value"]
+                    medicine_dict[attr.eu_od_number]: str = row["value"]
             case "inn":
                 # Sometimes the active substance is written with italics, therefore it is removed with a RegEx
-                medicine_dict["active_substance"]: str = re.sub(re.compile('<.*?>'), '', row["value"])
+                medicine_dict[attr.active_substance]: str = re.sub(re.compile('<.*?>'), '', row["value"])
 
             case "atc":
-                medicine_dict["atc_code"]: str = row["meta"][0][-1]["code"]
+                medicine_dict[attr.atc_code]: str = row["meta"][0][-1]["code"]
 
             case "mp_link":
-                medicine_dict["eu_od_pnumber"]: str = row["meta"]["eu_num"]
+                medicine_dict[attr.eu_od_pnumber]: str = row["meta"]["eu_num"]
         if human_medicine:
             # Scrapes human specific attributes
             set_human_attributes(ema_url_list, medicine_dict, row)
@@ -270,13 +272,13 @@ def get_data_from_medicine_json(medicine_json: dict,
 
     if MedicineType(medicine_type) == MedicineType.HUMAN_USE_ACTIVE or MedicineType(medicine_type) == \
             MedicineType.HUMAN_USE_WITHDRAWN or MedicineType(medicine_type) == MedicineType.HUMAN_USE_REFUSED:
-        medicine_dict["orphan_status"] = "h"
+        medicine_dict[attr.orphan_status] = "h"
     else:
-        medicine_dict["orphan_status"] = "o"
-        medicine_dict["atc_code"] = "not applicable"
+        medicine_dict[attr.orphan_status] = "o"
+        medicine_dict[attr.atc_code] = values.not_found
 
     for key, value in medicine_dict.items():
-        if value == "":
+        if value == values.not_found:
             log.warning(f"{eu_num}: No value for {key}")
 
     return medicine_dict, ema_url_list
@@ -294,7 +296,7 @@ def set_human_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str]
     """
     match row["type"]:
         case "mah":
-            medicine_dict["eu_mah_current"]: str = row["value"]
+            medicine_dict[attr.eu_mah_current]: str = row["value"]
 
         case "ema_links":
             # ema_url_list.append(row["meta"][0]["url"])
@@ -305,7 +307,7 @@ def set_human_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str]
             # TODO: retrieve date for every PDF
 
         case "orphan_links":
-            medicine_dict["eu_orphan_con_current"]: str = row["meta"]
+            medicine_dict[attr.eu_orphan_con_current]: str = row["meta"]
 
 
 def set_orphan_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str]), row: dict):
@@ -320,10 +322,10 @@ def set_orphan_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str
     """
     match row["title"].lower():
         case "sponsor":
-            medicine_dict["sponsor"]: str = row["value"]
+            medicine_dict[attr.eu_od_sponsor]: str = row["value"]
     match row["type"]:
         case "indication":
-            medicine_dict["eu_od_con"]: str = row["value"]
+            medicine_dict[attr.eu_od_con]: str = row["value"]
         case "ema_links":
             for json_obj in row["meta"]:
                 ema_url_list.append(json_obj["url"])
@@ -406,7 +408,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
         decision_id = row["id"]
 
         if "orphan designation" == row["type"].lower():
-            procedures_dict["eu_od_date"] = str(decision_date)
+            procedures_dict[attr.eu_od_date] = str(decision_date)
 
         # Puts all the decisions from the last one and a half year in a list to determine the current authorization type
         if last_decision_date - decision_date < timedelta(days=548):
@@ -438,14 +440,14 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
                                                               is_exceptional,
                                                               is_conditional)
     else:
-        eu_aut_date: str = ""
-        eu_aut_type_initial: str = ""
+        eu_aut_date: str = values.not_found
+        eu_aut_type_initial: str = values.not_found
 
     # From the list of EMA numbers, the right one is chosen and its certainty determined
     if ema_numbers:
         ema_number, ema_number_certainty = determine_ema_number(ema_numbers)
     else:
-        ema_number, ema_number_certainty = "", ""
+        ema_number, ema_number_certainty = values.not_found, values.not_found
 
     # Gets ema_number_id from ema_number, removing leading 0's
     ema_number_id = ema_number.split('/')[-1].lstrip('0')
@@ -453,22 +455,22 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
         ema_number_id = re.search(r'\d+/\d+', ema_number)[0].lstrip('0')
 
     # Currently when an attribute is not found it is simply printed to the console
-    procedures_dict["eu_aut_date"] = str(eu_aut_date)
-    procedures_dict["eu_aut_type_initial"] = eu_aut_type_initial
-    procedures_dict["eu_aut_type_current"] = determine_current_aut_type(last_decision_types)
+    procedures_dict[attr.eu_aut_date] = str(eu_aut_date)
+    procedures_dict[attr.eu_aut_type_initial] = eu_aut_type_initial
+    procedures_dict[attr.eu_aut_type_current] = determine_current_aut_type(last_decision_types)
     if "od" in ema_number.lower():
-        procedures_dict["ema_od_number"] = ema_number
-        procedures_dict["ema_od_number_id"] = ema_number_id
+        procedures_dict[attr.ema_od_number] = ema_number
+        procedures_dict[attr.ema_od_number_id] = ema_number_id
     else:
-        procedures_dict["ema_number"] = ema_number
-        procedures_dict["ema_number_id"] = ema_number_id
-    procedures_dict["eu_referral"] = str(eu_referral)
-    procedures_dict["eu_suspension"] = str(eu_suspension)
-    procedures_dict["ema_number_certainty"] = str(ema_number_certainty)
-    procedures_dict["init_addressed_to_member_states"] = str(init_has_member_states)
+        procedures_dict[attr.ema_number] = ema_number
+        procedures_dict[attr.ema_number_id] = ema_number_id
+    procedures_dict[attr.eu_referral] = str(eu_referral)
+    procedures_dict[attr.eu_suspension] = str(eu_suspension)
+    procedures_dict[attr.ema_number_certainty] = str(ema_number_certainty)
+    procedures_dict[attr.init_addressed_to_member_states] = str(init_has_member_states)
 
     for key, value in procedures_dict.items():
-        if value == "":
+        if value == values.not_found:
             log.warning(f"{eu_num}: No value for {key}")
 
     return procedures_dict, dec_url_list, anx_url_list
@@ -504,11 +506,11 @@ def determine_current_aut_type(last_decision_types: list[str]) -> str:
     if len(last_decision_types) > 0:
         for decision_type in last_decision_types:
             if "annual reassessment" in decision_type.lower():
-                return "exceptional"
+                return values.aut_type_exceptional
             if "annual renewal" in decision_type.lower():
-                return "conditional"
+                return values.aut_type_conditional
 
-    return "standard"
+    return values.aut_type_standard
 
 
 def determine_initial_aut_type(year: int, is_exceptional: bool, is_conditional: bool) -> str:
@@ -529,14 +531,14 @@ def determine_initial_aut_type(year: int, is_exceptional: bool, is_conditional: 
             Can be "pre_2006", "exceptional_conditional", "exceptional", "conditional", or "standard".
     """
     if year < 2006:
-        return "pre_2006"
+        return values.NA_before
     if is_exceptional and is_conditional:
-        return "exceptional_conditional"
+        return values.authorization_type_unknown
     if is_exceptional:
-        return "exceptional"
+        return values.aut_type_exceptional
     if is_conditional:
-        return "conditional"
-    return "standard"
+        return values.aut_type_conditional
+    return values.aut_type_standard
 
 
 def format_ema_number(ema_number: str) -> list[str]:
@@ -584,7 +586,7 @@ def determine_ema_number(ema_numbers: list[str]) -> (str, float):
     # code retrieved from https://www.geeksforgeeks.org/python-find-most-frequent-element-in-a-list/
     ema_numbers_dict: dict[str, int] = {}
     count: int = 0
-    most_occurring_item: str = ""
+    most_occurring_item: str = values.not_found
     for item in reversed(ema_numbers):
         ema_numbers_dict[item] = ema_numbers_dict.get(item, 0) + 1
         if ema_numbers_dict[item] >= count:
