@@ -148,14 +148,14 @@ def download_pdfs_ec(medicine_identifier: str, pdf_type: str, pdf_urls: list[str
     file_counter = 0
     if len(pdf_urls) > 0:
         for url in pdf_urls[:-1]:
-            filename_elements = [med_dict["orphan_status"], pdf_type, str(file_counter)]
+            filename_elements = [med_dict[attr.orphan_status], pdf_type, str(file_counter)]
             download_pdf_from_url(url, medicine_identifier, filename_elements, target_path, filedate_dict)
             file_counter += 1
 
-        if med_dict["init_addressed_to_member_states"] == "True":
+        if med_dict[attr.init_addressed_to_member_states] == "True":
             file_counter = -1
 
-        filename_elements = [med_dict["orphan_status"], pdf_type, str(file_counter)]
+        filename_elements = [med_dict[attr.orphan_status], pdf_type, str(file_counter)]
         download_pdf_from_url(pdf_urls[-1], medicine_identifier, filename_elements, target_path, filedate_dict,
                               overwrite)
 
@@ -197,7 +197,7 @@ def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[s
         except IndexError:
             log.warning(f"no filetype found for {pdf_url}")
 
-    filename_elements = [med_dict["orphan_status"], pdf_type]
+    filename_elements = [med_dict[attr.orphan_status], pdf_type]
     download_pdf_from_url(pdf_url, eu_num, filename_elements, target_path, filedate_dict, overwrite)
 
 
@@ -242,7 +242,7 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
             log.error(f"Key {key} not in keys of url_dict with identifier {medicine_identifier}. url_dict: {url_dict}")
         download_pdfs_ema(medicine_identifier, filetype, url_dict[key], attr_dict, filedate_dict, target_path)
 
-    for url, filetype in url_dict["other_ema_urls"]:
+    for url, filetype in url_dict[attr.other_ema_urls]:
         download_pdfs_ema(medicine_identifier, filetype, url, attr_dict, filedate_dict, target_path)
 
     with open(filedates_path, 'w') as f:

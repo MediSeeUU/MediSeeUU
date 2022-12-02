@@ -272,9 +272,9 @@ def get_data_from_medicine_json(medicine_json: dict,
 
     if MedicineType(medicine_type) == MedicineType.HUMAN_USE_ACTIVE or MedicineType(medicine_type) == \
             MedicineType.HUMAN_USE_WITHDRAWN or MedicineType(medicine_type) == MedicineType.HUMAN_USE_REFUSED:
-        medicine_dict["orphan_status"] = "h"
+        medicine_dict[attr.orphan_status] = "h"
     else:
-        medicine_dict["orphan_status"] = "o"
+        medicine_dict[attr.orphan_status] = "o"
         medicine_dict[attr.atc_code] = values.not_found
 
     for key, value in medicine_dict.items():
@@ -460,14 +460,14 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
     procedures_dict[attr.eu_aut_type_current] = determine_current_aut_type(last_decision_types)
     if "od" in ema_number.lower():
         procedures_dict[attr.ema_od_number] = ema_number
-        procedures_dict["ema_od_number_id"] = ema_number_id
+        procedures_dict[attr.ema_od_number_id] = ema_number_id
     else:
         procedures_dict[attr.ema_number] = ema_number
-        procedures_dict["ema_number_id"] = ema_number_id
+        procedures_dict[attr.ema_number_id] = ema_number_id
     procedures_dict[attr.eu_referral] = str(eu_referral)
     procedures_dict[attr.eu_suspension] = str(eu_suspension)
     procedures_dict[attr.ema_number_certainty] = str(ema_number_certainty)
-    procedures_dict["init_addressed_to_member_states"] = str(init_has_member_states)
+    procedures_dict[attr.init_addressed_to_member_states] = str(init_has_member_states)
 
     for key, value in procedures_dict.items():
         if value == values.not_found:

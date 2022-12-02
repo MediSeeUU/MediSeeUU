@@ -63,7 +63,7 @@ class TestEcScraper(unittest.TestCase):
         ],
         [
             "o1230",
-            "not applicable",
+            values.not_found,
             "(2R,3R,4S,5R)-2-(6-amino-9H-purin-9-yl)-5-((((1r,3S)-3-(2-(5-(tert-butyl)-1H-benzo[d]imidazol-2-yl)ethyl)"
             "cyclobutyl)(isopropyl) amino)methyl)tetrahydrofuran-3,4-diol",
             "EU/3/13/1230",
@@ -264,20 +264,20 @@ class TestEcScraper(unittest.TestCase):
         [
             [
                 [],
-                "standard"
+                values.aut_type_standard
             ],
             [
                 ["Annual Renewal"],
-                "conditional"
+                values.aut_type_conditional
             ],
             [
                 ["Annual Reassessment"],
-                "exceptional"
+                values.aut_type_exceptional
             ],
             [
                 ["something else",
                  "bla bla"],
-                "standard"
+                values.aut_type_standard
             ]
         ]
     )

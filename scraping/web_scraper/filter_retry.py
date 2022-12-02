@@ -97,7 +97,7 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
         if len(filename_elements) == 3:
             url = url[int(filename_elements[2])]
     else:
-        url = url_dict["other_ema_urls"]
+        url = url_dict[attr.other_ema_urls]
         if len(filename_elements) == 3:
             url = url[int(filename_elements[2])][0]
     # Get nth file if file has number in name

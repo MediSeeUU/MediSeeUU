@@ -144,7 +144,7 @@ class TestWebScraper(TestCase):
 
         with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
-        assert all(x in list(url_dict.keys()) for x in [attr.epar_url, attr.omar_url, attr.odwar_url, 'other_ema_urls']), \
+        assert all(x in list(url_dict.keys()) for x in [attr.epar_url, attr.omar_url, attr.odwar_url, attr.other_ema_urls]), \
             "ema urls not in urls.json"
 
     def run_download(self):
@@ -173,7 +173,7 @@ class TestWebScraper(TestCase):
             filecount += 1
         if url_dict[attr.odwar_url]:
             filecount += 1
-        for _ in url_dict["other_ema_urls"]:
+        for _ in url_dict[attr.other_ema_urls]:
             filecount += 1
 
         assert len(os.listdir(data_folder)) == filecount + 2, "not all files are downloaded"

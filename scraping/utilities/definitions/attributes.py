@@ -5,6 +5,7 @@ xml_file = "xml_file"
 is_initial = "is_initial"
 creation_date = "creation_date"
 modification_date = "modification_date"
+filename = "filename"
 
 # Initialize all attribute objects
 atc_code = "atc_code"
@@ -78,5 +79,14 @@ ema_alternative_treatments = "ema_alternative_treatments"
 ema_significant_benefit = "ema_significant_benefit"
 ema_insufficient_roi = "ema_insufficient_roi"
 active_clock_elapseds = "active_clock_elapseds"
+active_time_elapsed = "active_time_elapsed"
+clock_stop_elapsed = "clock_stop_elapsed"
 scrape_date_web = "scrape_date_web"
 filedates_web = "filedates"
+
+#TODO: web definitions
+orphan_status = "orphan_status"
+init_addressed_to_member_states = "init_addressed_to_member_states"
+other_ema_urls = "other_ema_urls"
+ema_number_id = "ema_number_id"
+ema_od_number_id = "ema_od_number_id"

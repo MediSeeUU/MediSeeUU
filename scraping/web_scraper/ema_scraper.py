@@ -79,10 +79,10 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
             other_ema_urls_types.append((url, f"{ema_url_type}-other_{i}"))
         i += 1
 
-    result_dict["other_ema_urls"] = other_ema_urls_types
+    result_dict[attr.other_ema_urls] = other_ema_urls_types
 
     # Gives a warning if it hasn't found an epar or omar document
-    if result_dict["epar_url"] == "":
+    if result_dict[attr.epar_url] == "":
         if url_list_init:
             log.warning(f"{medicine_name}: No EPAR. Potential URLs are: {url_list_init}")
         else:
@@ -284,7 +284,7 @@ def scrape_ema(config: config_objects.WebConfig, url_file: json_helper.JsonHelpe
     ema_urls: list[tuple[str, str]] = [
         (eu_n, url)
         for eu_n, value_dict in url_file.local_dict.items()
-        for url in value_dict["ema_url"]
+        for url in value_dict[attr.ema_url]
     ]
     unzipped_ema_urls: list[list[str]] = [list(t) for t in zip(*ema_urls)]
     for eu_n in url_file.local_dict:
