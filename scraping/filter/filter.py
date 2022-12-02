@@ -5,7 +5,9 @@ import re
 import json
 import multiprocessing
 import logging
-import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.log import log_tools
+from scraping.utilities.io import safe_io
+from tqdm import tqdm
 
 wrong_doctype_str = "@wrong_doctype"
 cpu_count: int = multiprocessing.cpu_count()
@@ -24,9 +26,10 @@ def filter_all_pdfs(directory: str):
     data_path = directory.split("active_withdrawn")[0]
     log_path = log_tools.get_log_path("filter.txt", data_path)
     f = open(log_path, 'w', encoding="utf-8")  # open/clean output file
+    med_folders = [folder for folder in os.listdir(directory) if os.path.isdir(os.path.join(directory, folder))]
     all_data = Parallel(n_jobs=cpu_count)(
         delayed(filter_folder)(os.path.join(directory, folder), directory) for folder in
-        os.listdir(directory) if os.path.isdir(os.path.join(directory, folder)))
+        tqdm(med_folders))
 
     # Write the error of each PDF file to the output file
     # Each line in filter.txt: filename@error_type
@@ -241,7 +244,7 @@ def safe_remove(file_path: str):
     """
     try:
         log.info(f"Filter: Removed {file_path}")
-        os.remove(file_path)
+        safe_io.delete_file(file_path)
     except FileNotFoundError:
         log.error(f"Can't remove file: file_not_found @ {file_path}")
 

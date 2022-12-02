@@ -2,6 +2,9 @@ import scraping.utilities.definitions.values as values
 import scraping.utilities.definitions.sources as src
 import scraping.utilities.definitions.attributes as attr
 from difflib import SequenceMatcher as SM
+import logging
+
+log = logging.getLogger("combiner")
 
 # TODO: remove try catch
 def get_attribute_date(source_dict: str, file_dicts: dict[str, dict[str, any]]) -> str:
@@ -55,8 +58,8 @@ def combine_best_source(attribute_name: str, sources: list[str], file_dicts: dic
         try:
             attributes.append(dict[attribute_name])
         except Exception:
-            print("COMBINER: can't find value for ", attribute_name, " in ", source)
-            # print("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
+            log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
+            # log.warning("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
 
     attributes.append(values.not_found)
     return attributes[0]
@@ -78,11 +81,12 @@ def combine_select_string_overlap(attribute_name: str, sources: list[str], file_
     strings = []
     for source in sources:
         dict = file_dicts[source]
+        # TODO: Replace try/except with if statements
         try:
             strings.append(dict[attribute_name])
         except Exception:
-            print("COMBINER: can't find value for ", attribute_name, " in ", source)
-            # print("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
+            log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
+            # log.warning("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
     try:
         old_string = strings[0]
         new_string = strings[1]

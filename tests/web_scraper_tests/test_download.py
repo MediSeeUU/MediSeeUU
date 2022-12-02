@@ -3,20 +3,20 @@ import os
 from datetime import datetime
 import regex as re
 from unittest import TestCase
-from scraping.web_scraper import download, json_helper
+from scraping.web_scraper import download
+from scraping.utilities.web import json_helper
 from parameterized import parameterized
 
 data_path = "../test_data"
 if "web_scraper_tests" in os.getcwd():
     data_path = "../../test_data"
-data_path_local = f"{data_path}/active_withdrawn"
+data_local = f"{data_path}/active_withdrawn"
 
 
 class TestDownload(TestCase):
     """
     Class that contains all the tests for scraping.webscraper.download
     """
-
     @parameterized.expand([["https://ec.europa.eu/health/documents/community-register/2000/200010185296/"
                             "dec_5296_en.pdf"],
                            ["https://www.ema.europa.eu/documents/orphan-maintenance-report/mylotarg-orphan"
@@ -51,7 +51,7 @@ class TestDownload(TestCase):
             eu_n: The eu number of the file that needs to be downloaded
             filename_elements: The filename elements
         """
-        target_path = f"{data_path_local}/{eu_n}"
+        target_path = f"{data_local}/{eu_n}"
         self.assertIsNone(download.download_pdf_from_url(url, eu_n, filename_elements, target_path, {}, overwrite=True))
 
     @parameterized.expand([["EU-1-21-1541",
@@ -72,10 +72,11 @@ class TestDownload(TestCase):
             pdf_type: The type of the pdf, dec or anx
             pdf_url: The url of the pdf
         """
-        assert path.exists(f"{data_path_local}/{eu_n}/{eu_n}_webdata.json"), f"can't run test, no webdata file for {eu_n}"
-        med_dict = (json_helper.JsonHelper(path=f"{data_path_local}/{eu_n}/{eu_n}_webdata.json")).load_json()
+        assert path.exists(f"{data_local}/{eu_n}/{eu_n}_webdata.json"), \
+            f"can't run test, no webdata file for {eu_n}"
+        med_dict = (json_helper.JsonHelper(path=f"{data_local}/{eu_n}/{eu_n}_webdata.json")).load_json()
         url_json: json_helper.JsonHelper = json_helper.JsonHelper(path="test_json.json", init_dict={})
-        target_path = f"{data_path_local}/{eu_n}"
+        target_path = f"{data_local}/{eu_n}"
         self.assertIsNone(download.download_pdfs_ec(eu_n, pdf_type, pdf_url, med_dict, {}, target_path, url_json, True))
         remove("test_json.json")
 
@@ -94,9 +95,10 @@ class TestDownload(TestCase):
             pdf_type: The type of pdf, epar or omar
             pdf_url: The url of the pdf
         """
-        assert path.exists(f"{data_path_local}/{eu_n}/{eu_n}_webdata.json"), f"can't run test, no webdata file for {eu_n}"
-        med_dict = (json_helper.JsonHelper(path=f"{data_path_local}/{eu_n}/{eu_n}_webdata.json")).load_json()
-        target_path = f"{data_path_local}/{eu_n}"
+        assert path.exists(f"{data_local}/{eu_n}/{eu_n}_webdata.json"), \
+            f"can't run test, no webdata file for {eu_n}"
+        med_dict = (json_helper.JsonHelper(path=f"{data_local}/{eu_n}/{eu_n}_webdata.json")).load_json()
+        target_path = f"{data_local}/{eu_n}"
         self.assertIsNone(download.download_pdfs_ema(eu_n, pdf_type, pdf_url, med_dict, {}, target_path))
 
     @parameterized.expand([["EU-1-21-1541",
@@ -119,6 +121,7 @@ class TestDownload(TestCase):
             url_dict: The dictionary containing the urls for a specific medicine
         """
         url_json: json_helper.JsonHelper = json_helper.JsonHelper(path="urls.json", init_dict=url_dict)
-        assert path.exists(f"{data_path_local}/{eu_n}/{eu_n}_webdata.json"), f"can't run test, no webdata file for {eu_n}"
+        assert path.exists(f"{data_local}/{eu_n}/{eu_n}_webdata.json"), \
+            f"can't run test, no webdata file for {eu_n}"
         self.assertIsNone(download.download_medicine_files(eu_n, url_dict, url_json, data_path))
         remove("urls.json")

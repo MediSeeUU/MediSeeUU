@@ -8,7 +8,7 @@ import scraping.utilities.definitions.attributes as attr
 import scraping.utilities.definitions.values as values
 
 test_data_loc = "../test_data/active_withdrawn"
-if "pdfscraper_tests" in os.getcwd():
+if "pdf_parser_tests" in os.getcwd():
     test_data_loc = "../../test_data/active_withdrawn"
 dec_txt = []
 percentage_str = "Percentage found: "

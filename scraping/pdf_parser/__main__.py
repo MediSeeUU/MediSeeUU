@@ -6,6 +6,7 @@ import logging
 import joblib
 import datetime
 import multiprocessing
+from tqdm import tqdm
 
 # for main
 from scraping.pdf_parser.parsers import dec_parser
@@ -17,12 +18,13 @@ log = logging.getLogger("pdf_parser")
 
 
 # Main file to run all parsers
-def main(directory: str):
+def main(directory: str, parse_all: bool = False):
     """
     given a folder containing medicine folders, parses each folder in parallel
 
     Args:
         directory: data folder, containing medicine folders
+        parse_all: Whether to parse all medicines, regardless of the eu_numbers.json
     """
     log.info(f"=== NEW LOG {datetime.datetime.today()} ===")
 
@@ -45,23 +47,18 @@ def main(directory: str):
 
     meds_dir = f"{directory}/active_withdrawn"
 
-    # Get medicine folders that have to be scraped, so only medicines in the eu_numbers.json file
-    directory_folders = [folder for folder in listdir(meds_dir) if path.isdir(path.join(meds_dir, folder)) and
-                         (folder in eu_numbers or folder_has_no_pdf_json(meds_dir, folder))]
-
-    # For debugging, this list of folders will not check if the medicine is recently updated before scraping
-    # Does not check whether eu_number of medicine is in eu_numbers.json
-    # directory_folders = [folder for folder in listdir(meds_dir) if path.isdir(path.join(meds_dir, folder))]
+    if parse_all:
+        directory_folders = [folder for folder in listdir(meds_dir) if path.isdir(path.join(meds_dir, folder))]
+    else:
+        # Get medicine folders that have yet to be scraped, so only medicines in the eu_numbers.json file
+        directory_folders = [folder for folder in listdir(meds_dir) if path.isdir(path.join(meds_dir, folder)) and
+                             (folder in eu_numbers or folder_has_no_pdf_json(meds_dir, folder))]
 
     # Use all the system's threads to maximize use of all hyper-threads
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
         joblib.delayed(parse_folder)(path.join(meds_dir, folder), folder) for folder in
-        directory_folders)
+        tqdm(directory_folders))
     log.info("Done parsing PDF files!")
-
-    # Single-threaded parsing
-    # for folder in directory_folders:
-    #     parse_folder(path.join(directory, folder), folder)
 
 
 # scraping on medicine folder level
@@ -75,9 +72,6 @@ def parse_folder(directory: str, folder_name: str):
         directory (str): location of folder to parse
         folder_name (st): name of medicine folder to parse
     """
-    # Annex 10 folder should be skipped
-    if "json" in directory:
-        return
 
     # struct that contains all scraped attributes dicts as well as eu_number and date of parsing
     medicine_struct = pis.ParsedInfoStruct(folder_name)
@@ -110,7 +104,8 @@ def get_files(directory: str) -> (list[str], list[str], list[str], list[str]):
     decision_files = [file for file in directory_files if "dec" in file and ".xml" not in file]
     annex_files = [path.join(directory, file) for file in directory_files if "anx" in file and ".xml" in file]
     epar_files = [file for file in directory_files if
-                  ("public-assessment-report" in file or "procedural-steps-taken" in file) and ".xml" in file]
+                  ("public-assessment-report" in file or "procedural-steps-taken" in file or "epar" in file)
+                  and ".xml" in file]
     omar_files = [path.join(directory, file) for file in directory_files if
                   ("omar" in file or "orphan" in file) and ".xml" in file]
     return annex_files, decision_files, epar_files, omar_files
@@ -132,12 +127,16 @@ def run_scrapers(directory: str, annex_files: list[str], decision_files: list[st
     Returns:
         pis.ParsedInfoStruct: Medicine structure containing scraped attributes
     """
+    log.info("Decision parser started")
     for file in decision_files:
         medicine_struct = dec_parser.parse_file(file, directory, medicine_struct)
+    log.info("Annex parser started")
     for file in annex_files:
         medicine_struct = annex_parser.parse_file(file, medicine_struct)
+    log.info("EPAR parser started")
     for file in epar_files:
         medicine_struct = epar_parser.parse_file(file, directory, medicine_struct)
+    log.info("OMAR parser started")
     for file in omar_files:
         medicine_struct = omar_parser.parse_file(file, medicine_struct)
     return medicine_struct
@@ -160,16 +159,16 @@ def folder_has_no_pdf_json(directory: str, folder: str) -> bool:
     return True
 
 
-def datetime_serializer(date: pis.datetime.datetime):
+def datetime_serializer(date: datetime.datetime):
     """
     Datetime to string serializer for json dumping
     Convert datetime.datetime to string
 
     Args:
-        date (pis.datetime.datetime): date to convert to string
+        date (datetime.datetime): date to convert to string
 
     """
-    if isinstance(date, pis.datetime.datetime):
+    if isinstance(date, datetime.datetime):
         return date.__str__()
 
 
