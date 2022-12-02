@@ -2,7 +2,7 @@ from datetime import datetime
 import re
 
 import dateutil.parser as dateparser
-import scraping.utilities.definitions.value as values
+import scraping.utilities.definitions.values as values
 import logging
 
 log = logging.getLogger("pdf_parser")

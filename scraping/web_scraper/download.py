@@ -13,6 +13,7 @@ import json
 
 from scraping.utilities.web import web_utils as utils, json_helper
 import scraping.utilities.log.log_tools as log_tools
+import scraping.utilities.definitions.attributes as attr
 from scraping.utilities.io import safe_io
 
 log = logging.getLogger("web_scraper.download")
@@ -145,14 +146,14 @@ def download_pdfs_ec(medicine_identifier: str, pdf_type: str, pdf_urls: list[str
     file_counter = 0
     if len(pdf_urls) > 0:
         for url in pdf_urls[:-1]:
-            filename_elements = [med_dict["orphan_status"], pdf_type, str(file_counter)]
+            filename_elements = [med_dict[attr.orphan_status], pdf_type, str(file_counter)]
             download_pdf_from_url(url, medicine_identifier, filename_elements, target_path, med_dict)
             file_counter += 1
 
-        if med_dict["init_addressed_to_member_states"] == "True":
+        if med_dict[attr.init_addressed_to_member_states] == "True":
             file_counter = -1
 
-        filename_elements = [med_dict["orphan_status"], pdf_type, str(file_counter)]
+        filename_elements = [med_dict[attr.orphan_status], pdf_type, str(file_counter)]
         download_pdf_from_url(pdf_urls[-1], medicine_identifier, filename_elements, target_path, med_dict,
                               overwrite)
 
@@ -193,7 +194,7 @@ def download_pdfs_ema(eu_num: str, pdf_type: str, pdf_url: str, med_dict: dict[s
         except IndexError:
             log.warning(f"no filetype found for {pdf_url}")
 
-    filename_elements = [med_dict["orphan_status"], pdf_type]
+    filename_elements = [med_dict[attr.orphan_status], pdf_type]
     download_pdf_from_url(pdf_url, eu_num, filename_elements, target_path, med_dict, overwrite)
 
 
@@ -221,20 +222,20 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
     if "filedates" not in attr_dict.keys():
         attr_dict["filedates"] = {}
 
-    download_list_ec = [("dec", "aut_url"), ("anx", "smpc_url")]
+    download_list_ec = [("dec", attr.aut_url), ("anx", attr.smpc_url)]
     for (filetype, key) in download_list_ec:
         if key not in url_dict.keys():
             log.error(f"Key {key} not in keys of url_dict with identifier {medicine_identifier}. url_dict: {url_dict}")
         download_pdfs_ec(medicine_identifier, filetype, url_dict[key], attr_dict, target_path, urls_json,
                          url_dict.get("overwrite_ec_files", "True") == "True")
 
-    download_list_ema = [('epar', "epar_url"), ('omar', "omar_url"), ("odwar", "odwar_url")]
+    download_list_ema = [('epar', attr.epar_url), ('omar', attr.omar_url), ("odwar", attr.odwar_url)]
     for (filetype, key) in download_list_ema:
         if key not in url_dict.keys():
             log.error(f"Key {key} not in keys of url_dict with identifier {medicine_identifier}. url_dict: {url_dict}")
         download_pdfs_ema(medicine_identifier, filetype, url_dict[key], attr_dict, target_path)
 
-    for url, filetype in url_dict["other_ema_urls"]:
+    for url, filetype in url_dict[attr.other_ema_urls]:
         download_pdfs_ema(medicine_identifier, filetype, url, attr_dict, target_path)
 
     with open(f"{target_path}/{medicine_identifier}_webdata.json", 'w') as f:
@@ -255,7 +256,7 @@ def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper
     target_path = f"{data_filepath}/annex_10"
 
     for year, url_dict in tqdm.tqdm(urls_dict.local_dict.items()):
-        url: str = url_dict["annex10_url"]
+        url: str = url_dict[attr.annex10_url]
         downloaded_file = requests.get(url)
 
         # TODO: Refactor this function and download_pdfs_from_url, so that code is not duplicated.

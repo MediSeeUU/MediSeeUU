@@ -1,4 +1,6 @@
 from scraping.utilities.web.json_helper import JsonHelper
+import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.definitions.values as values
 from datetime import datetime
 from pathlib import Path
 import json
@@ -23,7 +25,7 @@ def set_active_refused_webdata(eu_n: str, medicine_url: str, dec_list: list[str]
         url_refused_file (JsonHelper): The dictionary containing the urls of all refused files
     """
     # Sets parameter values for active and withdrawn medicines that need to be saved
-    if attributes_dict["eu_aut_status"] != "REFUSED":
+    if attributes_dict[attr.eu_aut_status] != "REFUSED":
         medicine_identifier: str = eu_n
         target_path: str = f"{data_path}/active_withdrawn/{medicine_identifier}"
         save_webdata(medicine_identifier, medicine_url, dec_list, anx_list, ema_list,
@@ -39,7 +41,7 @@ def set_active_refused_webdata(eu_n: str, medicine_url: str, dec_list: list[str]
         elif ema_od_number_str in attributes_dict.keys():
             medicine_identifier: str = "REFUSED-" + attributes_dict[ema_od_number_str].replace('/', '-')
         else:
-            medicine_identifier: str = "REFUSED-" + attributes_dict["eu_brand_name_current"].replace('/', '-')
+            medicine_identifier: str = "REFUSED-" + attributes_dict[attr.eu_brand_name_current].replace('/', '-')
 
         target_path: str = f"{data_path}/refused/{medicine_identifier}"
         save_webdata(medicine_identifier, medicine_url, dec_list, anx_list, ema_list,
@@ -67,11 +69,11 @@ def save_webdata(medicine_identifier: str, medicine_url: str, dec_list: list[str
     # TODO: Common name structure?
     url_json: dict[str, list[str] | str, str] = {
         medicine_identifier: {
-            "ec_url": medicine_url,
-            "aut_url": dec_list,
-            "smpc_url": anx_list,
-            "ema_url": ema_list,
-            "ec_last_scraped": datetime.strftime(datetime.today(), '%d/%m/%Y'),
+            attr.ec_url: medicine_url,
+            attr.aut_url: dec_list,
+            attr.smpc_url: anx_list,
+            attr.ema_url: ema_list,
+            attr.scrape_date_web: datetime.strftime(datetime.today(), '%d/%m/%Y'),
             "overwrite_ec_files": "True"
         }
     }
