@@ -11,6 +11,7 @@ from scraping.web_scraper import __main__ as web
 from scraping.utilities.log import log_tools
 from scraping.utilities.io import safe_io
 from parameterized import parameterized
+import scraping.utilities.definitions.attributes as attr
 
 data_path = "../test_data"
 if "web_scraper_tests" in os.getcwd():
@@ -143,7 +144,7 @@ class TestWebScraper(TestCase):
 
         with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
-        assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url', 'odwar_url', 'other_ema_urls']), \
+        assert all(x in list(url_dict.keys()) for x in [attr.epar_url, attr.omar_url, attr.odwar_url, attr.other_ema_urls]), \
             "ema urls not in urls.json"
 
     def run_download(self):
@@ -164,15 +165,15 @@ class TestWebScraper(TestCase):
         # check if all files from urls.json are downloaded:
         with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
-        filecount = len(url_dict["aut_url"]) + len(url_dict["smpc_url"])
+        filecount = len(url_dict["aut_url"]) + len(url_dict[attr.smpc_url])
 
-        if url_dict["epar_url"]:
+        if url_dict[attr.epar_url]:
             filecount += 1
-        if url_dict["omar_url"]:
+        if url_dict[attr.omar_url]:
             filecount += 1
-        if url_dict["odwar_url"]:
+        if url_dict[attr.odwar_url]:
             filecount += 1
-        for _ in url_dict["other_ema_urls"]:
+        for _ in url_dict[attr.other_ema_urls]:
             filecount += 1
 
         assert len(os.listdir(data_folder)) == filecount + 2, "not all files are downloaded"
