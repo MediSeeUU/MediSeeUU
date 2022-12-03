@@ -2,6 +2,9 @@ import logging
 import pathlib
 import os
 import json
+from tqdm import tqdm
+from itertools import repeat
+import tqdm.contrib.concurrent as tqdm_concurrent
 
 from scraping.filter import filter
 from scraping.web_scraper import download, ec_scraper, url_scraper
@@ -35,42 +38,45 @@ def run_filter(n: int, data_filepath: str):
     # If file is run locally:
     if "web_scraper" == pathlib.Path.cwd().name:
         json_path = ""
+    filter.filter_all_pdfs(data_filepath)
     for _ in range(n):
-        filter.filter_all_pdfs(data_filepath)
         url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
         url_refused_file = json_helper.JsonHelper(path=f"{json_path}JSON/refused_urls.json")
         data_folder = data_filepath.split("active_withdrawn")[0]
         filter_path = log_tools.get_log_path("filter.txt", data_folder)
-        retry_all(filter_path, url_file, data_filepath, url_refused_file)
-    # remove files that can't go to the pdf parser
-    filter.filter_all_pdfs(data_filepath)
+        with open(filter_path, "r") as f:
+            filter_lines = f.read().split('\n')
+            tqdm_concurrent.thread_map(retry_medicine,
+                                       filter_lines,
+                                       repeat(url_file),
+                                       repeat(data_filepath),
+                                       repeat(url_refused_file), max_workers=12)
+            # for line in tqdm(filter_lines):
+            # Single threaded: retry_medicine(line, url_file, data_filepath, url_refused_file)
+            filter.filter_all_pdfs(data_filepath, filter_lines)
 
 
-def retry_all(filter_path: str, url_file: json_helper.JsonHelper, data_filepath: str,
-              url_refused_file: json_helper.JsonHelper):
+def retry_medicine(filter_line: str, url_file: json_helper.JsonHelper, data_filepath: str,
+                   url_refused_file: json_helper.JsonHelper):
     """
     For every line in filter.txt, it scrapes the urls again.
     It also calls the download function for the specific file again
 
     Args:
-        filter_path (str): path to filter file
+        filter_line(list[str]): line in filter.txt containing the EU number of medicine to download again
         url_file (json_helper.JsonHelper): the dictionary with all the urls
         data_filepath (str): the path to the data folder
         url_refused_file (json_helper.JsonHelper): dictionary with all refused urls
-
     """
-    with open(filter_path, "r") as f:
-        medicine_names = f.read().split('\n')
-        for line in medicine_names:
-            filename = line.split(".pdf@")[0]
-            filename_list = filename.split('_')
-            eu_n = filename_list[0]
-            filename_elements = filename_list[1:]
-            url_dict = url_file.load_json()
-            if eu_n in url_dict:
-                url_scraper.get_urls_ec(url_dict[eu_n][attr.ec_url], eu_n, med_type_dict[f"{filename_elements[0]}a"],
-                                        data_filepath, url_file, url_refused_file)
-                retry_download(eu_n, filename_elements, url_dict[eu_n], data_filepath)
+    filename = filter_line.split(".pdf@")[0]
+    filename_list = filename.split('_')
+    eu_n = filename_list[0]
+    filename_elements = filename_list[1:]
+    url_dict = url_file.load_json()
+    if eu_n in url_dict:
+        url_scraper.get_urls_ec(url_dict[eu_n][attr.ec_url], eu_n, med_type_dict[f"{filename_elements[0]}a"],
+                                data_filepath, url_file, url_refused_file)
+        retry_download(eu_n, filename_elements, url_dict[eu_n], data_filepath)
 
 
 def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, list[str]], data_filepath: str):

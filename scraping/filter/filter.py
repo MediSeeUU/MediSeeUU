@@ -11,22 +11,27 @@ from tqdm import tqdm
 
 wrong_doctype_str = "@wrong_doctype"
 cpu_count: int = multiprocessing.cpu_count()
-log = logging.getLogger("web_scraper")
+log = logging.getLogger("filter")
 
 
-def filter_all_pdfs(directory: str):
+def filter_all_pdfs(directory: str, folders: list[str] = []):
     """
     Go through all PDF files in the directory and remove incorrect PDF files
     Saves the names of the filtered PDF files with the error type [corrupt, html, unknown, wrong_doctype]
 
     Args:
         directory (str): folder with all medicine folders to filter
+        folders (list[str]): list of eu numbers to filter, filter all when empty
     """
-    log.info(f'Filtering all PDF files...')
+    log.info("Filtering PDF files...")
     data_path = directory.split("active_withdrawn")[0]
     log_path = log_tools.get_log_path("filter.txt", data_path)
     f = open(log_path, 'w', encoding="utf-8")  # open/clean output file
-    med_folders = [folder for folder in os.listdir(directory) if os.path.isdir(os.path.join(directory, folder))]
+    if folders:
+        med_folders = [folder for folder in os.listdir(directory) if os.path.isdir(os.path.join(directory, folder))
+                       and folder in ''.join(folders)]
+    else:
+        med_folders = [folder for folder in os.listdir(directory) if os.path.isdir(os.path.join(directory, folder))]
     all_data = Parallel(n_jobs=cpu_count)(
         delayed(filter_folder)(os.path.join(directory, folder), directory) for folder in
         tqdm(med_folders))
@@ -161,7 +166,8 @@ def get_brand_name(filename: str, directory: str) -> str:
         with open(f'{directory}/{eu_num}/{eu_num}_webdata.json') as pdf_json:
             web_attributes = json.load(pdf_json)
             return web_attributes['eu_brand_name_current']
-    except FileNotFoundError:
+    except FileNotFoundError as e:
+        log.warning(f"Filter: Webdata JSON not found for {eu_num}. Error: {e}")
         return "no_webdata_json_found"
 
 
@@ -187,7 +193,11 @@ def get_url(filename: str, directory: str) -> str:
         json_path = f"{scraping_dir}/web_scraper/JSON/"
         # If file is run from webscraper locally:
         with open(f'{json_path}urls.json') as urls_json:
-            urls = json.load(urls_json)
+            try:
+                urls = json.load(urls_json)
+            except JSONDecodeError as e:
+                log.warning(f"Filter: Cannot open urls.json. Error: {e}")
+                return "cannot_open_urls_json"
             try:
                 if 'dec' in filename:
                     num = filename.split('_')[-1]
@@ -207,9 +217,11 @@ def get_url(filename: str, directory: str) -> str:
                     num = filename.split('_')[-1]
                     num = int(num[:len(num) - 4])
                     return urls[eu_num]['other_ema_urls'][num][0]
-            except KeyError:
+            except KeyError as e:
+                log.warning(f"Filter: KeyError in urls.json. Error: {e}")
                 return "no_url_found"
-    except FileNotFoundError:
+    except FileNotFoundError as e:
+        log.warning(f"Filter: Cannot find urls.json. Error: {e}")
         return "urls_json_not_found"
     return "file_type_not_recognized"
 
