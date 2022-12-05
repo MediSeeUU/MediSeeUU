@@ -272,6 +272,32 @@ def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper
             log.debug(f"DOWNLOADED Annex 10 for {year}")
 
 
+@utils.exception_retry(logging_instance=log)
+def download_ema_excel_file(data_filepath: str, urls_dict: json_helper.JsonHelper):
+    """
+    Downloads the EMA EPAR Excel from the EMA website
+
+    Args:
+        data_filepath: Path to the data folder.
+        urls_dict: The dictionary containing the URL of the EMA Excel file.
+    """
+    target_path: str = f"{data_filepath}/ema_excel"
+    url: str = urls_dict.load_json().get("url")
+    downloaded_file = requests.get(url)
+
+    # TODO: Refactor this function and download_pdfs_from_url, so that code is not duplicated.
+    if downloaded_file.status_code != 200:
+        log_path = log_tools.get_log_path("failed.txt", data_filepath)
+        with open(log_path, "a") as f:
+            f.write(f"ema_excel@{url}@{downloaded_file.status_code}\n")
+            return
+
+    Path(f"{target_path}").mkdir(exist_ok=True)
+    with open(f"{target_path}/ema_excel.xlsx", "wb") as file:
+        file.write(downloaded_file.content)
+        log.debug(f"DOWNLOADED EMA Excel")
+
+
 def download_all(data_filepath: str, urls_dict: json_helper.JsonHelper, parallel_download: bool):
     """
     Downloads all files for all medicines. Can be done parallel or sequential.
