@@ -17,23 +17,22 @@ def init_loggers():
     All logs go through the root logger StreamHandler and file handler.
     The root file handler only saves warning messages or higher.
     """
-    logging_path = config.default_path_logging
+    logging_path = Path(config.default_path_logging)
 
     # TODO: Refactor
     #       Would prefer to have config.default_path_logging point to the global log folder
-    logs_path = logging_path.split("log_files")[0]
-    log_path = f"{logs_path}/log_files"
-    txt_path = f"{logs_path}/txt_files"
-    safe_io.create_folder(log_path)
-    Path(logging_path).mkdir(parents=True, exist_ok=True)
-    Path(txt_path).mkdir(parents=True, exist_ok=True)
+    log_path = logging_path / "log_files"
+    txt_path = logging_path / "txt_files"
+
+    log_path.mkdir(parents=True, exist_ok=True)
+    txt_path.mkdir(parents=True, exist_ok=True)
 
     # --- Root logger ---
     # Root logger has level NOTSET, all messages that the sub-loggers want to pass along will be passed along.
     # Check https://docs.python.org/3/library/logging.html#logging.Logger.setLevel for details
     root_handler_stream = logging.StreamHandler()
 
-    root_handler_file = logging.FileHandler(f"{logs_path}/logging_global.log")
+    root_handler_file = logging.FileHandler(f"{log_path}/logging_global.log")
     root_handler_file.setLevel(logging.ERROR)
 
     logging.basicConfig(handlers=[root_handler_stream, root_handler_file])
@@ -43,11 +42,11 @@ def init_loggers():
 
     # Create logging module for all other modules
     logging_names = ["web_scraper", "pdf_parser", "annex_10_parser", "xml_converter",
-                     "combiner", "db_communicator", "safe_io"]
+                     "combiner", "db_communicator"]
     for log_name in logging_names:
         log = logging.getLogger(log_name)
 
-        log_file_handler = logging.FileHandler(f"{logs_path}/logging_{log_name}.log")
+        log_file_handler = logging.FileHandler(f"{log_path}/logging_{log_name}.log")
         log.addHandler(log_file_handler)
 
         all_loggers.append(log)
