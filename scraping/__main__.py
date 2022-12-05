@@ -39,10 +39,10 @@ def run_all():
 
     # Any module can be commented or uncommented here, as the modules they work separately
     # web_scraper.main(web_config)
-    xml_converter.main(data_folder_directory)
-    pdf_parser.main(data_folder_directory)
-    annex_10_parser.main(data_folder_directory)
-    combiner.main(data_folder_directory)
+    # xml_converter.main(data_folder_directory)
+    # pdf_parser.main(data_folder_directory)
+    # annex_10_parser.main(data_folder_directory)
+    combiner.main(path.join(data_folder_directory, "active_withdrawn"))
     # db_communicator_main.main(data_folder_directory)
 
 
