@@ -78,6 +78,9 @@ def combine_folder(filepath: str, folder_name: str):
     for attribute in attr_obj.all_attributes:
         try:
             value = attribute.combine_function(attribute.name, attribute.sources, file_dicts)
+            # if "url" in attribute.name:
+            #     date = acf.get_url_date(value, file_dicts)
+            # else:
             date = acf.get_attribute_date(attribute.sources[0], file_dicts)
             combined_dict[attribute.name] = attribute.json_function(value, date)
         except Exception:
