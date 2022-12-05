@@ -14,7 +14,7 @@ cpu_count: int = multiprocessing.cpu_count()
 log = logging.getLogger("filter")
 
 
-def filter_all_pdfs(directory: str, folders: list[str] = []):
+def filter_all_pdfs(directory: str, folders: list[str] = None):
     """
     Go through all PDF files in the directory and remove incorrect PDF files
     Saves the names of the filtered PDF files with the error type [corrupt, html, unknown, wrong_doctype]

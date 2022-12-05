@@ -2,7 +2,6 @@ import logging
 import pathlib
 import os
 import json
-from tqdm import tqdm
 from itertools import repeat
 import tqdm.contrib.concurrent as tqdm_concurrent
 
@@ -51,8 +50,6 @@ def run_filter(n: int, data_filepath: str):
                                        repeat(url_file),
                                        repeat(data_filepath),
                                        repeat(url_refused_file), max_workers=12)
-            # for line in tqdm(filter_lines):
-            # Single threaded: retry_medicine(line, url_file, data_filepath, url_refused_file)
             filter.filter_all_pdfs(data_filepath, filter_lines)
 
 
