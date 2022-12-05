@@ -9,6 +9,17 @@ import pandas as pd
 log = logging.getLogger("combiner")
 
 # TODO: remove try catch
+
+def get_url_date(url: str, file_dicts: dict[str, dict[str, any]]) -> str:
+    try:
+        pdf_dicts = file_dicts[src.web][attr.filedates_web]
+        for pdf_dict_key in pdf_dicts.keys():
+            if pdf_dicts[pdf_dict_key]["pdf_link"] == link:
+                return pdf_dicts[pdf_dict_key]["pdf_date"]
+    except Exception:
+        return values.default_date
+
+
 def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]) -> str:
     if source_string == src.web:
         try:
@@ -123,7 +134,7 @@ def combine_get_file_url(attribute_name: str, sources: list[str], file_dicts: di
         for source in sources:
             print(file_dicts[src.web][attr.filedates_web])
             print(file_dicts[source][attr.pdf_file])
-            return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["pdf_link"] #TODO: becomes will ["file_link"]
+            return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["file_link"]
     except Exception:
         print("failed")
 
@@ -231,4 +242,4 @@ def get_ema_excel(filepath: str, filename: str) -> dict:
         print(f"COMBINER: {src.ema_excel} not found at {filepath}")
         return {}
 
-print(get_ema_excel("..\..\data/ema_excel/", "ema_excel.xlsx")['EMEA/H/C/281'])
+# print(get_ema_excel("..\..\data/ema_excel/", "ema_excel.xlsx")['EMEA/H/C/281'])
