@@ -5,7 +5,6 @@ import json
 import joblib
 import multiprocessing
 import scraping.combiner.attribute_combining_functions as acf
-import scraping.utilities.definitions.values as values
 import scraping.utilities.definitions.attributes as attr
 import scraping.utilities.definitions.attribute_objects as attr_obj
 import scraping.utilities.definitions.sources as src
@@ -93,7 +92,7 @@ def combine_folder(filepath: str, folder_name: str):
     combined_json.close()
 
 # TODO: misschien andere except dan filenotfounderror?
-def get_dict(source: str, filepath: str, folder_name: str) -> dict :
+def get_dict(source: str, filepath: str, folder_name: str) -> dict:
     """
 
     Args:
@@ -112,6 +111,7 @@ def get_dict(source: str, filepath: str, folder_name: str) -> dict :
         return {}
     except Exception:
         print("other error")
+
 
 def sources_to_dicts(sources: list[str], file_dicts: dict[str, dict]) -> list[dict]:
     """
@@ -159,7 +159,7 @@ def datetime_converter(datetime: str) -> str:
 #     main('..\..\..\data')
 
 
-combine_folder("..\\..\\data\\active_withdrawn\\EU-1-00-130", "EU-1-00-130")
+#combine_folder("..\\..\\data\\active_withdrawn\\EU-1-00-130", "EU-1-00-130")
 # print(type(attr_obj.all_attributes))
 # print(attr_obj.all_attributes)
 

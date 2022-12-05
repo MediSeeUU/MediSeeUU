@@ -3,21 +3,23 @@ import scraping.utilities.definitions.sources as src
 import scraping.utilities.definitions.attributes as attr
 from difflib import SequenceMatcher as SM
 import logging
+import json
+import pandas as pd
 
 log = logging.getLogger("combiner")
 
 # TODO: remove try catch
-def get_attribute_date(source_dict: str, file_dicts: dict[str, dict[str, any]]) -> str:
-    if source_dict == src.web:
+def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]) -> str:
+    if source_string == src.web:
         try:
             return file_dicts[src.web][attr.scrape_date_web]
         except Exception:
             return values.default_date
     else:
         try:
-            file_name = file_dicts[source_dict][attr.pdf_file]
+            file_name = file_dicts[source_string][attr.pdf_file]
             return file_dicts[src.web][file_name][attr.meta_file_date]
-        except:
+        except Exception:
             return values.default_date
 
 
@@ -54,9 +56,9 @@ def combine_best_source(attribute_name: str, sources: list[str], file_dicts: dic
     attributes: list[str] = []
 
     for source in sources:
-        dict = file_dicts[source]
+        dic = file_dicts[source]
         try:
-            attributes.append(dict[attribute_name])
+            attributes.append(dic[attribute_name])
         except Exception:
             log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
             # log.warning("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
@@ -64,11 +66,30 @@ def combine_best_source(attribute_name: str, sources: list[str], file_dicts: dic
     attributes.append(values.not_found)
     return attributes[0]
 
+def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> str:
+    try:
+        old_string = strings[0]
+        new_string = strings[1]
+        sequence_matcher = SM(None, old_string.lower(), new_string.lower())
+        overlap = sequence_matcher.find_longest_match(0, len(old_string) - 1, 0, len(new_string) - 1)
+
+        for string in strings[1:]:
+            old_string = new_string
+            new_string = string
+            sequence_matcher = SM(None, old_string.lower(), new_string.lower())
+            overlap = sequence_matcher.find_longest_match(0, len(old_string), 0, len(new_string))
+
+
+        if float(overlap.size / len(strings[0])) >= min_matching_fraction:
+            return strings[0][overlap.a:overlap.a + overlap.size]
+    except Exception:
+        print("no second string")
+    return values.insufficient_overlap
 
 # For combine functions
 # TODO: fix datum
 def combine_select_string_overlap(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]],
-                                  min_matching_fraction: float = 0.8) -> bool:
+                                  min_matching_fraction: float = 0.8) -> tuple[str,str]:
     """
     compares two strings to see if a percentage of the shortest string is identical to the longest string
     Args:
@@ -87,23 +108,11 @@ def combine_select_string_overlap(attribute_name: str, sources: list[str], file_
         except Exception:
             log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
             # log.warning("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
-    try:
-        old_string = strings[0]
-        new_string = strings[1]
-        sequence_matcher = SM(None, old_string.lower(), new_string.lower())
-        overlap = sequence_matcher.find_longest_match(0, len(old_string) - 1, 0, len(new_string) - 1)
 
-        for string in strings[1:]:
-            old_string = new_string
-            new_string = string
-            sequence_matcher = SM(None, old_string.lower(), new_string.lower())
-            overlap = sequence_matcher.find_longest_match(0, len(old_string), 0, len(new_string))
+    overlap = string_overlap(strings,min_matching_fraction)
 
-
-        if float(overlap.size / len(strings[0])) >= min_matching_fraction:
-            return (strings[0][overlap.a:overlap.a + overlap.size], values.default_date)
-    except Exception:
-        print("no second string")
+    if overlap != values.insufficient_overlap:
+        return (overlap, values.default_date)
 
     return (values.insufficient_overlap, get_attribute_date(sources[0], file_dicts))
 
@@ -121,7 +130,7 @@ def combine_get_file_url(attribute_name: str, sources: list[str], file_dicts: di
     return values.url_not_found
 
 
-def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> str:
+def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[str,str]:
     """_summary_
 
     Args:
@@ -132,13 +141,30 @@ def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dic
     """
     annex_initial_dict = file_dicts[src.annex_initial]
     eu_med_type = annex_initial_dict[attr.eu_med_type]
-    eu_med_type_date = get_attribute_date(annex_initial_dict, file_dicts)
+    eu_med_type_date = get_attribute_date(src.annex_initial, file_dicts)
     eu_atmp = file_dicts[src.decision][attr.eu_atmp]
 
     if eu_med_type == values.eu_med_type_biologicals and eu_atmp:
         return (values.eu_med_type_atmp, eu_med_type_date)
 
     return (eu_med_type, eu_med_type_date)
+
+def combine_ema_number_check(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[str, str]:
+    web_dict = file_dicts[src.web]
+    ema_excel = get_ema_excel("..\..\data/ema_excel/", "ema_excel.xlsx")
+    ema_number_web = web_dict[attr.ema_number]
+    are_equal = False
+
+    if ema_number_web in ema_excel:
+        web_brandname = web_dict[attr.eu_brand_name_current]
+        excel_brandname = ema_excel[ema_number_web]
+        if string_overlap([web_brandname,excel_brandname]) != values.insufficient_overlap:
+            are_equal = True
+
+
+    ema_number_date = get_attribute_date(src.web, file_dicts)
+
+    return(are_equal,ema_number_date)
 
 
 def json_static(value: any, date: str) -> any:
@@ -161,3 +187,48 @@ def json_history_initial(value: any, date: str) -> list[dict[str, any]]:
     json_dict["value"] = value
     json_dict["date"] = date
     return json_dict
+
+def convert_ema_num(ema_number: str) -> str:
+    if 'EMEA/H/C/' in ema_number:
+        number = ema_number.split('EMEA/H/C/',1)[1]
+        return f"EMEA/H/C/{number.lstrip('0')}"
+    else:
+        return values.not_found
+def get_ema_excel(filepath: str, filename: str) -> dict:
+    #return pre-made dict if available
+    try:
+        with open(f"{filepath}/ema_excel.json", "r") as file:  # Use file to refer to the file object
+            return json.load(file)
+    except Exception:
+        pass
+
+    #make dictionary from excel
+    try:
+        df_number = pd.read_excel(f"{filepath}/{filename}", header=8)
+        pnumber_key = 'Product number'
+        brandname_key = 'Medicine name'
+
+        # remove non human medicine
+        df_number = df_number[df_number['Category'] == 'Human']
+        # remove all rows other then product number and medicine name.
+        df_number = df_number[[pnumber_key, brandname_key]]
+        # remove leading zeros
+        df_number[pnumber_key] = df_number.apply(lambda x: convert_ema_num(x[pnumber_key]), axis=1)
+        df_number[brandname_key] = df_number.apply(lambda x: x[brandname_key].split('(', 1)[0].strip(), axis=1)
+
+        # remove invalid numbers
+        df_number = df_number[df_number[pnumber_key] != values.not_found]
+
+        num_dict = dict(zip(df_number[pnumber_key], df_number[brandname_key]))
+
+        # save dict to json file for quick access.
+        with open(f"{filepath}/ema_excel.json", "w") as file:
+            json.dump(num_dict, file)
+        return num_dict
+
+    #excel not found
+    except Exception:
+        print(f"COMBINER: {src.ema_excel} not found at {filepath}")
+        return {}
+
+print(get_ema_excel("..\..\data/ema_excel/", "ema_excel.xlsx")['EMEA/H/C/281'])

@@ -126,9 +126,9 @@ def get_attributes(section: ET.Element, eu_od_flag: bool) -> dict[str, str]:
     alternative_treatments = get_alternative_treatments(bullet_points)
     omar_attributes = {
         attr.eu_od_number: get_eu_od_number(section, eu_od_flag),
-        attr.ema_prevalence: get_prevalence(bullet_points),
-        attr.ema_alternative_treatments: alternative_treatments,
-        attr.ema_significant_benefit: get_significant_benefit(bullet_points, alternative_treatments)
+        attr.eu_od_prevalence: get_prevalence(bullet_points),
+        attr.eu_od_alt_treatment: alternative_treatments,
+        attr.eu_od_Sig_benefit: get_significant_benefit(bullet_points, alternative_treatments)
     }
 
     return omar_attributes

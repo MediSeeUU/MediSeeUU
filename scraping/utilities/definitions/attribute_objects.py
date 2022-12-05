@@ -45,7 +45,7 @@ AttributeFactory(all_attributes, attr.eu_brand_name_initial, [src.decision_initi
 AttributeFactory(all_attributes, attr.ema_number, [src.web])
 AttributeFactory(all_attributes, attr.ema_number_id, [src.web])
 AttributeFactory(all_attributes, attr.ema_number_certainty, [src.web])
-AttributeFactory(all_attributes, attr.ema_number_check, [src.web])
+AttributeFactory(all_attributes, attr.ema_number_check, [src.web], acf.combine_ema_number_check())
 # AttributeFactory(all_attributes, attr.eu_mah, )
 AttributeFactory(all_attributes, attr.eu_mah_current, [src.web], acf.combine_best_source, acf.json_history_current)
 AttributeFactory(all_attributes, attr.eu_mah_initial, [src.decision_initial], acf.combine_best_source, acf.json_history_initial)
