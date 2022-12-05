@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 import scraping.pdf_parser.parsed_info_struct as pis
 import scraping.utilities.xml.xml_parsing_utils as xml_utils
 import scraping.utilities.pdf.helper as helper
-import scraping.utilities.definitions.value as values
+import scraping.utilities.definitions.values as values
 import scraping.utilities.definitions.attributes as attr
 import logging
 import os
@@ -52,8 +52,7 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
         attr.xml_file: os.path.basename(filepath),
         attr.creation_date: creation_date,
         attr.modification_date: modification_date,
-        # TODO: Add this to attributes
-        # attr.report_date: report_date,
+        attr.ema_report_date: report_date,
         attr.ema_omar_condition: []
     }
 

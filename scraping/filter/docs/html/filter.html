@@ -346,12 +346,15 @@ as this allows the web scraper to try to scrape these files again.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="filter.filter.filter_all_pdfs">
-<span class="sig-prename descclassname"><span class="pre">filter.filter.</span></span><span class="sig-name descname"><span class="pre">filter_all_pdfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#filter.filter.filter_all_pdfs" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">filter.filter.</span></span><span class="sig-name descname"><span class="pre">filter_all_pdfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folders</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#filter.filter.filter_all_pdfs" title="Permalink to this definition"></a></dt>
 <dd><p>Go through all PDF files in the directory and remove incorrect PDF files
 Saves the names of the filtered PDF files with the error type [corrupt, html, unknown, wrong_doctype]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>directory</strong> (<em>str</em>) – folder with all medicine folders to filter</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directory</strong> (<em>str</em>) – folder with all medicine folders to filter</p></li>
+<li><p><strong>folders</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – list of eu numbers to filter, filter all when empty</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

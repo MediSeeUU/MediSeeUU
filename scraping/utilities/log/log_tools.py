@@ -22,8 +22,9 @@ def init_loggers():
     # TODO: Refactor
     #       Would prefer to have config.default_path_logging point to the global log folder
     logs_path = logging_path.split("log_files")[0]
+    log_path = f"{logs_path}/log_files"
     txt_path = f"{logs_path}/txt_files"
-
+    safe_io.create_folder(log_path)
     Path(logging_path).mkdir(parents=True, exist_ok=True)
     Path(txt_path).mkdir(parents=True, exist_ok=True)
 
@@ -32,7 +33,7 @@ def init_loggers():
     # Check https://docs.python.org/3/library/logging.html#logging.Logger.setLevel for details
     root_handler_stream = logging.StreamHandler()
 
-    root_handler_file = logging.FileHandler(f"{config.default_path_logging}/logging_global.log")
+    root_handler_file = logging.FileHandler(f"{logs_path}/logging_global.log")
     root_handler_file.setLevel(logging.ERROR)
 
     logging.basicConfig(handlers=[root_handler_stream, root_handler_file])
@@ -46,7 +47,7 @@ def init_loggers():
     for log_name in logging_names:
         log = logging.getLogger(log_name)
 
-        log_file_handler = logging.FileHandler(f"{config.default_path_logging}/logging_{log_name}.log")
+        log_file_handler = logging.FileHandler(f"{logs_path}/logging_{log_name}.log")
         log.addHandler(log_file_handler)
 
         all_loggers.append(log)
