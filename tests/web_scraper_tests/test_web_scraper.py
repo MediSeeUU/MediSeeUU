@@ -182,7 +182,7 @@ class TestWebScraper(TestCase):
             attr_dict = json.load(f)
         for file in os.listdir(data_folder):
             if ".pdf" in file:
-                assert file in attr_dict["filedates"].keys(), f"{file} does not exist in filedates.json"
+                assert file in attr_dict[attr.filedates_web].keys(), f"{file} does not exist in filedates.json"
 
     def run_filter(self):
         """

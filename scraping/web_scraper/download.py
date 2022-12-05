@@ -116,7 +116,7 @@ def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements:
         file.write(downloaded_file.content)
         log.debug(f"DOWNLOADED {filename} for {medicine_identifier}")
 
-    attr_dict["filedates"][filename] = get_date_from_url(url)
+    attr_dict[attr.filedates_web][filename] = get_date_from_url(url)
 
 
 # Download pdfs using the dictionaries created from the json file
@@ -219,8 +219,8 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
     # Gets the attribute dictionary for a medicine
     attr_dict = (json_helper.JsonHelper(path=f"{target_path}/{medicine_identifier}_webdata.json")).load_json()
 
-    if "filedates" not in attr_dict.keys():
-        attr_dict["filedates"] = {}
+    if attr.filedates_web not in attr_dict.keys():
+        attr_dict[attr.filedates_web] = {}
 
     download_list_ec = [("dec", attr.aut_url), ("anx", attr.smpc_url)]
     for (filetype, key) in download_list_ec:
