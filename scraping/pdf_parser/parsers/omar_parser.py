@@ -52,8 +52,7 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
         attr.xml_file: os.path.basename(filepath),
         attr.creation_date: creation_date,
         attr.modification_date: modification_date,
-        # TODO: Add this to attributes
-        # attr.report_date: report_date,
+        attr.ema_report_date: report_date,
         attr.ema_omar_condition: []
     }
 
