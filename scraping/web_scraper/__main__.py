@@ -30,6 +30,7 @@ url_refused_file = json_helper.JsonHelper(path=f"{json_path}JSON/refused_urls.js
 
 # File where Annex 10 data are stored
 annex10_file = json_helper.JsonHelper(path=f"{json_path}JSON/annex10.json")
+ema_excel_file = json_helper.JsonHelper(path=f"{json_path}JSON/ema_excel.json")
 
 
 # Main web scraper function with default settings
@@ -58,8 +59,8 @@ def main(config: config_objects.WebConfig):
                                       annex10_file)
 
     if config.run_download_ema_excel:
-        # TODO: implement functionality that handles scraping the url from the EMA website
-        pass
+        url_scraper.get_ema_excel_url("https://www.ema.europa.eu/en/medicines/download-medicine-data#european-public-"
+                                      "assessment-reports-(epar)-section", ema_excel_file)
 
     if config.run_scrape_ec:
         ec_scraper.scrape_ec(config, medicine_list, url_file, url_refused_file)
@@ -81,10 +82,10 @@ def main(config: config_objects.WebConfig):
         log.info("TASK START downloading Annex 10 Excel files from fetched urls from EC and EMA")
         download.download_annex10_files(config.path_data, annex10_file)
 
-    if config.run_download_ema_excel:
+    if ema_excel_file.load_json().get("download_excel", "False") == "True":
         log.info("TASK START downloading EMA excel file from the fetched url")
+        print("test")
         # TODO: implement functionality downloading EMA excel file
-        pass
 
     if config.run_filter:
         filter_retry.run_filter(3, config.path_data)

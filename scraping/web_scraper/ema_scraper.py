@@ -268,6 +268,49 @@ def find_last_updated_date_annex10(text: str) -> datetime:
     return datetime.strptime(updated_date, '%d/%m/%Y')
 
 
+@utils.exception_retry(logging_instance=log)
+def get_epar_excel_data(url: str, ema_excel_dict: dict[str, str]) -> dict[str, str]:
+    """
+    Gets the EMA Excel file from the EMA website. Checks whether the EMA page has been updated since last scrape cycle.
+
+    Args:
+        url (str): Link to the EMA website where the Excel sheet is stored.
+        ema_excel_dict (dict[str, str]):
+            Dictionary that contains the url to the EMA Excel file, the date the page has last been scraped, and whether
+            it should be downloaded again.
+
+
+    Returns:
+        dict[int, dict[str, str]]: Dictionary with the url to the EMA Excel file.
+    """
+    # TODO: implement functionality that handles scraping the url from the EMA website
+    html_active = utils.get_html_object(url)
+    soup = bs4.BeautifulSoup(html_active.text, html_parser_str)
+
+    # Gets the last updated date from the page
+    last_updated_date: datetime = find_last_updated_date(html_active)
+
+    # Gets the link to the EMA Excel file
+    excel_url_part: str = soup.find("a", string="Download table of all EPARs for human and veterinary "
+                                                "medicines")["href"]
+    excel_url: str = f"https://www.ema.europa.eu/en/medicines/download-medicine-data#european-public-assessment-" \
+                     f"reports-(epar)-section{excel_url_part}"
+
+    # Checks whether the Excel file needs to be downloaded again.
+    if ema_excel_dict.get("last_scrape_date", "") != "":
+        last_scrape_date: datetime = datetime.strptime(ema_excel_dict.get("last_scrape_date"), "%d/%m/%Y")
+        if last_updated_date > last_scrape_date:
+            download_excel: str = "True"
+        else:
+            download_excel: str = "False"
+    else:
+        download_excel: str = "True"
+
+    return {"url": excel_url,
+            "last_scrape_date": datetime.strftime(datetime.now(), "%d/%m/%Y"),
+            "download_excel": download_excel}
+
+
 def scrape_ema(config: config_objects.WebConfig, url_file: json_helper.JsonHelper):
     """
     Scrapes all medicine URLs and medicine data from the EMA website
@@ -275,7 +318,6 @@ def scrape_ema(config: config_objects.WebConfig, url_file: json_helper.JsonHelpe
     Args:
         config (config_objects.WebConfig): Object that contains the variables that define the behaviour of webscraper
         url_file (json_helper.JsonHelper): the dictionary containing all the urls of a specific medicine
-
     """
     log.info("Scraping all individual medicine pages of EMA")
     if not config.run_scrape_ec:
