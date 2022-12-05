@@ -101,7 +101,7 @@ class TestDownload(TestCase):
             f"can't run test, no webdata file for {eu_n}"
         med_dict = (json_helper.JsonHelper(path=f"{data_path_local}/{eu_n}/{eu_n}_webdata.json")).load_json()
         target_path = f"{data_path_local}/{eu_n}"
-        self.assertIsNone(download.download_pdfs_ema(eu_n, pdf_type, pdf_url, med_dict, {}, target_path))
+        self.assertIsNone(download.download_pdfs_ema(eu_n, pdf_type, pdf_url, med_dict, target_path, True))
 
     @parameterized.expand([["EU-1-21-1541",
                             {"ec_url": "https://ec.europa.eu/health/documents/community-register/html/h1541.htm",
