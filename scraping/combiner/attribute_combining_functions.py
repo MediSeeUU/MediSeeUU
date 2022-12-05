@@ -14,7 +14,7 @@ def get_url_date(url: str, file_dicts: dict[str, dict[str, any]]) -> str:
     try:
         pdf_dicts = file_dicts[src.web][attr.filedates_web]
         for pdf_dict_key in pdf_dicts.keys():
-            if pdf_dicts[pdf_dict_key]["pdf_link"] == link:
+            if pdf_dicts[pdf_dict_key]["pdf_link"] == url:
                 return pdf_dicts[pdf_dict_key]["pdf_date"]
     except Exception:
         return values.default_date
