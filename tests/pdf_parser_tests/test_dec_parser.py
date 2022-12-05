@@ -4,7 +4,6 @@ import fitz
 import datetime
 import scraping.pdf_parser.parsers.dec_parser as dec_parser
 import scraping.utilities.pdf.pdf_helper as pdf_helper
-import scraping.utilities.definitions.attributes as attr
 import scraping.utilities.definitions.values as values
 
 test_data_loc = "../test_data/active_withdrawn"

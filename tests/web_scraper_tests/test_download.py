@@ -6,6 +6,7 @@ from unittest import TestCase
 from scraping.web_scraper import download
 from scraping.utilities.web import json_helper
 from parameterized import parameterized
+import scraping.utilities.definitions.attributes as attr
 
 data_path = "../test_data"
 if "web_scraper_tests" in os.getcwd():
@@ -102,16 +103,16 @@ class TestDownload(TestCase):
         self.assertIsNone(download.download_pdfs_ema(eu_n, pdf_type, pdf_url, med_dict, {}, target_path))
 
     @parameterized.expand([["EU-1-21-1541",
-                            {"ec_url": "https://ec.europa.eu/health/documents/community-register/html/h1541.htm",
-                             "aut_url": ["https://ec.europa.eu/health/documents/community-register/2022/20220324154987"
+                            {attr.ec_url: "https://ec.europa.eu/health/documents/community-register/html/h1541.htm",
+                             attr.aut_url: ["https://ec.europa.eu/health/documents/community-register/2022/20220324154987"
                                          "/dec_154987_en.pdf"],
-                             "smpc_url": ["https://ec.europa.eu/health/documents/community-register/2022"
+                             attr.smpc_url: ["https://ec.europa.eu/health/documents/community-register/2022"
                                           "/20220324154987/anx_154987_en.pdf"],
-                             "ema_url": ["https://www.ema.europa.eu/en/medicines/human/EPAR/dasatinib-accordpharma"],
-                             "epar_url": "https://www.ema.europa.eu/documents/assessment-report/dasatinib-accordpharma"
+                             attr.ema_url: ["https://www.ema.europa.eu/en/medicines/human/EPAR/dasatinib-accordpharma"],
+                             attr.epar_url: "https://www.ema.europa.eu/documents/assessment-report/dasatinib-accordpharma"
                                          "-epar-public-assessment-report_en.pdf",
-                             "omar_url": "",
-                             "odwar_url": "",
+                             attr.omar_url: "",
+                             attr.odwar_url: "",
                              "other_ema_urls": []}
                             ]])
     def test_download_medicine_files(self, eu_n, url_dict):

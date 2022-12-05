@@ -3,6 +3,7 @@ from datetime import datetime
 from scraping.web_scraper import ema_scraper as em
 import scraping.utilities.web.web_utils as utils
 from parameterized import parameterized
+import scraping.utilities.definitions.attributes as attr
 
 
 class TestEMAScraper(unittest.TestCase):
@@ -65,9 +66,9 @@ class TestEMAScraper(unittest.TestCase):
         """
         html_active = utils.get_html_object(url)
         ema_links: dict = em.scrape_medicine_page(url, html_active)
-        self.assertEqual(exp_epar, ema_links.get("epar_url", ""), msg="epar is not correct")
-        self.assertEqual(exp_omar, ema_links.get("omar_url", ""), msg="omar is not correct")
-        self.assertEqual(exp_odwar, ema_links.get("odwar_url", ""), msg="odwar is not correct")
+        self.assertEqual(exp_epar, ema_links.get(attr.epar_url, ""), msg="epar is not correct")
+        self.assertEqual(exp_omar, ema_links.get(attr.omar_url, ""), msg="omar is not correct")
+        self.assertEqual(exp_odwar, ema_links.get(attr.odwar_url, ""), msg="odwar is not correct")
 
     @parameterized.expand([
         [
