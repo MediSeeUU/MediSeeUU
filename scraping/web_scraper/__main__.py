@@ -58,10 +58,6 @@ def main(config: config_objects.WebConfig):
         url_scraper.get_annex_10_urls("https://www.ema.europa.eu/en/about-us/annual-reports-work-programmes",
                                       annex10_file)
 
-    if config.run_download_ema_excel:
-        url_scraper.get_ema_excel_url("https://www.ema.europa.eu/en/medicines/download-medicine-data#european-public-"
-                                      "assessment-reports-(epar)-section", ema_excel_file)
-
     if config.run_scrape_ec:
         ec_scraper.scrape_ec(config, medicine_list, url_file, url_refused_file)
 
@@ -82,10 +78,11 @@ def main(config: config_objects.WebConfig):
         log.info("TASK START downloading Annex 10 Excel files from fetched urls from EC and EMA")
         download.download_annex10_files(config.path_data, annex10_file)
 
-    if ema_excel_file.load_json().get("download_excel", "False") == "True":
-        log.info("TASK START downloading EMA excel file from the fetched url")
-        print("test")
-        # TODO: implement functionality downloading EMA excel file
+    if config.run_download_ema_excel:
+        if ema_scraper.get_epar_excel_url("https://www.ema.europa.eu/en/medicines/download-medicine-data#european-"
+                                          "public-assessment-reports-(epar)-section", ema_excel_file):
+            log.info("TASK START downloading EMA excel file from the fetched url")
+            download.download_ema_excel_file(config.path_data, ema_excel_file)
 
     if config.run_filter:
         filter_retry.run_filter(3, config.path_data)

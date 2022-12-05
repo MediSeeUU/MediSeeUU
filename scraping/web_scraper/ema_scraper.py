@@ -269,21 +269,20 @@ def find_last_updated_date_annex10(text: str) -> datetime:
 
 
 @utils.exception_retry(logging_instance=log)
-def get_epar_excel_data(url: str, ema_excel_dict: dict[str, str]) -> dict[str, str]:
+def get_epar_excel_url(url: str, ema_excel_json_helper: json_helper.JsonHelper) -> bool:
     """
-    Gets the EMA Excel file from the EMA website. Checks whether the EMA page has been updated since last scrape cycle.
+    Gets the EMA Excel file from the EMA website. Checks whether the EMA page has been updated since last scrape cycle,
+    and returns whether it should download from the dictionary.
 
     Args:
         url (str): Link to the EMA website where the Excel sheet is stored.
-        ema_excel_dict (dict[str, str]):
-            Dictionary that contains the url to the EMA Excel file, the date the page has last been scraped, and whether
-            it should be downloaded again.
-
+        ema_excel_json_helper (json_helper.JsonHelper):
+            JsonHelper object that contains the url to the EMA Excel file, the date the page has last been scraped,
+            and whether it should be downloaded again.
 
     Returns:
-        dict[int, dict[str, str]]: Dictionary with the url to the EMA Excel file.
+        bool: Whether the Excel file should be downloaded (again)
     """
-    # TODO: implement functionality that handles scraping the url from the EMA website
     html_active = utils.get_html_object(url)
     soup = bs4.BeautifulSoup(html_active.text, html_parser_str)
 
@@ -293,22 +292,27 @@ def get_epar_excel_data(url: str, ema_excel_dict: dict[str, str]) -> dict[str, s
     # Gets the link to the EMA Excel file
     excel_url_part: str = soup.find("a", string="Download table of all EPARs for human and veterinary "
                                                 "medicines")["href"]
-    excel_url: str = f"https://www.ema.europa.eu/en/medicines/download-medicine-data#european-public-assessment-" \
-                     f"reports-(epar)-section{excel_url_part}"
+    excel_url: str = f"https://www.ema.europa.eu{excel_url_part}"
+    ema_excel_dict: dict[str, str] = ema_excel_json_helper.load_json()
 
     # Checks whether the Excel file needs to be downloaded again.
     if ema_excel_dict.get("last_scrape_date", "") != "":
         last_scrape_date: datetime = datetime.strptime(ema_excel_dict.get("last_scrape_date"), "%d/%m/%Y")
         if last_updated_date > last_scrape_date:
-            download_excel: str = "True"
+            download_excel: bool = True
         else:
-            download_excel: str = "False"
+            download_excel: bool = False
     else:
-        download_excel: str = "True"
+        download_excel: bool = True
 
-    return {"url": excel_url,
-            "last_scrape_date": datetime.strftime(datetime.now(), "%d/%m/%Y"),
-            "download_excel": download_excel}
+    # Saves the (new) url and the scrape date to the dictionary
+    ema_excel_json_helper.overwrite_dict({
+        "url": excel_url,
+        "last_scrape_date": datetime.strftime(datetime.now(), "%d/%m/%Y")
+    })
+    ema_excel_json_helper.save_dict()
+
+    return download_excel
 
 
 def scrape_ema(config: config_objects.WebConfig, url_file: json_helper.JsonHelper):

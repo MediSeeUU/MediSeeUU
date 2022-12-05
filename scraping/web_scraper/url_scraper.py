@@ -35,20 +35,6 @@ def get_annex_10_urls(url: str, annex_dict: json_helper.JsonHelper):
     log.info("TASK FINISHED annex10 scrape")
 
 
-def get_ema_excel_url(url: str, ema_excel_dict: json_helper.JsonHelper):
-    """
-    Gets the EMA Excel url from the EMA website
-
-    Args:
-        url (str): Link to where the EMA Excel file is stored.
-        ema_excel_dict (json_helper.JsonHelper): Dictionary that contains the link to the EMA Excel file.
-    """
-    log.info("TASK START scraping the EMA Excel url from the EMA website")
-    ema_excel_url: dict[str, str] = ema_scraper.get_epar_excel_data(url, ema_excel_dict.load_json())
-    ema_excel_dict.overwrite_dict(ema_excel_url)
-    ema_excel_dict.save_dict()
-    log.info("TASK FINISHED EMA Excel url scrape")
-
 # Paralleled function for getting the URL codes. They are written to a JSON file
 # TODO: unmarked type for medicine_type
 @utils.exception_retry(logging_instance=log)
