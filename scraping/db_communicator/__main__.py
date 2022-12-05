@@ -1,6 +1,9 @@
 import json
 import os
 from .db_communicator import DbCommunicator
+import logging
+
+log = logging.getLogger("db_communicator")
 
 
 def main(directory: str):
@@ -24,4 +27,4 @@ def main(directory: str):
                     json_data = json.dumps(json_string)
                     db_communicator.send_data(data=json_data)
                     medicine_no += 1
-    print(str(medicine_no) + " medicines send to the database")
+    log.info(str(medicine_no) + " medicines send to the database")

@@ -1,4 +1,5 @@
 # EPAR parser
+from datetime import datetime
 import re
 from scraping.utilities.pdf import helper as helper
 import scraping.utilities.xml.xml_parsing_utils as xml_utils
@@ -7,7 +8,7 @@ import scraping.pdf_parser.parsed_info_struct as pis
 from scraping.utilities.pdf import pdf_helper as pdf_helper
 import logging
 import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.value as values
+import scraping.utilities.definitions.values as values
 import os.path as path
 
 date_pattern: str = r"\d{1,2} \b(?!emea\b)\w+ \d{4}|\d{1,2}\w{2} \b(?!emea\b)\w+ \d{4}"  # DD/MONTH/YYYY
@@ -69,7 +70,7 @@ def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStr
     return medicine_struct
 
 
-def get_date(xml: ET.Element) -> str:
+def get_date(xml: ET.Element) -> datetime | str:
     """
     Gets the attribute ema_procedure_start_initial
     The initial authorization date of the EMA
@@ -78,7 +79,7 @@ def get_date(xml: ET.Element) -> str:
         xml (ET.Element): the contents of the XML file
 
     Returns:
-        str: the attribute ema_procedure_start_initial - a string of a date in DD/MM/YYYY format
+        datetime | str: the attribute ema_procedure_start_initial - a string of a date in DD/MM/YYYY format
     """
     regex_date = re.compile(date_pattern)
     regex_ema = re.compile(r"the application was received by the em\w+ on")
@@ -103,7 +104,7 @@ def get_date(xml: ET.Element) -> str:
     return values.not_found
 
 
-def get_opinion_date(xml: ET.Element) -> str:
+def get_opinion_date(xml: ET.Element) -> datetime | str:
     """
     Gets the attribute chmp_opinion_date
     The date of the CHMP opinion on the medicine
@@ -112,13 +113,12 @@ def get_opinion_date(xml: ET.Element) -> str:
         xml (ET.Element): the contents of the XML file
 
     Returns:
-        str: the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format
+        datetime | str: the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format
     """
     not_easily_scrapeable = False
     for p in xml_utils.get_paragraphs_by_header(steps_taken_assessment_str, xml):
         if re.findall(date_pattern, p):
-            date = helper.convert_months(re.findall(date_pattern, p)[-1])
-            return date
+            return helper.convert_months(re.findall(date_pattern, p)[-1])
         # Section is found and should always contain the CHMP opinion date
         not_easily_scrapeable = True
     # Look below rapporteur in steps taken for the assessment when not found by default method
@@ -138,11 +138,11 @@ def get_opinion_date(xml: ET.Element) -> str:
         if below_rapp and re.findall(date_pattern, txt):
             date = helper.convert_months(re.findall(date_pattern, txt)[-1])
         if below_rapp and ("scientific discussion" in txt and elem.tag == "header" or txt == "scientific discussion"):
-            if date != "":
+            if date and date != values.not_found:
                 return date
             else:
                 return values.not_scrapeable
-    if date != "":
+    if date and date != values.not_found:
         return date
     elif not_easily_scrapeable:
         return values.not_scrapeable
@@ -235,7 +235,8 @@ def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_y
             bool: True if scraped date is before given date, False otherwise
         """
     date = get_date(xml)
-    if date != values.not_found and date != values.not_scrapeable and len(date.split("/")) >= 3:
+    if date != values.not_found and date != values.not_scrapeable:
+        date = date.strftime("%d/%m/%Y")
         day = int(''.join(filter(str.isdigit, date.split("/")[0])))
         month = int(date.split("/")[1])
         year = int(date.split("/")[2])

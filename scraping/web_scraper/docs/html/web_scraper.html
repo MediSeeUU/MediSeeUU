@@ -82,7 +82,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.download">web_scraper.download module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_all"><code class="docutils literal notranslate"><span class="pre">download_all()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_annex10_files"><code class="docutils literal notranslate"><span class="pre">download_annex10_files()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_medicine_files"><code class="docutils literal notranslate"><span class="pre">download_medicine_files()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_pdfs_ec"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ec()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.download.download_pdfs_ema"><code class="docutils literal notranslate"><span class="pre">download_pdfs_ema()</span></code></a></li>
@@ -115,15 +114,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ema_scraper.find_last_updated_date"><code class="docutils literal notranslate"><span class="pre">find_last_updated_date()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ema_scraper.find_last_updated_date_annex10"><code class="docutils literal notranslate"><span class="pre">find_last_updated_date_annex10()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ema_scraper.find_priority_link"><code class="docutils literal notranslate"><span class="pre">find_priority_link()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#web_scraper.ema_scraper.get_annex10_data"><code class="docutils literal notranslate"><span class="pre">get_annex10_data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ema_scraper.get_url_type"><code class="docutils literal notranslate"><span class="pre">get_url_type()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ema_scraper.scrape_ema"><code class="docutils literal notranslate"><span class="pre">scrape_ema()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.ema_scraper.scrape_medicine_page"><code class="docutils literal notranslate"><span class="pre">scrape_medicine_page()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-web_scraper.filter_retry">web_scraper.filter_retry module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#web_scraper.filter_retry.retry_all"><code class="docutils literal notranslate"><span class="pre">retry_all()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.filter_retry.retry_download"><code class="docutils literal notranslate"><span class="pre">retry_download()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web_scraper.filter_retry.retry_medicine"><code class="docutils literal notranslate"><span class="pre">retry_medicine()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web_scraper.filter_retry.run_filter"><code class="docutils literal notranslate"><span class="pre">run_filter()</span></code></a></li>
 </ul>
 </li>
@@ -203,20 +201,6 @@ First it reads the CSV files, and then calls download_medicine_files function fo
 <li><p><strong>data_filepath</strong> (<em>str</em>) – the path to the data folder</p></li>
 <li><p><strong>urls_dict</strong> (<em>json_helper.JsonHelper</em>) – The dictionary containing the urls of all medicine files</p></li>
 <li><p><strong>parallel_download</strong> (<em>bool</em>) – If this boolean is set to True, the files will be downloaded parallel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="web_scraper.download.download_annex10_files">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.download.</span></span><span class="sig-name descname"><span class="pre">download_annex10_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urls_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JsonHelper</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.download.download_annex10_files" title="Permalink to this definition"></a></dt>
-<dd><p>Downloads all the Annex 10 files from the EC website</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data_filepath</strong> (<em>str</em>) – Path to the data folder</p></li>
-<li><p><strong>urls_dict</strong> – The dictionary containing the URLs of the Annex 10 files.</p></li>
 </ul>
 </dd>
 </dl>
@@ -714,30 +698,6 @@ with all the links to the EMA.</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="web_scraper.ema_scraper.get_annex10_data">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.ema_scraper.</span></span><span class="sig-name descname"><span class="pre">get_annex10_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annex_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#web_scraper.ema_scraper.get_annex10_data" title="Permalink to this definition"></a></dt>
-<dd><p>Gets all the annex 10 files from the EMA website.</p>
-<p>The website is scraped for all annex 10 files. Whenever this scraper runs, it checks whether it has to
-update the links in the dictionary, based on whether the document on the site was updated or not. It also
-adds new links to the Excel documents if it finds these</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>url</strong> (<em>str</em>) – Link to the EMA website that contains all annex 10 files</p></li>
-<li><p><strong>annex_dict</strong> (<em>dict</em><em>[</em><em>int</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>) – Dictionary that contains links to the annex files per year
-and when they were last updated</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Amended annex_dict</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict[int, dict[str, str]]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.ema_scraper.get_url_type">
 <span class="sig-prename descclassname"><span class="pre">web_scraper.ema_scraper.</span></span><span class="sig-name descname"><span class="pre">get_url_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epar_priority_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odwar_priority_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omar_priority_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#web_scraper.ema_scraper.get_url_type" title="Permalink to this definition"></a></dt>
 <dd><p>Gets the file type of a given URL</p>
@@ -802,23 +762,6 @@ are excluded from this list.</p>
 <section id="module-web_scraper.filter_retry">
 <span id="web-scraper-filter-retry-module"></span><h2>web_scraper.filter_retry module<a class="headerlink" href="#module-web_scraper.filter_retry" title="Permalink to this heading"></a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="web_scraper.filter_retry.retry_all">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.filter_retry.</span></span><span class="sig-name descname"><span class="pre">retry_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JsonHelper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_refused_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JsonHelper</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.filter_retry.retry_all" title="Permalink to this definition"></a></dt>
-<dd><p>For every line in filter.txt, it scrapes the urls again.
-It also calls the download function for the specific file again</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filter_path</strong> (<em>str</em>) – path to filter file</p></li>
-<li><p><strong>url_file</strong> (<em>json_helper.JsonHelper</em>) – the dictionary with all the urls</p></li>
-<li><p><strong>data_filepath</strong> (<em>str</em>) – the path to the data folder</p></li>
-<li><p><strong>url_refused_file</strong> (<em>json_helper.JsonHelper</em>) – dictionary with all refused urls</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.filter_retry.retry_download">
 <span class="sig-prename descclassname"><span class="pre">web_scraper.filter_retry.</span></span><span class="sig-name descname"><span class="pre">retry_download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.filter_retry.retry_download" title="Permalink to this definition"></a></dt>
 <dd><p>Calls the download function for a specific file</p>
@@ -829,6 +772,23 @@ It also calls the download function for the specific file again</p>
 <li><p><strong>filename_elements</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – filename elements, used as parameter in the download function</p></li>
 <li><p><strong>url_dict</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>list</em><em>[</em><em>str</em><em>]</em><em>] </em><em>| </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – dictionary that contains the url where to download from</p></li>
 <li><p><strong>data_filepath</strong> (<em>str</em>) – the path to the data folder</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="web_scraper.filter_retry.retry_medicine">
+<span class="sig-prename descclassname"><span class="pre">web_scraper.filter_retry.</span></span><span class="sig-name descname"><span class="pre">retry_medicine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JsonHelper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_refused_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JsonHelper</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#web_scraper.filter_retry.retry_medicine" title="Permalink to this definition"></a></dt>
+<dd><p>For every line in filter.txt, it scrapes the urls again.
+It also calls the download function for the specific file again</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter_line</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – line in filter.txt containing the EU number of medicine to download again</p></li>
+<li><p><strong>url_file</strong> (<em>json_helper.JsonHelper</em>) – the dictionary with all the urls</p></li>
+<li><p><strong>data_filepath</strong> (<em>str</em>) – the path to the data folder</p></li>
+<li><p><strong>url_refused_file</strong> (<em>json_helper.JsonHelper</em>) – dictionary with all refused urls</p></li>
 </ul>
 </dd>
 </dl>

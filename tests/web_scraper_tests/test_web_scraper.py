@@ -8,22 +8,23 @@ from unittest import TestCase
 
 import scraping.utilities.web.config_objects as config
 from scraping.web_scraper import __main__ as web
-import scraping.utilities.log.log_tools as log_setup
+from scraping.utilities.log import log_tools
+from scraping.utilities.io import safe_io
 from parameterized import parameterized
+import scraping.utilities.definitions.attributes as attr
 
 data_path = "../test_data"
 if "web_scraper_tests" in os.getcwd():
     data_path = "../../test_data"
 data_path_local = f"{data_path}/active_withdrawn"
 
-if not path.isdir(data_path):
-    os.mkdir(data_path)
+safe_io.create_folder(data_path)
 
 json_path = "web_scraper_tests/"
 if "web_scraper_tests" in os.getcwd():
     json_path = ""
 
-parent_path = "/".join((data_path.split("/")[:-1]))
+parent_path = "/".join((data_path.split('/')[:-1]))
 filter_path = f"{parent_path}/tests/logs/txt_files/filter.txt"
 
 
@@ -51,8 +52,6 @@ class TestWebScraper(TestCase):
     """
     Class that runs web, mostly checks if files get downloaded
     """
-
-    # Rename data to data_old
     @classmethod
     def setUpClass(cls):
         """
@@ -61,20 +60,16 @@ class TestWebScraper(TestCase):
         config.default_path_data = data_path
         config.default_path_logging = f"{parent_path}/tests/logs/log_files"
 
-        if os.path.exists(f"{parent_path}/tests/logs/log_files"):
-            shutil.rmtree(f"{parent_path}/tests/logs/log_files")
-        if os.path.exists(f"{parent_path}/tests/logs/txt_files"):
-            shutil.rmtree(f"{parent_path}/tests/logs/txt_files")
+        log_files_folder = f"{parent_path}/tests/logs/log_files"
+        txt_files_folder = f"{parent_path}/tests/logs/txt_files"
+        safe_io.delete_folder(log_files_folder)
+        safe_io.delete_folder(txt_files_folder)
 
-        log_setup.init_loggers()
+        log_tools.init_loggers()
 
-        if not os.path.exists(f"{data_path}_old"):
-            os.rename(data_path, f"{data_path}_old")
-        if not path.isdir(data_path):
-            os.mkdir(data_path)
-        if not path.isdir(data_path_local):
-            os.mkdir(data_path_local)
-        os.mkdir(f"{parent_path}/tests/logs/txt_files")
+        safe_io.rename(data_path, f"{data_path}_old")
+        safe_io.create_folder(data_path)
+        safe_io.create_folder(data_path_local)
 
         Path(f"{json_path}JSON").mkdir(parents=True, exist_ok=True)
 
@@ -82,8 +77,8 @@ class TestWebScraper(TestCase):
         """
         Create required folders for data and logs
         """
-        shutil.rmtree(data_path_local)
-        os.mkdir(data_path_local)
+        safe_io.delete_folder(data_path_local)
+        safe_io.create_folder(data_path_local)
 
     medicine_list_checks = \
         [('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
@@ -149,7 +144,7 @@ class TestWebScraper(TestCase):
 
         with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
-        assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url', 'odwar_url', 'other_ema_urls']), \
+        assert all(x in list(url_dict.keys()) for x in [attr.epar_url, attr.omar_url, attr.odwar_url, attr.other_ema_urls]), \
             "ema urls not in urls.json"
 
     def run_download(self):
@@ -168,15 +163,15 @@ class TestWebScraper(TestCase):
         # check if all files from urls.json are downloaded:
         with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
-        filecount = len(url_dict["aut_url"]) + len(url_dict["smpc_url"])
+        filecount = len(url_dict["aut_url"]) + len(url_dict[attr.smpc_url])
 
-        if url_dict["epar_url"]:
+        if url_dict[attr.epar_url]:
             filecount += 1
-        if url_dict["omar_url"]:
+        if url_dict[attr.omar_url]:
             filecount += 1
-        if url_dict["odwar_url"]:
+        if url_dict[attr.odwar_url]:
             filecount += 1
-        for _ in url_dict["other_ema_urls"]:
+        for _ in url_dict[attr.other_ema_urls]:
             filecount += 1
         print(url_dict)
         print(os.listdir(data_folder))
@@ -205,5 +200,5 @@ class TestWebScraper(TestCase):
         """
         Runs after class is run, makes sure test data is deleted and backup data is set back to its original place
         """
-        shutil.rmtree(data_path)
-        os.rename(f"{data_path}_old", data_path)
+        safe_io.delete_folder(data_path)
+        safe_io.rename(f"{data_path}_old", data_path)

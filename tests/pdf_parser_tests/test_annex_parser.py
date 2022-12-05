@@ -4,7 +4,7 @@ import os.path as path
 import json
 import scraping.pdf_parser.__main__ as pdf_parser
 import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.value as values
+import scraping.utilities.definitions.values as values
 
 test_data_folder_path = "pdf_parser_tests/test_annex_parse_data"
 if "pdf_parser_tests" in os.getcwd():

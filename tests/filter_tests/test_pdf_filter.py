@@ -4,7 +4,8 @@ from distutils.dir_util import copy_tree
 from unittest import TestCase
 
 from scraping.filter import filter
-import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.log import log_tools
+from scraping.utilities.io import safe_io
 
 test_data_loc = "../test_data_filter/active_withdrawn"
 test_data_filter_loc = "../test_data_filter/active_withdrawn_temp"
@@ -41,10 +42,8 @@ class TestFilter(TestCase):
         copy_tree(test_data_loc, test_data_filter_loc)
         parent_path = "/".join((test_data_path.strip('/').split('/')[:-1]))
         logs_path = f"{parent_path}/tests/logs"
-        if not os.path.isdir(logs_path):
-            os.mkdir(logs_path)
-        if not os.path.isdir(f"{logs_path}/txt_files"):
-            os.mkdir(f"{logs_path}/txt_files")
+        safe_io.create_folder(logs_path)
+        safe_io.create_folder(f"{logs_path}/txt_files")
 
     def test_pdf_filter_length(self):
         """
@@ -56,7 +55,7 @@ class TestFilter(TestCase):
             filtered_files = file.read().split("\n")
         filtered_count = len([file for file in filtered_files if len(file) > 1])
         removed_files = get_removed_files()
-        print(removed_files)
+        print(f"Removed files: {removed_files}")
         self.assertEqual(filtered_count, len(removed_files))
 
     def test_pdf_filter_writing(self):

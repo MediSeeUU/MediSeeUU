@@ -5,6 +5,8 @@ import requests
 import scraping.utilities.web.web_utils as utils
 from scraping.utilities.web.medicine_type import MedicineType
 from scraping.web_scraper import ec_scraper as ec
+import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.definitions.values as values
 from parameterized import parameterized
 import os
 
@@ -33,7 +35,7 @@ class TestEcScraper(unittest.TestCase):
         check = re.findall(r"[(ho]\d+", first_url)[0]
         self.assertEqual(check, first_url, msg="first url not in correct format")
         last_url = url_list[-1][3]
-        print(last_url)
+        print(f"Last url: {last_url}")
         check = re.findall(r"h*[ho]\d+", last_url)[0]
         self.assertEqual(check, last_url, msg="last url not in correct format")
 
@@ -61,7 +63,7 @@ class TestEcScraper(unittest.TestCase):
         ],
         [
             "o1230",
-            "not applicable",
+            values.not_found,
             "(2R,3R,4S,5R)-2-(6-amino-9H-purin-9-yl)-5-((((1r,3S)-3-(2-(5-(tert-butyl)-1H-benzo[d]imidazol-2-yl)ethyl)"
             "cyclobutyl)(isopropyl) amino)methyl)tetrahydrofuran-3,4-diol",
             "EU/3/13/1230",
@@ -105,17 +107,17 @@ class TestEcScraper(unittest.TestCase):
         medicine_json, *_ = ec.get_ec_json_objects(html_active)
         medicine_dict, _ = ec.get_data_from_medicine_json(medicine_json, eu_num_short, medicine_type)
 
-        self.assertEqual(medicine_dict["atc_code"], exp_atc_code, msg="atc codes are not equal")
-        self.assertEqual(medicine_dict["active_substance"], exp_active_substance, msg="active substances are not equal")
+        self.assertEqual(medicine_dict[attr.atc_code], exp_atc_code, msg="atc codes are not equal")
+        self.assertEqual(medicine_dict[attr.active_substance], exp_active_substance, msg="active substances are not equal")
         # check orphan specific attributes for orphan medicines, and human specific attributes for human medicines
         if "o" in eu_num_short:
-            self.assertEqual(medicine_dict["eu_od_number"], exp_eu_number, msg="product numbers are not equal")
-            self.assertEqual(medicine_dict["sponsor"], exp_eu_mah_current, msg="current mahs are not equal")
+            self.assertEqual(medicine_dict[attr.eu_od_number], exp_eu_number, msg="product numbers are not equal")
+            self.assertEqual(medicine_dict[attr.eu_od_sponsor], exp_eu_mah_current, msg="current mahs are not equal")
         else:
-            self.assertEqual(medicine_dict["eu_pnumber"], exp_eu_number, msg="product numbers are not equal")
-            self.assertEqual(medicine_dict["eu_mah_current"], exp_eu_mah_current, msg="current mahs are not equal")
-        self.assertEqual(medicine_dict["eu_aut_status"], exp_eu_aut_status, msg="authorization statuses are not equal")
-        self.assertEqual(medicine_dict["eu_brand_name_current"], exp_eu_brand_name_current, msg="current brand names "
+            self.assertEqual(medicine_dict[attr.eu_pnumber], exp_eu_number, msg="product numbers are not equal")
+            self.assertEqual(medicine_dict[attr.eu_mah_current], exp_eu_mah_current, msg="current mahs are not equal")
+        self.assertEqual(medicine_dict[attr.eu_aut_status], exp_eu_aut_status, msg="authorization statuses are not equal")
+        self.assertEqual(medicine_dict[attr.eu_brand_name_current], exp_eu_brand_name_current, msg="current brand names "
                                                                                                 "are not equal")
 
     @parameterized.expand([
@@ -157,8 +159,8 @@ class TestEcScraper(unittest.TestCase):
             f"https://ec.europa.eu/health/documents/community-register/html/{eu_num_short}.htm")
         _, procedures_json, *_ = ec.get_ec_json_objects(html_active)
         procedures_dict, *_ = ec.get_data_from_procedures_json(procedures_json, eu_num_short, data_path)
-        self.assertEqual(procedures_dict["eu_aut_date"], exp_eu_aut_date, msg="authorization dates are not equal")
-        self.assertEqual(procedures_dict["eu_aut_type_initial"], exp_aut_type_initial, msg="not equal")
+        self.assertEqual(procedures_dict[attr.eu_aut_date], exp_eu_aut_date, msg="authorization dates are not equal")
+        self.assertEqual(procedures_dict[attr.eu_aut_type_initial], exp_aut_type_initial, msg="not equal")
         # assert procedures_dict["eu_aut_date"] == exp_eu_aut_date
         # assert procedures_dict["eu_aut_type_initial"] == exp_aut_type_initial
         # assert procedures_dict["eu_aut_type_current"] = exp_aut_type_current
@@ -262,20 +264,20 @@ class TestEcScraper(unittest.TestCase):
         [
             [
                 [],
-                "standard"
+                values.aut_type_standard
             ],
             [
                 ["Annual Renewal"],
-                "conditional"
+                values.aut_type_conditional
             ],
             [
                 ["Annual Reassessment"],
-                "exceptional"
+                values.aut_type_exceptional
             ],
             [
                 ["something else",
                  "bla bla"],
-                "standard"
+                values.aut_type_standard
             ]
         ]
     )
@@ -299,31 +301,31 @@ class TestEcScraper(unittest.TestCase):
             2005,
             True,
             False,
-            "pre_2006"
+            values.NA_before
         ],
         [
             2007,
             False,
             False,
-            "standard"
+            values.aut_type_standard
         ],
         [
             2008,
             True,
             False,
-            "exceptional"
+            values.aut_type_exceptional
         ],
         [
             2009,
             False,
             True,
-            "conditional"
+            values.aut_type_conditional
         ],
         [
             2010,
             True,
             True,
-            "exceptional_conditional"
+            values.authorization_type_unknown
         ]
     ])
     def test_determine_initial_aut_type(self, year, is_exceptional, is_conditional, exp_output):
