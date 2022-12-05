@@ -57,6 +57,10 @@ def main(config: config_objects.WebConfig):
         url_scraper.get_annex_10_urls("https://www.ema.europa.eu/en/about-us/annual-reports-work-programmes",
                                       annex10_file)
 
+    if config.run_download_ema_excel:
+        # TODO: implement functionality that handles scraping the url from the EMA website
+        pass
+
     if config.run_scrape_ec:
         ec_scraper.scrape_ec(config, medicine_list, url_file, url_refused_file)
 
@@ -76,6 +80,11 @@ def main(config: config_objects.WebConfig):
     if config.run_download_annex10:
         log.info("TASK START downloading Annex 10 Excel files from fetched urls from EC and EMA")
         download.download_annex10_files(config.path_data, annex10_file)
+
+    if config.run_download_ema_excel:
+        log.info("TASK START downloading EMA excel file from the fetched url")
+        # TODO: implement functionality downloading EMA excel file
+        pass
 
     if config.run_filter:
         filter_retry.run_filter(3, config.path_data)
