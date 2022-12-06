@@ -6,7 +6,7 @@ def get_initial_history_columns(model: models.Model) -> list[str]:
     """
 
     Args:
-        model_list:
+        model:
 
     Returns:
 

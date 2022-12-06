@@ -3,6 +3,37 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from collections import OrderedDict
 from django.db.models import Model
+from typing import Tuple
+
+
+def serialize_data(mixin: object, obj: Model, attribute_name: str, many: bool = False) \
+        -> list[Tuple[str, OrderedDict[str, str]]]:
+    """
+
+    Args:
+        mixin:
+        obj:
+        attribute_name:
+        many:
+
+    Returns:
+
+    """
+
+    result = []
+    if hasattr(mixin.Meta, attribute_name):
+        # Iterate the specified related objects with their serializer
+        for field, serializer_class in getattr(mixin.Meta, attribute_name):
+            # Check if the model has a relation to the field
+            if hasattr(obj, field):
+                obj_field = getattr(obj, field)
+                # If relation is not null
+                if obj_field:
+                    # Serialize data
+                    serializer = serializer_class(context=mixin.context, many=many)
+                    obj_rep = serializer.to_representation(obj_field)
+                    result.append((field, obj_rep))
+    return result
 
 
 class RelatedMixin:
@@ -34,17 +65,12 @@ class RelatedMixin:
         """
         # Get the current object representation
         representation = super().to_representation(obj)
-        if hasattr(self.Meta, "related"):
-            # Iterate the specified related objects with their serializer
-            for field, serializer_class in self.Meta.related:
-                if hasattr(obj, field):
-                    serializer = serializer_class(context=self.context)
-                    obj_rep = serializer.to_representation(getattr(obj, field))
-                    if field in representation:
-                        representation.pop(field)
-                    # Include their fields, prefixed, in the current representation
-                    for key in obj_rep:
-                        representation[key] = obj_rep[key]
+        serialized_data = serialize_data(self, obj, "related")
+        for field, obj_rep in serialized_data:
+            if field in representation:
+                representation.pop(field)
+            for key in obj_rep:
+                representation[key] = obj_rep[key]
         return representation
 
 
@@ -76,16 +102,12 @@ class ListMixin:
         """
         # Get the current object representation
         representation = super().to_representation(obj)
-        if hasattr(self.Meta, "list"):
-            # Iterate the specified related objects with their serializer
-            for field, serializer_class in self.Meta.list:
-                if hasattr(obj, field):
-                    serializer = serializer_class(context=self.context, many=True)
-                    obj_rep = serializer.to_representation(getattr(obj, field))
-                    representation[field] = []
-                    for key in obj_rep:
-                        for value in key.values():
-                            representation[field].append(value)
+        serialized_data = serialize_data(self, obj, "list", True)
+        for field, obj_rep in serialized_data:
+            representation[field] = []
+            for key in obj_rep:
+                for value in key.values():
+                    representation[field].append(value)
         return representation
 
 
@@ -124,15 +146,20 @@ class HistoryMixin:
         """
         # Get the current object representation
         representation = super().to_representation(obj)
-        if hasattr(self.Meta, "history"):
+
+        initial_serialized_data = serialize_data(self, obj, "initial_history")
+        for field, obj_rep in initial_serialized_data:
+            if field in representation:
+                representation.pop(field)
+            for key in obj_rep:
+                representation[field] = obj_rep[key]
+
+        if hasattr(self.Meta, "current_history"):
             # Iterate the specified history objects with their serializer
-            for field, serializer_class, initial, current in self.Meta.history:
+            for field, serializer_class in self.Meta.current_history:
                 if hasattr(obj, field):
                     history = getattr(obj, field).all().order_by("change_date")
                     data = serializer_class(history, many=True).data
                     if data:
-                        if initial:
-                            representation[f"{field}_initial"] = next(iter(data))[field]
-                        if current:
-                            representation[f"{field}_current"] = next(reversed(data))[field]
+                        representation[field] = next(reversed(data))[field]
         return representation
