@@ -34,15 +34,16 @@ def run_all():
     data_folder_directory = create_data_folders()
 
     # Standard config is to run all. Uncomment line below to use custom setup.
-    web_config = config_objects.WebConfig().run_all().set_parallel()
+    # web_config = config_objects.WebConfig().run_all().set_parallel()
+    web_config = config_objects.WebConfig().run_custom(download_annex10=True).set_parallel()
     # web_config = config_objects.WebConfig().run_custom(scrape_ec=True, scrape_ema=True).set_parallel()
 
     # Any module can be commented or uncommented here, as the modules they work separately
     # web_scraper.main(web_config)
     # xml_converter.main(data_folder_directory)
-    # pdf_parser.main(data_folder_directory)
+    # pdf_parser.main(data_folder_directory, True)
     # annex_10_parser.main(data_folder_directory)
-    combiner.main(path.join(data_folder_directory, "active_withdrawn"))
+    combiner.main(path.join(data_folder_directory))
     # db_communicator_main.main(data_folder_directory)
 
 
