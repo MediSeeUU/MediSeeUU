@@ -9,29 +9,24 @@ import pandas as pd
 log = logging.getLogger("combiner")
 
 # TODO: remove try catch
-
-def get_url_date(url: str, file_dicts: dict[str, dict[str, any]]) -> str:
-    try:
-        pdf_dicts = file_dicts[src.web][attr.filedates_web]
-        for pdf_dict_key in pdf_dicts.keys():
-            if pdf_dicts[pdf_dict_key]["pdf_link"] == url:
-                return pdf_dicts[pdf_dict_key]["pdf_date"]
-    except Exception:
-        return values.default_date
-
-
 def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]) -> str:
+    print("date search")
     if source_string == src.web:
+        print("web")
         try:
             return file_dicts[src.web][attr.scrape_date_web]
         except Exception:
             return values.default_date
     else:
+        print("non_web")
         try:
             file_name = file_dicts[source_string][attr.pdf_file]
-            return file_dicts[src.web][file_name][attr.meta_file_date]
+            print("filename:", file_name)
+            print("filedate:", file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date])
+            return file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date]
         except Exception:
             return values.default_date
+    
 
 
 def check_all_equal(values: list[any]) -> bool:
