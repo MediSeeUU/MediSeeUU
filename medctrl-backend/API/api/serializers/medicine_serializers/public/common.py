@@ -4,7 +4,7 @@
 from collections import OrderedDict
 from django.db.models import Model
 from typing import Tuple
-from api.models.get_dashboard_columns import get_current_history_name
+from api.models.get_dashboard_columns import get_data_key
 
 
 def serialize_data(mixin: object, model: Model, attribute_name: str, many: bool = False) \
@@ -162,6 +162,6 @@ class HistoryMixin:
                     history = getattr(obj, field).all().order_by("change_date")
                     data = serializer_class(history, many=True).data
                     if data:
-                        field_name = get_current_history_name(serializer_class.Meta.model, field)
+                        field_name = get_data_key(serializer_class.Meta.model, field)
                         representation[field_name] = next(reversed(data))[field]
         return representation

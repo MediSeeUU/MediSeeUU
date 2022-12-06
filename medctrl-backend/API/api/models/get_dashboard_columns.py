@@ -20,7 +20,7 @@ def get_initial_history_columns(model: models.Model) -> list[str]:
     return result
 
 
-def get_current_history_name(model: models.Model, field_name: str):
+def get_data_key(model: models.Model, field_name: str) -> str:
     for field in model._meta.get_fields():
         if field.name == field_name and hasattr(field, "dashboard_column"):
             return field.dashboard_column.get_data_key(field.name)
