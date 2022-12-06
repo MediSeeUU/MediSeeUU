@@ -2,6 +2,7 @@ import scraping.utilities.definitions.values as values
 import scraping.utilities.definitions.sources as src
 import scraping.utilities.definitions.attributes as attr
 from difflib import SequenceMatcher as SM
+import datetime
 import logging
 import json
 import pandas as pd
@@ -10,24 +11,18 @@ log = logging.getLogger("combiner")
 
 # TODO: remove try catch
 def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]) -> str:
-    print("date search")
     if source_string == src.web:
-        print("web")
         try:
             return file_dicts[src.web][attr.scrape_date_web]
         except Exception:
             return values.default_date
     else:
-        print("non_web")
         try:
             file_name = file_dicts[source_string][attr.pdf_file]
-            print("filename:", file_name)
-            print("filedate:", file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date])
             return file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date]
         except Exception:
             return values.default_date
     
-
 
 def check_all_equal(values: list[any]) -> bool:
     """
@@ -123,17 +118,37 @@ def combine_select_string_overlap(attribute_name: str, sources: list[str], file_
     return (values.insufficient_overlap, get_attribute_date(sources[0], file_dicts))
 
 
-def combine_get_file_url(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]):
-    print("search_url")
+def combine_get_file_url(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> str:
     try:
         for source in sources:
-            print(file_dicts[src.web][attr.filedates_web])
-            print(file_dicts[source][attr.pdf_file])
             return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["file_link"]
     except Exception:
-        print("failed")
+        print("failed to get url")
+        return values.url_not_found
 
     return values.url_not_found
+
+def combine_decision_time_days(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> str:
+    if file_dicts[src.epar].keys() == []:
+        print("no epar")
+        return values.default_date
+
+    try:
+        print("wel epar ja", file_dicts[src.epar])
+        initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
+        print("initial_chmp_opinion_date", initial_chmp_opinion_date)
+        initial_chmp_opinion_date = datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d %H:%M:%S.%f")
+        print("initial_chmp_opinion_date", initial_chmp_opinion_date)
+
+        initial_decision_date = get_attribute_date(src.decision_initial, file_dicts)
+        initial_decision_date = datetime.strptime(initial_decision_date, "%Y-%m-%d %H:%M:%S.%f")
+        print("initial_decision_date", initial_decision_date)
+
+        return initial_decision_date - initial_chmp_opinion_date
+
+    except Exception:
+        print("failed_combine_decision_time_days")
+        return values.default_date
 
 
 def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[str,str]:
@@ -178,13 +193,11 @@ def combine_ema_number_check(attribute_name: str, sources: list[str], file_dicts
 
 
 def json_static(value: any, date: str) -> any:
-    print("json_static")
     print(value)
     return value
 
 
 def json_history_current(value: any, date: str) -> dict[str, any]:
-    print("history")
     json_dict = {}
     json_dict["value"] = value
     json_dict["date"] = date
@@ -192,7 +205,6 @@ def json_history_current(value: any, date: str) -> dict[str, any]:
 
 
 def json_history_initial(value: any, date: str) -> list[dict[str, any]]:
-    print("history_initial")
     json_dict = {}
     json_dict["value"] = value
     json_dict["date"] = date
