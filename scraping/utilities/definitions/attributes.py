@@ -74,10 +74,12 @@ eu_indication_initial = "eu_indication_initial"
 ema_omar_condition = "ema_omar_condition"
 
 ema_report_date = "ema_report_date"
+
 eu_od_prevalence = "eu_od_prevalence"
 eu_od_alt_treatment = "eu_od_alt_treatment"
 eu_od_Sig_benefit = "eu_od_Sig_benefit"
 eu_od_roi = "eu_od_roi"
+
 active_clock_elapseds = "active_clock_elapseds"
 active_time_elapsed = "active_time_elapsed"
 clock_stop_elapsed = "clock_stop_elapsed"
