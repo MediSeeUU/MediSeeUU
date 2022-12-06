@@ -160,11 +160,15 @@ def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dic
 
     return (eu_med_type, eu_med_type_date)
 
-def combine_ema_number_check(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[str, str]:
-    web_dict = file_dicts[src.web]
-    ema_excel = get_ema_excel("..\..\data/ema_excel/", "ema_excel.xlsx")
-    ema_number_web = web_dict[attr.ema_number]
+def combine_ema_number_check(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[bool, str]:
     are_equal = False
+
+    web_dict = file_dicts[src.web]
+    ema_number_web = web_dict[attr.ema_number]
+    if ema_number_web == values.not_found:
+        return (are_equal,values.default_date)
+
+    ema_excel = get_ema_excel("..\..\data/ema_excel/", "ema_excel.xlsx")
 
     if ema_number_web in ema_excel:
         web_brandname = web_dict[attr.eu_brand_name_current]
