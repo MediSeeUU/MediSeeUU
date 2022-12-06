@@ -11,41 +11,30 @@ import scraping.utilities.definitions.sources as src
 
 
 # Main file to run all parsers
-def main(directory: str):
+def main(data_directory: str):
     print("Combining JSON files")
-    directory_folders = [folder for folder in listdir(directory) if path.isdir(path.join(directory, folder)) and "EU" in folder]
+    active_withdrawn_folder = path.join(data_directory, "active_withdrawn")
+    directory_folders = [folder for folder in listdir(active_withdrawn_folder) if path.isdir(path.join(active_withdrawn_folder, folder)) and "EU" in folder]
     #
     # # Use all the system's threads to maximize use of all hyper-threads
-    joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(combine_folder)(path.join(directory, folder_name), folder_name) for folder_name in
-        directory_folders)
+    # joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
+    #     joblib.delayed(combine_folder)(path.join(active_withdrawn_folder, folder_name), folder_name) for folder_name in
+    #     directory_folders)
 
     # Single-threaded parsing
-    # for folder in directory_folders:
-    #     combine_folder(path.join(directory, folder), folder)
+    for folder in directory_folders:
+        combine_folder(path.join(active_withdrawn_folder, folder), folder)
 
     print("Finished combining JSON files\n")
 
-
-def combine_folder(filepath: str, folder_name: str):
-    """
-
-    Args:
-        filepath:
-        folder_name:
-
-    Returns:
-
-    """
+def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
     file_dicts_keys = [src.decision, src.decision_initial, src.annex, src.annex_initial,
-                    src.annex_10, src.epar, src.omar, src.web, src.file_dates]
+                    src.annex_10, src.epar, src.omar, src.web]
     file_dicts = dict.fromkeys(file_dicts_keys,{})
-    combined_dict: dict[str, any] = {}
 
     # try to get sources
     # TODO: dit zou gelijk samen kunnen met attr. enzo
     pdf_data = get_dict('pdf_parser', filepath, folder_name)
-    file_dicts[src.file_dates] = get_dict('filedates', filepath, folder_name)
     file_dicts[src.web] = get_dict('webdata', filepath, folder_name)
 
     decision_files = sorted(
@@ -74,8 +63,33 @@ def combine_folder(filepath: str, folder_name: str):
     except IndexError:
         print(f"COMBINER: no omar found in pdf_data for {folder_name}")
 
+    try:
+        annex_10_path = path.join(filepath, "../../annex_10")
+        with open(path.join(annex_10_path, "annex_10_parser.json"), "r") as annex_10:
+            annex_10_dict = json.load(annex_10)
+            newest_annex_10_key = sorted(annex_10_dict.keys())[-1]
+            file_dicts[src.annex_10] = annex_10_dict[newest_annex_10_key]
+    except FileNotFoundError:
+        print(f"COMBINER: no omar found in pdf_data for {folder_name}")
+
+    return file_dicts
+
+
+def combine_folder(filepath: str, folder_name: str):
+    """
+
+    Args:
+        filepath:
+        folder_name:
+
+    Returns:
+
+    """
+    file_dicts = create_file_dicts(filepath, folder_name)
+    combined_dict: dict[str, any] = {}
+
     # TODO: hier een functie van
-    for attribute in attr_obj.all_attributes:
+    for attribute in attr_obj.all_attribute_objects:
         try:
             value = attribute.combine_function(attribute.name, attribute.sources, file_dicts)
             date = acf.get_attribute_date(attribute.sources[0], file_dicts)
@@ -83,13 +97,10 @@ def combine_folder(filepath: str, folder_name: str):
         except Exception:
             print("COMBINER: failed to get", attribute.name, "in", folder_name)
 
-        # if not all_equal:
-            # print("found multiple values for " + attribute.name + ": " + value + " in " + str(
-            #     sources_to_dicts(attribute.sources, file_dicts)))
-
     combined_json = open(path.join(filepath, folder_name + "_combined.json"), "w")
     json.dump(combined_dict, combined_json, default=str)
     combined_json.close()
+
 
 # TODO: misschien andere except dan filenotfounderror?
 def get_dict(source: str, filepath: str, folder_name: str) -> dict:
