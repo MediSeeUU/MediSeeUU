@@ -29,7 +29,6 @@ from api.serializers.medicine_serializers.public import (
     PrimeSerializer,
 )
 
-
 class LegalBasesSerializer(serializers.ModelSerializer):
     """
     This serializer serializes the :py:class:`.LegalBases` model.

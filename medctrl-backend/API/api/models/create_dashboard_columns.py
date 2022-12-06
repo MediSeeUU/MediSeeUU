@@ -70,7 +70,7 @@ def create_dashboard_column(field: models.Field, category: Category, data_format
         Field: Returns the original field, but updated with the correct information.
     """
     dashboard_column = DashboardColumn(category, data_format, display_name)
-    setattr(field, "dashboard_columns", [dashboard_column])
+    setattr(field, "dashboard_column", dashboard_column)
     return field
 
 
@@ -89,7 +89,7 @@ def create_dashboard_history_initial_column(field: models.Field, category: Categ
         Field: Returns the original field, but updated with the correct information.
     """
     dashboard_column = DashBoardHistoryInitialColumn(category, data_format, display_name)
-    setattr(field, "dashboard_columns", [dashboard_column])
+    setattr(field, "dashboard_column", dashboard_column)
     return field
 
 
@@ -109,5 +109,5 @@ def create_dashboard_history_current_column(field: models.Field, category: Categ
     """
     dashboard_column = DashBoardHistoryCurrentColumn(category, data_format, display_name)
 
-    setattr(field, "dashboard_columns", [dashboard_column])
+    setattr(field, "dashboard_column", dashboard_column)
     return field

@@ -35,13 +35,12 @@ class Command(BaseCommand):
                 columns = [(name, description)]
 
                 # Add view permissions for every extra dashboard column
-                if hasattr(field, "dashboard_columns"):
-                    for dashboard_column in field.dashboard_columns:
-                        data_key = dashboard_column.get_data_key(field.name)
-                        if data_key != field.name:
-                            name = f"{model.__name__.lower()}.{data_key}.view"
-                            description = f"Can view {data_key} in {model.__name__}"
-                            columns.append((name, description))
+                if hasattr(field, "dashboard_column"):
+                    data_key = field.dashboard_column.get_data_key(field.name)
+                    if data_key != field.name:
+                        name = f"{model.__name__.lower()}.{data_key}.view"
+                        description = f"Can view {data_key} in {model.__name__}"
+                        columns.append((name, description))
 
                 for column in columns:
                     perm, created = Permission.objects.update_or_create(

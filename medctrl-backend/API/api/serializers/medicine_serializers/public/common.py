@@ -4,15 +4,16 @@
 from collections import OrderedDict
 from django.db.models import Model
 from typing import Tuple
+from api.models.get_dashboard_columns import get_current_history_name
 
 
-def serialize_data(mixin: object, obj: Model, attribute_name: str, many: bool = False) \
+def serialize_data(mixin: object, model: Model, attribute_name: str, many: bool = False) \
         -> list[Tuple[str, OrderedDict[str, str]]]:
     """
 
     Args:
         mixin:
-        obj:
+        model:
         attribute_name:
         many:
 
@@ -25,8 +26,8 @@ def serialize_data(mixin: object, obj: Model, attribute_name: str, many: bool = 
         # Iterate the specified related objects with their serializer
         for field, serializer_class in getattr(mixin.Meta, attribute_name):
             # Check if the model has a relation to the field
-            if hasattr(obj, field):
-                obj_field = getattr(obj, field)
+            if hasattr(model, field):
+                obj_field = getattr(model, field)
                 # If relation is not null
                 if obj_field:
                     # Serialize data
@@ -161,5 +162,6 @@ class HistoryMixin:
                     history = getattr(obj, field).all().order_by("change_date")
                     data = serializer_class(history, many=True).data
                     if data:
-                        representation[field] = next(reversed(data))[field]
+                        field_name = get_current_history_name(serializer_class.Meta.model, field)
+                        representation[field_name] = next(reversed(data))[field]
         return representation
