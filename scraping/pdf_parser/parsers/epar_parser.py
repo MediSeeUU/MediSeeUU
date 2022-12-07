@@ -30,7 +30,7 @@ def get_all(filename: str, xml_data: ET.Element) -> dict:
     Returns:
         dict: Dictionary of all scraped attributes, named according to the bible
     """
-    epar = {attr.pdf_file: filename[:len(filename) - 4],  # removes extension
+    epar = {attr.pdf_file: filename[:-4],  # removes extension
             attr.ema_procedure_start_initial: get_date(xml_data),
             attr.chmp_opinion_date: get_opinion_date(xml_data),
             attr.eu_legal_basis: get_legal_basis(xml_data),
@@ -64,6 +64,7 @@ def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStr
     xml_root = xml_tree.getroot()
     xml_body = xml_root[1]
     res = get_all(filename, xml_body)
+    res[attr.pdf_file] = xml_utils.file_get_name_pdf(xml_root[0])
     medicine_struct.epars.append(res)
     #  TODO: remove this, used for debugging. Uncomment for usage
     # pdf_helper.res_to_file("../logs/txt_files/epar_results.txt", res, filename)
