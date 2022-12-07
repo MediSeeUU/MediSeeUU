@@ -15,7 +15,7 @@
     "eu_referral": "False",
     "eu_suspension": "False",
     "ema_number_certainty": "1.0",
-    "init_addressed_to_member_states": "False",
+    "authorisation_row": "0",
     "filedates": {
         "EU-1-21-1541_h_dec_0.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220324154987/dec_154987_en.pdf",

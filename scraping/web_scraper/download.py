@@ -144,18 +144,19 @@ def download_pdfs_ec(medicine_identifier: str, pdf_type: str, pdf_urls: list[str
         overwrite (bool): If true overwrites the current files in the medicine folder
     """
     file_counter = 0
+    auth_index = int(med_dict[attr.authorisation_row])
     if len(pdf_urls) > 0:
-        for url in pdf_urls[:-1]:
+        for url in pdf_urls[auth_index:]:
             filename_elements = [med_dict[attr.orphan_status], pdf_type, str(file_counter)]
             download_pdf_from_url(url, medicine_identifier, filename_elements, target_path, med_dict)
             file_counter += 1
 
-        if med_dict[attr.init_addressed_to_member_states] == "True":
-            file_counter = -1
-
-        filename_elements = [med_dict[attr.orphan_status], pdf_type, str(file_counter)]
-        download_pdf_from_url(pdf_urls[-1], medicine_identifier, filename_elements, target_path, med_dict,
-                              overwrite)
+        file_counter = -auth_index
+        for url in pdf_urls[:auth_index]:
+            filename_elements = [med_dict[attr.orphan_status], pdf_type, str(file_counter)]
+            download_pdf_from_url(url, medicine_identifier, filename_elements, target_path, med_dict,
+                                  overwrite)
+            file_counter += 1
 
     if pdf_type == "anx":
         overwrite_dict: json = {

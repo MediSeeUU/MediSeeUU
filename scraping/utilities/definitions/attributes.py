@@ -86,7 +86,7 @@ filedates_web = "filedates"
 
 #TODO: web definitions
 orphan_status = "orphan_status"
-init_addressed_to_member_states = "init_addressed_to_member_states"
+authorisation_row = "authorisation_row"
 other_ema_urls = "other_ema_urls"
 ema_number_id = "ema_number_id"
 ema_od_number_id = "ema_od_number_id"
