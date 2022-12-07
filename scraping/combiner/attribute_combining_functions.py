@@ -130,7 +130,7 @@ def combine_get_file_url(attribute_name: str, sources: list[str], file_dicts: di
 
 def combine_decision_time_days(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
     if attr.chmp_opinion_date not in file_dicts[src.epar].keys():
-        return -1
+        return values.invalid_period_days
 
     try:
         initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
@@ -143,7 +143,7 @@ def combine_decision_time_days(attribute_name: str, sources: list[str], file_dic
 
     except Exception as exception:
         print("COMBINER: failed_combine_decision_time_days -", exception)
-        return -1
+        return values.invalid_period_days
 
 
 def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[str,str]:

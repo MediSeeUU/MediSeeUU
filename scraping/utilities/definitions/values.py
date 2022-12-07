@@ -13,6 +13,7 @@ webdata_not_found = "404_webdata_not_found"
 annex_10_not_found = "404_annex_10_not_found"
 
 insufficient_overlap = "|->INSUFFICIENT OVERLAP<-|"
+invalid_period_days = -1
 NA_before = "NA_at_release_date"
 not_scrapeable = "not_easily_scrapeable"
 yes_str = "yes"
