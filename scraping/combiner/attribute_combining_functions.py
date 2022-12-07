@@ -2,7 +2,7 @@ import scraping.utilities.definitions.values as values
 import scraping.utilities.definitions.sources as src
 import scraping.utilities.definitions.attributes as attr
 from difflib import SequenceMatcher as SM
-import datetime
+import datetime as dt
 import logging
 import json
 import pandas as pd
@@ -84,7 +84,7 @@ def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> st
         if float(overlap.size / len(strings[0])) >= min_matching_fraction:
             return strings[0][overlap.a:overlap.a + overlap.size]
     except Exception:
-        print("no second string")
+        print("COMBINER: no second string")
     return values.insufficient_overlap
 
 # For combine functions
@@ -123,32 +123,27 @@ def combine_get_file_url(attribute_name: str, sources: list[str], file_dicts: di
         for source in sources:
             return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["file_link"]
     except Exception:
-        print("failed to get url")
+        print("COMBINER: failed to get url")
         return values.url_not_found
 
     return values.url_not_found
 
-def combine_decision_time_days(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> str:
-    if file_dicts[src.epar].keys() == []:
-        print("no epar")
-        return values.default_date
+def combine_decision_time_days(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
+    if attr.chmp_opinion_date not in file_dicts[src.epar].keys():
+        return -1
 
     try:
-        print("wel epar ja", file_dicts[src.epar])
         initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
-        print("initial_chmp_opinion_date", initial_chmp_opinion_date)
-        initial_chmp_opinion_date = datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d %H:%M:%S.%f")
-        print("initial_chmp_opinion_date", initial_chmp_opinion_date)
-
         initial_decision_date = get_attribute_date(src.decision_initial, file_dicts)
-        initial_decision_date = datetime.strptime(initial_decision_date, "%Y-%m-%d %H:%M:%S.%f")
-        print("initial_decision_date", initial_decision_date)
 
-        return initial_decision_date - initial_chmp_opinion_date
+        initial_chmp_opinion_date = dt.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d %H:%M:%S")
+        initial_decision_date = dt.datetime.strptime(initial_decision_date, "%Y-%m-%d %H:%M:%S")
 
-    except Exception:
-        print("failed_combine_decision_time_days")
-        return values.default_date
+        return (initial_decision_date - initial_chmp_opinion_date).days
+
+    except Exception as exception:
+        print("COMBINER: failed_combine_decision_time_days -", exception)
+        return -1
 
 
 def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[str,str]:
@@ -193,7 +188,6 @@ def combine_ema_number_check(attribute_name: str, sources: list[str], file_dicts
 
 
 def json_static(value: any, date: str) -> any:
-    print(value)
     return value
 
 
