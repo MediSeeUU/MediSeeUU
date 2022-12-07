@@ -11,6 +11,7 @@ import scraping.combiner.__main__ as combiner
 from scraping.utilities.log import log_tools
 from scraping.utilities.io import safe_io
 from scraping.utilities.web import config_objects
+import scraping.utilities.debugging_tools.data_compiler as dc
 
 
 def main():
@@ -41,10 +42,11 @@ def run_all():
     # Any module can be commented or uncommented here, as the modules they work separately
     # web_scraper.main(web_config)
     # xml_converter.main(data_folder_directory)
-    # pdf_parser.main(data_folder_directory, True)
+    pdf_parser.main(data_folder_directory, True)
     # annex_10_parser.main(data_folder_directory)
     combiner.main(path.join(data_folder_directory))
     # db_communicator_main.main(data_folder_directory)
+    dc.compile()
 
 
 def create_data_folders() -> str:

@@ -20,6 +20,8 @@ for folder in medicine_folders:
         with open(webdata_path) as webdata_file:
             webdata_dict = json.load(webdata_file)
     except Exception:
+        with open(webdata_path, "a") as webdata_file:
+            webdata_file.write("\"\"}")
         continue
 
     try:
