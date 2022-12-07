@@ -100,8 +100,8 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> dict:
         product_name_found, eu_num = product_name_in_epars(product_name.lower(), all_data, opinion_date)
         if product_name_found:
             res[eu_num] = {
-                attr.active_time_elapsed: active_time_elapsed,
-                attr.clock_stop_elapsed: clock_stop_elapsed
+                attr.assess_time_days_active: active_time_elapsed,
+                attr.assess_time_days_cstop: clock_stop_elapsed
             }
     return res
 

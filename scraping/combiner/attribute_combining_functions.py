@@ -43,7 +43,7 @@ def check_all_equal(values: list[any]) -> bool:
     return all_same and values[0] is not None
 
 
-def combine_best_source(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> any:
+def combine_best_source(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> any:
     """
 
     Args:
@@ -89,7 +89,7 @@ def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> st
 
 # For combine functions
 # TODO: fix datum
-def combine_select_string_overlap(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]],
+def combine_select_string_overlap(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]],
                                   min_matching_fraction: float = 0.8) -> tuple[str,str]:
     """
     compares two strings to see if a percentage of the shortest string is identical to the longest string
@@ -118,7 +118,7 @@ def combine_select_string_overlap(attribute_name: str, sources: list[str], file_
     return (values.insufficient_overlap, get_attribute_date(sources[0], file_dicts))
 
 
-def combine_get_file_url(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> str:
+def combine_get_file_url(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> str:
     try:
         for source in sources:
             return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["file_link"]
@@ -128,7 +128,7 @@ def combine_get_file_url(attribute_name: str, sources: list[str], file_dicts: di
 
     return values.url_not_found
 
-def combine_decision_time_days(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
+def combine_decision_time_days(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
     if attr.chmp_opinion_date not in file_dicts[src.epar].keys():
         return values.invalid_period_days
 
@@ -146,7 +146,43 @@ def combine_decision_time_days(attribute_name: str, sources: list[str], file_dic
         return values.invalid_period_days
 
 
-def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[str,str]:
+def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
+    epar_keys = file_dicts[src.epar].keys()
+    if attr.chmp_opinion_date not in epar_keys or attr.ema_procedure_start_initial not in epar_keys:
+        return values.invalid_period_days
+
+    try:
+        initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
+        initial_procedure_start_date = file_dicts[src.epar][attr.ema_procedure_start_initial]
+
+        initial_chmp_opinion_date = dt.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d %H:%M:%S")
+        initial_procedure_start_date = dt.datetime.strptime(initial_procedure_start_date, "%Y-%m-%d %H:%M:%S")
+
+        if (initial_chmp_opinion_date - initial_procedure_start_date).days < 0:
+            print("COMBINER: negative_combine_assess_time_days_total", (initial_chmp_opinion_date - initial_procedure_start_date).days)
+
+        return (initial_chmp_opinion_date - initial_procedure_start_date).days
+    except Exception as exception:
+        print("COMBINER: failed_combine_assess_time_days_total -", exception)
+        return values.invalid_period_days
+
+
+def combine_assess_time_days_active(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
+    print("annex_10:", eu_pnumber, file_dicts[src.annex_10].keys())
+    if eu_pnumber not in file_dicts[src.annex_10].keys():
+        return values.invalid_period_days
+
+    return file_dicts[src.annex_10][eu_pnumber][attr.assess_time_days_active]
+
+
+def combine_assess_time_days_cstop(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
+    if eu_pnumber not in file_dicts[src.annex_10].keys():
+        return values.invalid_period_days
+
+    return file_dicts[src.annex_10][eu_pnumber][attr.assess_time_days_cstop]
+
+
+def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[str,str]:
     """_summary_
 
     Args:
@@ -165,7 +201,7 @@ def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dic
 
     return (eu_med_type, eu_med_type_date)
 
-def combine_ema_number_check(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[bool, str]:
+def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[bool, str]:
     are_equal = False
 
     web_dict = file_dicts[src.web]

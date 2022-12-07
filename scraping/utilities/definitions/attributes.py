@@ -80,9 +80,9 @@ eu_od_alt_treatment = "eu_od_alt_treatment"
 eu_od_Sig_benefit = "eu_od_Sig_benefit"
 eu_od_roi = "eu_od_roi"
 
-active_clock_elapseds = "active_clock_elapseds"
-active_time_elapsed = "active_time_elapsed"
-clock_stop_elapsed = "clock_stop_elapsed"
+assess_time_days_total = "assess_time_days_total"
+assess_time_days_active = "assess_time_days_active"
+assess_time_days_cstop = "assess_time_days_cstop"
 scrape_date_web = "scrape_date_web"
 filedates_web = "filedates"
 
