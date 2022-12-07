@@ -66,9 +66,7 @@ def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
     try:
         annex_10_path = path.join(filepath, "../../annex_10")
         with open(path.join(annex_10_path, "annex_10_parser.json"), "r") as annex_10:
-            annex_10_dict = json.load(annex_10)
-            newest_annex_10_key = sorted(annex_10_dict.keys())[-1]
-            file_dicts[src.annex_10] = annex_10_dict[newest_annex_10_key]
+            file_dicts[src.annex_10] = json.load(annex_10)
     except FileNotFoundError:
         print(f"COMBINER: no omar found in pdf_data for {folder_name}")
 
@@ -91,7 +89,7 @@ def combine_folder(filepath: str, folder_name: str):
     # TODO: hier een functie van
     for attribute in attr_obj.all_attribute_objects:
         try:
-            value = attribute.combine_function(attribute.name, attribute.sources, file_dicts)
+            value = attribute.combine_function(folder_name, attribute.name, attribute.sources, file_dicts)
             date = acf.get_attribute_date(attribute.sources[0], file_dicts)
             combined_dict[attribute.name] = attribute.json_function(value, date)
         except Exception:

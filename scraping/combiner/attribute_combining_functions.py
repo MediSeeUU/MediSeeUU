@@ -168,18 +168,28 @@ def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources
 
 
 def combine_assess_time_days_active(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
-    print("annex_10:", eu_pnumber, file_dicts[src.annex_10].keys())
-    if eu_pnumber not in file_dicts[src.annex_10].keys():
-        return values.invalid_period_days
+    annex_10_keys = reversed(sorted(file_dicts[src.annex_10].keys()))
 
-    return file_dicts[src.annex_10][eu_pnumber][attr.assess_time_days_active]
+    for year_key in annex_10_keys:
+        print("year_key", year_key)
+        if eu_pnumber not in file_dicts[src.annex_10][year_key].keys():
+            continue
+
+        return file_dicts[src.annex_10][year_key][eu_pnumber][attr.assess_time_days_active]
+
+    return values.invalid_period_days
 
 
 def combine_assess_time_days_cstop(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
-    if eu_pnumber not in file_dicts[src.annex_10].keys():
-        return values.invalid_period_days
+    annex_10_keys = reversed(sorted(file_dicts[src.annex_10].keys()))
 
-    return file_dicts[src.annex_10][eu_pnumber][attr.assess_time_days_cstop]
+    for year_key in annex_10_keys:
+        if eu_pnumber not in file_dicts[src.annex_10][year_key].keys():
+            continue
+
+        return file_dicts[src.annex_10][year_key][eu_pnumber][attr.assess_time_days_cstop]
+
+    return values.invalid_period_days
 
 
 def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[str,str]:
