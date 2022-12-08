@@ -362,7 +362,8 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
     is_exceptional: bool = False
     is_conditional: bool = False
     # This information is needed for determining the initial authorization file
-    init_has_member_states: bool = False
+    authorisation_row: int = 0
+    auth_found: bool = False
     # Whether the medicine contains a file with type suspension or referral
     eu_referral = False
     eu_suspension = False
@@ -383,8 +384,9 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
             is_exceptional = True
         if "annual renewal" in row["type"].lower():
             is_conditional = True
-        if "authorisation - decision addressed to member states" in row["type"].lower():
-            init_has_member_states = True
+        if "centralised - authorisation" == row["type"].lower() and not auth_found:
+            auth_found = True
+            authorisation_row = i
 
         # Gets the EMA number(s) per row and puts it/them in a list
         if row["ema_number"] is not None:
@@ -433,7 +435,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
                 anx_url_list.append(("https://ec.europa.eu/health/documents/community-register/" + pdf_url_anx, i))
 
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
-    eu_aut_str: str = procedures_json[0]["decision"]["date"]
+    eu_aut_str: str = procedures_json[authorisation_row]["decision"]["date"]
     if eu_aut_str is not None:
         eu_aut_date: datetime = datetime.strptime(eu_aut_str, '%Y-%m-%d')
         eu_aut_type_initial: str = determine_initial_aut_type(eu_aut_date.year,
@@ -467,7 +469,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
     procedures_dict[attr.eu_referral] = str(eu_referral)
     procedures_dict[attr.eu_suspension] = str(eu_suspension)
     procedures_dict[attr.ema_number_certainty] = str(ema_number_certainty)
-    procedures_dict[attr.init_addressed_to_member_states] = str(init_has_member_states)
+    procedures_dict[attr.authorisation_row] = str(authorisation_row)
 
     for key, value in procedures_dict.items():
         if value == values.not_found:
