@@ -11,9 +11,12 @@ import { useTableUtils } from '../../../shared/contexts/TableUtilsContext'
 import { useColumnSelection } from '../../../shared/contexts/ColumnSelectionContext'
 import { useData } from '../../../shared/contexts/DataContext'
 import getUniqueCategories from '../../visualizations/single_visualization/utils/getUniqueCategories'
+import Button from './menu/Button'
+import { FieldsMenu, FilterMenu } from './menu/ButtonFunctionality.js'
+
 
 // Function based component that displays the search bar and table with all the datapoints that can be selected
-function DataSelect() {
+function DataSelect({ tableName }) {
   const { tableUtils, setTableUtils } = useTableUtils()
 
   // We need to keep a reference of the columns
@@ -58,12 +61,23 @@ function DataSelect() {
         initial={tableUtils.search}
       />
       <div tour="step-data-select" className="med-content-container">
-        <h1 className="med-header">Data Selection Table</h1>
+        <h1 className="med-header">{tableName} Selection Table</h1>
+
         <Menu
           filters={tableUtils.filters}
           sorters={tableUtils.sorters}
           update={menuUpdate}
           categories={categories}
+        /> 
+        <Button 
+          text="Filter"
+          icon="bx-cake"
+          clickFunction={FieldsMenu}
+        />
+        <Button 
+          text="Fields"
+          icon="bx-calendar-plus"
+          clickFunction={FilterMenu}
         />
         <hr className="med-top-separator" />
         <TableView

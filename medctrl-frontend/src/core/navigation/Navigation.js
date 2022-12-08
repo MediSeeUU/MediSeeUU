@@ -111,9 +111,16 @@ class SideNavigation extends React.Component {
           />
           <NavLink
             tour="step-nav-data"
-            name="Data"
+            name="Human"
             image="bx bx-data"
             dest="/data"
+            parent={this}
+          />
+          <NavLink
+            tour="step-nav-data"
+            name="Orphan"
+            image="bx bx-data"
+            dest="/orphan"
             parent={this}
           />
           <NavLink

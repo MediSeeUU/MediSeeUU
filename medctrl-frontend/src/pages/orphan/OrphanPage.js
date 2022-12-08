@@ -3,22 +3,22 @@
 // © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 import React from 'react'
-import DataSelect from './data_select/DataSelect'
-import SelectedData from './selected_data/SelectedData'
-import './DataPage.css'
+import DataSelect from '../data/data_select/DataSelect'
+import SelectedData from '../data/selected_data/SelectedData'
+import './OrphanPage.css'
 import { useSelectedData } from '../../shared/contexts/SelectedContext'
 
 // Function based component that displays all the components on the data page
-function DataPage() {
+function OrphanPage() {
   const selectedData = useSelectedData()
   return (
     <>
       <DataSelect
-        tableName="Human"
+        tableName="Orphan"
       />
       <SelectedData selectedData={selectedData} />
-    </>
+    </>   
   )
 }
 
-export default DataPage
+export default OrphanPage

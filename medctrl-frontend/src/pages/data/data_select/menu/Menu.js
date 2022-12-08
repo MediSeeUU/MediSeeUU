@@ -58,7 +58,7 @@ function Menu({ filters, sorters, update, categories }) {
         onClick={openModal}
       >
         <i className="bx bx-cog med-button-image" />
-        Filter & Sort
+        Sort
       </button>
       <MedModal
         showModal={showModal}
