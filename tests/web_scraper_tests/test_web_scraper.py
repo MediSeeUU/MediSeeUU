@@ -11,6 +11,7 @@ from scraping.web_scraper import __main__ as web
 from scraping.utilities.log import log_tools
 from scraping.utilities.io import safe_io
 from parameterized import parameterized
+import scraping.utilities.definitions.attributes as attr
 
 data_path = "../test_data"
 if "web_scraper_tests" in os.getcwd():
@@ -143,7 +144,7 @@ class TestWebScraper(TestCase):
 
         with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
-        assert all(x in list(url_dict.keys()) for x in ['epar_url', 'omar_url', 'odwar_url', 'other_ema_urls']), \
+        assert all(x in list(url_dict.keys()) for x in [attr.epar_url, attr.omar_url, attr.odwar_url, attr.other_ema_urls]), \
             "ema urls not in urls.json"
 
     def run_download(self):
@@ -154,9 +155,7 @@ class TestWebScraper(TestCase):
                                    .set_parallel(self.parallel)
                                    .supply_medicine_list(self.medicine_list))
 
-        # check if `filedates.json` exists
         data_folder = f"{data_path_local}/{self.eu_n}"
-        assert path.exists(f"{data_folder}/{self.eu_n}_filedates.json")
 
         # check if eu_numbers in eu_numbers.json equals all medicines, as all medicines should be new.
         check_new_eu_numbers(self)
@@ -164,24 +163,26 @@ class TestWebScraper(TestCase):
         # check if all files from urls.json are downloaded:
         with open(f"{json_path}JSON/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
-        filecount = len(url_dict["aut_url"]) + len(url_dict["smpc_url"])
+        filecount = len(url_dict["aut_url"]) + len(url_dict[attr.smpc_url])
 
-        if url_dict["epar_url"]:
+        if url_dict[attr.epar_url]:
             filecount += 1
-        if url_dict["omar_url"]:
+        if url_dict[attr.omar_url]:
             filecount += 1
-        if url_dict["odwar_url"]:
+        if url_dict[attr.odwar_url]:
             filecount += 1
-        for _ in url_dict["other_ema_urls"]:
+        for _ in url_dict[attr.other_ema_urls]:
             filecount += 1
-
-        assert len(os.listdir(data_folder)) == filecount + 2, "not all files are downloaded"
-        # check `filedates.json` contents
-        with open(f"{data_folder}/{self.eu_n}_filedates.json") as f:
-            filedates_dict = json.load(f)
+        print(url_dict)
+        print(os.listdir(data_folder))
+        print(len(os.listdir(data_folder)))
+        assert len(os.listdir(data_folder)) == filecount + 1, "not all files are downloaded"
+        # check `filedates contents
+        with open(f"{data_folder}/{self.eu_n}_webdata.json") as f:
+            attr_dict = json.load(f)
         for file in os.listdir(data_folder):
             if ".pdf" in file:
-                assert file in filedates_dict.keys(), f"{file} does not exist in filedates.json"
+                assert file in attr_dict[attr.filedates_web].keys(), f"{file} does not exist in filedates.json"
 
     def run_filter(self):
         """

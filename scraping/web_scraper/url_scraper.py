@@ -2,6 +2,7 @@ import logging
 from scraping.web_scraper import ema_scraper, ec_scraper, save_webdata
 from scraping.utilities.web import web_utils as utils, json_helper, config_objects
 from scraping.utilities.web.medicine_type import MedicineType
+import scraping.utilities.definitions.attributes as attr
 from datetime import datetime
 
 log = logging.getLogger("web_scraper")
@@ -80,10 +81,6 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: MedicineType, data_
     dec_list = [x[0] for x in dec_list_indexed]
     anx_list = [x[0] for x in anx_list_indexed]
 
-    # if initial is addressed to member states, move first url to end of url list
-    if attributes_dict["init_addressed_to_member_states"] == "True":
-        dec_list.append(dec_list.pop(0))
-        anx_list.append(anx_list.pop(0))
 
     save_webdata.set_active_refused_webdata(eu_n, medicine_url, dec_list, anx_list, ema_list, attributes_dict,
                                             data_path, url_file, url_refused_file)

@@ -15,6 +15,7 @@ class WebConfig:
     run_download: bool = False
     run_download_refused: bool = False
     run_download_annex10: bool = False
+    run_download_ema_excel: bool = False
     run_filter: bool = False
 
     # Arguments for tasks
@@ -46,6 +47,7 @@ class WebConfig:
         self.run_download = True
         self.run_download_refused = True
         self.run_download_annex10 = True
+        self.run_download_ema_excel = True
         self.run_filter = True
         return self
 
@@ -55,6 +57,7 @@ class WebConfig:
                    download: bool = False,
                    download_refused: bool = False,
                    download_annex10: bool = False,
+                   download_ema_excel: bool = False,
                    filtering: bool = False):
         """
         Method to set up a config class with the desired functions to run.
@@ -72,6 +75,8 @@ class WebConfig:
                 Refused files are an edge case, and can slow us down. They are not parsed by the PDF module.
             download_annex10 (bool):
                 Annex10 is
+            download_ema_excel (bool):
+                Downloads the Excel containing EPAR information.
             filtering (bool):
                 Retry failed downloads. This has no effect is download has not been run.
 
@@ -83,6 +88,7 @@ class WebConfig:
         self.run_download = download
         self.run_download_refused = download_refused
         self.run_download_annex10 = download_annex10
+        self.run_download_ema_excel = download_ema_excel
         self.run_filter = filtering
         return self
 

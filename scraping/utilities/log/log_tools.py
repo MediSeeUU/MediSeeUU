@@ -16,8 +16,9 @@ def init_loggers():
     logging_path = config.default_path_logging
     safe_io.create_folder(logging_path)
     logs_path = logging_path.split("log_files")[0]
-    txt_path = f"{logs_path}txt_files"
-
+    log_path = f"{logs_path}/log_files"
+    txt_path = f"{logs_path}/txt_files"
+    safe_io.create_folder(log_path)
     safe_io.create_folder(txt_path)
 
     # --- Root logger ---
@@ -25,7 +26,7 @@ def init_loggers():
     # Check https://docs.python.org/3/library/logging.html#logging.Logger.setLevel for details
     root_handler_stream = logging.StreamHandler()
 
-    root_handler_file = logging.FileHandler(f"{logging_path}/logging_global.log")
+    root_handler_file = logging.FileHandler(f"{log_path}/logging_global.log")
     root_handler_file.setLevel(logging.ERROR)
 
     logging.basicConfig(handlers=[root_handler_stream, root_handler_file])
@@ -36,7 +37,7 @@ def init_loggers():
     log_web = logging.getLogger(web_name)
     log_web.setLevel(logging.INFO)
 
-    log_web_handler_file = logging.FileHandler(f"{logging_path}/logging_{web_name}.log")
+    log_web_handler_file = logging.FileHandler(f"{log_path}/logging_{web_name}.log")
     log_web.addHandler(log_web_handler_file)
 
     logging.getLogger("urllib3.connectionpool").setLevel(logging.INFO)  # Avoid urllib3 DEBUG messages
@@ -46,7 +47,7 @@ def init_loggers():
     for log_name in logging_names:
         log = logging.getLogger(log_name)
 
-        log_file_handler = logging.FileHandler(f"{logging_path}/logging_{log_name}.log")
+        log_file_handler = logging.FileHandler(f"{log_path}/logging_{log_name}.log")
         log.addHandler(log_file_handler)
 
         all_loggers.append(log)
