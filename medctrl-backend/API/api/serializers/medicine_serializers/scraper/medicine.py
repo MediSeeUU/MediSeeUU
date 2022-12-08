@@ -15,6 +15,7 @@ from api.models.orphan_models import (
     OrphanProduct,
 )
 
+
 class MedicinalProductSerializer(serializers.ModelSerializer):
     """
     Medicine table serializer for the scraper endpoints

@@ -12,6 +12,7 @@
 from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from api.models.get_dashboard_columns import get_initial_history_columns
 from api.models.medicine_models import (
     MedicinalProduct,
     HistoryAuthorisationStatus,
@@ -21,9 +22,12 @@ from api.models.medicine_models import (
     HistoryOD,
     HistoryPrime,
     LegalBases,
+    models,
 )
 from api.models.orphan_models import (
+    OrphanProduct,
     HistoryEUOrphanCon,
+    models,
 )
 from api.models.other.medicine_locks import MedicineLocks
 from api.models.other.orphan_locks import OrphanLocks
@@ -86,17 +90,26 @@ class ScraperMedicine(APIView):
         failed_medicines = []
         medicine_list = request.data.get("data")
         # get "medicine" key from request
-        for medicine in medicine_list:
+        for medicine_data in medicine_list:
             try:
                 # atomic transaction so if there is any error all changes are rolled back
                 # Django will automatically roll back if any exception occurs
                 with transaction.atomic():
-                    override = medicine.get("override")
+                    override = medicine_data.get("override")
 
-                    if medicine.get("orphan"):
-                        pass
+                    initial_history_data = {}
+                    # Remove initial history from medicine and add them later to the database,
+                    # because of circular dependency
+                    for initial_history_column in get_initial_history_columns(models):
+                        if initial_history_column in medicine_data:
+                            initial_history_data[initial_history_column] = \
+                                medicine_data.pop(initial_history_column)
+
+                    if medicine_data.get("orphan"):
+                        if eu_od_number := medicine_data.get("eu_od_number"):
+                            pass
                     else:
-                        if eu_pnumber := medicine.get("eu_pnumber"):
+                        if eu_pnumber := medicine_data.get("eu_pnumber"):
                             # check if medicine already exists based on eu_pnumber
                             current_medicine = MedicinalProduct.objects.filter(
                                 eu_pnumber=eu_pnumber
@@ -108,20 +121,25 @@ class ScraperMedicine(APIView):
                             locks = MedicineLocks.objects.filter(
                                 eu_pnumber=eu_pnumber
                             ).values_list("column_name", flat=True)
-                            medicine = {key: value for key, value in medicine.items() if key not in locks}
+
+                            medicine_data = \
+                                {key: value for key, value in medicine_data.items() if key not in locks}
+                            initial_history_data = \
+                                {key: value for key, value in initial_history_data.items() if key not in locks}
+
                             if current_medicine is None or override:
-                                self.add_or_override_medicine(medicine, current_medicine)
+                                self.add_or_override_medicine(medicine_data, current_medicine)
                             else:
-                                self.update_flex_medicine(medicine, current_medicine)
-                                self.update_null_values_medicine(medicine, current_medicine)
-                            self.medicine_history_variables(medicine)
-                            self.medicine_list_variables(medicine)
+                                self.update_flex_medicine(medicine_data, current_medicine)
+                                self.update_null_values_medicine(medicine_data, current_medicine)
+                            self.medicine_history_variables(medicine_data)
+                            self.medicine_list_variables(medicine_data)
             except Exception as e:
-                medicine["errors"] = str(e)
-                failed_medicines.append(medicine)
-                logger.warning(f"Posted medicine failed to add to database: {medicine}")
+                medicine_data["errors"] = str(e)
+                failed_medicines.append(medicine_data)
+                logger.warning(f"Posted medicine failed to add to database: {medicine_data}")
             else:
-                logger.info(f"Posted medicine successfully added to database: {medicine}")
+                logger.info(f"Posted medicine successfully added to database: {medicine_data}")
 
         # put all new medicine objects into the cache
         update_cache()
