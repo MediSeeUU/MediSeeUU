@@ -39,27 +39,26 @@ class DbCommunicator:
         else:
             log.info("DbCommunicator successfully initialised without token")
 
+    # def __del__(self):
+    #     """
+    #     Is called whenever the db_communicator object is destroyed. Will attempt to log out with the current token if it has one.
+    #     """
+    #     print("finna logout")
+    #     print(self.token)
+    #     if not (self.token is None):
+    #         logout(self.token)
+    #         # t = Thread(target=logout, args=(None,))
+    #         # zamn = t.start()
+    #         # print("shoudlve logged out")
+    #         # success = logout(self.token["token"])
+    #         # if success:
+    #         #     log.info("Successfully logged the DbCommunicator out in the backend")
+    #         # else:
+    #         #     log.warning("Couldn't logout the DbCommunicator in the backend")
+    #     log.info("DbCommunicator terminated")
 
-    def lsogout(self):
-        print("SCHAHAB")
+    def logout(self):
         logout(self.token['token'])
-
-
-    def __del__(self):
-        """
-        Is called whenever the db_communicator object is destroyed. Will attempt to log out with the current token if it has one.
-        """
-        if not (self.token is None):
-            print("want to logout")
-            thread = Thread(target=self.lsogout)
-            thread.start()
-            print("shoudlve logged out")
-            # success = logout(self.token["token"])
-            # if success:
-            #     log.info("Successfully logged the DbCommunicator out in the backend")
-            # else:
-            #     log.warning("Couldn't logout the DbCommunicator in the backend")
-        log.info("DbCommunicator terminated")
 
     def send_data(self, data: str) -> str | tuple:
         """

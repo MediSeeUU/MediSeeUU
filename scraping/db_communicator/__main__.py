@@ -1,5 +1,7 @@
 import json
 import os
+import time
+
 from db_communicator import DbCommunicator
 import logging
 
@@ -15,7 +17,8 @@ def main(directory: str):
     """
     # Initialize the communicator class
     db_communicator = DbCommunicator()
-
+    # db_communicator.logout_communicator()
+    db_communicator.logout()
     # medicine_no = 0
     # for medicine_dir in os.listdir(directory):
     #     full_medicine_dir = os.path.join(directory, medicine_dir)
@@ -29,9 +32,6 @@ def main(directory: str):
     #                 medicine_no += 1
     # log.info(str(medicine_no) + " medicines send to the database")
 
-def temp_test():
-    db_communicator = DbCommunicator()
-
 
 if __name__ == '__main__':
-    temp_test()
+    main()

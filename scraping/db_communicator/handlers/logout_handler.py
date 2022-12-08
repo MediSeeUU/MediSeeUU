@@ -6,7 +6,7 @@ import scraping.db_communicator.urls as urls
 log = logging.getLogger("db_communicator.logout")
 
 
-def logout(token: str):
+def logout(token: str) -> None:
     """
     Handles logging a user out of the backend
 
@@ -24,6 +24,7 @@ def logout(token: str):
     success = logout_attempt(api_headers)
     if not success:
         log.info("Failed to log out the current token")
+    return None
 
 
 def logout_attempt(api_headers: dict, attempt=1) -> bool:
@@ -39,7 +40,7 @@ def logout_attempt(api_headers: dict, attempt=1) -> bool:
     """
     if attempt <= 5:
         response = requests.post(urls.logout, headers=api_headers)
-        if response.status_code == 200:
+        if response.status_code == 200 or response.status_code == 204:
             log.info("Successfully logged out the current token")
             return True
         else:
