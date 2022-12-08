@@ -7,7 +7,7 @@ creation_date = "creation_date"
 modification_date = "modification_date"
 filename = "filename"
 
-# Initialize all attribute objects
+# used for attribute objects
 atc_code = "atc_code"
 active_substance = "active_substance"
 eu_nas = "eu_nas"
@@ -65,20 +65,18 @@ eu_od_alt_treatment = "eu_od_alt_treatment"
 eu_od_sig_benefit = "eu_od_sig_benefit"
 eu_od_roi = "eu_od_roi"
 eu_procedures_todo = "eu_procedures_todo"
-
-# TODO: everything under this line is not documented
 eu_indication_initial = "eu_indication_initial"
 ema_report_date = "ema_report_date"
 ema_omar_condition = "ema_omar_condition"
-assess_time_days_total = "assess_time_days_total"
-assess_time_days_active = "assess_time_days_active"
-assess_time_days_cstop = "assess_time_days_cstop"
+orphan_status = "orphan_status"
+ema_od_number_id = "ema_od_number_id" # TODO: check with docs
+
+
+# relevant for combiner
 scrape_date_web = "scrape_date_web"
 filedates_web = "filedates"
 
-#TODO: web definitions
-orphan_status = "orphan_status"
+
+# relevant for webscraper
 init_addressed_to_member_states = "init_addressed_to_member_states"
 other_ema_urls = "other_ema_urls"
-ema_number_id = "ema_number_id"
-ema_od_number_id = "ema_od_number_id"

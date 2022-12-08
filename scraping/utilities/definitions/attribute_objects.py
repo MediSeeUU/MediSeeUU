@@ -74,3 +74,4 @@ AttributeFactory(all_attribute_objects, attr.eu_indication_initial, [src.annex_i
 AttributeFactory(all_attribute_objects, attr.ema_omar_condition, [src.omar])
 AttributeFactory(all_attribute_objects, attr.eu_procedures_todo, [src.web], acf.combine_eu_procedures_todo)
 AttributeFactory(all_attribute_objects, attr.orphan_status, [src.web])
+AttributeFactory(all_attribute_objects, attr.ema_od_number_id, [src.web])
