@@ -134,27 +134,30 @@ def get_date(txt: str) -> datetime:
     Returns:
         datetime: found date.
     """
-    if txt:
+    if not txt:
+        return values.default_date
         txt = txt.lower()
-        try:
-            return dateparser.parse(txt, fuzzy=True)
-        except dateparser._parser.ParserError:
-            pass
-        temp_date = txt.split(' ')[0]
-        temp_date = convert_roman_numbers(temp_date)
-        try:
-            return dateparser.parse(temp_date, fuzzy=True)
-        except dateparser._parser.ParserError:
-            pass
-
-        try:
-            temp_date = txt.replace("th", "")
-            for k in months.keys():
-                if k in temp_date:
-                    temp_date = temp_date.replace(f" {k} ", f"/{months[k]}/")
-                    break
-            return dateparser.parse(temp_date, fuzzy=True)
-        except dateparser._parser.ParserError:
-            pass
+    #try dateparser
+    try:
+        return dateparser.parse(txt, fuzzy=True)
+    except dateparser._parser.ParserError:
+        pass
+    #try for roman numbers
+    temp_date = txt.split(' ')[0]
+    temp_date = convert_roman_numbers(temp_date)
+    try:
+        return dateparser.parse(temp_date, fuzzy=True)
+    except dateparser._parser.ParserError:
+        pass
+    # try for writen months
+    try:
+        temp_date = txt.replace("th", "")
+        for k in months.keys():
+            if k in temp_date:
+                temp_date = temp_date.replace(f" {k} ", f"/{months[k]}/")
+                break
+        return dateparser.parse(temp_date, fuzzy=True)
+    except dateparser._parser.ParserError:
+        pass
 
     return values.default_date

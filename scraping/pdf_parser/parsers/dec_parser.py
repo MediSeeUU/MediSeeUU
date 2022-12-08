@@ -101,7 +101,7 @@ def get_data(filename: str, txt: str) -> dict:
 
     # if date was left blank use default date to not find date dependent attributes.
     if isinstance(date, str):
-        date = dec_get_date('')
+        date = values.default_date
 
     if '_h_' in filename:
         filedata[attr.eu_brand_name_initial] = dec_get_bn(txt)
