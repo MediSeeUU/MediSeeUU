@@ -10,7 +10,7 @@ from django.core.cache import cache
 from rest_framework.settings import settings
 
 from api.serializers.medicine_serializers.public import PublicMedicinalProductSerializer
-from api.serializers.medicine_serializers.scraper import UrlsSerializer
+from api.serializers.medicine_serializers.scraper.get import UrlsSerializer
 from api.models.medicine_models import MedicinalProduct
 import logging
 

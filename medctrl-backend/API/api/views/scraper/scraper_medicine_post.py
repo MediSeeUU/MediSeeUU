@@ -13,8 +13,12 @@ from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.models.get_dashboard_columns import get_initial_history_columns
+from api.models import models
 from api.models.medicine_models import (
     MedicinalProduct,
+    MarketingAuthorisation,
+    AcceleratedAssessment,
+    Duration,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
@@ -22,18 +26,20 @@ from api.models.medicine_models import (
     HistoryOD,
     HistoryPrime,
     LegalBases,
-    models,
 )
 from api.models.orphan_models import (
     OrphanProduct,
     HistoryEUOrphanCon,
-    models,
 )
 from api.models.other.medicine_locks import MedicineLocks
-from api.models.other.orphan_locks import OrphanLocks
-from api.serializers.medicine_serializers.scraper import (
+from api.serializers.medicine_serializers.scraper.post import (
     MedicinalProductSerializer,
-    MedicineFlexVarUpdateSerializer,
+    MarketingAuthorisationSerializer,
+    AcceleratedAssessmentSerializer,
+    DurationSerializer,
+    OrphanProductSerializer,
+    ProceduresSerializer,
+    LegalBasesSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,
@@ -42,6 +48,14 @@ from api.serializers.medicine_serializers.scraper import (
     PrimeSerializer,
     EUOrphanConSerializer,
     LegalBasesSerializer,
+)
+from api.serializers.medicine_serializers.scraper.update import (
+    MedicinalProductFlexVarUpdateSerializer,
+    IngredientsAndSubstancesFlexVarUpdateSerializer,
+    MarketingAuthorisationFlexVarUpdateSerializer,
+    AcceleratedAssessmentFlexVarUpdateSerializer,
+    DurationFlexVarUpdateSerializer,
+    OrphanProductFlexVarUpdateSerializer,
 )
 from api.views.update_cache import update_cache
 from django.forms.models import model_to_dict
@@ -155,7 +169,7 @@ class ScraperMedicine(APIView):
             data (medicineObject): The new medicine data.
             current (medicineObject): The medicine data that is currently in the database.
         """
-        medicine_serializer = MedicineFlexVarUpdateSerializer(current, data=data, partial=True)
+        medicine_serializer = MedicinalProductFlexVarUpdateSerializer(current, data=data, partial=True)
 
         # update medicine
         if medicine_serializer.is_valid():

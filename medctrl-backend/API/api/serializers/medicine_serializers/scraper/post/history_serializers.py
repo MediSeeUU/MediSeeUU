@@ -19,6 +19,7 @@ from api.models.orphan_models import (
     HistoryEUOrphanCon,
 )
 
+
 class AuthorisationStatusSerializer(serializers.ModelSerializer):
     """
     Authorisation Status serializer for the post endpoint.
