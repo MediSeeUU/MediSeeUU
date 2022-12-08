@@ -11,8 +11,8 @@ import { useTableUtils } from '../../../shared/contexts/TableUtilsContext'
 import { useColumnSelection } from '../../../shared/contexts/ColumnSelectionContext'
 import { useData } from '../../../shared/contexts/DataContext'
 import getUniqueCategories from '../../visualizations/single_visualization/utils/getUniqueCategories'
-import Button from './menu/Button'
-import { FieldsMenu, FilterMenu } from './menu/ButtonFunctionality.js'
+import { FieldsMenu, FilterMenu } from '../../components/button_functionality.js'
+import ButtonComponent from '../../components/button_component.js'
 
 
 // Function based component that displays the search bar and table with all the datapoints that can be selected
@@ -69,12 +69,12 @@ function DataSelect({ tableName }) {
           update={menuUpdate}
           categories={categories}
         /> 
-        <Button 
+        <ButtonComponent 
           text="Filter"
           icon="bx-cake"
           clickFunction={FieldsMenu}
         />
-        <Button 
+        <ButtonComponent 
           text="Fields"
           icon="bx-calendar-plus"
           clickFunction={FilterMenu}
