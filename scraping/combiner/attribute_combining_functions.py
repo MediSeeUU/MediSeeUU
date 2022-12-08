@@ -57,9 +57,9 @@ def combine_best_source(eu_pnumber: str, attribute_name: str, sources: list[str]
     attributes: list[str] = []
 
     for source in sources:
-        dic = file_dicts[source]
+        dict = file_dicts[source]
         try:
-            attributes.append(dic[attribute_name])
+            attributes.append(dict[attribute_name])
         except Exception:
             log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
             # log.warning("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
@@ -128,6 +128,7 @@ def combine_get_file_url(eu_pnumber: str, attribute_name: str, sources: list[str
 
     return values.url_not_found
 
+
 def combine_decision_time_days(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
     if attr.chmp_opinion_date not in file_dicts[src.epar].keys():
         return values.invalid_period_days
@@ -158,9 +159,6 @@ def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources
         initial_chmp_opinion_date = dt.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d %H:%M:%S")
         initial_procedure_start_date = dt.datetime.strptime(initial_procedure_start_date, "%Y-%m-%d %H:%M:%S")
 
-        if (initial_chmp_opinion_date - initial_procedure_start_date).days < 0:
-            print("COMBINER: negative_combine_assess_time_days_total", (initial_chmp_opinion_date - initial_procedure_start_date).days)
-
         return (initial_chmp_opinion_date - initial_procedure_start_date).days
     except Exception as exception:
         print("COMBINER: failed_combine_assess_time_days_total -", exception)
@@ -171,7 +169,6 @@ def combine_assess_time_days_active(eu_pnumber: str, attribute_name: str, source
     annex_10_keys = reversed(sorted(file_dicts[src.annex_10].keys()))
 
     for year_key in annex_10_keys:
-        print("year_key", year_key)
         if eu_pnumber not in file_dicts[src.annex_10][year_key].keys():
             continue
 
@@ -211,6 +208,7 @@ def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str]
 
     return (eu_med_type, eu_med_type_date)
 
+
 def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[bool, str]:
     are_equal = False
 
@@ -233,6 +231,11 @@ def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list
     return(are_equal,ema_number_date)
 
 
+def combine_eu_procedures_todo(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> list[dict[str, bool]]:
+    return [{attr.eu_referral: file_dicts[src.web][attr.eu_referral] == "True",
+             attr.eu_suspension: file_dicts[src.web][attr.eu_suspension] == "True"}]
+
+
 def json_static(value: any, date: str) -> any:
     return value
 
@@ -250,12 +253,15 @@ def json_history_initial(value: any, date: str) -> list[dict[str, any]]:
     json_dict["date"] = date
     return json_dict
 
+
 def convert_ema_num(ema_number: str) -> str:
     if 'EMEA/H/C/' in ema_number:
         number = ema_number.split('EMEA/H/C/',1)[1]
         return f"EMEA/H/C/{number.lstrip('0')}"
     else:
         return values.not_found
+
+
 def get_ema_excel(filepath: str, filename: str) -> dict:
     #return pre-made dict if available
     try:

@@ -65,6 +65,7 @@ eu_od_prevalence = "eu_od_prevalence"
 eu_od_alt_treatment = "eu_od_alt_treatment"
 eu_od_sig_benefit = "eu_od_sig_benefit"
 eu_od_roi = "eu_od_roi"
+eu_procedures_todo = "eu_procedures_todo"
 
 # TODO: everything under this line is not documented
 ema_report_date = "ema_report_date"
