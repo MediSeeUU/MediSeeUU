@@ -26,7 +26,6 @@ annex10_url = "annex10_url"    #TODO: not in docs
 eu_atmp = "eu_atmp"
 eu_med_type = "eu_med_type"
 eu_aut_status = "eu_aut_status"
-eu_brand_name = "eu_brand_name"
 eu_brand_name_current = "eu_brand_name_current"
 eu_brand_name_initial = "eu_brand_name_initial"
 ema_number = "ema_number"
@@ -67,8 +66,8 @@ eu_od_sig_benefit = "eu_od_sig_benefit"
 eu_od_roi = "eu_od_roi"
 
 # TODO: everything under this line is not documented
-ema_report_date = "ema_report_date"
 eu_indication_initial = "eu_indication_initial"
+ema_report_date = "ema_report_date"
 ema_omar_condition = "ema_omar_condition"
 assess_time_days_total = "assess_time_days_total"
 assess_time_days_active = "assess_time_days_active"
