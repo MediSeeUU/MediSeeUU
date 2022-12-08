@@ -1,7 +1,5 @@
 import json
-import os
-import time
-
+from os import listdir, path
 from db_communicator import DbCommunicator
 import logging
 
@@ -17,20 +15,30 @@ def main(directory: str):
     """
     # Initialize the communicator class
     db_communicator = DbCommunicator()
-    # db_communicator.logout_communicator()
+    active_withdrawn_folder = path.join(directory, "active_withdrawn")
+
+    directory_folders = [folder for folder in listdir(active_withdrawn_folder) if
+                         path.isdir(path.join(active_withdrawn_folder, folder)) and "EU" in folder]
+
+    medicine_no = 0
+    for folder in directory_folders:
+        combined_dict = communicator_folder(path.join(active_withdrawn_folder, folder), folder)
+        if not combined_dict is None:
+            json_data = json.dumps(combined_dict)
+            db_communicator.send_data(data=json_data)
+            medicine_no += 1
+    log.info(str(medicine_no) + " medicines send to the database")
+
+    # log the communicator out when finished
     db_communicator.logout()
-    # medicine_no = 0
-    # for medicine_dir in os.listdir(directory):
-    #     full_medicine_dir = os.path.join(directory, medicine_dir)
-    #     for file in os.listdir(full_medicine_dir):
-    #         if file.endswith("combined.json"):
-    #             full_combined_dir = os.path.join(full_medicine_dir, file)
-    #             with open(full_combined_dir, "r") as file_data:
-    #                 json_string = json.load(file_data)
-    #                 json_data = json.dumps(json_string)
-    #                 db_communicator.send_data(data=json_data)
-    #                 medicine_no += 1
-    # log.info(str(medicine_no) + " medicines send to the database")
+
+
+def communicator_folder(cur_dir: str) -> dict:
+    try:
+        with open(path.join(cur_dir, "combined.json"), "r") as combined_json:
+            return json.load(combined_json)
+    except FileNotFoundError:
+        print(f"COMMUNICATOR: no combined.json found in data for {cur_dir}")
 
 
 if __name__ == '__main__':
