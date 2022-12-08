@@ -3,7 +3,8 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 from rest_framework import serializers
-from api.serializers.medicine_serializers.public.common import RelatedMixin
+from api.serializers.medicine_serializers.public.common import RelatedMixin, HistoryMixin
+from api.serializers.medicine_serializers.public.history import AuthorisationTypeSerializer, MAHSerializer
 from api.models.medicine_models import AcceleratedAssessment, Duration, MarketingAuthorisation
 
 
@@ -11,6 +12,7 @@ class AcceleratedAssessmentSerializer(serializers.ModelSerializer):
     """
     This serializer serializes the :py:class:`.AcceleratedAssessment` model.
     """
+
     class Meta:
         """
         Meta information
@@ -23,6 +25,7 @@ class DurationSerializer(serializers.ModelSerializer):
     """
     This serializer serializes the :py:class:`.Duration` model.
     """
+
     class Meta:
         """
         Meta information
@@ -31,10 +34,11 @@ class DurationSerializer(serializers.ModelSerializer):
         exclude = ["id", ]
 
 
-class MarketingAuthorisationSerializer(RelatedMixin, serializers.ModelSerializer):
+class MarketingAuthorisationSerializer(RelatedMixin, HistoryMixin, serializers.ModelSerializer):
     """
     This serializer serializes the :py:class:`.MarketingAuthorisation` model.
     """
+
     class Meta:
         """
         Meta information
@@ -43,5 +47,9 @@ class MarketingAuthorisationSerializer(RelatedMixin, serializers.ModelSerializer
         related = [
             ("ema_accelerated_assessment", AcceleratedAssessmentSerializer),
             ("duration", DurationSerializer),
+        ]
+        initial_history = [
+            ("eu_aut_type_initial", AuthorisationTypeSerializer),
+            ("eu_mah_initial", MAHSerializer)
         ]
         fields = "__all__"

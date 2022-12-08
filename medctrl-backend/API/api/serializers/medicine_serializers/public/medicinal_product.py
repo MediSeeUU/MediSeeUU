@@ -27,6 +27,7 @@ from api.serializers.medicine_serializers.public import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
+    EUOrphanConSerializer
 )
 
 class LegalBasesSerializer(serializers.ModelSerializer):
@@ -76,6 +77,9 @@ class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, se
         # serializers to be added as an initial history variable and flattened
         initial_history = [
             ("eu_brand_name_initial", BrandNameSerializer),
+            ("eu_od_initial", OrphanDesignationSerializer),
+            ("eu_prime_initial", PrimeSerializer),
+            ("eu_orphan_con_initial", EUOrphanConSerializer)
         ]
         # serializers to be added as a current history variable and flattened
         current_history = [
@@ -85,4 +89,5 @@ class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, se
             ("eu_mah", MAHSerializer),
             ("eu_od", OrphanDesignationSerializer),
             ("eu_prime", PrimeSerializer),
+            ("eu_orphan_con", EUOrphanConSerializer)
         ]
