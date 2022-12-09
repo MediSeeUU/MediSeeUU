@@ -9,9 +9,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from .orphan_product import OrphanProduct
-from .history_eu_orphan_con import HistoryEUOrphanCon
 
 models = [
     OrphanProduct,
-    HistoryEUOrphanCon,
 ]

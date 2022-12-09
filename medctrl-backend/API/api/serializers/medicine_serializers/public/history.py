@@ -6,8 +6,6 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
-)
-from api.models.orphan_models import (
     HistoryEUOrphanCon,
 )
 

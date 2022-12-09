@@ -3,12 +3,10 @@ from api.models.get_dashboard_columns import get_initial_history_columns
 from api.models.orphan_models import models
 from api.models.orphan_models import (
     OrphanProduct,
-    HistoryEUOrphanCon,
 )
 
 from api.serializers.medicine_serializers.scraper.post.orphan import (
     OrphanProductSerializer,
-    EUOrphanConSerializer,
 )
 from api.models.other import OrphanLocks
 
@@ -39,12 +37,7 @@ def orphan_history_variables(data):
     Args:
         data (medicineObject): The new medicine data.
     """
-    add_orphan_history(
-        HistoryEUOrphanCon,
-        EUOrphanConSerializer,
-        "eu_orphan_con",
-        data,
-    )
+    pass
 
 
 def add_orphan_history(model, serializer, name, data):

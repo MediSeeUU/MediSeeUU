@@ -14,6 +14,7 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
+    HistoryEUOrphanCon,
 )
 
 
@@ -96,4 +97,18 @@ class PrimeSerializer(serializers.ModelSerializer):
         """
 
         model = HistoryPrime
+        exclude = ["id", ]
+
+
+class EUOrphanConSerializer(serializers.ModelSerializer):
+    """
+    Orphan Condition table serializer for the post endpoint
+    """
+
+    class Meta:
+        """
+        Meta information
+        """
+
+        model = HistoryEUOrphanCon
         exclude = ["id", ]

@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from api.models.orphan_models.orphan_product import OrphanProduct
+from api.models.medicine_models import MedicinalProduct
 from api.models.create_dashboard_columns import create_dashboard_history_current_column, Category
 
 
@@ -12,15 +12,15 @@ class HistoryEUOrphanCon(models.Model):
     This model is derived from a base model from the Django library.
 
     Attributes:
-        eu_od_number (models.ForeignKey):
-            Foreign Key to the :py:class:`.OrphanProduct` model
+        eu_pnumber (models.ForeignKey):
+            Foreign Key to the :py:class:`.MedicinalProduct` model
         change_date (models.DateField):
             DateField containing the date of the entry.
         eu_orphan_con (models.TextField):
             TextField containing the EU orphan condition. Initial and current shown on the dashboard.
     """
-    eu_od_number = models.ForeignKey(
-        OrphanProduct,
+    eu_pnumber = models.ForeignKey(
+        MedicinalProduct,
         models.CASCADE,
         null=False,
         blank=False,
