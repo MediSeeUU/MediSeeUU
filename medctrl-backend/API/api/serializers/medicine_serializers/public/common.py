@@ -165,3 +165,42 @@ class HistoryMixin:
                         field_name = get_data_key(serializer_class.Meta.model, field)
                         representation[field_name] = next(reversed(data))[field]
         return representation
+
+class AnyBoolList:
+    """
+        Selects the items of the specified related history object and inserts it in a flat representation.
+
+        Use it in a serializer by inheriting from this class and specifying a history attribute in the Meta class.
+        Specify a field name and a serializer. The serializer must be sorted by date.
+
+        An entry in the history list must be a tuple with four items:
+            - The field name, this must be same as the `related_name` attribute of the foreign key.
+            - The serializer of the history model.
+            - A boolean which indicates if the initial entry in the history should be displayed.
+            - A boolean which indicates if the current entry in the history should be displayed.
+
+        Example:
+            .. code-block:: python
+
+                class yourSerializer(HistoryMixin, serializers.ModelSerializer)
+                    class Meta:
+                        history = [
+                            ("eu_aut_status", AuthorisationStatusSerializer, False, True),
+                            ("eu_aut_type", AuthorisationTypeSerializer, True, True),
+                        ]
+        """
+
+    def to_representation(self, obj: Model) -> OrderedDict[str, str]:
+        """
+        Overrides the default `to_representation` method to add the history fields
+
+        Args:
+            obj (Model): An instance of the model being serialized
+
+        Returns:
+            OrderedDict[str, str]: The representation with the history fields added
+        """
+        representation = super().to_representation(obj)
+
+        representation['eu_suspension'] = True
+        representation['eu_referral'] = False

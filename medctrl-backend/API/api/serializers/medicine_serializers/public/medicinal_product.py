@@ -13,6 +13,7 @@ from api.serializers.medicine_serializers.public.common import (
     RelatedMixin,
     ListMixin,
     HistoryMixin,
+
 )
 from api.models.human_models import (
     MedicinalProduct,

@@ -3,6 +3,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.management.base import BaseCommand
 
 from api.models.human_models import models
+from api.management.commands.create_partner_user import create_partner_user
 import logging
 
 # This file is responsible for setting up some initial
@@ -29,11 +30,4 @@ class Command(BaseCommand):
         logging.getLogger(__name__).info(f"Anonymous group {get_action(created)}")
 
         # Create scraper user
-        scraper, created = User.objects.update_or_create(username="scraper")
-        logging.getLogger(__name__).info(f"Scraper user {get_action(created)}")
-
-        # Assign permissions to scraper user
-        for model in models:
-            ct = ContentType.objects.filter(model=model.__name__).first()
-            all_permissions = Permission.objects.filter(content_type=ct)
-            scraper.user_permissions.add(*all_permissions)
+        create_partner_user(username="scraper", password="VeranderDitWachtwoord123!")

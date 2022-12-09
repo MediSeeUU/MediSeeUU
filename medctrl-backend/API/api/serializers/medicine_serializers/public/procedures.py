@@ -25,4 +25,5 @@ class ProceduresSerializer(serializers.ModelSerializer):
         """
         model = Procedures
 
+
         fields = "__all__"
