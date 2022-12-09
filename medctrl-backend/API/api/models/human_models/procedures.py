@@ -25,6 +25,7 @@ class Procedures(models.Model):
         MedicinalProduct,
         models.CASCADE,
         null=False,
+        related_name="procedures"
     )
 
     eu_suspension = create_dashboard_column(

@@ -13,7 +13,7 @@ from api.serializers.medicine_serializers.public.common import (
     RelatedMixin,
     ListMixin,
     HistoryMixin,
-
+    AnyBoolList
 )
 from api.models.human_models import (
     MedicinalProduct,
@@ -28,7 +28,8 @@ from api.serializers.medicine_serializers.public import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
-    EUOrphanConSerializer
+    EUOrphanConSerializer,
+    ProceduresSerializer
 )
 
 class LegalBasesSerializer(serializers.ModelSerializer):
@@ -56,7 +57,7 @@ class IngredientsAndSubstancesSerializer(serializers.ModelSerializer):
         exclude = ["active_substance_hash", ]
 
 
-class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, serializers.ModelSerializer):
+class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, AnyBoolList, serializers.ModelSerializer):
     """
     This serializer serializers all the needed data for the medicine view from the :py:class:`.MedicinalProduct` model.
     """

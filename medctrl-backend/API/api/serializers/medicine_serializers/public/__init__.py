@@ -17,3 +17,6 @@ from .medicinal_product import (
     LegalBasesSerializer,
     IngredientsAndSubstancesSerializer,
 )
+from .procedures import (
+    ProceduresSerializer
+)
