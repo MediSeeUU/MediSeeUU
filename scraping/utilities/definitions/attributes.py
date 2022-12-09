@@ -17,7 +17,6 @@ eu_aut_date = "eu_aut_date"
 eu_aut_type_initial = "eu_aut_type_initial"
 eu_aut_type_current = "eu_aut_type_current"
 eu_pnumber = "eu_pnumber"
-eu_pnumber_id = "eu_pnumber_id"
 eu_legal_basis = "eu_legal_basis"
 aut_url = "aut_url"
 smpc_url = "smpc_url"
@@ -47,7 +46,6 @@ assess_time_days_active = "assess_time_days_active"
 assess_time_days_cstop = "assess_time_days_cstop"
 ec_decision_time_days = "ec_decision_time_days"
 ema_reexamination = "ema_reexamination"
-eu_orphan_con_initial = "eu_orphan_con_initial" # TODO: update names to eu_od_con_initial etc.
 eu_orphan_con_current = "eu_orphan_con_current"
 eu_referral = "eu_referral"
 eu_suspension = "eu_suspension"
@@ -69,7 +67,6 @@ eu_indication_initial = "eu_indication_initial"
 ema_report_date = "ema_report_date"
 ema_omar_condition = "ema_omar_condition"
 orphan_status = "orphan_status"
-ema_od_number_id = "ema_od_number_id" # TODO: check with docs
 
 
 # relevant for combiner

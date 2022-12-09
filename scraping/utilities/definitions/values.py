@@ -1,6 +1,7 @@
 import datetime
 
 # default values
+combiner_not_found = "____NOT_FOUND_COMBINER_ERROR___"
 not_found = "____________"
 url_not_found = "404_url_not_found"
 omar_not_found = "404_omar_not_found"
