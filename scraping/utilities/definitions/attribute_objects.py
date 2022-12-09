@@ -50,7 +50,7 @@ AttributeFactory(all_attribute_objects, attr.eu_od_initial, [src.decision_initia
 AttributeFactory(all_attribute_objects, attr.ema_rapp, [src.epar])
 AttributeFactory(all_attribute_objects, attr.ema_corapp, [src.epar])
 AttributeFactory(all_attribute_objects, attr.eu_accel_assess_g, [src.epar])
-AttributeFactory(all_attribute_objects, attr.eu_accel_assess_m, [src.epar])
+# AttributeFactory(all_attribute_objects, attr.eu_accel_assess_m, [src.epar]) #TODO: not defined in koran
 AttributeFactory(all_attribute_objects, attr.assess_time_days_total, [src.epar], acf.combine_assess_time_days_total)
 AttributeFactory(all_attribute_objects, attr.assess_time_days_active, [src.annex_10], acf.combine_assess_time_days_active)
 AttributeFactory(all_attribute_objects, attr.assess_time_days_cstop, [src.annex_10], acf.combine_assess_time_days_cstop)
