@@ -62,7 +62,7 @@ def combine_best_source(eu_pnumber: str, attribute_name: str, sources: list[str]
             attributes.append(dict[attribute_name])
         except Exception:
             log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
-            # log.warning("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
+            return values.combiner_not_found
 
     attributes.append(values.not_found)
     return attributes[0]
@@ -85,6 +85,8 @@ def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> st
             return strings[0][overlap.a:overlap.a + overlap.size]
     except Exception:
         print("COMBINER: no second string")
+        return values.combiner_not_found
+
     return values.insufficient_overlap
 
 # For combine functions
@@ -109,6 +111,7 @@ def combine_select_string_overlap(eu_pnumber: str, attribute_name: str, sources:
         except Exception:
             log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
             # log.warning("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
+            return values.combiner_not_found
 
     overlap = string_overlap(strings,min_matching_fraction)
 
@@ -124,6 +127,7 @@ def combine_get_file_url(eu_pnumber: str, attribute_name: str, sources: list[str
             return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["file_link"]
     except Exception:
         print("COMBINER: failed to get url")
+        return values.combiner_not_found
         return values.url_not_found
 
     return values.url_not_found
