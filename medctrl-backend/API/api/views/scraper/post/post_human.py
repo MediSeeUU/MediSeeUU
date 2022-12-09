@@ -12,6 +12,7 @@ from api.models.medicine_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
+    HistoryEUOrphanCon,
     LegalBases,
 )
 from api.models.other import MedicineLocks
@@ -29,6 +30,7 @@ from api.serializers.medicine_serializers.scraper.post.human import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
+    EUOrphanConSerializer,
     LegalBasesSerializer,
 )
 from api.serializers.medicine_serializers.scraper.update.human import (
@@ -137,7 +139,7 @@ def update_null_values_medicine(data, current_medicine):
         add_or_override_medicine(new_data, current_medicine)
 
 
-def medicine_list_variables(self, data):
+def medicine_list_variables(data):
     """
     Creates new list variables for the history models using the data given in its
     argument "data". It expects the input data for the list variable to be formed like this:
@@ -146,7 +148,7 @@ def medicine_list_variables(self, data):
     Args:
         data (medicineObject): The new medicine data.
     """
-    self.add_medicine_list(
+    add_medicine_list(
         LegalBases,
         LegalBasesSerializer,
         "eu_legal_basis",
@@ -155,7 +157,6 @@ def medicine_list_variables(self, data):
     )
 
 
-@staticmethod
 def add_medicine_list(model, serializer, name, data, replace):
     """
     Add a new object to the given list model.
@@ -188,7 +189,7 @@ def add_medicine_list(model, serializer, name, data, replace):
                 raise ValueError(f"{name} contains invalid data! {serializer.errors}")
 
 
-def medicine_history_variables(self, data):
+def medicine_history_variables(data):
     """
     Creates new history variables for the medicinal product history models using the data given in its
     argument "data". It expects the input data for the history variable to be formed like this:
@@ -197,50 +198,56 @@ def medicine_history_variables(self, data):
     Args:
         data (medicineObject): The new medicine data.
     """
-    self.add_medicine_history(
+    add_medicine_history(
         HistoryAuthorisationType,
         AuthorisationTypeSerializer,
         "eu_aut_type",
         data,
     )
 
-    self.add_medicine_history(
+    add_medicine_history(
         HistoryAuthorisationStatus,
         AuthorisationStatusSerializer,
         "eu_aut_status",
         data,
     )
 
-    self.add_medicine_history(
+    add_medicine_history(
         HistoryBrandName,
         BrandNameSerializer,
         "eu_brand_name",
         data,
     )
 
-    self.add_medicine_history(
+    add_medicine_history(
         HistoryOD,
         OrphanDesignationSerializer,
         "eu_od",
         data,
     )
 
-    self.add_medicine_history(
+    add_medicine_history(
         HistoryPrime,
         PrimeSerializer,
         "eu_prime",
         data,
     )
 
-    self.add_medicine_history(
+    add_medicine_history(
         HistoryMAH,
         MAHSerializer,
         "eu_mah",
         data,
     )
 
+    add_medicine_history(
+        HistoryEUOrphanCon,
+        EUOrphanConSerializer,
+        "eu_orphan_con",
+        data,
+    )
 
-@staticmethod
+
 def add_medicine_history(model, serializer, name, data):
     """
     Add a new object to the given history model.
