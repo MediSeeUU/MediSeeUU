@@ -24,7 +24,7 @@ def main(directory: str):
     passed_medicine = 0
     failed_medicine = 0
     for folder in directory_folders:
-        combined_dict = communicator_folder(path.join(active_withdrawn_folder, folder), folder)
+        combined_dict = combined_grabber(path.join(active_withdrawn_folder, folder), folder)
         if not combined_dict is None:
             json_data = json.dumps(combined_dict)
             passed = db_communicator.send_data(data=json_data)
@@ -39,7 +39,7 @@ def main(directory: str):
     db_communicator.logout()
 
 
-def communicator_folder(cur_dir: str, med_name: str) -> dict:
+def combined_grabber(cur_dir: str, med_name: str) -> dict:
     """
     tries to get the combined json out of the current directory
 
