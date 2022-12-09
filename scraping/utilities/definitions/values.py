@@ -2,6 +2,7 @@ import datetime
 
 # default values
 not_found = "____________"
+NA = "NA"
 url_not_found = "404_url_not_found"
 omar_not_found = "404_omar_not_found"
 epar_not_found = "epar_not_found"
