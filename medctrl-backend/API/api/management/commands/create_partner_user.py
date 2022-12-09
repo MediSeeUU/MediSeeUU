@@ -2,7 +2,7 @@ from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.hashers import make_password
 
-from api.models.medicine_models import models
+from api.models import models
 import logging
 
 """
