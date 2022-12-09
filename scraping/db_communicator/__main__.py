@@ -39,7 +39,7 @@ def main(directory: str):
     db_communicator.logout()
 
 
-def combined_grabber(cur_dir: str, med_name: str) -> dict:
+def combined_grabber(cur_dir: str, med_name: str) -> dict | None:
     """
     tries to get the combined json out of the current directory
 
@@ -55,7 +55,8 @@ def combined_grabber(cur_dir: str, med_name: str) -> dict:
             return json.load(combined_json)
     except FileNotFoundError:
         log.info(f"COMMUNICATOR: no combined.json found in data for {cur_dir}")
-
+        return None
+    
 
 if __name__ == '__main__':
     main()
