@@ -1,13 +1,15 @@
 import requests
 import logging
 import json
-import scraping.db_communicator.urls as urls
+import scraping.utilities.definitions.communicator_urls as urls
 import time
+
+from datetime import datetime, timedelta
 
 log = logging.getLogger("db_communicator.login")
 
 
-def login(username: str, password: str) -> dict:
+def login(username: str, password: str) -> dict | None:
     """
     Handles logging a user into the backend and returns a token dict if this was successful
 
@@ -29,7 +31,7 @@ def login(username: str, password: str) -> dict:
     return login_attempt(login_json, api_headers)
 
 
-def login_attempt(login_data: dict, api_headers: dict, attempt=1) -> dict:
+def login_attempt(login_data: str, api_headers: dict, attempt=1) -> dict | None:
     """
     Attempts to log in using the given parameters, if this fails it retries up to 5 times
 
@@ -45,9 +47,12 @@ def login_attempt(login_data: dict, api_headers: dict, attempt=1) -> dict:
         response = requests.post(urls.login, headers=api_headers, data=login_data)
         if response.status_code == 200:
             response_data = response.json()
+            expiry_date = datetime.strptime(response_data["expiry"], "%Y-%m-%dT%H:%M:%S.%fZ")
+            # add 1 hour due to time difference
+            expiry_date += timedelta(hours=1)
             token = {
                 "token": "Token " + response_data["token"],
-                "expiry_date": response_data["expiry"]
+                "expiry_date": expiry_date
             }
             return token
         else:

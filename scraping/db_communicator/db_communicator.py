@@ -4,11 +4,9 @@ import time
 import logging
 from scraping.db_communicator.handlers.login_handler import login
 from scraping.db_communicator.handlers.logout_handler import logout
-from threading import Thread
+import scraping.utilities.definitions.communicator_urls as urls
 
 log = logging.getLogger("db_communicator")
-# Modify this when the backend location is changed
-backend_url = "http://localhost:8000"
 
 
 class DbCommunicator:
@@ -27,9 +25,7 @@ class DbCommunicator:
         self.token = None
 
         if start_with_token:
-            username, password = self.get_credentials()
-            self.token = login(username, password)
-            print(self.token)
+            self.login()
             if self.token is None:
                 log.error(
                     "DbCommunicator couldn't initialise with token. Make sure the backend is running before "
@@ -39,33 +35,12 @@ class DbCommunicator:
         else:
             log.info("DbCommunicator successfully initialised without token")
 
-    # def __del__(self):
-    #     """
-    #     Is called whenever the db_communicator object is destroyed. Will attempt to log out with the current token if it has one.
-    #     """
-    #     print("finna logout")
-    #     print(self.token)
-    #     if not (self.token is None):
-    #         logout(self.token)
-    #         # t = Thread(target=logout, args=(None,))
-    #         # zamn = t.start()
-    #         # print("shoudlve logged out")
-    #         # success = logout(self.token["token"])
-    #         # if success:
-    #         #     log.info("Successfully logged the DbCommunicator out in the backend")
-    #         # else:
-    #         #     log.warning("Couldn't logout the DbCommunicator in the backend")
-    #     log.info("DbCommunicator terminated")
-
-    def logout(self):
-        logout(self.token['token'])
-
-    def send_data(self, data: str) -> str | tuple:
+    def send_data(self, data: str) -> bool:
         """
-        Sends all data received in the argument to the database using a valid api_key
+        Sends all data received in the argument to the database using a valid token
 
         Args:
-            data (str): The data which is sent to the database
+            data (str): The data which is sent to the database in json format
 
         Returns:
             Response: The response object of the request
@@ -73,29 +48,57 @@ class DbCommunicator:
         self.token_checker()
         post_url = 'http://localhost:8000/api/scraper/medicine/'
 
-        # This should not be duplicate code
         api_headers = {
             'Content-type': 'application/json',
             'Accept': 'application/json',
             'Authorization': self.token["token"]
         }
 
-        requests.post(url=post_url, headers=api_headers, data=data)
-        return "correct", 200
+        response = requests.post(url=urls.scraper, headers=api_headers, data=data)
+        print(response)
+        if response.status_code == 200:
+            return True
+        else:
+            return False
 
-    # Not fully functional
     def token_checker(self):
         """
         Checks if there is a valid token. If the token is not valid it requests a new key.
         """
-        token_age = datetime.datetime.now() - self.token['']
-        # Requires at least 100 seconds for a task, can be another value
+        if self.token is None:
+            login()
+        token_age = datetime.datetime.now() - self.token['expiry_date']
+        if token_age.seconds <= 120:
+            self.refresh_token()
 
     def refresh_token(self):
-        logout(self.token['token'])
+        """
+        Refreshes the token by first logging out, and logging in afterwards.
+        """
+        self.logout()
         username, password = self.get_credentials()
         self.token = login(username, password)
 
+    def login(self):
+        """
+        Calls the login function from the login_handler with user credentials taken from the get_credentials function
+        and sets the value of the current token to that of the returned token
+        """
+        username, password = self.get_credentials()
+        self.token = login(username, password)
+
+    def logout(self):
+        """
+        Calls the logout function from the logout_handler with its current token and empties the current token
+        """
+        self.token = logout(self.token)
+
     # Temp function, this should grab the user credentials from a safe space in the server
     def get_credentials(self) -> (str, str):
-        return "test_user", "Coolwachtwoord123!"
+        """
+        Gets the credentials of a user from somewhere safe
+
+        Returns:
+            (str, str): Returns a tuple of username and password
+        """
+        return "scraper", "VeranderDitWachtwoord123!"

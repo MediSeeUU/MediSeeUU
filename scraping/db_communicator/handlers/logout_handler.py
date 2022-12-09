@@ -1,12 +1,12 @@
 import requests
 import logging
 import time
-import scraping.db_communicator.urls as urls
+import scraping.utilities.definitions.communicator_urls as urls
 
 log = logging.getLogger("db_communicator.logout")
 
 
-def logout(token: str) -> None:
+def logout(token: dict) -> None:
     """
     Handles logging a user out of the backend
 
@@ -16,14 +16,20 @@ def logout(token: str) -> None:
     Returns:
         bool: True if the user was successfully logged out, False otherwise
     """
+    if token is None:
+        log.info("There is no token to log out")
+        return None
+
     api_headers = {
         'Content-type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': token
+        'Authorization': token['token']
     }
     success = logout_attempt(api_headers)
+
     if not success:
         log.info("Failed to log out the current token")
+
     return None
 
 

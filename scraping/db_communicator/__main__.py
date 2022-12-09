@@ -21,24 +21,40 @@ def main(directory: str):
                          path.isdir(path.join(active_withdrawn_folder, folder)) and "EU" in folder]
 
     medicine_no = 0
+    passed_medicine = 0
+    failed_medicine = 0
     for folder in directory_folders:
         combined_dict = communicator_folder(path.join(active_withdrawn_folder, folder), folder)
         if not combined_dict is None:
             json_data = json.dumps(combined_dict)
-            db_communicator.send_data(data=json_data)
+            passed = db_communicator.send_data(data=json_data)
             medicine_no += 1
-    log.info(str(medicine_no) + " medicines send to the database")
+            if passed:
+                passed_medicine += 1
+            else:
+                failed_medicine += 1
+    log.info(f"Tried to send {medicine_no} medicines to the database. {passed_medicine} medicines succeeded | {failed_medicine} medicines failed")
 
     # log the communicator out when finished
     db_communicator.logout()
 
 
-def communicator_folder(cur_dir: str) -> dict:
+def communicator_folder(cur_dir: str, med_name: str) -> dict:
+    """
+    tries to get the combined json out of the current directory
+
+    Args:
+        cur_dir (str): The directory string
+        med_name (str): The name of the current medicine
+
+    Returns:
+        dict: The dictionary inside the json file
+    """
     try:
-        with open(path.join(cur_dir, "combined.json"), "r") as combined_json:
+        with open(path.join(cur_dir, med_name + "_combined.json"), "r") as combined_json:
             return json.load(combined_json)
     except FileNotFoundError:
-        print(f"COMMUNICATOR: no combined.json found in data for {cur_dir}")
+        log.info(f"COMMUNICATOR: no combined.json found in data for {cur_dir}")
 
 
 if __name__ == '__main__':
