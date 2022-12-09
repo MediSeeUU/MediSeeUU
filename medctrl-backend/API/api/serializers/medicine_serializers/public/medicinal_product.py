@@ -14,7 +14,7 @@ from api.serializers.medicine_serializers.public.common import (
     ListMixin,
     HistoryMixin,
 )
-from api.models.medicine_models import (
+from api.models.human_models import (
     MedicinalProduct,
     LegalBases,
     IngredientsAndSubstances,

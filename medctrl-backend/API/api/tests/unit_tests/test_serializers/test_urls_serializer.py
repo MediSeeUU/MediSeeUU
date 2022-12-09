@@ -1,5 +1,5 @@
 from django.test import TestCase
-from api.models.medicine_models import (
+from api.models.human_models import (
     MedicinalProduct,
     IngredientsAndSubstances,
 )

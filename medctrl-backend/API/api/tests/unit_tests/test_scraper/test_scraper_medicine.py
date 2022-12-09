@@ -1,7 +1,7 @@
 from django.test import TestCase
 from unittest.mock import patch
 from api.views.scraper.post.scraper_post import ScraperMedicine
-from api.models.medicine_models import (
+from api.models.human_models import (
     MedicinalProduct,
     IngredientsAndSubstances,
     MarketingAuthorisation,

@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.contrib import admin
 from import_export import resources, admin as import_admin
-from api.models.medicine_models import (
+from api.models.human_models import (
     MedicinalProduct,
     HistoryAuthorisationType,
 )

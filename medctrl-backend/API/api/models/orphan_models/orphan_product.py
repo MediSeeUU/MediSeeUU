@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from api.models.medicine_models.medicinal_product import MedicinalProduct
+from api.models.human_models.medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import (
     create_dashboard_column,
     create_dashboard_history_initial_column,

@@ -9,7 +9,7 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import User
-from api.models.medicine_models import MedicinalProduct
+from api.models.human_models import MedicinalProduct
 
 
 class SavedSelection(models.Model):

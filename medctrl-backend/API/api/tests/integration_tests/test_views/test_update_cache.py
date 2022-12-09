@@ -3,7 +3,7 @@ from unittest.mock import patch
 from api.views.update_cache import update_cache
 from django.contrib.auth.models import Group, Permission
 from django.core.management import call_command
-from api.models.medicine_models import Medicine
+from api.models.human_models import Medicine
 
 
 class TestUpdateCache(TestCase):

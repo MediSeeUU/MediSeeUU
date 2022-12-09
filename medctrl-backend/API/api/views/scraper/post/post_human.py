@@ -1,7 +1,7 @@
 from django.forms.models import model_to_dict
 from api.models.get_dashboard_columns import get_initial_history_columns
-from api.models.medicine_models import models
-from api.models.medicine_models import (
+from api.models.human_models import models
+from api.models.human_models import (
     MedicinalProduct,
     MarketingAuthorisation,
     AcceleratedAssessment,
@@ -23,7 +23,6 @@ from api.serializers.medicine_serializers.scraper.post.human import (
     AcceleratedAssessmentSerializer,
     DurationSerializer,
     ProceduresSerializer,
-    LegalBasesSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,

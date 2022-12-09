@@ -7,7 +7,7 @@
 # ---------------------------------------------
 
 from rest_framework import serializers
-from api.models.medicine_models import (
+from api.models.human_models import (
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,

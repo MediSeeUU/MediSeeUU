@@ -11,7 +11,7 @@ from rest_framework.settings import settings
 
 from api.serializers.medicine_serializers.public import PublicMedicinalProductSerializer
 from api.serializers.medicine_serializers.scraper.get import UrlsSerializer
-from api.models.medicine_models import MedicinalProduct
+from api.models.human_models import MedicinalProduct
 import logging
 
 logger = logging.getLogger(__name__)

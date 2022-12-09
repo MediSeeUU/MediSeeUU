@@ -2,7 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from rest_framework import serializers
-from api.models.medicine_models import (
+from api.models.human_models import (
     MedicinalProduct,
     IngredientsAndSubstances,
     MarketingAuthorisation,

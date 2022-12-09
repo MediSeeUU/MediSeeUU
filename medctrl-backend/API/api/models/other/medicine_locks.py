@@ -1,4 +1,4 @@
-from api.models.medicine_models import MedicinalProduct
+from api.models.human_models import MedicinalProduct
 from django.db import models
 
 

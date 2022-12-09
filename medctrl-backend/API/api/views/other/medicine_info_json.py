@@ -13,11 +13,11 @@ from api.models.create_dashboard_columns import Category
 from api.models import models
 
 
-# returns a list of json components using medicine_models,
+# returns a list of json components using human_models,
 # this list is for the filters and for the detailed information page
 def get_medicine_info(perm, mock=None):
     """
-    returns a list of json components using medicine_models,
+    returns a list of json components using human_models,
     this list is for the filters and for the detailed information page.
 
     Args:
@@ -28,7 +28,7 @@ def get_medicine_info(perm, mock=None):
     Returns:
         JSON: medicine data in JSON format
     """    
-    # make a JSON list for every category in medicine_models.common.Category
+    # make a JSON list for every category in human_models.common.Category
     data = {}
     for category in Category:
         data[category.value] = []

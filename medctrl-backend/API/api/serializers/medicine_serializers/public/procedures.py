@@ -9,7 +9,7 @@ has to access all different tables and merge all this data in a one dimensional 
 """
 
 from rest_framework import serializers
-from api.models.medicine_models import (
+from api.models.human_models import (
     Procedures,
 )
 
