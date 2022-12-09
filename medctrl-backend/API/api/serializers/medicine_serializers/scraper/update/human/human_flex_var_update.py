@@ -9,9 +9,6 @@ from api.models.medicine_models import (
     AcceleratedAssessment,
     Duration,
 )
-from api.models.orphan_models import (
-    OrphanProduct,
-)
 
 
 # serializer for the flexible fields of medicine
@@ -91,20 +88,3 @@ class DurationFlexVarUpdateSerializer(serializers.ModelSerializer):
 
         model = Duration
         fields = []
-
-
-class OrphanProductFlexVarUpdateSerializer(serializers.ModelSerializer):
-    """
-    OrphanProduct table serializer for the flexible variables for the scraper endpoints
-    """
-
-    class Meta:
-        """
-        Meta information
-        """
-
-        model = OrphanProduct
-        fields = [
-            "omar_url",
-            "odwar_url",
-        ]

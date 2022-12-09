@@ -11,9 +11,6 @@ from api.models.medicine_models import (
     Procedures,
     LegalBases,
 )
-from api.models.orphan_models import (
-    OrphanProduct,
-)
 
 
 class MedicinalProductSerializer(serializers.ModelSerializer):
@@ -84,20 +81,6 @@ class DurationSerializer(serializers.ModelSerializer):
 
         model = Duration
         exclude = ["id", ]
-
-
-class OrphanProductSerializer(serializers.ModelSerializer):
-    """
-    OrphanProduct table serializer for the scraper endpoints
-    """
-
-    class Meta:
-        """
-        Meta information
-        """
-
-        model = OrphanProduct
-        fields = "__all__"
 
 
 class ProceduresSerializer(serializers.ModelSerializer):

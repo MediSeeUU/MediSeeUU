@@ -1,0 +1,81 @@
+from django.forms.models import model_to_dict
+from api.models.get_dashboard_columns import get_initial_history_columns
+from api.models.orphan_models import models
+from api.models.orphan_models import (
+    OrphanProduct,
+    HistoryEUOrphanCon,
+)
+
+from api.serializers.medicine_serializers.scraper.post.orphan import (
+    OrphanProductSerializer,
+    EUOrphanConSerializer,
+)
+from api.models.other import OrphanLocks
+
+
+def post(data):
+    if eu_od_number := data.get("eu_od_number"):
+        locks = OrphanLocks.objects.filter(
+            eu_od_number=eu_od_number
+        ).values_list("column_name", flat=True)
+
+        data = \
+            {key: value for key, value in data.items() if key not in locks}
+        initial_history_data = {}
+        # Remove initial history from medicine and add them later to the database,
+        # because of circular dependency
+        for initial_history_column in get_initial_history_columns(models):
+            if initial_history_column in data:
+                initial_history_data[initial_history_column] = \
+                    data.pop(initial_history_column)
+
+
+def orphan_history_variables(data):
+    """
+    Creates new history variables for the orphan product history models using the data given in its
+    argument "data". It expects the input data for the history variable to be formed like this:
+    ``name: [{name: value, change_date: date}, ...]``
+
+    Args:
+        data (medicineObject): The new medicine data.
+    """
+    add_orphan_history(
+        HistoryEUOrphanCon,
+        EUOrphanConSerializer,
+        "eu_orphan_con",
+        data,
+    )
+
+
+def add_orphan_history(model, serializer, name, data):
+    """
+    Add a new object to the given history model.
+
+    Args:
+        model (medicine_model): The history model of the history object you want to add.
+        serializer (medicine_serializer): The applicable serializer.
+        name (string): The name of the attribute.
+        data (medicineObject): The new medicine data.
+
+    Raises:
+        ValueError: Invalid data in data argument
+        ValueError: Data does not exist in the given data argument
+    """
+    eu_od_number = data.get("eu_od_number")
+    items = data.get(name)
+    model_data = model.objects.filter(eu_od_number=eu_od_number).order_by("change_date").first()
+
+    if items is not None and len(items) > 0:
+        for item in items:
+            if not model_data or item.get(name) != getattr(model_data, name):
+                serializer = serializer(
+                    None, {
+                        name: item.get(name),
+                        "change_date": item.get("change_date"),
+                        "eu_od_number": eu_od_number
+                    }
+                )
+                if serializer.is_valid():
+                    serializer.save()
+                else:
+                    raise ValueError(f"{name} contains invalid data! {serializer.errors}")
