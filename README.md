@@ -19,7 +19,7 @@ Execute program as stated above.
 
 ### To run the frontend (dashboard) and backend:
 Follow the instructions in their respective documentations.
-<TODO: Add link to install instructions, or place them here.>
+<TODO: Add link to install instructions, or place them here. Make sure to add instruction on how to install MySQL>
 
 ## Functionality
 
