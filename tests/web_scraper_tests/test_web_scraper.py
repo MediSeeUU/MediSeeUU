@@ -162,9 +162,7 @@ class TestWebScraper(TestCase):
                                    .set_parallel(self.parallel)
                                    .supply_medicine_list(self.medicine_list))
 
-        # check if `filedates.json` exists
         data_folder = f"{data_path_local}/{self.eu_n}"
-        assert path.exists(f"{data_folder}/{self.eu_n}_filedates.json")
 
         # check if eu_numbers in eu_numbers.json equals all medicines, as all medicines should be new.
         check_new_eu_numbers(self)
@@ -182,14 +180,16 @@ class TestWebScraper(TestCase):
             filecount += 1
         for _ in url_dict[attr.other_ema_urls]:
             filecount += 1
-
-        assert len(os.listdir(data_folder)) == filecount + 2, "not all files are downloaded"
-        # check `filedates.json` contents
-        with open(f"{data_folder}/{self.eu_n}_filedates.json") as f:
-            filedates_dict = json.load(f)
+        print(url_dict)
+        print(os.listdir(data_folder))
+        print(len(os.listdir(data_folder)))
+        assert len(os.listdir(data_folder)) == filecount + 1, "not all files are downloaded"
+        # check `filedates contents
+        with open(f"{data_folder}/{self.eu_n}_webdata.json") as f:
+            attr_dict = json.load(f)
         for file in os.listdir(data_folder):
             if ".pdf" in file:
-                assert file in filedates_dict.keys(), f"{file} does not exist in filedates.json"
+                assert file in attr_dict[attr.filedates_web].keys(), f"{file} does not exist in filedates.json"
 
     def run_filter(self):
         """

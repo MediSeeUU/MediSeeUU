@@ -36,7 +36,7 @@ def run_all():
 
     # Standard config is to run all. Uncomment line below to use custom setup.
     web_config = config_objects.WebConfig().run_all().set_parallel()
-    # web_config = config_objects.WebConfig().run_custom(scrape_ec=True, scrape_ema=True).set_parallel()
+    # web_config = config_objects.WebConfig().run_custom(download_ema_excel=True).set_parallel()
 
     # Any module can be commented or uncommented here, as the modules they work separately
     web_scraper.main(web_config)
