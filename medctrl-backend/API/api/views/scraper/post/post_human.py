@@ -84,13 +84,13 @@ def post(data):
             "duration"
         )
 
-        insert_data(data, current_marketing_authorisation, MarketingAuthorisationSerializer)
-
-        current_medicinal_product = MarketingAuthorisation.objects.filter(
+        current_medicinal_product = MedicinalProduct.objects.filter(
             eu_pnumber=eu_pnumber
         ).first()
 
         insert_data(data, current_medicinal_product, MedicinalProductSerializer)
+
+        insert_data(data, current_marketing_authorisation, MarketingAuthorisationSerializer)
 
         history_variables(data)
         list_variables(data)
