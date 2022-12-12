@@ -105,7 +105,7 @@ def add_or_update_foreign_key(data, current, related_model, insert_serializer, u
         if hasattr(current, attribute):
             if foreign_key := getattr(current, attribute):
                 current_related = related_model.objects.filter(
-                    id=foreign_key
+                    pk=foreign_key.pk
                 ).first()
                 if current_related:
                     data[attribute] = insert_data(data, current_related, update_serializer)
