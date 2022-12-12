@@ -7,6 +7,7 @@ import web_scraper.__main__ as web_scraper
 import scraping.annex_10_parser.__main__ as annex_10_parser
 import scraping.xml_converter.__main__ as xml_converter
 import scraping.pdf_parser.__main__ as pdf_parser
+import scraping.db_communicator.__main__ as db_communicator
 from scraping.utilities.log import log_tools
 from scraping.utilities.io import safe_io
 from scraping.utilities.web import config_objects
@@ -42,7 +43,7 @@ def run_all():
     pdf_parser.main(data_folder_directory)
     annex_10_parser.main(data_folder_directory)
     # combiner.main(data_folder_directory)
-    # db_communicator_main.main(data_folder_directory)
+    # db_communicator.main(data_folder_directory)
 
 
 def create_data_folders() -> str:
