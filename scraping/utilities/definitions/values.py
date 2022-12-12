@@ -21,11 +21,11 @@ no_str = "no"
 default_date = datetime.datetime.min
 
 # attribute values:
-aut_type_standard = "standard"
-aut_type_conditional = "conditional"
-aut_type_exceptional = "exceptional"
+aut_type_standard = "STANDARD"
+aut_type_conditional = "CONDITIONAL"
+aut_type_exceptional = "EXCEPTIONAL"
 # TODO: dit soort dingen afspreken
-authorization_type_unknown = "exceptional or conditional"
+authorization_type_unknown = "EXCEPTIONAL OR CONDITIONAL"
 
 eu_od_type_adopted = "adopted"
 eu_od_type_appointed = "appointed"

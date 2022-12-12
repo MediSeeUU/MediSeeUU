@@ -32,6 +32,7 @@ class AutTypes(models.TextChoices):
     CONDITIONAL = "CONDITIONAL",
     EXCEPTIONAL = "EXCEPTIONAL",
     STANDARD = "STANDARD"
+    UNCERTAIN = "EXCEPTIONAL OR CONDITIONAL"
 
 
 class AutStatus(models.TextChoices):
