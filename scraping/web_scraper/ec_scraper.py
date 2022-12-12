@@ -236,7 +236,10 @@ def get_data_from_medicine_json(medicine_json: dict,
     medicine_dict[attr.eu_pnumber]: str = values.not_found
     # Orphan and refused medicine don't always have ATC codes, therefore it is set to a standard value
     medicine_dict[attr.atc_code] = values.not_found
-
+    # Not all orphans have eu_od_number or eu_od_sponsor, therefore it is set to a standard value
+    if eu_num[0] != 'h':
+        medicine_dict[attr.eu_od_pnumber] = values.not_found
+        medicine_dict[attr.eu_od_sponsor] = values.not_found
     for row in medicine_json:
         match row["type"]:
             case "name":
