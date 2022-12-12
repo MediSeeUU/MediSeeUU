@@ -55,7 +55,6 @@ class DbCommunicator:
         }
 
         response = requests.post(url=urls.scraper, headers=api_headers, data=data)
-        print(response)
         if response.status_code == 200:
             return True
         else:
