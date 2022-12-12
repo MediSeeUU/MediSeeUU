@@ -222,49 +222,49 @@ def history_variables(data):
     add_history(
         HistoryAuthorisationType,
         AuthorisationTypeSerializer,
-        "eu_aut_type",
+        "eu_aut_type_current",
         data,
     )
 
     add_history(
         HistoryAuthorisationStatus,
         AuthorisationStatusSerializer,
-        "eu_aut_status",
+        "eu_aut_status_current",
         data,
     )
 
     add_history(
         HistoryBrandName,
         BrandNameSerializer,
-        "eu_brand_name",
+        "eu_brand_name_current",
         data,
     )
 
     add_history(
         HistoryOD,
         OrphanDesignationSerializer,
-        "eu_od",
+        "eu_od_current",
         data,
     )
 
     add_history(
         HistoryPrime,
         PrimeSerializer,
-        "eu_prime",
+        "eu_prime_current",
         data,
     )
 
     add_history(
         HistoryMAH,
         MAHSerializer,
-        "eu_mah",
+        "eu_mah_current",
         data,
     )
 
     add_history(
         HistoryEUOrphanCon,
         EUOrphanConSerializer,
-        "eu_orphan_con",
+        "eu_orphan_con_current",
         data,
     )
 
@@ -289,9 +289,9 @@ def add_history(model, serializer, name, data):
 
     if items is not None and len(items) > 0:
         for item in items:
-            if not model_data or item.get(name) != getattr(model_data, name):
+            if not model_data or item.get("value") != getattr(model_data, name):
                 serializer = serializer(
-                    None, {name: item.get(name), "change_date": item.get("change_date"), "eu_pnumber": eu_pnumber}
+                    None, {name: item.get(name), "change_date": item.get("date"), "eu_pnumber": eu_pnumber}
                 )
                 if serializer.is_valid():
                     serializer.save()

@@ -82,10 +82,10 @@ class ScraperMedicine(APIView):
 
                         if medicine_data.get("orphan"):
                             post_orphan(medicine_data)
-                            post_orphan(initial_history_data)
+                            #post_orphan(initial_history_data)
                         else:
                             post_human(medicine_data)
-                            post_human(initial_history_data)
+                            #post_human(initial_history_data)
                 except Exception as e:
                     medicine_data["errors"] = str(e)
                     failed_medicines.append(medicine_data)
