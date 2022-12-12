@@ -18,6 +18,5 @@ router.register(r"urls", UrlsViewSet, basename="scraped_urls")
 # url patterns for the scraper endpoints
 url_patterns = [
     path(r"medicine/", ScraperMedicine.as_view(), name="medicine"),
-    path(r"", include(router.urls)),
-    path(r"token/", ScraperToken.as_view(), name="token")
+    path(r"", include(router.urls))
 ]
