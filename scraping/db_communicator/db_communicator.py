@@ -46,7 +46,6 @@ class DbCommunicator:
             Response: The response object of the request
         """
         self.token_checker()
-        post_url = 'http://localhost:8000/api/scraper/medicine/'
 
         api_headers = {
             'Content-type': 'application/json',
