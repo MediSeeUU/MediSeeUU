@@ -222,6 +222,7 @@ def history_variables(data):
     add_history(
         HistoryAuthorisationType,
         AuthorisationTypeSerializer,
+        "eu_aut_type",
         "eu_aut_type_current",
         data,
     )
@@ -229,6 +230,7 @@ def history_variables(data):
     add_history(
         HistoryAuthorisationStatus,
         AuthorisationStatusSerializer,
+        "eu_aut_status",
         "eu_aut_status_current",
         data,
     )
@@ -236,6 +238,7 @@ def history_variables(data):
     add_history(
         HistoryBrandName,
         BrandNameSerializer,
+        "eu_brand_name",
         "eu_brand_name_current",
         data,
     )
@@ -243,6 +246,7 @@ def history_variables(data):
     add_history(
         HistoryOD,
         OrphanDesignationSerializer,
+        "eu_od",
         "eu_od_current",
         data,
     )
@@ -250,6 +254,7 @@ def history_variables(data):
     add_history(
         HistoryPrime,
         PrimeSerializer,
+        "eu_prime",
         "eu_prime_current",
         data,
     )
@@ -257,6 +262,7 @@ def history_variables(data):
     add_history(
         HistoryMAH,
         MAHSerializer,
+        "eu_mah",
         "eu_mah_current",
         data,
     )
@@ -264,12 +270,13 @@ def history_variables(data):
     add_history(
         HistoryEUOrphanCon,
         EUOrphanConSerializer,
+        "eu_orphan_con",
         "eu_orphan_con_current",
         data,
     )
 
 
-def add_history(model, serializer, name, data):
+def add_history(model, serializer, name, data_name, data):
     """
     Add a new object to the given history model.
 
@@ -284,7 +291,7 @@ def add_history(model, serializer, name, data):
         ValueError: Data does not exist in the given data argument
     """
     eu_pnumber = data.get("eu_pnumber")
-    items = data.get(name)
+    items = data.get(data_name)
     model_data = model.objects.filter(eu_pnumber=eu_pnumber).order_by("change_date").first()
 
     if items is not None and len(items) > 0:
@@ -296,4 +303,4 @@ def add_history(model, serializer, name, data):
                 if serializer.is_valid():
                     serializer.save()
                 else:
-                    raise ValueError(f"{name} contains invalid data! {serializer.errors}")
+                    raise ValueError(f"{data_name} contains invalid data! {serializer.errors}")
