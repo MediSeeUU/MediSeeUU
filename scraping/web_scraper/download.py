@@ -144,18 +144,19 @@ def download_pdfs_ec(medicine_identifier: str, pdf_type: str, pdf_urls: list[str
         overwrite (bool): If true overwrites the current files in the medicine folder
     """
     file_counter = 0
+    auth_index = int(med_dict[attr.authorisation_row])
     if len(pdf_urls) > 0:
-        for url in pdf_urls[:-1]:
+        for url in pdf_urls[auth_index:]:
             filename_elements = [med_dict[attr.orphan_status], pdf_type, str(file_counter)]
             download_pdf_from_url(url, medicine_identifier, filename_elements, target_path, med_dict)
             file_counter += 1
 
-        if med_dict[attr.init_addressed_to_member_states] == "True":
-            file_counter = -1
-
-        filename_elements = [med_dict[attr.orphan_status], pdf_type, str(file_counter)]
-        download_pdf_from_url(pdf_urls[-1], medicine_identifier, filename_elements, target_path, med_dict,
-                              overwrite)
+        file_counter = -auth_index
+        for url in pdf_urls[:auth_index]:
+            filename_elements = [med_dict[attr.orphan_status], pdf_type, str(file_counter)]
+            download_pdf_from_url(url, medicine_identifier, filename_elements, target_path, med_dict,
+                                  overwrite)
+            file_counter += 1
 
     if pdf_type == "anx":
         overwrite_dict: json = {
@@ -270,6 +271,32 @@ def download_annex10_files(data_filepath: str, urls_dict: json_helper.JsonHelper
         with open(f"{target_path}/annex10_{year}.xlsx", "wb") as file:
             file.write(downloaded_file.content)
             log.debug(f"DOWNLOADED Annex 10 for {year}")
+
+
+@utils.exception_retry(logging_instance=log)
+def download_ema_excel_file(data_filepath: str, urls_dict: json_helper.JsonHelper):
+    """
+    Downloads the EMA EPAR Excel from the EMA website
+
+    Args:
+        data_filepath: Path to the data folder.
+        urls_dict: The dictionary containing the URL of the EMA Excel file.
+    """
+    target_path: str = f"{data_filepath}/ema_excel"
+    url: str = urls_dict.load_json().get("url")
+    downloaded_file = requests.get(url)
+
+    # TODO: Refactor this function and download_pdfs_from_url, so that code is not duplicated.
+    if downloaded_file.status_code != 200:
+        log_path = log_tools.get_log_path("failed.txt", data_filepath)
+        with open(log_path, "a") as f:
+            f.write(f"ema_excel@{url}@{downloaded_file.status_code}\n")
+            return
+
+    Path(f"{target_path}").mkdir(exist_ok=True)
+    with open(f"{target_path}/ema_excel.xlsx", "wb") as file:
+        file.write(downloaded_file.content)
+        log.debug(f"DOWNLOADED EMA Excel")
 
 
 def download_all(data_filepath: str, urls_dict: json_helper.JsonHelper, parallel_download: bool):

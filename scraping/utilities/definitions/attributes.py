@@ -76,4 +76,7 @@ filedates_web = "filedates"
 
 # relevant for webscraper
 init_addressed_to_member_states = "init_addressed_to_member_states"
+#TODO: web definitions
+orphan_status = "orphan_status"
+authorisation_row = "authorisation_row"
 other_ema_urls = "other_ema_urls"

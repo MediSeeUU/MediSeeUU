@@ -7,6 +7,7 @@ import web_scraper.__main__ as web_scraper
 import scraping.annex_10_parser.__main__ as annex_10_parser
 import scraping.xml_converter.__main__ as xml_converter
 import scraping.pdf_parser.__main__ as pdf_parser
+import scraping.db_communicator.__main__ as db_communicator
 import scraping.combiner.__main__ as combiner
 from scraping.utilities.log import log_tools
 from scraping.utilities.io import safe_io
@@ -35,18 +36,16 @@ def run_all():
     data_folder_directory = create_data_folders()
 
     # Standard config is to run all. Uncomment line below to use custom setup.
-    # web_config = config_objects.WebConfig().run_all().set_parallel()
-    web_config = config_objects.WebConfig().run_custom(download_annex10=True).set_parallel()
+    web_config = config_objects.WebConfig().run_all().set_parallel()
     # web_config = config_objects.WebConfig().run_custom(scrape_ec=True, scrape_ema=True).set_parallel()
 
     # Any module can be commented or uncommented here, as the modules they work separately
-    # web_scraper.main(web_config)
-    # xml_converter.main(data_folder_directory)
-    pdf_parser.main(data_folder_directory, True)
-    # annex_10_parser.main(data_folder_directory)
-    combiner.main(path.join(data_folder_directory))
+    web_scraper.main(web_config)
+    xml_converter.main(data_folder_directory)
+    pdf_parser.main(data_folder_directory)
+    annex_10_parser.main(data_folder_directory)
+    # combiner.main(data_folder_directory)
     # db_communicator_main.main(data_folder_directory)
-    dc.compile()
 
 
 def create_data_folders() -> str:
