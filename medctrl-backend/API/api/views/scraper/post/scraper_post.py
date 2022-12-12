@@ -64,33 +64,34 @@ class ScraperMedicine(APIView):
         # initialize list to return failed updates/adds, so these can be checked manually
         failed_medicines = []
         medicine_list = request.data.get("data")
-        # get "medicine" key from request
-        for medicine_data in medicine_list:
-            try:
-                # atomic transaction so if there is any error all changes are rolled back
-                # Django will automatically roll back if any exception occurs
-                with transaction.atomic():
+        if medicine_list:
+            # get "medicine" key from request
+            for medicine_data in medicine_list:
+                try:
+                    # atomic transaction so if there is any error all changes are rolled back
+                    # Django will automatically roll back if any exception occurs
+                    with transaction.atomic():
 
-                    initial_history_data = {}
-                    # Remove initial history from medicine and add them later to the database,
-                    # because of circular dependency
-                    for initial_history_column in get_initial_history_columns(models):
-                        if initial_history_column in medicine_data:
-                            initial_history_data[initial_history_column] = \
-                                medicine_data.pop(initial_history_column)
+                        initial_history_data = {}
+                        # Remove initial history from medicine and add them later to the database,
+                        # because of circular dependency
+                        for initial_history_column in get_initial_history_columns(models):
+                            if initial_history_column in medicine_data:
+                                initial_history_data[initial_history_column] = \
+                                    medicine_data.pop(initial_history_column)
 
-                    if medicine_data.get("orphan"):
-                        post_orphan(medicine_data)
-                        post_orphan(initial_history_data)
-                    else:
-                        post_human(medicine_data)
-                        post_human(initial_history_data)
-            except Exception as e:
-                medicine_data["errors"] = str(e)
-                failed_medicines.append(medicine_data)
-                logger.warning(f"Posted medicine failed to add to database: {medicine_data}")
-            else:
-                logger.info(f"Posted medicine successfully added to database: {medicine_data}")
+                        if medicine_data.get("orphan"):
+                            post_orphan(medicine_data)
+                            post_orphan(initial_history_data)
+                        else:
+                            post_human(medicine_data)
+                            post_human(initial_history_data)
+                except Exception as e:
+                    medicine_data["errors"] = str(e)
+                    failed_medicines.append(medicine_data)
+                    logger.warning(f"Posted medicine failed to add to database: {medicine_data}")
+                else:
+                    logger.info(f"Posted medicine successfully added to database: {medicine_data}")
 
         # put all new medicine objects into the cache
         update_cache()
