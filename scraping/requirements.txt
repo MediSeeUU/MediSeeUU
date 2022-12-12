@@ -21,5 +21,4 @@ requests
 # Testing
 pytest
 parameterized
-nose
 mock
