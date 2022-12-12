@@ -15,9 +15,8 @@ def get_initial_history_columns(model_list: list[models.Model]) -> list[str]:
     for model in model_list:
         for field in model._meta.get_fields():
             if hasattr(field, "dashboard_column"):
-                for dashboard_column in field.dashboard_columns:
-                    if isinstance(dashboard_column, DashBoardHistoryInitialColumn):
-                        result.append(field.name)
+                if isinstance(field.dashboard_column, DashBoardHistoryInitialColumn):
+                    result.append(field.name)
     return result
 
 
