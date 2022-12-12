@@ -9,11 +9,17 @@ All the dependencies for the scraping modules are in the requirements.txt file i
 
 ## How to use
 
-### To test whole program:
-Run the `__main__.py` in the scraping folder next to all the module folders.
+### To run the whole scraping program:
+- Either: Run the `__main__.py` in the scraping folder using PyCharm after installing the dependencies.
+- Or: Execute run-scraping.bat. This will also install any dependencies that have not yet been installed.
 
-### To test a module:
-Comment out all the modules you don’t want to test in the `__main__.py` file.
+### To run a module in scraping:
+Comment out all the modules you don’t want to run in the `__main__.py` file in the scraping folder.
+Execute program as stated above.
+
+### To run the frontend (dashboard) and backend:
+Follow the instructions in their respective documentations.
+<TODO: Add link to install instructions, or place them here. Make sure to add instruction on how to install MySQL>
 
 ## Functionality
 
@@ -28,7 +34,7 @@ since no useful data is being generated from the combiner module.
 
 ## Architecture Diagram
 
-![alt text](docs/architecture_diagram.svg "Architecture Diagram")
+![architecture diagram](docs/architecture_diagram.svg "Architecture Diagram")
 
 ## Modules
 
@@ -38,8 +44,9 @@ since no useful data is being generated from the combiner module.
 - pdf_parser: This module uses the xml_converter create PDF files, which are used to create a JSON file that contains attributes that were parsed from every XML file.
 - xml_converter: This module creates an XML file for every PDF file.
 - combiner: This module merges the JSONs from the web_scraper and pdf_parser into an easily read JSON. 
-- db_uploader: The module takes the JSON from the combiner and passes it onto the back_end.
-- back_end: The back_end is responsible for communication with the front_end (the dashboard) and the database. Making sure that the data is passed on properly.
+- db_uploader: The module takes the JSON from the combiner and passes it onto the backend.
+- backend: The backend is responsible for communication with the frontend (the dashboard) and the database. Making sure that the data is passed on properly.
+- frontend: The frontend, also known as the dashboard, runs a website displaying all data in both textual form and as visualizations.
 
 ## Copyright statement
 

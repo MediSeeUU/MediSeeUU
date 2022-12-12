@@ -139,9 +139,9 @@ class TestWebScraper(TestCase):
 
         assert medicine_folder.exists(), f"Data folder for {self.eu_n} does not exist"
 
-        assert medicine_folder.isdir(), f"{medicine_folder} is not a directory"
+        assert medicine_folder.is_dir(), f"{medicine_folder} is not a directory"
 
-        assert len(medicine_folder.iterdir_files()) > 0, f"{medicine_folder} is empty"
+        assert sum(1 for _ in medicine_folder.iterdir()) > 0, f"{medicine_folder} is empty"
 
         # If the size of the file is larger than two bytes, we assume the file has data
         assert (medicine_folder / f"{self.eu_n}_webdata.json").stat().st_size > 2, \
@@ -161,8 +161,8 @@ class TestWebScraper(TestCase):
         with open(json_path / "urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
 
-        assert all(x in list(url_dict.keys()) for x in [attr.epar_url, attr.omar_url, attr.odwar_url, attr.other_ema_urls]), \
-            "ema urls not in urls.json"
+        assert all(x in list(url_dict.keys()) for x in
+                   [attr.epar_url, attr.omar_url, attr.odwar_url, attr.other_ema_urls]), "ema urls not in urls.json"
 
     def run_download(self):
         """
@@ -175,13 +175,13 @@ class TestWebScraper(TestCase):
         medicine_folder = data_path_local / self.eu_n
 
         # check if `filedates.json` exists
-        assert (medicine_folder / f"{self.eu_n}_filedates.json").exists()
+        assert (medicine_folder / f"{self.eu_n}_webdata.json").exists()
 
         # check if eu_numbers in eu_numbers.json equals all medicines, as all medicines should be new.
         check_new_eu_numbers(self)
 
         # check if all files from urls.json are downloaded:
-        with open(json_path / "/urls.json") as f:
+        with open(json_path / "urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
         filecount = len(url_dict["aut_url"]) + len(url_dict[attr.smpc_url])
 
@@ -196,15 +196,15 @@ class TestWebScraper(TestCase):
 
         # Iterdir is a generator.
         # This is the most memory efficient way to sum a generator.
-        assert sum(1 for _ in medicine_folder.iterdir()) == filecount + 2, "not all files are downloaded"
+        assert sum(1 for _ in medicine_folder.iterdir()) == filecount + 1, "not all files are downloaded"
 
         # check `filedates.json` contents
-        with open(medicine_folder / f"{self.eu_n}_filedates.json") as f:
-            filedates_dict = json.load(f)
+        with open(medicine_folder / f"{self.eu_n}_webdata.json") as f:
+            attr_dict = json.load(f)
 
         for file in medicine_folder.iterdir():
             if file.suffix == ".pdf":
-                assert file in filedates_dict.keys(), f"{file} does not exist in filedates.json"
+                assert file.name in attr_dict[attr.filedates_web].keys(), f"{file} does not exist in filedates.json"
 
     def run_filter(self):
         """

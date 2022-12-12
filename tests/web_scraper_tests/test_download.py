@@ -28,9 +28,11 @@ class TestDownload(TestCase):
             url: url of a file that needs to be tested
         """
         filedates_dict = download.get_date_from_url(url)
-        url_out = filedates_dict["file_link"]
-        date1 = filedates_dict["file_date"]
-        date2 = filedates_dict["medicine_updated"]
+        url_out = filedates_dict["pdf_link"]
+        date1 = filedates_dict["pdf_date"]
+        date1 = datetime.strptime(date1.split()[0], '%Y-%m-%d')
+        date2 = filedates_dict["pdf_scrape_date"]
+        date2 = datetime.strptime(date2.split()[0], '%Y-%m-%d')
 
         self.assertTrue(url == url_out)
         if len((re.findall(r"\d{8}", url))) > 0:
@@ -78,7 +80,7 @@ class TestDownload(TestCase):
         med_dict = (json_helper.JsonHelper(path=f"{data_local}/{eu_n}/{eu_n}_webdata.json")).load_json()
         url_json: json_helper.JsonHelper = json_helper.JsonHelper(path="test_json.json", init_dict={})
         target_path = f"{data_local}/{eu_n}"
-        self.assertIsNone(download.download_pdfs_ec(eu_n, pdf_type, pdf_url, med_dict, {}, target_path, url_json, True))
+        self.assertIsNone(download.download_pdfs_ec(eu_n, pdf_type, pdf_url, med_dict, target_path, url_json, True))
         remove("test_json.json")
 
     @parameterized.expand([["EU-1-21-1541",
@@ -100,7 +102,7 @@ class TestDownload(TestCase):
             f"can't run test, no webdata file for {eu_n}"
         med_dict = (json_helper.JsonHelper(path=f"{data_local}/{eu_n}/{eu_n}_webdata.json")).load_json()
         target_path = f"{data_local}/{eu_n}"
-        self.assertIsNone(download.download_pdfs_ema(eu_n, pdf_type, pdf_url, med_dict, {}, target_path))
+        self.assertIsNone(download.download_pdfs_ema(eu_n, pdf_type, pdf_url, med_dict, target_path, True))
 
     @parameterized.expand([["EU-1-21-1541",
                             {attr.ec_url: "https://ec.europa.eu/health/documents/community-register/html/h1541.htm",
