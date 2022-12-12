@@ -1,34 +1,28 @@
 import json
-import os
-import os.path as path
 from datetime import date
-from pathlib import Path
 from unittest import TestCase
 
+import regex as re
 from parameterized import parameterized
 
-import scraping.utilities.web.config_objects as config
-from scraping.utilities.io import safe_io
-from scraping.utilities.log import log_tools
-from scraping.utilities.io import safe_io
-from parameterized import parameterized
 import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.web.config_objects as config
+from scraping.utilities.io.pathlib_extended import Path
+from scraping.utilities.log import log_tools
 from scraping.web_scraper import __main__ as web
 
-data_path = "../test_data"
-json_path = "web_scraper_tests/JSON"
-scraping_root_path = str(Path.cwd().parent)
+data_path = Path("../test_data")
+json_path = Path("web_scraper_tests/JSON")
+scraping_root_path = Path.cwd().parent
 
 # Different paths needed when running tests from the web_scraper folder
 # instead of the parent tests folder
 if Path.cwd().name == "web_scraper_tests":
-    data_path = "../../test_data"
-    json_path = "JSON"
-    scraping_root_path = str(Path.cwd().parent.parent)
+    data_path = Path("../../test_data")
+    json_path = Path("JSON")
+    scraping_root_path = Path.cwd().parent.parent
 
-data_path_local = data_path + "active_withdrawn"
-
-filter_path = scraping_root_path + "tests/logs/txt_files/filter.txt"
+data_path_local = data_path / "active_withdrawn"
 
 
 def check_new_eu_numbers(self):
@@ -36,18 +30,18 @@ def check_new_eu_numbers(self):
     Check whether EU numbers in eu_number.json are equal to the eu_numbers of the medicines being downloaded.
     This should be the case, as all medicines are new, since they are downloaded for the first time in each test run.
     """
-    eu_numbers_path = ""
-    eu_numbers_base_path = f"{data_path}/{date.today()}_eu_numbers"
 
-    file_exists = True
-    i = 0
+    # Find all files in the structure of `2022-01-01_eu_numbers-0.json`
+    # Sort the list and grab the last file in the list. This is the latest eu_numbers file
+    all_files = list(
+        filter(lambda file: re.match(f"{date.today()}_eu_numbers_\\d.json", file.name),
+               data_path.iterdir())
+    )
 
-    while file_exists:
-        eu_numbers_path = f"{eu_numbers_base_path}_{i}.json"
-        i += 1
-        file_exists = Path(f"{eu_numbers_base_path}_{i}.json").exists()
+    all_files.sort(key=lambda x: x.name)
+    eu_numbers_file = all_files[-1]
 
-    with open(eu_numbers_path) as f:
+    with open(eu_numbers_file) as f:
         eu_numbers = set(json.load(f))
 
     self.assertEqual(self.eu_numbers, eu_numbers)
@@ -65,27 +59,36 @@ class TestWebScraper(TestCase):
         config.default_path_data = data_path
         config.default_path_logging = f"{scraping_root_path}/tests/logs/log_files"
 
-        log_files_folder = f"{scraping_root_path}/tests/logs/log_files"
-        txt_files_folder = f"{scraping_root_path}/tests/logs/txt_files"
+        log_files_folder = Path(f"{scraping_root_path}/tests/logs/log_files")
+        txt_files_folder = Path(f"{scraping_root_path}/tests/logs/txt_files")
 
-        safe_io.remove_path(Path(log_files_folder))
-        safe_io.delete_folder(txt_files_folder)
+        if log_files_folder.exists():
+            log_files_folder.rmdir_recursive()
+
+        if txt_files_folder.exists():
+            txt_files_folder.rmdir_recursive()
+
+        if json_path.exists():
+            json_path.rmdir_recursive()
 
         log_tools.init_loggers()
 
-        Path(data_path).rename(f"{data_path}_old")
+        if data_path.exists():
+            # TODO: Replaces the old folder. Is this the desired functionality?
+            data_path.replace(f"{data_path}_old")
 
         # exists_ok flag is off, we want to throw an error when the path exists beforehand
-        Path(data_path).mkdir(parents=True)
-        Path(data_path_local).mkdir(parents=True)
-        Path(json_path).mkdir(parents=True)
+        data_path.mkdir()
+        data_path_local.mkdir()
+
+        json_path.mkdir()
 
     def setUp(self):
         """
         Create required folders for data and logs
         """
-        safe_io.delete_folder(data_path_local)
-        safe_io.create_folder(data_path_local)
+        data_path_local.rmdir_recursive()
+        data_path_local.mkdir()
 
     medicine_list_checks = \
         [('https://ec.europa.eu/health/documents/community-register/html/h273.htm', 'EU-1-04-273', 0, 'h273'),
@@ -132,14 +135,20 @@ class TestWebScraper(TestCase):
                                    .supply_medicine_list(self.medicine_list))
 
         # check if data folder for eu_n exists and is filled
-        data_folder = f"{data_path_local}/{self.eu_n}"
-        assert path.exists(data_folder), f"data folder for {self.eu_n} does not exist"
-        assert path.isdir(data_folder), f"{data_folder} is not a directory"
-        assert len(os.listdir(data_folder)) > 0, f"{data_folder} is empty"
-        # check if webdata is empty
-        assert path.getsize(f"{data_folder}/{self.eu_n}_webdata.json") > 2, f"webdata.json is empty for {self.eu_n}"
+        medicine_folder = data_path_local / self.eu_n
+
+        assert medicine_folder.exists(), f"Data folder for {self.eu_n} does not exist"
+
+        assert medicine_folder.isdir(), f"{medicine_folder} is not a directory"
+
+        assert len(medicine_folder.iterdir_files()) > 0, f"{medicine_folder} is empty"
+
+        # If the size of the file is larger than two bytes, we assume the file has data
+        assert (medicine_folder / f"{self.eu_n}_webdata.json").stat().st_size > 2, \
+               f"webdata.json is empty for {self.eu_n}"
+
         # check if urls.json is empty
-        assert path.getsize(json_path + "/urls.json") > 2, f"urls.json is empty"
+        assert (json_path / "urls.json").stat().st_size > 2, f"urls.json is empty"
 
     def run_ema_scraper(self):
         """
@@ -149,8 +158,9 @@ class TestWebScraper(TestCase):
                                    .set_parallel(self.parallel)
                                    .supply_medicine_list(self.medicine_list))
 
-        with open(json_path + "/urls.json") as f:
+        with open(json_path / "urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
+
         assert all(x in list(url_dict.keys()) for x in [attr.epar_url, attr.omar_url, attr.odwar_url, attr.other_ema_urls]), \
             "ema urls not in urls.json"
 
@@ -162,15 +172,16 @@ class TestWebScraper(TestCase):
                                    .set_parallel(self.parallel)
                                    .supply_medicine_list(self.medicine_list))
 
+        medicine_folder = data_path_local / self.eu_n
+
         # check if `filedates.json` exists
-        data_folder = f"{data_path_local}/{self.eu_n}"
-        assert path.exists(f"{data_folder}/{self.eu_n}_filedates.json")
+        assert (medicine_folder / f"{self.eu_n}_filedates.json").exists()
 
         # check if eu_numbers in eu_numbers.json equals all medicines, as all medicines should be new.
         check_new_eu_numbers(self)
 
         # check if all files from urls.json are downloaded:
-        with open(json_path + "/urls.json") as f:
+        with open(json_path / "/urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
         filecount = len(url_dict["aut_url"]) + len(url_dict[attr.smpc_url])
 
@@ -183,12 +194,16 @@ class TestWebScraper(TestCase):
         for _ in url_dict[attr.other_ema_urls]:
             filecount += 1
 
-        assert len(os.listdir(data_folder)) == filecount + 2, "not all files are downloaded"
+        # Iterdir is a generator.
+        # This is the most memory efficient way to sum a generator.
+        assert sum(1 for _ in medicine_folder.iterdir()) == filecount + 2, "not all files are downloaded"
+
         # check `filedates.json` contents
-        with open(f"{data_folder}/{self.eu_n}_filedates.json") as f:
+        with open(medicine_folder / f"{self.eu_n}_filedates.json") as f:
             filedates_dict = json.load(f)
-        for file in os.listdir(data_folder):
-            if ".pdf" in file:
+
+        for file in medicine_folder.iterdir():
+            if file.suffix == ".pdf":
                 assert file in filedates_dict.keys(), f"{file} does not exist in filedates.json"
 
     def run_filter(self):
@@ -200,12 +215,14 @@ class TestWebScraper(TestCase):
                                    .supply_medicine_list(self.medicine_list))
 
         # check if filter.txt exists
-        assert path.exists(filter_path), "filter.txt does not exist"
+        filter_path = scraping_root_path / "tests/logs/txt_files/filter.txt"
+
+        assert filter_path.exists(), "filter.txt does not exist"
 
     @classmethod
     def tearDownClass(cls):
         """
         Runs after class is run, makes sure test data is deleted and backup data is set back to its original place
         """
-        safe_io.delete_folder(data_path)
-        safe_io.rename(f"{data_path}_old", data_path)
+        data_path.rmdir_recursive()
+        Path(f"{data_path}_old").rename(data_path)
