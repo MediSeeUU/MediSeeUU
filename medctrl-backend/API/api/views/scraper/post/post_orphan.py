@@ -5,8 +5,11 @@ from api.models.orphan_models import (
 from api.serializers.medicine_serializers.scraper.post.orphan import (
     OrphanProductSerializer,
 )
+from api.serializers.medicine_serializers.scraper.update.orphan import (
+    OrphanProductFlexVarUpdateSerializer,
+)
 from api.models.other import OrphanLocks
-
+from .common import insert_data
 
 def post(data):
     if eu_od_number := data.get("eu_od_number"):
@@ -16,8 +19,17 @@ def post(data):
 
         data = {key: value for key, value in data.items() if key not in locks}
 
+        current_orphan_product = OrphanProduct.objects.filter(
+            eu_od_number=eu_od_number
+        ).first()
 
-def orphan_history_variables(data):
+        if not current_orphan_product or data.get("override"):
+            insert_data(data, current_orphan_product, OrphanProductSerializer)
+        else:
+            insert_data(data, current_orphan_product, OrphanProductFlexVarUpdateSerializer)
+
+
+def history_variables(data):
     """
     Creates new history variables for the orphan product history models using the data given in its
     argument "data". It expects the input data for the history variable to be formed like this:
@@ -29,7 +41,7 @@ def orphan_history_variables(data):
     pass
 
 
-def add_orphan_history(model, serializer, name, data):
+def add_history(model, serializer, name, data):
     """
     Add a new object to the given history model.
 

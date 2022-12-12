@@ -40,6 +40,7 @@ from api.serializers.medicine_serializers.scraper.update.human import (
     DurationFlexVarUpdateSerializer,
 )
 from api.models.other import MedicineLocks
+from .common import insert_data
 
 
 def post(data):
@@ -95,6 +96,10 @@ def post(data):
         list_variables(data)
 
 
+def add_or_update_model(data, model, ):
+    pass
+
+
 def add_or_update_foreign_key(data, current, related_model, insert_serializer, update_serializer, attribute):
     if current:
         if hasattr(current, attribute):
@@ -106,26 +111,6 @@ def add_or_update_foreign_key(data, current, related_model, insert_serializer, u
                     data[attribute] = insert_data(data, current_related, update_serializer)
                     return None
     data[attribute] = insert_data(data, None, insert_serializer)
-
-
-def insert_data(data, current, serializer):
-    """
-    This function updates the flexible medicine variables if this is applicable for the current data.
-    The function is called if a previous version of the medicine already exists in the database.
-
-    Args:
-        data (medicineObject): The new medicine data.
-        current (medicineObject): The medicine data that is currently in the database.
-        serializer
-    """
-    medicine_serializer = serializer(current, data=data, partial=True)
-
-    # update medicine
-    if medicine_serializer.is_valid():
-        inserted = medicine_serializer.save()
-        return inserted.pk
-    else:
-        raise ValueError(medicine_serializer.errors)
 
 
 def add_or_override_medicine(data, eu_pnumber):
