@@ -26,7 +26,10 @@ def main(directory: str):
     for folder in directory_folders:
         combined_dict = get_combined_dict(path.join(active_withdrawn_folder, folder), folder)
         if not combined_dict is None:
-            json_data = json.dumps(combined_dict)
+            data_dict = {
+                "data": [combined_dict]
+            }
+            json_data = json.dumps(data_dict)
             passed = db_communicator.send_data(data=json_data)
             medicine_no += 1
             if passed:
