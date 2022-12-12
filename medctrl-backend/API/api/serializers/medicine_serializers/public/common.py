@@ -166,7 +166,8 @@ class HistoryMixin:
                         representation[field_name] = next(reversed(data))[field]
         return representation
 
-class AnyBoolList:
+
+class AnyBoolsList:
     """
         Selects the items of the specified related history object and inserts it in a flat representation.
 
@@ -202,5 +203,13 @@ class AnyBoolList:
         """
         representation = super().to_representation(obj)
 
-        representation['eu_suspension'] = True
-        representation['eu_referral'] = False
+        for related_name, serializer_class, fields in getattr(self.Meta, "any_bools_list"):
+            if hasattr(obj, related_name):
+                obj_field = getattr(obj, related_name)
+                # If relation is not null
+                if obj_field:
+                    # Serialize data
+                    serializer = serializer_class(context=self.context, many=True)
+                    obj_rep = serializer.to_representation(obj_field)
+                    for field in fields:
+                        pass

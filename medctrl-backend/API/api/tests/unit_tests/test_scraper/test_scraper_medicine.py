@@ -8,7 +8,6 @@ from api.models.human_models import (
     AcceleratedAssessment,
     Duration,
     Procedures,
-    OrphanProduct,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
@@ -17,6 +16,9 @@ from api.models.human_models import (
     HistoryPrime,
     HistoryEUOrphanCon,
     LegalBases,
+)
+from api.models.orphan_models import (
+    OrphanProduct,
 )
 from api.models.common import (
     AutStatus,

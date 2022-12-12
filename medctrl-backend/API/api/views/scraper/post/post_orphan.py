@@ -1,10 +1,7 @@
 from django.forms.models import model_to_dict
-from api.models.get_dashboard_columns import get_initial_history_columns
-from api.models.orphan_models import models
 from api.models.orphan_models import (
     OrphanProduct,
 )
-
 from api.serializers.medicine_serializers.scraper.post.orphan import (
     OrphanProductSerializer,
 )
@@ -17,15 +14,7 @@ def post(data):
             eu_od_number=eu_od_number
         ).values_list("column_name", flat=True)
 
-        data = \
-            {key: value for key, value in data.items() if key not in locks}
-        initial_history_data = {}
-        # Remove initial history from medicine and add them later to the database,
-        # because of circular dependency
-        for initial_history_column in get_initial_history_columns(models):
-            if initial_history_column in data:
-                initial_history_data[initial_history_column] = \
-                    data.pop(initial_history_column)
+        data = {key: value for key, value in data.items() if key not in locks}
 
 
 def orphan_history_variables(data):

@@ -12,6 +12,8 @@
 from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from api.models.get_dashboard_columns import get_initial_history_columns
+from api.models import models
 from api.models.human_models import (
     MedicinalProduct,
 )
@@ -68,10 +70,21 @@ class ScraperMedicine(APIView):
                 # atomic transaction so if there is any error all changes are rolled back
                 # Django will automatically roll back if any exception occurs
                 with transaction.atomic():
+
+                    initial_history_data = {}
+                    # Remove initial history from medicine and add them later to the database,
+                    # because of circular dependency
+                    for initial_history_column in get_initial_history_columns(models):
+                        if initial_history_column in medicine_data:
+                            initial_history_data[initial_history_column] = \
+                                medicine_data.pop(initial_history_column)
+
                     if medicine_data.get("orphan"):
                         post_orphan(medicine_data)
+                        post_orphan(initial_history_data)
                     else:
                         post_human(medicine_data)
+                        post_human(initial_history_data)
             except Exception as e:
                 medicine_data["errors"] = str(e)
                 failed_medicines.append(medicine_data)

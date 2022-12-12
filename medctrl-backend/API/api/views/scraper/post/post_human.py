@@ -1,11 +1,11 @@
 from django.forms.models import model_to_dict
-from api.models.get_dashboard_columns import get_initial_history_columns
-from api.models.human_models import models
 from api.models.human_models import (
     MedicinalProduct,
+    IngredientsAndSubstances,
     MarketingAuthorisation,
     AcceleratedAssessment,
     Duration,
+    Procedures,
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
@@ -45,13 +45,6 @@ from api.models.other import MedicineLocks
 def post(data):
     if eu_pnumber := data.get("eu_pnumber"):
         override = data.get("override")
-        # check if medicine already exists based on eu_pnumber
-        current_medicine = MedicinalProduct.objects.filter(
-            eu_pnumber=eu_pnumber
-        ).first()
-        # if the medicine doesn't exist or the medicine should be overriden, call add_medicine,
-        # otherwise update the flexible variables and the null values
-
         # if variable is locked, delete it from the data
         locks = MedicineLocks.objects.filter(
             eu_pnumber=eu_pnumber
@@ -59,24 +52,63 @@ def post(data):
 
         data = {key: value for key, value in data.items() if key not in locks}
 
-        initial_history_data = {}
-        # Remove initial history from medicine and add them later to the database,
-        # because of circular dependency
-        for initial_history_column in get_initial_history_columns(models):
-            if initial_history_column in data:
-                initial_history_data[initial_history_column] = \
-                    data.pop(initial_history_column)
+        current_ingredients_and_substances = None
+        if active_substance := data.get("active_substance"):
+            current_ingredients_and_substances = IngredientsAndSubstances.objects.filter(
+                active_substance=active_substance
+            ).first()
+        data["ingredients_and_substances"] = \
+            insert_data(data, current_ingredients_and_substances, IngredientsAndSubstancesFlexVarUpdateSerializer) \
+            if current_ingredients_and_substances else \
+            insert_data(data, current_ingredients_and_substances, IngredientsAndSubstancesSerializer)
 
-        if current_medicine is None or override:
-            add_or_override_medicine(data, current_medicine)
-        else:
-            update_flex_medicine(data, current_medicine)
-            update_null_values_medicine(data, current_medicine)
-        medicine_history_variables(data)
-        medicine_list_variables(data)
+        current_marketing_authorisation = MarketingAuthorisation.objects.filter(
+            eu_pnumber=eu_pnumber
+        ).first()
+
+        add_or_update_foreign_key(
+            data,
+            current_marketing_authorisation,
+            AcceleratedAssessment,
+            AcceleratedAssessmentSerializer,
+            AcceleratedAssessmentFlexVarUpdateSerializer,
+            "ema_accelerated_assessment"
+        )
+        add_or_update_foreign_key(
+            data,
+            current_marketing_authorisation,
+            Duration,
+            DurationSerializer,
+            DurationFlexVarUpdateSerializer,
+            "duration"
+        )
+
+        insert_data(data, current_marketing_authorisation, MarketingAuthorisationSerializer)
+
+        current_medicinal_product = MarketingAuthorisation.objects.filter(
+            eu_pnumber=eu_pnumber
+        ).first()
+
+        insert_data(data, current_medicinal_product, MedicinalProductSerializer)
+
+        history_variables(data)
+        list_variables(data)
 
 
-def update_flex_medicine(data, current):
+def add_or_update_foreign_key(data, current, related_model, insert_serializer, update_serializer, attribute):
+    if current:
+        if hasattr(current, attribute):
+            if foreign_key := getattr(current, attribute):
+                current_related = related_model.objects.filter(
+                    id=foreign_key
+                ).first()
+                if current_related:
+                    data[attribute] = insert_data(data, current_related, update_serializer)
+                    return None
+    data[attribute] = insert_data(data, None, insert_serializer)
+
+
+def insert_data(data, current, serializer):
     """
     This function updates the flexible medicine variables if this is applicable for the current data.
     The function is called if a previous version of the medicine already exists in the database.
@@ -84,29 +116,34 @@ def update_flex_medicine(data, current):
     Args:
         data (medicineObject): The new medicine data.
         current (medicineObject): The medicine data that is currently in the database.
+        serializer
     """
-    medicine_serializer = MedicinalProductFlexVarUpdateSerializer(current, data=data, partial=True)
+    medicine_serializer = serializer(current, data=data, partial=True)
 
     # update medicine
     if medicine_serializer.is_valid():
-        medicine_serializer.save()
+        inserted = medicine_serializer.save()
+        return inserted.pk
     else:
         raise ValueError(medicine_serializer.errors)
 
 
-def add_or_override_medicine(data, current_medicine):
+def add_or_override_medicine(data, eu_pnumber):
     """
     Adds a new medicine with its attributes to the database. If this is valid,
     it will also add the history variables to the database.
 
     Args:
         data (medicineObject): The new medicine data.
-        current_medicine (medicineObject): The medicine data that is currently in the database.
+        eu_pnumber (str): The EU number of the human medicine being added
 
     Raises:
         ValueError: Invalid data in data argument
     """
     # initialise serializers for addition
+    current_medicine = MedicinalProduct.objects.filter(
+        eu_pnumber=eu_pnumber
+    ).first()
     serializer = MedicinalProductSerializer(current_medicine, data=data, partial=True)
 
     # add medicine and authorisation
@@ -116,7 +153,7 @@ def add_or_override_medicine(data, current_medicine):
         raise ValueError(serializer.errors)
 
 
-def update_null_values_medicine(data, current_medicine):
+def update_null_values(data, current_medicine):
     """
     Updates all null values for an existing medicine using the data given in its
     argument "data".
@@ -138,7 +175,7 @@ def update_null_values_medicine(data, current_medicine):
         add_or_override_medicine(new_data, current_medicine)
 
 
-def medicine_list_variables(data):
+def list_variables(data):
     """
     Creates new list variables for the history models using the data given in its
     argument "data". It expects the input data for the list variable to be formed like this:
@@ -147,7 +184,7 @@ def medicine_list_variables(data):
     Args:
         data (medicineObject): The new medicine data.
     """
-    add_medicine_list(
+    add_list(
         LegalBases,
         LegalBasesSerializer,
         "eu_legal_basis",
@@ -156,7 +193,7 @@ def medicine_list_variables(data):
     )
 
 
-def add_medicine_list(model, serializer, name, data, replace):
+def add_list(model, serializer, name, data, replace):
     """
     Add a new object to the given list model.
 
@@ -188,7 +225,7 @@ def add_medicine_list(model, serializer, name, data, replace):
                 raise ValueError(f"{name} contains invalid data! {serializer.errors}")
 
 
-def medicine_history_variables(data):
+def history_variables(data):
     """
     Creates new history variables for the medicinal product history models using the data given in its
     argument "data". It expects the input data for the history variable to be formed like this:
@@ -197,49 +234,49 @@ def medicine_history_variables(data):
     Args:
         data (medicineObject): The new medicine data.
     """
-    add_medicine_history(
+    add_history(
         HistoryAuthorisationType,
         AuthorisationTypeSerializer,
         "eu_aut_type",
         data,
     )
 
-    add_medicine_history(
+    add_history(
         HistoryAuthorisationStatus,
         AuthorisationStatusSerializer,
         "eu_aut_status",
         data,
     )
 
-    add_medicine_history(
+    add_history(
         HistoryBrandName,
         BrandNameSerializer,
         "eu_brand_name",
         data,
     )
 
-    add_medicine_history(
+    add_history(
         HistoryOD,
         OrphanDesignationSerializer,
         "eu_od",
         data,
     )
 
-    add_medicine_history(
+    add_history(
         HistoryPrime,
         PrimeSerializer,
         "eu_prime",
         data,
     )
 
-    add_medicine_history(
+    add_history(
         HistoryMAH,
         MAHSerializer,
         "eu_mah",
         data,
     )
 
-    add_medicine_history(
+    add_history(
         HistoryEUOrphanCon,
         EUOrphanConSerializer,
         "eu_orphan_con",
@@ -247,7 +284,7 @@ def medicine_history_variables(data):
     )
 
 
-def add_medicine_history(model, serializer, name, data):
+def add_history(model, serializer, name, data):
     """
     Add a new object to the given history model.
 

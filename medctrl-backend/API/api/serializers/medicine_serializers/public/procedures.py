@@ -24,6 +24,4 @@ class ProceduresSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = Procedures
-
-
         fields = "__all__"

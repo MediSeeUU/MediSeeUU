@@ -12,11 +12,11 @@ from .marketing_authorisation import (
     AcceleratedAssessmentSerializer,
     DurationSerializer,
 )
+from .procedures import (
+    ProceduresSerializer
+)
 from .medicinal_product import (
     PublicMedicinalProductSerializer,
     LegalBasesSerializer,
     IngredientsAndSubstancesSerializer,
-)
-from .procedures import (
-    ProceduresSerializer
 )
