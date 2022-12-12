@@ -77,19 +77,22 @@
 <li class="toctree-l2"><a class="reference internal" href="db_communicator.html">db_communicator package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="db_communicator.html#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="db_communicator.html#module-db_communicator.__main__">db_communicator.__main__ module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="db_communicator.html#db_communicator.__main__.get_combined_dict"><code class="docutils literal notranslate"><span class="pre">get_combined_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="db_communicator.html#db_communicator.__main__.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="db_communicator.html#module-db_communicator.db_communicator">db_communicator.db_communicator module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="db_communicator.html#db_communicator.db_communicator.DbCommunicator"><code class="docutils literal notranslate"><span class="pre">DbCommunicator</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.key_valid"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.key_valid()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.request_token"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.request_token()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.get_credentials"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.get_credentials()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.login"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.login()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.logout"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.logout()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.refresh_token"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.refresh_token()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.send_data"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.send_data()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.token_checker"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.token_checker()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="db_communicator.html#db-communicator-token-handler-module">db_communicator.token_handler module</a></li>
 </ul>
 </li>
 </ul>
@@ -126,10 +129,12 @@
 
 <div class="genindex-jumpbox">
  <a href="#D"><strong>D</strong></a>
- | <a href="#K"><strong>K</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
  
 </div>
 <h2 id="D">D</h2>
@@ -163,10 +168,26 @@
   </ul></td>
 </tr></table>
 
-<h2 id="K">K</h2>
+<h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.key_valid">key_valid() (db_communicator.db_communicator.DbCommunicator method)</a>
+      <li><a href="db_communicator.html#db_communicator.__main__.get_combined_dict">get_combined_dict() (in module db_communicator.__main__)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.get_credentials">get_credentials() (db_communicator.db_communicator.DbCommunicator method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.login">login() (db_communicator.db_communicator.DbCommunicator method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.logout">logout() (db_communicator.db_communicator.DbCommunicator method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -193,7 +214,7 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.request_token">request_token() (db_communicator.db_communicator.DbCommunicator method)</a>
+      <li><a href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.refresh_token">refresh_token() (db_communicator.db_communicator.DbCommunicator method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -202,6 +223,14 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.send_data">send_data() (db_communicator.db_communicator.DbCommunicator method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="db_communicator.html#db_communicator.db_communicator.DbCommunicator.token_checker">token_checker() (db_communicator.db_communicator.DbCommunicator method)</a>
 </li>
   </ul></td>
 </tr></table>
