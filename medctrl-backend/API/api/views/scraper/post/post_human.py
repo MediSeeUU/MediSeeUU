@@ -298,7 +298,7 @@ def add_history(model, serializer, name, data_name, data):
         for item in items:
             if not model_data or item.get("value") != getattr(model_data, name):
                 serializer = serializer(
-                    None, {name: item.get(name), "change_date": item.get("date"), "eu_pnumber": eu_pnumber}
+                    None, {name: item.get("value"), "change_date": item.get("date"), "eu_pnumber": eu_pnumber}
                 )
                 if serializer.is_valid():
                     serializer.save()
