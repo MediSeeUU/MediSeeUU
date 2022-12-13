@@ -159,7 +159,7 @@ class HistoryMixin:
             # Iterate the specified history objects with their serializer
             for field, serializer_class in self.Meta.current_history:
                 if hasattr(obj, field):
-                    history = getattr(obj, field).all().order_by("change_date").last()
+                    history = getattr(obj, field).order_by("change_date").last()
                     if history:
                         data = serializer_class(history).data
                         if data:
