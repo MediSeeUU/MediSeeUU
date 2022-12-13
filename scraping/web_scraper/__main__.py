@@ -59,6 +59,7 @@ def main(config: config_objects.WebConfig):
                                       annex10_file)
 
     if config.run_scrape_ec:
+        url_file.overwrite_dict({})
         ec_scraper.scrape_ec(config, medicine_list, url_file, url_refused_file)
 
     if config.run_scrape_ema:

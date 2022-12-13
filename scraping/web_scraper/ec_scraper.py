@@ -617,8 +617,7 @@ def scrape_ec(config: config_objects.WebConfig, medicine_list: list[(str, str, i
     log_path = log_tools.get_log_path("no_english_available.txt", str(config_objects.default_path_data))
     with open(log_path, 'w', encoding="utf-8"):
         pass  # open/clean no_english_available file
-    # make sure tests start with empty dict, because url_file is global variable only way to do this is here.
-    url_file.overwrite_dict({})
+
     log.info("TASK START scraping all medicine data and URLs from the EC website")
     # Transform zipped list into individual lists for thread_map function
     # The last element of the medicine_codes tuple is not of interest, thus we pop()
