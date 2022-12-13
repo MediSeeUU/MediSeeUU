@@ -52,7 +52,6 @@ def create_data_folders() -> str:
 
     Returns:
         str: Returns the data folder directory.
-
     """
     data_folder_directory = '../data'
     data_folder_active_withdrawn = f"{data_folder_directory}/active_withdrawn"
