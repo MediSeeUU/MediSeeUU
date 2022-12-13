@@ -14,8 +14,9 @@ def init_loggers():
     The root file handler only saves warning messages or higher.
     """
     logging_path = config.default_path_logging
-    safe_io.create_folder(logging_path)
+
     logs_path = logging_path.split("log_files")[0]
+    safe_io.create_folder(logs_path)
     log_path = f"{logs_path}/log_files"
     txt_path = f"{logs_path}/txt_files"
     safe_io.create_folder(log_path)
