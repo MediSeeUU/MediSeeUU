@@ -4,26 +4,15 @@
 
 import React, { useState } from 'react'
 import MedModal from '../../../../shared/MedModal'
-import FilterMenu from './filter_menu/FilterMenu'
 import './Menu.css'
-import SortMenu_old from './sort_menu/SortMenu_old'
+import SortMenu from './sort_menu/SortMenu'
 
 // Function based component which renders the filter and sort menu
-function Menu({ filters, sorters, update, categories }) {
-  // Default filter object
-  const filterObject = [
-    {
-      selected: '',
-      input: [{ var: '', filterRange: 'from', custom: true }],
-      filterType: '',
-    },
-  ]
-
+function OpenSort({ sorters, update }) {
   // Default sort object
   const sortObject = [{ selected: '', order: 'asc' }]
 
   // Menu state variables
-  const [localFilters, setFilters] = useState(filterObject)
   const [localSorters, setSorters] = useState(sortObject)
   const [showModal, setModalState] = useState(false)
 
@@ -31,7 +20,6 @@ function Menu({ filters, sorters, update, categories }) {
   const closeModal = () => setModalState(false)
   const openModal = () => {
     // Set current applied filters and sorters in the menu state
-    setFilters(filters)
     setSorters(sorters)
 
     setModalState(true)
@@ -39,15 +27,14 @@ function Menu({ filters, sorters, update, categories }) {
 
   // Apply filters and sorters which will update the data displayed in the table and close modal
   const apply = () => {
-    update(localFilters, localSorters)
+    update(localSorters)
     closeModal()
   }
 
   // Clear filters and sorters which will update the data displayed in the table and close modal
   const clear = () => {
-    setFilters(filterObject)
     setSorters(sortObject)
-    update(filterObject, sortObject)
+    update(sortObject)
     closeModal()
   }
 
@@ -66,11 +53,10 @@ function Menu({ filters, sorters, update, categories }) {
         className="med-table-menu-modal"
       >
         <div className="med-filter-menu">
-          <FilterMenu
-            filters={localFilters}
-            setFilters={setFilters}
-            defaultObj={filterObject}
-            categories={categories}
+          <SortMenu
+            sorters={localSorters}
+            setSorters={setSorters}
+            defaultObj={sortObject}
           />
           <div className="med-table-menu-filter-button-container">
             <button
@@ -93,15 +79,9 @@ function Menu({ filters, sorters, update, categories }) {
             </button>
           </div>
         </div>
-        <SortMenu_old
-          sorters={localSorters}
-          setSorters={setSorters}
-          defaultObj={sortObject}
-        />
-        
       </MedModal>
     </>
   )
 }
 
-export default Menu
+export default OpenSort

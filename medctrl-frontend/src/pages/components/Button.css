@@ -1,0 +1,26 @@
+/* This program has been developed by students from the bachelor Computer Science at
+Utrecht University within the Software Project course.
+© Copyright Utrecht University (Department of Information and Computing Sciences) */
+
+.med-bx-button-special {
+  width: 400px;
+  height: 40px;
+  margin: 15px 5px 15px 5px;
+
+  font-size: 20px;
+  font-weight: 500;
+
+  border-radius: 5px;
+  border: none;
+}
+
+.toggled {
+  background-color: #a8a8a8;
+}
+
+.med-selector-button {
+  margin: 2px;
+  width: 50%;
+  padding: 0px;
+  float: center
+}

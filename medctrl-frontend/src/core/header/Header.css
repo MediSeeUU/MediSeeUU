@@ -28,7 +28,7 @@ Utrecht University within the Software Project course.
   margin-right: 30px;
   margin-top: 5px;
   height: 65px;
-  float: right;
+  float: left;
 }
 
 /* Keeps the text in the header on the left side, ensuring that the logo can be next to it */

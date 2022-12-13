@@ -1,0 +1,7 @@
+input[type="button"] {
+    background-color: rgb(137, 137, 137);
+}
+
+input[type="button"].active {
+    background-color: var(--primary-normal);
+}

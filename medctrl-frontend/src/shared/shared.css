@@ -279,6 +279,11 @@ Utrecht University within the Software Project course.
   margin: 0.5rem 0.5rem;
 }
 
+.med-vert-separator {
+  height: calc(100% - 1rem);
+  margin: 1.5rem 0.5rem;
+}
+
 /*
   Styling for all links on the dashboard
 */

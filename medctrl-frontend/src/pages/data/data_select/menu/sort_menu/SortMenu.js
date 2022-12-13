@@ -6,12 +6,12 @@ import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import Sort from './Sort'
 
-// Function based component which renders the sort menu
+// Function based component which renders the filter menu
 function SortMenu({ sorters, setSorters, defaultObj }) {
-  // Add sort item to the menu
+  // Add filter item to the menu
   const addSort = () => setSorters(sorters.concat(defaultObj))
 
-  // Generic function to update the sort object
+  // Generic function to update the filter object
   // This is used by the other functions here
   const updateSorter = (id, func) => {
     const newSorters = sorters.map((obj, oid) => {
@@ -23,14 +23,14 @@ function SortMenu({ sorters, setSorters, defaultObj }) {
     setSorters(newSorters)
   }
 
-  // Deletes specified sort item from the menu
-  const deleteSort = (id) => {
-    let newSorters = [...sorters]
-    newSorters.splice(id, 1)
-    setSorters(newSorters)
-  }
+    // Deletes specified sort item from the menu
+    const deleteSort = (id) => {
+      let newSorters = [...sorters]
+      newSorters.splice(id, 1)
+      setSorters(newSorters)
+    }
 
-  // Updates the selected item of the specified sort item
+      // Updates the selected item of the specified sort item
   const updateSortSelected = (id, newSelected) => {
     updateSorter(id, (obj) => {
       return { ...obj, selected: newSelected }
@@ -45,42 +45,40 @@ function SortMenu({ sorters, setSorters, defaultObj }) {
   }
 
   return (
-    <div className="med-sort-menu">
+    <>
       <h1 className="med-table-menu-header">Sort</h1>
       <hr className="med-top-separator" />
-      <div className="med-table-menu-sort-container">
+      <div
+        className="med-table-menu-add-filter med-primary-text"
+        onClick={addSort}
+        role={'button'}
+        tabIndex={'0'}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') addSort()
+        }}
+      >
+        Add Sorting option
+        <i className="bx bxs-plus-square med-table-menu-add-filter-icon"></i>
+      </div>
+      <div className="med-table-menu-filters-container">
         {
+          /* Render a Filter component for each filter in the current state
+             Every filter component will receive all the functions as props to update the state */
           /* Render a Sort component for each sorter in the current state
             Every sorter component will receive all the functions as props to update the state */
-          sorters.map((obj, oid) => (
-            <Sort
-              key={uuidv4()}
-              id={oid}
-              item={obj}
-              del={deleteSort}
-              sel={updateSortSelected}
-              order={updateSortOrder}
-            />
-          ))
-        }
-        {
-          /* Only render an add sort option if there are at most 3 sorters */
-          sorters.length < 4 && (
-            <label
-              className="med-able-menu-add-sort-button med-primary-text"
-              onClick={addSort}
-              role={'button'}
-              tabIndex={'0'}
-              onKeyPress={(e) => {
-                if (e.key === 'Enter') addSort()
-              }}
-            >
-              Add Sorting option +
-            </label>
-          )
+            sorters.map((obj, oid) => (
+              <Sort
+                key={uuidv4()}
+                id={oid}
+                item={obj}
+                del={deleteSort}
+                sel={updateSortSelected}
+                order={updateSortOrder}
+              />
+            ))
         }
       </div>
-    </div>
+    </>
   )
 }
 

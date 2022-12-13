@@ -4,13 +4,13 @@ Utrecht University within the Software Project course.
 
 .med-table-menu-modal {
   position: absolute;
-  top: 19%;
-  bottom: 19%;
-  left: 15%;
-  right: 15%;
+  top: 20%;
+  bottom: 20%;
+  left: 20%;
+  right: 20%;
   overflow: hidden;
   outline: none;
-  min-width: 875px;
+  min-width: 100px;
 }
 
 .med-filter-menu,
@@ -22,7 +22,7 @@ Utrecht University within the Software Project course.
 }
 
 .med-filter-menu {
-  width: 80%;
+  width: 100%;
 }
 
 .med-sort-menu {
