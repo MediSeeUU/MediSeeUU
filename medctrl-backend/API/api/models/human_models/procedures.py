@@ -32,7 +32,7 @@ class Procedures(models.Model):
         models.BooleanField(
             null=False
         ),
-        Category.General_Information,
+        Category.Procedures,
         "bool",
         "EU suspension",
     )
@@ -41,7 +41,7 @@ class Procedures(models.Model):
         models.BooleanField(
             null=False
         ),
-        Category.General_Information,
+        Category.Procedures,
         "bool",
         "EU referral",
     )

@@ -37,7 +37,7 @@ class HistoryEUOrphanCon(models.Model):
             null=False,
             blank=False,
         ),
-        Category.General_Information,
+        Category.Medicinal_product,
         "string",
         "History EU orphan conditions",
     )

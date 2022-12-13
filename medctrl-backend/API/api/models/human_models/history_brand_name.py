@@ -37,7 +37,7 @@ class HistoryBrandName(models.Model):
             null=False,
             blank=False,
         ),
-        Category.General_Information,
+        Category.Medicinal_product,
         "string",
         "EU Brand Name",
     )

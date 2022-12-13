@@ -64,7 +64,7 @@ class MarketingAuthorisation(models.Model):
         models.DateField(
             null=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "date",
         "Initial EMA Procedure Start Date",
     )
@@ -73,7 +73,7 @@ class MarketingAuthorisation(models.Model):
         models.DateField(
             null=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "date",
         "Initial EMA (CHMP) Opinion Date",
     )
@@ -82,7 +82,7 @@ class MarketingAuthorisation(models.Model):
         models.DateField(
             null=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "date",
         "Initial EU Authorisation Date",
     )
@@ -91,7 +91,7 @@ class MarketingAuthorisation(models.Model):
         models.URLField(
             null=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "link",
         "Authorisation Decision Link",
     )
@@ -100,7 +100,7 @@ class MarketingAuthorisation(models.Model):
         models.URLField(
             null=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "link",
         "Authorisation Annex Link",
     )
@@ -109,7 +109,7 @@ class MarketingAuthorisation(models.Model):
         models.URLField(
             null=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "link",
         "Initial Authorisation EPAR Link",
     )
@@ -118,7 +118,7 @@ class MarketingAuthorisation(models.Model):
         models.TextField(
             null=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "string",
         "EMA rapporteur for initial authorisation",
     )
@@ -127,7 +127,7 @@ class MarketingAuthorisation(models.Model):
         models.TextField(
             null=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "string",
         "EMA co-rapporteur for initial authorisation",
     )
@@ -146,7 +146,7 @@ class MarketingAuthorisation(models.Model):
         models.BooleanField(
             null=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "bool",
         "EMA re-examination performed",
     )
@@ -157,7 +157,7 @@ class MarketingAuthorisation(models.Model):
             models.SET_NULL,
             null=True,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "string",
         "Initial type of EU authorisation",
     )
@@ -168,7 +168,7 @@ class MarketingAuthorisation(models.Model):
             models.SET_NULL,
             null=True,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "string",
         "Initial EU marketing authorisation holder",
     )

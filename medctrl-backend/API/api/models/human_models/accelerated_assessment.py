@@ -20,7 +20,7 @@ class AcceleratedAssessment(models.Model):
         models.BooleanField(
             null=True,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "bool",
         "EU accelerated assessment granted",
     )
@@ -29,7 +29,7 @@ class AcceleratedAssessment(models.Model):
         models.BooleanField(
             null=True,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "bool",
         "EU accelerated assessment maintained",
     )
