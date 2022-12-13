@@ -46,21 +46,21 @@ class MedicinalProduct(models.Model):
             null=False,
             blank=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "string",
         "EU Product Number",
     )
 
     ema_url = create_dashboard_column(
         models.URLField(),
-        Category.General_Information,
+        Category.Medicinal_product,
         "link",
         "EMA Product Page Link",
     )
 
     ec_url = create_dashboard_column(
         models.URLField(),
-        Category.General_Information,
+        Category.Medicinal_product,
         "link",
         "EC Product Page Link",
     )
@@ -69,14 +69,14 @@ class MedicinalProduct(models.Model):
         models.CharField(
             max_length=255,
         ),
-        Category.General_Information,
+        Category.Medicinal_product,
         "string",
         "EMA Application Number",
     )
 
     eu_med_type = create_dashboard_column(
         models.TextField(),
-        Category.General_Information,
+        Category.Medicinal_product,
         "string",
         "EU Medicine Type",
     )
@@ -85,7 +85,7 @@ class MedicinalProduct(models.Model):
         models.BooleanField(
             null=True,
         ),
-        Category.General_Information,
+        Category.Medicinal_product,
         "bool",
         "EU ATMP",
     )
@@ -105,7 +105,7 @@ class MedicinalProduct(models.Model):
             models.SET_NULL,
             null=True,
         ),
-        Category.General_Information,
+        Category.Medicinal_product,
         "string",
         "Initial EU brand name",
     )
@@ -116,7 +116,7 @@ class MedicinalProduct(models.Model):
             models.SET_NULL,
             null=True,
         ),
-        Category.General_Information,
+        Category.Medicinal_product,
         "bool",
         "EU orphan designation at authorisation",
     )
@@ -127,7 +127,7 @@ class MedicinalProduct(models.Model):
             models.SET_NULL,
             null=True,
         ),
-        Category.General_Information,
+        Category.Medicinal_product,
         "bool",
         "EU Priority Medicine at authorisation",
     )

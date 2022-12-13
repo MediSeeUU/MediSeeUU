@@ -35,7 +35,7 @@ class IngredientsAndSubstances(models.Model):
             null=False,
             blank=False,
         ),
-        Category.General_Information,
+        Category.Ingredients_and_substances,
         "string",
         "Active Substance",
     )
@@ -46,7 +46,7 @@ class IngredientsAndSubstances(models.Model):
             null=False,
             blank=False,
         ),
-        Category.General_Information,
+        Category.Medicinal_product,
         "string",
         "ATC Code",
     )
@@ -56,7 +56,7 @@ class IngredientsAndSubstances(models.Model):
             null=True,
             blank=False,
         ),
-        Category.General_Information,
+        Category.Ingredients_and_substances,
         "bool",
         "EU New Active Substance",
     )

@@ -27,7 +27,7 @@ class Duration(models.Model):
         models.IntegerField(
             null=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "number",
         "Duration of initial EU authorisation assessment procedure (total days)",
     )
@@ -36,7 +36,7 @@ class Duration(models.Model):
         models.IntegerField(
             null=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "number",
         "Duration of initial EU authorisation assessment procedure (active days)",
     )
@@ -45,7 +45,7 @@ class Duration(models.Model):
         models.IntegerField(
             null=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "number",
         "Duration of initial EU authorisation assessment procedure (clock-stop days)",
     )
@@ -54,7 +54,7 @@ class Duration(models.Model):
         models.IntegerField(
             null=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "number",
         "EC decision time (days)",
     )

@@ -44,7 +44,7 @@ class OrphanProduct(models.Model):
             null=False,
             blank=False,
         ),
-        Category.General_Information,
+        Category.Orphan_product,
         "string",
         "EU orphan designation number",
     )
@@ -53,7 +53,7 @@ class OrphanProduct(models.Model):
         models.URLField(
             null=False
         ),
-        Category.General_Information,
+        Category.Orphan_product,
         "link",
         "URL to orphan maintenance assessment report",
     )
@@ -62,7 +62,7 @@ class OrphanProduct(models.Model):
         models.URLField(
             null=False
         ),
-        Category.General_Information,
+        Category.Orphan_product,
         "link",
         "URL to orphan designation withdrawal assessment report",
     )
@@ -77,7 +77,7 @@ class OrphanProduct(models.Model):
             max_length=255,
             null=False
         ),
-        Category.General_Information,
+        Category.Orphan_product,
         "string",
         "EMA orphan designation number",
     )
@@ -86,7 +86,7 @@ class OrphanProduct(models.Model):
         models.TextField(
             null=False
         ),
-        Category.General_Information,
+        Category.Orphan_product,
         "string",
         "EU orphan designation condition",
     )
@@ -95,7 +95,7 @@ class OrphanProduct(models.Model):
         models.DateField(
             null=False
         ),
-        Category.General_Information,
+        Category.Orphan_product,
         "date",
         "EU orphan designation date",
     )
@@ -104,7 +104,7 @@ class OrphanProduct(models.Model):
         models.DateField(
             null=False
         ),
-        Category.General_Information,
+        Category.Orphan_product,
         "date",
         "COMP decision date (for EU orphan designation)",
     )
@@ -113,7 +113,7 @@ class OrphanProduct(models.Model):
         models.TextField(
             null=False
         ),
-        Category.General_Information,
+        Category.Orphan_product,
         "string",
         "Sponsor for EU orphan designation",
     )
@@ -124,7 +124,7 @@ class OrphanProduct(models.Model):
             models.SET_NULL,
             null=True,
         ),
-        Category.General_Information,
+        Category.Medicinal_product,
         "string",
         "Initial EU orphan conditions",
     )

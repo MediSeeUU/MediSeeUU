@@ -38,7 +38,7 @@ class HistoryMAH(models.Model):
             null=False,
             blank=False,
         ),
-        Category.General_Information,
+        Category.Marketing_authorisation,
         "string",
         "EU Marketing Authorisation Holder",
     )
