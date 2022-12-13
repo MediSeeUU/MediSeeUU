@@ -8,7 +8,6 @@ from scraping.web_scraper import ema_scraper, ec_scraper, save_webdata
 
 log = logging.getLogger("web_scraper")
 
-
 # list of the type of medicines that will be scraped
 scrape_medicine_type: list[MedicineType] = [
     MedicineType.HUMAN_USE_ACTIVE,
@@ -81,7 +80,6 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: MedicineType, data_
     # Lift url out of tuple and ignore index. [(str, int)] -> [str]
     dec_list = [x[0] for x in dec_list_indexed]
     anx_list = [x[0] for x in anx_list_indexed]
-
 
     save_webdata.set_active_refused_webdata(eu_n, medicine_url, dec_list, anx_list, ema_list, attributes_dict,
                                             data_path, url_file, url_refused_file)

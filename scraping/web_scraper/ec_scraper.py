@@ -407,12 +407,12 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
             eu_suspension = True
 
         # Parse the date, formatted as %Y-%m-%d, which looks like 1970-01-01
-        decision_date: date = datetime.strptime(row["decision"]["date"], f"%Y-%m-%d").date()
+        decision_date: datetime = datetime.strptime(row["decision"]["date"], "%Y-%m-%d")
         decision_id = row["id"]
 
         if "orphan designation" == row["type"].lower():
             procedures_dict[attr.eu_od_date] = str(decision_date)
-
+        decision_date: date = decision_date.date()
         # Puts all the decisions from the last one and a half year in a list to determine the current authorization type
         if last_decision_date - decision_date < timedelta(days=548):
             last_decision_types.append(row["type"])
@@ -617,8 +617,7 @@ def scrape_ec(config: config_objects.WebConfig, medicine_list: list[(str, str, i
     with open(log_path, 'w', encoding="utf-8"):
         pass  # open/clean no_english_available file
     # make sure tests start with empty dict, because url_file is global variable only way to do this is here.
-    if "test" in os.getcwd():
-        url_file.overwrite_dict({})
+    url_file.overwrite_dict({})
     log.info("TASK START scraping all medicine data and URLs from the EC website")
     # Transform zipped list into individual lists for thread_map function
     # The last element of the medicine_codes tuple is not of interest, thus we pop()

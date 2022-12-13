@@ -54,7 +54,6 @@ def create_data_folders() -> str:
 
     Returns:
         str: Returns the data folder directory.
-
     """
     data_folder_dir = '../data'
 
