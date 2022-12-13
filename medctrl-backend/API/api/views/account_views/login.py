@@ -16,7 +16,7 @@ from knox.views import LoginView as KnoxLoginView
 
 class LoginAPI(KnoxLoginView):
     """
-    Class used for logging in a user, derived vor the KnoxLoginView
+    Class used for logging in a user, derived from the KnoxLoginView
     """    
     permission_classes = (permissions.AllowAny,)
 
@@ -26,7 +26,7 @@ class LoginAPI(KnoxLoginView):
         '../account/login' this method is called.
 
         Args:
-            request (httpRequest): The login request from the userside
+            request (httpRequest): The login request from the user side
             _format (optional): the format for the given request. Defaults to None.
 
         Returns:
