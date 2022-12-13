@@ -11,14 +11,14 @@ from scraping.utilities.io.pathlib_extended import Path
 from scraping.utilities.log import log_tools
 from scraping.web_scraper import __main__ as web
 
-data_path = Path("../test_data")
+data_path = Path("../test_data_integration")
 json_path = Path("web_scraper_tests/JSON")
 scraping_root_path = Path.cwd().parent
 
 # Different paths needed when running tests from the web_scraper folder
 # instead of the parent tests folder
 if Path.cwd().name == "web_scraper_tests":
-    data_path = Path("../../test_data")
+    data_path = Path("../../test_data_integration")
     json_path = Path("JSON")
     scraping_root_path = Path.cwd().parent.parent
 
@@ -62,25 +62,16 @@ class TestWebScraper(TestCase):
         log_files_folder = Path(f"{scraping_root_path}/tests/logs/log_files")
         txt_files_folder = Path(f"{scraping_root_path}/tests/logs/txt_files")
 
-        if log_files_folder.exists():
-            log_files_folder.rmdir_recursive()
-
-        if txt_files_folder.exists():
-            txt_files_folder.rmdir_recursive()
-
-        if json_path.exists():
-            json_path.rmdir_recursive()
+        log_files_folder.rmdir_recursive(not_exist_ok=True)
+        txt_files_folder.rmdir_recursive(not_exist_ok=True)
+        json_path.rmdir_recursive(not_exist_ok=True)
+        data_path.rmdir_recursive(not_exist_ok=True)
 
         log_tools.init_loggers()
-
-        if data_path.exists():
-            # TODO: Replaces the old folder. Is this the desired functionality?
-            data_path.replace(f"{data_path}_old")
 
         # exists_ok flag is off, we want to throw an error when the path exists beforehand
         data_path.mkdir()
         data_path_local.mkdir()
-
         json_path.mkdir()
 
     def setUp(self):
@@ -225,4 +216,3 @@ class TestWebScraper(TestCase):
         Runs after class is run, makes sure test data is deleted and backup data is set back to its original place
         """
         data_path.rmdir_recursive()
-        Path(f"{data_path}_old").rename(data_path)
