@@ -1,8 +1,8 @@
 import datetime
 
 # default values
-combiner_not_found = None
-not_found = None
+combiner_not_found = "__COMBINER_NOT_FOUND__"
+not_found = "__SCRAPER_NOT_FOUND__"
 url_not_found = "404_url_not_found"
 omar_not_found = "404_omar_not_found"
 epar_not_found = "epar_not_found"
@@ -15,10 +15,10 @@ annex_10_not_found = "404_annex_10_not_found"
 
 insufficient_overlap = "|->INSUFFICIENT OVERLAP<-|"
 invalid_period_days = -1
-NA_before = None
+NA_before = "attribute not available on release"
 not_scrapeable = "not_easily_scrapeable"
-yes_str = True
-no_str = False
+yes_str = "True"
+no_str = "False"
 
 default_date = datetime.datetime.min
 default_date_str = str(datetime.datetime.min)
