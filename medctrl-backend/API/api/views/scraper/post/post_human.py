@@ -276,7 +276,7 @@ def history_variables(data):
     )
 
 
-def add_history(model, serializer, name, data_name, data):
+def add_history(model, serializer, name, data_key, data):
     """
     Add a new object to the given history model.
 
@@ -291,7 +291,7 @@ def add_history(model, serializer, name, data_name, data):
         ValueError: Data does not exist in the given data argument
     """
     eu_pnumber = data.get("eu_pnumber")
-    items = data.get(data_name)
+    items = data.get(data_key)
     model_data = model.objects.filter(eu_pnumber=eu_pnumber).order_by("change_date").first()
 
     if items is not None and len(items) > 0:
@@ -303,4 +303,4 @@ def add_history(model, serializer, name, data_name, data):
                 if serializer.is_valid():
                     serializer.save()
                 else:
-                    raise ValueError(f"{data_name} contains invalid data! {serializer.errors}")
+                    raise ValueError(f"{data_key} contains invalid data! {serializer.errors}")
