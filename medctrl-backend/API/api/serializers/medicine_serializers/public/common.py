@@ -202,6 +202,7 @@ class AnyBoolsList:
             OrderedDict[str, str]: The representation with the history fields added
         """
         representation = super().to_representation(obj)
+        return representation
 
         for related_name, serializer_class, fields in getattr(self.Meta, "any_bools_list"):
             if hasattr(obj, related_name):
