@@ -232,11 +232,16 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
     download_list_ema = [('epar', attr.epar_url), ('omar', attr.omar_url), ("odwar", attr.odwar_url)]
     for (filetype, key) in download_list_ema:
         if key not in url_dict.keys():
-            log.error(f"Key {key} not in keys of url_dict with identifier {medicine_identifier}. url_dict: {url_dict}")
-        download_pdfs_ema(medicine_identifier, filetype, url_dict[key], attr_dict, target_path)
-
-    for url, filetype in url_dict[attr.other_ema_urls]:
-        download_pdfs_ema(medicine_identifier, filetype, url, attr_dict, target_path)
+            log.error(f"Key {key} not in keys of url_dict with identifier {medicine_identifier}. "
+                      f"Did you run EMA scraper? url_dict: {url_dict}")
+        else:
+            download_pdfs_ema(medicine_identifier, filetype, url_dict[key], attr_dict, target_path)
+    if attr.other_ema_urls not in url_dict.keys():
+        log.error(f"Key {attr.other_ema_urls} not in keys of url_dict with identifier {medicine_identifier}."
+                  f"Did you run EMA scraper? url_dict: {url_dict}")
+    else:
+        for url, filetype in url_dict[attr.other_ema_urls]:
+            download_pdfs_ema(medicine_identifier, filetype, url, attr_dict, target_path)
 
     with open(f"{target_path}/{medicine_identifier}_webdata.json", 'w') as f:
         json.dump(attr_dict, f, indent=4)
