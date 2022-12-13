@@ -27,9 +27,10 @@ match Path.cwd().name:
 json_path = json_path_prefix + "JSON/"
 
 
-url_file = json_helper.JsonHelper(json_path + "urls.json")
-url_refused_file = json_helper.JsonHelper(json_path + "refused_urls.json")
-annex10_file = json_helper.JsonHelper(json_path + "annex10.json")
+url_file = json_helper.JsonHelper(f"{json_path}urls.json")
+url_refused_file = json_helper.JsonHelper(f"{json_path}refused_urls.json")
+annex10_file = json_helper.JsonHelper(f"{json_path}annex10.json")
+ema_excel_file = json_helper.JsonHelper(f"{json_path}ema_excel.json")
 
 
 # Main web scraper function with default settings
