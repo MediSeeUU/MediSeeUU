@@ -5,6 +5,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './Footer.css'
+import github_button from '../../images/issue_button.svg'
 
 // Function based component rendering the footer
 function Footer() {
@@ -12,6 +13,20 @@ function Footer() {
     // Footer components, gives the information to be placed in the footer in two sections placed
     // next to each other
     <footer className="med-footer">
+      <section id="med-footer-information">
+        <p className="med-footer-text">
+          In the European Database For Pharmaceutical Policy & Regulation, data
+          on medicines regulation and marketing approval is made available. The
+          dashboard, including the data collection, is maintained by Utrecht
+          University and the Dutch Medicines Evaluation Board. For more
+          information please visit the{' '}
+          <NavLink className="med-link" to="/info">
+            info page
+          </NavLink>
+          . &copy; Utrecht University (ICS)
+        </p>
+      </section>
+
       <section id="med-footer-organizations">
         <h2>Relevant Organizations</h2>
 
@@ -31,19 +46,12 @@ function Footer() {
         </ul>
       </section>
 
-      <section id="med-footer-information">
-        <p className="med-footer-text">
-          In the European Database For Pharmaceutical Policy & Regulation, data
-          on medicines regulation and marketing approval is made available. The
-          dashboard, including the data collection, is maintained by Utrecht
-          University and the Dutch Medicines Evaluation Board. For more
-          information please visit the{' '}
-          <NavLink className="med-link" to="/info">
-            info page
-          </NavLink>
-          . &copy; Utrecht University (ICS)
-        </p>
-      </section>
+      <div class="github_button">
+        <a href="https://github.com/MediSeeUU/MediSeeUU/issues" target="_blank" rel="noreferrer">
+          <img src={github_button} id="github_button" />
+        </a>
+      </div>
+
     </footer>
   )
 }
