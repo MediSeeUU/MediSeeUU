@@ -46,6 +46,7 @@ from api.serializers.medicine_serializers.scraper.update.human import (
 from api.models.other import MedicineLocks
 from .common import (
     insert_data,
+    add_or_update_model,
     pop_initial_histories_data,
 )
 
@@ -94,13 +95,11 @@ def post(data):
             "duration"
         )
 
-        current_medicinal_product = MedicinalProduct.objects.filter(
-            eu_pnumber=eu_pnumber
-        ).first()
+        add_or_update_model(data, override, MedicinalProduct, "eu_pnumber", eu_pnumber,
+                            MedicinalProductSerializer, MedicinalProductFlexVarUpdateSerializer)
 
-        insert_data(data, current_medicinal_product, MedicinalProductSerializer)
-
-        insert_data(data, current_marketing_authorisation, MarketingAuthorisationSerializer)
+        add_or_update_model(data, override, MarketingAuthorisation, "eu_pnumber", eu_pnumber,
+                            MarketingAuthorisationSerializer, MarketingAuthorisationFlexVarUpdateSerializer)
 
         history_variables(eu_pnumber, initial_history_data, data)
         list_variables(data)
@@ -206,18 +205,12 @@ def add_list(model, serializer, name, data, replace):
     eu_pnumber = data.get("eu_pnumber")
     items = data.get(name)
     model_data = model.objects.filter(eu_pnumber=eu_pnumber).all()
-
     if items is not None and len(items) > 0:
         for item in items:
             if model_data and replace:
                 model_data.delete()
-            serializer = serializer(
-                None, {name: item, "eu_pnumber": eu_pnumber}
-            )
-            if serializer.is_valid():
-                serializer.save()
-            else:
-                raise ValueError(f"{name} contains invalid data! {serializer.errors}")
+            new_data = {name: item, "eu_pnumber": eu_pnumber}
+            insert_data(new_data, None, serializer)
 
 
 def history_variables(eu_pnumber, initial_histories_data, current_histories_data):
@@ -306,6 +299,8 @@ def history_variables(eu_pnumber, initial_histories_data, current_histories_data
         current_histories_data,
     )
 
+    return initial_histories_data
+
 
 def add_histories(eu_pnumber, model, serializer, name, initial_name, initial_date, current_name, current_data):
     """
@@ -331,7 +326,22 @@ def add_histories(eu_pnumber, model, serializer, name, initial_name, initial_dat
 
 
 def add_history(model, serializer, data, name, eu_pnumber):
+    """
+
+    Args:
+        model:
+        serializer:
+        data:
+        name:
+        eu_pnumber:
+
+    Returns:
+
+    """
     if data is not None:
+        # Data to be inserted into the database
         new_data = {"change_date": data.get("date"), name: data.get("value"), "eu_pnumber": eu_pnumber}
+        # Select element in database with exact same data, so we don't insert an identical element
         current_data = model.objects.filter(**new_data).first()
+        # return inserted element's primary key
         return insert_data(new_data, current_data, serializer)

@@ -13,7 +13,10 @@ from api.serializers.medicine_serializers.scraper.update.orphan import (
     OrphanProductFlexVarUpdateSerializer,
 )
 from api.models.other import OrphanLocks
-from .common import insert_data
+from .common import (
+    add_or_update_model,
+)
+
 
 def post(data):
     if eu_od_number := data.get("eu_od_number"):
@@ -23,14 +26,8 @@ def post(data):
 
         data = {key: value for key, value in data.items() if key not in locks}
 
-        current_orphan_product = OrphanProduct.objects.filter(
-            eu_od_number=eu_od_number
-        ).first()
-
-        if not current_orphan_product or data.get("override"):
-            insert_data(data, current_orphan_product, OrphanProductSerializer)
-        else:
-            insert_data(data, current_orphan_product, OrphanProductFlexVarUpdateSerializer)
+        add_or_update_model(data, data.get("override"), OrphanProduct, "eu_od_number", eu_od_number,
+                            OrphanProductSerializer, OrphanProductFlexVarUpdateSerializer)
 
 
 def history_variables(data):
