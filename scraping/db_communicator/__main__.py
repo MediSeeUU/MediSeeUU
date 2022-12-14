@@ -17,15 +17,37 @@ def main(directory: str):
     db_communicator = DbCommunicator()
     active_withdrawn_folder = path.join(directory, "active_withdrawn")
 
-    directory_folders = [folder for folder in listdir(active_withdrawn_folder) if
-                         path.isdir(path.join(active_withdrawn_folder, folder)) and "EU" in folder]
+    directory_human_folders = [folder for folder in listdir(active_withdrawn_folder) if
+                               path.isdir(path.join(active_withdrawn_folder, folder)) and "EU-1" in folder]
 
+    directory_orphan_folders = [folder for folder in listdir(active_withdrawn_folder) if
+                                path.isdir(path.join(active_withdrawn_folder, folder)) and "EU-3" in folder]
+
+    send_medicine_from_dir(directory_human_folders, active_withdrawn_folder, db_communicator, "human")
+    send_medicine_from_dir(directory_orphan_folders, active_withdrawn_folder, db_communicator, "orphan")
+
+    # log the communicator out when finished
+    db_communicator.logout()
+
+
+def send_medicine_from_dir(directory_folders: list[str], active_withdrawn_folder: str, db_communicator: DbCommunicator,
+                           medicine_type="generic"):
+    """
+    Iterates through all folders and sends the combined data to the backend
+
+    Args:
+        directory_folders (list[str]): All folders to iterate through
+        active_withdrawn_folder (str): The path to the active_withdrawn_folder
+        db_communicator (DbCommunicator): An instance of the DbCommunicator
+        medicine_type (str): A string describing the medicine type that are being sent. This is only used for logging
+    """
     medicine_no = 0
     passed_medicine = 0
     failed_medicine = 0
+
     for folder in directory_folders:
         combined_dict = get_combined_dict(path.join(active_withdrawn_folder, folder), folder)
-        if not combined_dict is None:
+        if combined_dict is not None:
             json_data = json.dumps(combined_dict)
             passed = db_communicator.send_data(data=json_data)
             medicine_no += 1
@@ -33,10 +55,9 @@ def main(directory: str):
                 passed_medicine += 1
             else:
                 failed_medicine += 1
-    log.info(f"Tried to send {medicine_no} medicines to the database. {passed_medicine} medicines succeeded | {failed_medicine} medicines failed")
-
-    # log the communicator out when finished
-    db_communicator.logout()
+    log.info(
+        f"Tried to send {medicine_no} {medicine_type} medicines to the database. {passed_medicine} medicines "
+        f"succeeded | {failed_medicine} medicines failed")
 
 
 def get_combined_dict(cur_dir: str, med_name: str) -> dict | None:
@@ -56,7 +77,3 @@ def get_combined_dict(cur_dir: str, med_name: str) -> dict | None:
     except FileNotFoundError:
         log.info(f"COMMUNICATOR: no combined.json found in data for {cur_dir}")
         return None
-
-
-if __name__ == '__main__':
-    main()
