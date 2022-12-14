@@ -614,7 +614,8 @@ def scrape_ec(config: config_objects.WebConfig, medicine_list: list[(str, str, i
         url_file (json_helper.JsonHelper): the dictionary containing all the urls of a specific medicine
         url_refused_file (json_helper.JsonHelper): The dictionary containing the urls of all refused files
     """
-    log_path = log_tools.get_log_path("no_english_available.txt", str(config_objects.default_path_data))
+
+    log_path = log_tools.get_log_path("no_english_available.txt", config_objects.default_path_data)
     with open(log_path, 'w', encoding="utf-8"):
         pass  # open/clean no_english_available file
 

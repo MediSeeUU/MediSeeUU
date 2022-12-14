@@ -11,17 +11,18 @@ from scraping.utilities.io.pathlib_extended import Path
 from scraping.utilities.log import log_tools
 from scraping.web_scraper import __main__ as web
 
-data_path = Path("../test_data_integration")
+data_path_str = "../test_data_integration"
 json_path = Path("web_scraper_tests/JSON")
 scraping_root_path = Path.cwd().parent
 
 # Different paths needed when running tests from the web_scraper folder
 # instead of the parent tests folder
 if Path.cwd().name == "web_scraper_tests":
-    data_path = Path("../../test_data_integration")
+    data_path_str = "../../test_data_integration"
     json_path = Path("JSON")
     scraping_root_path = Path.cwd().parent.parent
 
+data_path = Path(data_path_str)
 data_path_local = data_path / "active_withdrawn"
 
 
@@ -51,12 +52,13 @@ class TestWebScraper(TestCase):
     """
     Class that runs web, mostly checks if files get downloaded
     """
+
     @classmethod
     def setUpClass(cls):
         """
         Set up the class to make sure the integration test can run without changing existing data.
         """
-        config.default_path_data = data_path
+        config.default_path_data = data_path_str
         config.default_path_logging = f"{scraping_root_path}/tests/logs/log_files"
 
         log_files_folder = Path(f"{scraping_root_path}/tests/logs/log_files")
@@ -122,8 +124,8 @@ class TestWebScraper(TestCase):
         Runs EC scraper and checks if everything works and correct files are created.
         """
         web.main(config.WebConfig().run_custom(scrape_ec=True, download_refused=True)
-                                   .set_parallel(self.parallel)
-                                   .supply_medicine_list(self.medicine_list))
+                 .set_parallel(self.parallel)
+                 .supply_medicine_list(self.medicine_list))
 
         # check if data folder for eu_n exists and is filled
         medicine_folder = data_path_local / self.eu_n
@@ -136,7 +138,7 @@ class TestWebScraper(TestCase):
 
         # If the size of the file is larger than two bytes, we assume the file has data
         assert (medicine_folder / f"{self.eu_n}_webdata.json").stat().st_size > 2, \
-               f"webdata.json is empty for {self.eu_n}"
+            f"webdata.json is empty for {self.eu_n}"
 
         # check if urls.json is empty
         assert (json_path / "urls.json").stat().st_size > 2, f"urls.json is empty"
@@ -146,8 +148,8 @@ class TestWebScraper(TestCase):
         Runs EMA scraper and checks if everything works and correct files are created.
         """
         web.main(config.WebConfig().run_custom(scrape_ema=True)
-                                   .set_parallel(self.parallel)
-                                   .supply_medicine_list(self.medicine_list))
+                 .set_parallel(self.parallel)
+                 .supply_medicine_list(self.medicine_list))
 
         with open(json_path / "urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
@@ -160,8 +162,8 @@ class TestWebScraper(TestCase):
         Runs download and checks if all files are downloaded and correct files are created.
         """
         web.main(config.WebConfig().run_custom(download=True)
-                                   .set_parallel(self.parallel)
-                                   .supply_medicine_list(self.medicine_list))
+                 .set_parallel(self.parallel)
+                 .supply_medicine_list(self.medicine_list))
 
         medicine_folder = data_path_local / self.eu_n
 
@@ -202,8 +204,8 @@ class TestWebScraper(TestCase):
         Runs filter_retry and checks if filter.txt is created
         """
         web.main(config.WebConfig().run_custom(filtering=True)
-                                   .set_parallel(self.parallel)
-                                   .supply_medicine_list(self.medicine_list))
+                 .set_parallel(self.parallel)
+                 .supply_medicine_list(self.medicine_list))
 
         # check if filter.txt exists
         filter_path = scraping_root_path / "tests/logs/txt_files/filter.txt"

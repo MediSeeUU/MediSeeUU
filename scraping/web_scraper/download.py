@@ -50,7 +50,7 @@ def save_new_eu_numbers(data_path: str):
         data_path (str): The path to the data folder
     """
     # Get all logging lines as list after latest "NEW LOG"
-    log_path = log_tools.get_log_path("logging_web_scraper.log", str(data_path))
+    log_path = log_tools.get_log_path("logging_web_scraper.log", data_path)
     if os.path.exists(log_path):
         with open(log_path, 'r') as log_file:
             full_log = log_file.read().split("=== NEW LOG ")[-1].split("\n")
