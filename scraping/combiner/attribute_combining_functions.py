@@ -80,11 +80,10 @@ def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> st
             sequence_matcher = SM(None, old_string.lower(), new_string.lower())
             overlap = sequence_matcher.find_longest_match(0, len(old_string), 0, len(new_string))
 
-
         if float(overlap.size / len(strings[0])) >= min_matching_fraction:
             return strings[0][overlap.a:overlap.a + overlap.size]
     except Exception:
-        print("COMBINER: no second string")
+        log.warning("COMBINER: no second string when calling string_overlap")
         return values.combiner_not_found
 
     return values.insufficient_overlap
@@ -232,7 +231,7 @@ def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list
 
     ema_number_date = get_attribute_date(src.web, file_dicts)
 
-    return(are_equal,ema_number_date)
+    return(are_equal, ema_number_date)
 
 
 def combine_eu_procedures_todo(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> list[dict[str, bool]]:
