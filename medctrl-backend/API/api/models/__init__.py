@@ -8,6 +8,6 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-from .human_models import models as medicine_models
+from .human_models import models as human_models
 from .orphan_models import models as orphan_models
-models = medicine_models + orphan_models
+models = human_models + orphan_models
