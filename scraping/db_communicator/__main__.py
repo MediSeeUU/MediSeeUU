@@ -31,7 +31,16 @@ def main(directory: str):
 
 
 def send_medicine_from_dir(directory_folders: list[str], active_withdrawn_folder: str, db_communicator: DbCommunicator,
-                           medicine_type: str):
+                           medicine_type="generic"):
+    """
+    Iterates through all folders and sends the combined data to the backend
+
+    Args:
+        directory_folders (list[str]): All folders to iterate through
+        active_withdrawn_folder (str): The path to the active_withdrawn_folder
+        db_communicator (DbCommunicator): An instance of the DbCommunicator
+        medicine_type (str): A string describing the medicine type that are being sent. This is only used for logging
+    """
     medicine_no = 0
     passed_medicine = 0
     failed_medicine = 0
