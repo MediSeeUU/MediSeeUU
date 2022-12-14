@@ -49,14 +49,15 @@ def send_medicine_from_dir(directory_folders: list[str], active_withdrawn_folder
         combined_dict = get_combined_dict(path.join(active_withdrawn_folder, folder), folder)
         if combined_dict is not None:
             json_data = json.dumps(combined_dict)
-        passed = db_communicator.send_data(data=json_data)
-        medicine_no += 1
-        if passed:
-            passed_medicine += 1
-        else:
-            failed_medicine += 1
+            passed = db_communicator.send_data(data=json_data)
+            medicine_no += 1
+            if passed:
+                passed_medicine += 1
+            else:
+                failed_medicine += 1
     log.info(
-        f"Tried to send {medicine_no} {medicine_type} medicines to the database. {passed_medicine} medicines succeeded | {failed_medicine} medicines failed")
+        f"Tried to send {medicine_no} {medicine_type} medicines to the database. {passed_medicine} medicines "
+        f"succeeded | {failed_medicine} medicines failed")
 
 
 def get_combined_dict(cur_dir: str, med_name: str) -> dict | None:
@@ -76,7 +77,3 @@ def get_combined_dict(cur_dir: str, med_name: str) -> dict | None:
     except FileNotFoundError:
         log.info(f"COMMUNICATOR: no combined.json found in data for {cur_dir}")
         return None
-
-
-if __name__ == '__main__':
-    main()
