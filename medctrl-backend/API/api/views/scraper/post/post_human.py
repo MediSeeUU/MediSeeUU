@@ -219,64 +219,71 @@ def history_variables(data):
     Args:
         data (medicineObject): The new medicine data.
     """
-    add_history(
+    add_histories(
         HistoryAuthorisationType,
         AuthorisationTypeSerializer,
-        "eu_aut_type",
-        "eu_aut_type_current",
         data,
+        "eu_aut_type",
+        "eu_aut_type_initial",
+        "eu_aut_type_current",
     )
 
-    add_history(
+    add_histories(
         HistoryAuthorisationStatus,
         AuthorisationStatusSerializer,
-        "eu_aut_status",
-        "eu_aut_status_current",
         data,
+        "eu_aut_status",
+        "eu_aut_status_initial",
+        "eu_aut_status_current",
     )
 
-    add_history(
+    add_histories(
         HistoryBrandName,
         BrandNameSerializer,
-        "eu_brand_name",
-        "eu_brand_name_current",
         data,
+        "eu_brand_name",
+        "eu_brand_name_initial",
+        "eu_brand_name_current",
     )
 
-    add_history(
+    add_histories(
         HistoryOD,
         OrphanDesignationSerializer,
-        "eu_od",
-        "eu_od_current",
         data,
+        "eu_od",
+        "eu_od_initial",
+        "eu_od_current",
     )
 
-    add_history(
+    add_histories(
         HistoryPrime,
         PrimeSerializer,
-        "eu_prime",
-        "eu_prime_current",
         data,
+        "eu_prime",
+        "eu_prime_initial",
+        "eu_prime_current",
     )
 
-    add_history(
+    add_histories(
         HistoryMAH,
         MAHSerializer,
-        "eu_mah",
-        "eu_mah_current",
         data,
+        "eu_mah",
+        "eu_mah_initial",
+        "eu_mah_current",
     )
 
-    add_history(
+    add_histories(
         HistoryEUOrphanCon,
         EUOrphanConSerializer,
-        "eu_orphan_con",
-        "eu_orphan_con_current",
         data,
+        "eu_orphan_con",
+        "eu_orphan_con_initial",
+        "eu_orphan_con_current",
     )
 
 
-def add_history(model, serializer, name, data_key, data):
+def add_histories(model, serializer, data, name, initial_name=None, current_name=None):
     """
     Add a new object to the given history model.
 
@@ -291,17 +298,20 @@ def add_history(model, serializer, name, data_key, data):
         ValueError: Data does not exist in the given data argument
     """
     eu_pnumber = data.get("eu_pnumber")
-    items = data.get(data_key)
 
-    if items is not None and len(items) > 0:
-        for item in items:
-            change_date = item.get("date")
-            value = item.get("value")
-            filters = {
-                "change_date": change_date,
-                name: value,
-                "eu_pnumber": eu_pnumber,
-            }
-            current_data = model.objects.filter(**filters).first()
-            data = {"change_date": change_date, name: value, "eu_pnumber": eu_pnumber}
-            insert_data(data, current_data, serializer)
+    if current_name:
+        current_items = data.get(current_name)
+        if current_items is not None and len(current_items) > 0:
+            for item in current_items:
+                add_history(model, serializer, item, name, eu_pnumber)
+
+    if initial_name:
+        initial_item = data.get(initial_name)
+        return add_history(model, serializer, initial_item, name, eu_pnumber)
+
+
+def add_history(model, serializer, data, name, eu_pnumber):
+    if data is not None:
+        new_data = {"change_date": data.get("date"), name: data.get("value"), "eu_pnumber": eu_pnumber}
+        current_data = model.objects.filter(**new_data).first()
+        return insert_data(new_data, current_data, serializer)
