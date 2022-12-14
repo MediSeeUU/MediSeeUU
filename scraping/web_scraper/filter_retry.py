@@ -40,8 +40,8 @@ def run_filter(n: int, data_filepath: str):
         json_path = ""
     filter.filter_all_pdfs(data_filepath)
     for _ in range(n):
-        url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
-        url_refused_file = json_helper.JsonHelper(path=f"{json_path}JSON/refused_urls.json")
+        url_file = json_helper.JsonHelper(path=f"{json_path}/urls.json")
+        url_refused_file = json_helper.JsonHelper(path=f"{json_path}/refused_urls.json")
         data_folder = data_filepath.split("active_withdrawn")[0]
         filter_path = log_tools.get_log_path("filter.txt", data_folder)
         with open(filter_path, "r") as f:
