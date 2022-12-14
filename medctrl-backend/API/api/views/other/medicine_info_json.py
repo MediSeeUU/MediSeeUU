@@ -10,14 +10,14 @@
 # ----------------------------------------------------------------------------
 
 from api.models.create_dashboard_columns import Category
-from api.models import models
+from django.db import models as Models
 
 
 # returns a list of json components using human_models,
 # this list is for the filters and for the detailed information page
-def get_medicine_info(perm, mock=None):
+def get_medicine_info(perm, models: list[Models.Model], mock=None):
     """
-    returns a list of json components using human_models,
+    returns a list of json components using the models given,
     this list is for the filters and for the detailed information page.
 
     Args:
@@ -27,8 +27,8 @@ def get_medicine_info(perm, mock=None):
 
     Returns:
         JSON: medicine data in JSON format
-    """    
-    # make a JSON list for every category in human_models.common.Category
+    """
+    # make a JSON list for every category in models.create_dashboard_columns.Category
     data = {}
     for category in Category:
         data[category.value] = []
@@ -67,5 +67,5 @@ def has_permission(perm, name):
 
     Returns:
         bool: true if the name is in the permissions
-    """    
+    """
     return name in perm

@@ -19,7 +19,8 @@ from api.views.medicine_views import (
 )
 from api.views.account_views import LoginAPI
 from api.views.other import SavedSelectionViewSet
-from api.views.other import Medicine_info
+from api.views.other import Human_medicine_info
+from api.views.other import Orphan_medicine_info
 
 from api.views.scraper.router import url_patterns as scraper_routes
 
@@ -48,5 +49,6 @@ urlpatterns = [
     ),
     # Other routes
     path("scraper/", include(scraper_routes)),
-    path("structureData/", Medicine_info.as_view()),
+    path("structureData/human", Human_medicine_info.as_view()),
+    path("structureData/orphan", Orphan_medicine_info.as_view()),
 ]
