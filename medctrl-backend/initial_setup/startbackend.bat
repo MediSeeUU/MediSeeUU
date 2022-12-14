@@ -1,5 +1,5 @@
 CALL entervenv.bat
-py -m pip install -r requirements.txt
+python -m pip install -r requirements.txt
 cd API
 python manage.py makemigrations
 python manage.py migrate
