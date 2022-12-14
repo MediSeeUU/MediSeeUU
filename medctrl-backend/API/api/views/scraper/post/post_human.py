@@ -292,15 +292,16 @@ def add_history(model, serializer, name, data_key, data):
     """
     eu_pnumber = data.get("eu_pnumber")
     items = data.get(data_key)
-    model_data = model.objects.filter(eu_pnumber=eu_pnumber).order_by("change_date").first()
 
     if items is not None and len(items) > 0:
         for item in items:
-            if not model_data or item.get("value") != getattr(model_data, name):
-                serializer = serializer(
-                    None, {name: item.get("value"), "change_date": item.get("date"), "eu_pnumber": eu_pnumber}
-                )
-                if serializer.is_valid():
-                    serializer.save()
-                else:
-                    raise ValueError(f"{data_key} contains invalid data! {serializer.errors}")
+            change_date = item.get("date")
+            value = item.get("value")
+            filters = {
+                "change_date": change_date,
+                name: value,
+                "eu_pnumber": eu_pnumber,
+            }
+            current_data = model.objects.filter(**filters).first()
+            data = {"change_date": change_date, name: value, "eu_pnumber": eu_pnumber}
+            insert_data(data, current_data, serializer)
