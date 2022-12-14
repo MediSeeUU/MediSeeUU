@@ -61,11 +61,6 @@ class TestWebScraper(TestCase):
         config.default_path_data = data_path_str
         config.default_path_logging = f"{scraping_root_path}/tests/logs/log_files"
 
-        log_files_folder = Path(f"{scraping_root_path}/tests/logs/log_files")
-        txt_files_folder = Path(f"{scraping_root_path}/tests/logs/txt_files")
-
-        log_files_folder.rmdir_recursive(not_exist_ok=True)
-        txt_files_folder.rmdir_recursive(not_exist_ok=True)
         json_path.rmdir_recursive(not_exist_ok=True)
         data_path.rmdir_recursive(not_exist_ok=True)
 

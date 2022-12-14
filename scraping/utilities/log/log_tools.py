@@ -3,7 +3,6 @@ import os
 import scraping.utilities.web.config_objects as config
 from pathlib import Path
 
-
 all_loggers: list[logging.getLoggerClass()] = []
 
 
