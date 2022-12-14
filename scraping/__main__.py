@@ -38,12 +38,12 @@ def run_all():
     # web_config = config_objects.WebConfig().run_custom(download_ema_excel=True).set_parallel()
 
     # Any module can be commented or uncommented here, as the modules they work separately
-    # web_scraper.main(web_config)
-    # xml_converter.main(data_folder_directory)
-    # pdf_parser.main(data_folder_directory)
-    # annex_10_parser.main(data_folder_directory)
+    web_scraper.main(web_config)
+    xml_converter.main(data_folder_directory)
+    pdf_parser.main(data_folder_directory)
+    annex_10_parser.main(data_folder_directory)
     # combiner.main(data_folder_directory)
-    db_communicator.main(data_folder_directory)
+    # db_communicator.main(data_folder_directory)
 
 
 def create_data_folders() -> str:
