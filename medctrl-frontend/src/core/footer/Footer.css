@@ -19,15 +19,14 @@ Utrecht University within the Software Project course.
 /* These two rulesets are for the 2 rows of content in the footer, it makes 
   sure that they stay next to each other instead of on top. */
 #med-footer-information {
-  width: 50%;
+  width: 55%;
   text-align: center;
-  float: left;
 }
 
 #med-footer-organizations {
-  width: 40%;
-  float: left;
+  width: 45%;
   text-align: center;
+  float: right;
 }
 
 .med-footer-text {
@@ -40,17 +39,6 @@ Utrecht University within the Software Project course.
   text-align: left;
 }
 
-/* Makes sure the issue button in the footer is the right size */
-.med-footer-github-button {
-  float: right;
-  margin-right: 35px;
-  margin-top: 35px;
-  fill: white;
-}
-
-.med-footer-github-button:hover {
-  fill: gray;
-}
 /* Media query: makes sure that when the screen width drops below 1400px 
   (the size where the page content fits the entire webbrowser page) the 
   rounded borders on the outside disappear. */
