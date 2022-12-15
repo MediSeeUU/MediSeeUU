@@ -42,12 +42,15 @@ Utrecht University within the Software Project course.
 
 /* Makes sure the issue button in the footer is the right size */
 .med-footer-github-button {
-  margin-right: 30px;
-  margin-top: 5px;
-  height: 100px;
-  float: right;
+  float:right;
+  margin-right: 35px;
+  margin-top: 35px;
+  fill: white;
 }
 
+.med-footer-github-button:hover{
+  fill:gray;
+}
 /* Media query: makes sure that when the screen width drops below 1400px 
   (the size where the page content fits the entire webbrowser page) the 
   rounded borders on the outside disappear. */
