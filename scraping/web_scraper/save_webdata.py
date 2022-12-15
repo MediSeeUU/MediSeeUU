@@ -28,8 +28,8 @@ def set_active_refused_webdata(eu_n: str, medicine_url: str, dec_list: list[str]
     if attributes_dict[attr.eu_aut_status] != "REFUSED":
         medicine_identifier: str = eu_n
         target_path: str = f"{data_path}/active_withdrawn/{medicine_identifier}"
-        save_webdata(medicine_identifier, medicine_url, dec_list, anx_list, ema_list,
-                     attributes_dict, url_file, target_path)
+        save_webdata_and_urls(medicine_identifier, medicine_url, dec_list, anx_list, ema_list,
+                              attributes_dict, url_file, target_path)
     # Sets parameter values for refused medicines that need to be saved
     else:
         # Checks if the medicine is a human or orphan one, and based on that picks the right EMA number
@@ -44,16 +44,16 @@ def set_active_refused_webdata(eu_n: str, medicine_url: str, dec_list: list[str]
             medicine_identifier: str = "REFUSED-" + attributes_dict[attr.eu_brand_name_current].replace('/', '-')
 
         target_path: str = f"{data_path}/refused/{medicine_identifier}"
-        save_webdata(medicine_identifier, medicine_url, dec_list, anx_list, ema_list,
-                     attributes_dict, url_refused_file, target_path)
+        save_webdata_and_urls(medicine_identifier, medicine_url, dec_list, anx_list, ema_list,
+                              attributes_dict, url_refused_file, target_path)
 
 
-def save_webdata(medicine_identifier: str, medicine_url: str, dec_list: list[str],
-                 anx_list: list[str], ema_list: list[str], attributes_dict: dict[str, str],
-                 file: JsonHelper, target_path: str):
+def save_webdata_and_urls(medicine_identifier: str, medicine_url: str, dec_list: list[str],
+                          anx_list: list[str], ema_list: list[str], attributes_dict: dict[str, str],
+                          url_file: JsonHelper, target_path: str):
     """
     Saves a webdata JSON file in the correct location, containing scraped attributes from the EC website.
-    It also adds urls to the right url JSON files.
+    It also adds urls to the right url JSON file.
 
     Args:
         medicine_identifier (str): Identifier for a medicine. An EU number for non-refused medicine, EMA number for
@@ -63,7 +63,7 @@ def save_webdata(medicine_identifier: str, medicine_url: str, dec_list: list[str
         anx_list (list[str]): List of urls to annexes on the EC website.
         ema_list (list[str]): List of urls to EMA pages on the EC website.
         attributes_dict (dict[str, str]): Dictionary of scraped attributes on the EC website
-        file (JsonHelper): The url json where all the data needs to be stored.
+        url_file (JsonHelper): The url json where all the data needs to be stored.
         target_path (str): Directory where the json needs to be stored.
     """
     # TODO: Common name structure?
@@ -78,7 +78,7 @@ def save_webdata(medicine_identifier: str, medicine_url: str, dec_list: list[str
         }
     }
 
-    file.add_to_dict(url_json)
+    url_file.add_to_dict(url_json)
 
     # Creates a directory if the medicine doesn't exist yet,
     # otherwise it just adds the json file to the existing directory
