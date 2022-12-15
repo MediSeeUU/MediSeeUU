@@ -2,7 +2,6 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-from django.forms.models import model_to_dict
 from api.models.human_models import models
 from api.models.human_models import (
     MedicinalProduct,
@@ -45,9 +44,11 @@ from api.serializers.medicine_serializers.scraper.update.human import (
 )
 from api.models.other import MedicineLocks
 from .common import (
-    insert_data,
-    add_or_update_model,
     pop_initial_histories_data,
+    add_or_update_model,
+    add_or_update_foreign_key,
+    add_list,
+    add_histories,
 )
 
 
@@ -97,70 +98,10 @@ def post(data):
                             MarketingAuthorisationSerializer, MarketingAuthorisationFlexVarUpdateSerializer)
 
         history_variables(eu_pnumber, initial_history_data, data)
-        list_variables(data)
+        list_variables(eu_pnumber, data)
 
 
-def add_or_update_foreign_key(data, current, related_model, insert_serializer, update_serializer, attribute):
-    if current:
-        if hasattr(current, attribute):
-            if foreign_key := getattr(current, attribute):
-                current_related = related_model.objects.filter(
-                    pk=foreign_key.pk
-                ).first()
-                if current_related:
-                    data[attribute] = insert_data(data, current_related, update_serializer)
-                    return None
-    data[attribute] = insert_data(data, None, insert_serializer)
-
-
-def add_or_override_medicine(data, eu_pnumber):
-    """
-    Adds a new medicine with its attributes to the database. If this is valid,
-    it will also add the history variables to the database.
-
-    Args:
-        data (medicineObject): The new medicine data.
-        eu_pnumber (str): The EU number of the human medicine being added
-
-    Raises:
-        ValueError: Invalid data in data argument
-    """
-    # initialise serializers for addition
-    current_medicine = MedicinalProduct.objects.filter(
-        eu_pnumber=eu_pnumber
-    ).first()
-    serializer = MedicinalProductSerializer(current_medicine, data=data, partial=True)
-
-    # add medicine and authorisation
-    if serializer.is_valid():
-        serializer.save()
-    else:
-        raise ValueError(serializer.errors)
-
-
-def update_null_values(data, current_medicine):
-    """
-    Updates all null values for an existing medicine using the data given in its
-    argument "data".
-
-    Args:
-        data (medicineObject): The new medicine data.
-        current_medicine (medicineObject): The medicine data that is currently in the database.
-    """
-    medicine = model_to_dict(current_medicine)
-    new_data = {"eu_pnumber": data.get("eu_pnumber")}
-
-    for attr in medicine:
-        if (getattr(current_medicine, attr) is None or getattr(current_medicine, attr) == '') and (
-                not (data.get(attr) is None)
-        ):
-            new_data[attr] = data.get(attr)
-
-    if len(new_data.keys()) > 1:
-        add_or_override_medicine(new_data, current_medicine)
-
-
-def list_variables(data):
+def list_variables(eu_pnumber, data):
     """
     Creates new list variables for the history models using the data given in its
     argument "data". It expects the input data for the list variable to be formed like this:
@@ -170,38 +111,14 @@ def list_variables(data):
         data (medicineObject): The new medicine data.
     """
     add_list(
+        "eu_pnumber",
+        eu_pnumber,
         LegalBases,
         LegalBasesSerializer,
         "eu_legal_basis",
         data,
         True,
     )
-
-
-def add_list(model, serializer, name, data, replace):
-    """
-    Add a new object to the given list model.
-
-    Args:
-        model (medicine_model): The list model of the list object you want to add.
-        serializer (medicine_serializer): The applicable serializer.
-        name (string): The name of the attribute.
-        data (medicineObject): The new medicine data.
-        replace (bool): If True, will delete all previously added objects with the same eu_pnumber
-
-    Raises:
-        ValueError: Invalid data in data argument
-        ValueError: Data does not exist in the given data argument
-    """
-    eu_pnumber = data.get("eu_pnumber")
-    items = data.get(name)
-    model_data = model.objects.filter(eu_pnumber=eu_pnumber).all()
-    if items is not None and len(items) > 0:
-        for item in items:
-            if model_data and replace:
-                model_data.delete()
-            new_data = {name: item, "eu_pnumber": eu_pnumber}
-            insert_data(new_data, None, serializer)
 
 
 def history_variables(eu_pnumber, initial_histories_data, current_histories_data):
@@ -214,6 +131,7 @@ def history_variables(eu_pnumber, initial_histories_data, current_histories_data
         data (medicineObject): The new medicine data.
     """
     add_histories(
+        "eu_pnumber",
         eu_pnumber,
         HistoryAuthorisationType,
         AuthorisationTypeSerializer,
@@ -225,6 +143,7 @@ def history_variables(eu_pnumber, initial_histories_data, current_histories_data
     )
 
     add_histories(
+        "eu_pnumber",
         eu_pnumber,
         HistoryAuthorisationStatus,
         AuthorisationStatusSerializer,
@@ -236,6 +155,7 @@ def history_variables(eu_pnumber, initial_histories_data, current_histories_data
     )
 
     add_histories(
+        "eu_pnumber",
         eu_pnumber,
         HistoryBrandName,
         BrandNameSerializer,
@@ -247,6 +167,7 @@ def history_variables(eu_pnumber, initial_histories_data, current_histories_data
     )
 
     add_histories(
+        "eu_pnumber",
         eu_pnumber,
         HistoryOD,
         OrphanDesignationSerializer,
@@ -258,6 +179,7 @@ def history_variables(eu_pnumber, initial_histories_data, current_histories_data
     )
 
     add_histories(
+        "eu_pnumber",
         eu_pnumber,
         HistoryPrime,
         PrimeSerializer,
@@ -269,6 +191,7 @@ def history_variables(eu_pnumber, initial_histories_data, current_histories_data
     )
 
     add_histories(
+        "eu_pnumber",
         eu_pnumber,
         HistoryMAH,
         MAHSerializer,
@@ -280,6 +203,7 @@ def history_variables(eu_pnumber, initial_histories_data, current_histories_data
     )
 
     add_histories(
+        "eu_pnumber",
         eu_pnumber,
         HistoryEUOrphanCon,
         EUOrphanConSerializer,
@@ -292,47 +216,3 @@ def history_variables(eu_pnumber, initial_histories_data, current_histories_data
 
     return initial_histories_data
 
-
-def add_histories(eu_pnumber, model, serializer, name, initial_name, initial_date, current_name, current_data):
-    """
-    Add a new object to the given history model.
-
-    Args:
-        model (medicine_model): The history model of the history object you want to add.
-        serializer (medicine_serializer): The applicable serializer.
-        name (string): The name of the attribute.
-        data (medicineObject): The new medicine data.
-
-    Raises:
-        ValueError: Invalid data in data argument
-        ValueError: Data does not exist in the given data argument
-    """
-    current_items = current_data.get(current_name)
-    if current_items is not None and len(current_items) > 0:
-        for item in current_items:
-            add_history(model, serializer, item, name, eu_pnumber)
-
-    initial_item = initial_date.get(initial_name)
-    initial_date[initial_name] = add_history(model, serializer, initial_item, name, eu_pnumber)
-
-
-def add_history(model, serializer, data, name, eu_pnumber):
-    """
-
-    Args:
-        model:
-        serializer:
-        data:
-        name:
-        eu_pnumber:
-
-    Returns:
-
-    """
-    if data is not None:
-        # Data to be inserted into the database
-        new_data = {"change_date": data.get("date"), name: data.get("value"), "eu_pnumber": eu_pnumber}
-        # Select element in database with exact same data, so we don't insert an identical element
-        current_data = model.objects.filter(**new_data).first()
-        # return inserted element's primary key
-        return insert_data(new_data, current_data, serializer)

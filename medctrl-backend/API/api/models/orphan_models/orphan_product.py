@@ -67,9 +67,10 @@ class OrphanProduct(models.Model):
         "URL to orphan designation withdrawal assessment report",
     )
 
-    eu_pnumber = models.ForeignKey(
+    eu_od_pnumber = models.ForeignKey(
         MedicinalProduct,
         models.CASCADE,
+        null=True,
     )
 
     ema_od_number = create_dashboard_column(
