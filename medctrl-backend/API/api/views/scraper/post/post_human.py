@@ -100,6 +100,12 @@ def post(data):
         history_variables(eu_pnumber, initial_history_data, data)
         list_variables(eu_pnumber, data)
 
+        add_or_update_model(initial_history_data, override, MedicinalProduct, {"eu_pnumber": eu_pnumber},
+                            MedicinalProductSerializer, MedicinalProductFlexVarUpdateSerializer)
+
+        add_or_update_model(initial_history_data, override, MarketingAuthorisation, {"eu_pnumber": eu_pnumber},
+                            MarketingAuthorisationSerializer, MarketingAuthorisationFlexVarUpdateSerializer)
+
 
 def list_variables(eu_pnumber, data):
     """

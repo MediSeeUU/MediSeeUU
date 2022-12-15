@@ -117,13 +117,13 @@ def add_histories(pk_name, pk, model, serializer, name, initial_name, initial_da
         ValueError: Invalid data in data argument
         ValueError: Data does not exist in the given data argument
     """
+    initial_item = initial_date.get(initial_name)
+    initial_date[initial_name] = add_history(model, serializer, initial_item, name, pk_name, pk)
+
     current_items = current_data.get(current_name)
     if current_items is not None and len(current_items) > 0:
         for item in current_items:
             add_history(model, serializer, item, name, pk_name, pk)
-
-    initial_item = initial_date.get(initial_name)
-    initial_date[initial_name] = add_history(model, serializer, initial_item, name, pk_name, pk)
 
 
 def add_history(model, serializer, data, name, pk_name, pk):
