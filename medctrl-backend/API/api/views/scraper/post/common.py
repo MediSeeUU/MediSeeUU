@@ -38,29 +38,30 @@ def add_or_update_model(data, override, model, filters, insert_serializer, updat
     if override or not current_model_data:
         return insert_data(data, current_model_data, insert_serializer)
     else:
+        update_null_values(data, current_model_data, insert_serializer)
         return insert_data(data, current_model_data, update_serializer)
 
 
-def update_null_values(data, current_medicine):
+def update_null_values(data, current, insert_serializer):
     """
     Updates all null values for an existing medicine using the data given in its
     argument "data".
 
     Args:
         data (medicineObject): The new medicine data.
-        current_medicine (medicineObject): The medicine data that is currently in the database.
+        current_data (medicineObject): The medicine data that is currently in the database.
     """
-    medicine = model_to_dict(current_medicine)
-    new_data = {"eu_pnumber": data.get("eu_pnumber")}
+    current_data = model_to_dict(current)
+    new_data = {}
 
-    for attr in medicine:
-        if (getattr(current_medicine, attr) is None or getattr(current_medicine, attr) == '') and (
+    for attr in current_data:
+        if (getattr(current, attr) is None or getattr(current, attr) == "") and (
                 not (data.get(attr) is None)
         ):
             new_data[attr] = data.get(attr)
 
-    if len(new_data.keys()) > 1:
-        add_or_override_medicine(new_data, current_medicine)
+    if len(new_data.keys()) >= 1:
+        insert_data(new_data, current, insert_serializer)
 
 
 def add_or_update_foreign_key(data, current, related_model, insert_serializer, update_serializer, attribute):
