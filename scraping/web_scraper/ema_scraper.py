@@ -7,7 +7,7 @@ import requests
 import multiprocessing
 from scraping.utilities.web import web_utils as utils, json_helper, config_objects, medicine_type as med_type
 import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attribute_values as attribute_values
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 from scraping.web_scraper import url_scraper

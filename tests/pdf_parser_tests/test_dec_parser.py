@@ -4,7 +4,7 @@ import fitz
 import datetime
 import scraping.pdf_parser.parsers.dec_parser as dec_parser
 import scraping.utilities.pdf.pdf_helper as pdf_helper
-import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attribute_values as attribute_values
 
 test_data_loc = "../test_data/active_withdrawn"
 if "pdf_parser_tests" in os.getcwd():
@@ -51,7 +51,7 @@ class TestDecParse(TestCase):
         for txt, filename in dec_txt:
             output = dec_parser.dec_get_date(txt)
             self.assertTrue((isinstance(output, str) or isinstance(output, datetime.datetime)))
-            if output == values.default_date:
+            if output == attribute_values.default_date:
                 not_found_count += 1
                 print(f"{filename} date not found")
             else:
@@ -59,7 +59,7 @@ class TestDecParse(TestCase):
                     self.assertGreater(datetime.datetime(2050, 1, 1, 0, 0), output)
                     self.assertGreater(output, datetime.datetime(1985, 1, 1, 0, 0))
                 if isinstance(output, str):
-                    self.assertTrue(output == values.eu_aut_date_blank)
+                    self.assertTrue(output == attribute_values.eu_aut_date_blank)
         percentage_found = (len(dec_txt) - not_found_count) / len(dec_txt) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         print(f"Amount not found: {not_found_count}")
@@ -76,7 +76,7 @@ class TestDecParse(TestCase):
                 orphan_count += 1
                 output = dec_parser.dec_get_od_comp_date(txt)
                 self.assertTrue(isinstance(output, datetime.datetime))
-                if output == values.default_date:
+                if output == attribute_values.default_date:
                     not_found_count += 1
                     print(f"{filename} date not found")
                 else:

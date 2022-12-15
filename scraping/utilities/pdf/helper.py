@@ -2,7 +2,7 @@ from datetime import datetime
 import re
 
 import dateutil.parser as dateparser
-import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attribute_values as attribute_values
 import logging
 
 log = logging.getLogger("pdf_parser")
@@ -60,7 +60,7 @@ def convert_months(date_str: str) -> datetime | str:
         if k in date_str:
             date_str = date_str.replace(f" {k} ", f"/{months[k]}/")
             break
-    date = values.not_found
+    date = attribute_values.not_found
     try:
         date = datetime.strptime(date_str, '%d/%m/%Y')
     except ValueError as e:
@@ -135,7 +135,7 @@ def get_date(txt: str) -> datetime:
         datetime: found date.
     """
     if not txt:
-        return values.default_date
+        return attribute_values.default_date
         txt = txt.lower()
     #try dateparser
     try:
@@ -160,4 +160,4 @@ def get_date(txt: str) -> datetime:
     except dateparser._parser.ParserError:
         pass
 
-    return values.default_date
+    return attribute_values.default_date

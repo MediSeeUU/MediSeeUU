@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 import scraping.pdf_parser.parsed_info_struct as pis
 import scraping.utilities.xml.xml_parsing_utils as xml_utils
 import scraping.utilities.pdf.helper as helper
-import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attribute_values as attribute_values
 import scraping.utilities.definitions.attributes as attr
 import logging
 import os
@@ -157,7 +157,7 @@ def get_eu_od_number(section: ET.Element, eu_od_flag: bool) -> str:
     if len(eu_od_number) > 0:
         return eu_od_number[0]
     else:
-        return values.not_found
+        return attribute_values.not_found
 
 
 def get_prevalence(bullet_points: list[str]) -> str:
@@ -174,7 +174,7 @@ def get_prevalence(bullet_points: list[str]) -> str:
             clean = re.sub(r'\s+', ' ', b).lstrip(" ")
             return clean
 
-    return values.not_found
+    return attribute_values.not_found
 
 
 def get_alternative_treatments(bullet_points: list[str]) -> str:
@@ -193,11 +193,11 @@ def get_alternative_treatments(bullet_points: list[str]) -> str:
             return "No Satisfactory Method"
         if "significant benefit" in b:
             if "does not hold" in b:
-                return values.eu_alt_treatment_no_benefit
+                return attribute_values.eu_alt_treatment_no_benefit
             else:
-                return values.eu_alt_treatment_benefit
+                return attribute_values.eu_alt_treatment_benefit
 
-    return values.not_found
+    return attribute_values.not_found
 
 
 def get_significant_benefit(bullet_points: list[str], alternative_treatment: str) -> str:
@@ -245,4 +245,4 @@ def get_significant_benefit(bullet_points: list[str], alternative_treatment: str
             if len(result) > 0:
                 return result[0]
 
-    return values.not_found
+    return attribute_values.not_found

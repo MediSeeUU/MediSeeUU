@@ -1,6 +1,6 @@
 from scraping.utilities.web.json_helper import JsonHelper
 import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attribute_values as attribute_values
 from datetime import datetime
 from pathlib import Path
 import json

@@ -7,7 +7,7 @@ import json
 from datetime import datetime
 import logging
 import scraping.utilities.json.json_compiler as json_compiler
-import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attribute_values as attribute_values
 import scraping.utilities.definitions.attributes as attr
 
 log = logging.getLogger("annex_10_parser")
@@ -138,7 +138,7 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
         if not medicine["epars"]:
             continue
         chmp_opinion_date = medicine["epars"][0][attr.chmp_opinion_date]
-        if chmp_opinion_date == values.not_found:
+        if chmp_opinion_date == attribute_values.not_found:
             log.warning(f"Annex_10_parser: no chmp opinion date found in EPAR for {eu_num}")
             continue
         # Check if the chmp_opinion_date and opinion_date are within 4 days of each other
