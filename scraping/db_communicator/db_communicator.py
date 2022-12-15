@@ -1,6 +1,5 @@
 import requests
 import datetime
-import time
 import logging
 from scraping.db_communicator.handlers.login_handler import login
 from scraping.db_communicator.handlers.logout_handler import logout
