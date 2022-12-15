@@ -1,3 +1,4 @@
+python -m venv venv
 CALL entervenv.bat
 python -m pip install -r requirements.txt
 cd API
