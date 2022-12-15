@@ -89,7 +89,7 @@ def parse_folder(directory: str, folder_name: str):
     json_file.close()
 
 
-def get_files(directory: str) -> (list[str], list[str], list[str], list[str]):
+def get_files(directory: str) -> tuple[list[str], list[str], list[str], list[str]]:
     """
     Get all PDF and XML files per PDF type
 
@@ -169,6 +169,9 @@ def datetime_serializer(date: datetime.datetime):
 
     """
     if isinstance(date, datetime.datetime):
+        return date.__str__()
+
+    if isinstance(date, datetime.date):
         return date.__str__()
 
 

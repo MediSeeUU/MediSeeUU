@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 import re
 
 import dateutil.parser as dateparser
@@ -45,7 +45,7 @@ legal_bases = {'article 10.b', 'article 8.3', 'article 10.2', 'article 4.8.3', '
                'article 4.8', 'article 10.1', 'article 10.4'}
 
 
-def convert_months(date_str: str) -> datetime | str:
+def convert_months(date_str: str) -> datetime.date | str:
     """
     Converts written months (january) to a numeric value
 
@@ -65,7 +65,7 @@ def convert_months(date_str: str) -> datetime | str:
         date = datetime.strptime(date_str, '%d/%m/%Y')
     except ValueError as e:
         log.warning(f"Date {date_str} could not be parsed. Warning message: {e}")
-    return date
+    return date.date()
 
 
 def convert_roman_numbers(date: str) -> str:
@@ -124,7 +124,7 @@ def convert_articles(articles: list[str]) -> list[str]:
     return list(set(res))
 
 
-def get_date(txt: str) -> datetime:
+def get_date(txt: str) -> datetime.date:
     """
     Extracts date from a text, also including months with roman numerals and fully written months (IV, january)
 
@@ -137,13 +137,13 @@ def get_date(txt: str) -> datetime:
     if txt:
         txt = txt.lower()
         try:
-            return dateparser.parse(txt, fuzzy=True)
+            return dateparser.parse(txt, fuzzy=True).date()
         except dateparser._parser.ParserError:
             pass
         temp_date = txt.split(' ')[0]
         temp_date = convert_roman_numbers(temp_date)
         try:
-            return dateparser.parse(temp_date, fuzzy=True)
+            return dateparser.parse(temp_date, fuzzy=True).date()
         except dateparser._parser.ParserError:
             pass
 
@@ -153,7 +153,7 @@ def get_date(txt: str) -> datetime:
                 if k in temp_date:
                     temp_date = temp_date.replace(f" {k} ", f"/{months[k]}/")
                     break
-            return dateparser.parse(temp_date, fuzzy=True)
+            return dateparser.parse(temp_date, fuzzy=True).date()
         except dateparser._parser.ParserError:
             pass
 
