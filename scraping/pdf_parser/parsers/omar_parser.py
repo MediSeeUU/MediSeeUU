@@ -129,6 +129,8 @@ def get_attributes(section: ET.Element, eu_od_flag: bool, pdf_file: str, xml_bod
     Args:
         section (ET.Element): Section (ET.Element): This is the section obtained with the xml converter.
         eu_od_flag (bool): This boolean represents the presence of a comp section.
+        pdf_file (str): This makes sure that the log can show what file was missing the attribute.
+        xml_body: This is required for the report date to be parsed.
     Returns:
         dict[str, str]: Return a dictionary with the parsed attributes.
     """
@@ -225,6 +227,7 @@ def get_significant_benefit(bullet_points: list[str], alternative_treatment: str
     Args:
         bullet_points (list[str]): These are all the bullet points from the appropriate section.
         alternative_treatment (str): The result of the get_alternative_treatment function
+        pdf_file (str): This makes sure that the log can show what file was missing the attribute.
     Returns:
         str: Returns the appropriate string, depending on what was found in the file.
     """
@@ -272,7 +275,7 @@ def get_significant_benefit(bullet_points: list[str], alternative_treatment: str
                 return result[0]
 
     if alternative_treatment == values.eu_alt_treatment_benefit:
-        log.warning("OMAR PARSER: Significant benefit deteced but not scraped - matching key needs update for " + pdf_file)
+        log.warning("OMAR PARSER: Significant benefit detected but not scraped - update matching key for " + pdf_file)
         return values.not_scrapeable
 
     return values.not_found
