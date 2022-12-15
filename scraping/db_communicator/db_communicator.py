@@ -46,7 +46,6 @@ class DbCommunicator:
             Response: The response object of the request
         """
         self.token_checker()
-        post_url = 'http://localhost:8000/api/scraper/medicine/'
 
         api_headers = {
             'Content-type': 'application/json',
@@ -55,7 +54,6 @@ class DbCommunicator:
         }
 
         response = requests.post(url=urls.scraper, headers=api_headers, data=data)
-        print(response)
         if response.status_code == 200:
             return True
         else:
