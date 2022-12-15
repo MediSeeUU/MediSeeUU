@@ -47,9 +47,7 @@ class SaveDialog extends React.Component {
 
     // eunumbers of selected data points
     var eunumbers = []
-    this.selectedData.forEach((dataPoint) =>
-      eunumbers.push(dataPoint.eunumber)
-    )
+    this.selectedData.forEach((dataPoint) => eunumbers.push(dataPoint.eunumber))
 
     // Check whether the name field has actual input
     if (this.state.saveName === '') {

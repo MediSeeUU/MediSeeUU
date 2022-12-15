@@ -21,12 +21,12 @@ Utrecht University within the Software Project course.
 #med-footer-information {
   width: 50%;
   text-align: center;
-  float:left;
+  float: left;
 }
 
 #med-footer-organizations {
   width: 40%;
-  float:left;
+  float: left;
   text-align: center;
 }
 
@@ -42,14 +42,14 @@ Utrecht University within the Software Project course.
 
 /* Makes sure the issue button in the footer is the right size */
 .med-footer-github-button {
-  float:right;
+  float: right;
   margin-right: 35px;
   margin-top: 35px;
   fill: white;
 }
 
-.med-footer-github-button:hover{
-  fill:gray;
+.med-footer-github-button:hover {
+  fill: gray;
 }
 /* Media query: makes sure that when the screen width drops below 1400px 
   (the size where the page content fits the entire webbrowser page) the 
