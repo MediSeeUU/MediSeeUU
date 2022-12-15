@@ -23,8 +23,7 @@ def insert_data(data, current, serializer):
         raise ValueError(medicine_serializer.errors)
 
 
-def add_or_update_model(data, override, model, pk, pk_value, insert_serializer, update_serializer):
-    filters = {pk: pk_value}
+def add_or_update_model(data, override, model, filters, insert_serializer, update_serializer):
     current_model_data = model.objects.filter(**filters).first()
     if override or not current_model_data:
         return insert_data(data, current_model_data, insert_serializer)

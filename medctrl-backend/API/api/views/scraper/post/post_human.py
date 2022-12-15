@@ -64,15 +64,10 @@ def post(data):
         # pop initial histories from data to add them later because of circular dependency
         initial_history_data = pop_initial_histories_data(data, models)
 
-        current_ingredients_and_substances = None
         if active_substance := data.get("active_substance"):
-            current_ingredients_and_substances = IngredientsAndSubstances.objects.filter(
-                active_substance=active_substance
-            ).first()
-        data["ingredients_and_substances"] = \
-            insert_data(data, current_ingredients_and_substances, IngredientsAndSubstancesFlexVarUpdateSerializer) \
-            if current_ingredients_and_substances else \
-            insert_data(data, current_ingredients_and_substances, IngredientsAndSubstancesSerializer)
+            data["ingredients_and_substances"] = \
+                add_or_update_model(data, override, IngredientsAndSubstances, {"active_substance": active_substance},
+                                    IngredientsAndSubstancesSerializer, IngredientsAndSubstancesFlexVarUpdateSerializer)
 
         current_marketing_authorisation = MarketingAuthorisation.objects.filter(
             eu_pnumber=eu_pnumber
@@ -95,18 +90,14 @@ def post(data):
             "duration"
         )
 
-        add_or_update_model(data, override, MedicinalProduct, "eu_pnumber", eu_pnumber,
+        add_or_update_model(data, override, MedicinalProduct, {"eu_pnumber": eu_pnumber},
                             MedicinalProductSerializer, MedicinalProductFlexVarUpdateSerializer)
 
-        add_or_update_model(data, override, MarketingAuthorisation, "eu_pnumber", eu_pnumber,
+        add_or_update_model(data, override, MarketingAuthorisation, {"eu_pnumber": eu_pnumber},
                             MarketingAuthorisationSerializer, MarketingAuthorisationFlexVarUpdateSerializer)
 
         history_variables(eu_pnumber, initial_history_data, data)
         list_variables(data)
-
-
-def add_or_update_model(data, model, ):
-    pass
 
 
 def add_or_update_foreign_key(data, current, related_model, insert_serializer, update_serializer, attribute):

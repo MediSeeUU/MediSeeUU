@@ -97,6 +97,7 @@ class MedicinalProduct(models.Model):
     ingredients_and_substances = models.ForeignKey(
         IngredientsAndSubstances,
         models.PROTECT,
+        null=True,
     )
 
     eu_brand_name_initial = create_dashboard_history_initial_column(
