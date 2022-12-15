@@ -3,10 +3,11 @@ from dataclasses import dataclass, field, asdict
 import typing
 import scraping.utilities.definitions.attributes as attr
 
+
 @dataclass
 class ParsedInfoStruct:
     """
-    Class continaining all information for a certain medicine:
+    Class containing all information for a certain medicine:
     - EU number
     - Date of parsing the file
     - Attributes for each decision file

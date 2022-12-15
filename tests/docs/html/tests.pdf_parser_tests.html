@@ -90,7 +90,7 @@
 <li class="toctree-l5"><a class="reference internal" href="tests.db_communicator_tests.html#submodules">Submodules</a></li>
 <li class="toctree-l5"><a class="reference internal" href="tests.db_communicator_tests.html#module-tests.db_communicator_tests.test_db_communicator">tests.db_communicator_tests.test_db_communicator module</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="tests.db_communicator_tests.html#tests.db_communicator_tests.test_db_communicator.TestDbCommunicator"><code class="docutils literal notranslate"><span class="pre">TestDbCommunicator</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="tests.db_communicator_tests.html#tests.db_communicator_tests.test_db_communicator.TestDbCommunicator.test_main"><code class="docutils literal notranslate"><span class="pre">TestDbCommunicator.test_main()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="tests.db_communicator_tests.html#tests.db_communicator_tests.test_db_communicator.TestDbCommunicator.temp_test"><code class="docutils literal notranslate"><span class="pre">TestDbCommunicator.temp_test()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -153,11 +153,22 @@
 <li class="toctree-l6"><a class="reference internal" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse"><code class="docutils literal notranslate"><span class="pre">TestOmarParse</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.setUpClass()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_alternative_treatments"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_alternative_treatments()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_eu_od_number"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_eu_od_number()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_prevalence"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_prevalence()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_report_date"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_report_date()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_significant_benefit"><code class="docutils literal notranslate"><span class="pre">TestOmarParse.test_get_significant_benefit()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#tests.pdf_parser_tests.test_omar_parser.xml_to_bullet_points"><code class="docutils literal notranslate"><span class="pre">xml_to_bullet_points()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#module-tests.pdf_parser_tests.test_pdf_parser">tests.pdf_parser_tests.test_pdf_parser module</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#tests.pdf_parser_tests.test_pdf_parser.TestPdfParser"><code class="docutils literal notranslate"><span class="pre">TestPdfParser</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdf_parser_tests.test_pdf_parser.TestPdfParser.setUpClass"><code class="docutils literal notranslate"><span class="pre">TestPdfParser.setUpClass()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdf_parser_tests.test_pdf_parser.TestPdfParser.test_pdf_parser_no_checks"><code class="docutils literal notranslate"><span class="pre">TestPdfParser.test_pdf_parser_no_checks()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#tests.pdf_parser_tests.test_pdf_parser.TestPdfParser.test_pdf_parser_with_checks"><code class="docutils literal notranslate"><span class="pre">TestPdfParser.test_pdf_parser_with_checks()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -472,7 +483,7 @@ cases.</p>
 <dt class="sig sig-object py" id="tests.pdf_parser_tests.test_omar_parser.TestOmarParse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.pdf_parser_tests.test_omar_parser.</span></span><span class="sig-name descname"><span class="pre">TestOmarParse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
-<p>Class that contains the unit tests for scraping.file_parser.pdf_parser.scrapers.epar_parser</p>
+<p>Class that contains the unit tests for scraping.file_parser.pdf_parser.scrapers.omar_parser</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.pdf_parser_tests.test_omar_parser.TestOmarParse.setUpClass">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setUpClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse.setUpClass" title="Permalink to this definition"></a></dt>
@@ -483,21 +494,37 @@ cases.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_alternative_treatments">
 <span class="sig-name descname"><span class="pre">test_get_alternative_treatments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_alternative_treatments" title="Permalink to this definition"></a></dt>
-<dd><p>Test getting omar_alternative_treatments
+<dd><p>Test get_alternative_treatments
+:returns: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_eu_od_number">
+<span class="sig-name descname"><span class="pre">test_get_eu_od_number</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_eu_od_number" title="Permalink to this definition"></a></dt>
+<dd><p>Test get_eu_od_number
 :returns: None</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_prevalence">
 <span class="sig-name descname"><span class="pre">test_get_prevalence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_prevalence" title="Permalink to this definition"></a></dt>
-<dd><p>Test getting omar_alternative_treatments
+<dd><p>Test get_prevalence
+:returns: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_report_date">
+<span class="sig-name descname"><span class="pre">test_get_report_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_report_date" title="Permalink to this definition"></a></dt>
+<dd><p>Test get_report_date
 :returns: None</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_significant_benefit">
 <span class="sig-name descname"><span class="pre">test_get_significant_benefit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdf_parser_tests.test_omar_parser.TestOmarParse.test_get_significant_benefit" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Test get_significant_benefit
+:returns: None</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -505,6 +532,35 @@ cases.</p>
 <dt class="sig sig-object py" id="tests.pdf_parser_tests.test_omar_parser.xml_to_bullet_points">
 <span class="sig-prename descclassname"><span class="pre">tests.pdf_parser_tests.test_omar_parser.</span></span><span class="sig-name descname"><span class="pre">xml_to_bullet_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.pdf_parser_tests.test_omar_parser.xml_to_bullet_points" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+</section>
+<section id="module-tests.pdf_parser_tests.test_pdf_parser">
+<span id="tests-pdf-parser-tests-test-pdf-parser-module"></span><h2>tests.pdf_parser_tests.test_pdf_parser module<a class="headerlink" href="#module-tests.pdf_parser_tests.test_pdf_parser" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tests.pdf_parser_tests.test_pdf_parser.TestPdfParser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.pdf_parser_tests.test_pdf_parser.</span></span><span class="sig-name descname"><span class="pre">TestPdfParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdf_parser_tests.test_pdf_parser.TestPdfParser" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>Class that runs PDF parser, mostly checks if files get downloaded</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.pdf_parser_tests.test_pdf_parser.TestPdfParser.setUpClass">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setUpClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdf_parser_tests.test_pdf_parser.TestPdfParser.setUpClass" title="Permalink to this definition"></a></dt>
+<dd><p>Set up the class to make sure the integration test can run without changing existing data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.pdf_parser_tests.test_pdf_parser.TestPdfParser.test_pdf_parser_no_checks">
+<span class="sig-name descname"><span class="pre">test_pdf_parser_no_checks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdf_parser_tests.test_pdf_parser.TestPdfParser.test_pdf_parser_no_checks" title="Permalink to this definition"></a></dt>
+<dd><p>Runs PDF parser and passes if no errors occur.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.pdf_parser_tests.test_pdf_parser.TestPdfParser.test_pdf_parser_with_checks">
+<span class="sig-name descname"><span class="pre">test_pdf_parser_with_checks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.pdf_parser_tests.test_pdf_parser.TestPdfParser.test_pdf_parser_with_checks" title="Permalink to this definition"></a></dt>
+<dd><p>Runs PDF parser and checks whether the amount of parsed files equals the number of PDF files in the medicine
+folder</p>
+</dd></dl>
+
+</dd></dl>
 
 </section>
 </section>

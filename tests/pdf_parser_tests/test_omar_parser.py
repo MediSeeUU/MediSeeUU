@@ -2,6 +2,7 @@ from unittest import TestCase
 import os
 import scraping.utilities.xml.xml_parsing_utils as xml_utils
 
+import scraping.utilities.definitions.values as values
 from scraping.pdf_parser.parsers import omar_parser
 import xml.etree.ElementTree as ET
 
@@ -27,8 +28,9 @@ def xml_to_bullet_points(xml_body: ET.Element) -> list[str]:
 
 class TestOmarParse(TestCase):
     """
-    Class that contains the unit tests for scraping.file_parser.pdf_parser.scrapers.epar_parser
+    Class that contains the unit tests for scraping.file_parser.pdf_parser.scrapers.omar_parser
     """
+
     @classmethod
     def setUpClass(cls):
         """
@@ -58,12 +60,44 @@ class TestOmarParse(TestCase):
             except ET.ParseError:
                 print("OMAR Test could not parse XML file " + xml_file)
 
-        # Due to the significant changes to the OMAR parser, new unit tests have
-        # to be written to accommodate this.
+    def test_get_report_date(self):
+        """
+        Test get_report_date
+        Returns:
+            None
+        """
+        wrong_found = 0
+
+        for (xml_body, xml_file) in xml_bodies:
+            result = omar_parser.get_report_date(xml_body, xml_file)
+            if result == values.not_found or result == "":
+                wrong_found += 1
+
+        print("Incorrect get_report_date parses found: " + str(wrong_found))
+        self.assertLess(wrong_found, 1)
+
+
+    def test_get_eu_od_number(self):
+        """
+        Test get_eu_od_number
+        Returns:
+            None
+        """
+        NAs_found = 0
+
+        for (xml_body, xml_file) in xml_bodies:
+            for section in xml_body:
+                result = omar_parser.get_eu_od_number(section, True)
+                if result == values.not_found:
+                    NAs_found += 1
+                    print("No OD number found in: " + xml_file)
+
+        print("Incorrect get_eu_od_number parses found: " + str(NAs_found))
+        self.assertLess(NAs_found, 1)
 
     def test_get_prevalence(self):
         """
-        Test getting omar_alternative_treatments
+        Test get_prevalence
         Returns:
             None
         """
@@ -71,9 +105,9 @@ class TestOmarParse(TestCase):
         prevalence_found = 0
 
         for (xml_body, xml_file) in xml_bodies:
-            bullet_point = xml_to_bullet_points(xml_body)
-            result = omar_parser.get_prevalence(bullet_point)
-            if result == "NA":
+            bullet_points = xml_to_bullet_points(xml_body)
+            result = omar_parser.get_prevalence(bullet_points)
+            if result == values.not_found:
                 NAs_found += 1
                 print("No prevalence found in: " + xml_file)
             if "10.000" in result or "10,000" in result:
@@ -85,7 +119,7 @@ class TestOmarParse(TestCase):
 
     def test_get_alternative_treatments(self):
         """
-        Test getting omar_alternative_treatments
+        Test get_alternative_treatments
         Returns:
             None
         """
@@ -95,7 +129,7 @@ class TestOmarParse(TestCase):
         for (xml_body, xml_file) in xml_bodies:
             bullet_point = xml_to_bullet_points(xml_body)
             result = omar_parser.get_alternative_treatments(bullet_point)
-            if result == "NA":
+            if result == values.not_found:
                 NAs_found += 1
                 print("No alternative treatment information found in: " + xml_file)
             if (("no satisfactory method" in bullet_point) or ("no satisfactory treatment" in bullet_point)) \
@@ -107,11 +141,29 @@ class TestOmarParse(TestCase):
                 if "does not hold" in bullet_point and result != "No Significant Benefit":
                     wrong_found += 1
 
-        print("NAs found: " + str(NAs_found))
-        print("Wrong parses found: " + str(wrong_found))
+        print("NAs found in get_alternative_treatments: " + str(NAs_found))
+        print("Incorrect get_alternative_treatments parses found: " + str(wrong_found))
         self.assertLess(wrong_found, 1)
 
-    # Need more information about this attribute for it to be tested properly.
     def test_get_significant_benefit(self):
+        """
+        Test get_significant_benefit
+        Returns:
+            None
+        """
+        NAs_found = 0
+        benefits_found = 0
 
-        self.assertTrue(True)
+        for (xml_body, xml_file) in xml_bodies:
+            bullet_points = xml_to_bullet_points(xml_body)
+
+            result = omar_parser.get_significant_benefit(bullet_points, "test")
+            if result == values.not_found:
+                NAs_found += 1
+                print("No significant benefit found in: " + xml_file)
+            else:
+                benefits_found += 1
+
+        percentage_found = benefits_found / (benefits_found + NAs_found) * 100
+        print("Significant Benefit found in " + str(round(percentage_found, 2)) + '%' + " of all files.")
+        self.assertGreater(percentage_found, 0)

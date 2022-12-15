@@ -95,4 +95,3 @@ def init_ema_dict(eu_n: str, file: json_helper.JsonHelper):
         eu_n: ema_urls
     }
     file.add_to_dict(pdf_url)
-
