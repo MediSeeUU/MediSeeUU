@@ -1,3 +1,3 @@
-cd ../
+cd ../../
 echo entering venv...
 venv\Scripts\activate

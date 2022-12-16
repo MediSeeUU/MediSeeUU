@@ -1,3 +1,4 @@
+cd helper
 CALL entervenv.bat
 cd API
 python manage.py makemigrations

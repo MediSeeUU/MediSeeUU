@@ -1,5 +1,5 @@
-python -m venv venv
-CALL entervenv.bat
+cd helper
+CALL newvenv.bat
 python -m pip install -r requirements.txt
 cd API
 python manage.py makemigrations
