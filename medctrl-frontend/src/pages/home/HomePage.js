@@ -47,8 +47,6 @@ function HomePage() {
         </p>
       </section>
 
-      <Search tour="step-search" update={search} />
-
       <section className="med-content-container">
         <h1>Tools</h1>
         <hr className="med-top-separator" />

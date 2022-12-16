@@ -13,9 +13,7 @@ function DataPage() {
   const selectedData = useSelectedData()
   return (
     <>
-      <DataSelect
-        tableName="Human"
-      />
+      <DataSelect />
       <SelectedData selectedData={selectedData} />
     </>
   )

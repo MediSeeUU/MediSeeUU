@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import MedModal from '../../../../shared/MedModal'
 import FilterMenu from './filter_menu/FilterMenu'
 import './Menu.css'
-import SortMenu_old from './sort_menu/SortMenu_old'
+import SortMenu from './sort_menu/SortMenu'
 
 // Function based component which renders the filter and sort menu
 function Menu({ filters, sorters, update, categories }) {
@@ -58,7 +58,7 @@ function Menu({ filters, sorters, update, categories }) {
         onClick={openModal}
       >
         <i className="bx bx-cog med-button-image" />
-        Sort
+        Filter & Sort
       </button>
       <MedModal
         showModal={showModal}
@@ -93,7 +93,7 @@ function Menu({ filters, sorters, update, categories }) {
             </button>
           </div>
         </div>
-        <SortMenu_old
+        <SortMenu
           sorters={localSorters}
           setSorters={setSorters}
           defaultObj={sortObject}

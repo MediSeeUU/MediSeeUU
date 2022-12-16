@@ -6,8 +6,8 @@ Utrecht University within the Software Project course.
   position: absolute;
   top: 20%;
   bottom: 20%;
-  left: 20%;
-  right: 20%;
+  left: 15%;
+  right: 15%;
   overflow: hidden;
   outline: none;
   min-width: 100px;
@@ -22,12 +22,12 @@ Utrecht University within the Software Project course.
 }
 
 .med-filter-menu {
-  width: 100%;
+  width: 49%;
 }
 
 .med-sort-menu {
   float: right;
-  width: 19.5%;
+  width: 49%;
   top: 0;
   right: 0;
 }
