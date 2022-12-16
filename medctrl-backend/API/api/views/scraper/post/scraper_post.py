@@ -69,10 +69,11 @@ class ScraperMedicine(APIView):
                     # atomic transaction so if there is any error all changes are rolled back
                     # Django will automatically roll back if any exception occurs
                     with transaction.atomic():
-                        if medicine_data.get("orphan"):
-                            post_orphan(medicine_data)
-                        else:
-                            post_human(medicine_data)
+                        if orphan_status := medicine_data.get("orphan_status"):
+                            if orphan_status == "o":
+                                post_orphan(medicine_data)
+                            else:
+                                post_human(medicine_data)
                 except Exception as e:
                     medicine_data["errors"] = str(e)
                     failed_medicines.append(medicine_data)
