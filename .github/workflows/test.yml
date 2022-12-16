@@ -47,12 +47,12 @@ jobs:
       run: pytest .
 
     - name: Install Backend Dependencies
-      working-directory: medctrl-backend/API
+      working-directory: backend/API
       run: |
         pip install -r ../requirements.txt
     
     - name: Set up Backend
-      working-directory: medctrl-backend/API
+      working-directory: backend/API
       run: |
         python manage.py makemigrations api
         python manage.py migrate
@@ -60,7 +60,7 @@ jobs:
         DB_PORT: ${{ job.services.mysql.ports['3306'] }}
     
     - name: Run Backend Tests
-      working-directory: medctrl-backend/API
+      working-directory: backend/API
       run: python manage.py test
       env: 
         DB_PORT: ${{ job.services.mysql.ports['3306'] }}

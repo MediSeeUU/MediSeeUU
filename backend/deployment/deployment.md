@@ -70,7 +70,7 @@ At this stage we will create a directory where all the build files will live. We
 2. Copy the `medctrl.target` and `medctrl@.service` files to the `/etc/systemd/system` directory:
 
     ```bash
-    # in REPO_PATH/medctrl-backend/deployment
+    # in REPO_PATH/backend/deployment
     cp medctrl.target /etc/systemd/system
     cp medctrl@.service /etc/systemd/system
     ```
@@ -134,14 +134,14 @@ Below are steps to build and activate the software with a build name `developmen
 1. Run the `build.sh` script with environment variable set:
 
     ```bash
-    # in REPO_PATH/medctrl-backend/
+    # in REPO_PATH/backend/
     BUILD_NAME=development ./build.sh
     ```
 
 2. Anytime you have made a change to the system (or the configuration file) and want to update a running system you can re-run the `build.sh` script to update the build.
 
     ```bash
-        # in REPO_PATH/medctrl-backend/
+        # in REPO_PATH/backend/
         BUILD_NAME=development ./build.sh
     ```
 

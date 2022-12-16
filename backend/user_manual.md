@@ -17,7 +17,7 @@ There are a few prerequisites that we assume are already setup. These include:
 
 If the prerequisites are installed you can follow the guide below to get started.
 
-In all the snippets below the current directory is `medctrl-backend/` unless specified otherwise.
+In all the snippets below the current directory is `backend/` unless specified otherwise.
 
 ### Install dependencies
 
@@ -44,7 +44,7 @@ In all the snippets below the current directory is `medctrl-backend/` unless spe
 
 ### Setup Configuration
 
-The configuration files for the software should be placed in  `medctrl-backend/API/api_settings/settings/`. There already is a settings file (`common.py`) with general settings that are the same for every deployment.  
+The configuration files for the software should be placed in  `backend/API/api_settings/settings/`. There already is a settings file (`common.py`) with general settings that are the same for every deployment.  
 In addition to these settings you will need some extra configuration values, for example database login credentials. For development you should create a file named `dev_settings.py` in the `settings/` directory. \
 Below is an example configuration which you can use as a template.
 
@@ -86,7 +86,7 @@ STATIC_ROOT = "django-static"
 1. Migrate database and create Django permission levels
 
 ```sh
-# in directory medctrl-backend/API
+# in directory backend/API
 python manage.py migrate
 python manage.py create_column_permissions
 ```
@@ -96,7 +96,7 @@ python manage.py create_column_permissions
     More details about permissions can be found in the 'Managing Groups' section of this manual.  
 
 ```sh
-# in directory medctrl-backend/API
+# in directory backend/API
 # this command will give some prompts for username and password
 python manage.py createsuperuser
 python manage.py init_setup
@@ -105,7 +105,7 @@ python manage.py init_setup
 3. Run the backend
 
 ```sh
-# in directory medctrl-backend/API
+# in directory backend/API
 # Django will start on port 8000
 python manage.py runserver 8000
 ```
@@ -289,7 +289,7 @@ The Django admin panel is accessible via the `<ROOT_URL>/admin/` endpoint.
 ### Importing data from existing Excel sheets
 
 We have curated the initial dataset into Excel files that can be imported to the system. \
-The data files can be found at `medctrl-backend/curated_data/`.
+The data files can be found at `backend/curated_data/`.
 Clicking on a model in the Admin panel will show import and export options in the top-right:
 ![Django admin panel import export](img/admin_upload_file.png)
 
@@ -368,7 +368,7 @@ To add a new variable to the system there are a few things that need to be done:
     Run the following commands to migrate the new changes:
 
     ```sh
-    # in directory medctrl-backend/API
+    # in directory backend/API
     python manage.py makemigrations
     python manage.py migrate
     python manage.py create_column_permissions

@@ -7,7 +7,7 @@ Make sure python 3.x.x is installed on your device and that the 'setting setup' 
 
 <TODO: Add here how to install MySQL>
 
-1. navigate to the 'medctrl-backend' folder
+1. navigate to the 'backend' folder
 2. run the following command: ```py -m venv venv```
 3. run the following command: ```venv/scripts/activate```
 4. run the following command: ```pip install -r requirements.txt```
@@ -30,9 +30,9 @@ The URL files contain all valid Paths that can be accessed using a URL. When a w
 ## Local deployment
 Using powershell is recommended when working on a local machine. 
 
-1. navigate to the '\medctrl-backend' folder
+1. navigate to the '\backend' folder
 2. run the following command: ```venv/Scripts/activate```
-3. navigate to the '\medctrl-backend\API' folder
+3. navigate to the '\backend\API' folder
 4. run the following command: ```py manage.py migrate```
 5. run the following command: ```py manage.py runserver```
 
