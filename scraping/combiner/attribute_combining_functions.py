@@ -213,25 +213,28 @@ def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str]
 
 
 def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[bool, str]:
-    are_equal = False
+    try:
+        are_equal = False
 
-    web_dict = file_dicts[src.web]
-    ema_number_web = web_dict[attr.ema_number]
-    if ema_number_web == attribute_values.not_found:
-        return (are_equal,attribute_values.default_date)
+        web_dict = file_dicts[src.web]
+        ema_number_web = web_dict[attr.ema_number]
+        if ema_number_web == attribute_values.not_found:
+            return (are_equal,attribute_values.default_date)
 
-    ema_excel = get_ema_excel("..\..\data/ema_excel/", "ema_excel.xlsx")
+        ema_excel = get_ema_excel("..\data/ema_excel/", "ema_excel.xlsx")
 
-    if ema_number_web in ema_excel:
-        web_brandname = web_dict[attr.eu_brand_name_current]
-        excel_brandname = ema_excel[ema_number_web]
-        if string_overlap([web_brandname,excel_brandname]) != attribute_values.insufficient_overlap:
-            are_equal = True
+        if ema_number_web in ema_excel:
+            web_brandname = web_dict[attr.eu_brand_name_current]
+            excel_brandname = ema_excel[ema_number_web]
+            if string_overlap([web_brandname,excel_brandname]) != attribute_values.insufficient_overlap:
+                are_equal = True
 
 
-    ema_number_date = get_attribute_date(src.web, file_dicts)
+        ema_number_date = get_attribute_date(src.web, file_dicts)
 
-    return(are_equal, ema_number_date)
+        return(are_equal, ema_number_date)
+    except Exception:
+        return(False,attribute_values.default_date)
 
 
 def combine_eu_procedures_todo(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> list[dict[str, bool]]:
