@@ -6,7 +6,7 @@ from scraping.db_communicator.handlers.logout_handler import logout
 import scraping.utilities.definitions.communicator_urls as urls
 
 log = logging.getLogger("db_communicator")
-
+medicine_log = logging.getLogger("db_communicator.medicine_info")
 
 class DbCommunicator:
     """
@@ -53,6 +53,8 @@ class DbCommunicator:
         }
 
         response = requests.post(url=urls.scraper, headers=api_headers, data=data)
+        for failed_medicine in response.json():
+            medicine_log.warning(f"Backend failed to insert medicine: {failed_medicine}")
         if response.status_code == 200:
             return True
         else:

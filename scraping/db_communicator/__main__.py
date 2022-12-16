@@ -89,7 +89,6 @@ def send_medicine_together(directory_folders: list[str], active_withdrawn_folder
 
     formed_data = {"data": all_data}
     json_data = json.dumps(formed_data)
-    print(json_data)
     passed = db_communicator.send_data(data=json_data)
 
     if passed:
