@@ -19,9 +19,11 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     2. Create a dictionary with all the attributes that need to be scraped.
     3. Loop through the body of the XML and find the attributes.
     4. Append the attributes to the struct and return it.
+
     Args:
         filepath (str): Path of the XML file to be scraped.
         medicine_struct (PIS.ParsedInfoStruct): The dictionary of all currently scraped attributes of this medicine.
+
     Returns:
         PIS.ParsedInfoStruct: Returns an updated struct, with the current attributes added to it.
     """
@@ -111,6 +113,16 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
 
 
 def get_report_date(xml_body: ET.Element, pdf_file: str) -> datetime.date:
+    """
+    This function finds the date of the report that is on the front page of the PDF.
+
+    Args:
+        xml_body: This is required for the report date to be parsed.
+        pdf_file (str): This makes sure that the log can show what file was missing the attribute.
+
+    Returns:
+        datetime.date: Returns the date as a simple datetime.date.
+    """    
     section = xml_utils.get_body_section_by_index(0, xml_body)
     header = xml_utils.get_section_header(section)
 
@@ -126,11 +138,13 @@ def get_report_date(xml_body: ET.Element, pdf_file: str) -> datetime.date:
 def get_attributes(section: ET.Element, eu_od_flag: bool, pdf_file: str, xml_body: ET.Element) -> dict[str, str]:
     """
     This function returns the dictionary with all the parsed attributes in it.
+
     Args:
         section (ET.Element): Section (ET.Element): This is the section obtained with the xml converter.
         eu_od_flag (bool): This boolean represents the presence of a comp section.
         pdf_file (str): This makes sure that the log can show what file was missing the attribute.
         xml_body: This is required for the report date to be parsed.
+
     Returns:
         dict[str, str]: Return a dictionary with the parsed attributes.
     """
@@ -156,9 +170,11 @@ def get_attributes(section: ET.Element, eu_od_flag: bool, pdf_file: str, xml_bod
 def get_eu_od_number(section: ET.Element, eu_od_flag: bool) -> str:
     """
     This function finds the orphan designation number that belongs to a condition.
+
     Args:
         section (ET.Element): This is the section obtained with the xml converter.
         eu_od_flag (bool): This boolean represents the presence of a comp section.
+
     Returns:
         str: Returns an eu orphan designation number.
     """
@@ -183,8 +199,10 @@ def get_eu_od_number(section: ET.Element, eu_od_flag: bool) -> str:
 def get_prevalence(bullet_points: list[str]) -> str:
     """
     Finds the paragraph that contains the information about the prevalence of the medicine.
+
     Args:
         bullet_points (list[str]): These are all the bullet points from the appropriate section.
+
     Returns:
         str: Return the string with the relevant information about the prevalence or NA if it cannot be found.
     """
@@ -199,10 +217,11 @@ def get_prevalence(bullet_points: list[str]) -> str:
 
 def get_alternative_treatments(bullet_points: list[str]) -> str:
     """
-    Finds the bullet point that contains the appropriate information and return
-        short description about the findings.
+    Finds the bullet point that contains the appropriate information and return short description about the findings.
+
     Args:
         bullet_points (list[str]): These are all the bullet points from the appropriate section.
+
     Returns:
         str: Return a short description depending on what was found in the bullet point.
     """
@@ -224,10 +243,12 @@ def get_significant_benefit(bullet_points: list[str], alternative_treatment: str
     """
     This function finds the piece of text that supports the reason for the orphan medicine to be
     of significant benefit.
+
     Args:
         bullet_points (list[str]): These are all the bullet points from the appropriate section.
         alternative_treatment (str): The result of the get_alternative_treatment function
         pdf_file (str): This makes sure that the log can show what file was missing the attribute.
+
     Returns:
         str: Returns the appropriate string, depending on what was found in the file.
     """

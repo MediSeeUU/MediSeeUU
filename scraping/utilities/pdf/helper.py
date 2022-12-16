@@ -62,7 +62,7 @@ def convert_months(date_str: str) -> datetime.date | str:
             break
     date = values.not_found
     try:
-        date = datetime.strptime(date_str, '%d/%m/%Y')
+        date = datetime.datetime.strptime(date_str, '%d/%m/%Y')
     except ValueError as e:
         log.warning(f"Date {date_str} could not be parsed. Warning message: {e}")
     return date.date()
