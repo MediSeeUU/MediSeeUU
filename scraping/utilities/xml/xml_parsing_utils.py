@@ -227,33 +227,26 @@ def section_get_header_text(section: ET.Element) -> str:
     Returns:
         str: text contained within the header of given section.
     """
-
     header = section.findall(tags.header)[0]
-    return header.text
+    # print(header.text)
+    return header.text.strip()
 
 
-def section_get_header_text_numberless(section: ET.Element) -> str:
+def section_set_header_text(new_text: str, section: ET.Element) -> ET.Element:
     """
-    Returns string containing the text within the header of the given section without header / chapter numbers.
-
-    e.g.:
-    <header>"4.1. Therapeutic indications"</header> returns "Therapeutic indications"
+    Returns a modified version of xml_section where text content has been set to new_text.
 
     Args:
+        new_text (str): new text content to set header to
         section (ET.Element): A xml Element of the <section>...</section> node within a xml_body.
 
     Returns:
-        str: text contained within the header of given section without header number.
-    """
+        ET.Element: Modified xml section Element of the <section>...</section> node within a xml_body.
+    """    
+    section_header = section.findall(tags.header)[0]
+    section_header.text = new_text
 
-    contains_number, header_number = section_get_header_number(section)
-    header_text = section_get_header_text(section)
-    
-    if contains_number:
-        header_text.replace(header_number + ".", "")
-        header_text.replace(header_number, "")
-
-    return header_text
+    return section
 
 def section_contains_paragraph_substring(substring: str, section: ET.Element) -> bool:
     """
