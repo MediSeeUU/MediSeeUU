@@ -4,6 +4,8 @@ dev_settings.py
 **/api_settings/settings/local_*.py
 **/api_settings/settings/deploy_*.py
 
+!requirements.txt
+
 ################################################
 ######## Python boilerplate gitignore ##########
 ################################################
