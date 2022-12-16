@@ -96,10 +96,36 @@ def add_list(pk_name, pk, model, serializer, name, data, replace):
     filters = {pk_name: pk}
     model_data = model.objects.filter(**filters).all()
     if items is not None and len(items) > 0:
+        if model_data and replace:
+            model_data.delete()
         for item in items:
-            if model_data and replace:
-                model_data.delete()
             new_data = {name: item, pk_name: pk}
+            insert_data(new_data, None, serializer)
+
+
+def add_model_list(pk_name, pk, model, serializer, name, data, replace):
+    """
+    Add a new object to the given list model.
+
+    Args:
+        model (medicine_model): The list model of the list object you want to add.
+        serializer (medicine_serializer): The applicable serializer.
+        name (string): The name of the attribute.
+        data (medicineObject): The new medicine data.
+        replace (bool): If True, will delete all previously added objects with the same eu_pnumber
+
+    Raises:
+        ValueError: Invalid data in data argument
+        ValueError: Data does not exist in the given data argument
+    """
+    items = data.get(name)
+    filters = {pk_name: pk}
+    model_data = model.objects.filter(**filters).all()
+    if items is not None and len(items) > 0:
+        if model_data and replace:
+            model_data.delete()
+        for item in items:
+            new_data = item | {pk_name: pk}
             insert_data(new_data, None, serializer)
 
 

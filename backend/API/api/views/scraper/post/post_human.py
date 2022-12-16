@@ -48,6 +48,7 @@ from .common import (
     add_or_update_model,
     add_or_update_foreign_key,
     add_list,
+    add_model_list,
     add_histories,
 )
 
@@ -122,6 +123,16 @@ def list_variables(eu_pnumber, data):
         LegalBases,
         LegalBasesSerializer,
         "eu_legal_basis",
+        data,
+        True,
+    )
+
+    add_model_list(
+        "eu_pnumber",
+        eu_pnumber,
+        Procedures,
+        ProceduresSerializer,
+        "procedures",
         data,
         True,
     )
