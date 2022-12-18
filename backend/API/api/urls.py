@@ -19,9 +19,7 @@ from api.views.medicine_views import (
 )
 from api.views.account_views import LoginAPI
 from api.views.other import SavedSelectionViewSet
-from api.views.other import Human_medicine_info
-from api.views.other import Orphan_medicine_info
-
+from api.views.structure_data import StructureViewSet, Human_medicine_info, Orphan_medicine_info
 from api.views.scraper.router import url_patterns as scraper_routes
 
 
@@ -30,8 +28,9 @@ from api.views.scraper.router import url_patterns as scraper_routes
 router = DefaultRouter()
 router.register(r"medicine", MedicineViewSet, basename="medicine")
 router.register(r"saveselection", SavedSelectionViewSet, basename="saveselection")
+router.register(r"structuredata", StructureViewSet, basename="structuredata")
 
-# urlpatterns is the default way of adding routes (endpoints).
+# urlpatterns is the default way of adding routes (endpoints)
 urlpatterns = [
     path("", include(router.urls)),  # Includes all router paths as patterns
     # Account routes (../account/#PATH)

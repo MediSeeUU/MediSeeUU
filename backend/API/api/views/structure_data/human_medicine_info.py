@@ -10,7 +10,7 @@
 from rest_framework import views
 from rest_framework.response import Response
 from .medicine_info_json import get_medicine_info
-from .permissionFilter import permission_filter
+from api.views.other.permissionFilter import permission_filter
 from rest_framework import permissions
 from api.models.human_models import models
 
