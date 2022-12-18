@@ -7,12 +7,11 @@
 # fields in the database.
 # ---------------------------------------------------------
 
-import json
 from rest_framework import viewsets
 from rest_framework.response import Response
 
 
-class StructureViewSet(viewsets.ViewSet):
+class HumanOrphanViewSet(viewsets.ViewSet):
     """
     Viewset for the Structure views
     """

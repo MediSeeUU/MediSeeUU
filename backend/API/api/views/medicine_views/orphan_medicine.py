@@ -9,8 +9,8 @@
 
 from rest_framework import viewsets
 from rest_framework import permissions
-from api.serializers.medicine_serializers.public import PublicMedicinalProductSerializer
-from api.models.human_models import MedicinalProduct
+from api.serializers.medicine_serializers.public import OrphanProductSerializer
+from api.models.orphan_models import OrphanProduct
 from rest_framework.response import Response
 from django.core.cache import cache
 from api.views.update_cache import update_cache
@@ -20,9 +20,9 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class MedicineViewSet(viewsets.ViewSet):
+class OrphanMedicineViewSet(viewsets.ViewSet):
     """
-    View set for the Medicine model
+    View set for the Orphan model
     """
 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -35,15 +35,15 @@ class MedicineViewSet(viewsets.ViewSet):
 
         Returns:
             httpResponse: returns a list of filtered medicine corresponding to this type of user.
-        """        
-        cache_medicine = cache.get("medicine_cache")
+        """
+        cache_medicine = cache.get("orphan_cache")
 
         # if the data is not present in the cache, we just obtain the data from the database
         if not cache_medicine:
-            queryset = MedicinalProduct.objects.all()
-            serializer = PublicMedicinalProductSerializer(queryset, many=True)
+            queryset = OrphanProduct.objects.all()
+            serializer = OrphanProductSerializer(queryset, many=True)
             cache_medicine = serializer.data
-            cache.set("medicine_cache", cache_medicine, None)
+            cache.set("orphan_cache", cache_medicine, None)
 
         user = self.request.user
         perms = permission_filter(user)
@@ -53,6 +53,6 @@ class MedicineViewSet(viewsets.ViewSet):
             lambda obj: {x: y for x, y in obj.items() if x in perms}, cache_medicine
         )
 
-        logger.info("Medicines filtered on access level.")
+        logger.info("Orphan medicines filtered on access level.")
 
         return Response(filtered_medicines)

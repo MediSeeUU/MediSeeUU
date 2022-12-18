@@ -20,3 +20,7 @@ from .medicinal_product import (
     LegalBasesSerializer,
     IngredientsAndSubstancesSerializer,
 )
+
+from .orphan_product import (
+    OrphanProductSerializer
+)
