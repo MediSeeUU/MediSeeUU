@@ -48,6 +48,6 @@ urlpatterns = [
     ),
     # Other routes
     path("scraper/", include(scraper_routes)),
-    path("structureData/human", Human_medicine_info.as_view()),
-    path("structureData/orphan", Orphan_medicine_info.as_view()),
+    path("structuredata/human/", Human_medicine_info.as_view()),
+    path("structuredata/orphan/", Orphan_medicine_info.as_view()),
 ]
