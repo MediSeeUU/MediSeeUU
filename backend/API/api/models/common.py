@@ -3,28 +3,21 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
-class NotVarCharField(models.CharField):
-    """
-    Special field type that enforces CHAR instead of VARCHAR
-    It derives from the Django CharField.
-    """    
-    def db_type(self, connection):
-        """
-        db_type returns the database field type for the given connection. 
-        This function specifically returns CHAR instead of VARCHAR.
+class IntegerNAField(models.TextField):
+    def from_db_value(self, value, expression, connection):
+        if value is None or not str.isdigit(value):
+            return value
+        else:
+            return int(value)
 
-        Args:
-            connection (_type_): Connection with the database.
-
-        Returns:
-            str: It returns the column data type for the given connection as string,
-            but it will return 'char' if it would be a 'varchar'.
-        """        
-        varchar: str = super().db_type(connection)
-        char: str = varchar.replace('varchar', 'char')
-        return char
+    def get_prep_value(self, value):
+        if str.isdigit(value) or value in ["Not found", "Not available at release"]:
+            return value
+        else:
+            raise ValidationError(f"{value} must be either a integer or a NA message")
 
 
 class AutTypes(models.TextChoices):

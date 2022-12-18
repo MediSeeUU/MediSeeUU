@@ -3,6 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from api.models.create_dashboard_columns import create_dashboard_column, Category
+from api.models.common import IntegerNAField
 
 
 class Duration(models.Model):
@@ -24,7 +25,7 @@ class Duration(models.Model):
             IntegerField containing the EC decision time in days. Shown on the dashboard.
     """
     assess_time_days_total = create_dashboard_column(
-        models.IntegerField(
+        IntegerNAField(
             null=False,
         ),
         Category.Marketing_authorisation,
@@ -33,7 +34,7 @@ class Duration(models.Model):
     )
 
     assess_time_days_active = create_dashboard_column(
-        models.IntegerField(
+        IntegerNAField(
             null=False,
         ),
         Category.Marketing_authorisation,
@@ -42,7 +43,7 @@ class Duration(models.Model):
     )
 
     assess_time_days_cstop = create_dashboard_column(
-        models.IntegerField(
+        IntegerNAField(
             null=False,
         ),
         Category.Marketing_authorisation,
@@ -51,7 +52,7 @@ class Duration(models.Model):
     )
 
     ec_decision_time_days = create_dashboard_column(
-        models.IntegerField(
+        IntegerNAField(
             null=False,
         ),
         Category.Marketing_authorisation,
