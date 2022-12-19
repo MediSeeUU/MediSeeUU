@@ -2,7 +2,9 @@ from os import listdir
 import os.path as path
 import json
 
-def compile_json_dict(compile_dir: str, incl_substr: list[str], excl_substr: list[str] = [], subdirectories: bool = True) -> dict[str, dict]:
+
+def compile_json_dict(compile_dir: str, incl_substr: list[str], excl_substr: list[str] = [],
+                      subdirectories: bool = True) -> dict[str, dict]:
     """
     Returns a dict containing the following key-value pairs:
     "directory": a string indicating which folder data was compiled from.
@@ -17,7 +19,7 @@ def compile_json_dict(compile_dir: str, incl_substr: list[str], excl_substr: lis
     Returns:
         dict[str, dict]: dictionary containing a compilation of all json files found in compile_dir \
                          and optionally in subdirectories
-    """    
+    """
     dir_content = [path.join(compile_dir, content) for content in listdir(compile_dir)]
 
     files = [file for file in dir_content if path.isfile(file)]
@@ -43,11 +45,13 @@ def compile_json_dict(compile_dir: str, incl_substr: list[str], excl_substr: lis
             except Exception:
                 print("failed to open or load \"", file + "\"", "in compile_json_dict")
 
-    compiled_dict[path.basename(compile_dir)] = {"directory": compile_dir, "files": file_dicts, "subdirectories": subdir_dicts}
+    compiled_dict[path.basename(compile_dir)] = {"directory": compile_dir, "files": file_dicts,
+                                                 "subdirectories": subdir_dicts}
     return {"directory": compile_dir, "files": file_dicts, "subdirectories": subdir_dicts}
 
 
-def compile_json_file(compile_dir: str, save_dir: str, incl_substr: list[str], excl_substr: list[str] = [], subdirectories: bool = True):
+def compile_json_file(compile_dir: str, save_dir: str, incl_substr: list[str], excl_substr: list[str] = [],
+                      subdirectories: bool = True):
     """
     Saves a compiled.json file at save_dir which contains an compilation of all json files which contain 
     at least one item from incl_substr in their filename and none from excl_substr. With optional subdirectories
@@ -60,12 +64,11 @@ def compile_json_file(compile_dir: str, save_dir: str, incl_substr: list[str], e
         incl_substr (list[str]): list of substrings which filenames must contain at least one of.
         excl_substr (list[str], optional): list of substrings which filenames must contain none of. Defaults to [].
         subdirectories (bool, optional): indicates whether to compile jsons from subdirectories. Defaults to True.
-    """    
+    """
     compiled_dict = compile_json_dict(compile_dir, incl_substr, excl_substr, subdirectories)
 
     with open(path.join(save_dir, "compiled.json"), "w") as compiled_json:
         json.dump(compiled_dict, compiled_json)
-
 
 
 def compile_json_files(directory: str, save_dir: str, add_webdata: bool = True, add_pdfdata: bool = True):
