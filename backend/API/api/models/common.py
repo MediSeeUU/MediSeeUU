@@ -8,15 +8,22 @@ from django.core.exceptions import ValidationError
 
 class BooleanWithNAField(models.CharField):
     def __init__(self, *args, **kwargs):
-        kwargs["choices"] = BooleanChoices.choices
         kwargs["max_length"] = 32
         super().__init__(*args, **kwargs)
 
     def deconstruct(self):
         name, path, args, kwargs = super().deconstruct()
-        del kwargs["choices"]
         del kwargs["max_length"]
         return name, path, args, kwargs
+
+    def get_prep_value(self, value):
+        if isinstance(value, bool):
+            return str(value)
+        elif value is None or value in \
+                ["True", "False", "Not found", "Not available at release", "Expected, but unable to extract"]:
+            return value
+        else:
+            raise ValidationError(f"{self.name}: {value} must be either a boolean or a NA message")
 
 
 class IntegerWithNAField(models.TextField):
@@ -29,18 +36,10 @@ class IntegerWithNAField(models.TextField):
     def get_prep_value(self, value):
         if isinstance(value, int):
             return str(value)
-        elif str.isdigit(value) or value in ["Not found", "Not available at release"]:
+        elif value is None or str.isdigit(value) or value in ["Not found", "Not available at release"]:
             return value
         else:
-            raise ValidationError(f"{value} must be either a integer or a NA message")
-
-
-class BooleanChoices(models.TextChoices):
-    TRUE = "True",
-    FALSE = "False",
-    NotFound = "Not found",
-    NotAvailableAtRelease = "Not available at release",
-    ExpectedButUnableToExtract = "Expected, but unable to extract",
+            raise ValidationError(f"{self.name}: {value} must be either a integer or a NA message")
 
 
 class AutTypes(models.TextChoices):
