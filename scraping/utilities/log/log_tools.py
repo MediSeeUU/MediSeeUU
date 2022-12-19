@@ -1,8 +1,7 @@
 import logging
 import os
-from scraping.utilities.io import safe_io
 import scraping.utilities.web.config_objects as config
-
+from pathlib import Path
 
 all_loggers: list[logging.getLoggerClass()] = []
 
@@ -14,12 +13,13 @@ def init_loggers():
     The root file handler only saves warning messages or higher.
     """
     logging_path = config.default_path_logging
-    safe_io.create_folder(logging_path)
+
     logs_path = logging_path.split("log_files")[0]
+    Path(logs_path).mkdir(parents=True, exist_ok=True)
     log_path = f"{logs_path}/log_files"
     txt_path = f"{logs_path}/txt_files"
-    safe_io.create_folder(log_path)
-    safe_io.create_folder(txt_path)
+    Path(log_path).mkdir(parents=True, exist_ok=True)
+    Path(txt_path).mkdir(parents=True, exist_ok=True)
 
     # --- Root logger ---
     # Root logger has level NOTSET, all messages that the sub-loggers want to pass along will be passed along.

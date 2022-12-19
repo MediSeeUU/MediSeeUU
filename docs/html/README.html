@@ -86,13 +86,22 @@ All the dependencies for the scraping modules are in the requirements.txt file i
 </section>
 <section id="how-to-use">
 <h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this heading"></a></h2>
-<section id="to-test-whole-program">
-<h3>To test whole program:<a class="headerlink" href="#to-test-whole-program" title="Permalink to this heading"></a></h3>
-<p>Run the <code class="docutils literal notranslate"><span class="pre">__main__.py</span></code> in the scraping folder next to all the module folders.</p>
+<section id="to-run-the-whole-scraping-program">
+<h3>To run the whole scraping program:<a class="headerlink" href="#to-run-the-whole-scraping-program" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Either: Run the <code class="docutils literal notranslate"><span class="pre">__main__.py</span></code> in the scraping folder using PyCharm after installing the dependencies.</p></li>
+<li><p>Or: Execute run-scraping.bat. This will also install any dependencies that have not yet been installed.</p></li>
+</ul>
 </section>
-<section id="to-test-a-module">
-<h3>To test a module:<a class="headerlink" href="#to-test-a-module" title="Permalink to this heading"></a></h3>
-<p>Comment out all the modules you don’t want to test in the <code class="docutils literal notranslate"><span class="pre">__main__.py</span></code> file.</p>
+<section id="to-run-a-module-in-scraping">
+<h3>To run a module in scraping:<a class="headerlink" href="#to-run-a-module-in-scraping" title="Permalink to this heading"></a></h3>
+<p>Comment out all the modules you don’t want to run in the <code class="docutils literal notranslate"><span class="pre">__main__.py</span></code> file in the scraping folder.
+Execute program as stated above.</p>
+</section>
+<section id="to-run-the-frontend-dashboard-and-backend">
+<h3>To run the frontend (dashboard) and backend:<a class="headerlink" href="#to-run-the-frontend-dashboard-and-backend" title="Permalink to this heading"></a></h3>
+<p>Follow the instructions in their respective documentations.
+&lt;TODO: Add link to install instructions, or place them here.&gt;</p>
 </section>
 </section>
 <section id="functionality">
@@ -106,7 +115,7 @@ since no useful data is being generated from the combiner module.</p>
 </section>
 <section id="architecture-diagram">
 <h2>Architecture Diagram<a class="headerlink" href="#architecture-diagram" title="Permalink to this heading"></a></h2>
-<p><img alt="alt text" src="_images/architecture_diagram.svg" /></p>
+<p><img alt="architecture diagram" src="_images/architecture_diagram.svg" /></p>
 </section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this heading"></a></h2>
@@ -117,8 +126,9 @@ since no useful data is being generated from the combiner module.</p>
 <li><p>pdf_parser: This module uses the xml_converter create PDF files, which are used to create a JSON file that contains attributes that were parsed from every XML file.</p></li>
 <li><p>xml_converter: This module creates an XML file for every PDF file.</p></li>
 <li><p>combiner: This module merges the JSONs from the web_scraper and pdf_parser into an easily read JSON.</p></li>
-<li><p>db_uploader: The module takes the JSON from the combiner and passes it onto the back_end.</p></li>
-<li><p>back_end: The back_end is responsible for communication with the front_end (the dashboard) and the database. Making sure that the data is passed on properly.</p></li>
+<li><p>db_uploader: The module takes the JSON from the combiner and passes it onto the backend.</p></li>
+<li><p>backend: The backend is responsible for communication with the frontend (the dashboard) and the database. Making sure that the data is passed on properly.</p></li>
+<li><p>frontend: The frontend, also known as the dashboard, runs a website displaying all data in both textual form and as visualizations.</p></li>
 </ul>
 </section>
 <section id="copyright-statement">

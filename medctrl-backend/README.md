@@ -5,6 +5,8 @@ This project is mainly build with the Django-Rest framework. For authentication 
 ## Initialization
 Make sure python 3.x.x is installed on your device and that the 'setting setup' is correctly followed in 'readme.md' located in the /API/ folder.
 
+<TODO: Add here how to install MySQL>
+
 1. navigate to the 'medctrl-backend' folder
 2. run the following command: ```py -m venv venv```
 3. run the following command: ```venv/scripts/activate```

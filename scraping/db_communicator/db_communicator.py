@@ -1,7 +1,9 @@
 import requests
 import datetime
-import time
 import logging
+from scraping.db_communicator.handlers.login_handler import login
+from scraping.db_communicator.handlers.logout_handler import logout
+import scraping.utilities.definitions.communicator_urls as urls
 
 log = logging.getLogger("db_communicator")
 
@@ -10,85 +12,90 @@ class DbCommunicator:
     """
     Handles all communication between the database and the modules
     """
-    def __init__(self):
+
+    def __init__(self, start_with_token=True):
         """
-        The init of the class which is invoked when a new DBCommunicator is created. It declares global variables
-        `api_key` of type string, `last_retrieval` of type datetime and `tries` of type int. Then it sends a get request
-        for this key to the token_handler
-        """
-        # Initialize values
-        self.api_key = ""
-        self.last_retrieval = datetime.datetime(2000, 1, 1, 12, 0, 00, 0)
-        self.tries = 0
-
-        # Updates the api_key and the last_retrieval value
-        success = self.request_token()
-
-        if success:
-            log.info("Terminate the class, not implemented yet")
-
-    def request_token(self) -> bool:
-        """
-        Requests a token from the token_handler server and updates the member variables `api_key`, `last_retrieval` and
-        `tries`
-
-        Returns:
-            bool: True if a valid token has been received, False otherwise
-        """
-        token_url = 'http://localhost:5000/token/'
-        response = requests.get(url=token_url)
-
-        if response.status_code == 200:
-            self.api_key = response.json()['key']
-            self.last_retrieval = datetime.datetime.now()
-            self.tries = 0
-            log.info("New api key acquired")
-            return True
-        elif response.status_code == 503 and self.tries < 5:
-            self.tries += 1
-            log.info("Failed to retrieve key, retrying...")
-            time.sleep(1)
-            self.request_token()
-        else:
-            log.info("Could not retrieve token, are the flask server and the backend server running?")
-            return False
-
-    def send_data(self, data: str) -> str | tuple:
-        """
-        Sends all data received in the argument to the database using a valid api_key
+        The init of the class which is invoked when a new DbCommunicator is created. It declares global variables `token`
+        of type dict. If `start_with_token` is True it requests a token from the backend_api using the login function.
 
         Args:
-            data (dict): The data which is sent to the database
+            start_with_token (bool): Whether to initialise the class with a token or not. Standard value is true
+        """
+        self.token = None
+
+        if start_with_token:
+            self.login()
+            if self.token is None:
+                log.error(
+                    "DbCommunicator couldn't initialise with token. Make sure the backend is running before "
+                    "initialising DbCommunicator with token")
+            else:
+                log.info("DbCommunicator successfully initialised")
+        else:
+            log.info("DbCommunicator successfully initialised without token")
+
+    def send_data(self, data: str) -> bool:
+        """
+        Sends all data received in the argument to the database using a valid token
+
+        Args:
+            data (str): The data which is sent to the database in json format
 
         Returns:
             Response: The response object of the request
         """
-        post_url = 'http://localhost:8000/api/scraper/medicine/'
+        self.token_checker()
 
-        if not self.key_valid():
-            log.info("token not valid")
-            return "No token"
-
-        # This should not be duplicate code
         api_headers = {
             'Content-type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': self.api_key
+            'Authorization': self.token["token"]
         }
 
-        requests.post(url=post_url, headers=api_headers, data=data)
-        return "correct", 200
+        response = requests.post(url=urls.scraper, headers=api_headers, data=data)
+        if response.status_code == 200:
+            return True
+        else:
+            return False
 
-    # Not fully functional
-    def key_valid(self) -> bool:
+    def token_checker(self):
         """
-        Checks if there is a valid api key. If the key is not valid it requests a new key.
+        Checks if there is a valid token. If the token is not valid it requests a new key.
+        """
+        if self.token is None:
+            login()
+        token_age = datetime.datetime.now() - self.token['expiry_date']
+        if token_age.seconds <= 120:
+            self.refresh_token()
+
+    def refresh_token(self):
+        """
+        Refreshes the token by first logging out, and logging in afterwards.
+        """
+        self.logout()
+        username, password = self.get_credentials()
+        self.token = login(username, password)
+
+    def login(self):
+        """
+        Calls the login function from the login_handler with user credentials taken from the get_credentials function
+        and sets the value of the current token to that of the returned token
+        """
+        username, password = self.get_credentials()
+        self.token = login(username, password)
+
+    def logout(self):
+        """
+        Calls the logout function from the logout_handler with its current token and empties the current token
+        """
+        self.token = logout(self.token)
+
+    # Temp function, this should grab the user credentials from a safe space in the server
+    def get_credentials(self) -> (str, str):
+        """
+        Gets the credentials of a user from somewhere safe
 
         Returns:
-            bool: True if the token is still valid, False otherwise
+            (str, str): Returns a tuple of username and password
         """
-        token_age = datetime.datetime.now() - self.last_retrieval
-        # Requires at least 100 seconds for a task, can be another value
-        if token_age.days < 0.99:
-            return True
-        return False
+        return "scraper", "VeranderDitWachtwoord123!"
