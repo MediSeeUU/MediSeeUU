@@ -12,3 +12,4 @@ djangorestframework-guardian
 django-import-export
 docutils
 requests
+validators

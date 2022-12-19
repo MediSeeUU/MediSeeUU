@@ -12,7 +12,7 @@ from api.models.create_dashboard_columns import (
     create_dashboard_history_initial_column,
     Category,
 )
-from api.models.common import BooleanWithNAField, DateWithNAField
+from api.models.common import BooleanWithNAField, DateWithNAField, URLWithNAField
 
 
 class MarketingAuthorisation(models.Model):
@@ -29,11 +29,11 @@ class MarketingAuthorisation(models.Model):
             DateField containing the date of the CHMP opinion. Shown on the dashboard.
         eu_aut_date (models.DateField):
             DateField containing the date of the EU authorisation. Shown on the dashboard.
-        aut_url (models.URLField):
+        aut_url (URLWithNAField):
             URLField containing an url to the authorisation decision. Shown on the dashboard.
-        smpc_url (models.URLField):
+        smpc_url (URLWithNAField):
             URLField containing an url to the SMPC. Shown on the dashboard.
-        epar_url (models.URLField):
+        epar_url (URLWithNAField):
             URLField containing an url to EPAR. Shown on the dashboard.
         ema_rapp (models.TextField):
             TextField containing the EMA rapporteur. Shown on the dashboard.
@@ -83,27 +83,21 @@ class MarketingAuthorisation(models.Model):
     )
 
     aut_url = create_dashboard_column(
-        models.URLField(
-            null=False,
-        ),
+        URLWithNAField(),
         Category.Marketing_authorisation,
         "link",
         "Authorisation Decision Link",
     )
 
     smpc_url = create_dashboard_column(
-        models.URLField(
-            null=False,
-        ),
+        URLWithNAField(),
         Category.Marketing_authorisation,
         "link",
         "Authorisation Annex Link",
     )
 
     epar_url = create_dashboard_column(
-        models.URLField(
-            null=False,
-        ),
+        URLWithNAField(),
         Category.Marketing_authorisation,
         "link",
         "Initial Authorisation EPAR Link",

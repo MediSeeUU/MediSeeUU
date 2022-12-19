@@ -5,12 +5,15 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 import datetime
+import validators
 
 na_values = [
-            "Not found",
-            "Not available at time of document publication",
-            "Value should be present in document"
+    "Not found",
+    "Not available at time of document publication",
+    "Value should be present in document",
+    ""
 ]
+
 
 class BooleanWithNAField(models.Field):
     def __init__(self, *args, **kwargs):
@@ -91,8 +94,6 @@ class IntegerWithNAField(models.Field):
         else:
             raise ValidationError(f"{self.name}: {value} must be either a integer or a NA message")
 
-import logging
-log = logging.getLogger(__name__)
 
 class DateWithNAField(models.Field):
     def __init__(self, *args, **kwargs):
@@ -114,7 +115,7 @@ class DateWithNAField(models.Field):
 
     def get_prep_value(self, value):
         date = datetime.datetime.strptime(value, '%Y-%m-%d')
-        date_na_values = na_values.append("date is left blank in document")
+        date_na_values = na_values + ["date is left blank in document"]
         # check if valid date
         if date.year >= 0 and date.month <= 12 and date.day <= 31:
             return value
@@ -124,10 +125,38 @@ class DateWithNAField(models.Field):
             raise ValidationError(f"{self.name}: {value} must be either a date or a NA message")
 
 
+class URLWithNAField(models.Field):
+    def __init__(self, *args, **kwargs):
+        kwargs["max_length"] = 256
+        # Set the field to support null values
+        kwargs["null"] = True
+        kwargs["blank"] = True
+        super().__init__(*args, **kwargs)
+
+    def deconstruct(self):
+        name, path, args, kwargs = super().deconstruct()
+        del kwargs["max_length"]
+        del kwargs["null"]
+        del kwargs["blank"]
+        return name, path, args, kwargs
+
+    def db_type(self, connection):
+        return f"VARCHAR({self.max_length})"
+
+    def get_prep_value(self, value):
+        valid_url = validators.url(value)
+        if valid_url:
+            return value
+        elif value is None or value in na_values:
+            return value
+        else:
+            raise ValidationError(f"{self.name}: {value} must be either an url or a NA message")
+
+
 class AutTypes(models.TextChoices):
     """
     Choice types for eu_aut_type. Is derived from the enumerated choice class.
-    """    
+    """
     CONDITIONAL = "conditional",
     EXCEPTIONAL = "exceptional",
     STANDARD = "standard"
@@ -137,7 +166,7 @@ class AutTypes(models.TextChoices):
 class AutStatus(models.TextChoices):
     """
     Choice types for eu_aut_status. Is derived from the enumerated choice class.
-    """   
+    """
     ACTIVE = "ACTIVE",
     WITHDRAWAL = "WITHDRAWN",
     REFUSALS = "REFUSED"

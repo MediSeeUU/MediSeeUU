@@ -8,7 +8,7 @@ from api.models.create_dashboard_columns import (
     Category,
 )
 from .ingredients_and_substances import IngredientsAndSubstances
-from api.models.common import BooleanWithNAField
+from api.models.common import BooleanWithNAField, URLWithNAField
 
 
 class MedicinalProduct(models.Model):
@@ -19,9 +19,9 @@ class MedicinalProduct(models.Model):
     Attributes:
         eu_pnumber (models.CharField):
             CharField containing the EU Number. Used as the primary key and shown on the dashboard.
-        ema_url (models.URLField):
+        ema_url (URLWithNAField):
             URLField containing an url to the ema website. Shown on the dashboard.
-        ec_url (models.URLField):
+        ec_url (URLWithNAField):
             URLField containing an url to the ec website. Shown on the dashboard.
         ema_number (models.CharField):
             CharField containing the EMA Number. Shown on the dashboard.
@@ -53,14 +53,14 @@ class MedicinalProduct(models.Model):
     )
 
     ema_url = create_dashboard_column(
-        models.URLField(),
+        URLWithNAField(),
         Category.Medicinal_product,
         "link",
         "EMA Product Page Link",
     )
 
     ec_url = create_dashboard_column(
-        models.URLField(),
+        URLWithNAField(),
         Category.Medicinal_product,
         "link",
         "EC Product Page Link",

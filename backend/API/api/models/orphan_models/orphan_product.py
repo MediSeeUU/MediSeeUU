@@ -8,7 +8,7 @@ from api.models.create_dashboard_columns import (
     create_dashboard_history_initial_column,
     Category,
 )
-from api.models.common import DateWithNAField
+from api.models.common import DateWithNAField, URLWithNAField
 
 
 class OrphanProduct(models.Model):
@@ -19,9 +19,9 @@ class OrphanProduct(models.Model):
     Attributes:
         eu_od_number (models.CharField):
             CharField containing the EU orphan designation number. Shown on the dashboard.
-        omar_url (models.URLField):
+        omar_url (URLWithNAField):
             URLField containing an url to the orphan maintenance assessment report. Shown on the dashboard.
-        odwar_url (models.URLField):
+        odwar_url (URLWithNAField):
             URLField containing an url to the orphan designation withdrawal assessment report. Shown on the dashboard.
         eu_pnumber (models.ForeignKey):
             Foreign Key to the :py:class:`.MedicinalProduct` model. Optional. Shown on the dashboard.
@@ -51,18 +51,14 @@ class OrphanProduct(models.Model):
     )
 
     omar_url = create_dashboard_column(
-        models.URLField(
-            null=False
-        ),
+        URLWithNAField(),
         Category.Orphan_product,
         "link",
         "URL to orphan maintenance assessment report",
     )
 
     odwar_url = create_dashboard_column(
-        models.URLField(
-            null=False
-        ),
+        URLWithNAField(),
         Category.Orphan_product,
         "link",
         "URL to orphan designation withdrawal assessment report",
