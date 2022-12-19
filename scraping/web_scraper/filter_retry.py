@@ -1,16 +1,17 @@
-import logging
-import pathlib
-import os
 import json
+import logging
+import os
+import pathlib
 from itertools import repeat
+
 import tqdm.contrib.concurrent as tqdm_concurrent
 
+import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.log.log_tools as log_tools
 from scraping.filter import filter
-from scraping.web_scraper import download, ec_scraper, url_scraper
 from scraping.utilities.web import json_helper, medicine_type as med_type
 from scraping.utilities.web.medicine_type import MedicineType
-import scraping.utilities.definitions.attributes as attr
-from scraping.utilities.log import log_tools
+from scraping.web_scraper import download, url_scraper
 
 # dictionaries used for mapping
 key_dict = {"dec": attr.aut_url,
@@ -39,8 +40,8 @@ def run_filter(n: int, data_filepath: str):
         json_path = ""
     filter.filter_all_pdfs(data_filepath)
     for _ in range(n):
-        url_file = json_helper.JsonHelper(path=f"{json_path}JSON/urls.json")
-        url_refused_file = json_helper.JsonHelper(path=f"{json_path}JSON/refused_urls.json")
+        url_file = json_helper.JsonHelper(path=f"{json_path}/urls.json")
+        url_refused_file = json_helper.JsonHelper(path=f"{json_path}/refused_urls.json")
         data_folder = data_filepath.split("active_withdrawn")[0]
         filter_path = log_tools.get_log_path("filter.txt", data_folder)
         with open(filter_path, "r") as f:
