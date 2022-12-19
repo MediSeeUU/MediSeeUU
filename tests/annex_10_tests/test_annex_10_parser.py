@@ -47,9 +47,7 @@ class TestAnnex10Parser(TestCase):
         Run annex 10 parser
         """
         annex_10_parser.main(data_loc)
-        parser_json_path = "annex_10_tests/annex_10_parser_test.json"
-        if "annex_10_tests" in os.getcwd():
-            parser_json_path = "annex_10_parser_test.json"
+        parser_json_path = f"{data_loc}/annex_10/annex_10_parser_test.json"
         file = open(parser_json_path, "r")
         global annex_10_data
         annex_10_data = json.load(file)
@@ -60,9 +58,9 @@ class TestAnnex10Parser(TestCase):
         Checks whether more than a certain percentage of attributes can be found
         """
         # Loop through all annex files and corresponding years
-        for annex_10_file, year in zip(annex_10_data, [2015, 2016, 2017, 2018, 2019, 2020, 2021]):
+        for annex_10_file, year in zip(annex_10_data.values(), [2015, 2016, 2017, 2018, 2019, 2020, 2021]):
             # Get number of medicines of current annex 10 file
-            found_attributes = len(annex_10_file[attr.assess_time_days_active])
+            found_attributes = len(annex_10_file)
             annex_path = f"{data_loc}/annex_10"
             filepath = ""
             # Get filepath of current annex 10 file (dictated by loop)
@@ -84,12 +82,11 @@ class TestAnnex10Parser(TestCase):
             # Get the percentage of found attributes
             found_percentage = found_attributes/total_attributes * 100
             print(str(round(found_percentage, 2)) + '%')
-            self.assertGreater(found_percentage, 79)
+            self.assertGreater(found_percentage, 74)
 
     def test_integer_results(self):
         for annex_10_file in annex_10_data:
-            found_attributes = annex_10_file[attr.assess_time_days_active]
-            for med in found_attributes:
+            for med_dict in annex_10_data[annex_10_file].values():
                 # Check if active time elapsed and clock stop elapsed are integers for all medicines and all annex files
-                self.assertTrue(type(med[attr.active_time_elapsed]) == int)
-                self.assertTrue(type(med[attr.assess_time_days_cstop]) == int)
+                self.assertTrue(type(med_dict[attr.assess_time_days_active]) == int)
+                self.assertTrue(type(med_dict[attr.assess_time_days_cstop]) == int)
