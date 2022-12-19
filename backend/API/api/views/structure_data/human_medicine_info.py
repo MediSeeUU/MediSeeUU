@@ -14,6 +14,7 @@ from api.views.other.permissionFilter import permission_filter
 from rest_framework import permissions
 from api.models.human_models import models
 
+
 class Human_medicine_info(views.APIView):
     """
     Viewset for the Medicine info

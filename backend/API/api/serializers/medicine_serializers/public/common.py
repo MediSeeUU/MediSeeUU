@@ -170,26 +170,26 @@ class HistoryMixin:
 
 class AnyBoolsList:
     """
-        Selects the items of the specified related history object and inserts it in a flat representation.
+    Selects the items of the specified related history object and inserts it in a flat representation.
 
-        Use it in a serializer by inheriting from this class and specifying a history attribute in the Meta class.
-        Specify a field name and a serializer. The serializer must be sorted by date.
+    Use it in a serializer by inheriting from this class and specifying a history attribute in the Meta class.
+    Specify a field name and a serializer. The serializer must be sorted by date.
 
-        An entry in the history list must be a tuple with four items:
-            - The field name, this must be same as the `related_name` attribute of the foreign key.
-            - The serializer of the history model.
-            - A boolean which indicates if the initial entry in the history should be displayed.
-            - A boolean which indicates if the current entry in the history should be displayed.
+    An entry in the history list must be a tuple with four items:
+        - The field name, this must be same as the `related_name` attribute of the foreign key.
+        - The serializer of the history model.
+        - A boolean which indicates if the initial entry in the history should be displayed.
+        - A boolean which indicates if the current entry in the history should be displayed.
 
-        Example:
-            .. code-block:: python
+    Example:
+        .. code-block:: python
 
-                class yourSerializer(HistoryMixin, serializers.ModelSerializer)
-                    class Meta:
-                        history = [
-                            ("eu_aut_status", AuthorisationStatusSerializer, False, True),
-                            ("eu_aut_type", AuthorisationTypeSerializer, True, True),
-                        ]
+            class yourSerializer(HistoryMixin, serializers.ModelSerializer)
+                class Meta:
+                    history = [
+                        ("eu_aut_status", AuthorisationStatusSerializer, False, True),
+                        ("eu_aut_type", AuthorisationTypeSerializer, True, True),
+                    ]
         """
 
     def to_representation(self, obj: Model) -> OrderedDict[str, str]:
