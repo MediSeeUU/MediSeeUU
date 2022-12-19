@@ -2,9 +2,9 @@ import datetime
 
 #data type values
 #generic string values
-generic_not_found = "Not found."
-generic_not_applicable = "Not available at time of document publication."
-generic_should_be_present = "Value should be present in document."
+generic_not_found = "Not found"
+generic_not_applicable = "Not available at time of document publication"
+generic_should_be_present = "Value should be present in document"
 
 #booleans
 bool_true = "true"
