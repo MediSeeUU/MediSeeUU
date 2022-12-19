@@ -45,8 +45,8 @@ function Body({ data, select, amountPerPage, currentPage }) {
             /* Only add a checkbox if we are rendering a table with selected datapoints */
             select && (
               <CheckboxColumn
-                value={checkedState[entry.eunumber]}
-                onChange={handleOnChange.bind(null, entry.eunumber)}
+                value={checkedState[entry.eu_pnumber]}
+                onChange={handleOnChange.bind(null, entry.eu_pnumber)}
               />
             )
           }

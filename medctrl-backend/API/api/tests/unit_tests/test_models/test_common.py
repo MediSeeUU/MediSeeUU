@@ -5,7 +5,7 @@ class DashboardColumnTestCase(TestCase):
     def test_create_dashboard_column1(self):
         field1 = Object()
         setattr(field1, "db_column", "field1")
-        category1 = Category.Additional_Resources
+        category1 = Category.Medicinal_Product
         format1 = "string"
         value1 = "Title"
         create_dashboard_column(field1, category1, format1, value1)
@@ -17,7 +17,7 @@ class DashboardColumnTestCase(TestCase):
     def test_create_dashboard_column2(self):
         field2 = Object()
         setattr(field2, "db_column", "field2")
-        category2 = Category.Identifying_Information
+        category2 = Category.Procedures
         format2 = "int"
         value2 = "Value"
         create_dashboard_column(field2, category2, format2, value2)

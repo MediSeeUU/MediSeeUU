@@ -7,21 +7,21 @@
 // its entry in the series will be incremented.
 export default function pollChosenVariable(data, xAxis, chosenCategories) {
   let dict = {}
-  let euNumbers = {}
+  let eu_pnumbers = {}
 
   // adding a key for every category
   chosenCategories.forEach((category) => {
     dict[category] = 0
-    euNumbers[category] = []
+    eu_pnumbers[category] = []
   })
 
   // incrementing to the matching category
   data.forEach((element) => {
     if (chosenCategories.includes(element[xAxis])) {
       dict[element[xAxis]] += 1
-      euNumbers[element[xAxis]].push(element.eunumber)
+      eu_pnumbers[element[xAxis]].push(element.eu_pnumber)
     }
   })
 
-  return [dict, euNumbers]
+  return [dict, eu_pnumbers]
 }

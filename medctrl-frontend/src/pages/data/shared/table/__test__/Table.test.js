@@ -24,7 +24,7 @@ test('renders without crashing', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: 'eunumber', order: 'asc' }]}
+          sorters={[{ selected: 'eu_pnumber', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>,
@@ -40,7 +40,7 @@ test('expected amount of rows in the table', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={DummyData.length + 10}
-          sorters={[{ selected: 'eunumber', order: 'asc' }]}
+          sorters={[{ selected: 'eu_pnumber', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -58,7 +58,7 @@ test('expected amount of headers in the table', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: 'eunumber', order: 'asc' }]}
+          sorters={[{ selected: 'eu_pnumber', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -78,7 +78,7 @@ test('checkboxes displayed', () => {
           select={true}
           currentPage={2}
           amountPerPage={10}
-          sorters={[{ selected: 'eunumber', order: 'asc' }]}
+          sorters={[{ selected: 'eu_pnumber', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -97,7 +97,7 @@ test('row selected, when checkbox clicked', () => {
           select={true}
           currentPage={2}
           amountPerPage={10}
-          sorters={[{ selected: 'eunumber', order: 'asc' }]}
+          sorters={[{ selected: 'eu_pnumber', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -120,7 +120,7 @@ test('all rows selected when select all pressed', () => {
           select={true}
           currentPage={2}
           amountPerPage={DummyData.length + 1}
-          sorters={[{ selected: 'eunumber', order: 'asc' }]}
+          sorters={[{ selected: 'eu_pnumber', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -145,7 +145,7 @@ test('data put and displayed correctly into table', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: 'eunumber', order: 'asc' }]}
+          sorters={[{ selected: 'eu_pnumber', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -170,7 +170,7 @@ test('sorting on leftmost columnheader sorts data ascendingly', () => {
   const setSorters = (sorters) => {
     expect(sorters).toStrictEqual([
       {
-        selected: 'eunumber',
+        selected: 'eu_pnumber',
         order: 'asc',
       },
     ])
@@ -196,7 +196,7 @@ test('sorting on leftmost columnheader sorts data descendingly', () => {
   const setSorters = (sorters) => {
     expect(sorters).toStrictEqual([
       {
-        selected: 'eunumber',
+        selected: 'eu_pnumber',
         order: 'desc',
       },
     ])
@@ -209,7 +209,7 @@ test('sorting on leftmost columnheader sorts data descendingly', () => {
           currentPage={1}
           amountPerPage={10}
           setSorters={setSorters}
-          sorters={[{ selected: 'eunumber', order: 'asc' }]}
+          sorters={[{ selected: 'eu_pnumber', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -226,7 +226,7 @@ test('column change changes data in row', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: 'eunumber', order: 'asc' }]}
+          sorters={[{ selected: 'eu_pnumber', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -252,7 +252,7 @@ test('add and remove columns', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: 'eunumber', order: 'asc' }]}
+          sorters={[{ selected: 'eu_pnumber', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -274,7 +274,7 @@ test('remove button appearing', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: 'eunumber', order: 'asc' }]}
+          sorters={[{ selected: 'eu_pnumber', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>
@@ -292,7 +292,7 @@ test('add column button adds unique variable columns', () => {
           data={DummyData}
           currentPage={1}
           amountPerPage={10}
-          sorters={[{ selected: 'eunumber', order: 'asc' }]}
+          sorters={[{ selected: 'eu_pnumber', order: 'asc' }]}
         />
       </MockProvider>
     </BrowserRouter>

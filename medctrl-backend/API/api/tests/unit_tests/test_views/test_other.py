@@ -8,15 +8,15 @@ class MedicineInfoTestCase(TestCase):
         field1 = Object()
         setattr(field1, "db_column", "field1")
         setattr(field1, "name", "field1")
-        field1 = create_dashboard_column(field1, Category.General_Information, "format1", "title1")
+        field1 = create_dashboard_column(field1, Category.Ingredients_and_Substances, "format1", "title1")
         field2 = Object()
         setattr(field2, "db_column", "field2")
         setattr(field2, "name", "field2")
-        field2 = create_dashboard_column(field2, Category.Additional_Resources, "format2", "title2")
+        field2 = create_dashboard_column(field2, Category.Marketing_Authorisation, "format2", "title2")
         field3 = Object()
         setattr(field3, "db_column", "field3")
         setattr(field3, "name", "field3")
-        field3 = create_dashboard_column(field3, Category.General_Information, "format3", "title3")
+        field3 = create_dashboard_column(field3, Category.Orphan_Product, "format3", "title3")
 
         mock = [field1, field2, field3]
         perm = ["field1", "field2"]

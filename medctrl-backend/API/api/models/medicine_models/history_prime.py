@@ -24,7 +24,7 @@ class HistoryPrime(models.Model):
 
     eu_prime = create_dashboard_history_column_initial(
         models.BooleanField(db_column="eu_prime", null=True),
-        Category.General_Information,
+        Category.Medicinal_Product,
         "bool",
         "EU Priority Medicine"
     )

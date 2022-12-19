@@ -24,7 +24,7 @@ class HistoryEUOrphanCon(models.Model):
 
     eu_orphan_con = create_dashboard_history_columns(
         models.TextField(db_column="eu_orphan_con", null=False),
-        Category.General_Information,
+        Category.Medicinal_Product,
         "string",
         "History EU orphan conditions"
     )

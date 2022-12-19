@@ -46,9 +46,9 @@ class SaveDialog extends React.Component {
     event.preventDefault()
 
     // eunumbers of selected data points
-    var eunumbers = []
+    var eu_pnumbers = []
     this.selectedData.forEach((dataPoint) =>
-      eunumbers.push(dataPoint.eunumber)
+      eu_pnumbers.push(dataPoint.eu_pnumber)
     )
 
     // Check whether the name field has actual input
@@ -64,7 +64,7 @@ class SaveDialog extends React.Component {
     }
 
     // Send the saved selections to the server
-    const succes = await postSavedSelection(eunumbers, this.state.saveName)
+    const succes = await postSavedSelection(eu_pnumbers, this.state.saveName)
 
     // Update dialog state based on the status returned by the server
     if (succes) {

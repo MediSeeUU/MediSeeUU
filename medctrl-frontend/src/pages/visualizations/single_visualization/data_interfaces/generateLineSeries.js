@@ -28,7 +28,7 @@ export default function generateLineSeries(settings) {
     settings.chartSpecificOptions.categoriesSelectedY
   )
 
-  let [dict, euNumbers] = pollChosenVariable(
+  let [dict, eu_pnumbers] = pollChosenVariable(
     xAxis,
     yAxis,
     categoriesSelectedX,
@@ -38,7 +38,7 @@ export default function generateLineSeries(settings) {
 
   let [series, euSeries] = createSelectedSeries(
     dict,
-    euNumbers,
+    eu_pnumbers,
     categoriesSelectedY,
     categoriesSelectedX
   )

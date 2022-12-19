@@ -23,7 +23,7 @@ class HistoryAuthorisationStatus(models.Model):
 
     eu_aut_status = create_dashboard_column(
         models.CharField(db_column="eu_aut_status", max_length=10, choices=AutStatus.choices),
-        Category.General_Information,
+        Category.Marketing_Authorisation,
         "string",
         "EU Authorisation Status"
     )

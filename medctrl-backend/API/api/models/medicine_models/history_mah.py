@@ -24,7 +24,7 @@ class HistoryMAH(models.Model):
 
     eu_mah = create_dashboard_history_columns(
         models.CharField(db_column="eu_mah", max_length=255),
-        Category.General_Information,
+        Category.Marketing_Authorisation,
         "string",
         "EU Marketing Authorisation Holder"
     )

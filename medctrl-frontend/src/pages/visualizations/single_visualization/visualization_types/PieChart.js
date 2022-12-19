@@ -17,8 +17,8 @@ function PieChart(props) {
         foreColor: 'var(--text-primary)',
         events: {
           dataPointSelection: (event, chartContext, config) => {
-            let euNumbers = props.series.euNumbers[config.dataPointIndex]
-            props.onDataClick(euNumbers)
+            let eu_pnumbers = props.series.eu_pnumbers[config.dataPointIndex]
+            props.onDataClick(eu_pnumbers)
           },
         },
       },

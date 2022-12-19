@@ -24,7 +24,7 @@ class HistoryAuthorisationType(models.Model):
 
     eu_aut_type = create_dashboard_history_columns(
         models.CharField(db_column="eu_aut_type", max_length=11, choices=AutTypes.choices),
-        Category.General_Information,
+        Category.Marketing_Authorisation,
         "string",
         "EU Authorisation Type"
     )

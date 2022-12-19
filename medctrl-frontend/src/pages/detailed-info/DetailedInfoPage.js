@@ -29,7 +29,7 @@ export default function DetailedInfoPage() {
   // corresponding to the desired medicine is extracted from the array
   const alldata = useData()
   let medData = alldata.find(
-    (element) => element.eunumber.toString() === medID.toString()
+    (element) => element.eu_pnumber.toString() === medID.toString()
   )
 
   // All of the procedure data related to the desired medicine is asynchronously

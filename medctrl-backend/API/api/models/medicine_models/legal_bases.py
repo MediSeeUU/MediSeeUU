@@ -19,7 +19,7 @@ class LegalBases(models.Model):
 
     eu_legal_basis = create_dashboard_column(
         models.CharField(db_column="eu_legal_basis", max_length=14, choices=LegalBasesTypes.choices),
-        Category.General_Information,
+        Category.Marketing_Authorisation,
         "[string]",
         "EU Legal Basis"
     )

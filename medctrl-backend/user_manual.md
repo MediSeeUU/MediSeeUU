@@ -119,7 +119,7 @@ python manage.py runserver 8000
 * GET `/medicine`\
 This endpoint is used to retrieve the medicine data. A GET request to this endpoint will return all the data that the (anonymous) user has access to.
 
-* GET `/procedure/{eunumber}`
+* GET `/procedure/{eu_pnumber}`
 This endpoint is used to retrieve all the procedures that are connected to the medicine with the given eunumber.
 
 * `/saveselection` \
@@ -131,7 +131,7 @@ This endpoint is used to retrieve all the procedures that are connected to the m
         ```json
         {
             "name": "Name of selection",
-            "eunumbers": [1, 2, 3] // list of selected medicines
+            "eu_pnumbers": [1, 2, 3] // list of selected medicines
         }
         ```
 
@@ -143,7 +143,7 @@ This endpoint is used to retrieve all the procedures that are connected to the m
             "name": "test",
             "created_at": "2022-06-15T11:11:59.466733Z",
             "created_by": "<username>",
-            "eunumbers": [
+            "eu_pnumbers": [
                 1,
                 2,
                 3
@@ -163,7 +163,7 @@ This endpoint is used to retrieve all the procedures that are connected to the m
         "name": "test",
         "created_at": "2022-06-15T11:11:59.466733Z",
         "created_by": "<username>",
-        "eunumbers": [
+        "eu_pnumbers": [
             1,
             2,
             3
@@ -182,7 +182,7 @@ This endpoint is used to retrieve all the procedures that are connected to the m
             "name": "test",
             "created_at": "2022-06-15T11:11:59.466733Z",
             "created_by": "<username>",
-            "eunumbers": [
+            "eu_pnumbers": [
                 1,
                 2,
                 3
@@ -245,7 +245,7 @@ This endpoint is used to retrieve all the procedures that are connected to the m
         "override": true, // Whether to override manually updated values
         "data": [
             {
-                "eunumber": 1,
+                "eu_pnumber": 1,
                 ...
             } // A list of medicine objects that will be updated
               // For a complete list of variables that can be updated
@@ -264,7 +264,7 @@ This endpoint is used to retrieve all the procedures that are connected to the m
         "override": true, // Whether to override manually updated values
         "data": [
             {
-                "eunumber": 1, 
+                "eu_pnumber": 1, 
                 "procedurecount": 1,
                 ...
             } // A list of procedure objects that will be updated

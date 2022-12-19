@@ -70,7 +70,7 @@ dict = {
 
 // Maps categories to their eu numbers
 // So the data with eu numbers 1, 2 and 3 have Decision Year 1995
-euNumbers = {
+eu_pnumbers = {
   1995: [1, 2, 3],
 }
 ```
@@ -90,7 +90,7 @@ dict = {
   },
 }
 
-euNumbers = {
+eu_pnumbers = {
   1995: {
     'United Kingdom': [1, 3],
     France: [2],

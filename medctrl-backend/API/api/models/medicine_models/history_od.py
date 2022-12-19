@@ -20,7 +20,7 @@ class HistoryOD(models.Model):
 
     eu_od = create_dashboard_history_column_initial(
         models.BooleanField(db_column="eu_od", null=True),
-        Category.General_Information,
+        Category.Marketing_Authorisation,
         "bool",
         "EU Orphan Designation"
     )

@@ -11,13 +11,11 @@ class Category(Enum):
     Defines the categories for a column on the dashboard data table.
     It derives from the enumeration class.
     """
-    General_Information = "General Information"
-    Identifying_Information = "Identifying Information"
-    Co_Rapporteur = "(Co-)Rapporteur"
-    Medicine_Designations = "Medicine Designations"
-    Legal_Information = "Legal Information"
-    Authorisation_Timing = "Authorisation Timing"
-    Additional_Resources = "Additional Resources"
+    Medicinal_Product = "Medicinal Product"
+    Ingredients_and_Substances = "Ingredients & Substances"
+    Marketing_Authorisation = "Marketing Authorisation"
+    Procedures = "Procedures"
+    Orphan_Product = "Orphan Product"
 
 
 class NotVarCharField(models.CharField):

@@ -24,7 +24,7 @@ class HistoryBrandName(models.Model):
 
     eu_brand_name = create_dashboard_history_columns(
         models.TextField(db_column="eu_brand_name"),
-        Category.General_Information,
+        Category.Medicinal_Product,
         "string",
         "EU Brand Name"
     )

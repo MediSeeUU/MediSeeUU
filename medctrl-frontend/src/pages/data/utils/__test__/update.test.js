@@ -5,7 +5,7 @@
 import updateData from '../update'
 import DummyData from '../../../../json/data.json'
 
-const columnSelection = ['eunumber', 'brandname', 'mah', 'decisiondate']
+const columnSelection = ['eu_pnumber', 'brandname', 'mah', 'decisiondate']
 
 test('applying search, filters and sorters', () => {
   const updatedData = updateData(
@@ -14,7 +14,7 @@ test('applying search, filters and sorters', () => {
       search: 'cell',
       filters: [
         {
-          selected: 'eunumber',
+          selected: 'eu_pnumber',
           input: [{ var: '10' }, { var: '8' }],
           filterType: 'string',
         },
@@ -34,7 +34,7 @@ test('applying search, filters and sorters', () => {
     }
     expect(inText).toBe(true)
     // Test filter
-    expect(element.eunumber.toString()).toMatch(/(10|8)/i)
+    expect(element.eu_pnumber.toString()).toMatch(/(10|8)/i)
   })
   // Test sort
   const sortedData = updatedData.sort((a, b) =>
