@@ -18,6 +18,7 @@ class Category(Enum):
     Legal_Information = "Legal Information"
     Authorisation_Timing = "Authorisation Timing"
     Additional_Resources = "Additional Resources"
+    NieuweCategorie = "Nieuwe Categorie"
 
 
 class NotVarCharField(models.CharField):
