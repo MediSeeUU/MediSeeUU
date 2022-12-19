@@ -6,9 +6,9 @@ import scraping.utilities.definitions.attribute_values as attribute_values
 from scraping.pdf_parser.parsers import omar_parser
 import xml.etree.ElementTree as ET
 
-test_data_loc = "../test_data/active_withdrawn"
+test_data_loc = "../tests/test_data/active_withdrawn"
 if "pdf_parser_tests" in os.getcwd():
-    test_data_loc = "../../test_data/active_withdrawn"
+    test_data_loc = "../../tests/test_data/active_withdrawn"
 xml_bodies = []
 
 

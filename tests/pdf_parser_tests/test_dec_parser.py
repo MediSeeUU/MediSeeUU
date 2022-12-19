@@ -6,9 +6,9 @@ import scraping.pdf_parser.parsers.dec_parser as dec_parser
 import scraping.utilities.pdf.pdf_helper as pdf_helper
 import scraping.utilities.definitions.attribute_values as attribute_values
 
-test_data_loc = "../test_data/active_withdrawn"
+test_data_loc = "../tests/test_data/active_withdrawn"
 if "pdf_parser_tests" in os.getcwd():
-    test_data_loc = "../../test_data/active_withdrawn"
+    test_data_loc = "../../tests/test_data/active_withdrawn"
 dec_txt = []
 percentage_str = "Percentage found: "
 

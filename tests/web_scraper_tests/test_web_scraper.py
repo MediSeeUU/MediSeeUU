@@ -11,14 +11,14 @@ from scraping.utilities.io.pathlib_extended import Path
 from scraping.utilities.log import log_tools
 from scraping.web_scraper import __main__ as web
 
-data_path_str = "../test_data_integration"
+data_path_str = "../tests/test_data_integration"
 json_path = Path("web_scraper_tests/JSON")
 scraping_root_path = Path.cwd().parent
 
 # Different paths needed when running tests from the web_scraper folder
 # instead of the parent tests folder
 if Path.cwd().name == "web_scraper_tests":
-    data_path_str = "../../test_data_integration"
+    data_path_str = "../../tests/test_data_integration"
     json_path = Path("JSON")
     scraping_root_path = Path.cwd().parent.parent
 

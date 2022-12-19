@@ -11,9 +11,9 @@ from parameterized import parameterized
 import os
 
 
-data_path = "../test_data"
+data_path = "../tests/test_data"
 if "test_ec_scraper" in os.getcwd():
-    data_path = "../../test_data"
+    data_path = "../../tests/test_data"
 
 
 class TestEcScraper(unittest.TestCase):
