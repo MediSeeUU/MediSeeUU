@@ -25,13 +25,11 @@ export default function DetailedInfoPage() {
   const { medID } = useParams()
   const [procData, setProcData] = useState(null)
 
-  console.log(medID)
-
   // All information of all medicines is retrieved and the correct entry
   // corresponding to the desired medicine is extracted from the array
   const alldata = useData()
   let medData = alldata.find(
-    (element) => element.eunumber.toString() === medID.toString()
+    (element) => element.eu_pnumber.toString() === medID.toString()
   )
 
   // All of the procedure data related to the desired medicine is asynchronously
