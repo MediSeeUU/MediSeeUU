@@ -10,8 +10,8 @@ All the dependencies for the scraping modules are in the requirements.txt file i
 ## How to use
 
 ### To run the whole scraping program:
-- Either: Run the `__main__.py` in the scraping folder using PyCharm after installing the dependencies.
-- Or: Execute run-scraping.bat. This will also install any dependencies that have not yet been installed.
+- Either: Run the `__main__.py` in the scraping folder by clicking the play icon on the bottom of this file in PyCharm. Make sure you have installed the dependencies beforehand.
+- Or: Execute the file run-scraping.bat for Windows machines. This will also install any dependencies that have not yet been installed.
 
 ### To run a module in scraping:
 Comment out all the modules you don’t want to run in the `__main__.py` file in the scraping folder.
