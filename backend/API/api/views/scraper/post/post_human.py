@@ -219,17 +219,17 @@ def history_variables(eu_pnumber, initial_histories_data, current_histories_data
         current_histories_data,
     )
 
-    add_histories(
-        "eu_pnumber",
-        eu_pnumber,
-        HistoryEUOrphanCon,
-        EUOrphanConSerializer,
-        "eu_orphan_con",
-        "eu_orphan_con_initial",
-        initial_histories_data,
-        "eu_orphan_con_current",
-        current_histories_data,
-    )
+    # add_histories(
+    #     "eu_pnumber",
+    #     eu_pnumber,
+    #     HistoryEUOrphanCon,
+    #     EUOrphanConSerializer,
+    #     "eu_orphan_con",
+    #     "eu_orphan_con_initial",
+    #     initial_histories_data,
+    #     "eu_orphan_con_current",
+    #     current_histories_data,
+    # )
 
     return initial_histories_data
 
