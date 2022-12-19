@@ -6,15 +6,36 @@ from django.db import models
 from django.core.exceptions import ValidationError
 
 
-class BooleanWithNAField(models.CharField):
+class BooleanWithNAField(models.Field):
     def __init__(self, *args, **kwargs):
-        kwargs["max_length"] = 32
+        self.max_length = 32
+        # Set the field to support null values
+        kwargs["null"] = True
+        kwargs["blank"] = True
         super().__init__(*args, **kwargs)
 
     def deconstruct(self):
         name, path, args, kwargs = super().deconstruct()
-        del kwargs["max_length"]
+        del kwargs["null"]
+        del kwargs["blank"]
         return name, path, args, kwargs
+
+    def db_type(self, connection):
+        return f"char({self.max_length})"
+
+    def from_db_value(self, value, expression, connection):
+        if value == "True":
+            return True
+        elif value == "False":
+            return False
+        return value
+
+    def to_python(self, value):
+        if value == "True":
+            return True
+        elif value == "False":
+            return False
+        return value
 
     def get_prep_value(self, value):
         if isinstance(value, bool):
