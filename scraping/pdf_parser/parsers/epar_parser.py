@@ -1,5 +1,5 @@
 # EPAR parser
-from datetime import datetime
+import datetime
 import re
 from scraping.utilities.pdf import helper as helper
 import scraping.utilities.xml.xml_parsing_utils as xml_utils
@@ -71,7 +71,7 @@ def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStr
     return medicine_struct
 
 
-def get_date(xml: ET.Element) -> datetime | str:
+def get_date(xml: ET.Element) -> datetime.date | str:
     """
     Gets the attribute ema_procedure_start_initial
     The initial authorization date of the EMA
@@ -80,7 +80,7 @@ def get_date(xml: ET.Element) -> datetime | str:
         xml (ET.Element): the contents of the XML file
 
     Returns:
-        datetime | str: the attribute ema_procedure_start_initial - a string of a date in DD/MM/YYYY format
+        datetime.date | str: the attribute ema_procedure_start_initial - a string of a date in DD/MM/YYYY format
     """
     regex_date = re.compile(date_pattern)
     regex_ema = re.compile(r"the application was received by the em\w+ on")
@@ -105,7 +105,7 @@ def get_date(xml: ET.Element) -> datetime | str:
     return attribute_values.not_found
 
 
-def get_opinion_date(xml: ET.Element) -> datetime | str:
+def get_opinion_date(xml: ET.Element) -> datetime.date | str:
     """
     Gets the attribute chmp_opinion_date
     The date of the CHMP opinion on the medicine
@@ -114,7 +114,7 @@ def get_opinion_date(xml: ET.Element) -> datetime | str:
         xml (ET.Element): the contents of the XML file
 
     Returns:
-        datetime | str: the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format
+        datetime.date | str: the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format
     """
     not_easily_scrapeable = False
     for p in xml_utils.get_paragraphs_by_header(steps_taken_assessment_str, xml):
@@ -235,9 +235,9 @@ def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_y
         Returns:
             bool: True if scraped date is before given date, False otherwise
         """
-    date = get_date(xml)
+    date: datetime.date = get_date(xml)
     if date != attribute_values.not_found and date != attribute_values.not_scrapeable:
-        date = date.strftime("%d/%m/%Y")
+        date: str = date.strftime("%d/%m/%Y")
         day = int(''.join(filter(str.isdigit, date.split("/")[0])))
         month = int(date.split("/")[1])
         year = int(date.split("/")[2])

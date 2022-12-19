@@ -32,9 +32,7 @@ def run_all():
     For now only the web_scraper and pdf_parser will be run.
     """
     log_tools.init_loggers()
-
     data_folder_directory = create_data_folders()
-
     config_objects.default_path_data = data_folder_directory
 
     # Standard config is to run all. Uncomment line below to use custom setup.

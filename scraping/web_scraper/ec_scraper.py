@@ -13,7 +13,7 @@ import tqdm.contrib.logging as tqdm_logging
 from tqdm import tqdm
 
 import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attribute_values as values
 import scraping.utilities.log.log_tools as log_tools
 from scraping.utilities.web import web_utils as utils, config_objects, json_helper
 from scraping.utilities.web.medicine_type import MedicineType
@@ -234,9 +234,9 @@ def get_data_from_medicine_json(medicine_json: dict,
     human_medicine = True
 
     # Refused medicine never have an EU number, therefore it is set to a standard value
-    medicine_dict[attr.eu_pnumber]: str = attribute_values.not_found
+    medicine_dict[attr.eu_pnumber]: str = values.not_found
     # Orphan and refused medicine don't always have ATC codes, therefore it is set to a standard value
-    medicine_dict[attr.atc_code] = attribute_values.not_found
+    medicine_dict[attr.atc_code] = values.not_found
 
     for row in medicine_json:
         match row["type"]:
@@ -276,7 +276,7 @@ def get_data_from_medicine_json(medicine_json: dict,
         medicine_dict[attr.orphan_status] = "h"
     else:
         medicine_dict[attr.orphan_status] = "o"
-        medicine_dict[attr.atc_code] = attribute_values.not_found
+        medicine_dict[attr.atc_code] = values.not_found
 
     for key, value in medicine_dict.items():
         if value == values.not_found:
@@ -445,14 +445,14 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
                                                               is_exceptional,
                                                               is_conditional)
     else:
-        eu_aut_date: str = attribute_values.not_found
-        eu_aut_type_initial: str = attribute_values.not_found
+        eu_aut_date: str = values.not_found
+        eu_aut_type_initial: str = values.not_found
 
     # From the list of EMA numbers, the right one is chosen and its certainty determined
     if ema_numbers:
         ema_number, ema_number_certainty = determine_ema_number(ema_numbers)
     else:
-        ema_number, ema_number_certainty = attribute_values.not_found, attribute_values.not_found
+        ema_number, ema_number_certainty = values.not_found, values.not_found
 
     # Gets ema_number_id from ema_number, removing leading 0's
     ema_number_id = ema_number.split('/')[-1].lstrip('0')
@@ -475,7 +475,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
     procedures_dict[attr.authorisation_row] = str(authorisation_row)
 
     for key, value in procedures_dict.items():
-        if value == attribute_values.not_found:
+        if value == values.not_found:
             log.warning(f"{eu_num}: No value for {key}")
     return procedures_dict, dec_url_list, anx_url_list
 
@@ -510,11 +510,11 @@ def determine_current_aut_type(last_decision_types: list[str]) -> str:
     if len(last_decision_types) > 0:
         for decision_type in last_decision_types:
             if "annual reassessment" in decision_type.lower():
-                return attribute_values.aut_type_exceptional
+                return values.aut_type_exceptional
             if "annual renewal" in decision_type.lower():
-                return attribute_values.aut_type_conditional
+                return values.aut_type_conditional
 
-    return attribute_values.aut_type_standard
+    return values.aut_type_standard
 
 
 def determine_initial_aut_type(year: int, is_exceptional: bool, is_conditional: bool) -> str:
@@ -535,14 +535,14 @@ def determine_initial_aut_type(year: int, is_exceptional: bool, is_conditional: 
             Can be "pre_2006", "exceptional_conditional", "exceptional", "conditional", or "standard".
     """
     if year < 2006:
-        return attribute_values.NA_before
+        return values.NA_before
     if is_exceptional and is_conditional:
-        return attribute_values.authorization_type_unknown
+        return values.authorization_type_unknown
     if is_exceptional:
-        return attribute_values.aut_type_exceptional
+        return values.aut_type_exceptional
     if is_conditional:
-        return attribute_values.aut_type_conditional
-    return attribute_values.aut_type_standard
+        return values.aut_type_conditional
+    return values.aut_type_standard
 
 
 def format_ema_number(ema_number: str) -> list[str]:
@@ -590,7 +590,7 @@ def determine_ema_number(ema_numbers: list[str]) -> (str, float):
     # code retrieved from https://www.geeksforgeeks.org/python-find-most-frequent-element-in-a-list/
     ema_numbers_dict: dict[str, int] = {}
     count: int = 0
-    most_occurring_item: str = attribute_values.not_found
+    most_occurring_item: str = values.not_found
     for item in reversed(ema_numbers):
         ema_numbers_dict[item] = ema_numbers_dict.get(item, 0) + 1
         if ema_numbers_dict[item] >= count:
