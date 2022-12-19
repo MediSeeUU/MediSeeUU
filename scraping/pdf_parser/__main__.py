@@ -170,6 +170,8 @@ def datetime_serializer(date: datetime.datetime):
     """
     if isinstance(date, datetime.datetime):
         return date.__str__()
+    if isinstance(date, datetime.date):
+        return date.__str__()
 
 
 if __name__ == "__main__":
