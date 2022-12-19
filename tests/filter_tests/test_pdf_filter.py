@@ -7,11 +7,11 @@ from pathlib import Path
 from scraping.filter import filter
 from scraping.utilities.log import log_tools
 
-test_data_loc = "../test_data_filter/active_withdrawn"
-test_data_filter_loc = "../test_data_filter/active_withdrawn_temp"
+test_data_loc = "../test_data/active_withdrawn"
+test_data_filter_loc = "../test_data/active_withdrawn_temp"
 if "filter_tests" in os.getcwd():
-    test_data_loc = "../../test_data_filter/active_withdrawn"
-    test_data_filter_loc = "../../test_data_filter/active_withdrawn_temp"
+    test_data_loc = "../../test_data/active_withdrawn"
+    test_data_filter_loc = "../../test_data/active_withdrawn_temp"
 test_data_path = test_data_loc.split("active_withdrawn")[0]
 
 

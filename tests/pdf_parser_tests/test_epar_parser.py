@@ -66,7 +66,7 @@ class TestEparParse(TestCase):
                 print(found_not_scrapeable_string + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 90)
+        self.assertGreater(percentage_found, 87)
 
     def test_get_opinion_date(self):
         """
@@ -89,7 +89,7 @@ class TestEparParse(TestCase):
                 print(found_not_scrapeable_string + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 90)
+        self.assertGreater(percentage_found, 87)
 
     def check_date(self, day: str, month: str, year: str):
         """
