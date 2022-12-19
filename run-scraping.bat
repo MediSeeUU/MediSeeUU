@@ -4,3 +4,4 @@ CALL Scripts/activate.bat
 cd scraping
 pip install -r "requirements.txt"
 python .
+pause
