@@ -1,18 +1,18 @@
 import logging
+import multiprocessing
 from datetime import datetime
+from itertools import repeat
 
 import bs4
 import regex as re
 import requests
-import multiprocessing
-from scraping.utilities.web import web_utils as utils, json_helper, config_objects, medicine_type as med_type
-import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.attribute_values as attribute_values
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
-from scraping.web_scraper import url_scraper
-from itertools import repeat
 from tqdm import tqdm
+
+import scraping.utilities.definitions.attributes as attr
+from scraping.utilities.web import web_utils as utils, json_helper, config_objects, medicine_type as med_type
+from scraping.web_scraper import url_scraper
 
 log = logging.getLogger("web_scraper.ema_scraper")
 html_parser_str = "html.parser"

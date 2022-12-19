@@ -7,6 +7,7 @@ import multiprocessing
 import logging
 from scraping.utilities.log import log_tools
 from scraping.utilities.io import safe_io
+from scraping.utilities.definitions import values, attributes
 from tqdm import tqdm
 
 wrong_doctype_str = "@wrong_doctype"
@@ -168,7 +169,7 @@ def get_brand_name(filename: str, directory: str) -> str:
             return web_attributes['eu_brand_name_current']
     except FileNotFoundError as e:
         log.warning(f"Filter: Webdata JSON not found for {eu_num}. Error: {e}")
-        return "no_webdata_json_found"
+        return values.webdata_not_found
 
 
 def get_url(filename: str, directory: str) -> str:
@@ -216,10 +217,10 @@ def get_url(filename: str, directory: str) -> str:
                 if 'other' in filename:
                     num = filename.split('_')[-1]
                     num = int(num[:len(num) - 4])
-                    return urls[eu_num]['other_ema_urls'][num][0]
+                    return urls[eu_num][attributes.other_ema_urls][num][0]
             except KeyError as e:
                 log.warning(f"Filter: KeyError in urls.json. Error: {e}")
-                return "no_url_found"
+                return values.url_not_found
     except FileNotFoundError as e:
         log.warning(f"Filter: Cannot find urls.json. Error: {e}")
         return "urls_json_not_found"
