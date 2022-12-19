@@ -53,7 +53,7 @@ def get_default_dict(filename: str) -> dict:
 
     # keys for human use
     if '_h_' in filename:
-        dic = dict.fromkeys([attr.filename,
+        dic = dict.fromkeys([attr.pdf_file,
                              attr.eu_aut_date,
                              attr.eu_brand_name_initial,
                              attr.eu_brand_name_current,
@@ -68,7 +68,7 @@ def get_default_dict(filename: str) -> dict:
 
     # keys for orphan
     elif '_o_' in filename:
-        dic = dict.fromkeys([attr.filename,
+        dic = dict.fromkeys([attr.pdf_file,
                              attr.eu_aut_date,
                              attr.eu_brand_name_initial,
                              attr.eu_brand_name_current,
@@ -81,7 +81,7 @@ def get_default_dict(filename: str) -> dict:
     # invalid name, only returns name and failure
     else:
         dic = {}
-    dic[attr.filename] = filename
+    dic[attr.pdf_file] = filename
     return dic
 
 

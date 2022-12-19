@@ -1,9 +1,9 @@
-from scraping.utilities.web.json_helper import JsonHelper
-import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.values as values
+import json
 from datetime import datetime
 from pathlib import Path
-import json
+
+import scraping.utilities.definitions.attributes as attr
+from scraping.utilities.web.json_helper import JsonHelper
 
 
 def set_active_refused_webdata(eu_n: str, medicine_url: str, dec_list: list[str], anx_list: list[str],
