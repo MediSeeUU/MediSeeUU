@@ -68,25 +68,13 @@ def combine_best_source(eu_pnumber: str, attribute_name: str, sources: list[str]
     return attributes[0]
 
 def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> str:
-    try:
-        old_string = strings[0]
-        new_string = strings[1]
-        sequence_matcher = SM(None, old_string.lower(), new_string.lower())
-        overlap = sequence_matcher.find_longest_match(0, len(old_string) - 1, 0, len(new_string) - 1)
-
-        for string in strings[1:]:
-            old_string = new_string
-            new_string = string
-            sequence_matcher = SM(None, old_string.lower(), new_string.lower())
-            overlap = sequence_matcher.find_longest_match(0, len(old_string), 0, len(new_string))
-
+    if len(strings) < 2:
+        overlap = SM(None, strings[0].lower(), strings[1].lower()).find_longest_match()
         if float(overlap.size / len(strings[0])) >= min_matching_fraction:
             return strings[0][overlap.a:overlap.a + overlap.size]
-    except Exception:
-        log.warning("COMBINER: no second string when calling string_overlap")
-        return attribute_values.combiner_not_found
 
-    return attribute_values.insufficient_overlap
+    return strings[0]  # TODO: log check failed
+
 
 # For combine functions
 # TODO: fix datum
@@ -306,3 +294,4 @@ def get_ema_excel(filepath: str, filename: str) -> dict:
         return {}
 
 # print(get_ema_excel("..\..\data/ema_excel/", "ema_excel.xlsx")['EMEA/H/C/281'])
+# print(string_overlap(['lopinavir / Ritonavir', 'lopinavir/ ritonavir'],0.8))
