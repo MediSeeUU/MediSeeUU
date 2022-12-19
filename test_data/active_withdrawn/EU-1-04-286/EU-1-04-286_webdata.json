@@ -18,12 +18,25 @@
     ],
     "orphan_status": "h",
     "eu_aut_date": "2004-10-13 00:00:00",
-    "eu_aut_type_initial": "pre_2006",
+    "eu_aut_type_initial": "attribute not available on release",
     "eu_aut_type_current": "standard",
     "ema_number": "EMEA/H/C/535",
     "ema_number_id": "535",
     "eu_referral": "False",
     "eu_suspension": "False",
     "ema_number_certainty": "1.0",
-    "init_addressed_to_member_states": "False"
+    "authorisation_row": "0",
+    "scrape_date_web": "19/12/2022",
+    "filedates": {
+        "EU-1-04-286_h_dec_2.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2009/2009101965529/dec_65529_en.pdf",
+            "pdf_date": "2009-10-19 00:00:00",
+            "pdf_scrape_date": "2022-12-19 14:35:26.348136"
+        },
+        "EU-1-04-286_h_anx_2.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2009/2009101965529/anx_65529_en.pdf",
+            "pdf_date": "2009-10-19 00:00:00",
+            "pdf_scrape_date": "2022-12-19 14:35:26.658482"
+        }
+    }
 }
