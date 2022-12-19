@@ -4,6 +4,7 @@
 from django.db import models
 from .medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import create_dashboard_column, Category
+from api.models.common import BooleanWithNAField
 
 
 class Procedures(models.Model):
@@ -14,11 +15,11 @@ class Procedures(models.Model):
      Attributes:
         eu_pnumber (models.ForeignKey):
             Foreign Key to the :py:class:`.MedicinalProduct` model
-        eu_suspension (models.BooleanField):
-            BooleanField indicating if this procedure is a suspension procedure.
+        eu_suspension (BooleanWithNAField):
+            BooleanWithNAField indicating if this procedure is a suspension procedure.
             On the dashboard, it is shown as True if there is any suspension procedure.
-        eu_referral (models.BooleanField):
-            BooleanField indicating if this procedure is a referral procedure.
+        eu_referral (BooleanWithNAField):
+            BooleanWithNAField indicating if this procedure is a referral procedure.
             On the dashboard, it is shown as True if there is any referral procedure.
     """
     eu_pnumber = models.ForeignKey(
@@ -29,7 +30,7 @@ class Procedures(models.Model):
     )
 
     eu_suspension = create_dashboard_column(
-        models.BooleanField(
+        BooleanWithNAField(
             null=False
         ),
         Category.Procedures,
@@ -38,7 +39,7 @@ class Procedures(models.Model):
     )
 
     eu_referral = create_dashboard_column(
-        models.BooleanField(
+        BooleanWithNAField(
             null=False
         ),
         Category.Procedures,

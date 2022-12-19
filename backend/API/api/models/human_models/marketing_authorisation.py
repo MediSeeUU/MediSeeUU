@@ -12,6 +12,7 @@ from api.models.create_dashboard_columns import (
     create_dashboard_history_initial_column,
     Category,
 )
+from api.models.common import BooleanWithNAField
 
 
 class MarketingAuthorisation(models.Model):
@@ -42,8 +43,8 @@ class MarketingAuthorisation(models.Model):
             Unique Foreign Key to the :py:class:`.AcceleratedAssessment` model
         duration (models.OneToOneField):
             Unique Foreign Key to the :py:class:`.Duration` model
-        ema_reexamination (models.BooleanField):
-            BooleanField indicating if the EMA re-examination has been performed. Shown on the dashboard.
+        ema_reexamination (BooleanWithNAField):
+            BooleanWithNAField indicating if the EMA re-examination has been performed. Shown on the dashboard.
         eu_aut_type_initial (models.OneToOneField):
             Unique Foreign Key to the initial item in the :py:class:`.HistoryAuthorisationType` model.
             Shown on the dashboard.
@@ -143,7 +144,7 @@ class MarketingAuthorisation(models.Model):
     )
 
     ema_reexamination = create_dashboard_column(
-        models.BooleanField(
+        BooleanWithNAField(
             null=False,
         ),
         Category.Marketing_authorisation,

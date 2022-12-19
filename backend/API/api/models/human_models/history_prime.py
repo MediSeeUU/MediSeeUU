@@ -3,6 +3,8 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
+from api.models.common import BooleanWithNAField
+
 
 class HistoryPrime(models.Model):
     """
@@ -14,8 +16,8 @@ class HistoryPrime(models.Model):
             Foreign Key to the :py:class:`.MedicinalProduct` model
         change_date (models.DateField):
             DateField containing the date of the entry.
-        eu_prime (models.BooleanField):
-            BooleanField indicating if the medicine is an EU priority medicine. Initial shown on the dashboard.
+        eu_prime (BooleanWithNAField):
+            BooleanWithNAField indicating if the medicine is an EU priority medicine. Initial shown on the dashboard.
     """
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,
@@ -30,7 +32,7 @@ class HistoryPrime(models.Model):
         blank=False,
     )
 
-    eu_prime = models.BooleanField(
+    eu_prime = BooleanWithNAField(
         null=False,
         blank=False,
     )

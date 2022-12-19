@@ -3,6 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from api.models.create_dashboard_columns import create_dashboard_column, Category
+from api.models.common import BooleanWithNAField
 
 
 class AcceleratedAssessment(models.Model):
@@ -11,13 +12,13 @@ class AcceleratedAssessment(models.Model):
     This model is derived from a base model from the Django library.
 
     Attributes:
-        eu_accel_assess_g (models.BooleanField):
-            BooleanField indicating if accelerated assessment has been granted. Shown on the dashboard.
-        eu_accel_assess_m (models.BooleanField):
-            BooleanField indicating if accelerated assessment has been maintained. Shown on the dashboard.
+        eu_accel_assess_g (BooleanWithNAField):
+            BooleanWithNAField indicating if accelerated assessment has been granted. Shown on the dashboard.
+        eu_accel_assess_m (BooleanWithNAField):
+            BooleanWithNAField indicating if accelerated assessment has been maintained. Shown on the dashboard.
     """
     eu_accel_assess_g = create_dashboard_column(
-        models.BooleanField(
+        BooleanWithNAField(
             null=True,
         ),
         Category.Marketing_authorisation,
@@ -26,7 +27,7 @@ class AcceleratedAssessment(models.Model):
     )
 
     eu_accel_assess_m = create_dashboard_column(
-        models.BooleanField(
+        BooleanWithNAField(
             null=True,
         ),
         Category.Marketing_authorisation,

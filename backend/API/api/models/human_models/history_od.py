@@ -3,6 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
+from api.models.common import BooleanWithNAField
 
 
 class HistoryOD(models.Model):
@@ -15,8 +16,8 @@ class HistoryOD(models.Model):
             Foreign Key to the :py:class:`.MedicinalProduct` model
         change_date (models.DateField):
             DateField containing the date of the entry.
-        eu_od (models.BooleanField):
-            BooleanField indicating if the medicine has an EU orphan designation. Initial shown on the dashboard.
+        eu_od (BooleanWithNAField):
+            BooleanWithNAField indicating if the medicine has an EU orphan designation. Initial shown on the dashboard.
     """
     eu_pnumber = models.ForeignKey(
         MedicinalProduct,
@@ -31,7 +32,7 @@ class HistoryOD(models.Model):
         blank=False,
     )
 
-    eu_od = models.BooleanField(
+    eu_od = BooleanWithNAField(
         null=False,
         blank=False,
     )

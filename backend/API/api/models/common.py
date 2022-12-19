@@ -6,7 +6,20 @@ from django.db import models
 from django.core.exceptions import ValidationError
 
 
-class IntegerNAField(models.TextField):
+class BooleanWithNAField(models.CharField):
+    def __init__(self, *args, **kwargs):
+        kwargs["choices"] = BooleanChoices.choices
+        kwargs["max_length"] = 32
+        super().__init__(*args, **kwargs)
+
+    def deconstruct(self):
+        name, path, args, kwargs = super().deconstruct()
+        del kwargs["choices"]
+        del kwargs["max_length"]
+        return name, path, args, kwargs
+
+
+class IntegerWithNAField(models.TextField):
     def from_db_value(self, value, expression, connection):
         if value is None or not str.isdigit(value):
             return value
@@ -18,6 +31,14 @@ class IntegerNAField(models.TextField):
             return value
         else:
             raise ValidationError(f"{value} must be either a integer or a NA message")
+
+
+class BooleanChoices(models.TextChoices):
+    TRUE = "True",
+    FALSE = "False",
+    NotFound = "Not found",
+    NotAvailableAtRelease = "Not available at release",
+    ExpectedButUnableToExtract = "Expected, but unable to extract",
 
 
 class AutTypes(models.TextChoices):

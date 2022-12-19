@@ -4,6 +4,7 @@
 from hashlib import md5
 from django.db import models
 from api.models.create_dashboard_columns import create_dashboard_column, Category
+from api.models.common import BooleanWithNAField
 
 
 class IngredientsAndSubstances(models.Model):
@@ -20,8 +21,8 @@ class IngredientsAndSubstances(models.Model):
             TextField containing the active_substance. Shown on the dashboard.
         atc_code (models.CharField):
             CharField containing the atc_code. Shown on the dashboard.
-        eu_nas (models.BooleanField):
-            BooleanField containing eu_nas. Shown on the dashboard.
+        eu_nas (BooleanWithNAField):
+            BooleanWithNAField containing eu_nas. Shown on the dashboard.
     """
     active_substance_hash = models.CharField(
         max_length=32,
@@ -52,7 +53,7 @@ class IngredientsAndSubstances(models.Model):
     )
 
     eu_nas = create_dashboard_column(
-        models.BooleanField(
+        BooleanWithNAField(
             null=True,
             blank=False,
         ),

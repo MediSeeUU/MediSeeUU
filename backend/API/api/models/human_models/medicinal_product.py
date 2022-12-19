@@ -8,6 +8,7 @@ from api.models.create_dashboard_columns import (
     Category,
 )
 from .ingredients_and_substances import IngredientsAndSubstances
+from api.models.common import BooleanWithNAField
 
 
 class MedicinalProduct(models.Model):
@@ -26,10 +27,10 @@ class MedicinalProduct(models.Model):
             CharField containing the EMA Number. Shown on the dashboard.
         eu_med_type (models.CharField):
             CharField containing the medicine type. Shown on the dashboard.
-        eu_atmp (models.BooleanField):
-            BooleanField which indicates if this medicine is an ATMP. Shown on the dashboard.
-        ema_number_check (models.BooleanField):
-            BooleanField containing the EMA Number Check. Not shown on the dashboard.
+        eu_atmp (BooleanWithNAField):
+            BooleanWithNAField which indicates if this medicine is an ATMP. Shown on the dashboard.
+        ema_number_check (BooleanWithNAField):
+            BooleanWithNAField containing the EMA Number Check. Not shown on the dashboard.
         ingredients_and_substances (models.ForeignKey):
             ForeignKey to the :py:class:`.IngredientsAndSubstances` model
         eu_brand_name_initial (models.OneToOneField):
@@ -82,7 +83,7 @@ class MedicinalProduct(models.Model):
     )
 
     eu_atmp = create_dashboard_column(
-        models.BooleanField(
+        BooleanWithNAField(
             null=True,
         ),
         Category.Medicinal_product,
@@ -90,7 +91,7 @@ class MedicinalProduct(models.Model):
         "EU ATMP",
     )
 
-    ema_number_check = models.BooleanField(
+    ema_number_check = BooleanWithNAField(
         null=True,
     )
 
