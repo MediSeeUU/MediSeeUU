@@ -12,7 +12,7 @@ from api.models.create_dashboard_columns import (
     create_dashboard_history_initial_column,
     Category,
 )
-from api.models.common import BooleanWithNAField
+from api.models.common import BooleanWithNAField, DateWithNAField
 
 
 class MarketingAuthorisation(models.Model):
@@ -62,27 +62,21 @@ class MarketingAuthorisation(models.Model):
     )
 
     ema_procedure_start_initial = create_dashboard_column(
-        models.DateField(
-            null=False,
-        ),
+        DateWithNAField(),
         Category.Marketing_authorisation,
         "date",
         "Initial EMA Procedure Start Date",
     )
 
     chmp_opinion_date = create_dashboard_column(
-        models.DateField(
-            null=False,
-        ),
+        DateWithNAField(),
         Category.Marketing_authorisation,
         "date",
         "Initial EMA (CHMP) Opinion Date",
     )
 
     eu_aut_date = create_dashboard_column(
-        models.DateField(
-            null=False,
-        ),
+        DateWithNAField(),
         Category.Marketing_authorisation,
         "date",
         "Initial EU Authorisation Date",
@@ -144,9 +138,7 @@ class MarketingAuthorisation(models.Model):
     )
 
     ema_reexamination = create_dashboard_column(
-        BooleanWithNAField(
-            null=False,
-        ),
+        BooleanWithNAField(),
         Category.Marketing_authorisation,
         "bool",
         "EMA re-examination performed",

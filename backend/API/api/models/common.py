@@ -4,6 +4,7 @@
 
 from django.db import models
 from django.core.exceptions import ValidationError
+import datetime
 
 
 class BooleanWithNAField(models.Field):
@@ -85,14 +86,54 @@ class IntegerWithNAField(models.Field):
     def get_prep_value(self, value):
         if isinstance(value, int):
             return str(value)
+
         elif value is None or str.isdigit(value) or value in [
             "Not found",
             "Not available at time of document publication",
-            "Value should be present in document"
+            "Value should be present in document",
+            "date is left blank in document"
         ]:
             return value
         else:
             raise ValidationError(f"{self.name}: {value} must be either a integer or a NA message")
+
+import logging
+log = logging.getLogger(__name__)
+
+class DateWithNAField(models.Field):
+    def __init__(self, *args, **kwargs):
+        kwargs["max_length"] = 32
+        # Set the field to support null values
+        kwargs["null"] = True
+        kwargs["blank"] = True
+        super().__init__(*args, **kwargs)
+
+    def deconstruct(self):
+        name, path, args, kwargs = super().deconstruct()
+        del kwargs["max_length"]
+        del kwargs["null"]
+        del kwargs["blank"]
+        return name, path, args, kwargs
+
+    def db_type(self, connection):
+        return f"VARCHAR({self.max_length})"
+
+    def get_prep_value(self, value):
+        log.warning("get_prep_value: " + value)
+        date = datetime.datetime.strptime(value, '%Y-%m-%d')
+
+        # check if valid date
+        if date.year >= 0 and date.month <= 12 and date.day <= 31:
+            return value
+        elif value is None or value in [
+            "Not found",
+            "Not available at time of document publication",
+            "Value should be present in document",
+            "date is left blank in document"
+        ]:
+            return value
+        else:
+            raise ValidationError(f"{self.name}: {value} must be either a date or a NA message")
 
 
 class AutTypes(models.TextChoices):

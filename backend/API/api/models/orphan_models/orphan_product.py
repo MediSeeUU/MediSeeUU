@@ -8,6 +8,7 @@ from api.models.create_dashboard_columns import (
     create_dashboard_history_initial_column,
     Category,
 )
+from api.models.common import DateWithNAField
 
 
 class OrphanProduct(models.Model):
@@ -93,18 +94,14 @@ class OrphanProduct(models.Model):
     )
 
     eu_od_date = create_dashboard_column(
-        models.DateField(
-            null=False
-        ),
+        DateWithNAField(),
         Category.Orphan_product,
         "date",
         "EU orphan designation date",
     )
 
     eu_od_comp_date = create_dashboard_column(
-        models.DateField(
-            null=False
-        ),
+        DateWithNAField(),
         Category.Orphan_product,
         "date",
         "COMP decision date (for EU orphan designation)",
