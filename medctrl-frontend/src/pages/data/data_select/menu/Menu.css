@@ -6,15 +6,16 @@ Utrecht University within the Software Project course.
   position: absolute;
   top: 20%;
   bottom: 20%;
-  left: 15%;
-  right: 15%;
+  left: 10%;
+  right: 10%;
   overflow: hidden;
   outline: none;
   min-width: 100px;
 }
 
 .med-filter-menu,
-.med-sort-menu {
+.med-sort-menu,
+.med-changes-menu {
   position: absolute;
   border-radius: 10px;
   height: 100%;
@@ -30,6 +31,10 @@ Utrecht University within the Software Project course.
   width: 49%;
   top: 0;
   right: 0;
+}
+
+.med-changes-menu {
+  width: 100%;
 }
 
 .med-table-menu-button {

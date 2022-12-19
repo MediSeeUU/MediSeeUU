@@ -73,15 +73,17 @@ function DataSelect() {
         <hr className="med-top-separator" />
         <h1 className="med-header">Data Selection Table</h1>
 
-        <OpenChanges
-          jsonPath={Record}
-        />
+
 
         <Menu
           filters={tableUtils.filters}
           sorters={tableUtils.sorters}
           update={menuUpdate}
           categories={categories}
+        />
+
+        <OpenChanges
+          jsonPath={Record}
         />
         
         <ButtonComponent 

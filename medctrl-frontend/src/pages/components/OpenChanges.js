@@ -29,13 +29,13 @@ function OpenChanges({ jsonPath }) {
         closeModal={closeModal}
         className="med-table-menu-modal"
       >
-        <div className="med-filter-menu">
+        <div className="med-changes-menu">
         <h1 className="med-table-menu-header">Changes</h1>
         <hr className="med-top-separator" />
           <div className="med-table-menu-filters-container">
-          <pre>
-                {JSON.stringify(jsonPath, null, 2)}
-              </pre>
+            <pre>
+              {JSON.stringify(jsonPath, null, 2)}
+            </pre>
           </div>
 
           <div className="med-table-menu-filter-button-container">

@@ -72,6 +72,7 @@ function Menu({ filters, sorters, update, categories }) {
             defaultObj={filterObject}
             categories={categories}
           />
+
           <div className="med-table-menu-filter-button-container">
             <button
               className="med-table-menu-button med-table-menu-apply-button med-primary-solid"
@@ -92,6 +93,7 @@ function Menu({ filters, sorters, update, categories }) {
               Close
             </button>
           </div>
+          
         </div>
         <SortMenu
           sorters={localSorters}
