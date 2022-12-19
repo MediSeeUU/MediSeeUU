@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 
 class BooleanWithNAField(models.Field):
     def __init__(self, *args, **kwargs):
-        self.max_length = 32
+        kwargs["max_length"] = 32
         # Set the field to support null values
         kwargs["null"] = True
         kwargs["blank"] = True
@@ -16,12 +16,13 @@ class BooleanWithNAField(models.Field):
 
     def deconstruct(self):
         name, path, args, kwargs = super().deconstruct()
+        del kwargs["max_length"]
         del kwargs["null"]
         del kwargs["blank"]
         return name, path, args, kwargs
 
     def db_type(self, connection):
-        return f"char({self.max_length})"
+        return f"VARCHAR({self.max_length})"
 
     def from_db_value(self, value, expression, connection):
         if value == "True":
@@ -40,24 +41,55 @@ class BooleanWithNAField(models.Field):
     def get_prep_value(self, value):
         if isinstance(value, bool):
             return str(value)
-        elif value is None or value in \
-                ["True", "False", "Not found", "Not available at release", "Expected, but unable to extract"]:
+        elif value is None or value in [
+            "True",
+            "False",
+            "Not found",
+            "Not available at time of document publication",
+            "Value should be present in document"
+        ]:
             return value
         else:
             raise ValidationError(f"{self.name}: {value} must be either a boolean or a NA message")
 
 
-class IntegerWithNAField(models.TextField):
+class IntegerWithNAField(models.Field):
+    def __init__(self, *args, **kwargs):
+        # Set the field to support null values
+        kwargs["null"] = True
+        kwargs["blank"] = True
+        super().__init__(*args, **kwargs)
+
+    def deconstruct(self):
+        name, path, args, kwargs = super().deconstruct()
+        del kwargs["null"]
+        del kwargs["blank"]
+        return name, path, args, kwargs
+
+    def db_type(self, connection):
+        return "LONGTEXT"
+
     def from_db_value(self, value, expression, connection):
         if value is None or not str.isdigit(value):
             return value
         else:
             return int(value)
 
+    def to_python(self, value):
+        if value == "True":
+            return True
+        elif value == "False":
+            return False
+        return value
+
     def get_prep_value(self, value):
         if isinstance(value, int):
             return str(value)
-        elif value is None or str.isdigit(value) or value in ["Not found", "Not available at release"]:
+        elif value is None or str.isdigit(value) or value in [
+            "Not found",
+            "Not available at time of document publication",
+            "Value should be present in document"
+        ]:
             return value
         else:
             raise ValidationError(f"{self.name}: {value} must be either a integer or a NA message")
@@ -67,10 +99,10 @@ class AutTypes(models.TextChoices):
     """
     Choice types for eu_aut_type. Is derived from the enumerated choice class.
     """    
-    CONDITIONAL = "CONDITIONAL",
-    EXCEPTIONAL = "EXCEPTIONAL",
-    STANDARD = "STANDARD"
-    UNCERTAIN = "EXCEPTIONAL OR CONDITIONAL"
+    CONDITIONAL = "conditional",
+    EXCEPTIONAL = "exceptional",
+    STANDARD = "standard"
+    UNCERTAIN = "exceptional or conditional"
 
 
 class AutStatus(models.TextChoices):
