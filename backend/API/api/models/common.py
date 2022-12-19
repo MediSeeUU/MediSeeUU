@@ -65,24 +65,15 @@ class LegalBasesTypes(models.TextChoices):
     """
     Choice types for legal bases. Is derived from the enumerated choice class.
     """
-    article48 = "article 4.8",
-    article4_8 = "article 4(8)"
-    article48_1 = "article 4.8(1)",
-    article48_2 = "article 4.8(2)",
-    article48_3 = "article 4.8(3)",
-    article83 = "article 8.3",
-    article8_3 = "article 8(3)",
-    article101 = "article 10.1",
-    article10_1 = "article 10(1)",
-    article102 = "article 10.2",
-    article10_2 = "article 10(2)",
-    article103 = "article 10.3",
-    article10_3 = "article 10(3)",
-    article104 = "article 10.4",
-    article10_4 = "article 10(4)",
-    article10a = "article 10a",
-    article10_a = "article 10(a)",
-    article10b = "article 10b",
-    article10_b = "article 10(b)",
-    article10c = "article 10c",
-    article10_c = "article 10(c)"
+    article4_8 = "article 4.8",
+    article4_8_1 = "article 4.8.1",
+    article4_8_2 = "article 4.8.2",
+    article4_8_3 = "article 4.8.3",
+    article8_3 = "article 8.3"
+    article_10_1 = "article 10.1"
+    article_10_2 = "article 10.2"
+    article_10_3 = "article 10.3"
+    article_10_4 = "article 10.4"
+    article_10_a = "article 10.a"
+    article_10_b = "article 10.b"
+    article_10_c = "article 10.c"
