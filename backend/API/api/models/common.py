@@ -6,6 +6,11 @@ from django.db import models
 from django.core.exceptions import ValidationError
 import datetime
 
+na_values = [
+            "Not found",
+            "Not available at time of document publication",
+            "Value should be present in document"
+]
 
 class BooleanWithNAField(models.Field):
     def __init__(self, *args, **kwargs):
@@ -40,15 +45,10 @@ class BooleanWithNAField(models.Field):
         return value
 
     def get_prep_value(self, value):
+        bool_na_values = ["True", "False"] + na_values
         if isinstance(value, bool):
             return str(value)
-        elif value is None or value in [
-            "True",
-            "False",
-            "Not found",
-            "Not available at time of document publication",
-            "Value should be present in document"
-        ]:
+        elif value is None or value in bool_na_values:
             return value
         else:
             raise ValidationError(f"{self.name}: {value} must be either a boolean or a NA message")
@@ -86,13 +86,7 @@ class IntegerWithNAField(models.Field):
     def get_prep_value(self, value):
         if isinstance(value, int):
             return str(value)
-
-        elif value is None or str.isdigit(value) or value in [
-            "Not found",
-            "Not available at time of document publication",
-            "Value should be present in document",
-            "date is left blank in document"
-        ]:
+        elif value is None or str.isdigit(value) or value in na_values:
             return value
         else:
             raise ValidationError(f"{self.name}: {value} must be either a integer or a NA message")
@@ -119,18 +113,12 @@ class DateWithNAField(models.Field):
         return f"VARCHAR({self.max_length})"
 
     def get_prep_value(self, value):
-        log.warning("get_prep_value: " + value)
         date = datetime.datetime.strptime(value, '%Y-%m-%d')
-
+        date_na_values = na_values.append("date is left blank in document")
         # check if valid date
         if date.year >= 0 and date.month <= 12 and date.day <= 31:
             return value
-        elif value is None or value in [
-            "Not found",
-            "Not available at time of document publication",
-            "Value should be present in document",
-            "date is left blank in document"
-        ]:
+        elif value is None or value in date_na_values:
             return value
         else:
             raise ValidationError(f"{self.name}: {value} must be either a date or a NA message")
