@@ -14,7 +14,8 @@ import scraping.utilities.definitions.sources as src
 def main(data_directory: str):
     print("Combining JSON files")
     active_withdrawn_folder = path.join(data_directory, "active_withdrawn")
-    directory_folders = [folder for folder in listdir(active_withdrawn_folder) if path.isdir(path.join(active_withdrawn_folder, folder)) and "EU" in folder]
+    directory_folders = [folder for folder in listdir(active_withdrawn_folder) if
+                         path.isdir(path.join(active_withdrawn_folder, folder)) and "EU" in folder]
     #
     # # Use all the system's threads to maximize use of all hyper-threads
     # joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
@@ -27,10 +28,11 @@ def main(data_directory: str):
 
     print("Finished combining JSON files\n")
 
+
 def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
     file_dicts_keys = [src.decision, src.decision_initial, src.annex, src.annex_initial,
-                    src.annex_10, src.epar, src.omar, src.web]
-    file_dicts = dict.fromkeys(file_dicts_keys,{})
+                       src.annex_10, src.epar, src.omar, src.web]
+    file_dicts = dict.fromkeys(file_dicts_keys, {})
 
     # try to get sources
     # TODO: dit zou gelijk samen kunnen met attr. enzo
@@ -43,7 +45,6 @@ def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
     annex_files = sorted(
         [(int(dictionary[attr.pdf_file][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]],
         key=lambda x: x[0])
-
 
     # TODO: functie met len
     if len(decision_files) > 0:
@@ -139,6 +140,7 @@ def sources_to_dicts(sources: list[str], file_dicts: dict[str, dict]) -> list[di
 
     return source_dicts
 
+
 # datetime to string serializer for json dumping
 def date_serializer(date: datetime.date) -> str:
     """
@@ -161,14 +163,13 @@ def datetime_converter(datetime: str) -> str:
 
     Returns:
         str: _description_
-    """    
+    """
     return datetime.split('+').split(" ")[0]
 
 # if __name__ == "__main__":
 #     main('..\..\..\data')
 
 
-#combine_folder("..\\..\\data\\active_withdrawn\\EU-1-00-130", "EU-1-00-130")
+# combine_folder("..\\..\\data\\active_withdrawn\\EU-1-00-130", "EU-1-00-130")
 # print(type(attr_obj.all_attributes))
 # print(attr_obj.all_attributes)
-
