@@ -1,5 +1,8 @@
-from datetime import datetime, date
+import json
 import logging
+import os
+from datetime import datetime, date
+from itertools import repeat
 from pathlib import Path
 
 import regex as re
@@ -7,14 +10,10 @@ import requests
 import tqdm
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
-from itertools import repeat
-import os
-import json
 
-from scraping.utilities.web import web_utils as utils, json_helper
-import scraping.utilities.log.log_tools as log_tools
 import scraping.utilities.definitions.attributes as attr
-from scraping.utilities.io import safe_io
+import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.web import web_utils as utils, json_helper
 
 log = logging.getLogger("web_scraper.download")
 
@@ -233,11 +232,16 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
     download_list_ema = [('epar', attr.epar_url), ('omar', attr.omar_url), ("odwar", attr.odwar_url)]
     for (filetype, key) in download_list_ema:
         if key not in url_dict.keys():
-            log.error(f"Key {key} not in keys of url_dict with identifier {medicine_identifier}. url_dict: {url_dict}")
-        download_pdfs_ema(medicine_identifier, filetype, url_dict[key], attr_dict, target_path)
-
-    for url, filetype in url_dict[attr.other_ema_urls]:
-        download_pdfs_ema(medicine_identifier, filetype, url, attr_dict, target_path)
+            log.error(f"Key {key} not in keys of url_dict with identifier {medicine_identifier}. "
+                      f"Did you run EMA scraper? url_dict: {url_dict}")
+        else:
+            download_pdfs_ema(medicine_identifier, filetype, url_dict[key], attr_dict, target_path)
+    if attr.other_ema_urls not in url_dict.keys():
+        log.error(f"Key {attr.other_ema_urls} not in keys of url_dict with identifier {medicine_identifier}."
+                  f"Did you run EMA scraper? url_dict: {url_dict}")
+    else:
+        for url, filetype in url_dict[attr.other_ema_urls]:
+            download_pdfs_ema(medicine_identifier, filetype, url, attr_dict, target_path)
 
     with open(f"{target_path}/{medicine_identifier}_webdata.json", 'w') as f:
         json.dump(attr_dict, f, indent=4)

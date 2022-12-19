@@ -1,22 +1,23 @@
 import json
 import logging
+import multiprocessing
+import os
 from datetime import date, datetime, timedelta
+from itertools import repeat
 
 import bs4
 import regex as re
 import requests
-import os
-import scraping.utilities.log.log_tools as log_tools
-from scraping.utilities.web import web_utils as utils, config_objects, json_helper
-from scraping.utilities.web.medicine_type import MedicineType
-import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.values as values
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 from tqdm import tqdm
+
+import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.definitions.values as values
+import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.web import web_utils as utils, config_objects, json_helper
+from scraping.utilities.web.medicine_type import MedicineType
 from scraping.web_scraper import url_scraper
-import multiprocessing
-from itertools import repeat
 
 log = logging.getLogger("web_scraper.ec_scraper")
 cpu_count: int = multiprocessing.cpu_count() * 2
@@ -279,6 +280,8 @@ def get_data_from_medicine_json(medicine_json: dict,
 
     for key, value in medicine_dict.items():
         if value == values.not_found:
+            if (key == attr.eu_pnumber or key == attr.atc_code) and "EU-1" not in eu_num:
+                continue
             log.warning(f"{eu_num}: No value for {key}")
 
     return medicine_dict, ema_url_list
@@ -474,7 +477,6 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
     for key, value in procedures_dict.items():
         if value == values.not_found:
             log.warning(f"{eu_num}: No value for {key}")
-
     return procedures_dict, dec_url_list, anx_url_list
 
 
@@ -612,11 +614,11 @@ def scrape_ec(config: config_objects.WebConfig, medicine_list: list[(str, str, i
         url_file (json_helper.JsonHelper): the dictionary containing all the urls of a specific medicine
         url_refused_file (json_helper.JsonHelper): The dictionary containing the urls of all refused files
     """
+
     log_path = log_tools.get_log_path("no_english_available.txt", config_objects.default_path_data)
     with open(log_path, 'w', encoding="utf-8"):
         pass  # open/clean no_english_available file
-    # make sure tests start with empty dict, because url_file is global variable only way to do this is here.
-    url_file.overwrite_dict({})
+
     log.info("TASK START scraping all medicine data and URLs from the EC website")
     # Transform zipped list into individual lists for thread_map function
     # The last element of the medicine_codes tuple is not of interest, thus we pop()
