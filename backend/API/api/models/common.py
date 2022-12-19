@@ -27,7 +27,9 @@ class IntegerWithNAField(models.TextField):
             return int(value)
 
     def get_prep_value(self, value):
-        if str.isdigit(value) or value in ["Not found", "Not available at release"]:
+        if isinstance(value, int):
+            return str(value)
+        elif str.isdigit(value) or value in ["Not found", "Not available at release"]:
             return value
         else:
             raise ValidationError(f"{value} must be either a integer or a NA message")
