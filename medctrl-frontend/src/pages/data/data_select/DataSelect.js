@@ -15,8 +15,6 @@ import ButtonComponent from '../../components/ButtonComponent.js'
 import ToggleButtons from '../../components/ToggleButtons.js'
 import { graphemeAt } from 'voca'
 import * as ButtonFunctions from '../../components/ButtonFunctionality.js'
-import Record from '../../components/comparison.json'
-import OpenChanges from '../../components/OpenChanges'
 
 // Function based component that displays the search bar and table with all the datapoints that can be selected
 function DataSelect() {
@@ -73,17 +71,11 @@ function DataSelect() {
         <hr className="med-top-separator" />
         <h1 className="med-header">Data Selection Table</h1>
 
-
-
         <Menu
           filters={tableUtils.filters}
           sorters={tableUtils.sorters}
           update={menuUpdate}
           categories={categories}
-        />
-
-        <OpenChanges
-          jsonPath={Record}
         />
         
         <ButtonComponent 

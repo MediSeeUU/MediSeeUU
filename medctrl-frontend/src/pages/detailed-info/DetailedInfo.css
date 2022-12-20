@@ -267,6 +267,30 @@ Utrecht University within the Software Project course.
   left: calc(100% - 12.5px);
 }
 
+.med-info-changelog {
+  width: 100%;
+  overflow: auto;
+  overflow-wrap: normal;
+}
+
+.med-info-changelog-button {
+    width: 250px;
+    height: 40px;
+    margin: 15px 5px 15px 5px;
+  
+    font-size: 15px;
+    font-weight: 400;
+  
+    border-radius: 5px;
+    border: none;
+  }
+
+pre {
+  white-space: pre-wrap;
+  height: 500px;
+}
+
+
 /* for special (i.e. highlighted) timeline elements */
 
 .med-info-special .med-info-timeline-element-decoration:before {
