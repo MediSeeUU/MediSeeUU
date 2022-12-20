@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from hashlib import md5
 from django.db import models
-from api.models.create_dashboard_columns import create_dashboard_column, Category
+from api.models.create_dashboard_columns import create_dashboard_column, Category, ExtraDashBoardColumn
 from api.models.common import BooleanWithNAField
 
 
@@ -50,6 +50,36 @@ class IngredientsAndSubstances(models.Model):
         Category.Medicinal_product,
         "string",
         "ATC Code",
+        [
+            ExtraDashBoardColumn(
+                Category.Medicinal_product,
+                "atc_name_l1",
+                "string",
+                "ATC name (level 1)",
+                lambda x: x[0],
+            ),
+            ExtraDashBoardColumn(
+                Category.Medicinal_product,
+                "atc_name_l2",
+                "string",
+                "ATC name (level 2)",
+                lambda x: x[0: 3],
+            ),
+            ExtraDashBoardColumn(
+                Category.Medicinal_product,
+                "atc_name_l3",
+                "string",
+                "ATC name (level 3)",
+                lambda x: x[0: 4],
+            ),
+            ExtraDashBoardColumn(
+                Category.Medicinal_product,
+                "atc_name_l4",
+                "string",
+                "ATC name (level 4)",
+                lambda x: x[0: 5],
+            ),
+        ]
     )
 
     eu_nas = create_dashboard_column(

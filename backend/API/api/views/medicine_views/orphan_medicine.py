@@ -9,10 +9,11 @@
 
 from rest_framework import viewsets
 from rest_framework import permissions
-from api.serializers.medicine_serializers.public import OrphanProductSerializer
-from api.models.orphan_models import OrphanProduct
 from rest_framework.response import Response
 from django.core.cache import cache
+from api.models.orphan_models import models, OrphanProduct
+from api.models.get_dashboard_columns import insert_extra_dashboard_columns
+from api.serializers.medicine_serializers.public import OrphanProductSerializer
 from api.views.update_cache import update_cache
 from api.views.other import permission_filter
 import logging
@@ -45,12 +46,14 @@ class OrphanMedicineViewSet(viewsets.ViewSet):
             cache_medicine = serializer.data
             cache.set("orphan_cache", cache_medicine, None)
 
+        data = insert_extra_dashboard_columns(cache_medicine, models)
+
         user = self.request.user
         perms = permission_filter(user)
 
         # filters medicines according to access level of the user
         filtered_medicines = map(
-            lambda obj: {x: y for x, y in obj.items() if x in perms}, cache_medicine
+            lambda obj: {x: y for x, y in obj.items() if x in perms}, data
         )
 
         logger.info("Orphan medicines filtered on access level.")

@@ -144,10 +144,9 @@ class URLWithNAField(models.Field):
         return f"VARCHAR({self.max_length})"
 
     def get_prep_value(self, value):
-        valid_url = validators.url(value)
-        if valid_url:
+        if value is None or value in na_values:
             return value
-        elif value is None or value in na_values:
+        elif validators.url(value):
             return value
         else:
             raise ValidationError(f"{self.name}: {value} must be either an url or a NA message")
