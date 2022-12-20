@@ -20,7 +20,8 @@ not_scrapeable = "not_easily_scrapeable"
 yes_str = "True"
 no_str = "False"
 
-default_date = datetime.date.min
+default_date = datetime.datetime.min
+default_date_str = str(datetime.datetime.min)
 
 # attribute values:
 aut_type_standard = "standard"

@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 import scraping.pdf_parser.parsed_info_struct as pis
 import scraping.utilities.xml.xml_parsing_utils as xml_utils
 import scraping.utilities.pdf.helper as helper
-import scraping.utilities.definitions.attribute_values as values
+import scraping.utilities.definitions.attribute_values as attribute_values
 import scraping.utilities.definitions.attributes as attr
 import logging
 import os
@@ -19,11 +19,9 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     2. Create a dictionary with all the attributes that need to be scraped.
     3. Loop through the body of the XML and find the attributes.
     4. Append the attributes to the struct and return it.
-
     Args:
         filepath (str): Path of the XML file to be scraped.
         medicine_struct (PIS.ParsedInfoStruct): The dictionary of all currently scraped attributes of this medicine.
-
     Returns:
         PIS.ParsedInfoStruct: Returns an updated struct, with the current attributes added to it.
     """
@@ -46,11 +44,12 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     xml_file = os.path.basename(filepath)
     creation_date = xml_utils.file_get_creation_date(xml_header)
     modification_date = xml_utils.file_get_modification_date(xml_header)
+    report_date = get_report_date(xml_body, pdf_file)
 
     # Create the initial dictionary without the attributes per condition
     omar_attributes = {
         attr.pdf_file: xml_utils.file_get_name_pdf(xml_header),
-        attr.xml_file: xml_file,
+        attr.xml_file: os.path.basename(filepath),
         attr.creation_date: creation_date,
         attr.modification_date: modification_date,
         attr.ema_omar_condition: []
@@ -64,31 +63,13 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     # Loop through all the sections of the xml body to parse all the attributes
     for section in xml_body:
 
-        # Detecting a final position in the table of contents means the other comp positions should be skipped.
-        if xml_utils.section_contains_header_substring_set_all(["comp", "adopted", "on", "final"], section) \
-                and xml_utils.section_is_table_of_contents(section):
-                
-            has_final = True
-            log.info("OMAR PARSER: A COMP final position document has been found: " + pdf_file)
-
-            final_attributes = {
-                attr.eu_od_number: values.not_found,
-                attr.ema_prevalence: values.not_found,
-                attr.ema_alternative_treatments: values.not_found,
-                attr.ema_significant_benefit: values.not_found,
-                attr.ema_report_date: values.default_date
-            }
-
-            omar_attributes[attr.ema_omar_condition].append(final_attributes)
-
         # Find comp position sections and scrape attributes from it.
         if xml_utils.section_contains_header_substring_set_all(["comp", "adopted", "on"], section) \
-                and not xml_utils.section_is_table_of_contents(section) \
-                and not has_final:
+                and not xml_utils.section_is_table_of_contents(section):
 
             has_comp = True
 
-            attributes = get_attributes(section, False, pdf_file, xml_body)
+            attributes = get_attributes(section, False)
 
             if attributes:
                 omar_attributes[attr.ema_omar_condition].append(attributes)
@@ -98,7 +79,7 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
                 and not xml_utils.section_is_table_of_contents(section) \
                 and has_comp:
 
-            attributes = get_attributes(section, has_comp, pdf_file, xml_body)
+            attributes = get_attributes(section, has_comp)
 
             if attributes:
                 omar_attributes[attr.ema_omar_condition].append(attributes)
@@ -109,23 +90,13 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     medicine_struct.omars.append(omar_attributes)
 
     # When no conditions have been found it will be logged.
-    if len(attr.ema_omar_condition) == 0 or omar_attributes[attr.ema_omar_condition] == []:
+    if len(attr.ema_omar_condition) == 0:
         log.warning("OMAR PARSER: failed to parse condition from " + pdf_file)
 
     return medicine_struct
 
 
-def get_report_date(xml_body: ET.Element, pdf_file: str) -> datetime.date:
-    """
-    This function finds the date of the report that is on the front page of the PDF.
-
-    Args:
-        xml_body: This is required for the report date to be parsed.
-        pdf_file (str): This makes sure that the log can show what file was missing the attribute.
-
-    Returns:
-        datetime.date: Returns the date as a simple datetime.date.
-    """    
+def get_report_date(xml_body: ET.Element, pdf_file: str) -> datetime.datetime:
     section = xml_utils.get_body_section_by_index(0, xml_body)
     header = xml_utils.get_section_header(section)
 
@@ -138,16 +109,12 @@ def get_report_date(xml_body: ET.Element, pdf_file: str) -> datetime.date:
         return helper.get_date('')
 
 
-def get_attributes(section: ET.Element, eu_od_flag: bool, pdf_file: str, xml_body: ET.Element) -> dict[str, str]:
+def get_attributes(section: ET.Element, eu_od_flag: bool) -> dict[str, str]:
     """
     This function returns the dictionary with all the parsed attributes in it.
-
     Args:
         section (ET.Element): Section (ET.Element): This is the section obtained with the xml converter.
         eu_od_flag (bool): This boolean represents the presence of a comp section.
-        pdf_file (str): This makes sure that the log can show what file was missing the attribute.
-        xml_body: This is required for the report date to be parsed.
-
     Returns:
         dict[str, str]: Return a dictionary with the parsed attributes.
     """
@@ -161,10 +128,9 @@ def get_attributes(section: ET.Element, eu_od_flag: bool, pdf_file: str, xml_bod
     alternative_treatments = get_alternative_treatments(bullet_points)
     omar_attributes = {
         attr.eu_od_number: get_eu_od_number(section, eu_od_flag),
-        attr.ema_prevalence: get_prevalence(bullet_points),
-        attr.ema_alternative_treatments: alternative_treatments,
-        attr.ema_significant_benefit: get_significant_benefit(bullet_points, alternative_treatments, pdf_file),
-        attr.ema_report_date: get_report_date(xml_body, pdf_file)
+        attr.eu_od_prevalence: get_prevalence(bullet_points),
+        attr.eu_od_alt_treatment: alternative_treatments,
+        attr.eu_od_sig_benefit: get_significant_benefit(bullet_points, alternative_treatments)
     }
 
     return omar_attributes
@@ -173,11 +139,9 @@ def get_attributes(section: ET.Element, eu_od_flag: bool, pdf_file: str, xml_bod
 def get_eu_od_number(section: ET.Element, eu_od_flag: bool) -> str:
     """
     This function finds the orphan designation number that belongs to a condition.
-
     Args:
         section (ET.Element): This is the section obtained with the xml converter.
         eu_od_flag (bool): This boolean represents the presence of a comp section.
-
     Returns:
         str: Returns an eu orphan designation number.
     """
@@ -191,21 +155,16 @@ def get_eu_od_number(section: ET.Element, eu_od_flag: bool) -> str:
     eu_od_number = re.findall(r"eu/\d+/\d+/\d+", section_string)
 
     if len(eu_od_number) > 0:
-        try:
-            return eu_od_number[0].upper()
-        except:
-            return values.not_found
+        return eu_od_number[0]
     else:
-        return values.not_found
+        return attribute_values.not_found
 
 
 def get_prevalence(bullet_points: list[str]) -> str:
     """
     Finds the paragraph that contains the information about the prevalence of the medicine.
-
     Args:
         bullet_points (list[str]): These are all the bullet points from the appropriate section.
-
     Returns:
         str: Return the string with the relevant information about the prevalence or NA if it cannot be found.
     """
@@ -215,16 +174,15 @@ def get_prevalence(bullet_points: list[str]) -> str:
             clean = re.sub(r'\s+', ' ', b).lstrip(" ")
             return clean
 
-    return values.not_found
+    return attribute_values.not_found
 
 
 def get_alternative_treatments(bullet_points: list[str]) -> str:
     """
-    Finds the bullet point that contains the appropriate information and return short description about the findings.
-
+    Finds the bullet point that contains the appropriate information and return
+        short description about the findings.
     Args:
         bullet_points (list[str]): These are all the bullet points from the appropriate section.
-
     Returns:
         str: Return a short description depending on what was found in the bullet point.
     """
@@ -232,26 +190,23 @@ def get_alternative_treatments(bullet_points: list[str]) -> str:
         b = re.sub(r'\s+', ' ', b).lstrip(" ")
 
         if ("no satisfactory method" in b) or ("no satisfactory treatment" in b):
-            return values.eu_alt_treatment_no_benefit
+            return "No Satisfactory Method"
         if "significant benefit" in b:
             if "does not hold" in b:
-                return values.eu_alt_treatment_no_benefit
+                return attribute_values.eu_alt_treatment_no_benefit
             else:
-                return values.eu_alt_treatment_benefit
+                return attribute_values.eu_alt_treatment_benefit
 
-    return values.not_found
+    return attribute_values.not_found
 
 
-def get_significant_benefit(bullet_points: list[str], alternative_treatment: str, pdf_file: str) -> str:
+def get_significant_benefit(bullet_points: list[str], alternative_treatment: str) -> str:
     """
     This function finds the piece of text that supports the reason for the orphan medicine to be
     of significant benefit.
-
     Args:
         bullet_points (list[str]): These are all the bullet points from the appropriate section.
         alternative_treatment (str): The result of the get_alternative_treatment function
-        pdf_file (str): This makes sure that the log can show what file was missing the attribute.
-
     Returns:
         str: Returns the appropriate string, depending on what was found in the file.
     """
@@ -264,42 +219,30 @@ def get_significant_benefit(bullet_points: list[str], alternative_treatment: str
         "based on",
         "a post-hoc",
         "significant benefit",
-        "when the product",
-        "this is supported",
-        "since clinical trials",
-        "it has been shown",
-        "clinical trial data",
-        "the proposed product",
-        "the applicant has provided",
-        "patients who relapsed",
-        "in patients",
-        "although satisfactory" 
+        "when the product"
     ]
 
-    if alternative_treatment == values.eu_alt_treatment_no_benefit:
-        return values.eu_alt_treatment_no_benefit
+    if alternative_treatment == "No Significant Benefit":
+        return "No Significant Benefit"
 
     # Loop through all the bullet points and if a paragraph contains certain words, it will
     # look for a sentence that explains it.
     for b in bullet_points:
         b = re.sub(r'\s+', ' ', b).lstrip(" ")
 
-        if ("significant benefit" in b) or \
-                ("provided clinical data" in b):
+        if ("no satisfactory method" in b) or \
+                ("no satisfactory treatment" in b) or \
+                ("significant benefit" in b):
 
-            key_suffixed = [s + ".*?[\.;]" for s in matching_key]
+            key_suffixed = [s + ".*?\." for s in matching_key]
 
             joined_regex = "|".join(key_suffixed)
 
-            pattern = r"(?:\. |^)(" + joined_regex + r")"
+            pattern = r"(?<=\. )(" + joined_regex + r")"
 
             result = re.findall(pattern, b)
 
             if len(result) > 0:
                 return result[0]
 
-    if alternative_treatment == values.eu_alt_treatment_benefit:
-        log.warning("OMAR PARSER: Significant benefit detected but not scraped - update matching key for " + pdf_file)
-        return values.not_scrapeable
-
-    return values.not_found
+    return attribute_values.not_found
