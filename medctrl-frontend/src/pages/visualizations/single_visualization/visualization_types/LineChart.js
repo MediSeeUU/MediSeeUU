@@ -4,6 +4,7 @@
 
 import React from 'react'
 import Chart from 'react-apexcharts'
+import * as Colors from './Colors'
 
 // line graph component
 function LineChart(props) {
@@ -23,6 +24,7 @@ function LineChart(props) {
           },
         },
       },
+      colors: Colors.line_color,
       xaxis: {
         categories: props.categories,
         labels: {

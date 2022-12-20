@@ -4,6 +4,7 @@
 
 import React from 'react'
 import Chart from 'react-apexcharts'
+import * as Colors from './Colors'
 
 // bar chart component
 function BarChart(props) {
@@ -26,6 +27,7 @@ function BarChart(props) {
           },
         },
       },
+      colors: Colors.bar_color,
       plotOptions: {
         bar: {
           horizontal: props.options.horizontal,
@@ -74,9 +76,6 @@ function BarChart(props) {
       noData: {
         text: `You can select the categories to be displayed.
           Note that creating the graph may take some time`,
-      },
-      theme: {
-        palette: 'palette3',
       },
       states: {
         active: {

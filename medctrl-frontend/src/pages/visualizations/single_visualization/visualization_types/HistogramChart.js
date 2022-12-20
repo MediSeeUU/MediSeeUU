@@ -4,6 +4,7 @@
 
 import React from 'react'
 import Chart from 'react-apexcharts'
+import * as Colors from './Colors'
 
 // histogram chart component
 function HistogramChart(props) {
@@ -23,6 +24,7 @@ function HistogramChart(props) {
           },
         },
       },
+      colors: Colors.histogram_color,
       xaxis: {
         categories: props.categories,
         labels: {

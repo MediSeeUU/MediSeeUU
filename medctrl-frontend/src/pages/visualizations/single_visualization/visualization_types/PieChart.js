@@ -4,6 +4,7 @@
 
 import React from 'react'
 import Chart from 'react-apexcharts'
+import * as Colors from './Colors'
 
 // pie chart component
 function PieChart(props) {
@@ -17,11 +18,12 @@ function PieChart(props) {
         foreColor: 'var(--text-primary)',
         events: {
           dataPointSelection: (event, chartContext, config) => {
-            let eu_pnumbers = props.series.eu_pnumbers[config.dataPointIndex]
-            props.onDataClick(eu_pnumbers)
+            let euNumbers = props.series.euNumbers[config.dataPointIndex]
+            props.onDataClick(euNumbers)
           },
         },
       },
+      colors: Colors.pie_colors,
       dataLabels: {
         enabled: props.labels,
       },
@@ -34,9 +36,7 @@ function PieChart(props) {
            Note that creating the graph may take some time`,
       },
       plotOptions: { pie: { expandOnClick: false } },
-      theme: {
-        palette: 'palette3',
-      },
+
       states: {
         active: {
           allowMultipleDataPointsSelection: false,
