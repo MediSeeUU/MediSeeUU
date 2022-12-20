@@ -13,11 +13,14 @@ na_values = [
     "Value should be present in document",
     ""
 ]
+date_na_values = na_values + ["date is left blank in document"]
+
+all_na_values = na_values + date_na_values
 
 
 class BooleanWithNAField(models.Field):
     def __init__(self, *args, **kwargs):
-        kwargs["max_length"] = 32
+        kwargs["max_length"] = 45
         # Set the field to support null values
         kwargs["null"] = True
         kwargs["blank"] = True
@@ -40,18 +43,10 @@ class BooleanWithNAField(models.Field):
             return False
         return value
 
-    def to_python(self, value):
-        if value == "True":
-            return True
-        elif value == "False":
-            return False
-        return value
-
     def get_prep_value(self, value):
-        bool_na_values = ["True", "False"] + na_values
         if isinstance(value, bool):
             return str(value)
-        elif value is None or value in bool_na_values:
+        elif value is None or value in ["True", "False"] or value in na_values:
             return value
         else:
             raise ValidationError(f"{self.name}: {value} must be either a boolean or a NA message")
@@ -78,13 +73,6 @@ class IntegerWithNAField(models.Field):
             return value
         else:
             return int(value)
-
-    def to_python(self, value):
-        if value == "True":
-            return True
-        elif value == "False":
-            return False
-        return value
 
     def get_prep_value(self, value):
         if isinstance(value, int):
@@ -115,7 +103,6 @@ class DateWithNAField(models.Field):
 
     def get_prep_value(self, value):
         date = datetime.datetime.strptime(value, '%Y-%m-%d')
-        date_na_values = na_values + ["date is left blank in document"]
         # check if valid date
         if date.year >= 0 and date.month <= 12 and date.day <= 31:
             return value

@@ -29,7 +29,7 @@ class LegalBases(models.Model):
 
     eu_legal_basis = create_dashboard_column(
         models.CharField(
-            max_length=14,
+            max_length=45,
             choices=LegalBasesTypes.choices,
             null=False,
             blank=False,

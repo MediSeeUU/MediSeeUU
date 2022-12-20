@@ -36,7 +36,7 @@ class HistoryAuthorisationStatus(models.Model):
 
     eu_aut_status = create_dashboard_history_current_column(
         models.CharField(
-            max_length=10,
+            max_length=45,
             choices=AutStatus.choices,
             null=False,
             blank=False,

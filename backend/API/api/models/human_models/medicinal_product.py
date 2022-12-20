@@ -6,6 +6,7 @@ from api.models.create_dashboard_columns import (
     create_dashboard_column,
     create_dashboard_history_initial_column,
     Category,
+    ExtraDashBoardColumn,
 )
 from .ingredients_and_substances import IngredientsAndSubstances
 from api.models.common import BooleanWithNAField, URLWithNAField
@@ -50,6 +51,15 @@ class MedicinalProduct(models.Model):
         Category.Marketing_authorisation,
         "string",
         "EU Product Number",
+        [
+            ExtraDashBoardColumn(
+                Category.Medicinal_product,
+                "eu_pnumber_id",
+                "string",
+                "EU product number ID",
+                lambda x: x[-3:],
+            )
+        ]
     )
 
     ema_url = create_dashboard_column(

@@ -43,7 +43,7 @@ class IngredientsAndSubstances(models.Model):
 
     atc_code = create_dashboard_column(
         models.CharField(
-            max_length=7,
+            max_length=45,
             null=False,
             blank=False,
         ),

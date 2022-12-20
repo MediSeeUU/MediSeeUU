@@ -34,7 +34,7 @@ class HistoryAuthorisationType(models.Model):
 
     eu_aut_type = create_dashboard_history_current_column(
         models.CharField(
-            max_length=26,
+            max_length=45,
             choices=AutTypes.choices,
             null=False,
             blank=False,
