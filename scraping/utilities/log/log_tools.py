@@ -43,7 +43,8 @@ def init_loggers():
     logging.getLogger("urllib3.connectionpool").setLevel(logging.INFO)  # Avoid urllib3 DEBUG messages
 
     # Create logging module for all other modules
-    logging_names = ["pdf_parser", "annex_10_parser", "xml_converter", "combiner", "db_communicator", "safe_io"]
+    logging_names = ["pdf_parser", "annex_10_parser", "xml_converter", "combiner", "transformer", "db_communicator",
+                     "safe_io"]
     for log_name in logging_names:
         log = logging.getLogger(log_name)
 
