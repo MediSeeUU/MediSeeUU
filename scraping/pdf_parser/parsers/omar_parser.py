@@ -103,9 +103,6 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
             if attributes:
                 omar_attributes[attr.ema_omar_condition].append(attributes)
 
-    for dict in omar_attributes[attr.ema_omar_condition]:
-        dict[attr.ema_report_date] = report_date
-
     medicine_struct.omars.append(omar_attributes)
 
     # When no conditions have been found it will be logged.
@@ -161,9 +158,9 @@ def get_attributes(section: ET.Element, eu_od_flag: bool, pdf_file: str, xml_bod
     alternative_treatments = get_alternative_treatments(bullet_points)
     omar_attributes = {
         attr.eu_od_number: get_eu_od_number(section, eu_od_flag),
-        attr.ema_prevalence: get_prevalence(bullet_points),
-        attr.ema_alternative_treatments: alternative_treatments,
-        attr.ema_significant_benefit: get_significant_benefit(bullet_points, alternative_treatments, pdf_file),
+        attr.eu_od_prevalence: get_prevalence(bullet_points),
+        attr.eu_od_alt_treatment: alternative_treatments,
+        attr.eu_od_sig_benefit: get_significant_benefit(bullet_points, alternative_treatments, pdf_file),
         attr.ema_report_date: get_report_date(xml_body, pdf_file)
     }
 
