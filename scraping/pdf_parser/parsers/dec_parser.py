@@ -134,7 +134,7 @@ def get_data(filename: str, txt: str) -> dict:
 # FUNCTIONS FOR EACH ATTRIBUTE
 
 
-def dec_get_date(txt: str) -> str | datetime.datetime:
+def dec_get_date(txt: str) -> str | datetime.date:
     """
     Extracts date out of text
 
@@ -143,7 +143,7 @@ def dec_get_date(txt: str) -> str | datetime.datetime:
 
     Returns:
         str: string indicating found date or if date is not found
-        datetime.datetime: found date
+        datetime.date: found date
     """
     txt = txt.lower()
     if len(re.split('of ', txt, 1)) > 1:
@@ -252,13 +252,13 @@ def dec_get_decision_type(txt: str, date: datetime.datetime) -> str:
 
     Args:
         txt (str): plain decision pdf text
-        date (datetime.datetime): decision date of pdf
+        date (datetime.date): decision date of pdf
 
     Returns:
         str: found type or default value
     """
     # check if there can be a CMA.
-    if date < datetime.datetime(2006, 1, 1):
+    if date < datetime.date(2006, 1, 1):
         return attribute_values.NA_before
 
     exceptional = re.search(r"article\s+14\W8", txt.lower())  # exceptional: Article 14(8) or alt. (e.g. Article 14.8)
@@ -313,7 +313,7 @@ def dec_get_mah(txt: str) -> str:
             return attribute_values.not_found
 
 
-def dec_get_od(txt: str, date: datetime.datetime) -> str:
+def dec_get_od(txt: str, date: datetime.date) -> str:
     """
     Extracts orphan designation out of decision text
 
@@ -325,7 +325,7 @@ def dec_get_od(txt: str, date: datetime.datetime) -> str:
         str: found orphan designation or default value
     """
     # check if there can be a NAS.
-    if date < datetime.datetime(2000, 4, 28):
+    if date < datetime.date(2000, 4, 28):
         return attribute_values.NA_before
 
     if 'orphan medicinal product' in txt.lower():
@@ -342,14 +342,14 @@ def dec_get_atmp(txt: str, date: datetime.datetime) -> str | bool:
 
     Args:
         txt (str): plain decision pdf text
-        date (datetime.datetime): decision date of pdf
+        date (datetime.date): decision date of pdf
 
     Returns:
         str: found ATMP or default value
         bool: found result
     """
     # check if there can be a ATMP.
-    if date < datetime.datetime(2007, 12, 30):
+    if date < datetime.date(2007, 12, 30):
         return attribute_values.NA_before
 
     regulation = "Regulation (EC) No 1394/2007"
@@ -368,14 +368,14 @@ def dec_get_nas(txt, date) -> str | bool:
 
     Args:
         txt (str): plain decision pdf text
-        date (datetime.datetime): decision date of pdf
+        date (datetime.date): decision date of pdf
 
     Returns:
         str: NAS not relevant
         bool: found result
     """
     # check if there can be a NAS.
-    if date < datetime.datetime(2012, 1, 1):
+    if date < datetime.date(2012, 1, 1):
         return attribute_values.NA_before
 
     if "committee for medicinal products for human use" in txt.lower() and "a new active substance" in txt.lower():
@@ -383,7 +383,7 @@ def dec_get_nas(txt, date) -> str | bool:
     return False
 
 
-def dec_get_od_comp_date(txt) -> datetime.datetime:
+def dec_get_od_comp_date(txt) -> datetime.date:
     """
     Gives date of orphan comp from decision files.
 

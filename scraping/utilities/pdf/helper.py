@@ -65,7 +65,7 @@ def convert_months(date_str: str) -> datetime.date | str:
         date = datetime.datetime.strptime(date_str, '%d/%m/%Y').date()
     except ValueError as e:
         log.warning(f"Date {date_str} could not be parsed. Warning message: {e}")
-    return date
+    return date.date()
 
 
 def convert_roman_numbers(date: str) -> str:
