@@ -8,6 +8,7 @@ import scraping.combiner.attribute_combining_functions as acf
 import scraping.utilities.definitions.attributes as attr
 import scraping.utilities.definitions.attribute_objects as attr_obj
 import scraping.utilities.definitions.sources as src
+import logging
 
 log = logging.getLogger("combiner")
 
