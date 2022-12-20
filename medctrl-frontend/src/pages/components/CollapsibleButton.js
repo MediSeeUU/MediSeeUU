@@ -18,10 +18,9 @@ function CollapsibleButton({name, content}) {
             </button>  
             {
                 open && 
-                <div>
-                    <pre>
+                <div className="med-info-changelog-container ">
                     {content}
-                    </pre>
+
                 </div>
             }    
         </div>
