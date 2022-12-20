@@ -190,14 +190,17 @@ def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str]
         str: _description_
     """
     annex_initial_dict = file_dicts[src.annex_initial]
+    if annex_initial_dict == {}:
+        log.warning(f"COMBINER: no annex initial in {eu_pnumber}")
+        return attribute_values.not_found
     eu_med_type = annex_initial_dict[attr.eu_med_type]
     eu_med_type_date = get_attribute_date(src.annex_initial, file_dicts)
     eu_atmp = file_dicts[src.decision][attr.eu_atmp]
 
     if eu_med_type == attribute_values.eu_med_type_biologicals and eu_atmp:
-        return (attribute_values.eu_med_type_atmp, eu_med_type_date)
+        return attribute_values.eu_med_type_atmp, eu_med_type_date
 
-    return (eu_med_type, eu_med_type_date)
+    return eu_med_type, eu_med_type_date
 
 
 def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[bool, str]:
