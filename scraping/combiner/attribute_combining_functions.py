@@ -89,7 +89,7 @@ def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> st
 # TODO: fix datum
 def combine_select_string_overlap(eu_pnumber: str, attribute_name: str, sources: list[str],
                                   file_dicts: dict[str, dict[str, any]],
-                                  min_matching_fraction: float = 0.8) -> tuple[str, datetime]:
+                                  min_matching_fraction: float = 0.8) -> tuple[str, datetime.date]:
     """
     compares two strings to see if a percentage of the shortest string is identical to the longest string
     Args:
@@ -213,13 +213,13 @@ def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str]
         if eu_med_type == attribute_values.eu_med_type_biologicals and eu_atmp:
             return attribute_values.eu_med_type_atmp, eu_med_type_date
     except:
-        pass
+        return attribute_values.not_found, attribute_values.default_date
 
     return eu_med_type, eu_med_type_date
 
 
 def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list[str],
-                             file_dicts: dict[str, dict[str, any]]) -> tuple[bool, datetime] | tuple[bool, str]:
+                             file_dicts: dict[str, dict[str, any]]) -> tuple[bool, datetime.date] | tuple[bool, str]:
     try:
         are_equal = False
 
