@@ -10,7 +10,6 @@ from django.core.cache import cache
 from rest_framework.settings import settings
 
 from api.serializers.medicine_serializers.public import PublicMedicinalProductSerializer
-from api.serializers.medicine_serializers.scraper.get import UrlsSerializer
 from api.models.human_models import MedicinalProduct
 import logging
 
@@ -30,9 +29,9 @@ def update_cache():
             cache.set(
                 "medicine_cache", medicine_serializer.data, None
             )  # We set cache timeout to none so it never expires
-            urls_serializer = UrlsSerializer(queryset, many=True)
-            cache.set(
-                "urls_cache", urls_serializer.data, None
-            )  # We set cache timeout to none so it never expires
+            logging.info("Updated cache")
         except Exception as e:
             logger.warning(f"An error has occurred while updating cache: {str(e)}")
+
+
+update_cache()

@@ -28,8 +28,6 @@ class OrphanMedicineViewSet(viewsets.ViewSet):
 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    update_cache()
-
     def list(self, _):
         """
         Returns a list of medicines according to the access level of the user
