@@ -9,11 +9,8 @@
 from django.urls import path, include
 from rest_framework import routers
 from api.views.scraper.post.scraper_post import ScraperMedicine
-from .scraper_urls_view import UrlsViewSet
 
 router = routers.DefaultRouter()
-router.register(r"urls", UrlsViewSet, basename="scraped_urls")
-
 # url patterns for the scraper endpoints
 url_patterns = [
     path(r"medicine/", ScraperMedicine.as_view(), name="medicine"),
