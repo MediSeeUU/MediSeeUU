@@ -9,6 +9,7 @@ import pandas as pd
 
 log = logging.getLogger("combiner")
 
+
 # TODO: remove try catch
 def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]) -> str:
     if source_string == src.web:
@@ -23,7 +24,9 @@ def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]
         except Exception:
             return attribute_values.default_date
 
-def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> list[any]:
+
+def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> list[
+    any]:
     values = []
     for source in sources:
         dict = file_dicts[source]
@@ -32,6 +35,7 @@ def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts:
         except Exception:
             log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
     return values
+
 
 def check_all_equal(values: list[any]) -> bool:
     """
@@ -52,7 +56,8 @@ def check_all_equal(values: list[any]) -> bool:
     return all_same and values[0] is not None
 
 
-def combine_best_source(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> any:
+def combine_best_source(eu_pnumber: str, attribute_name: str, sources: list[str],
+                        file_dicts: dict[str, dict[str, any]]) -> any:
     """
 
     Args:
@@ -67,8 +72,9 @@ def combine_best_source(eu_pnumber: str, attribute_name: str, sources: list[str]
     attributes.append(attribute_values.not_found)
     return attributes[0]
 
+
 def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> str:
-    if len(strings) < 2:
+    if len(strings) >= 2:
         overlap = SM(None, strings[0].lower(), strings[1].lower()).find_longest_match()
         if float(overlap.size / len(strings[0])) >= min_matching_fraction:
             return strings[0][overlap.a:overlap.a + overlap.size]
@@ -78,8 +84,9 @@ def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> st
 
 # For combine functions
 # TODO: fix datum
-def combine_select_string_overlap(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]],
-                                  min_matching_fraction: float = 0.8) -> tuple[str,str]:
+def combine_select_string_overlap(eu_pnumber: str, attribute_name: str, sources: list[str],
+                                  file_dicts: dict[str, dict[str, any]],
+                                  min_matching_fraction: float = 0.8) -> tuple[str, str]:
     """
     compares two strings to see if a percentage of the shortest string is identical to the longest string
     Args:
@@ -92,7 +99,7 @@ def combine_select_string_overlap(eu_pnumber: str, attribute_name: str, sources:
     strings = get_values_from_sources(attribute_name, sources, file_dicts)
 
     if strings:
-        overlap = string_overlap(strings,min_matching_fraction)
+        overlap = string_overlap(strings, min_matching_fraction)
 
         if overlap != attribute_values.insufficient_overlap:
             return (overlap, attribute_values.default_date)
@@ -100,7 +107,8 @@ def combine_select_string_overlap(eu_pnumber: str, attribute_name: str, sources:
     return (attribute_values.insufficient_overlap, get_attribute_date(sources[0], file_dicts))
 
 
-def combine_get_file_url(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> str:
+def combine_get_file_url(eu_pnumber: str, attribute_name: str, sources: list[str],
+                         file_dicts: dict[str, dict[str, any]]) -> str:
     try:
         for source in sources:
             return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["file_link"]
@@ -111,7 +119,8 @@ def combine_get_file_url(eu_pnumber: str, attribute_name: str, sources: list[str
     return attribute_values.url_not_found
 
 
-def combine_decision_time_days(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
+def combine_decision_time_days(eu_pnumber: str, attribute_name: str, sources: list[str],
+                               file_dicts: dict[str, dict[str, any]]) -> int:
     if attr.chmp_opinion_date not in file_dicts[src.epar].keys():
         return attribute_values.invalid_period_days
 
@@ -129,7 +138,8 @@ def combine_decision_time_days(eu_pnumber: str, attribute_name: str, sources: li
         return attribute_values.invalid_period_days
 
 
-def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
+def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources: list[str],
+                                   file_dicts: dict[str, dict[str, any]]) -> int:
     epar_keys = file_dicts[src.epar].keys()
     if attr.chmp_opinion_date not in epar_keys or attr.ema_procedure_start_initial not in epar_keys:
         return attribute_values.invalid_period_days
@@ -147,7 +157,8 @@ def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources
         return attribute_values.invalid_period_days
 
 
-def combine_assess_time_days_active(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
+def combine_assess_time_days_active(eu_pnumber: str, attribute_name: str, sources: list[str],
+                                    file_dicts: dict[str, dict[str, any]]) -> int:
     annex_10_keys = reversed(sorted(file_dicts[src.annex_10].keys()))
 
     for year_key in annex_10_keys:
@@ -159,7 +170,8 @@ def combine_assess_time_days_active(eu_pnumber: str, attribute_name: str, source
     return attribute_values.invalid_period_days
 
 
-def combine_assess_time_days_cstop(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
+def combine_assess_time_days_cstop(eu_pnumber: str, attribute_name: str, sources: list[str],
+                                   file_dicts: dict[str, dict[str, any]]) -> int:
     annex_10_keys = reversed(sorted(file_dicts[src.annex_10].keys()))
 
     for year_key in annex_10_keys:
@@ -171,7 +183,8 @@ def combine_assess_time_days_cstop(eu_pnumber: str, attribute_name: str, sources
     return attribute_values.invalid_period_days
 
 
-def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[str,str]:
+def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str],
+                        file_dicts: dict[str, dict[str, any]]) -> tuple[str, str]:
     """_summary_
 
     Args:
@@ -194,37 +207,40 @@ def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str]
     return eu_med_type, eu_med_type_date
 
 
-def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[bool, str]:
+def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list[str],
+                             file_dicts: dict[str, dict[str, any]]) -> tuple[bool, str]:
     try:
         are_equal = False
 
         web_dict = file_dicts[src.web]
         ema_number_web = web_dict[attr.ema_number]
         if ema_number_web == attribute_values.not_found:
-            return (are_equal,attribute_values.default_date)
+            return (are_equal, attribute_values.default_date)
 
         ema_excel = get_ema_excel("..\data/ema_excel/", "ema_excel.xlsx")
 
         if ema_number_web in ema_excel:
             web_brandname = web_dict[attr.eu_brand_name_current]
             excel_brandname = ema_excel[ema_number_web]
-            if string_overlap([web_brandname,excel_brandname]) != attribute_values.insufficient_overlap:
+            if string_overlap([web_brandname, excel_brandname]) != attribute_values.insufficient_overlap:
                 are_equal = True
-
 
         ema_number_date = get_attribute_date(src.web, file_dicts)
 
-        return(are_equal, ema_number_date)
+        return (are_equal, ema_number_date)
     except Exception:
-        return(False,attribute_values.default_date)
+        return (False, attribute_values.default_date)
 
 
-def combine_eu_procedures_todo(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> list[dict[str, bool]]:
+def combine_eu_procedures_todo(eu_pnumber: str, attribute_name: str, sources: list[str],
+                               file_dicts: dict[str, dict[str, any]]) -> list[dict[str, bool]]:
     return [{attr.eu_referral: file_dicts[src.web][attr.eu_referral] == "True",
              attr.eu_suspension: file_dicts[src.web][attr.eu_suspension] == "True"}]
 
-def combine_eu_aut_date(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> datetime.date:
-    values = get_values_from_sources(attribute_name,sources,file_dicts)
+
+def combine_eu_aut_date(eu_pnumber: str, attribute_name: str, sources: list[str],
+                        file_dicts: dict[str, dict[str, any]]) -> datetime.date:
+    values = get_values_from_sources(attribute_name, sources, file_dicts)
 
     if not check_all_equal(values):
         log.warning(f"COMBINER: crosscheck for {attribute_name} failed")
@@ -253,21 +269,21 @@ def json_history_initial(value: any, date: str) -> list[dict[str, any]]:
 
 def convert_ema_num(ema_number: str) -> str:
     if 'EMEA/H/C/' in ema_number:
-        number = ema_number.split('EMEA/H/C/',1)[1]
+        number = ema_number.split('EMEA/H/C/', 1)[1]
         return f"EMEA/H/C/{number.lstrip('0')}"
     else:
         return attribute_values.not_found
 
 
 def get_ema_excel(filepath: str, filename: str) -> dict:
-    #return pre-made dict if available
+    # return pre-made dict if available
     try:
         with open(f"{filepath}/ema_excel.json", "r") as file:  # Use file to refer to the file object
             return json.load(file)
     except Exception:
         pass
 
-    #make dictionary from excel
+    # make dictionary from excel
     try:
         df_number = pd.read_excel(f"{filepath}/{filename}", header=8)
         pnumber_key = 'Product number'
@@ -291,7 +307,7 @@ def get_ema_excel(filepath: str, filename: str) -> dict:
             json.dump(num_dict, file)
         return num_dict
 
-    #excel not found
+    # excel not found
     except Exception:
         print(f"COMBINER: {src.ema_excel} not found at {filepath}")
         return {}
