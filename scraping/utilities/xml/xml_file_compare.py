@@ -93,27 +93,33 @@ def compare_xml_files_dict(new_xml_path: str, old_xml_path: str) -> dict[str, an
     removed_keys = [key for key in sections_old_file.keys() if key not in shared_keys]
 
     for section_key in added_keys:
-        comparison_dict["changes"].append({
+        change_dict = {
             "change": "added section",
             "header": sections_new_file[section_key][0],
-            "section text": sections_new_file[section_key][1]
-        })
+            "section_text": sections_new_file[section_key][1]
+        }
+        change_dict["change_note"] = change_dict_to_string(change_dict)
+        comparison_dict["changes"].append(change_dict)
     
     for section_key in removed_keys:
-        comparison_dict["changes"].append({
+        change_dict = {
             "change": "removed section",
             "header": sections_old_file[section_key][0],
-            "section text": sections_old_file[section_key][1]
-        })
+            "section_text": sections_old_file[section_key][1]
+        }
+        change_dict["change_note"] = change_dict_to_string(change_dict)
+        comparison_dict["changes"].append(change_dict)
 
     for section_key in shared_keys:
         if clean_string(sections_old_file[section_key][1]) != clean_string(sections_new_file[section_key][1]):
-            comparison_dict["changes"].append({
+            change_dict = {
                 "change": "changed section content",
                 "header": sections_new_file[section_key][0],
-                "old content": sections_old_file[section_key][1],
-                "new content": sections_new_file[section_key][1]
-            })
+                "old_content": sections_old_file[section_key][1],
+                "new_content": sections_new_file[section_key][1]
+            }
+            change_dict["change_note"] = change_dict_to_string(change_dict)
+            comparison_dict["changes"].append(change_dict)
 
     return comparison_dict
 
@@ -149,12 +155,13 @@ def compare_annexes_folder(folder: str, replace_all = False, filename_suffix: st
     annex_files.sort(key= lambda annex_name: int(annex_name.split(".")[0].split("_")[-1]))
     subfolders = [path.join(folder, subfolder) for subfolder in os.listdir(folder) if path.isdir(path.join(folder, subfolder))]
     comparisons = {"eu_number": path.basename(folder),
-                   "update date": datetime.datetime.now(),
+                   "last_updated": datetime.datetime.now(),
                    "changelogs": []}
-    filename = path.basename(folder) + filename_suffix
+    # filename = path.basename(folder) + filename_suffix
+    filename = path.join(folder, path.basename(folder) + filename_suffix)
 
-    if folder_changelog_up_to_date(folder, filename):
-        annex_files = []
+    # if folder_changelog_up_to_date(folder, filename) and not replace_all:
+    #     annex_files = []
 
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
         joblib.delayed(compare_annexes_folder)(subfolder) for subfolder in
@@ -174,87 +181,105 @@ def compare_annexes_folder(folder: str, replace_all = False, filename_suffix: st
     #     comparisons["changelogs"].append(compare_xml_files_dict(annex_files[i], annex_files[i - 1]))
 
     if len(annex_files) > 0:
-        print("writing to file", str(path.join(folder, path.basename(folder), filename)))
         try:
-            with open(path.join(folder, filename), "w") as comparison_json:
-                json.dump(comparisons, comparison_json)
-        except Exception:
-            print("ANNEX COMPARER: cannot write", path.join(folder, filename))
+            print("writing to file", str(filename))
+            with open(filename, "w") as comparison_json:
+                json.dump(comparisons, comparison_json, default=str)
+        except Exception as e:
+            print("ANNEX COMPARER: cannot write", filename)
+            print(e)
 
 
 def clean_section_text(change_key: str, change: dict[str, str]) -> str:
-    enter_seperator = "\n\t\t\t"
+    enter_seperator = "\n\t\t"
     return enter_seperator.join(list(map(str.strip, change[change_key].split("\n"))))
 
-def changelog_to_text(changelog: dict[str,str]) -> str:
-    text = ""
-    text += changelog["new_file"] + ":\n\n"
 
-    for change in changelog["changes"]:
-        text += "\t" + change["change"].strip() + ": " + change["header"].replace("\n", "").strip() + "\n\n"
-        keys = change.keys()
+def change_dict_to_string(change: dict[str,str]) -> str:
+    text = "\t" + change["change"].strip() + ": " + change["header"].replace("\n", "").strip() + "\n\n"
+    keys = change.keys()
 
-        if "section text" in keys:
-            text += "\t\t" + "section text:\n"
-            section_text = clean_section_text("section text", change)
-            text += "\t\t\t" + section_text + "\n"
-        if "new content" in keys:
-            text += "\t\t" + "new content:\n"
-            section_text = clean_section_text("new content", change)
-            text += "\t\t\t" + section_text + "\n"
-        if "old content" in keys:
-            text += "\t\t" + "old content:\n"
-            section_text = clean_section_text("old content", change)
-            text += "\t\t\t" + section_text + "\n"
-            
+    if "section_text" in keys:
+        text += "\t\t" + "section_text:\n"
+        section_text = clean_section_text("section_text", change)
+        text += "\t\t" + section_text + "\n"
+    if "new_content" in keys:
+        text += "\t\t" + "new_content:\n"
+        section_text = clean_section_text("new_content", change)
+        text += "\t\t" + section_text + "\n"
+    if "old_content" in keys:
+        text += "\t\t" + "old_content:\n"
+        section_text = clean_section_text("old_content", change)
+        text += "\t\t" + section_text + "\n"
+        
         text += "\n"
 
     return text
 
 
-def changelog_json_to_text(changelog_filepath: str) -> str:
-    changelog_dict = {}
-    try:
-        with open(changelog_filepath, "r") as changelog_json:
-            changelog_dict = json.load(changelog_json)
-    except Exception:
-        print("ANNEX COMPARER:", changelog_filepath, "does not exist")
-        return ""
+# def changelog_json_to_text(changelog_filepath: str) -> str:
+#     changelog_dict = {}
+#     try:
+#         with open(changelog_filepath, "r") as changelog_json:
+#             changelog_dict = json.load(changelog_json)
+#     except Exception:
+#         print("ANNEX COMPARER:", changelog_filepath, "does not exist")
+#         return ""
     
-    text = ""
-    for changelog in changelog_dict["changelogs"]:
-        text += changelog_to_text(changelog)
+#     text = ""
+#     for changelog in changelog_dict["changelogs"]:
+#         text += changelog["new_file"] + ":\n\n"
 
-    return text
+#         for change_dict in changelog["changes"]:
+#             text += change_dict["change_note"]
+
+#     return text
 
 
 def changelog_json_to_text_file(changelog_filepath: str, save_filepath: str):
-    file_content = changelog_json_to_text(changelog_filepath)
-    file_lines = file_content.split("\n")
-    print(file_lines)
     try:
-        changelog_text_file = open(save_filepath, "w")
-    except Exception:
-        print("ANNEX COMPARER: cannot create", save_filepath)
+        changelog_text_file = open(save_filepath, "w", encoding="utf-8")
+    except Exception as e:
+        print("ANNEX COMPARER:", e, "| cannot create", save_filepath)
+        return
+        
+    try:
+        with open(changelog_filepath, "r") as changelog_json:
+            changelog_dict = json.load(changelog_json)
+    except Exception as e:
+        print("ANNEX COMPARER:", e, "| file does not exist:", changelog_filepath)
         return
 
-    for line in file_lines:
+    for changelog_dict in changelog_dict["changelogs"]:
         try:
-            changelog_text_file.write(line + "\n")
-        except Exception:
-            print("ANNEX COMPARER: cannot write line: ", line)
-
-    try:
-        changelog_text_file.write(file_content)
-    except Exception:
-        print("ANNEX COMPARER: cannot write file_content: ", file_content)
+            changelog_text_file.write(changelog_dict["new_file"] + ":\n\n")
+        except Exception as e:
+            print(e)
+            return
+        for change_dict in changelog_dict["changes"]:
+            text = change_dict["change_note"]
+            try:
+                changelog_text_file.write(text)
+            except Exception as e:
+                print("ANNEX COMPARER:", e, "| cannot write line: ", text)
 
     changelog_text_file.close()
-    print("closed file")
+
+
+def create_changelog_txt(folder: str):
+    changelog_jsons = [path.join(folder, file) for file in os.listdir(folder) if ".json" in file and "changelog" in file]
+    subfolders = [path.join(folder, subfolder) for subfolder in os.listdir(folder) if path.isdir(path.join(folder, subfolder))]
+
+    joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
+        joblib.delayed(create_changelog_txt)(subfolder) for subfolder in
+        tqdm(subfolders))
+
+    for changelog_json in changelog_jsons:
+        changelog_json_to_text_file(changelog_json, changelog_json.replace("json", "txt"))
 
 
 
-# data_folder = "D:\\Git_repos\\MediSeeUU\\data"
+data_folder = "D:\\Git_repos\\MediSeeUU\\data"
 # new_xml         = "D:\\Git_repos\\MediSeeUU\\data\\active_withdrawn\\EU-1-00-130\\EU-1-00-130_h_anx_2.xml"
 # old_xml         = "D:\\Git_repos\\MediSeeUU\\data\\active_withdrawn\\EU-1-00-130\\EU-1-00-130_h_anx_1.xml"
 # changelog_json  = "D:\\Git_repos\\MediSeeUU\\data\\active_withdrawn\\EU-1-00-130\\EU-1-00-130_annex_changelog.json"
@@ -263,7 +288,7 @@ def changelog_json_to_text_file(changelog_filepath: str, save_filepath: str):
 # compare_xml_files_file(new_xml, old_xml, save_dir)
 # changelog_json_to_text_file(changelog_json, changelog_txt)
 # compare_annexes_folder(data_folder)
-
+create_changelog_txt(data_folder)
 
 
         
