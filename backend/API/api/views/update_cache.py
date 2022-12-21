@@ -9,8 +9,9 @@
 from django.core.cache import cache
 from rest_framework.settings import settings
 
-from api.serializers.medicine_serializers.public import PublicMedicinalProductSerializer
 from api.models.human_models import MedicinalProduct
+from api.models.orphan_models import OrphanProduct
+from api.serializers.medicine_serializers.public import PublicMedicinalProductSerializer, OrphanProductSerializer
 import logging
 
 logger = logging.getLogger(__name__)
@@ -24,11 +25,18 @@ def update_cache():
         logger.info("Caching turned off, skipping cache update")
     else:
         try:
-            queryset = MedicinalProduct.objects.all()
-            medicine_serializer = PublicMedicinalProductSerializer(queryset, many=True)
+            human_queryset = MedicinalProduct.objects.all()
+            human_serializer = PublicMedicinalProductSerializer(human_queryset, many=True)
             cache.set(
-                "medicine_cache", medicine_serializer.data, None
+                "human_cache", human_serializer.data, None
             )  # We set cache timeout to none so it never expires
+
+            orphan_queryset = OrphanProduct.objects.all()
+            orphan_serializer = OrphanProductSerializer(orphan_queryset, many=True)
+            cache.set(
+                "orphan_cache", orphan_serializer.data, None
+            )  # We set cache timeout to none so it never expires
+
             logging.info("Updated cache")
         except Exception as e:
             logger.warning(f"An error has occurred while updating cache: {str(e)}")

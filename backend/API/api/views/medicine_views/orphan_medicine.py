@@ -14,7 +14,6 @@ from django.core.cache import cache
 from api.models.orphan_models import models, OrphanProduct
 from api.models.get_dashboard_columns import insert_extra_dashboard_columns
 from api.serializers.medicine_serializers.public import OrphanProductSerializer
-from api.views.update_cache import update_cache
 from api.views.other import permission_filter
 import logging
 
@@ -35,16 +34,16 @@ class OrphanMedicineViewSet(viewsets.ViewSet):
         Returns:
             httpResponse: returns a list of filtered medicine corresponding to this type of user.
         """
-        cache_medicine = cache.get("orphan_cache")
+        orphan_cache = cache.get("orphan_cache")
 
         # if the data is not present in the cache, we just obtain the data from the database
-        if not cache_medicine:
+        if not orphan_cache:
             queryset = OrphanProduct.objects.all()
             serializer = OrphanProductSerializer(queryset, many=True)
-            cache_medicine = serializer.data
-            cache.set("orphan_cache", cache_medicine, None)
+            orphan_cache = serializer.data
+            cache.set("orphan_cache", orphan_cache, None)
 
-        data = insert_extra_dashboard_columns(cache_medicine, models)
+        data = insert_extra_dashboard_columns(orphan_cache, models)
 
         user = self.request.user
         perms = permission_filter(user)

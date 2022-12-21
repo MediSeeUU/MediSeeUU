@@ -42,6 +42,6 @@ def insert_extra_dashboard_columns(data, models):
                                     medicine[extra_dashboard_column.data_key] = \
                                         extra_dashboard_column.function(medicine[data_key])
                                 except Exception as e:
-                                    logger.error(f"ExtraDashBoardColumn function on {data_key} "
+                                    logger.error(f"ExtraDashBoardColumn function on {field.name} "
                                                  f"has failed with exception: \"{str(e)}\".")
     return data
