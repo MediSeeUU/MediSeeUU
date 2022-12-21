@@ -439,12 +439,12 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
     eu_aut_str: str = procedures_json[authorisation_row]["decision"]["date"]
     if eu_aut_str is not None:
-        eu_aut_date: str = str(datetime.strptime(eu_aut_str, '%Y-%m-%d').date())
+        eu_aut_date: datetime.date = datetime.strptime(eu_aut_str, '%Y-%m-%d').date()
         eu_aut_type_initial: str = determine_initial_aut_type(eu_aut_date.year,
                                                               is_exceptional,
                                                               is_conditional)
     else:
-        eu_aut_date: str = values.not_found
+        eu_aut_date = values.not_found
         eu_aut_type_initial: str = values.not_found
 
     # From the list of EMA numbers, the right one is chosen and its certainty determined
@@ -459,7 +459,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
         ema_number_id = re.search(r'\d+/\d+', ema_number)[0].lstrip('0')
 
     # Currently when an attribute is not found it is simply printed to the console
-    procedures_dict[attr.eu_aut_date] = eu_aut_date
+    procedures_dict[attr.eu_aut_date] = str(eu_aut_date)
     procedures_dict[attr.eu_aut_type_initial] = eu_aut_type_initial
     procedures_dict[attr.eu_aut_type_current] = determine_current_aut_type(last_decision_types)
     if "od" in ema_number.lower():
