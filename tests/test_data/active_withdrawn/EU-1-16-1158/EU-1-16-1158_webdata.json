@@ -1,0 +1,21 @@
+{
+    "eu_pnumber": "EU/1/16/1158",
+    "atc_code": "B02BD02",
+    "eu_aut_status": "ACTIVE",
+    "eu_brand_name_current": "AFSTYLA",
+    "status_type": "a",
+    "active_substance": "lonoctocog alfa",
+    "eu_mah_current": "CSL Behring GmbH",
+    "orphan_status": "h",
+    "eu_aut_date": "2017-01-04 00:00:00",
+    "eu_aut_type_initial": "standard",
+    "eu_aut_type_current": "standard",
+    "ema_number": "EMEA/H/C/4075",
+    "ema_number_id": "4075",
+    "eu_referral": "False",
+    "eu_suspension": "False",
+    "ema_number_certainty": "0.6",
+    "authorisation_row": "0",
+    "scrape_date_web": "19/12/2022",
+    "filedates": {}
+}

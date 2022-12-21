@@ -1,0 +1,1857 @@
+<?xml version="1.1" encoding="UTF-8" standalone="yes"?><xml><head><creation_date>D:20181203153129Z</creation_date><modification_date>D:20181203153220Z</modification_date><initial_authorization>False</initial_authorization><pdf_file>EU-1-03-269_h_epar-other_1.pdf</pdf_file></head><body><section><header n="30">30 churchill place ● canary wharf ● london e14 5eu ● united kingdom an agency of the european union     telephone +44 (0)20 3660 6000 facsimile +44 (0)20 3660 5520 send a question via our website www.ema.europa.eu/contact  12 october 2017 ema/53381/2018  
+ committee for medicinal products for human use (chmp) 
+  
+ assessment report</header></section><section><header>faslodex</header><p>international non-proprietary name: fulvestrant procedure no. emea/h/c/000540/ii/0059</p></section><section><header>note</header><p>variation assessment report as adopted by the chmp with all information of a commercially confidential nature deleted.</p><p> ema/53381/2018 
+ page 2/54</p></section><section><header>table of contents</header></section><section><header n="1">1. background information on the procedure .............................................. 6</header><p>1.1. type ii variation .................................................................................................. 6</p></section><section><header n="2">2. scientific discussion ................................................................................ 7</header><p>2.1. introduction ........................................................................................................ 7 2.1.1. disease or condition .......................................................................................... 7 2.1.1. epidemiology .................................................................................................... 7 2.1.1. biologic features and clinical presentation............................................................. 7 2.1.1. management ..................................................................................................... 7 2.2. non-clinical aspects ............................................................................................ 10 2.2.1. introduction.................................................................................................... 10 2.2.2. ecotoxicity/environmental risk assessment ......................................................... 10 2.2.3. discussion on non-clinical aspects ..................................................................... 11 2.2.4. conclusion on the non-clinical aspects ............................................................... 11 2.3. clinical aspects .................................................................................................. 12 2.3.1. introduction.................................................................................................... 12 2.4. clinical efficacy .................................................................................................. 13 2.4.1. main study ..................................................................................................... 13 2.4.2. discussion on clinical efficacy ............................................................................ 38 2.4.3. conclusions on the clinical efficacy .................................................................... 39 2.5. clinical safety .................................................................................................... 39 2.5.1. discussion on clinical safety .............................................................................. 47 2.5.2. conclusions on clinical safety ............................................................................ 47 2.5.3. psur cycle ..................................................................................................... 48 2.6. risk management plan ....................................................................................... 48 2.7. update of the product information ........................................................................ 49 2.7.1. user consultation ............................................................................................ 49</p></section><section><header n="3">3. benefit-risk balance ............................................................................. 49</header><p>3.1. therapeutic context ........................................................................................... 49 3.1.1. disease or condition ........................................................................................ 49 3.1.2. available therapies and unmet medical need ....................................................... 49 3.1.3. main clinical studies ......................................................................................... 50 3.2. favourable effects .............................................................................................. 50 3.3. uncertainties and limitations about favourable effects ............................................. 51 3.4. unfavourable effects ........................................................................................... 51 3.5. uncertainties and limitations about unfavourable effects ......................................... 52 3.6. effects table ...................................................................................................... 52 3.7. benefit-risk assessment and discussion ................................................................. 53 3.7.1. importance of favourable and unfavourable effects .............................................. 53 3.7.2. discussion on the benefit-risk assessment .......................................................... 53 3.7.3. balance of benefits and risks ............................................................................ 53 3.8. conclusions ....................................................................................................... 53</p><p>ema/53381/2018 
+ page 3/54</p></section><section><header n="4">4. recommendations ................................................................................. 54</header><p> ema/53381/2018 
+ page 4/54</p></section><section><header>list of abbreviations</header><p>at</p><p> 
+ all treated as treated (population) 
+ ae</p><p>
+ adverse event 
+ alt</p><p>
+ alanine aminotransferase 
+ anc</p><p>
+ absolute neutrophil count 
+ ast</p><p>
+ aspartate aminotransferase 
+ auc</p><p>
+ area under the plasma concentration-time curve 
+ auc24</p><p> 
+ auc from time 0 to 24 hours 
+ aucinf</p><p> 
+ auc from time 0 to infinity 
+ bcrp</p><p> 
+ breast cancer resistance protein 
+ bicr</p><p>
+ blinded independent central review 
+ bm-negative</p><p>
+ biomarker-negative 
+ bm-positive</p><p>
+ biomarker-positive 
+ bt</p><p>
+ blinded treatment 
+ cbr</p><p>
+ clinical benefit response 
+ ccnd1</p><p> 
+ cyclin d 
+ cdk</p><p>
+ cyclin-dependent kinase 
+ cdkn2a</p><p>
+ cyclin-dependent kinase inhibitor 2a (also known as p16ink4a), the product of the 
+ cdkn2a gene 
+ ci</p><p>
+ confidence interval 
+ cmax</p><p> 
+ maximum observed plasma concentration 
+ cr</p><p>
+ complete response 
+ crf</p><p>
+ case report form 
+ csr</p><p>
+ clinical study report 
+ ct</p><p>
+ computerized tomography 
+ ctcae</p><p> 
+ common terminology criteria for adverse events 
+ cyp</p><p>
+ cytochrome p450 
+ dor</p><p>
+ duration of objective response 
+ ecg</p><p>
+ electrocardiogram 
+ ecog</p><p> 
+ eastern cooperative oncology group 
+ er</p><p>
+ (o)estrogen receptor 
+ g</p><p>
+ gram 
+ gi</p><p>
+ gastrointestinal 
+ her2</p><p> 
+ human epidermal growth factor receptor 2 
+ hr</p><p>
+ hazard ratio 
+ hr</p><p>
+ hormone receptor 
+ ihc</p><p>
+ immunohistochemistry 
+ itt</p><p>
+ intent-to-treat (population) 
+ iu</p><p>
+ international unit 
+ kg</p><p>
+ kilogram 
+ ki67</p><p>
+ nuclear protein identified by the ki67 monoclonal antibody 
+ ldh</p><p>
+ lactate dehydrogenase 
+ m</p><p>
+ meter 
+ max</p><p>
+ maximum 
+ meddra</p><p>
+ medical dictionary for regulatory activities 
+ mg</p><p>
+ milligram 
+ min</p><p>
+ minimum 
+ n</p><p>
+ number of patients meeting prespecified criteria 
+ n</p><p>
+ total number of patients 
+ na</p><p>
+ not applicable 
+ nci</p><p>
+ national cancer institute 
+ ng</p><p>
+ nanogram 
+ nr</p><p>
+ not reached 
+ oat</p><p>
+ organic anion transporter 
+ oatp</p><p> 
+ organic anion-transporting polypeptide 
+ or</p><p>
+ objective response 
+ orr</p><p>
+ objective response rate 
+ os</p><p>
+ overall survival 
+ paloma</p><p>
+ palbociclib ongoing trials in the management of breast cancer 
+ pd</p><p>
+ pharmacodynamic 
+ pd</p><p>
+ progressive disease</p><p>ema/53381/2018 
+ page 5/54 
+ pd-0332991</p><p>palbociclib 
+ pfs</p><p>
+ progression-free survival 
+ p-gp</p><p>
+ p-glycoprotein 
+ pk</p><p>
+ pharmacokinetic(s) 
+ pr</p><p>
+ partial response 
+ prb</p><p>
+ retinoblastoma susceptibility gene product 
+ pro</p><p>
+ patient-reported outcomes 
+ ps</p><p>
+ performance status 
+ pt</p><p>
+ preferred term 
+ qd</p><p>
+ once daily 
+ qt</p><p>
+ time from the beginning of the qrs complex to the end of the t wave as shown on the 
+ electrocardiogram 
+ qtc qt</p><p>
+ interval corrected for heart rate 
+ qtcb qt</p><p>
+ interval corrected for heart rate using bazett’s correction factor 
+ qtcf qt 
+ interval corrected for heart rate using fridericia’s correction factor 
+ qtcs qt</p><p>
+ interval corrected for heart rate using a study-specific correction factor 
+ recist</p><p>
+ response evaluation criteria in solid tumors 
+ sae</p><p>
+ serious adverse event 
+ sd</p><p>
+ stable disease 
+ sec</p><p>
+ second 
+ soc</p><p>
+ system organ class 
+ teae</p><p> 
+ treatment-emergent adverse event 
+ ttp</p><p>
+ time to progression 
+ u</p><p>
+ units 
+ uln</p><p>
+ upper limit of normal 
+ wbc</p><p>
+ white blood cell</p><p>ema/53381/2018 
+ page 6/54</p></section><section><header n="1">1.  
+ background information on the procedure</header></section><section><header n="1.1">1.1.  
+ type ii variation</header><p>pursuant to article 16 of commission regulation (ec) no 1234/2008, astrazeneca uk ltd submitted to the european medicines agency on 5 april 2017 an application for a variation.</p><p>
+ the following variation was requested:</p></section><section><header>variation requested type 
+ annexes 
+ affected</header><p>c.i.6.a</p><p>c.i.6.a - change(s) to therapeutic indication(s) - addition 
+ of a new therapeutic indication or modification of an 
+ approved one</p><p>
+ type ii 
+ i and iiib</p><p>
+ extension of indication to include the use of faslodex in combination with palbociclib for the treatment of 
+ hormone receptor (hr)-positive, human epidermal growth factor receptor 2 (her2)-negative locally 
+ advanced or metastatic breast cancer in women who have received prior endocrine therapy; in pre- or 
+ perimenopausal women, the combination treatment with palbociclib should be combined with a luteinizing 
+ hormone releasing hormone (lhrh) agonist for faslodex. as a consequence, sections 4.1, 4.2, 4.4, 5.1, 
+ 5.3 and 6.6 of the smpc are updated to update the safety and efficacy information. the package leaflet 
+ is updated in accordance. rmp version 12 was included in the application.</p><p>
+ the requested variation proposed amendments to the summary of product characteristics and package 
+ leaflet and to the risk management plan (rmp).</p></section><section><header>information on paediatric requirements</header><p>not applicable.</p></section><section><header>information relating to orphan market exclusivity similarity</header><p>pursuant to article 8 of regulation (ec) no. 141/2000 and article 3 of commission regulation (ec) no 847/2000, the applicant did not submit a critical report addressing the possible similarity with authorised 
+ orphan medicinal products because there is no authorised orphan medicinal product for a condition 
+ related to the proposed indication.</p></section><section><header>scientific advice</header><p>the applicant did not seek scientific advice at the chmp.</p><p>ema/53381/2018 
+ page 7/54</p></section><section><header n="2">2.  
+ scientific discussion</header></section><section><header n="2.1">2.1.  
+ introduction</header></section><section><header n="2.1.1">2.1.1.  
+ disease or condition</header><p>the application is for faslodex in combination with palbociclib for the treatment of hormone receptor (hr)-positive, human epidermal growth factor receptor 2 (her2)-negative locally advanced or metastatic 
+ breast cancer in women who have received prior endocrine therapy.</p></section><section><header n="2.1.1">2.1.1.  
+ epidemiology</header><p>breast cancer is the most common cancer in women worldwide, with nearly 1.7 million new cases diagnosed in 2012.</p><p>this cancer represents about 12% of all new cancer cases and 25% of all cancers in 
+ women
+ 1.</p><p>in europe, there were an estimated 464,000 new cases of breast cancer (female) in 2012 and an estimated 131,000 deaths from the disease
+ 2.</p></section><section><header n="2.1.1">2.1.1.  
+ biologic features and clinical presentation</header><p>breast cancer is a heterogeneous disease with subtypes having varied responses to anti-hormonal and chemotherapy treatments. breast tumour types can be distinguished by their hormonal receptor status, 
+ with one third of tumours being er-negative and two thirds of tumours being er-positive. berry, et al</p><p>
+ have shown in a meta-analysis of node-positive patients in the adjuvant setting that while patients with 
+ er-positive tumours who receive adjuvant hormonal therapy have better disease-free and overall survival 
+ than their counterparts with er-negative tumours, advances in chemotherapy in the er-negative setting 
+ have lessened the survival differences between these 2 groups. in this way, er status is a strong 
+ predictive factor in identifying patients who may benefit from endocrine therapy. 
+ er-positive tumours make up 65% of tumours in women aged 35 to 65 years and 82% of tumours in 
+ women older than 65 years. these cancers are largely estrogen driven in postmenopausal women where 
+ the main source of the tumour’s estrogen is from conversion of androgens to estrogens via aromatase 
+ enzyme action.</p></section><section><header n="2.1.1">2.1.1.  
+ management</header><p>recommendations from the american society of clinical oncology clinical practice guidelines, the european school of oncology-european society for medical oncology (eso-esmo) 2nd international 
+ consensus guidelines for advanced breast cancer (abc2), and the national comprehensive cancer 
+ network (nccn) clinical practice guidelines in oncology recommend endocrine therapy as the preferred 
+ first-line treatment option for hormone receptor-positive, her2-negative advanced breast cancer (except 
+ for immediately life-threatening disease or when concerns exist regarding endocrine resistance)
+ 3,4,5. the</p><p> 
+ 1 world cancer research fund international.</p><p>cancer statistics; data on specific cancers; breast cancer.</p><p>http://www.wcrf.org/cancer_statistics/data_specific_cancers/breast_cancer_statistics.php.</p><p>accessed 19 may 2014. 
+ 2 ferlay j, steliarova-foucher e, lortet-tieulent j, et al. cancer incidence and mortality patterns in europe: estimates for 40 countries in 2012.</p><p>eur j cancer 2013;49:1374-1403. 
+ 3 partridge ah, rumble rb, carey la, et al. chemotherapy and targeted therapy for women with human epidermal growth factor receptor 2-negative (or unknown) advanced breast cancer: american society of clinical practice 
+ guideline.</p><p>j clin oncol 2014; 32(29):3307-29. 
+ 4 cardoso f, costa a, norton l, et al.</p><p>eso-esmo 2nd international consensus guidelines for advanced breast cancer (abc2).</p><p>ann oncol 2014; 25(10):1871-88.</p><p>ema/53381/2018 
+ page 8/54 
+ choice between endocrine therapies for the initial treatment is often driven by prior adjuvant endocrine therapy, potential side effects, time to progression on prior therapy, as well as the patient’s menopausal 
+ status. 
+ currently, first-line treatment in the er-positive, her2-negative advanced breast cancer postmenopausal 
+ population typically includes endocrine therapies, such as letrozole, anastrozole, exemestane, fulvestrant, 
+ and tamoxifen
+ 6 with time to progression and prolongation of pfs ranging from 5 to 15 months.6,7</p><p>modification of oestrogen activity or synthesis represents the treatment of choice for postmenopausal women with hormone receptor-positive advanced breast cancer, particularly for those with slowly 
+ progressive disease and limited tumour-related symptoms
+ 8. presently, second and subsequent lines of therapy in the hormone receptor-positive advanced breast 
+ cancer population typically include endocrine therapies, such as tamoxifen, fulvestrant, steroidal or 
+ nonsteroidal ais, progestins, and androgens
+ 6.</p><p>palbociclib has also recently been approved for the treatment of hormone receptor (hr) positive, her2 
+ negative locally advanced or metastatic breast cancer in combination with endocrine backbone therapy 
+ (aromatase inhibitors or fulvestrant) (see epar ibrance).</p><p>
+ in addition, postmenopausal women with hormone receptor-positive, her2-negative breast cancer that 
+ have progressed after treatment with letrozole or anastrozole may also receive everolimus (afinitor) in 
+ combination with exemestane.</p><p>
+ chemotherapy should be reserved for cases of rapidly progressive disease or proven endocrine 
+ resistance
+ 6.</p></section><section><header>about the product</header><p>fulvestrant is a selective oestrogen receptor degrader (serd) that suppresses both oestrogen-dependent and oestrogen-independent signalling.</p><p>
+ faslodex was originally approved for the treatment of postmenopausal women with estrogen receptor 
+ positive, locally advanced or metastatic breast cancer with disease relapse on or after adjuvant anti-
+ estrogen therapy, or disease progression on therapy with an anti-estrogen. 
+ the indication was extended on 25 july 2017 to the treatment of estrogen receptor positive, locally 
+ advanced or metastatic breast cancer in postmenopausal women not previously treated with endocrine 
+ therapy. 
+ it is currently approved in the european union (eu) as 250 mg/5 ml solution for injection in the following 
+ indication: 
+ faslodex is indicated for the treatment of estrogen receptor positive, locally advanced or metastatic breast cancer in postmenopausal women: 
+ • not previously treated with endocrine therapy, or • with disease relapse on or after adjuvant antiestrogen therapy, or disease progression on antiestrogen therapy.</p><p> 5 national comprehensive cancer network (nccn) breast cancer version 2.2015. 6 bergh j, jonsson pe, lidbrink ek, et al.</p><p>fact: an open-label randomized phase iii study of fulvestrant and anastrozole in combination compared with anastrozole alone as first-line therapy for patients with receptor-positive 
+ postmenopausal breast cancer.</p><p>j clin oncol</p><p>2012; 30(16):1919-25. 
+ 7 mehta rs, barlow we, albain ks, et al.</p><p>combination anastrozole and fulvestrant in metastatic breast cancer.</p><p>n engl j med 2012; 367(5):435-44. 
+ 8 burstein hj, harris jr, morrow m.</p><p>malignant tumors of the breast.</p><p>in: de vita vt jr, lawrence ts, rosenberg sa, editors.</p><p>cancer, principle and practice of oncology, 9th edition, lippincott williams and wilkins; 2011; 1401-46.</p><p>ema/53381/2018 
+ page 9/54 
+ fulvestrant was originally approved at a dose of 250 mg for the treatment of postmenopausal women with hr+ advanced breast cancer whose disease recurred or progressed on previous antioestrogen 
+ therapy. the 250 mg dose was subsequently replaced by fulvestrant 500 mg, which was approved in the 
+ eu in march 2010 (procedural number emea/h/c/000540/ii/0018). approval for the 500 mg dose was 
+ based primarily on the phase 3 confirm study (d6997c00002), a randomised, double-blind study that 
+ compared the fulvestrant 500 mg and 250 mg dose regimens in postmenopausal women with hr+ 
+ advanced breast cancer who had either relapsed while on adjuvant endocrine therapy, or progressed 
+ while on first-line endocrine therapy for advanced disease.</p><p>
+ on 09 november 2016 the european commission granted market authorisation to a new chemical entity, 
+ ibrance (palbociclib) for use in combination with fulvestrant. palbociclib is an oral, first in class, small 
+ molecule drug. it is a selective, reversible inhibitor of cdk 4 and 6, and was authorised by the european 
+ commission on 09 november 2016 for the following indication: 
+ ibrance is indicated for the treatment of hormone receptor (hr)-positive, human epidermal growth factor receptor 2 (her2)-negative locally advanced or metastatic breast cancer: 
+ - in combination with an aromatase inhibitor; 
+ - in combination with fulvestrant in women who have received prior endocrine therapy. 
+ in pre- or perimenopausal women, the endocrine therapy should be combined with a luteinizing hormone-
+ releasing hormone (lhrh) agonist. 
+ the approval for the combination of palbociclib with fulvestrant was primarily based on the phase 3 study paloma-3.</p><p>
+ the purpose of the current application is to extend the indication of fulvestrant to include the use in 
+ combination with ibrance. the applied indication was: 
+ “
+ faslodex is indicated in combination with palbociclib for the treatment of hormone receptor (hr)-positive, human epidermal growth factor receptor 2 (her2)-negative locally advanced or metastatic 
+ breast cancer in women who have received prior endocrine therapy (see section 5.1).</p><p>
+ in pre- or perimenopausal women, the combination treatment with palbociclib should be combined with a 
+ luteinizing hormone releasing hormone (lhrh) agonist.
+ ” the recommended indication is: 
+ “faslodex is indicated: 
+ • as monotherapy for the treatment of estrogen receptor positive, locally advanced or metastatic breast cancer in postmenopausal women:</p><p>
+ o not previously treated with endocrine therapy, or o with disease relapse on or after adjuvant antiestrogen therapy, or disease progression on antiestrogen therapy. 
+ • in combination with palbociclib for the treatment of hormone receptor (hr)-positive, human epidermal growth factor receptor 2 (her2)-negative locally advanced or metastatic breast cancer 
+ in women who have received prior endocrine therapy (see section 5.1). 
+ in pre- or perimenopausal women, the combination treatment with palbociclib should be combined with a 
+ luteinizing hormone releasing hormone (lhrh) agonist.”</p><p>ema/53381/2018 
+ page 10/54</p></section><section><header n="2.2">2.2.  
+ non-clinical aspects</header></section><section><header n="2.2.1">2.2.1.  
+ introduction</header><p>no new non-clinical data have been submitted in this application apart from the era (see section 2.2.2), which was considered acceptable by the chmp.</p></section><section><header n="2.2.2">2.2.2.  
+ ecotoxicity/environmental risk assessment</header><p>table 1: summary of main study results substance (inn/invented name):</p></section><section><header>fulvestrant</header><p>cas-number (if available): 129453-61-8 pbt screening</p><p>result conclusion bioaccumulation potential-</p><p>log kow oecd tg123 log kow (ph 7) = 7.67</p><p>
+ potential pbt (y) 
+ based on log k
+ ow pbt-statement : p-criterion: no. not fully conclusive but unlikely that dt50 &lt; 40 (water) or 120 (sediment). 
+ b-criterion: no. bcf &lt; 2000l/kg. non-optimal method but still unlikely. 
+ t-criterion: yes. fish, noec &lt; 10ug/l 
+ the compound is not considered as pbt nor vpvb</p><p>
+ phase i</p><p>calculation</p><p>
+ value 
+ unit 
+ conclusion 
+ phase i refined pecsw (prevalence; fpen 0.00083) 0.0074 
+ µg/l &gt; 0.01 threshold (n) 
+ phase iib refined pec
+ sw 0.0037 µg/l &gt; 0.01 threshold (n) 
+ other concerns (e.g. chemical 
+ class) 
+ endocrine modulator, 
+ potential endocrine disruptor</p><p>
+ (y) oestrogen receptor antagonist 
+ that generates adversity in 
+ reproductive organs, fertility and 
+ development in rodent general and 
+ reproductive toxicity studies. also 
+ effect on development growth in 
+ fish. unlikely that the parent 
+ compound is an environmental edc 
+ due to degradation but the impact 
+ of various degradation products is 
+ less clear. 
+ phase ii physical-chemical properties and fate study type 
+ test protocol 
+ results 
+ remarks 
+ adsorption study oecd tg106 
+ na 
+ no good data 
+ generated. substance 
+ is adherent to glass in 
+ test vessels. 
+ ready biodegradability test 
+ oecd tg301f 
+ not readily biodegradable</p><p>
+ simulation test of 
+ biodegradability 
+ oecd tg303a 
+ aqueous phase ar%: 30.3%+29.2%</p><p>
+ sludge solids ar%: 16.4+7.6+3.1% 
+ no parent compound was detected in 
+ the aqueous effluent. 
+ dt
+ 50 sludge-water = 21.7h study duration: 94d 
+ aerobic and anaerobic 
+ transformation in aquatic 
+ sediment systems 
+ oecd tg308 
+ fulvestrant 
+ dt
+ 50, sediment = 23-29d (20°c) dt
+ 50, sediment = 41d (12°c) dt
+ 50, whole system &lt; 14d (20°c) % shifting to sediment &gt; 10%</p><p>
+ 17-ketone fulvestrant</p><p>dt
+ 50, sediment = 29d (20°c) not persistent. 17-
+ ketone fulvestrant is a 
+ transformation 
+ product to 
+ fulvestrant.</p><p> 
+ trigger of phase iib 
+ oecd tg218.</p><p>
+ phase iia effect studies</p><p>study type</p><p>test protocol 
+ endpoint</p><p>value 
+ unit 
+ remarks 
+ algae, growth inhibition test/
+ species</p><p>oecd tg201 noec 
+ 0.047 mg/l p. subcapitata noec is is max 
+ concentration and limit</p><p>ema/53381/2018 
+ page 11/54 
+ of quantification (loq) daphnia 
+ sp. reproduction test</p><p>oecd tg211 noec 
+ 0.00078 mg/l d. magna noec is max concentration and 
+ based on lowest 
+ measured water 
+ solubility value. 
+ fish, early life stage toxicity 
+ test/
+ species</p><p>oecd tg210 noec 
+ loec 
+ 0.0057 
+ 0.0222 
+ ug/l</p><p>
+ ug/l 
+ p. promelas non-monotonic 
+ exposure-response for 
+ body weight. 
+ activated sludge, respiration inhibition test</p><p>
+ oecd tg209</p><p>noec 
+ 100 
+ mg/l 
+ sludge microorganisms max concentration. 
+ phase iib studies sediment-dweller toxicity</p><p> 
+ oecd tg218 
+ noec 
+ noec
+ oc10 5</p><p>30.5 
+ mg/kg 
+ mg/kg 
+ c. riparius noec is max 
+ concentration. 
+ bioconcentration in fish, aqueous exposure 
+ oecd tg305 
+ whole bcf 
+ kinetic bcf 
+ kinetic bcf
+ 5% 342-338355-
+ 357 
+ 149-150 
+ l/kg 
+ l/kg 
+ l/kg 
+ bcf &lt; 2000l/kg bcf
+ 5% is a 5% lipid content corrected 
+ value. 
+ plant seedling toxicity (phytotoxicity) 
+ oecd tg208 
+ noec 
+ 1000 
+ mg/kg 
+ dry soil 
+ species tested: wheat (t. aestivum) cabbage (b. oleracea) mung bean (v. radiata) noec is max 
+ concentration. 
+ earthworm toxicity oecd tg207 
+ noec 
+ loec 
+ 556 
+ 1000 
+ mg/kg 
+ dry 
+ weight 
+ species: e. fetida collembola reproduction iso11267 
+ oecd tg232 
+ noec
+ survival loecsurvival noecjuvenile loecjuvenile 40 200 
+ 8 
+ 40 
+ mg/kg 
+ dry 
+ weigh 
+ species: 
+ f. candida</p><p>considering the above data, fulvestrant should be used according to the precautions stated in the smpc in order to minimize any potential risks to the environment.</p></section><section><header n="2.2.3">2.2.3.  
+ discussion on non-clinical aspects</header><p>no new non-clinical data has been submitted apart from the updated era with this application which is considered acceptable. based on the submitted data in this application, the exposure to the environment 
+ via waste water is likely to be minor (i.e. pec
+ sw &lt; 0.01ug/l) but considering the endocrine modulating properties and the surface water/fish rq being &gt;&gt; 1, and the uncertainty of the properties of the various 
+ transformation products, fulvestrant could pose a minor but still relevant risk to the aquatic environment. 
+ therefore, fulvestrant should be used according to the precautions stated in the smpc in order to 
+ minimise any potential risks to the environment.</p></section><section><header n="2.2.4">2.2.4.  
+ conclusion on the non-clinical aspects</header><p>considering the above data, fulvestrant should be used according to the precautions stated in the smpc in order to minimize any potential risks to the environment. 
+ environmental risk assessment studies have shown that fulvestrant may have potential to cause adverse 
+ effects to the aquatic environment (see sections 5.3 and 6.6).</p><p>ema/53381/2018 
+ page 12/54</p></section><section><header n="2.3">2.3.  
+ clinical aspects</header></section><section><header n="2.3.1">2.3.1.  
+ introduction 
+ gcp</header><p>the clinical trials were performed in accordance with gcp as claimed by the applicant. the mah has provided a statement to the effect that clinical trials conducted outside the community were 
+ carried out in accordance with the ethical standards of directive 2001/20/ec.</p></section><section><header>table 2. tabular overview of clinical studies</header><p>protocol no.</p><p>
+ country</p><p>study design and 
+ objective</p><p>treatment 
+ groups,</p><p>
+ no. of subjects 
+ (by treatment 
+ group) 
+ demographics 
+ (by treatment 
+ group) 
+ duration of 
+ treatment</p><p>study start, 
+ end/status 
+ (available 
+ results)</p><p>a5481023 
+ /paloma-3 
+ “study 
+ 1023”</p><p>phase 3</p><p>
+ canada, us, 
+ belgium, 
+ germany, 
+ ireland, italy, 
+ netherlands, 
+ portugal, 
+ romania, 
+ russian 
+ federation, 
+ turkey, 
+ ukraine, uk, 
+ australia, 
+ japan, 
+ republic of 
+ korea, and 
+ taiwan 
+ (144 
+ centres). 
+ an international, 
+ multicentre, 
+ randomized, double-
+ blind, placebo 
+ controlled, parallel 
+ group, phase 3 clinical 
+ trial comparing the 
+ efficacy and safety of 
+ palbociclib in 
+ combination with 
+ fulvestrant (with or 
+ without goserelin) 
+ versus placebo in 
+ combination with 
+ fulvestrant (with or 
+ without goserelin) in 
+ women with 
+ hr-positive, her2-
+ negative metastatic 
+ breast cancer whose 
+ disease has 
+ progressed on prior 
+ endocrine therap
+ y. the primary objective is 
+ to demonstrate the 
+ superiority of 
+ palbociclib in 
+ combination with fulvestrant (with or 
+ without goserelin) over 
+ fulvestrant (with or 
+ without goserelin) alone 
+ in prolonging 
+ investigator assessed 
+ pfs. 
+ n=521 
+ 2:1 randomization 
+ arm a 
+ (investigational 
+ arm): 
+ palbociclib 125-
+ mg/day 
+ (initial phase 3 free 
+ base capsule, final 
+ phase 3/ 
+ commercial free 
+ base capsule) orally 
+ qd on schedule 3/1 
+ plus fulvestrant 
+ 500-mg 
+ intramuscularly on 
+ days 1 and 15 of 
+ cycle 1, and then 
+ on day 1 of each 
+ subsequent 28-day 
+ cycle.</p><p>
+ arm b (comparator 
+ arm): 
+ placebo orally qd 
+ on schedule 3/1 
+ plus fulvestrant 
+ 500-mg 
+ intramuscularly on 
+ days 1 and 15 of 
+ cycle 1, and then 
+ on day 1 of each 
+ subsequent 28-day 
+ cycle. 
+ sex: 521 f/0 m</p><p>
+ mean age : 
+ 56.9 (range: 
+ 29-88) years</p><p>
+ race: w/b/o: 
+ 385/20/116 
+ median days 
+ on 
+ treatment: 
+ arm a 
+ palbociclib 
+ 144, 
+ fulvestrant 
+ 148.</p><p>
+ arm b 
+ placebo 120, 
+ fulvestrant 
+ 128</p><p>
+ study start 
+ date: 26 sep 
+ 2013</p><p>
+ status: 
+ completed</p><p>
+ primary 
+ completion 
+ date for the 
+ final analysis: 
+ 05 dec 2014</p><p>
+ additional 
+ efficacy 
+ updates were 
+ performed 
+ with data cut-
+ offs: 16 march 
+ 2015, and 23 
+ oct 2015, 
+ respectively.</p><p> ema/53381/2018 
+ page 13/54</p></section><section><header n="2.4">2.4.  
+ clinical efficacy</header></section><section><header n="2.4.1">2.4.1.  
+ main study</header></section><section><header>study 1023 (paloma-3)</header></section><section><header>multicenter, randomized, double-blind, placebo-controlled, phase 3 trial of fulvestrant (faslodex) with or without pd-0332991 (palbociclib) ± goserelin in women with hormone 
+ receptor-positive, her2-negative metastatic breast cancer whose disease progressed after 
+ prior endocrine therapy. 
+ study design</header><p>study 1023 was an international, multicentre, 2:1 randomized, double-blind, placebo-controlled, parallel-group, phase 3 clinical study with the primary objective of demonstrating the superiority in prolonging 
+ pfs of palbociclib in combination with fulvestrant (faslodex) over fulvestrant plus placebo in women with 
+ hr positive, her2-negative metastatic breast cancer, regardless of their menopausal status, whose 
+ disease had progressed after prior endocrine therapy. pre- and perimenopausal women were to receive 
+ therapy with the luteinizing hormone-releasing hormone (lhrh) agonist goserelin (zoladex® or generic). 
+ crossover between treatment arms was not allowed.</p></section><section><header>figure 1 study design - study 1023 (paloma-3)   study participants</header><p>inclusion criteria patients must have met all of the following criteria for inclusion in the study: 
+ 1. women 18 years of age or older, who were either: 
+ postmenopausal, as defined by at least one of the following criteria: 
+ o age ≥60 years;</p><p>ema/53381/2018 
+ page 14/54 
+ o age &lt;60 years and cessation of regular menses for at least 12 consecutive months with no alternative pathological or physiological cause; and serum estradiol and follicle stimulating 
+ hormone (fsh) level within the laboratory’s reference range for postmenopausal females; 
+ o documented bilateral oophorectomy; o medically confirmed ovarian failure or pre/ perimenopausal, ie, not meeting the criteria for being postmenopausal. o pre/perimenopausal women could have been enrolled if amenable to be treated with the lhrh agonist goserelin. patients were to have commenced treatment with goserelin or an alternative 
+ lhrh agonist at least 4 weeks prior to randomization. but, if patients had received an alternative 
+ lhrh agonist prior to study entry, they were to switch to goserelin for the duration of the study. 
+ 2. histologically or cytologically proven diagnosis of breast cancer with evidence of metastatic or locally 
+ advanced disease, not amenable to resection or radiation therapy with curative intent. 
+ 3. documentation of er-positive and/or pr-positive tumour (≥1% positive stained cells) based on most 
+ recent tumour biopsy (unless bone-only disease, see below) utilizing an assay consistent with local 
+ standards. 
+ 4. documented her2-negative tumour based on local testing on most recent tumour biopsy: 
+ her2-negative tumour was determined as immunohistochemistry score 0/1+ or negative by in situ 
+ hybridization (fish [fluorescent in situ hybridization]/cish [chromogenic in situ hybridization]/sish 
+ [silver fluorescent in situ hybridization]/dish [dual fluorescent in situ hybridization]) defined as a human 
+ epidermal growth factor receptor 2/centromeric probe for chromosome 17 (her2/cep17) ratio &lt;2 or for 
+ single probe assessment a her2 copy number &lt;4. 
+ 5. patients were to satisfy the following criteria for prior therapy: 
+ o progressed during treatment or within 12 months of completion of adjuvant therapy with an aromatase inhibitor if postmenopausal, or tamoxifen if pre- or perimenopausal. 
+ or 
+ o progressed while on or within 1 month after the end of prior aromatase inhibitor therapy for advanced/metastatic breast cancer if postmenopausal, or prior endocrine treatment for 
+ advanced/metastatic breast cancer if pre- or perimenopausal. 
+ o one previous line of chemotherapy for advanced/metastatic disease was allowed in addition to endocrine therapy. 
+ 6. except where prohibited by local regulations, all patients were to agree to provide and had available a 
+ formalin-fixed paraffin embedded (ffpe) tissue biopsy sample taken at the time of presentation with 
+ recurrent or metastatic disease. a de novo biopsy was required if no archived tissue taken at the time of 
+ presentation with recurrent/metastatic disease was available. the sole exceptions were those patients 
+ with bone-only disease for whom provision of previous archival tissue only was acceptable. patients who 
+ had surgery within the last 3 years (but without neoadjuvant chemotherapy prior to surgery) and 
+ relapsed while receiving adjuvant therapy may provide a tumour specimen from that surgery. 
+ 7. measurable disease as defined by recist version 1.1, or bone-only disease. patients with bone-only 
+ metastatic cancer were to have a lytic or mixed lytic-blastic lesion that could be accurately assessed by 
+ computed tomography (ct) or magnetic resonance imaging (mri). patients with bone-only disease and 
+ blastic-only metastasis were not eligible. tumour lesions previously irradiated or subjected to other loco-</p><p>ema/53381/2018 
+ page 15/54 
+ regional therapy were only deemed measurable if progression at the treated site after completion of therapy was clearly documented. 
+ 8. eastern cooperative oncology group (ecog) performance status 0-1. 
+ 9. adequate organ and marrow function defined as follows: 
+ absolute neutrophil count (anc) ≥1,500/mm3 (1.5 x 109/l); 
+ platelets ≥100,000/mm3 (100 x 109/l); 
+ haemoglobin ≥9 g/dl (90 g/l); 
+ serum creatinine ≤1.5 x upper limit of normal (uln) or estimated creatinine clearance ≥60 ml/min as 
+ calculated using the method standard for the institution; 
+ total serum bilirubin ≤1.5 x uln (&lt;3uln if gilbert’s disease); 
+ aspartate aminotransferases (ast) and/or alanine aminotransferases (alt) ≤3 x uln (≤5.0 x uln if 
+ liver metastases present); 
+ alkaline phosphatase ≤2.5 x uln (≤5 x uln if bone or liver metastases present). 
+ 10. resolution of all acute toxic effects of prior therapy or surgical procedures to national cancer institute 
+ (nci) common terminology criteria for adverse events (ctcae) grade ≤1 (except alopecia). 
+ 11. evidence of a personally signed and dated informed consent document indicating that the patient (or 
+ a legal representative) has been informed of all pertinent aspects of the study. 
+ 12. patients who were willing and able to comply with scheduled visits, treatment plan, laboratory tests, 
+ and other study procedures. 
+ exclusion criteria 
+ patients who met any of the following exclusion criteria were not included in the study: 
+ 1. prior treatment with any cdk inhibitor, or fulvestrant, or with everolimus, or any agent whose 
+ mechanism of action is to inhibit the pi3k-mtor pathway. 
+ 2. patients with advanced/metastatic, symptomatic, visceral spread, that were at risk of life-threatening 
+ complications in the short term (including patients with massive uncontrolled effusions [pleural, 
+ pericardial, peritoneal], pulmonary lymphangitis, and over 50% liver involvement). 
+ 3. known active uncontrolled or symptomatic central nervous system (cns) metastases, carcinomatous 
+ meningitis, or leptomeningeal disease as indicated by clinical symptoms, cerebral oedema, and/or 
+ progressive growth. patients with a history of cns metastases or cord compression are eligible if they had 
+ been definitively treated (eg, radiotherapy, stereotactic surgery) and were clinically stable off 
+ anticonvulsants and steroids for at least 4 weeks before randomization. 
+ 4. current use of food or drugs known to be potent cyp3a4 inhibitors, drugs known to be potent cyp3a4 
+ inducers (for examples, see the prohibited medications section 9.4.8.2.1), and drugs that are known to 
+ prolong the qt interval. 
+ 5. major surgery, chemotherapy, radiotherapy, or other anti-cancer therapy within 2 weeks before 
+ randomization. patients who received prior radiotherapy to ≥25% of bone marrow were not eligible 
+ independent of when it had been received. 
+ 6. any other malignancy within 3 years prior to randomization, except for adequately treated basal cell or 
+ squamous cell skin cancer, or carcinoma in situ of the cervix.</p><p>ema/53381/2018 
+ page 16/54 
+ 7. qtc interval &gt;480 ms (based on the mean value of the triplicate electrocardiogram [ecgs]), family or personal history of long or short qt syndrome, brugada syndrome or known history of qtc prolongation 
+ or torsade de pointes. 
+ 8. any of the following within 6 months of randomization: myocardial infarction, severe/unstable angina, ongoing cardiac dysrhythmias of nci ctcae grade ≥2, atrial fibrillation of any grade, coronary/peripheral 
+ artery bypass graft, symptomatic congestive heart failure, cerebrovascular accident including transient 
+ ischemic attack, or symptomatic pulmonary embolism. 
+ 9. impairment of gastrointestinal (gi) function or gi disease that might have significantly altered the absorption of palbociclib, such as history of gi surgery with might have resulted in intestinal blind loops 
+ and patients with clinically significant gastroparesis, short bowel syndrome, unresolved nausea, vomiting, 
+ active inflammatory bowel disease or diarrhoea of ctcae grade &gt;1. 
+ 10. prior hematopoietic stem cell or bone marrow transplantation. 11. known abnormalities in coagulation such as bleeding diathesis, or treatment with anticoagulants precluding intramuscular injections of fulvestrant or goserelin (if applicable). 
+ 12. known or possible hypersensitivity to fulvestrant, goserelin, any of their excipients or to any palbociclib/placebo excipients. 
+ 13. known human immunodeficiency virus infection. 14. other severe acute or chronic medical or psychiatric condition, including recent or active suicidal ideation or behaviour, or laboratory abnormality that might have increased the risk associated with study 
+ participation or investigational product administration or might have interfered with the interpretation of 
+ study results and, in the judgment of the investigator, would have made the patient inappropriate for 
+ entry into this study. 
+ 15. patients who were investigational site staff members directly involved in the conduct of the study and their family members, site staff members otherwise supervised by the investigator, or patients who are 
+ pfizer employees directly involved in the conduct of the study. 
+ 16. participation in other studies involving investigational drugs (phases 1-4) within 4 weeks before randomization in the current study.</p></section><section><header>treatments</header><p>arm a: palbociclib 125 mg administered orally once daily for 21 days followed by 7 days off treatment for each 28-day cycle (schedule 3/1) plus fulvestrant (faslodex) 500 mg intramuscularly on days 1 and 15 
+ of cycle 1, and every 28 days (+/-7 days) thereafter starting from day 1 of cycle 1. 
+ arm b: placebo administered orally once daily for 21 days followed by 7 days off treatment for each 28-
+ day cycle (schedule 3/1) plus fulvestrant (faslodex) 500 mg intramuscularly on days 1 and 15 of cycle 
+ 1, and every 28 days (+/-7 days) thereafter starting from day 1 of cycle 1.</p><p>
+ palbociclib doses could be reduced to 100 mg daily and 75 mg daily on 3/1 schedule, respectively, or to 
+ 75 mg on a 2-week on/2-week off (2/2) schedule.</p></section><section><header>objectives and endpoints</header><p>the primary endpoint of the study was pfs as determined by the investigators’ assessment. the secondary endpoints included an assessment of secondary measures of efficacy and the safety and</p><p>ema/53381/2018 
+ page 17/54 
+ tolerability of palbociclib administered in combination with fulvestrant as well as of placebo plus fulvestrant.</p><p>
+ secondary efficacy endpoints included os, objective response, duration of response, clinical benefit 
+ response, and patient reported outcomes (pros).</p><p>
+ primary objective: 
+ to demonstrate the superiority of palbociclib in combination with fulvestrant (with or without goserelin) 
+ over fulvestrant (with or without goserelin) plus placebo in prolonging investigator-assessed progression-
+ free survival (pfs) in women with hormonal receptor positive (hr-positive)/human epidermal growth 
+ factor negative (her2-negative) metastatic breast cancer whose disease had progressed on prior 
+ endocrine therapy. 
+ secondary objectives: 
+ • to compare measures of tumour control, including objective response (or), duration of response (dr), 
+ clinical benefit response (cbr = cr or pr or stable disease [sd] ≥24 weeks) and overall survival (os) 
+ between the treatment arms.</p><p>
+ • to compare safety and tolerability between the treatment arms. 
+ • to evaluate trough concentrations of palbociclib when given in combination with fulvestrant or 
+ fulvestrant plus goserelin compared to historical palbociclib data. 
+ • pk: to compare fulvestrant and goserelin trough concentrations when given in combination with 
+ palbociclib to those when given without palbociclib. 
+ • pk: to explore correlations between palbociclib exposures and efficacy/safety findings in this patient 
+ population. 
+ • to compare patient reported outcomes (pros) measures between treatment arms. pro endpoints such 
+ as global quality of life (qol), functioning, breast symptoms, time to deterioration (ttd) in pain, eq-5d 
+ index and general health status. 
+ • to characterize alterations in genes, proteins, and ribonucleic acids (rnas) relevant to the cell cycle, 
+ drug targets, tumour sensitivity and/or resistance.</p><p>
+ • to conduct subgroup analysis for primary and secondary endpoints in stratified groups. 
+ tumour assessments 
+ post-baseline tumour assessments were performed every 8 weeks (±7 days) for the first year, then after 
+ 1 year every 12 weeks (±7 days) (calculated from randomization) until radiographically and/or clinically 
+ (i.e., for photographed or palpable lesions) documented pd as per recist v.1.1, study treatment 
+ discontinuation, initiation of new anticancer therapy, or discontinuation of patient from overall study 
+ participation (e.g., death, patient&apos;s request, lost to follow-up)</p></section><section><header>sample size</header><p>the sample size for this study was determined based on the results of a randomized phase 2 trial assessing fulvestrant with or without dasatinib in postmenopausal patients with hr positive metastatic 
+ breast cancer previously treated with an ai. the median pfs for the fulvestrant alone arm was 5.3 
+ months and the median pfs for the combination arm was 6.0 months. based upon these results, the 
+ median pfs for the comparator arm in this study was assumed to be 6.0 months.</p><p>ema/53381/2018 
+ page 18/54 
+ an improvement of 56% to a median pfs of 9.38 months (corresponding to a hr=0.64) was to be considered clinically meaningful. a total of 238 pfs events were required in the two treatment arms for 
+ the study to have a 90% power to detect a hazard ratio of 0.64 (representing a 56% improvement in 
+ median pfs [6.00 months vs 9.38 months]) with a 1-sided significance level of alpha=0.025. 
+ assuming a non-uniform accrual accomplished over a period of about 14 months, data follow-up for 
+ approximately 20 months from the start of study randomization for final pfs analysis, and a non-uniform 
+ dropout with dropout rate of 25% at 18 months for pfs, a total sample size of approximately 417 
+ patients (278 in the fulvestrant plus palbociclib arm and 139 in the placebo plus fulvestrant arm) was 
+ required. 
+ the sample size described above also allowed the assessment of differences in the secondary endpoint of 
+ os. the median os for women with advanced or metastatic breast cancer treated with ai and fulvestrant 
+ monotherapy was assumed to be 24 months. with an overall one-sided α of 0.025 and one interim 
+ analysis of os, the study had approximately 80% power to detect a hr of 0.65 (representing a 54% 
+ increase in median os from 24 months to37 months) when 198 deaths had occurred.</p><p>
+ a sample-size re-estimation was allowed by protocol at the interim analysis (see below), using the 
+ inferential procedure described by cui et al (1999)
+ 9 to preserve the type i error.</p></section><section><header>randomisation</header><p>randomisation was stratified by documented sensitivity to prior hormonal therapy (yes versus no), by menopausal status at study entry (pre-/peri- versus postmenopausal), and by the presence of visceral 
+ metastases (yes versus no). ‘visceral’ referred to lung, liver, brain, pleural and peritoneal involvement. 
+ sensitivity to prior hormonal therapy was defined as either: documented clinical benefit (cr, pr, sd ≥24 
+ weeks) to at least one prior hormonal therapy in the metastatic setting, or at least 24 months of adjuvant 
+ hormonal therapy prior to recurrence.</p></section><section><header>blinding (masking)</header><p>this was a double-blind trial.</p></section><section><header>statistical methods</header><p>pfs data were censored on the date of the last tumour assessment on study for patients who did not have objective tumour progression and who did not die while on study. patients lacking an evaluation of 
+ tumour response after randomization had their pfs time censored on the date of randomization with the 
+ duration of one day. additionally, patients who started a new anticancer therapy prior to documented pd 
+ were censored at the date of the last tumour assessment prior to the start of the new therapy. patients 
+ with documentation of pd or death after an unacceptably long interval (ie, 2 or more incomplete or non-
+ evaluable assessments) since the last tumour assessment were censored at the time of last objective 
+ assessment that did not show pd. 
+ time-to-event endpoints between the 2 treatment arms were compared with a 1-sided stratified log-rank 
+ test adjusting for presence of visceral metastases and sensitivity to prior hormonal therapy (two of the 
+ baseline stratification factors). pfs time associated with each treatment arm were summarized for the itt 
+ population using the kaplan-meier method and displayed graphically where appropriate. hazard ratios 
+ and 2-sided 95% confidence intervals (subject to the multiplicity adjustment at the final analysis for pfs 
+ and os) were estimated using cox proportional hazards regression.</p><p> 
+ 9 cui l1, hung hm, wang sj. modification of sample size in group sequential clinical trials. biometrics. 1999 sep;55(3):853-7</p><p>ema/53381/2018 
+ page 19/54 
+ cox proportional hazard models were also used to explore the potential influences of the baseline stratification factors on time-to-event endpoints. 
+ the study was designed to have one interim analysis and the final analysis at 238 events based on the 
+ primary pfs endpoint with the investigator assessment. the interim analysis was to be conducted to 
+ allow for early stopping of the study due to efficacy or to potentially re-estimate the sample size of the 
+ trial based upon the primary endpoint of pfs. the safety of the combination was also assessed at the 
+ interim analysis. the haybittle-peto boundary was used (alpha=0.00135 was to be spent at interim 
+ analysis) in developing the efficacy boundary of the interim analysis of pfs. the analysis was to be 
+ performed after approximately 143 investigator-assessed pfs events (documented progressive disease or 
+ death; approximately 60% of the total events expected). the information fraction for the interim analysis 
+ may be adjusted if needed. 
+ only one interim analysis of os is planned. although the first possible time for os interim analysis could 
+ be at the time of the pfs ia, it is anticipated that the number of deaths could be low at pfs ia and yield 
+ non-robust analysis results. therefore, the os interim analysis will be planned at approximately 97 
+ deaths (at the estimated time for planned pfs final analysis). for the interim analysis of os, o’brien-
+ fleming boundary will be used and the overall significance level for the efficacy analysis of os will be 
+ preserved at 0.025 (one-sided test).</p></section><section><header>results participant flow 
+ table 3: patient’s disposition (study 1023)</header><p> ema/53381/2018 
+ page 20/54</p></section><section><header>recruitment</header><p>between 26 sept 2013 and 26 aug 2014, a total of 521 pre- /peri- and postmenopausal women were randomized (2:1) to the study at 144 sites in 17 countries: australia (11 sites), belgium (11 sites), 
+ canada (11 sites), germany (2 sites), ireland (1 site), italy (9 sites), japan (8 sites), the netherlands (6 
+ sites), portugal (2 sites), romania (4 sites), the russian federation (5 sites), the republic of south korea 
+ (5 sites), taiwan (2 sites), turkey (1 sites), the ukraine (6 sites), the united kingdom (4 sites), and the 
+ united states (56 sites). 
+ three hundred forty-seven (347) patients were randomized to the palbociclib plus fulvestrant arm, and 
+ 174 patients were randomized to the placebo plus fulvestrant arm, of which 99 pre- /perimenopausal 
+ patients additionally received goserelin across both treatment arms.</p></section><section><header>conduct of the study</header><p>the frequencies of different types of protocol deviations were similar across study arms. the majority of the inclusion/exclusion criteria violations in both arms pertained to exclusion criteria 5, which states that 
+ all anti-cancer treatments should have been stopped at least 2 weeks prior to randomization. secondly, 
+ violations with regard to providing tumour samples for central lab analysis were frequent.</p><p>
+ there were 2 protocol amendments and 1 sap amendment during study. 
+ the protocol was amended to revise the study drug administration instructions from administration in a 
+ fasted state to administration with food and to prohibit the concomitant use of proton-pump inhibitors. 
+ prospective ophthalmic examinations, and prospective monitoring of haemoglobin a1c were added to 
+ characterize whether or not palbociclib affected glucose metabolism. sap amendments included eg 
+ changes due to that biomarker analyses were not performed.</p><p>ema/53381/2018 
+ page 21/54</p></section><section><header>baseline data table 4. demographic characteristics (study 1023, itt)</header><p>abbreviations: n: number of patients, n: number of patients affected, sd: standard deviation.</p><p>ema/53381/2018 
+ page 22/54</p></section><section><header>table 5. baseline disease characteristics (study 1023, itt)</header><p> ema/53381/2018 
+ page 23/54</p><p> ema/53381/2018 
+ page 24/54</p></section><section><header>table 6. patient by stratification factors (study 1023)</header><p>abbreviations: crf: case report form, n: number of patients, n: number of patients affected.</p><p> ema/53381/2018 
+ page 25/54</p></section><section><header>table 7. prior therapies (study 1023, itt)    numbers analysed</header><p>all efficacy analyses were based on the intent-to-treat (itt) population. some efficacy sensitivity analyses were also performed on as-treated (at) populations.</p><p>
+ the intent-to-treat (itt) population or full analysis set includes all patients who are randomized, with 
+ study drug assignment designated according to initial randomization, regardless of whether patients 
+ receive study drug or receive a different drug from that to which they were randomized. the itt 
+ population is the primary population for evaluating all efficacy endpoints and patient characteristics.</p><p>
+ the at population or safety analysis set includes all patients who receive at least 1 dose of study 
+ medication, with treatment assignments designated according to actual study treatment received. the at 
+ population is the primary population for evaluating treatment administration/compliance and safety.</p><p>ema/53381/2018 
+ page 26/54</p></section><section><header>table 8. analysis populations, study 1023   outcomes and estimation 
+ primary endpoint –progression-free survival</header><p>at the data cut-off date, 05 dec 2014, 102 (29%) out of 347 patients in the palbociclib plus fulvestrant arm and 93 (53%) out of 174 patients in the placebo plus fulvestrant arm had experienced disease 
+ progression or died.</p><p>
+ the study met its primary objective of prolonging investigator-assessed pfs at the interim analysis 
+ conducted on 82% of the planned pfs events; the results crossed the pre-specified haybittle-peto 
+ efficacy boundary (α=0.00135), demonstrating a statistically significant prolongation in pfs and a clinical 
+ meaningful treatment effect. the observed hr was 0.422 (95% ci: 0.318, 0.560; stratified 1-sided p-
+ value &lt;0.000001) in favour of palbociclib plus fulvestrant. the median pfs was 9.2 months (95% ci: 7.5, 
+ not estimable) for 347 patients randomized to palbociclib plus fulvestrant and 3.8 months (95% ci: 3.5, 
+ 5.5) for 174 patients randomized to placebo plus fulvestrant. 
+ at the primary data cut-off date, the most common type of pfs event was disease progression, for 100 
+ (28.8%) patients in the palbociclib plus fulvestrant arm and 91 (52.3%) patients in the placebo plus 
+ fulvestrant arm. two deaths were reported in each treatment arm. 
+ a total of 245 (70.6%) patients in the palbociclib plus fulvestrant arm and 81 (46.6%) in the placebo plus 
+ fulvestrant arm were censored in the investigator-assessed pfs analysis. the majority of censored 
+ patients were still in follow-up for disease progression at the time of censoring, 227 (65.4%) patients in 
+ the palbociclib plus fulvestrant arm and 70 (40.2%) patients in the placebo plus fulvestrant arm. 
+ two efficacy updates have subsequently been submitted; see further below.</p><p>ema/53381/2018 
+ page 27/54</p></section><section><header>figure 2-</header><p> kaplan-meier plot of progression-free survival (study 1023, itt) investigator assessment blinded independent central review</p><p>
+ (bicr subset)</p><p>data cut-off date: 05 dec 2014 sensitivity analyses the prospectively defined sensitivity analyses of pfs all showed statistically significantly longer 
+ investigator-assessed pfs for the palbociclib plus fulvestrant arm compared with the placebo plus 
+ fulvestrant arm.</p></section><section><header>table 9. sensitivity analyses for pfs by treatment (study 1023, itt)</header><p>abbreviations: ae: adverse event, at: as treated, bicr: blinded independent central review, ci: confidence interval, ecog: eastern cooperative oncology group, hr: hazard ratio, ind: indeterminate, itt: intent-to-treat, vs: versus, pd: progressive disease, pfs: 
+ progression-free survival. 
+ sensitivity analysis 1: influence of analysis population; based on at population</p><p>ema/53381/2018 
+ page 28/54 
+ sensitivity analysis 2: a 1-sided unstratified log-rank test was used to compare treatments and the hr was based on an unstratified 
+ cox proportional hazards model. 
+ sensitivity analysis 3: to investigate whether the stratification factors and important covariates influenced the outcome of the primary 
+ endpoint pfs. final explanatory variables for the multivariate model were selected using a backward selection process with the 
+ significance level of 0.1 for retaining the effects in the model. baseline factors that entered the model selection included age (≥65 vs 
+ &lt;65), race (white, black, asian, other), baseline ecog status (1 vs 0), disease site (non-visceral vs visceral), sensitivity to prior 
+ hormonal therapy (yes vs no), menopausal status at study entry (pre/peri vs post), ethnic origin (hispanic vs not-hispanic), and 
+ geographical region (north america, europe, asia pacific). 
+ assessor’s note: baseline ecog status (1 vs. 0), and disease site (non-visceral vs. visceral) met the criteria and were the two baseline factors included in the model to yield the hr 0.395. 
+ sensitivity analysis 4: influence of disease assessment scheduling. if disease progression was documented between 2 scheduled tumour 
+ assessments, then the date of progression was assigned to the earlier scheduled tumour assessment. in the event of death, the date of 
+ the endpoint was not adjusted. 
+ sensitivity analysis 5: influence of deviations in tumour lesion assessment. if a lesion was classified as “indeterminate” (ind) at time 
+ point “x” and was adequately evaluated as pd at the next time point “x+1”, then pd was assigned to the time point “x” or earlier (the 
+ first date of the consecutive inds) instead of the date of the next time point “x+1” as the primary analysis. 
+ sensitivity analysis 6.1: influence of bone-only disease patients. patients with bone-only disease with fracture, radiation therapy, 
+ surgery, ecog at least 2 point increase from baseline or change of therapy were censored at the date of prior tumour assessment with 
+ no pd. 
+ sensitivity analysis 6.2: influence of bone-only disease patients: patients with bone-only disease with fracture, radiation therapy, 
+ surgery, ecog at least 2 point increase from baseline or change of therapy were considered as events. 
+ sensitivity analysis 6.3: influence of bone-only disease patients: bone-only disease patients were excluded from the analysis. 
+ sensitivity analysis 7: influence of missing data: the following missing pfs data that might have resulted in the censored pfs data in 
+ the primary analysis were considered pfs events in addition to the documented pd and death: new anti-cancer treatment, lost to 
+ follow-up, consent withdrawal, medication error without associated ae. 
+ sensitivity analysis 8: influence of potential investigator bias. random sample bicr data and investigator assessed pfs (event) data 
+ were combined. for events identified by both bicr and investigator, bicr data were used to determine event time. for patients who 
+ were censored by both bicr and investigator, bicr (when applicable) data were used to determine the censoring time. 
+ 1) for sensitivity analyses 1 and 4 to 8, stratified hazard ratios are presented, for sensitivity analyses 2 and 3 unstratified hazard ratio 
+ ratios. 
+ 2) 1-sided p-values are reported except for sensitivity analysis 3 (2-sided p-value)</p><p>pfs updates two updates were performed; the first on 16 march 2015 is not presented since superseded by the 
+ subsequent.</p><p>
+ 23 october 2015 a later update with data cut-off date 23 oct 2015 was subsequently submitted based on an overall event rate of 64% (333 events in 521 patients) and a median follow-up of over 15 months in both arms. again 
+ the pfs hr is slightly higher, at 0.497, but in line with the results in the interim analysis.</p><p>
+ in the second update, the difference between arms in median pfs has increased to 6.6 months (11.2 vs 
+ 4.6 months, respectively).</p></section><section><header>table 10. pfs summary (study 1023, investigator assessments, itt, 23 october 2015)  ibrance 
+ plus fulvestrant 
+ (n=347) 
+ placebo 
+ plus fulvestrant 
+ (n=174) 
+ progression-free survival (pfs)</header><p>number of pfs events (%) 200 (57.6%) 
+ 133 (76.4%)</p><p>
+ median [months (95% ci)]</p><p>
+ 11.2 (9.5, 12.9) 
+ 4.6 (3.5, 5.6)</p><p>
+ hazard ratio (95% ci) and p-value 
+ 0.497 (0.398, 0.620), p&lt;0.000001</p><p>ema/53381/2018 
+ page 29/54 
+ table 11. progression-free survival - investigator assessment (study 1023, itt, 23 october 2015)</p><p>ci=confidence interval; pd=progressive disease; n=total number of patients in population; n=number of patients meeting pre-specified criteria; ne=not estimable. a. anticancer treatment includes surgery containing a lesion removal or subsequent anticancer systemic 
+ therapies. b. estimated from kaplan-meier curve. c. calculated using the product-limit method. d. based on the brookmeyer and 
+ crowley method. e. assuming proportional hazards, a hazard ratio less than 1 indicates a reduction in hazard rate in favour of 
+ palbociclib + fulvestrant. f. 1-sided p-value from the log-rank test stratified by the presence of visceral metastases and sensitivity to 
+ prior hormonal therapy per randomization. g. sensitivity analysis 2: used a 1-sided unstratified log-rank test and an unstratified cox 
+ proportional hazards model</p><p>ema/53381/2018 
+ page 30/54</p></section><section><header>figure 3. kaplan-meier plot of progression-free survival (study 1023, itt, investigator assessment, 23 october 2015)</header><p>data cut-off: 23 october 2015</p></section><section><header>secondary endpoints</header><p>overall survival</p><p>at the 05 december 2014 data cut-off date for the primary pfs analysis, there were 28 deaths from 521 
+ patients, 19 (5.5%) patients had died in the palbociclib plus fulvestrant arm and 9 (5.2%) patients had 
+ died in the placebo plus fulvestrant arm. the median os was not reached in either treatment arm. the 
+ median follow-up time was 5.6 months for both treatments arms.</p><p>
+ a pre-specified interim os analysis was undertaken with a data cut-off date of 23 oct 2015.</p><p>at this time, 
+ there were a total of 112 death events [71 (20.5%) vs 41(23.6%) on the palbociclib plus fulvestrant arm 
+ and placebo plus fulvestrant arm, respectively, representing 21.5% of the 521 total patients. the detailed 
+ summary of the deaths as of the data cut-off date of 23 oct 2015 are presented in table 12.</p><p>ema/53381/2018 
+ page 31/54</p></section><section><header>table 12. summary of deaths, 23 october 2015 update (study 1023, itt)</header><p>objective response, clinical benefit response and duration of response a summary of results are given in table 13. results are based on the most recent efficacy update, based 
+ on the data cut-off of 23 october 2015.</p></section><section><header>table 13. summary of objective response, clinical benefit response, and duration of response (study 1023, itt, updated)</header><p>*response endpoints based on confirmed responses. n=number of patients; ci=confidence interval; ne=not estimable; or=objective response; cbr=clinical benefit response; 
+ dor=duration of response; pfs=progression-free-survival.</p></section><section><header>table 14. summary of objective response, clinical benefit response, and duration of response (study 1023, itt, updated) 
+ secondary end-points*
+  faslodex plus palbociclib 
+ (n=347)
+  faslodex plus placebo 
+ (n=174)
+  or [% (95% ci)]
+  26.2 (21.7, 31.2)
+   13.8 (9.0, 19.8)
+  or (measurable disease) 
+ [% (95% ci)]
+  33.7 (28.1, 39.7)
+   17.4 (11.5, 24.8)
+  dor (measurable 
+ disease) [months 
+ (95%
+  ci)]
+  9.2 (7.2, 10.4)
+  7.4 (3.9, ne)
+  cbr [% (95% ci)]
+  68.0 (62.8, 72.9)
+   39.7 (32.3, 47.3)</header><p>*response endpoints based on confirmed and not confirmed responses.</p><p>ema/53381/2018 
+ page 32/54 
+ patient-reported outcomes the pro evaluable population was defined as a subset of itt patients, who had completed a baseline and 
+ at least one post–baseline pro assessment prior to end of study treatment. no update was provided for 
+ pros.</p><p>
+ patient–reported outcomes were investigated using the instruments, eortc qlq-c30, qlqc30 and eq-
+ 5d. these are considered standard. however, no primary objective and no strategy to protect the type-1 
+ error rational are put forward in the study protocol or sap. furthermore, the results indicated emotional 
+ functioning as a driver for the overall health related qol, why the plausibility of results may also be 
+ questioned. unblinding due to the effects of palbociclib on the bone marrow may clearly be present and 
+ the results potentially associated with hopes with regard to the benefit of the experimental compound. 
+ the claims concerning global health status/qol were therefore not accepted. 
+ time to deterioration in pain a total of 335 patients in the faslodex plus palbociclib arm and 166 patients in the faslodex plus placebo arm completed the questionnaire at baseline and at least 1 post-baseline visit. 
+ a time to event analysis was prespecified for pain. time-to-deterioration was pre-specified as time 
+ between baseline and first occurrence of 
+ ≥ 10 points increase from baseline in pain symptom scores. this is an established cut-off in qlq-c30.</p><p>
+ addition of palbociclib to faslodex resulted in a symptom benefit by significantly delaying time-to-
+ deterioration in pain symptom compared with faslodex plus placebo (median 8.0 months versus 2.8 
+ months; hr of 0.64 [95% ci: 0.49, 0.85]; p&lt;0.001).</p></section><section><header>table 15. qlq-c30 time to deterioration - symptom scale of pain increase of ≥10 points (study 1023, pro analysis population)</header><p> ema/53381/2018 
+ page 33/54 
+ pfs subgroups analyses (updated) a reduction in the risk of disease progression or death in the faslodex plus palbociclib arm was observed 
+ in all individual patient subgroups defined by stratification factors and baseline characteristics. this was 
+ evident for pre/perimenopausal women (hr of 0.46 [95% ci: 0.28, 0.75]) and postmenopausal women 
+ (hr of 0.52 [95% ci: 0.40, 0.66]) and patients with visceral site of metastatic disease (hr of 0.50 [95% 
+ ci: 0.38, 0.65]) and non-visceral site of metastatic disease (hr of 0.48 [95% ci: 0.33, 0.71]). benefit 
+ was also observed regardless of lines of prior therapy in the metastatic setting, whether 0 (hr of 0.59 
+ [95% ci: 0.37, 0.93]), 1 (hr of 0.46 [95% ci: 0.32, 0.64]), 2 (hr of 0.48 [95% ci: 0.30, 0.76]), or 
+ ≥ 3 lines (hr of 0.59 [95% ci: 0.28, 1.22]).</p></section><section><header>figure 4- pfs subgroup analyses (study 1023, itt, updated)</header><p> ema/53381/2018 
+ page 34/54</p></section><section><header>summary of main study</header><p>the following tables summarise the efficacy results from the main studies supporting the present application. these summaries should be read in conjunction with the discussion on clinical efficacy as well 
+ as the benefit risk assessment (see later sections).</p></section><section><header>table 16. summary of efficacy for study 1023 (paloma-3), primary and updated analyses title:</header><p>multicenter, randomized, double-blind, placebo-controlled, phase 3 trial of fulvestrant (faslodex) with or without pd-0332991 (palbociclib) ± goserelin in women with hormone receptor-
+ positive, her2-negative metastatic breast cancer whose disease progressed after prior endocrine 
+ therapy. 
+ study identifier 
+ a5481023</p><p>design 
+ international, multicentre, 2:1 randomised, double-blind, placebo-controlled, 
+ parallel-group, phase 3 clinical study with the primary objective of 
+ demonstrating the superiority of palbociclib (with or without goserelin) in 
+ combination with fulvestrant (faslodex) over fulvestrant (with or without 
+ goserelin)plus placebo in women with hr-positive, her2-negative metastatic 
+ breast cancer, regardless of their menopausal status, whose disease had 
+ progressed after prior endocrine therapy. 
+ duration of main phase: 
+ not applicable 
+ duration of run-in phase: 
+ not applicable 
+ duration of extension phase: 
+ not applicable 
+ hypothesis 
+ the primary objective of this study is to demonstrate that the combination of 
+ palbociclib and fulvestrant is superior to the combination of placebo and 
+ fulvestrant 
+ in 
+ prolonging 
+ investigator-assessed 
+ pfs 
+ in 
+ women 
+ with 
+ hr+/her2-negative metastatic breast cancer that has progressed on prior 
+ endocrine therapy, and regardless of their menopausal status. 
+ treatments groups</p><p>arm a 
+ (investigational 
+ arm)</p><p>
+ palbociclib 125 mg/day orally for 3 weeks 
+ followed 
+ by 
+ 1 
+ week 
+ off 
+ plus 
+ fulvestrant 
+ 500 
+ mg 
+ intramuscularly on days 1 and 15 of cycle 1, every 28 days 
+ (+/- 7 days) thereafter starting from day 1 of cycle 1. 
+ number of patients randomized: 347</p><p>
+ arm b 
+ (comparator 
+ arm):</p><p>
+ placebo orally daily for 3 weeks followed by</p><p>
+ 1 week off plus fulvestrant 500 mg intramuscularly on days 
+ 1 and 15 of cycle 1, every 28 days (+/- 7 days) thereafter 
+ starting from day 1 of cycle 1.</p><p>number of patients randomized: 174 
+ endpoints and 
+ definitions</p><p>
+ primary 
+ endpoint 
+ progression-free survival (pfs) as assessed by the 
+ investigator 
+ secondary 
+ endpoints 
+ - overall survival (os). 
+ - objective response (or: cr or pr). 
+ - duration of response (dr). 
+ - clinical benefit response (cbr: cr or pr or - sd ≥24 
+ weeks). 
+ - type, incidence, severity, seriousness and relationship to 
+ study medications of aes and any laboratory abnormalities.</p><p>
+ - trough plasma concentration of palbociclib, fulvestrant 
+ and 
+ goserelin 
+ (if 
+ applicable)in 
+ the 
+ subgroup 
+ of 
+ approximately 40 patients included in the initial safety 
+ assessment. 
+ - pro endpoints such as health related quality of life scores 
+ [euroqol (eq-5d) score. 
+ - tumour tissue biomarkers, including genes (eg, copy 
+ numbers of ccnd1 and cdkn2a, pik3ca mutations), 
+ proteins (eg, ki67, prb, ccne1), and rna expression (eg, 
+ cdk4, cdk6). 
+ database lock 
+ study is ongoing</p><p>ema/53381/2018 
+ page 35/54</p></section><section><header>results and analysis  analysis description 
+ primary analysis</header><p>analysis population and time point 
+ description 
+ intent-to-treat population 
+ data cut-off date = 05 december 2014</p><p>
+ descriptive statistics 
+ and estimate 
+ variability</p><p>
+ effect estimate per 
+ comparison 
+ treatment group 
+ palbociclib plus 
+ fulvestrant</p><p>
+ placebo plus 
+ fulvestrant</p><p>
+ number of 
+ subject 
+ 347 
+ 174</p></section><section><header>pfs</header><p>(median) [months]</p><p>
+ 9.2</p><p>
+ 3.8</p><p>
+ 95% ci of 
+ median pfs 
+ [months] 
+ 7.5-ne 
+ 3.5-5.5 
+ effect estimate 
+ per comparison 
+ of pfs 
+ comparison groups</p><p>palbociclib + fulvestrant</p><p> vs.</p><p> placebo + fulvestrant 
+ hazard ratio (hr)</p><p>0.422</p><p>
+ 95% ci of hr</p><p>0.318-0.560 
+ 1-sided p-value</p><p>p&lt;0.000001</p></section><section><header>or*</header><p>(or rate)</p><p>[%] 
+ 10.4</p><p>
+ 6.3</p><p>
+ 95% ci of or 
+ rate [%] 
+ 7.4-14.1 
+ 3.2-11.0 
+ effect estimate 
+ per comparison 
+ of or 
+ comparison groups</p><p>palbociclib + fulvestrant</p><p>vs.</p><p>placebo + fulvestrant 
+ odds ratio</p><p> 1.725</p><p>
+ 95% ci of odds ratio</p><p> 0.835-3.896 
+ 1-sided p-value</p><p>p=0.0791</p></section><section><header>cbr*</header><p>(cbr rate)</p><p>[%] 
+ 34.0</p><p>
+ 19.0</p><p>
+ 95% ci of cbr 
+ rate [%] 
+ 29.0-39.3 
+ 13.4-25.6 
+ effect estimate 
+ per comparison 
+ of cbr 
+ comparison groups</p><p>palbociclib + fulvestrant</p><p>vs.</p><p>placebo + fulvestrant 
+ odds ratio</p><p>2.189</p><p>
+ 95% ci of odds ratio</p><p>1.391-3.523</p><p>
+ 1-sided p-value</p><p> p=0.0002</p></section><section><header>dr*</header><p>(median) [months] 
+ 9.3</p><p>
+ 5.7</p><p>
+ 95% ci of 
+ median dr 
+ [months] 
+ 4.0-ne 
+ 3.7-5.7 
+ notes 
+ assuming proportional hazards, a hazard ratio less than 1 indicates a 
+ reduction in hazard rate in favour of palbociclib +fulvestrant.</p><p>
+ an odds ratio &gt; 1 means better response in favour of palbociclib + 
+ fulvestrant. 
+ confirmed objective response is considered for or and cbr.</p><p>ema/53381/2018 
+ page 36/54</p></section><section><header>analysis description updated analysis 
+  analysis population 
+ and time point 
+ description</header><p>intent-to-treat population data cut-off date of 23 of october 2015 
+ descriptive statistics 
+ and estimate 
+ variability</p><p>
+ effect estimate per 
+ comparison 
+ treatment group 
+ palbociclib plus 
+ fulvestrant</p><p>
+ placebo plus 
+ fulvestrant</p><p>
+ number of 
+ subject 
+ 347 
+ 174</p></section><section><header>pfs</header><p>(median) [months]</p><p>
+ 11.2</p><p>
+ 4.6</p><p>
+ 95% ci of 
+ median pfs 
+ [months]</p><p>
+ 9.5-12.9 
+ 3.5-5.6 
+ effect estimate 
+ comparison 
+ of pfs 
+ comparison groups</p><p>palbociclib + fulvestrant</p><p>vs.</p><p> placebo + fulvestrant 
+ hazard ratio (hr)</p><p> 0.407</p><p>95% ci of hr</p><p> 0.398-0.620</p><p>1-sided p-value</p><p>p&lt;0.000001</p></section><section><header>or*</header><p>(or rate)</p><p>[%] 
+ 21.0</p><p>
+ 8.6</p><p>
+ 95% ci of or 
+ rate [%] 
+ 16.9, 25.7 
+ 4.9-13.8 
+ effect estimate 
+ comparison 
+ of or 
+ comparison groups</p><p>palbociclib + fulvestrant</p><p>vs.</p><p> placebo + fulvestrant 
+ odds ratio</p><p> 2.78 
+ 95% ci of odds ratio</p><p> 1.56-5.60 
+ 1-sided p-value</p><p>p=0.0001</p></section><section><header>cbr*</header><p>(cbr rate)</p><p>[%] 
+ 66.3</p><p>
+ 39.7</p><p>
+ 95% ci of cbr 
+ rate [%] 
+ 61.0-71.2 
+ 32.3-47.3 
+ effect estimate 
+ comparison 
+ of cbr 
+ comparison groups</p><p>palbociclib + fulvestrant</p><p>vs.</p><p>placebo + fulvestrant 
+ odds ratio</p><p>3.02</p><p>
+ 95% ci of odds ratio</p><p>2.05-4.57 
+ 1-sided p-value</p><p> p&lt;0.0001</p></section><section><header>dr*</header><p>(median) [months] 
+ 10.4</p><p>
+ 9.0</p><p>
+ 95% ci of 
+ median dr 
+ [months] 
+ 8.3-ne 
+ 5.5-ne 
+ notes 
+ assuming proportional hazards, a hazard ratio less than 1 indicates a 
+ reduction in hazard rate in favour of palbociclib +fulvestrant.</p><p>
+ an odds ratio &gt; 1 means better response in favour of palbociclib + 
+ fulvestrant. 
+ confirmed objective response is considered for or and cbr. 
+ *response results based on confirmed responses.</p><p>ema/53381/2018 
+ page 37/54</p></section><section><header>analysis performed across trials (pooled analyses and meta-analysis)</header><p>critical visceral disease according to current international treatment guidelines, endocrine therapy is not recommended in 
+ patients with critical, rapidly progressing or symptomatic visceral disease, due to a lower expectancy of a 
+ rapid tumour response or relevant tumour shrinkage compared with (cytotoxic) chemotherapies.</p><p>
+ study paloma-3 excluded patients with advanced/metastatic, symptomatic, visceral spread, that are at 
+ risk of life-threatening complications in the short term, including patients with massive uncontrolled 
+ effusions (pleural, pericardial, peritoneal), pulmonary lymphangitis, and over 50% liver involvement. 
+ the table below provides available data on time to response (ttr) and objective response (or) rates.</p></section><section><header>table 17. efficacy in visceral and non-visceral subgroup compared with itt (paloma-3)</header><p>all patients visceral subgroup 
+ non-visceral subgroup</p><p>
+ fulvestrant 
+ + palbociclib 
+ fulvestrant 
+ + placebo 
+ fulvestrant 
+ + palbociclib 
+ fulvestrant 
+ + placebo 
+ fulvestrant 
+ + palbociclib 
+ fulvestrant 
+ + placebo 
+ n 
+ 347 
+ 174 
+ 206 
+ 105 
+ 141 
+ 69 
+ visceral 
+ disease</p><p>
+ (% of pts) 
+ 59 
+ 60 
+ 100 
+ 100 
+ 0 
+ 0 
+ orr* (%) 
+ 21.0 
+ 8.6 
+ 28.0 
+ (21.7, 34.3) 6.7 (2.7, 13.3) 11.3 (6.6, 17.8) 11.6 (5.1, 21.6) ttr* (months) 
+ n/r 
+ n/r 
+ 3.8 
+ (3.5, 14.0) 
+ 3.6 
+ (3.5, 7.4) 3.7 (1.9, 5.7) 3.6 (3.4, 3.7) orr+ (%) 26.2 
+ (21.7, 31.2) 
+ 13.8 
+ (9.0, 19.8) 
+ 35.0 
+ (28.5, 41.9) 
+ 13.3 
+ (7.5, 21.4) 13.5 (8.3, 20.2) 14.5 (7.2, 25.0) ttr+ (months) n/r 
+ n/r 
+ 3.8 
+ (3.5, 16.7) 5.4 (3.5, 16.7) 3.7 (1.9, 13.7) 3.6 (3.4, 3.7) pfs hr (inv)</p><p>0.50 
+ 0.50 
+ 0.48 
+ data cut-off date: 23 oct 2015 
+ *response results based on confirmed responses. 
+ + response results based on confirmed and not confirmed responses n/r: not reported. 
+ source: paloma-3 csr, table 17; ibrance epar.</p></section><section><header>clinical studies in special populations</header><p>in pivotal study 1023 86/347 (25%) of fulvestrant+palbociclib-treated patients were ≥65 years old.</p></section><section><header>table 18. elderly patients in pivotal studies 1023</header><p>controlled trials age 65-74 
+ (older subjects number 
+ /total number) 
+ age 75-84 
+ (older subjects number 
+ /total number)</p><p>
+ age 85+ 
+ (older subjects number 
+ /total number) 
+ a5481023 
+ (paloma-3) 
+ 96/521 
+ (18.4)</p><p>
+ 30/521 
+ (5.8) 
+ 3/521 
+ (0.6)</p><p>
+ fulvestrant 
+ + 
+ palbociclib 
+ fulvestrant 
+ + placebo 
+ fulvestrant 
+ + 
+ palbociclib 
+ fulvestrant 
+ + placebo 
+ fulvestrant + palbociclib</p><p>
+ 59 
+ 37 
+ 24 
+ 6 
+ 3 
+ source: ibrance epar</p><p>ema/53381/2018 
+ page 38/54</p></section><section><header n="2.4.2">2.4.2.  
+ discussion on clinical efficacy</header><p>study 1023 was a 2:1 randomized, double-blind, placebo-controlled, phase 3 study comparing palbociclib vs. placebo as add-on to fulvestrant (+ goserelin in pre- and perimenopausal patients) in patients with 
+ hormone receptor (hr) positive, her2-negative metastatic breast cancer, whose disease had progressed 
+ after prior endocrine therapy. cross-over was not allowed.</p><p>
+ the treatment arms were well balanced with regard to the stratification factors. neither the 
+ inclusion/exclusion criteria violations nor the changes to the protocol and sap appeared to have put the 
+ integrity of the study at risk. there were no objections to the overall study design. the baseline disease 
+ characteristics were similar across study arms. small imbalances were noted but were not considered 
+ likely to affect the overall study results. 
+ the study met its primary objective of prolonging investigator-assessed pfs at the interim analysis (data 
+ cut-off 05 dec 2014), demonstrating a statistically significant prolongation in pfs and a clinical 
+ meaningful treatment effect. a number of pre-specified sensitivity analyses confirmed the results of the 
+ primary analysis.</p><p>
+ overall survival data were immature and thus non-informative with in total 28 deaths and event rates of 
+ 5% in both arms at the interim analysis. therefore, two updated analyses were performed for 
+ investigator-based pfs, orr, cbr and dor at a median of 8.9 months follow-up (data cut-off 16 march 
+ 2015) and over 15 months (data cut-off 23 october 2015), respectively. in the second update, performed 
+ at an overall event rate of 64% (58 vs. 76%), the pfs hr was 0.50 (0.36-0.59). median pfs was 11.2 
+ vs. 4.6 months, i.e. a difference of 6.6 months. thus in the updated analysis, the difference between 
+ arms has increased from 5.7 to 6.6 months. 
+ in updated pfs subgroup analyses, all subgroup hr point estimates were below 1.0 and most had 95% 
+ confidence intervals below 1, indicating robustness of the results.</p><p>
+ in the updated analysis the difference in objective response rate (orr), 21 vs 8.6% (non-overlapping 
+ confidence intervals, 1-sided p= 0.0001), and clinical benefit rate (cbr), 66.3 vs 39.7% (non-
+ overlapping confidence intervals, 1-sided p&lt;0.0001), supports the pfs results. duration of response 
+ (dor) was numerically but not statistically significantly longer in the experimental arm compared with 
+ the comparator arm, 10.4 vs. 9.0 months. 
+ at a pre-specified interim os analysis (data cut-off date of 23 oct 2015) there were in total 112 deaths 
+ (21%) in both arms; 20.5 vs. 23.6% (experimental vs. control). no deaths in the palbociclib in 
+ combination with fulvestrant arm were due to toxicity. the formal statistical analysis of os will be 
+ performed during the planned os interim analysis and final analysis. at this time, there are no signs of a 
+ detrimental effect on os. the final analysis of overall survival is projected to occur by q4 (dec) 2017. 
+ the mah of ibrance (palbociclib) has committed to submit these results by q2 (june) 2018 (see epar 
+ ibrance). 
+ with regard to patient-reported outcomes (pros), a time to event analysis was pre-specified for time to 
+ deterioration (ttd), defined as first occurrence of an increase of at least 10 points in the symptom of pain 
+ on study. statistically convincing and plausible results were achieved with a difference in median time to 
+ deterioration of 8.0 vs 2.8 months, hr 0.6, p &lt;0.001.</p><p>
+ critical visceral disease 
+ according to current international treatment guidelines, endocrine therapy is not recommended in 
+ patients with critical, rapidly progressing or symptomatic visceral disease, due to a lower expectancy of a 
+ rapid tumour response or relevant tumour shrinkage compared with (cytotoxic) chemotherapies. this 
+ patient population was also excluded from study paloma-3.</p><p>ema/53381/2018 
+ page 39/54 
+ in patients with visceral disease in paloma-3, the orr was improved by 21.7% (from 13.3 to 35%) and time to response (ttr) was improved by 1.6 months (from 5.4 to 3.8 months) (see section 5.1 of 
+ smpc).</p><p>
+ with regard to critical visceral disease, a rapid response to therapy is of importance. there is little 
+ published data on ttr for comparison. from the very limited literature identified, mainly phase 2 studies 
+ in different lines of therapy in the metastatic setting, the data showed that the ttr of 3.8 months 
+ observed for palbociclib + fulvestrant as second line treatment, is more similar to the ttr of endocrine 
+ therapies (around 4 months) than of the chemotherapy combinations reported (around 2 months).</p><p>
+ due to the limited information publicly available, and the many confounding factors such as line of 
+ therapy affecting cross-study comparisons, no firm conclusions can be drawn with regard to the time to 
+ response of palbociclib in combination with fulvestrant relative to conventional chemotherapies. as the 
+ efficacy in general, as well as ttr, is clearly better for the palbociclib + fulvestrant combination compared 
+ with the endocrine therapy alone, no restriction of indication is considered appropriate. information has 
+ been introduced in the smpc to inform the prescriber of the orr and ttr results for the visceral 
+ subgroups (see smpc section 5.1). section 4.4 of the smpc has been updated to reflect that the efficacy 
+ and safety of faslodex (either as monotherapy or in combination with palbociclib) have not been studied 
+ in patients with critical visceral disease (see smpc section 4.4).</p></section><section><header n="2.4.3">2.4.3.  
+ conclusions on the clinical efficacy</header><p>pfs results appear robust with regard to the level of statistical significance across analyses and it is supported by the consistency of results in a number of pfs sensitivity analyses, in subgroup analyses and 
+ from orr and cbr analyses. the magnitude of effect is considered of clear clinical relevance, with 6.6 
+ months improvement in median progression-free survival (hr: 0.50). while the data are still considered 
+ immature at an os event rate of 21%, no sign of a detrimental effect on os has been observed at this 
+ point.</p></section><section><header n="2.5">2.5.  
+ clinical safety</header></section><section><header>introduction</header><p>the safety assessment is based on the safety data from paloma-3 based on the updated safety data cut-off of 31 july 2015 (corresponding to the ibrance nda 90 day safety update). the safety review is 
+ based on the all treated patients population.</p></section><section><header>study 1023 (paloma-3) disposition</header><p> update as of 31 july 2015: a total of 347 patients were randomised to the experimental arm where 345 received treatment, while 
+ 174 patients were randomised to the control arm of which 172 were treated. a total of 60 % in the 
+ experimental arm and 79 % in the control arm permanently discontinued treatment. hence, 39 % in the 
+ palbociclib plus fulvestrant arm and 19.5% in the control arm were ongoing as of 31 july 2015.</p><p>ema/53381/2018 
+ page 40/54</p></section><section><header>patient exposure table 19. summary of patient exposure to palbociclib or placebo (all cycles) in study 1023</header><p>exposure to palbociclib or placebo exposure to fulvestrant</p><p>
+ source: 90-day safety update, tables 4 and 5. data cut-off: 31 july 2015.</p></section><section><header>adverse events table 20. overview of teaes all causalities and all cycles - as treated population (study 
+ 1023)</header><p>includes data up to 28 days after last dose of study drug. except for the number of adverse events subjects are counted only once per treatment in each row. percentages are calculated in the reference to number of subjects 
+ evaluable for adverse events. serious adverse events - according to the investigator’s assessment. severity counts 
+ are based on the maximum severity or grade of events.meddra (v18.0) coding dictionary applied. 
+ source: 90 day su, table 14.3.1.1.1, data cut-off: 31 july 2015.</p><p>ema/53381/2018 
+ page 41/54 
+ a higher proportion of aes and grade 3-4 were reported in the experimental arm compared to the control arm (76 % vs. 23 % respectively).</p><p>
+ rather few patients were permanently discontinued due to aes (approximately 5% discontinued both 
+ palbociclib and fulvestrant for this reason). on the other hand, the high proportion of temporary 
+ discontinuations of palbociclib as compared to placebo is noted (69 % vs. 13 %). also fulvestrant was 
+ more frequently temporarily discontinued in the combination arm (27% vs 5%).</p></section><section><header>table 21. summary of all-causality, treatment-emergent adverse events (all cycles) experienced by at least 10% of patients in either treatment arm of study 1023 by meddra pt 
+ and maximum severity grade sorted by descending frequency (all severity grades) in the 
+ palbociclib plus fulvestrant arm</header><p>source: 90 day su, table 7. data cut-off: 31 july 2015. most teaes were of grade 1/2 except for neutropenia, neutrophil count decreased and leukopenia which were most commonly of grade 3 (67%, 63% and 64% respectively).</p><p>ema/53381/2018 
+ page 42/54 
+ treatment-related aes</p></section><section><header>table 22. treatment-related, treatment-emergent adverse events (all cycles) experienced by at least 5% of patients in either treatment arm</header><p>source: 90 day su, table 11 (part of). data cut-off: 31 july 2015. a total of 38 patients (11.0%) in the palbociclib plus fulvestrant arm and 2 patients (1.2%) in the placebo plus fulvestrant arm experienced treatment-related aes of grade 4 severity. the grade 4 treatment-
+ related aes experienced by more than 1 patient (0.3%) each in the palbociclib plus fulvestrant arm were 
+ neutropenia (7.2%) and neutrophil count decreased (3.5%) as well as white blood cell count decreased 
+ (0.6%).</p><p>
+ a total of 203 patients (58.8%) in the palbociclib plus fulvestrant arm and 8 patients (4.7%) in the 
+ placebo plus fulvestrant arm experienced treatment-related aes of grade 3 maximum severity. the grade 
+ 3 treatment-related aes experienced by more than 2% of patients each in the palbociclib plus fulvestrant 
+ arm were neutropenia (42.6%) and neutrophil count decreased (14.2%), leukopenia (16.5%) and white 
+ blood cell count decreased (13.9%), as well as anaemia (2.6%). the only grade 3 treatment-related aes 
+ reported for more than 1 patient in the placebo plus fulvestrant arm were anaemia and fatigue 
+ experienced by 2 patients (1.2%) each.</p></section><section><header>serious adverse events</header><p>update as of 31 july 2015 data cut-off date: a total of 53 patients (15.4%) experienced at least one sae in the experimental arm vs. 18 % in the 
+ control arm. most common saes in the experimental arm included pyrexia (5 patients [1.4%]), 
+ neutropenia (4 [1.2%]), pulmonary embolism (3 [0.9%]) as well as deep vein thrombosis, dyspnoea, 
+ febrile neutropenia, general physical health deterioration, pharyngitis, pleural effusion, and suicide 
+ attempt (2 [0.6%] each). the remaining saes were experienced by one patient (0.3%) each.</p><p>
+ among patients experiencing saes of any severity grade in the experimental arm, grade 3 saes were 
+ reported for more than half of the patients (55 %), and grade 4 saes were reported for 15 %.</p></section><section><header>deaths table 23. summary of on-study deaths reported in study 1023 — all treated patients</header><p>source: 90 day su, table 13. data cut-off: 31 july 2015.</p><p>ema/53381/2018 
+ page 43/54</p></section><section><header>laboratory findings</header><p>haematology almost all patients in the experimental arm with hematologic laboratory test results available for 
+ evaluation had abnormal white blood cell counts (98 %) and absolute neutrophil counts (95 %) as 
+ compared to 22 % and 8 % respectively for the control arm. 
+ in the experimental arm, anaemia and thrombocytopenia were reported in 76 % and 57 % of the patients 
+ vs. 36 % and 8 % in the control arm respectively. 
+ clinical chemistry 
+ no major concern is raised relevant to clinical chemistry. 
+ hy’s law 
+ one patient in each treatment arm met the laboratory criteria for a potential hy&apos;s law case although 
+ neither case was eventually considered to be a hy&apos;s law case as these patients also had elevations in 
+ alkaline phosphatase as well as alternative explanations for the laboratory changes.</p></section><section><header>safety in special populations</header><p>age the majority were &lt; 65 years of age. a total of 25 % of the study population were ≥ 65. in terms of 
+ teaes, saes and discontinuations, no major differences between the two age groups were observed in 
+ either arm. grade 3/4 aes (related and overall) were numerically higher in the lower age group in both 
+ arms. patients &lt; 18 years were not eligible in the study.</p></section><section><header>table 24. summary of all-causality and treatment-related, treatment-emergent adverse events (all cycles) by age group</header><p>source: 90 day su, table 45. data cut-off: 31 july 2015. race the vast majority was caucasian (73 %) and the second largest was asian (overall about 20 %).</p><p>ema/53381/2018 
+ page 44/54 
+ gender all patients enrolled were female.</p></section><section><header>discontinuation and dose adjustments due to aes table 25. summary of all-causality, treatment-emergent adverse events (all cycles) 
+ associated with permanent discontinuation from treatment experienced by patients receiving 
+ palbociclib plus fulvestrant by meddra pt — all treated patients</header><p>source: 90 day su, table 17. data cut-off: 31 july 2015. temporary discontinuation the overall proportion of teaes associated with temporary discontinuation was 69 % in the experimental 
+ arm vs. about 13 % in the control arm. most commonly was neutropenia (48 %) and neutrophil count 
+ decreased (17 %) as well as white blood cell count decreased (8 %) and leukopenia (7 %). all but one 
+ teae of neutropenia were of grade 3/4 severity. these myelosuppression aes were followed by nausea 
+ (2.6%), vomiting (2.3%), diarrhoea (2.0%), fatigue (2.0%) and alt increased (1.7%).</p><p>
+ (
+ source: 90 day su, table 19. data cut-off: 31 july 2015.)</p><p>ema/53381/2018 
+ page 45/54</p></section><section><header>table 26. summary of all-causality, teaes (all cycles) associated with dose reduction or modification experienced by at least 2 patients in either treatment arm by meddra pt and 
+ maximum severity grade sorted by descending frequency in the palbociclib plus fulvestrant 
+ arm (study 1023)</header><p>source: 90 day su, table 18. data cut-off: 31 july 2015.</p><p>
+ a total of 128 patients (37.1%) in the experimental arm had their palbociclib dose reduced as of 31 july 2015: 34 % had their dose reduced from 125 mg qd to 100 mg qd, and 12 % had their dose reduced 
+ from 125 mg to 100 mg qd and further to 75 mg qd. the palbociclib dose was reduced at least twice for 
+ 31 patients (9.0%) in that treatment arm. in addition, 13 patients (3.8%) had their palbociclib dose 
+ regimen changed from schedule 3/1 to schedule 2/2 (2 weeks on palbociclib treatment followed by 2 
+ weeks off treatment). in the placebo plus fulvestrant arm, only 3 patients (1.7%) had their placebo dose 
+ reduced.</p></section><section><header>adverse drug reactions</header><p>the most common (≥20%) adverse reactions of any grade reported in patients receiving fulvestrant in combination with palbociclib were neutropenia, leukopenia, infections, fatigue, nausea, anaemia, 
+ stomatitis, diarrhoea, and thrombocytopenia. the most common (≥2%) grade ≥3 adverse reactions were 
+ neutropenia, leukopenia, anaemia, infections, ast increased, thrombocytopenia, and fatigue.</p><p>
+ the table below reports the adverse reactions from paloma3. 
+ median duration of exposure to fulvestrant was 11.2 months in the fulvestrant + palbociclib arm and 4.9 
+ months in the fulvestrant + placebo arm. median duration of exposure to palbociclib in the fulvestrant + 
+ palbociclib arm was 10.8 months.</p></section><section><header>table 27. adverse reactions based on paloma3 study (n=517)  
+ system organ class
+  frequency
+  preferred term</header><p>a</p></section><section><header>faslodex + palbociclib (n=345) 
+ faslodex + placebo 
+ (n=172) 
+ all grades
+  n (%)
+  grade ≥ 3 
+ n (%) 
+ all grades
+  n (%) 
+ grade ≥ 3 
+ n (%) 
+ infections and infestations</header><p>very common</p><p>infectionsb 163 (47.2) 11 (3.2) 54 (31.4) 5 (2.9)</p></section><section><header>blood and lymphatic system disorders</header><p>very common</p><p> neutropeniac 287 (83.2) 228 (66.1) 7 (4.1) 1 (0.6)</p><p>leukopenia
+ d 183 (53.0) 105 (30.4) 9 (5.2) 2 (1.2)</p><p>anaemia
+ e 102 (29.6) 12 (3.5) 22 (12.8) 3 (1.7)</p><p>ema/53381/2018 
+ page 46/54</p><p>thrombocytopeniaf 78 (22.6) 8 (2.3) 0 (0.0) 0 uncommon</p><p>febrile neutropenia 3 (0.9) 
+ 3 (0.9) 
+ 1 (0.6) 
+ 1 (0.6)</p></section><section><header>metabolism and nutrition disorders</header><p>very common</p><p>decreased appetite 55 (15.9) 
+ 3 (0.9) 
+ 14 (8.1) 
+ 1 (0.6)</p></section><section><header>nervous system disorders</header><p>common</p><p>dysgeusia 23 (6.7) 
+ 0 
+ 5 (2.9) 
+ 0</p></section><section><header>eye disorders</header><p>common</p><p>lacrimation increased 22 (6.4) 
+ 0 
+ 2 (1.2) 
+ 0</p><p>vision blurred 
+ 20 (5.8) 
+ 0 
+ 3 (1.7) 
+ 0</p><p>dry eye 
+ 13 (3.8) 
+ 0 
+ 3 (1.7) 
+ 0</p></section><section><header>respiratory, thoracic and mediastinal disorders</header><p>common</p><p>epistaxis 23 (6.7) 
+ 0 
+ 3 (1.7) 
+ 0</p></section><section><header>gastrointestinal disorders</header><p>very common</p><p>nausea 117 (33.9) 
+ 0 
+ 48 (27.9) 
+ 1 (0.6)</p><p>stomatitis
+ g 97 (28.1) 2 (0.6) 22 (12.8) 0</p><p>diarrhoea</p><p>81 (23.5) 0 33 (19.2) 
+ 2 (1.2)</p><p>vomiting</p><p>65 (18.8) 
+ 2 (0.6) 
+ 26 (15.1) 
+ 1 (0.6)</p></section><section><header>skin and subcutaneous tissue disorders</header><p>very common</p><p>alopecia 62 (18.0) 
+ 0 
+ 11 (6.4) 
+ 0</p><p>rash
+ h 58 (16.8) 2 (0.6) 11 (6.4) 0 common</p><p>dry skin 21 (6.1) 
+ 0 
+ 2 (1.2) 
+ 0</p></section><section><header>general disorders and administration site conditions</header><p>very common</p><p>fatigue 142 (41.2) 
+ 8 (2.3) 
+ 50 (29.1) 
+ 2 (1.2)</p><p>pyrexia 
+ 44 (12.8) 
+ 1 (0.3) 
+ 9 (5.2) 
+ 0 
+ common</p><p>asthenia 26 (7.5) 
+ 0 
+ 9 (5.2) 
+ 1 (0.6)</p></section><section><header>investigations</header><p>common</p><p>ast increased 26 (7.5) 
+ 10 (2.9) 
+ 9 (5.2) 
+ 3 (1.7)</p><p>alt increased 
+ 20 (5.8) 
+ 6 (1.7) 
+ 6 (3.5) 
+ 0 
+ alt=alanine aminotransferase; ast=aspartate aminotransferase; n/n=number of patients. a preferred terms (pts) are listed according to meddra 17.1. b infections includes all pts that are part of the system organ class infections and infestations. c neutropenia includes the following pts: neutropenia, neutrophil count decreased. d leukopenia includes the following pts: leukopenia, white blood cell count decreased. e anaemia includes the following pts: anaemia, haemoglobin decreased, haematocrit decreased. f thrombocytopenia includes the following pts: thrombocytopenia, platelet count decreased. g stomatitis includes the following pts: aphthous stomatitis, cheilitis, glossitis, glossodynia, mouth ulceration, mucosal inflammation, oral pain, oropharyngeal discomfort, oropharyngeal pain, stomatitis. 
+ h rash includes the following pts: rash, rash maculo-papular, rash pruritic, rash erythematous, rash papular, dermatitis, dermatitis acneiform, toxic skin eruption.</p><p>ema/53381/2018 
+ page 47/54 
+ in patients receiving fulvestrant in combination with palbociclib in the paloma3 study, neutropenia of any grade was reported in 287 (83.2%) patients, with grade 3 neutropenia being reported in 191 (55.4%) 
+ patients, and grade 4 neutropenia being reported in 37 (10.7%) patients. in the fulvestrant + placebo 
+ arm (n=172), neutropenia of any grade was reported in 7 (4.1%) patients, with grade 3 neutropenia 
+ reported in 1 (0.6%) patient. there were no reports of grade 4 neutropenia in the fulvestrant + placebo 
+ arm. 
+ in patients receiving fulvestrant in combination with palbociclib, the median time to first episode of any 
+ grade neutropenia was 15 days (range: 13-317) and the median duration of grade ≥3 neutropenia was 7 
+ days. febrile neutropenia has been reported in 0.9% patients receiving fulvestrant in combination with 
+ palbociclib.</p></section><section><header n="2.5.1">2.5.1.  
+ discussion on clinical safety</header><p>at the latest safety data cut-off date of 31 july 2015, a higher proportion of aes overall (99 % vs. 91 %), grade 3/4 (76 % vs. 23 %), aes that led to temporary discontinuation and dose reductions (37 % vs. 2 
+ %) were reported for the palbociclib + fulvestrant (experimental/combination) arm compared to the 
+ placebo + fulvestrant (control) arm.</p><p>
+ there was a high proportion of temporary discontinuations from study treatment in the combination arm 
+ 69 % vs 13 % in the control arm. however, few patients (approximately 5%) permanently discontinued 
+ the study or permanently discontinued palbociclib/ placebo or fulvestrant due to aes. from a tolerability 
+ perspective this is reassuring. the main causes leading to temporary discontinuations were haematology 
+ related.</p><p>
+ the add-on of palbociclib to fulvestrant is associated with an overall rather substantial increase in events 
+ of myelosuppression, largely neutropenia (mainly grade 3), which has led to a high proportion of patients 
+ undergoing temporary dose interruptions, dose delays and dose reductions in the experimental arm. it is 
+ notable however, that overall few cases of febrile neutropenia/ neutropenic sepsis/ neutropenic infection 
+ have been reported. considering the fairly low proportion of permanent vs. the high proportion of 
+ temporary discontinuations, it appears that neutropenia is in most cases successfully managed with 
+ measures like dose reductions and dose interruptions. references to the summary of product 
+ characteristics of palbociclib have been included in faslodex smpc sections 4.2 and 4.4. furthermore, 
+ section 4.8 of the smpc has been updated to reflect relevant safety data from paloma-3, including more 
+ detailed information on haematological adrs. 
+ in study 1023, there was no notable difference in the incidence of saes between palbociclib in 
+ combination with fulvestrant treated subjects ≥ 65 years of age compared to those &lt;65 years of age. in 
+ regard to treatment duration by age-groups (median), no apparent difference between age group &lt; 65 
+ and ≥65-74 is noted. the number of patients ≥ 75 years of age were limited which preclude any firm 
+ conclusion to be drawn in this age group. no specific measures in the smpc or rmp are proposed. this is 
+ considered acceptable. 
+ no new safety issues with regard to fulvestrant were raised from this study.</p></section><section><header n="2.5.2">2.5.2.  
+ conclusions on clinical safety</header><p>the add-on of palbociclib to fulvestrant is associated with an overall rather substantial increase in toxicity relative fulvestrant alone. the main underlying cause behind this is the palbociclib associated 
+ myelosuppression, essentially neutropenia, which however does not appear to be translated into a 
+ corresponding high proportion of febrile neutropenia. the magnitude and severities of the teaes reported 
+ did not result into a high proportion of permanent discontinuations or non-disease related deaths. hence,</p><p>ema/53381/2018 
+ page 48/54 
+ the safety of fulvestrant in combination with palbociclib is acceptable as the adrs can be successfully managed with supportive measures of dose adjustments as appropriate.</p><p>therefore, the safety of 
+ fulvestrant in combination with palbociclib is considered acceptable.</p></section><section><header n="2.5.3">2.5.3.  
+ psur cycle</header><p>the psur cycle remains unchanged.</p></section><section><header n="2.6">2.6.  
+ risk management plan</header><p>the chmp endorsed the risk management plan version 12.0 with the following content:</p></section><section><header>safety concerns</header></section><section><header>category safety concern</header><p>important identified risks injection site reactions 
+ increased risk of bleeding at the injection site 
+ hypersensitivity reactions 
+ venous thromboembolic events 
+ hepatobiliary disorders 
+ important potential risks 
+ reduced bone mineral density (osteopenia) and osteoporosis 
+ ischaemic cardiovascular events 
+ endometrial dysplasia 
+ interstitial lung disease 
+ vasculitis 
+ pulmonary microembolism of oily solutions 
+ reprotoxicity (fertility, pregnancy and lactation) 
+ missing information 
+ paediatric use 
+ use with severe hepatic impairment 
+ use with severe renal impairment</p><p>
+ no new safety issues have been identified based on the safety evaluation in the current variation. the 
+ current summary of safety concerns is considered acceptable.</p></section><section><header>pharmacovigilance plan</header><p>routine pharmacovigilance is suggested and no additional pharmacovigilance activities are proposed. this is endorsed.</p><p>
+ the current post-authorisation phv development plan is sufficient to identify and characterise the risks of 
+ the product.</p><p>ema/53381/2018 
+ page 49/54</p></section><section><header>risk minimisation measures</header><p>no changes to the risk minimisation measures are introduced with this variation. routine risk minimisation is suggested. this is endorsed.</p><p>routine risk minimisation measures are sufficient to minimise the risks of the product in the proposed 
+ indication(s).</p></section><section><header n="2.7">2.7.  
+ update of the product information</header><p>as a consequence of this new indication, sections 4.1, 4.2, 4.4, 4.8, 5.1, 5.3 and 6.6 of the smpc have been updated. particularly, a new warning with regards to patients with critical visceral disease has been 
+ added to the product information. the package leaflet has been updated accordingly. 
+ changes were also made to the pi (sections 2, 6.1 and 6.5) to bring it in line with the current 
+ agency/qrd template, smpc guideline and other relevant guideline(s) which were reviewed and accepted 
+ by the chmp.</p></section><section><header n="2.7.1">2.7.1.  
+ user consultation</header><p>no justification for not performing a full user consultation with target patient groups on the package leaflet has been submitted by the mah. however, the changes to the package leaflet are minimal and do 
+ not require user consultation with target patient groups.</p></section><section><header n="3">3.  
+ benefit-risk balance</header></section><section><header n="3.1">3.1.  
+ therapeutic context</header></section><section><header n="3.1.1">3.1.1.  
+ disease or condition</header><p>breast cancer is a heterogeneous disease with subtypes having varied responses to anti-hormonal and chemotherapy treatments. breast tumour types can be distinguished by their hormonal receptor status, 
+ with one third of tumours being er-negative and two thirds of tumours being er-positive.</p><p> 
+ er-positive tumours make up 65% of tumours in women aged 35 to 65 years and 82% of tumours in 
+ women older than 65 years. these cancers are largely oestrogen driven in postmenopausal women where 
+ the main source of the tumour’s oestrogen is from conversion of androgens to oestrogens via aromatase 
+ enzyme action. modification of oestrogen activity or synthesis represents the treatment of choice for 
+ postmenopausal women with hormone receptor-positive advanced breast cancer, particularly for those 
+ with slowly progressive disease and limited tumour-related symptoms.</p></section><section><header n="3.1.2">3.1.2.  
+ available therapies and unmet medical need</header><p>recommendations from the american society of clinical oncology clinical practice guidelines, the european school of oncology-european society for medical oncology (eso-esmo) 2nd international 
+ consensus guidelines for advanced breast cancer (abc2), and the national comprehensive cancer 
+ network (nccn) clinical practice guidelines in oncology recommend endocrine therapy as the preferred</p><p>ema/53381/2018 
+ page 50/54 
+ first-line treatment option for hormone receptor-positive, her2-negative advanced breast cancer (except for immediately life-threatening disease or when concerns exist regarding endocrine resistance). the 
+ choice between endocrine therapies for the initial treatment is often driven by prior adjuvant endocrine 
+ therapy, potential side effects, time to progression on prior therapy, as well as the patient’s menopausal 
+ status. 
+ currently, first-line treatment in the er-positive, her2-negative advanced breast cancer postmenopausal 
+ population typically includes endocrine therapies, such as letrozole, anastrozole, exemestane, fulvestrant, 
+ and tamoxifen with time to progression and prolongation of pfs ranging from 5 to 15 months.</p><p>second 
+ and subsequent lines of therapy in the hormone receptor-positive advanced breast cancer population 
+ typically include endocrine therapies, such as tamoxifen, fulvestrant, steroidal or nonsteroidal ais, 
+ progestins, and androgens.</p><p>
+ palbociclib has also recently been approved for the treatment of hormone receptor (hr) positive, her2 
+ negative locally advanced or metastatic breast cancer in combination with endocrine backbone therapy 
+ (aromatase inhibitors or fulvestrant).</p><p>
+ in addition, postmenopausal women with hr-positive, her2-negative breast cancer that have progressed 
+ after treatment with letrozole or anastrozole may also receive everolimus (afinitor) in combination with 
+ exemestane.</p><p>
+ chemotherapy is mainly used for cases of rapidly progressive disease or proven endocrine resistance.</p></section><section><header n="3.1.3">3.1.3.  
+ main clinical studies</header><p>study 1023 (paloma-3) was a 2:1 randomised (n=521), double-blind phase 3 trial comparing palbociclib + fulvestrant vs. placebo + fulvestrant in patients with hr- positive and her2 negative breast cancer who 
+ had progressed on at least one prior endocrine therapy in any disease setting. peri-and premenopausal 
+ patients were also required to receive a luteinizing hormone-releasing hormone (lhrh) agonist such as 
+ goserelin to suppress ovarian function.</p></section><section><header n="3.2">3.2.  
+ favourable effects</header><p>an interim analysis was performed at a median of 5.6 months follow-up and an overall event rate of 37% (100/347 and 93/174 in experimental and comparator arm, respectively). at this point, the study met its 
+ primary objective of prolonging investigator-assessed pfs with hazard ratio (hr) 0.42 (95% ci: 0.32, 
+ 0.56; stratified 1-sided p-value &lt;0.000001) in favour of palbociclib plus fulvestrant. the median pfs was 
+ 9.2 months (95% ci: 7.5, not estimable) for palbociclib plus fulvestrant and 3.8 months (95% ci: 3.5, 
+ 5.5) for placebo plus fulvestrant, and the difference in medians between arms was 5.7 months.</p><p>
+ in a number of pre-specified sensitivity analyses hr remained stable around 0.4 in all analyses, indicating 
+ robustness of the results.</p><p>
+ a blinded independent central review (bicr) was performed on a randomly sampled subset constituting 
+ 40% (n=211) of the intention-to-treat (itt) population, showing hr 0.27, with similar median pfs in the 
+ control arm at 3.7 months, but median not reached in the palbociclib arm.</p><p> 
+ two updated efficacy analyses were performed based on investigator assessment. the latter occurred at 
+ a median follow-up of over 15 months in both study arms, and an overall event rate of 64% (58 vs. 
+ 76%). this showed a pfs hr of 0.50 (0.36-0.59) and median the pfs was 11.2 vs. 4.6 months, i.e. a 
+ difference of 6.6 months in favour of the palbociclib-containing arm.</p><p>ema/53381/2018 
+ page 51/54 
+ in updated pfs subgroup analyses all subgroup hr point estimates were below 1.0 and most had 95% confidence intervals below 1, indicating robustness of the results. pre-/perimenopausal patients and 
+ postmenopausal patients had similar hrs, 0.46 and 0.52, respectively, both with confidence intervals 
+ below 1.0. patients who had received 0 lines of therapy in the metastatic setting had a somewhat higher 
+ hr point estimate (0.59) than those with 1 or 2 previous lines of therapy for metastatic disease (0.46 and 
+ 0.48), but with 95% confidence interval below 1.0. 
+ the difference in or and cbr supports the pfs results. 
+ at a pre-specified interim analysis of overall survival (os) (data cut-off date of 23 oct 2015), the event 
+ rate was 21.5% of the total 521 patients (20.5% vs. 23.6%, for palbociclib plus fulvestrant arm and 
+ placebo plus fulvestrant arm, respectively). no death in the palbociclib-containing arm was due to 
+ toxicity.</p><p>
+ with regard to patient-reported outcomes (pros), a time to event analysis was pre-specified for time to 
+ deterioration (ttd), defined as first occurrence of an increase of at least 10 points in the symptom of pain 
+ on study. statistically convincing and plausible results were achieved with a difference in median time to 
+ deterioration of 8.0 vs 2.8 months, hr 0.6, p &lt;0.001.</p></section><section><header n="3.3">3.3.  
+ uncertainties and limitations about favourable effects</header><p>in patients with critical, rapidly progressing or symptomatic visceral disease, a rapid and high likelihood of response to therapy is of importance. chemotherapy is therefore recommended for this group of 
+ patients, who were excluded from the paloma-3. a reference is made in section 4.4 of the smpc that 
+ critical visceral disease has not been studied. this is considered sufficient, since clinical oncologists are 
+ presumed to be aware of the general guidelines with regard to endocrine therapy and rapidly progressing 
+ disease. 
+ the addition of palbociclib to fulvestrant substantially improved on both the pfs and orr of the endocrine 
+ backbone, also in the subgroup of patients with (non-critical) visceral disease. smaller or no improvement 
+ was observed for time to tumour response (ttr) in the visceral subgroup. the observed ttrs around 4 
+ months are difficult to contextualise due to the limited published data on ttrs for chemotherapy. 
+ information is included in the smpc section 5.1 to inform the prescriber of the orr and ttr results for 
+ the visceral subgroups of paloma-3, and to reflect that patients who had symptomatic visceral disease 
+ and were at risk of life-threatening complications in the short term and/or had over 50% liver 
+ involvement were excluded from the study.</p><p>
+ os data for the pivotal study are immature and have not been presented due to immaturity (21% event 
+ rate). given the large treatment effect observed on pfs, and the assessment of deaths, which did not 
+ raise any new safety concerns, a detrimental effect of palbociclib on os is considered unlikely.</p></section><section><header n="3.4">3.4.  
+ unfavourable effects</header><p>the safety assessment for this new indication is based on the safety database from pivotal study paloma-3 (study 1023).</p><p>
+ no new safety issues with regard to fulvestrant were raised from this study.</p><p>
+ the most frequently reported teaes were associated with neutropenia, largely derived from 
+ myelosuppression, leading to temporary dose interruptions, dose delays and dose reductions. other 
+ frequently reported teaes were fatigue, infections, nausea, arthralgia, stomatitis, vomiting, diarrhoea</p><p>ema/53381/2018 
+ page 52/54 
+ and alopecia. most of the teaes were of grade 1 or grade 2 maximum severity except for neutropenia and leukopenia reported most commonly as a grade 3 teae. 
+ considering the overall high incidence and severity of neutropenia, it is notable that overall few cases of 
+ febrile neutropenia/ neutropenic sepsis/ neutropenic infection have been reported. given the fairly low 
+ proportion of permanent discontinuations in relation to the high proportion of temporary discontinuations, 
+ it appears that neutropenia is in most cases successfully managed by measures such as dose reductions 
+ and dose interruptions.</p></section><section><header n="3.5">3.5.  
+ uncertainties and limitations about unfavourable effects</header><p>there are no uncertainties related to the use of fulvestrant in the applied indication. for palbociclib, some uncertainties with regard to toxicity have been identified and are followed in the psusas of ibrance (see 
+ epar ibrance).</p></section><section><header n="3.6">3.6.  
+ effects table</header></section><section><header>table 28. effects table for fulvestrant in combination with palbociclib: hormone receptor positive, her2 negative breast cancer (study 1023/paloma-3) 
+ favourable  
+ effects</header><p>experimental arm</p><p>
+ control 
+ arm 
+ difference 
+ between 
+ arms 
+ uncertainties/strength of evidence 
+ hr 
+ p-value 
+ 2-sided* 
+ comment 
+ data cut-off date: 23 october 2015 
+ n 347 
+ 174 
+ - 
+ - 
+ - 
+ 2:1 rand. 
+ pfs</p><p>
+ investigator</p><p>
+ (bicr not 
+ performed in 
+ update) 
+ median 
+ 9.5 m 
+ event rate 
+ 58% 
+ median 
+ 4.6 m 
+ event 
+ rate 
+ 76% 
+ median 
+ 6.6 m 
+ 0.50 
+ &lt;0.000002 
+ clinically 
+ meaningful, stat. 
+ robust, supported 
+ by primary 
+ analysis (inv. hr 
+ 0.42, bicr hr 
+ 0.3) and sub-
+ groups 
+ orr 
+ (recist 1.1) 
+ 21% 
+ 9% 
+ 11% 
+ or 
+ 2.8 
+ 0.0002 
+ moderate 
+ difference, stat 
+ significant 
+ cbr 
+ 66% 
+ 40% 
+ 26% 
+ or 
+ 3.0 
+ &lt;0.0002 
+ clinically 
+ meaningful, stat 
+ significant 
+ dor (median) 
+ 10.4 m 
+ 9.0 m 
+ 1.4 m 
+ - 
+ - 
+ moderate diff. 
+ os (update) 
+ event rate 
+ 20.5% 
+ event 
+ rate 
+ 23.6% 
+ - 
+ - 
+ - 
+ os data are 
+ immature. no 
+ sign of 
+ detrimental effect</p></section><section><header>unfavourable effects</header><p>experimental arm</p><p>control 
+ arm</p><p>
+ comment 
+ duration of therapy 
+ median (months)</p><p>
+ 4.8</p><p>
+ 4.0</p><p>
+ perm discont %</p><p>neutropenia 
+ temp discont %</p><p>neutropenia</p><p>
+ dose reduction %</p><p>neutropenia</p><p>
+ 3.8 
+ 0.6 
+ 64.9 
+ 45.2 
+ 31.0 
+ 21.2 
+ 1.7</p><p>
+ 8.1 
+ 0 
+ 1.7 
+ 0</p><p>
+ in terms of tolerability a substantial 
+ proportion of temporary 
+ discontinuations and dose reductions 
+ occurred, however rather few did 
+ permanent discontinue, which is 
+ reassuring. 
+ teae %</p><p>neutropenia</p><p>fatigue</p><p>nausea</p><p>
+ 97.7 
+ 61.4 
+ 38.0 
+ 29.0 
+ 89.0 
+ - 
+ 26.7 
+ 26.2</p><p>ema/53381/2018 
+ page 53/54</p><p>anaemia</p><p> diarrhoea</p><p>
+ 25.5 
+ 19.1 
+ 9.9 
+ 17.4 
+ sae %</p><p>pulm emb</p><p>pyrexia</p><p>back pain</p><p>pneumonia</p><p>
+ 9.6 
+ 0.9 
+ 0.9 
+ 0.3 
+ 0.3 
+ 14.0 
+ - 
+ 0.6 
+ 1.2 
+ 1.2</p><p>
+ grade 3 or 4 
+ 70.1 
+ 18.0</p><p>
+ all efficacy estimates concern the itt population unless otherwise stated.</p><p>* the applicant has used 1-sided p-values throughout. in this table these have been converted to 2-sided to facilitate 
+ comparison with other applications. 
+ abbreviations: ae: adverse event, bicr: blinded independent central review, cbr: clinical benefit (response) rate (cr 
+ +pr +sd ≥ 24 weeks), cr: complete response, dor: duration of response, inv: investigator, m: months, or: odds 
+ ratio, orr: objective response rate, os: overall survival, pd: progressive disease, pfs: progression-free survival, pr: 
+ partial response, sae: serious adverse event, sd: stable disease.</p></section><section><header n="3.7">3.7.  
+ benefit-risk assessment and discussion</header></section><section><header n="3.7.1">3.7.1.  
+ importance of favourable and unfavourable effects</header><p>a prolongation of progression-free survival by 6.6 months in the early metastatic settings of breast cancer is clinically relevant and meaningful.</p><p>
+ the main safety risk associated with the combination with palbociclib is bone marrow suppression, 
+ essentially neutropenia that led to dose delay and dose reductions in about 1/3 patients. haematological 
+ toxicity is common for cytotoxic drugs and can be managed relatively easy. neutropenic infections were 
+ uncommon. there is also no indication of a cumulative toxicity.</p></section><section><header n="3.7.2">3.7.2.  
+ discussion on the benefit-risk assessment</header><p>pfs results appear robust with regard to the level of statistical significance across analyses, the consistency of results in a number of pfs sensitivity analyses and in subgroups, and in terms of support 
+ from orr and cbr analyses. given the large treatment-effect on pfs, and that the evaluation of deaths 
+ on study and during follow-up did not raise concerns, a detrimental effect of palbociclib on os is 
+ considered unlikely. study 1023 (paloma-3) is immature with regard to overall survival (os), at event 
+ rates of 21%. the lack of mature data on overall survival will be addressed post-authorisation by the 
+ ibrance mah. 
+ the add-on of palbociclib to fulvestrant is associated with an overall rather substantial increase in events 
+ of myelosuppression, mainly grade 3 neutropenia which is successfully managed through temporary dose 
+ reduction and dose interruption. in general, the adrs are considered manageable and tolerable.</p></section><section><header n="3.7.3">3.7.3.  
+ balance of benefits and risks</header><p>the chmp concludes that the magnitude of the treatment effect on progression-free survival and the manageable toxicity contribute to a positive b/r balance.</p></section><section><header n="3.8">3.8.  
+ conclusions</header><p>the overall b/r of fulvestrant in combination with palbociclib for the treatment of hormone receptor (hr)-positive, human epidermal growth factor receptor 2 (her2)-negative locally advanced or metastatic</p><p>ema/53381/2018 
+ page 54/54 
+ breast cancer in women who have received prior endocrine therapy is positive.</p></section><section><header n="4">4.  
+ recommendations</header></section><section><header>outcome</header><p>based on the review of the submitted data, the chmp considers the following variation acceptable and therefore recommends the variation to the terms of the marketing authorisation, concerning the following 
+ change:</p></section><section><header>variation accepted type 
+ annexes 
+ affected</header><p>c.i.6.a</p><p>c.i.6.a - change(s) to therapeutic indication(s) - addition 
+ of a new therapeutic indication or modification of an 
+ approved one</p><p>
+ type ii 
+ i and iiib</p><p>
+ extension of indication to include the use of faslodex in combination with palbociclib for the treatment of 
+ hormone receptor (hr)-positive, human epidermal growth factor receptor 2 (her2)-negative locally 
+ advanced or metastatic breast cancer in women who have received prior endocrine therapy; in pre- or 
+ perimenopausal women, the combination treatment with palbociclib should be combined with a luteinizing 
+ hormone releasing hormone (lhrh) agonist for faslodex. as a consequence, sections 2, 4.1, 4.2, 4.4, 
+ 4.8, 5.1, 5.3, 6.1, 6.5 and 6.6 of the smpc are updated to update the safety and efficacy information. 
+ the package leaflet is updated in accordance. rmp version 12 was included in the application.</p><p>
+ the variation leads to amendments to the summary of product characteristics and package leaflet and to 
+ the risk management plan (rmp).</p></section></body></xml>

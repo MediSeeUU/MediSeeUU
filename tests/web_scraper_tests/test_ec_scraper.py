@@ -6,14 +6,14 @@ import scraping.utilities.web.web_utils as utils
 from scraping.utilities.web.medicine_type import MedicineType
 from scraping.web_scraper import ec_scraper as ec
 import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attribute_values as attribute_values
 from parameterized import parameterized
 import os
 
 
-data_path = "../test_data"
+data_path = "../tests/test_data"
 if "test_ec_scraper" in os.getcwd():
-    data_path = "../../test_data"
+    data_path = "../../tests/test_data"
 
 
 class TestEcScraper(unittest.TestCase):
@@ -63,7 +63,7 @@ class TestEcScraper(unittest.TestCase):
         ],
         [
             "o1230",
-            values.not_found,
+            attribute_values.not_found,
             "(2R,3R,4S,5R)-2-(6-amino-9H-purin-9-yl)-5-((((1r,3S)-3-(2-(5-(tert-butyl)-1H-benzo[d]imidazol-2-yl)ethyl)"
             "cyclobutyl)(isopropyl) amino)methyl)tetrahydrofuran-3,4-diol",
             "EU/3/13/1230",
@@ -264,20 +264,20 @@ class TestEcScraper(unittest.TestCase):
         [
             [
                 [],
-                values.aut_type_standard
+                attribute_values.aut_type_standard
             ],
             [
                 ["Annual Renewal"],
-                values.aut_type_conditional
+                attribute_values.aut_type_conditional
             ],
             [
                 ["Annual Reassessment"],
-                values.aut_type_exceptional
+                attribute_values.aut_type_exceptional
             ],
             [
                 ["something else",
                  "bla bla"],
-                values.aut_type_standard
+                attribute_values.aut_type_standard
             ]
         ]
     )
@@ -301,31 +301,31 @@ class TestEcScraper(unittest.TestCase):
             2005,
             True,
             False,
-            values.NA_before
+            attribute_values.NA_before
         ],
         [
             2007,
             False,
             False,
-            values.aut_type_standard
+            attribute_values.aut_type_standard
         ],
         [
             2008,
             True,
             False,
-            values.aut_type_exceptional
+            attribute_values.aut_type_exceptional
         ],
         [
             2009,
             False,
             True,
-            values.aut_type_conditional
+            attribute_values.aut_type_conditional
         ],
         [
             2010,
             True,
             True,
-            values.authorization_type_unknown
+            attribute_values.authorization_type_unknown
         ]
     ])
     def test_determine_initial_aut_type(self, year, is_exceptional, is_conditional, exp_output):
