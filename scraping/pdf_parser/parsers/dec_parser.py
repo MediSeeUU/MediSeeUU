@@ -134,7 +134,7 @@ def get_data(filename: str, txt: str) -> dict:
 # FUNCTIONS FOR EACH ATTRIBUTE
 
 
-def dec_get_date(txt: str) -> str | datetime.date:
+def dec_get_date(txt: str) -> str | datetime.datetime:
     """
     Extracts date out of text
 
@@ -143,7 +143,7 @@ def dec_get_date(txt: str) -> str | datetime.date:
 
     Returns:
         str: string indicating found date or if date is not found
-        datetime.date: found date
+        datetime.datetime: found date
     """
     txt = txt.lower()
     if len(re.split('of ', txt, 1)) > 1:
@@ -252,7 +252,7 @@ def dec_get_decision_type(txt: str, date: datetime.datetime) -> str:
 
     Args:
         txt (str): plain decision pdf text
-        date (datetime.date): decision date of pdf
+        date (datetime.datetime): decision date of pdf
 
     Returns:
         str: found type or default value
@@ -313,7 +313,7 @@ def dec_get_mah(txt: str) -> str:
             return attribute_values.not_found
 
 
-def dec_get_od(txt: str, date: datetime.date) -> str:
+def dec_get_od(txt: str, date: datetime.datetime) -> str:
     """
     Extracts orphan designation out of decision text
 
@@ -342,7 +342,7 @@ def dec_get_atmp(txt: str, date: datetime.datetime) -> str | bool:
 
     Args:
         txt (str): plain decision pdf text
-        date (datetime.date): decision date of pdf
+        date (datetime.datetime): decision date of pdf
 
     Returns:
         str: found ATMP or default value
@@ -368,7 +368,7 @@ def dec_get_nas(txt, date) -> str | bool:
 
     Args:
         txt (str): plain decision pdf text
-        date (datetime.date): decision date of pdf
+        date (datetime.datetime): decision date of pdf
 
     Returns:
         str: NAS not relevant
@@ -383,7 +383,7 @@ def dec_get_nas(txt, date) -> str | bool:
     return False
 
 
-def dec_get_od_comp_date(txt) -> datetime.date:
+def dec_get_od_comp_date(txt) -> datetime.datetime:
     """
     Gives date of orphan comp from decision files.
 

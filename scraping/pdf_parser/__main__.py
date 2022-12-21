@@ -7,6 +7,7 @@ import joblib
 import datetime
 import multiprocessing
 from tqdm import tqdm
+import scraping.utilities.definitions.attributes as attr
 
 # for main
 from scraping.pdf_parser.parsers import dec_parser
@@ -77,10 +78,11 @@ def parse_folder(directory: str, folder_name: str):
     medicine_struct = pis.ParsedInfoStruct(folder_name)
 
     # update list of files and filter out relevant files for each parser
-    annex_files, decision_files, epar_files, omar_files = get_files(directory)
+    annex_files, decision_files, epar_files, omar_files, odwar_files = get_files(directory)
 
     # call scrapers on correct files and update medicine struct
-    medicine_struct = run_scrapers(directory, annex_files, decision_files, epar_files, omar_files, medicine_struct)
+    medicine_struct = run_scrapers(directory, annex_files, decision_files, epar_files, omar_files, odwar_files,
+                                   medicine_struct)
 
     # dump json result to medicine folder directory
     json_file = open(path.join(directory, folder_name) + "_pdf_parser.json", "w")
@@ -89,7 +91,7 @@ def parse_folder(directory: str, folder_name: str):
     json_file.close()
 
 
-def get_files(directory: str) -> tuple[list[str], list[str], list[str], list[str]]:
+def get_files(directory: str) -> (list[str], list[str], list[str], list[str], list[str]):
     """
     Get all PDF and XML files per PDF type
 
@@ -97,7 +99,7 @@ def get_files(directory: str) -> tuple[list[str], list[str], list[str], list[str
         directory (str): Location of the data folder
 
     Returns:
-        (list[str], list[str], list[str], list[str]): List of PDF file names for each of the 4 PDF types
+        (list[str], list[str], list[str], list[str], list[str]): List of PDF file names for each of the 5 PDF types
     """
     directory_files = [file for file in listdir(directory) if path.isfile(path.join(directory, file))
                        and "other" not in file]
@@ -108,11 +110,13 @@ def get_files(directory: str) -> tuple[list[str], list[str], list[str], list[str
                   and ".xml" in file]
     omar_files = [path.join(directory, file) for file in directory_files if
                   ("omar" in file or "orphan" in file) and ".xml" in file]
-    return annex_files, decision_files, epar_files, omar_files
+    odwar_files = [path.join(directory, file) for file in directory_files if
+                   "odwar" in file and ".xml" in file]
+    return annex_files, decision_files, epar_files, omar_files, odwar_files
 
 
 def run_scrapers(directory: str, annex_files: list[str], decision_files: list[str], epar_files: list[str],
-                 omar_files: list[str], medicine_struct: pis.ParsedInfoStruct):
+                 omar_files: list[str], odwar_files: list[str], medicine_struct: pis.ParsedInfoStruct):
     """
     Scraping all XML or PDF files and updating medicine_struct with the scraped attributes
 
@@ -122,6 +126,7 @@ def run_scrapers(directory: str, annex_files: list[str], decision_files: list[st
         decision_files (list[str]): list of file names for decisions files
         epar_files (list[str]): list of file names for epar files
         omar_files (list[str]): list of file names for omar files
+        odwar_files (list[str]): list of file names for odwar files
         medicine_struct (pis.ParsedInfoStruct): struct to add parsed attributes to
 
     Returns:
@@ -139,6 +144,8 @@ def run_scrapers(directory: str, annex_files: list[str], decision_files: list[st
     log.info("OMAR parser started")
     for file in omar_files:
         medicine_struct = omar_parser.parse_file(file, medicine_struct)
+    for file in odwar_files:
+        medicine_struct.odwars.append({attr.pdf_file: file})
     return medicine_struct
 
 
@@ -170,9 +177,6 @@ def datetime_serializer(date: datetime.datetime):
     """
     if isinstance(date, datetime.datetime):
         return date.__str__()
-    if isinstance(date, datetime.date):
-        return date.__str__()
-
     if isinstance(date, datetime.date):
         return date.__str__()
 
