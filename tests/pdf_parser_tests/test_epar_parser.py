@@ -8,9 +8,9 @@ import scraping.utilities.pdf.helper as helper
 from scraping.pdf_parser.parsers import epar_parser
 import scraping.utilities.definitions.attribute_values as attribute_values
 
-test_data_loc = "../test_data/active_withdrawn"
+test_data_loc = "../tests/test_data/active_withdrawn"
 if "pdf_parser_tests" in os.getcwd():
-    test_data_loc = "../../test_data/active_withdrawn"
+    test_data_loc = "../../tests/test_data/active_withdrawn"
 xml_bodies = []
 percentage_str = "Percentage found: "
 found_not_scrapeable_string = "Found but not scrapeable: "
@@ -66,7 +66,7 @@ class TestEparParse(TestCase):
                 print(found_not_scrapeable_string + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 90)
+        self.assertGreater(percentage_found, 87)
 
     def test_get_opinion_date(self):
         """
@@ -89,7 +89,7 @@ class TestEparParse(TestCase):
                 print(found_not_scrapeable_string + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 90)
+        self.assertGreater(percentage_found, 87)
 
     def check_date(self, day: str, month: str, year: str):
         """

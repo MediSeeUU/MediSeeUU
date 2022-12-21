@@ -139,14 +139,14 @@ def get_date(txt: str) -> datetime.date:
         txt = txt.lower()
     #try dateparser
     try:
-        return dateparser.parse(txt, fuzzy=True)
+        return dateparser.parse(txt, fuzzy=True).date()
     except dateparser._parser.ParserError:
         pass
     #try for roman numbers
     temp_date = txt.split(' ')[0]
     temp_date = convert_roman_numbers(temp_date)
     try:
-        return dateparser.parse(temp_date, fuzzy=True)
+        return dateparser.parse(temp_date, fuzzy=True).date()
     except dateparser._parser.ParserError:
         pass
     # try for writen months
@@ -156,7 +156,7 @@ def get_date(txt: str) -> datetime.date:
             if k in temp_date:
                 temp_date = temp_date.replace(f" {k} ", f"/{months[k]}/")
                 break
-        return dateparser.parse(temp_date, fuzzy=True)
+        return dateparser.parse(temp_date, fuzzy=True).date()
     except dateparser._parser.ParserError:
         pass
 
