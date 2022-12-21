@@ -20,5 +20,87 @@
     "eu_suspension": "False",
     "ema_number_certainty": "1.0",
     "authorisation_row": "0",
-    "scrape_date_web": "19/12/2022"
+    "scrape_date_web": "21/12/2022",
+    "filedates": {
+        "EU-3-05-339_o_dec_0.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2005/2005122310805/dec_10805_en.pdf",
+            "pdf_date": "2005-12-23 00:00:00",
+            "pdf_scrape_date": "2022-12-21 12:05:01.486486"
+        },
+        "EU-3-05-339_o_epar-other_0.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/procedural-steps-after/sprycel-epar-procedural-steps-taken-scientific-information-after-authorisation_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.977993",
+            "pdf_scrape_date": "2022-12-21 12:01:47.977993"
+        },
+        "EU-3-05-339_o_epar-other_1.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-conclusion/sprycel-psusa-00000935-202106-epar-scientific-conclusions-grounds-recommending-variation-terms_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.978993",
+            "pdf_scrape_date": "2022-12-21 12:01:47.978993"
+        },
+        "EU-3-05-339_o_epar-other_2.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-c-709-p46-048-epar-assessment-report_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.978993",
+            "pdf_scrape_date": "2022-12-21 12:01:47.978993"
+        },
+        "EU-3-05-339_o_epar-other_3.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-c-709-p46-047-epar-assessment-report_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.978993",
+            "pdf_scrape_date": "2022-12-21 12:01:47.980005"
+        },
+        "EU-3-05-339_o_epar-other_4.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-conclusion/sprycel-psusa-00000935-201806-epar-scientific-conclusions-grounds-recommending-variation-terms_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.980005",
+            "pdf_scrape_date": "2022-12-21 12:01:47.980005"
+        },
+        "EU-3-05-339_o_epar-other_5.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-c-709-ii-0059-epar-assessment-report-variation_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.981006",
+            "pdf_scrape_date": "2022-12-21 12:01:47.981006"
+        },
+        "EU-3-05-339_o_epar-other_6.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-c-000709-x-0056-g-epar-assessment-report-variation_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.981006",
+            "pdf_scrape_date": "2022-12-21 12:01:47.981006"
+        },
+        "EU-3-05-339_o_epar-other_7.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-c-709-p46-0041-epar-assessment-report_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.981006",
+            "pdf_scrape_date": "2022-12-21 12:01:47.981006"
+        },
+        "EU-3-05-339_o_epar-other_8.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-conclusion/sprycel-h-c-709-psuv-0041-epar-scientific-conclusions-grounds-recommending-variation-terms-marketing_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.982527",
+            "pdf_scrape_date": "2022-12-21 12:01:47.982527"
+        },
+        "EU-3-05-339_o_epar-other_9.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-c-709-a46-0035-epar-assessment-report_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.982527",
+            "pdf_scrape_date": "2022-12-21 12:01:47.982527"
+        },
+        "EU-3-05-339_o_epar-other_10.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-709-ii-0023-epar-assessment-report-variation_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.983604",
+            "pdf_scrape_date": "2022-12-21 12:01:47.983604"
+        },
+        "EU-3-05-339_o_epar-other_11.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion-variation/sprycel-h-c-709-ii-0010-epar-scientific-discussion-variation_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.984591",
+            "pdf_scrape_date": "2022-12-21 12:01:47.985589"
+        },
+        "EU-3-05-339_o_epar-other_12.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion-variation/sprycel-h-c-709-ii-0008-epar-scientific-discussion-variation_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.985589",
+            "pdf_scrape_date": "2022-12-21 12:01:47.985589"
+        },
+        "EU-3-05-339_o_epar-other_13.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion-variation/sprycel-h-c-709-ii-0002-epar-scientific-discussion-variation_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.985589",
+            "pdf_scrape_date": "2022-12-21 12:01:47.985589"
+        },
+        "EU-3-05-339_o_epar-other_14.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion/sprycel-epar-scientific-discussion_en.pdf",
+            "pdf_date": "2022-12-21 12:01:47.985589",
+            "pdf_scrape_date": "2022-12-21 12:01:47.986582"
+        }
+    }
 }
