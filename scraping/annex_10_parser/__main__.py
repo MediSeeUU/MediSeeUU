@@ -7,43 +7,26 @@ import json
 from datetime import datetime
 import logging
 import scraping.utilities.json.json_compiler as json_compiler
-import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attribute_values as attribute_values
 import scraping.utilities.definitions.attributes as attr
 
 log = logging.getLogger("annex_10_parser")
 annex_10_json_file = "annex_10_parser.json"
 
 
-def get_all(filename: str, excel_file: pd.DataFrame, data_dir: str) -> dict:
-    """
-    Gets all attributes of the annex 10 file and returns them in a dictionary
-
-    Args:
-        filename (str): name of the Excel file to be scraped
-        excel_file (pd.DataFrame): the contents of the Excel file
-        data_dir (str): Directory of the main data folder
-
-    Returns:
-        dict: Dictionary of all scraped attributes, named according to the bible
-    """
-    annex10 = {attr.filename: filename[:len(filename.split('.')[0])],  # removes extension
-               attr.active_clock_elapseds: get_active_clock_elapsed(excel_file, data_dir)}
-    return annex10
-
-
-def parse_file(filename: str, directory: str, annex10s: list[dict], data_dir: str) -> list[dict]:
+def parse_file(filename: str, directory: str, annex10s: dict, data_dir: str) -> dict:
     """
     Gets all attributes from the annex 10 Excel file after parsing it
 
     Args:
         filename (str): name of the Excel file to be scraped
         directory (str): path of the directory containing the Excel file
-        annex10s (list[dict]): list of currently scraped Excel file attributes
+        annex10s (dict): dictionary of currently scraped Excel file attributes
         data_dir (str): Directory of the main data folder
 
 
     Returns:
-        list[dict]: all attributes contained in one dictionary per file, now updated
+        dict: all attributes contained in one dictionary per file, now updated
     """
     filepath = path.join(directory, filename)
     if ".xlsx" not in filepath:
@@ -54,8 +37,8 @@ def parse_file(filename: str, directory: str, annex10s: list[dict], data_dir: st
         log.warning("ANNEX 10 PARSER: File not found - " + filepath)
         return annex10s
     excel_data = clean_df(excel_data)
-    res = get_all(filename, excel_data, data_dir)
-    annex10s.append(res)
+    annex10s[filename[:len(filename.split('.')[0])]] = get_active_clock_elapsed(excel_data, data_dir)
+
     return annex10s
 
 
@@ -84,19 +67,19 @@ def clean_df(excel_data: pd.DataFrame) -> pd.DataFrame:
     return excel_data
 
 
-def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[dict]:
+def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> dict:
     """
     Gets three attributes for each row in the dataframe: product name, active time elapsed, clock stop elapsed.
-    Adds one item to the final list "res" containing a dictionary of these attributes
+    Adds one item to the final dict containing a dictionary of these attributes
 
     Args:
         excel_data (pd.DataFrame): the contents of the Excel file
         data_dir (str): Directory of the main data folder
 
     Returns:
-        list[dict]: list of dictionaries containing product name, active time elapsed, clock stop elapsed for each row.
+        dict: dictionary of dictionaries containing product name, active time elapsed, clock stop elapsed for each row.
     """
-    res = []
+    res = {}
     # Clean once more for nan values in active_time_elapsed
     excel_data = excel_data[~excel_data["Active Time Elapsed"].isnull()]
 
@@ -116,11 +99,10 @@ def get_active_clock_elapsed(excel_data: pd.DataFrame, data_dir: str) -> list[di
             zip(product_names, opinion_dates, active_time_elapseds, clock_stop_elapseds):
         product_name_found, eu_num = product_name_in_epars(product_name.lower(), all_data, opinion_date)
         if product_name_found:
-            res.append({
-                attr.eu_pnumber: eu_num,
-                attr.active_time_elapsed: active_time_elapsed,
-                attr.clock_stop_elapsed: clock_stop_elapsed
-            })
+            res[eu_num] = {
+                attr.assess_time_days_active: active_time_elapsed,
+                attr.assess_time_days_cstop: clock_stop_elapsed
+            }
     return res
 
 
@@ -139,7 +121,7 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
     eu_num = ""
     if type(opinion_date) == datetime:
         opinion_date = opinion_date.strftime("%d/%m/%Y")
-    opinion_date = datetime.strptime(opinion_date, '%d/%m/%Y')
+    opinion_date = datetime.strptime(opinion_date, '%d/%m/%Y').date()
 
     for medicine in all_data:
         # Check if product_name in brand_name and get EU number
@@ -156,11 +138,11 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
         if not medicine["epars"]:
             continue
         chmp_opinion_date = medicine["epars"][0][attr.chmp_opinion_date]
-        if chmp_opinion_date == values.not_found:
+        if chmp_opinion_date == attribute_values.not_found:
             log.warning(f"Annex_10_parser: no chmp opinion date found in EPAR for {eu_num}")
             continue
         # Check if the chmp_opinion_date and opinion_date are within 4 days of each other
-        chmp_opinion_date = datetime.strptime(chmp_opinion_date, "%Y-%m-%d %H:%M:%S")
+        chmp_opinion_date = datetime.strptime(chmp_opinion_date, "%Y-%m-%d").date()
         if abs((chmp_opinion_date - opinion_date).days) < 4:
             return True, eu_num
         # Print EU number, Product name, opinion date from EPAR, and opinion date from Excel file
@@ -217,7 +199,7 @@ def main(data_folder_directory: str, annex_folder_name: str = "annex_10"):
     json_compiler.compile_json_files(data_folder_directory, annex_10_folder, add_webdata=True, add_pdfdata=True)
     annex_10_folder = path.join(data_folder_directory, annex_folder_name)
 
-    annex10s = []
+    annex10s = {}
     for filename in os.listdir(annex_10_folder):
         annex10s = parse_file(filename, annex_10_folder, annex10s, data_folder_directory)
 

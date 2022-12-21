@@ -7,11 +7,11 @@ from pathlib import Path
 from scraping.filter import filter
 from scraping.utilities.log import log_tools
 
-test_data_loc = "../test_data_filter/active_withdrawn"
-test_data_filter_loc = "../test_data_filter/active_withdrawn_temp"
+test_data_loc = "../tests/test_data/active_withdrawn"
+test_data_filter_loc = "../tests/test_data/active_withdrawn_temp"
 if "filter_tests" in os.getcwd():
-    test_data_loc = "../../test_data_filter/active_withdrawn"
-    test_data_filter_loc = "../../test_data_filter/active_withdrawn_temp"
+    test_data_loc = "../../tests/test_data/active_withdrawn"
+    test_data_filter_loc = "../../tests/test_data/active_withdrawn_temp"
 test_data_path = test_data_loc.split("active_withdrawn")[0]
 
 
@@ -40,7 +40,7 @@ class TestFilter(TestCase):
         Copies test_data folder to test_data_filter [since filter removes files]
         """
         copy_tree(test_data_loc, test_data_filter_loc)
-        parent_path = "/".join((test_data_path.strip('/').split('/')[:-1]))
+        parent_path = "/".join((test_data_path.strip('/').split('/')[:-2]))
         logs_path = f"{parent_path}/tests/logs"
         Path(logs_path).mkdir(parents=True, exist_ok=True)
         Path(f"{logs_path}/txt_files").mkdir(parents=True, exist_ok=True)

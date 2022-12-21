@@ -1,0 +1,37 @@
+{
+    "eu_pnumber": "EU/1/20/1492",
+    "atc_code": "L01X",
+    "eu_aut_status": "ACTIVE",
+    "eu_brand_name_current": "Tecartus",
+    "status_type": "a",
+    "active_substance": "brexucabtagene autoleucel",
+    "eu_mah_current": "Kite Pharma EU B.V.",
+    "eu_orphan_con_current": [
+        {
+            "pre": "o",
+            "id": "2220",
+            "eu_num": "EU/3/19/2220",
+            "indication": "Treatment of mantle cell lymphoma",
+            "link_date": "2020-12-15"
+        },
+        {
+            "pre": "o",
+            "id": "2344",
+            "eu_num": "EU/3/20/2344",
+            "indication": "Treatment of acute lymphoblastic leukaemia",
+            "link_date": "2022-09-05"
+        }
+    ],
+    "orphan_status": "h",
+    "eu_aut_date": "2020-12-14 00:00:00",
+    "eu_aut_type_initial": "conditional",
+    "eu_aut_type_current": "conditional",
+    "ema_number": "EMEA/H/C/005102",
+    "ema_number_id": "5102",
+    "eu_referral": "False",
+    "eu_suspension": "False",
+    "ema_number_certainty": "0.9",
+    "authorisation_row": "0",
+    "scrape_date_web": "19/12/2022",
+    "filedates": {}
+}
