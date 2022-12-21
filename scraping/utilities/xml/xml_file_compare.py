@@ -227,23 +227,23 @@ def change_dict_to_string(change: dict[str,str]) -> str:
     return text
 
 
-# def changelog_json_to_text(changelog_filepath: str) -> str:
-#     changelog_dict = {}
-#     try:
-#         with open(changelog_filepath, "r") as changelog_json:
-#             changelog_dict = json.load(changelog_json)
-#     except Exception:
-#         print("ANNEX COMPARER:", changelog_filepath, "does not exist")
-#         return ""
+def changelog_json_to_text(changelog_filepath: str) -> str:
+    changelog_dict = {}
+    try:
+        with open(changelog_filepath, "r") as changelog_json:
+            changelog_dict = json.load(changelog_json)
+    except Exception:
+        print("ANNEX COMPARER:", changelog_filepath, "does not exist")
+        return ""
     
-#     text = ""
-#     for changelog in changelog_dict["changelogs"]:
-#         text += changelog["new_file"] + ":\n\n"
+    text = ""
+    for changelog in changelog_dict["changelogs"]:
+        text += changelog["new_file"] + ":\n\n"
 
-#         for change_dict in changelog["changes"]:
-#             text += change_dict["change_note"]
+        for change_dict in changelog["changes"]:
+            text += change_dict["change_note"]
 
-#     return text
+    return text
 
 
 def changelog_json_to_text_file(changelog_filepath: str, save_filepath: str):
@@ -302,7 +302,7 @@ def main(directory: str):
     annex_changelog_json_folder(directory)
     annex_changelog_text_folder(directory)
 
-data_folder = "D:\\Git_repos\\MediSeeUU\\data"
+# data_folder = "D:\\Git_repos\\MediSeeUU\\data"
 # new_xml         = "D:\\Git_repos\\MediSeeUU\\data\\active_withdrawn\\EU-1-00-130\\EU-1-00-130_h_anx_2.xml"
 # old_xml         = "D:\\Git_repos\\MediSeeUU\\data\\active_withdrawn\\EU-1-00-130\\EU-1-00-130_h_anx_1.xml"
 # changelog_json  = "D:\\Git_repos\\MediSeeUU\\data\\active_withdrawn\\EU-1-00-130\\EU-1-00-130_annex_changelog.json"
@@ -312,7 +312,8 @@ data_folder = "D:\\Git_repos\\MediSeeUU\\data"
 # changelog_json_to_text_file(changelog_json, changelog_txt)
 # compare_annexes_folder(data_folder)
 # create_changelogs_folder(data_folder)
-main(data_folder)
+# print(changelog_json_to_text(changelog_json))
+# main(data_folder)
 
 
         
