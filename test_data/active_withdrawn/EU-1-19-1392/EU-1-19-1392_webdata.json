@@ -15,5 +15,7 @@
     "eu_referral": "False",
     "eu_suspension": "False",
     "ema_number_certainty": "1.0",
-    "init_addressed_to_member_states": "False"
+    "authorisation_row": "0",
+    "scrape_date_web": "19/12/2022",
+    "filedates": {}
 }

@@ -13,7 +13,7 @@ import tqdm.contrib.logging as tqdm_logging
 from tqdm import tqdm
 
 import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attribute_values as values
 import scraping.utilities.log.log_tools as log_tools
 from scraping.utilities.web import web_utils as utils, config_objects, json_helper
 from scraping.utilities.web.medicine_type import MedicineType
@@ -465,10 +465,9 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
     procedures_dict[attr.eu_aut_type_current] = determine_current_aut_type(last_decision_types)
     if "od" in ema_number.lower():
         procedures_dict[attr.ema_od_number] = ema_number
-        procedures_dict[attr.ema_od_number_id] = ema_number_id
     else:
         procedures_dict[attr.ema_number] = ema_number
-        procedures_dict[attr.ema_number_id] = ema_number_id
+    procedures_dict[attr.ema_number_id] = ema_number_id
     procedures_dict[attr.eu_referral] = str(eu_referral)
     procedures_dict[attr.eu_suspension] = str(eu_suspension)
     procedures_dict[attr.ema_number_certainty] = str(ema_number_certainty)

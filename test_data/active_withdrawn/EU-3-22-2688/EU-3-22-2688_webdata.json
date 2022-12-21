@@ -1,15 +1,15 @@
 {
-    "eu_pnumber": "",
-    "atc_code": "not applicable",
+    "eu_pnumber": "____________",
+    "atc_code": "____________",
     "eu_aut_status": "ACTIVE",
     "eu_brand_name_current": "EU/3/22/2688",
     "status_type": "a",
     "eu_od_number": "EU/3/22/2688",
     "active_substance": "Tamibarotene",
     "eu_od_con": "Treatment of myelodysplastic syndromes",
-    "sponsor": "Syros Pharmaceuticals (Ireland) Limited",
+    "eu_od_sponsor": "Syros Pharmaceuticals (Ireland) Limited",
     "orphan_status": "o",
-    "eu_od_date": "2022-08-10",
+    "eu_od_date": "2022-08-10 00:00:00",
     "eu_aut_date": "2022-08-10 00:00:00",
     "eu_aut_type_initial": "standard",
     "eu_aut_type_current": "standard",
@@ -18,5 +18,7 @@
     "eu_referral": "False",
     "eu_suspension": "False",
     "ema_number_certainty": "1.0",
-    "init_addressed_to_member_states": "False"
+    "authorisation_row": "0",
+    "scrape_date_web": "13/12/2022",
+    "filedates": {}
 }

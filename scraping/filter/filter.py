@@ -7,7 +7,7 @@ import multiprocessing
 import logging
 from scraping.utilities.log import log_tools
 from scraping.utilities.io import safe_io
-from scraping.utilities.definitions import values, attributes
+from scraping.utilities.definitions import attribute_values as values, attributes
 from tqdm import tqdm
 
 wrong_doctype_str = "@wrong_doctype"
