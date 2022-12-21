@@ -36,12 +36,13 @@ def save_transformed_json(combined_json_path: str, final_json: dict):
     """
     transformed_json_path = f"{combined_json_path.split('combined.json')[0]}transformed.json"
     with open(transformed_json_path, 'w') as transformed_file:
-        transformed_file.write(json.dumps(final_json))
+        json.dump(final_json, transformed_file, indent=4)
 
 
 def get_final_json(final_json: dict, json_data: dict, all_names: list):
     """
     Returns JSON filtered by only human or orphan attributes
+    Also replaces all not_found variants by "Not found"
     Args:
         final_json (dict): Dictionary of all human or orphan attributes
         json_data (dict): Dictionary of all attributes: combined.json
@@ -53,11 +54,31 @@ def get_final_json(final_json: dict, json_data: dict, all_names: list):
             continue
         if values.not_found == value or values.combiner_not_found == value:
             value = not_found_str
-        if "url" not in name:
-            final_json[name] = value
-        elif value[0]["value"] == values.not_found or value[0]["value"] == values.combiner_not_found:
-            value[0]["value"] = not_found_str
-
+        if name == "eu_od_pnumber" and value == not_found_str:
+            continue
+        if isinstance(value, dict):
+            if "value" not in value.keys():
+                pass
+            elif value["value"] == values.not_found or value["value"] == values.combiner_not_found:
+                value["value"] = not_found_str
+        elif not isinstance(value, list):
+            pass
+        elif len(value) < 1:
+            pass
+        else:
+            for sub_key, sub_value in enumerate(value):
+                if not isinstance(sub_value, dict):
+                    if sub_value == values.not_found or sub_value == values.combiner_not_found:
+                        value[sub_key] = not_found_str
+                elif "value" not in sub_value.keys():
+                    for k, v in sub_value.items():
+                        if v != values.not_found and v != values.combiner_not_found:
+                            continue
+                        value[sub_key][k] = not_found_str
+                elif sub_value["value"] == values.not_found or sub_value["value"] == values.combiner_not_found:
+                    value[sub_key]["value"] = not_found_str
+        if values.not_found in str(value):
+            print(value)
         final_json[name] = value
 
 
@@ -76,9 +97,10 @@ def main(directory: str):
     for folder in listdir(f"{directory}/active_withdrawn"):
         med_path = f"{directory}/active_withdrawn/{folder}"
         combined_file = [file for file in listdir(med_path) if path.isfile(path.join(med_path, file))
-                         and "combined.json" in file][0]
-        combined_json_path = f"{med_path}/{combined_file}"
-        convert_json(combined_json_path)
+                         and "combined.json" in file]
+        if combined_file:
+            combined_json_path = f"{med_path}/{combined_file[0]}"
+            convert_json(combined_json_path)
 
     log.info(f"=== Done transforming ===")
 

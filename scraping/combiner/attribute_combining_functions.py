@@ -68,7 +68,7 @@ def combine_best_source(eu_pnumber: str, attribute_name: str, sources: list[str]
     return attributes[0]
 
 def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> str:
-    if len(strings) < 2:
+    if len(strings) >= 2:
         overlap = SM(None, strings[0].lower(), strings[1].lower()).find_longest_match()
         if float(overlap.size / len(strings[0])) >= min_matching_fraction:
             return strings[0][overlap.a:overlap.a + overlap.size]
