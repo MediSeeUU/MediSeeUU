@@ -20,8 +20,7 @@ not_scrapeable = "Value should be present in document"
 yes_str = "True"
 no_str = "False"
 
-default_date = datetime.datetime.min
-default_date_str = str(datetime.datetime.min)
+default_date = datetime.date.min
 
 # attribute values:
 aut_type_standard = "standard"

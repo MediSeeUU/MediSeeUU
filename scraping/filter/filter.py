@@ -196,7 +196,7 @@ def get_url(filename: str, directory: str) -> str:
         with open(f'{json_path}urls.json') as urls_json:
             try:
                 urls = json.load(urls_json)
-            except JSONDecodeError as e:
+            except json.JSONDecodeError as e:
                 log.warning(f"Filter: Cannot open urls.json. Error: {e}")
                 return "cannot_open_urls_json"
             try:

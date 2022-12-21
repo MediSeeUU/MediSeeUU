@@ -1,0 +1,20 @@
+{
+    "eu_pnumber": "EU/1/00/168",
+    "atc_code": "B01AD11",
+    "eu_aut_status": "WITHDRAWN",
+    "eu_brand_name_current": "Tenecteplase Boehringer Ingelheim Pharma GmbH &amp; Co. KG",
+    "status_type": "w",
+    "active_substance": "tenecteplase",
+    "eu_mah_current": "Boehringer Ingelheim International GmbH",
+    "orphan_status": "h",
+    "eu_aut_date": "2001-02-23 00:00:00",
+    "eu_aut_type_initial": "attribute not available on release",
+    "eu_aut_type_current": "standard",
+    "ema_number": "EMEA/H/C/307",
+    "ema_number_id": "307",
+    "eu_referral": "False",
+    "eu_suspension": "False",
+    "ema_number_certainty": "1.0",
+    "authorisation_row": "0",
+    "scrape_date_web": "19/12/2022"
+}

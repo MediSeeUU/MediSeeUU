@@ -96,7 +96,7 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     return medicine_struct
 
 
-def get_report_date(xml_body: ET.Element, pdf_file: str) -> datetime.datetime:
+def get_report_date(xml_body: ET.Element, pdf_file: str) -> datetime.date:
     section = xml_utils.get_body_section_by_index(0, xml_body)
     header = xml_utils.get_section_header(section)
 

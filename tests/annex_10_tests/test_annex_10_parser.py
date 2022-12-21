@@ -5,9 +5,9 @@ import os
 import pandas as pd
 import scraping.utilities.definitions.attributes as attr
 
-data_loc = "../test_data"
+data_loc = "../tests/test_data"
 if "annex_10_tests" in os.getcwd():
-    data_loc = "../../test_data"
+    data_loc = "../../tests/test_data"
 annex_10_data = {}
 
 

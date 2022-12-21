@@ -78,13 +78,14 @@ def get_log_path(filename: str, data_path: str) -> str:
     Returns:
         str: Path of the location of the logging file, based on whether the main or tests are being run
     """
-    parent_path = "/".join((data_path.strip('/').split('/')[:-1]))
     if "test" in data_path:
+        parent_path = "/".join((data_path.strip('/').split('/')[:-2]))
         if ".log" in filename:
             return f"{parent_path}/tests/logs/log_files/{filename}"
         elif ".txt" in filename:
             return f"{parent_path}/tests/logs/txt_files/{filename}"
     else:
+        parent_path = "/".join((data_path.strip('/').split('/')[:-1]))
         if ".log" in filename:
             return f"{parent_path}/logs/log_files/{filename}"
         elif ".txt" in filename:
