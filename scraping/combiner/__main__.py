@@ -42,6 +42,7 @@ def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
     pdf_data = get_dict('pdf_parser', filepath, folder_name)
     file_dicts[src.web] = get_dict('webdata', filepath, folder_name)
 
+    print(pdf_data)
     decision_files = sorted(
         [(int(dictionary[attr.pdf_file][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["decisions"]],
         key=lambda x: x[0])
@@ -121,9 +122,21 @@ def get_dict(source: str, filepath: str, folder_name: str) -> dict:
             return json.load(source_json)
     except FileNotFoundError:
         log.warning(f"COMBINER: no {source}.json found in {filepath}")
-        return {}
-    except Exception:
-        log.error("other error")
+    except Exception as e:
+        log.error(f"COMBINER: {e} for folder {folder_name}")
+        
+    if source == "pdf_data":
+        return {
+            "eu_number": None,
+            "parse_date": None,
+            "annexes": [],
+            "decisions": [],
+            "epars": [],
+            "omars": [],
+            "odwars": []
+        }
+        
+    return {}
 
 
 def sources_to_dicts(sources: list[str], file_dicts: dict[str, dict]) -> list[dict]:
