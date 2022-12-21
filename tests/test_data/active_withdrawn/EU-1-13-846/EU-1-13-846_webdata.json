@@ -7,7 +7,7 @@
     "active_substance": "enzalutamide",
     "eu_mah_current": "Astellas Pharma Europe B.V.",
     "orphan_status": "h",
-    "eu_aut_date": "2013-06-21 00:00:00",
+    "eu_aut_date": "2013-06-21",
     "eu_aut_type_initial": "standard",
     "eu_aut_type_current": "standard",
     "ema_number": "EMEA/H/C/2639",
@@ -16,172 +16,172 @@
     "eu_suspension": "False",
     "ema_number_certainty": "0.7333333333333333",
     "authorisation_row": "0",
-    "scrape_date_web": "20/12/2022",
+    "scrape_date_web": "21/12/2022",
     "filedates": {
         "EU-1-13-846_h_dec_0.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2013/20130621126031/dec_126031_en.pdf",
-            "pdf_date": "2013-06-21 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.345314"
+            "pdf_date": "2013-06-21",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_dec_1.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2014/20141128130245/dec_130245_en.pdf",
-            "pdf_date": "2014-11-28 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.347437"
+            "pdf_date": "2014-11-28",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_dec_2.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2015/20150527131886/dec_131886_en.pdf",
-            "pdf_date": "2015-05-27 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.347437"
+            "pdf_date": "2015-05-27",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_dec_3.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2015/20150622132312/dec_132312_en.pdf",
-            "pdf_date": "2015-06-22 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.348435"
+            "pdf_date": "2015-06-22",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_dec_4.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2015/20150828132853/dec_132853_en.pdf",
-            "pdf_date": "2015-08-28 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.349435"
+            "pdf_date": "2015-08-28",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_dec_5.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2015/20151127133372/dec_133372_en.pdf",
-            "pdf_date": "2015-11-27 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.350436"
+            "pdf_date": "2015-11-27",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_dec_6.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2016/20161212136636/dec_136636_en.pdf",
-            "pdf_date": "2016-12-12 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.350436"
+            "pdf_date": "2016-12-12",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_dec_7.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2017/20170921138725/dec_138725_en.pdf",
-            "pdf_date": "2017-09-21 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.351946"
+            "pdf_date": "2017-09-21",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_dec_8.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2018/20180208139836/dec_139836_en.pdf",
-            "pdf_date": "2018-02-08 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.353005"
+            "pdf_date": "2018-02-08",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_dec_9.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2018/20181023142671/dec_142671_en.pdf",
-            "pdf_date": "2018-10-23 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.353005"
+            "pdf_date": "2018-10-23",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_dec_10.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210204150716/dec_150716_en.pdf",
-            "pdf_date": "2021-02-04 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.353994"
+            "pdf_date": "2021-02-04",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_dec_11.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210430151698/dec_151698_en.pdf",
-            "pdf_date": "2021-04-30 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.355516"
+            "pdf_date": "2021-04-30",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_dec_12.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210617151930/dec_151930_en.pdf",
-            "pdf_date": "2021-06-17 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.356577"
+            "pdf_date": "2021-06-17",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_anx_0.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2013/20130621126031/anx_126031_en.pdf",
-            "pdf_date": "2013-06-21 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.357565"
+            "pdf_date": "2013-06-21",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_anx_1.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2014/20141128130245/anx_130245_en.pdf",
-            "pdf_date": "2014-11-28 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.359621"
+            "pdf_date": "2014-11-28",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_anx_2.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2015/20150527131886/anx_131886_en.pdf",
-            "pdf_date": "2015-05-27 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.360628"
+            "pdf_date": "2015-05-27",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_anx_3.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2015/20150622132312/anx_132312_en.pdf",
-            "pdf_date": "2015-06-22 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.361627"
+            "pdf_date": "2015-06-22",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_anx_4.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2015/20150828132853/anx_132853_en.pdf",
-            "pdf_date": "2015-08-28 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.363614"
+            "pdf_date": "2015-08-28",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_anx_5.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2015/20151127133372/anx_133372_en.pdf",
-            "pdf_date": "2015-11-27 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.364615"
+            "pdf_date": "2015-11-27",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_anx_6.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2016/20161212136636/anx_136636_en.pdf",
-            "pdf_date": "2016-12-12 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.364615"
+            "pdf_date": "2016-12-12",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_anx_7.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2017/20170921138725/anx_138725_en.pdf",
-            "pdf_date": "2017-09-21 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.366143"
+            "pdf_date": "2017-09-21",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_anx_8.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2018/20180208139836/anx_139836_en.pdf",
-            "pdf_date": "2018-02-08 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.367189"
+            "pdf_date": "2018-02-08",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_anx_9.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2018/20181023142671/anx_142671_en.pdf",
-            "pdf_date": "2018-10-23 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.368245"
+            "pdf_date": "2018-10-23",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_anx_10.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210204150716/anx_150716_en.pdf",
-            "pdf_date": "2021-02-04 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.368245"
+            "pdf_date": "2021-02-04",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_anx_11.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210430151698/anx_151698_en.pdf",
-            "pdf_date": "2021-04-30 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.369247"
+            "pdf_date": "2021-04-30",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_anx_12.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210617151930/anx_151930_en.pdf",
-            "pdf_date": "2021-06-17 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.370251"
+            "pdf_date": "2021-06-17",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_public-assessment-report.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/assessment-report/xtandi-epar-public-assessment-report_en.pdf",
-            "pdf_date": "2022-12-21 11:37:58.371238",
-            "pdf_scrape_date": "2022-12-21 11:37:58.371238"
+            "pdf_date": "2022-12-21",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_epar-other_0.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/procedural-steps-after/xtandi-epar-procedural-steps-taken-scientific-information-after-authorisation_en.pdf",
-            "pdf_date": "2022-12-21 11:37:58.371238",
-            "pdf_scrape_date": "2022-12-21 11:37:58.371238"
+            "pdf_date": "2022-12-21",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_epar-other_1.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/scientific-conclusion/xtandi-h-c-psusa-00010095-202008-epar-scientific-conclusions-grounds-variation-terms-marketing_en.pdf",
-            "pdf_date": "2022-12-21 11:37:58.371238",
-            "pdf_scrape_date": "2022-12-21 11:37:58.372238"
+            "pdf_date": "2022-12-21",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_epar-other_2.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/variation-report/xtandi-h-c-2639-ii-0047-g-epar-assessment-report-variation_en.pdf",
-            "pdf_date": "2022-12-21 11:37:58.372238",
-            "pdf_scrape_date": "2022-12-21 11:37:58.373253"
+            "pdf_date": "2022-12-21",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_epar-other_3.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/variation-report/xtandi-h-c-2639-ii-0039-g-epar-assessment-report-variation_en.pdf",
-            "pdf_date": "2022-12-21 11:37:58.374237",
-            "pdf_scrape_date": "2022-12-21 11:37:58.374237"
+            "pdf_date": "2022-12-21",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_epar-other_4.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/scientific-conclusion/xtandi-h-c-psusa-00010095-201408-epar-scientific-conclusions-grounds-recommending-variation-terms_en.pdf",
-            "pdf_date": "2022-12-21 11:37:58.374237",
-            "pdf_scrape_date": "2022-12-21 11:37:58.374237"
+            "pdf_date": "2022-12-21",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-13-846_h_epar-other_5.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/variation-report/xtandi-h-c-2639-ii-0008-epar-assessment-report-variation_en.pdf",
-            "pdf_date": "2022-12-21 11:37:58.375813",
-            "pdf_scrape_date": "2022-12-21 11:37:58.375813"
+            "pdf_date": "2022-12-21",
+            "pdf_scrape_date": "2022-12-21"
         }
     }
 }

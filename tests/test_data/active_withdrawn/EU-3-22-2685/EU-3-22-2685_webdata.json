@@ -1,6 +1,6 @@
 {
-    "eu_pnumber": "____________",
-    "atc_code": "____________",
+    "eu_pnumber": "__SCRAPER_NOT_FOUND__",
+    "atc_code": "__SCRAPER_NOT_FOUND__",
     "eu_aut_status": "ACTIVE",
     "eu_brand_name_current": "EU/3/22/2685",
     "status_type": "a",
@@ -9,16 +9,22 @@
     "eu_od_con": "Treatment of urea cycle disorders",
     "eu_od_sponsor": "Unicyte S.R.L.",
     "orphan_status": "o",
-    "eu_od_date": "2022-08-10 00:00:00",
-    "eu_aut_date": "2022-08-10 00:00:00",
+    "eu_od_date": "2022-08-10",
+    "eu_aut_date": "2022-08-10",
     "eu_aut_type_initial": "standard",
     "eu_aut_type_current": "standard",
     "ema_od_number": "EMA/OD/0000091899",
-    "ema_od_number_id": "91899",
+    "ema_number_id": "91899",
     "eu_referral": "False",
     "eu_suspension": "False",
     "ema_number_certainty": "1.0",
     "authorisation_row": "0",
-    "scrape_date_web": "13/12/2022",
-    "filedates": {}
+    "scrape_date_web": "21/12/2022",
+    "filedates": {
+        "EU-3-22-2685_o_dec_0.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220810156713/dec_156713_en.pdf",
+            "pdf_date": "2022-08-10",
+            "pdf_scrape_date": "2022-12-21"
+        }
+    }
 }

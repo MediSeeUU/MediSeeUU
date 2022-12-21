@@ -123,7 +123,7 @@ class TestEcScraper(unittest.TestCase):
     @parameterized.expand([
         [
             "h477",
-            "2008-10-07 00:00:00",
+            "2008-10-07",
             "exceptional",
             "",
             "",

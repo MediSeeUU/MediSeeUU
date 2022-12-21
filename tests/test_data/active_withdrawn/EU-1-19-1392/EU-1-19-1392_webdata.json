@@ -7,7 +7,7 @@
     "active_substance": "Ebola Zaire Vaccine (rVSV\u2206G-ZEBOV-GP, live)",
     "eu_mah_current": "Merck Sharp &amp; Dohme B.V.",
     "orphan_status": "h",
-    "eu_aut_date": "2019-11-11 00:00:00",
+    "eu_aut_date": "2019-11-11",
     "eu_aut_type_initial": "conditional",
     "eu_aut_type_current": "conditional",
     "ema_number": "EMEA/H/C/004554",
@@ -16,57 +16,57 @@
     "eu_suspension": "False",
     "ema_number_certainty": "1.0",
     "authorisation_row": "0",
-    "scrape_date_web": "20/12/2022",
+    "scrape_date_web": "21/12/2022",
     "filedates": {
         "EU-1-19-1392_h_dec_0.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2019/20191111146469/dec_146469_en.pdf",
-            "pdf_date": "2019-11-11 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.867460"
+            "pdf_date": "2019-11-11",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-19-1392_h_dec_1.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2020/20200915148922/dec_148922_en.pdf",
-            "pdf_date": "2020-09-15 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.868460"
+            "pdf_date": "2020-09-15",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-19-1392_h_dec_2.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210114150115/dec_150115_en.pdf",
-            "pdf_date": "2021-01-14 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.869458"
+            "pdf_date": "2021-01-14",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-19-1392_h_dec_3.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220131154536/dec_154536_en.pdf",
-            "pdf_date": "2022-01-31 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.871463"
+            "pdf_date": "2022-01-31",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-19-1392_h_anx_0.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2019/20191111146469/anx_146469_en.pdf",
-            "pdf_date": "2019-11-11 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.872458"
+            "pdf_date": "2019-11-11",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-19-1392_h_anx_1.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2020/20200915148922/anx_148922_en.pdf",
-            "pdf_date": "2020-09-15 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.872458"
+            "pdf_date": "2020-09-15",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-19-1392_h_anx_2.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210114150115/anx_150115_en.pdf",
-            "pdf_date": "2021-01-14 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.874454"
+            "pdf_date": "2021-01-14",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-19-1392_h_anx_3.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220131154536/anx_154536_en.pdf",
-            "pdf_date": "2022-01-31 00:00:00",
-            "pdf_scrape_date": "2022-12-21 11:37:58.875448"
+            "pdf_date": "2022-01-31",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-19-1392_h_public-assessment-report.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/assessment-report/ervebo-epar-public-assessment-report_en.pdf",
-            "pdf_date": "2022-12-21 11:37:58.875968",
-            "pdf_scrape_date": "2022-12-21 11:37:58.875968"
+            "pdf_date": "2022-12-21",
+            "pdf_scrape_date": "2022-12-21"
         },
         "EU-1-19-1392_h_epar-other_0.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/procedural-steps-after/ervebo-epar-procedural-steps-taken-scientific-information-after-authorisation_en.pdf",
-            "pdf_date": "2022-12-21 11:37:58.877016",
-            "pdf_scrape_date": "2022-12-21 11:37:58.877016"
+            "pdf_date": "2022-12-21",
+            "pdf_scrape_date": "2022-12-21"
         }
     }
 }

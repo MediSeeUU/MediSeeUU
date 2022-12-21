@@ -308,7 +308,7 @@ def get_epar_excel_url(url: str, ema_excel_json_helper: json_helper.JsonHelper) 
     # Saves the (new) url and the scrape date to the dictionary
     ema_excel_json_helper.overwrite_dict({
         "url": excel_url,
-        "last_scrape_date": datetime.strftime(datetime.now(), "%d/%m/%Y").date()
+        "last_scrape_date": datetime.strftime(datetime.now(), "%d/%m/%Y")
     })
     ema_excel_json_helper.save_dict()
 
