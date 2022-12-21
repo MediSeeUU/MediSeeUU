@@ -141,11 +141,16 @@ def folder_changelog_up_to_date(folder: str, filepath: str, force_replace = Fals
     try:
         with open(filepath) as comparison_file:
             comparison_dict = json.load(comparison_file)
-            compared_annex_files = comparison_dict["changelog"]
+            compared_annex_files = comparison_dict["changelogs"]
     except FileNotFoundError:
         return len(annex_files) == 0
-    except Exception:
-        print("ANNEX COMPARER: cant open", filepath)
+    except json.JSONDecodeError as e:
+        print("ANNEX COMPARER:", e, "| invalid json file", filepath)
+        os.remove(filepath)
+        return len(annex_files) == 0
+    except Exception as e:
+        print("ANNEX COMPARER:", e, "| cannot determine whether changelog is up to date:", filepath)
+        return False
         
     return len(annex_files) == (len(compared_annex_files) - 1)
 
@@ -160,8 +165,8 @@ def compare_annexes_folder(folder: str, replace_all = False, filename_suffix: st
     # filename = path.basename(folder) + filename_suffix
     filename = path.join(folder, path.basename(folder) + filename_suffix)
 
-    # if folder_changelog_up_to_date(folder, filename) and not replace_all:
-    #     annex_files = []
+    if folder_changelog_up_to_date(folder, filename) and not replace_all:
+        annex_files = []
 
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
         joblib.delayed(compare_annexes_folder)(subfolder) for subfolder in
@@ -287,7 +292,7 @@ data_folder = "D:\\Git_repos\\MediSeeUU\\data"
 # save_dir = "D:\\Git_repos\\MediSeeUU\\data\\active_withdrawn\\EU-1-00-130"
 # compare_xml_files_file(new_xml, old_xml, save_dir)
 # changelog_json_to_text_file(changelog_json, changelog_txt)
-# compare_annexes_folder(data_folder)
+compare_annexes_folder(data_folder)
 create_changelog_txt(data_folder)
 
 
