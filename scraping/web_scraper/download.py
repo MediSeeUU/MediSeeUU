@@ -37,8 +37,8 @@ def get_date_from_url(url: str) -> dict[str, str]:
             file_date = datetime.strptime(url_date, '%Y%m%d')
     return {
         "pdf_link": url,
-        "pdf_date": str(file_date),
-        "pdf_scrape_date": str(datetime.now())
+        "pdf_date": str(file_date.date()),
+        "pdf_scrape_date": str(datetime.now().date())
     }
 
 

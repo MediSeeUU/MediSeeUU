@@ -212,8 +212,8 @@ def get_annex10_data(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[st
         # the dictionary needs to be updated with the new link. Also, new entries must always be added
         year_s = str(year)
         if year_s in annex_dict.keys():
-            last_updated_local: datetime = datetime.strptime(annex_dict[year_s]["last_updated"], '%d/%m/%Y')
-            last_updated_site: datetime = find_last_updated_date_annex10(specific_soup.find_all('small')[1].get_text())
+            last_updated_local = datetime.strptime(annex_dict[year_s]["last_updated"], '%d/%m/%Y').date()
+            last_updated_site = find_last_updated_date_annex10(specific_soup.find_all('small')[1].get_text())
 
             # ignore files that have not changed since last time downloading
             if last_updated_local > last_updated_site:
@@ -227,7 +227,7 @@ def get_annex10_data(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[st
     return annex_dict
 
 
-def find_last_updated_date(html_active: requests.Response) -> datetime:
+def find_last_updated_date(html_active: requests.Response) -> datetime.date:
     """
     Finds the date when a medicine page was last updated
 
@@ -236,16 +236,16 @@ def find_last_updated_date(html_active: requests.Response) -> datetime:
             html object that contains raw html for a webpage for a medicine on the EMA website
 
     Returns:
-        datetime: When the medicine page on the EMA website was last updated
+        datetime.date: When the medicine page on the EMA website was last updated
     """
     soup = bs4.BeautifulSoup(html_active.text, html_parser_str)
     last_updated_element = soup.find("meta", property="og:updated_time")["content"]
     last_updated_text = last_updated_element.split('T')[0]
-    last_updated_datetime = datetime.strptime(last_updated_text, '%Y-%m-%d')
+    last_updated_datetime = datetime.strptime(last_updated_text, '%Y-%m-%d').date()
     return last_updated_datetime
 
 
-def find_last_updated_date_annex10(text: str) -> datetime:
+def find_last_updated_date_annex10(text: str) -> datetime.date:
     """
     Converts a piece of text with information when an excel-sheet was last updated to a datetime object
 
@@ -253,7 +253,7 @@ def find_last_updated_date_annex10(text: str) -> datetime:
         text (str): text containing information when it was last updated.
 
     Returns:
-        datetime: When the excel-sheet was last updated
+        datetime.date: When the excel-sheet was last updated
     """
     # Removes all whitespaces from the text, and splits the words in a list
     new_text: list[str] = text.split()
@@ -265,7 +265,7 @@ def find_last_updated_date_annex10(text: str) -> datetime:
     else:
         updated_date: str = new_text[2]
 
-    return datetime.strptime(updated_date, '%d/%m/%Y')
+    return datetime.strptime(updated_date, '%d/%m/%Y').date()
 
 
 @utils.exception_retry(logging_instance=log)
@@ -287,7 +287,7 @@ def get_epar_excel_url(url: str, ema_excel_json_helper: json_helper.JsonHelper) 
     soup = bs4.BeautifulSoup(html_active.text, html_parser_str)
 
     # Gets the last updated date from the page
-    last_updated_date: datetime = find_last_updated_date(html_active)
+    last_updated_date: datetime.date = find_last_updated_date(html_active)
 
     # Gets the link to the EMA Excel file
     excel_url_part: str = soup.find("a", string="Download table of all EPARs for human and veterinary "
@@ -297,7 +297,7 @@ def get_epar_excel_url(url: str, ema_excel_json_helper: json_helper.JsonHelper) 
 
     # Checks whether the Excel file needs to be downloaded again.
     if ema_excel_dict.get("last_scrape_date", "") != "":
-        last_scrape_date: datetime = datetime.strptime(ema_excel_dict.get("last_scrape_date"), "%d/%m/%Y")
+        last_scrape_date: datetime.date = datetime.strptime(ema_excel_dict.get("last_scrape_date"), "%d/%m/%Y").date()
         if last_updated_date > last_scrape_date:
             download_excel: bool = True
         else:
@@ -308,7 +308,7 @@ def get_epar_excel_url(url: str, ema_excel_json_helper: json_helper.JsonHelper) 
     # Saves the (new) url and the scrape date to the dictionary
     ema_excel_json_helper.overwrite_dict({
         "url": excel_url,
-        "last_scrape_date": datetime.strftime(datetime.now(), "%d/%m/%Y")
+        "last_scrape_date": datetime.strftime(datetime.now(), "%d/%m/%Y").date()
     })
     ema_excel_json_helper.save_dict()
 
