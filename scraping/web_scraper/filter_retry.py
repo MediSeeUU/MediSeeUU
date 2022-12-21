@@ -106,14 +106,13 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
             url = url[int(filename_elements[2])][0]
     # Get nth file if file has number in name
 
-    filedate_dict = {}
-    filedates_path = f"{data_filepath}/{eu_n}/{eu_n}_filedates.json"
+    webdata_dict = {}
+    webdata_path = f"{data_filepath}/{eu_n}/{eu_n}_webdata.json"
     target_path: str = f"{data_filepath}/{eu_n}"
-    if os.path.exists(filedates_path):
-        with open(filedates_path, 'r') as f:
-            filedate_dict = json.load(f)
-
-    download.download_pdf_from_url(url, eu_n, filename_elements, target_path, filedate_dict, overwrite=True)
+    if os.path.exists(webdata_path):
+        with open(webdata_path, 'r') as f:
+            webdata_dict = json.load(f)
+    download.download_pdf_from_url(url, eu_n, filename_elements, target_path, webdata_dict, overwrite=True)
 
 # used for testing
 # run_filter(1)
