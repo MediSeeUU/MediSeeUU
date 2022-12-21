@@ -157,7 +157,7 @@ class TestOmarParse(TestCase):
         for (xml_body, xml_file) in xml_bodies:
             bullet_points = xml_to_bullet_points(xml_body)
 
-            result = omar_parser.get_significant_benefit(bullet_points, "test", "")
+            result = omar_parser.get_significant_benefit(bullet_points, "test")
             if result == attribute_values.not_found:
                 NAs_found += 1
                 print("No significant benefit found in: " + xml_file)

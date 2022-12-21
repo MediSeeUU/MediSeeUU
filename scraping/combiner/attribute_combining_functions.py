@@ -2,7 +2,7 @@ import scraping.utilities.definitions.attribute_values as attribute_values
 import scraping.utilities.definitions.sources as src
 import scraping.utilities.definitions.attributes as attr
 from difflib import SequenceMatcher as SM
-import datetime as dt
+import datetime
 import logging
 import json
 import pandas as pd
@@ -22,7 +22,16 @@ def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]
             return file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date]
         except Exception:
             return attribute_values.default_date
-    
+
+def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> list[any]:
+    values = []
+    for source in sources:
+        dict = file_dicts[source]
+        try:
+            values.append(dict[attribute_name])
+        except Exception:
+            log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
+    return values
 
 def check_all_equal(values: list[any]) -> bool:
     """
@@ -54,16 +63,7 @@ def combine_best_source(eu_pnumber: str, attribute_name: str, sources: list[str]
     Returns:
 
     """
-    attributes: list[str] = []
-
-    for source in sources:
-        dict = file_dicts[source]
-        try:
-            attributes.append(dict[attribute_name])
-        except Exception:
-            log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
-            return attribute_values.combiner_not_found
-
+    attributes = get_values_from_sources(attribute_name, sources, file_dicts)
     attributes.append(attribute_values.not_found)
     return attributes[0]
 
@@ -89,21 +89,13 @@ def combine_select_string_overlap(eu_pnumber: str, attribute_name: str, sources:
 
     Returns (bool): bool indicating equality
     """
-    strings = []
-    for source in sources:
-        dict = file_dicts[source]
-        # TODO: Replace try/except with if statements
-        try:
-            strings.append(dict[attribute_name])
-        except Exception:
-            log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
-            # log.warning("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
-            return attribute_values.combiner_not_found
+    strings = get_values_from_sources(attribute_name, sources, file_dicts)
 
-    overlap = string_overlap(strings,min_matching_fraction)
+    if strings:
+        overlap = string_overlap(strings,min_matching_fraction)
 
-    if overlap != attribute_values.insufficient_overlap:
-        return (overlap, attribute_values.default_date)
+        if overlap != attribute_values.insufficient_overlap:
+            return (overlap, attribute_values.default_date)
 
     return (attribute_values.insufficient_overlap, get_attribute_date(sources[0], file_dicts))
 
@@ -114,7 +106,6 @@ def combine_get_file_url(eu_pnumber: str, attribute_name: str, sources: list[str
             return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["file_link"]
     except Exception:
         print("COMBINER: failed to get url")
-        return attribute_values.combiner_not_found
         return attribute_values.url_not_found
 
     return attribute_values.url_not_found
@@ -128,8 +119,8 @@ def combine_decision_time_days(eu_pnumber: str, attribute_name: str, sources: li
         initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
         initial_decision_date = get_attribute_date(src.decision_initial, file_dicts)
 
-        initial_chmp_opinion_date = dt.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d %H:%M:%S")
-        initial_decision_date = dt.datetime.strptime(initial_decision_date, "%Y-%m-%d %H:%M:%S")
+        initial_chmp_opinion_date = datetime.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d %H:%M:%S")
+        initial_decision_date = datetime.datetime.strptime(initial_decision_date, "%Y-%m-%d %H:%M:%S")
 
         return (initial_decision_date - initial_chmp_opinion_date).days
 
@@ -147,8 +138,8 @@ def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources
         initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
         initial_procedure_start_date = file_dicts[src.epar][attr.ema_procedure_start_initial]
 
-        initial_chmp_opinion_date = dt.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d %H:%M:%S")
-        initial_procedure_start_date = dt.datetime.strptime(initial_procedure_start_date, "%Y-%m-%d %H:%M:%S")
+        initial_chmp_opinion_date = datetime.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d %H:%M:%S")
+        initial_procedure_start_date = datetime.datetime.strptime(initial_procedure_start_date, "%Y-%m-%d %H:%M:%S")
 
         return (initial_chmp_opinion_date - initial_procedure_start_date).days
     except Exception as exception:
@@ -190,14 +181,17 @@ def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str]
         str: _description_
     """
     annex_initial_dict = file_dicts[src.annex_initial]
+    if annex_initial_dict == {}:
+        log.warning(f"COMBINER: no annex initial in {eu_pnumber}")
+        return attribute_values.not_found
     eu_med_type = annex_initial_dict[attr.eu_med_type]
     eu_med_type_date = get_attribute_date(src.annex_initial, file_dicts)
     eu_atmp = file_dicts[src.decision][attr.eu_atmp]
 
     if eu_med_type == attribute_values.eu_med_type_biologicals and eu_atmp:
-        return (attribute_values.eu_med_type_atmp, eu_med_type_date)
+        return attribute_values.eu_med_type_atmp, eu_med_type_date
 
-    return (eu_med_type, eu_med_type_date)
+    return eu_med_type, eu_med_type_date
 
 
 def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[bool, str]:
@@ -228,6 +222,15 @@ def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list
 def combine_eu_procedures_todo(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> list[dict[str, bool]]:
     return [{attr.eu_referral: file_dicts[src.web][attr.eu_referral] == "True",
              attr.eu_suspension: file_dicts[src.web][attr.eu_suspension] == "True"}]
+
+def combine_eu_aut_date(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> datetime.date:
+    values = get_values_from_sources(attribute_name,sources,file_dicts)
+
+    if not check_all_equal(values):
+        log.warning(f"COMBINER: crosscheck for {attribute_name} failed")
+
+    values.append(attribute_values.default_date)
+    return values[0]
 
 
 def json_static(value: any, date: str) -> any:

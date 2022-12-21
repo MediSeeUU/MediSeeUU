@@ -55,9 +55,9 @@ class TestDecParse(TestCase):
                 not_found_count += 1
                 print(f"{filename} date not found")
             else:
-                if isinstance(output, datetime.date):
-                    self.assertGreater(datetime.date(2050, 1, 1), output)
-                    self.assertGreater(output, datetime.date(1985, 1, 1))
+                if isinstance(output, datetime.datetime):
+                    self.assertGreater(datetime.datetime(2050, 1, 1, 0, 0), output)
+                    self.assertGreater(output, datetime.datetime(1985, 1, 1, 0, 0))
                 if isinstance(output, str):
                     self.assertTrue(output == attribute_values.eu_aut_date_blank)
         percentage_found = (len(dec_txt) - not_found_count) / len(dec_txt) * 100
@@ -80,8 +80,8 @@ class TestDecParse(TestCase):
                     not_found_count += 1
                     print(f"{filename} date not found")
                 else:
-                    self.assertGreater(datetime.date(2050, 1, 1), output)
-                    self.assertGreater(output, datetime.date(1985, 1, 1))
+                    self.assertGreater(datetime.datetime(2050, 1, 1, 0, 0), output)
+                    self.assertGreater(output, datetime.datetime(1985, 1, 1, 0, 0))
         percentage_found = (orphan_count - not_found_count) / orphan_count * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
         print(f"Amount not found: {not_found_count}")
