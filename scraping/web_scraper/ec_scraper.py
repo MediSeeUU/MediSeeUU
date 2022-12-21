@@ -160,7 +160,7 @@ def get_ec_json_objects(html_active: requests.Response) -> list[dict]:
     return parsed_jsons
 
 
-def get_last_updated_date(html_active: requests.Response) -> datetime:
+def get_last_updated_date(html_active: requests.Response) -> datetime.date:
     """
     Gets the last updated date for a medicine on the EC website
 
@@ -169,12 +169,12 @@ def get_last_updated_date(html_active: requests.Response) -> datetime:
             html object for the webpage. Contains a string with 'Last updated on '##/##/####'
 
     Returns:
-        (str): The date in the aforementioned string
+        (datetime.date): The date in the aforementioned string
     """
     soup = bs4.BeautifulSoup(html_active.text, "html.parser")
     last_updated_soup = soup.find(string=re.compile(f"Last updated on.*"))
     last_updated_string = last_updated_soup.text[:-1]
-    return datetime.strptime(last_updated_string.split()[-1], '%d/%m/%Y')
+    return datetime.strptime(last_updated_string.split()[-1], '%d/%m/%Y').date()
 
 
 def scrape_medicine_page(eu_num: str, html_active: requests.Response, medicine_type: MedicineType, data_folder: str) \
@@ -409,12 +409,11 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
             eu_suspension = True
 
         # Parse the date, formatted as %Y-%m-%d, which looks like 1970-01-01
-        decision_date: datetime = datetime.strptime(row["decision"]["date"], "%Y-%m-%d")
+        decision_date: datetime.date = datetime.strptime(row["decision"]["date"], "%Y-%m-%d").date()
         decision_id = row["id"]
 
         if "orphan designation" == row["type"].lower():
             procedures_dict[attr.eu_od_date] = str(decision_date)
-        decision_date: date = decision_date.date()
         # Puts all the decisions from the last one and a half year in a list to determine the current authorization type
         if last_decision_date - decision_date < timedelta(days=548):
             last_decision_types.append(row["type"])
@@ -440,7 +439,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
     eu_aut_str: str = procedures_json[authorisation_row]["decision"]["date"]
     if eu_aut_str is not None:
-        eu_aut_date: datetime = datetime.strptime(eu_aut_str, '%Y-%m-%d')
+        eu_aut_date: str = str(datetime.strptime(eu_aut_str, '%Y-%m-%d').date())
         eu_aut_type_initial: str = determine_initial_aut_type(eu_aut_date.year,
                                                               is_exceptional,
                                                               is_conditional)
@@ -460,7 +459,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
         ema_number_id = re.search(r'\d+/\d+', ema_number)[0].lstrip('0')
 
     # Currently when an attribute is not found it is simply printed to the console
-    procedures_dict[attr.eu_aut_date] = str(eu_aut_date)
+    procedures_dict[attr.eu_aut_date] = eu_aut_date
     procedures_dict[attr.eu_aut_type_initial] = eu_aut_type_initial
     procedures_dict[attr.eu_aut_type_current] = determine_current_aut_type(last_decision_types)
     if "od" in ema_number.lower():
