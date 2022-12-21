@@ -1,6 +1,8 @@
 from django.db import models
 from api.models.create_dashboard_columns import DashBoardHistoryInitialColumn
+import logging
 
+logger = logging.getLogger(__name__)
 
 def get_initial_history_columns(model_list: list[models.Model]) -> list[str]:
     """
@@ -36,6 +38,10 @@ def insert_extra_dashboard_columns(data, models):
                             and medicine[data_key] not in field.dashboard_column.data_format.na_values:
                         if extra_dashboard_columns := field.dashboard_column.extra_dashboard_columns:
                             for extra_dashboard_column in extra_dashboard_columns:
-                                medicine[extra_dashboard_column.data_key] = \
-                                    extra_dashboard_column.function(medicine[data_key])
+                                try:
+                                    medicine[extra_dashboard_column.data_key] = \
+                                        extra_dashboard_column.function(medicine[data_key])
+                                except Exception as e:
+                                    logger.error(f"ExtraDashBoardColumn function on {data_key} "
+                                                 f"has failed with exception: \"{str(e)}\".")
     return data

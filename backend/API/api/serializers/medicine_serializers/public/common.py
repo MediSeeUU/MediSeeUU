@@ -172,11 +172,6 @@ class HistoryMixin:
         return representation
 
 
-import logging
-
-log = logging.getLogger(__name__)
-
-
 class AnyBoolsList:
     """
     Selects the items of the specified related history object and inserts it in a flat representation.
@@ -221,7 +216,6 @@ class AnyBoolsList:
                     # Serialize data
                     serializer = serializer_class(context=self.context, many=True)
                     obj_rep = serializer.to_representation(obj_field)
-                    log.warning(obj_rep)
                     for field in fields:
                         any_true = False
                         for obj_dict in obj_rep:
