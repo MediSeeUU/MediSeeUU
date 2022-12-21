@@ -95,10 +95,8 @@ def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements:
     filename: str = f"{medicine_identifier}_{'_'.join(filename_elements)}.pdf"
     if not attr_dict:
         log.error("No webdata.json dictionary found.")
-        hardcrash
     elif attr.filedates_web not in attr_dict:
         log.warning(f"No key {attr.filedates_web} in the webdata.json file: {attr_dict}.")
-        subtlecrash
     else:
         attr_dict[attr.filedates_web][filename] = get_date_from_url(url)
 
