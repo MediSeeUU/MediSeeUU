@@ -84,6 +84,9 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
             if attributes:
                 omar_attributes[attr.ema_omar_condition].append(attributes)
 
+    for dict in omar_attributes[attr.ema_omar_condition]:
+        dict[attr.ema_report_date] = report_date
+
     medicine_struct.omars.append(omar_attributes)
 
     # When no conditions have been found it will be logged.
@@ -93,7 +96,7 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     return medicine_struct
 
 
-def get_report_date(xml_body: ET.Element, pdf_file: str) -> datetime.datetime:
+def get_report_date(xml_body: ET.Element, pdf_file: str) -> datetime.date:
     section = xml_utils.get_body_section_by_index(0, xml_body)
     header = xml_utils.get_section_header(section)
 
@@ -187,7 +190,7 @@ def get_alternative_treatments(bullet_points: list[str]) -> str:
         b = re.sub(r'\s+', ' ', b).lstrip(" ")
 
         if ("no satisfactory method" in b) or ("no satisfactory treatment" in b):
-            return attribute_values.eu_alt_treatment_no_benefit
+            return "No Satisfactory Method"
         if "significant benefit" in b:
             if "does not hold" in b:
                 return attribute_values.eu_alt_treatment_no_benefit
@@ -219,8 +222,8 @@ def get_significant_benefit(bullet_points: list[str], alternative_treatment: str
         "when the product"
     ]
 
-    if alternative_treatment == attribute_values.eu_alt_treatment_no_benefit:
-        return attribute_values.eu_alt_treatment_no_benefit
+    if alternative_treatment == "No Significant Benefit":
+        return "No Significant Benefit"
 
     # Loop through all the bullet points and if a paragraph contains certain words, it will
     # look for a sentence that explains it.
@@ -241,9 +244,5 @@ def get_significant_benefit(bullet_points: list[str], alternative_treatment: str
 
             if len(result) > 0:
                 return result[0]
-
-    if alternative_treatment == attribute_values.eu_alt_treatment_benefit:
-        log.warning("OMAR PARSER: Significant benefit detected but not scraped - update matching key for " + pdf_file)
-        return attribute_values.not_scrapeable
 
     return attribute_values.not_found
