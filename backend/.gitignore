@@ -1,6 +1,7 @@
 .vscode
 dev_settings.py
-**/api/migrations/
+**/api/migrations/*
+!**/api/migrations/__init__.py
 **/api_settings/settings/local_*.py
 **/api_settings/settings/deploy_*.py
 
