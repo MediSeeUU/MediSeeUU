@@ -107,7 +107,6 @@ class TestEcScraper(unittest.TestCase):
         medicine_json, *_ = ec.get_ec_json_objects(html_active)
         medicine_dict, _ = ec.get_data_from_medicine_json(medicine_json, eu_num_short, medicine_type)
 
-        self.assertEqual(medicine_dict[attr.atc_code], exp_atc_code, msg="atc codes are not equal")
         self.assertEqual(medicine_dict[attr.active_substance], exp_active_substance, msg="active substances are not equal")
         # check orphan specific attributes for orphan medicines, and human specific attributes for human medicines
         if "o" in eu_num_short:
@@ -115,6 +114,7 @@ class TestEcScraper(unittest.TestCase):
             self.assertEqual(medicine_dict[attr.eu_od_sponsor], exp_eu_mah_current, msg="current mahs are not equal")
         else:
             self.assertEqual(medicine_dict[attr.eu_pnumber], exp_eu_number, msg="product numbers are not equal")
+            self.assertEqual(medicine_dict[attr.atc_code], exp_atc_code, msg="atc codes are not equal")
             self.assertEqual(medicine_dict[attr.eu_mah_current], exp_eu_mah_current, msg="current mahs are not equal")
         self.assertEqual(medicine_dict[attr.eu_aut_status], exp_eu_aut_status, msg="authorization statuses are not equal")
         self.assertEqual(medicine_dict[attr.eu_brand_name_current], exp_eu_brand_name_current, msg="current brand names "
