@@ -1,6 +1,7 @@
 # This program has been developed by students from the bachelor Computer Science at
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
+import logging
 from collections import OrderedDict
 from django.db.models import Model
 from typing import Tuple
@@ -54,6 +55,7 @@ class RelatedMixin:
                         ("marketing_authorisation", MarketingAuthorisationSerializer),
                     ]
     """
+
     def to_representation(self, obj: Model) -> OrderedDict[str, str]:
         """
         Overrides the default `to_representation` method to add the related fields
@@ -91,6 +93,7 @@ class ListMixin:
                         ("eu_legal_basis", LegalBasesSerializer),
                     ]
     """
+
     def to_representation(self, obj: Model) -> OrderedDict[str, str]:
         """
         Overrides the default `to_representation` method to add the list fields
@@ -135,6 +138,7 @@ class HistoryMixin:
                         ("eu_aut_type", AuthorisationTypeSerializer, True, True),
                     ]
     """
+
     def to_representation(self, obj: Model) -> OrderedDict[str, str]:
         """
         Overrides the default `to_representation` method to add the history fields
@@ -166,6 +170,11 @@ class HistoryMixin:
                             field_name = get_data_key(serializer_class.Meta.model, field)
                             representation[field_name] = data[field]
         return representation
+
+
+import logging
+
+log = logging.getLogger(__name__)
 
 
 class AnyBoolsList:
@@ -203,7 +212,6 @@ class AnyBoolsList:
             OrderedDict[str, str]: The representation with the history fields added
         """
         representation = super().to_representation(obj)
-        return representation
 
         for related_name, serializer_class, fields in getattr(self.Meta, "any_bools_list"):
             if hasattr(obj, related_name):
@@ -213,5 +221,12 @@ class AnyBoolsList:
                     # Serialize data
                     serializer = serializer_class(context=self.context, many=True)
                     obj_rep = serializer.to_representation(obj_field)
+                    log.warning(obj_rep)
                     for field in fields:
-                        pass
+                        any_true = False
+                        for obj_dict in obj_rep:
+                            if obj_dict[field]:
+                                any_true = True
+                                break
+                        representation[field] = any_true
+        return representation

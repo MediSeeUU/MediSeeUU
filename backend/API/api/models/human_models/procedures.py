@@ -26,6 +26,7 @@ class Procedures(models.Model):
         MedicinalProduct,
         models.CASCADE,
         null=False,
+        blank=False,
         related_name="procedures"
     )
 
