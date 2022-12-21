@@ -17,5 +17,16 @@
     "ema_number_certainty": "1.0",
     "authorisation_row": "0",
     "scrape_date_web": "19/12/2022",
-    "filedates": {}
+    "filedates": {
+        "EU-1-21-1541_h_dec_0.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220324154987/dec_154987_en.pdf",
+            "pdf_date": "2022-03-24 00:00:00",
+            "pdf_scrape_date": "2022-12-21 12:18:18.559714"
+        },
+        "EU-1-21-1541_h_anx_0.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220324154987/anx_154987_en.pdf",
+            "pdf_date": "2022-03-24 00:00:00",
+            "pdf_scrape_date": "2022-12-21 12:18:18.877775"
+        }
+    }
 }
