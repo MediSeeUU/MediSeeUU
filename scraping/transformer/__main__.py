@@ -54,6 +54,8 @@ def get_final_json(final_json: dict, json_data: dict, all_names: list):
             continue
         if values.not_found == value or values.combiner_not_found == value:
             value = not_found_str
+        if name == "eu_od_pnumber" and value == not_found_str:
+            continue
         if isinstance(value, dict):
             if "value" not in value.keys():
                 pass
