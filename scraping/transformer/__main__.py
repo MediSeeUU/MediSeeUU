@@ -36,7 +36,7 @@ def save_transformed_json(combined_json_path: str, final_json: dict):
     """
     transformed_json_path = f"{combined_json_path.split('combined.json')[0]}transformed.json"
     with open(transformed_json_path, 'w') as transformed_file:
-        transformed_file.write(json.dumps(final_json))
+        json.dump(final_json, transformed_file, indent=4)
 
 
 def get_final_json(final_json: dict, json_data: dict, all_names: list):
