@@ -1,6 +1,6 @@
 from django.db import models
-from api.models.create_dashboard_columns import DashBoardHistoryInitialColumn, DashBoardHistoryCurrentColumn
-from api.models.common import all_na_values
+from api.models.create_dashboard_columns import DashBoardHistoryInitialColumn
+
 
 def get_initial_history_columns(model_list: list[models.Model]) -> list[str]:
     """
@@ -33,7 +33,7 @@ def insert_extra_dashboard_columns(data, models):
                 if hasattr(field, "dashboard_column"):
                     data_key = field.dashboard_column.get_data_key(field.name)
                     if data_key in medicine and medicine[data_key] is not None \
-                            and medicine[data_key] not in all_na_values:
+                            and medicine[data_key] not in field.dashboard_column.data_format.na_values:
                         if extra_dashboard_columns := field.dashboard_column.extra_dashboard_columns:
                             for extra_dashboard_column in extra_dashboard_columns:
                                 medicine[extra_dashboard_column.data_key] = \

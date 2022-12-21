@@ -12,7 +12,8 @@ from api.models.create_dashboard_columns import (
     create_dashboard_history_initial_column,
     Category,
 )
-from api.models.common import BooleanWithNAField, DateWithNAField, URLWithNAField
+from api.models.common import DataFormats
+from api.models.na_fields import BooleanWithNAField, DateWithNAField, URLWithNAField
 
 
 class MarketingAuthorisation(models.Model):
@@ -64,42 +65,42 @@ class MarketingAuthorisation(models.Model):
     ema_procedure_start_initial = create_dashboard_column(
         DateWithNAField(),
         Category.Marketing_authorisation,
-        "date",
+        DataFormats.Date,
         "Initial EMA Procedure Start Date",
     )
 
     chmp_opinion_date = create_dashboard_column(
         DateWithNAField(),
         Category.Marketing_authorisation,
-        "date",
+        DataFormats.Date,
         "Initial EMA (CHMP) Opinion Date",
     )
 
     eu_aut_date = create_dashboard_column(
         DateWithNAField(),
         Category.Marketing_authorisation,
-        "date",
+        DataFormats.Date,
         "Initial EU Authorisation Date",
     )
 
     aut_url = create_dashboard_column(
         URLWithNAField(),
         Category.Marketing_authorisation,
-        "link",
+        DataFormats.Link,
         "Authorisation Decision Link",
     )
 
     smpc_url = create_dashboard_column(
         URLWithNAField(),
         Category.Marketing_authorisation,
-        "link",
+        DataFormats.Link,
         "Authorisation Annex Link",
     )
 
     epar_url = create_dashboard_column(
         URLWithNAField(),
         Category.Marketing_authorisation,
-        "link",
+        DataFormats.Link,
         "Initial Authorisation EPAR Link",
     )
 
@@ -108,7 +109,7 @@ class MarketingAuthorisation(models.Model):
             null=False,
         ),
         Category.Marketing_authorisation,
-        "string",
+        DataFormats.String,
         "EMA rapporteur for initial authorisation",
     )
 
@@ -117,7 +118,7 @@ class MarketingAuthorisation(models.Model):
             null=False,
         ),
         Category.Marketing_authorisation,
-        "string",
+        DataFormats.String,
         "EMA co-rapporteur for initial authorisation",
     )
 
@@ -134,7 +135,7 @@ class MarketingAuthorisation(models.Model):
     ema_reexamination = create_dashboard_column(
         BooleanWithNAField(),
         Category.Marketing_authorisation,
-        "bool",
+        DataFormats.Bool,
         "EMA re-examination performed",
     )
 
@@ -145,7 +146,7 @@ class MarketingAuthorisation(models.Model):
             null=True,
         ),
         Category.Marketing_authorisation,
-        "string",
+        DataFormats.String,
         "Initial type of EU authorisation",
     )
 
@@ -156,7 +157,7 @@ class MarketingAuthorisation(models.Model):
             null=True,
         ),
         Category.Marketing_authorisation,
-        "string",
+        DataFormats.String,
         "Initial EU marketing authorisation holder",
     )
 

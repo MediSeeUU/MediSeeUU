@@ -3,7 +3,8 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from api.models.create_dashboard_columns import create_dashboard_column, Category
-from api.models.common import BooleanWithNAField
+from api.models.common import DataFormats
+from api.models.na_fields import BooleanWithNAField
 
 
 class AcceleratedAssessment(models.Model):
@@ -22,7 +23,7 @@ class AcceleratedAssessment(models.Model):
             null=True,
         ),
         Category.Marketing_authorisation,
-        "bool",
+        DataFormats.Bool,
         "EU accelerated assessment granted",
     )
 
@@ -31,7 +32,7 @@ class AcceleratedAssessment(models.Model):
             null=True,
         ),
         Category.Marketing_authorisation,
-        "bool",
+        DataFormats.Bool,
         "EU accelerated assessment maintained",
     )
 

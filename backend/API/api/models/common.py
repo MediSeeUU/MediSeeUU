@@ -3,140 +3,30 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 from django.db import models
-from django.core.exceptions import ValidationError
-import datetime
-import validators
+from enum import Enum
 
-na_values = [
+generic_na_values = [
     "Not found",
     "Not available at time of document publication",
     "Value should be present in document",
-    ""
 ]
-date_na_values = na_values + ["date is left blank in document"]
-
-all_na_values = na_values + date_na_values
 
 
-class BooleanWithNAField(models.Field):
-    def __init__(self, *args, **kwargs):
-        kwargs["max_length"] = 45
-        # Set the field to support null values
-        kwargs["null"] = True
-        kwargs["blank"] = True
-        super().__init__(*args, **kwargs)
+class DataFormats(Enum):
+    String = ("string", generic_na_values)
+    Number = ("number", generic_na_values)
+    Bool = ("bool", generic_na_values)
+    Date = ("date", generic_na_values + ["date is left blank in document"])
+    Link = ("link", generic_na_values)
+    String_List = ("[string]", generic_na_values)
 
-    def deconstruct(self):
-        name, path, args, kwargs = super().deconstruct()
-        del kwargs["max_length"]
-        del kwargs["null"]
-        del kwargs["blank"]
-        return name, path, args, kwargs
+    @property
+    def data_format(self):
+        return self.value[0]
 
-    def db_type(self, connection):
-        return f"VARCHAR({self.max_length})"
-
-    def from_db_value(self, value, expression, connection):
-        if value == "True":
-            return True
-        elif value == "False":
-            return False
-        return value
-
-    def get_prep_value(self, value):
-        if isinstance(value, bool):
-            return str(value)
-        elif value is None or value in ["True", "False"] or value in na_values:
-            return value
-        else:
-            raise ValidationError(f"{self.name}: {value} must be either a boolean or a NA message")
-
-
-class IntegerWithNAField(models.Field):
-    def __init__(self, *args, **kwargs):
-        # Set the field to support null values
-        kwargs["null"] = True
-        kwargs["blank"] = True
-        super().__init__(*args, **kwargs)
-
-    def deconstruct(self):
-        name, path, args, kwargs = super().deconstruct()
-        del kwargs["null"]
-        del kwargs["blank"]
-        return name, path, args, kwargs
-
-    def db_type(self, connection):
-        return "LONGTEXT"
-
-    def from_db_value(self, value, expression, connection):
-        if value is None or not str.isdigit(value):
-            return value
-        else:
-            return int(value)
-
-    def get_prep_value(self, value):
-        if isinstance(value, int):
-            return str(value)
-        elif value is None or str.isdigit(value) or value in na_values:
-            return value
-        else:
-            raise ValidationError(f"{self.name}: {value} must be either a integer or a NA message")
-
-
-class DateWithNAField(models.Field):
-    def __init__(self, *args, **kwargs):
-        kwargs["max_length"] = 32
-        # Set the field to support null values
-        kwargs["null"] = True
-        kwargs["blank"] = True
-        super().__init__(*args, **kwargs)
-
-    def deconstruct(self):
-        name, path, args, kwargs = super().deconstruct()
-        del kwargs["max_length"]
-        del kwargs["null"]
-        del kwargs["blank"]
-        return name, path, args, kwargs
-
-    def db_type(self, connection):
-        return f"VARCHAR({self.max_length})"
-
-    def get_prep_value(self, value):
-        date = datetime.datetime.strptime(value, '%Y-%m-%d')
-        # check if valid date
-        if date.year >= 0 and date.month <= 12 and date.day <= 31:
-            return value
-        elif value is None or value in date_na_values:
-            return value
-        else:
-            raise ValidationError(f"{self.name}: {value} must be either a date or a NA message")
-
-
-class URLWithNAField(models.Field):
-    def __init__(self, *args, **kwargs):
-        kwargs["max_length"] = 256
-        # Set the field to support null values
-        kwargs["null"] = True
-        kwargs["blank"] = True
-        super().__init__(*args, **kwargs)
-
-    def deconstruct(self):
-        name, path, args, kwargs = super().deconstruct()
-        del kwargs["max_length"]
-        del kwargs["null"]
-        del kwargs["blank"]
-        return name, path, args, kwargs
-
-    def db_type(self, connection):
-        return f"VARCHAR({self.max_length})"
-
-    def get_prep_value(self, value):
-        if value is None or value in na_values:
-            return value
-        elif validators.url(value):
-            return value
-        else:
-            raise ValidationError(f"{self.name}: {value} must be either an url or a NA message")
+    @property
+    def na_values(self):
+        return self.value[1]
 
 
 class AutTypes(models.TextChoices):

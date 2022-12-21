@@ -3,7 +3,8 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from api.models.create_dashboard_columns import create_dashboard_column, Category
-from api.models.common import IntegerWithNAField
+from api.models.common import DataFormats
+from api.models.na_fields import IntegerWithNAField
 
 
 class Duration(models.Model):
@@ -29,7 +30,7 @@ class Duration(models.Model):
             null=False,
         ),
         Category.Marketing_authorisation,
-        "number",
+        DataFormats.Number,
         "Duration of initial EU authorisation assessment procedure (total days)",
     )
 
@@ -38,7 +39,7 @@ class Duration(models.Model):
             null=False,
         ),
         Category.Marketing_authorisation,
-        "number",
+        DataFormats.Number,
         "Duration of initial EU authorisation assessment procedure (active days)",
     )
 
@@ -47,7 +48,7 @@ class Duration(models.Model):
             null=False,
         ),
         Category.Marketing_authorisation,
-        "number",
+        DataFormats.Number,
         "Duration of initial EU authorisation assessment procedure (clock-stop days)",
     )
 
@@ -56,7 +57,7 @@ class Duration(models.Model):
             null=False,
         ),
         Category.Marketing_authorisation,
-        "number",
+        DataFormats.Number,
         "EC decision time (days)",
     )
 

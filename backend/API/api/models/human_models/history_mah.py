@@ -4,6 +4,7 @@
 from django.db import models
 from .medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import create_dashboard_history_current_column, Category
+from api.models.common import DataFormats
 
 
 class HistoryMAH(models.Model):
@@ -39,7 +40,7 @@ class HistoryMAH(models.Model):
             blank=False,
         ),
         Category.Marketing_authorisation,
-        "string",
+        DataFormats.String,
         "EU Marketing Authorisation Holder",
     )
 

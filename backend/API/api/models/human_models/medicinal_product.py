@@ -9,7 +9,8 @@ from api.models.create_dashboard_columns import (
     ExtraDashBoardColumn,
 )
 from .ingredients_and_substances import IngredientsAndSubstances
-from api.models.common import BooleanWithNAField, URLWithNAField
+from api.models.common import DataFormats
+from api.models.na_fields import BooleanWithNAField, URLWithNAField
 
 
 class MedicinalProduct(models.Model):
@@ -49,13 +50,13 @@ class MedicinalProduct(models.Model):
             blank=False,
         ),
         Category.Marketing_authorisation,
-        "string",
+        DataFormats.String,
         "EU Product Number",
         [
             ExtraDashBoardColumn(
                 Category.Medicinal_product,
                 "eu_pnumber_id",
-                "string",
+                DataFormats.String,
                 "EU product number ID",
                 lambda x: x[-3:],
             )
@@ -65,14 +66,14 @@ class MedicinalProduct(models.Model):
     ema_url = create_dashboard_column(
         URLWithNAField(),
         Category.Medicinal_product,
-        "link",
+        DataFormats.Link,
         "EMA Product Page Link",
     )
 
     ec_url = create_dashboard_column(
         URLWithNAField(),
         Category.Medicinal_product,
-        "link",
+        DataFormats.Link,
         "EC Product Page Link",
     )
 
@@ -81,14 +82,14 @@ class MedicinalProduct(models.Model):
             max_length=255,
         ),
         Category.Medicinal_product,
-        "string",
+        DataFormats.String,
         "EMA Application Number",
     )
 
     eu_med_type = create_dashboard_column(
         models.TextField(),
         Category.Medicinal_product,
-        "string",
+        DataFormats.String,
         "EU Medicine Type",
     )
 
@@ -97,7 +98,7 @@ class MedicinalProduct(models.Model):
             null=True,
         ),
         Category.Medicinal_product,
-        "bool",
+        DataFormats.Bool,
         "EU ATMP",
     )
 
@@ -118,7 +119,7 @@ class MedicinalProduct(models.Model):
             null=True,
         ),
         Category.Medicinal_product,
-        "string",
+        DataFormats.String,
         "Initial EU brand name",
     )
 
@@ -129,7 +130,7 @@ class MedicinalProduct(models.Model):
             null=True,
         ),
         Category.Medicinal_product,
-        "bool",
+        DataFormats.Bool,
         "EU orphan designation at authorisation",
     )
 
@@ -140,7 +141,7 @@ class MedicinalProduct(models.Model):
             null=True,
         ),
         Category.Medicinal_product,
-        "bool",
+        DataFormats.Bool,
         "EU Priority Medicine at authorisation",
     )
 

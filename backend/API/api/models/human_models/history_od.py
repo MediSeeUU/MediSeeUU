@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
-from api.models.common import BooleanWithNAField
+from api.models.na_fields import BooleanWithNAField
 
 
 class HistoryOD(models.Model):

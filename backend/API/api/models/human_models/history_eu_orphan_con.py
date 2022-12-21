@@ -4,6 +4,7 @@
 from django.db import models
 from api.models.human_models import MedicinalProduct
 from api.models.create_dashboard_columns import create_dashboard_history_current_column, Category
+from api.models.common import DataFormats
 
 
 class HistoryEUOrphanCon(models.Model):
@@ -38,7 +39,7 @@ class HistoryEUOrphanCon(models.Model):
             blank=False,
         ),
         Category.Medicinal_product,
-        "string",
+        DataFormats.String,
         "History EU orphan conditions",
     )
 

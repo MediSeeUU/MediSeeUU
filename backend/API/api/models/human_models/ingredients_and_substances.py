@@ -4,7 +4,8 @@
 from hashlib import md5
 from django.db import models
 from api.models.create_dashboard_columns import create_dashboard_column, Category, ExtraDashBoardColumn
-from api.models.common import BooleanWithNAField
+from api.models.na_fields import BooleanWithNAField
+from api.models.common import DataFormats
 
 
 class IngredientsAndSubstances(models.Model):
@@ -37,7 +38,7 @@ class IngredientsAndSubstances(models.Model):
             blank=False,
         ),
         Category.Ingredients_and_substances,
-        "string",
+        DataFormats.String,
         "Active Substance",
     )
 
@@ -48,34 +49,34 @@ class IngredientsAndSubstances(models.Model):
             blank=False,
         ),
         Category.Medicinal_product,
-        "string",
+        DataFormats.String,
         "ATC Code",
         [
             ExtraDashBoardColumn(
                 Category.Medicinal_product,
                 "atc_name_l1",
-                "string",
+                DataFormats.String,
                 "ATC name (level 1)",
                 lambda x: x[0],
             ),
             ExtraDashBoardColumn(
                 Category.Medicinal_product,
                 "atc_name_l2",
-                "string",
+                DataFormats.String,
                 "ATC name (level 2)",
                 lambda x: x[0: 3],
             ),
             ExtraDashBoardColumn(
                 Category.Medicinal_product,
                 "atc_name_l3",
-                "string",
+                DataFormats.String,
                 "ATC name (level 3)",
                 lambda x: x[0: 4],
             ),
             ExtraDashBoardColumn(
                 Category.Medicinal_product,
                 "atc_name_l4",
-                "string",
+                DataFormats.String,
                 "ATC name (level 4)",
                 lambda x: x[0: 5],
             ),
@@ -88,7 +89,7 @@ class IngredientsAndSubstances(models.Model):
             blank=False,
         ),
         Category.Ingredients_and_substances,
-        "bool",
+        DataFormats.Bool,
         "EU New Active Substance",
     )
 

@@ -4,7 +4,8 @@
 from django.db import models
 from .medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import create_dashboard_column, Category
-from api.models.common import BooleanWithNAField
+from api.models.common import DataFormats
+from api.models.na_fields import BooleanWithNAField
 
 
 class Procedures(models.Model):
@@ -35,7 +36,7 @@ class Procedures(models.Model):
             null=False
         ),
         Category.Procedures,
-        "bool",
+        DataFormats.Bool,
         "EU suspension",
     )
 
@@ -44,7 +45,7 @@ class Procedures(models.Model):
             null=False
         ),
         Category.Procedures,
-        "bool",
+        DataFormats.Bool,
         "EU referral",
     )
 

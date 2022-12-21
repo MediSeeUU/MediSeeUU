@@ -4,7 +4,7 @@
 from django.db import models
 from .medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import create_dashboard_history_current_column, Category
-from api.models.common import AutStatus
+from api.models.common import DataFormats, AutStatus
 
 
 class HistoryAuthorisationStatus(models.Model):
@@ -42,7 +42,7 @@ class HistoryAuthorisationStatus(models.Model):
             blank=False,
         ),
         Category.Marketing_authorisation,
-        "string",
+        DataFormats.String,
         "EU Authorisation Status",
     )
 

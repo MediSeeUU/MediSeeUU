@@ -4,6 +4,7 @@
 from django.db import models
 from enum import Enum
 from typing import Callable, Tuple
+from .common import DataFormats
 
 
 class Category(Enum):
@@ -19,7 +20,7 @@ class Category(Enum):
 
 
 class ExtraDashBoardColumn:
-    def __init__(self, category: Category, data_key: str, data_format: str,
+    def __init__(self, category: Category, data_key: str, data_format: DataFormats,
                  data_value: str, function: Callable[[str], str]):
         """
         Creates an extra DashboardColumn
@@ -27,7 +28,7 @@ class ExtraDashBoardColumn:
         Args:
             category (Category): Category the variable should be shown in on the dashboard.
             data_key (str):
-            data_format (str): Data format for the dashboard. Example: `link`.
+            data_format (DataFormats): Data format for the dashboard. Example: `link`.
             data_value (str): Title for the variable to be shown on the dashboard.
             function (Callable[[str], str]):
         """
@@ -43,14 +44,14 @@ class DashboardColumn:
     Holds values used in medicine_info_json to create a column in the dashboard.
     """
 
-    def __init__(self, category: Category, data_format: str, data_value: str,
+    def __init__(self, category: Category, data_format: DataFormats, data_value: str,
                  extra_dashboard_columns: list[ExtraDashBoardColumn]):
         """
         Creates a DashboardColumn
 
         Args:
             category (Category): Category the variable should be shown in on the dashboard.
-            data_format (str): Data format for the dashboard. Example: `link`.
+            data_format (DataFormats): Data format for the dashboard. Example: `link`.
             data_value (str): Title for the variable to be shown on the dashboard.
         """
         self.category = category
@@ -79,7 +80,7 @@ class DashBoardHistoryInitialColumn(DashboardColumn):
 
 
 class DashBoardHistoryCurrentColumn(DashboardColumn):
-    def __init__(self, category: Category, data_format: str, data_value: str,
+    def __init__(self, category: Category, data_format: DataFormats, data_value: str,
                  extra_dashboard_columns: list[ExtraDashBoardColumn], suffix: str = "_current"):
         super().__init__(category, data_format, data_value, extra_dashboard_columns)
         self.suffix = suffix
@@ -88,7 +89,7 @@ class DashBoardHistoryCurrentColumn(DashboardColumn):
         return f"{field_name}{self.suffix}"
 
 
-def create_dashboard_column(field: models.Field, category: Category, data_format: str, display_name: str,
+def create_dashboard_column(field: models.Field, category: Category, data_format: DataFormats, display_name: str,
                             extra_dashboard_columns: list[ExtraDashBoardColumn] = None) -> models.Field:
     """
     Sets attributes on a model field that's used in medicine_info_json.
@@ -96,7 +97,7 @@ def create_dashboard_column(field: models.Field, category: Category, data_format
     Args:
         field (models.Field): The type that the database attribute will have (CharField, BooleanField, etc.).
         category (Category): Which category the attribute should belong to.
-        data_format (str): Defines what data format the attribute should have.
+        data_format (DataFormats): Defines what data format the attribute should have.
         display_name (str): This is the name that the attribute displays in the database.
         extra_dashboard_columns (list[ExtraDashboardColumn]):
 
@@ -109,7 +110,7 @@ def create_dashboard_column(field: models.Field, category: Category, data_format
 
 
 def create_dashboard_history_initial_column(field: models.Field, category: Category,
-                                            data_format: str, display_name: str,
+                                            data_format: DataFormats, display_name: str,
                                             extra_dashboard_columns: list[ExtraDashBoardColumn] = None) -> models.Field:
     """
     Sets attributes on a model field that's used in medicine_info_json.
@@ -117,7 +118,7 @@ def create_dashboard_history_initial_column(field: models.Field, category: Categ
     Args:
         field (models.Field): The type that the database attribute will have (CharField, BooleanField, etc.).
         category (Category): Which category the attribute should belong to.
-        data_format (str): Defines what data format the attribute should have.
+        data_format (DataFormats): Defines what data format the attribute should have.
         display_name (str): This is the name that the attribute displays in the database.
         extra_dashboard_columns (list[ExtraDashBoardColumn):
 
@@ -130,7 +131,7 @@ def create_dashboard_history_initial_column(field: models.Field, category: Categ
 
 
 def create_dashboard_history_current_column(field: models.Field, category: Category,
-                                            data_format: str, display_name: str,
+                                            data_format: DataFormats, display_name: str,
                                             extra_dashboard_columns: list[ExtraDashBoardColumn] = None) -> models.Field:
     """
     Creates the current column for a history column in a history model.
@@ -138,7 +139,7 @@ def create_dashboard_history_current_column(field: models.Field, category: Categ
     Args:
         field (models.Field): The type that the database attribute will have (CharField, BooleanField, etc.).
         category (Category): Which category the attribute should belong to.
-        data_format (str): Defines what data format the attribute should have.
+        data_format (DataFormats): Defines what data format the attribute should have.
         display_name (str): This is the name that the attribute displays in the database.
         extra_dashboard_columns (list[ExtraDashBoardColumn):
 

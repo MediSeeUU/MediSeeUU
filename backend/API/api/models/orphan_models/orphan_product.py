@@ -8,7 +8,7 @@ from api.models.create_dashboard_columns import (
     create_dashboard_history_initial_column,
     Category,
 )
-from api.models.common import DateWithNAField, URLWithNAField
+from api.models.na_fields import DateWithNAField, URLWithNAField
 
 
 class OrphanProduct(models.Model):

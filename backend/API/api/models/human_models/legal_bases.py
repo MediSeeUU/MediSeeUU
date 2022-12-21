@@ -5,6 +5,7 @@ from django.db import models
 from .medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import create_dashboard_column, Category
 from api.models.common import LegalBasesTypes
+from api.models.common import DataFormats
 
 
 class LegalBases(models.Model):
@@ -35,7 +36,7 @@ class LegalBases(models.Model):
             blank=False,
         ),
         Category.Marketing_authorisation,
-        "[string]",
+        DataFormats.String_List,
         "EU Legal Basis",
     )
 

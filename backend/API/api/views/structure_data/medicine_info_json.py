@@ -50,7 +50,7 @@ def get_medicine_info(perm, models: list[Models.Model], mock=None):
                 if has_permission(perm, data_key):
                     data[field.dashboard_column.category.value].append({
                         "data-key": data_key,
-                        "data-format": data_format,
+                        "data-format": data_format.data_format,
                         "data-value": data_value,
                     })
 
