@@ -8,9 +8,9 @@ from scraping.utilities.web import json_helper
 from parameterized import parameterized
 import scraping.utilities.definitions.attributes as attr
 
-data_path = "../test_data"
+data_path = "../tests/test_data"
 if "web_scraper_tests" in os.getcwd():
-    data_path = "../../test_data"
+    data_path = "../../tests/test_data"
 data_local = f"{data_path}/active_withdrawn"
 
 

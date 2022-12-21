@@ -4,7 +4,7 @@ import os.path as path
 import json
 import scraping.pdf_parser.__main__ as pdf_parser
 import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attribute_values as attribute_values
 
 test_data_folder_path = "pdf_parser_tests/test_annex_parse_data"
 if "pdf_parser_tests" in os.getcwd():
@@ -60,10 +60,10 @@ class TestAnnexParse(TestCase):
 
             # test for attribute values
             if file_attributes[attr.is_initial]:
-                incorrect_value |= "specific obligation" in pdf_file and authorization_type != values.authorization_type_unknown
-                incorrect_value |= "specific obligations" in pdf_file and authorization_type != values.authorization_type_unknown
-                incorrect_value |= "conditional approval" in pdf_file and authorization_type != values.aut_type_conditional
-                incorrect_value |= "standard approval" in pdf_file and authorization_type != values.aut_type_standard
+                incorrect_value |= "specific obligation" in pdf_file and authorization_type != attribute_values.authorization_type_unknown
+                incorrect_value |= "specific obligations" in pdf_file and authorization_type != attribute_values.authorization_type_unknown
+                incorrect_value |= "conditional approval" in pdf_file and authorization_type != attribute_values.aut_type_conditional
+                incorrect_value |= "standard approval" in pdf_file and authorization_type != attribute_values.aut_type_standard
 
             # print errors
             if incorrect_file:
@@ -104,8 +104,8 @@ class TestAnnexParse(TestCase):
 
             # test for attribute values
             if file_attributes[attr.is_initial]:
-                incorrect_value |= values.eu_med_type_small_molecule in pdf_file and medicine_type != values.eu_med_type_small_molecule
-                incorrect_value |= "biologicals header" in pdf_file and medicine_type not in [values.eu_med_type_biologicals, values.eu_med_type_atmp]
+                incorrect_value |= attribute_values.eu_med_type_small_molecule in pdf_file and medicine_type != attribute_values.eu_med_type_small_molecule
+                incorrect_value |= "biologicals header" in pdf_file and medicine_type not in [attribute_values.eu_med_type_biologicals, attribute_values.eu_med_type_atmp]
 
             # print errors
             if incorrect_file:

@@ -152,6 +152,7 @@
 <li class="toctree-l5"><a class="reference internal" href="pdf_parser.html#pdf_parser.parsed_info_struct.ParsedInfoStruct.decisions"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.decisions</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="pdf_parser.html#pdf_parser.parsed_info_struct.ParsedInfoStruct.epars"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.epars</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="pdf_parser.html#pdf_parser.parsed_info_struct.ParsedInfoStruct.eu_number"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.eu_number</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="pdf_parser.html#pdf_parser.parsed_info_struct.ParsedInfoStruct.odwars"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.odwars</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="pdf_parser.html#pdf_parser.parsed_info_struct.ParsedInfoStruct.omars"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.omars</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="pdf_parser.html#pdf_parser.parsed_info_struct.ParsedInfoStruct.parse_date"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.parse_date</span></code></a></li>
 </ul>
@@ -642,7 +643,7 @@ The co-rapporteur of the document, usually found after “co-rapporteur:”</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.get_date">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime.datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_date" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime.date</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_date" title="Permalink to this definition"></a></dt>
 <dd><p>Gets the attribute ema_procedure_start_initial
 The initial authorization date of the EMA</p>
 <dl class="field-list simple">
@@ -653,7 +654,7 @@ The initial authorization date of the EMA</p>
 <dd class="field-even"><p>the attribute ema_procedure_start_initial - a string of a date in DD/MM/YYYY format</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>datetime | str</p>
+<dd class="field-odd"><p>datetime.date | str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -678,7 +679,7 @@ All legal articles relevant to the medicine</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.get_opinion_date">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_opinion_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime.datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_opinion_date" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_opinion_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime.date</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_opinion_date" title="Permalink to this definition"></a></dt>
 <dd><p>Gets the attribute chmp_opinion_date
 The date of the CHMP opinion on the medicine</p>
 <dl class="field-list simple">
@@ -689,7 +690,7 @@ The date of the CHMP opinion on the medicine</p>
 <dd class="field-even"><p>the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>datetime | str</p>
+<dd class="field-odd"><p>datetime.date | str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -869,7 +870,7 @@ including the attributes of this XML file</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.omar_parser.get_report_date">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_report_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_report_date" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_report_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_report_date" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">

@@ -2,16 +2,16 @@ import os
 import shutil
 from distutils.dir_util import copy_tree
 from unittest import TestCase
+from pathlib import Path
 
 from scraping.filter import filter
 from scraping.utilities.log import log_tools
-from scraping.utilities.io import safe_io
 
-test_data_loc = "../test_data_filter/active_withdrawn"
-test_data_filter_loc = "../test_data_filter/active_withdrawn_temp"
+test_data_loc = "../tests/test_data/active_withdrawn"
+test_data_filter_loc = "../tests/test_data/active_withdrawn_temp"
 if "filter_tests" in os.getcwd():
-    test_data_loc = "../../test_data_filter/active_withdrawn"
-    test_data_filter_loc = "../../test_data_filter/active_withdrawn_temp"
+    test_data_loc = "../../tests/test_data/active_withdrawn"
+    test_data_filter_loc = "../../tests/test_data/active_withdrawn_temp"
 test_data_path = test_data_loc.split("active_withdrawn")[0]
 
 
@@ -40,10 +40,10 @@ class TestFilter(TestCase):
         Copies test_data folder to test_data_filter [since filter removes files]
         """
         copy_tree(test_data_loc, test_data_filter_loc)
-        parent_path = "/".join((test_data_path.strip('/').split('/')[:-1]))
+        parent_path = "/".join((test_data_path.strip('/').split('/')[:-2]))
         logs_path = f"{parent_path}/tests/logs"
-        safe_io.create_folder(logs_path)
-        safe_io.create_folder(f"{logs_path}/txt_files")
+        Path(logs_path).mkdir(parents=True, exist_ok=True)
+        Path(f"{logs_path}/txt_files").mkdir(parents=True, exist_ok=True)
 
     def test_pdf_filter_length(self):
         """

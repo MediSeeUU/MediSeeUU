@@ -1,0 +1,2087 @@
+<?xml version="1.1" encoding="UTF-8" standalone="yes"?><xml><head><creation_date>D:20170928140840+01'00'</creation_date><modification_date>D:20170928140927+01'00'</modification_date><initial_authorization>False</initial_authorization><pdf_file>EU-1-03-269_h_epar-other_2.pdf</pdf_file></head><body><section><header n="30">30 churchill place ● canary wharf ● london e14 5eu ● united kingdom an agency of the european union     telephone +44 (0)20 3660 6000 facsimile +44 (0)20 3660 5555 send a question via our website www.ema.europa.eu/contact   
+ © european medicines agency, 2017. reproduction is authorised provided the source is acknowledged. 
+  
+ 29 may 2017 ema/490887/2017  
+  
+ assessment report  invented name: faslodex  international non-proprietary name: fulvestrant 
+  procedure no. emea/h/c/000540/ii/0057 
+  marketing authorisation holder (mah): astrazeneca uk ltd</header></section><section><header>note</header><p>assessment report as adopted by the chmp with all information of a commercially confidential nature deleted.</p><p>assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 2/59</p></section><section><header>table of contents</header></section><section><header n="1">1. background information on the procedure .............................................. 6</header><p>1.1. type ii variation .................................................................................................. 6 1.2. steps taken for the assessment of the product ......................................................... 6</p></section><section><header n="2">2. scientific discussion ................................................................................ 7</header><p>2.1. introduction......................................................................................................... 7 2.2. non-clinical aspects .............................................................................................. 9 2.2.1. ecotoxicity/environmental risk assessment ........................................................... 9 2.2.2. discussion on non-clinical aspects...................................................................... 10 2.2.3. conclusion on the non-clinical aspects ................................................................ 10 2.3. clinical aspects .................................................................................................. 10 2.3.1. introduction .................................................................................................... 10 2.4. clinical efficacy .................................................................................................. 11 2.4.1. main study ...................................................................................................... 11 2.4.2. discussion on clinical efficacy ............................................................................ 38 2.4.3. conclusions on the clinical efficacy ..................................................................... 41 2.5. clinical safety .................................................................................................... 41 2.5.1. discussion on clinical safety .............................................................................. 51 2.5.2. conclusions on clinical safety ............................................................................ 52 2.5.3. psur cycle ..................................................................................................... 52 2.6. risk management plan ........................................................................................ 52 2.7. update of the product information ........................................................................ 55 2.7.1. user consultation ............................................................................................. 55</p></section><section><header n="3">3. benefit-risk balance.............................................................................. 55</header><p>3.1. therapeutic context ........................................................................................... 55 3.1.1. disease or condition ......................................................................................... 55 3.1.2. available therapies and unmet medical need ....................................................... 55 3.1.3. main clinical studies ......................................................................................... 55 3.2. favourable effects .............................................................................................. 56 3.3. uncertainties and limitations about favourable effects ............................................. 56 3.4. unfavourable effects ........................................................................................... 56 3.5. uncertainties and limitations about unfavourable effects ......................................... 56 3.6. effects table ...................................................................................................... 57 3.7. benefit-risk assessment and discussion ................................................................. 58 3.7.1. importance of favourable and unfavourable effects .............................................. 58 3.7.2. balance of benefits and risks ............................................................................. 58 3.7.3. additional considerations on the benefit-risk balance ........................................... 58 3.8. conclusions ....................................................................................................... 58</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 3/59</p></section><section><header n="4">4. recommendations ................................................................................. 58</header></section><section><header n="5">5. epar changes ...................................................</header><p>error! bookmark not defined.</p></section><section><header n="6">6. attachments .....................................................</header><p>error! bookmark not defined.</p><p>assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 4/59</p></section><section><header>list of abbreviations</header><p>adr adverse drug reaction 
+ ae 
+ adverse event 
+ ai 
+ aromatase inhibitor 
+ alp 
+ alkaline phosphatase 
+ alt 
+ alanine aminotransferase 
+ ast 
+ aspartate aminotransferase 
+ cbr 
+ clinical benefit rate 
+ cdk 
+ cyclin dependent kinase 
+ ci 
+ confidence interval 
+ crf 
+ case report form 
+ csr 
+ clinical study report 
+ ctc 
+ common terminology criteria (national institutes of health, national cancer 
+ institute) 
+ ctcae 
+ common terminology criteria for adverse events 
+ docb 
+ duration of clinical benefit 
+ dor 
+ duration of response 
+ edocb 
+ expected duration of clinical benefit 
+ edor 
+ expected duration of response 
+ ema 
+ european medicines agency 
+ er 
+ estrogen receptor 
+ eu 
+ european union 
+ fact-b 
+ functional assessment of cancer therapy – breast 
+ fda 
+ food and drug administration 
+ her2 
+ human epidermal growth factor receptor 2 
+ hr 
+ hazard ratio 
+ hr+ 
+ hormone receptor positive 
+ hrqol 
+ health-related quality of life 
+ ich 
+ international conference on harmonization 
+ i.m. 
+ intramuscular 
+ itt 
+ intention-to-treat 
+ ivrs 
+ interactive voice response system 
+ mtp 
+ multiple testing procedure 
+ or 
+ odds ratio 
+ orr 
+ objective response rate 
+ os 
+ overall survival 
+ pbrer 
+ periodic benefit risk evaluation report 
+ pfs 
+ progression-free survival 
+ pgr 
+ progesterone receptor</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 5/59</p><p>
+ recist response evaluation criteria in solid tumours 
+ rmp 
+ risk management plan 
+ sae 
+ serious adverse event 
+ sap 
+ statistical analysis plan 
+ serd 
+ selective estrogen receptor degrader 
+ serm 
+ selective estrogen receptor modulator 
+ soc 
+ system organ class 
+ soce 
+ summary of clinical efficacy 
+ socs 
+ summary of clinical safety 
+ toi 
+ trial outcome index 
+ ttp 
+ time to progression</p><p>
+ us 
+ united states</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 6/59</p></section><section><header n="1">1.  
+ background information on the procedure</header></section><section><header n="1.1">1.1.  
+ type ii variation</header><p>pursuant to article 16 of commission regulation (ec) no 1234/2008, astrazeneca uk ltd submitted to the european medicines agency on 2 november 2016 an application for a variation.</p><p>
+ the following variation was requested:</p></section><section><header>variation requested type 
+ annexes 
+ affected</header><p>c.i.6.a</p><p>c.i.6.a - change(s) to therapeutic indication(s) - addition 
+ of a new therapeutic indication or modification of an 
+ approved one</p><p>
+ type ii 
+ i and iiib</p><p>
+ extension of indication to include the treatment of postmenopausal women with locally advanced or 
+ metastatic breast cancer who have not received prior endocrine therapy for faslodex. as a 
+ consequence, sections 4.1, 4.8 and 5.1 of the smpc are updated in order to update the safety and 
+ pharmacodynamics information. the package leaflet is updated in accordance.</p><p>
+ in addition, the marketing authorisation holder (mah) took the opportunity to introduce clarifications in 
+ the smpc and annex ii. 
+ the requested variation proposed amendments to the summary of product characteristics, annex ii 
+ and package leaflet and to the risk management plan (rmp).</p></section><section><header>information on paediatric requirements</header><p>not applicable.</p></section><section><header>information relating to orphan market exclusivity similarity</header><p>pursuant to article 8 of regulation (ec) no. 141/2000 and article 3 of commission regulation (ec) no 847/2000, the applicant did not submit a critical report addressing the possible similarity with 
+ authorised orphan medicinal products because there is no authorised orphan medicinal product for a 
+ condition related to the proposed indication.</p></section><section><header>scientific advice</header><p>the mah received scientific advice from the chmp on 22 november 2012 (ema/chmp/sawp/868022/2011). the scientific advice pertained to clinical aspects of the dossier.</p></section><section><header n="1.2">1.2.  
+ steps taken for the assessment of the product</header><p>the rapporteur and co-rapporteur appointed by the chmp were:</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 7/59</p><p>
+ rapporteur: filip josephson</p><p>
+ co-rapporteur:</p><p>
+ tuomo lapveteläinen</p></section><section><header>timetable actual dates</header><p>submission date 2 november 2016 
+ start of procedure: 
+ 26 november 2016 
+ chmp rapporteur assessment report 
+ 30 january 2017 
+ chmp co-rapporteur assessment report 
+ 17 january 2017 
+ prac rapporteur assessment report 
+ 30 january 2017 
+ prac members comments 
+ 2 february 2017 
+ updated prac rapporteur assessment report 
+ 3 february 2017 
+ prac outcome 
+ 9 february 2017 
+ chmp members comments 
+ 13 february 2017 
+ updated chmp rapporteur(s) (joint) assessment report 
+ 16 february 2017 
+ request for supplementary information (rsi) 
+ 23 february 2017 
+ submission of mahs reponses</p><p>
+ 21 april 2017 
+ restart of the opinion 
+ 24 april 2017 
+ chmp rapporteur assessment report 
+ 23 may 2017 
+ prac rapporteur assessment report 
+ 23 may 2017 
+ prac outcome 
+ 9 june 2017 
+ chmp members comments 
+ 12 june 2017 
+ updated chmp rapporteur assessment report 
+ 15 june 2017 
+ opinion 
+ 22 june 2017</p></section><section><header n="2">2.  
+ scientific discussion</header></section><section><header n="2.1">2.1.  
+ introduction</header><p>problem statement disease or condition breast cancer is the most common type of cancer and a leading cause of cancer mortality among 
+ women in the us and europe. approximately 246,660 new cases of breast cancer are predicted this 
+ year in the us (14.6% of all new cancers) and it is estimated that the disease will contribute to 40,450 
+ deaths (acs 2016). in europe 92,300 deaths due to breast cancer are predicted for 2016 (malvezzi et 
+ al 2016).</p><p>
+ although treatable, metastatic breast cancer remains an incurable disease with a median overall 
+ survival of 2–3 years and a 5-year survival of only 25% (esmo advanced breast cancer guideline). 
+ management</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 8/59</p><p>
+ treatment of breast cancer is determined by the extent of the disease. early or localized breast cancer is treated by a combination of surgery and radiotherapy. adjuvant systemic therapy, consisting of 
+ chemotherapy and/or endocrine therapy, in tumours deemed hormone responsive, can prolong the 
+ disease-free interval and improve overall survival. however, approximately 30% to 40% of patients 
+ with early breast cancer will ultimately relapse, with either local recurrence or distant metastases, and 
+ require further systemic treatment for advanced disease.</p><p>
+ current treatment guidelines emphasise the preferential use of endocrine therapy in postmenopausal 
+ women with hr+ advanced breast cancer, and recommend that chemotherapy should be reserved for 
+ cases of rapidly progressive disease or proven endocrine resistance (cardoso et al 2014). the choice of 
+ first-line endocrine therapy for hr+ advanced breast cancer depends on the type and length of therapy 
+ received in the adjuvant setting (if any). the endocrine therapy options include, but are not limited to, 
+ selective estrogen receptor modulators (serm; e.g. tamoxifen), estrogen receptor antagonists (e.g. 
+ fulvestrant), selective non-steroidal aromatase inhibitors (nsai; e.g. anastrozole and letrozole) and 
+ steroidal aromatase inhibitors (e.g. exemestane). these agents may be given in first, second or later 
+ lines of therapy for advanced breast cancer (esmo guideline; nccn clinical practice guidelines in 
+ oncology). fulvestrant is currently authorised for the treatment of estrogen receptor positive, locally 
+ advanced or metastatic breast cancer in postmenopausal women with disease relapse on or after 
+ adjuvant antiestrogen therapy, or disease progression on antiestrogen therapy (see faslodex smpc). 
+ clinical practice guidelines also refer to palbociclib, a cyclin dependent kinase (cdk) 4/6 inhibitor, that 
+ has recently been approved as an add-on to endocrine therapy (see ibrance smpc). combination of 
+ exemestane with everolimus is also an option in postmenopausal women without symptomatic visceral 
+ disease after recurrence or progression following a non-steroidal aromatase inhibitor (see afinitor 
+ smpc).</p><p>
+ primary or acquired resistance to initial endocrine therapy ultimately results in disease progression in a 
+ large proportion of breast cancers. to overcome this initial resistance, sequential endocrine therapies 
+ are used in the advanced disease setting (nccn 2016; rugo et al 2016; cardoso et al 2014).</p><p>
+ about the product fulvestrant is a competitive estrogen receptor (er) antagonist with an affinity comparable to estradiol. fulvestrant blocks the trophic actions of estrogens without any partial agonist (estrogen-like) activity. 
+ the mechanism of action is associated with downregulation of estrogen receptor protein levels. clinical 
+ studies in postmenopausal women with primary breast cancer have shown that fulvestrant significantly 
+ downregulates er protein in er positive tumours compared with placebo. there was also a significant 
+ decrease in progesterone receptor expression consistent with a lack of intrinsic estrogen agonist 
+ effects. 
+ faslodex is indicated for the treatment of postmenopausal women with estrogen receptor positive, 
+ locally advanced or metastatic breast cancer for disease relapse on or after adjuvant anti-estrogen 
+ therapy, or disease progression on therapy with an anti-estrogen. 
+ the recommended dose is 500 mg at intervals of one month, with an additional 500 mg dose given 
+ two weeks after the initial dose. 
+ type of application and aspects on development the applied indication was (new text underlined): “faslodex is indicated for the treatment of postmenopausal women with estrogen receptor positive, 
+ locally advanced or metastatic breast cancer in postmenopausal women: 
+ • not previously treated with endocrine therapy, or</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 9/59</p><p>
+ • for with disease relapse on or after adjuvant anti-estrogen endocrine therapy, or disease progression on endocrine therapy with an anti-estrogen.” 
+ the application for the new indication (endocrine naïve patients) is based on data from two studies: 
+ • a supportive phase 2 study (study d6995c00006): open-label study of fulvestrant 500 mg versus anastrozole 1 mg in 205 women with advanced disease previously untreated with 
+ endocrine therapy or at least a year after completing adjuvant endocrine therapy (first) 
+ • a pivotal phase 3 study (study d699bc00001): randomised, double-blind, parallel-group study of fulvestrant 500 mg versus anastrozole 1 mg in 462 women with hormone receptor-positive 
+ locally advanced or metastatic breast cancer who have not previously been treated with any 
+ hormonal therapy (falcon) 
+ endocrine therapy naïve patients include those who have progressed after the management of early 
+ disease that did not include adjuvant endocrine therapy, or patients who may present for the first time 
+ with advanced disease. 
+ the mah received scientific advice from the chmp on 22 november 2012 on clinical aspects 
+ (ema/chmp/sawp/868022/2011) concerning the study population, double-blind design and pfs as 
+ primary endpoint.</p><p> 
+ the proposal to modify ‘anti-estrogen’ to ‘endocrine’ in the second line indication was based on a 
+ justification based on changes in treatment guidelines and clinical practice, results from the china 
+ confirm study, the final overall survival (os) analysis of the confirm study and published literature, 
+ to supplement existing clinical data from confirm, finder1 and finder2 in patients who have 
+ progressed following an ai. 
+ the recommended indication is: 
+ faslodex is indicated for the treatment of postmenopausal women with estrogen receptor positive, 
+ locally advanced or metastatic breast cancer in postmenopausal women (new text underlined): 
+ • not previously treated with endocrine therapy, or • for with disease relapse on or after adjuvant anti-estrogen therapy, or disease progression on therapy with an anti-estrogen therapy.</p></section><section><header n="2.2">2.2.  
+ non-clinical aspects</header><p>no new non-clinical data have been submitted in this application apart from the era (see section 2.2.1), which was considered acceptable by the chmp.</p></section><section><header n="2.2.1">2.2.1.  
+ ecotoxicity/environmental risk assessment</header><p>an updated era was provided with this procedure. as an oestrogen receptor antagonist, the mechanism of action of fulvestrant has potential to affect 
+ reproduction in aquatic species. in addition, the octanol:water partition coefficient (log pow) is &gt;4.5. 
+ therefore, although the refined pecsurface water (0.00046 μg/l) is well below the phase i action limit 
+ of 0.01 μg/l, a tailored phase ii assessment has been performed to address the potential mode of 
+ action and bioaccumulation concerns. 
+ in the tier a assessment the toxicity of fulvestrant to aquatic and groundwater species as well as 
+ micro-organisms were assessed. the pec/pnec ratios for surface water and groundwater were below 1 
+ and for microorganisms below 0.1.</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 10/59</p><p>
+ fulvestrant cannot be considered readily biodegradable, is poorly water soluble and has been shown to adsorb to physical surfaces. the potential for exposure of the terrestrial environment, via sludge 
+ application to land, could not be excluded. however, the stp simulation test showed that fulvestrant is 
+ expected to fully degrade and is unlikely to be present in the sewage sludge applied to land. therefore, 
+ an assessment of the degradation rate in soil is not necessary as exposure of the terrestrial 
+ environment is considered to be negligible, and a worst case risk assessment assuming no degradation 
+ identified no terrestrial risks. 
+ in the aquatic environment, fulvestrant, and its degradation products, are anticipated to partition into 
+ aquatic sediments and undergo significant degradation. as such fulvestrant is not anticipated to be 
+ persistent. 
+ in tier b, the toxicity of fulvestrant to sediment dwelling and terrestrial species was assessed. the 
+ pec/pnec ratios for sediment and the terrestrial environment were below 1. the octanol-water 
+ partition coefficient, log pow, is &gt; 4.5, however the measured assessment of bioaccumulation 
+ potential in fish, bcf &lt;357, demonstrates that fulvestrant is not bioaccumulative. 
+ in conclusion, the risk to the environment as a consequence of the use of fulvestrant is low.</p></section><section><header n="2.2.2">2.2.2.  
+ discussion on non-clinical aspects</header><p>no new non-clinical data has been submitted with this application which is considered acceptable. the mah has submitted an era and it was considered acceptable. based on the data submitted in this 
+ application, the new indication may lead to an increase in the environmental exposure of fulvestrant. 
+ however, considering the available era data submitted, fulvestrant is not expected to pose a 
+ significant risk to the environment.</p></section><section><header n="2.2.3">2.2.3.  
+ conclusion on the non-clinical aspects</header><p>the risk to the environment as a consequence of the intended new use of fulvestrant is low. no subsequent changes to the smpc have been proposed.</p></section><section><header n="2.3">2.3.  
+ clinical aspects</header></section><section><header n="2.3.1">2.3.1.  
+ introduction 
+ gcp</header><p>the clinical trials were performed in accordance with gcp as claimed by the applicant. • 
+ tabular overview of clinical studies</p></section><section><header>study no. study title 
+ key efficacy endpoints 
+ d699bc00001 
+ (falcon)</header><p>a randomised, double-blind, parallel-group, multicentre, phase iii study to 
+ compare the efficacy and tolerability of 
+ fulvestrant (faslodex) 500 mg with 
+ anastrozole (arimidex) 1 mg as 
+ hormonal treatment for postmenopausal 
+ primary: pfs</p><p>
+ secondary: os, orr, dor, edor, cbr, 
+ docb, edocb, hrqol</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 11/59</p></section><section><header>study no. study title 
+ key efficacy endpoints</header><p>women with hormone receptor-positive locally advanced or metastatic breast 
+ cancer who have not previously been 
+ treated with any hormonal therapy 
+ (falcon)</p></section><section><header>d6995c00006 (first)</header><p>primary analysis 
+ a randomised, open-label, parallel-
+ group, multi-centre, phase ii study to 
+ compare the efficacy and tolerability of 
+ fulvestrant (faslodex) 500 mg with 
+ anastrozole (arimidex) 1 mg as first line 
+ hormonal treatment for postmenopausal 
+ women with hormone receptor positive 
+ advanced breast cancer 
+ primary: cbr</p><p>
+ secondary: orr, ttp, dor, docb 
+ follow-up 
+ analysis 
+ clinical study report addendum 2: 75% 
+ ttf analysis 
+ ttf, ttp 
+ follow-up 
+ analysis 
+ clinical study report addendum 3: 65% 
+ os analysis 
+ os 
+ note: csr: clinical study report; pfs: progression free survival; os: overall survival; orr: objective response rate; dor: duration of response; edor: expected duration of response; cbr: clinical benefit rate; docb: duration 
+ of clinical benefit; edocb: expected duration of clinical benefit; hrqol: health related quality of life; ttp: time to 
+ progression (equivalent to pfs); ttf: time to treatment failure.</p></section><section><header n="2.4">2.4.  
+ clinical efficacy</header></section><section><header n="2.4.1">2.4.1.  
+ main study 
+ phase iii study d699bc00001 (falcon)  
+ methods</header><p>study falcon was a randomised, double-blind, parallel-group, multicentre, phase iii study to compare the efficacy and tolerability of fulvestrant 500 mg with anastrozole 1 mg as hormonal 
+ treatment for postmenopausal women with hormone receptor-positive locally advanced or metastatic 
+ breast cancer who have not previously been treated with any hormonal therapy.</p></section><section><header>study participants</header><p>the study was performed at 175 centres in 20 countries: argentina, brazil, canada, china, czech republic, italy, japan, mexico, peru, poland, romania, russia, slovakia, south africa, spain, taiwan, 
+ turkey, ukraine, united kingdom, and united states (us).</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 12/59</p><p>
+ the main inclusion criteria for the study were the following: • histological confirmation of breast cancer. • positive hormone receptor status (er + and/or pr +) of primary or metastatic tumour tissue based on local laboratory assessment. 
+ • had either: o locally advanced disease not amenable to surgery or radiotherapy of curative intent. patients may have had 1 line of cytotoxic chemotherapy, following which they had to 
+ remain unsuitable for therapy of curative intent, or 
+ o metastatic disease. • patients could have received 1 line of cytotoxic chemotherapy as previous treatment of breast cancer but had to show progressive disease prior to enrolment. 
+ • at least 1 lesion (measurable and/or non-measurable) that could be accurately assessed at baseline and was suitable for repeated assessment by ct, mri or plain x-ray. 
+ • postmenopausal woman, defined as a woman fulfilling any 1 of the following criteria (based on the nccn definition of menopause [national comprehensive cancer network 2008]): 
+ o prior bilateral oophorectomy o age ≥ 60 years o age &lt;60 years and amenorrhoeic for 12 or more months in the absence of chemotherapy, tamoxifen, toremifene, or ovarian suppression and follicle stimulating 
+ hormone and oestradiol in the postmenopausal range. 
+ • who performance status 0, 1 or 2. the main exclusion criteria for the study were the following: 
+ • presence of life-threatening metastatic visceral disease, defined as extensive hepatic involvement, or any degree of brain or leptomeningeal involvement (past or present), or 
+ symptomatic pulmonary lymphangitic spread. patients with discrete pulmonary parenchymal 
+ metastases were eligible, provided their respiratory function was not significantly compromised 
+ as a result of disease in the opinion of the investigator. 
+ • prior systemic therapy for breast cancer other than 1 line of cytotoxic chemotherapy (the last dose of chemotherapy must have been received more than 28 days prior to randomisation). 
+ • radiation therapy if not completed within 28 days prior to randomisation (with the exception of radiotherapy given for control of bone pain, which had to be completed prior to the day of 
+ randomisation, see section 5.4.5). 
+ • herceptin-eligible (human epidermal growth factor receptor 2 [her2] overexpression or gene amplification, i.e., immunohistochemistry [ihc]3+ve or fluorescence in situ hybridisation 
+ [fish]+ve, where appropriate). 
+ • prior treatment with a non-approved or experimental drug for breast cancer. • concomitant anti-cancer treatment (with the exception of bisphosphonates/denosumab). • prior hormonal treatment for breast cancer.</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 13/59</p><p>
+ • systemic oestrogen containing hormone replacement therapy if not completed within 6 months prior to randomisation. 
+ • current or prior malignancy (other than breast cancer or adequately treated basal cell or squamous cell carcinoma of the skin or in situ carcinoma of the cervix) unless curatively 
+ treated with no evidence of disease within previous 5 years. 
+ • any of the following laboratory values within 4 weeks of randomisation: • platelets &lt;100 x 109/l • total bilirubin &gt;1.5 x upper limit of reference range (ulrr) (patients with confirmed gilbert’s syndrome could have been included in the study) 
+ • alanine aminotransferase (alt) or aspartate aminotransferase (ast) &gt;2.5 x ulrr if no demonstrable liver metastases or &gt;5 x ulrr in presence of liver metastases. 
+ • history of: o bleeding diathesis (i.e., disseminated intravascular coagulation, clotting factor deficiency), or 
+ o long-term anticoagulant therapy (although patients treated with anti-platelet therapy and low dose warfarin or other anticoagulant agents such as acenocoumarol were 
+ eligible providing they had an international normalised ratio [inr] of 
+ ≤ 1.6). • history of hypersensitivity to active or inactive excipients of faslodex or arimidex or castor oil. • any severe concomitant condition which made it undesirable for the patient to participate in the trial or which would have jeopardised compliance with the study protocol, e.g., 
+ uncontrolled cardiac disease or uncontrolled diabetes mellitus. 
+ • previous randomisation in the present study. • involvement in the planning and/or conduct of the study (applied to astrazeneca staff, its agents, and/or staff at the study site). 
+ • participation in a clinical study and/or receipt of any investigational drug within 28 days prior to randomisation (participation in the survival follow-up period of a study was not an 
+ exclusion).</p></section><section><header>treatments</header><p>fulvestrant 500 mg, administered as two intramuscular injections, on days 0, 14 (±3), 28 (±3) and every 28 (±3 days) thereafter. 
+ anastrozole 1 mg, administered orally as a single tablet, once daily 
+ treatment continued until objective disease progression unless any of the criteria for treatment 
+ discontinuation were met first. 
+ in order to support the double-blind, double-dummy design of this trial, each patient received both 
+ study treatments, 1 being placebo: 
+ • patients randomised to receive fulvestrant also received placebo to match the anastrozole schedule 
+ (tablets, once daily)</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 14/59</p><p>
+ • patients randomised to receive anastrozole also received placebo to match the fulvestrant schedule (injections on days 0, 14 [±3], 28 [±3] and every 28 [±3] days thereafter).</p></section><section><header>objectives</header><p>primary: to demonstrate the superior progression-free survival (pfs) of patients treated with fulvestrant 500 
+ mg versus patients treated with anastrozole 1 mg. 
+ secondary: 
+ • to compare the overall survival (os) of patients treated with fulvestrant 500 mg versus patients treated with anastrozole 1 mg. 
+ • to compare the objective response rate (orr), duration of response (dor) and the expected duration of response (edor) of patients treated with fulvestrant 500 mg versus patients 
+ treated with anastrozole 1 mg. 
+ • to compare the clinical benefit rate (cbr), the duration of clinical benefit (docb) and the expected duration of clinical benefit (edocb) of patients treated with fulvestrant 500 mg 
+ versus patients treated with anastrozole 1 mg. 
+ • to compare the quality of life (qol) of patients treated with fulvestrant 500 mg versus patients treated with anastrozole 1 mg. 
+ • to compare the safety and tolerability of fulvestrant 500 mg treatment versus that of anastrozole 1 mg treatment.</p></section><section><header>outcomes/endpoints</header><p>primary endpoint: progression-free survival (pfs) defined as the time from randomisation until objective disease progression (assessed locally by each investigator, as defined by recist 1.1), 
+ surgery or radiotherapy to manage worsening of disease, or death by any cause in the absence of 
+ progression. 
+ key secondary endpoint: overall survival (os) defined as time from randomisation until death by any 
+ cause; overall response rate (orr) defined as the percentage of subjects with an objective response 
+ (cr or pr) with measurable disease during the study. 
+ other secondary endpoints (not protected for multiplicity): duration of response, clinical benefit rate 
+ (cbr= cr, pr or stable disease (sd) for at least 24 weeks), duration of clinical benefit (docb); 
+ expected duration of response (edor), expected duration of clinical benefit (edocb), health-related 
+ quality of life (hrqol).</p></section><section><header>sample size</header><p>approximately 450 eligible women were planned to be randomised 1:1 to fulvestrant (n=225) or anastrozole (n=225) in this study. the sample size was calculated based on the primary endpoint of 
+ pfs, which was to be analysed when approximately 306 pfs events had occurred. if the true pfs 
+ hazard ratio (hr) for the comparison of fulvestrant vs. anastrozole was 0.69 (likely to correspond to a 
+ 45% prolongation of pfs) the study had 90% power to demonstrate a statistically significant difference 
+ for pfs with a one-sided type 1 error of 2.5% (two-sided 5%). assuming the median pfs on</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 15/59</p><p>
+ anastrozole is 13 months, a pfs hr of 0.69 may translate to a median pfs of 18.8 months on fulvestrant. the smallest treatment difference that would be statistically significant is pfs hr=0.80 
+ (which translates to approximately a 3.3-month median difference, assuming proportional hazards and 
+ an exponential distribution).</p></section><section><header>randomisation</header><p>patients were randomised strictly sequentially, as patients were eligible for randomisation, to fulvestrant or anastrozole using a randomisation ratio 1:1.</p><p>
+ patients were stratified at randomisation based on whether they have: 
+ 1.</p><p>locally advanced or metastatic breast cancer</p><p>
+ 2.</p><p>received prior chemotherapy for locally advanced or metastatic breast cancer or not 
+ 3.</p><p>measurable or non-measurable disease.</p></section><section><header>blinding (masking)</header><p>double-blind, double-dummy.</p></section><section><header>statistical methods</header><p>analysis sets defined were intent-to-treat (itt) and safety analysis set. efficacy analyses were based on the itt analysis set, which included all randomised patients and compared the treatment groups on 
+ the basis of randomised treatment, regardless of the treatment actually received. the safety analysis 
+ set included all patients who received at least 1 dose of randomised treatment, including patients who 
+ received only placebo (and no active treatment). 
+ the overall one-sided type i error rate used was 2.5% (two-sided 5%). only if the primary endpoint 
+ (pfs) is significant, the key secondary endpoints of overall survival (os) and objective response rate 
+ (orr) were to be tested. a multiple testing procedure to strongly control type-i error at the overall 
+ alpha level was implemented, and used to test the key secondary endpoints with an alpha-exhaustive 
+ recycling strategy (burman et al 2009). with this approach, the endpoints of os and orr are tested in 
+ a pre-defined order using a weighted proportion of alpha (such that initially 
+ α=2% is allocated to os, and 
+ α=0.5% is allocated to orr) and alpha that becomes available after each rejected hypothesis is recycled to the secondary endpoint not yet rejected. other secondary endpoints were not included in 
+ the multiple testing procedure.</p><p>
+ pfs and orr were to be analysed at one time-point only, when approximately 306 progression events 
+ have occurred. the date of data cut-off was 11 april 2016.</p><p>an interim analysis of os was conducted at the same time as the primary analysis of pfs. a more 
+ mature os analysis was planned at a later time-point when it is estimated that 50% of patients will 
+ have died. after this point, the patient&apos;s treatment will be unblinded. the false positive rate will be 
+ controlled amongst the two os analyses by using the lan demets (lan and demets 1983) spending 
+ function that approximates an o’brien fleming approach. it was estimated in the sample size 
+ calculation that, in case that 0.7 of the full death information would be available (i.e., 159/225 deaths) 
+ at the time of the interim os analysis, the 1-sided significance level to be applied for the os interim 
+ analysis would be 0.0054. if the interim os is statistically significant, then orr will be assessed using</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 16/59</p><p>
+ α=0.025 (i.e., the full 2% of alpha used in the os analysis will be recycled to orr). if the interim os is not statistically significant, then orr will be assessed using 
+ α=0.005. methods of analysis of the primary endpoint (pfs) and the key secondary endpoints (os and orr) are 
+ presented in the table below. 
+ table 1: statistical analyses of pfs, os and orr and the pre-planned sensitivity analyses</p></section><section><header>endpoint  statistical analyses 
+ primary endpoint</header><p>progression free survival 
+ (pfs)</p><p>stratified log-rank test (primary analysis) with factors for prior chemotherapy 
+ for locally advanced or metastatic disease (yes/no) and measurable disease at 
+ baseline (yes/no) was used to analyze the effect of treatment with fulvestrant 
+ 500 mg vs. anastrozole 1 mg. additional stratification factor (i.e. prior 
+ chemotherapy for locally advanced or metastatic disease) was pre-planned to 
+ be included in the analysis, but removed due to very low patient numbers 
+ (including zero cell) in some of the individual strata. kaplan-meier plots of pfs 
+ and time to censoring were presented by treatment group.</p><p>
+ sensitivity analyses</p><p>re-run of the primary analysis on the recist1.1 defined disease progression or 
+ death from any cause. 
+ cox proportional hazards regression model with treatment and baseline 
+ prognostic covariates including all three randomization stratification factors, 
+ receptor status, use of bisphosphonates/denosumab as concomitant medication 
+ at baseline, geographic region, prior systemic oestrogen containing hormone 
+ replacement therapy, and visceral disease. 
+ re-run of the primary analysis based on the midpoints of the time between 
+ progression detected and the previous visit. 
+ re-run of the primary analysis whereby patients are censored at the time they 
+ discontinue treatment and/or receive subsequent therapies prior to disease 
+ progression.</p><p>
+ subgroup analysis was performed for subgroups defined by the covariates, 
+ using an unstratified log-rank test including randomized treatment as the only 
+ factor. a global interaction test was performed to test if overall the treatment 
+ benefit was consistent across the covariates. this was done by fitting a cox 
+ model with treatment and the covariates, and comparing that (at the 10% 
+ level) with the model with treatment, the covariates and the factor-by-covariate 
+ interactions. the subgroups, which are also stratification factors, are defined 
+ using relevant data in the database, and not the strata according to ivrs.</p></section><section><header>key secondary endpoints</header><p>assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 17/59</p><p>
+ overall survival (os)</p><p>stratified log-rank test, using the same methodology as for the primary pfs 
+ analysis. 
+ sensitivity analyses using cox proportional hazards regression model as 
+ described for the pfs sensitivity analysis no. 2. 
+ subgroup analysis as described for pfs, but without a global interaction test. 
+ objective 
+ response rate 
+ (orr) 
+ logistic regression analysis adjusted for prior chemotherapy. 
+ orr is assessed in patients with measurable disease at baseline only.</p></section><section><header>results participant flow</header><p>figure 1: participants flow, study falcon</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 18/59</p></section><section><header>recruitment</header><p>the first patient enrolled in the study on 17 october 2012 and the last patient enrolled on 11 july 2014.</p></section><section><header>conduct of the study</header><p>protocol amendment there was 1 protocol amendment to the original csp with minor changes that was made at the time 
+ recruitment started. 
+ changes to planned analyses: 
+ • pre-unblinding changes to the planned analyses, as described in the csp and/or in the original sap (edition 1, dated 28 june 2012), were as follows: 
+ • inclusion of more geographic regions for subgroup analysis of pfs and more levels of geographic region in the covariate used for the cox regression sensitivity analysis of pfs. 
+ • inclusion of visceral disease (yes/no) for subgroup analysis of pfs and as a covariate used for the cox regression sensitivity analysis of pfs. 
+ • expanded the bisphosphonate use at baseline subgroup to include denosumab use. • inclusion of subgroup analysis and cox regression sensitivity analysis for os. • adjustment to the analysis method for pfs by subgroup to an unstratified log-rank test. • inclusion of rules for the removal of 1 stratification factor from the analysis models for log-rank and logistic regression due to small sub-strata. 
+ • removal of the inferential statistical analysis for other significant aes of interest (pre-specified aes). 
+ there was 1 post-unblinding change to the planned analyses, which was as follows: 
+ • inclusion of an additional sensitivity analysis of pfs, which fitted stratification factors derived from the ecrf data (rather than the ivrs system). 
+ post-hoc sensitivity analyses performed by: • fitting stratification factors derived from electronic case report form data (rather than on the ivrs system), in order to investigate any effect of mis-stratification on the primary endpoint of 
+ the study, and 
+ • including all 3 randomisation stratification factors (i.e., adding locally advanced or metastatic breast cancer) in the primary statistical model. 
+ in addition, analyses have been performed to explore if any potential bias was introduced by censoring 
+ that is both related to outcome and imbalanced between the treatment arms. multiple imputation was 
+ performed using a cox model to impute event times in subjects who were censored early (i.e., at more 
+ than 12 weeks before the data cut-off for the primary analysis). imputations were performed in such 
+ way that:</p><p>
+ • the hazard for progression increases after censoring in both arms, suggesting the censoring was related to outcome and was not at random, and</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 19/59</p><p>
+ • the hazard increases following censoring in the fulvestrant arm only.</p><p>
+ protocol deviations 
+ a larger proportion of patients in the fulvestrant arm had at least 1 important protocol deviation 
+ compared with the anastrozole arm (45.2% vs 33.6%).</p><p> 
+ a higher proportions of patients in the fulvestrant arm than in the anastrozole arm were randomised 
+ using an incorrect stratification factor (i.e., mis-stratification in 20.0% vs 16.8% of patients) and 
+ recist timing (14.8% vs 9.5% of patients), respectively. 
+ mis-stratification was driven by the prior chemotherapy for locally advanced or metastatic disease 
+ stratum: overall, 47 (10.2%) patients were assigned as having received prior chemotherapy of these, 
+ the vast majority (45) were actually recorded as having prior chemotherapy for early disease 
+ (neo-adjuvant and/or adjuvant) on the ecrf.</p><p>a further 4 (0.9%) patients were assigned as having 
+ received no prior chemotherapy on the ivrs system, but reported as having received prior 
+ chemotherapy on the ecrf. 
+ although patients were mis-stratified slightly more frequently in the fulvestrant arm (20.0%) relative 
+ to the anastrozole arm (16.8%), the incidence of discordance between those data captured on the 
+ ivrs system at randomisation and those captured on the ecrf was similar in both treatment arms 
+ across all 3 stratification factors.</p></section><section><header>baseline data</header><p>patients enrolled in this study had a median age of 63 years (range 36-90) (see table 5). table 2: demographic characteristics: falcon itt analysis set</p><p>number (%) of subjects demographic characteristic 
+ fulvestrant 500 mg 
+ (n=230) 
+ anastrozole 1 mg 
+ (n=232) 
+ sex n (%) female 
+ 230 (100) 
+ 232 (100) 
+ age (years) 
+ n 
+ 230 
+ 232</p><p>
+ mean 
+ 63.8 
+ 63.3</p><p>
+ median 
+ 64.0 
+ 62.0 
+ age group n (%) 
+ &lt;50 
+ 14 (6.1) 
+ 14 (6.0)</p><p>
+ ≥50 to &lt;65 
+ 108 (47.0) 
+ 127 (54.7)</p><p>
+ ≥65 
+ 108 (47.0) 
+ 91 (39.2) 
+ race n (%) 
+ white 
+ 175 (76.1) 
+ 174 (75.0)</p><p>
+ asian 
+ 36 (15.7) 
+ 34 (14.7)</p><p>
+ other 
+ 14 (6.1) 
+ 15 (6.5)</p><p>the majority of patients (87.0%) had metastatic disease at baseline. fifty-five percent (55.0%) of patients had visceral metastasis at baseline. a total of 17.1% of patients received a prior 
+ chemotherapy regimen for advanced disease; 84.2% of patients had measurable disease) (see table 
+ 6).</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 20/59</p><p>
+ table 3: baseline disease characteristics and medical history: falcon, itt analysis set baseline characteristic number (%) of patients 
+ fulvestrant 500 mg 
+ (n=230) 
+ anastrozole 1 mg 
+ (n=232) 
+ tumour biomarker characteristics</p><p> er and pgr receptor status</p><p> er+, pgr+ 175 
+ (76.1) 
+ 179 
+ (77.2) 
+ er+, pgr- 
+ 44 
+ (19.1) 
+ 43 
+ (18.5) 
+ her2 receptor status</p><p> negative 230 
+ (100) 
+ 231 
+ (99.6) 
+ tumour grade</p><p> well differentiated (g1) 15 
+ (6.5) 
+ 21 
+ (9.1) 
+ moderately differentiated (g2) 
+ 108 
+ (47.0) 
+ 111 
+ (47.8) 
+ poorly differentiated (g3) 
+ 46 
+ (20.0) 
+ 27 
+ (11.6) 
+ undifferentiated (g4) 
+ 1 
+ (0.4) 
+ 4 
+ (1.7) 
+ unassessable (gx) 
+ 59 
+ (25.7) 
+ 68 
+ (29.3) 
+ unknown 
+ 1 
+ (0.4) 
+ 1 
+ (0.4) 
+ baseline disease characteristics</p><p> time from diagnosis to randomisation 
+ ≤2 months 102 
+ (44.3) 
+ 99 
+ (42.7) 
+ &gt;2 months to ≤1 year 
+ 58 
+ (25.2) 
+ 66 
+ (28.4) 
+ &gt;1 year 70 
+ (30.4) 
+ 67 
+ (28.9) 
+ disease stage</p><p> locally advanced only 28 
+ (12.2) 
+ 32 
+ (13.8) 
+ metastatic 
+ 202 
+ (87.8) 
+ 200 
+ (86.2) 
+ measurable disease</p><p> yes 193 
+ (83.9) 
+ 196 
+ (84.5) 
+ no 
+ 37 
+ (16.1) 
+ 36 
+ (15.5) 
+ disease sites at baseline</p><p> visceral diseasea 135 (58.7) 
+ 119 (51.3) 
+ bone/locomotor only 24 (10.4) 
+ 24 (10.3) 
+ skin/soft tissue only 
+ 8 (3.5) 
+ 6 (2.6) 
+ breast only 
+ 3 (1.3) 
+ 2 (0.9) 
+ who performance status</p><p> 0: normal activity 117 
+ (50.9) 
+ 115 
+ (49.6) 
+ 1: restricted activity 
+ 106 
+ (46.1) 
+ 105 
+ (45.3) 
+ previous treatment modalitiesb</p><p> chemotherapy 79 
+ (34.3) 
+ 81 
+ (34.9) 
+ advanced disease
+ c 36 (15.7) 
+ 43 (18.5) 
+ adjuvant 
+ 35 (15.2) 
+ 27 (11.6) 
+ neo-adjuvant 
+ 11 (4.8) 
+ 16 (6.9) 
+ recurrent disease 
+ 0</p><p>
+ 0</p><p>
+ radiotherapy 
+ 53 
+ (23.0) 
+ 50 
+ (21.6)</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 21/59</p><p>
+ baseline characteristic number (%) of patients 
+ fulvestrant 500 mg 
+ (n=230) 
+ anastrozole 1 mg 
+ (n=232) 
+ hormonal therapy 2 
+ (0.9) 
+ 1 
+ (0.4) 
+ itt: intention to treat; n: number of patients; er: estrogen receptor; pgr: progesterone receptor; her2: human epidermal growth factor receptor 2; who: world health organisation 
+ a visceral disease includes subjects with disease site at baseline of adrenal, bladder, central nervous system, oesophagus, liver, lung, peritoneum, pleura, renal, small bowel, stomach, pancreas, thyroid, colon, rectal, ovary, biliary tract, ascites, 
+ pericardial effusion, spleen or pleural effusion. 
+ b previous to study treatment, as deemed by the sponsor to be relevant to the interpretation of the results c includes first line, second line, third line, metastatic and palliative chemotherapies</p><p>the median time from completion of final chemotherapy to randomisation was 12.8 months (range: 1 to 283 months) in the fulvestrant arm and 5.7 months (range: 1 to 207 months) in the anastrozole 
+ arm. mean (standard deviation) time from completion of final chemotherapy to randomisation was 
+ 28.4 (42.01) months for fulvestrant 500 mg and 25.8 (40.06) months for anastrozole 1 mg. 
+ table 4: stratification factors at baseline: falcon itt analysis set</p><p>number (%) of patients locally 
+ advanced/ 
+ metastatic 
+ disease 
+ prior 
+ chemotherapy
+ a measurable or non-measurable 
+ disease at baseline 
+ fulvestrant 
+ 500 mg 
+ (n=230) 
+ anastrozole 
+ 1 mg 
+ (n=232) 
+ locally advanced yes 
+ measurable 
+ 4 (1.7) 
+ 5 (2.2)</p><p>
+ non-measurable 
+ 0 
+ 0</p><p>
+ no 
+ measurable 
+ 24 (10.4) 
+ 25 (10.8)</p><p>
+ non-measurable 
+ 4 (1.7) 
+ 3 (1.3) 
+ metastatic 
+ yes 
+ measurable 
+ 46 (20.0) 
+ 47 (20.3)</p><p>
+ non-measurable 
+ 10 (4.3) 
+ 10 (4.3)</p><p>
+ no 
+ measurable 
+ 119 (51.7) 
+ 119 (51.3)</p><p>
+ non-measurable 
+ 23 (10.0) 
+ 23 (9.9) 
+ stratification factors recorded at randomisation on the ivrs system. a for locally advanced or metastatic disease</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 22/59</p></section><section><header>numbers analysed</header><p>a itt analysis set: all randomised subjects analysed on an itt basis. b measurable disease at baseline: recist data were used. 
+ c safety analysis set: all subjects who received at least 1 dose of study treatment. 
+ figure 2: numbers analysed, falcon study</p></section><section><header>outcomes and estimation</header></section><section><header>primary endpoint</header><p>progression-free survival table 5: progression-free survival: falcon itt analysis set</p><p>fulvestrant 500 mg (n=230) 
+ anastrozole 1 mg 
+ (n=232) 
+ number (%) of patients who progressed 143 
+ (62.2) 
+ 166 
+ (71.6) 
+ median pfs (months) (95% ci) 
+ 16.6 
+ (13.83, 20.99) 
+ 13.8 
+ (11.99, 16.59) 
+ hazard ratio (95% ci) 
+ 0.797 
+ (0.637, 0.999) 
+ 2-sided p-value 
+ 0.0486 
+ the analysis was performed using a stratified log-rank test with factors for prior chemotherapy for locally advanced or 
+ metastatic disease (yes or no) and measurable disease at baseline (yes or no). 
+ the overall type-i error rate was 2.5% (1-sided).</p><p>a 1-sided 2.5% significance level can also be considered equivalent to a 
+ 2-sided 5% significance level (where the treatment effect is in favour of fulvestrant).</p><p>in order to aid interpretation of 
+ results, 2-sided p-values are used to describe statistical significance.</p><p>assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 23/59</p><p>note: a circle represents a censored observation.</p><p>figure 3: kaplan-meier plot of pfs (itt analysis set) falcon</p></section><section><header>secondary endpoints</header><p>overall survival</p><p>
+ at the time of the pfs analysis 142 deaths were reported (i.e., 142/231 = 0.6147 of the full death 
+ information); therefore, the 1-sided significance level applied for the interim os analysis was 0.301%.</p><p> 
+ table 6: overall survival at the time of the pfs analysis: falcon itt analysis set</p><p> fulvestrant 500 mg (n=230) 
+ anastrozole 1 mg. 
+ (n= 232) 
+ number of events (%) 67 (29.1) 
+ 75 (32.3) 
+ median os (months) 
+ nc 
+ nc 
+ hazard ratio (95% ci) 
+ 0.875 (0.629, 1.217) 
+ 1-sided p-value 
+ 0.2138 
+ 2-sided p-value 
+ 0.4277 
+ overall survival was compared between fulvestrant 500 mg and anastrozole 1 mg using the stratified log-rank test 
+ with factors for prior chemotherapy for locally advanced or metastatic disease (yes/no) and measurable disease at 
+ baseline (yes/no). 
+ hazard ratio &lt;1 favours fulvestrant 
+ pfs: progression-free survival; itt: intention to treat; n: number of patients; nc: not calculable due to insufficient 
+ data; os: overall survival; ci: confidence interval</p><p>overall response rate</p><p>
+ table 7: response rate (patients with measurable disease at baseline): falcon, itt analysis set</p><p> fulvestrant 500 mg 
+ (n=193) 
+ anastrozole 
+ 1 mg</p><p>
+ (n=196) 
+ odds ratio 
+ (95% ci) 
+ 1-sided</p><p>
+ p-value 
+ 2-sided</p><p>
+ p-value</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 24/59</p><p> fulvestrant 500 mg 
+ (n=193) 
+ anastrozole 
+ 1 mg</p><p>
+ (n=196) 
+ odds ratio 
+ (95% ci) 
+ 1-sided</p><p>
+ p-value 
+ 2-sided</p><p>
+ p-value 
+ orr ([total with 
+ or]/n) 
+ 46.1% 
+ (89/193) 
+ 44.9% 
+ (88/196) 
+ 1.074 
+ (0.716, 1.614) 
+ 0.3645 
+ 0.7290</p><p>duration of response median dor was longer in the fulvestrant arm (20.0 months; 25th percentile [q25] 10.6 months; 75th 
+ percentile [q75] not calculable) compared with the anastrozole arm (13.2 months [q25, q75: 8.3, 
+ 24.7 months]). 
+ table 8: duration of response in patients with measurable disease at baseline (itt analysis set) 
+ falcon</p><p> 
+ figure 4: duration of response in subjects with measurable disease at baseline, kaplan-meier plot (itt 
+ analysis set – subjects with objective response); falcon</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 25/59</p><p>
+ clinical benefit rate table 9: cbr, logistic regression, secondary analysis (itt analysis set); falcon</p><p>fulvestrant 500 mg</p><p>
+ (n=230) 
+ anastrozole 
+ 1 mg</p><p>
+ (n=232) 
+ odds ratio 
+ (95% ci) 
+ 2-sided p-value of 
+ the odds ratio 
+ cbr ([total with cb]/n) 
+ 78.3% 
+ (180/230) 
+ 74.1% 
+ (172/232) 
+ 1.253 
+ (0.815, 1.932) 
+ 0.3045</p><p>health related quality of life</p><p>
+ compliance with patient-reported outcomes instruments (fact-b) was high while on treatment 
+ (approximately 85% to 95% over time, in the study overall) and was broadly comparable between 
+ treatment arms.</p><p>however, compliance post treatment (with or without progression) was poor. 
+ mean (standard deviation [sdev]) values for fact-b total score were high and comparable between 
+ the fulvestrant and anastrozole treatment arms at baseline (102.2 [16.93] and 101.1 [16.84], 
+ respectively).</p><p>mean fact-b total score over time was similar in both treatment arms and remained 
+ high while on treatment.</p><p>
+ a kaplan-meier analysis of the time to deterioration in fact-b total score is presented below.</p><p>
+ figure 5: kaplan-meier plot of time to deterioration in fact-b total score (itt analysis set); falcon</p><p>assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 26/59</p></section><section><header>ancillary analyses</header></section><section><header>sensitivity analysis</header><p>table 10: sensitivity analyses of pfs (itt analysis set); falcon</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 27/59</p></section><section><header>subgroup analysis pfs</header><p>table 11: subgroup analysis of pfs, log-rank test (itt analysis set); falcon</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 28/59</p><p>a prior chemotherapy for locally advanced or metastatic disease b er+ and pgr+ at baseline equals ‘no’ if the patient was er- or pgr-/unknown at baseline. a hazard ratio &lt;1 favours fulvestrant. 
+ the analysis was performed using a stratified log-rank test for the all patient result. 
+ for the subgroup analysis, the analysis was performed using a log-rank test.</p><p>figure 6: forest plot for progression-free survival by subgroup: falcon itt analysis set</p></section><section><header>summary of main study</header><p>the following tables summarise the efficacy results from the main studies supporting the present application. these summaries should be read in conjunction with the discussion on clinical efficacy as 
+ well as the benefit risk assessment (see later sections). 
+ table 12: summary of efficacy for trial falcon</p></section><section><header>title:</header><p>phase iii study to compare the efficacy and tolerability of fulvestrant (faslodex) 500 mg with anastrozole (arimidex) 1 mg as hormonal treatment for postmenopausal women with 
+ hormone receptor-positive locally advanced or metastatic breast cancer who have not previously 
+ been treated with any hormonal therapy (falcon) 
+ study identifier 
+ d699bc00001 
+ design 
+ falcon was a randomised, double-blind, double-dummy, international, 
+ multicenter phase iii study, designed to compare the efficacy and tolerability 
+ of fulvestrant (500 mg) with anastrozole (1 mg) in postmenopausal women 
+ with hormone receptor-positive (hr +ve) locally advanced or metastatic 
+ breast cancer (confirmed by histology), who had not previously been treated 
+ with any hormonal therapy. patients were assessed for eligibility for the study 
+ based on local laboratory results for hormone receptor status.</p><p>
+ to maintain the double-blind, double-dummy design of the trial, each patient 
+ received both study treatments, 1 of which was placebo. 
+ duration of main phase: 
+ 17 oct 2012 - 11 apr 2016 
+ hypothesis 
+ superiority</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 29/59</p><p>
+ treatments groups fulvestrant 500 mg 
+ (faslodex) 
+ fulvestrant (2 x 250 mg / 5 ml solution for 
+ intramuscular injection; 500 mg fulvestrant); 
+ and placebo to match anastrozole (tablet, 0 
+ mg anastrozole).</p><p> 
+ treatment with study medication was to 
+ continue until objective disease progression, 
+ unless any of the criteria for treatment 
+ discontinuation were met first.</p><p>
+ n=230, randomized. 
+ anastrozole 1 mg 
+ (arimidex) 
+ anastrozole (tablet, 1 mg anastrozole); and 
+ placebo to match fulvestrant (2 x 5 ml 
+ solution for intramuscular injection, 0 mg 
+ fulvestrant).</p><p>
+ treatment with study medication was to 
+ continue until objective disease progression, 
+ unless any of the criteria for treatment 
+ discontinuation were met first.</p><p>
+ n=232, randomized. 
+ endpoints and 
+ definitions 
+ primary endpoint</p></section><section><header>pfs</header><p>the effect of treatment with fulvestrant 500 mg vs. subjects treated with anastrozole 1 mg 
+ in progression-free survival (pfs).</p><p>
+ the objective of the trial was to demonstrate 
+ superiority of fulvestrant vs. anastrozole in 
+ pfs.</p><p>
+ progression free survival (pfs) defined as the 
+ time 
+ from 
+ randomisation 
+ until 
+ objective 
+ disease progression (assessed locally by each 
+ investigator, as defined by recist 1.1), 
+ surgery or radiotherapy to manage worsening 
+ of disease, or death by any cause in the 
+ absence of progression.</p><p>
+ key secondary 
+ endpoint</p></section><section><header>os</header><p>overall survival overall survival (os) defined as time from 
+ randomisation until death by any cause;</p><p>
+ key secondary 
+ endpoint</p></section><section><header>orr</header><p>overall response rate</p><p>overall response rate (orr) defined as the 
+ percentage of subjects with an objective 
+ response (cr or pr) with measurable disease 
+ during the study.</p><p>
+ secondary endpoint</p></section><section><header>dor</header><p>duration of response (only for subjects who had objective response) 
+ the number of days from the date of first 
+ documentation of response until the date of 
+ disease progression.</p><p>
+ database lock 
+ the date of data cut-off (dco) was 11 april 2016</p></section><section><header>results and analysis analysis 
+ description 
+ primary analysis</header><p>analysis population and time point 
+ description 
+ intent to treat, itt, n=462 
+ descriptive statistics 
+ and estimate 
+ treatment group 
+ fulvestrant 500 mg 
+ (faslodex) 
+ anastrozole 1 mg 
+ (arimidex)</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 30/59</p><p>
+ variability number of subjects 
+ n=230 
+ n=232 
+ primary endpoint</p></section><section><header>pfs</header><p>number (%) of subjects with 
+ events</p><p>
+ median pfs (95% 
+ ci) (months)</p><p>
+ median follow-up 
+ for pfs (months)</p><p>
+ min</p><p>
+ max</p><p>
+ n=230</p><p>
+ 143 (62.2)</p><p>
+ 16.6 (13.8, 21.0)</p><p>
+ 13.8</p><p>
+ 0.0</p><p>
+ 36.8</p><p>
+ n=232</p><p>
+ 166 (71.6)</p><p>
+ 13.8 (12.0, 16.6)</p><p>
+ 13.2</p><p>
+ 0.0</p><p>
+ 36.0</p></section><section><header>orr</header><p>(%) 89/193 
+ 46.1 
+ 88/196 
+ 44.9</p></section><section><header>dor</header><p>median (months) 20.0 
+ 13.2</p></section><section><header>os</header><p>number of events (%)</p><p>
+ median os (95% 
+ ci) (months)</p><p>
+ 67 (29.1)</p><p>
+ nc</p><p>
+ 75 (32.3)</p><p>
+ nc 
+ effect estimate per 
+ comparison</p></section><section><header>pfs</header><p>comparison groups fulvestrant vs. anastrozole 
+ hazard ratio 
+ 0.797 
+ 95% ci 
+ [0.637, 0,999] 
+ p-value 
+ 0.0486</p></section><section><header>orr</header><p>odds ratio 95% ci</p><p>p-value</p><p>1.074 
+ [0.716; 1.614] 
+ 0.7290</p></section><section><header>os</header><p>hr 95% ci 
+ p-value</p><p> 0.875 
+ [0.629,1.217] 
+ 0.4277 
+ note: nc: not calculable</p></section><section><header>supportive study</header></section><section><header>phase ii study d6995c00006 (first) methods</header><p>this was a randomised, open-label, parallel-group, multi-centre, phase ii study to compare the efficacy and tolerability of fulvestrant 500 mg with anastrozole 1 mg as first line hormonal 
+ treatment for postmenopausal women with hormone receptor positive advanced breast cancer. 
+ study participants this study was conducted at 62 centres in 9 countries (brazil, bulgaria, czech republic, france, italy, poland, spain, uk, and the usa). the first patient was enrolled on 06 february 2006 and the last on 
+ 11 july 2007. the data cut-off date for primary analyses was 10 january 2008. after the data cut-off 
+ (dco) for the primary analysis, all remaining patients, regardless of whether they were still receiving</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 31/59</p><p>
+ randomised treatment, were to enter the follow-up phase and were to be followed as per standard clinical practice. 
+ the main inclusion criteria for the study were following: 
+ • written informed consent had to be obtained and documented. • histological/cytological confirmation of breast cancer. • documented positive hormone receptor status (er+ve and/or pgr+ve) of primary or metastatic tumour tissue, according to the local laboratory parameters. 
+ • patients with metastatic or locally advanced disease not amenable to therapy with curative intent: 
+ o who had never had hormonal treatment for loco-regionally advanced or metastatic disease and 
+ o for patients who had received previous adjuvant or neo-adjuvant hormonal treatment, this must have been completed more than 12 months prior to randomisation. adjuvant 
+ and neo-adjuvant treatment may have included more than one hormonal agent. 
+ • patients fulfilling one of the following criteria: o the presence of measurable disease as per recist, defined as at least one lesion that could be accurately measured in at least one dimension (longest diameter to be 
+ recorded) as 
+ ≥ 20 mm with conventional techniques or as ≥ 10 mm with spiral computed tomography (ct) scan. 
+ o in the absence of measurable disease (by recist), the presence of at least one bone lesion with a lytic component, which had not been previously irradiated. 
+ • women defined as postmenopausal according to 1 or more of the following: o aged ≥ 60 years o age ≥ 45 years with amenorrhoea for at least 12 months with an intact uterus o having undergone a bilateral oophorectomy o follicle stimulating hormone (fsh) and oestradiol levels in the postmenopausal range, utilising ranges from the local laboratory facility. 
+ • world health organisation (who) performance status 0, 1 or 2 the main exclusion criteria for the study were following: 
+ • the presence of life-threatening metastatic visceral disease, defined as extensive hepatic involvement, any degree of brain or leptomeningeal involvement (past or present), or 
+ symptomatic pulmonary lymphangitic spread. patients with discrete pulmonary parenchymal 
+ metastases were eligible, provided their respiratory function was not significantly compromised 
+ as a result of disease. 
+ • previous systemic therapy for advanced breast cancer. • treatment with a non-approved or experimental drug within 4 weeks before randomisation. • current or prior malignancy within the previous 3 years (other than breast cancer or adequately treated basal cell or squamous cell carcinoma of the skin or 
+ in-situ carcinoma of the cervix).</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 32/59</p><p>
+ • significantly altered laboratory values within 3 weeks of randomisation: o platelets &lt;100 x 109 / l: o total bilirubin &gt;1.5 x uln (upper limit of normal range, patients with confirmed gilbert’s syndrome were still eligible be included in the study), or 
+ o alt or ast &gt;2.5 x uln if no demonstrable liver metastases or &gt;5 x uln in presence of liver metastases. 
+ • history of: o bleeding diathesis (i.e., disseminated intravascular coagulation [dic], clotting factor deficiency), or 
+ o long-term anticoagulant therapy. • history of hypersensitivity to active or inactive excipients of fulvestrant, ais or castor oil. • any severe concomitant condition which made it undesirable for the patient to participate in the trial or which would jeopardize compliance with the trial protocol, 
+ e.g., uncontrolled cardiac disease or uncontrolled diabetes mellitus. 
+ treatment fulvestrant (faslodex) 500 mg was administered as two 5 ml intramuscular injections on days 0, 14 (±3), 28 (±3) and every 28 (±3) days thereafter with time windows extending to ±7 days after 24 
+ weeks. 
+ anastrozole (arimidex) 1 mg was administered orally as a single daily tablet. 
+ treatment continued until disease progression as per recist, unless any of the criteria for treatment 
+ discontinuation were met first. 
+ objectives the primary objective was to compare the cbr in patients treated with fulvestrant 500 mg with the cbr in patients treated with anastrozole 1 mg.</p><p>
+ outcomes/endpoints the primary end-point was clinical benefit rate (cbr) defined as the % of patients in the full analysis set with clinical benefit, where clinical benefit is defined as complete response (cr), partial response 
+ (pr), or stable disease (sd) 
+ ≥ 24 weeks, defined by modified recist. secondary endpoints included overall response rate (orr), time to progression (ttp), duration of 
+ response (dor), duration of clinical benefit docb, and os. 
+ pfs was in this study called ttp, but all events of death, irrespective of causality, were counted as 
+ events. “ttp” according to the study definition, is therefore called pfs.</p><p> 
+ sample size the clinical benefit rate for anastrozole in hormone receptor positive patients is estimated as 60% from previous studies of anastrozole in the current patient population. one-hundred randomised patients 
+ per treatment group were required to give 80% power to rule out an absolute deficiency of 20% in 
+ clinical benefit rate for fulvestrant 500 mg; 
+ i.e., 2-sided 95% confidence interval to exclude a 20% deficiency. 
+ the data cut-off for primary analysis was 10 january 2008.</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 33/59</p></section><section><header>results</header><p>a total of 205 patients were randomised to receive either fulvestrant 500 mg (n=102) or anastrozole 1 mg (n=103).</p><p>
+ baseline data 
+ table 13: baseline demographic characteristics in the full analysis set, study first.</p><p>
+ all patients were postmenopausal women with hr+ breast cancer.</p><p>the majority of patients had 
+ metastatic disease (81.4% and 82.5% in the fulvestrant 500 mg and anastrozole 1 mg groups, 
+ respectively). in total, 25.4% of patients had previously completed adjuvant endocrine treatment for 
+ early disease. about 20% had her2 positive tumours. 
+ table 14: baseline characteristics and medical history in the full analysis set, study first</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 34/59</p><p> outcomes and estimations</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 35/59</p></section><section><header>clinical benefit</header><p>table 15: summary of clinical benefit: first (itt) clinical benefit classification 
+ best objective response</p><p>
+ number (%) of patients 
+ fulvestrant 500 mg 
+ (n=102) 
+ anastrozole 1 mg 
+ (n=103) 
+ cb 
+ complete response 0 
+ 1 (1.0) 
+ partial response 
+ 32 (31.4) 
+ 32 (31.1) 
+ stable disease ≥24 weeks 
+ 42 (41.2) 
+ 36 (35.0) 
+ total with cb 74 (72.5) 
+ 69 (67.0) 
+ no cb 
+ stable disease ≤24 weeks 15 (14.7) 
+ 12 (11.7) 
+ progression 
+ 10 (9.8) 
+ 20 (19.4) 
+ not evaluable 
+ 3 (2.9) 
+ 2 (1.9) 
+ total with no cb 28 (27.5) 
+ 34 (33.0)</p><p>table 16: analysis of clinical benefit rate: first (itt)</p><p>fulvestrant 500 mg 
+ (n=102) 
+ anastrozole 
+ 1 mg 
+ (n=103) 
+ odds ratio 
+ (95% ci) 
+ p-value of 
+ the odds 
+ ratio 
+ absolute 
+ difference 
+ (95% ci) 
+ cbr ([total with cb]/n) 
+ 72.5% 
+ (74/102) 
+ 67.0% 
+ (69/103) 
+ 1.302</p><p> 
+ (0.717, 2.380) 
+ 0.386 
+ 5.6% 
+ (-7.8%, 15.8%) 
+ an odds ratio &gt;1 favours fulvestrant.</p></section><section><header>time to progression, ttp (pfs)</header><p>follow-up analysis performed when approximately 75% of patients had failed therapy. at the dco for this follow-up analysis, 163/205 (79.5%) patients had ceased trial therapy, and 142/205 (69.3%) 
+ patients had progressed.</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 36/59</p><p>prior to the data cut-off for the primary analysis, progression was defined by modified recist; after the data cut-off for the primary analysis, progression was defined by investigator opinion.</p><p>
+ figure 7: kaplan-meier plot of pfs, study first (itt analysis set)</p><p>table 17: summary of time to disease progression (=pfs): first, 75% progression follow-up analysis</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 37/59</p></section><section><header>overall survival</header><p>table 18: summary of overall survival: first, 65% os follow-up analysis, itt</p><p> figure 8: kaplan-meier plot of overall survival: first itt analysis set (final)</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 38/59</p><p>figure 9: forest plot of overall survival, by subgroup: full analysis set</p></section><section><header n="2.4.2">2.4.2.  
+ discussion on clinical efficacy 
+ design and conduct of clinical studies</header><p>the application for the new indication (endocrine naïve patients) is based on data from one pivotal study (falcon) and one supportive study (first). 
+ the pivotal study falcon was a double blind study conducted in the target population for the 
+ proposed new indication and the overall design is considered adequate. the chosen randomisation 
+ stratification factors are considered to be important prognostic covariates. the statistical methods 
+ described are endorsed. exclusion of the stratification factor “prior chemotherapy for locally advanced 
+ or metastatic disease” was justified by very low patient numbers (including zero cell) in some of the 
+ individual strata.</p><p>
+ important protocol deviations were common, but mis-stratification did not result in imbalances of 
+ importance. a sensitivity analysis was undertaken using the stratification factors recorded on the ecrf 
+ rather than on the ivrs system and showed an hr for pfs consistent with the primary endpoint. no 
+ information is available on the root cause of the errors in the stratification procedure which affected as 
+ many as 85 subjects. nevertheless, these deviations are considered unlikely to affect the robustness of 
+ the study.</p><p>
+ with regards to baseline characteristics in study falcon, about 30% of patients had received no prior 
+ endocrine therapy despite being diagnosed &gt;1 year prior to study enrolment which is unexpected. 
+ otherwise, baseline characteristics essentially look as expected. there were some differences noted 
+ with regards to baseline demographic and tumour characteristics. notably, a larger proportion of 
+ patients in the fulvestrant arm than in the anastrozole arm had visceral disease (58.7% vs. 51.3%). a 
+ slightly larger proportion of patients in the fulvestrant arm had received prior adjuvant chemotherapy 
+ compared with the anastrozole arm (15.2% and 11.6%, respectively). these small differences are not</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 39/59</p><p>
+ meaningful and baseline and tumour characteristics are considered balanced between the two treatment arms. 
+ although the median time from completion of final chemotherapy to randomisation was longer in the 
+ fulvestrant arm (12.8 months; range: 1 to 283 months) than in the anastrozole arm (5.7 months; 
+ range: 1 to 207 months), other summary statistics were broadly comparable. furthermore, a box and 
+ whisker plot of time from completion of chemotherapy to randomisation showed no clear evidence that 
+ the patients receiving chemotherapy on the fulvestrant 500 mg arm completed earlier than those on 
+ the anastrozole 1 mg arm (data not shown). therefore these imbalances might be due to chance. 
+ study first was an open label, anastrozole comparative exploratory study. the study was conducted 
+ open-label with investigator assessed pfs complemented with independent review. her2 positive 
+ patients could be enrolled (20%) and patients could have received (neo)adjuvant endocrine therapy 
+ (25%). approximately 27% of patients in the fulvestrant arm and 22% in the anastrozole arm had 
+ received prior “endocrine therapy” which was completed at least 12 months prior to randomization, 
+ i.e., were not “endocrine naïve” patients. nearly all of them had received tamoxifen (28 patients in 
+ fulvestrant arm and 22 patients in anastrozole arm) and one subject in each arm had received prior 
+ anastrozole.</p><p>
+ this phase ii study is considered to provide reasonably strong supportive evidence to falcon for the 
+ applied first line indication. at the time of the primary data cut-off, 36% of patients had progressed. a 
+ follow-up analysis was performed when approximately 75% of patients had failed therapy to provide a 
+ more complete assessment. the results of secondary analysis for ttp adjusted for baseline covariates 
+ were consistent with the main unadjusted analysis of ttp. this suggested that the imbalance between 
+ treatment groups in the proportion of patients with visceral disease at baseline in first did not impact 
+ the efficacy findings.</p></section><section><header>efficacy data and additional analyses</header><p>in study falcon, more progression events occurred in the anastrozole arm (166 patients [71.6%]) than in the fulvestrant arm (143 patients [62.2%], 2-sided p=0.0486). at an event rate of 60% to 
+ 70%, the pfs hr of 0.797 (95% ci 0.637 to 0.999) is likely to be stable. the median difference, 3 
+ months, appears to reflect the hr and is considered non-trivial. fulvestrant was statistically borderline 
+ superior to anastrozole.</p><p>
+ a number of sensitivity analyses were undertaken, all showing borderline “positive/negative 
+ significance”, the “worst” being p=0.06 (using stratification derived from crf), the “best” a cox 
+ proportional hazard being p=0.03. the results of the sensitivity analyses support the primary pfs 
+ result and its robustness. 
+ overall, the results indicate a more favourable outcome with fulvestrant compared to anastrozole in 
+ er+, locally advanced or metastatic breast cancer in postmenopausal women not previously treated 
+ with endocrine therapy, and support the currently applied indication. consistent results were observed 
+ across the majority of pre-specified patient subgroups. many of the subgroups analysed were small in 
+ size and consequently resulted in wide confidence intervals. however, in patients with visceral disease 
+ at baseline, the benefit of fulvestrant over anastrozole was not evident, with median pfs 13.8 months 
+ vs. 15.9 months (hr 0.993). the subgroup results have been reflected in section 5.1 of the smpc. 
+ approximately 10% of the patients did not have complete data for the primary endpoint of pfs. a 
+ greater proportion of patients were censored for progression at &gt;12 weeks before data cut-off in the 
+ fulvestrant arm compared with the anastrozole arm (27 [11.7%] patients vs. 20 [8.6%] patients, 
+ respectively). the mah performed a range of analyses to explore the sensitivity of results to the</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 40/59</p><p>
+ standard non-informative censoring assumption underlying time to event analyses. baseline characteristics were compared between early and late censored patients and patients who had 
+ progressed, and modelling was conducted to impute progression times which relax the non-informative 
+ censoring assumption and assess the impact on treatment effect estimates. overall, it is considered 
+ unlikely that the reasons for early censoring differ between the arms, resulting in a biased pfs result. 
+ in terms of orr and cbr, rather similar results to anastrozole were observed between fulvestrant and 
+ anastrozole. due to the similarity in orr, duration of response is considered informative (median dor 
+ 20 months and 13.2 months in the fulvestrant arm and anastrozole arm respectively). these 
+ observations i.e. similar orr and difference in pfs are compatible with delayed resistance 
+ development and is mechanistically plausible as fulvestrant has been reported to be less affected by 
+ activating er mutations (fribbens et al 2016; spoerke et al 2016; toy et al 2016), but serum samples 
+ were not collected on study for analyses of activating er mutations. os results are immature.</p><p> 
+ regarding qol data, data after progression are sparse, reducing the possibility to detect symptomatic 
+ differences related to progression, but in principle the curves mimic pfs curves. the hr for time to 
+ deterioration favoured faslodex (0.84, p=0.16 not protected from multiplicity). overall, available 
+ fact-b data do not indicate any differences in tolerability between fulvestrant and anastrozole.</p><p>
+ results from the falcon study are supported by the results of study first which met its primary non-
+ inferiority objective in terms of clinical benefit response (cbr). the primary efficacy results of clinical 
+ benefit ratio (cbr) from the fas and pp populations supported the non-inferiority of fulvestrant 
+ compared to anastrozole in treatment for postmenopausal women with hormone receptor positive 
+ advanced breast cancer. the results (cbr of 72.5% in fulvestrant group vs 67% in the anastrozole 
+ group) are considered supportive for the applied indication. after exclusion of patients that were 
+ endocrine therapy naïve, the results remained stable and compatible with statistical borderline 
+ superiority to anastrozole in terms of pfs and os. the results in the subgroup of first constructed in 
+ order to reflect the target population in falcon were similar to the itt population, but more 
+ favourable compared with falcon. 
+ in the subgroup analysis of os, a tendency towards fulvestrant having greater benefit in patients 
+ without visceral disease vs. those with visceral disease was observed, which is in line with observations 
+ in the falcon study.</p><p>
+ in support of the extension of the existing second line indication to ai-resistant patients (i.e. from 
+ relapse or progression on anti-oestrogen therapy to relapse or progression on endocrine therapy), the 
+ mah submitted a justification based on changes in treatment guidelines and clinical practice, results 
+ from the china confirm study, the final overall survival (os) analysis of the confirm study and 
+ published literature, to supplement existing clinical data from confirm, finder1 and finder2 in 
+ patients who have progressed following an ai. out of the trials, confirm, finder1 and finder2 have 
+ been assessed previously in attempt to extend the current indication to ai-resistant patients in 2010. 
+ in this type ii variation in 2010 (emea/h/c/540/ii/0018), based on the confirm study, the mah 
+ sought for extension of the indication for disease relapse or disease progression on therapy with an 
+ anti-estrogen or aromatase inhibitor. at the time the chmp concluded that a favourable benefit – risk 
+ balance had not been convincingly demonstrated for fulvestrant 500 mg in patients resistant to 
+ aromatase inhibitors. as part of the current application, the mah has not provided any new data in 
+ postmenopausal women with oestrogen receptor positive, locally advanced or metastatic breast cancer 
+ for disease relapse on or after adjuvant aromatase inhibitor therapy, or disease progression on therapy 
+ with an aromatase inhibitor. neither the falcon nor the first studies include clinical data on these 
+ patients. overall, the level of evidence available regarding the efficacy of fulvestrant in aromatase 
+ inhibitor (ai)-resistant postmenopausal er+ locally advanced or metastatic breast cancer patients is 
+ not considered sufficient to support and extension of the second line indication.</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 41/59</p></section><section><header n="2.4.3">2.4.3.  
+ conclusions on the clinical efficacy</header><p>faslodex showed an improvement in pfs and duration of response as compared to anastrazole in postmenopausal women with hormone receptor-positive (hr+) locally advanced or metastatic breast 
+ cancer (confirmed by histology), who had not previously been treated with any hormonal therapy. the 
+ results from the exploratory phase ii first study are consistent with the results from the phase iii 
+ falcon study and support the new first line indication. the smpc has been updated in section 5.1 
+ with efficacy data in the first line indication.</p></section><section><header n="2.5">2.5.  
+ clinical safety 
+ introduction</header><p>faslodex (fulvestrant) was approved in eu in 2004 for the treatment of breast cancer after failure on anti-oestrogen therapy. apart from anti-oestrogen effects, the safety profile includes injection site 
+ reaction, hepatic events, rash and hypersensitivity reactions.</p></section><section><header>patient exposure</header><p>falcon included safety data from 228 patients treated with fulvestrant 500 mg (median exposure: 14.8 months) and 232 patients treated with anastrozole 1 mg (median exposure: 13.8 months).</p><p>in 
+ addition to this, 101 patients were treated with fulvestrant 500 mg in first (median exposure at the 
+ primary data cut-off: 9.2 months). 
+ as of 25 april 2016, it is estimated that &gt;3500 subjects have been exposed to fulvestrant in clinical 
+ trials.</p><p>in the post-marketing setting there are 344,450 patient years of exposure for the 250 mg dose 
+ and 211,462 patient years for the 500 mg dose globally.</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 42/59</p></section><section><header>adverse events</header><p>table 19:overview of aes: falcon and first safety analysis sets</p><p>falcon first</p><p>
+ fulvestrant 
+ 500 mg 
+ (n=228) 
+ anastrozole 
+ 1 mg 
+ (n=232) 
+ fulvestrant 
+ 500 mg 
+ (n=101) 
+ anastrozole 
+ 1 mg</p><p>
+ (n=103) 
+ any ae 166 
+ (72.8) 
+ 173 
+ (74.6) 
+ 71 
+ (70.3) 
+ 72 
+ (69.9) 
+ any causally related ae 
+ 91 
+ (39.9) 
+ 76 
+ (32.8) 
+ 30 
+ (29.7) 
+ 28 
+ (27.2) 
+ any ae of ctc grade ≥3</p><p>
+ 51 
+ (22.4) 
+ 41 
+ (17.7) 
+ 18 
+ (17.8) 
+ 11 
+ (10.7) 
+ any causally related ae of ctc 
+ grade ≥3</p><p>
+ 10 
+ (4.4) 
+ 4 
+ (1.7) 
+ 1 
+ (1.0) 
+ 0</p><p>
+ any ae leading to death 
+ 6 
+ (2.6) 
+ 7 
+ (3.0) 
+ 0</p><p>
+ 1 
+ (1.0) 
+ any causally related ae leading to 
+ death 
+ 0</p><p>
+ 0</p><p>
+ 0</p><p>
+ 0</p><p>
+ any sae (including death) 
+ 30 
+ (13.2) 
+ 31 
+ (13.4) 
+ 12 
+ (11.9) 
+ 10 
+ (9.7) 
+ any causally related sae 
+ 4 
+ (1.8) 
+ 3 
+ (1.3) 
+ 1 
+ (1.0) 
+ 0</p><p>
+ any ae leading to discontinuation 
+ of treatment 
+ 16 
+ (7.0) 
+ 11 
+ (4.7) 
+ 3 
+ (3.0) 
+ 3 
+ (2.9)</p><p>
+ total number of aes number of aes 953 
+ 876 
+ 364 
+ 328 
+ number of saes (including death) 
+ 45 
+ 51 
+ 21 
+ 10 
+ number of causally-related saes 
+ 5 
+ 3 
+ 1 
+ 0</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 43/59</p><p>table 20: grade ≥3 (reported in ≥1% of patients): falcon</p><p>system organ class/ meddra preferred term fulvestrant 500 mg 
+ (n=228) 
+ anastrozole 1 mg 
+ (n=232) 
+ any ctcae grade ≥3</p><p> 51 (22.4) 
+ 41 (17.7) 
+ investigations 11</p><p>(4.8) 
+ 7</p><p>(3.0) 
+ blood alkaline phosphatase increased 
+ 2 (0.9) 
+ 4</p><p>(1.7) 
+ aspartate aminotransferase increased 
+ 3 (1.3) 
+ 1</p><p>(0.4) 
+ alanine aminotransferase increased 
+ 3 (1.3) 
+ 0</p><p>
+ respiratory, thoracic and mediastinal disorders 10</p><p>(4.4) 
+ 4</p><p>(1.7) 
+ pleural effusion 
+ 5 (2.2) 
+ 1</p><p>(0.4) 
+ pulmonary embolism 
+ 3 (1.3) 
+ 0</p><p>
+ vascular disorders 7 (3.1) 
+ 6</p><p>(2.6) 
+ hypertension 
+ 4 (1.8) 
+ 4</p><p>(1.7) 
+ infections and infestations 6 (2.6) 
+ 6</p><p>(2.6) 
+ pneumonia 
+ 2 (0.9) 
+ 3 (1.3) 
+ blood and lymphatic system disorders 4 (1.8) 
+ 6</p><p>(2.6) 
+ anaemia 
+ 2 (0.9) 
+ 4</p><p>(1.7)</p><p>note: includes aes with an onset date on or after the date of first dose and up to and including 56 days following 
+ the date of last injection of fulvestrant (or matching placebo).</p><p>meddra version 18.0.</p><p>table 21: commonly reported causally-related aes (≥2%): falcon</p><p>system organ class number (%) of patients 
+ meddra preferred term 
+ fulvestrant 500 mg 
+ (n=228) 
+ anastrozole 1 mg 
+ (n=232) 
+ patients with any ae causally related to 
+ treatment 
+ 91 
+ (39.9) 
+ 76</p><p>(32.8)</p><p>musculoskeletal and connective tissue 
+ disorders 
+ 39</p><p>(17.1)</p><p>36</p><p>(15.5)</p><p>arthralgia 20 
+ (8.8) 
+ 17 
+ (7.3) 
+ myalgia 
+ 10 
+ (4.4) 
+ 6 
+ (2.6) 
+ pain in extremity 
+ 5 
+ (2.2) 
+ 6 
+ (2.6) 
+ joint stiffness 
+ 0</p><p>
+ 5 
+ (2.2) 
+ vascular disorders 28</p><p>(12.3)</p><p>26</p><p>(11.2)</p><p>hot flush 26 
+ (11.4) 
+ 21</p><p>
+ (9.1) 
+ general disorders and administration site conditions 
+ 27</p><p>(11.8)</p><p>19</p><p>(8.2)</p><p>injection site pain 11 
+ (4.8) 
+ 8 
+ (3.4) 
+ fatigue 
+ 12</p><p>
+ (5.3) 
+ 5 
+ (2.2) 
+ skin and subcutaneous tissue disorders 28</p><p>(12.3)</p><p>9</p><p>(3.9)</p><p>alopecia 7 
+ (3.1) 
+ 2 
+ (0.9) 
+ rash 
+ 5 
+ (2.2) 
+ 3 
+ (1.3) 
+ investigations 22</p><p>(9.6)</p><p>9</p><p>(3.9)</p><p>assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 44/59</p><p>
+ table 21: commonly reported causally-related aes (≥2%): falcon</p><p>system organ class number (%) of patients 
+ meddra preferred term 
+ fulvestrant 500 mg 
+ (n=228) 
+ anastrozole 1 mg 
+ (n=232) 
+ alanine aminotransferase increased 9</p><p>
+ (3.9) 
+ 2 
+ (0.9) 
+ weight increased 
+ 5 
+ (2.2) 
+ 4 
+ (1.7) 
+ aspartate aminotransferase increased 
+ 6 
+ (2.6) 
+ 1 
+ (0.4) 
+ gastrointestinal disorders 17</p><p>(7.5)</p><p>12</p><p>(5.2)</p><p>nausea 12 
+ (5.3) 
+ 8 
+ (3.4) 
+ nervous system disorders 14</p><p>(6.1)</p><p>7</p><p>(3.0)</p><p>headache 5 
+ (2.2) 
+ 3 
+ (1.3) 
+ blood and lymphatic system disorders 4</p><p>
+ (1.8) 
+ 7</p><p>(3.0)</p><p>neutropenia 1 
+ (0.4) 
+ 5 
+ (2.2)</p><p>table 22: arthralgia and related events: falcon safety analysis set category/meddra preferred term</p><p>number (%) of patients
+ a</p><p>fulvestrant 500 mg (n=228) 
+ anastrozole 1 mg 
+ (n=232) 
+ patients with any ae of special interest
+ b 59 (25.9) 
+ 42 (18.1)</p><p>joint disorders 
+ 49 (21.5)</p><p>36 (15.5)</p><p>arthralgia 38 
+ (16.7) 
+ 24 
+ (10.3) 
+ musculoskeletal pain 
+ 11 
+ (4.8) 
+ 5 
+ (2.2) 
+ joint stiffness 
+ 1 
+ (0.4) 
+ 6 
+ (2.6) 
+ musculoskeletal stiffness</p><p>1 
+ (0.4) 
+ 3 
+ (1.3) 
+ osteoarthritis 
+ 2 
+ (0.9) 
+ 1 
+ (0.4) 
+ polyarthritis 
+ 2 
+ (0.9) 
+ 1 
+ (0.4) 
+ joint swelling 
+ 1 
+ (0.4) 
+ 2 
+ (0.9) 
+ arthritis 
+ 0</p><p>
+ 2 
+ (0.9) 
+ musculoskeletal discomfort 
+ 1 
+ (0.4) 
+ 0</p><p>
+ joint range of motion decreased 
+ 0</p><p>
+ 1 
+ (0.4) 
+ rheumatoid arthritis 
+ 0</p><p>
+ 1 
+ (0.4) 
+ spinal osteoarthritis</p><p>0</p><p>
+ 1 
+ (0.4) 
+ back pain 21</p><p>(9.2)</p><p>14</p><p>(6.0)</p><p>back pain 21</p><p>(9.2)</p><p>14 
+ (6.0)</p><p>in the falcon study, the number of patients who reported an adverse reaction of joint and musculoskeletal pain was 65 (31.2%) and 48 (24.1%) for fulvestrant and anastrozole arms, 
+ respectively. of the 65 patients in the faslodex arm, 40% (26/65) of patients reported joint and 
+ musculoskeletal pain within the first month of treatment, and 66.2% (43/65) of patients within the 
+ first 3 months of treatment. no patients reported events that were ctcae grade 
+ ≥ 3 or that required a dose reduction, dose interruption, or discontinued treatment due to these adverse reactions.</p></section><section><header>overdose</header><p>assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 45/59</p><p>
+ there was one report of accidental overdose from falcon study. this was not associated with any other adverse events (section 4.9 of the smpc).</p></section><section><header>serious adverse event/deaths/other significant events</header><p>table 23: summary of deaths: falcon safety analysis set category number (%) of patients
+ a fulvestrant 500 mg (n=228) anastrozole 1 mg (n=232) 
+ all deaths 67 
+ (29.4) 
+ 75 
+ (32.3) 
+ following an ae 
+ 6 
+ (2.6) 
+ 7 
+ (3.0)</p><p> table 24: serious adverse event reported by at least 2 patients overall: falcon safety analysis set system organ class number (%) of patients
+ a meddra preferred term fulvestrant 500 mg 
+ (n=228) 
+ anastrozole 1 mg 
+ (n=232) 
+ patients with any sae 
+ 30 
+ (13.2) 
+ 31 
+ (13.4) 
+ respiratory, thoracic and mediastinal disorders</p><p>11 
+ (4.8) 
+ 5</p><p>(2.2)</p><p>pleural effusion 6 
+ (2.6) 
+ 2 
+ (0.9) 
+ pulmonary embolism 
+ 3 
+ (1.3) 
+ 0</p><p>
+ chronic obstructive pulmonary disease 
+ 2 
+ (0.9) 
+ 0</p><p>
+ infections and infestations 6 
+ (2.6) 
+ 6</p><p>(2.6)</p><p>pneumonia 1 
+ (0.4) 
+ 4 
+ (1.7) 
+ peritonitis 
+ 2 
+ (0.9) 
+ 0</p><p>
+ lower respiratory tract infection 
+ 1 
+ (0.4) 
+ 1 
+ (0.4) 
+ cardiac disorders 2 
+ (0.9) 
+ 8</p><p>(3.4)</p><p>atrial fibrillation 1 
+ (0.4) 
+ 2 
+ (0.9) 
+ cardiac failure 
+ 0</p><p>
+ 2 
+ (0.9) 
+ neoplasms benign, malignant and unspecified (incl cysts and polyps)</p><p>3 
+ (1.3) 
+ 3</p><p>(1.3)</p><p>colon cancer 1 
+ (0.4) 
+ 2 
+ (0.9) 
+ blood and lymphatic system disorders 2 
+ (0.9) 
+ 3</p><p>(1.3)</p><p>anaemia 1 
+ (0.4) 
+ 2 
+ (0.9) 
+ vascular disorders 2 
+ (0.9) 
+ 2</p><p>(0.9)</p><p>deep vein thrombosis 0</p><p>
+ 2 
+ (0.9) 
+ hypertensive crisis 
+ 2 
+ (0.9) 
+ 0</p><p>
+ metabolism and nutrition disorders 0</p><p>
+ 2</p><p>(0.9)</p><p>dehydration 0</p><p>
+ 2 
+ (0.9) 
+ renal and urinary disorders 0</p><p>
+ 2</p><p>(0.9)</p><p>acute kidney injury 0</p><p>
+ 2 
+ (0.9)</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 46/59</p></section><section><header>laboratory findings</header><p>table 25: change in ctcae grade from baseline to maximum grade on treatment for haematology parameters in the falcon study (safety analysis set)</p><p>
+ table 26: change in ctcae grade from baseline to maximum grade on treatment for clinical chemistry 
+ parameters (safety analysis set)</p><p> assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 47/59</p><p>assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 48/59</p></section><section><header>discontinuation due to adverse events</header><p>table 27: discontinuations due to an ae: falcon safety analysis set system organ class number (%) of patients
+ a meddra preferred term fulvestrant 500 mg 
+ (n=228) 
+ anastrozole 1 mg 
+ (n=232) 
+ patients with any ae leading to 
+ discontinuation of treatment
+ b 16 (7.0) 
+ 11 (4.7) 
+ neoplasms benign, malignant and unspecified 
+ (incl cysts and polyps) 
+ 3 (1.3) 
+ 2 (0.9) 
+ colon cancer 1 
+ (0.4) 
+ 2</p><p>(0.9)</p><p>vascular disorders 1</p><p>(0.4)</p><p>2 
+ (0.9) 
+ deep vein thrombosis 0</p><p>
+ 2</p><p>(0.9)</p></section><section><header>adverse drug reactions</header><p>the frequency categories for adverse drug reactions (adrs) were calculated based on the faslodex 500 mg treatment group in pooled safety analyses of studies that compared faslodex 500 mg with 
+ faslodex 250 mg [confirm (study d6997c00002), finder 1 (study d6997c00004), finder 2 
+ (study d6997c00006), and newest (study d6997c00003) studies], or from falcon (study 
+ d699bc00001) alone that compared faslodex 500 mg with anastrozole 1 mg. where frequencies differ 
+ between the pooled safety analysis and falcon, the highest frequency is presented. the frequencies 
+ in the following table were based on all reported adverse drug reactions, regardless of the investigator 
+ assessment of causality. 
+ table 28: adverse reactions by system organ class and frequency</p></section><section><header>adverse reactions by system organ class and frequency</header><p>system organ class adr 
+ frequency
+ a incidence: all grades (%)</p><p>incidence: ≥ ctcae 
+ grade 3 (%)</p><p> infections and 
+ infestations</p><p>common</p><p>8 (3.5)</p><p>0</p><p>urinary tract 
+ infections</p><p>blood and lymphatic 
+ system disorders</p><p>common</p><p>4 (1.8)</p><p>1 (0.4)</p><p>reduced platelet 
+ count</p><p>immune system 
+ disorders</p><p>very 
+ common</p><p>32 (14.0)</p><p>2 (0.9)</p><p>hypersensitivity 
+ reactions</p><p>metabolism and 
+ nutrition disorders</p><p>common</p><p>11 (4.8)</p><p>0</p><p>anorexia</p><p>nervous system 
+ disorders</p><p>common</p><p>10 (4.4)</p><p>0</p><p>headache</p><p>vascular disorders</p><p>very 
+ common</p><p>29 (12.7)</p><p>0</p><p>hot flushes</p><p>common</p><p>8 (3.5)</p><p>4 (1.8)</p><p>venous 
+ thromboembolism</p><p>gastrointestinal 
+ disorders</p><p>very 
+ common</p><p>24 (10.5)</p><p>0</p><p>nausea</p><p>common</p><p>8 (3.5)</p><p>0</p><p>vomiting</p><p>common</p><p>15 (6.6)</p><p>0</p><p>diarrhoea</p><p>assessment report</p><p> 
+ ema/490887/2017</p><p>
+ page 49/59</p><p>
+ hepatobiliary disorders</p><p>very 
+ common</p><p>see table 32 below</p><p>see table 33 below</p><p>elevated hepatic 
+ enzymes (alt, 
+ ast, alp)</p><p>common</p><p>see table 32 below</p><p>see table 33 below</p><p>elevated bilirubin</p><p>uncommon</p><p>0
+ a 0a hepatic failure uncommon</p><p>1 (0.2)
+ b 0b hepatitis uncommon</p><p>1 (0.2)
+ b 1 (0.2)b elevated gamma-gt</p><p>skin and 
+ subcutaneous tissue 
+ disorders</p><p>very 
+ common</p><p>24 (10.5)</p><p> 0</p><p>rash</p><p>musculoskeletal and 
+ connective tissue 
+ disorders</p><p>very 
+ common</p><p>65 (28.5)</p><p>0</p><p>joint and 
+ musculoskeletal 
+ pain</p><p>common</p><p>21 (9.2)</p><p>1 (0.4)</p><p>back pain</p><p>reproductive system 
+ and breast disorders</p><p>common</p><p>3 (1.3)</p><p>0</p><p>vaginal 
+ haemorrhage</p><p>uncommon</p><p>3 (0.5)
+ b 0b vaginal moniliasis uncommon</p><p>0
+ b 0b leukorrhea general disorders and 
+ administration site 
+ conditions</p><p>very 
+ common</p><p>35 (15.4)</p><p>1 (0.4)</p><p>asthenia</p><p>very 
+ common</p><p>21 (9.2)</p><p>1 (0.4)</p><p>injection site 
+ reactions</p><p>common</p><p>8 (3.5)</p><p>0</p><p>neuropathy 
+ peripheral</p><p>common</p><p>4 (1.8)</p><p>1 (0.4)</p><p>sciatica</p><p>uncommon</p><p>3 (0.5)
+ b 0b injection site haemorrhage</p><p> uncommon</p><p>4 (0.7)
+ b 0b injection site haematoma</p><p> uncommon</p><p>0
+ a 0a neuralgia a the event was not observed in major clinical studies (confirm, finder 1, finder 2, newest). the frequency has been calculated using the upper limit of the 95% confidence interval for the point 
+ estimate. this is calculated as 3/560 (where 560 is the number of patients in the major clinical 
+ studies), which equates to a frequency category of ‘uncommon’.</p><p>b the event was not observed in falcon, incidence is therefore presented for pooled safety analyses of major clinical studies that compared faslodex 500mg with faslodex 250mg (confirm, finder 
+ 1, finder 2, newest).</p><p> assessment report</p><p>
+ ema/490887/2017</p><p>
+ page 50/59</p><p>table 29: laboratory parameters and number of patients with ctc grade change</p></section><section><header>laboratory parameter number (%) of 
+ patients with 
+ ctc grade 
+ change 
+ equivalent 
+ frequency 
+ category  
+ aspartate aminotransferase (n=216)</header><p>patients with any ctc grade increase from baseline 31 (14.4) 
+ very common</p></section><section><header>alanine aminotransferase (n=217)</header><p>patients with any ctc grade increase from baseline 26 (12.0) 
+ very common</p></section><section><header>blood alkaline phosphatase (n=217)</header><p>patients with any ctc grade increase from baseline 40 (18.4) 
+ very common</p></section><section><header>bilirubin (n=217)</header><p>patients with any ctc grade increase from baseline 8 (3.7) 
+ common 
+ n is number of patients with a baseline value and at least 1 post baseline value</p><p> table 30: laboratory parameters and incidence of ae (%) (all, grade 3)</p></section><section><header>laboratory parameter ae (%) 
+ ctcae grade 3  
+ aspartate aminotransferase increased</header><p>aspartate aminotransferase abnormal 0 
+ 0 
+ aspartate aminotransferase increased 
+ 12 (5.3) 
+ 3 (1.3)</p></section><section><header>alanine aminotransferase increased</header><p>alanine aminotransferase abnormal 0 
+ 0 
+ alanine aminotransferase increased 
+ 16 (7.0) 
+ 3 (1.3)</p></section><section><header>blood alkaline phosphatase increased</header><p>blood alkaline phosphatase abnormal 0 
+ 0 
+ blood alkaline phosphatase increased 
+ 9 (3.9) 
+ 2 (0.9)</p></section><section><header>bilirubin increased</header><p>bilirubin conjugated increased 0 
+ 0 
+ blood bilirubin abnormal 
+ 0 
+ 0 
+ blood bilirubin increased 
+ 3 (1.3) 
+ 0</p><p> assessment report</p><p>
+ ema/490887/2017</p><p>
+ page 51/59</p></section><section><header>laboratory parameter ae (%) 
+ ctcae grade 3</header><p>blood bilirubin unconjugated increased 0 
+ 0 
+ hyperbilirubinaemia 
+ 0 
+ 0</p></section><section><header n="2.5.1">2.5.1.  
+ discussion on clinical safety</header><p>the safety of fulvestrant in clinical use has been investigated in clinical trials as well as in the post-marketing experience (344450 patient years of fulvestrant 250 mg/month and 211462 patient years of 
+ fulvestrant 500 mg/month exposure). the data submitted includes a further 281 + 77 patient years of 
+ fulvestrant 500 mg/month exposure. 
+ the incidence of aes was not significantly different between the two treatment arms in both studies. in 
+ the falcon study there were more patients with treatment related aes in the fulvestrant arm 
+ compared to the anastrozole arm (39.9% [91/228] vs. 32.8% [76/232], respectively). in the first 
+ study there were more patients reporting an ae of ctc grade 3 or higher in the fulvestrant arm 
+ compared to the anastrozole arm (17.8% [18/101] vs. 10.7% [11/103], respectively). 
+ in first study, bone pain, nausea, constipation, vomiting, and hypertension were more common in 
+ patients receiving fulvestrant while there were more cases of hot flushes and myalgia in the 
+ anastrozole group. 
+ there were more cases of back pain, myalgia, and pain in extremity in patients receiving fulvestrant in 
+ falcon while hypertension and anaemia were reported more frequently from patients taking 
+ anastrozole. in first study hypertension was more common in the fulvestrant group and myalgia in 
+ the anastrozole group. 
+ whether there is an increase in arthralgia and related events or not related to fulvestrant was 
+ discussed in the past. at the time partly conflicting data led to these events not being categorised as 
+ adverse reaction. it is well known that anastrozole is associated with these events and the numerical 
+ increase makes it clear that it should be reflected in the smpc also for fulvestrant. section 4.8 of the 
+ smpc has been updated to include information about joint and musculoskeletal pain. 
+ skin and subcutaneous tissue disorders were more common in the fulvestrant group compared to 
+ anastrozole group. the difference was driven mainly by rash, alopecia, dry skin, and erythema. 
+ only single cases of death not caused by progression of breast cancer were reported for patients 
+ receiving either fulvestrant or anastrozole. overall, mortality rate was lower in the fulvestrant group 
+ compared to anastrozole group (29.4% vs. 32.3% at the dlp of falcon). 
+ serious adverse events involving patients in the fulvestrant group are known from earlier clinical use 
+ and not unexpected. 
+ haematological abnormalities as well as hepatic enzyme and bilirubin elevations were reported at 
+ similar rates from both treatment arms in falcon. anaemia was more common in patients taking 
+ anastrozole. no changes to the smpc are required with regards to the laboratory parameter 
+ abnormalities. 
+ more patients discontinued fulvestrant. nevertheless discontinuation rates were observed at an 
+ acceptable level.</p><p> assessment report</p><p>
+ ema/490887/2017</p><p>
+ page 52/59 
+ cases of overdose reported in patients taking faslodex was identified as a subject for review while analysing falcon data (one case of overdose was reported, not associated with any other aes). 
+ astrazeneca global database retrieved 48 cases of overdose in which majority of events were 
+ inconsistent with the signal being evaluated, had limited information and had no adverse event 
+ associated with it. section 4.9 of the smpc has been updated to reflect that there are isolated reports 
+ of overdose with faslodex in humans. if overdose occurs, symptomatic supportive treatment is 
+ recommended. 
+ the rmp is considered adequate and no new safety concerns were included. however missing 
+ information “use during pregnancy and lactation” and “use in women of childbearing potential” were 
+ merged into “reprotoxicity (fertility, pregnancy and lactation)” and upgraded to important potential 
+ risk based on available data.</p></section><section><header n="2.5.2">2.5.2.  
+ conclusions on clinical safety</header><p>the overall safety has remained unchanged and there were no new safety signals raised from the two studies presented. joint and musculoskeletal pain are relatively well known adverse drug reactions of 
+ anti-oestrogen therapy and the smpc has been updated to reflect these. the frequency category of 
+ several adverse drug reactions has also been updated in line with the incidence reported in the pooled 
+ dataset and falcon study (see smpc section 4.8).</p></section><section><header n="2.5.3">2.5.3.  
+ psur cycle</header><p>the requirements for submission of periodic safety update reports for this medicinal product are set out in the list of union reference dates (eurd list) provided for under article 107c(7) of directive 
+ 2001/83/ec and any subsequent updates published on the european medicines web-portal.</p></section><section><header n="2.6">2.6.  
+ risk management plan</header><p>the chmp received the following prac advice on the submitted risk management plan: the prac considered that the risk management plan version 10 (edition 2) is acceptable. the chmp 
+ endorsed the risk management plan version 10 (edition 2) with the following content:</p></section><section><header>safety concerns</header><p>table 31:summary of safety concerns</p></section><section><header>category safety concern</header><p>important identified risks injection site reactions 
+ increased risk of bleeding at the injection site 
+ hypersensitivity reactions 
+ venous thromboembolic events 
+ hepatobiliary disorders</p><p> assessment report</p><p>
+ ema/490887/2017</p><p>
+ page 53/59 
+ table 31:summary of safety concerns</p></section><section><header>category safety concern</header><p>important potential risks reduced bone mineral density (osteopenia) and osteoporosis 
+ ischaemic cardiovascular events 
+ endometrial dysplasia 
+ interstitial lung disease 
+ vasculitis 
+ pulmonary microembolism of oily solutions 
+ reprotoxicity (fertility, pregnancy and lactation) 
+ missing information 
+ paediatric use 
+ use with severe hepatic impairment 
+ use with severe renal impairment</p></section><section><header>pharmacovigilance plan</header><p>there are no on-going and/or planned additional phv studies/activities in the pharmacovigilance plan.</p></section><section><header>risk minimisation measures</header><p>table 32: summary table of risk minimisation measures</p></section><section><header>safety concern routine risk minimisation measures 
+ additional risk 
+ minimisation 
+ measures</header><p>important identified risk: injection site reaction</p><p>
+ smpc sections: 4.2 4.4, 4.8, 6.6</p><p>
+ none. 
+ important identified risk: 
+ increased risk of bleeding 
+ at the injection site 
+ smpc sections 4.4, 4.6</p><p>
+ none. 
+ important identified risk: 
+ hypersensitivity</p><p>
+ smpc sections 4.3, 4.8 
+ none. 
+ important identified risk: 
+ hepatobiliary disorders</p><p>
+ smpc sections 4.2,,4.3, 4.4, 4.8, 5.2 
+ none.</p><p> assessment report</p><p>
+ ema/490887/2017</p><p>
+ page 54/59 
+ table 32: summary table of risk minimisation measures</p></section><section><header>safety concern routine risk minimisation measures 
+ additional risk 
+ minimisation 
+ measures</header><p>important identified risk: venous thromboembolic 
+ events 
+ smpc sections: 4.4, 4.8 
+ none. 
+ important potential risk: 
+ ischaemic cardiovascular 
+ events 
+ no specific risk minimisation activities 
+ identified. 
+ none. 
+ important potential risk: 
+ endometrial dysplasia 
+ no specific risk minimisation activities 
+ identified. 
+ none. 
+ important potential risk: 
+ interstitial lung disease 
+ no specific risk minimisation activities 
+ identified. 
+ none. 
+ important potential risk: 
+ vasculitis 
+ no specific risk minimisation activities 
+ identified. 
+ none. 
+ important potential risk: 
+ pulmonary microembolism 
+ of oily solutions</p><p>
+ no specific risk minimisation activities 
+ identified. 
+ none. 
+ important potential risk: 
+ reprotoxicity (fertility, 
+ pregnancy and lactation) 
+ smpc sections 4.3, 4.6, 5.3 
+ none. 
+ missing information:</p><p>
+ paediatric use 
+ smpc sections 4.2, 4.4, 5.1, 5.2 
+ none.</p><p>
+ missing information:</p><p>
+ severe hepatic 
+ impairment 
+ smpc sections 4.2, 4.3, 5.2 
+ none. 
+ missing information:</p><p>
+ severe renal impairment 
+ smpc sections 4.2, 4.4 
+ none.</p><p> assessment report</p><p>
+ ema/490887/2017</p><p>
+ page 55/59</p></section><section><header n="2.7">2.7.  
+ update of the product information</header><p>as a consequence of this new indication, sections 4.1, 4.8, 4.9, and 5.1 of the smpc have been updated. additional minor changes were made to sections 4.4, 5.2 and 5.3. the package leaflet has 
+ been updated accordingly.</p></section><section><header n="2.7.1">2.7.1.  
+ user consultation</header><p>no justification for not performing a full user consultation with target patient groups on the package leaflet has been submitted by the mah. however, the changes to the package leaflet are minimal and 
+ do not require user consultation with target patient groups.</p></section><section><header n="3">3.  
+ benefit-risk balance</header></section><section><header n="3.1">3.1.  
+ therapeutic context</header></section><section><header n="3.1.1">3.1.1.  
+ disease or condition</header><p>the disease treated is estrogen receptor positive, locally advanced or metastatic breast cancer in postmenopausal women not previously treated with endocrine therapy.</p></section><section><header n="3.1.2">3.1.2.  
+ available therapies and unmet medical need</header><p>current treatment guidelines emphasise the preferential use of endocrine therapy in postmenopausal women with hr+ advanced breast cancer, and recommend that chemotherapy should be reserved for 
+ cases of rapidly progressive disease or proven endocrine resistance (cardoso et al 2014).</p><p>
+ the choice of first-line endocrine therapy for hr+ advanced breast cancer depends on the type and 
+ length of therapy received in the adjuvant setting (if any). the endocrine therapy options include, but 
+ are not limited to, selective estrogen receptor modulators (serm; e.g. tamoxifen), estrogen receptor 
+ antagonists (e.g. fulvestrant), selective non-steroidal aromatase inhibitors (nsai; e.g. anastrozole and 
+ letrozole) and steroidal aromatase inhibitors (e.g. exemestane) (esmo guideline; nccn breast cancer, 
+ version 2.2017). these agents may be given in first, second or later lines of therapy for advanced 
+ breast cancer (esmo guideline; nccn clinical practice guidelines in oncology). fulvestrant is currently 
+ authorised for the treatment of estrogen receptor positive, locally advanced or metastatic breast 
+ cancer in postmenopausal women with disease relapse on or after adjuvant antiestrogen therapy, or 
+ disease progression on antiestrogen therapy. combination therapies with other agents are also 
+ therapeutic options such as exemestane with everolimus, palbociclib with fulvestrant/an aromatase 
+ inhibitor (nccn, breast cancer, version 2.2017).</p></section><section><header n="3.1.3">3.1.3.  
+ main clinical studies</header><p>the application for the new indication in endocrine naïve patients is based on data from two studies: • a supportive phase 2 study (study d6995c00006): open-label study of fulvestrant 500 mg versus anastrozole 1 mg in 205 women with advanced disease previously untreated with 
+ endocrine therapy or at least a year after completing adjuvant endocrine therapy (first)</p><p> assessment report</p><p>
+ ema/490887/2017</p><p>
+ page 56/59 
+ • a pivotal phase 3 study (study d699bc00001): randomised, double-blind, parallel-group study of fulvestrant 500 mg versus anastrozole 1 mg in 462 women with hormone receptor-positive 
+ locally advanced or metastatic breast cancer who have not previously been treated with any 
+ hormonal therapy (falcon)</p></section><section><header n="3.2">3.2.  
+ favourable effects</header><p>study falcon (n=230 + 232) showed borderline significant superiority in terms of pfs (hr 0.797, p=0.0486, sensitivity analyses 0.03 – 0.06, medians 16.6 months vs. 13.8 months). the odds ratio for 
+ orr is close to 1 which indicated similarity between the treatments. os data are immature at event 
+ rates of about 30% (hr 0.875). median dor was longer in the fulvestrant arm (20.0 months) 
+ compared with the anastrozole arm (13.2 months). the overall data are compatible with a possible 
+ delay in the development of resistance of response compared with anastrozole. 
+ the first study (n=102 + 103) met its primary non-inferiority objective in terms of clinical benefit 
+ response (cbr): cbr of 72.5% in fulvestrant group vs 67% in the anastrozole group; odds ratio 1.302</p><p>
+ (0.717, 2.380), p-value: 0.386. this was supported by the secondary endpoints pfs (hr 0.7, p=0.01) 
+ and os (hr 0.7, p=0.04, medians 54 vs. 48 m.). orr similar and data are again compatible with 
+ delayed development of secondary resistance compared with anastrozole.</p></section><section><header n="3.3">3.3.  
+ uncertainties and limitations about favourable effects</header><p>in the falcon study, the superiority of faslodex over ai seemed to be lost in the subgroup of patients with er+ breast cancer with visceral metastases (pfs hr 0.99). no satisfactory explanation has been 
+ identified and the results in these subgroups have been reflected in section 5.1 of the smpc. 
+ the objectives of falcon did not include cross-over and pfs2 data were not collected. thus the 
+ possible importance of the sequence of therapy cannot be assessed.</p></section><section><header n="3.4">3.4.  
+ unfavourable effects</header><p>fulvestrant has been approved for 12 years and the safety is considered reasonably well described. no new adrs were observed in the clinical studies submitted with the application. the most common 
+ adverse drug reactions are hypersensitivity reactions, hot flushes, nausea, elevated hepatic enzymes, 
+ rash, joint and musculoskeletal pain, asthenia, and injection site reactions. in falcon, the expected 
+ increase in joint and musculoskeletal pain was confirmed and the smpc has been updated accordingly.</p></section><section><header n="3.5">3.5.  
+ uncertainties and limitations about unfavourable effects</header><p>there were no new uncertainties about the unfavourable effects.</p><p> assessment report</p><p>
+ ema/490887/2017</p><p>
+ page 57/59</p></section><section><header n="3.6">3.6.  
+ effects table</header><p>table 33: effects table for faslodex in post-menopausal women with estrogen receptor positive, locally advanced or metastatic breast cancer not previously treated with endocrine therapy</p></section><section><header>effect short description 
+ unit 
+ treatment 
+ control 
+ uncertainties /  
+ strength of evidence 
+ references 
+ favourable effects</header><p>pfs median 
+ event rates</p><p>
+ months 
+ %</p><p>
+ 16.8 
+ 62 
+ 13.8 
+ 72 
+ borderline superior, 
+ credible</p><p>
+ delayed resistance 
+ development</p><p>
+ sensitivity analyses with 
+ p-value from 0.03 to 
+ 0.06</p><p>
+ study 
+ falcon</p><p>
+ hr 
+ p-value</p><p>
+ 0.797 
+ 0.0486 
+ orr 
+ event rate</p><p>
+ % 
+ 46</p><p>
+ 45 
+ similar between arms 
+ odds ratio 
+ 95% ci</p><p>
+ 1.07 
+ (0.7; 1.6) 
+ os 
+ median 
+ event rate</p><p>
+ months 
+ n.a 
+ 29% 
+ n.a 
+ 32% 
+ immature 
+ hr 
+ p-value</p><p>
+ 0.875</p><p>
+ 0.4277 
+ pfs 
+ median 
+ event rates</p><p>
+ months 
+ 23 
+ 62 
+ 13 
+ 77 
+ exploratory 
+ slightly different study 
+ population 
+ study 
+ first 
+ hr 
+ p-value</p><p>
+ 0.66 
+ 0.01 
+ os 
+ median 
+ event rate</p><p>
+ 54 
+ 63% 
+ 48 
+ 74% 
+ open label</p><p>
+ hr 
+ p-value</p><p>
+ 0.70 
+ 0.04</p></section><section><header>unfavourable effects</header><p>ae related 
+ % 
+ 40 
+ 33</p><p>
+ ae 
+ grade</p><p>≥3 
+ % 
+ 22 
+ 18</p><p>
+ ae</p><p>
+ grade</p><p>≥3, 
+ related 
+ % 
+ 4 
+ 2</p><p>
+ injection site, 
+ pain 
+ related 
+ % 
+ 5 
+ 3</p><p>
+ musculo- 
+ skeletal</p><p>
+ related 
+ % 
+ 17 
+ 16</p><p>
+ discontinuations all 
+ % 
+ 7 
+ 4</p><p>
+ abbreviations: ae: adverse event; 
+ pfs: progression free survival; os: overall survival; orr: objective response rate.</p><p>assessment report</p><p>
+ ema/490887/2017</p><p>
+ page 58/59</p></section><section><header n="3.7">3.7.  
+ benefit-risk assessment and discussion</header></section><section><header n="3.7.1">3.7.1.  
+ importance of favourable and unfavourable effects</header><p>the prolonged pfs of approximately 3 months observed in the falcon (and first) study is of a magnitude that is considered meaningful.</p><p> 
+ the safety of fulvestrant has not changed and the adrs are as expected and can be managed 
+ successfully by the recommendations in the smpc and by phv monitoring.</p><p>the smpc has been 
+ updated with the new adr frequencies.</p></section><section><header n="3.7.2">3.7.2.  
+ balance of benefits and risks</header><p>overall, the benefits of fulvestrant outweigh the risks in the treatment of postmenopausal women with locally advanced or metastatic breast cancer who have not received prior endocrine therapy.</p></section><section><header n="3.7.3">3.7.3.  
+ additional considerations on the benefit-risk balance</header><p>regarding the extension of the currently approved indication (second line after “anti-oestrogen therapy” to be extended to second line after “endocrine therapy”), the mah has submitted insufficient 
+ evidence to change the conclusions from the previous variation (emea/h/c/540/ii/0018), and 
+ therefore the proposed extension of the already approved indication is not considered sufficiently 
+ justified.</p></section><section><header n="3.8">3.8.  
+ conclusions</header><p>the overall b/r of faslodex is positive in the treatment of postmenopausal women with locally advanced or metastatic breast cancer who have not received prior endocrine therapy.</p></section><section><header n="4">4.  
+ recommendations</header></section><section><header>outcome</header><p>based on the review of the submitted data, the chmp considers the following variation acceptable and therefore recommends the variation to the terms of the marketing authorisation, concerning the 
+ following change:</p></section><section><header>variation accepted type 
+ annexes 
+ affected</header><p>c.i.6.a</p><p>c.i.6.a - change(s) to therapeutic indication(s) - addition 
+ of a new therapeutic indication or modification of an 
+ approved one</p><p>
+ type ii 
+ i, ii and iiib</p><p>
+ extension of indication to include the treatment of estrogen receptor positive, locally advanced or 
+ metastatic breast cancer in postmenopausal women who have not been previously treated with 
+ endocrine therapy. as a consequence, sections 4.1, 4.8, 4.9, and 5.1 of the smpc are updated in order 
+ to update the safety and efficacy information. the package leaflet is updated in accordance.</p><p> assessment report</p><p>
+ ema/490887/2017</p><p>
+ page 59/59 
+ in addition, the marketing authorisation holder (mah) took the opportunity to introduce minor changes in the smpc.</p></section></body></xml>

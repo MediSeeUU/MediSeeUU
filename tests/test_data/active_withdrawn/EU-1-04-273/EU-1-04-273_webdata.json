@@ -1,0 +1,37 @@
+{
+    "eu_pnumber": "EU/1/04/273",
+    "atc_code": "L01XX23",
+    "eu_aut_status": "ACTIVE",
+    "eu_brand_name_current": "Lysodren",
+    "status_type": "a",
+    "active_substance": "Mitotane",
+    "eu_mah_current": "HRA Pharma Rare Diseases",
+    "eu_orphan_con_current": [
+        {
+            "pre": "o",
+            "id": "102",
+            "eu_num": "EU/3/02/102",
+            "indication": "Treatment of adrenal cortical carcinoma",
+            "link_date": "2004-04-30",
+            "end_date": "2014-04-30"
+        }
+    ],
+    "orphan_status": "h",
+    "eu_aut_date": "2004-04-28 00:00:00",
+    "eu_aut_type_initial": "attribute not available on release",
+    "eu_aut_type_current": "standard",
+    "ema_number": "EMEA/H/C/521",
+    "ema_number_id": "521",
+    "eu_referral": "False",
+    "eu_suspension": "False",
+    "ema_number_certainty": "0.7916666666666666",
+    "authorisation_row": "0",
+    "scrape_date_web": "19/12/2022",
+    "filedates": {
+        "EU-1-04-273_h_epar-other_0.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/procedural-steps-after/lysodren-epar-procedural-steps-taken-scientific-information-after-authorisation_en.pdf",
+            "pdf_date": "2022-12-19 14:35:24.237822",
+            "pdf_scrape_date": "2022-12-19 14:35:24.238808"
+        }
+    }
+}
