@@ -162,27 +162,32 @@ def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources
 
 def combine_assess_time_days_active(eu_pnumber: str, attribute_name: str, sources: list[str],
                                     file_dicts: dict[str, dict[str, any]]) -> int:
-    annex_10_keys = reversed(sorted(file_dicts[src.annex_10].keys()))
+    try:
+        annex_10_keys = reversed(sorted(file_dicts[src.annex_10].keys()))
 
-    for year_key in annex_10_keys:
-        if eu_pnumber not in file_dicts[src.annex_10][year_key].keys():
-            continue
+        for year_key in annex_10_keys:
+            if eu_pnumber not in file_dicts[src.annex_10][year_key].keys():
+                continue
 
-        return file_dicts[src.annex_10][year_key][eu_pnumber][attr.assess_time_days_active]
-
+            return file_dicts[src.annex_10][year_key][eu_pnumber][attr.assess_time_days_active]
+    except Exception:
+        pass
     return attribute_values.invalid_period_days
 
 
 def combine_assess_time_days_cstop(eu_pnumber: str, attribute_name: str, sources: list[str],
                                    file_dicts: dict[str, dict[str, any]]) -> int:
-    annex_10_keys = reversed(sorted(file_dicts[src.annex_10].keys()))
+    try:
+        annex_10_keys = reversed(sorted(file_dicts[src.annex_10].keys()))
 
-    for year_key in annex_10_keys:
-        if eu_pnumber not in file_dicts[src.annex_10][year_key].keys():
-            continue
+        for year_key in annex_10_keys:
+            if eu_pnumber not in file_dicts[src.annex_10][year_key].keys():
+                continue
 
-        return file_dicts[src.annex_10][year_key][eu_pnumber][attr.assess_time_days_cstop]
+            return file_dicts[src.annex_10][year_key][eu_pnumber][attr.assess_time_days_cstop]
 
+    except Exception:
+        pass
     return attribute_values.invalid_period_days
 
 
@@ -199,7 +204,7 @@ def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str]
     annex_initial_dict = file_dicts[src.annex_initial]
     if annex_initial_dict == {}:
         log.warning(f"COMBINER: no annex initial in {eu_pnumber}")
-        return attribute_values.not_found
+        return attribute_values.not_found, attribute_values.default_date
     eu_med_type = annex_initial_dict[attr.eu_med_type]
     eu_med_type_date = get_attribute_date(src.annex_initial, file_dicts)
     eu_atmp = file_dicts[src.decision][attr.eu_atmp]
@@ -220,7 +225,7 @@ def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list
         if ema_number_web == attribute_values.not_found:
             return are_equal, attribute_values.default_date
 
-        ema_excel = get_ema_excel("../data/ema_excel/", "ema_excel.xlsx")
+        ema_excel = get_ema_excel("../data/ema_excel/", "ema_excel.xlsx") #TODO: not hardcoding path
 
         if ema_number_web in ema_excel:
             web_brand_name = web_dict[attr.eu_brand_name_current]
