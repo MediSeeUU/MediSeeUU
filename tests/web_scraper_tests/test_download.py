@@ -1,6 +1,6 @@
 from os import path, remove
 import os
-from datetime import datetime
+from datetime import datetime, date
 import regex as re
 from unittest import TestCase
 from scraping.web_scraper import download
@@ -28,16 +28,16 @@ class TestDownload(TestCase):
             url: url of a file that needs to be tested
         """
         filedates_dict = download.get_date_from_url(url)
-        url_out = filedates_dict["pdf_link"]
-        date1 = filedates_dict["pdf_date"]
-        date1 = datetime.strptime(date1.split()[0], '%Y-%m-%d')
-        date2 = filedates_dict["pdf_scrape_date"]
-        date2 = datetime.strptime(date2.split()[0], '%Y-%m-%d')
+        url_out = filedates_dict[attr.file_date_pdf_link]
+        date1 = filedates_dict[attr.file_date_pdf_date]
+        date1 = datetime.strptime(date1.split()[0], '%Y-%m-%d').date()
+        date2 = filedates_dict[attr.file_date_pdf_scrape_date]
+        date2 = datetime.strptime(date2.split()[0], '%Y-%m-%d').date()
 
         self.assertTrue(url == url_out)
         if len((re.findall(r"\d{8}", url))) > 0:
-            self.assertTrue(date1.date() != datetime.now().date())
-        self.assertTrue(date2.date() == datetime.now().date())
+            self.assertTrue(date1 != date.today())
+        self.assertTrue(date2 == date.today())
 
     @parameterized.expand([["https://ec.europa.eu/health/documents/community-register/2022/20220324154987"
                             "/dec_154987_en.pdf",
@@ -115,7 +115,7 @@ class TestDownload(TestCase):
                                          "-epar-public-assessment-report_en.pdf",
                              attr.omar_url: "",
                              attr.odwar_url: "",
-                             "other_ema_urls": []}
+                             attr.other_ema_urls: []}
                             ]])
     def test_download_medicine_files(self, eu_n, url_dict):
         """

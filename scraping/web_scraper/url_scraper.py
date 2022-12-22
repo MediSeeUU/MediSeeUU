@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime
+from datetime import datetime, date
 
 import scraping.utilities.definitions.attributes as attr
 from scraping.utilities.web import web_utils as utils, json_helper
@@ -62,7 +62,7 @@ def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: MedicineType, data_
 
     # Retrieves the date the EC medicine page was last updated
     html_active = utils.get_html_object(medicine_url)
-    medicine_last_updated_date = ec_scraper.get_last_updated_date(html_active)
+    medicine_last_updated_date: datetime.date = ec_scraper.get_last_updated_date(html_active)
 
     # Checks whether attributes and files need to be scraped from the EC web page
     if not check_scrape_page(eu_n, medicine_last_updated_date, "ec", url_file):
@@ -97,7 +97,7 @@ def get_urls_ema(eu_n: str, url: str, url_file: json_helper.JsonHelper):
     """
     # Retrieves the date the EMA medicine page was last updated
     html_active = utils.get_html_object(url)
-    medicine_last_updated_date: datetime = ema_scraper.find_last_updated_date(html_active)
+    medicine_last_updated_date: datetime.date = ema_scraper.find_last_updated_date(html_active)
 
     # Checks whether attributes and files need to be scraped from the EMA web page
     if not check_scrape_page(eu_n, medicine_last_updated_date, "ema", url_file):
@@ -112,7 +112,7 @@ def get_urls_ema(eu_n: str, url: str, url_file: json_helper.JsonHelper):
     url_file.add_to_dict(pdf_url)
 
 
-def check_scrape_page(eu_n: str, medicine_last_updated: datetime, last_scraped_type: str,
+def check_scrape_page(eu_n: str, medicine_last_updated: datetime.date, last_scraped_type: str,
                       url_file: json_helper.JsonHelper) -> bool:
     """
     Checks whether the medicine page (either EC or EMA) has been updated since last scrape cycle, or that the page has

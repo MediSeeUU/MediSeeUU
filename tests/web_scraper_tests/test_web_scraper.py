@@ -171,7 +171,7 @@ class TestWebScraper(TestCase):
         # check if all files from urls.json are downloaded:
         with open(json_path / "urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
-        filecount = len(url_dict["aut_url"]) + len(url_dict[attr.smpc_url])
+        filecount = len(url_dict[attr.aut_url]) + len(url_dict[attr.smpc_url])
 
         if url_dict[attr.epar_url]:
             filecount += 1
