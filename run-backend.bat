@@ -2,8 +2,8 @@
 @REM Utrecht University within the Software Project course.
 @REM © Copyright Utrecht University (Department of Information and Computing Sciences)
 @echo off
-cd medctrl-backend
+cd backend
 CALL venv/scripts/activate.bat
 cd api
-py manage.py migrate
-py manage.py runserver
+python manage.py migrate
+python manage.py runserver
