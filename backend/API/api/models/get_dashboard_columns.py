@@ -1,11 +1,11 @@
-from django.db import models
+from django.db.models import Model
 from api.models.create_dashboard_columns import DashBoardHistoryInitialColumn
 import logging
 
 logger = logging.getLogger(__name__)
 
 
-def get_initial_history_columns(model_list: list[models.Model]) -> list[str]:
+def get_initial_history_columns(model_list: list[Model]) -> list[str]:
     """
 
     Args:
@@ -23,13 +23,13 @@ def get_initial_history_columns(model_list: list[models.Model]) -> list[str]:
     return result
 
 
-def get_data_key(model: models.Model, field_name: str) -> str:
+def get_data_key(model: Model, field_name: str) -> str:
     for field in model._meta.get_fields():
         if field.name == field_name and hasattr(field, "dashboard_column"):
             return field.dashboard_column.get_data_key(field.name)
 
 
-def insert_extra_dashboard_columns(data, models):
+def insert_extra_dashboard_columns(data, models: list[Model]):
     for medicine in data:
         for model in models:
             for field in model._meta.get_fields():

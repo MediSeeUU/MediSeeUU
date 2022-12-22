@@ -13,7 +13,7 @@ from api.serializers.medicine_serializers.public.common import (
     RelatedMixin,
     ListMixin,
     HistoryMixin,
-    AnyBoolsList
+    AnyBoolsList,
 )
 from api.models.human_models import (
     MedicinalProduct,
@@ -82,7 +82,7 @@ class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, An
             ("eu_brand_name_initial", BrandNameSerializer),
             ("eu_od_initial", OrphanDesignationSerializer),
             ("eu_prime_initial", PrimeSerializer),
-            ("eu_orphan_con_initial", EUOrphanConSerializer)
+            ("eu_orphan_con_initial", EUOrphanConSerializer),
         ]
         # serializers to be added as a current history variable and flattened
         current_history = [
@@ -92,7 +92,7 @@ class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, An
             ("eu_mah", MAHSerializer),
             ("eu_od", OrphanDesignationSerializer),
             ("eu_prime", PrimeSerializer),
-            ("eu_orphan_con", EUOrphanConSerializer)
+            ("eu_orphan_con", EUOrphanConSerializer),
         ]
         any_bools_list = [
             ("procedures", ProceduresSerializer, ["eu_referral", "eu_suspension"]),
