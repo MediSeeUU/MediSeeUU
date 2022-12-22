@@ -103,7 +103,7 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
 
     webdata_dict = {}
     webdata_path = f"{data_filepath}/active_withdrawn/{eu_n}/{eu_n}_webdata.json"
-    target_path: str = f"{data_filepath}/{eu_n}"
+    target_path: str = f"{data_filepath}/active_withdrawn/{eu_n}"
     if os.path.exists(webdata_path):
         with open(webdata_path, 'r') as f:
             webdata_dict = json.load(f)

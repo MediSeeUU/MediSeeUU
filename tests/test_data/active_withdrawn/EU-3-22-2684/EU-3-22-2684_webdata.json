@@ -1,6 +1,4 @@
 {
-    "eu_pnumber": "__SCRAPER_NOT_FOUND__",
-    "atc_code": "__SCRAPER_NOT_FOUND__",
     "eu_aut_status": "ACTIVE",
     "eu_brand_name_current": "EU/3/22/2684",
     "status_type": "a",
@@ -19,12 +17,12 @@
     "eu_suspension": "False",
     "ema_number_certainty": "1.0",
     "authorisation_row": "0",
-    "scrape_date_web": "21/12/2022",
+    "scrape_date_web": "22/12/2022",
     "filedates": {
         "EU-3-22-2684_o_dec_0.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220810156712/dec_156712_en.pdf",
             "pdf_date": "2022-08-10",
-            "pdf_scrape_date": "2022-12-21"
+            "pdf_scrape_date": "2022-12-22"
         }
     }
 }
