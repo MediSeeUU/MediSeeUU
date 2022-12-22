@@ -40,17 +40,17 @@ class OrphanMedicineViewSet(viewsets.ViewSet):
         if not orphan_cache:
             queryset = OrphanProduct.objects.all()
             serializer = OrphanProductSerializer(queryset, many=True)
-            orphan_cache = serializer.data
+            data = serializer.data
+            # Insert extra dashboard columns defined in the models
+            orphan_cache = insert_extra_dashboard_columns(data, models)
             cache.set("orphan_cache", orphan_cache, None)
-
-        data = insert_extra_dashboard_columns(orphan_cache, models)
 
         user = self.request.user
         perms = permission_filter(user)
 
         # filters medicines according to access level of the user
         filtered_medicines = map(
-            lambda obj: {x: y for x, y in obj.items() if x in perms}, data
+            lambda obj: {x: y for x, y in obj.items() if x in perms}, orphan_cache
         )
 
         logger.info("Orphan medicines filtered on access level.")

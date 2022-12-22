@@ -40,18 +40,17 @@ class HumanMedicineViewSet(viewsets.ViewSet):
         if not human_cache:
             queryset = MedicinalProduct.objects.all()
             serializer = PublicMedicinalProductSerializer(queryset, many=True)
-            human_cache = serializer.data
+            data = serializer.data
+            # Insert extra dashboard columns defined in the models
+            human_cache = insert_extra_dashboard_columns(data, models)
             cache.set("human_cache", human_cache, None)
-
-        # Insert extra dashboard columns defined in the models
-        data = insert_extra_dashboard_columns(human_cache, models)
 
         user = self.request.user
         perms = permission_filter(user)
 
         # filters medicines according to access level of the user
         filtered_medicines = map(
-            lambda obj: {x: y for x, y in obj.items() if x in perms}, data
+            lambda obj: {x: y for x, y in obj.items() if x in perms}, human_cache
         )
 
         logger.info("Human medicines filtered on access level.")

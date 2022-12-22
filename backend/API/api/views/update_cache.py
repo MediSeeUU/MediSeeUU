@@ -9,8 +9,9 @@
 from django.core.cache import cache
 from rest_framework.settings import settings
 
-from api.models.human_models import MedicinalProduct
-from api.models.orphan_models import OrphanProduct
+from api.models.human_models import MedicinalProduct, models as human_models
+from api.models.orphan_models import OrphanProduct, models as orphan_models
+from api.models.get_dashboard_columns import insert_extra_dashboard_columns
 from api.serializers.medicine_serializers.public import PublicMedicinalProductSerializer, OrphanProductSerializer
 import logging
 
@@ -27,14 +28,18 @@ def update_cache():
         try:
             human_queryset = MedicinalProduct.objects.all()
             human_serializer = PublicMedicinalProductSerializer(human_queryset, many=True)
+            # Insert extra dashboard columns defined in the models
+            human_cache = insert_extra_dashboard_columns(human_serializer.data, human_models)
             cache.set(
-                "human_cache", human_serializer.data, None
+                "human_cache", human_cache, None
             )  # We set cache timeout to none so it never expires
 
             orphan_queryset = OrphanProduct.objects.all()
             orphan_serializer = OrphanProductSerializer(orphan_queryset, many=True)
+            # Insert extra dashboard columns defined in the models
+            orphan_cache = insert_extra_dashboard_columns(orphan_serializer.data, orphan_models)
             cache.set(
-                "orphan_cache", orphan_serializer.data, None
+                "orphan_cache", orphan_cache, None
             )  # We set cache timeout to none so it never expires
 
             logging.info("Updated cache")
