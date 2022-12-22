@@ -91,12 +91,17 @@ class DateWithNAField(models.Field):
     def get_prep_value(self, value):
         if value is None or value in DataFormats.Date.na_values:
             return value
-        date = datetime.datetime.strptime(value, '%Y-%m-%d')
-        # check if valid date
-        if date.year >= 0 and date.month <= 12 and date.day <= 31:
-            return value
+        try:
+            date = datetime.datetime.strptime(value, '%Y-%m-%d')
+        except ValueError as e:
+            raise ValidationError(f"{self.name}: {value} has failed to be converted to a date with exception: "
+                                  f"\"{str(e)}\". {self.name} must be either a date or a NA message")
         else:
-            raise ValidationError(f"{self.name}: {value} must be either a date or a NA message")
+            # check if valid date
+            if date.year >= 0 and date.month <= 12 and date.day <= 31:
+                return value
+            else:
+                raise ValidationError(f"{self.name}: {value} must be either a date or a NA message")
 
 
 class URLWithNAField(models.Field):
