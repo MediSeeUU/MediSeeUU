@@ -2,6 +2,7 @@ from os import path, remove
 import os
 from datetime import datetime
 import regex as re
+import json
 from unittest import TestCase
 from scraping.web_scraper import download
 from scraping.utilities.web import json_helper
@@ -55,7 +56,11 @@ class TestDownload(TestCase):
             filename_elements: The filename elements
         """
         target_path = f"{data_local}/{eu_n}"
-        self.assertIsNone(download.download_pdf_from_url(url, eu_n, filename_elements, target_path, {}, overwrite=True))
+        with open(f"{target_path}/{eu_n}_webdata.json") as f:
+            attr_dict = json.load(f)
+        self.assertIsNotNone(attr_dict)
+        self.assertNotEqual({}, attr_dict)
+        self.assertIsNone(download.download_pdf_from_url(url, eu_n, filename_elements, target_path, attr_dict, True))
 
     @parameterized.expand([["EU-1-21-1541",
                             "dec",

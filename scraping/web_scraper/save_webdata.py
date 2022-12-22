@@ -77,12 +77,20 @@ def save_webdata_and_urls(medicine_identifier: str, medicine_url: str, dec_list:
             "overwrite_ec_files": "True"
         }
     }
+    attributes_dict["scrape_date_web"] = datetime.strftime(datetime.today(), '%d/%m/%Y')
+    # Creates a directory if the medicine doesn't exist yet
+    Path(f"{target_path}").mkdir(exist_ok=True)
 
     url_file.add_to_dict(url_json)
 
-    # Creates a directory if the medicine doesn't exist yet,
-    # otherwise it just adds the json file to the existing directory
-    Path(f"{target_path}").mkdir(exist_ok=True)
+    # Updates webdata.json if it exists already
+    webdata_path = f"{target_path}/{medicine_identifier}_webdata.json"
+    if Path(webdata_path).exists():
+        attributes_file = JsonHelper(webdata_path)
+        attributes_file.add_to_dict(attributes_dict)
+        attributes_file.save_dict()
+        return
+
+    # Adds the json file to the existing directory
     with open(f"{target_path}/{medicine_identifier}_webdata.json", 'w') as f:
-        attributes_dict["scrape_date_web"] = datetime.strftime(datetime.today(), '%d/%m/%Y')
         json.dump(attributes_dict, f, indent=4)

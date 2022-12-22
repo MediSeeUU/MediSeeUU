@@ -1,9 +1,8 @@
 {
-    "eu_pnumber": "EU/1/18/1299",
-    "atc_code": "__SCRAPER_NOT_FOUND__",
     "eu_aut_status": "ACTIVE",
     "eu_brand_name_current": "Yescarta",
     "status_type": "a",
+    "eu_pnumber": "EU/1/18/1299",
     "active_substance": "axicabtagene ciloleucel",
     "eu_mah_current": "Kite Pharma EU B.V.",
     "eu_orphan_con_current": [
@@ -30,7 +29,7 @@
         }
     ],
     "orphan_status": "h",
-    "eu_aut_date": "2018-08-23 00:00:00",
+    "eu_aut_date": "2018-08-23",
     "eu_aut_type_initial": "standard",
     "eu_aut_type_current": "standard",
     "ema_number": "EMEA/H/C/004480",
@@ -39,6 +38,132 @@
     "eu_suspension": "False",
     "ema_number_certainty": "0.625",
     "authorisation_row": "0",
-    "scrape_date_web": "19/12/2022",
-    "filedates": {}
+    "scrape_date_web": "22/12/2022",
+    "filedates": {
+        "EU-1-18-1299_h_dec_0.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2018/20180823142115/dec_142115_en.pdf",
+            "pdf_date": "2018-08-23",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_dec_1.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2019/20191021146256/dec_146256_en.pdf",
+            "pdf_date": "2019-10-21",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_dec_2.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2020/20200113146766/dec_146766_en.pdf",
+            "pdf_date": "2020-01-13",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_dec_3.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2020/20201125149938/dec_149938_en.pdf",
+            "pdf_date": "2020-11-25",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_dec_4.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210310150880/dec_150880_en.pdf",
+            "pdf_date": "2021-03-10",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_dec_5.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220120154559/dec_154559_en.pdf",
+            "pdf_date": "2022-01-20",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_dec_6.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220621156017/dec_156017_en.pdf",
+            "pdf_date": "2022-06-21",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_dec_7.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220817156394/dec_156394_en.pdf",
+            "pdf_date": "2022-08-17",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_dec_8.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20221014157362/dec_157362_en.pdf",
+            "pdf_date": "2022-10-14",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_anx_0.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2018/20180823142115/anx_142115_en.pdf",
+            "pdf_date": "2018-08-23",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_anx_1.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2019/20191021146256/anx_146256_en.pdf",
+            "pdf_date": "2019-10-21",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_anx_2.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2020/20200113146766/anx_146766_en.pdf",
+            "pdf_date": "2020-01-13",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_anx_3.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2020/20201125149938/anx_149938_en.pdf",
+            "pdf_date": "2020-11-25",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_anx_4.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210310150880/anx_150880_en.pdf",
+            "pdf_date": "2021-03-10",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_anx_5.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220120154559/anx_154559_en.pdf",
+            "pdf_date": "2022-01-20",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_anx_6.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220621156017/anx_156017_en.pdf",
+            "pdf_date": "2022-06-21",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_anx_7.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220817156394/anx_156394_en.pdf",
+            "pdf_date": "2022-08-17",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_anx_8.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20221014157362/anx_157362_en.pdf",
+            "pdf_date": "2022-10-14",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_epar-other_0.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/procedural-steps-after/yescarta-epar-procedural-steps-taken-scientific-information-after-authorisation_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_epar-other_1.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/orphan-maintenance-report-post/yescarta-epar-orphan-maintenance-assessment-report-post-authorisation_en-0.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_epar-other_2.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/yescarta-h-c-004480-ii-0046-epar-assessment-report-variation_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_epar-other_3.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-conclusion/yescarta-h-c-psusa-00010703-202110-epar-scientific-conclusions-grounds-variation-terms-marketing_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_epar-other_4.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/yescarta-h-c-004480-ii-0042-epar-assessment-report-variation_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_epar-other_5.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/orphan-maintenance-report-post/yescarta-epar-orphan-maintenance-assessment-report-post-authorisation_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-18-1299_h_epar-other_6.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-conclusion/yescarta-h-c-psusa-00010703-201904-epar-scientific-conclusions-grounds-variation-terms-marketing_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        }
+    }
 }

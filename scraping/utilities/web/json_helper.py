@@ -22,7 +22,7 @@ class JsonHelper:
         """
         # 'w+' mode creates or overwrites a file with the name
         with open(self.path, 'w+') as file:
-            json.dump(self.local_dict, file)
+            json.dump(self.local_dict, file, indent=4)
 
     def load_json(self) -> dict[str, [dict]]:
         """
