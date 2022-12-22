@@ -29,15 +29,15 @@ def get_date_from_url(url: str) -> dict[str, str]:
     Returns:
         (dict[str, str]): A tuple containing the url, the date of the url and the datetime of the scrape
     """
-    file_date = date.today()
+    file_date = datetime.now()
     url_date = re.findall(r"\d{8}", url)
     if url_date:
         url_date = url_date[0]
         if url_date[:2] == "19" or url_date[:2] == "20":
-            file_date = (datetime.strptime(url_date, '%Y%m%d')).date()
+            file_date = datetime.strptime(url_date, '%Y%m%d')
     return {
         attr.file_date_pdf_link: url,
-        attr.file_date_pdf_date: str(file_date),
+        attr.file_date_pdf_date: str(file_date.date()),
         attr.file_date_pdf_scrape_date: str(date.today())
     }
 
@@ -93,6 +93,12 @@ def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements:
         overwrite (bool): if true, files will be downloaded again if they exist
     """
     filename: str = f"{medicine_identifier}_{'_'.join(filename_elements)}.pdf"
+    if not attr_dict:
+        log.error("No webdata.json dictionary found.")
+    elif attr.filedates_web not in attr_dict:
+        log.warning(f"No key {attr.filedates_web} in the webdata.json file: {attr_dict}.")
+    else:
+        attr_dict[attr.filedates_web][filename] = get_date_from_url(url)
 
     if not overwrite:
         filepath = Path(f"{target_path}/{filename}")
@@ -114,8 +120,6 @@ def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements:
     with open(f"{target_path}/{filename}", "wb") as file:
         file.write(downloaded_file.content)
         log.debug(f"DOWNLOADED {filename} for {medicine_identifier}")
-
-    attr_dict[attr.filedates_web][filename] = get_date_from_url(url)
 
 
 # Download pdfs using the dictionaries created from the json file

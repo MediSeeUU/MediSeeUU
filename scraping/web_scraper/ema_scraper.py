@@ -212,8 +212,8 @@ def get_annex10_data(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[st
         # the dictionary needs to be updated with the new link. Also, new entries must always be added
         year_s = str(year)
         if year_s in annex_dict.keys():
-            last_updated_local: datetime.date = datetime.strptime(annex_dict[year_s]["last_updated"], '%d/%m/%Y').date()
-            last_updated_site: datetime.date = find_last_updated_date_annex10(specific_soup.find_all('small')[1].get_text())
+            last_updated_local = datetime.strptime(annex_dict[year_s]["last_updated"], '%d/%m/%Y').date()
+            last_updated_site = find_last_updated_date_annex10(specific_soup.find_all('small')[1].get_text())
 
             # ignore files that have not changed since last time downloading
             if last_updated_local > last_updated_site:
@@ -241,11 +241,11 @@ def find_last_updated_date(html_active: requests.Response) -> datetime.date:
     soup = bs4.BeautifulSoup(html_active.text, html_parser_str)
     last_updated_element = soup.find("meta", property="og:updated_time")["content"]
     last_updated_text = last_updated_element.split('T')[0]
-    last_updated_datetime = datetime.strptime(last_updated_text, '%Y-%m-%d')
-    return last_updated_datetime.date()
+    last_updated_datetime = datetime.strptime(last_updated_text, '%Y-%m-%d').date()
+    return last_updated_datetime
 
 
-def find_last_updated_date_annex10(text: str) -> date:
+def find_last_updated_date_annex10(text: str) -> datetime.date:
     """
     Converts a piece of text with information when an excel-sheet was last updated to a datetime object
 
@@ -253,7 +253,7 @@ def find_last_updated_date_annex10(text: str) -> date:
         text (str): text containing information when it was last updated.
 
     Returns:
-        datetime: When the excel-sheet was last updated
+        datetime.date: When the excel-sheet was last updated
     """
     # Removes all whitespaces from the text, and splits the words in a list
     new_text: list[str] = text.split()
@@ -265,7 +265,7 @@ def find_last_updated_date_annex10(text: str) -> date:
     else:
         updated_date: str = new_text[2]
 
-    return (datetime.strptime(updated_date, '%d/%m/%Y')).date()
+    return datetime.strptime(updated_date, '%d/%m/%Y').date()
 
 
 @utils.exception_retry(logging_instance=log)
@@ -297,7 +297,7 @@ def get_epar_excel_url(url: str, ema_excel_json_helper: json_helper.JsonHelper) 
 
     # Checks whether the Excel file needs to be downloaded again.
     if ema_excel_dict.get("last_scrape_date", "") != "":
-        last_scrape_date: datetime.date = (datetime.strptime(ema_excel_dict.get("last_scrape_date"), "%d/%m/%Y")).date()
+        last_scrape_date: datetime.date = datetime.strptime(ema_excel_dict.get("last_scrape_date"), "%d/%m/%Y").date()
         if last_updated_date > last_scrape_date:
             download_excel: bool = True
         else:

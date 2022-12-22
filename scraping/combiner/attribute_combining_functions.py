@@ -1,10 +1,37 @@
-# import definitions.value as values
-# import definitions.attributes as attr
+import scraping.utilities.definitions.attribute_values as attribute_values
+import scraping.utilities.definitions.sources as src
+import scraping.utilities.definitions.attributes as attr
 from difflib import SequenceMatcher as SM
+import datetime
 import logging
+import json
+import pandas as pd
 
 log = logging.getLogger("combiner")
 
+# TODO: remove try catch
+def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]) -> str:
+    if source_string == src.web:
+        try:
+            return file_dicts[src.web][attr.scrape_date_web]
+        except Exception:
+            return attribute_values.default_date
+    else:
+        try:
+            file_name = file_dicts[source_string][attr.pdf_file]
+            return file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date]
+        except Exception:
+            return attribute_values.default_date
+
+def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> list[any]:
+    values = []
+    for source in sources:
+        dict = file_dicts[source]
+        try:
+            values.append(dict[attribute_name])
+        except Exception:
+            log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
+    return values
 
 def check_all_equal(values: list[any]) -> bool:
     """
@@ -25,7 +52,7 @@ def check_all_equal(values: list[any]) -> bool:
     return all_same and values[0] is not None
 
 
-def combine_best_source(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> (any, str):
+def combine_best_source(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> any:
     """
 
     Args:
@@ -36,25 +63,23 @@ def combine_best_source(attribute_name: str, sources: list[str], file_dicts: dic
     Returns:
 
     """
-    attributes: list[str] = []
-
-    for source in sources:
-        dict = file_dicts[source]
-        source_date = get_file_date(source, file_dicts)
-        try:
-            attributes.append((dict[attribute_name], source_date))
-        except Exception:
-            log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
-            # log.warning("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
-
-    attributes.append(values.not_found, values.invalid_date)
+    attributes = get_values_from_sources(attribute_name, sources, file_dicts)
+    attributes.append(attribute_values.not_found)
     return attributes[0]
+
+def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> str:
+    if len(strings) >= 2:
+        overlap = SM(None, strings[0].lower(), strings[1].lower()).find_longest_match()
+        if float(overlap.size / len(strings[0])) >= min_matching_fraction:
+            return strings[0][overlap.a:overlap.a + overlap.size]
+
+    return strings[0]  # TODO: log check failed
 
 
 # For combine functions
 # TODO: fix datum
-def combine_select_string_overlap(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]],
-                                  min_matching_fraction: float = 0.8) -> bool:
+def combine_select_string_overlap(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]],
+                                  min_matching_fraction: float = 0.8) -> tuple[str,str]:
     """
     compares two strings to see if a percentage of the shortest string is identical to the longest string
     Args:
@@ -64,28 +89,89 @@ def combine_select_string_overlap(attribute_name: str, sources: list[str], file_
 
     Returns (bool): bool indicating equality
     """
-    strings = []
-    for source in sources:
-        dict = file_dicts[source]
-        # TODO: Replace try/except with if statements
-        try:
-            strings.append(dict[attribute_name])
-        except Exception:
-            log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
-            # log.warning("COMBINER: can't find value for ", attribute_name, " in ", dict[attr.source_file])
+    strings = get_values_from_sources(attribute_name, sources, file_dicts)
 
-    overlap = SM.find_longest_match(strings[0], strings[1])
+    if strings:
+        overlap = string_overlap(strings,min_matching_fraction)
 
-    for string in strings[1:]:
-        overlap = SM.find_longest_match(overlap, string)
+        if overlap != attribute_values.insufficient_overlap:
+            return (overlap, attribute_values.default_date)
 
-    if len(min(strings, key=len)) / len(overlap) >= min_matching_fraction:
-        return (overlap, values.invalid_date)
-
-    return (values.insufficient_overlap, values.invalid_date)
+    return (attribute_values.insufficient_overlap, get_attribute_date(sources[0], file_dicts))
 
 
-def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> str:
+def combine_get_file_url(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> str:
+    try:
+        for source in sources:
+            return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["file_link"]
+    except Exception:
+        print("COMBINER: failed to get url")
+        return attribute_values.url_not_found
+
+    return attribute_values.url_not_found
+
+
+def combine_decision_time_days(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
+    if attr.chmp_opinion_date not in file_dicts[src.epar].keys():
+        return attribute_values.invalid_period_days
+
+    try:
+        initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
+        initial_decision_date = get_attribute_date(src.decision_initial, file_dicts)
+
+        initial_chmp_opinion_date = datetime.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d %H:%M:%S")
+        initial_decision_date = datetime.datetime.strptime(initial_decision_date, "%Y-%m-%d %H:%M:%S")
+
+        return (initial_decision_date - initial_chmp_opinion_date).days
+
+    except Exception as exception:
+        print("COMBINER: failed_combine_decision_time_days -", exception)
+        return attribute_values.invalid_period_days
+
+
+def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
+    epar_keys = file_dicts[src.epar].keys()
+    if attr.chmp_opinion_date not in epar_keys or attr.ema_procedure_start_initial not in epar_keys:
+        return attribute_values.invalid_period_days
+
+    try:
+        initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
+        initial_procedure_start_date = file_dicts[src.epar][attr.ema_procedure_start_initial]
+
+        initial_chmp_opinion_date = datetime.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d %H:%M:%S")
+        initial_procedure_start_date = datetime.datetime.strptime(initial_procedure_start_date, "%Y-%m-%d %H:%M:%S")
+
+        return (initial_chmp_opinion_date - initial_procedure_start_date).days
+    except Exception as exception:
+        print("COMBINER: failed_combine_assess_time_days_total -", exception)
+        return attribute_values.invalid_period_days
+
+
+def combine_assess_time_days_active(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
+    annex_10_keys = reversed(sorted(file_dicts[src.annex_10].keys()))
+
+    for year_key in annex_10_keys:
+        if eu_pnumber not in file_dicts[src.annex_10][year_key].keys():
+            continue
+
+        return file_dicts[src.annex_10][year_key][eu_pnumber][attr.assess_time_days_active]
+
+    return attribute_values.invalid_period_days
+
+
+def combine_assess_time_days_cstop(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> int:
+    annex_10_keys = reversed(sorted(file_dicts[src.annex_10].keys()))
+
+    for year_key in annex_10_keys:
+        if eu_pnumber not in file_dicts[src.annex_10][year_key].keys():
+            continue
+
+        return file_dicts[src.annex_10][year_key][eu_pnumber][attr.assess_time_days_cstop]
+
+    return attribute_values.invalid_period_days
+
+
+def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[str,str]:
     """_summary_
 
     Args:
@@ -94,15 +180,57 @@ def combine_eu_med_type(attribute_name: str, sources: list[str], file_dicts: dic
     Returns:
         str: _description_
     """
-    annex_initial_dict = file_dicts[attr.annex_initial]
+    annex_initial_dict = file_dicts[src.annex_initial]
+    if annex_initial_dict == {}:
+        log.warning(f"COMBINER: no annex initial in {eu_pnumber}")
+        return attribute_values.not_found
     eu_med_type = annex_initial_dict[attr.eu_med_type]
-    eu_med_type_date = get_file_date(annex_initial_dict, file_dicts)
-    eu_atmp = file_dicts[attr.decision][attr.eu_atmp]
+    eu_med_type_date = get_attribute_date(src.annex_initial, file_dicts)
+    eu_atmp = file_dicts[src.decision][attr.eu_atmp]
 
-    if eu_med_type == values.eu_med_type_biologicals and eu_atmp:
-        return (values.eu_med_type_atmp, eu_med_type_date)
+    if eu_med_type == attribute_values.eu_med_type_biologicals and eu_atmp:
+        return attribute_values.eu_med_type_atmp, eu_med_type_date
 
-    return (eu_med_type, eu_med_type_date)
+    return eu_med_type, eu_med_type_date
+
+
+def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> tuple[bool, str]:
+    try:
+        are_equal = False
+
+        web_dict = file_dicts[src.web]
+        ema_number_web = web_dict[attr.ema_number]
+        if ema_number_web == attribute_values.not_found:
+            return (are_equal,attribute_values.default_date)
+
+        ema_excel = get_ema_excel("..\data/ema_excel/", "ema_excel.xlsx")
+
+        if ema_number_web in ema_excel:
+            web_brandname = web_dict[attr.eu_brand_name_current]
+            excel_brandname = ema_excel[ema_number_web]
+            if string_overlap([web_brandname,excel_brandname]) != attribute_values.insufficient_overlap:
+                are_equal = True
+
+
+        ema_number_date = get_attribute_date(src.web, file_dicts)
+
+        return(are_equal, ema_number_date)
+    except Exception:
+        return(False,attribute_values.default_date)
+
+
+def combine_eu_procedures_todo(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> list[dict[str, bool]]:
+    return [{attr.eu_referral: file_dicts[src.web][attr.eu_referral] == "True",
+             attr.eu_suspension: file_dicts[src.web][attr.eu_suspension] == "True"}]
+
+def combine_eu_aut_date(eu_pnumber: str, attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> datetime.date:
+    values = get_values_from_sources(attribute_name,sources,file_dicts)
+
+    if not check_all_equal(values):
+        log.warning(f"COMBINER: crosscheck for {attribute_name} failed")
+
+    values.append(attribute_values.default_date)
+    return values[0]
 
 
 def json_static(value: any, date: str) -> any:
@@ -110,14 +238,63 @@ def json_static(value: any, date: str) -> any:
 
 
 def json_history_current(value: any, date: str) -> dict[str, any]:
-    return {"value": value, "date": date}
+    json_dict = {}
+    json_dict["value"] = value
+    json_dict["date"] = date
+    return [json_dict]
 
 
 def json_history_initial(value: any, date: str) -> list[dict[str, any]]:
-    return [{"value": value, "date": date}]
+    json_dict = {}
+    json_dict["value"] = value
+    json_dict["date"] = date
+    return json_dict
 
 
-def get_file_date(source_dict: dict[str, any], file_dicts: dict[str, dict[str, any]]) -> str:
-    file_name = source_dict[attr.pdf_file]
-    file_dates = file_dicts[attr.file_dates]
-    return file_dates[file_name][attr.file_date]
+def convert_ema_num(ema_number: str) -> str:
+    if 'EMEA/H/C/' in ema_number:
+        number = ema_number.split('EMEA/H/C/',1)[1]
+        return f"EMEA/H/C/{number.lstrip('0')}"
+    else:
+        return attribute_values.not_found
+
+
+def get_ema_excel(filepath: str, filename: str) -> dict:
+    #return pre-made dict if available
+    try:
+        with open(f"{filepath}/ema_excel.json", "r") as file:  # Use file to refer to the file object
+            return json.load(file)
+    except Exception:
+        pass
+
+    #make dictionary from excel
+    try:
+        df_number = pd.read_excel(f"{filepath}/{filename}", header=8)
+        pnumber_key = 'Product number'
+        brandname_key = 'Medicine name'
+
+        # remove non human medicine
+        df_number = df_number[df_number['Category'] == 'Human']
+        # remove all rows other then product number and medicine name.
+        df_number = df_number[[pnumber_key, brandname_key]]
+        # remove leading zeros
+        df_number[pnumber_key] = df_number.apply(lambda x: convert_ema_num(x[pnumber_key]), axis=1)
+        df_number[brandname_key] = df_number.apply(lambda x: x[brandname_key].split('(', 1)[0].strip(), axis=1)
+
+        # remove invalid numbers
+        df_number = df_number[df_number[pnumber_key] != attribute_values.not_found]
+
+        num_dict = dict(zip(df_number[pnumber_key], df_number[brandname_key]))
+
+        # save dict to json file for quick access.
+        with open(f"{filepath}/ema_excel.json", "w") as file:
+            json.dump(num_dict, file)
+        return num_dict
+
+    #excel not found
+    except Exception:
+        print(f"COMBINER: {src.ema_excel} not found at {filepath}")
+        return {}
+
+# print(get_ema_excel("..\..\data/ema_excel/", "ema_excel.xlsx")['EMEA/H/C/281'])
+# print(string_overlap(['lopinavir / Ritonavir', 'lopinavir/ ritonavir'],0.8))

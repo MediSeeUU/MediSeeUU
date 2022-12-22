@@ -121,7 +121,7 @@ def check_scrape_page(eu_n: str, medicine_last_updated: datetime.date, last_scra
 
     Args:
         eu_n (str): EU number of the medicine
-        medicine_last_updated (datetime): Date since the page was last updated
+        medicine_last_updated (datetime.date): Date since the page was last updated
         last_scraped_type (str): The page type (either EC or EMA)
         url_file (json_helper.JsonHelper): the dictionary containing all the urls of a specific medicine
 
@@ -132,8 +132,8 @@ def check_scrape_page(eu_n: str, medicine_last_updated: datetime.date, last_scra
     try:
         # If the last medicine updated date is later than the date of the last scrape cycle, the url.json should be
         # updated
-        if medicine_last_updated.date() > datetime.strptime(url_file.local_dict[eu_n]
-                                                            [f"{last_scraped_type}_last_scraped"], '%d/%m/%Y').date():
+        if medicine_last_updated > datetime.strptime(url_file.local_dict[eu_n]
+                                                     [f"{last_scraped_type}_last_scraped"], '%d/%m/%Y').date():
             log.info(f"{eu_n}: {last_scraped_type.upper()} page has been updated since last scrape cycle")
             return True
         # Otherwise, it returns this function, since there are no new files or attributes
