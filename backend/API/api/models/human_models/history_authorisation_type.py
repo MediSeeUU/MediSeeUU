@@ -41,6 +41,7 @@ class HistoryAuthorisationType(models.Model):
         ),
         Category.Marketing_authorisation,
         DataFormats.String,
+        "Current type of EU authorisation",
         "EU Authorisation Type",
     )
 

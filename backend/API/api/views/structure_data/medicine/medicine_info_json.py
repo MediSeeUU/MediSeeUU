@@ -10,12 +10,12 @@
 # ----------------------------------------------------------------------------
 
 from api.models.create_dashboard_columns import Category
-from django.db import models as Models
+from django.db.models import Model
 
 
 # returns a list of json components using human_models,
 # this list is for the filters and for the detailed information page
-def get_medicine_info(perm, models: list[Models.Model], mock=None):
+def get_medicine_info(perm, models: list[Model], mock=None):
     """
     returns a list of json components using the models given,
     this list is for the filters and for the detailed information page.
@@ -50,7 +50,7 @@ def get_medicine_info(perm, models: list[Models.Model], mock=None):
                 if has_permission(perm, data_key):
                     data[field.dashboard_column.category.value].append({
                         "data-key": data_key,
-                        "data-format": data_format.data_format,
+                        "data-format": data_format,
                         "data-value": data_value,
                     })
 

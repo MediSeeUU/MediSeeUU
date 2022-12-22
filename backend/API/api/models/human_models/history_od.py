@@ -3,6 +3,8 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
+from api.models.create_dashboard_columns import create_dashboard_history_column, Category
+from api.models.common import DataFormats
 from api.models.na_fields import BooleanWithNAField
 
 
@@ -32,9 +34,14 @@ class HistoryOD(models.Model):
         blank=False,
     )
 
-    eu_od = BooleanWithNAField(
-        null=False,
-        blank=False,
+    eu_od = create_dashboard_history_column(
+        BooleanWithNAField(
+            null=False,
+            blank=False,
+        ),
+        Category.Medicinal_product,
+        DataFormats.Bool,
+        "EU orphan designation",
     )
 
     class Meta:

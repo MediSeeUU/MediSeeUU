@@ -40,7 +40,8 @@ class HistoryEUOrphanCon(models.Model):
         ),
         Category.Medicinal_product,
         DataFormats.String,
-        "History EU orphan conditions",
+        "Status of EU orphan designations",
+        "EU orphan conditions",
     )
 
     class Meta:

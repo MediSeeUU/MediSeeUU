@@ -4,6 +4,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def get_initial_history_columns(model_list: list[models.Model]) -> list[str]:
     """
 

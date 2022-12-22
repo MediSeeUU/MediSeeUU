@@ -43,6 +43,7 @@ class HistoryAuthorisationStatus(models.Model):
         ),
         Category.Marketing_authorisation,
         DataFormats.String,
+        "Current EU Authorisation Status",
         "EU Authorisation Status",
     )
 

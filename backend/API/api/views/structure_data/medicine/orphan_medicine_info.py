@@ -12,10 +12,10 @@ from rest_framework.response import Response
 from .medicine_info_json import get_medicine_info
 from api.views.other.permissionFilter import permission_filter
 from rest_framework import permissions
-from api.models.human_models import models
+from api.models.orphan_models import models
 
 
-class Human_medicine_info(views.APIView):
+class OrphanMedicineInfo(views.APIView):
     """
     Viewset for the Medicine info
     """
@@ -24,7 +24,7 @@ class Human_medicine_info(views.APIView):
 
     def get(self, _):
         """
-        Gathers all available information of human medicines with the current user's permissions
+        Gathers all available information of orphan medicines with the current user's permissions
         and inserts it into a JSON. Each time a get request is send, this function is executed.
 
         Returns:

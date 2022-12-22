@@ -41,6 +41,7 @@ class HistoryMAH(models.Model):
         ),
         Category.Marketing_authorisation,
         DataFormats.String,
+        "Current EU marketing authorisation holder",
         "EU Marketing Authorisation Holder",
     )
 

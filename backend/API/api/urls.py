@@ -20,7 +20,8 @@ from api.views.medicine_views import (
 )
 from api.views.account_views import LoginAPI
 from api.views.other import SavedSelectionViewSet, HumanOrphanViewSet
-from api.views.structure_data import Human_medicine_info, Orphan_medicine_info
+from api.views.structure_data.medicine import HumanMedicineInfo, OrphanMedicineInfo
+from api.views.structure_data.history import HumanHistoryInfo, OrphanHistoryInfo
 from api.views.scraper.router import url_patterns as scraper_routes
 
 # Only viewSets can be registered at a router.
@@ -54,6 +55,6 @@ urlpatterns = [
     ),
     # Other routes
     path("scraper/", include(scraper_routes)),
-    path("structuredata/human/", Human_medicine_info.as_view()),
-    path("structuredata/orphan/", Orphan_medicine_info.as_view()),
+    path("structuredata/human/", HumanMedicineInfo.as_view()),
+    path("structuredata/orphan/", OrphanMedicineInfo.as_view()),
 ]

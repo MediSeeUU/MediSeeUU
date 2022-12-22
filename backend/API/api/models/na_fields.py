@@ -96,6 +96,8 @@ class DateWithNAField(models.Field):
         except ValueError as e:
             raise ValidationError(f"{self.name}: {value} has failed to be converted to a date with exception: "
                                   f"\"{str(e)}\". {self.name} must be either a date or a NA message")
+        except TypeError:
+            raise ValidationError(f"{self.name}: {value} must be a string containing a date or a NA message")
         else:
             # check if valid date
             if date.year >= 0 and date.month <= 12 and date.day <= 31:
