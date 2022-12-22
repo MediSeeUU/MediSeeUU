@@ -99,11 +99,8 @@ class DateWithNAField(models.Field):
         except TypeError:
             raise ValidationError(f"{self.name}: {value} must be a string containing a date or a NA message")
         else:
-            # check if valid date
-            if date.year >= 0 and date.month <= 12 and date.day <= 31:
-                return value
-            else:
-                raise ValidationError(f"{self.name}: {value} must be either a date or a NA message")
+            return value
+
 
 
 class URLWithNAField(models.Field):
