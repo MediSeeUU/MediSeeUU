@@ -15,9 +15,6 @@ from api.models.human_models import models, MedicinalProduct
 from api.models.get_dashboard_columns import insert_extra_dashboard_columns
 from api.serializers.medicine_serializers.public import PublicMedicinalProductSerializer
 from api.views.other import permission_filter
-import logging
-
-logger = logging.getLogger(__name__)
 
 
 class HumanMedicineViewSet(viewsets.ViewSet):
@@ -52,7 +49,5 @@ class HumanMedicineViewSet(viewsets.ViewSet):
         filtered_medicines = map(
             lambda obj: {x: y for x, y in obj.items() if x in perms}, human_cache
         )
-
-        logger.info("Human medicines filtered on access level.")
 
         return Response(filtered_medicines)

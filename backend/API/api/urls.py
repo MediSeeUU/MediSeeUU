@@ -14,10 +14,8 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from knox import views as knox_views
 
-from api.views.medicine_views import (
-    HumanMedicineViewSet,
-    OrphanMedicineViewSet
-)
+from api.views.medicine_views import HumanMedicineViewSet, OrphanMedicineViewSet
+from api.views.histories_views import HumanHistoriesViewSet, OrphanHistoriesViewSet
 from api.views.account_views import LoginAPI
 from api.views.other import SavedSelectionViewSet, HumanOrphanViewSet
 from api.views.structure_data.medicine import HumanMedicineInfo, OrphanMedicineInfo
@@ -28,12 +26,14 @@ from api.views.scraper.router import url_patterns as scraper_routes
 # The router is used for better organization of the code.
 router = DefaultRouter()
 
-router.register(r"saveselection", SavedSelectionViewSet, basename="saveselection")
+router.register(r"saveSelection", SavedSelectionViewSet, basename="saveSelection")
 router.register(r"medicine/human", HumanMedicineViewSet, basename="medicine/human")
 router.register(r"medicine/orphan", OrphanMedicineViewSet, basename="medicine/orphan")
+router.register(r"medicine/humanHistories", HumanHistoriesViewSet, basename="medicine/humanHistories")
+router.register(r"medicine/orphanHistories", OrphanHistoriesViewSet, basename="medicine/orphanHistories")
 
 # human orphan splits
-router.register(r"structuredata", HumanOrphanViewSet, basename="structuredata")
+router.register(r"structureData", HumanOrphanViewSet, basename="structureData")
 router.register(r"medicine", HumanOrphanViewSet, basename="medicine")
 
 
@@ -55,6 +55,8 @@ urlpatterns = [
     ),
     # Other routes
     path("scraper/", include(scraper_routes)),
-    path("structuredata/human/", HumanMedicineInfo.as_view()),
-    path("structuredata/orphan/", OrphanMedicineInfo.as_view()),
+    path("structureData/human/", HumanMedicineInfo.as_view()),
+    path("structureData/orphan/", OrphanMedicineInfo.as_view()),
+    path("structureData/humanHistories/", HumanHistoryInfo.as_view()),
+    path("structureData/orphanHistories/", OrphanHistoryInfo.as_view()),
 ]

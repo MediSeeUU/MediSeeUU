@@ -15,9 +15,6 @@ from api.models.orphan_models import models, OrphanProduct
 from api.models.get_dashboard_columns import insert_extra_dashboard_columns
 from api.serializers.medicine_serializers.public import OrphanProductSerializer
 from api.views.other import permission_filter
-import logging
-
-logger = logging.getLogger(__name__)
 
 
 class OrphanMedicineViewSet(viewsets.ViewSet):
@@ -52,7 +49,5 @@ class OrphanMedicineViewSet(viewsets.ViewSet):
         filtered_medicines = map(
             lambda obj: {x: y for x, y in obj.items() if x in perms}, orphan_cache
         )
-
-        logger.info("Orphan medicines filtered on access level.")
 
         return Response(filtered_medicines)
