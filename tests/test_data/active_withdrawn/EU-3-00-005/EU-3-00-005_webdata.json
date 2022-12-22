@@ -1,6 +1,4 @@
 {
-    "eu_pnumber": "____________",
-    "atc_code": "____________",
     "eu_aut_status": "ACTIVE",
     "eu_brand_name_current": "EU/3/00/005",
     "status_type": "a",
@@ -10,16 +8,47 @@
     "eu_od_sponsor": "Pfizer Europe MA EEIG",
     "eu_od_pnumber": "EU/1/18/1277",
     "orphan_status": "o",
-    "eu_od_date": "2000-10-18 00:00:00",
-    "eu_aut_date": "2000-10-18 00:00:00",
-    "eu_aut_type_initial": "NA_at_release_date",
+    "eu_od_date": "2000-10-18",
+    "eu_aut_date": "2000-10-18",
+    "eu_aut_type_initial": "attribute not available on release",
     "eu_aut_type_current": "standard",
     "ema_od_number": "EMEA/OD/022/00",
-    "ema_od_number_id": "22/00",
+    "ema_number_id": "22/00",
     "eu_referral": "False",
     "eu_suspension": "False",
     "ema_number_certainty": "0.75",
     "authorisation_row": "0",
-    "scrape_date_web": "13/12/2022",
-    "filedates": {}
+    "scrape_date_web": "22/12/2022",
+    "filedates": {
+        "EU-3-00-005_o_dec_0.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2000/200010185296/dec_5296_en.pdf",
+            "pdf_date": "2000-10-18",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-3-00-005_o_dec_1.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2013/20130315125746/dec_125746_en.pdf",
+            "pdf_date": "2013-03-15",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-3-00-005_o_dec_2.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2018/20180725141595/dec_141595_en.pdf",
+            "pdf_date": "2018-07-25",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-3-00-005_o_epar-other_0.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/procedural-steps-after/mylotarg-epar-procedural-steps-taken-scientific-information-after-authorisation_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-3-00-005_o_epar-other_1.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/mylotarg-h-c-4204-ii-0007-epar-assessment-report-variation_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-3-00-005_o_epar-other_2.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/mylotarg-h-c-4204-p46-003-epar-assessment-report_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        }
+    }
 }
