@@ -3,7 +3,7 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from enum import Enum
-from typing import Callable, Tuple
+from typing import Callable, Tuple, Any
 from .common import DataFormats
 
 
@@ -21,7 +21,7 @@ class Category(Enum):
 
 class ExtraDashBoardColumn:
     def __init__(self, category: Category, data_key: str, data_format: DataFormats,
-                 data_value: str, function: Callable[[str], str]):
+                 data_value: str, function: Callable[[str], Any]):
         """
         Creates an extra DashboardColumn
 
@@ -30,7 +30,7 @@ class ExtraDashBoardColumn:
             data_key (str):
             data_format (DataFormats): Data format for the dashboard. Example: `link`.
             data_value (str): Title for the variable to be shown on the dashboard.
-            function (Callable[[str], str]):
+            function (Callable[[str], Any]):
         """
         self.category = category
         self.data_key = data_key

@@ -54,11 +54,11 @@ class MedicinalProduct(models.Model):
         "EU Product Number",
         [
             ExtraDashBoardColumn(
-                Category.Medicinal_product,
+                Category.Marketing_authorisation,
                 "eu_pnumber_id",
-                DataFormats.String,
+                DataFormats.Number,
                 "EU product number ID",
-                lambda x: x[-3:],
+                lambda x: int(x[-3:]),
             )
         ]
     )
