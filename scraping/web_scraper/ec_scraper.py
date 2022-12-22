@@ -234,7 +234,7 @@ def get_data_from_medicine_json(medicine_json: dict,
     human_medicine = True
 
     # Not all orphans have eu_od_number or eu_od_sponsor, therefore it is set to a standard value
-    if eu_num[0] == 'o':
+    if "EU-3" in eu_num:
         medicine_dict[attr.eu_od_pnumber] = values.not_found
         medicine_dict[attr.eu_od_sponsor] = values.not_found
 
