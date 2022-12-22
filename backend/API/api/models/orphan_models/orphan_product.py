@@ -8,6 +8,7 @@ from api.models.create_dashboard_columns import (
     create_dashboard_history_initial_column,
     Category,
 )
+from api.models.common import DataFormats
 from api.models.na_fields import DateWithNAField, URLWithNAField
 
 
@@ -46,21 +47,21 @@ class OrphanProduct(models.Model):
             blank=False,
         ),
         Category.Orphan_product,
-        "string",
+        DataFormats.String,
         "EU orphan designation number",
     )
 
     omar_url = create_dashboard_column(
         URLWithNAField(),
         Category.Orphan_product,
-        "link",
+        DataFormats.Link,
         "URL to orphan maintenance assessment report",
     )
 
     odwar_url = create_dashboard_column(
         URLWithNAField(),
         Category.Orphan_product,
-        "link",
+        DataFormats.Link,
         "URL to orphan designation withdrawal assessment report",
     )
 
@@ -76,7 +77,7 @@ class OrphanProduct(models.Model):
             null=False
         ),
         Category.Orphan_product,
-        "string",
+        DataFormats.String,
         "EMA orphan designation number",
     )
 
@@ -85,21 +86,21 @@ class OrphanProduct(models.Model):
             null=False
         ),
         Category.Orphan_product,
-        "string",
+        DataFormats.String,
         "EU orphan designation condition",
     )
 
     eu_od_date = create_dashboard_column(
         DateWithNAField(),
         Category.Orphan_product,
-        "date",
+        DataFormats.Date,
         "EU orphan designation date",
     )
 
     eu_od_comp_date = create_dashboard_column(
         DateWithNAField(),
         Category.Orphan_product,
-        "date",
+        DataFormats.Date,
         "COMP decision date (for EU orphan designation)",
     )
 
@@ -108,7 +109,7 @@ class OrphanProduct(models.Model):
             null=False
         ),
         Category.Orphan_product,
-        "string",
+        DataFormats.String,
         "Sponsor for EU orphan designation",
     )
 
@@ -119,7 +120,7 @@ class OrphanProduct(models.Model):
             null=True,
         ),
         Category.Medicinal_product,
-        "string",
+        DataFormats.String,
         "Initial EU orphan conditions",
     )
 
