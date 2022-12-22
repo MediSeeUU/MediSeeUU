@@ -65,7 +65,7 @@ function Menu({ filters, sorters, update, categories }) {
         closeModal={closeModal}
         className="med-table-menu-modal"
       >
-        <div className="med-filter-menu">
+        <div>
           <FilterMenu
             filters={localFilters}
             setFilters={setFilters}
@@ -73,34 +73,34 @@ function Menu({ filters, sorters, update, categories }) {
             categories={categories}
           />
 
-          <div className="med-table-menu-filter-button-container">
-            <button
-              className="med-table-menu-button med-table-menu-apply-button med-primary-solid"
-              onClick={apply}
-            >
-              Apply
-            </button>
-            <button
-              className="med-table-menu-button med-table-menu-secondary-button"
-              onClick={clear}
-            >
-              Clear
-            </button>
-            <button
-              className="med-table-menu-button med-table-menu-secondary-button"
-              onClick={closeModal}
-            >
-              Close
-            </button>
-          </div>
-          
+          <SortMenu
+            sorters={localSorters}
+            setSorters={setSorters}
+            defaultObj={sortObject}
+          />
         </div>
-        <SortMenu
-          sorters={localSorters}
-          setSorters={setSorters}
-          defaultObj={sortObject}
-        />
-        
+
+        <div className="med-table-menu-filter-button-container">
+          <button
+            className="med-table-filter-button med-primary-solid"
+            onClick={apply}
+          >
+            Apply
+          </button>
+          <button
+            className="med-table-filter-button med-table-menu-secondary-button"
+            onClick={clear}
+          >
+            Clear
+          </button>
+          <button
+            className="med-table-filter-button med-table-menu-secondary-button"
+            onClick={closeModal}
+          >
+            Close
+          </button>
+        </div>
+
       </MedModal>
     </>
   )

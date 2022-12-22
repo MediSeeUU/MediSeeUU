@@ -72,6 +72,7 @@ function FilterMenu({ filters, setFilters, defaultObj, categories }) {
 
   return (
     <>
+    <div className='med-filter-menu'>
       <h1 className="med-table-menu-header">Filter</h1>
       <hr className="med-top-separator" />
       <div
@@ -104,6 +105,7 @@ function FilterMenu({ filters, setFilters, defaultObj, categories }) {
             />
           ))
         }
+      </div>
       </div>
     </>
   )

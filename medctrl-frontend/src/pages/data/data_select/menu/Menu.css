@@ -18,17 +18,17 @@ Utrecht University within the Software Project course.
 .med-changes-menu {
   position: absolute;
   border-radius: 10px;
-  height: 100%;
+  height: 88%;
   background-color: var(--med-dialog-background);
 }
 
 .med-filter-menu {
-  width: 49%;
+  width: 49.5%;
 }
 
 .med-sort-menu {
   float: right;
-  width: 49%;
+  width: 49.5%;
   top: 0;
   right: 0;
 }
@@ -49,6 +49,8 @@ Utrecht University within the Software Project course.
   border-radius: 5px;
 }
 
+
+
 .med-table-menu-secondary-button {
   background-color: var(--med-secondary-modal-button-background);
   color: var(--med-secondary-modal-button-text);
@@ -60,14 +62,25 @@ Utrecht University within the Software Project course.
 
 .med-table-menu-filter-button-container {
   position: absolute;
-  float: right;
-  bottom: 5px;
-  width: 100%;
-  height: 75px;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  left: 25%;
+  bottom: 0px;
+  height: fit-content;
+  border: 1px solid var(--med-secondary-modal-button-hover);
+  border-radius: 10px;
+  background-color: var(--med-dialog-background);
 }
 
-.med-table-menu-apply-button {
-  margin-right: 2%;
+.med-table-filter-button {
+  height: 50%;
+  width: 200px;
+  margin: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  border: 1px solid var(--med-secondary-modal-button-hover);
+  border-radius: 5px;
 }
 
 .med-table-menu-add-filter {
@@ -126,8 +139,8 @@ Utrecht University within the Software Project course.
 }
 
 .med-table-menu-filter-item {
-  width: 19%;
-  margin: 19px;
+  width: 40%;
+  margin: 2.5%;
   display: inline-block;
 }
 

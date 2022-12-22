@@ -154,21 +154,21 @@ class Medicine(models.Model):
         models.IntegerField(db_column="assess_time_days_total", null=False),
         Category.Marketing_Authorisation,
         "number",
-        "Duration of initial EU authorisation assessment procedure (total days)"
+        "Initial EU authorisation assessment procedure (total days)"
     )
 
     assess_time_days_active = create_dashboard_column(
         models.IntegerField(db_column="assess_time_days_active", null=False),
         Category.Marketing_Authorisation,
         "number",
-        "Duration of initial EU authorisation assessment procedure (active days)"
+        "Initial EU authorisation assessment procedure (active days)"
     )
 
     assess_time_days_cstop = create_dashboard_column(
         models.IntegerField(db_column="assess_time_days_cstop", null=False),
         Category.Marketing_Authorisation,
         "number",
-        "Duration of initial EU authorisation assessment procedure (clock-stop days)"
+        "Initial EU authorisation assessment procedure (clock-stop days)"
     )
 
     ec_decision_time_days = create_dashboard_column(

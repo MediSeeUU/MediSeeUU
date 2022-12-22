@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Sort from './Sort'
 
 // Function based component which renders the sort menu
-function SortMenu_old({ sorters, setSorters, defaultObj }) {
+function SortMenu({ sorters, setSorters, defaultObj }) {
   // Add sort item to the menu
   const addSort = () => setSorters(sorters.concat(defaultObj))
 
@@ -48,18 +48,6 @@ function SortMenu_old({ sorters, setSorters, defaultObj }) {
     <div className="med-sort-menu">
       <h1 className="med-table-menu-header">Sort</h1>
       <hr className="med-top-separator" />
-      <div
-        className="med-table-menu-add-filter med-primary-text"
-        onClick={addSort}
-        role={'button'}
-        tabIndex={'0'}
-        onKeyPress={(e) => {
-          if (e.key === 'Enter') addSort()
-        }}
-      >
-        Add Sorting
-        <i className="bx bxs-plus-square med-table-menu-add-filter-icon"></i>
-      </div>
       <div className="med-table-menu-sort-container">
         {
           /* Render a Sort component for each sorter in the current state
@@ -75,9 +63,26 @@ function SortMenu_old({ sorters, setSorters, defaultObj }) {
             />
           ))
         }
+        {
+          /* Only render an add sort option if there are at most 3 sorters */
+          sorters.length < 4 && (
+            <div
+            className="med-table-menu-add-filter med-primary-text"
+            onClick={addSort}
+            role={'button'}
+            tabIndex={'0'}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') addSort()
+            }}
+          >
+            Add Sorting
+            <i className="bx bxs-plus-square med-table-menu-add-filter-icon"></i>
+          </div>
+          )
+        }
       </div>
     </div>
   )
 }
 
-export default SortMenu_old
+export default SortMenu

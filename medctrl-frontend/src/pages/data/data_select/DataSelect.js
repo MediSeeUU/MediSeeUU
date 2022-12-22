@@ -15,6 +15,7 @@ import ButtonComponent from '../../components/ButtonComponent.js'
 import ToggleButtons from '../../components/ToggleButtons.js'
 import { graphemeAt } from 'voca'
 import * as ButtonFunctions from '../../components/ButtonFunctionality.js'
+import OpenFields from '../../components/OpenFields'
 
 // Function based component that displays the search bar and table with all the datapoints that can be selected
 function DataSelect() {
@@ -77,14 +78,10 @@ function DataSelect() {
           update={menuUpdate}
           categories={categories}
         />
-        
-        <ButtonComponent 
-          text="Fields"
-          icon="bx-calendar-plus"
-          clickFunction={ButtonFunctions.FieldsMenu}
-          buttonType="simple"
-        />
 
+        <OpenFields
+
+        />
         
         <hr className="med-top-separator" />
         <TableView
