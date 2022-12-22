@@ -1,22 +1,23 @@
 import json
 import logging
+import multiprocessing
+import os
 from datetime import date, datetime, timedelta
+from itertools import repeat
 
 import bs4
 import regex as re
 import requests
-import os
-import scraping.utilities.log.log_tools as log_tools
-from scraping.utilities.web import web_utils as utils, config_objects, json_helper
-from scraping.utilities.web.medicine_type import MedicineType
-import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.values as values
 import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 from tqdm import tqdm
+
+import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.definitions.attribute_values as values
+import scraping.utilities.log.log_tools as log_tools
+from scraping.utilities.web import web_utils as utils, config_objects, json_helper
+from scraping.utilities.web.medicine_type import MedicineType
 from scraping.web_scraper import url_scraper
-import multiprocessing
-from itertools import repeat
 
 log = logging.getLogger("web_scraper.ec_scraper")
 cpu_count: int = multiprocessing.cpu_count() * 2
@@ -159,7 +160,7 @@ def get_ec_json_objects(html_active: requests.Response) -> list[dict]:
     return parsed_jsons
 
 
-def get_last_updated_date(html_active: requests.Response) -> datetime:
+def get_last_updated_date(html_active: requests.Response) -> datetime.date:
     """
     Gets the last updated date for a medicine on the EC website
 
@@ -168,12 +169,12 @@ def get_last_updated_date(html_active: requests.Response) -> datetime:
             html object for the webpage. Contains a string with 'Last updated on '##/##/####'
 
     Returns:
-        (str): The date in the aforementioned string
+        (datetime.date): The date in the aforementioned string
     """
     soup = bs4.BeautifulSoup(html_active.text, "html.parser")
     last_updated_soup = soup.find(string=re.compile(f"Last updated on.*"))
     last_updated_string = last_updated_soup.text[:-1]
-    return datetime.strptime(last_updated_string.split()[-1], '%d/%m/%Y')
+    return datetime.strptime(last_updated_string.split()[-1], '%d/%m/%Y').date()
 
 
 def scrape_medicine_page(eu_num: str, html_active: requests.Response, medicine_type: MedicineType, data_folder: str) \
@@ -232,14 +233,11 @@ def get_data_from_medicine_json(medicine_json: dict,
     # Whether current web page is about a human or orphan medicine
     human_medicine = True
 
-    # Refused medicine never have an EU number, therefore it is set to a standard value
-    medicine_dict[attr.eu_pnumber]: str = values.not_found
-    # Orphan and refused medicine don't always have ATC codes, therefore it is set to a standard value
-    medicine_dict[attr.atc_code] = values.not_found
     # Not all orphans have eu_od_number or eu_od_sponsor, therefore it is set to a standard value
-    if eu_num[0] != 'h':
+    if eu_num[0] == 'o':
         medicine_dict[attr.eu_od_pnumber] = values.not_found
         medicine_dict[attr.eu_od_sponsor] = values.not_found
+
     for row in medicine_json:
         match row["type"]:
             case "name":
@@ -278,10 +276,11 @@ def get_data_from_medicine_json(medicine_json: dict,
         medicine_dict[attr.orphan_status] = "h"
     else:
         medicine_dict[attr.orphan_status] = "o"
-        medicine_dict[attr.atc_code] = values.not_found
 
     for key, value in medicine_dict.items():
         if value == values.not_found:
+            if (key == attr.eu_pnumber or key == attr.atc_code) and "EU-1" not in eu_num:
+                continue
             log.warning(f"{eu_num}: No value for {key}")
 
     return medicine_dict, ema_url_list
@@ -409,12 +408,11 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
             eu_suspension = True
 
         # Parse the date, formatted as %Y-%m-%d, which looks like 1970-01-01
-        decision_date: datetime = datetime.strptime(row["decision"]["date"], "%Y-%m-%d")
+        decision_date: datetime.date = datetime.strptime(row["decision"]["date"], "%Y-%m-%d").date()
         decision_id = row["id"]
 
         if "orphan designation" == row["type"].lower():
             procedures_dict[attr.eu_od_date] = str(decision_date)
-        decision_date: date = decision_date.date()
         # Puts all the decisions from the last one and a half year in a list to determine the current authorization type
         if last_decision_date - decision_date < timedelta(days=548):
             last_decision_types.append(row["type"])
@@ -440,12 +438,12 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
     eu_aut_str: str = procedures_json[authorisation_row]["decision"]["date"]
     if eu_aut_str is not None:
-        eu_aut_date: datetime = datetime.strptime(eu_aut_str, '%Y-%m-%d')
+        eu_aut_date: datetime.date = datetime.strptime(eu_aut_str, '%Y-%m-%d').date()
         eu_aut_type_initial: str = determine_initial_aut_type(eu_aut_date.year,
                                                               is_exceptional,
                                                               is_conditional)
     else:
-        eu_aut_date: str = values.not_found
+        eu_aut_date = values.not_found
         eu_aut_type_initial: str = values.not_found
 
     # From the list of EMA numbers, the right one is chosen and its certainty determined
@@ -465,10 +463,9 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
     procedures_dict[attr.eu_aut_type_current] = determine_current_aut_type(last_decision_types)
     if "od" in ema_number.lower():
         procedures_dict[attr.ema_od_number] = ema_number
-        procedures_dict[attr.ema_od_number_id] = ema_number_id
     else:
         procedures_dict[attr.ema_number] = ema_number
-        procedures_dict[attr.ema_number_id] = ema_number_id
+    procedures_dict[attr.ema_number_id] = ema_number_id
     procedures_dict[attr.eu_referral] = str(eu_referral)
     procedures_dict[attr.eu_suspension] = str(eu_suspension)
     procedures_dict[attr.ema_number_certainty] = str(ema_number_certainty)
@@ -477,7 +474,6 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
     for key, value in procedures_dict.items():
         if value == values.not_found:
             log.warning(f"{eu_num}: No value for {key}")
-
     return procedures_dict, dec_url_list, anx_url_list
 
 
@@ -615,11 +611,11 @@ def scrape_ec(config: config_objects.WebConfig, medicine_list: list[(str, str, i
         url_file (json_helper.JsonHelper): the dictionary containing all the urls of a specific medicine
         url_refused_file (json_helper.JsonHelper): The dictionary containing the urls of all refused files
     """
+
     log_path = log_tools.get_log_path("no_english_available.txt", config_objects.default_path_data)
     with open(log_path, 'w', encoding="utf-8"):
         pass  # open/clean no_english_available file
-    # make sure tests start with empty dict, because url_file is global variable only way to do this is here.
-    url_file.overwrite_dict({})
+
     log.info("TASK START scraping all medicine data and URLs from the EC website")
     # Transform zipped list into individual lists for thread_map function
     # The last element of the medicine_codes tuple is not of interest, thus we pop()

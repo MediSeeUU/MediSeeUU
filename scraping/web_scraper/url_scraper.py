@@ -1,9 +1,10 @@
 import logging
-from scraping.web_scraper import ema_scraper, ec_scraper, save_webdata
-from scraping.utilities.web import web_utils as utils, json_helper, config_objects
-from scraping.utilities.web.medicine_type import MedicineType
-import scraping.utilities.definitions.attributes as attr
 from datetime import datetime
+
+import scraping.utilities.definitions.attributes as attr
+from scraping.utilities.web import web_utils as utils, json_helper
+from scraping.utilities.web.medicine_type import MedicineType
+from scraping.web_scraper import ema_scraper, ec_scraper, save_webdata
 
 log = logging.getLogger("web_scraper")
 
@@ -111,7 +112,7 @@ def get_urls_ema(eu_n: str, url: str, url_file: json_helper.JsonHelper):
     url_file.add_to_dict(pdf_url)
 
 
-def check_scrape_page(eu_n: str, medicine_last_updated: datetime, last_scraped_type: str,
+def check_scrape_page(eu_n: str, medicine_last_updated: datetime.date, last_scraped_type: str,
                       url_file: json_helper.JsonHelper) -> bool:
     """
     Checks whether the medicine page (either EC or EMA) has been updated since last scrape cycle, or that the page has
@@ -120,7 +121,7 @@ def check_scrape_page(eu_n: str, medicine_last_updated: datetime, last_scraped_t
 
     Args:
         eu_n (str): EU number of the medicine
-        medicine_last_updated (datetime): Date since the page was last updated
+        medicine_last_updated (datetime.date): Date since the page was last updated
         last_scraped_type (str): The page type (either EC or EMA)
         url_file (json_helper.JsonHelper): the dictionary containing all the urls of a specific medicine
 
@@ -131,8 +132,8 @@ def check_scrape_page(eu_n: str, medicine_last_updated: datetime, last_scraped_t
     try:
         # If the last medicine updated date is later than the date of the last scrape cycle, the url.json should be
         # updated
-        if medicine_last_updated.date() > datetime.strptime(url_file.local_dict[eu_n]
-                                                            [f"{last_scraped_type}_last_scraped"], '%d/%m/%Y').date():
+        if medicine_last_updated > datetime.strptime(url_file.local_dict[eu_n]
+                                                     [f"{last_scraped_type}_last_scraped"], '%d/%m/%Y').date():
             log.info(f"{eu_n}: {last_scraped_type.upper()} page has been updated since last scrape cycle")
             return True
         # Otherwise, it returns this function, since there are no new files or attributes

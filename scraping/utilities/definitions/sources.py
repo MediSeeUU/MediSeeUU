@@ -1,0 +1,13 @@
+# All sources :D
+decision = "dec"
+decision_initial = "dec_initial"
+annex = "anx"
+annex_initial = "anx_initial"
+epar = "epar"
+omar = "omar"
+odwar = "odwar"
+web = "web"
+file_dates = "file_dates"
+source_file = "source_file"
+annex_10 = "annex_10"
+ema_excel = "ema_excel"

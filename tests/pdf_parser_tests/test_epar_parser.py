@@ -6,11 +6,11 @@ import regex as re
 
 import scraping.utilities.pdf.helper as helper
 from scraping.pdf_parser.parsers import epar_parser
-import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attribute_values as attribute_values
 
-test_data_loc = "../test_data/active_withdrawn"
+test_data_loc = "../tests/test_data/active_withdrawn"
 if "pdf_parser_tests" in os.getcwd():
-    test_data_loc = "../../test_data/active_withdrawn"
+    test_data_loc = "../../tests/test_data/active_withdrawn"
 xml_bodies = []
 percentage_str = "Percentage found: "
 found_not_scrapeable_string = "Found but not scrapeable: "
@@ -55,18 +55,18 @@ class TestEparParse(TestCase):
         # Call get_date
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_date(xml_body)
-            if output != values.not_found and output != values.not_scrapeable:
+            if output != attribute_values.not_found and output != attribute_values.not_scrapeable:
                 found_count += 1
                 output = output.strftime("%d/%m/%Y")
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
                 month = re.search(r"/\d{2}/", output)[0][1:3].strip()
                 year = re.search(r"\d{4}", output)[0].strip()
                 self.check_date(day, month, year)
-            elif output == values.not_scrapeable:
+            elif output == attribute_values.not_scrapeable:
                 print(found_not_scrapeable_string + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 90)
+        self.assertGreater(percentage_found, 87)
 
     def test_get_opinion_date(self):
         """
@@ -78,18 +78,18 @@ class TestEparParse(TestCase):
             output = epar_parser.get_opinion_date(xml_body)
             if not output:
                 self.fail(f"No output found for {filename}")
-            if output != values.not_found and output != values.not_scrapeable:
+            if output != attribute_values.not_found and output != attribute_values.not_scrapeable:
                 found_count += 1
                 output = output.strftime("%d/%m/%Y")
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
                 month = re.search(r"/\d{2}/", output)[0][1:3].strip()
                 year = re.search(r"\d{4}", output)[0].strip()
                 self.check_date(day, month, year)
-            elif output == values.not_scrapeable:
+            elif output == attribute_values.not_scrapeable:
                 print(found_not_scrapeable_string + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
-        self.assertGreater(percentage_found, 90)
+        self.assertGreater(percentage_found, 87)
 
     def check_date(self, day: str, month: str, year: str):
         """
@@ -116,7 +116,7 @@ class TestEparParse(TestCase):
         available_count = 0
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_legal_basis(xml_body)
-            if output != [values.not_found] and output != [values.not_scrapeable]:
+            if output != [attribute_values.not_found] and output != [attribute_values.not_scrapeable]:
                 found_count += 1
                 available_count += 1
 
@@ -132,7 +132,7 @@ class TestEparParse(TestCase):
                     # The article should be in the list of legal bases
                     if article not in helper.legal_bases:
                         print(f"Legal basis {article} not in list for file {filename}")
-            elif output == [values.not_scrapeable]:
+            elif output == [attribute_values.not_scrapeable]:
                 print(found_not_scrapeable_string + filename)
                 available_count += 1
         percentage_found = found_count / available_count * 100
@@ -148,11 +148,11 @@ class TestEparParse(TestCase):
         # Call get_prime
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_prime(xml_body)
-            if output == values.yes_str:
+            if output == attribute_values.yes_str:
                 yes_exists = True
-            if output == values.no_str:
+            if output == attribute_values.no_str:
                 na_exists = True
-            self.assertIn(output, f"{values.yes_str}{values.no_str}{values.NA_before}")
+            self.assertIn(output, f"{attribute_values.yes_str}{attribute_values.no_str}{attribute_values.NA_before}")
         self.assertTrue(yes_exists)
         self.assertTrue(na_exists)
 
@@ -167,9 +167,9 @@ class TestEparParse(TestCase):
             if not output:
                 self.fail("Rapporteur is empty")
             # No rapporteur present in file, do not count as not scraped
-            elif output == values.not_found:
+            elif output == attribute_values.not_found:
                 found_count += 1
-            elif output != values.not_found and output != values.not_scrapeable:
+            elif output != attribute_values.not_found and output != attribute_values.not_scrapeable:
                 found_count += 1
                 # Check if rapporteur name is of reasonable length
                 self.assertGreater(len(output), 2)
@@ -178,7 +178,7 @@ class TestEparParse(TestCase):
                 # Check if rapporteur is of correct format
                 rapp_format = re.search(r'[\w\s]+', output)
                 self.assertTrue(rapp_format)
-            elif output == values.not_scrapeable:
+            elif output == attribute_values.not_scrapeable:
                 print(found_not_scrapeable_string + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
@@ -195,9 +195,9 @@ class TestEparParse(TestCase):
             if not output:
                 self.fail("Co-rapporteur is empty")
             # No rapporteur present in file, do not count as not scraped
-            elif output == values.not_found:
+            elif output == attribute_values.not_found:
                 found_count += 1
-            elif output != values.not_scrapeable:
+            elif output != attribute_values.not_scrapeable:
                 found_count += 1
                 # Check if co-rapporteur name is of reasonable length
                 self.assertGreater(len(output), 2)
@@ -206,7 +206,7 @@ class TestEparParse(TestCase):
                 # Check if rapporteur is of correct format
                 rapp_format = re.search(r'[\w\s]+', output)
                 self.assertTrue(rapp_format)
-            elif output == values.not_scrapeable:
+            elif output == attribute_values.not_scrapeable:
                 print(found_not_scrapeable_string + filename)
         percentage_found = found_count / len(xml_bodies) * 100
         print(percentage_str + str(round(percentage_found, 2)) + '%')
@@ -221,11 +221,11 @@ class TestEparParse(TestCase):
         # Call get_reexamination
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_reexamination(xml_body)
-            if output == values.yes_str:
+            if output == attribute_values.yes_str:
                 yes_exists = True
             if not output:
                 self.fail("No output found")
-            self.assertIn(output, f"{values.yes_str}{values.no_str}")
+            self.assertIn(output, f"{attribute_values.yes_str}{attribute_values.no_str}")
         self.assertTrue(yes_exists)
 
     def test_get_accelerated_assessment(self):
@@ -236,10 +236,10 @@ class TestEparParse(TestCase):
         # Call get_accelerated_assessment
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_accelerated_assessment(xml_body)
-            if output == values.yes_str:
+            if output == attribute_values.yes_str:
                 yes_exists = True
             if not output:
                 self.fail("No output found")
-            self.assertIn(output, f"{values.yes_str}{values.no_str}{values.NA_before}")
+            self.assertIn(output, f"{attribute_values.yes_str}{attribute_values.no_str}{attribute_values.NA_before}")
 
         self.assertTrue(yes_exists)

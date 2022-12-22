@@ -1,0 +1,167 @@
+{
+    "eu_aut_status": "ACTIVE",
+    "eu_brand_name_current": "Lysodren",
+    "status_type": "a",
+    "eu_pnumber": "EU/1/04/273",
+    "active_substance": "Mitotane",
+    "eu_mah_current": "HRA Pharma Rare Diseases",
+    "eu_orphan_con_current": [
+        {
+            "pre": "o",
+            "id": "102",
+            "eu_num": "EU/3/02/102",
+            "indication": "Treatment of adrenal cortical carcinoma",
+            "link_date": "2004-04-30",
+            "end_date": "2014-04-30"
+        }
+    ],
+    "atc_code": "L01XX23",
+    "orphan_status": "h",
+    "eu_aut_date": "2004-04-28",
+    "eu_aut_type_initial": "attribute not available on release",
+    "eu_aut_type_current": "standard",
+    "ema_number": "EMEA/H/C/521",
+    "ema_number_id": "521",
+    "eu_referral": "False",
+    "eu_suspension": "False",
+    "ema_number_certainty": "0.7916666666666666",
+    "authorisation_row": "0",
+    "scrape_date_web": "22/12/2022",
+    "filedates": {
+        "EU-1-04-273_h_dec_0.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2004/200404287648/dec_7648_en.pdf",
+            "pdf_date": "2004-04-28",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_dec_1.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2006/2006022811168/dec_11168_en.pdf",
+            "pdf_date": "2006-02-28",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_dec_2.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2007/2007042623649/dec_23649_en.pdf",
+            "pdf_date": "2007-04-26",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_dec_3.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2009/2009032555652/dec_55652_en.pdf",
+            "pdf_date": "2009-03-25",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_dec_4.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2011/20111003110571/dec_110571_en.pdf",
+            "pdf_date": "2011-10-03",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_dec_5.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2012/20120823124192/dec_124192_en.pdf",
+            "pdf_date": "2012-08-23",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_dec_6.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2014/20140603128801/dec_128801_en.pdf",
+            "pdf_date": "2014-06-03",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_dec_7.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2015/20150226130899/dec_130899_en.pdf",
+            "pdf_date": "2015-02-26",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_dec_8.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2017/20170516137848/dec_137848_en.pdf",
+            "pdf_date": "2017-05-16",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_dec_9.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2019/20190919146015/dec_146015_en.pdf",
+            "pdf_date": "2019-09-19",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_dec_10.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210322150898/dec_150898_en.pdf",
+            "pdf_date": "2021-03-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_anx_0.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2004/200404287648/anx_7648_en.pdf",
+            "pdf_date": "2004-04-28",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_anx_1.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2006/2006022811168/anx_11168_en.pdf",
+            "pdf_date": "2006-02-28",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_anx_2.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2007/2007042623649/anx_23649_en.pdf",
+            "pdf_date": "2007-04-26",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_anx_3.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2009/2009032555652/anx_55652_en.pdf",
+            "pdf_date": "2009-03-25",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_anx_4.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2011/20111003110571/anx_110571_en.pdf",
+            "pdf_date": "2011-10-03",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_anx_5.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2012/20120823124192/anx_124192_en.pdf",
+            "pdf_date": "2012-08-23",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_anx_6.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2014/20140603128801/anx_128801_en.pdf",
+            "pdf_date": "2014-06-03",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_anx_7.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2015/20150226130899/anx_130899_en.pdf",
+            "pdf_date": "2015-02-26",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_anx_8.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2017/20170516137848/anx_137848_en.pdf",
+            "pdf_date": "2017-05-16",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_anx_9.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2019/20190919146015/anx_146015_en.pdf",
+            "pdf_date": "2019-09-19",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_anx_10.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210322150898/anx_150898_en.pdf",
+            "pdf_date": "2021-03-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_epar-other_0.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/procedural-steps-after/lysodren-epar-procedural-steps-taken-scientific-information-after-authorisation_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_epar-other_1.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-conclusion/lysodren-h-c-521-psuv-0016-epar-scientific-conclusions-grounds-recommending-variation-terms_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_epar-other_2.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-conclusion/lysodren-h-c-521-psusa-00002075-202004-epar-scientific-conclusions-grounds-recommending-variation_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_epar-other_3.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/lysodren-h-c-521-ii-0014-epar-assessment-report-variation_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        },
+        "EU-1-04-273_h_epar-other_4.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion/lysodren-epar-scientific-discussion_en.pdf",
+            "pdf_date": "2022-12-22",
+            "pdf_scrape_date": "2022-12-22"
+        }
+    }
+}
