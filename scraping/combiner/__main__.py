@@ -2,8 +2,6 @@ from datetime import datetime
 from os import listdir
 import os.path as path
 import json
-import joblib
-import multiprocessing
 import scraping.combiner.attribute_combining_functions as acf
 import scraping.utilities.definitions.attributes as attr
 import scraping.utilities.definitions.attribute_objects as attr_obj
@@ -11,6 +9,7 @@ import scraping.utilities.definitions.sources as src
 import logging
 
 log = logging.getLogger("combiner")
+log.disabled = True
 
 
 # Main file to run all parsers
@@ -42,7 +41,7 @@ def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
     pdf_data = get_dict('pdf_parser', filepath, folder_name)
     file_dicts[src.web] = get_dict('webdata', filepath, folder_name)
 
-    print(pdf_data)
+    #get respective parts from pdf_parser json
     decision_files = sorted(
         [(int(dictionary[attr.pdf_file][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["decisions"]],
         key=lambda x: x[0])
@@ -50,7 +49,7 @@ def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
         [(int(dictionary[attr.pdf_file][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]],
         key=lambda x: x[0])
 
-    # TODO: functie met len
+    #get current en initial files
     if len(decision_files) > 0:
         file_dicts[src.decision] = decision_files[-1][1]
         file_dicts[src.decision_initial] = decision_files[0][1]
@@ -58,22 +57,23 @@ def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
         file_dicts[src.annex] = annex_files[-1][1]
         file_dicts[src.annex_initial] = annex_files[0][1]
 
-    try:
+    if len(pdf_data["epars"]) > 0:
         file_dicts[src.epar] = pdf_data["epars"][0]
-    except IndexError:
+    else:
         log.info(f"COMBINER: no epar found in pdf_data for {folder_name}")
 
-    try:
+    if len(pdf_data["omars"]) > 0:
         file_dicts[src.omar] = pdf_data["omars"][0]
-    except IndexError:
+    else:
         log.info(f"COMBINER: no omar found in pdf_data for {folder_name}")
 
+    #fetch annex_10
     try:
         annex_10_path = path.join(filepath, "../../annex_10")
         with open(path.join(annex_10_path, "annex_10_parser.json"), "r") as annex_10:
             file_dicts[src.annex_10] = json.load(annex_10)
     except FileNotFoundError:
-        log.info(f"COMBINER: no omar found in pdf_data for {folder_name}")
+        log.info(f"COMBINER: no annex_10 data found in {folder_name}")
 
     return file_dicts
 
@@ -98,10 +98,10 @@ def combine_folder(filepath: str, folder_name: str):
             date = acf.get_attribute_date(attribute.sources[0], file_dicts)
             combined_dict[attribute.name] = attribute.json_function(value, date)
         except Exception:
-            log.warning("COMBINER: failed to get", attribute.name, "in", folder_name)
+            log.info("COMBINER: failed to get", attribute.name, "in", folder_name)
 
     combined_json = open(path.join(filepath, folder_name + "_combined.json"), "w")
-    json.dump(combined_dict, combined_json, default=str)
+    json.dump(combined_dict, combined_json, default=str, indent=4)
     combined_json.close()
 
 
@@ -117,14 +117,6 @@ def get_dict(source: str, filepath: str, folder_name: str) -> dict:
     Returns:
 
     """
-    try:
-        with open(path.join(filepath, folder_name + f"_{source}.json"), "r") as source_json:
-            return json.load(source_json)
-    except FileNotFoundError:
-        log.warning(f"COMBINER: no {source}.json found in {filepath}")
-    except Exception as e:
-        log.error(f"COMBINER: {e} for folder {folder_name}")
-        
     if source == "pdf_data":
         return {
             "eu_number": None,
@@ -135,6 +127,14 @@ def get_dict(source: str, filepath: str, folder_name: str) -> dict:
             "omars": [],
             "odwars": []
         }
+
+    try:
+        with open(path.join(filepath, folder_name + f"_{source}.json"), "r") as source_json:
+            return json.load(source_json)
+    except FileNotFoundError:
+        log.warning(f"COMBINER: no {source}.json found in {filepath}")
+    except Exception as e:
+        log.error(f"COMBINER: {e} for {source}.json in {filepath}")
         
     return {}
 
