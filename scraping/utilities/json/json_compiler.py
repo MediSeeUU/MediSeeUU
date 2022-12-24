@@ -68,7 +68,7 @@ def compile_json_file(compile_dir: str, save_dir: str, incl_substr: list[str], e
     compiled_dict = compile_json_dict(compile_dir, incl_substr, excl_substr, subdirectories)
 
     with open(path.join(save_dir, "compiled.json"), "w") as compiled_json:
-        json.dump(compiled_dict, compiled_json)
+        json.dump(compiled_dict, compiled_json, indent = 4)
 
 
 def compile_json_files(directory: str, save_dir: str, add_webdata: bool = True, add_pdfdata: bool = True):
@@ -92,7 +92,7 @@ def compile_json_files(directory: str, save_dir: str, add_webdata: bool = True, 
         get_medicine_json(path.join(meds_dir, subdirectory), medicine_json_list, add_webdata, add_pdfdata)
 
     all_json_results = open(path.join(save_dir, "all_json_results.json"), "w")
-    json.dump(medicine_json_list, all_json_results)
+    json.dump(medicine_json_list, all_json_results, indent = 4)
     all_json_results.close()
 
 
