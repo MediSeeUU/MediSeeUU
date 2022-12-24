@@ -481,7 +481,7 @@ to be fetched from.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.ec_scraper.get_last_updated_date">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">get_last_updated_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">html_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#web_scraper.ec_scraper.get_last_updated_date" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ec_scraper.</span></span><span class="sig-name descname"><span class="pre">get_last_updated_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">html_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#web_scraper.ec_scraper.get_last_updated_date" title="Permalink to this definition"></a></dt>
 <dd><p>Gets the last updated date for a medicine on the EC website</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -491,7 +491,7 @@ to be fetched from.</p>
 <dd class="field-even"><p>The date in the aforementioned string</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(str)</p>
+<dd class="field-odd"><p>(datetime.date)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -643,7 +643,7 @@ with all the links to the EMA.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.ema_scraper.find_last_updated_date">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.ema_scraper.</span></span><span class="sig-name descname"><span class="pre">find_last_updated_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">html_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#web_scraper.ema_scraper.find_last_updated_date" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ema_scraper.</span></span><span class="sig-name descname"><span class="pre">find_last_updated_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">html_active</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#web_scraper.ema_scraper.find_last_updated_date" title="Permalink to this definition"></a></dt>
 <dd><p>Finds the date when a medicine page was last updated</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -653,14 +653,14 @@ with all the links to the EMA.</p></li>
 <dd class="field-even"><p>When the medicine page on the EMA website was last updated</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>datetime</p>
+<dd class="field-odd"><p>datetime.date</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.ema_scraper.find_last_updated_date_annex10">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.ema_scraper.</span></span><span class="sig-name descname"><span class="pre">find_last_updated_date_annex10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#web_scraper.ema_scraper.find_last_updated_date_annex10" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.ema_scraper.</span></span><span class="sig-name descname"><span class="pre">find_last_updated_date_annex10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#web_scraper.ema_scraper.find_last_updated_date_annex10" title="Permalink to this definition"></a></dt>
 <dd><p>Converts a piece of text with information when an excel-sheet was last updated to a datetime object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -670,7 +670,7 @@ with all the links to the EMA.</p></li>
 <dd class="field-even"><p>When the excel-sheet was last updated</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>datetime</p>
+<dd class="field-odd"><p>datetime.date</p>
 </dd>
 </dl>
 </dd></dl>
@@ -858,7 +858,7 @@ system correctly.</p>
 <span id="web-scraper-url-scraper-module"></span><h2>web_scraper.url_scraper module<a class="headerlink" href="#module-web_scraper.url_scraper" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="web_scraper.url_scraper.check_scrape_page">
-<span class="sig-prename descclassname"><span class="pre">web_scraper.url_scraper.</span></span><span class="sig-name descname"><span class="pre">check_scrape_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_last_updated</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_scraped_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JsonHelper</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#web_scraper.url_scraper.check_scrape_page" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">web_scraper.url_scraper.</span></span><span class="sig-name descname"><span class="pre">check_scrape_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_last_updated</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_scraped_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">JsonHelper</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#web_scraper.url_scraper.check_scrape_page" title="Permalink to this definition"></a></dt>
 <dd><p>Checks whether the medicine page (either EC or EMA) has been updated since last scrape cycle, or that the page has
 never been scraped at all. Based on this it returns a boolean that indicates whether attributes and files need to be
 fetched from the html</p>
@@ -866,7 +866,7 @@ fetched from the html</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>eu_n</strong> (<em>str</em>) – EU number of the medicine</p></li>
-<li><p><strong>medicine_last_updated</strong> (<em>datetime</em>) – Date since the page was last updated</p></li>
+<li><p><strong>medicine_last_updated</strong> (<em>datetime.date</em>) – Date since the page was last updated</p></li>
 <li><p><strong>last_scraped_type</strong> (<em>str</em>) – The page type (either EC or EMA)</p></li>
 <li><p><strong>url_file</strong> (<em>json_helper.JsonHelper</em>) – the dictionary containing all the urls of a specific medicine</p></li>
 </ul>

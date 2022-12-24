@@ -77,8 +77,6 @@ def get_final_json(final_json: dict, json_data: dict, all_names: list):
                         value[sub_key][k] = not_found_str
                 elif sub_value["value"] == values.not_found or sub_value["value"] == values.combiner_not_found:
                     value[sub_key]["value"] = not_found_str
-        if values.not_found in str(value):
-            print(value)
         final_json[name] = value
 
 
