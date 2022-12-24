@@ -26,7 +26,7 @@ def main():
         run = False
         pause.until(start_time + timedelta(days=7))  # Wait for seven days until the next scrape cycle
 
-import scraping.utilities.json.json_compiler as jc
+
 def run_all():
     """
     Runs all modules of MediSee
@@ -41,14 +41,12 @@ def run_all():
     # web_config = config_objects.WebConfig().run_custom(scrape_ec=True, scrape_ema=True).set_parallel()
 
     # Any module can be commented or uncommented here, as the modules they work separately
-    # web_scraper.main(web_config)
-    # xml_converter.main(data_folder_directory)
-    # pdf_parser.main(data_folder_directory)
-    # annex_10_parser.main(data_folder_directory)
-    print('combining......')
+    web_scraper.main(web_config)
+    xml_converter.main(data_folder_directory)
+    pdf_parser.main(data_folder_directory)
+    annex_10_parser.main(data_folder_directory)
     combiner.main(data_folder_directory)
     # transformer.main(data_folder_directory)
-    jc.compile_json_file(data_folder_directory,data_folder_directory, ['combined.json'],[],True)
     # db_communicator_main.main(data_folder_directory)
 
 
