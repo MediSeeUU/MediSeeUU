@@ -29,27 +29,28 @@ class Command(BaseCommand):
 
             # pylint: disable=protected-access
             for field in model._meta.get_fields():
-                name = f"{model.__name__.lower()}.{field.name}.view"
-                description = f"Can view {field.name} in {model.__name__}"
+                if field.concrete:
+                    name = f"{model.__name__.lower()}.{field.name}.view"
+                    description = f"Can view {field.name} in {model.__name__}"
 
-                columns = [(name, description)]
+                    columns = [(name, description)]
 
-                # Add view permissions for every extra dashboard column
-                if hasattr(field, "dashboard_column"):
-                    data_info = field.dashboard_column.get_all_data_info(field.name)
-                    for data_key, _, _ in data_info:
-                        if data_key != field.name:
-                            name = f"{model.__name__.lower()}.{data_key}.view"
-                            description = f"Can view {data_key} in {model.__name__}"
-                            columns.append((name, description))
+                    # Add view permissions for every extra dashboard column
+                    if hasattr(field, "dashboard_column"):
+                        data_info = field.dashboard_column.get_all_data_info(field.name)
+                        for data_key, _, _ in data_info:
+                            if data_key != field.name:
+                                name = f"{model.__name__.lower()}.{data_key}.view"
+                                description = f"Can view {data_key} in {model.__name__}"
+                                columns.append((name, description))
 
-                for column in columns:
-                    perm, created = Permission.objects.update_or_create(
-                        codename=column[0],
-                        name=column[1],
-                        content_type=content_type,
-                    )
-                    if created:
-                        logging.getLogger(__name__).info(f"Created new permission '{perm}'")
-                    else:
-                        logging.getLogger(__name__).info(f"Permission '{perm}' already exists")
+                    for column in columns:
+                        perm, created = Permission.objects.update_or_create(
+                            codename=column[0],
+                            name=column[1],
+                            content_type=content_type,
+                        )
+                        if created:
+                            logging.getLogger(__name__).info(f"Created new permission '{perm}'")
+                        else:
+                            logging.getLogger(__name__).info(f"Permission '{perm}' already exists")
