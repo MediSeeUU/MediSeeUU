@@ -84,6 +84,15 @@ class MedicinalProduct(models.Model):
         Category.Medicinal_product,
         DataFormats.String,
         "EMA Application Number",
+        [
+            ExtraDashBoardColumn(
+                Category.Medicinal_product,
+                "ema_number_id",
+                DataFormats.String,
+                "EMA application number ID",
+                lambda x: int(x[-3:]),
+            )
+        ]
     )
 
     eu_med_type = create_dashboard_column(
