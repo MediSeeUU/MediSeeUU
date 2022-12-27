@@ -56,8 +56,6 @@ class HumanHistoriesViewSet(viewsets.ViewSet):
         human_histories = sorted(human_histories, key=lambda d: d["change_date"])
 
         # filters histories according to access level of the user
-        filtered_histories = map(
-            lambda obj: {x: y for x, y in obj.items() if x in perms}, human_histories
-        )
+        filtered_histories = [history for history in human_histories if all(key in perms for key in history.keys())]
 
         return Response(filtered_histories)
