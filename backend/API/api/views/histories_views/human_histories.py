@@ -49,11 +49,15 @@ class HumanHistoriesViewSet(viewsets.ViewSet):
         user = self.request.user
         perms = permission_filter(user)
 
+        # Concat all histories
+        human_histories = [inner for outer in human_histories for inner in outer]
+
+        # Sort by change_date, ascending
+        human_histories = sorted(human_histories, key=lambda d: d["change_date"])
+
         # filters histories according to access level of the user
-        filtered_histories = []
-        for history in human_histories:
-            filtered_histories.append(
-                map(lambda obj: {x: y for x, y in obj.items() if x in perms}, history)
-            )
+        filtered_histories = map(
+            lambda obj: {x: y for x, y in obj.items() if x in perms}, human_histories
+        )
 
         return Response(filtered_histories)
