@@ -4,9 +4,31 @@
 
 from rest_framework import viewsets
 from rest_framework import permissions
+from rest_framework.request import Request
 from rest_framework.response import Response
-from django.core.cache import cache
+from .common import view_history
 
 
 class OrphanHistoriesViewSet(viewsets.ViewSet):
-    pass
+
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def retrieve(self, request: Request, pk: str = None) -> Response:
+        """
+        Retrieve endpoint for the orphan history timeline
+
+        Args:
+            request (Request): The request being made by the user, not used
+            pk (str): the eu_od_number being passed as url parameter
+
+        Returns:
+            Response: The orphan history timeline of the medicine with the specified eu_od_number
+        """
+
+        eu_od_number = pk.replace('_', '/')
+        models_serializers = [
+
+        ]
+        user = self.request.user
+        return Response(view_history(user, {"eu_od_number": eu_od_number}, models_serializers))
+

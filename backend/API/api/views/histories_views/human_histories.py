@@ -4,8 +4,9 @@
 
 from rest_framework import viewsets
 from rest_framework import permissions
+from rest_framework.request import Request
 from rest_framework.response import Response
-from api.views.other import permission_filter
+from .common import view_history
 from api.models.human_models import (
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
@@ -15,7 +16,7 @@ from api.models.human_models import (
     HistoryOD,
     HistoryPrime,
 )
-from api.serializers.medicine_serializers.histories import (
+from api.serializers.medicine_serializers.histories.human_histories import (
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,
@@ -30,11 +31,20 @@ class HumanHistoriesViewSet(viewsets.ViewSet):
 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    def retrieve(self, _, pk=None):
-        eu_pnumber = pk.replace('_', '/')
+    def retrieve(self, request: Request, pk: str = None) -> Response:
+        """
+        Retrieve endpoint for the human history timeline
 
-        human_histories = []
-        for model, serializer in [
+        Args:
+            request (Request): The request being made by the user, not used
+            pk (str): the eu_pnumber being passed as url parameter
+
+        Returns:
+            Response: The human history timeline of the medicine with the specified eu_pnumber
+        """
+
+        eu_pnumber = pk.replace('_', '/')
+        models_serializers = [
             (HistoryAuthorisationStatus, AuthorisationStatusSerializer),
             (HistoryAuthorisationType, AuthorisationTypeSerializer),
             (HistoryBrandName, BrandNameSerializer),
@@ -42,20 +52,6 @@ class HumanHistoriesViewSet(viewsets.ViewSet):
             (HistoryMAH, MAHSerializer),
             (HistoryOD, OrphanDesignationSerializer),
             (HistoryPrime, PrimeSerializer),
-        ]:
-            queryset = model.objects.filter(eu_pnumber=eu_pnumber).all()
-            human_histories.append(serializer(queryset, many=True).data)
-
+        ]
         user = self.request.user
-        perms = permission_filter(user)
-
-        # Concat all histories
-        human_histories = [inner for outer in human_histories for inner in outer]
-
-        # Sort by change_date, ascending
-        human_histories = sorted(human_histories, key=lambda d: d["change_date"])
-
-        # filters histories according to access level of the user
-        filtered_histories = [history for history in human_histories if all(key in perms for key in history.keys())]
-
-        return Response(filtered_histories)
+        return Response(view_history(user, {"eu_pnumber": eu_pnumber}, models_serializers))
