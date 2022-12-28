@@ -1,0 +1,126 @@
+{
+    "eu_accel_assess_g": "__SCRAPER_NOT_FOUND__",
+    "eu_od_date": "__SCRAPER_NOT_FOUND__",
+    "assess_time_days_total": -1,
+    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "active_substance": [
+        "axicabtagene ciloleucel",
+        "0001-01-01"
+    ],
+    "assess_time_days_active": -1,
+    "eu_od_sponsor": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_status": "ACTIVE",
+    "eu_od_comp_date": "__SCRAPER_NOT_FOUND__",
+    "eu_brand_name_current": [
+        {
+            "value": "Yescarta",
+            "date": "22/12/2022"
+        }
+    ],
+    "assess_time_days_cstop": -1,
+    "eu_prime_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "0001-01-01"
+    },
+    "ema_corapp": "__SCRAPER_NOT_FOUND__",
+    "eu_indication_initial": {
+        "value": "yescarta is indicated for the treatment of adult patients with relapsed or refractory diffuse large b-cell lymphoma (dlbcl) and primary mediastinal large b-cell lymphoma (pmbcl), after two or \n more lines of systemic therapy.\n",
+        "date": "0001-01-01"
+    },
+    "ec_decision_time_days": -1,
+    "eu_od_con": "__SCRAPER_NOT_FOUND__",
+    "eu_od_initial": {
+        "value": "adopted",
+        "date": "0001-01-01"
+    },
+    "ema_reexamination": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_date": "2018-08-23",
+    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
+    "atc_code": "__SCRAPER_NOT_FOUND__",
+    "eu_orphan_con_current": [
+        {
+            "value": [
+                {
+                    "pre": "o",
+                    "id": "1393",
+                    "eu_num": "EU/3/14/1393",
+                    "indication": "Treatment of diffuse large B cell lymphoma",
+                    "link_date": "2018-08-27"
+                },
+                {
+                    "pre": "o",
+                    "id": "1553",
+                    "eu_num": "EU/3/15/1553",
+                    "indication": "Treatment of primary mediastinal large B-cell lymphoma",
+                    "link_date": "2018-08-27"
+                },
+                {
+                    "pre": "o",
+                    "id": "1579",
+                    "eu_num": "EU/3/15/1579",
+                    "indication": "Treatment of follicular lymphoma",
+                    "link_date": "2022-06-23"
+                }
+            ],
+            "date": "22/12/2022"
+        }
+    ],
+    "eu_aut_type_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "0001-01-01"
+    },
+    "chmp_opinion_date": "__SCRAPER_NOT_FOUND__",
+    "eu_referral": "False",
+    "eu_procedures_todo": [
+        {
+            "eu_referral": false,
+            "eu_suspension": false
+        }
+    ],
+    "eu_aut_type_current": [
+        {
+            "value": "standard",
+            "date": "22/12/2022"
+        }
+    ],
+    "ema_rapp": "__SCRAPER_NOT_FOUND__",
+    "eu_pnumber": "EU/1/18/1299",
+    "eu_brand_name_initial": {
+        "value": "Yescarta",
+        "date": "0001-01-01"
+    },
+    "eu_suspension": "False",
+    "orphan_status": "h",
+    "eu_legal_basis": "__SCRAPER_NOT_FOUND__",
+    "ema_number": "EMEA/H/C/004480",
+    "aut_url": "404_url_not_found",
+    "ema_number_id": "4480",
+    "omar_url": "404_url_not_found",
+    "smpc_url": "404_url_not_found",
+    "ema_number_certainty": "0.625",
+    "epar_url": "404_url_not_found",
+    "ema_number_check": [
+        false,
+        "22/12/2022"
+    ],
+    "odwar_url": "404_url_not_found",
+    "eu_mah_current": [
+        {
+            "value": "Kite Pharma EU B.V.",
+            "date": "22/12/2022"
+        }
+    ],
+    "eu_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_atmp": true,
+    "eu_mah_initial": {
+        "value": "Kite Pharma EU B.V.",
+        "date": "0001-01-01"
+    },
+    "eu_nas": true,
+    "ema_od_number": "__SCRAPER_NOT_FOUND__",
+    "ema_procedure_start_initial": "__SCRAPER_NOT_FOUND__",
+    "eu_med_type": [
+        "small molecule",
+        "0001-01-01"
+    ]
+}
