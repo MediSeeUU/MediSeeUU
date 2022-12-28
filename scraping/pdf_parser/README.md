@@ -18,7 +18,8 @@ an XML file.
 
 # Input & Output
 ## Input
-The filepath of the file that needs to be parsed.
+The filepath of the data folder containing the active_withdrawn folder,
+which will contain all human and orphan medicines.
 
 ## Output
 - A JSON file for every medicine, containing all relevant attributes of that medicine.
