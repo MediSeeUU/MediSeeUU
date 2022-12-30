@@ -161,5 +161,8 @@ class MarketingAuthorisation(models.Model):
         "Initial EU marketing authorisation holder",
     )
 
+    def __str__(self):
+        return self.eu_pnumber.__str__()
+
     class Meta:
         db_table = "marketing_authorisation"

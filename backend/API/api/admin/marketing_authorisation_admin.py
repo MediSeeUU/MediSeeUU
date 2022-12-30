@@ -5,15 +5,15 @@ from django.contrib import admin
 from import_export import resources, admin as import_admin
 from api.models.human_models import (
     MedicinalProduct,
-    HistoryPrime,
+    MarketingAuthorisation,
 )
 from api.admin.common import import_foreign_key
 from api.admin.cachemodeladmin import CacheModelAdmin
 
 
-class HistoryPrimeResource(resources.ModelResource):
+class MarketingAuthorisationResource(resources.ModelResource):
     """
-    Necessary resource class for the HistoryPrime admin view.
+    Necessary resource class for the MarketingAuthorisation admin view.
     Has explicit foreign keys so Django import/export can automatically create the values if needed.
     ModelResource is Resource subclass for handling Django models.
     """
@@ -21,24 +21,23 @@ class HistoryPrimeResource(resources.ModelResource):
 
     class Meta:
         """
-        Meta class for HistoryPrimeResource
+        Meta class for MarketingAuthorisationResource
         """
-        model = HistoryPrime
+        model = MarketingAuthorisation
         import_id_fields = (
             "eu_pnumber",
         )
 
 
-class HistoryPrimeAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
+class MarketingAuthorisationAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
-    Admin View for HistoryPrime
+    Admin View for IngredientsAndSubstances
     """
-    resource_class = HistoryPrimeResource
+    resource_class = MarketingAuthorisationResource
     list_display = [
         "eu_pnumber",
-        "change_date",
-        "eu_prime",
+        "eu_aut_date",
     ]
 
 
-admin.site.register(HistoryPrime, HistoryPrimeAdmin)
+admin.site.register(MarketingAuthorisation, MarketingAuthorisationAdmin)

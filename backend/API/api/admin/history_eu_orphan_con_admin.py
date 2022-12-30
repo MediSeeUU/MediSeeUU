@@ -32,12 +32,11 @@ class HistoryEUOrphanConAdmin(import_admin.ImportExportModelAdmin, CacheModelAdm
     Admin View for HistoryEUOrphanCon
     """
     resource_class = HistoryEUOrphanConResource
-    list = (
-        "id",
+    list_display = [
         "eu_pnumber",
         "change_date",
         "eu_orphan_con",
-    )
+    ]
 
 
 admin.site.register(HistoryEUOrphanCon, HistoryEUOrphanConAdmin)

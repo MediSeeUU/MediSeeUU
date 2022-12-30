@@ -165,5 +165,8 @@ class MedicinalProduct(models.Model):
         "Initial EU orphan conditions",
     )
 
+    def __str__(self):
+        return self.eu_pnumber
+
     class Meta:
         db_table = "medicinal_product"

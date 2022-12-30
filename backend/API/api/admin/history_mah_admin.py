@@ -34,12 +34,11 @@ class HistoryMAHAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     Admin View for HistoryMAH
     """
     resource_class = HistoryMAHResource
-    list = (
-        "id",
+    list_display = [
         "eu_pnumber",
         "change_date",
         "eu_mah",
-    )
+    ]
 
 
 admin.site.register(HistoryMAH, HistoryMAHAdmin)

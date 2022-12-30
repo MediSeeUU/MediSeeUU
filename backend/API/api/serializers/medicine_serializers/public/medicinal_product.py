@@ -55,7 +55,7 @@ class IngredientsAndSubstancesSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = IngredientsAndSubstances
-        exclude = ["active_substance_hash", ]
+        exclude = ["id", ]
 
 
 class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, AnyBoolsList, serializers.ModelSerializer):

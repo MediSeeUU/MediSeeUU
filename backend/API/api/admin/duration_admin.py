@@ -4,41 +4,40 @@
 from django.contrib import admin
 from import_export import resources, admin as import_admin
 from api.models.human_models import (
-    MedicinalProduct,
-    HistoryPrime,
+    Duration,
 )
-from api.admin.common import import_foreign_key
 from api.admin.cachemodeladmin import CacheModelAdmin
 
 
-class HistoryPrimeResource(resources.ModelResource):
+class DurationResource(resources.ModelResource):
     """
-    Necessary resource class for the HistoryPrime admin view.
+    Necessary resource class for the Duration admin view.
     Has explicit foreign keys so Django import/export can automatically create the values if needed.
     ModelResource is Resource subclass for handling Django models.
     """
-    eu_pnumber = import_foreign_key("eu_pnumber", MedicinalProduct)
 
     class Meta:
         """
-        Meta class for HistoryPrimeResource
+        Meta class for DurationResource
         """
-        model = HistoryPrime
+        model = Duration
         import_id_fields = (
-            "eu_pnumber",
+            "id",
         )
 
 
-class HistoryPrimeAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
+class DurationAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
-    Admin View for HistoryPrime
+    Admin View for Duration
     """
-    resource_class = HistoryPrimeResource
+    resource_class = DurationResource
     list_display = [
-        "eu_pnumber",
-        "change_date",
-        "eu_prime",
+        "id",
+        "assess_time_days_total",
+        "assess_time_days_active",
+        "assess_time_days_cstop",
+        "ec_decision_time_days",
     ]
 
 
-admin.site.register(HistoryPrime, HistoryPrimeAdmin)
+admin.site.register(Duration, DurationAdmin)
