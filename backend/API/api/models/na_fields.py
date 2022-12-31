@@ -1,3 +1,4 @@
+from django import forms
 from django.db import models
 from django.core.exceptions import ValidationError
 import datetime
@@ -6,6 +7,9 @@ from api.models.common import DataFormats
 
 
 class BooleanWithNAField(models.Field):
+
+    values = DataFormats.Bool.na_values + ["True", "False"]
+
     def __init__(self, *args, **kwargs):
         kwargs["max_length"] = 45
         # Set the field to support null values
@@ -33,10 +37,23 @@ class BooleanWithNAField(models.Field):
     def get_prep_value(self, value):
         if isinstance(value, bool):
             return str(value)
-        elif value is None or value in ["True", "False"] or value in DataFormats.Bool.na_values:
+        elif value is None or value in self.values:
             return value
         else:
             raise ValidationError(f"{self.name}: {value} must be either a boolean or a NA message")
+
+    def formfield(self, **kwargs):
+        defaults = {'form_class': self.FormField}
+        defaults.update(kwargs)
+        return super().formfield(**defaults)
+
+    class FormField(forms.ChoiceField):
+        def __init__(self, **kwargs):
+            super().__init__(
+                widget=forms.Select,
+                choices=[(value, value) for value in BooleanWithNAField.values],
+                **kwargs
+            )
 
 
 class IntegerWithNAField(models.Field):
