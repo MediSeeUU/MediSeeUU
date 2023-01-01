@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.admin import widgets
 from django.db import models
 from django.core.exceptions import ValidationError
 import datetime
@@ -11,7 +12,7 @@ class BooleanWithNAField(models.Field):
     values = ["True", "False"] + DataFormats.Bool.na_values
 
     def __init__(self, *args, **kwargs):
-        kwargs["max_length"] = 45
+        kwargs["max_length"] = 256
         # Set the field to support null values
         kwargs["null"] = True
         kwargs["blank"] = True
@@ -59,23 +60,9 @@ class BooleanWithNAField(models.Field):
 
 
 class TypeWithNAWidget(forms.MultiWidget):
-    def __init__(self, value_check, first_widget, second_widget, na_values, **kwargs):
+    def __init__(self, value_check, **kwargs):
         self.value_check = value_check
-        super().__init__(
-            widgets=[
-                        first_widget(
-                            attrs={"oninput": "{if (this.value) {this.nextSibling.value = \"\"}}"},
-                        ),
-                        second_widget(
-                            attrs={
-                                "onfocus": "{this.firstChild.hidden = true}",
-                                "oninput": "{if (this.value) {this.previousSibling.value = \"\"}}",
-                            },
-                            choices=[(value, value) for value in [""] + na_values],
-                        ),
-                    ],
-            **kwargs
-        )
+        super().__init__(**kwargs)
 
     def decompress(self, value):
         if self.value_check(value):
@@ -134,17 +121,29 @@ class IntegerWithNAField(models.Field):
             super().__init__(
                 widget=TypeWithNAWidget(
                     lambda value: isinstance(value, int) or value.isdigit(),
-                    forms.NumberInput,
-                    forms.Select,
-                    IntegerWithNAField.values,
+                    widgets=[
+                        forms.NumberInput(
+                            attrs={"oninput": "{if (this.value) {this.nextSibling.value = \"\"}}"},
+                        ),
+                        forms.Select(
+                            attrs={
+                                "onfocus": "{this.firstChild.hidden = true}",
+                                "oninput": "{if (this.value) {this.previousSibling.value = \"\"}}",
+                            },
+                            choices=[(value, value) for value in [""] + IntegerWithNAField.values],
+                        ),
+                    ],
                 ),
                 **kwargs
             )
 
 
 class DateWithNAField(models.Field):
+
+    values = DataFormats.Date.na_values
+
     def __init__(self, *args, **kwargs):
-        kwargs["max_length"] = 32
+        kwargs["max_length"] = 256
         # Set the field to support null values
         kwargs["null"] = True
         kwargs["blank"] = True
@@ -161,10 +160,10 @@ class DateWithNAField(models.Field):
         return f"VARCHAR({self.max_length})"
 
     def get_prep_value(self, value):
-        if value is None or value in DataFormats.Date.na_values:
+        if value is None or value in self.values:
             return value
         try:
-            date = datetime.datetime.strptime(value, '%Y-%m-%d')
+            datetime.datetime.strptime(value, '%Y-%m-%d')
         except ValueError as e:
             raise ValidationError(f"{self.name}: {value} has failed to be converted to a date with exception: "
                                   f"\"{str(e)}\". {self.name} must be either a date or a NA message")
@@ -173,6 +172,43 @@ class DateWithNAField(models.Field):
         else:
             return value
 
+    def formfield(self, **kwargs):
+        defaults = {'form_class': self.FormField}
+        defaults.update(kwargs)
+        return super().formfield(**defaults)
+
+    class FormField(forms.Field):
+        def __init__(self, **kwargs):
+            super().__init__(
+                widget=TypeWithNAWidget(
+                    self.is_valid_date,
+                    widgets=[
+                        widgets.AdminDateWidget(
+                            attrs={
+                                "onfocus": "{if (this.value) {this.nextSibling.nextSibling.value = \"\"}}",
+                                "oninput": "{if (this.value) {this.nextSibling.nextSibling.value = \"\"}}",
+                            },
+                        ),
+                        forms.Select(
+                            attrs={
+                                "onfocus": "{this.firstChild.hidden = true}",
+                                "oninput": "{if (this.value) {this.previousSibling.previousSibling.value = \"\"}}",
+                            },
+                            choices=[(value, value) for value in [""] + DateWithNAField.values],
+                        ),
+                    ],
+                ),
+                **kwargs
+            )
+
+        @staticmethod
+        def is_valid_date(value):
+            try:
+                datetime.datetime.strptime(value, '%Y-%m-%d')
+            except ValueError:
+                return False
+            else:
+                return True
 
 
 class URLWithNAField(models.Field):
