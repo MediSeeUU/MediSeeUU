@@ -8,7 +8,7 @@ from api.models.common import DataFormats
 
 class BooleanWithNAField(models.Field):
 
-    values = DataFormats.Bool.na_values + ["True", "False"]
+    values = ["True", "False"] + DataFormats.Bool.na_values
 
     def __init__(self, *args, **kwargs):
         kwargs["max_length"] = 45
@@ -37,7 +37,9 @@ class BooleanWithNAField(models.Field):
     def get_prep_value(self, value):
         if isinstance(value, bool):
             return str(value)
-        elif value is None or value in self.values:
+        elif value is None or value == "":
+            return None
+        elif value in self.values:
             return value
         else:
             raise ValidationError(f"{self.name}: {value} must be either a boolean or a NA message")
@@ -51,12 +53,15 @@ class BooleanWithNAField(models.Field):
         def __init__(self, **kwargs):
             super().__init__(
                 widget=forms.Select,
-                choices=[(value, value) for value in BooleanWithNAField.values],
+                choices=[("", "----")] + [(value, value) for value in BooleanWithNAField.values],
                 **kwargs
             )
 
 
 class IntegerWithNAField(models.Field):
+
+    values = DataFormats.Number.na_values
+
     def __init__(self, *args, **kwargs):
         # Set the field to support null values
         kwargs["null"] = True
@@ -81,10 +86,44 @@ class IntegerWithNAField(models.Field):
     def get_prep_value(self, value):
         if isinstance(value, int):
             return str(value)
-        elif value is None or str.isdigit(value) or value in DataFormats.Number.na_values:
+        elif value is None or str.isdigit(value) or value in self.values:
             return value
         else:
             raise ValidationError(f"{self.name}: {value} must be either a integer or a NA message")
+
+    def formfield(self, **kwargs):
+        defaults = {'form_class': self.FormField}
+        defaults.update(kwargs)
+        return super().formfield(**defaults)
+
+    class FormField(forms.Field):
+        def __init__(self, **kwargs):
+            super().__init__(
+                widget=self.IntegerWithNAWidget(widgets=[
+                    forms.NumberInput(
+                        attrs={"oninput": "{if (this.value) {this.nextSibling.value = \"\"}}"},
+                    ),
+                    forms.Select(
+                        attrs={"oninput": "{if (this.value) {this.previousSibling.value = \"\"}}"},
+                        choices=[(value, value) for value in IntegerWithNAField.values + [""]],
+                    ),
+                ]),
+                **kwargs
+            )
+
+        class IntegerWithNAWidget(forms.MultiWidget):
+            def decompress(self, value):
+                if isinstance(value, int) or value.isdigit():
+                    return [value, None]
+                else:
+                    return [None, value]
+
+            def value_from_datadict(self, data, files, name):
+                number, na_value = super().value_from_datadict(data, files, name)
+                if number is not None and number != "":
+                    return number
+                else:
+                    return na_value
 
 
 class DateWithNAField(models.Field):
