@@ -58,6 +58,39 @@ class BooleanWithNAField(models.Field):
             )
 
 
+class TypeWithNAWidget(forms.MultiWidget):
+    def __init__(self, value_check, first_widget, second_widget, na_values, **kwargs):
+        self.value_check = value_check
+        super().__init__(
+            widgets=[
+                        first_widget(
+                            attrs={"oninput": "{if (this.value) {this.nextSibling.value = \"\"}}"},
+                        ),
+                        second_widget(
+                            attrs={
+                                "onfocus": "{this.firstChild.hidden = true}",
+                                "oninput": "{if (this.value) {this.previousSibling.value = \"\"}}",
+                            },
+                            choices=[(value, value) for value in [""] + na_values],
+                        ),
+                    ],
+            **kwargs
+        )
+
+    def decompress(self, value):
+        if self.value_check(value):
+            return [value, None]
+        else:
+            return [None, value]
+
+    def value_from_datadict(self, data, files, name):
+        value, na_value = super().value_from_datadict(data, files, name)
+        if value is not None and value != "":
+            return value
+        else:
+            return na_value
+
+
 class IntegerWithNAField(models.Field):
 
     values = DataFormats.Number.na_values
@@ -99,31 +132,14 @@ class IntegerWithNAField(models.Field):
     class FormField(forms.Field):
         def __init__(self, **kwargs):
             super().__init__(
-                widget=self.IntegerWithNAWidget(widgets=[
-                    forms.NumberInput(
-                        attrs={"oninput": "{if (this.value) {this.nextSibling.value = \"\"}}"},
-                    ),
-                    forms.Select(
-                        attrs={"oninput": "{if (this.value) {this.previousSibling.value = \"\"}}"},
-                        choices=[(value, value) for value in IntegerWithNAField.values + [""]],
-                    ),
-                ]),
+                widget=TypeWithNAWidget(
+                    lambda value: isinstance(value, int) or value.isdigit(),
+                    forms.NumberInput,
+                    forms.Select,
+                    IntegerWithNAField.values,
+                ),
                 **kwargs
             )
-
-        class IntegerWithNAWidget(forms.MultiWidget):
-            def decompress(self, value):
-                if isinstance(value, int) or value.isdigit():
-                    return [value, None]
-                else:
-                    return [None, value]
-
-            def value_from_datadict(self, data, files, name):
-                number, na_value = super().value_from_datadict(data, files, name)
-                if number is not None and number != "":
-                    return number
-                else:
-                    return na_value
 
 
 class DateWithNAField(models.Field):
