@@ -60,15 +60,15 @@ class BooleanWithNAField(models.Field):
 
 
 class TypeWithNAWidget(forms.MultiWidget):
-    def __init__(self, value_check, **kwargs):
-        self.value_check = value_check
+    def __init__(self, na_values, **kwargs):
+        self.na_values = na_values
         super().__init__(**kwargs)
 
     def decompress(self, value):
-        if self.value_check(value):
-            return [value, None]
-        else:
+        if value in self.na_values:
             return [None, value]
+        else:
+            return [value, None]
 
     def value_from_datadict(self, data, files, name):
         value, na_value = super().value_from_datadict(data, files, name)
@@ -120,7 +120,7 @@ class IntegerWithNAField(models.Field):
         def __init__(self, **kwargs):
             super().__init__(
                 widget=TypeWithNAWidget(
-                    lambda value: isinstance(value, int) or value.isdigit(),
+                    IntegerWithNAField.values,
                     widgets=[
                         forms.NumberInput(
                             attrs={"oninput": "{if (this.value) {this.nextSibling.value = \"\"}}"},
@@ -181,7 +181,7 @@ class DateWithNAField(models.Field):
         def __init__(self, **kwargs):
             super().__init__(
                 widget=TypeWithNAWidget(
-                    self.is_valid_date,
+                    DateWithNAField.values,
                     widgets=[
                         widgets.AdminDateWidget(
                             attrs={
@@ -201,17 +201,11 @@ class DateWithNAField(models.Field):
                 **kwargs
             )
 
-        @staticmethod
-        def is_valid_date(value):
-            try:
-                datetime.datetime.strptime(value, '%Y-%m-%d')
-            except ValueError:
-                return False
-            else:
-                return True
-
 
 class URLWithNAField(models.Field):
+
+    values = DataFormats.Link.na_values
+
     def __init__(self, *args, **kwargs):
         kwargs["max_length"] = 256
         # Set the field to support null values
@@ -230,10 +224,35 @@ class URLWithNAField(models.Field):
         return f"VARCHAR({self.max_length})"
 
     def get_prep_value(self, value):
-        if value is None or value in DataFormats.Link.na_values:
+        if value is None or value in self.values:
             return value
         elif validators.url(value):
             return value
         else:
             raise ValidationError(f"{self.name}: {value} must be either an url or a NA message")
 
+    def formfield(self, **kwargs):
+        defaults = {'form_class': self.FormField}
+        defaults.update(kwargs)
+        return super().formfield(**defaults)
+
+    class FormField(forms.Field):
+        def __init__(self, **kwargs):
+            super().__init__(
+                widget=TypeWithNAWidget(
+                    URLWithNAField.values,
+                    widgets=[
+                        forms.URLInput(
+                            attrs={"oninput": "{if (this.value) {this.nextSibling.value = \"\"}}"},
+                        ),
+                        forms.Select(
+                            attrs={
+                                "onfocus": "{this.firstChild.hidden = true}",
+                                "oninput": "{if (this.value) {this.previousSibling.value = \"\"}}",
+                            },
+                            choices=[(value, value) for value in [""] + URLWithNAField.values],
+                        ),
+                    ],
+                ),
+                **kwargs
+            )
