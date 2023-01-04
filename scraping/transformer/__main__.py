@@ -52,32 +52,52 @@ def get_final_json(final_json: dict, json_data: dict, all_names: list):
     for name, value in json_data.items():
         if name not in all_names:
             continue
-        if values.not_found == value or values.combiner_not_found == value:
+        if values.not_found == value:
             value = not_found_str
         if name == "eu_od_pnumber" and value == not_found_str:
             continue
         if isinstance(value, dict):
-            if "value" not in value.keys():
-                pass
-            elif value["value"] == values.not_found or value["value"] == values.combiner_not_found:
-                value["value"] = not_found_str
-        elif not isinstance(value, list):
-            pass
-        elif len(value) < 1:
-            pass
-        else:
-            for sub_key, sub_value in enumerate(value):
-                if not isinstance(sub_value, dict):
-                    if sub_value == values.not_found or sub_value == values.combiner_not_found:
-                        value[sub_key] = not_found_str
-                elif "value" not in sub_value.keys():
-                    for k, v in sub_value.items():
-                        if v != values.not_found and v != values.combiner_not_found:
-                            continue
-                        value[sub_key][k] = not_found_str
-                elif sub_value["value"] == values.not_found or sub_value["value"] == values.combiner_not_found:
-                    value[sub_key]["value"] = not_found_str
+            replace_not_found_dict(not_found_str, value)
+        elif not isinstance(value, list) or len(value) < 1:
+            final_json[name] = value
+            continue
+        for sub_key, sub_value in enumerate(value):
+            replace_not_found_list_dict(not_found_str, sub_key, sub_value, value)
         final_json[name] = value
+
+
+def replace_not_found_list_dict(not_found_str: str, sub_key: int, sub_value: dict | str, value: dict):
+    """
+    Replaces not_found_scraper with not_found_string for a sub_value in a list of dictionaries
+    Args:
+        not_found_str (str): "Not found"
+        sub_key (int): Key of dictionary in list
+        sub_value (dict | str): Value of dictionary in list
+        value (dict): list of dictionaries in combined.json
+    """
+    if not isinstance(sub_value, dict):
+        if sub_value == values.not_found:
+            value[sub_key] = not_found_str
+    elif "value" not in sub_value.keys():
+        for k, v in sub_value.items():
+            if v != values.not_found:
+                continue
+            value[sub_key][k] = not_found_str
+    elif sub_value["value"] == values.not_found:
+        value[sub_key]["value"] = not_found_str
+
+
+def replace_not_found_dict(not_found_str: str, value: dict):
+    """
+    Replaces not_found_scraper with not_found_string for a simple dictionary with value (and date)
+    Args:
+        not_found_str (str): "Not found"
+        value (dict): a dictionary with key "value" in the combined.json file
+    """
+    if "value" not in value.keys():
+        return
+    elif value["value"] == values.not_found:
+        value["value"] = not_found_str
 
 
 # Main file to run all parsers
