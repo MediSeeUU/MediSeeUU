@@ -5,6 +5,7 @@ from django.contrib import admin
 from import_export import resources, admin as import_admin
 from api.models.human_models import MedicinalProduct
 from api.admin.cachemodeladmin import CacheModelAdmin
+from api.admin.lock_model_form import LockModelForm
 
 
 class MedicinalProductResource(resources.ModelResource):
@@ -20,12 +21,18 @@ class MedicinalProductResource(resources.ModelResource):
         import_id_fields = ("eu_pnumber",)
 
 
+class MedicinalProductForm(LockModelForm):
+    class Meta:
+        model = MedicinalProduct
+        fields = "__all__"
+
+
 class MedicinalProductAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
     Admin View for Medicine, contains a list of all the shown attributes.
     """
     resource_class = MedicinalProductResource
-
+    form = MedicinalProductForm
     list_display = [
         "eu_pnumber",
         "ema_number",

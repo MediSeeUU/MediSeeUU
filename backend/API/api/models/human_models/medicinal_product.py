@@ -64,14 +64,20 @@ class MedicinalProduct(models.Model):
     )
 
     ema_url = create_dashboard_column(
-        URLWithNAField(),
+        URLWithNAField(
+            null=True,
+            blank=True,
+        ),
         Category.Medicinal_product,
         DataFormats.Link,
         "EMA Product Page Link",
     )
 
     ec_url = create_dashboard_column(
-        URLWithNAField(),
+        URLWithNAField(
+            null=True,
+            blank=True,
+        ),
         Category.Medicinal_product,
         DataFormats.Link,
         "EC Product Page Link",
@@ -80,6 +86,8 @@ class MedicinalProduct(models.Model):
     ema_number = create_dashboard_column(
         models.CharField(
             max_length=255,
+            null=True,
+            blank=True,
         ),
         Category.Medicinal_product,
         DataFormats.String,
@@ -96,7 +104,10 @@ class MedicinalProduct(models.Model):
     )
 
     eu_med_type = create_dashboard_column(
-        models.TextField(),
+        models.TextField(
+            null=True,
+            blank=True,
+        ),
         Category.Medicinal_product,
         DataFormats.String,
         "EU Medicine Type",
@@ -105,6 +116,7 @@ class MedicinalProduct(models.Model):
     eu_atmp = create_dashboard_column(
         BooleanWithNAField(
             null=True,
+            blank=True,
         ),
         Category.Medicinal_product,
         DataFormats.Bool,
@@ -113,12 +125,14 @@ class MedicinalProduct(models.Model):
 
     ema_number_check = BooleanWithNAField(
         null=True,
+        blank=True,
     )
 
     ingredients_and_substances = models.ForeignKey(
         IngredientsAndSubstances,
         models.PROTECT,
         null=True,
+        blank=True,
     )
 
     eu_brand_name_initial = create_dashboard_history_initial_column(
@@ -126,6 +140,7 @@ class MedicinalProduct(models.Model):
             "HistoryBrandName",
             models.SET_NULL,
             null=True,
+            blank=True,
         ),
         Category.Medicinal_product,
         DataFormats.String,
@@ -137,6 +152,7 @@ class MedicinalProduct(models.Model):
             "HistoryOD",
             models.SET_NULL,
             null=True,
+            blank=True,
         ),
         Category.Medicinal_product,
         DataFormats.Bool,
@@ -148,6 +164,7 @@ class MedicinalProduct(models.Model):
             "HistoryPrime",
             models.SET_NULL,
             null=True,
+            blank=True,
         ),
         Category.Medicinal_product,
         DataFormats.Bool,
@@ -159,6 +176,7 @@ class MedicinalProduct(models.Model):
             "HistoryEUOrphanCon",
             models.SET_NULL,
             null=True,
+            blank=True,
         ),
         Category.Medicinal_product,
         DataFormats.String,
