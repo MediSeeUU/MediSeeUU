@@ -2,10 +2,10 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
-from api.models.human_models import MedicinalProduct
-from api.models.create_dashboard_columns import create_dashboard_history_current_column, Category
+from api.models.orphan_models import OrphanProduct
+from api.models.create_dashboard_columns import create_dashboard_history_current_column, Category, create_dashboard_column
 from api.models.common import DataFormats
-
+from api.models.na_fields import DateWithNAField
 
 class HistoryEUOrphanCon(models.Model):
     """
@@ -13,15 +13,15 @@ class HistoryEUOrphanCon(models.Model):
     This model is derived from a base model from the Django library.
 
     Attributes:
-        eu_pnumber (models.ForeignKey):
-            Foreign Key to the :py:class:`.MedicinalProduct` model
+        eu_od_number (models.ForeignKey):
+            Foreign Key to the :py:class:`.OrphanProduct` model
         change_date (models.DateField):
             DateField containing the date of the entry.
         eu_orphan_con (models.TextField):
             TextField containing the EU orphan condition. Initial and current shown on the dashboard.
     """
-    eu_pnumber = models.ForeignKey(
-        MedicinalProduct,
+    eu_od_number = models.ForeignKey(
+        OrphanProduct,
         models.CASCADE,
         null=False,
         blank=False,
@@ -31,6 +31,20 @@ class HistoryEUOrphanCon(models.Model):
     change_date = models.DateField(
         null=False,
         blank=False,
+    )
+
+    link_date = create_dashboard_column(
+        DateWithNAField(),
+        Category.Orphan_product,
+        DataFormats.Date,
+        "Link date between orphan and human",
+    )
+
+    end_date = create_dashboard_column(
+        DateWithNAField(),
+        Category.Orphan_product,
+        DataFormats.Date,
+        "The end date of the orphan",
     )
 
     eu_orphan_con = create_dashboard_history_current_column(

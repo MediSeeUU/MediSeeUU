@@ -20,6 +20,9 @@ from api.models.human_models import (
     LegalBases,
     IngredientsAndSubstances,
 )
+
+from api.models.orphan_models import HistoryEUOrphanCon
+
 from api.serializers.medicine_serializers.public import (
     MarketingAuthorisationSerializer,
     AuthorisationStatusSerializer,
@@ -55,8 +58,19 @@ class IngredientsAndSubstancesSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = IngredientsAndSubstances
-        exclude = ["id", ]
+        exclude = ("id", )
 
+
+class HistoryEUOrphanConSerializer(serializers.ModelSerializer):
+    """
+    This serializer serializes the :py:class:`.HistoryEUOrphanCon` model.
+    """
+    class Meta:
+        """
+        Meta information
+        """
+        model = MedicinalProduct
+        exclude = ("id", )
 
 class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, AnyBoolsList, serializers.ModelSerializer):
     """

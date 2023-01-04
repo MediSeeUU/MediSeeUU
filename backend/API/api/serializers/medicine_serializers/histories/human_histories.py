@@ -7,7 +7,6 @@ from api.models.human_models import (
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
-    HistoryEUOrphanCon,
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
@@ -23,7 +22,7 @@ class AuthorisationStatusSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = HistoryAuthorisationStatus
-        fields = ("eu_aut_status", "change_date", )
+        exclude = ("id", )
 
 
 class AuthorisationTypeSerializer(serializers.ModelSerializer):
@@ -35,7 +34,7 @@ class AuthorisationTypeSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = HistoryAuthorisationType
-        fields = ("eu_aut_type", "change_date", )
+        exclude = ("id", )
 
 
 class BrandNameSerializer(serializers.ModelSerializer):
@@ -47,7 +46,7 @@ class BrandNameSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = HistoryBrandName
-        fields = ("eu_brand_name", "change_date", )
+        exclude = ("id", )
 
 
 class MAHSerializer(serializers.ModelSerializer):
@@ -59,7 +58,7 @@ class MAHSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = HistoryMAH
-        fields = ("eu_mah", "change_date", )
+        exclude = ("id", )
 
 
 class OrphanDesignationSerializer(serializers.ModelSerializer):
@@ -71,7 +70,7 @@ class OrphanDesignationSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = HistoryOD
-        fields = ("eu_od", "change_date", )
+        exclude = ("id", )
 
 
 class PrimeSerializer(serializers.ModelSerializer):
@@ -83,16 +82,4 @@ class PrimeSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = HistoryPrime
-        fields = ("eu_prime", "change_date", )
-
-
-class EUOrphanConSerializer (serializers.ModelSerializer):
-    """
-    This serializer serializes the :py:class:`.HistoryEUOrphanCon` model.
-    """
-    class Meta:
-        """
-        Meta information
-        """
-        model = HistoryEUOrphanCon
-        fields = ("eu_orphan_con", "change_date", )
+        exclude = ("id", )

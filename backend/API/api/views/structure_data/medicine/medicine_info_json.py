@@ -15,7 +15,7 @@ from django.db.models import Model
 
 # returns a list of json components using human_models,
 # this list is for the filters and for the detailed information page
-def get_medicine_info(perm, models: list[Model], mock=None):
+def get_medicine_info(perm, models: list[Model], categories: list[Category], mock=None):
     """
     returns a list of json components using the models given,
     this list is for the filters and for the detailed information page.
@@ -44,7 +44,7 @@ def get_medicine_info(perm, models: list[Model], mock=None):
 
     # for every field created with create_dashboard_column(), add it to the correct category in JSON
     for field in models_fields:
-        if hasattr(field, "dashboard_column") and has_permission(perm, field.name):
+        if hasattr(field, "dashboard_column") and has_permission(perm, field.name) and field.dashboard_column.category in categories:
             data_info = field.dashboard_column.get_all_data_info(field.name)
             for data_key, data_format, data_value in data_info:
                 if has_permission(perm, data_key):

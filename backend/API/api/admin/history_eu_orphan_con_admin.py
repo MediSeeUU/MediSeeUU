@@ -3,8 +3,8 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.contrib import admin
 from import_export import resources, admin as import_admin
-from api.models.human_models import MedicinalProduct
-from api.models.human_models import HistoryEUOrphanCon
+from api.models.orphan_models import OrphanProduct
+from api.models.orphan_models import HistoryEUOrphanCon
 from api.admin.common import import_foreign_key
 from api.admin.cachemodeladmin import CacheModelAdmin
 
@@ -15,7 +15,7 @@ class HistoryEUOrphanConResource(resources.ModelResource):
     Has explicit foreign keys so Django import/export can automatically create the values if needed.
     ModelResource is Resource subclass for handling Django models.
     """
-    eu_pnumber = import_foreign_key("eu_pnumber", MedicinalProduct)
+    eu_pnumber = import_foreign_key("eu_od_number", OrphanProduct)
 
     class Meta:
         """
@@ -33,7 +33,7 @@ class HistoryEUOrphanConAdmin(import_admin.ImportExportModelAdmin, CacheModelAdm
     """
     resource_class = HistoryEUOrphanConResource
     list_display = [
-        "eu_pnumber",
+        "eu_od_number",
         "change_date",
         "eu_orphan_con",
     ]

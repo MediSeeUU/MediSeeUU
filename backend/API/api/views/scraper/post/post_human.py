@@ -16,7 +16,6 @@ from api.models.human_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
-    HistoryEUOrphanCon,
     LegalBases,
 )
 from api.serializers.medicine_serializers.scraper.post.human import (
@@ -32,7 +31,6 @@ from api.serializers.medicine_serializers.scraper.post.human import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
-    EUOrphanConSerializer,
     LegalBasesSerializer,
 )
 from api.serializers.medicine_serializers.scraper.update.human import (
@@ -218,18 +216,6 @@ def history_variables(eu_pnumber, initial_histories_data, current_histories_data
         "eu_mah_current",
         current_histories_data,
     )
-
-    # add_histories(
-    #     "eu_pnumber",
-    #     eu_pnumber,
-    #     HistoryEUOrphanCon,
-    #     EUOrphanConSerializer,
-    #     "eu_orphan_con",
-    #     "eu_orphan_con_initial",
-    #     initial_histories_data,
-    #     "eu_orphan_con_current",
-    #     current_histories_data,
-    # )
 
     return initial_histories_data
 

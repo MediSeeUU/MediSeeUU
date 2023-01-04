@@ -6,6 +6,8 @@ from api.models.human_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
+)
+from api.models.orphan_models import (
     HistoryEUOrphanCon,
 )
 
@@ -82,7 +84,7 @@ class PrimeSerializer(serializers.ModelSerializer):
         fields = ("eu_prime",)
 
 
-class EUOrphanConSerializer (serializers.ModelSerializer):
+class EUOrphanConSerializer(serializers.ModelSerializer):
     """
     This serializer serializes the :py:class:`.HistoryEUOrphanCon` model.
     """

@@ -171,18 +171,6 @@ class MedicinalProduct(models.Model):
         "EU Priority Medicine at authorisation",
     )
 
-    eu_orphan_con_initial = create_dashboard_history_initial_column(
-        models.OneToOneField(
-            "HistoryEUOrphanCon",
-            models.SET_NULL,
-            null=True,
-            blank=True,
-        ),
-        Category.Medicinal_product,
-        DataFormats.String,
-        "Initial EU orphan conditions",
-    )
-
     def __str__(self):
         return self.eu_pnumber
 
