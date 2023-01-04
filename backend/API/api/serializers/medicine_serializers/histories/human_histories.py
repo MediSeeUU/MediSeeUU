@@ -22,7 +22,7 @@ class AuthorisationStatusSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = HistoryAuthorisationStatus
-        exclude = ("id", )
+        fields = ("eu_aut_status", "change_date", )
 
 
 class AuthorisationTypeSerializer(serializers.ModelSerializer):
@@ -34,7 +34,7 @@ class AuthorisationTypeSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = HistoryAuthorisationType
-        exclude = ("id", )
+        fields = ("eu_aut_type", "change_date", )
 
 
 class BrandNameSerializer(serializers.ModelSerializer):
@@ -46,7 +46,7 @@ class BrandNameSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = HistoryBrandName
-        exclude = ("id", )
+        fields = ("eu_brand_name", "change_date", )
 
 
 class MAHSerializer(serializers.ModelSerializer):
@@ -58,7 +58,7 @@ class MAHSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = HistoryMAH
-        exclude = ("id", )
+        fields = ("eu_mah", "change_date", )
 
 
 class OrphanDesignationSerializer(serializers.ModelSerializer):
@@ -70,7 +70,7 @@ class OrphanDesignationSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = HistoryOD
-        exclude = ("id", )
+        fields = ("eu_od", "change_date", )
 
 
 class PrimeSerializer(serializers.ModelSerializer):
@@ -82,4 +82,4 @@ class PrimeSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = HistoryPrime
-        exclude = ("id", )
+        fields = ("eu_prime", "change_date", )
