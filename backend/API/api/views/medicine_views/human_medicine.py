@@ -13,7 +13,7 @@ from rest_framework.response import Response
 from django.core.cache import cache
 from api.models.human_models import models, MedicinalProduct
 from api.models.get_dashboard_columns import insert_extra_dashboard_columns
-from api.serializers.medicine_serializers.public import PublicMedicinalProductSerializer
+from api.serializers.medicine_serializers.public.human import PublicMedicinalProductSerializer
 from api.views.other import permission_filter
 
 

@@ -1,26 +1,3 @@
-from .history import (
-    AuthorisationStatusSerializer,
-    AuthorisationTypeSerializer,
-    BrandNameSerializer,
-    MAHSerializer,
-    OrphanDesignationSerializer,
-    PrimeSerializer,
-    EUOrphanConSerializer
-)
-from .marketing_authorisation import (
-    MarketingAuthorisationSerializer,
-    AcceleratedAssessmentSerializer,
-    DurationSerializer,
-)
-from .procedures import (
-    ProceduresSerializer
-)
-from .medicinal_product import (
-    PublicMedicinalProductSerializer,
-    LegalBasesSerializer,
-    IngredientsAndSubstancesSerializer,
-)
-
-from .orphan_product import (
-    OrphanProductSerializer
-)
+# This program has been developed by students from the bachelor Computer Science at
+# Utrecht University within the Software Project course.
+# © Copyright Utrecht University (Department of Information and Computing Sciences)

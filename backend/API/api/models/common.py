@@ -19,6 +19,7 @@ class DataFormats(Enum):
     Date = ("date", generic_na_values + ["date is left blank in document"])
     Link = ("link", generic_na_values)
     String_List = ("[string]", generic_na_values)
+    Dictionary = ("dict", generic_na_values)
 
     @property
     def data_format(self):

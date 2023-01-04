@@ -3,7 +3,10 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from api.models.orphan_models import OrphanProduct
-from api.models.create_dashboard_columns import create_dashboard_history_current_column, Category, create_dashboard_column
+from api.models.create_dashboard_columns import (
+    create_dashboard_history_current_column,
+    Category,
+)
 from api.models.common import DataFormats
 from api.models.na_fields import DateWithNAField
 
@@ -50,7 +53,7 @@ class HistoryEUOrphanCon(models.Model):
             blank=False,
         ),
         Category.Medicinal_product,
-        DataFormats.String,
+        DataFormats.Dictionary,
         "Status of EU orphan designations",
         "EU orphan conditions",
     )

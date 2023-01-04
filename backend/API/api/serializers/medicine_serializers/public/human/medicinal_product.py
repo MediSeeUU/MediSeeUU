@@ -20,10 +20,7 @@ from api.models.human_models import (
     LegalBases,
     IngredientsAndSubstances,
 )
-
-from api.models.orphan_models import HistoryEUOrphanCon
-
-from api.serializers.medicine_serializers.public import (
+from api.serializers.medicine_serializers.public.human import (
     MarketingAuthorisationSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
@@ -31,7 +28,6 @@ from api.serializers.medicine_serializers.public import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
-    EUOrphanConSerializer,
     ProceduresSerializer,
 )
 
@@ -72,6 +68,7 @@ class HistoryEUOrphanConSerializer(serializers.ModelSerializer):
         model = MedicinalProduct
         exclude = ("id", )
 
+
 class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, AnyBoolsList, serializers.ModelSerializer):
     """
     This serializer serializers all the needed data for the medicine view from the :py:class:`.MedicinalProduct` model.
@@ -96,7 +93,6 @@ class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, An
             ("eu_brand_name_initial", BrandNameSerializer),
             ("eu_od_initial", OrphanDesignationSerializer),
             ("eu_prime_initial", PrimeSerializer),
-            ("eu_orphan_con_initial", EUOrphanConSerializer),
         ]
         # serializers to be added as a current history variable and flattened
         current_history = [
@@ -106,7 +102,6 @@ class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, An
             ("eu_mah", MAHSerializer),
             ("eu_od", OrphanDesignationSerializer),
             ("eu_prime", PrimeSerializer),
-            ("eu_orphan_con", EUOrphanConSerializer),
         ]
         any_bools_list = [
             ("procedures", ProceduresSerializer, ["eu_referral", "eu_suspension"]),
