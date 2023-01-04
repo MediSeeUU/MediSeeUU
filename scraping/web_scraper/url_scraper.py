@@ -36,7 +36,6 @@ def get_annex_10_urls(url: str, annex_dict: json_helper.JsonHelper):
 
 
 # Paralleled function for getting the URL codes. They are written to a JSON file
-# TODO: unmarked type for medicine_type
 @utils.exception_retry(logging_instance=log)
 def get_urls_ec(medicine_url: str, eu_n: str, medicine_type: MedicineType, data_path: str,
                 url_file: json_helper.JsonHelper, url_refused_file: json_helper.JsonHelper):
@@ -102,6 +101,15 @@ def get_urls_ema(eu_n: str, url: str, url_file: json_helper.JsonHelper):
     # Checks whether attributes and files need to be scraped from the EMA web page
     if not check_scrape_page(eu_n, medicine_last_updated_date, "ema", url_file):
         return
+
+    # If EPAR or OMAR URL already exist, skip downloading, as they have been downloaded already from the other EMA url
+    # that contains the EPARs and OMARs. This prevents overwriting the URLs with an empty string.
+    if "epar_url" in url_file.local_dict[eu_n].keys():
+        if url_file.local_dict[eu_n]['epar_url']:
+            return
+    if "omar_url" in url_file.local_dict[eu_n].keys():
+        if url_file.local_dict[eu_n]['omar_url']:
+            return
 
     ema_urls: dict[str, str | list[tuple]] = ema_scraper.scrape_medicine_page(url, html_active)
 

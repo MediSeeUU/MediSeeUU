@@ -38,7 +38,6 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
     # Last part of the url, contains the medicine name
     medicine_name: str = url.split('&')[0].split('/')[-1]
 
-    # TODO: Graceful handling
     html_active.raise_for_status()
 
     soup = bs4.BeautifulSoup(html_active.text, html_parser_str)

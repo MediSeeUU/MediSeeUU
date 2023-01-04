@@ -9,7 +9,7 @@ on:
     branches:
       - development
     paths:
-      - medctrl-backend/**
+      - backend/**
 
 jobs:
   checkout:
