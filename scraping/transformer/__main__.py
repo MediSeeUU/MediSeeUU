@@ -8,6 +8,7 @@ log = logging.getLogger("transformer")
 
 all_humans = [obj.name for obj in list(attr_objects.all_attribute_objects) if not obj.is_orphan]
 all_orphans = [obj.name for obj in list(attr_objects.all_attribute_objects) if obj.is_orphan]
+omar_conditions = []
 
 
 def convert_json(combined_json_path: str):
@@ -16,6 +17,7 @@ def convert_json(combined_json_path: str):
     Args:
         combined_json_path (str): Path to the JSON file
     """
+    global omar_conditions
     with open(combined_json_path) as combined_json:
         json_data = json.load(combined_json)
     final_json = {}
@@ -24,17 +26,21 @@ def convert_json(combined_json_path: str):
     elif json_data["orphan_status"] == 'o':
         get_final_json(final_json, json_data, all_orphans)
 
-    save_transformed_json(combined_json_path, final_json)
+    if "ema_omar_condition" in json_data.keys():
+        if isinstance(json_data["ema_omar_condition"], list):
+            omar_conditions += json_data["ema_omar_condition"]
+
+    transformed_json_path = f"{combined_json_path.split('combined.json')[0]}transformed.json"
+    save_transformed_json(transformed_json_path, final_json)
 
 
-def save_transformed_json(combined_json_path: str, final_json: dict):
+def save_transformed_json(transformed_json_path: str, final_json: dict):
     """
     Saves transformed JSON for that medicine
     Args:
-        combined_json_path (str): Location of the combined JSON
+        transformed_json_path (str): Location of the transformed JSON
         final_json (dict): Dictionary of all human or orphan attributes
     """
-    transformed_json_path = f"{combined_json_path.split('combined.json')[0]}transformed.json"
     with open(transformed_json_path, 'w') as transformed_file:
         json.dump(final_json, transformed_file, indent=4)
 
@@ -100,6 +106,33 @@ def replace_not_found_dict(not_found_str: str, value: dict):
         value["value"] = not_found_str
 
 
+def add_condition(condition: dict, directory: str):
+    """
+    Adds attributes of the condition to the transformed.json corresponding to the condition's EU number
+    Args:
+        condition (dict): dictionary containing attributes of one condition of an OMAR
+        directory (str): data folder, containing medicine folders
+    """
+    for folder in listdir(f"{directory}/active_withdrawn"):
+        if condition["eu_od_number"].upper() != folder:
+            continue
+        med_path = f"{directory}/active_withdrawn/{folder}"
+        transformed_file = [file for file in listdir(med_path) if path.isfile(path.join(med_path, file))
+                            and "transformed.json" in file]
+        if not transformed_file:
+            continue
+
+        transformed_json_path = f"{med_path}/{transformed_file[0]}"
+        with open(transformed_json_path) as transformed_json:
+            json_data = json.load(transformed_json)
+        for key, value in condition.items():
+            # Don't add EU number, as it's already present with capitals.
+            if key == "eu_od_number":
+                continue
+            json_data[key] = value
+        save_transformed_json(transformed_json_path, json_data)
+
+
 # Main file to run all parsers
 def main(directory: str):
     """
@@ -107,7 +140,7 @@ def main(directory: str):
     to the right format for the database.
 
     Args:
-        directory: data folder, containing medicine folders
+        directory (str): data folder, containing medicine folders
     """
     log.info(f"=== Transforming all combined_attributes.json files ===")
 
@@ -119,6 +152,9 @@ def main(directory: str):
         if combined_file:
             combined_json_path = f"{med_path}/{combined_file[0]}"
             convert_json(combined_json_path)
+
+    for condition in omar_conditions:
+        add_condition(condition, directory)
 
     log.info(f"=== Done transforming ===")
 
