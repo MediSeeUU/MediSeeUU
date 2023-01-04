@@ -52,14 +52,14 @@ def get_final_json(final_json: dict, json_data: dict, all_names: list):
     for name, value in json_data.items():
         if name not in all_names:
             continue
-        if values.not_found == value or values.combiner_not_found == value:
+        if values.not_found == value:
             value = not_found_str
         if name == "eu_od_pnumber" and value == not_found_str:
             continue
         if isinstance(value, dict):
             if "value" not in value.keys():
                 pass
-            elif value["value"] == values.not_found or value["value"] == values.combiner_not_found:
+            elif value["value"] == values.not_found:
                 value["value"] = not_found_str
         elif not isinstance(value, list):
             pass
@@ -68,14 +68,14 @@ def get_final_json(final_json: dict, json_data: dict, all_names: list):
         else:
             for sub_key, sub_value in enumerate(value):
                 if not isinstance(sub_value, dict):
-                    if sub_value == values.not_found or sub_value == values.combiner_not_found:
+                    if sub_value == values.not_found:
                         value[sub_key] = not_found_str
                 elif "value" not in sub_value.keys():
                     for k, v in sub_value.items():
-                        if v != values.not_found and v != values.combiner_not_found:
+                        if v != values.not_found:
                             continue
                         value[sub_key][k] = not_found_str
-                elif sub_value["value"] == values.not_found or sub_value["value"] == values.combiner_not_found:
+                elif sub_value["value"] == values.not_found:
                     value[sub_key]["value"] = not_found_str
         final_json[name] = value
 
