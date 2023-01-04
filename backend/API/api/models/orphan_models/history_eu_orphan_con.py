@@ -7,6 +7,7 @@ from api.models.create_dashboard_columns import create_dashboard_history_current
 from api.models.common import DataFormats
 from api.models.na_fields import DateWithNAField
 
+
 class HistoryEUOrphanCon(models.Model):
     """
     This is the model class for the Orphan Condition history table. New attributes can be added here.
@@ -33,18 +34,14 @@ class HistoryEUOrphanCon(models.Model):
         blank=False,
     )
 
-    link_date = create_dashboard_column(
-        DateWithNAField(),
-        Category.Orphan_product,
-        DataFormats.Date,
-        "Link date between orphan and human",
+    link_date = DateWithNAField(
+        null=True,
+        blank=True,
     )
 
-    end_date = create_dashboard_column(
-        DateWithNAField(),
-        Category.Orphan_product,
-        DataFormats.Date,
-        "The end date of the orphan",
+    end_date = DateWithNAField(
+        null=True,
+        blank=True,
     )
 
     eu_orphan_con = create_dashboard_history_current_column(
