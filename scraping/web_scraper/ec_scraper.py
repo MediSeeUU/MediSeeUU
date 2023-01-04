@@ -233,6 +233,11 @@ def get_data_from_medicine_json(medicine_json: dict,
     # Whether current web page is about a human or orphan medicine
     human_medicine = True
 
+    # Not all orphans have eu_od_number or eu_od_sponsor, therefore it is set to a standard value
+    if "EU-3" in eu_num:
+        medicine_dict[attr.eu_od_pnumber] = values.not_found
+        medicine_dict[attr.eu_od_sponsor] = values.not_found
+
     for row in medicine_json:
         match row["type"]:
             case "name":
