@@ -114,22 +114,26 @@ def add_condition(condition: dict, directory: str):
         directory (str): data folder, containing medicine folders
     """
     for folder in listdir(f"{directory}/active_withdrawn"):
-        if condition["eu_od_number"].upper() != folder:
+        if condition["eu_od_number"].upper().replace('/', '-') != folder:
             continue
         med_path = f"{directory}/active_withdrawn/{folder}"
         transformed_file = [file for file in listdir(med_path) if path.isfile(path.join(med_path, file))
                             and "transformed.json" in file]
+
         if not transformed_file:
             continue
 
         transformed_json_path = f"{med_path}/{transformed_file[0]}"
         with open(transformed_json_path) as transformed_json:
             json_data = json.load(transformed_json)
+
         for key, value in condition.items():
             # Don't add EU number, as it's already present with capitals.
             if key == "eu_od_number":
                 continue
             json_data[key] = value
+            if value == values.not_found:
+                json_data[key] = "Not found"
         save_transformed_json(transformed_json_path, json_data)
 
 
