@@ -36,9 +36,9 @@ def get_date_from_url(url: str) -> dict[str, str]:
         if url_date[:2] == "19" or url_date[:2] == "20":
             file_date = datetime.strptime(url_date, '%Y%m%d')
     return {
-        "pdf_link": url,
-        "pdf_date": str(file_date.date()),
-        "pdf_scrape_date": str(datetime.now().date())
+        attr.file_date_pdf_link: url,
+        attr.file_date_pdf_date: str(file_date.date()),
+        attr.file_date_pdf_scrape_date: str(date.today())
     }
 
 
@@ -164,7 +164,7 @@ def download_pdfs_ec(medicine_identifier: str, pdf_type: str, pdf_urls: list[str
     if pdf_type == "anx":
         overwrite_dict: json = {
             medicine_identifier: {
-                "overwrite_ec_files": "False"
+                attr.overwrite_ec_files: "False"
             }
         }
         urls_dict.add_to_dict(overwrite_dict)
@@ -231,7 +231,7 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
         if key not in url_dict.keys():
             log.error(f"Key {key} not in keys of url_dict with identifier {medicine_identifier}. url_dict: {url_dict}")
         download_pdfs_ec(medicine_identifier, filetype, url_dict[key], attr_dict, target_path, urls_json,
-                         url_dict.get("overwrite_ec_files", "True") == "True")
+                         url_dict.get(attr.overwrite_ec_files, "True") == "True")
 
     download_list_ema = [('epar', attr.epar_url), ('omar', attr.omar_url), ("odwar", attr.odwar_url)]
     for (filetype, key) in download_list_ema:

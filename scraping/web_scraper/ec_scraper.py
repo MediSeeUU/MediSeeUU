@@ -244,9 +244,9 @@ def get_data_from_medicine_json(medicine_json: dict,
                 medicine_dict[attr.eu_aut_status]: str = row["meta"]["status_name"]
                 medicine_dict[attr.eu_brand_name_current]: str = row["value"]
                 if row["meta"]["status_name"] != "REFUSED":
-                    medicine_dict["status_type"]: str = row["meta"]["status_type"].replace("g", "a").replace("r", "w")
+                    medicine_dict[attr.status_type]: str = row["meta"]["status_type"].replace("g", "a").replace("r", "w")
                 else:
-                    medicine_dict["status_type"]: str = row["meta"]["status_type"]
+                    medicine_dict[attr.status_type]: str = row["meta"]["status_type"]
 
             case "eu_num":
                 if "EU/1" in row["value"]:
