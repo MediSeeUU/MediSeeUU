@@ -46,7 +46,7 @@ def run_all():
     pdf_parser.main(data_folder_directory)
     annex_10_parser.main(data_folder_directory)
     combiner.main(data_folder_directory)
-    # transformer.main(data_folder_directory)
+    transformer.main(data_folder_directory)
     # db_communicator_main.main(data_folder_directory)
 
 
