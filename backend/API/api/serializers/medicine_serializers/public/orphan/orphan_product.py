@@ -24,5 +24,4 @@ class OrphanProductSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = OrphanProduct
-
-        fields = "__all__"
+        exclude = ("eu_orphan_con_initial", )

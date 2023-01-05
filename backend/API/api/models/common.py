@@ -1,7 +1,6 @@
 # This program has been developed by students from the bachelor Computer Science at
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
-
 from django.db import models
 from enum import Enum
 
@@ -30,7 +29,13 @@ class DataFormats(Enum):
         return self.value[1]
 
 
-class AutTypes(models.TextChoices):
+class NAChoices(models.enums.ChoicesMeta):
+    @property
+    def choices(self):
+        return super().choices + [(value, value) for value in DataFormats.String.na_values]
+
+
+class AutTypes(models.TextChoices, metaclass=NAChoices):
     """
     Choice types for eu_aut_type. Is derived from the enumerated choice class.
     """
@@ -40,7 +45,7 @@ class AutTypes(models.TextChoices):
     UNCERTAIN = "exceptional or conditional"
 
 
-class AutStatus(models.TextChoices):
+class AutStatus(models.TextChoices, metaclass=NAChoices):
     """
     Choice types for eu_aut_status. Is derived from the enumerated choice class.
     """
@@ -49,7 +54,7 @@ class AutStatus(models.TextChoices):
     REFUSALS = "REFUSED"
 
 
-class LegalBasesTypes(models.TextChoices):
+class LegalBasesTypes(models.TextChoices, metaclass=NAChoices):
     """
     Choice types for legal bases. Is derived from the enumerated choice class.
     """
