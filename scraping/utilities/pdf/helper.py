@@ -160,4 +160,4 @@ def get_date(txt: str) -> datetime.date:
     except dateparser._parser.ParserError:
         pass
 
-    return attribute_values.default_date
+    return attribute_values.not_found_str
