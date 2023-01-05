@@ -151,7 +151,6 @@ def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources
 
         initial_chmp_opinion_date = datetime.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d")
         initial_procedure_start_date = datetime.datetime.strptime(initial_procedure_start_date, "%Y-%m-%d")
-        print((initial_chmp_opinion_date - initial_procedure_start_date).days)
         return (initial_chmp_opinion_date - initial_procedure_start_date).days
     except Exception as exception:
         log.info(f"COMBINER: failed_combine_assess_time_days_total - {exception}")
