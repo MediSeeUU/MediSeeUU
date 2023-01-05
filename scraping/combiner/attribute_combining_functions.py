@@ -116,7 +116,7 @@ def combine_get_file_url(eu_pnumber: str, attribute_name: str, sources: list[str
         for source in sources:
             return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["pdf_link"]
     except Exception as exception:
-        log.info(f"COMBINER: failed to get url, error - {exception}")
+        log.info(f"COMBINER: failed to get url, key is {exception}")
 
     return attribute_values.url_not_found
 
@@ -128,15 +128,14 @@ def combine_decision_time_days(eu_pnumber: str, attribute_name: str, sources: li
 
     try:
         initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
+        initial_chmp_opinion_date = datetime.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d")
         initial_decision_date = get_attribute_date(src.decision_initial, file_dicts)
-
-        initial_chmp_opinion_date = datetime.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d %H:%M:%S")
-        initial_decision_date = datetime.datetime.strptime(initial_decision_date, "%Y-%m-%d %H:%M:%S")
 
         return (initial_decision_date - initial_chmp_opinion_date).days
 
     except Exception as exception:
         log.info(f"COMBINER: failed_combine_decision_time_days - {exception}")
+
         return attribute_values.invalid_period_days
 
 
@@ -150,8 +149,8 @@ def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources
         initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
         initial_procedure_start_date = file_dicts[src.epar][attr.ema_procedure_start_initial]
 
-        initial_chmp_opinion_date = datetime.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d %H:%M:%S")
-        initial_procedure_start_date = datetime.datetime.strptime(initial_procedure_start_date, "%Y-%m-%d %H:%M:%S")
+        initial_chmp_opinion_date = datetime.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d")
+        initial_procedure_start_date = datetime.datetime.strptime(initial_procedure_start_date, "%Y-%m-%d")
 
         return (initial_chmp_opinion_date - initial_procedure_start_date).days
     except Exception as exception:
@@ -317,6 +316,3 @@ def get_ema_excel(filepath: str, filename: str) -> dict:
     except Exception:
         log.info(f"COMBINER: {src.ema_excel} not found at {filepath}")
         return {}
-
-# print(get_ema_excel("..\..\data/ema_excel/", "ema_excel.xlsx")['EMEA/H/C/281'])
-# print(string_overlap(['lopinavir / Ritonavir', 'lopinavir/ ritonavir'],0.8))

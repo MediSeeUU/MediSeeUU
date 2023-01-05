@@ -1,5 +1,5 @@
 # metadata attributes in json files
-meta_file_date = "file_date"
+meta_file_date = "pdf_scrape_date"
 pdf_file = "pdf_file"
 xml_file = "xml_file"
 is_initial = "is_initial"
