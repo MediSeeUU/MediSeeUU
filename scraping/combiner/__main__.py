@@ -9,7 +9,7 @@ import scraping.utilities.definitions.sources as src
 import logging
 
 log = logging.getLogger("combiner")
-log.disabled = True
+# log.disabled = True
 
 
 # Main file to run all parsers
@@ -41,7 +41,7 @@ def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
     pdf_data = get_dict('pdf_parser', filepath, folder_name)
     file_dicts[src.web] = get_dict('webdata', filepath, folder_name)
 
-    #get respective parts from pdf_parser json
+    # get respective parts from pdf_parser json
     decision_files = sorted(
         [(int(dictionary[attr.pdf_file][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["decisions"]],
         key=lambda x: x[0])
@@ -49,7 +49,7 @@ def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
         [(int(dictionary[attr.pdf_file][:-4].split("_")[-1]), dictionary) for dictionary in pdf_data["annexes"]],
         key=lambda x: x[0])
 
-    #get current en initial files
+    # get current en initial files
     if len(decision_files) > 0:
         file_dicts[src.decision] = decision_files[-1][1]
         file_dicts[src.decision_initial] = decision_files[0][1]
@@ -67,7 +67,7 @@ def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
     else:
         log.info(f"COMBINER: no omar found in pdf_data for {folder_name}")
 
-    #fetch annex_10
+    # fetch annex_10
     try:
         annex_10_path = path.join(filepath, "../../annex_10")
         with open(path.join(annex_10_path, "annex_10_parser.json"), "r") as annex_10:
@@ -135,7 +135,7 @@ def get_dict(source: str, filepath: str, folder_name: str) -> dict:
         log.warning(f"COMBINER: no {source}.json found in {filepath}")
     except Exception as e:
         log.error(f"COMBINER: {e} for {source}.json in {filepath}")
-        
+
     return {}
 
 
@@ -184,8 +184,3 @@ def datetime_converter(datetime: str) -> str:
 
 # if __name__ == "__main__":
 #     main('..\..\..\data')
-
-
-# combine_folder("..\\..\\data\\active_withdrawn\\EU-1-00-130", "EU-1-00-130")
-# print(type(attr_obj.all_attributes))
-# print(attr_obj.all_attributes)

@@ -114,10 +114,9 @@ def combine_get_file_url(eu_pnumber: str, attribute_name: str, sources: list[str
                          file_dicts: dict[str, dict[str, any]]) -> str:
     try:
         for source in sources:
-            return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["file_link"]
-    except Exception:
-        print("COMBINER: failed to get url")
-        return attribute_values.url_not_found
+            return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["pdf_link"]
+    except Exception as exception:
+        log.info(f"COMBINER: failed to get url, error - {exception}")
 
     return attribute_values.url_not_found
 
@@ -137,7 +136,7 @@ def combine_decision_time_days(eu_pnumber: str, attribute_name: str, sources: li
         return (initial_decision_date - initial_chmp_opinion_date).days
 
     except Exception as exception:
-        print("COMBINER: failed_combine_decision_time_days -", exception)
+        log.info(f"COMBINER: failed_combine_decision_time_days - {exception}")
         return attribute_values.invalid_period_days
 
 
@@ -156,7 +155,7 @@ def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources
 
         return (initial_chmp_opinion_date - initial_procedure_start_date).days
     except Exception as exception:
-        print("COMBINER: failed_combine_assess_time_days_total -", exception)
+        log.info(f"COMBINER: failed_combine_assess_time_days_total - {exception}")
         return attribute_values.invalid_period_days
 
 
@@ -201,7 +200,7 @@ def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str]
     Returns:
         str: _description_
     """
-    try: #TODO: this try except should not be necisarry if sources are always {} when not found
+    try:  # TODO: this try except should not be necisarry if sources are always {} when not found
         annex_initial_dict = file_dicts[src.annex_initial]
         if annex_initial_dict == {}:
             log.warning(f"COMBINER: no annex initial in {eu_pnumber}")
@@ -228,7 +227,7 @@ def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list
         if ema_number_web == attribute_values.not_found:
             return are_equal, attribute_values.default_date
 
-        ema_excel = get_ema_excel("../data/ema_excel/", "ema_excel.xlsx") #TODO: not hardcoding path
+        ema_excel = get_ema_excel("../data/ema_excel/", "ema_excel.xlsx")  # TODO: not hardcoding path
 
         if ema_number_web in ema_excel:
             web_brand_name = web_dict[attr.eu_brand_name_current]
@@ -316,7 +315,7 @@ def get_ema_excel(filepath: str, filename: str) -> dict:
 
     # excel not found
     except Exception:
-        print(f"COMBINER: {src.ema_excel} not found at {filepath}")
+        log.info(f"COMBINER: {src.ema_excel} not found at {filepath}")
         return {}
 
 # print(get_ema_excel("..\..\data/ema_excel/", "ema_excel.xlsx")['EMEA/H/C/281'])
