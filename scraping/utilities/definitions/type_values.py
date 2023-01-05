@@ -32,7 +32,3 @@ int_should_be_present = numeric_should_be_present
 float_not_found = numeric_not_found
 float_not_applicable = numeric_not_applicable
 float_should_be_present = numeric_should_be_present
-
-#dates
-default_date = datetime.datetime.min
-default_date_str = str(datetime.datetime.min)

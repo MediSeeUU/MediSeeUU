@@ -135,7 +135,7 @@ def get_date(txt: str) -> datetime.date:
         datetime.date: found date.
     """
     if not txt:
-        return attribute_values.default_date
+        return attribute_values.not_found_str
         txt = txt.lower()
     #try dateparser
     try:
