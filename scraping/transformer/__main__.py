@@ -58,7 +58,7 @@ def get_final_json(final_json: dict, json_data: dict, all_names: list):
     for name, value in json_data.items():
         if name not in all_names:
             continue
-        if values.not_found == value:
+        if values.not_found == value or values.url_not_found == value:
             value = not_found_str
         if name == "eu_od_pnumber" and value == not_found_str:
             continue
@@ -82,14 +82,14 @@ def replace_not_found_list_dict(not_found_str: str, sub_key: int, sub_value: dic
         value (dict): list of dictionaries in combined.json
     """
     if not isinstance(sub_value, dict):
-        if sub_value == values.not_found:
+        if sub_value == values.not_found or sub_value == values.url_not_found:
             value[sub_key] = not_found_str
     elif "value" not in sub_value.keys():
         for k, v in sub_value.items():
-            if v != values.not_found:
+            if v != values.not_found and v != values.url_not_found:
                 continue
             value[sub_key][k] = not_found_str
-    elif sub_value["value"] == values.not_found:
+    elif sub_value["value"] == values.not_found or sub_value["value"] == values.url_not_found:
         value[sub_key]["value"] = not_found_str
 
 
@@ -102,7 +102,7 @@ def replace_not_found_dict(not_found_str: str, value: dict):
     """
     if "value" not in value.keys():
         return
-    elif value["value"] == values.not_found:
+    elif value["value"] == values.not_found or values.url_not_found == value["value"]:
         value["value"] = not_found_str
 
 
@@ -132,7 +132,7 @@ def add_condition(condition: dict, directory: str):
             if key == "eu_od_number":
                 continue
             json_data[key] = value
-            if value == values.not_found:
+            if value == values.not_found or value == values.url_not_found:
                 json_data[key] = "Not found"
         save_transformed_json(transformed_json_path, json_data)
 
