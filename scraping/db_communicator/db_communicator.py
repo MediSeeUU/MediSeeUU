@@ -8,6 +8,7 @@ import scraping.utilities.definitions.communicator_urls as urls
 log = logging.getLogger("db_communicator")
 medicine_log = logging.getLogger("db_communicator.medicine_info")
 
+
 class DbCommunicator:
     """
     Handles all communication between the database and the modules

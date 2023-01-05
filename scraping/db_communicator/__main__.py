@@ -53,7 +53,7 @@ def send_medicine(directory_folders: list[str], active_withdrawn_folder: str, db
     failed_medicine = 0
 
     for folder in directory_folders:
-        combined_dict = get_combined_dict(path.join(active_withdrawn_folder, folder), folder)
+        combined_dict = get_transformed_dict(path.join(active_withdrawn_folder, folder), folder)
         if combined_dict is not None:
             formed_data = {"data": [combined_dict]}
             json_data = json.dumps(formed_data)
@@ -83,7 +83,7 @@ def send_medicine_together(directory_folders: list[str], active_withdrawn_folder
     all_data = []
 
     for folder in directory_folders:
-        combined_dict = get_combined_dict(path.join(active_withdrawn_folder, folder), folder)
+        combined_dict = get_transformed_dict(path.join(active_withdrawn_folder, folder), folder)
         if combined_dict is not None:
             all_data.append(combined_dict)
 
@@ -97,20 +97,20 @@ def send_medicine_together(directory_folders: list[str], active_withdrawn_folder
         log.error(f"Couldn't send all {medicine_type} medicines to the database, is the backend running?")
 
 
-def get_combined_dict(cur_dir: str, med_name: str) -> dict | None:
+def get_transformed_dict(cur_dir: str, med_name: str) -> dict | None:
     """
-    tries to get the combined json out of the current directory
+    tries to get the transformed json out of the current directory and convert it to dict
 
     Args:
         cur_dir (str): The directory string
         med_name (str): The name of the current medicine
 
     Returns:
-        dict: The dictionary inside the json file
+        dict: The json file converted to a dictionary
     """
     try:
-        with open(path.join(cur_dir, med_name + "_combined.json"), "r") as combined_json:
-            return json.load(combined_json)
+        with open(path.join(cur_dir, med_name + "_transformed.json"), "r") as transformed_json:
+            return json.load(transformed_json)
     except FileNotFoundError:
         log.info(f"COMMUNICATOR: no combined.json found in data for {cur_dir}")
         return None
