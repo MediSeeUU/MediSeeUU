@@ -160,6 +160,7 @@ data filtered and xml 31 okt.zip
 !tests/test_data/*/*/*.xml
 !tests/test_data/*/*/*.pdf
 !tests/test_data/*/*/*webdata.json
+!tests/test_data/*/*/*combined.json
 !tests/test_data/*/annex_10_parser_test.json
 !tests/annex_10_tests/annex_10_parser_test.json
 !tests/pdf_parser_tests/test_annex_parse_data/*

@@ -1,0 +1,104 @@
+{
+    "eu_accel_assess_g": "__SCRAPER_NOT_FOUND__",
+    "eu_od_date": "__SCRAPER_NOT_FOUND__",
+    "assess_time_days_total": -1,
+    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "active_substance": [
+        "tenecteplase",
+        "0001-01-01"
+    ],
+    "assess_time_days_active": -1,
+    "eu_od_sponsor": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_status": "WITHDRAWN",
+    "eu_od_comp_date": "__SCRAPER_NOT_FOUND__",
+    "eu_brand_name_current": [
+        {
+            "value": "Tenecteplase Boehringer Ingelheim Pharma GmbH &amp; Co. KG",
+            "date": "22/12/2022"
+        }
+    ],
+    "assess_time_days_cstop": -1,
+    "eu_prime_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "0001-01-01"
+    },
+    "ema_corapp": "__SCRAPER_NOT_FOUND__",
+    "eu_indication_initial": {
+        "value": "tenecteplase boehringer ingelheim pharma kg is indicated for the thrombolytic treatment of suspected myocardial infarction with persistent st elevation or recent left bundle branch block \n within 6 hours after the onset of acute myocardial infarction (ami) symptoms.\n",
+        "date": "0001-01-01"
+    },
+    "ec_decision_time_days": -1,
+    "eu_od_con": "__SCRAPER_NOT_FOUND__",
+    "eu_od_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "0001-01-01"
+    },
+    "ema_reexamination": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_date": "2001-02-23",
+    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
+    "atc_code": "B01AD11",
+    "eu_orphan_con_current": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "22/12/2022"
+        }
+    ],
+    "eu_aut_type_initial": {
+        "value": "attribute not available on release",
+        "date": "0001-01-01"
+    },
+    "chmp_opinion_date": "__SCRAPER_NOT_FOUND__",
+    "eu_referral": "False",
+    "eu_procedures_todo": [
+        {
+            "eu_referral": false,
+            "eu_suspension": false
+        }
+    ],
+    "eu_aut_type_current": [
+        {
+            "value": "standard",
+            "date": "22/12/2022"
+        }
+    ],
+    "ema_rapp": "__SCRAPER_NOT_FOUND__",
+    "eu_pnumber": "EU/1/00/168",
+    "eu_brand_name_initial": {
+        "value": "Tenecteplase Boehringer Ingelheim Pharma KG",
+        "date": "0001-01-01"
+    },
+    "eu_suspension": "False",
+    "orphan_status": "h",
+    "eu_legal_basis": "__SCRAPER_NOT_FOUND__",
+    "ema_number": "EMEA/H/C/307",
+    "aut_url": "404_url_not_found",
+    "ema_number_id": "307",
+    "omar_url": "404_url_not_found",
+    "smpc_url": "404_url_not_found",
+    "ema_number_certainty": "1.0",
+    "epar_url": "404_url_not_found",
+    "ema_number_check": [
+        true,
+        "22/12/2022"
+    ],
+    "odwar_url": "404_url_not_found",
+    "eu_mah_current": [
+        {
+            "value": "Boehringer Ingelheim International GmbH",
+            "date": "22/12/2022"
+        }
+    ],
+    "eu_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_atmp": "attribute not available on release",
+    "eu_mah_initial": {
+        "value": "Boehringer Ingelheim International  GmbH",
+        "date": "0001-01-01"
+    },
+    "eu_nas": "attribute not available on release",
+    "ema_od_number": "__SCRAPER_NOT_FOUND__",
+    "ema_procedure_start_initial": "__SCRAPER_NOT_FOUND__",
+    "eu_med_type": [
+        "small molecule",
+        "0001-01-01"
+    ]
+}
