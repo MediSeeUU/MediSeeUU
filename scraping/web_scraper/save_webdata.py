@@ -73,11 +73,11 @@ def save_webdata_and_urls(medicine_identifier: str, medicine_url: str, dec_list:
             attr.aut_url: dec_list,
             attr.smpc_url: anx_list,
             attr.ema_url: ema_list,
-            attr.scrape_date_web: date.today().strftime('%d/%m/%Y'),
+            attr.scrape_date_web: date.today().strftime('%Y-%m-%d'),
             attr.overwrite_ec_files: "True"
         }
     }
-    attributes_dict[attr.scrape_date_web] = date.today().strftime('%d/%m/%Y')
+    attributes_dict[attr.scrape_date_web] = date.today().strftime('%Y-%m-%d')
     # Creates a directory if the medicine doesn't exist yet
     Path(f"{target_path}").mkdir(exist_ok=True)
 

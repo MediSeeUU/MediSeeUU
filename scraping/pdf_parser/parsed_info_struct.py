@@ -17,7 +17,7 @@ class ParsedInfoStruct:
     - Filename of each ODWAR file
     """
     eu_number: str = field(default_factory=str)
-    parse_date: datetime.datetime = datetime.datetime.now()
+    parse_date: datetime.datetime = datetime.datetime.now().strftime("%Y-%m-%d")
 
     decisions: list[typing.Dict[str, str]] = field(default_factory=list)
     annexes: list[typing.Dict[str, str]] = field(default_factory=list)

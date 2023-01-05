@@ -89,7 +89,7 @@ def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> st
 # TODO: fix datum
 def combine_select_string_overlap(eu_pnumber: str, attribute_name: str, sources: list[str],
                                   file_dicts: dict[str, dict[str, any]],
-                                  min_matching_fraction: float = 0.8) -> tuple[str, datetime.date]:
+                                  min_matching_fraction: float = 0.8) -> str:
     """
     compares two strings to see if a percentage of the shortest string is identical to the longest string
     Args:
@@ -105,9 +105,10 @@ def combine_select_string_overlap(eu_pnumber: str, attribute_name: str, sources:
         overlap = string_overlap(strings, min_matching_fraction)
 
         if overlap != attribute_values.insufficient_overlap:
-            return overlap, attribute_values.not_found_str
+            return overlap
 
-    return (attribute_values.insufficient_overlap, get_attribute_date(sources[0], file_dicts))
+    log.info(f"Insufficient overlap for {strings}")
+    return strings[0]
 
 
 def combine_get_file_url(eu_pnumber: str, attribute_name: str, sources: list[str],
@@ -202,28 +203,27 @@ def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str]
         annex_initial_dict = file_dicts[src.annex_initial]
         if annex_initial_dict == {}:
             log.warning(f"COMBINER: no annex initial in {eu_pnumber}")
-            return attribute_values.not_found, attribute_values.not_found_str
+            return attribute_values.not_found
         eu_med_type = annex_initial_dict[attr.eu_med_type]
-        eu_med_type_date = get_attribute_date(src.annex_initial, file_dicts)
         eu_atmp = file_dicts[src.decision][attr.eu_atmp]
 
         if eu_med_type == attribute_values.eu_med_type_biologicals and eu_atmp:
-            return attribute_values.eu_med_type_atmp, eu_med_type_date
+            return attribute_values.eu_med_type_atmp
     except:
-        return attribute_values.not_found, attribute_values.not_found_str
+        return attribute_values.not_found
 
-    return eu_med_type, eu_med_type_date
+    return eu_med_type
 
 
 def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list[str],
-                             file_dicts: dict[str, dict[str, any]]) -> tuple[bool, datetime.date] | tuple[bool, str]:
+                             file_dicts: dict[str, dict[str, any]]) -> bool:
     try:
         are_equal = False
 
         web_dict = file_dicts[src.web]
         ema_number_web = web_dict[attr.ema_number]
         if ema_number_web == attribute_values.not_found:
-            return are_equal, attribute_values.not_found_str
+            return are_equal
 
         ema_excel = get_ema_excel("../data/ema_excel/", "ema_excel.xlsx")  # TODO: not hardcoding path
 
@@ -232,12 +232,9 @@ def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list
             excel_brand_name = ema_excel[ema_number_web]
             if string_overlap([web_brand_name, excel_brand_name]) != attribute_values.insufficient_overlap:
                 are_equal = True
-
-        ema_number_date = get_attribute_date(src.web, file_dicts)
-
-        return are_equal, ema_number_date
+        return are_equal
     except Exception:
-        return False, attribute_values.not_found_str
+        return False
 
 
 def combine_eu_procedures_todo(eu_pnumber: str, attribute_name: str, sources: list[str],
