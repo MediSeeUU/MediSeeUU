@@ -13,13 +13,12 @@ webdata_not_found = "404_webdata_not_found"
 annex_10_not_found = "404_annex_10_not_found"
 
 insufficient_overlap = "|->INSUFFICIENT OVERLAP<-|"
-invalid_period_days = -1
 NA_before = "attribute not available on release"
 not_scrapeable = "Value should be present in document"
 yes_str = "True"
 no_str = "False"
 
-default_date = "Not found"
+not_found_str = "Not found"
 
 # attribute values:
 aut_type_standard = "standard"

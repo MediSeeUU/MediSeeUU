@@ -19,13 +19,13 @@ def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]
         try:
             return file_dicts[src.web][attr.scrape_date_web]
         except Exception:
-            return attribute_values.default_date
+            return attribute_values.not_found_str
     else:
         try:
             file_name = file_dicts[source_string][attr.pdf_file]
             return file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date]
         except Exception:
-            return attribute_values.default_date
+            return attribute_values.not_found_str
 
 
 def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> list[
@@ -105,7 +105,7 @@ def combine_select_string_overlap(eu_pnumber: str, attribute_name: str, sources:
         overlap = string_overlap(strings, min_matching_fraction)
 
         if overlap != attribute_values.insufficient_overlap:
-            return overlap, attribute_values.default_date
+            return overlap, attribute_values.not_found_str
 
     return (attribute_values.insufficient_overlap, get_attribute_date(sources[0], file_dicts))
 
@@ -124,7 +124,7 @@ def combine_get_file_url(eu_pnumber: str, attribute_name: str, sources: list[str
 def combine_decision_time_days(eu_pnumber: str, attribute_name: str, sources: list[str],
                                file_dicts: dict[str, dict[str, any]]) -> int:
     if attr.chmp_opinion_date not in file_dicts[src.epar].keys():
-        return attribute_values.invalid_period_days
+        return attribute_values.not_found_str
 
     try:
         initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
@@ -136,14 +136,14 @@ def combine_decision_time_days(eu_pnumber: str, attribute_name: str, sources: li
     except Exception as exception:
         log.info(f"COMBINER: failed_combine_decision_time_days - {exception}")
 
-        return attribute_values.invalid_period_days
+        return attribute_values.not_found_str
 
 
 def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources: list[str],
                                    file_dicts: dict[str, dict[str, any]]) -> int:
     epar_keys = file_dicts[src.epar].keys()
     if attr.chmp_opinion_date not in epar_keys or attr.ema_procedure_start_initial not in epar_keys:
-        return attribute_values.invalid_period_days
+        return attribute_values.not_found_str
 
     try:
         initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
@@ -151,11 +151,11 @@ def combine_assess_time_days_total(eu_pnumber: str, attribute_name: str, sources
 
         initial_chmp_opinion_date = datetime.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d")
         initial_procedure_start_date = datetime.datetime.strptime(initial_procedure_start_date, "%Y-%m-%d")
-
+        print((initial_chmp_opinion_date - initial_procedure_start_date).days)
         return (initial_chmp_opinion_date - initial_procedure_start_date).days
     except Exception as exception:
         log.info(f"COMBINER: failed_combine_assess_time_days_total - {exception}")
-        return attribute_values.invalid_period_days
+        return attribute_values.not_found_str
 
 
 def combine_assess_time_days_active(eu_pnumber: str, attribute_name: str, sources: list[str],
@@ -170,7 +170,7 @@ def combine_assess_time_days_active(eu_pnumber: str, attribute_name: str, source
             return file_dicts[src.annex_10][year_key][eu_pnumber][attr.assess_time_days_active]
     except Exception:
         pass
-    return attribute_values.invalid_period_days
+    return attribute_values.not_found_str
 
 
 def combine_assess_time_days_cstop(eu_pnumber: str, attribute_name: str, sources: list[str],
@@ -186,7 +186,7 @@ def combine_assess_time_days_cstop(eu_pnumber: str, attribute_name: str, sources
 
     except Exception:
         pass
-    return attribute_values.invalid_period_days
+    return attribute_values.not_found_str
 
 
 def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str],
@@ -203,7 +203,7 @@ def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str]
         annex_initial_dict = file_dicts[src.annex_initial]
         if annex_initial_dict == {}:
             log.warning(f"COMBINER: no annex initial in {eu_pnumber}")
-            return attribute_values.not_found, attribute_values.default_date
+            return attribute_values.not_found, attribute_values.not_found_str
         eu_med_type = annex_initial_dict[attr.eu_med_type]
         eu_med_type_date = get_attribute_date(src.annex_initial, file_dicts)
         eu_atmp = file_dicts[src.decision][attr.eu_atmp]
@@ -211,7 +211,7 @@ def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str]
         if eu_med_type == attribute_values.eu_med_type_biologicals and eu_atmp:
             return attribute_values.eu_med_type_atmp, eu_med_type_date
     except:
-        return attribute_values.not_found, attribute_values.default_date
+        return attribute_values.not_found, attribute_values.not_found_str
 
     return eu_med_type, eu_med_type_date
 
@@ -224,7 +224,7 @@ def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list
         web_dict = file_dicts[src.web]
         ema_number_web = web_dict[attr.ema_number]
         if ema_number_web == attribute_values.not_found:
-            return are_equal, attribute_values.default_date
+            return are_equal, attribute_values.not_found_str
 
         ema_excel = get_ema_excel("../data/ema_excel/", "ema_excel.xlsx")  # TODO: not hardcoding path
 
@@ -238,7 +238,7 @@ def combine_ema_number_check(eu_pnumber: str, attribute_name: str, sources: list
 
         return are_equal, ema_number_date
     except Exception:
-        return False, attribute_values.default_date
+        return False, attribute_values.not_found_str
 
 
 def combine_eu_procedures_todo(eu_pnumber: str, attribute_name: str, sources: list[str],
@@ -254,7 +254,7 @@ def combine_eu_aut_date(eu_pnumber: str, attribute_name: str, sources: list[str]
     if not check_all_equal(values):
         log.warning(f"COMBINER: crosscheck for {attribute_name} failed")
 
-    values.append(attribute_values.default_date)
+    values.append(attribute_values.not_found_str)
     return values[0]
 
 
