@@ -4,12 +4,13 @@
 import logging
 from collections import OrderedDict
 from django.db.models import Model
-from typing import Tuple
+from rest_framework.serializers import ModelSerializer
+from typing import Tuple, Any
 from api.models.get_dashboard_columns import get_data_key
 
 
 def serialize_data(mixin: object, model: Model, attribute_name: str, many: bool = False) \
-        -> list[Tuple[str, OrderedDict[str, str]]]:
+        -> list[Tuple[str, OrderedDict[str, str], Any]]:
     """
 
     Args:
@@ -25,7 +26,7 @@ def serialize_data(mixin: object, model: Model, attribute_name: str, many: bool 
     result = []
     if hasattr(mixin.Meta, attribute_name):
         # Iterate the specified related objects with their serializer
-        for field, serializer_class in getattr(mixin.Meta, attribute_name):
+        for field, serializer_class, *extra in getattr(mixin.Meta, attribute_name):
             # Check if the model has a relation to the field
             if hasattr(model, field):
                 obj_field = getattr(model, field)
@@ -34,11 +35,11 @@ def serialize_data(mixin: object, model: Model, attribute_name: str, many: bool 
                     # Serialize data
                     serializer = serializer_class(context=mixin.context, many=many)
                     obj_rep = serializer.to_representation(obj_field)
-                    result.append((field, obj_rep))
+                    result.append((field, obj_rep, *extra))
     return result
 
 
-class RelatedMixin:
+class RelatedMixin(ModelSerializer):
     """
     Selects the fields of the specified related object and inserts it in a flat representation.
 
@@ -77,7 +78,47 @@ class RelatedMixin:
         return representation
 
 
-class ListMixin:
+class ManyRelatedMixin(ModelSerializer):
+    """
+    Selects the fields of the specified related object and inserts it in a flat representation.
+
+    Use it in a serializer by inheriting from this class and specifying a related attribute in the Meta class.
+    Specify a field name and a serializer.
+
+    Example:
+        .. code-block:: python
+
+            class yourSerializer(RelatedMixin, serializers.ModelSerializer)
+                class Meta:
+                    related = [
+                        ("ingredients_and_substances", IngredientsAndSubstancesSerializer),
+                        ("marketing_authorisation", MarketingAuthorisationSerializer),
+                    ]
+    """
+
+    def to_representation(self, obj: Model) -> OrderedDict[str, str]:
+        """
+        Overrides the default `to_representation` method to add the related fields
+
+        Args:
+            obj (Model): An instance of the model being serialized
+
+        Returns:
+            OrderedDict[str, str]: The representation with the related fields added
+        """
+        # Get the current object representation
+        representation = super().to_representation(obj)
+        serialized_data = serialize_data(self, obj, "many_related", True)
+        for field, obj_rep, transform_function in serialized_data:
+            if field in representation:
+                representation.pop(field)
+            obj_rep = transform_function(obj_rep)
+            for key in obj_rep:
+                representation[key] = obj_rep[key]
+        return representation
+
+
+class ListMixin(ModelSerializer):
     """
     Selects the items of the specified related list object and inserts it in a flat representation.
 
@@ -115,7 +156,7 @@ class ListMixin:
         return representation
 
 
-class HistoryMixin:
+class HistoryMixin(ModelSerializer):
     """
     Selects the items of the specified related history object and inserts it in a flat representation.
 
@@ -161,7 +202,7 @@ class HistoryMixin:
 
         if hasattr(self.Meta, "current_history"):
             # Iterate the specified history objects with their serializer
-            for field, serializer_class in self.Meta.current_history:
+            for field, serializer_class, *_ in self.Meta.current_history:
                 if hasattr(obj, field):
                     history = getattr(obj, field).order_by("change_date").last()
                     if history:
@@ -172,7 +213,7 @@ class HistoryMixin:
         return representation
 
 
-class AnyBoolsList:
+class AnyBoolsList(ModelSerializer):
     """
     Selects the items of the specified related history object and inserts it in a flat representation.
 
@@ -208,7 +249,7 @@ class AnyBoolsList:
         """
         representation = super().to_representation(obj)
 
-        for related_name, serializer_class, fields in getattr(self.Meta, "any_bools_list"):
+        for related_name, serializer_class, fields, *_ in getattr(self.Meta, "any_bools_list"):
             if hasattr(obj, related_name):
                 obj_field = getattr(obj, related_name)
                 # If relation is not null

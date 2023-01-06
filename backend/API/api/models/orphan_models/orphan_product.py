@@ -69,6 +69,7 @@ class OrphanProduct(models.Model):
         MedicinalProduct,
         models.CASCADE,
         null=True,
+        related_name="eu_od_pnumber",
     )
 
     ema_od_number = create_dashboard_column(

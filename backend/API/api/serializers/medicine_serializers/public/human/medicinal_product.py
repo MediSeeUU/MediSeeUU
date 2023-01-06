@@ -11,6 +11,7 @@ has to access all different tables and merge all this data in a one dimensional 
 from rest_framework import serializers
 from api.serializers.medicine_serializers.public.common import (
     RelatedMixin,
+    ManyRelatedMixin,
     ListMixin,
     HistoryMixin,
     AnyBoolsList,
@@ -19,6 +20,9 @@ from api.models.human_models import (
     MedicinalProduct,
     LegalBases,
     IngredientsAndSubstances,
+)
+from api.models.orphan_models import (
+    OrphanProduct,
 )
 from api.serializers.medicine_serializers.public.human import (
     MarketingAuthorisationSerializer,
@@ -65,11 +69,17 @@ class HistoryEUOrphanConSerializer(serializers.ModelSerializer):
         """
         Meta information
         """
-        model = MedicinalProduct
-        exclude = ("id", )
+        model = OrphanProduct
+        fields = ("eu_od_number", )
 
 
-class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, AnyBoolsList, serializers.ModelSerializer):
+def transform_eu_orphan_con(data):
+    return {"eu_orphan_con_initial": data}
+
+
+class PublicMedicinalProductSerializer(RelatedMixin, ManyRelatedMixin,
+                                       ListMixin, HistoryMixin, AnyBoolsList,
+                                       serializers.ModelSerializer):
     """
     This serializer serializers all the needed data for the medicine view from the :py:class:`.MedicinalProduct` model.
     """
@@ -83,6 +93,9 @@ class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, An
         related = [
             ("ingredients_and_substances", IngredientsAndSubstancesSerializer),
             ("marketing_authorisation", MarketingAuthorisationSerializer),
+        ]
+        many_related = [
+            ("eu_od_pnumber", HistoryEUOrphanConSerializer, transform_eu_orphan_con)
         ]
         # serializers to be added as a list and flattened
         list = [
