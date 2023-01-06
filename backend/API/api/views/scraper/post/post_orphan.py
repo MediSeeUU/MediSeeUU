@@ -13,7 +13,7 @@ from api.serializers.medicine_serializers.scraper.update.orphan import (
 )
 from api.models.other import OrphanLocks
 from .common import (
-    pop_initial_histories_data,
+    pop_foreign_key_histories_data,
     add_or_update_model,
     add_or_update_foreign_key,
     add_list,
@@ -29,6 +29,8 @@ def post(data):
         ).values_list("column_name", flat=True)
 
         data = {key: value for key, value in data.items() if key not in locks}
+
+        foreign_key_history_data = pop_foreign_key_histories_data(data, models)
 
         add_or_update_model(data, override, OrphanProduct, {"eu_od_number": eu_od_number},
                             OrphanProductSerializer, OrphanProductFlexVarUpdateSerializer)
@@ -56,4 +58,3 @@ def history_variables(eu_od_number, initial_histories_data, current_histories_da
         data (medicineObject): The new medicine data.
     """
 
-    return initial_histories_data

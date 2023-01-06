@@ -127,18 +127,5 @@ class OrphanProduct(models.Model):
         "Initial EU orphan conditions",
     )
 
-    eu_orphan_con_current = create_dashboard_history_foreign_key_column(
-        models.ForeignKey(
-            "HistoryEUOrphanCon",
-            models.SET_NULL,
-            null=True,
-            blank=True,
-            related_name="eu_orphan_con_current"
-        ),
-        Category.Medicinal_product,
-        DataFormats.Dictionary_List,
-        "Status of EU orphan designations",
-    )
-
     class Meta:
         db_table = "orphan_product"

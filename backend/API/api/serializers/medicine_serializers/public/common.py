@@ -214,7 +214,12 @@ class HistoryMixin(ModelSerializer):
                         data = serializer_class(history).data
                         if data:
                             field_name = get_data_key(serializer_class.Meta.model, field)
-                            representation[field_name] = data[field]
+                            # if data is dict with more than 1 key, assign dict as value
+                            if len(data) > 1:
+                                representation[field_name] = data
+                            # otherwise, assign only value as value
+                            else:
+                                representation[field_name] = data[field]
         return representation
 
 

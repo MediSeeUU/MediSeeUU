@@ -75,7 +75,7 @@ class DashboardColumn:
         return data_info
 
 
-class DashBoardHistoryInitialColumn(DashboardColumn):
+class DashBoardHistoryForeignKeyColumn(DashboardColumn):
     pass
 
 
@@ -129,7 +129,7 @@ def create_dashboard_history_foreign_key_column(field: models.Field, category: C
     Returns:
         Field: Returns the original field, but updated with the correct information.
     """
-    dashboard_column = DashBoardHistoryInitialColumn(category, data_format, display_name, extra_dashboard_columns)
+    dashboard_column = DashBoardHistoryForeignKeyColumn(category, data_format, display_name, extra_dashboard_columns)
     setattr(field, "dashboard_column", dashboard_column)
     return field
 

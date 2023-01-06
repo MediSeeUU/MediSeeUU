@@ -71,10 +71,12 @@ class HistoryEUOrphanConSerializer(HistoryMixin, serializers.ModelSerializer):
         Meta information
         """
         model = OrphanProduct
-        fields = ("eu_od_number", "eu_orphan_con_initial", "eu_orphan_con_current")
+        fields = ("eu_od_number", "eu_orphan_con_initial", )
         initial_history = [
             ("eu_orphan_con_initial", EUOrphanConSerializer),
-            ("eu_orphan_con_current", EUOrphanConSerializer),
+        ]
+        current_history = [
+            ("eu_orphan_con", EUOrphanConSerializer),
         ]
 
 

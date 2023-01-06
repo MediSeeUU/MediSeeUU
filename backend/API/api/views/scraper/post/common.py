@@ -3,16 +3,16 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 from django.forms.models import model_to_dict
-from api.models.get_dashboard_columns import get_initial_history_columns
+from api.models.get_dashboard_columns import get_foreign_key_history_columns
 
 
-def pop_initial_histories_data(data, models):
-    initial_history_data = {}
-    for initial_history_column in get_initial_history_columns(models):
-        if initial_history_column in data:
-            initial_history_data[initial_history_column] = \
-                data.pop(initial_history_column)
-    return initial_history_data
+def pop_foreign_key_histories_data(data, models):
+    foreign_key_history_data = {}
+    for foreign_key_history_column in get_foreign_key_history_columns(models):
+        if foreign_key_history_column in data:
+            foreign_key_history_data[foreign_key_history_column] = \
+                data.pop(foreign_key_history_column)
+    return foreign_key_history_data
 
 
 def insert_data(data, current, serializer):
@@ -129,7 +129,7 @@ def add_model_list(pk_name, pk, model, serializer, name, data, replace):
             insert_data(new_data, None, serializer)
 
 
-def add_histories(pk_name, pk, model, serializer, name, initial_name, initial_date, current_name, current_data):
+def add_histories(pk_name, pk, model, serializer, name, foreign_key_name, foreign_key_data, current_name, current_data):
     """
     Add a new object to the given history model.
 
@@ -143,8 +143,8 @@ def add_histories(pk_name, pk, model, serializer, name, initial_name, initial_da
         ValueError: Invalid data in data argument
         ValueError: Data does not exist in the given data argument
     """
-    initial_item = initial_date.get(initial_name)
-    initial_date[initial_name] = add_history(model, serializer, initial_item, name, pk_name, pk)
+    foreign_key_item = foreign_key_data.get(foreign_key_name)
+    foreign_key_data[foreign_key_name] = add_history(model, serializer, foreign_key_item, name, pk_name, pk)
 
     current_items = current_data.get(current_name)
     if current_items is not None and len(current_items) > 0:
