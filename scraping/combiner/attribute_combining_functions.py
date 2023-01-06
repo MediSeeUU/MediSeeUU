@@ -147,6 +147,8 @@ def combine_decision_time_days(eu_pnumber: str, attribute_name: str, sources: li
         initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
         initial_chmp_opinion_date = datetime.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d")
         initial_decision_date = get_attribute_date(src.dec_initial, file_dicts)
+        if isinstance(initial_decision_date, str) and initial_decision_date != attribute_values.not_found:
+            initial_decision_date = datetime.datetime.strptime(initial_decision_date, "%Y-%m-%d")
 
         return (initial_decision_date - initial_chmp_opinion_date).days
 
@@ -270,18 +272,13 @@ def combine_eu_aut_date(eu_pnumber: str, attribute_name: str, sources: list[str]
     return values[0]
 
 
-def json_static(value: any, date: str) -> any:
+def json_static(value: any, _) -> any:
     return value
 
 
-def json_current(value: any, date: str) -> list[dict[str, str | Any]]:
+def json_date(value: any, date: str) -> list[dict[str, str | Any]]:
     json_dict = {"value": value, "date": date}
     return [json_dict]
-
-
-def json_initial(value: any, date: str) -> dict[str, str | Any]:
-    json_dict = {"value": value, "date": date}
-    return json_dict
 
 
 def convert_ema_num(ema_number: str) -> str:

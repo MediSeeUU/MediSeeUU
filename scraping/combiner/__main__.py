@@ -18,11 +18,6 @@ def main(data_directory: str):
     active_withdrawn_folder = path.join(data_directory, "active_withdrawn")
     directory_folders = [folder for folder in listdir(active_withdrawn_folder) if
                          path.isdir(path.join(active_withdrawn_folder, folder)) and "EU" in folder]
-    #
-    # # Use all the system's threads to maximize use of all hyper-threads
-    # joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-    #     joblib.delayed(combine_folder)(path.join(active_withdrawn_folder, folder_name), folder_name) for folder_name in
-    #     directory_folders)
 
     # Single-threaded parsing
     for folder in directory_folders:
@@ -94,11 +89,12 @@ def combine_folder(filepath: str, folder_name: str):
     # TODO: hier een functie van
     for attribute in attr_obj.objects:
         try:
-            value = attribute.combine_function(folder_name, attribute.name, attribute.sources, file_dicts)
+            value = attribute.combine_function(eu_pnumber=folder_name, attribute_name=attribute.name,
+                                               sources=attribute.sources, file_dicts=file_dicts)
             date = acf.get_attribute_date(attribute.sources[0], file_dicts)
             combined_dict[attribute.name] = attribute.json_function(value, date)
         except Exception:
-            log.info("COMBINER: failed to get", attribute.name, "in", folder_name)
+            log.info(f"COMBINER: failed to get {attribute.name} in {folder_name}")
 
     combined_json = open(path.join(filepath, folder_name + "_combined.json"), "w")
     json.dump(combined_dict, combined_json, default=str, indent=4)
@@ -181,6 +177,3 @@ def datetime_converter(datetime: str) -> str:
         str: _description_
     """
     return datetime.split('+').split(" ")[0]
-
-# if __name__ == "__main__":
-#     main('..\..\..\data')

@@ -32,6 +32,7 @@ def convert_json(combined_json_path: str):
     if "ema_omar_condition" in json_data.keys():
         if isinstance(json_data["ema_omar_condition"], list):
             omar_conditions += json_data["ema_omar_condition"]
+            json_data.pop("ema_omar_condition")
 
     transformed_json_path = f"{combined_json_path.split('combined.json')[0]}transformed.json"
     save_transformed_json(transformed_json_path, final_json)
