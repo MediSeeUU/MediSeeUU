@@ -5,7 +5,7 @@ from django.db import models
 from api.models.human_models.medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import (
     create_dashboard_column,
-    create_dashboard_history_initial_column,
+    create_dashboard_history_foreign_key_column,
     Category,
 )
 from api.models.common import DataFormats
@@ -113,16 +113,30 @@ class OrphanProduct(models.Model):
         "Sponsor for EU orphan designation",
     )
 
-    eu_orphan_con_initial = create_dashboard_history_initial_column(
-        models.OneToOneField(
+    eu_orphan_con_initial = create_dashboard_history_foreign_key_column(
+        models.ForeignKey(
             "HistoryEUOrphanCon",
             models.SET_NULL,
             null=True,
             blank=True,
+            related_name="eu_orphan_con_initial"
         ),
         Category.Medicinal_product,
-        DataFormats.String,
+        DataFormats.Dictionary,
         "Initial EU orphan conditions",
+    )
+
+    eu_orphan_con_current = create_dashboard_history_foreign_key_column(
+        models.ForeignKey(
+            "HistoryEUOrphanCon",
+            models.SET_NULL,
+            null=True,
+            blank=True,
+            related_name="eu_orphan_con_current"
+        ),
+        Category.Medicinal_product,
+        DataFormats.Dictionary,
+        "Status of EU orphan designations",
     )
 
     class Meta:

@@ -113,9 +113,9 @@ def create_dashboard_column(field: models.Field, category: Category, data_format
     return field
 
 
-def create_dashboard_history_initial_column(field: models.Field, category: Category,
-                                            data_format: DataFormats, display_name: str,
-                                            extra_dashboard_columns: list[ExtraDashBoardColumn] = None) -> models.Field:
+def create_dashboard_history_foreign_key_column(field: models.Field, category: Category,
+                                                data_format: DataFormats, display_name: str,
+                                                extra_dashboard_columns: list[ExtraDashBoardColumn] = None) -> models.Field:
     """
     Sets attributes on a model field that's used in medicine_info_json.
 

@@ -12,7 +12,6 @@ from rest_framework.response import Response
 from .medicine_info_json import get_medicine_info
 from api.views.other.permissionFilter import permission_filter
 from rest_framework import permissions
-from api.models.orphan_models import models
 from api.models.create_dashboard_columns import Category
 
 
@@ -33,4 +32,4 @@ class OrphanMedicineInfo(views.APIView):
         """
         user = self.request.user
         perm = permission_filter(user)
-        return Response(get_medicine_info(perm, models, [Category.Orphan_product]))
+        return Response(get_medicine_info(perm, [Category.Orphan_product]))

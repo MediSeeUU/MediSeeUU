@@ -9,13 +9,13 @@
 # and additional medicine information page among others.
 # ----------------------------------------------------------------------------
 
+from api.models import models
 from api.models.create_dashboard_columns import Category
-from django.db.models import Model
 
 
 # returns a list of json components using human_models,
 # this list is for the filters and for the detailed information page
-def get_medicine_info(perm, models: list[Model], categories: list[Category], mock=None):
+def get_medicine_info(perm, categories: list[Category], mock=None):
     """
     returns a list of json components using the models given,
     this list is for the filters and for the detailed information page.
@@ -30,7 +30,7 @@ def get_medicine_info(perm, models: list[Model], categories: list[Category], moc
     """
     # make a JSON list for every category in models.create_dashboard_columns.Category
     data = {}
-    for category in Category:
+    for category in categories:
         data[category.value] = []
 
     models_fields = []

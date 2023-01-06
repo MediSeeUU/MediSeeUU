@@ -4,7 +4,7 @@
 from django.db import models
 from api.models.orphan_models import OrphanProduct
 from api.models.create_dashboard_columns import (
-    create_dashboard_history_current_column,
+    create_dashboard_history_column,
     Category,
 )
 from api.models.common import DataFormats
@@ -47,14 +47,13 @@ class HistoryEUOrphanCon(models.Model):
         blank=True,
     )
 
-    eu_orphan_con = create_dashboard_history_current_column(
+    eu_orphan_con = create_dashboard_history_column(
         models.TextField(
             null=False,
             blank=False,
         ),
         Category.Medicinal_product,
         DataFormats.Dictionary,
-        "Status of EU orphan designations",
         "EU orphan conditions",
     )
 
