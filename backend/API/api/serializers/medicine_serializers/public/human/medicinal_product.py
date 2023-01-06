@@ -33,6 +33,7 @@ from api.serializers.medicine_serializers.public.human import (
     OrphanDesignationSerializer,
     PrimeSerializer,
     ProceduresSerializer,
+    EUOrphanConSerializer,
 )
 
 
@@ -61,7 +62,7 @@ class IngredientsAndSubstancesSerializer(serializers.ModelSerializer):
         exclude = ("id", )
 
 
-class HistoryEUOrphanConSerializer(serializers.ModelSerializer):
+class HistoryEUOrphanConSerializer(HistoryMixin, serializers.ModelSerializer):
     """
     This serializer serializes the :py:class:`.HistoryEUOrphanCon` model.
     """
@@ -70,11 +71,24 @@ class HistoryEUOrphanConSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = OrphanProduct
-        fields = ("eu_od_number", )
+        fields = ("eu_od_number", "eu_orphan_con_initial", "eu_orphan_con_current")
+        initial_history = [
+            ("eu_orphan_con_initial", EUOrphanConSerializer),
+            ("eu_orphan_con_current", EUOrphanConSerializer),
+        ]
 
 
 def transform_eu_orphan_con(data):
-    return {"eu_orphan_con_initial": data}
+    eu_orphan_con_initial = []
+    eu_orphan_con_current = []
+    for orphan in data:
+        if initial_data := orphan.get("eu_orphan_con_initial"):
+            initial_data["eu_od_number"] = orphan["eu_od_number"]
+            eu_orphan_con_initial.append(initial_data)
+        if current_data := orphan.get("eu_orphan_con_current"):
+            current_data["eu_od_number"] = orphan["eu_od_number"]
+            eu_orphan_con_current.append(current_data)
+    return {"eu_orphan_con_initial": eu_orphan_con_initial, "eu_orphan_con_current": eu_orphan_con_current}
 
 
 class PublicMedicinalProductSerializer(RelatedMixin, ManyRelatedMixin,

@@ -8,6 +8,7 @@ from .history import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
+    EUOrphanConSerializer,
 )
 from .marketing_authorisation import MarketingAuthorisationSerializer
 from .procedures import ProceduresSerializer

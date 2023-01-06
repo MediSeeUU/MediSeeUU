@@ -10,6 +10,9 @@ from api.models.human_models import (
     HistoryOD,
     HistoryPrime,
 )
+from api.models.orphan_models import (
+    HistoryEUOrphanCon,
+)
 
 
 class AuthorisationStatusSerializer(serializers.ModelSerializer):
@@ -82,3 +85,15 @@ class PrimeSerializer(serializers.ModelSerializer):
         """
         model = HistoryPrime
         fields = ("eu_prime",)
+
+
+class EUOrphanConSerializer(serializers.ModelSerializer):
+    """
+    This serializer serializes the :py:class:`.HistoryEUOrphanCon` model.
+    """
+    class Meta:
+        """
+        Meta information
+        """
+        model = HistoryEUOrphanCon
+        exclude = ("id", "eu_od_number", "change_date", )

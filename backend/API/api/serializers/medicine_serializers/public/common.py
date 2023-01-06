@@ -197,8 +197,13 @@ class HistoryMixin(ModelSerializer):
         for field, obj_rep in initial_serialized_data:
             if field in representation:
                 representation.pop(field)
-            for key in obj_rep:
-                representation[field] = obj_rep[key]
+            # if obj_rep is dict with more than 1 key, assign dict as value
+            if len(obj_rep) > 1:
+                representation[field] = obj_rep
+            # otherwise, assign only value as value
+            else:
+                for key in obj_rep:
+                    representation[field] = obj_rep[key]
 
         if hasattr(self.Meta, "current_history"):
             # Iterate the specified history objects with their serializer
