@@ -4,7 +4,7 @@ import datetime
 not_found = "__SCRAPER_NOT_FOUND__"
 url_not_found = "404_url_not_found"
 omar_not_found = "404_omar_not_found"
-epar_not_found = "epar_not_found"
+epar_not_found = "404_epar_not_found"
 decision_initial_not_found = "404_decision_initial_not_found"
 decision_not_found = "404_decision_initial_not_found"
 annex_initial_not_found = "404_annex_initial_not_found"
@@ -17,14 +17,12 @@ NA_before = "Not available at time of document publication"
 not_scrapeable = "Value should be present in document"
 yes_str = "True"
 no_str = "False"
-
 not_found_str = "Not found"
 
 # attribute values:
 aut_type_standard = "standard"
 aut_type_conditional = "conditional"
 aut_type_exceptional = "exceptional"
-# TODO: dit soort dingen afspreken
 authorization_type_unknown = "exceptional or conditional"
 
 eu_od_type_adopted = "adopted"

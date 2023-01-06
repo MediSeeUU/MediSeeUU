@@ -1,3 +1,4 @@
+# This file is currently not used
 insufficient_overlap = "|->INSUFFICIENT_TEXT_OVERLAP<-|"
 invalid_period_days = -1
 

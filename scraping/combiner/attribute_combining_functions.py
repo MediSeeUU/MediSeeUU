@@ -13,7 +13,6 @@ import pandas as pd
 log = logging.getLogger("combiner")
 
 
-# TODO: remove try catch
 def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]) -> datetime:
     if source_string == src.web:
         try:
@@ -59,8 +58,8 @@ def check_all_equal(values: list[any]) -> bool:
     return all_same and values[0] is not None
 
 
-def combine_best_source(eu_pnumber: str, attribute_name: str, sources: list[str],
-                        file_dicts: dict[str, dict[str, any]]) -> any:
+def combine_first(eu_pnumber: str, attribute_name: str, sources: list[str],
+                  file_dicts: dict[str, dict[str, any]]) -> any:
     """
 
     Args:
@@ -104,9 +103,9 @@ def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> st
 
 # For combine functions
 # TODO: fix datum
-def combine_select_string_overlap(eu_pnumber: str, attribute_name: str, sources: list[str],
-                                  file_dicts: dict[str, dict[str, any]],
-                                  min_matching_fraction: float = 0.8) -> str:
+def combine_string_overlap(eu_pnumber: str, attribute_name: str, sources: list[str],
+                           file_dicts: dict[str, dict[str, any]],
+                           min_matching_fraction: float = 0.8) -> str:
     """
     compares two strings to see if a percentage of the shortest string is identical to the longest string
     Args:
@@ -147,7 +146,7 @@ def combine_decision_time_days(eu_pnumber: str, attribute_name: str, sources: li
     try:
         initial_chmp_opinion_date = file_dicts[src.epar][attr.chmp_opinion_date]
         initial_chmp_opinion_date = datetime.datetime.strptime(initial_chmp_opinion_date, "%Y-%m-%d")
-        initial_decision_date = get_attribute_date(src.decision_initial, file_dicts)
+        initial_decision_date = get_attribute_date(src.dec_initial, file_dicts)
 
         return (initial_decision_date - initial_chmp_opinion_date).days
 
@@ -217,7 +216,7 @@ def combine_eu_med_type(eu_pnumber: str, attribute_name: str, sources: list[str]
         str: _description_
     """
     try:  # TODO: this try except should not be necisarry if sources are always {} when not found
-        annex_initial_dict = file_dicts[src.annex_initial]
+        annex_initial_dict = file_dicts[src.anx_initial]
         if annex_initial_dict == {}:
             log.warning(f"COMBINER: no annex initial in {eu_pnumber}")
             return attribute_values.not_found
@@ -275,12 +274,12 @@ def json_static(value: any, date: str) -> any:
     return value
 
 
-def json_history_current(value: any, date: str) -> list[dict[str, str | Any]]:
+def json_current(value: any, date: str) -> list[dict[str, str | Any]]:
     json_dict = {"value": value, "date": date}
     return [json_dict]
 
 
-def json_history_initial(value: any, date: str) -> dict[str, str | Any]:
+def json_initial(value: any, date: str) -> dict[str, str | Any]:
     json_dict = {"value": value, "date": date}
     return json_dict
 

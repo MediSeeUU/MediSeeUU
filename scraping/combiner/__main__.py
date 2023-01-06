@@ -32,7 +32,7 @@ def main(data_directory: str):
 
 
 def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
-    file_dicts_keys = [src.decision, src.decision_initial, src.annex, src.annex_initial,
+    file_dicts_keys = [src.decision, src.dec_initial, src.annex, src.anx_initial,
                        src.annex_10, src.epar, src.omar, src.web]
     file_dicts = dict.fromkeys(file_dicts_keys, {})
 
@@ -52,10 +52,10 @@ def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
     # get current en initial files
     if len(decision_files) > 0:
         file_dicts[src.decision] = decision_files[-1][1]
-        file_dicts[src.decision_initial] = decision_files[0][1]
+        file_dicts[src.dec_initial] = decision_files[0][1]
     if len(annex_files) > 0:
         file_dicts[src.annex] = annex_files[-1][1]
-        file_dicts[src.annex_initial] = annex_files[0][1]
+        file_dicts[src.anx_initial] = annex_files[0][1]
 
     if len(pdf_data["epars"]) > 0:
         file_dicts[src.epar] = pdf_data["epars"][0]
@@ -92,7 +92,7 @@ def combine_folder(filepath: str, folder_name: str):
     combined_dict: dict[str, any] = {}
 
     # TODO: hier een functie van
-    for attribute in attr_obj.all_attribute_objects:
+    for attribute in attr_obj.objects:
         try:
             value = attribute.combine_function(folder_name, attribute.name, attribute.sources, file_dicts)
             date = acf.get_attribute_date(attribute.sources[0], file_dicts)

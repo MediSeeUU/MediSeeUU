@@ -8,8 +8,8 @@ import scraping.utilities.definitions.attributes as attr
 
 log = logging.getLogger("transformer")
 
-all_humans = [obj.name for obj in list(attr_objects.all_attribute_objects) if not obj.is_orphan]
-all_orphans = [obj.name for obj in list(attr_objects.all_attribute_objects) if obj.is_orphan or
+all_humans = [obj.name for obj in list(attr_objects.objects) if not obj.is_orphan]
+all_orphans = [obj.name for obj in list(attr_objects.objects) if obj.is_orphan or
                obj.name == attr.orphan_status]
 omar_conditions = []
 

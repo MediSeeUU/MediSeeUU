@@ -21,7 +21,7 @@ eu_legal_basis = "eu_legal_basis"
 aut_url = "aut_url"
 smpc_url = "smpc_url"
 epar_url = "epar_url"
-annex10_url = "annex10_url"    #TODO: not in docs
+annex10_url = "annex10_url"
 eu_atmp = "eu_atmp"
 eu_med_type = "eu_med_type"
 eu_aut_status = "eu_aut_status"
@@ -40,7 +40,6 @@ ec_url = "ec_url"
 ema_rapp = "ema_rapp"
 ema_corapp = "ema_corapp"
 eu_accel_assess_g = "eu_accel_assess_g"
-# eu_accel_assess_m = "eu_accel_assess_m" #TODO: not defined in koran
 assess_time_days_total = "assess_time_days_total"
 assess_time_days_active = "assess_time_days_active"
 assess_time_days_cstop = "assess_time_days_cstop"
@@ -76,7 +75,6 @@ filedates_web = "filedates"
 
 # relevant for webscraper
 init_addressed_to_member_states = "init_addressed_to_member_states"
-#TODO: web definitions
 authorisation_row = "authorisation_row"
 overwrite_ec_files = "overwrite_ec_files"
 other_ema_urls = "other_ema_urls"
@@ -86,4 +84,3 @@ status_type = "status_type"  # status of medicine: active, withdrawn or refused
 file_date_pdf_link = "pdf_link"
 file_date_pdf_date = "pdf_date"
 file_date_pdf_scrape_date = "pdf_scrape_date"
-

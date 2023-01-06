@@ -12,10 +12,6 @@ eu_med_type_small_molecule = "small molecule"
 eu_od_type_adopted = "adopted"
 eu_od_type_appointed = "appointed"
 
-# epar
-
-
 # omar
 eu_alt_treatment_no_benefit = "no_significant_benefit"
 eu_alt_treatment_benefit = "significant_benefit"
-
