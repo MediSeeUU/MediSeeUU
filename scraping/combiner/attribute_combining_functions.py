@@ -76,6 +76,24 @@ def combine_best_source(eu_pnumber: str, attribute_name: str, sources: list[str]
     return attributes[0]
 
 
+def combine_eu_aut_status(eu_pnumber: str, attribute_name: str, sources: list[str],
+                        file_dicts: dict[str, dict[str, any]]) -> any:
+    """
+
+    Args:
+        attribute_name:
+        dicts:
+        combine_attributes:
+
+    Returns:
+
+    """
+    attributes = get_values_from_sources(attribute_name, sources, file_dicts)
+    attributes.append(attribute_values.not_found)
+    get_attribute_date(src.decision_initial, file_dicts)
+    return attributes[0]
+
+
 def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> str:
     if len(strings) >= 2:
         overlap = SM(None, strings[0].lower(), strings[1].lower()).find_longest_match()

@@ -37,7 +37,7 @@ AttributeFactory(all_attribute_objects, attr.smpc_url, [src.annex_initial], Fals
 AttributeFactory(all_attribute_objects, attr.epar_url, [src.epar], False, acf.combine_get_file_url, acf.json_static)
 AttributeFactory(all_attribute_objects, attr.eu_atmp, [src.decision_initial])
 AttributeFactory(all_attribute_objects, attr.eu_med_type, [src.annex_initial], False, acf.combine_eu_med_type)
-AttributeFactory(all_attribute_objects, attr.eu_aut_status, [src.web])  # TODO: initial and current split?
+AttributeFactory(all_attribute_objects, attr.eu_aut_status, [src.web], False, acf.combine_eu_aut_status)  # TODO: initial and current split?
 AttributeFactory(all_attribute_objects, attr.eu_brand_name_current, [src.web], False, acf.combine_best_source, acf.json_history_current)
 AttributeFactory(all_attribute_objects, attr.eu_brand_name_initial, [src.decision_initial], False, acf.combine_best_source, acf.json_history_initial)
 AttributeFactory(all_attribute_objects, attr.ema_number, [src.web])

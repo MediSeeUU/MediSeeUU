@@ -13,7 +13,7 @@ webdata_not_found = "404_webdata_not_found"
 annex_10_not_found = "404_annex_10_not_found"
 
 insufficient_overlap = "|->INSUFFICIENT OVERLAP<-|"
-NA_before = "attribute not available on release"
+NA_before = "Not available at time of document publication"
 not_scrapeable = "Value should be present in document"
 yes_str = "True"
 no_str = "False"
