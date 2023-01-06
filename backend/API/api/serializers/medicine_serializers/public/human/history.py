@@ -96,4 +96,4 @@ class EUOrphanConSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = HistoryEUOrphanCon
-        exclude = ("id", "eu_od_number", "change_date", )
+        exclude = ("id", "eu_od_number", "change_date",)

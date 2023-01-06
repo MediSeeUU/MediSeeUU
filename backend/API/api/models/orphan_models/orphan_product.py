@@ -123,7 +123,7 @@ class OrphanProduct(models.Model):
             related_name="eu_orphan_con_initial"
         ),
         Category.Medicinal_product,
-        DataFormats.Dictionary,
+        DataFormats.Dictionary_List,
         "Initial EU orphan conditions",
     )
 
@@ -136,7 +136,7 @@ class OrphanProduct(models.Model):
             related_name="eu_orphan_con_current"
         ),
         Category.Medicinal_product,
-        DataFormats.Dictionary,
+        DataFormats.Dictionary_List,
         "Status of EU orphan designations",
     )
 

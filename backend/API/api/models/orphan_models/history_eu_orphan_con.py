@@ -53,7 +53,7 @@ class HistoryEUOrphanCon(models.Model):
             blank=False,
         ),
         Category.Medicinal_product,
-        DataFormats.Dictionary,
+        DataFormats.Dictionary_List,
         "EU orphan conditions",
     )
 
