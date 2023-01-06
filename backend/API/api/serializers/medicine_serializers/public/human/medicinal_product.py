@@ -8,6 +8,7 @@ The medicine data is spread out over several tables in the database and therefor
 has to access all different tables and merge all this data in a one dimensional object.
 """
 
+from datetime import date, datetime
 from rest_framework import serializers
 from api.serializers.medicine_serializers.public.common import (
     RelatedMixin,
@@ -83,13 +84,23 @@ class HistoryEUOrphanConSerializer(HistoryMixin, serializers.ModelSerializer):
 def transform_eu_orphan_con(data):
     eu_orphan_con_initial = []
     eu_orphan_con_current = []
+
+    most_current_change_date = date.min
+    for orphan in data:
+        if current_data := orphan.get("eu_orphan_con_current"):
+            change_date = datetime.strptime(current_data.get("change_date"), "%Y-%m-%d").date()
+            most_current_change_date = max(most_current_change_date, change_date)
+
     for orphan in data:
         if initial_data := orphan.get("eu_orphan_con_initial"):
+            initial_data.pop("change_date", None)
             initial_data["eu_od_number"] = orphan["eu_od_number"]
             eu_orphan_con_initial.append(initial_data)
         if current_data := orphan.get("eu_orphan_con_current"):
-            current_data["eu_od_number"] = orphan["eu_od_number"]
-            eu_orphan_con_current.append(current_data)
+            if datetime.strptime(current_data.get("change_date"), "%Y-%m-%d").date() == most_current_change_date:
+                current_data.pop("change_date", None)
+                current_data["eu_od_number"] = orphan["eu_od_number"]
+                eu_orphan_con_current.append(current_data)
     return {"eu_orphan_con_initial": eu_orphan_con_initial, "eu_orphan_con_current": eu_orphan_con_current}
 
 
