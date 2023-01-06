@@ -28,8 +28,8 @@ def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]
             return attribute_values.not_found_str
 
 
-def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> list[
-    any]:
+def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> \
+        list[any]:
     values = []
     for source in sources:
         dict = file_dicts[source]
@@ -90,8 +90,7 @@ def combine_eu_aut_status(eu_pnumber: str, attribute_name: str, sources: list[st
     """
     attributes = get_values_from_sources(attribute_name, sources, file_dicts)
     attributes.append(attribute_values.not_found)
-    get_attribute_date(src.decision_initial, file_dicts)
-    return attributes[0]
+    return attributes[0], get_attribute_date(sources[0], file_dicts)
 
 
 def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> str:
