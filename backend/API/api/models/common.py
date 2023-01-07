@@ -7,7 +7,7 @@ from enum import Enum
 generic_na_values = [
     "Not found",
     "Not available at time of document publication",
-    "Value should be present in document",
+    "Value should be present in source",
 ]
 
 
@@ -15,7 +15,7 @@ class DataFormats(Enum):
     String = ("string", generic_na_values)
     Number = ("number", generic_na_values)
     Bool = ("bool", generic_na_values)
-    Date = ("date", generic_na_values + ["date is left blank in document"])
+    Date = ("date", generic_na_values + ["Date is left blank in document"])
     Link = ("link", generic_na_values)
     String_List = ("[string]", generic_na_values)
     Dictionary_List = ("[dict]", generic_na_values)
