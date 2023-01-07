@@ -3,13 +3,14 @@ import logging
 import json
 import scraping.utilities.definitions.communicator_urls as urls
 import time
-
+import os
 from datetime import datetime, timedelta
 
 log = logging.getLogger("db_communicator.login")
+secret_path = file_path = os.path.abspath(os.path.join("../secrets.json"))
 
 
-def login(username: str, password: str) -> dict | None:
+def login(username: str) -> dict | None:
     """
     Handles logging a user into the backend and returns a token dict if this was successful
 
@@ -20,10 +21,10 @@ def login(username: str, password: str) -> dict | None:
     Returns:
         dict: Returns a dict of elements token and expiry_date. The dict is None if the token retrieval was unsuccessful
     """
-    login_data = {
-        "username": username,
-        "password": password
-    }
+    login_data = get_credentials(username)
+    if login_data is None:
+        print("test")
+        return None
     login_json = json.dumps(login_data)
     api_headers = {
         'Content-type': 'application/json',
@@ -62,3 +63,25 @@ def login_attempt(login_data: str, api_headers: dict, attempt=1) -> dict | None:
             login_attempt(login_data, api_headers, attempt)
     else:
         return None
+
+
+def get_credentials(username: str) -> dict:
+    """
+    Gets the credentials of a user from somewhere safe
+
+    Returns:
+        (str, str): Returns a tuple of username and password
+    """
+    with open(secret_path) as secrets_file:
+        secrets_dict = json.load(secrets_file)
+
+        if username not in secrets_dict:
+            log.error(f"User '{username}' not found")
+            return None
+
+        password = secrets_dict[username]
+        login_data = {
+            "username": username,
+            "password": secrets_dict[username]
+        }
+        return login_data
