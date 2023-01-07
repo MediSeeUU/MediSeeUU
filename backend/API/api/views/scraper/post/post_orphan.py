@@ -69,4 +69,5 @@ def history_variables(eu_od_number, foreign_key_histories_data, current_historie
         foreign_key_histories_data,
         "eu_orphan_con_current",
         current_histories_data,
+        "eu_orphan_con",
     )

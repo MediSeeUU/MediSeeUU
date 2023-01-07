@@ -131,7 +131,7 @@ def add_model_list(pk_name, pk, model, serializer, name, data, replace):
 
 
 def add_histories(pk_name, pk, model, serializer, foreign_key_name,
-                  foreign_key_data, current_name, current_data, name=""):
+                  foreign_key_data, current_name, current_data, name):
     """
     Add a new object to the given history model.
 
