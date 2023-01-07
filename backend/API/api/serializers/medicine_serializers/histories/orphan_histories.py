@@ -22,4 +22,5 @@ class EUOrphanConSerializer (serializers.ModelSerializer):
 
     def to_representation(self, obj: Model) -> OrderedDict[str, Any]:
         representation = super().to_representation(obj)
-        return representation
+        change_date = representation.pop("change_date")
+        return OrderedDict([("eu_orphan_con", representation), ("change_date", change_date)])
