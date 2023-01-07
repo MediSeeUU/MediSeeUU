@@ -366,6 +366,8 @@ def json_initial(value: Any, date: Any) -> dict[str, str | Any]:
     Returns:
         (dict[str, str | Any]): Dictionary of value and its scrape date
     """
+    if date == attribute_values.NA_before:
+        date = attribute_values.default_date
     json_dict = {"value": value, "date": date}
     return json_dict
 
@@ -379,6 +381,8 @@ def json_current(value: Any, date: Any) -> list[dict[str, str | Any]]:
     Returns:
         (list[dict[str, str | Any]]): Dictionary of value and its scrape date, in a list
     """
+    if date == attribute_values.NA_before:
+        date = attribute_values.default_date
     json_dict = {"value": value, "date": date}
     return [json_dict]
 
