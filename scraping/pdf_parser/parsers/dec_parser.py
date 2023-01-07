@@ -101,7 +101,7 @@ def get_data(filename: str, txt: str) -> dict:
 
     # if date was left blank use default date to not find date dependent attributes.
     if isinstance(date, str):
-        date = attribute_values.not_found_str
+        date = attribute_values.date_not_found
 
     if '_h_' in filename:
         filedata[attr.eu_brand_name_initial] = dec_get_bn(txt)
@@ -258,7 +258,7 @@ def dec_get_decision_type(txt: str, date: datetime.date) -> str:
         str: found type or default value
     """
     # check if there can be a CMA.
-    if date != attribute_values.not_found_str:
+    if date != attribute_values.date_not_found:
         if date < datetime.date(2006, 1, 1):
             return attribute_values.NA_before
 
@@ -326,7 +326,7 @@ def dec_get_od(txt: str, date: datetime.date) -> str:
         str: found orphan designation or default value
     """
     # check if there can be a NAS.
-    if date != attribute_values.not_found_str:
+    if date != attribute_values.date_not_found:
         if date < datetime.date(2000, 4, 28):
             return attribute_values.NA_before
 
@@ -351,7 +351,7 @@ def dec_get_atmp(txt: str, date: datetime.date) -> str | bool:
         bool: found result
     """
     # check if there can be a ATMP.
-    if date != attribute_values.not_found_str:
+    if date != attribute_values.date_not_found:
         if date < datetime.date(2007, 12, 30):
             return attribute_values.NA_before
 
@@ -378,7 +378,7 @@ def dec_get_nas(txt, date) -> str | bool:
         bool: found result
     """
     # check if there can be a NAS.
-    if date != attribute_values.not_found_str:
+    if date != attribute_values.date_not_found:
         if date < datetime.date(2012, 1, 1):
             return attribute_values.NA_before
 

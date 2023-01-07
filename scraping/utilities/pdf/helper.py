@@ -60,7 +60,7 @@ def convert_months(date_str: str) -> datetime.date | str:
         if k in date_str:
             date_str = date_str.replace(f" {k} ", f"/{months[k]}/")
             break
-    date = attribute_values.not_found
+    date = attribute_values.date_not_found
     try:
         date = datetime.datetime.strptime(date_str, '%d/%m/%Y').date()
     except ValueError as e:
@@ -135,7 +135,7 @@ def get_date(txt: str) -> datetime.date:
         datetime.date: found date.
     """
     if not txt:
-        return attribute_values.not_found_str
+        return attribute_values.date_not_found
         txt = txt.lower()
     #try dateparser
     try:
@@ -160,4 +160,4 @@ def get_date(txt: str) -> datetime.date:
     except dateparser._parser.ParserError:
         pass
 
-    return attribute_values.not_found_str
+    return attribute_values.date_not_found

@@ -278,7 +278,7 @@ def get_data_from_medicine_json(medicine_json: dict,
         medicine_dict[attr.orphan_status] = "o"
 
     for key, value in medicine_dict.items():
-        if value == values.not_found:
+        if value == values.not_found or value == values.date_not_found:
             if (key == attr.eu_pnumber or key == attr.atc_code) and "EU-1" not in eu_num:
                 continue
             log.warning(f"{eu_num}: No value for {key}")
@@ -443,7 +443,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
                                                               is_exceptional,
                                                               is_conditional)
     else:
-        eu_aut_date = values.not_found
+        eu_aut_date = values.date_not_found
         eu_aut_type_initial: str = values.not_found
 
     # From the list of EMA numbers, the right one is chosen and its certainty determined
@@ -472,7 +472,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
     procedures_dict[attr.authorisation_row] = str(authorisation_row)
 
     for key, value in procedures_dict.items():
-        if value == values.not_found:
+        if value == values.not_found or value == values.date_not_found:
             log.warning(f"{eu_num}: No value for {key}")
     return procedures_dict, dec_url_list, anx_url_list
 

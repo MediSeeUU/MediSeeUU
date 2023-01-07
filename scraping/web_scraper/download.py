@@ -18,7 +18,8 @@ from scraping.utilities.web import web_utils as utils, json_helper
 log = logging.getLogger("web_scraper.download")
 
 
-def get_date_from_url(url: str) -> dict[str, str]:
+def get_date_from_url(url:
+str) -> dict[str, str]:
     """
     Retrieves the date from a file (for filedates.json) based on an url. If no date in the url is found, the scrape date
     is used.

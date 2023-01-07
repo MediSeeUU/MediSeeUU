@@ -51,7 +51,7 @@ class TestDecParse(TestCase):
         for txt, filename in dec_txt:
             output = dec_parser.dec_get_date(txt)
             self.assertTrue((isinstance(output, str) or isinstance(output, datetime.date)))
-            if output == attribute_values.default_date:
+            if output == attribute_values.date_not_found:
                 not_found_count += 1
                 print(f"{filename} date not found")
             else:
@@ -76,7 +76,7 @@ class TestDecParse(TestCase):
                 orphan_count += 1
                 output = dec_parser.dec_get_od_comp_date(txt)
                 self.assertTrue(isinstance(output, datetime.date))
-                if output == attribute_values.default_date:
+                if output == attribute_values.date_not_found:
                     not_found_count += 1
                     print(f"{filename} date not found")
                 else:

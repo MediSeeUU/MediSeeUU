@@ -18,13 +18,13 @@ def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]
         try:
             return file_dicts[src.web][attr.scrape_date_web]
         except Exception:
-            return attribute_values.not_found_str
+            return attribute_values.date_not_found
     else:
         try:
             file_name = file_dicts[source_string][attr.pdf_file]
             return file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date]
         except Exception:
-            return attribute_values.not_found_str
+            return attribute_values.date_not_found
 
 
 def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> \
@@ -268,7 +268,7 @@ def combine_eu_aut_date(eu_pnumber: str, attribute_name: str, sources: list[str]
     if not check_all_equal(values):
         log.warning(f"COMBINER: crosscheck for {attribute_name} failed")
 
-    values.append(attribute_values.not_found_str)
+    values.append(attribute_values.date_not_found)
     return values[0]
 
 
@@ -276,7 +276,12 @@ def json_static(value: any, _) -> any:
     return value
 
 
-def json_date(value: any, date: str) -> list[dict[str, str | Any]]:
+def json_initial(value: any, date: str) -> dict[str, str | Any]:
+    json_dict = {"value": value, "date": date}
+    return json_dict
+
+
+def json_current(value: any, date: str) -> list[dict[str, str | Any]]:
     json_dict = {"value": value, "date": date}
     return [json_dict]
 
