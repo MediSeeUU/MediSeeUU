@@ -6,7 +6,7 @@ from enum import Enum
 
 generic_na_values = [
     "Not found",
-    "Not available at time of document publication",
+    "Not available at time of release",
     "Value should be present in source",
 ]
 
