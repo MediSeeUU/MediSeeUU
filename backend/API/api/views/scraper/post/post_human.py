@@ -150,11 +150,11 @@ def history_variables(eu_pnumber, foreign_key_histories_data, current_histories_
         eu_pnumber,
         HistoryAuthorisationType,
         AuthorisationTypeSerializer,
-        "eu_aut_type",
         "eu_aut_type_initial",
         foreign_key_histories_data,
         "eu_aut_type_current",
         current_histories_data,
+        "eu_aut_type",
     )
 
     add_histories(
@@ -162,11 +162,11 @@ def history_variables(eu_pnumber, foreign_key_histories_data, current_histories_
         eu_pnumber,
         HistoryAuthorisationStatus,
         AuthorisationStatusSerializer,
-        "eu_aut_status",
         "eu_aut_status_initial",
         foreign_key_histories_data,
         "eu_aut_status",
         current_histories_data,
+        "eu_aut_status",
     )
 
     add_histories(
@@ -174,11 +174,11 @@ def history_variables(eu_pnumber, foreign_key_histories_data, current_histories_
         eu_pnumber,
         HistoryBrandName,
         BrandNameSerializer,
-        "eu_brand_name",
         "eu_brand_name_initial",
         foreign_key_histories_data,
         "eu_brand_name_current",
         current_histories_data,
+        "eu_brand_name",
     )
 
     add_histories(
@@ -186,11 +186,11 @@ def history_variables(eu_pnumber, foreign_key_histories_data, current_histories_
         eu_pnumber,
         HistoryOD,
         OrphanDesignationSerializer,
-        "eu_od",
         "eu_od_initial",
         foreign_key_histories_data,
         "eu_od_current",
         current_histories_data,
+        "eu_od",
     )
 
     add_histories(
@@ -198,11 +198,11 @@ def history_variables(eu_pnumber, foreign_key_histories_data, current_histories_
         eu_pnumber,
         HistoryPrime,
         PrimeSerializer,
-        "eu_prime",
         "eu_prime_initial",
         foreign_key_histories_data,
         "eu_prime_current",
         current_histories_data,
+        "eu_prime",
     )
 
     add_histories(
@@ -210,10 +210,10 @@ def history_variables(eu_pnumber, foreign_key_histories_data, current_histories_
         eu_pnumber,
         HistoryMAH,
         MAHSerializer,
-        "eu_mah",
         "eu_mah_initial",
         foreign_key_histories_data,
         "eu_mah_current",
         current_histories_data,
+        "eu_mah",
     )
 

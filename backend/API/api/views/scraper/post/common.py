@@ -3,10 +3,11 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 from django.forms.models import model_to_dict
+from api.models import models
 from api.models.get_dashboard_columns import get_foreign_key_history_columns
 
 
-def pop_foreign_key_histories_data(data, models):
+def pop_foreign_key_histories_data(data):
     foreign_key_history_data = {}
     for foreign_key_history_column in get_foreign_key_history_columns(models):
         if foreign_key_history_column in data:
@@ -129,7 +130,8 @@ def add_model_list(pk_name, pk, model, serializer, name, data, replace):
             insert_data(new_data, None, serializer)
 
 
-def add_histories(pk_name, pk, model, serializer, name, foreign_key_name, foreign_key_data, current_name, current_data):
+def add_histories(pk_name, pk, model, serializer, foreign_key_name,
+                  foreign_key_data, current_name, current_data, name=""):
     """
     Add a new object to the given history model.
 
@@ -168,7 +170,11 @@ def add_history(model, serializer, data, name, pk_name, pk):
     """
     if data is not None:
         # Data to be inserted into the database
-        new_data = {"change_date": data.get("date"), name: data.get("value"), pk_name: pk}
+        data_value = data.get("value")
+        if isinstance(data_value, dict):
+            new_data = {"change_date": data.get("date"), pk_name: pk, **data_value}
+        else:
+            new_data = {"change_date": data.get("date"), name: data_value, pk_name: pk}
         # Select element in database with exact same data, so we don't insert an identical element
         current_data = model.objects.filter(**new_data).first()
         # return inserted element's primary key

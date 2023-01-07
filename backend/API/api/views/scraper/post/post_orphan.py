@@ -4,9 +4,11 @@
 
 from api.models.orphan_models import (
     OrphanProduct,
+    HistoryEUOrphanCon,
 )
 from api.serializers.medicine_serializers.scraper.post.orphan import (
     OrphanProductSerializer,
+    EUOrphanConSerializer,
 )
 from api.serializers.medicine_serializers.scraper.update.orphan import (
     OrphanProductFlexVarUpdateSerializer,
@@ -30,7 +32,7 @@ def post(data):
 
         data = {key: value for key, value in data.items() if key not in locks}
 
-        foreign_key_history_data = pop_foreign_key_histories_data(data, models)
+        foreign_key_history_data = pop_foreign_key_histories_data(data)
 
         add_or_update_model(data, override, OrphanProduct, {"eu_od_number": eu_od_number},
                             OrphanProductSerializer, OrphanProductFlexVarUpdateSerializer)
@@ -48,7 +50,7 @@ def list_variables(eu_od_number, data):
     """
 
 
-def history_variables(eu_od_number, initial_histories_data, current_histories_data):
+def history_variables(eu_od_number, foreign_key_histories_data, current_histories_data):
     """
     Creates new history variables for the orphan product history models using the data given in its
     argument "data". It expects the input data for the history variable to be formed like this:
@@ -58,3 +60,13 @@ def history_variables(eu_od_number, initial_histories_data, current_histories_da
         data (medicineObject): The new medicine data.
     """
 
+    add_histories(
+        "eu_od_number",
+        eu_od_number,
+        HistoryEUOrphanCon,
+        EUOrphanConSerializer,
+        "eu_orphan_con_initial",
+        foreign_key_histories_data,
+        "eu_orphan_con_current",
+        current_histories_data,
+    )
