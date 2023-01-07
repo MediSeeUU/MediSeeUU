@@ -61,7 +61,7 @@ def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts:
         if attribute_name not in source_dict.keys():
             # log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
             continue
-        values.append(attribute_name)
+        values.append(file_dicts[source][attribute_name])
     return values
 
 
