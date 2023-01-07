@@ -1,41 +1,65 @@
+import datetime
+import json
+import logging
 from datetime import datetime
-from typing import Tuple, Dict, Any, List
+from difflib import SequenceMatcher as SM
+from typing import Any
+
+import pandas as pd
 
 import scraping.utilities.definitions.attribute_values as attribute_values
-import scraping.utilities.definitions.sources as src
 import scraping.utilities.definitions.attributes as attr
-from difflib import SequenceMatcher as SM
-import datetime
-import logging
-import json
-import pandas as pd
+import scraping.utilities.definitions.sources as src
 
 log = logging.getLogger("combiner")
 
 
-def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]) -> datetime:
+def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]) -> datetime | None:
+    """
+    Gives the scrape or download date of a source file
+
+    Args:
+        source_string (str): Name of source of the attribute
+        file_dicts (str): All data stored on source location
+
+    Returns:
+        datetime: Parse date of the source
+    """
     if source_string == src.web:
-        try:
-            return file_dicts[src.web][attr.scrape_date_web]
-        except Exception:
-            return attribute_values.date_not_found
-    else:
-        try:
-            file_name = file_dicts[source_string][attr.pdf_file]
-            return file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date]
-        except Exception:
-            return attribute_values.date_not_found
+        return file_dicts[src.web][attr.scrape_date_web]
+    if file_dicts == {}:
+        return
+    if source_string in file_dicts.keys():
+        if file_dicts[source_string] == {} or "annex10" in str(file_dicts[source_string].keys()):
+            return
+        if attr.pdf_file not in file_dicts[source_string].keys():
+            log.warning(f"\"{attr.pdf_file}\" not in the keys of the source: {source_string}")
+            return
+        file_name = file_dicts[source_string][attr.pdf_file]
+        return file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date]
+    log.warning(f"{source_string} not in the keys of file_dicts")
 
 
 def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> \
         list[any]:
+    """
+    Get values from all sources for a given attribute
+
+    Args:
+        attribute_name (str): Name of the attribute values to be returned
+        sources (list[str]): All sources of the medicine
+        file_dicts (dict[str, dict[str, any]]): Dictionary with sources as keys, and data of sources as attributes
+
+    Returns:
+        list[any]: Values for the attribute from all sources
+    """
     values = []
     for source in sources:
-        dict = file_dicts[source]
-        try:
-            values.append(dict[attribute_name])
-        except Exception:
+        source_dict = file_dicts[source]
+        if attribute_name not in source_dict.keys():
             log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
+            continue
+        values.append(attribute_name)
     return values
 
 

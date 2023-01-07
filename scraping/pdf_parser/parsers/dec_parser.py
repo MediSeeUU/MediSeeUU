@@ -1,14 +1,16 @@
 # EC parser
-import re
-import os.path as path
 import datetime
+import logging
+import os.path as path
+import re
+
 import fitz
+
+import scraping.pdf_parser.parsed_info_struct as PIS
+import scraping.utilities.definitions.attribute_values as attribute_values
+import scraping.utilities.definitions.attributes as attr
 from scraping.utilities.pdf import helper as helper
 from scraping.utilities.pdf import pdf_helper as pdf_helper
-import scraping.pdf_parser.parsed_info_struct as PIS
-import logging
-import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.attribute_values as attribute_values
 
 log = logging.getLogger("pdf_parser")
 

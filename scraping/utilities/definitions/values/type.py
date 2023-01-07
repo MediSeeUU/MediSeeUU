@@ -1,5 +1,3 @@
-import datetime
-
 # data type values
 # generic string values
 generic_not_found = "Not found"

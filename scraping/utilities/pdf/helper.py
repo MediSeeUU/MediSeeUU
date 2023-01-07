@@ -1,9 +1,10 @@
 import datetime
+import logging
 import re
 
 import dateutil.parser as dateparser
+
 import scraping.utilities.definitions.attribute_values as attribute_values
-import logging
 
 log = logging.getLogger("pdf_parser")
 

@@ -1,10 +1,11 @@
-import requests
-import logging
 import json
-import scraping.utilities.definitions.communicator_urls as urls
+import logging
 import time
-
 from datetime import datetime, timedelta
+
+import requests
+
+import scraping.utilities.definitions.communicator_urls as urls
 
 log = logging.getLogger("db_communicator.login")
 

@@ -1,9 +1,9 @@
 import json
 import logging
 import os
-import pathlib
-from tqdm import tqdm
+
 import tqdm.contrib.logging as tqdm_logging
+from tqdm import tqdm
 
 import scraping.utilities.definitions.attributes as attr
 import scraping.utilities.log.log_tools as log_tools

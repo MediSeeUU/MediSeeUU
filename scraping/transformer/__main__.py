@@ -1,10 +1,10 @@
+import json
 import logging
 from os import listdir, path
-import json
+
 import scraping.utilities.definitions.attribute_objects as attr_objects
 import scraping.utilities.definitions.attribute_values as values
 import scraping.utilities.definitions.attributes as attr
-
 
 log = logging.getLogger("transformer")
 

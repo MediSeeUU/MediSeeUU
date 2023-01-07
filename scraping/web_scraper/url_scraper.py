@@ -1,7 +1,6 @@
 import logging
-from datetime import datetime, date
+from datetime import datetime
 
-import scraping.utilities.definitions.attributes as attr
 from scraping.utilities.web import web_utils as utils, json_helper
 from scraping.utilities.web.medicine_type import MedicineType
 from scraping.web_scraper import ema_scraper, ec_scraper, save_webdata

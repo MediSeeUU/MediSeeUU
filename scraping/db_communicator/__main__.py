@@ -1,7 +1,8 @@
 import json
-from os import listdir, path
-from db_communicator import DbCommunicator
 import logging
+from os import listdir, path
+
+from db_communicator import DbCommunicator
 
 log = logging.getLogger("db_communicator")
 

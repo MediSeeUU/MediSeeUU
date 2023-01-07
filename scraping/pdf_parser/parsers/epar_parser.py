@@ -1,15 +1,15 @@
 # EPAR parser
 import datetime
-import re
-from scraping.utilities.pdf import helper as helper
-import scraping.utilities.xml.xml_parsing_utils as xml_utils
-import xml.etree.ElementTree as ET
-import scraping.pdf_parser.parsed_info_struct as pis
-from scraping.utilities.pdf import pdf_helper as pdf_helper
 import logging
-import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.attribute_values as attribute_values
 import os.path as path
+import re
+import xml.etree.ElementTree as ET
+
+import scraping.pdf_parser.parsed_info_struct as pis
+import scraping.utilities.definitions.attribute_values as attribute_values
+import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.xml.xml_parsing_utils as xml_utils
+from scraping.utilities.pdf import helper as helper
 
 date_pattern: str = r"\d{1,2} \b(?!emea\b)\w+ \d{4}|\d{1,2}\w{2} \b(?!emea\b)\w+ \d{4}"  # DD/MONTH/YYYY
 procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure

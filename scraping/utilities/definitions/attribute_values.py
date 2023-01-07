@@ -1,5 +1,3 @@
-import datetime
-
 # default values
 not_found = "__SCRAPER_NOT_FOUND__"
 url_not_found = "404_url_not_found"

@@ -1,7 +1,6 @@
 import json
 import logging
 import multiprocessing
-import os
 from datetime import date, datetime, timedelta
 from itertools import repeat
 
@@ -12,8 +11,8 @@ import tqdm.contrib.concurrent as tqdm_concurrent
 import tqdm.contrib.logging as tqdm_logging
 from tqdm import tqdm
 
-import scraping.utilities.definitions.attributes as attr
 import scraping.utilities.definitions.attribute_values as values
+import scraping.utilities.definitions.attributes as attr
 import scraping.utilities.log.log_tools as log_tools
 from scraping.utilities.web import web_utils as utils, config_objects, json_helper
 from scraping.utilities.web.medicine_type import MedicineType

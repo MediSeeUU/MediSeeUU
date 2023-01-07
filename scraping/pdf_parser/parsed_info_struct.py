@@ -1,7 +1,6 @@
 import datetime
-from dataclasses import dataclass, field, asdict
 import typing
-import scraping.utilities.definitions.attributes as attr
+from dataclasses import dataclass, field
 
 
 @dataclass

@@ -1,6 +1,8 @@
-import requests
 import logging
 import time
+
+import requests
+
 import scraping.utilities.definitions.communicator_urls as urls
 
 log = logging.getLogger("db_communicator.logout")

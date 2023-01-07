@@ -1,14 +1,16 @@
-from joblib import Parallel, delayed
-import fitz
+import json
+import logging
+import multiprocessing
 import os
 import re
-import json
-import multiprocessing
-import logging
-from scraping.utilities.log import log_tools
-from scraping.utilities.io import safe_io
-from scraping.utilities.definitions import attribute_values as values, attributes
+
+import fitz
+from joblib import Parallel, delayed
 from tqdm import tqdm
+
+from scraping.utilities.definitions import attribute_values as values, attributes
+from scraping.utilities.io import safe_io
+from scraping.utilities.log import log_tools
 
 wrong_doctype_str = "@wrong_doctype"
 cpu_count: int = multiprocessing.cpu_count()
