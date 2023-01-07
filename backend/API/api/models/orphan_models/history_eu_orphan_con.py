@@ -56,6 +56,7 @@ class HistoryEUOrphanCon(models.Model):
         DataFormats.Dictionary_List,
         "Status of EU orphan designations",
         "EU orphan conditions",
+        data_key="eu_orphan_con_current",
     )
 
     class Meta:

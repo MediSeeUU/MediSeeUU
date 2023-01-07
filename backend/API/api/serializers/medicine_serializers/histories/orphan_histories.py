@@ -2,6 +2,9 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
+from collections import OrderedDict
+from django.db.models import Model
+from typing import Any
 from rest_framework import serializers
 from api.models.orphan_models import HistoryEUOrphanCon
 
@@ -15,4 +18,8 @@ class EUOrphanConSerializer (serializers.ModelSerializer):
         Meta information
         """
         model = HistoryEUOrphanCon
-        fields = ("eu_orphan_con", "link_date", "end_date", "change_date", )
+        fields = ("indication", "link_date", "end_date", "change_date", )
+
+    def to_representation(self, obj: Model) -> OrderedDict[str, Any]:
+        representation = super().to_representation(obj)
+        return representation
