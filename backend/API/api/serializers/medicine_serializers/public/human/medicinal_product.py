@@ -75,22 +75,13 @@ class HistoryEUOrphanConSerializer(HistoryMixin, serializers.ModelSerializer):
         Meta information
         """
         model = OrphanProduct
-        fields = ("eu_od_number", "eu_orphan_con_initial", )
+        fields = ("eu_orphan_con_initial", )
         initial_history = [
             ("eu_orphan_con_initial", EUOrphanConSerializer),
         ]
         current_history = [
             ("eu_orphan_con", EUOrphanConSerializer, "eu_orphan_con_current"),
         ]
-
-    def to_representation(self, obj: Model) -> OrderedDict[str, Any]:
-        representation = super().to_representation(obj)
-        eu_od_number = representation.pop("eu_od_number")
-        if eu_orphan_con_initial := representation.get("eu_orphan_con_initial"):
-            eu_orphan_con_initial["eu_od_number"] = eu_od_number
-        if eu_orphan_con_current := representation.get("eu_orphan_con_current"):
-            eu_orphan_con_current["eu_od_number"] = eu_od_number
-        return representation
 
 
 def transform_eu_orphan_con(data):

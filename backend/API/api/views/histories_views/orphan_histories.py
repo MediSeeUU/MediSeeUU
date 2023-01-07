@@ -33,8 +33,8 @@ class OrphanHistoriesViewSet(viewsets.ViewSet):
 
         eu_od_number = pk.replace('_', '/')
         models_serializers = [
-            (HistoryEUOrphanCon, EUOrphanConSerializer),
+            (HistoryEUOrphanCon, EUOrphanConSerializer, {"eu_od_number": eu_od_number}),
         ]
         user = self.request.user
-        return Response(view_history(user, {"eu_od_number": eu_od_number}, models_serializers))
+        return Response(view_history(user, models_serializers))
 

@@ -2,6 +2,9 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
+from collections import OrderedDict
+from typing import Any
+from django.db.models import Model
 from rest_framework import serializers
 from api.models.human_models import (
     HistoryAuthorisationStatus,
@@ -10,6 +13,10 @@ from api.models.human_models import (
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
+)
+from api.models.orphan_models import (
+    OrphanProduct,
+    HistoryEUOrphanCon,
 )
 
 
@@ -83,3 +90,33 @@ class PrimeSerializer(serializers.ModelSerializer):
         """
         model = HistoryPrime
         fields = ("eu_prime", "change_date", )
+
+
+class EUOrphanConSerializer(serializers.ModelSerializer):
+    """
+    This serializer serializes the :py:class:`.HistoryEUOrphanCon` model.
+    """
+
+    class Meta:
+        """
+        Meta information
+        """
+        model = OrphanProduct
+        fields = ("eu_od_number", )
+
+    def to_representation(self, obj: Model) -> OrderedDict[str, Any]:
+        pass
+
+
+class HistoryEUOrphanConSerializer(serializers.ModelSerializer):
+    """
+    This serializer serializes the :py:class:`.HistoryEUOrphanCon` model.
+    """
+
+    class Meta:
+        """
+        Meta information
+        """
+        model = HistoryEUOrphanCon
+        exclude = ("id", "eu_od_number", )
+

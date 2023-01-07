@@ -43,12 +43,12 @@ class HumanHistoriesViewSet(viewsets.ViewSet):
 
         eu_pnumber = pk.replace('_', '/')
         models_serializers = [
-            (HistoryAuthorisationStatus, AuthorisationStatusSerializer),
-            (HistoryAuthorisationType, AuthorisationTypeSerializer),
-            (HistoryBrandName, BrandNameSerializer),
-            (HistoryMAH, MAHSerializer),
-            (HistoryOD, OrphanDesignationSerializer),
-            (HistoryPrime, PrimeSerializer),
+            (HistoryAuthorisationStatus, AuthorisationStatusSerializer, {"eu_pnumber": eu_pnumber}),
+            (HistoryAuthorisationType, AuthorisationTypeSerializer, {"eu_pnumber": eu_pnumber}),
+            (HistoryBrandName, BrandNameSerializer, {"eu_pnumber": eu_pnumber}),
+            (HistoryMAH, MAHSerializer, {"eu_pnumber": eu_pnumber}),
+            (HistoryOD, OrphanDesignationSerializer, {"eu_pnumber": eu_pnumber}),
+            (HistoryPrime, PrimeSerializer, {"eu_pnumber": eu_pnumber}),
         ]
         user = self.request.user
-        return Response(view_history(user, {"eu_pnumber": eu_pnumber}, models_serializers))
+        return Response(view_history(user, models_serializers))
