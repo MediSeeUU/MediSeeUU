@@ -89,7 +89,8 @@ def combine_eu_aut_status(eu_pnumber: str, attribute_name: str, sources: list[st
     """
     attributes = get_values_from_sources(attribute_name, sources, file_dicts)
     attributes.append(attribute_values.not_found)
-    return attributes[0], get_attribute_date(sources[0], file_dicts)
+    json_dict = {"value": attributes[0], "date": get_attribute_date(sources[0], file_dicts)}
+    return [json_dict]
 
 
 def string_overlap(strings: list[str], min_matching_fraction: float = 0.8) -> str:
