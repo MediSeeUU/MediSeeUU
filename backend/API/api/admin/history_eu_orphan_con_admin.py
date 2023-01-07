@@ -35,7 +35,7 @@ class HistoryEUOrphanConAdmin(import_admin.ImportExportModelAdmin, CacheModelAdm
     list_display = [
         "eu_od_number",
         "change_date",
-        "eu_orphan_con",
+        "indication",
     ]
 
 

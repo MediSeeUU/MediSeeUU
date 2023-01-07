@@ -77,7 +77,7 @@ class HistoryEUOrphanConSerializer(HistoryMixin, serializers.ModelSerializer):
             ("eu_orphan_con_initial", EUOrphanConSerializer),
         ]
         current_history = [
-            ("eu_orphan_con", EUOrphanConSerializer),
+            ("eu_orphan_con", EUOrphanConSerializer, "eu_orphan_con_current"),
         ]
 
 

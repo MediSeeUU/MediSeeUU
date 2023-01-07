@@ -207,19 +207,24 @@ class HistoryMixin(ModelSerializer):
 
         if hasattr(self.Meta, "current_history"):
             # Iterate the specified history objects with their serializer
-            for field, serializer_class, *_ in self.Meta.current_history:
-                if hasattr(obj, field):
-                    history = getattr(obj, field).order_by("change_date").last()
+            for related_name, serializer_class, *extra in self.Meta.current_history:
+                if hasattr(obj, related_name):
+                    history = getattr(obj, related_name).order_by("change_date").last()
                     if history:
                         data = serializer_class(history).data
                         if data:
-                            field_name = get_data_key(serializer_class.Meta.model, field)
+                            # if field name is given as argument, use that
+                            if len(extra) >= 1:
+                                field_name = extra[0]
+                            # otherwise, get field name based on the data key of related name column
+                            else:
+                                field_name = get_data_key(serializer_class.Meta.model, related_name)
                             # if data is dict with more than 1 key, assign dict as value
                             if len(data) > 1:
                                 representation[field_name] = data
                             # otherwise, assign only value as value
                             else:
-                                representation[field_name] = data[field]
+                                representation[field_name] = data[related_name]
         return representation
 
 

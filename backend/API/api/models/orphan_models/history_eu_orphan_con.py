@@ -47,7 +47,7 @@ class HistoryEUOrphanCon(models.Model):
         blank=True,
     )
 
-    eu_orphan_con = create_dashboard_history_current_column(
+    indication = create_dashboard_history_current_column(
         models.TextField(
             null=False,
             blank=False,
