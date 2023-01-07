@@ -1,106 +1,105 @@
 {
-    "eu_accel_assess_g": "False",
-    "eu_od_date": "__SCRAPER_NOT_FOUND__",
-    "assess_time_days_total": -1,
-    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
-    "active_substance": [
-        "Fulvestrant",
-        "0001-01-01"
-    ],
-    "assess_time_days_active": -1,
-    "eu_od_sponsor": "__SCRAPER_NOT_FOUND__",
-    "eu_aut_status": "ACTIVE",
-    "eu_od_comp_date": "__SCRAPER_NOT_FOUND__",
-    "eu_brand_name_current": [
+    "eu_pnumber": "EU/1/03/269",
+    "eu_prime_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "Date is left blank in source"
+    },
+    "odwar_url": "404_url_not_found",
+    "ema_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_status": [
         {
-            "value": "Faslodex",
-            "date": "22/12/2022"
+            "value": "ACTIVE",
+            "date": "2023-01-07"
         }
     ],
-    "assess_time_days_cstop": -1,
-    "eu_prime_initial": {
-        "value": "False",
-        "date": "0001-01-01"
-    },
-    "ema_corapp": "__SCRAPER_NOT_FOUND__",
-    "eu_indication_initial": {
-        "value": "faslodex is indicated for the treatment of postmenopausal women with oestrogen receptor positive, locally advanced or metastatic breast cancer for disease relapse on or after adjuvant antioestrogen \n therapy or disease progression on therapy with an antioestrogen.\n",
-        "date": "0001-01-01"
-    },
-    "ec_decision_time_days": -1,
+    "ema_rapp": "__SCRAPER_NOT_FOUND__",
     "eu_od_con": "__SCRAPER_NOT_FOUND__",
+    "eu_od_date": "__SCRAPER_NOT_FOUND__",
+    "ema_corapp": "__SCRAPER_NOT_FOUND__",
+    "eu_mah_initial": {
+        "value": "AstraZeneca UK Limited",
+        "date": "2023-01-07"
+    },
+    "atc_code": "L02BA03",
     "eu_od_initial": {
         "value": "__SCRAPER_NOT_FOUND__",
-        "date": "0001-01-01"
+        "date": "2023-01-07"
     },
-    "ema_reexamination": "False",
-    "eu_aut_date": "2004-03-10",
-    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
-    "atc_code": "L02BA03",
-    "eu_orphan_con_current": [
+    "eu_accel_assess_g": "__SCRAPER_NOT_FOUND__",
+    "ema_procedure_start_initial": "__SCRAPER_NOT_FOUND__",
+    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "assess_time_days_total": "Not found",
+    "chmp_opinion_date": "__SCRAPER_NOT_FOUND__",
+    "eu_od_sponsor": [
         {
             "value": "__SCRAPER_NOT_FOUND__",
-            "date": "22/12/2022"
+            "date": "2023-01-07"
         }
     ],
-    "eu_aut_type_initial": {
-        "value": "attribute not available on release",
-        "date": "0001-01-01"
-    },
-    "chmp_opinion_date": "__SCRAPER_NOT_FOUND__",
+    "assess_time_days_active": "Not found",
     "eu_referral": "False",
+    "eu_od_comp_date": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_date": "2004-03-10",
+    "assess_time_days_cstop": "Not found",
+    "eu_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_indication_initial": {
+        "value": "faslodex is indicated for the treatment of postmenopausal women with oestrogen receptor positive, locally advanced or metastatic breast cancer for disease relapse on or after adjuvant antioestrogen \n therapy or disease progression on therapy with an antioestrogen.\n",
+        "date": "2023-01-07"
+    },
+    "eu_aut_type_initial": {
+        "value": "Not available at time of release",
+        "date": "2023-01-07"
+    },
+    "eu_nas": "Not available at time of release",
+    "eu_aut_type_current": [
+        {
+            "value": "standard",
+            "date": "2023-01-07"
+        }
+    ],
+    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
+    "eu_legal_basis": "__SCRAPER_NOT_FOUND__",
+    "ec_decision_time_days": "Not found",
+    "aut_url": "https://ec.europa.eu/health/documents/community-register/2004/200403107447/dec_7447_en.pdf",
+    "ema_reexamination": "__SCRAPER_NOT_FOUND__",
+    "smpc_url": "https://ec.europa.eu/health/documents/community-register/2004/200403107447/anx_7447_en.pdf",
     "eu_procedures_todo": [
         {
             "eu_referral": false,
             "eu_suspension": false
         }
     ],
-    "eu_aut_type_current": [
+    "epar_url": "404_url_not_found",
+    "eu_atmp": "Not available at time of release",
+    "eu_med_type": "small molecule",
+    "orphan_status": "h",
+    "eu_brand_name_current": [
         {
-            "value": "standard",
-            "date": "22/12/2022"
+            "value": "Faslodex",
+            "date": "2023-01-07"
         }
     ],
-    "ema_rapp": "__SCRAPER_NOT_FOUND__",
-    "eu_pnumber": "EU/1/03/269",
+    "eu_orphan_con_current": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-07"
+        }
+    ],
     "eu_brand_name_initial": {
         "value": "Faslodex",
-        "date": "0001-01-01"
+        "date": "2023-01-07"
     },
-    "eu_suspension": "False",
-    "orphan_status": "h",
-    "eu_legal_basis": [
-        "__SCRAPER_NOT_FOUND__"
-    ],
     "ema_number": "EMEA/H/C/540",
-    "aut_url": "404_url_not_found",
+    "ema_number_check": true,
+    "eu_suspension": "False",
     "ema_number_id": "540",
-    "omar_url": "404_url_not_found",
-    "smpc_url": "404_url_not_found",
     "ema_number_certainty": "0.8863636363636364",
-    "epar_url": "404_url_not_found",
-    "ema_number_check": [
-        true,
-        "22/12/2022"
-    ],
-    "odwar_url": "404_url_not_found",
+    "omar_url": "404_url_not_found",
+    "active_substance": "Fulvestrant",
     "eu_mah_current": [
         {
             "value": "AstraZeneca AB",
-            "date": "22/12/2022"
+            "date": "2023-01-07"
         }
-    ],
-    "eu_od_number": "__SCRAPER_NOT_FOUND__",
-    "eu_atmp": "attribute not available on release",
-    "eu_mah_initial": {
-        "value": "AstraZeneca UK Limited",
-        "date": "0001-01-01"
-    },
-    "eu_nas": "attribute not available on release",
-    "ema_od_number": "__SCRAPER_NOT_FOUND__",
-    "ema_procedure_start_initial": "__SCRAPER_NOT_FOUND__",
-    "eu_med_type": [
-        "small molecule",
-        "0001-01-01"
     ]
 }

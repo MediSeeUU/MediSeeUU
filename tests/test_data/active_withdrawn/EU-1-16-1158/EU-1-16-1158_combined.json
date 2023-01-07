@@ -1,106 +1,107 @@
 {
-    "eu_accel_assess_g": "False",
-    "eu_od_date": "__SCRAPER_NOT_FOUND__",
-    "assess_time_days_total": -1,
-    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
-    "active_substance": [
-        "lonoctocog alfa",
-        "0001-01-01"
-    ],
-    "assess_time_days_active": 210,
-    "eu_od_sponsor": "__SCRAPER_NOT_FOUND__",
-    "eu_aut_status": "ACTIVE",
-    "eu_od_comp_date": "__SCRAPER_NOT_FOUND__",
-    "eu_brand_name_current": [
+    "eu_pnumber": "EU/1/16/1158",
+    "eu_prime_initial": {
+        "value": "Not available at time of release",
+        "date": "2023-01-07"
+    },
+    "odwar_url": "404_url_not_found",
+    "ema_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_status": [
         {
-            "value": "AFSTYLA",
-            "date": "22/12/2022"
+            "value": "ACTIVE",
+            "date": "2023-01-07"
         }
     ],
-    "assess_time_days_cstop": 106,
-    "eu_prime_initial": {
-        "value": "attribute not available on release",
-        "date": "0001-01-01"
-    },
-    "ema_corapp": "tuomo lapvetel\u00e4inen",
-    "eu_indication_initial": {
-        "value": "treatment and prophylaxis of bleeding in patients with haemophilia a (congenital factor viii deficiency).\n\n afstyla can be used for all age groups.\n",
-        "date": "0001-01-01"
-    },
-    "ec_decision_time_days": -1,
+    "ema_rapp": "jan mueller-berghaus",
     "eu_od_con": "__SCRAPER_NOT_FOUND__",
+    "eu_od_date": "__SCRAPER_NOT_FOUND__",
+    "ema_corapp": "tuomo lapvetel\u00e4inen",
+    "eu_mah_initial": {
+        "value": "CSL Behring GmbH",
+        "date": "2023-01-07"
+    },
+    "atc_code": "B02BD02",
     "eu_od_initial": {
         "value": "__SCRAPER_NOT_FOUND__",
-        "date": "0001-01-01"
+        "date": "2023-01-07"
     },
-    "ema_reexamination": "True",
-    "eu_aut_date": "2017-01-04",
-    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
-    "atc_code": "B02BD02",
-    "eu_orphan_con_current": [
+    "eu_accel_assess_g": "False",
+    "ema_procedure_start_initial": "2015-12-04",
+    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "assess_time_days_total": 342,
+    "chmp_opinion_date": "2016-11-10",
+    "eu_od_sponsor": [
         {
             "value": "__SCRAPER_NOT_FOUND__",
-            "date": "22/12/2022"
+            "date": "2023-01-07"
         }
     ],
+    "assess_time_days_active": 210,
+    "eu_referral": "False",
+    "eu_od_comp_date": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_date": "2017-01-04",
+    "assess_time_days_cstop": 106,
+    "eu_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_indication_initial": {
+        "value": "treatment and prophylaxis of bleeding in patients with haemophilia a (congenital factor viii deficiency).\n\n afstyla can be used for all age groups.\n",
+        "date": "2023-01-07"
+    },
     "eu_aut_type_initial": {
         "value": "__SCRAPER_NOT_FOUND__",
-        "date": "0001-01-01"
+        "date": "2023-01-07"
     },
-    "chmp_opinion_date": "2016-11-10",
-    "eu_referral": "False",
+    "eu_nas": true,
+    "eu_aut_type_current": [
+        {
+            "value": "standard",
+            "date": "2023-01-07"
+        }
+    ],
+    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
+    "eu_legal_basis": [
+        "article 8.3"
+    ],
+    "ec_decision_time_days": 2249,
+    "aut_url": "https://ec.europa.eu/health/documents/community-register/2017/20170104136548/dec_136548_en.pdf",
+    "ema_reexamination": "True",
+    "smpc_url": "https://ec.europa.eu/health/documents/community-register/2017/20170104136548/anx_136548_en.pdf",
     "eu_procedures_todo": [
         {
             "eu_referral": false,
             "eu_suspension": false
         }
     ],
-    "eu_aut_type_current": [
+    "epar_url": "https://www.ema.europa.eu/documents/assessment-report/afstyla-epar-public-assessment-report_en.pdf",
+    "eu_atmp": false,
+    "eu_med_type": "small molecule",
+    "orphan_status": "h",
+    "eu_brand_name_current": [
         {
-            "value": "standard",
-            "date": "22/12/2022"
+            "value": "AFSTYLA",
+            "date": "2023-01-07"
         }
     ],
-    "ema_rapp": "jan mueller-berghaus",
-    "eu_pnumber": "EU/1/16/1158",
+    "eu_orphan_con_current": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-07"
+        }
+    ],
     "eu_brand_name_initial": {
         "value": "AFSTYLA",
-        "date": "0001-01-01"
+        "date": "2023-01-07"
     },
-    "eu_suspension": "False",
-    "orphan_status": "h",
-    "eu_legal_basis": [
-        "article 8.3"
-    ],
     "ema_number": "EMEA/H/C/4075",
-    "aut_url": "404_url_not_found",
+    "ema_number_check": true,
+    "eu_suspension": "False",
     "ema_number_id": "4075",
-    "omar_url": "404_url_not_found",
-    "smpc_url": "404_url_not_found",
     "ema_number_certainty": "0.6",
-    "epar_url": "404_url_not_found",
-    "ema_number_check": [
-        true,
-        "22/12/2022"
-    ],
-    "odwar_url": "404_url_not_found",
+    "omar_url": "404_url_not_found",
+    "active_substance": "lonoctocog alfa",
     "eu_mah_current": [
         {
             "value": "CSL Behring GmbH",
-            "date": "22/12/2022"
+            "date": "2023-01-07"
         }
-    ],
-    "eu_od_number": "__SCRAPER_NOT_FOUND__",
-    "eu_atmp": false,
-    "eu_mah_initial": {
-        "value": "CSL Behring GmbH",
-        "date": "0001-01-01"
-    },
-    "eu_nas": true,
-    "ema_od_number": "__SCRAPER_NOT_FOUND__",
-    "ema_procedure_start_initial": "2015-12-04",
-    "eu_med_type": [
-        "small molecule",
-        "0001-01-01"
     ]
 }

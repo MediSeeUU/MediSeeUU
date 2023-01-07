@@ -1,106 +1,107 @@
 {
-    "eu_accel_assess_g": "attribute not available on release",
-    "eu_od_date": "__SCRAPER_NOT_FOUND__",
-    "assess_time_days_total": -1,
-    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
-    "active_substance": [
-        "Cetrorelix (as acetate)",
-        "0001-01-01"
-    ],
-    "assess_time_days_active": -1,
-    "eu_od_sponsor": "__SCRAPER_NOT_FOUND__",
-    "eu_aut_status": "ACTIVE",
-    "eu_od_comp_date": "__SCRAPER_NOT_FOUND__",
-    "eu_brand_name_current": [
+    "eu_pnumber": "EU/1/99/100",
+    "eu_prime_initial": {
+        "value": "Not available at time of release",
+        "date": "2023-01-07"
+    },
+    "odwar_url": "404_url_not_found",
+    "ema_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_status": [
         {
-            "value": "Cetrotide",
-            "date": "22/12/2022"
+            "value": "ACTIVE",
+            "date": "2023-01-07"
         }
     ],
-    "assess_time_days_cstop": -1,
-    "eu_prime_initial": {
-        "value": "attribute not available on release",
-        "date": "0001-01-01"
-    },
-    "ema_corapp": "dr. d. jefferys",
-    "eu_indication_initial": {
-        "value": "cetrotide 3 mg is used to prevent premature ovulation during a controlled ovarian stimulation, followed by oocyte pick-up and assisted reproductive techniques.\n\n in clinical trials cetrotide 3 mg was used with human menopausal gonadotropin (hmg), however, \n limited experience with recombinant follicle stimulating hormone (fsh) suggested similar efficacy. \n hmg and fsh are hormones promoting egg maturation.\n",
-        "date": "0001-01-01"
-    },
-    "ec_decision_time_days": -1,
+    "ema_rapp": "professor a. hildebrandt",
     "eu_od_con": "__SCRAPER_NOT_FOUND__",
-    "eu_od_initial": {
-        "value": "attribute not available on release",
-        "date": "0001-01-01"
+    "eu_od_date": "__SCRAPER_NOT_FOUND__",
+    "ema_corapp": "dr. d. jefferys",
+    "eu_mah_initial": {
+        "value": "ASTA Medica Aktiengesellschaft",
+        "date": "2023-01-07"
     },
-    "ema_reexamination": "False",
-    "eu_aut_date": "1999-04-13",
-    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
     "atc_code": "H01CC02",
-    "eu_orphan_con_current": [
+    "eu_od_initial": {
+        "value": "Not available at time of release",
+        "date": "2023-01-07"
+    },
+    "eu_accel_assess_g": "Not available at time of release",
+    "ema_procedure_start_initial": "1998-02-27",
+    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "assess_time_days_total": 410,
+    "chmp_opinion_date": "1999-04-13",
+    "eu_od_sponsor": [
         {
             "value": "__SCRAPER_NOT_FOUND__",
-            "date": "22/12/2022"
+            "date": "2023-01-07"
         }
     ],
-    "eu_aut_type_initial": {
-        "value": "attribute not available on release",
-        "date": "0001-01-01"
-    },
-    "chmp_opinion_date": "1999-04-13",
+    "assess_time_days_active": "Not found",
     "eu_referral": "False",
+    "eu_od_comp_date": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_date": "1999-04-13",
+    "assess_time_days_cstop": "Not found",
+    "eu_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_indication_initial": {
+        "value": "cetrotide 3 mg is used to prevent premature ovulation during a controlled ovarian stimulation, followed by oocyte pick-up and assisted reproductive techniques.\n\n in clinical trials cetrotide 3 mg was used with human menopausal gonadotropin (hmg), however, \n limited experience with recombinant follicle stimulating hormone (fsh) suggested similar efficacy. \n hmg and fsh are hormones promoting egg maturation.\n",
+        "date": "2023-01-07"
+    },
+    "eu_aut_type_initial": {
+        "value": "Not available at time of release",
+        "date": "2023-01-07"
+    },
+    "eu_nas": "Not available at time of release",
+    "eu_aut_type_current": [
+        {
+            "value": "standard",
+            "date": "2023-01-07"
+        }
+    ],
+    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
+    "eu_legal_basis": [
+        "__SCRAPER_NOT_FOUND__"
+    ],
+    "ec_decision_time_days": 8670,
+    "aut_url": "https://ec.europa.eu/health/documents/community-register/1999/199904133304/dec_3304_en.pdf",
+    "ema_reexamination": "False",
+    "smpc_url": "https://ec.europa.eu/health/documents/community-register/1999/199904133304/anx_3304_en.pdf",
     "eu_procedures_todo": [
         {
             "eu_referral": false,
             "eu_suspension": false
         }
     ],
-    "eu_aut_type_current": [
+    "epar_url": "https://www.ema.europa.eu/documents/procedural-steps/cetrotide-epar-procedural-steps-taken-authorisation_en.pdf",
+    "eu_atmp": "Not available at time of release",
+    "eu_med_type": "small molecule",
+    "orphan_status": "h",
+    "eu_brand_name_current": [
         {
-            "value": "standard",
-            "date": "22/12/2022"
+            "value": "Cetrotide",
+            "date": "2023-01-07"
         }
     ],
-    "ema_rapp": "professor a. hildebrandt",
-    "eu_pnumber": "EU/1/99/100",
+    "eu_orphan_con_current": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-07"
+        }
+    ],
     "eu_brand_name_initial": {
         "value": "CETROTIDE",
-        "date": "0001-01-01"
+        "date": "2023-01-07"
     },
-    "eu_suspension": "False",
-    "orphan_status": "h",
-    "eu_legal_basis": [
-        "__SCRAPER_NOT_FOUND__"
-    ],
     "ema_number": "EMEA/H/C/233",
-    "aut_url": "404_url_not_found",
+    "ema_number_check": true,
+    "eu_suspension": "False",
     "ema_number_id": "233",
-    "omar_url": "404_url_not_found",
-    "smpc_url": "404_url_not_found",
     "ema_number_certainty": "0.9791666666666666",
-    "epar_url": "404_url_not_found",
-    "ema_number_check": [
-        true,
-        "22/12/2022"
-    ],
-    "odwar_url": "404_url_not_found",
+    "omar_url": "404_url_not_found",
+    "active_substance": "Cetrorelix (as acetate)",
     "eu_mah_current": [
         {
             "value": "Merck Europe B.V.",
-            "date": "22/12/2022"
+            "date": "2023-01-07"
         }
-    ],
-    "eu_od_number": "__SCRAPER_NOT_FOUND__",
-    "eu_atmp": "attribute not available on release",
-    "eu_mah_initial": {
-        "value": "ASTA Medica Aktiengesellschaft",
-        "date": "0001-01-01"
-    },
-    "eu_nas": "attribute not available on release",
-    "ema_od_number": "__SCRAPER_NOT_FOUND__",
-    "ema_procedure_start_initial": "1998-02-27",
-    "eu_med_type": [
-        "small molecule",
-        "0001-01-01"
     ]
 }

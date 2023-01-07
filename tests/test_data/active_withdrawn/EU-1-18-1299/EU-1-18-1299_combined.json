@@ -1,42 +1,101 @@
 {
-    "eu_accel_assess_g": "__SCRAPER_NOT_FOUND__",
-    "eu_od_date": "__SCRAPER_NOT_FOUND__",
-    "assess_time_days_total": -1,
-    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
-    "active_substance": [
-        "axicabtagene ciloleucel",
-        "0001-01-01"
+    "eu_pnumber": "EU/1/18/1299",
+    "eu_prime_initial": {
+        "value": "True",
+        "date": "2023-01-05"
+    },
+    "odwar_url": "404_url_not_found",
+    "ema_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_status": [
+        {
+            "value": "ACTIVE",
+            "date": "2023-01-07"
+        }
     ],
-    "assess_time_days_active": -1,
-    "eu_od_sponsor": "__SCRAPER_NOT_FOUND__",
-    "eu_aut_status": "ACTIVE",
+    "ema_rapp": "jan mueller",
+    "eu_od_con": "__SCRAPER_NOT_FOUND__",
+    "eu_od_date": "__SCRAPER_NOT_FOUND__",
+    "ema_corapp": "claire beuneu",
+    "eu_mah_initial": {
+        "value": "Kite Pharma EU B.V.",
+        "date": "2023-01-07"
+    },
+    "atc_code": "__SCRAPER_NOT_FOUND__",
+    "eu_od_initial": {
+        "value": "adopted",
+        "date": "2023-01-07"
+    },
+    "eu_accel_assess_g": "True",
+    "ema_procedure_start_initial": "2017-07-29",
+    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "assess_time_days_total": 334,
+    "chmp_opinion_date": "2018-06-28",
+    "eu_od_sponsor": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-07"
+        }
+    ],
+    "assess_time_days_active": "Not found",
+    "eu_referral": "False",
     "eu_od_comp_date": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_date": "2018-08-23",
+    "assess_time_days_cstop": "Not found",
+    "eu_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_indication_initial": {
+        "value": "yescarta is indicated for the treatment of adult patients with relapsed or refractory diffuse large b-cell lymphoma (dlbcl) and primary mediastinal large b-cell lymphoma (pmbcl), after two or \n more lines of systemic therapy.\n",
+        "date": "2023-01-07"
+    },
+    "eu_aut_type_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "2023-01-07"
+    },
+    "eu_nas": true,
+    "eu_aut_type_current": [
+        {
+            "value": "standard",
+            "date": "2023-01-07"
+        }
+    ],
+    "ema_omar_condition": [
+        {
+            "eu_od_number": "eu/3/14/1393",
+            "eu_od_prevalence": "the prevalence of diffuse large b-cell lymphoma (hereinafter referred to as \u201cthe condition\u201d) was estimated to remain below 5 in 10,000 and was concluded to be 4.6 in 10,000 persons in the european union, at the time of the review of the designation criteria; ",
+            "eu_od_alt_treatment": "significant_benefit",
+            "eu_od_sig_benefit": "the sponsor has provided clinical data showing responses in patients with relapsed or refractory diffuse large b-cell lymphoma, which compare favourably to responses with existing treatments in historical controls.",
+            "ema_report_date": "2018-08-23"
+        },
+        {
+            "eu_od_number": "eu/3/15/1553",
+            "eu_od_prevalence": "the prevalence of primary mediastinal large b-cell lymphoma (hereinafter referred to as \u201cthe condition\u201d) was estimated to remain below 5 in 10,000 and was concluded to be approximately 0.5 in 10,000 persons in the european union, at the time of the review of the designation criteria; ",
+            "eu_od_alt_treatment": "significant_benefit",
+            "eu_od_sig_benefit": "the sponsor has provided clinical data showing responses in patients with relapsed or refractory primary mediastinal large b-cell lymphoma, which compare favourably to responses with existing treatments in historical controls.",
+            "ema_report_date": "2018-08-23"
+        }
+    ],
+    "eu_legal_basis": [
+        "article 8.3"
+    ],
+    "ec_decision_time_days": 1654,
+    "aut_url": "https://ec.europa.eu/health/documents/community-register/2018/20180823142115/dec_142115_en.pdf",
+    "ema_reexamination": "False",
+    "smpc_url": "https://ec.europa.eu/health/documents/community-register/2018/20180823142115/anx_142115_en.pdf",
+    "eu_procedures_todo": [
+        {
+            "eu_referral": false,
+            "eu_suspension": false
+        }
+    ],
+    "epar_url": "https://www.ema.europa.eu/documents/assessment-report/yescarta-epar-public-assessment-report_en.pdf",
+    "eu_atmp": true,
+    "eu_med_type": "small molecule",
+    "orphan_status": "h",
     "eu_brand_name_current": [
         {
             "value": "Yescarta",
-            "date": "22/12/2022"
+            "date": "2023-01-07"
         }
     ],
-    "assess_time_days_cstop": -1,
-    "eu_prime_initial": {
-        "value": "__SCRAPER_NOT_FOUND__",
-        "date": "0001-01-01"
-    },
-    "ema_corapp": "__SCRAPER_NOT_FOUND__",
-    "eu_indication_initial": {
-        "value": "yescarta is indicated for the treatment of adult patients with relapsed or refractory diffuse large b-cell lymphoma (dlbcl) and primary mediastinal large b-cell lymphoma (pmbcl), after two or \n more lines of systemic therapy.\n",
-        "date": "0001-01-01"
-    },
-    "ec_decision_time_days": -1,
-    "eu_od_con": "__SCRAPER_NOT_FOUND__",
-    "eu_od_initial": {
-        "value": "adopted",
-        "date": "0001-01-01"
-    },
-    "ema_reexamination": "__SCRAPER_NOT_FOUND__",
-    "eu_aut_date": "2018-08-23",
-    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
-    "atc_code": "__SCRAPER_NOT_FOUND__",
     "eu_orphan_con_current": [
         {
             "value": [
@@ -46,81 +105,26 @@
                     "eu_num": "EU/3/14/1393",
                     "indication": "Treatment of diffuse large B cell lymphoma",
                     "link_date": "2018-08-27"
-                },
-                {
-                    "pre": "o",
-                    "id": "1553",
-                    "eu_num": "EU/3/15/1553",
-                    "indication": "Treatment of primary mediastinal large B-cell lymphoma",
-                    "link_date": "2018-08-27"
-                },
-                {
-                    "pre": "o",
-                    "id": "1579",
-                    "eu_num": "EU/3/15/1579",
-                    "indication": "Treatment of follicular lymphoma",
-                    "link_date": "2022-06-23"
                 }
             ],
-            "date": "22/12/2022"
+            "date": "2023-01-07"
         }
     ],
-    "eu_aut_type_initial": {
-        "value": "__SCRAPER_NOT_FOUND__",
-        "date": "0001-01-01"
-    },
-    "chmp_opinion_date": "__SCRAPER_NOT_FOUND__",
-    "eu_referral": "False",
-    "eu_procedures_todo": [
-        {
-            "eu_referral": false,
-            "eu_suspension": false
-        }
-    ],
-    "eu_aut_type_current": [
-        {
-            "value": "standard",
-            "date": "22/12/2022"
-        }
-    ],
-    "ema_rapp": "__SCRAPER_NOT_FOUND__",
-    "eu_pnumber": "EU/1/18/1299",
     "eu_brand_name_initial": {
         "value": "Yescarta",
-        "date": "0001-01-01"
+        "date": "2023-01-07"
     },
-    "eu_suspension": "False",
-    "orphan_status": "h",
-    "eu_legal_basis": "__SCRAPER_NOT_FOUND__",
     "ema_number": "EMEA/H/C/004480",
-    "aut_url": "404_url_not_found",
+    "ema_number_check": false,
+    "eu_suspension": "False",
     "ema_number_id": "4480",
-    "omar_url": "404_url_not_found",
-    "smpc_url": "404_url_not_found",
     "ema_number_certainty": "0.625",
-    "epar_url": "404_url_not_found",
-    "ema_number_check": [
-        false,
-        "22/12/2022"
-    ],
-    "odwar_url": "404_url_not_found",
+    "omar_url": "https://www.ema.europa.eu/documents/orphan-maintenance-report/yescarta-orphan-maintenance-assessment-report-initial-authorisation_en.pdf",
+    "active_substance": "axicabtagene ciloleucel",
     "eu_mah_current": [
         {
             "value": "Kite Pharma EU B.V.",
-            "date": "22/12/2022"
+            "date": "2023-01-07"
         }
-    ],
-    "eu_od_number": "__SCRAPER_NOT_FOUND__",
-    "eu_atmp": true,
-    "eu_mah_initial": {
-        "value": "Kite Pharma EU B.V.",
-        "date": "0001-01-01"
-    },
-    "eu_nas": true,
-    "ema_od_number": "__SCRAPER_NOT_FOUND__",
-    "ema_procedure_start_initial": "__SCRAPER_NOT_FOUND__",
-    "eu_med_type": [
-        "small molecule",
-        "0001-01-01"
     ]
 }
