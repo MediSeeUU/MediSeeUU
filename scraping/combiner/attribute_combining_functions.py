@@ -262,8 +262,8 @@ def combine_eu_procedures_todo(eu_pnumber: str, attribute_name: str, sources: li
              attr.eu_suspension: file_dicts[src.web][attr.eu_suspension] == "True"}]
 
 
-def combine_eu_aut_date(eu_pnumber: str, attribute_name: str, sources: list[str],
-                        file_dicts: dict[str, dict[str, any]]) -> datetime.date:
+def combine_date(eu_pnumber: str, attribute_name: str, sources: list[str],
+                 file_dicts: dict[str, dict[str, any]]) -> datetime.date:
     values = get_values_from_sources(attribute_name, sources, file_dicts)
 
     if not check_all_equal(values):

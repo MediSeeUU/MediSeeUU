@@ -1,61 +1,67 @@
 {
-    "eu_pnumber": "__SCRAPER_NOT_FOUND__",
-    "eu_prime_initial": {
-        "value": "False",
-        "date": "2023-01-07"
-    },
-    "odwar_url": "404_url_not_found",
-    "ema_od_number": "EMEA/OD/022/00",
-    "eu_aut_status": [
+    "atc_code": "__SCRAPER_NOT_FOUND__",
+    "ema_number_id": "22/00",
+    "eu_nas": "__SCRAPER_NOT_FOUND__",
+    "ec_decision_time_days": 1780,
+    "ema_number_certainty": "0.75",
+    "eu_od_pnumber": "EU/1/18/1277",
+    "ema_procedure_start_initial": "2016-12-01",
+    "eu_med_type": "__SCRAPER_NOT_FOUND__",
+    "ema_reexamination": "False",
+    "chmp_opinion_date": "2018-02-22",
+    "eu_mah_current": [
         {
-            "value": "ACTIVE",
+            "value": "__SCRAPER_NOT_FOUND__",
             "date": "2023-01-07"
         }
     ],
-    "ema_rapp": "nithyanandan nagercoil",
-    "eu_od_con": "Treatment of acute myeloid leukaemia",
-    "eu_od_date": "2000-10-18",
-    "ema_corapp": "sinan b. sarac",
-    "eu_mah_initial": {
-        "value": "the sponsor: Wyeth Europa Limited",
-        "date": "2023-01-07"
-    },
-    "atc_code": "__SCRAPER_NOT_FOUND__",
-    "eu_od_initial": {
-        "value": "adopted",
-        "date": "2023-01-07"
-    },
-    "eu_accel_assess_g": "False",
-    "ema_procedure_start_initial": "2016-12-01",
-    "eu_od_pnumber": "EU/1/18/1277",
-    "assess_time_days_total": 448,
-    "chmp_opinion_date": "2018-02-22",
     "eu_od_sponsor": [
         {
             "value": "Pfizer Europe MA EEIG",
             "date": "2023-01-07"
         }
     ],
-    "assess_time_days_active": "Not found",
-    "eu_referral": "False",
-    "eu_od_comp_date": "Date is left blank in source",
     "eu_aut_date": "2000-10-18",
-    "assess_time_days_cstop": "Not found",
-    "eu_od_number": "EU/3/00/005",
-    "eu_indication_initial": {
-        "value": "__SCRAPER_NOT_FOUND__",
-        "date": "Date is left blank in source"
+    "eu_mah_initial": {
+        "value": "the sponsor: Wyeth Europa Limited",
+        "date": "2023-01-07"
     },
+    "eu_orphan_con_current": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-07"
+        }
+    ],
+    "eu_od_comp_date": "Date is left blank in source",
     "eu_aut_type_initial": {
         "value": "Not available at time of release",
         "date": "2023-01-07"
     },
-    "eu_nas": "__SCRAPER_NOT_FOUND__",
+    "ema_number_check": false,
+    "eu_prime_initial": {
+        "value": "False",
+        "date": "2023-01-07"
+    },
+    "eu_referral": "False",
     "eu_aut_type_current": [
         {
             "value": "standard",
             "date": "2023-01-07"
         }
+    ],
+    "eu_indication_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "Date is left blank in source"
+    },
+    "eu_od_initial": {
+        "value": "adopted",
+        "date": "2023-01-07"
+    },
+    "eu_pnumber": "__SCRAPER_NOT_FOUND__",
+    "eu_suspension": "False",
+    "eu_od_date": "2000-10-18",
+    "eu_legal_basis": [
+        "article 8.3"
     ],
     "ema_omar_condition": [
         {
@@ -66,50 +72,44 @@
             "ema_report_date": "2018-04-19"
         }
     ],
-    "eu_legal_basis": [
-        "article 8.3"
-    ],
-    "ec_decision_time_days": 1780,
+    "ema_rapp": "nithyanandan nagercoil",
     "aut_url": "https://ec.europa.eu/health/documents/community-register/2000/200010185296/dec_5296_en.pdf",
-    "ema_reexamination": "False",
-    "smpc_url": "404_url_not_found",
+    "omar_url": "https://www.ema.europa.eu/documents/orphan-maintenance-report/mylotarg-orphan-maintenance-assessment-report-initial-authorisation_en.pdf",
     "eu_procedures_todo": [
         {
             "eu_referral": false,
             "eu_suspension": false
         }
     ],
+    "smpc_url": "404_url_not_found",
+    "ema_corapp": "sinan b. sarac",
+    "odwar_url": "404_url_not_found",
     "epar_url": "https://www.ema.europa.eu/documents/assessment-report/mylotarg-epar-public-assessment-report_en.pdf",
-    "eu_atmp": "__SCRAPER_NOT_FOUND__",
-    "eu_med_type": "__SCRAPER_NOT_FOUND__",
     "orphan_status": "o",
+    "active_substance": "Gemtuzumab Ozogamicin",
+    "eu_accel_assess_g": "False",
+    "eu_atmp": "__SCRAPER_NOT_FOUND__",
+    "eu_od_number": "EU/3/00/005",
+    "eu_aut_status": [
+        {
+            "value": "ACTIVE",
+            "date": "2023-01-07"
+        }
+    ],
+    "ema_od_number": "EMEA/OD/022/00",
     "eu_brand_name_current": [
         {
             "value": "EU/3/00/005",
             "date": "2023-01-07"
         }
     ],
-    "eu_orphan_con_current": [
-        {
-            "value": "__SCRAPER_NOT_FOUND__",
-            "date": "2023-01-07"
-        }
-    ],
+    "assess_time_days_active": "Not found",
     "eu_brand_name_initial": {
         "value": "Gemtuzumab Ozogamicin",
         "date": "2023-01-07"
     },
+    "eu_od_con": "Treatment of acute myeloid leukaemia",
+    "assess_time_days_cstop": "Not found",
     "ema_number": "__SCRAPER_NOT_FOUND__",
-    "ema_number_check": false,
-    "eu_suspension": "False",
-    "ema_number_id": "22/00",
-    "ema_number_certainty": "0.75",
-    "omar_url": "https://www.ema.europa.eu/documents/orphan-maintenance-report/mylotarg-orphan-maintenance-assessment-report-initial-authorisation_en.pdf",
-    "active_substance": "Gemtuzumab Ozogamicin",
-    "eu_mah_current": [
-        {
-            "value": "__SCRAPER_NOT_FOUND__",
-            "date": "2023-01-07"
-        }
-    ]
+    "assess_time_days_total": 448
 }
