@@ -124,7 +124,7 @@ def convert_articles(articles: list[str]) -> list[str]:
     return list(set(res))
 
 
-def get_date(txt: str) -> datetime.date:
+def get_date(txt: str) -> datetime.date | str:
     """
     Extracts date from a text, also including months with roman numerals and fully written months (IV, january)
 
@@ -132,7 +132,7 @@ def get_date(txt: str) -> datetime.date:
         txt (str): text containing date
 
     Returns:
-        datetime.date: found date.
+        datetime.date: found date or date_not_found string
     """
     if not txt:
         return attribute_values.date_not_found

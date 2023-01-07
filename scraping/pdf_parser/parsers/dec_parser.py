@@ -387,7 +387,7 @@ def dec_get_nas(txt, date) -> str | bool:
     return False
 
 
-def dec_get_od_comp_date(txt) -> datetime.date:
+def dec_get_od_comp_date(txt) -> datetime.date | str:
     """
     Gives date of orphan comp from decision files.
 
@@ -395,7 +395,7 @@ def dec_get_od_comp_date(txt) -> datetime.date:
         txt (str): plain decision pdf text
 
     Returns:
-        datetime.date: date found
+        datetime.date | str: date found or date_not_found string
     """
     keyword1 = 'opinion'
     keyword2 = 'Committee for Orphan Medicinal Products'.lower()
