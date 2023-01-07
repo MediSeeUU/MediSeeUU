@@ -152,7 +152,7 @@ def dec_get_date(txt: str) -> str | datetime.date:
         section = re.split('of ', txt, 1)[1]
         section = section[:17]
         if '...' in section or '(date)' in section or 'xxx' in section:
-            return attribute_values.eu_aut_date_blank
+            return attribute_values.date_not_found
         if '/' in section:
             section = section.replace('/', '-')
 
@@ -166,7 +166,7 @@ def dec_get_date(txt: str) -> str | datetime.date:
             section = re.split('of ', next_page, 1)[1]
             section = section[:17]
             if '...' in section or '(date)' in section or 'xxx' in section:
-                return attribute_values.eu_aut_date_blank
+                return attribute_values.date_not_found
             return helper.get_date(section)
 
     return helper.get_date('')

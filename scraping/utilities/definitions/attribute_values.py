@@ -27,7 +27,6 @@ authorization_type_unknown = "exceptional or conditional"
 eu_od_type_adopted = "adopted"
 eu_od_type_appointed = "appointed"
 
-eu_aut_date_blank = "date_is_blank"
 eu_med_type_biologicals = "biologicals"
 eu_med_type_atmp = "ATMP"
 eu_med_type_small_molecule = "small molecule"

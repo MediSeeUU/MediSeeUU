@@ -15,8 +15,7 @@ class ScraperAttribute:
 
 # add new ScraperAttribute to all_attribute_objects and return name of ScraperAttribute
 def attribute_factory(all_attribute_objects: set[ScraperAttribute], name: str, sources: list[str],
-                      is_orphan: bool = False, combine_function=acf.combine_first,
-                      json_function=acf.json_static):
+                      is_orphan: bool = False, combine_function=acf.combine_first, json_function=acf.json_static):
     attribute = ScraperAttribute(name, sources, combine_function, json_function, is_orphan)
     all_attribute_objects.add(attribute)
 

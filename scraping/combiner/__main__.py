@@ -100,7 +100,7 @@ def combine_folder(filepath: str, folder_name: str):
         value = attribute.combine_function(eu_pnumber=folder_name, attribute_name=attribute.name,
                                            sources=attribute.sources, file_dicts=file_dicts)
         date = acf.get_attribute_date(attribute.sources[0], file_dicts)
-        combined_dict[attribute.name] = attribute.json_function(value, date)
+        combined_dict[attribute.name] = attribute.json_function(value=value, date=date)
 
     combined_json = open(path.join(filepath, folder_name + "_combined.json"), "w")
     json.dump(combined_dict, combined_json, default=str, indent=4)
