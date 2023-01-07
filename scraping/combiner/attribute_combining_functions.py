@@ -33,11 +33,11 @@ def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, any]]
         if file_dicts[source_string] == {} or "annex10" in str(file_dicts[source_string].keys()):
             return
         if attr.pdf_file not in file_dicts[source_string].keys():
-            log.warning(f"\"{attr.pdf_file}\" not in the keys of the source: {source_string}")
+            # log.warning(f"\"{attr.pdf_file}\" not in the keys of the source: {source_string}")
             return
         file_name = file_dicts[source_string][attr.pdf_file]
         return file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date]
-    log.warning(f"{source_string} not in the keys of file_dicts")
+    # log.warning(f"{source_string} not in the keys of file_dicts")
 
 
 def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, any]]) -> \
@@ -57,7 +57,7 @@ def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts:
     for source in sources:
         source_dict = file_dicts[source]
         if attribute_name not in source_dict.keys():
-            log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
+            # log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
             continue
         values.append(attribute_name)
     return values
@@ -65,12 +65,12 @@ def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts:
 
 def check_all_equal(values: list[any]) -> bool:
     """
-    checks if two values are equal and not None
+    Checks if two values are equal and not None
     Args:
-        v1 (any): value to compare
-        v2 (any): value to compare
+        list[any]: List of values to check
 
-    Returns (bool): result of check
+    Returns:
+        bool: Whether all values are equal or not
     """
     if len(values) == 0:
         return False

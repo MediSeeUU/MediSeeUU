@@ -1,6 +1,6 @@
 import datetime
 import typing
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, asdict
 
 
 @dataclass
