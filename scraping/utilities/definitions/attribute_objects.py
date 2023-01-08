@@ -57,7 +57,7 @@ attribute_factory(objects, attr.assess_time_days_active, [src.annex_10], False, 
 attribute_factory(objects, attr.assess_time_days_cstop, [src.annex_10], False, acf.combine_assess_time_days_cstop)
 attribute_factory(objects, attr.ec_decision_time_days, [src.annex_10], False, acf.combine_decision_time_days)
 attribute_factory(objects, attr.ema_reexamination, [src.epar])
-attribute_factory(objects, attr.eu_orphan_con_current, [src.web], False, acf.combine_first, acf.json_current)
+attribute_factory(objects, attr.eu_orphan_con_current, [src.web], True, acf.combine_first, acf.json_current)
 attribute_factory(objects, attr.eu_referral, [src.web])
 attribute_factory(objects, attr.eu_suspension, [src.web])
 attribute_factory(objects, attr.omar_url, [src.omar], True, acf.combine_get_file_url, acf.json_static)

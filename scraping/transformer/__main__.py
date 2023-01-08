@@ -13,6 +13,8 @@ all_orphans = [obj.name for obj in list(attr_objects.objects) if obj.is_orphan o
                obj.name == attr.orphan_status]
 omar_conditions = []
 
+eu_orphan_con_currents = {}
+
 
 def convert_json(combined_json_path: str):
     """
@@ -21,6 +23,7 @@ def convert_json(combined_json_path: str):
         combined_json_path (str): Path to the JSON file
     """
     global omar_conditions
+
     with open(combined_json_path) as combined_json:
         json_data = json.load(combined_json)
     final_json = {}
@@ -34,8 +37,52 @@ def convert_json(combined_json_path: str):
             omar_conditions += json_data["ema_omar_condition"]
             json_data.pop("ema_omar_condition")
 
+    if attr.eu_orphan_con_current in json_data.keys():
+        eu_orphan_con_current = json_data[attr.eu_orphan_con_current]
+        if isinstance(eu_orphan_con_current, list):
+            transform_orphan_cons(eu_orphan_con_current)
+            json_data.pop(attr.eu_orphan_con_current)
+
     transformed_json_path = f"{combined_json_path.split('combined.json')[0]}transformed.json"
     save_transformed_json(transformed_json_path, final_json)
+
+
+def transform_orphan_cons(eu_orphan_con_current: list):
+    """
+    Transforms eu_orphan_con_current objects and inserts it into the global eu_orphan_con_currents dict
+
+    Args:
+        eu_orphan_con_current (list): List of eu_orphan_con_current objects
+    """
+    global eu_orphan_con_currents
+
+    for orphan_con_object in eu_orphan_con_current:
+        scrape_date = orphan_con_object["date"]
+
+        value = orphan_con_object["value"]
+        if not isinstance(value, list):
+            continue
+
+        for orphan_con_value in value:
+            value_dict = {}
+            eu_num = orphan_con_value["eu_num"]
+            value_dict["indication"] = orphan_con_value["indication"]
+            value_dict["link_date"] = orphan_con_value["link_date"]
+
+            # This check is only done because end date is not implemented yet
+            value_dict["end_date"] = "Not found"
+            if "end_date" in orphan_con_value:
+                value_dict["end_date"] = orphan_con_value["end_date"]
+
+            full_dict = {
+                "value": value_dict,
+                "date": scrape_date
+            }
+
+            if eu_num in eu_orphan_con_currents:
+                eu_orphan_con_currents[eu_num].append(full_dict)
+            else:
+                eu_orphan_con_currents[eu_num] = [full_dict]
 
 
 def save_transformed_json(transformed_json_path: str, final_json: dict):
@@ -141,6 +188,34 @@ def add_condition(condition: dict, directory: str):
         save_transformed_json(transformed_json_path, json_data)
 
 
+def add_orphan_con(eu_od_num: str, orphan_con: dict, directory: str):
+    """
+    Adds attributes of the condition to the transformed.json corresponding to the condition's EU number
+    Args:
+        eu_od_num (str): The orphan designation number of the relevant orphan
+        orphan_con (dict): dictionary containing all orphan conditions for one orphan
+        directory (str): data folder, containing medicine folders
+    """
+    for folder in listdir(f"{directory}/active_withdrawn"):
+        if eu_od_num.upper().replace('/', '-') != folder:
+            continue
+        med_path = f"{directory}/active_withdrawn/{folder}"
+        transformed_file = [file for file in listdir(med_path) if path.isfile(path.join(med_path, file))
+                            and "transformed.json" in file]
+
+        if not transformed_file:
+            continue
+
+        transformed_json_path = f"{med_path}/{transformed_file[0]}"
+        with open(transformed_json_path) as transformed_json:
+            json_data = json.load(transformed_json)
+
+        if attr.eu_orphan_con_current in json_data:
+            json_data[attr.eu_orphan_con_current] = orphan_con
+
+        save_transformed_json(transformed_json_path, json_data)
+
+
 # Main file to run all parsers
 def main(directory: str):
     """
@@ -163,6 +238,9 @@ def main(directory: str):
 
     for condition in omar_conditions:
         add_condition(condition, directory)
+
+    for eu_od_num in eu_orphan_con_currents:
+        add_orphan_con(eu_od_num, eu_orphan_con_currents[eu_od_num], directory)
 
     log.info(f"=== Done transforming ===")
 
