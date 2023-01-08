@@ -1,34 +1,62 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>db_communicator package &mdash; DB Communicator 1.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/js/theme.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="db_communicator" href="modules.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
+          
 
 <a href="../../../../docs/html/README.html">
   <img src="_static/medisee.svg" class="logo" alt="Logo"/>
@@ -40,7 +68,11 @@
 
 
 
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
     <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
       <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
       <ul>
@@ -55,6 +87,11 @@
     </div>
     
       
+            
+            
+              
+            
+            
               <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="README.html">DB Communicator</a><ul>
@@ -79,7 +116,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">db_communicator package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-db_communicator.__main__">db_communicator.__main__ module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#db_communicator.__main__.get_combined_dict"><code class="docutils literal notranslate"><span class="pre">get_combined_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#db_communicator.__main__.get_transformed_dict"><code class="docutils literal notranslate"><span class="pre">get_transformed_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#db_communicator.__main__.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#db_communicator.__main__.send_medicine"><code class="docutils literal notranslate"><span class="pre">send_medicine()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#db_communicator.__main__.send_medicine_together"><code class="docutils literal notranslate"><span class="pre">send_medicine_together()</span></code></a></li>
@@ -87,7 +124,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-db_communicator.db_communicator">db_communicator.db_communicator module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator"><code class="docutils literal notranslate"><span class="pre">DbCommunicator</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator.get_credentials"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.get_credentials()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator.login"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.login()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator.logout"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.logout()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator.refresh_token"><code class="docutils literal notranslate"><span class="pre">DbCommunicator.refresh_token()</span></code></a></li>
@@ -103,54 +139,95 @@
 </li>
 </ul>
 
+            
+          
     
 
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">DB Communicator</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">db_communicator</a></li>
-      <li class="breadcrumb-item active">db_communicator package</li>
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">db_communicator</a> &raquo;</li>
+        
+      <li>db_communicator package</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
+            
   <section id="module-db_communicator">
-<span id="db-communicator-package"></span><h1>db_communicator package<a class="headerlink" href="#module-db_communicator" title="Permalink to this heading"></a></h1>
+<span id="db-communicator-package"></span><h1>db_communicator package<a class="headerlink" href="#module-db_communicator" title="Permalink to this heading">¶</a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="module-db_communicator.__main__">
-<span id="db-communicator-main-module"></span><h2>db_communicator.__main__ module<a class="headerlink" href="#module-db_communicator.__main__" title="Permalink to this heading"></a></h2>
+<span id="db-communicator-main-module"></span><h2>db_communicator.__main__ module<a class="headerlink" href="#module-db_communicator.__main__" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="db_communicator.__main__.get_combined_dict">
-<span class="sig-prename descclassname"><span class="pre">db_communicator.__main__.</span></span><span class="sig-name descname"><span class="pre">get_combined_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cur_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#db_communicator.__main__.get_combined_dict" title="Permalink to this definition"></a></dt>
-<dd><p>tries to get the combined json out of the current directory</p>
+<dt class="sig sig-object py" id="db_communicator.__main__.get_transformed_dict">
+<span class="sig-prename descclassname"><span class="pre">db_communicator.__main__.</span></span><span class="sig-name descname"><span class="pre">get_transformed_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cur_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">med_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#db_communicator.__main__.get_transformed_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>tries to get the transformed json out of the current directory and convert it to dict</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>cur_dir</strong> (<em>str</em>) – The directory string</p></li>
 <li><p><strong>med_name</strong> (<em>str</em>) – The name of the current medicine</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The dictionary inside the json file</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The json file converted to a dictionary</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
@@ -158,10 +235,10 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="db_communicator.__main__.main">
-<span class="sig-prename descclassname"><span class="pre">db_communicator.__main__.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_together</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.__main__.main" title="Permalink to this definition"></a></dt>
-<dd><p>Sends all combined data in the data folder to the database in separate requests</p>
+<span class="sig-prename descclassname"><span class="pre">db_communicator.__main__.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_together</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.__main__.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends all transformed data in the data folder to the database in separate requests</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>directory</strong> (<em>string</em>) – The base directory containing all data</p></li>
 <li><p><strong>send_together</strong> (<em>bool</em>) – Whether to send all medicine together in one file (True), or to send them individually</p></li>
@@ -173,10 +250,10 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="db_communicator.__main__.send_medicine">
-<span class="sig-prename descclassname"><span class="pre">db_communicator.__main__.</span></span><span class="sig-name descname"><span class="pre">send_medicine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory_folders</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active_withdrawn_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_communicator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator" title="db_communicator.db_communicator.DbCommunicator"><span class="pre">DbCommunicator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'generic'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.__main__.send_medicine" title="Permalink to this definition"></a></dt>
-<dd><p>Iterates through all folders and sends the combined data to the backend per medicine</p>
+<span class="sig-prename descclassname"><span class="pre">db_communicator.__main__.</span></span><span class="sig-name descname"><span class="pre">send_medicine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory_folders</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active_withdrawn_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_communicator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator" title="db_communicator.db_communicator.DbCommunicator"><span class="pre">DbCommunicator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'generic'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.__main__.send_medicine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterates through all folders and sends the transformed data to the backend per medicine</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>directory_folders</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – All folders to iterate through</p></li>
 <li><p><strong>active_withdrawn_folder</strong> (<em>str</em>) – The path to the active_withdrawn_folder</p></li>
@@ -189,10 +266,10 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="db_communicator.__main__.send_medicine_together">
-<span class="sig-prename descclassname"><span class="pre">db_communicator.__main__.</span></span><span class="sig-name descname"><span class="pre">send_medicine_together</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory_folders</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active_withdrawn_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_communicator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator" title="db_communicator.db_communicator.DbCommunicator"><span class="pre">DbCommunicator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'generic'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.__main__.send_medicine_together" title="Permalink to this definition"></a></dt>
-<dd><p>Iterates through all folders and sends the combined data to the backend together in a singular file</p>
+<span class="sig-prename descclassname"><span class="pre">db_communicator.__main__.</span></span><span class="sig-name descname"><span class="pre">send_medicine_together</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory_folders</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active_withdrawn_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_communicator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#db_communicator.db_communicator.DbCommunicator" title="db_communicator.db_communicator.DbCommunicator"><span class="pre">DbCommunicator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'generic'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.__main__.send_medicine_together" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterates through all folders and sends the transformed data to the backend together in a singular file</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>directory_folders</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – All folders to iterate through</p></li>
 <li><p><strong>active_withdrawn_folder</strong> (<em>str</em>) – The path to the active_withdrawn_folder</p></li>
@@ -205,57 +282,43 @@
 
 </section>
 <section id="module-db_communicator.db_communicator">
-<span id="db-communicator-db-communicator-module"></span><h2>db_communicator.db_communicator module<a class="headerlink" href="#module-db_communicator.db_communicator" title="Permalink to this heading"></a></h2>
+<span id="db-communicator-db-communicator-module"></span><h2>db_communicator.db_communicator module<a class="headerlink" href="#module-db_communicator.db_communicator" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="db_communicator.db_communicator.DbCommunicator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">db_communicator.db_communicator.</span></span><span class="sig-name descname"><span class="pre">DbCommunicator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_with_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">db_communicator.db_communicator.</span></span><span class="sig-name descname"><span class="pre">DbCommunicator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'scraper'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_with_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Handles all communication between the database and the modules</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="db_communicator.db_communicator.DbCommunicator.get_credentials">
-<span class="sig-name descname"><span class="pre">get_credentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">)</span> <span class="pre">-&gt;</span> <span class="pre">(&lt;class</span> <span class="pre">'str'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">&lt;class</span> <span class="pre">'str'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.get_credentials" title="Permalink to this definition"></a></dt>
-<dd><p>Gets the credentials of a user from somewhere safe</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Returns a tuple of username and password</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>(str, str)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="db_communicator.db_communicator.DbCommunicator.login">
-<span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.login" title="Permalink to this definition"></a></dt>
-<dd><p>Calls the login function from the login_handler with user credentials taken from the get_credentials function
-and sets the value of the current token to that of the returned token</p>
+<span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls the login function from the login_handler with a username and sets the value of the current token to that
+of the returned token</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="db_communicator.db_communicator.DbCommunicator.logout">
-<span class="sig-name descname"><span class="pre">logout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.logout" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">logout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.logout" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls the logout function from the logout_handler with its current token and empties the current token</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="db_communicator.db_communicator.DbCommunicator.refresh_token">
-<span class="sig-name descname"><span class="pre">refresh_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.refresh_token" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">refresh_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.refresh_token" title="Permalink to this definition">¶</a></dt>
 <dd><p>Refreshes the token by first logging out, and logging in afterwards.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="db_communicator.db_communicator.DbCommunicator.send_data">
-<span class="sig-name descname"><span class="pre">send_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.send_data" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">send_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.send_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sends all data received in the argument to the database using a valid token</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>data</strong> (<em>str</em>) – The data which is sent to the database in json format</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The response object of the request</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Response</p>
 </dd>
 </dl>
@@ -263,7 +326,7 @@ and sets the value of the current token to that of the returned token</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="db_communicator.db_communicator.DbCommunicator.token_checker">
-<span class="sig-name descname"><span class="pre">token_checker</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.token_checker" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">token_checker</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db_communicator.db_communicator.DbCommunicator.token_checker" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if there is a valid token. If the token is not valid it requests a new key.</p>
 </dd></dl>
 
@@ -274,32 +337,49 @@ and sets the value of the current token to that of the returned token</p>
 
 
            </div>
+           
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="modules.html" class="btn btn-neutral float-left" title="db_communicator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Medisee.</p>
-  </div>
+    <p>
+        &#169; Copyright 2022, Medisee.
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(false);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
