@@ -16,7 +16,6 @@ def login(username: str) -> dict | None:
 
     Args:
         username (str): A string containing the username information of the user
-        password (str): A string containing the password information of the user
 
     Returns:
         dict: Returns a dict of elements token and expiry_date. The dict is None if the token retrieval was unsuccessful
