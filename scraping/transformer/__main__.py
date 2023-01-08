@@ -13,6 +13,9 @@ all_orphans = [obj.name for obj in list(attr_objects.objects) if obj.is_orphan o
                obj.name == attr.orphan_status]
 omar_conditions = []
 
+skip_attr = [
+    attr.eu_orphan_con_current
+]
 eu_orphan_con_currents = {}
 
 
@@ -108,6 +111,8 @@ def get_final_json(final_json: dict, json_data: dict, all_names: list):
     not_found_str = "Not found"
     for name, value in json_data.items():
         if name not in all_names:
+            continue
+        if name in skip_attr:
             continue
         if values.not_found == value or values.url_not_found == value:
             value = not_found_str
@@ -209,9 +214,7 @@ def add_orphan_con(eu_od_num: str, orphan_con: dict, directory: str):
         transformed_json_path = f"{med_path}/{transformed_file[0]}"
         with open(transformed_json_path) as transformed_json:
             json_data = json.load(transformed_json)
-
-        if attr.eu_orphan_con_current in json_data:
-            json_data[attr.eu_orphan_con_current] = orphan_con
+        json_data[attr.eu_orphan_con_current] = orphan_con
 
         save_transformed_json(transformed_json_path, json_data)
 
