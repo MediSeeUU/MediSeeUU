@@ -79,7 +79,6 @@ def get_credentials(username: str) -> dict:
             log.error(f"User '{username}' not found")
             return None
 
-        password = secrets_dict[username]
         login_data = {
             "username": username,
             "password": secrets_dict[username]
