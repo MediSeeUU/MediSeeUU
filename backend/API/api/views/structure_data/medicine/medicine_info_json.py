@@ -15,15 +15,13 @@ from api.models.create_dashboard_columns import Category
 
 # returns a list of json components using human_models,
 # this list is for the filters and for the detailed information page
-def get_medicine_info(perm, categories: list[Category], mock=None):
+def get_medicine_info(perm, categories: list[Category]):
     """
     returns a list of json components using the models given,
     this list is for the filters and for the detailed information page.
 
     Args:
         perm (list[attributes]): the permissions of the current user 
-        mock (list[models], optional): If it has a value, the mockdata 
-        will be used instead of generating new data. Defaults to None.
 
     Returns:
         JSON: medicine data in JSON format
@@ -33,26 +31,28 @@ def get_medicine_info(perm, categories: list[Category], mock=None):
     for category in categories:
         data[category.value] = []
 
-    models_fields = []
-
-    if mock is None:
-        # make a list containing all the fields from all the models
-        for model in models:
-            models_fields += model._meta.get_fields()
-    else:
-        models_fields = mock
-
     # for every field created with create_dashboard_column(), add it to the correct category in JSON
-    for field in models_fields:
-        if hasattr(field, "dashboard_column") and has_permission(perm, field.name) and field.dashboard_column.category in categories:
-            data_info = field.dashboard_column.get_all_data_info(field.name)
-            for data_key, data_format, data_value in data_info:
-                if has_permission(perm, data_key):
-                    data[field.dashboard_column.category.value].append({
-                        "data-key": data_key,
-                        "data-format": data_format,
-                        "data-value": data_value,
+    for model in models:
+
+        if hasattr(model, "HistoryInfo"):
+            if hasattr(model.HistoryInfo, "current_name") and hasattr(model.HistoryInfo, "current_title"):
+                if has_permission(perm, model.HistoryInfo.current_name):
+                    data[model.HistoryInfo.category.value].append({
+                        "data-key": model.HistoryInfo.current_name,
+                        "data-format": model.HistoryInfo.data_format.data_format,
+                        "data-value": model.HistoryInfo.current_title,
                     })
+
+        for field in model._meta.get_fields():
+            if hasattr(field, "dashboard_column") and has_permission(perm, field.name) and field.dashboard_column.category in categories:
+                data_info = field.dashboard_column.get_all_data_info(field.name)
+                for data_key, data_format, data_value in data_info:
+                    if has_permission(perm, data_key):
+                        data[field.dashboard_column.category.value].append({
+                            "data-key": data_key,
+                            "data-format": data_format,
+                            "data-value": data_value,
+                        })
 
     return data
 

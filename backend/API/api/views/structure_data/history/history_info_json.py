@@ -7,18 +7,13 @@ from django.db.models import Model
 
 def get_history_info(perm, models: list[Model]):
     data = []
-
     for model in models:
-        for field in model._meta.get_fields():
-            if hasattr(field, "history_dashboard_column") and has_permission(perm, field.name):
-                data_info = field.history_dashboard_column.get_all_data_info(field.name)
-                for data_key, data_format, data_value in data_info:
-                    if has_permission(perm, data_key):
-                        data.append({
-                            "data-key": data_key,
-                            "data-format": data_format,
-                            "data-value": data_value,
-                        })
+        if hasattr(model, "HistoryInfo") and has_permission(perm, model.HistoryInfo.timeline_name):
+            data.append({
+                "data-key": model.HistoryInfo.timeline_name,
+                "data-format": model.HistoryInfo.data_format.data_format,
+                "data-value": model.HistoryInfo.timeline_title,
+            })
     return data
 
 

@@ -1,5 +1,7 @@
 from django.db.models import Model
-from api.models.create_dashboard_columns import DashBoardHistoryForeignKeyColumn
+from api.models.create_dashboard_columns import (
+    DashBoardHistoryForeignKeyColumn,
+)
 import logging
 
 logger = logging.getLogger(__name__)

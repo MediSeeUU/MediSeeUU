@@ -3,7 +3,9 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
-from api.models.create_dashboard_columns import create_dashboard_history_column, Category
+from api.models.create_dashboard_columns import (
+    Category
+)
 from api.models.common import DataFormats
 from api.models.na_fields import BooleanWithNAField
 
@@ -34,15 +36,16 @@ class HistoryPrime(models.Model):
         blank=False,
     )
 
-    eu_prime = create_dashboard_history_column(
-        BooleanWithNAField(
-            null=False,
-            blank=False,
-        ),
-        Category.Medicinal_product,
-        DataFormats.Bool,
-        "EU Priority Medicine",
+    eu_prime = BooleanWithNAField(
+        null=False,
+        blank=False,
     )
 
     class Meta:
         db_table = "history_prime"
+
+    class HistoryInfo:
+        category = Category.Medicinal_product
+        data_format = DataFormats.Bool
+        timeline_title = "EU Priority Medicine"
+        timeline_name = "eu_prime"

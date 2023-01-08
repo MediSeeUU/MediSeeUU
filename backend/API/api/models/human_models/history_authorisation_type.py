@@ -3,7 +3,9 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
-from api.models.create_dashboard_columns import create_dashboard_history_current_column, Category
+from api.models.create_dashboard_columns import (
+    Category,
+)
 from api.models.common import DataFormats, AutTypes
 
 
@@ -32,18 +34,20 @@ class HistoryAuthorisationType(models.Model):
         null=False,
     )
 
-    eu_aut_type = create_dashboard_history_current_column(
-        models.CharField(
-            max_length=45,
-            choices=AutTypes.choices,
-            null=False,
-            blank=False,
-        ),
-        Category.Marketing_authorisation,
-        DataFormats.String,
-        "Current type of EU authorisation",
-        "EU Authorisation Type",
+    eu_aut_type = models.CharField(
+        max_length=45,
+        choices=AutTypes.choices,
+        null=False,
+        blank=False,
     )
 
     class Meta:
         db_table = "history_authorisation_type"
+
+    class HistoryInfo:
+        category = Category.Marketing_authorisation
+        data_format = DataFormats.String
+        current_name = "eu_aut_type_current"
+        current_title = "Current type of EU authorisation"
+        timeline_title = "EU Authorisation Type"
+        timeline_name = "eu_aut_type"

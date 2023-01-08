@@ -4,7 +4,6 @@
 from django.db import models
 from api.models.orphan_models import OrphanProduct
 from api.models.create_dashboard_columns import (
-    create_dashboard_history_current_column,
     Category,
 )
 from api.models.common import DataFormats
@@ -47,17 +46,18 @@ class HistoryEUOrphanCon(models.Model):
         blank=True,
     )
 
-    indication = create_dashboard_history_current_column(
-        models.TextField(
-            null=False,
-            blank=False,
-        ),
-        Category.Medicinal_product,
-        DataFormats.Dictionary_List,
-        "Status of EU orphan designations",
-        "EU orphan conditions",
-        data_key="eu_orphan_con_current",
+    indication = models.TextField(
+        null=False,
+        blank=False,
     )
 
     class Meta:
         db_table = "history_eu_orphan_con"
+
+    class HistoryInfo:
+        category = Category.Medicinal_product
+        data_format = DataFormats.Dictionary_List
+        current_name = "eu_orphan_con_current"
+        current_title = "Status of EU orphan designations"
+        timeline_title = "EU orphan conditions"
+        timeline_name = "eu_orphan_con"

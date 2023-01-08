@@ -82,18 +82,6 @@ class DashBoardHistoryForeignKeyColumn(DashboardColumn):
     pass
 
 
-class DashBoardHistoryCurrentColumn(DashboardColumn):
-    def get_data_key(self, field_name: str) -> str:
-        if self.data_key:
-            return self.data_key
-        else:
-            return f"{field_name}_current"
-
-
-class DashBoardHistoryColumn(DashboardColumn):
-    pass
-
-
 def create_dashboard_column(field: models.Field, category: Category, data_format: DataFormats, display_name: str,
                             extra_dashboard_columns: list[ExtraDashBoardColumn] = None, data_key: str = None) \
         -> models.Field:
@@ -135,52 +123,4 @@ def create_dashboard_history_foreign_key_column(field: models.Field, category: C
     dashboard_column = DashBoardHistoryForeignKeyColumn(category, data_format, display_name,
                                                         extra_dashboard_columns, data_key)
     setattr(field, "dashboard_column", dashboard_column)
-    return field
-
-
-def create_dashboard_history_current_column(field: models.Field, category: Category, data_format: DataFormats,
-                                            display_name_current: str, display_name_history: str,
-                                            extra_dashboard_columns: list[ExtraDashBoardColumn] = None,
-                                            data_key: str = None) -> models.Field:
-    """
-    Creates the current column for a history column in a history model.
-
-    Args:
-        field (models.Field): The type that the database attribute will have (CharField, BooleanField, etc.).
-        category (Category): Which category the attribute should belong to.
-        data_format (DataFormats): Defines what data format the attribute should have.
-        display_name_current (str): This is the name that the attribute displays in the database.
-        display_name_history (str): This is the name that the attribute displays in the database.
-        extra_dashboard_columns (list[ExtraDashBoardColumn):
-
-    Returns:
-        Field: Returns the original field, but updated with the correct information.
-    """
-    dashboard_column = DashBoardHistoryCurrentColumn(category, data_format, display_name_current,
-                                                     extra_dashboard_columns, data_key)
-    setattr(field, "dashboard_column", dashboard_column)
-
-    history_dashboard_column = DashBoardHistoryColumn(category, data_format, display_name_history)
-    setattr(field, "history_dashboard_column", history_dashboard_column)
-
-    return field
-
-
-def create_dashboard_history_column(field: models.Field, category: Category,
-                                    data_format: DataFormats, display_name: str) -> models.Field:
-    """
-    Creates the current column for a history column in a history model.
-
-    Args:
-        field (models.Field): The type that the database attribute will have (CharField, BooleanField, etc.).
-        category (Category): Which category the attribute should belong to.
-        data_format (DataFormats): Defines what data format the attribute should have.
-        display_name (str): This is the name that the attribute displays in the database.
-
-    Returns:
-        Field: Returns the original field, but updated with the correct information.
-    """
-    history_dashboard_column = DashBoardHistoryColumn(category, data_format, display_name)
-
-    setattr(field, "history_dashboard_column", history_dashboard_column)
     return field
