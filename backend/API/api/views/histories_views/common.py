@@ -26,13 +26,25 @@ def view_history(user: User, models_serializers: list[Tuple[Model, Serializer, d
         queryset = model.objects.filter(**query_filter).all()
         histories.append(serializer(queryset, many=True).data)
 
-    perms = permission_filter(user)
+    # for eu_orphan_con, concat histories
+    new_histories = []
+    for history in histories:
+        new_history = []
+        for item in history:
+            if data := item.pop("history", None):
+                for new_item in data:
+                    new_history.append(new_item)
+            else:
+                new_history.append(item)
+        new_histories.append(new_history)
 
     # Concat all histories
-    histories = [inner for outer in histories for inner in outer]
+    histories = [item for history in new_histories for item in history]
 
     # Sort by change_date, ascending
     histories = sorted(histories, key=lambda d: d["change_date"])
+
+    perms = permission_filter(user)
 
     # filters histories according to access level of the user
     filtered_histories = [history for history in histories if all(key in perms for key in history.keys())]

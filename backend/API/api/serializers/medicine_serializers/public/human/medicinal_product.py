@@ -9,9 +9,6 @@ has to access all different tables and merge all this data in a one dimensional 
 """
 
 from datetime import date, datetime
-from collections import OrderedDict
-from typing import Any
-from django.db.models import Model
 from rest_framework import serializers
 from api.serializers.medicine_serializers.public.common import (
     RelatedMixin,

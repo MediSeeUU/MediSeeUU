@@ -109,10 +109,12 @@ class ManyRelatedMixin(ModelSerializer):
         # Get the current object representation
         representation = super().to_representation(obj)
         serialized_data = serialize_data(self, obj, "many_related", True)
-        for field, obj_rep, transform_function in serialized_data:
+        for field, obj_rep, *extra in serialized_data:
             if field in representation:
                 representation.pop(field)
-            obj_rep = transform_function(obj_rep)
+            if len(extra) >= 1:
+                transform_function = extra[0]
+                obj_rep = transform_function(obj_rep)
             for key in obj_rep:
                 representation[key] = obj_rep[key]
         return representation

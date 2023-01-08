@@ -15,13 +15,17 @@ from api.models.human_models import (
     HistoryOD,
     HistoryPrime,
 )
-from api.serializers.medicine_serializers.histories.human_histories import (
+from api.models.orphan_models import (
+    OrphanProduct,
+)
+from api.serializers.medicine_serializers.public.histories.human_histories import (
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
+    EUOrphanConSerializer,
 )
 
 
@@ -49,6 +53,7 @@ class HumanHistoriesViewSet(viewsets.ViewSet):
             (HistoryMAH, MAHSerializer, {"eu_pnumber": eu_pnumber}),
             (HistoryOD, OrphanDesignationSerializer, {"eu_pnumber": eu_pnumber}),
             (HistoryPrime, PrimeSerializer, {"eu_pnumber": eu_pnumber}),
+            (OrphanProduct, EUOrphanConSerializer, {"eu_od_pnumber": eu_pnumber}),
         ]
         user = self.request.user
         return Response(view_history(user, models_serializers))

@@ -10,7 +10,7 @@ from .common import view_history
 from api.models.orphan_models import (
     HistoryEUOrphanCon,
 )
-from api.serializers.medicine_serializers.histories.orphan_histories import (
+from api.serializers.medicine_serializers.public.histories.orphan_histories import (
     EUOrphanConSerializer,
 )
 
