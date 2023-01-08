@@ -2,6 +2,7 @@ import json
 import logging
 import os.path as path
 from os import listdir
+from typing import Any
 
 import scraping.combiner.attribute_combining_functions as acf
 import scraping.utilities.definitions.attribute_objects as attr_obj
