@@ -91,7 +91,6 @@ class DbCommunicator:
         of the returned token
         """
         self.token = login(self.user)
-        print(self.token)
 
     def logout(self):
         """
