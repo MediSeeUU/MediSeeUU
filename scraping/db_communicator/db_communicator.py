@@ -1,6 +1,7 @@
 import requests
 import datetime
 import logging
+import unicodedata
 from scraping.db_communicator.handlers.login_handler import login
 from scraping.db_communicator.handlers.logout_handler import logout
 import scraping.utilities.definitions.communicator_urls as urls
@@ -57,7 +58,10 @@ class DbCommunicator:
 
         response = requests.post(url=urls.scraper, headers=api_headers, data=data)
         for failed_medicine in response.json():
-            medicine_log.warning(f"Backend failed to insert medicine: {failed_medicine}")
+            error_string = str(failed_medicine)
+            error_string = unicodedata.normalize("NFKD", error_string).encode('utf-8', 'ignore')
+            medicine_log.warning(f"Backend failed to insert medicine: {error_string}")
+
         if response.status_code == 200:
             return True
         else:
