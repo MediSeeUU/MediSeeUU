@@ -35,7 +35,7 @@ def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, Any]]
         if file_dicts[source_string] == {}:
             return attribute_values.date_not_found
         if attr.pdf_file not in file_dicts[source_string].keys():
-            # log.warning(f"\"{attr.pdf_file}\" not in the keys of the source: {source_string}")
+            log.warning(f"\"{attr.pdf_file}\" not in the keys of the source: {source_string}")
             return attribute_values.date_not_found
         file_name = file_dicts[source_string][attr.pdf_file]
         return file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date]
@@ -59,7 +59,7 @@ def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts:
     for source in sources:
         source_dict = file_dicts[source]
         if attribute_name not in source_dict.keys():
-            # log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
+            log.warning(f"COMBINER: can't find value for {attribute_name} in {source}")
             continue
         values.append(file_dicts[source][attribute_name])
     return values
@@ -113,6 +113,8 @@ def string_overlap(strings: list[str]) -> str:
 
 def combine_first(file_dicts: dict[str, dict[str, Any]], sources: list[str], attribute_name: str, **_) -> Any:
     """
+    Gives value from first source for attribute_name
+
     Args:
         file_dicts (dict[str, dict[str, Any]]): Dictionary with sources as keys, and data of sources as attributes
         sources (list[str]): Potential sources of the attribute
@@ -129,6 +131,8 @@ def combine_first(file_dicts: dict[str, dict[str, Any]], sources: list[str], att
 def combine_eu_aut_status(file_dicts: dict[str, dict[str, Any]], attribute_name: str, sources: list[str], **_)\
         -> list[dict]:
     """
+    Gives value and its scrape date from first source for attribute_name
+
     Args:
         file_dicts (dict[str, dict[str, Any]]): Dictionary with sources as keys, and data of sources as attributes
         attribute_name (str): Name of attribute to add
@@ -145,13 +149,16 @@ def combine_eu_aut_status(file_dicts: dict[str, dict[str, Any]], attribute_name:
 
 def combine_string_overlap(file_dicts: dict[str, dict[str, Any]], sources: list[str], attribute_name: str, **_) -> str:
     """
+    Gives overlapping part of values for attribute_name from all sources, if overlap is insufficient, gives the value
+    from first source in sources.
+
     Args:
         file_dicts (dict[str, dict[str, Any]]): Dictionary with sources as keys, and data of sources as attributes
         sources (list[str]): Potential sources of the attribute
         attribute_name (str): Name of attribute to add
 
     Returns:
-        str: Value from first source that is available
+        str: Overlapping part of strings or the value from the first source
     """
     strings = get_values_from_sources(attribute_name, sources, file_dicts)
     return string_overlap(strings)
@@ -159,6 +166,8 @@ def combine_string_overlap(file_dicts: dict[str, dict[str, Any]], sources: list[
 
 def combine_get_file_url(file_dicts: dict[str, dict[str, Any]], sources: list[str], **_) -> str:
     """
+    Gives the URL of the medicine from source in sources
+
     Args:
         file_dicts (dict[str, dict[str, Any]]): Dictionary with sources as keys, and data of sources as attributes
         sources (list[str]): Potential sources of the attribute
@@ -179,6 +188,8 @@ def combine_get_file_url(file_dicts: dict[str, dict[str, Any]], sources: list[st
 
 def combine_decision_time_days(file_dicts: dict[str, dict[str, Any]], **_) -> int | str:
     """
+    Gives amount of days between decision time and initial procedure start date
+
     Args:
         file_dicts (dict[str, dict[str, Any]]): Dictionary with sources as keys, and data of sources as attributes
 
@@ -201,6 +212,8 @@ def combine_decision_time_days(file_dicts: dict[str, dict[str, Any]], **_) -> in
 
 def combine_assess_time_days_total(file_dicts: dict[str, dict[str, Any]], **_) -> int | str:
     """
+    Gives amount of days between CHMP opinion date and initial procedure start date
+
     Args:
         file_dicts (dict[str, dict[str, Any]]): Dictionary with sources as keys, and data of sources as attributes
 
@@ -224,6 +237,8 @@ def combine_assess_time_days_total(file_dicts: dict[str, dict[str, Any]], **_) -
 
 def combine_assess_time_days_active(eu_pnumber: str, file_dicts: dict[str, dict[str, Any]], **_) -> int | str:
     """
+    Gives the assessment time days active from the latest annex 10 file
+
     Args:
         eu_pnumber (str): EU number of medicine
         file_dicts (dict[str, dict[str, Any]]): Dictionary with sources as keys, and data of sources as attributes
@@ -243,6 +258,8 @@ def combine_assess_time_days_active(eu_pnumber: str, file_dicts: dict[str, dict[
 
 def combine_assess_time_days_cstop(eu_pnumber: str, file_dicts: dict[str, dict[str, Any]], **_) -> int | str:
     """
+    Gives the assessment time day cstop from the latest annex 10 file
+
     Args:
         eu_pnumber (str): EU number of medicine
         file_dicts (dict[str, dict[str, Any]]): Dictionary with sources as keys, and data of sources as attributes
@@ -262,6 +279,8 @@ def combine_assess_time_days_cstop(eu_pnumber: str, file_dicts: dict[str, dict[s
 
 def combine_eu_med_type(file_dicts: dict[str, dict[str, Any]], eu_pnumber: str, **_) -> tuple[str, str]:
     """
+    Gives the value for eu_med_type from the initial annex file, one of ["biologicals", "ATMP", "small molecule"]
+
     Args:
         file_dicts (dict[str, dict[str, Any]]): Dictionary with sources as keys, and data of sources as attributes
         eu_pnumber (str): EU number of medicine
@@ -286,6 +305,8 @@ def combine_eu_med_type(file_dicts: dict[str, dict[str, Any]], eu_pnumber: str, 
 
 def combine_ema_number_check(file_dicts: dict[str, dict[str, Any]], **_) -> bool:
     """
+    Checks whether brand name overlaps significantly between webdata and ema_excel file
+
     Args:
         file_dicts (dict[str, dict[str, Any]]): Dictionary with sources as keys, and data of sources as attributes
 
@@ -317,6 +338,8 @@ def combine_ema_number_check(file_dicts: dict[str, dict[str, Any]], **_) -> bool
 
 def combine_eu_procedures_todo(file_dicts: dict[str, dict[str, Any]], **_) -> Any:
     """
+    Gives referral and suspension as booleans, depending on their string boolean value in webdata
+
     Args:
         file_dicts (dict[str, dict[str, Any]]): Dictionary with sources as keys, and data of sources as attributes
 
@@ -329,6 +352,8 @@ def combine_eu_procedures_todo(file_dicts: dict[str, dict[str, Any]], **_) -> An
 
 def combine_date(file_dicts: dict[str, dict[str, Any]], sources: list[str], attribute_name: str, **_) -> datetime.date:
     """
+    Gives the date from the first source.
+
     Args:
         file_dicts (dict[str, dict[str, Any]]): Dictionary with sources as keys, and data of sources as attributes
         sources (list[str]): Potential sources of the attribute
@@ -348,6 +373,8 @@ def combine_date(file_dicts: dict[str, dict[str, Any]], sources: list[str], attr
 
 def json_static(value: Any, **_) -> Any:
     """
+    Saves only the value of an attribute
+
     Args:
         value (Any): Value of some attribute
 
@@ -359,6 +386,8 @@ def json_static(value: Any, **_) -> Any:
 
 def json_initial(value: Any, date: Any) -> dict[str, str | Any]:
     """
+    Saves both value and scrape date of an attribute as a dictionary
+
     Args:
         value (Any): Value of some attribute
         date (Any): Scrape date of some attribute
@@ -374,6 +403,8 @@ def json_initial(value: Any, date: Any) -> dict[str, str | Any]:
 
 def json_current(value: Any, date: Any) -> list[dict[str, str | Any]]:
     """
+    Saves both value and scrape date of an attribute as a list of a dictionary
+
     Args:
         value (Any): Value of some attribute
         date (Any): Scrape date of some attribute
@@ -389,6 +420,8 @@ def json_current(value: Any, date: Any) -> list[dict[str, str | Any]]:
 
 def convert_ema_num(ema_number: str) -> str:
     """
+    Converts EMA number to right format
+
     Args:
         ema_number (str): Original EMA number
 
@@ -403,6 +436,16 @@ def convert_ema_num(ema_number: str) -> str:
 
 
 def get_ema_excel(filepath: str, filename: str) -> dict:
+    """
+    Gives cleaned dictionary of EMA Excel file after saving the cleaned version to its original location
+
+    Args:
+        filepath (str): Path of EMA Excel file containing folder
+        filename (str): Name of EMA Excel file
+
+    Returns:
+        dict: Cleaned dictionary of EMA Excel file
+    """
     # return pre-made dict if available
     if os.path.exists(f"{filepath}/ema_excel.json"):
         with open(f"{filepath}/ema_excel.json", "r") as file:
