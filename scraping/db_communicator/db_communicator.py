@@ -82,8 +82,7 @@ class DbCommunicator:
         Refreshes the token by first logging out, and logging in afterwards.
         """
         self.logout()
-        username, password = self.get_credentials()
-        self.token = login(username, password)
+        self.login()
 
     def login(self):
         """
