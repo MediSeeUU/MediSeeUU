@@ -62,7 +62,7 @@ def login_attempt(login_data: str, api_headers: dict, attempt=1) -> dict | None:
             time.sleep(1)
             login_attempt(login_data, api_headers, attempt)
     else:
-        return None
+        return
 
 
 def get_credentials(username: str) -> dict:
@@ -77,7 +77,7 @@ def get_credentials(username: str) -> dict:
 
         if username not in secrets_dict:
             log.error(f"User '{username}' not found")
-            return None
+            return
 
         login_data = {
             "username": username,
