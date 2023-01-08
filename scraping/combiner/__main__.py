@@ -30,7 +30,7 @@ def main(data_directory: str):
     log.info("Finished combining JSON files\n")
 
 
-def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
+def create_file_dicts(filepath: str, folder_name: str) -> dict[str, Any]:
     """
     Create dictionary of all sources with their attributes in a medicine folder
 
@@ -39,7 +39,7 @@ def create_file_dicts(filepath: str, folder_name: str) -> dict[str, any]:
         folder_name (str): Name of the medicine folder
 
     Returns:
-        dict[str, any]: Dictionary with sources as keys, and data of sources as attributes
+        dict[str, Any]: Dictionary with sources as keys, and data of sources as attributes
     """
     file_dicts_keys = [src.decision, src.dec_initial, src.annex, src.anx_initial,
                        src.annex_10, src.epar, src.omar, src.web]
@@ -94,7 +94,7 @@ def combine_folder(filepath: str, folder_name: str):
         folder_name (str): Name of the medicine folder
     """
     file_dicts = create_file_dicts(filepath, folder_name)
-    combined_dict: dict[str, any] = {}
+    combined_dict: dict[str, Any] = {}
 
     for attribute in attr_obj.objects:
         value = attribute.combine_function(eu_pnumber=folder_name, attribute_name=attribute.name,
@@ -107,7 +107,7 @@ def combine_folder(filepath: str, folder_name: str):
     combined_json.close()
 
 
-def get_dict(source: str, filepath: str, folder_name: str) -> dict[str, any]:
+def get_dict(source: str, filepath: str, folder_name: str) -> dict[str, Any]:
     """
     Gives the dictionary/data from the source "source" in folder/medicine "folder_name"
 
@@ -117,7 +117,7 @@ def get_dict(source: str, filepath: str, folder_name: str) -> dict[str, any]:
         folder_name (str): Name of the medicine folder
 
     Returns:
-        dict[str, any]: Dictionary of data in the given source
+        dict[str, Any]: Dictionary of data in the given source
     """
     source_path = path.join(filepath, folder_name + f"_{source}.json")
     if not path.exists(source_path):
