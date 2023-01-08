@@ -27,8 +27,6 @@ def logout(token: dict):
     if not success:
         log.info("Failed to log out the current token")
 
-    return
-
 
 def logout_attempt(api_headers: dict, attempt=1) -> bool:
     """
