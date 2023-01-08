@@ -41,6 +41,8 @@ def view_history(user: User, models_serializers: list[Tuple[Model, Serializer, d
     # Concat all histories
     histories = [item for history in new_histories for item in history]
 
+    histories = filter(lambda x: x.get("change_date") != "0001-01-01", histories)
+
     # Sort by change_date, ascending
     histories = sorted(histories, key=lambda d: d["change_date"])
 
