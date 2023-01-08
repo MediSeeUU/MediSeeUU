@@ -114,7 +114,7 @@ def transform_eu_orphan_con(data):
         change_date = item.pop("change_date")
         transformed_item = OrderedDict([("eu_orphan_con", item), ("change_date", change_date)])
         transformed_data.append(transformed_item)
-    return OrderedDict([("history", transformed_data)])
+    return transformed_data
 
 
 class EUOrphanConSerializer(ManyRelatedMixin, serializers.ModelSerializer):

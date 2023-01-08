@@ -96,7 +96,7 @@ class ManyRelatedMixin(ModelSerializer):
                     ]
     """
 
-    def to_representation(self, obj: Model) -> OrderedDict[str, str]:
+    def to_representation(self, obj: Model) -> OrderedDict[str, str] | list[OrderedDict[str, str]]:
         """
         Overrides the default `to_representation` method to add the related fields
 
@@ -115,8 +115,11 @@ class ManyRelatedMixin(ModelSerializer):
             if len(extra) >= 1:
                 transform_function = extra[0]
                 obj_rep = transform_function(obj_rep)
-            for key in obj_rep:
-                representation[key] = obj_rep[key]
+            if isinstance(obj_rep, list):
+                representation = obj_rep
+            else:
+                for key in obj_rep:
+                    representation[key] = obj_rep[key]
         return representation
 
 

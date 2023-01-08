@@ -31,8 +31,8 @@ def view_history(user: User, models_serializers: list[Tuple[Model, Serializer, d
     for history in histories:
         new_history = []
         for item in history:
-            if data := item.pop("history", None):
-                for new_item in data:
+            if isinstance(item, list):
+                for new_item in item:
                     new_history.append(new_item)
             else:
                 new_history.append(item)
