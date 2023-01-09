@@ -4,4 +4,5 @@ from .orphan import (
 
 from .orphan_history_serializers import (
     EUOrphanConSerializer,
+    EUODSponsorSerializer,
 )

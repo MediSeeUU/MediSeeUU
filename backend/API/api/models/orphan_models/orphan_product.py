@@ -105,15 +105,6 @@ class OrphanProduct(models.Model):
         "COMP decision date (for EU orphan designation)",
     )
 
-    eu_od_sponsor = create_dashboard_column(
-        models.TextField(
-            null=False
-        ),
-        Category.Orphan_product,
-        DataFormats.String,
-        "Sponsor for EU orphan designation",
-    )
-
     eu_orphan_con_initial = create_dashboard_history_foreign_key_column(
         models.ForeignKey(
             "HistoryEUOrphanCon",

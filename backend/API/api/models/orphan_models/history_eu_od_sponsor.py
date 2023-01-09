@@ -7,10 +7,9 @@ from api.models.create_dashboard_columns import (
     Category,
 )
 from api.models.common import DataFormats
-from api.models.na_fields import DateWithNAField
 
 
-class HistoryEUOrphanCon(models.Model):
+class HistoryEUODSponsor(models.Model):
     """
     This is the model class for the Orphan Condition history table. New attributes can be added here.
     This model is derived from a base model from the Django library.
@@ -28,7 +27,7 @@ class HistoryEUOrphanCon(models.Model):
         models.CASCADE,
         null=False,
         blank=False,
-        related_name="eu_orphan_con",
+        related_name="eu_od_sponsor",
     )
 
     change_date = models.DateField(
@@ -36,38 +35,28 @@ class HistoryEUOrphanCon(models.Model):
         blank=False,
     )
 
-    link_date = DateWithNAField()
-
-    end_date = DateWithNAField()
-
-    indication = models.TextField(
+    eu_od_sponsor = models.TextField(
         null=False,
         blank=False,
     )
 
     class Meta:
-        db_table = "history_eu_orphan_con"
+        db_table = "history_eu_od_sponsor"
 
     class HistoryInfo:
         dashboard_columns = [
             {
-                "category": Category.Medicinal_product,
-                "data-key": "eu_orphan_con_current",
-                "data-format": DataFormats.Dictionary_List,
-                "data-value": "Status of EU orphan designations",
+                "category": Category.Orphan_product,
+                "data-key": "eu_od_sponsor",
+                "data-format": DataFormats.String,
+                "data-value": "Sponsor for EU orphan designation",
             }
         ]
         timeline_items = [
             {
-                "category": Category.Medicinal_product,
-                "data-key": "eu_orphan_con",
-                "data-format": DataFormats.Dictionary_List,
-                "data-value": "EU orphan conditions",
-            },
-            {
                 "category": Category.Orphan_product,
-                "data-key": "eu_orphan_con",
-                "data-format": DataFormats.Dictionary,
-                "data-value": "EU orphan conditions",
+                "data-key": "eu_od_sponsor",
+                "data-format": DataFormats.String,
+                "data-value": "EU orphan designation sponsor",
             }
         ]

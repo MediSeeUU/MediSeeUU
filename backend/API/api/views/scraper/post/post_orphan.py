@@ -5,10 +5,12 @@
 from api.models.orphan_models import (
     OrphanProduct,
     HistoryEUOrphanCon,
+    HistoryEUODSponsor,
 )
 from api.serializers.medicine_serializers.scraper.post.orphan import (
     OrphanProductSerializer,
     EUOrphanConSerializer,
+    EUODSponsorSerializer,
 )
 from api.serializers.medicine_serializers.scraper.update.orphan import (
     OrphanProductFlexVarUpdateSerializer,
@@ -70,4 +72,16 @@ def history_variables(eu_od_number, foreign_key_histories_data, current_historie
         "eu_orphan_con_current",
         current_histories_data,
         "indication",
+    )
+
+    add_histories(
+        "eu_od_number",
+        eu_od_number,
+        HistoryEUODSponsor,
+        EUODSponsorSerializer,
+        "eu_od_sponsor",
+        foreign_key_histories_data,
+        "eu_od_sponsor",
+        current_histories_data,
+        "eu_od_sponsor",
     )

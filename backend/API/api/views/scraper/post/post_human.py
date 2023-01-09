@@ -2,7 +2,6 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-from api.models.human_models import models
 from api.models.human_models import (
     MedicinalProduct,
     IngredientsAndSubstances,

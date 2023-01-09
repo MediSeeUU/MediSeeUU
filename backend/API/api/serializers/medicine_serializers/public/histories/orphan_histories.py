@@ -6,7 +6,10 @@ from collections import OrderedDict
 from django.db.models import Model
 from typing import Any
 from rest_framework import serializers
-from api.models.orphan_models import HistoryEUOrphanCon
+from api.models.orphan_models import (
+    HistoryEUOrphanCon,
+    HistoryEUODSponsor,
+)
 
 
 class EUOrphanConSerializer (serializers.ModelSerializer):
@@ -24,3 +27,15 @@ class EUOrphanConSerializer (serializers.ModelSerializer):
         representation = super().to_representation(obj)
         change_date = representation.pop("change_date")
         return OrderedDict([("eu_orphan_con", representation), ("change_date", change_date)])
+
+
+class EUODSponsorSerializer(serializers.ModelSerializer):
+    """
+    This serializer serializes the :py:class:`.HistoryEUODSponsor` model.
+    """
+    class Meta:
+        """
+        Meta information
+        """
+        model = HistoryEUODSponsor
+        fields = ("eu_od_sponsor", "change_date", )
