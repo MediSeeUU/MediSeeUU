@@ -91,13 +91,15 @@ def transform_eu_orphan_con(data):
             change_date = datetime.strptime(current_data.get("change_date"), "%Y-%m-%d").date()
             most_current_change_date = max(most_current_change_date, change_date)
 
+    most_current_change_date = most_current_change_date.strftime("%Y-%m-%d")
+
     for orphan in data:
         if initial_data := orphan.get("eu_orphan_con_initial"):
             initial_data.pop("change_date", None)
             eu_orphan_con_initial.append(initial_data)
         if current_data := orphan.get("eu_orphan_con_current"):
-            if datetime.strptime(current_data.get("change_date"), "%Y-%m-%d").date() == most_current_change_date:
-                current_data.pop("change_date", None)
+            if current_data.get("change_date") == most_current_change_date:
+                current_data.pop("change_date")
                 eu_orphan_con_current.append(current_data)
     return {"eu_orphan_con_initial": eu_orphan_con_initial, "eu_orphan_con_current": eu_orphan_con_current}
 
