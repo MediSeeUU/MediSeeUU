@@ -84,7 +84,7 @@ def check_all_equal(values: list[Any]) -> bool:
     return all_same and values[0] is not None
 
 
-def string_overlap(strings: list[str]) -> str:
+def string_overlap(strings: list[str]) -> tuple[str, bool]:
     """
     Check if strings overlap more than a certain percentage, then return the overlapping part.
     Otherwise, returns first element.
@@ -93,22 +93,20 @@ def string_overlap(strings: list[str]) -> str:
         strings (list[str]): Strings to check for overlap
 
     Returns:
-        First string if strings do not overlap enough, overlapping part if they do
+        tuple[str, bool]: First string if strings do not overlap enough, overlapping part if they do
     """
     min_matching_fraction = 0.8
 
     if len(strings) < 2:
-        return strings[0]
+        return strings[0], False
 
     overlap = SM(None, strings[0].lower(), strings[1].lower()).find_longest_match()
     overlap_fraction = float(overlap.size / len(strings[0]))
     if overlap_fraction >= min_matching_fraction:
-        return strings[0][overlap.a:overlap.a + overlap.size]
-    if min(len(strings[0]), len(strings[1])) > 5 and overlap_fraction > 0.4:
-        return strings[0][overlap.a:overlap.a + overlap.size]
+        return strings[0][overlap.a:overlap.a + overlap.size], True
 
     log.info(f"Strings {strings} did not overlap sufficiently, returning first")
-    return strings[0]
+    return strings[0], False
 
 
 def combine_first(file_dicts: dict[str, dict[str, Any]], sources: list[str], attribute_name: str, **_) -> Any:
@@ -161,7 +159,8 @@ def combine_string_overlap(file_dicts: dict[str, dict[str, Any]], sources: list[
         str: Overlapping part of strings or the value from the first source
     """
     strings = get_values_from_sources(attribute_name, sources, file_dicts)
-    return string_overlap(strings)
+    res, _ = string_overlap(strings)
+    return res
 
 
 def combine_get_file_url(file_dicts: dict[str, dict[str, Any]], sources: list[str], **_) -> str:
@@ -331,8 +330,7 @@ def combine_ema_number_check(file_dicts: dict[str, dict[str, Any]], **_) -> bool
     if ema_number_web in ema_excel:
         web_brand_name = web_dict[attr.eu_brand_name_current]
         excel_brand_name = ema_excel[ema_number_web]
-        if string_overlap([web_brand_name, excel_brand_name]) != attribute_values.insufficient_overlap:
-            are_equal = True
+        _, are_equal = string_overlap([web_brand_name, excel_brand_name])
     return are_equal
 
 
@@ -420,7 +418,7 @@ def json_current(value: Any, date: Any) -> list[dict[str, str | Any]]:
 
 def convert_ema_num(ema_number: str) -> str:
     """
-    Converts EMA number to right format
+    Converts EMA number to right format: removes leading 0's from the digits of the EMA number
 
     Args:
         ema_number (str): Original EMA number
