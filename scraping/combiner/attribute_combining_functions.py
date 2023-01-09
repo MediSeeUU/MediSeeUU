@@ -13,6 +13,8 @@ import scraping.utilities.definitions.attributes as attr
 import scraping.utilities.definitions.sources as src
 
 log = logging.getLogger("combiner")
+log_crosscheck = logging.getLogger("combiner.crosscheck")
+log_ema_excel = logging.getLogger("combiner.log_ema_excel")
 date_str_format = "%Y-%m-%d"
 
 
@@ -38,7 +40,7 @@ def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, Any]]
             log.warning(f"\"{attr.pdf_file}\" not in the keys of the source: {source_string}")
             return attribute_values.date_not_found
         file_name = file_dicts[source_string][attr.pdf_file]
-        return file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date]
+        return file_dicts[src.web][attr.filedates_web][file_name][attr.file_date_pdf_date]
     log.warning(f"{source_string} not in the keys of file_dicts")
 
 
@@ -84,7 +86,7 @@ def check_all_equal(values: list[Any]) -> bool:
     return all_same and values[0] is not None
 
 
-def string_overlap(strings: list[str]) -> tuple[str, bool]:
+def string_overlap(strings: list[str], ema = False) -> tuple[str, bool]:
     """
     Check if strings overlap more than a certain percentage, then return the overlapping part.
     Otherwise, returns first element.
@@ -105,7 +107,10 @@ def string_overlap(strings: list[str]) -> tuple[str, bool]:
     if overlap_fraction >= min_matching_fraction:
         return strings[0][overlap.a:overlap.a + overlap.size], True
 
-    log.info(f"Strings {strings} did not overlap sufficiently, returning first")
+    if ema:
+        log_ema_excel.info(f"Brandnames {strings} did not overlap sufficiently, ema crosscheck not possible")
+    else:
+        log_crosscheck.info(f"Strings {strings} did not overlap sufficiently, returning first")
     return strings[0], False
 
 
@@ -204,7 +209,8 @@ def combine_decision_time_days(file_dicts: dict[str, dict[str, Any]], **_) -> in
             initial_chmp_opinion_date != attribute_values.date_not_found:
         initial_decision_date = datetime.strptime(initial_decision_date, date_str_format)
         initial_procedure_start_date = datetime.strptime(initial_chmp_opinion_date, date_str_format)
-        return (initial_decision_date - initial_procedure_start_date).days
+        days = (initial_decision_date - initial_procedure_start_date).days
+        return days if days >= 0 else 0
 
     return attribute_values.not_found_str
 
@@ -230,7 +236,8 @@ def combine_assess_time_days_total(file_dicts: dict[str, dict[str, Any]], **_) -
             initial_procedure_start_date != attribute_values.date_not_found:
         initial_chmp_opinion_date = datetime.strptime(initial_chmp_opinion_date, date_str_format)
         initial_procedure_start_date = datetime.strptime(initial_procedure_start_date, date_str_format)
-        return (initial_chmp_opinion_date - initial_procedure_start_date).days
+        days = (initial_chmp_opinion_date - initial_procedure_start_date).days
+        return days if days >= 0 else 0
     return attribute_values.not_found_str
 
 
@@ -331,6 +338,8 @@ def combine_ema_number_check(file_dicts: dict[str, dict[str, Any]], **_) -> bool
         web_brand_name = web_dict[attr.eu_brand_name_current]
         excel_brand_name = ema_excel[ema_number_web]
         _, are_equal = string_overlap([web_brand_name, excel_brand_name])
+    else:
+        log_ema_excel.info(f"ema_number: {ema_number_web} not found in ema_excel")
     return are_equal
 
 
