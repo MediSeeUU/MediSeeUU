@@ -20,7 +20,9 @@ import ProcSelectModal from './components/ProcSelectModal'
 import DownloadChangelog from '../components/DownloadChangelog'
 import CollapsibleButton from '../components/CollapsibleButton'
 
-import Record from '../components/EU-1-00-142_annex_changelog.json'
+//import Record from '../components/EU-1-00-142_annex_changelog.json'
+import Record from '../components/EU-1-00-129_annex_changelog.json'
+
 import Col from 'react-bootstrap/esm/Col'
 import CreateChangelog from '../components/CreateChangelog'
 
@@ -167,7 +169,10 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
         }
 
         details.push(
-          <Detail name={variable['data-value']} value={value} key={v4()} />
+          <Detail 
+            name={variable['data-value']} 
+            value={value} key={v4()} 
+          />
         )
       }
     }
@@ -212,7 +217,7 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
 
 
         <hr className="med-top-separator" />
-
+        
         <CreateChangelog
           json={Record}
         />

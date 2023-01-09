@@ -24,7 +24,7 @@ function DownloadChangelog({ data, fileName, fileType }) {
   return (
     <>
       <button
-        className="med-primary-solid med-info-changelog-button med-data-button"
+        className="med-primary-solid med-info-download-button med-data-button"
         onClick={exportData}
       >
         <i className="bx bx-download med-button-image" />

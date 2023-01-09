@@ -18,7 +18,7 @@ Utrecht University within the Software Project course.
 .med-changes-menu {
   position: absolute;
   border-radius: 10px;
-  height: 88%;
+  height: 90%;
   background-color: var(--med-dialog-background);
 }
 

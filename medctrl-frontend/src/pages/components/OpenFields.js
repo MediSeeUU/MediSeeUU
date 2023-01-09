@@ -1,9 +1,41 @@
 import React, { useState } from 'react'
 import MedModal from '../../shared/MedModal'
 import '../data/data_select/menu/Menu.css'
+import { useStructure } from '../../shared/contexts/StructureContext'
+import { useColumnSelection } from '../../shared/contexts/ColumnSelectionContext'
 
 // Function based component which renders the filter and sort menu
 function OpenFields() {
+
+  const { columnSelection, setColumnSelection } = useColumnSelection()
+
+  // Obtain the options list
+  // const variableCategories = useStructure()
+  // const flatVars = Object.values(variableCategories).flat()
+  // const filteredVars = flatVars.filter(
+  //   (variable) => variable['data-format'] !== 'link'
+  // )
+  // const options = filteredVars.map((variable) => variable['data-key'])
+
+  // // Handler that adds a column
+  // // const addColumn = () => {
+  // //   let newColumnName = options.find(
+  // //     (element) => !columnSelection.includes(element)
+  // //   )
+  // //   let newColumnSelection = [...columnSelection]
+  // //   newColumnSelection.push(newColumnName)
+  // //   setColumnSelection(newColumnSelection)
+  // // }
+
+  //   let variables = ""
+
+
+
+  // for (let i = 0; i < options.length; i++)
+  // {
+  //   variables += options[i] + ", "
+  // }
+
 
   const [showModal, setModalState] = useState(false)
 
@@ -31,7 +63,7 @@ function OpenFields() {
 
 
           <div className="med-table-menu-filters-container">
-
+          
           </div>
 
 

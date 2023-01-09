@@ -33,6 +33,10 @@ h6 {
   font-weight: bold;
 }
 
+h2 {
+  font-size: 1.2em;
+}
+
 select,
 input[type='checkbox'] {
   cursor: pointer;
