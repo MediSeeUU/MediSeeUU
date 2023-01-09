@@ -14,5 +14,4 @@ from .human_history_serializers import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
-    EUOrphanConSerializer,
 )

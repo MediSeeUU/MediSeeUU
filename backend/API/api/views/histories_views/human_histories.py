@@ -4,26 +4,28 @@
 
 from rest_framework import viewsets
 from rest_framework import permissions
+from rest_framework.request import Request
 from rest_framework.response import Response
-from django.core.cache import cache
-from api.views.other import permission_filter
+from .common import view_history
 from api.models.human_models import (
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
-    HistoryEUOrphanCon,
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
 )
-from api.serializers.medicine_serializers.histories import (
+from api.models.orphan_models import (
+    OrphanProduct,
+)
+from api.serializers.medicine_serializers.public.histories.human_histories import (
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
     BrandNameSerializer,
-    EUOrphanConSerializer,
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
+    EUOrphanConSerializer,
 )
 
 
@@ -31,34 +33,27 @@ class HumanHistoriesViewSet(viewsets.ViewSet):
 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    def retrieve(self, _, pk):
-        pk = pk.replace('_', '/')
+    def retrieve(self, request: Request, pk: str = None) -> Response:
+        """
+        Retrieve endpoint for the human history timeline
 
-        human_histories_cache = cache.get("human_histories_cache_"+pk)
+        Args:
+            request (Request): The request being made by the user, not used
+            pk (str): the eu_pnumber being passed as url parameter
 
-        if not human_histories_cache:
-            human_histories_cache = []
-            for model, serializer in [
-                (HistoryAuthorisationStatus, AuthorisationStatusSerializer),
-                (HistoryAuthorisationType, AuthorisationTypeSerializer),
-                (HistoryBrandName, BrandNameSerializer),
-                (HistoryEUOrphanCon, EUOrphanConSerializer),
-                (HistoryMAH, MAHSerializer),
-                (HistoryOD, OrphanDesignationSerializer),
-                (HistoryPrime, PrimeSerializer),
-            ]:
-                queryset = model.objects.filter(eu_pnumber=pk).all()
-                human_histories_cache.append(serializer(queryset, many=True).data)
+        Returns:
+            Response: The human history timeline of the medicine with the specified eu_pnumber
+        """
 
-            cache.set("human_histories_cache_"+pk, human_histories_cache, None)
-
+        eu_pnumber = pk.replace('_', '/')
+        models_serializers = [
+            (HistoryAuthorisationStatus, AuthorisationStatusSerializer, {"eu_pnumber": eu_pnumber}),
+            (HistoryAuthorisationType, AuthorisationTypeSerializer, {"eu_pnumber": eu_pnumber}),
+            (HistoryBrandName, BrandNameSerializer, {"eu_pnumber": eu_pnumber}),
+            (HistoryMAH, MAHSerializer, {"eu_pnumber": eu_pnumber}),
+            (HistoryOD, OrphanDesignationSerializer, {"eu_pnumber": eu_pnumber}),
+            (HistoryPrime, PrimeSerializer, {"eu_pnumber": eu_pnumber}),
+            (OrphanProduct, EUOrphanConSerializer, {"eu_od_pnumber": eu_pnumber}),
+        ]
         user = self.request.user
-        perms = permission_filter(user)
-
-        # filters medicines according to access level of the user
-        #filtered_medicines = map(
-        #   lambda obj: {x: y for x, y in obj.items() if x in perms}, human_histories_cache
-        #)
-
-        return Response(human_histories_cache)
-
+        return Response(view_history(user, models_serializers))

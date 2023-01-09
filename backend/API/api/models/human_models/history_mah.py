@@ -3,7 +3,9 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from .medicinal_product import MedicinalProduct
-from api.models.create_dashboard_columns import create_dashboard_history_current_column, Category
+from api.models.create_dashboard_columns import (
+    Category
+)
 from api.models.common import DataFormats
 
 
@@ -33,17 +35,29 @@ class HistoryMAH(models.Model):
         blank=False,
     )
 
-    eu_mah = create_dashboard_history_current_column(
-        models.CharField(
-            max_length=255,
-            null=False,
-            blank=False,
-        ),
-        Category.Marketing_authorisation,
-        DataFormats.String,
-        "Current EU marketing authorisation holder",
-        "EU Marketing Authorisation Holder",
+    eu_mah = models.CharField(
+        max_length=255,
+        null=False,
+        blank=False,
     )
 
     class Meta:
         db_table = "eu_mah_history"
+
+    class HistoryInfo:
+        dashboard_columns = [
+            {
+                "category": Category.Marketing_authorisation,
+                "data-key": "eu_mah_current",
+                "data-format": DataFormats.String,
+                "data-value": "Current EU marketing authorisation holder",
+            }
+        ]
+        timeline_items = [
+            {
+                "category": Category.Marketing_authorisation,
+                "data-key": "eu_mah",
+                "data-format": DataFormats.String,
+                "data-value": "EU Marketing Authorisation Holder",
+            }
+        ]

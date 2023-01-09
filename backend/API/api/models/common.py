@@ -1,14 +1,13 @@
 # This program has been developed by students from the bachelor Computer Science at
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
-
 from django.db import models
 from enum import Enum
 
 generic_na_values = [
     "Not found",
-    "Not available at time of document publication",
-    "Value should be present in document",
+    "Not available at time of release",
+    "Value should be present in source",
 ]
 
 
@@ -16,9 +15,11 @@ class DataFormats(Enum):
     String = ("string", generic_na_values)
     Number = ("number", generic_na_values)
     Bool = ("bool", generic_na_values)
-    Date = ("date", generic_na_values + ["date is left blank in document"])
+    Date = ("date", generic_na_values + ["Date is left blank in source"])
     Link = ("link", generic_na_values)
     String_List = ("[string]", generic_na_values)
+    Dictionary = ("dict", generic_na_values)
+    Dictionary_List = ("[dict]", generic_na_values)
 
     @property
     def data_format(self):
@@ -29,33 +30,41 @@ class DataFormats(Enum):
         return self.value[1]
 
 
-class AutTypes(models.TextChoices):
+class NAChoices(models.enums.ChoicesMeta):
+    @property
+    def choices(self):
+        return super().choices + [(value, value) for value in DataFormats.String.na_values]
+
+
+class AutTypes(models.TextChoices, metaclass=NAChoices):
     """
     Choice types for eu_aut_type. Is derived from the enumerated choice class.
     """
-    CONDITIONAL = "conditional",
-    EXCEPTIONAL = "exceptional",
+    CONDITIONAL = "conditional"
+    EXCEPTIONAL = "exceptional"
     STANDARD = "standard"
     UNCERTAIN = "exceptional or conditional"
 
 
-class AutStatus(models.TextChoices):
+class AutStatus(models.TextChoices, metaclass=NAChoices):
     """
     Choice types for eu_aut_status. Is derived from the enumerated choice class.
     """
-    ACTIVE = "ACTIVE",
-    WITHDRAWAL = "WITHDRAWN",
-    REFUSALS = "REFUSED"
+    ACTIVE = "ACTIVE"
+    WITHDRAWN = "WITHDRAWN"
+    REFUSED = "REFUSED"
+    NOT_RENEWED = "NOT RENEWED"
+    EXPIRED = "EXPIRED"
 
 
-class LegalBasesTypes(models.TextChoices):
+class LegalBasesTypes(models.TextChoices, metaclass=NAChoices):
     """
     Choice types for legal bases. Is derived from the enumerated choice class.
     """
-    article4_8 = "article 4.8",
-    article4_8_1 = "article 4.8.1",
-    article4_8_2 = "article 4.8.2",
-    article4_8_3 = "article 4.8.3",
+    article4_8 = "article 4.8"
+    article4_8_1 = "article 4.8.1"
+    article4_8_2 = "article 4.8.2"
+    article4_8_3 = "article 4.8.3"
     article8_3 = "article 8.3"
     article_10_1 = "article 10.1"
     article_10_2 = "article 10.2"
@@ -64,3 +73,8 @@ class LegalBasesTypes(models.TextChoices):
     article_10_a = "article 10.a"
     article_10_b = "article 10.b"
     article_10_c = "article 10.c"
+
+
+class ODChoices(models.TextChoices, metaclass=NAChoices):
+    ADOPTED = "adopted"
+    APPOINTED = "appointed"

@@ -12,7 +12,8 @@ from rest_framework.settings import settings
 from api.models.human_models import MedicinalProduct, models as human_models
 from api.models.orphan_models import OrphanProduct, models as orphan_models
 from api.models.get_dashboard_columns import insert_extra_dashboard_columns
-from api.serializers.medicine_serializers.public import PublicMedicinalProductSerializer, OrphanProductSerializer
+from api.serializers.medicine_serializers.public.human import PublicMedicinalProductSerializer
+from api.serializers.medicine_serializers.public.orphan import OrphanProductSerializer
 import logging
 
 logger = logging.getLogger(__name__)

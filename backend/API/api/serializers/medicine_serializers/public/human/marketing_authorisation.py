@@ -4,7 +4,7 @@
 
 from rest_framework import serializers
 from api.serializers.medicine_serializers.public.common import RelatedMixin, HistoryMixin
-from api.serializers.medicine_serializers.public.history import AuthorisationTypeSerializer, MAHSerializer
+from api.serializers.medicine_serializers.public.human.history import AuthorisationTypeSerializer, MAHSerializer
 from api.models.human_models import AcceleratedAssessment, Duration, MarketingAuthorisation
 
 

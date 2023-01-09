@@ -3,7 +3,9 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from api.models.human_models import MedicinalProduct
-from api.models.create_dashboard_columns import create_dashboard_history_current_column, Category
+from api.models.create_dashboard_columns import (
+    Category,
+)
 from api.models.common import DataFormats
 
 
@@ -33,16 +35,28 @@ class HistoryBrandName(models.Model):
         blank=False,
     )
 
-    eu_brand_name = create_dashboard_history_current_column(
-        models.TextField(
-            null=False,
-            blank=False,
-        ),
-        Category.Medicinal_product,
-        DataFormats.String,
-        "Current EU brand name",
-        "EU Brand Name",
+    eu_brand_name = models.TextField(
+        null=False,
+        blank=False,
     )
 
     class Meta:
         db_table = "history_brand_name"
+
+    class HistoryInfo:
+        dashboard_columns = [
+            {
+                "category": Category.Medicinal_product,
+                "data-key": "eu_brand_name_current",
+                "data-format": DataFormats.String,
+                "data-value": "Current EU brand name",
+            }
+        ]
+        timeline_items = [
+            {
+                "category": Category.Medicinal_product,
+                "data-key": "eu_brand_name",
+                "data-format": DataFormats.String,
+                "data-value": "EU Brand Name",
+            }
+        ]
