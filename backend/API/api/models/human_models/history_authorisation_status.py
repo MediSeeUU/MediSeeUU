@@ -50,7 +50,7 @@ class HistoryAuthorisationStatus(models.Model):
         dashboard_columns = [
             {
                 "category": Category.Marketing_authorisation,
-                "data-key": "eu_aut_status_current",
+                "data-key": "eu_aut_status",
                 "data-format": DataFormats.String,
                 "data-value": "Current EU Authorisation Status",
             }

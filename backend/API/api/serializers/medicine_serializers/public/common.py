@@ -223,7 +223,7 @@ class HistoryMixin(ModelSerializer):
                                 field_name = extra[0]
                             # otherwise, get field name based on the data key of related name column
                             else:
-                                field_name = get_data_key(serializer_class.Meta.model, related_name)
+                                field_name = related_name
                             # if data is dict with more than 1 key, assign dict as value
                             if len(data) > 1:
                                 representation[field_name] = data

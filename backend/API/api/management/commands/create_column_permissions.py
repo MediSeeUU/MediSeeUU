@@ -57,11 +57,11 @@ class Command(BaseCommand):
                         description = f"Can view {data_key} in {model.__name__}"
                         columns.append((name, description, content_type))
 
-        for column in columns:
+        for codename, name, content_type in columns:
             perm, created = Permission.objects.update_or_create(
-                codename=column[0],
-                name=column[1],
-                content_type=column[2],
+                codename=codename,
+                name=name,
+                content_type=content_type,
             )
             if created:
                 logging.getLogger(__name__).info(f"Created new permission '{perm}'")

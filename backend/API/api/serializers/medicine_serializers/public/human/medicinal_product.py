@@ -134,12 +134,12 @@ class PublicMedicinalProductSerializer(RelatedMixin, ManyRelatedMixin,
         ]
         # serializers to be added as a current history variable and flattened
         current_history = [
-            ("eu_aut_status", AuthorisationStatusSerializer),
-            ("eu_aut_type", AuthorisationTypeSerializer),
-            ("eu_brand_name", BrandNameSerializer),
-            ("eu_mah", MAHSerializer),
-            ("eu_od", OrphanDesignationSerializer),
-            ("eu_prime", PrimeSerializer),
+            ("eu_aut_status", AuthorisationStatusSerializer, "eu_aut_status"),
+            ("eu_aut_type", AuthorisationTypeSerializer, "eu_aut_type_current"),
+            ("eu_brand_name", BrandNameSerializer, "eu_brand_name_current"),
+            ("eu_mah", MAHSerializer, "eu_mah_current"),
+            ("eu_od", OrphanDesignationSerializer, "eu_od_current"),
+            ("eu_prime", PrimeSerializer, "eu_prime_current"),
         ]
         any_bools_list = [
             ("procedures", ProceduresSerializer, ["eu_referral", "eu_suspension"]),
