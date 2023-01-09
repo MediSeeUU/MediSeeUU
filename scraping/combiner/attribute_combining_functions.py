@@ -38,7 +38,7 @@ def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, Any]]
             log.warning(f"\"{attr.pdf_file}\" not in the keys of the source: {source_string}")
             return attribute_values.date_not_found
         file_name = file_dicts[source_string][attr.pdf_file]
-        return file_dicts[src.web][attr.filedates_web][file_name][attr.meta_file_date]
+        return file_dicts[src.web][attr.filedates_web][file_name][attr.file_date_pdf_date]
     log.warning(f"{source_string} not in the keys of file_dicts")
 
 
