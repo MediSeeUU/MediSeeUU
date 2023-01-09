@@ -16,62 +16,62 @@
     "eu_suspension": "False",
     "ema_number_certainty": "0.6",
     "authorisation_row": "0",
-    "scrape_date_web": "2023-01-07",
+    "scrape_date_web": "2023-01-09",
     "filedates": {
         "EU-1-16-1158_h_dec_0.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2017/20170104136548/dec_136548_en.pdf",
             "pdf_date": "2017-01-04",
-            "pdf_scrape_date": "2023-01-07"
+            "pdf_scrape_date": "2023-01-09"
         },
         "EU-1-16-1158_h_dec_1.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2019/20190225144042/dec_144042_en.pdf",
             "pdf_date": "2019-02-25",
-            "pdf_scrape_date": "2023-01-07"
+            "pdf_scrape_date": "2023-01-09"
         },
         "EU-1-16-1158_h_dec_2.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2020/20200403147803/dec_147803_en.pdf",
             "pdf_date": "2020-04-03",
-            "pdf_scrape_date": "2023-01-07"
+            "pdf_scrape_date": "2023-01-09"
         },
         "EU-1-16-1158_h_dec_3.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210820152550/dec_152550_en.pdf",
             "pdf_date": "2021-08-20",
-            "pdf_scrape_date": "2023-01-07"
+            "pdf_scrape_date": "2023-01-09"
         },
         "EU-1-16-1158_h_anx_0.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2017/20170104136548/anx_136548_en.pdf",
             "pdf_date": "2017-01-04",
-            "pdf_scrape_date": "2023-01-07"
+            "pdf_scrape_date": "2023-01-09"
         },
         "EU-1-16-1158_h_anx_1.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2019/20190225144042/anx_144042_en.pdf",
             "pdf_date": "2019-02-25",
-            "pdf_scrape_date": "2023-01-07"
+            "pdf_scrape_date": "2023-01-09"
         },
         "EU-1-16-1158_h_anx_2.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2020/20200403147803/anx_147803_en.pdf",
             "pdf_date": "2020-04-03",
-            "pdf_scrape_date": "2023-01-07"
+            "pdf_scrape_date": "2023-01-09"
         },
         "EU-1-16-1158_h_anx_3.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210820152550/anx_152550_en.pdf",
             "pdf_date": "2021-08-20",
-            "pdf_scrape_date": "2023-01-07"
+            "pdf_scrape_date": "2023-01-09"
         },
         "EU-1-16-1158_h_public-assessment-report.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/assessment-report/afstyla-epar-public-assessment-report_en.pdf",
-            "pdf_date": "2023-01-07",
-            "pdf_scrape_date": "2023-01-07"
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
         },
         "EU-1-16-1158_h_epar-other_0.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/procedural-steps-after/afstyla-epar-procedural-steps-taken-scientific-information-after-authorisation_en.pdf",
-            "pdf_date": "2023-01-07",
-            "pdf_scrape_date": "2023-01-07"
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
         },
         "EU-1-16-1158_h_epar-other_1.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/variation-report/afstyla-h-c-004075-p46-003-epar-assessment-report-variation_en.pdf",
-            "pdf_date": "2023-01-07",
-            "pdf_scrape_date": "2023-01-07"
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
         }
     }
 }
