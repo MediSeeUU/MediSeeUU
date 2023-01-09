@@ -6,7 +6,10 @@ from .medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import (
     Category,
 )
-from api.models.common import DataFormats
+from api.models.common import (
+    DataFormats,
+    ODChoices,
+)
 from api.models.na_fields import BooleanWithNAField
 
 
@@ -36,7 +39,9 @@ class HistoryOD(models.Model):
         blank=False,
     )
 
-    eu_od = BooleanWithNAField(
+    eu_od = models.CharField(
+        max_length=40,
+        choices=ODChoices.choices,
         null=False,
         blank=False,
     )

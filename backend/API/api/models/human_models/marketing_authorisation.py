@@ -106,7 +106,8 @@ class MarketingAuthorisation(models.Model):
 
     ema_rapp = create_dashboard_column(
         models.TextField(
-            null=False,
+            null=True,
+            blank=True,
         ),
         Category.Marketing_authorisation,
         DataFormats.String,
@@ -115,7 +116,8 @@ class MarketingAuthorisation(models.Model):
 
     ema_corapp = create_dashboard_column(
         models.TextField(
-            null=False,
+            null=True,
+            blank=True,
         ),
         Category.Marketing_authorisation,
         DataFormats.String,
@@ -144,6 +146,7 @@ class MarketingAuthorisation(models.Model):
             HistoryAuthorisationType,
             models.SET_NULL,
             null=True,
+            blank=True,
         ),
         Category.Marketing_authorisation,
         DataFormats.String,
@@ -155,6 +158,7 @@ class MarketingAuthorisation(models.Model):
             HistoryMAH,
             models.SET_NULL,
             null=True,
+            blank=True,
         ),
         Category.Marketing_authorisation,
         DataFormats.String,
