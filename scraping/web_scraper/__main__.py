@@ -53,13 +53,14 @@ def main(config: config_objects.WebConfig):
     Path(json_path).mkdir(exist_ok=True, parents=True)
 
     log.info("TASK SUCCESS on Generating directories")
+    if config.run_scrape_ec and config.run_scrape_ema:
+        url_file.overwrite_dict({})
 
     if config.run_download_annex10:
         url_scraper.get_annex_10_urls("https://www.ema.europa.eu/en/about-us/annual-reports-work-programmes",
                                       annex10_file)
 
     if config.run_scrape_ec:
-        url_file.overwrite_dict({})
         ec_scraper.scrape_ec(config, medicine_list, url_file, url_refused_file)
 
     if config.run_scrape_ema:

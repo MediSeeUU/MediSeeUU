@@ -1,34 +1,62 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>pdf_parser.parsers package &mdash; PDF Scraper 1.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/js/theme.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="pdf_parser.docs.sphinx-source package" href="pdf_parser.docs.sphinx-source.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
+          
 
 <a href="../../../../docs/html/README.html">
   <img src="_static/medisee.svg" class="logo" alt="Logo"/>
@@ -40,7 +68,11 @@
 
 
 
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
     <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
       <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
       <ul>
@@ -49,12 +81,17 @@
         <li class="toctree-l1 current-module"><a href="../../../../scraping/pdf_parser/docs/html/index.html">File Parser</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/db_communicator/docs/html/index.html">DB Communicator</a></li>
-        <li class="toctree-l1 "><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
+        <li class="toctree-l1 "><a href="../../../../backend/API/docs/html/index.html">Backend</a></li>
         <li class="toctree-l1 margin-top "><a href="../../../../tests/docs/html/index.html">Tests</a></li>
       </ul>
     </div>
     
       
+            
+            
+              
+            
+            
               <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="README.html">General</a></li>
@@ -152,6 +189,7 @@
 <li class="toctree-l5"><a class="reference internal" href="pdf_parser.html#pdf_parser.parsed_info_struct.ParsedInfoStruct.decisions"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.decisions</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="pdf_parser.html#pdf_parser.parsed_info_struct.ParsedInfoStruct.epars"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.epars</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="pdf_parser.html#pdf_parser.parsed_info_struct.ParsedInfoStruct.eu_number"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.eu_number</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="pdf_parser.html#pdf_parser.parsed_info_struct.ParsedInfoStruct.odwars"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.odwars</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="pdf_parser.html#pdf_parser.parsed_info_struct.ParsedInfoStruct.omars"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.omars</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="pdf_parser.html#pdf_parser.parsed_info_struct.ParsedInfoStruct.parse_date"><code class="docutils literal notranslate"><span class="pre">ParsedInfoStruct.parse_date</span></code></a></li>
 </ul>
@@ -164,35 +202,77 @@
 </li>
 </ul>
 
+            
+          
     
 
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">PDF Scraper</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">pdf_parser</a></li>
-          <li class="breadcrumb-item"><a href="pdf_parser.html">pdf_parser package</a></li>
-      <li class="breadcrumb-item active">pdf_parser.parsers package</li>
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">pdf_parser</a> &raquo;</li>
+        
+          <li><a href="pdf_parser.html">pdf_parser package</a> &raquo;</li>
+        
+      <li>pdf_parser.parsers package</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
+            
   <section id="module-pdf_parser.parsers">
-<span id="pdf-parser-parsers-package"></span><h1>pdf_parser.parsers package<a class="headerlink" href="#module-pdf_parser.parsers" title="Permalink to this heading"></a></h1>
+<span id="pdf-parser-parsers-package"></span><h1>pdf_parser.parsers package<a class="headerlink" href="#module-pdf_parser.parsers" title="Permalink to this heading">¶</a></h1>
 <p>Parsers module contains files that can scrape a PDF or XML file. Each scraper can scrape one PDF type.</p>
 <p>annex_parser.py can get all attributes from annex XML files (converted by XML converter)
 dec_parser.py can get all attributes from decision PDF files
@@ -200,13 +280,13 @@ epar_parser.py can get all attributes from EPAR XML files (converted by XML conv
 omar_parser.py can get all attributes from OMAR XML files (converted by XML converter)</p>
 <p>Running one of these parsers results in an updated medicine_struct in filter.py</p>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="module-pdf_parser.parsers.annex_parser">
-<span id="pdf-parser-parsers-annex-parser-module"></span><h2>pdf_parser.parsers.annex_parser module<a class="headerlink" href="#module-pdf_parser.parsers.annex_parser" title="Permalink to this heading"></a></h2>
+<span id="pdf-parser-parsers-annex-parser-module"></span><h2>pdf_parser.parsers.annex_parser module<a class="headerlink" href="#module-pdf_parser.parsers.annex_parser" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.annex_parser.parse_file">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.annex_parser.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ParsedInfoStruct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pdf_parser.parsers.annex_parser.parse_file" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.annex_parser.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ParsedInfoStruct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pdf_parser.parsers.annex_parser.parse_file" title="Permalink to this definition">¶</a></dt>
 <dd><ol class="arabic simple">
 <li><p>Load the XML file.</p></li>
 <li><p>Create a dictionary with all the attributes that need to be scraped.</p></li>
@@ -214,16 +294,16 @@ omar_parser.py can get all attributes from OMAR XML files (converted by XML conv
 <li><p>Append the attributes to the struct and return it.</p></li>
 </ol>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filepath</strong> (<em>str</em>) – Path of the XML file to be scraped.</p></li>
 <li><p><strong>medicine_struct</strong> (<em>PIS.ParsedInfoStruct</em>) – The dictionary of all currently scraped attributes of this medicine.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Returns an updated struct, with the current attributes added to it.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>PIS.ParsedInfoStruct</p>
 </dd>
 </dl>
@@ -231,19 +311,19 @@ omar_parser.py can get all attributes from OMAR XML files (converted by XML conv
 
 </section>
 <section id="module-pdf_parser.parsers.dec_parser">
-<span id="pdf-parser-parsers-dec-parser-module"></span><h2>pdf_parser.parsers.dec_parser module<a class="headerlink" href="#module-pdf_parser.parsers.dec_parser" title="Permalink to this heading"></a></h2>
+<span id="pdf-parser-parsers-dec-parser-module"></span><h2>pdf_parser.parsers.dec_parser module<a class="headerlink" href="#module-pdf_parser.parsers.dec_parser" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.dec_get_as">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_as</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_as" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_as</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_as" title="Permalink to this definition">¶</a></dt>
 <dd><p>extracts active substance out of decision text</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>txt</strong> (<em>str</em>) – plain decision pdf text</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>found substance or default value</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -251,20 +331,20 @@ omar_parser.py can get all attributes from OMAR XML files (converted by XML conv
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.dec_get_atmp">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_atmp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_atmp" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_atmp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_atmp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts ATMP out of decision text</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>txt</strong> (<em>str</em>) – plain decision pdf text</p></li>
-<li><p><strong>date</strong> (<em>datetime.datetime</em>) – decision date of pdf</p></li>
+<li><p><strong>date</strong> (<em>datetime.date</em>) – decision date of pdf</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>found ATMP or default value
 bool: found result</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -272,19 +352,19 @@ bool: found result</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.dec_get_bn">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_bn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orphan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_bn" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_bn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orphan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_bn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts brand name out of non-orphan decision text</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>txt</strong> (<em>str</em>) – plain decision pdf text</p></li>
 <li><p><strong>orphan</strong> (<em>bool</em>) – to add extra check for orphan structure</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>found brand name or default value</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -292,17 +372,17 @@ bool: found result</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.dec_get_date">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">datetime.datetime</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_date" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">datetime.date</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_date" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts date out of text</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>txt</strong> (<em>str</em>) – text containing first page of decision document</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>string indicating found date or if date is not found
-datetime.datetime: found date</p>
+datetime.date: found date</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -310,19 +390,19 @@ datetime.datetime: found date</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.dec_get_decision_type">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_decision_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_decision_type" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_decision_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_decision_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts decision type out of decision text</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>txt</strong> (<em>str</em>) – plain decision pdf text</p></li>
-<li><p><strong>date</strong> (<em>datetime.datetime</em>) – decision date of pdf</p></li>
+<li><p><strong>date</strong> (<em>datetime.date</em>) – decision date of pdf</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>found type or default value</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -330,16 +410,16 @@ datetime.datetime: found date</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.dec_get_mah">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_mah</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_mah" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_mah</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_mah" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts marketholder out of decision text</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>txt</strong> (<em>str</em>) – plain decision pdf text</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>found marketholder or default value</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -347,20 +427,20 @@ datetime.datetime: found date</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.dec_get_nas">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_nas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_nas" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_nas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_nas" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts NAS out of decision text</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>txt</strong> (<em>str</em>) – plain decision pdf text</p></li>
-<li><p><strong>date</strong> (<em>datetime.datetime</em>) – decision date of pdf</p></li>
+<li><p><strong>date</strong> (<em>datetime.date</em>) – decision date of pdf</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>NAS not relevant
 bool: found result</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -368,19 +448,19 @@ bool: found result</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.dec_get_od">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_od</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_od" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_od</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_od" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts orphan designation out of decision text</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>txt</strong> (<em>str</em>) – plain decision pdf text</p></li>
-<li><p><strong>date</strong> (<em>datetime.datetime</em>) – decision date of pdf</p></li>
+<li><p><strong>date</strong> (<em>datetime.date</em>) – decision date of pdf</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>found orphan designation or default value</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -388,36 +468,36 @@ bool: found result</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.dec_get_od_comp_date">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_od_comp_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_od_comp_date" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_od_comp_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime.date</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_od_comp_date" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gives date of orphan comp from decision files.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>txt</strong> (<em>str</em>) – plain decision pdf text</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>date found</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>date found or date_not_found string</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>datetime.datetime</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime.date | str</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.get_data">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.get_data" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.get_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>fills in each attribute in a dictionary, based on type</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>str</em>) – filename of pdf</p></li>
 <li><p><strong>txt</strong> (<em>str</em>) – plain txt of pdf</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>filled dictionary with parsed results</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
@@ -425,16 +505,16 @@ bool: found result</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.get_default_dict">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">get_default_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.get_default_dict" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">get_default_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.get_default_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns dictionary with default attribute values, based on type</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – filename of pdf</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>contains default value for every attribute</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
@@ -442,16 +522,16 @@ bool: found result</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.get_name_section">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">get_name_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.get_name_section" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">get_name_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.get_name_section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finds section of decision document containing brand name and active substance</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>txt</strong> (<em>str</em>) – plain decision pdf text</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>found section</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -459,20 +539,20 @@ bool: found result</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.parse_file">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ParsedInfoStruct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ParsedInfoStruct</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.parse_file" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ParsedInfoStruct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ParsedInfoStruct</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.parse_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Opens a pdf and adds all respective attributes to the medicine_struct.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>str</em>) – filename of file to open</p></li>
 <li><p><strong>directory</strong> (<em>str</em>) – directory of file to open</p></li>
 <li><p><strong>medicine_struct</strong> (<em>PIS.ParsedInfoStruct</em>) – struct to add found attributes to</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>input struct with new variables added</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>medicine_struct (PIS.parsed_info_struct)</p>
 </dd>
 </dl>
@@ -480,24 +560,24 @@ bool: found result</p>
 
 </section>
 <section id="module-pdf_parser.parsers.epar_parser">
-<span id="pdf-parser-parsers-epar-parser-module"></span><h2>pdf_parser.parsers.epar_parser module<a class="headerlink" href="#module-pdf_parser.parsers.epar_parser" title="Permalink to this heading"></a></h2>
+<span id="pdf-parser-parsers-epar-parser-module"></span><h2>pdf_parser.parsers.epar_parser module<a class="headerlink" href="#module-pdf_parser.parsers.epar_parser" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.agreed_after_accelerated_assessment">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">agreed_after_accelerated_assessment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.agreed_after_accelerated_assessment" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">agreed_after_accelerated_assessment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.agreed_after_accelerated_assessment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the word “agreed” is at most 20 text elements after “accelerated assessment”
 Returns None when “agreed” is not close to “accelerated assessment”</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>xml</strong> (<em>ET.Element</em>) – the contents of the XML file</p></li>
 <li><p><strong>text_elements</strong> (<em>int</em>) – the maximum number of text elements to be considered close by</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the attribute eu_accel_assess_g - “yes” or “no”
 None: no conclusive evidence was found</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -505,21 +585,21 @@ None: no conclusive evidence was found</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.agreed_before_accelerated_assessment">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">agreed_before_accelerated_assessment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.agreed_before_accelerated_assessment" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">agreed_before_accelerated_assessment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.agreed_before_accelerated_assessment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the word “agreed” is at most 20 text elements before “accelerated assessment”
 Returns None when “agreed” is not close to “accelerated assessment”</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>xml</strong> (<em>ET.Element</em>) – the contents of the XML file</p></li>
 <li><p><strong>text_elements</strong> (<em>int</em>) – the maximum number of text elements to be considered close by</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the attribute eu_accel_assess_g - “yes” or “no”
 None: no conclusive evidence was found</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -527,10 +607,10 @@ None: no conclusive evidence was found</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.check_date_before">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">check_date_before</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_day</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_month</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.check_date_before" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">check_date_before</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_day</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_month</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.check_date_before" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the date ema_procedure_start_initial is earlier than the given date</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>xml</strong> (<em>ET.Element</em>) – the contents of the XML file</p></li>
 <li><p><strong>check_day</strong> (<em>int</em>) – the day of the given date</p></li>
@@ -538,10 +618,10 @@ None: no conclusive evidence was found</p>
 <li><p><strong>check_year</strong> (<em>int</em>) – the year of the given date</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if scraped date is before given date, False otherwise</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -549,17 +629,17 @@ None: no conclusive evidence was found</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.clean_rapporteur">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">clean_rapporteur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rapporteur</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.clean_rapporteur" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">clean_rapporteur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rapporteur</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.clean_rapporteur" title="Permalink to this definition">¶</a></dt>
 <dd><p>From a string containing the rapporteur, as well as spaces, enters, and other text,
 this function tries to remove all whitespace and trailing irrelevant text from the rapporteur string</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>rapporteur</strong> (<em>str</em>) – the uncleaned string with whitespace and trailing text</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the cleaned string containing only the rapporteur</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -567,17 +647,17 @@ this function tries to remove all whitespace and trailing irrelevant text from t
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.find_rapp_between_rapp_and_corapp">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">find_rapp_between_rapp_and_corapp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.find_rapp_between_rapp_and_corapp" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">find_rapp_between_rapp_and_corapp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.find_rapp_between_rapp_and_corapp" title="Permalink to this definition">¶</a></dt>
 <dd><p>A supporting function for finding the rapporteur of the document that
 finds the rapporteur in a certain section in some cases (other cases are processed in the main function)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>txt</strong> (<em>str</em>) – a section of the xml document</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the attribute ema_rapp - the name of the main rapporteur or None if no rapporteur is found</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str | None</p>
 </dd>
 </dl>
@@ -585,18 +665,18 @@ finds the rapporteur in a certain section in some cases (other cases are process
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.get_accelerated_assessment">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_accelerated_assessment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_accelerated_assessment" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_accelerated_assessment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_accelerated_assessment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the attribute eu_accel_assess_g
 Check whether the word “accelerated assessment” is in text and
 “agreed” is close by and “not agreed” is not close by</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>xml</strong> (<em>ET.Element</em>) – the contents of the XML file</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the attribute eu_accel_assess_g - “yes” or “no”, “NA” if ema_procedure_start_initial before 20-05-2004</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -604,19 +684,19 @@ Check whether the word “accelerated assessment” is in text and
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.get_all">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xml_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_all" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xml_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_all" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets all attributes of the EPAR XML and returns them in a dictionary</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>str</em>) – name of the XML file to be scraped</p></li>
 <li><p><strong>xml_data</strong> (<em>ET.Element</em>) – the contents of the XML file</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Dictionary of all scraped attributes, named according to the bible</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
@@ -624,17 +704,17 @@ Check whether the word “accelerated assessment” is in text and
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.get_corapp">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_corapp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_corapp" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_corapp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_corapp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the attribute ema_corapp
 The co-rapporteur of the document, usually found after “co-rapporteur:”</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>xml</strong> (<em>ET.Element</em>) – the contents of the XML file</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the attribute ema_corapp - the name of the co-rapporteur or “no_co-rapporteur”</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -642,35 +722,35 @@ The co-rapporteur of the document, usually found after “co-rapporteur:”</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.get_date">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime.datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_date" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime.date</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_date" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the attribute ema_procedure_start_initial
 The initial authorization date of the EMA</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>xml</strong> (<em>ET.Element</em>) – the contents of the XML file</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the attribute ema_procedure_start_initial - a string of a date in DD/MM/YYYY format</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>datetime | str</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime.date | str</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.get_legal_basis">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_legal_basis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_legal_basis" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_legal_basis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_legal_basis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the attribute eu_legal_basis
 All legal articles relevant to the medicine</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>xml</strong> (<em>ET.Element</em>) – the contents of the XML file</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the attribute eu_legal_basis - multiple articles of the form “Article X.X”</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list[str]</p>
 </dd>
 </dl>
@@ -678,35 +758,35 @@ All legal articles relevant to the medicine</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.get_opinion_date">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_opinion_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime.datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_opinion_date" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_opinion_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime.date</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_opinion_date" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the attribute chmp_opinion_date
 The date of the CHMP opinion on the medicine</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>xml</strong> (<em>ET.Element</em>) – the contents of the XML file</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>datetime | str</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime.date | str</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.get_prime">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_prime" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_prime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_prime" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the attribute eu_prime_initial
 Whether the medicine is a priority medicine (PRIME)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>xml</strong> (<em>ET.Element</em>) – the contents of the XML file</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the attribute eu_prime_initial - “yes” or “no”, “NA” if ema_procedure_start_initial before 01-03-2016</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -714,17 +794,17 @@ Whether the medicine is a priority medicine (PRIME)</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.get_rapp">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_rapp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_rapp" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_rapp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_rapp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the attribute ema_rapp
 The main rapporteur of the document, usually found after “rapporteur:”</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>xml</strong> (<em>ET.Element</em>) – the contents of the XML file</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the attribute ema_rapp - the name of the main rapporteur or “no_rapporteur”</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -732,21 +812,21 @@ The main rapporteur of the document, usually found after “rapporteur:”</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.get_rapp_after">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_rapp_after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regex_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_char</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_rapp_after" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_rapp_after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regex_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_char</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_rapp_after" title="Permalink to this definition">¶</a></dt>
 <dd><p>A supporting function for finding the (co-)rapporteur of the document that
 finds the (co-)rapporteur in a certain section using a given regex string.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>regex_str</strong> (<em>str</em>) – The regex string to search for in the section (txt)</p></li>
 <li><p><strong>txt</strong> (<em>str</em>) – a section of the xml document</p></li>
 <li><p><strong>from_char</strong> (<em>int</em>) – The number of characters to remove from the head of the string</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the attribute ema_rapp or ema_corapp - the name of the (co-)rapporteur</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -754,17 +834,17 @@ finds the (co-)rapporteur in a certain section using a given regex string.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.get_reexamination">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_reexamination</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_reexamination" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">get_reexamination</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.get_reexamination" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the attribute ema_reexamination
 Whether the word reexamination/re-examination exists</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>xml</strong> (<em>ET.Element</em>) – the contents of the XML file</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the attribute ema_reexamination - “yes” or “no”</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -772,21 +852,21 @@ Whether the word reexamination/re-examination exists</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.epar_parser.parse_file">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ParsedInfoStruct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ParsedInfoStruct</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.parse_file" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.epar_parser.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ParsedInfoStruct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ParsedInfoStruct</span></span></span><a class="headerlink" href="#pdf_parser.parsers.epar_parser.parse_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets all attributes from the EPAR XML file after parsing it</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>str</em>) – name of the XML file to be scraped</p></li>
 <li><p><strong>directory</strong> (<em>str</em>) – path of the directory containing the XML file</p></li>
 <li><p><strong>medicine_struct</strong> (<em>PIS.ParsedInfoStruct</em>) – the dictionary of all currently scraped attributes of this medicine</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>a more complete dictionary of scraped attributes,
 including the attributes of this XML file</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>PIS.ParsedInfoStruct</p>
 </dd>
 </dl>
@@ -794,22 +874,22 @@ including the attributes of this XML file</p>
 
 </section>
 <section id="module-pdf_parser.parsers.omar_parser">
-<span id="pdf-parser-parsers-omar-parser-module"></span><h2>pdf_parser.parsers.omar_parser module<a class="headerlink" href="#module-pdf_parser.parsers.omar_parser" title="Permalink to this heading"></a></h2>
+<span id="pdf-parser-parsers-omar-parser-module"></span><h2>pdf_parser.parsers.omar_parser module<a class="headerlink" href="#module-pdf_parser.parsers.omar_parser" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.omar_parser.get_alternative_treatments">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_alternative_treatments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bullet_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_alternative_treatments" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_alternative_treatments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bullet_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_alternative_treatments" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>Finds the bullet point that contains the appropriate information and return</dt><dd><p>short description about the findings.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>bullet_points</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – These are all the bullet points from the appropriate section.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Return a short description depending on what was found in the bullet point.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -817,17 +897,17 @@ including the attributes of this XML file</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.omar_parser.get_attributes">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu_od_flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_attributes" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu_od_flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function returns the dictionary with all the parsed attributes in it.
 :param section: Section (ET.Element): This is the section obtained with the xml converter.
 :type section: ET.Element
 :param eu_od_flag: This boolean represents the presence of a comp section.
 :type eu_od_flag: bool</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Return a dictionary with the parsed attributes.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>dict[str, str]</p>
 </dd>
 </dl>
@@ -835,17 +915,17 @@ including the attributes of this XML file</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.omar_parser.get_eu_od_number">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_eu_od_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu_od_flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_eu_od_number" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_eu_od_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu_od_flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_eu_od_number" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function finds the orphan designation number that belongs to a condition.
 :param section: This is the section obtained with the xml converter.
 :type section: ET.Element
 :param eu_od_flag: This boolean represents the presence of a comp section.
 :type eu_od_flag: bool</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Returns an eu orphan designation number.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
 </dd>
 </dl>
@@ -853,15 +933,15 @@ including the attributes of this XML file</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.omar_parser.get_prevalence">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_prevalence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bullet_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_prevalence" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_prevalence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bullet_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_prevalence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finds the paragraph that contains the information about the prevalence of the medicine.
 :param bullet_points: These are all the bullet points from the appropriate section.
 :type bullet_points: list[str]</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Return the string with the relevant information about the prevalence or NA if it cannot be found.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
 </dd>
 </dl>
@@ -869,12 +949,12 @@ including the attributes of this XML file</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.omar_parser.get_report_date">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_report_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_report_date" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_report_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_report_date" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.omar_parser.get_significant_benefit">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_significant_benefit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bullet_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alternative_treatment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_significant_benefit" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_significant_benefit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bullet_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alternative_treatment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_significant_benefit" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function finds the piece of text that supports the reason for the orphan medicine to be
 of significant benefit.
 :param bullet_points: These are all the bullet points from the appropriate section.
@@ -882,10 +962,10 @@ of significant benefit.
 :param alternative_treatment: The result of the get_alternative_treatment function
 :type alternative_treatment: str</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Returns the appropriate string, depending on what was found in the file.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
 </dd>
 </dl>
@@ -893,7 +973,7 @@ of significant benefit.
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.omar_parser.parse_file">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ParsedInfoStruct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.parse_file" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">medicine_struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ParsedInfoStruct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.parse_file" title="Permalink to this definition">¶</a></dt>
 <dd><ol class="arabic simple">
 <li><p>Load the XML file.</p></li>
 <li><p>Create a dictionary with all the attributes that need to be scraped.</p></li>
@@ -905,10 +985,10 @@ of significant benefit.
 :param medicine_struct: The dictionary of all currently scraped attributes of this medicine.
 :type medicine_struct: PIS.ParsedInfoStruct</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Returns an updated struct, with the current attributes added to it.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>PIS.ParsedInfoStruct</p>
 </dd>
 </dl>
@@ -919,32 +999,49 @@ of significant benefit.
 
 
            </div>
+           
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="pdf_parser.docs.sphinx-source.html" class="btn btn-neutral float-left" title="pdf_parser.docs.sphinx-source package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Medisee.</p>
-  </div>
+    <p>
+        &#169; Copyright 2022, Medisee.
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(false);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

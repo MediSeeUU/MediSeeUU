@@ -1,14 +1,14 @@
+import logging
+import multiprocessing
+from os import path, listdir
 from typing import TextIO
 
 import fitz
-
-from scraping.utilities.pdf import pdf_helper as ph
-import scraping.utilities.definitions.xml_tags as tags
-import logging
-from os import path, listdir
 import joblib
-import multiprocessing
 from tqdm import tqdm
+
+import scraping.utilities.definitions.xml_tags as tags
+from scraping.utilities.pdf import pdf_helper as ph
 
 header_indicator = "|-HEADER-|"
 log = logging.getLogger("xml_converter")

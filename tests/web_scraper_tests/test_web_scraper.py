@@ -11,14 +11,14 @@ from scraping.utilities.io.pathlib_extended import Path
 from scraping.utilities.log import log_tools
 from scraping.web_scraper import __main__ as web
 
-data_path_str = "../test_data_integration"
+data_path_str = "../tests/test_data_integration"
 json_path = Path("web_scraper_tests/JSON")
 scraping_root_path = Path.cwd().parent
 
 # Different paths needed when running tests from the web_scraper folder
 # instead of the parent tests folder
 if Path.cwd().name == "web_scraper_tests":
-    data_path_str = "../../test_data_integration"
+    data_path_str = "../../tests/test_data_integration"
     json_path = Path("JSON")
     scraping_root_path = Path.cwd().parent.parent
 
@@ -171,7 +171,7 @@ class TestWebScraper(TestCase):
         # check if all files from urls.json are downloaded:
         with open(json_path / "urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
-        filecount = len(url_dict["aut_url"]) + len(url_dict[attr.smpc_url])
+        filecount = len(url_dict[attr.aut_url]) + len(url_dict[attr.smpc_url])
 
         if url_dict[attr.epar_url]:
             filecount += 1

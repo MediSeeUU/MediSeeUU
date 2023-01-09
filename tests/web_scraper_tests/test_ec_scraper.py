@@ -6,14 +6,14 @@ import scraping.utilities.web.web_utils as utils
 from scraping.utilities.web.medicine_type import MedicineType
 from scraping.web_scraper import ec_scraper as ec
 import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.values as values
+import scraping.utilities.definitions.attribute_values as attribute_values
 from parameterized import parameterized
 import os
 
 
-data_path = "../test_data"
+data_path = "../tests/test_data"
 if "test_ec_scraper" in os.getcwd():
-    data_path = "../../test_data"
+    data_path = "../../tests/test_data"
 
 
 class TestEcScraper(unittest.TestCase):
@@ -63,7 +63,7 @@ class TestEcScraper(unittest.TestCase):
         ],
         [
             "o1230",
-            values.not_found,
+            attribute_values.not_found,
             "(2R,3R,4S,5R)-2-(6-amino-9H-purin-9-yl)-5-((((1r,3S)-3-(2-(5-(tert-butyl)-1H-benzo[d]imidazol-2-yl)ethyl)"
             "cyclobutyl)(isopropyl) amino)methyl)tetrahydrofuran-3,4-diol",
             "EU/3/13/1230",
@@ -107,7 +107,6 @@ class TestEcScraper(unittest.TestCase):
         medicine_json, *_ = ec.get_ec_json_objects(html_active)
         medicine_dict, _ = ec.get_data_from_medicine_json(medicine_json, eu_num_short, medicine_type)
 
-        self.assertEqual(medicine_dict[attr.atc_code], exp_atc_code, msg="atc codes are not equal")
         self.assertEqual(medicine_dict[attr.active_substance], exp_active_substance, msg="active substances are not equal")
         # check orphan specific attributes for orphan medicines, and human specific attributes for human medicines
         if "o" in eu_num_short:
@@ -115,6 +114,7 @@ class TestEcScraper(unittest.TestCase):
             self.assertEqual(medicine_dict[attr.eu_od_sponsor], exp_eu_mah_current, msg="current mahs are not equal")
         else:
             self.assertEqual(medicine_dict[attr.eu_pnumber], exp_eu_number, msg="product numbers are not equal")
+            self.assertEqual(medicine_dict[attr.atc_code], exp_atc_code, msg="atc codes are not equal")
             self.assertEqual(medicine_dict[attr.eu_mah_current], exp_eu_mah_current, msg="current mahs are not equal")
         self.assertEqual(medicine_dict[attr.eu_aut_status], exp_eu_aut_status, msg="authorization statuses are not equal")
         self.assertEqual(medicine_dict[attr.eu_brand_name_current], exp_eu_brand_name_current, msg="current brand names "
@@ -123,7 +123,7 @@ class TestEcScraper(unittest.TestCase):
     @parameterized.expand([
         [
             "h477",
-            "2008-10-07 00:00:00",
+            "2008-10-07",
             "exceptional",
             "",
             "",
@@ -264,20 +264,20 @@ class TestEcScraper(unittest.TestCase):
         [
             [
                 [],
-                values.aut_type_standard
+                attribute_values.aut_type_standard
             ],
             [
                 ["Annual Renewal"],
-                values.aut_type_conditional
+                attribute_values.aut_type_conditional
             ],
             [
                 ["Annual Reassessment"],
-                values.aut_type_exceptional
+                attribute_values.aut_type_exceptional
             ],
             [
                 ["something else",
                  "bla bla"],
-                values.aut_type_standard
+                attribute_values.aut_type_standard
             ]
         ]
     )
@@ -301,31 +301,31 @@ class TestEcScraper(unittest.TestCase):
             2005,
             True,
             False,
-            values.NA_before
+            attribute_values.NA_before
         ],
         [
             2007,
             False,
             False,
-            values.aut_type_standard
+            attribute_values.aut_type_standard
         ],
         [
             2008,
             True,
             False,
-            values.aut_type_exceptional
+            attribute_values.aut_type_exceptional
         ],
         [
             2009,
             False,
             True,
-            values.aut_type_conditional
+            attribute_values.aut_type_conditional
         ],
         [
             2010,
             True,
             True,
-            values.authorization_type_unknown
+            attribute_values.authorization_type_unknown
         ]
     ])
     def test_determine_initial_aut_type(self, year, is_exceptional, is_conditional, exp_output):
