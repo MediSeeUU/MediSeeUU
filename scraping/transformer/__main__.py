@@ -29,8 +29,8 @@ def convert_json(combined_json_path: str):
     """
     global omar_conditions
 
-    with open(combined_json_path) as combined_json:
-        json_data = json.load(combined_json)
+    json_data = load_json(combined_json_path)
+
     final_json = {}
     if json_data["orphan_status"] == 'h':
         get_final_json(final_json, json_data, all_humans)
@@ -103,6 +103,21 @@ def save_transformed_json(transformed_json_path: str, final_json: dict):
     except UnicodeDecodeError:
         with open(transformed_json_path, 'w') as transformed_file:
             json.dump(final_json, transformed_file, indent=4)
+
+
+def load_json(transformed_json_path: str):
+    """
+    Saves transformed JSON for that medicine
+    Args:
+        transformed_json_path (str): Location of the transformed JSON
+    """
+    try:
+        with open(transformed_json_path, encoding='utf-8') as transformed_json:
+            json_data = json.load(transformed_json)
+    except UnicodeDecodeError:
+        with open(transformed_json_path) as transformed_json:
+            json_data = json.load(transformed_json)
+    return json_data
 
 
 def get_final_json(final_json: dict, json_data: dict, all_names: list):
@@ -186,8 +201,7 @@ def add_condition(condition: dict, directory: str):
             continue
 
         transformed_json_path = f"{med_path}/{transformed_file[0]}"
-        with open(transformed_json_path) as transformed_json:
-            json_data = json.load(transformed_json)
+        json_data = load_json(transformed_json_path)
 
         for key, value in condition.items():
             # Don't add EU number, as it's already present with capitals.
@@ -218,8 +232,7 @@ def add_orphan_con(eu_od_num: str, orphan_con: dict, directory: str):
             continue
 
         transformed_json_path = f"{med_path}/{transformed_file[0]}"
-        with open(transformed_json_path) as transformed_json:
-            json_data = json.load(transformed_json)
+        json_data = load_json(transformed_json_path)
         json_data[attr.eu_orphan_con_current] = orphan_con
 
         save_transformed_json(transformed_json_path, json_data)
