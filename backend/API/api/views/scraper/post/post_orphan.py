@@ -4,16 +4,20 @@
 
 from api.models.orphan_models import (
     OrphanProduct,
+    HistoryEUOrphanCon,
+    HistoryEUODSponsor,
 )
 from api.serializers.medicine_serializers.scraper.post.orphan import (
     OrphanProductSerializer,
+    EUOrphanConSerializer,
+    EUODSponsorSerializer,
 )
 from api.serializers.medicine_serializers.scraper.update.orphan import (
     OrphanProductFlexVarUpdateSerializer,
 )
 from api.models.other import OrphanLocks
 from .common import (
-    pop_initial_histories_data,
+    pop_foreign_key_histories_data,
     add_or_update_model,
     add_or_update_foreign_key,
     add_list,
@@ -30,7 +34,15 @@ def post(data):
 
         data = {key: value for key, value in data.items() if key not in locks}
 
+        foreign_key_history_data = pop_foreign_key_histories_data(data)
+
         add_or_update_model(data, override, OrphanProduct, {"eu_od_number": eu_od_number},
+                            OrphanProductSerializer, OrphanProductFlexVarUpdateSerializer)
+
+        history_variables(eu_od_number, foreign_key_history_data, data)
+        list_variables(eu_od_number, data)
+
+        add_or_update_model(foreign_key_history_data, override, OrphanProduct, {"eu_od_number": eu_od_number},
                             OrphanProductSerializer, OrphanProductFlexVarUpdateSerializer)
 
 
@@ -46,7 +58,7 @@ def list_variables(eu_od_number, data):
     """
 
 
-def history_variables(eu_od_number, initial_histories_data, current_histories_data):
+def history_variables(eu_od_number, foreign_key_histories_data, current_histories_data):
     """
     Creates new history variables for the orphan product history models using the data given in its
     argument "data". It expects the input data for the history variable to be formed like this:
@@ -56,4 +68,26 @@ def history_variables(eu_od_number, initial_histories_data, current_histories_da
         data (medicineObject): The new medicine data.
     """
 
-    return initial_histories_data
+    add_histories(
+        "eu_od_number",
+        eu_od_number,
+        HistoryEUOrphanCon,
+        EUOrphanConSerializer,
+        "eu_orphan_con_initial",
+        foreign_key_histories_data,
+        "eu_orphan_con_current",
+        current_histories_data,
+        "indication",
+    )
+
+    add_histories(
+        "eu_od_number",
+        eu_od_number,
+        HistoryEUODSponsor,
+        EUODSponsorSerializer,
+        "eu_od_sponsor",
+        foreign_key_histories_data,
+        "eu_od_sponsor",
+        current_histories_data,
+        "eu_od_sponsor",
+    )

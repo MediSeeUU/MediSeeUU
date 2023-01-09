@@ -34,12 +34,11 @@ class HistoryBrandNameAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin
     Admin View for HistoryBrandName
     """
     resource_class = HistoryBrandNameResource
-    list = (
-        "id",
+    list_display = [
         "eu_pnumber",
         "change_date",
         "eu_brand_name",
-    )
+    ]
 
 
 admin.site.register(HistoryBrandName, HistoryBrandNameAdmin)

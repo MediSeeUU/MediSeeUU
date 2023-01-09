@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from .history_info_json import get_history_info
 from api.views.other.permissionFilter import permission_filter
 from rest_framework import permissions
-from api.models.orphan_models import models
+from api.models.create_dashboard_columns import Category
 
 
 class OrphanHistoryInfo(views.APIView):
@@ -27,4 +27,6 @@ class OrphanHistoryInfo(views.APIView):
         """
         user = self.request.user
         perm = permission_filter(user)
-        return Response(get_history_info(perm, models))
+        return Response(get_history_info(perm, [
+            Category.Orphan_product,
+        ]))

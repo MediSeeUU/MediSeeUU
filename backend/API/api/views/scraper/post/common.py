@@ -3,16 +3,17 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 from django.forms.models import model_to_dict
-from api.models.get_dashboard_columns import get_initial_history_columns
+from api.models import models
+from api.models.get_dashboard_columns import get_foreign_key_history_columns
 
 
-def pop_initial_histories_data(data, models):
-    initial_history_data = {}
-    for initial_history_column in get_initial_history_columns(models):
-        if initial_history_column in data:
-            initial_history_data[initial_history_column] = \
-                data.pop(initial_history_column)
-    return initial_history_data
+def pop_foreign_key_histories_data(data):
+    foreign_key_history_data = {}
+    for foreign_key_history_column in get_foreign_key_history_columns(models):
+        if foreign_key_history_column in data:
+            foreign_key_history_data[foreign_key_history_column] = \
+                data.pop(foreign_key_history_column)
+    return foreign_key_history_data
 
 
 def insert_data(data, current, serializer):
@@ -98,8 +99,12 @@ def add_list(pk_name, pk, model, serializer, name, data, replace):
     if items is not None and len(items) > 0:
         if model_data and replace:
             model_data.delete()
-        for item in items:
-            new_data = {name: item, pk_name: pk}
+        if isinstance(items, list):
+            for item in items:
+                new_data = {name: item, pk_name: pk}
+                insert_data(new_data, None, serializer)
+        else:
+            new_data = {name: items, pk_name: pk}
             insert_data(new_data, None, serializer)
 
 
@@ -124,12 +129,17 @@ def add_model_list(pk_name, pk, model, serializer, name, data, replace):
     if items is not None and len(items) > 0:
         if model_data and replace:
             model_data.delete()
-        for item in items:
-            new_data = item | {pk_name: pk}
+        if isinstance(items, list):
+            for item in items:
+                new_data = item | {pk_name: pk}
+                insert_data(new_data, None, serializer)
+        else:
+            new_data = items | {pk_name: pk}
             insert_data(new_data, None, serializer)
 
 
-def add_histories(pk_name, pk, model, serializer, name, initial_name, initial_date, current_name, current_data):
+def add_histories(pk_name, pk, model, serializer, foreign_key_name,
+                  foreign_key_data, current_name, current_data, name):
     """
     Add a new object to the given history model.
 
@@ -143,8 +153,8 @@ def add_histories(pk_name, pk, model, serializer, name, initial_name, initial_da
         ValueError: Invalid data in data argument
         ValueError: Data does not exist in the given data argument
     """
-    initial_item = initial_date.get(initial_name)
-    initial_date[initial_name] = add_history(model, serializer, initial_item, name, pk_name, pk)
+    foreign_key_item = foreign_key_data.get(foreign_key_name)
+    foreign_key_data[foreign_key_name] = add_history(model, serializer, foreign_key_item, name, pk_name, pk)
 
     current_items = current_data.get(current_name)
     if current_items is not None and len(current_items) > 0:
@@ -168,7 +178,11 @@ def add_history(model, serializer, data, name, pk_name, pk):
     """
     if data is not None:
         # Data to be inserted into the database
-        new_data = {"change_date": data.get("date"), name: data.get("value"), pk_name: pk}
+        data_value = data.get("value")
+        if isinstance(data_value, dict):
+            new_data = {"change_date": data.get("date"), pk_name: pk, **data_value}
+        else:
+            new_data = {"change_date": data.get("date"), name: data_value, pk_name: pk}
         # Select element in database with exact same data, so we don't insert an identical element
         current_data = model.objects.filter(**new_data).first()
         # return inserted element's primary key

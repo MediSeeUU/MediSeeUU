@@ -51,8 +51,6 @@ def get_default_dict(filename: str) -> dict:
     Returns:
         dict: contains default value for every attribute
     """
-    default = 'Not parsed'
-
     # keys for human use
     if '_h_' in filename:
         dic = dict.fromkeys([attr.pdf_file,
@@ -66,7 +64,7 @@ def get_default_dict(filename: str) -> dict:
                              attr.eu_mah_initial,
                              attr.eu_aut_type_initial,
                              attr.eu_aut_type_current],
-                            default)
+                            attribute_values.not_found)
 
     # keys for orphan
     elif '_o_' in filename:
@@ -78,7 +76,7 @@ def get_default_dict(filename: str) -> dict:
                              attr.eu_mah_initial,
                              attr.eu_mah_current,
                              attr.eu_od_comp_date],
-                            default)
+                            attribute_values.not_found)
 
     # invalid name, only returns name and failure
     else:
