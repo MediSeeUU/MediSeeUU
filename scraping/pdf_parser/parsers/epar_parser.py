@@ -1,15 +1,15 @@
 # EPAR parser
 import datetime
-import re
-from scraping.utilities.pdf import helper as helper
-import scraping.utilities.xml.xml_parsing_utils as xml_utils
-import xml.etree.ElementTree as ET
-import scraping.pdf_parser.parsed_info_struct as pis
-from scraping.utilities.pdf import pdf_helper as pdf_helper
 import logging
-import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.attribute_values as attribute_values
 import os.path as path
+import re
+import xml.etree.ElementTree as ET
+
+import scraping.pdf_parser.parsed_info_struct as pis
+import scraping.utilities.definitions.attribute_values as attribute_values
+import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.xml.xml_parsing_utils as xml_utils
+from scraping.utilities.pdf import helper as helper
 
 date_pattern: str = r"\d{1,2} \b(?!emea\b)\w+ \d{4}|\d{1,2}\w{2} \b(?!emea\b)\w+ \d{4}"  # DD/MONTH/YYYY
 procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure
@@ -102,7 +102,7 @@ def get_date(xml: ET.Element) -> datetime.date | str:
             found = True
             if regex_date.search(txt):
                 return helper.convert_months(re.search(date_pattern, txt)[0])
-    return attribute_values.not_found
+    return attribute_values.date_not_found
 
 
 def get_opinion_date(xml: ET.Element) -> datetime.date | str:
@@ -139,15 +139,15 @@ def get_opinion_date(xml: ET.Element) -> datetime.date | str:
         if below_rapp and re.findall(date_pattern, txt):
             date = helper.convert_months(re.findall(date_pattern, txt)[-1])
         if below_rapp and ("scientific discussion" in txt and elem.tag == "header" or txt == "scientific discussion"):
-            if date and date != attribute_values.not_found:
+            if date and date != attribute_values.date_not_found:
                 return date
             else:
                 return attribute_values.not_scrapeable
-    if date and date != attribute_values.not_found:
+    if date and date != attribute_values.date_not_found:
         return date
     elif not_easily_scrapeable:
         return attribute_values.not_scrapeable
-    return attribute_values.not_found
+    return attribute_values.date_not_found
 
 
 def get_legal_basis(xml: ET.Element) -> list[str]:
@@ -236,7 +236,7 @@ def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_y
             bool: True if scraped date is before given date, False otherwise
         """
     date: datetime.date = get_date(xml)
-    if date != attribute_values.not_found and date != attribute_values.not_scrapeable:
+    if date != attribute_values.date_not_found and date != attribute_values.not_scrapeable:
         date: str = date.strftime("%d/%m/%Y")
         day = int(''.join(filter(str.isdigit, date.split("/")[0])))
         month = int(date.split("/")[1])

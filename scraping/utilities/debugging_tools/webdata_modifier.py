@@ -1,7 +1,7 @@
-import os.path as path
+import datetime
 import json
 import os
-import datetime
+import os.path as path
 
 import scraping.utilities.definitions.attributes as attr
 

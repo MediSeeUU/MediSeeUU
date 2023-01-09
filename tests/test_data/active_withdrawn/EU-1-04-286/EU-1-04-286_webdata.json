@@ -1,9 +1,8 @@
 {
-    "eu_pnumber": "EU/1/04/286",
-    "atc_code": "A16AX05",
     "eu_aut_status": "ACTIVE",
     "eu_brand_name_current": "Wilzin",
     "status_type": "a",
+    "eu_pnumber": "EU/1/04/286",
     "active_substance": "Zinc acetate dihydrate",
     "eu_mah_current": "Recordati Rare Diseases",
     "eu_orphan_con_current": [
@@ -16,9 +15,10 @@
             "end_date": "2014-10-19"
         }
     ],
+    "atc_code": "A16AX05",
     "orphan_status": "h",
-    "eu_aut_date": "2004-10-13 00:00:00",
-    "eu_aut_type_initial": "attribute not available on release",
+    "eu_aut_date": "2004-10-13",
+    "eu_aut_type_initial": "Not available at time of release",
     "eu_aut_type_current": "standard",
     "ema_number": "EMEA/H/C/535",
     "ema_number_id": "535",
@@ -26,17 +26,87 @@
     "eu_suspension": "False",
     "ema_number_certainty": "1.0",
     "authorisation_row": "0",
-    "scrape_date_web": "19/12/2022",
+    "scrape_date_web": "2023-01-09",
     "filedates": {
+        "EU-1-04-286_h_dec_0.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2004/200410138255/dec_8255_en.pdf",
+            "pdf_date": "2004-10-13",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-1-04-286_h_dec_1.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2008/2008042241856/dec_41856_en.pdf",
+            "pdf_date": "2008-04-22",
+            "pdf_scrape_date": "2023-01-09"
+        },
         "EU-1-04-286_h_dec_2.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2009/2009101965529/dec_65529_en.pdf",
-            "pdf_date": "2009-10-19 00:00:00",
-            "pdf_scrape_date": "2022-12-19 14:35:26.348136"
+            "pdf_date": "2009-10-19",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-1-04-286_h_dec_3.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2014/20140129127922/dec_127922_en.pdf",
+            "pdf_date": "2014-01-29",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-1-04-286_h_dec_4.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2016/20160517134973/dec_134973_en.pdf",
+            "pdf_date": "2016-05-17",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-1-04-286_h_dec_5.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2018/20180219140220/dec_140220_en.pdf",
+            "pdf_date": "2018-02-19",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-1-04-286_h_dec_6.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2020/20200504148124/dec_148124_en.pdf",
+            "pdf_date": "2020-05-04",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-1-04-286_h_anx_0.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2004/200410138255/anx_8255_en.pdf",
+            "pdf_date": "2004-10-13",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-1-04-286_h_anx_1.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2008/2008042241856/anx_41856_en.pdf",
+            "pdf_date": "2008-04-22",
+            "pdf_scrape_date": "2023-01-09"
         },
         "EU-1-04-286_h_anx_2.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2009/2009101965529/anx_65529_en.pdf",
-            "pdf_date": "2009-10-19 00:00:00",
-            "pdf_scrape_date": "2022-12-19 14:35:26.658482"
+            "pdf_date": "2009-10-19",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-1-04-286_h_anx_3.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2014/20140129127922/anx_127922_en.pdf",
+            "pdf_date": "2014-01-29",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-1-04-286_h_anx_4.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2016/20160517134973/anx_134973_en.pdf",
+            "pdf_date": "2016-05-17",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-1-04-286_h_anx_5.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2018/20180219140220/anx_140220_en.pdf",
+            "pdf_date": "2018-02-19",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-1-04-286_h_anx_6.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2020/20200504148124/anx_148124_en.pdf",
+            "pdf_date": "2020-05-04",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-1-04-286_h_scientific-discussion.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion/wilzin-epar-scientific-discussion_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-1-04-286_h_epar-other_0.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/procedural-steps-after/wilzin-epar-procedural-steps-taken-scientific-information-after-authorisation_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
         }
     }
 }

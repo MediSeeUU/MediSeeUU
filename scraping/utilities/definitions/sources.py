@@ -1,8 +1,8 @@
 # All sources :D
 decision = "dec"
-decision_initial = "dec_initial"
+dec_initial = "dec_initial"
 annex = "anx"
-annex_initial = "anx_initial"
+anx_initial = "anx_initial"
 epar = "epar"
 omar = "omar"
 odwar = "odwar"

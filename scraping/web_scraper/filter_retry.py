@@ -1,10 +1,9 @@
 import json
 import logging
 import os
-import pathlib
-from itertools import repeat
 
-import tqdm.contrib.concurrent as tqdm_concurrent
+import tqdm.contrib.logging as tqdm_logging
+from tqdm import tqdm
 
 import scraping.utilities.definitions.attributes as attr
 import scraping.utilities.log.log_tools as log_tools
@@ -34,10 +33,8 @@ def run_filter(n: int, data_filepath: str):
         data_filepath (str): the path to the data folder.
     """
     data_filepath = f"{data_filepath}/active_withdrawn"
-    json_path = "web_scraper/"
-    # If file is run locally:
-    if "web_scraper" == pathlib.Path.cwd().name:
-        json_path = ""
+    parent_path = data_filepath.split("data")[0]
+    json_path = f"{parent_path}scraping/web_scraper/JSON"
     filter.filter_all_pdfs(data_filepath)
     for _ in range(n):
         url_file = json_helper.JsonHelper(path=f"{json_path}/urls.json")
@@ -46,12 +43,10 @@ def run_filter(n: int, data_filepath: str):
         filter_path = log_tools.get_log_path("filter.txt", data_folder)
         with open(filter_path, "r") as f:
             filter_lines = f.read().split('\n')
-            tqdm_concurrent.thread_map(retry_medicine,
-                                       filter_lines,
-                                       repeat(url_file),
-                                       repeat(data_filepath),
-                                       repeat(url_refused_file), max_workers=12)
-            filter.filter_all_pdfs(data_filepath, filter_lines)
+            with tqdm_logging.logging_redirect_tqdm():
+                for line in tqdm(filter_lines):
+                    retry_medicine(line, url_file, data_folder, url_refused_file)
+                filter.filter_all_pdfs(data_filepath, filter_lines)
 
 
 def retry_medicine(filter_line: str, url_file: json_helper.JsonHelper, data_filepath: str,
@@ -106,14 +101,10 @@ def retry_download(eu_n: str, filename_elements: list[str], url_dict: dict[str, 
             url = url[int(filename_elements[2])][0]
     # Get nth file if file has number in name
 
-    filedate_dict = {}
-    filedates_path = f"{data_filepath}/{eu_n}/{eu_n}_filedates.json"
-    target_path: str = f"{data_filepath}/{eu_n}"
-    if os.path.exists(filedates_path):
-        with open(filedates_path, 'r') as f:
-            filedate_dict = json.load(f)
-
-    download.download_pdf_from_url(url, eu_n, filename_elements, target_path, filedate_dict, overwrite=True)
-
-# used for testing
-# run_filter(1)
+    webdata_dict = {}
+    webdata_path = f"{data_filepath}/active_withdrawn/{eu_n}/{eu_n}_webdata.json"
+    target_path: str = f"{data_filepath}/active_withdrawn/{eu_n}"
+    if os.path.exists(webdata_path):
+        with open(webdata_path, 'r') as f:
+            webdata_dict = json.load(f)
+    download.download_pdf_from_url(url, eu_n, filename_elements, target_path, webdata_dict, overwrite=True)

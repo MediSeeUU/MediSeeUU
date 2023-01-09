@@ -1,0 +1,107 @@
+{
+    "eu_accel_assess_g": "Not available at time of release",
+    "eu_od_number": "__SCRAPER_NOT_FOUND__",
+    "active_substance": "Peginterferon alfa-2b",
+    "eu_aut_status": [
+        {
+            "value": "WITHDRAWN",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_brand_name_current": [
+        {
+            "value": "PegIntron",
+            "date": "2023-01-09"
+        }
+    ],
+    "assess_time_days_total": 328,
+    "ema_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_brand_name_initial": {
+        "value": "PegIntron",
+        "date": "2023-01-09"
+    },
+    "assess_time_days_active": "Not found",
+    "eu_od_con": "__SCRAPER_NOT_FOUND__",
+    "ema_number": "EMEA/H/C/280",
+    "atc_code": "L03AB10",
+    "eu_nas": "Not available at time of release",
+    "ema_number_id": "280",
+    "assess_time_days_cstop": "Not found",
+    "eu_od_date": "Date is left blank in source",
+    "ema_procedure_start_initial": "1999-03-26",
+    "chmp_opinion_date": "2000-02-17",
+    "ema_number_certainty": "1.0",
+    "ec_decision_time_days": 8362,
+    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_date": "2000-05-25",
+    "ema_number_check": true,
+    "eu_aut_type_initial": {
+        "value": "Not available at time of release",
+        "date": "2023-01-09"
+    },
+    "eu_mah_current": [
+        {
+            "value": "Merck Sharp &amp; Dohme B.V.",
+            "date": "2023-01-09"
+        }
+    ],
+    "ema_reexamination": "False",
+    "eu_od_sponsor": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_aut_type_current": [
+        {
+            "value": "standard",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_mah_initial": {
+        "value": "SP Europe",
+        "date": "2023-01-09"
+    },
+    "eu_orphan_con_current": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_od_comp_date": "Date is left blank in source",
+    "eu_pnumber": "EU/1/00/131",
+    "eu_prime_initial": {
+        "value": "Not available at time of release",
+        "date": "2023-01-09"
+    },
+    "eu_legal_basis": [
+        "__SCRAPER_NOT_FOUND__"
+    ],
+    "eu_referral": "False",
+    "eu_indication_initial": {
+        "value": "[pharmaceutical form and contents; pharmacotherapeutic group] the pharmaceutical form is: powder and solvent for solution for injection. the powder is contained in a 2 ml vial and the solvent is presented in a 2 ml ampoule.\n\n therapeutic indications interferons modify the response of the body's immune system to help fight infections and severe diseases. pegintron, which contains an interferon, is used alone, in case of intolerance or contraindication to \n ribavirin to treat chronic hepatitis c, a viral infection of the liver.\n\n the optimal treatment for chronic hepatitis c is the combination of interferon alfa-2b with ribavirin.\n",
+        "date": "2023-01-09"
+    },
+    "aut_url": "https://ec.europa.eu/health/documents/community-register/2000/200005253611/dec_3611_en.pdf",
+    "eu_od_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "2023-01-09"
+    },
+    "eu_suspension": "False",
+    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
+    "smpc_url": "https://ec.europa.eu/health/documents/community-register/2000/200005253611/anx_3611_en.pdf",
+    "ema_rapp": "dr p. nilsson",
+    "omar_url": "404_url_not_found",
+    "epar_url": "https://www.ema.europa.eu/documents/procedural-steps/pegintron-epar-procedural-steps-taken-authorisation_en.pdf",
+    "eu_procedures_todo": [
+        {
+            "eu_referral": false,
+            "eu_suspension": false
+        }
+    ],
+    "eu_atmp": "Not available at time of release",
+    "ema_corapp": "prof. a. hildebrandt",
+    "odwar_url": "404_url_not_found",
+    "orphan_status": "h",
+    "eu_med_type": "small molecule"
+}

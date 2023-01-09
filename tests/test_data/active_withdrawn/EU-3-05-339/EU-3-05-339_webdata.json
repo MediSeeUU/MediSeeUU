@@ -1,18 +1,16 @@
 {
-    "eu_pnumber": "__SCRAPER_NOT_FOUND__",
-    "atc_code": "__SCRAPER_NOT_FOUND__",
+    "eu_od_pnumber": "EU/1/06/363",
+    "eu_od_sponsor": "Bristol-Myers Squibb Pharma EEIG",
     "eu_aut_status": "EXPIRED",
     "eu_brand_name_current": "EU/3/05/339",
     "status_type": "w",
     "eu_od_number": "EU/3/05/339",
     "active_substance": "Dasatinib",
     "eu_od_con": "Treatment of chronic myeloid leukaemia",
-    "eu_od_sponsor": "Bristol-Myers Squibb Pharma EEIG",
-    "eu_od_pnumber": "EU/1/06/363",
     "orphan_status": "o",
-    "eu_od_date": "2005-12-23 00:00:00",
-    "eu_aut_date": "2005-12-23 00:00:00",
-    "eu_aut_type_initial": "attribute not available on release",
+    "eu_od_date": "2005-12-23",
+    "eu_aut_date": "2005-12-23",
+    "eu_aut_type_initial": "Not available at time of release",
     "eu_aut_type_current": "standard",
     "ema_od_number": "EMEA/OD/075/05",
     "ema_number_id": "75/05",
@@ -20,5 +18,92 @@
     "eu_suspension": "False",
     "ema_number_certainty": "1.0",
     "authorisation_row": "0",
-    "scrape_date_web": "19/12/2022"
+    "scrape_date_web": "2023-01-09",
+    "filedates": {
+        "EU-3-05-339_o_dec_0.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2005/2005122310805/dec_10805_en.pdf",
+            "pdf_date": "2005-12-23",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_procedural-steps-taken-authorisation.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/procedural-steps/sprycel-epar-procedural-steps-taken-authorisation_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_0.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/procedural-steps-after/sprycel-epar-procedural-steps-taken-scientific-information-after-authorisation_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_1.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-conclusion/sprycel-psusa-00000935-202106-epar-scientific-conclusions-grounds-recommending-variation-terms_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_2.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-c-709-p46-048-epar-assessment-report_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_3.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-c-709-p46-047-epar-assessment-report_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_4.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-conclusion/sprycel-psusa-00000935-201806-epar-scientific-conclusions-grounds-recommending-variation-terms_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_5.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-c-709-ii-0059-epar-assessment-report-variation_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_6.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-c-000709-x-0056-g-epar-assessment-report-variation_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_7.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-c-709-p46-0041-epar-assessment-report_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_8.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-conclusion/sprycel-h-c-709-psuv-0041-epar-scientific-conclusions-grounds-recommending-variation-terms-marketing_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_9.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-c-709-a46-0035-epar-assessment-report_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_10.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/variation-report/sprycel-h-709-ii-0023-epar-assessment-report-variation_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_11.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion-variation/sprycel-h-c-709-ii-0010-epar-scientific-discussion-variation_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_12.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion-variation/sprycel-h-c-709-ii-0008-epar-scientific-discussion-variation_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_13.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion-variation/sprycel-h-c-709-ii-0002-epar-scientific-discussion-variation_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-05-339_o_epar-other_14.pdf": {
+            "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion/sprycel-epar-scientific-discussion_en.pdf",
+            "pdf_date": "2023-01-09",
+            "pdf_scrape_date": "2023-01-09"
+        }
+    }
 }
