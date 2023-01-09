@@ -1,5 +1,7 @@
 import logging
+
 import requests
+
 from scraping.utilities.web import json_helper
 
 
@@ -34,15 +36,8 @@ def exception_retry(max_attempts: int = 4, logging_instance: logging.getLoggerCl
                 except (OSError, requests.HTTPError) as e:
                     exception_names.append(type(e).__name__)
                     if logging_instance is not None:
-                        logging_instance.debug(f"Function {func.__name__} failed with {type(e).__name__}")
+                        logging_instance.debug(f"Function {func.__name__} failed. Error: {e}")
                     continue
-
-                # TODO: remove eventually. Left here to make running code easy while allowing easier debugging
-                except Exception as e:
-                    if logging_instance is not None:
-                        logging_instance.error(f"TODO: {func.__name__}({', '.join(map(str, args))}) "
-                                               f"failed... {e}")
-                    return None
 
             if logging_instance is not None:
                 logging_instance.warning(f"Retry failed after {max_attempts} attempts. {count_unique(exception_names)} "

@@ -1,5 +1,4 @@
 import fitz
-import io
 
 
 # PDF Helper functions

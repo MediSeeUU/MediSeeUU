@@ -1,5 +1,5 @@
 import unittest
-from datetime import datetime
+from datetime import datetime, date
 from scraping.web_scraper import ema_scraper as em
 import scraping.utilities.web.web_utils as utils
 from parameterized import parameterized
@@ -99,7 +99,7 @@ class TestEMAScraper(unittest.TestCase):
 
     @parameterized.expand([
         ["https://www.ema.europa.eu/en/medicines/human/EPAR/alymsys",
-         datetime.strptime("15/12/2022", '%d/%m/%Y')]
+         datetime.strptime("15/12/2022", '%d/%m/%Y').date()]
     ])
     def test_find_last_updated_date(self, url, exp_output):
         """

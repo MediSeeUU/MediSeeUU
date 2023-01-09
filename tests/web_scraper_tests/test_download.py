@@ -1,16 +1,17 @@
 from os import path, remove
 import os
-from datetime import datetime
+from datetime import datetime, date
 import regex as re
+import json
 from unittest import TestCase
 from scraping.web_scraper import download
 from scraping.utilities.web import json_helper
 from parameterized import parameterized
 import scraping.utilities.definitions.attributes as attr
 
-data_path = "../test_data"
+data_path = "../tests/test_data"
 if "web_scraper_tests" in os.getcwd():
-    data_path = "../../test_data"
+    data_path = "../../tests/test_data"
 data_local = f"{data_path}/active_withdrawn"
 
 
@@ -28,16 +29,16 @@ class TestDownload(TestCase):
             url: url of a file that needs to be tested
         """
         filedates_dict = download.get_date_from_url(url)
-        url_out = filedates_dict["pdf_link"]
-        date1 = filedates_dict["pdf_date"]
-        date1 = datetime.strptime(date1.split()[0], '%Y-%m-%d')
-        date2 = filedates_dict["pdf_scrape_date"]
-        date2 = datetime.strptime(date2.split()[0], '%Y-%m-%d')
+        url_out = filedates_dict[attr.file_date_pdf_link]
+        date1 = filedates_dict[attr.file_date_pdf_date]
+        date1 = datetime.strptime(date1.split()[0], '%Y-%m-%d').date()
+        date2 = filedates_dict[attr.file_date_pdf_scrape_date]
+        date2 = datetime.strptime(date2.split()[0], '%Y-%m-%d').date()
 
         self.assertTrue(url == url_out)
         if len((re.findall(r"\d{8}", url))) > 0:
-            self.assertTrue(date1.date() != datetime.now().date())
-        self.assertTrue(date2.date() == datetime.now().date())
+            self.assertTrue(date1 != date.today())
+        self.assertTrue(date2 == date.today())
 
     @parameterized.expand([["https://ec.europa.eu/health/documents/community-register/2022/20220324154987"
                             "/dec_154987_en.pdf",
@@ -55,7 +56,11 @@ class TestDownload(TestCase):
             filename_elements: The filename elements
         """
         target_path = f"{data_local}/{eu_n}"
-        self.assertIsNone(download.download_pdf_from_url(url, eu_n, filename_elements, target_path, {}, overwrite=True))
+        with open(f"{target_path}/{eu_n}_webdata.json") as f:
+            attr_dict = json.load(f)
+        self.assertIsNotNone(attr_dict)
+        self.assertNotEqual({}, attr_dict)
+        self.assertIsNone(download.download_pdf_from_url(url, eu_n, filename_elements, target_path, attr_dict, True))
 
     @parameterized.expand([["EU-1-21-1541",
                             "dec",
@@ -115,7 +120,7 @@ class TestDownload(TestCase):
                                          "-epar-public-assessment-report_en.pdf",
                              attr.omar_url: "",
                              attr.odwar_url: "",
-                             "other_ema_urls": []}
+                             attr.other_ema_urls: []}
                             ]])
     def test_download_medicine_files(self, eu_n, url_dict):
         """

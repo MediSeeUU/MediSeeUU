@@ -1,0 +1,107 @@
+{
+    "eu_accel_assess_g": "False",
+    "eu_od_number": "EU/3/05/339",
+    "active_substance": "Dasatinib",
+    "eu_aut_status": [
+        {
+            "value": "EXPIRED",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_brand_name_current": [
+        {
+            "value": "EU/3/05/339",
+            "date": "2023-01-09"
+        }
+    ],
+    "assess_time_days_total": 312,
+    "ema_od_number": "EMEA/OD/075/05",
+    "eu_brand_name_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "0001-01-01"
+    },
+    "assess_time_days_active": "Not found",
+    "eu_od_con": "Treatment of chronic myeloid leukaemia",
+    "ema_number": "__SCRAPER_NOT_FOUND__",
+    "atc_code": "__SCRAPER_NOT_FOUND__",
+    "eu_nas": "__SCRAPER_NOT_FOUND__",
+    "ema_number_id": "75/05",
+    "assess_time_days_cstop": "Not found",
+    "eu_od_date": "2005-12-23",
+    "ema_procedure_start_initial": "2006-01-12",
+    "chmp_opinion_date": "2006-11-20",
+    "ema_number_certainty": "1.0",
+    "ec_decision_time_days": "Not found",
+    "eu_od_pnumber": "EU/1/06/363",
+    "eu_aut_date": "2005-12-23",
+    "ema_number_check": false,
+    "eu_aut_type_initial": {
+        "value": "Not available at time of release",
+        "date": "0001-01-01"
+    },
+    "eu_mah_current": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-09"
+        }
+    ],
+    "ema_reexamination": "False",
+    "eu_od_sponsor": [
+        {
+            "value": "Bristol-Myers Squibb Pharma EEIG",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_aut_type_current": [
+        {
+            "value": "standard",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_mah_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "0001-01-01"
+    },
+    "eu_orphan_con_current": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_od_comp_date": "Date is left blank in source",
+    "eu_pnumber": "__SCRAPER_NOT_FOUND__",
+    "eu_prime_initial": {
+        "value": "Not available at time of release",
+        "date": "2023-01-09"
+    },
+    "eu_legal_basis": [
+        "article 8.3"
+    ],
+    "eu_referral": "False",
+    "eu_indication_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "0001-01-01"
+    },
+    "aut_url": "404_url_not_found",
+    "eu_od_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "0001-01-01"
+    },
+    "eu_suspension": "False",
+    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
+    "smpc_url": "404_url_not_found",
+    "ema_rapp": "jens ersb\u00f8ll",
+    "omar_url": "404_url_not_found",
+    "epar_url": "https://www.ema.europa.eu/documents/procedural-steps/sprycel-epar-procedural-steps-taken-authorisation_en.pdf",
+    "eu_procedures_todo": [
+        {
+            "eu_referral": false,
+            "eu_suspension": false
+        }
+    ],
+    "eu_atmp": "__SCRAPER_NOT_FOUND__",
+    "ema_corapp": "beatriz silva lima",
+    "odwar_url": "404_url_not_found",
+    "orphan_status": "o",
+    "eu_med_type": "__SCRAPER_NOT_FOUND__"
+}

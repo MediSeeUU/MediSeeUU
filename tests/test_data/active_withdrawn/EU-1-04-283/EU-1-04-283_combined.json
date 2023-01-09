@@ -1,0 +1,107 @@
+{
+    "eu_accel_assess_g": "Not available at time of release",
+    "eu_od_number": "__SCRAPER_NOT_FOUND__",
+    "active_substance": "duloxetine hydrochloride",
+    "eu_aut_status": [
+        {
+            "value": "WITHDRAWN",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_brand_name_current": [
+        {
+            "value": "Ariclaim",
+            "date": "2023-01-09"
+        }
+    ],
+    "assess_time_days_total": 534,
+    "ema_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_brand_name_initial": {
+        "value": "Ariclaim",
+        "date": "2023-01-09"
+    },
+    "assess_time_days_active": "Not found",
+    "eu_od_con": "__SCRAPER_NOT_FOUND__",
+    "ema_number": "EMEA/H/C/552",
+    "atc_code": "N06AX21",
+    "eu_nas": "Not available at time of release",
+    "ema_number_id": "552",
+    "assess_time_days_cstop": "Not found",
+    "eu_od_date": "Date is left blank in source",
+    "ema_procedure_start_initial": "2003-02-24",
+    "chmp_opinion_date": "2004-08-11",
+    "ema_number_certainty": "0.9824561403508771",
+    "ec_decision_time_days": 6725,
+    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_date": "2004-08-11",
+    "ema_number_check": true,
+    "eu_aut_type_initial": {
+        "value": "Not available at time of release",
+        "date": "2023-01-09"
+    },
+    "eu_mah_current": [
+        {
+            "value": "Eli Lilly Nederland B.V.",
+            "date": "2023-01-09"
+        }
+    ],
+    "ema_reexamination": "False",
+    "eu_od_sponsor": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_aut_type_current": [
+        {
+            "value": "standard",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_mah_initial": {
+        "value": "Boehringer Ingelheim International  GmbH",
+        "date": "2023-01-09"
+    },
+    "eu_orphan_con_current": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_od_comp_date": "Date is left blank in source",
+    "eu_pnumber": "EU/1/04/283",
+    "eu_prime_initial": {
+        "value": "Not available at time of release",
+        "date": "2023-01-09"
+    },
+    "eu_legal_basis": [
+        "__SCRAPER_NOT_FOUND__"
+    ],
+    "eu_referral": "True",
+    "eu_indication_initial": {
+        "value": "ariclaim is indicated for women for the treatment of moderate to severe stress urinary incontinence (sui), (see section 5.1).\n",
+        "date": "2023-01-09"
+    },
+    "aut_url": "https://ec.europa.eu/health/documents/community-register/2004/200408117970/dec_7970_en.pdf",
+    "eu_od_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "2023-01-09"
+    },
+    "eu_suspension": "False",
+    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
+    "smpc_url": "https://ec.europa.eu/health/documents/community-register/2004/200408117970/anx_7970_en.pdf",
+    "ema_rapp": "dr. calvo rojas",
+    "omar_url": "404_url_not_found",
+    "epar_url": "https://www.ema.europa.eu/documents/procedural-steps/ariclaim-epar-procedural-steps-taken-authorisation_en.pdf",
+    "eu_procedures_todo": [
+        {
+            "eu_referral": true,
+            "eu_suspension": false
+        }
+    ],
+    "eu_atmp": "Not available at time of release",
+    "ema_corapp": "dr. salmonson",
+    "odwar_url": "404_url_not_found",
+    "orphan_status": "h",
+    "eu_med_type": "small molecule"
+}
