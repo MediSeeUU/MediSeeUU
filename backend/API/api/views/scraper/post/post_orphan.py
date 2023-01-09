@@ -39,6 +39,12 @@ def post(data):
         add_or_update_model(data, override, OrphanProduct, {"eu_od_number": eu_od_number},
                             OrphanProductSerializer, OrphanProductFlexVarUpdateSerializer)
 
+        history_variables(eu_od_number, foreign_key_history_data, data)
+        list_variables(eu_od_number, data)
+
+        add_or_update_model(foreign_key_history_data, override, OrphanProduct, {"eu_od_number": eu_od_number},
+                            OrphanProductSerializer, OrphanProductFlexVarUpdateSerializer)
+
 
 def list_variables(eu_od_number, data):
     """
