@@ -26,7 +26,7 @@ def folder_changelog_up_to_date(folder: str, filepath: str) -> bool:
     except FileNotFoundError:
         return len(annex_files) == 0
     except json.JSONDecodeError as e:
-        print("ANNEX COMPARER:", e, "| invalid json file", filepath, "file will be deleted")
+        print("ANNEX COMPARER:", e, "| invalid json file:", filepath, ", file will be deleted")
         os.remove(filepath)
         return len(annex_files) == 0
     except Exception as e:
