@@ -1,10 +1,12 @@
-import requests
-import logging
 import json
-import scraping.utilities.definitions.communicator_urls as urls
-import time
+import logging
 import os
+import time
 from datetime import datetime, timedelta
+
+import requests
+
+import scraping.utilities.definitions.communicator_urls as urls
 
 log = logging.getLogger("db_communicator.login")
 secret_path = file_path = os.path.abspath(os.path.join("../secrets.json"))

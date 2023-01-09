@@ -1,12 +1,11 @@
-import scraping.xml_converter.__main__ as xml_converter
-import xml.etree.ElementTree as ET
-import scraping.utilities.xml.xml_parsing_utils as xml_utils
-import scraping.pdf_parser.parsed_info_struct as pis
-from scraping.utilities.pdf import pdf_helper as pdf_helper
 import logging
+import os
+import xml.etree.ElementTree as ET
+
+import scraping.pdf_parser.parsed_info_struct as pis
 import scraping.utilities.definitions.attribute_values as attribute_values
 import scraping.utilities.definitions.attributes as attr
-import os
+import scraping.utilities.xml.xml_parsing_utils as xml_utils
 
 log = logging.getLogger("pdf_scraper")
 

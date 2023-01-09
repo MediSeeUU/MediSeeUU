@@ -1,8 +1,6 @@
-import os
 import logging
+import os
 import shutil
-import io
-from typing import TextIO
 
 log = logging.getLogger("safe_io")
 

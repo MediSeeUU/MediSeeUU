@@ -1,7 +1,6 @@
 import datetime
-from dataclasses import dataclass, field, asdict
 import typing
-import scraping.utilities.definitions.attributes as attr
+from dataclasses import dataclass, field, asdict
 
 
 @dataclass
@@ -17,7 +16,7 @@ class ParsedInfoStruct:
     - Filename of each ODWAR file
     """
     eu_number: str = field(default_factory=str)
-    parse_date: datetime.datetime = datetime.datetime.now()
+    parse_date: datetime.datetime = datetime.datetime.now().strftime("%Y-%m-%d")
 
     decisions: list[typing.Dict[str, str]] = field(default_factory=list)
     annexes: list[typing.Dict[str, str]] = field(default_factory=list)

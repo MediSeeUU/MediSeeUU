@@ -70,12 +70,11 @@ class TestOmarParse(TestCase):
 
         for (xml_body, xml_file) in xml_bodies:
             result = omar_parser.get_report_date(xml_body, xml_file)
-            if result == attribute_values.not_found or result == "":
+            if result == attribute_values.date_not_found or result == "":
                 wrong_found += 1
 
         print("Incorrect get_report_date parses found: " + str(wrong_found))
         self.assertLess(wrong_found, 1)
-
 
     def test_get_eu_od_number(self):
         """
