@@ -1,13 +1,16 @@
-from joblib import Parallel, delayed
-import fitz
+import json
+import logging
+import multiprocessing
 import os
 import re
-import json
-import multiprocessing
-import logging
-from scraping.utilities.log import log_tools
-from scraping.utilities.io import safe_io
+
+import fitz
+from joblib import Parallel, delayed
 from tqdm import tqdm
+
+from scraping.utilities.definitions import attribute_values as values, attributes
+from scraping.utilities.io import safe_io
+from scraping.utilities.log import log_tools
 
 wrong_doctype_str = "@wrong_doctype"
 cpu_count: int = multiprocessing.cpu_count()
@@ -168,7 +171,7 @@ def get_brand_name(filename: str, directory: str) -> str:
             return web_attributes['eu_brand_name_current']
     except FileNotFoundError as e:
         log.warning(f"Filter: Webdata JSON not found for {eu_num}. Error: {e}")
-        return "no_webdata_json_found"
+        return values.webdata_not_found
 
 
 def get_url(filename: str, directory: str) -> str:
@@ -195,7 +198,7 @@ def get_url(filename: str, directory: str) -> str:
         with open(f'{json_path}urls.json') as urls_json:
             try:
                 urls = json.load(urls_json)
-            except JSONDecodeError as e:
+            except json.JSONDecodeError as e:
                 log.warning(f"Filter: Cannot open urls.json. Error: {e}")
                 return "cannot_open_urls_json"
             try:
@@ -216,10 +219,10 @@ def get_url(filename: str, directory: str) -> str:
                 if 'other' in filename:
                     num = filename.split('_')[-1]
                     num = int(num[:len(num) - 4])
-                    return urls[eu_num]['other_ema_urls'][num][0]
+                    return urls[eu_num][attributes.other_ema_urls][num][0]
             except KeyError as e:
                 log.warning(f"Filter: KeyError in urls.json. Error: {e}")
-                return "no_url_found"
+                return values.url_not_found
     except FileNotFoundError as e:
         log.warning(f"Filter: Cannot find urls.json. Error: {e}")
         return "urls_json_not_found"

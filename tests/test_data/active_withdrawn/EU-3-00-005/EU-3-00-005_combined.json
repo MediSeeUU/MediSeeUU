@@ -1,0 +1,115 @@
+{
+    "eu_accel_assess_g": "False",
+    "eu_od_number": "EU/3/00/005",
+    "active_substance": "Gemtuzumab Ozogamicin",
+    "eu_aut_status": [
+        {
+            "value": "ACTIVE",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_brand_name_current": [
+        {
+            "value": "EU/3/00/005",
+            "date": "2023-01-09"
+        }
+    ],
+    "assess_time_days_total": 448,
+    "ema_od_number": "EMEA/OD/022/00",
+    "eu_brand_name_initial": {
+        "value": "Gemtuzumab Ozogamicin",
+        "date": "2023-01-09"
+    },
+    "assess_time_days_active": "Not found",
+    "eu_od_con": "Treatment of acute myeloid leukaemia",
+    "ema_number": "__SCRAPER_NOT_FOUND__",
+    "atc_code": "__SCRAPER_NOT_FOUND__",
+    "eu_nas": "__SCRAPER_NOT_FOUND__",
+    "ema_number_id": "22/00",
+    "assess_time_days_cstop": "Not found",
+    "eu_od_date": "2000-10-18",
+    "ema_procedure_start_initial": "2016-12-01",
+    "chmp_opinion_date": "2018-02-22",
+    "ema_number_certainty": "0.75",
+    "ec_decision_time_days": 1782,
+    "eu_od_pnumber": "EU/1/18/1277",
+    "eu_aut_date": "2000-10-18",
+    "ema_number_check": false,
+    "eu_aut_type_initial": {
+        "value": "Not available at time of release",
+        "date": "2023-01-09"
+    },
+    "eu_mah_current": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-09"
+        }
+    ],
+    "ema_reexamination": "False",
+    "eu_od_sponsor": [
+        {
+            "value": "Pfizer Europe MA EEIG",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_aut_type_current": [
+        {
+            "value": "standard",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_mah_initial": {
+        "value": "the sponsor: Wyeth Europa Limited",
+        "date": "2023-01-09"
+    },
+    "eu_orphan_con_current": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_od_comp_date": "Date is left blank in source",
+    "eu_pnumber": "__SCRAPER_NOT_FOUND__",
+    "eu_prime_initial": {
+        "value": "False",
+        "date": "2023-01-09"
+    },
+    "eu_legal_basis": [
+        "article 8.3"
+    ],
+    "eu_referral": "False",
+    "eu_indication_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "0001-01-01"
+    },
+    "aut_url": "https://ec.europa.eu/health/documents/community-register/2000/200010185296/dec_5296_en.pdf",
+    "eu_od_initial": {
+        "value": "adopted",
+        "date": "2023-01-09"
+    },
+    "eu_suspension": "False",
+    "ema_omar_condition": [
+        {
+            "eu_od_number": "eu/3/00/005",
+            "eu_od_prevalence": "the prevalence of acute myeloid leukaemia (hereinafter referred to as \u201cthe condition\u201d) was estimated to remain below 5 in 10,000 and was concluded in to be approximately 1 in 10,000 persons in the european union, at the time of the review of the designation criteria; ",
+            "eu_od_alt_treatment": "significant_benefit",
+            "eu_od_sig_benefit": "it was demonstrated that the addition of mylotarg to authorised induction chemotherapy with daunorubicin and cytarabine led to improved event-free survival when compared to standard chemotherapy alone.",
+            "ema_report_date": "2018-04-19"
+        }
+    ],
+    "smpc_url": "404_url_not_found",
+    "ema_rapp": "nithyanandan nagercoil",
+    "omar_url": "https://www.ema.europa.eu/documents/orphan-maintenance-report/mylotarg-orphan-maintenance-assessment-report-initial-authorisation_en.pdf",
+    "epar_url": "https://www.ema.europa.eu/documents/assessment-report/mylotarg-epar-public-assessment-report_en.pdf",
+    "eu_procedures_todo": [
+        {
+            "eu_referral": false,
+            "eu_suspension": false
+        }
+    ],
+    "eu_atmp": "__SCRAPER_NOT_FOUND__",
+    "ema_corapp": "sinan b. sarac",
+    "odwar_url": "404_url_not_found",
+    "orphan_status": "o",
+    "eu_med_type": "__SCRAPER_NOT_FOUND__"
+}

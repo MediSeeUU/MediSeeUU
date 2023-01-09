@@ -1,15 +1,15 @@
 # EPAR parser
-from datetime import datetime
-import re
-from scraping.utilities.pdf import helper as helper
-import scraping.utilities.xml.xml_parsing_utils as xml_utils
-import xml.etree.ElementTree as ET
-import scraping.pdf_parser.parsed_info_struct as pis
-from scraping.utilities.pdf import pdf_helper as pdf_helper
+import datetime
 import logging
-import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.values as values
 import os.path as path
+import re
+import xml.etree.ElementTree as ET
+
+import scraping.pdf_parser.parsed_info_struct as pis
+import scraping.utilities.definitions.attribute_values as attribute_values
+import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.xml.xml_parsing_utils as xml_utils
+from scraping.utilities.pdf import helper as helper
 
 date_pattern: str = r"\d{1,2} \b(?!emea\b)\w+ \d{4}|\d{1,2}\w{2} \b(?!emea\b)\w+ \d{4}"  # DD/MONTH/YYYY
 procedure_info: str = "information on the procedure"  # Header in EPAR files: Background information on the procedure
@@ -30,7 +30,7 @@ def get_all(filename: str, xml_data: ET.Element) -> dict:
     Returns:
         dict: Dictionary of all scraped attributes, named according to the bible
     """
-    epar = {attr.filename: filename[:len(filename) - 4],  # removes extension
+    epar = {attr.pdf_file: filename[:-4],  # removes extension
             attr.ema_procedure_start_initial: get_date(xml_data),
             attr.chmp_opinion_date: get_opinion_date(xml_data),
             attr.eu_legal_basis: get_legal_basis(xml_data),
@@ -64,13 +64,14 @@ def parse_file(filename: str, directory: str, medicine_struct: pis.ParsedInfoStr
     xml_root = xml_tree.getroot()
     xml_body = xml_root[1]
     res = get_all(filename, xml_body)
+    res[attr.pdf_file] = xml_utils.file_get_name_pdf(xml_root[0])
     medicine_struct.epars.append(res)
     #  TODO: remove this, used for debugging. Uncomment for usage
     # pdf_helper.res_to_file("../logs/txt_files/epar_results.txt", res, filename)
     return medicine_struct
 
 
-def get_date(xml: ET.Element) -> datetime | str:
+def get_date(xml: ET.Element) -> datetime.date | str:
     """
     Gets the attribute ema_procedure_start_initial
     The initial authorization date of the EMA
@@ -79,7 +80,7 @@ def get_date(xml: ET.Element) -> datetime | str:
         xml (ET.Element): the contents of the XML file
 
     Returns:
-        datetime | str: the attribute ema_procedure_start_initial - a string of a date in DD/MM/YYYY format
+        datetime.date | str: the attribute ema_procedure_start_initial - a string of a date in DD/MM/YYYY format
     """
     regex_date = re.compile(date_pattern)
     regex_ema = re.compile(r"the application was received by the em\w+ on")
@@ -101,10 +102,10 @@ def get_date(xml: ET.Element) -> datetime | str:
             found = True
             if regex_date.search(txt):
                 return helper.convert_months(re.search(date_pattern, txt)[0])
-    return values.not_found
+    return attribute_values.date_not_found
 
 
-def get_opinion_date(xml: ET.Element) -> datetime | str:
+def get_opinion_date(xml: ET.Element) -> datetime.date | str:
     """
     Gets the attribute chmp_opinion_date
     The date of the CHMP opinion on the medicine
@@ -113,7 +114,7 @@ def get_opinion_date(xml: ET.Element) -> datetime | str:
         xml (ET.Element): the contents of the XML file
 
     Returns:
-        datetime | str: the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format
+        datetime.date | str: the attribute chmp_opinion_date - a string of a date in DD/MM/YYYY format
     """
     not_easily_scrapeable = False
     for p in xml_utils.get_paragraphs_by_header(steps_taken_assessment_str, xml):
@@ -138,15 +139,15 @@ def get_opinion_date(xml: ET.Element) -> datetime | str:
         if below_rapp and re.findall(date_pattern, txt):
             date = helper.convert_months(re.findall(date_pattern, txt)[-1])
         if below_rapp and ("scientific discussion" in txt and elem.tag == "header" or txt == "scientific discussion"):
-            if date and date != values.not_found:
+            if date and date != attribute_values.date_not_found:
                 return date
             else:
-                return values.not_scrapeable
-    if date and date != values.not_found:
+                return attribute_values.not_scrapeable
+    if date and date != attribute_values.date_not_found:
         return date
     elif not_easily_scrapeable:
-        return values.not_scrapeable
-    return values.not_found
+        return attribute_values.not_scrapeable
+    return attribute_values.date_not_found
 
 
 def get_legal_basis(xml: ET.Element) -> list[str]:
@@ -196,8 +197,8 @@ def get_legal_basis(xml: ET.Element) -> list[str]:
                 return helper.convert_articles([articles2[0]])
 
     if legal_basis_exists:
-        return [values.not_scrapeable]
-    return [values.not_found]
+        return [attribute_values.not_scrapeable]
+    return [attribute_values.not_found]
 
 
 def get_prime(xml: ET.Element) -> str:
@@ -212,13 +213,13 @@ def get_prime(xml: ET.Element) -> str:
         str: the attribute eu_prime_initial - "yes" or "no", "NA" if ema_procedure_start_initial before 01-03-2016
     """
     if check_date_before(xml, 1, 3, 2016):
-        return values.NA_before
+        return attribute_values.NA_before
     for p in xml_utils.get_paragraphs_by_header("submission of the dossier", xml):
         if re.findall(r" prime ", p) and not re.findall(r"prime importance", p):
-            return values.yes_str
+            return attribute_values.yes_str
         if re.findall(r"priority medicine", p):
-            return values.yes_str
-    return values.no_str
+            return attribute_values.yes_str
+    return attribute_values.no_str
 
 
 def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_year: int) -> bool:
@@ -234,9 +235,9 @@ def check_date_before(xml: ET.Element, check_day: int, check_month: int, check_y
         Returns:
             bool: True if scraped date is before given date, False otherwise
         """
-    date = get_date(xml)
-    if date != values.not_found and date != values.not_scrapeable:
-        date = date.strftime("%d/%m/%Y")
+    date: datetime.date = get_date(xml)
+    if date != attribute_values.date_not_found and date != attribute_values.not_scrapeable:
+        date: str = date.strftime("%d/%m/%Y")
         day = int(''.join(filter(str.isdigit, date.split("/")[0])))
         month = int(date.split("/")[1])
         year = int(date.split("/")[2])
@@ -302,9 +303,9 @@ def get_rapp(xml: ET.Element) -> str:
     for elem in xml.iter():
         txt = str(elem.text)
         if "rapporteur" in txt and "co-rapporteur" not in txt:
-            return values.not_scrapeable
+            return attribute_values.not_scrapeable
 
-    return values.not_found
+    return attribute_values.not_found
 
 
 def find_rapp_between_rapp_and_corapp(txt: str) -> str | None:
@@ -405,7 +406,7 @@ def get_corapp(xml: ET.Element) -> str:
                 corapporteur += txt
                 corapporteur = clean_rapporteur(corapporteur)
                 if corapporteur == "n" or "n/a" in corapporteur:
-                    return values.not_found
+                    return attribute_values.not_found
             if len(corapporteur) >= 4:
                 return corapporteur
         # Find co-rapporteur after "co-rapporteur:"
@@ -413,7 +414,7 @@ def get_corapp(xml: ET.Element) -> str:
         if re.search(regex_str_2, txt):
             corapporteur = get_rapp_after(regex_str_2, txt, 15)
             if corapporteur == "n" or "n/a" in corapporteur:
-                return values.not_found
+                return attribute_values.not_found
             if len(corapporteur) < 4:
                 found = True
             else:
@@ -424,8 +425,8 @@ def get_corapp(xml: ET.Element) -> str:
     for elem in xml.iter():
         txt = str(elem.text)
         if "co-rapporteur" in txt or "corraporteur" in txt:
-            return values.not_scrapeable
-    return values.not_found
+            return attribute_values.not_scrapeable
+    return attribute_values.not_found
 
 
 def get_reexamination(xml: ET.Element) -> str:
@@ -442,10 +443,10 @@ def get_reexamination(xml: ET.Element) -> str:
     for elem in xml.iter():
         txt = str(elem.text)
         if "reexamination" in txt:
-            return values.yes_str
+            return attribute_values.yes_str
         if "re-examination" in txt:
-            return values.yes_str
-    return values.no_str
+            return attribute_values.yes_str
+    return attribute_values.no_str
 
 
 def get_accelerated_assessment(xml: ET.Element) -> str:
@@ -461,14 +462,14 @@ def get_accelerated_assessment(xml: ET.Element) -> str:
         str: the attribute eu_accel_assess_g - "yes" or "no", "NA" if ema_procedure_start_initial before 20-05-2004
     """
     if check_date_before(xml, 20, 5, 2004):
-        return values.NA_before
+        return attribute_values.NA_before
     found = False
     for elem in xml.iter():
         txt = str(elem.text)
         if accelerated_assessment in txt:
             found = True
     if not found:
-        return values.no_str
+        return attribute_values.no_str
 
     text_elements = 20
     # Check whether the word "agreed" is at most 20 text elements before "accelerated assessment"
@@ -480,7 +481,7 @@ def get_accelerated_assessment(xml: ET.Element) -> str:
         return found_before
     if found_after:
         return found_after
-    return values.yes_str
+    return attribute_values.yes_str
 
 
 def agreed_before_accelerated_assessment(xml: ET.Element, text_elements: int) -> str:
@@ -502,11 +503,11 @@ def agreed_before_accelerated_assessment(xml: ET.Element, text_elements: int) ->
         if counter != -1:
             counter += 1
             if accelerated_assessment in txt and counter <= text_elements:
-                return values.yes_str
+                return attribute_values.yes_str
         if "agreed" in txt:
             # Return no if accelerated assessment is not agreed
             if "not agreed" in txt:
-                return values.no_str
+                return attribute_values.no_str
             # Start counter
             counter = 0
 
@@ -532,8 +533,8 @@ def agreed_after_accelerated_assessment(xml: ET.Element, text_elements: int) -> 
             if "agreed" in txt and counter <= text_elements:
                 # Return no if accelerated assessment is not agreed
                 if "not agreed" in txt:
-                    return values.no_str
-                return values.yes_str
+                    return attribute_values.no_str
+                return attribute_values.yes_str
         if accelerated_assessment in txt:
             # Start counter
             counter = 0

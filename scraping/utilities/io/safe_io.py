@@ -1,8 +1,6 @@
-import os
 import logging
+import os
 import shutil
-import io
-from typing import TextIO
 
 log = logging.getLogger("safe_io")
 
@@ -51,19 +49,3 @@ def delete_folder(path: str):
             log.info(f"Folder {path} does not exist.")
     except PermissionError as e:
         log.warning(f"Folder {path} could not be removed.\nError: {e}")
-
-
-def create_folder(path: str):
-    """
-    Creates folder and logs error when an error occurs
-
-    Args:
-        path (str): Path of folder to be created
-    """
-    try:
-        if not os.path.isdir(path):
-            os.mkdir(path)
-        else:
-            log.info(f"Folder {path} already exists")
-    except PermissionError as e:
-        log.warning(f"Folder {path} could not be created.\nError: {e}")

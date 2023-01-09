@@ -15,7 +15,6 @@ requests
 bs4
 
 # DB Communicator
-flask
 requests
 
 # Testing

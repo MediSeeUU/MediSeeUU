@@ -1,0 +1,34 @@
+{
+    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "eu_od_sponsor": "Global Medical Services Sp. z o.o.",
+    "eu_aut_status": "ACTIVE",
+    "eu_brand_name_current": "EU/3/22/2689",
+    "status_type": "a",
+    "eu_od_number": "EU/3/22/2689",
+    "active_substance": "(7S)-8,8-dimethyl-7-{[(2E)-3-phenyl-2-propen-1-yl]oxy}-7,8-dihydro-2H,6H-pyrano[3,2-g]chromen-2-one",
+    "eu_od_con": "Treatment of Hutchinson-Gilford progeria syndrome",
+    "orphan_status": "o",
+    "eu_od_date": "2022-08-10",
+    "eu_aut_date": "2022-08-10",
+    "eu_aut_type_initial": "standard",
+    "eu_aut_type_current": "standard",
+    "ema_od_number": "EMA/OD/0000093471",
+    "ema_number_id": "93471",
+    "eu_referral": "False",
+    "eu_suspension": "False",
+    "ema_number_certainty": "1.0",
+    "authorisation_row": "0",
+    "scrape_date_web": "2023-01-09",
+    "filedates": {
+        "EU-3-22-2689_o_dec_0.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220810156719/dec_156719_en.pdf",
+            "pdf_date": "2022-08-10",
+            "pdf_scrape_date": "2023-01-09"
+        },
+        "EU-3-22-2689_o_dec_1.pdf": {
+            "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220810157864/dec_157864_en.pdf",
+            "pdf_date": "2022-08-10",
+            "pdf_scrape_date": "2023-01-09"
+        }
+    }
+}

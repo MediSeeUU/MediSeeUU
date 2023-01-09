@@ -1,8 +1,7 @@
 import logging
-import os
-from scraping.utilities.io import safe_io
-import scraping.utilities.web.config_objects as config
+from pathlib import Path
 
+import scraping.utilities.web.config_objects as config
 
 all_loggers: list[logging.getLoggerClass()] = []
 
@@ -16,11 +15,11 @@ def init_loggers():
     logging_path = config.default_path_logging
 
     logs_path = logging_path.split("log_files")[0]
-    safe_io.create_folder(logs_path)
+    Path(logs_path).mkdir(parents=True, exist_ok=True)
     log_path = f"{logs_path}/log_files"
     txt_path = f"{logs_path}/txt_files"
-    safe_io.create_folder(log_path)
-    safe_io.create_folder(txt_path)
+    Path(log_path).mkdir(parents=True, exist_ok=True)
+    Path(txt_path).mkdir(parents=True, exist_ok=True)
 
     # --- Root logger ---
     # Root logger has level NOTSET, all messages that the sub-loggers want to pass along will be passed along.
@@ -44,7 +43,8 @@ def init_loggers():
     logging.getLogger("urllib3.connectionpool").setLevel(logging.INFO)  # Avoid urllib3 DEBUG messages
 
     # Create logging module for all other modules
-    logging_names = ["pdf_parser", "annex_10_parser", "xml_converter", "combiner", "db_communicator", "safe_io"]
+    logging_names = ["pdf_parser", "annex_10_parser", "xml_converter", "combiner", "transformer", "db_communicator",
+                     "safe_io"]
     for log_name in logging_names:
         log = logging.getLogger(log_name)
 
@@ -78,13 +78,14 @@ def get_log_path(filename: str, data_path: str) -> str:
     Returns:
         str: Path of the location of the logging file, based on whether the main or tests are being run
     """
-    parent_path = "/".join((data_path.strip('/').split('/')[:-1]))
     if "test" in data_path:
+        parent_path = "/".join((data_path.strip('/').split('/')[:-2]))
         if ".log" in filename:
             return f"{parent_path}/tests/logs/log_files/{filename}"
         elif ".txt" in filename:
             return f"{parent_path}/tests/logs/txt_files/{filename}"
     else:
+        parent_path = "/".join((data_path.strip('/').split('/')[:-1]))
         if ".log" in filename:
             return f"{parent_path}/logs/log_files/{filename}"
         elif ".txt" in filename:

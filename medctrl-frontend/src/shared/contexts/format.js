@@ -50,7 +50,7 @@ function cleanFetchedDataPoint(fetchedDataPoint, structData) {
         return splitteddate[1] + '/' + splitteddate[2] + '/' + splitteddate[0]
       }
       case '[string]':
-        return value.join(", ")
+        return value.join(', ')
       default:
         return def
     }

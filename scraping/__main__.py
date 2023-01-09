@@ -1,15 +1,17 @@
-import os.path as path
-import os
-import pause
 from datetime import datetime, timedelta
+from pathlib import Path
 
-import web_scraper.__main__ as web_scraper
+import pause
+
 import scraping.annex_10_parser.__main__ as annex_10_parser
-import scraping.xml_converter.__main__ as xml_converter
+import scraping.combiner.__main__ as combiner
 import scraping.pdf_parser.__main__ as pdf_parser
+import scraping.transformer.__main__ as transformer
+import scraping.web_scraper.__main__ as web_scraper
+import scraping.xml_converter.__main__ as xml_converter
 import scraping.db_communicator.__main__ as db_communicator
+import scraping.utilities.config.__main__ as cf
 from scraping.utilities.log import log_tools
-from scraping.utilities.io import safe_io
 from scraping.utilities.web import config_objects
 
 
@@ -30,20 +32,30 @@ def run_all():
     Runs all modules of MediSee
     For now only the web_scraper and pdf_parser will be run.
     """
-    # Creates the data directory if it does not exist
+    log_tools.init_loggers()
     data_folder_directory = create_data_folders()
+    config_objects.default_path_data = data_folder_directory
 
     # Standard config is to run all. Uncomment line below to use custom setup.
     web_config = config_objects.WebConfig().run_all().set_parallel()
-    # web_config = config_objects.WebConfig().run_custom(download_ema_excel=True).set_parallel()
+    # web_config = config_objects.WebConfig().run_custom(scrape_ec=True, scrape_ema=True).set_parallel()
 
-    # Any module can be commented or uncommented here, as the modules they work separately
-    web_scraper.main(web_config)
-    xml_converter.main(data_folder_directory)
-    pdf_parser.main(data_folder_directory)
-    annex_10_parser.main(data_folder_directory)
-    # combiner.main(data_folder_directory)
-    # db_communicator.main(data_folder_directory)
+    # modules run based on configfile
+    config = cf.load_config()
+    if config[cf.run_web]:
+        web_scraper.main(web_config)
+    if config[cf.run_xml]:
+        xml_converter.main(data_folder_directory, config[cf.xml_convert_all])
+    if config[cf.run_pdf]:
+        pdf_parser.main(data_folder_directory, config[cf.pdf_parse_all])
+    if config[cf.run_annex_10]:
+        annex_10_parser.main(data_folder_directory)
+    if config[cf.run_combiner]:
+        combiner.main(data_folder_directory)
+    if config[cf.run_transformer]:
+        transformer.main(data_folder_directory)
+    if config[cf.run_db_com]:
+        db_communicator.main(data_folder_directory, config[cf.db_com_send_together])
 
 
 def create_data_folders() -> str:
@@ -53,20 +65,17 @@ def create_data_folders() -> str:
     Returns:
         str: Returns the data folder directory.
     """
-    data_folder_directory = '../data'
-    data_folder_active_withdrawn = f"{data_folder_directory}/active_withdrawn"
-    data_folder_refused_directory = f"{data_folder_directory}/refused"
-    data_folder_annex10_directory = f"{data_folder_directory}/annex_10"
-    folders = [data_folder_directory, data_folder_active_withdrawn, data_folder_refused_directory,
-               data_folder_annex10_directory]
+    data_folder_dir = '../data'
+
+    folders = [data_folder_dir + "/" + subdir
+               for subdir in ["active_withdrawn", "refused", "annex_10"]]
 
     for folder in folders:
-        safe_io.create_folder(folder)
+        Path(folder).mkdir(exist_ok=True, parents=True)
 
-    return data_folder_directory
+    return data_folder_dir
 
 
 if __name__ == '__main__':
-    log_tools.init_loggers()
     run_all()  # TODO:  Replace this with "main()" when moved to server
     # main()

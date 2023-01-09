@@ -1,9 +1,10 @@
-from datetime import datetime
+import datetime
+import logging
 import re
 
 import dateutil.parser as dateparser
-import scraping.utilities.definitions.values as values
-import logging
+
+import scraping.utilities.definitions.attribute_values as attribute_values
 
 log = logging.getLogger("pdf_parser")
 
@@ -45,7 +46,7 @@ legal_bases = {'article 10.b', 'article 8.3', 'article 10.2', 'article 4.8.3', '
                'article 4.8', 'article 10.1', 'article 10.4'}
 
 
-def convert_months(date_str: str) -> datetime | str:
+def convert_months(date_str: str) -> datetime.date | str:
     """
     Converts written months (january) to a numeric value
 
@@ -53,16 +54,16 @@ def convert_months(date_str: str) -> datetime | str:
         date_str (str): string containing fully writen month
 
     Returns:
-        datetime: datetime of the given date_str
+        datetime.date: date of the given date_str
     """
     date_str = date_str.replace("th", "")
     for k in months.keys():
         if k in date_str:
             date_str = date_str.replace(f" {k} ", f"/{months[k]}/")
             break
-    date = values.not_found
+    date = attribute_values.date_not_found
     try:
-        date = datetime.strptime(date_str, '%d/%m/%Y')
+        date = datetime.datetime.strptime(date_str, '%d/%m/%Y').date()
     except ValueError as e:
         log.warning(f"Date {date_str} could not be parsed. Warning message: {e}")
     return date
@@ -76,7 +77,7 @@ def convert_roman_numbers(date: str) -> str:
         date: string pattern of the date
 
     Returns
-        date: string pattern of the corrected date
+        datetime.date: string pattern of the corrected date
     """
 
     # sort roman_numbers on length (big to small)
@@ -124,7 +125,7 @@ def convert_articles(articles: list[str]) -> list[str]:
     return list(set(res))
 
 
-def get_date(txt: str) -> datetime:
+def get_date(txt: str) -> datetime.date | str:
     """
     Extracts date from a text, also including months with roman numerals and fully written months (IV, january)
 
@@ -132,29 +133,32 @@ def get_date(txt: str) -> datetime:
         txt (str): text containing date
 
     Returns:
-        datetime: found date.
+        datetime.date: found date or date_not_found string
     """
-    if txt:
+    if not txt:
+        return attribute_values.date_not_found
         txt = txt.lower()
-        try:
-            return dateparser.parse(txt, fuzzy=True)
-        except dateparser._parser.ParserError:
-            pass
-        temp_date = txt.split(' ')[0]
-        temp_date = convert_roman_numbers(temp_date)
-        try:
-            return dateparser.parse(temp_date, fuzzy=True)
-        except dateparser._parser.ParserError:
-            pass
+    #try dateparser
+    try:
+        return dateparser.parse(txt, fuzzy=True).date()
+    except dateparser._parser.ParserError:
+        pass
+    #try for roman numbers
+    temp_date = txt.split(' ')[0]
+    temp_date = convert_roman_numbers(temp_date)
+    try:
+        return dateparser.parse(temp_date, fuzzy=True).date()
+    except dateparser._parser.ParserError:
+        pass
+    # try for writen months
+    try:
+        temp_date = txt.replace("th", "")
+        for k in months.keys():
+            if k in temp_date:
+                temp_date = temp_date.replace(f" {k} ", f"/{months[k]}/")
+                break
+        return dateparser.parse(temp_date, fuzzy=True).date()
+    except dateparser._parser.ParserError:
+        pass
 
-        try:
-            temp_date = txt.replace("th", "")
-            for k in months.keys():
-                if k in temp_date:
-                    temp_date = temp_date.replace(f" {k} ", f"/{months[k]}/")
-                    break
-            return dateparser.parse(temp_date, fuzzy=True)
-        except dateparser._parser.ParserError:
-            pass
-
-    return values.default_date
+    return attribute_values.date_not_found
