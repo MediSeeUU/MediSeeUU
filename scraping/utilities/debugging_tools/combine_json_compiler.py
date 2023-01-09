@@ -1,6 +1,6 @@
-from os import listdir
-import os.path as path
 import json
+import os.path as path
+from os import listdir
 
 
 def compile_json_files(directory: str):

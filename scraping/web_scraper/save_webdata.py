@@ -1,5 +1,5 @@
 import json
-from datetime import datetime
+from datetime import date
 from pathlib import Path
 
 import scraping.utilities.definitions.attributes as attr
@@ -33,8 +33,8 @@ def set_active_refused_webdata(eu_n: str, medicine_url: str, dec_list: list[str]
     # Sets parameter values for refused medicines that need to be saved
     else:
         # Checks if the medicine is a human or orphan one, and based on that picks the right EMA number
-        ema_number_str: str = "ema_number"
-        ema_od_number_str: str = "ema_od_number"
+        ema_number_str: str = attr.ema_number
+        ema_od_number_str: str = attr.ema_od_number
         # Based on whether there is an EMA number, sets the medicine identifier to the EMA number or the product name
         if ema_number_str in attributes_dict.keys():
             medicine_identifier: str = "REFUSED-" + attributes_dict[ema_number_str].replace('/', '-')
@@ -67,17 +67,17 @@ def save_webdata_and_urls(medicine_identifier: str, medicine_url: str, dec_list:
         target_path (str): Directory where the json needs to be stored.
     """
     # TODO: Common name structure?
-    url_json: dict[str, list[str] | str, str] = {
+    url_json = {
         medicine_identifier: {
             attr.ec_url: medicine_url,
             attr.aut_url: dec_list,
             attr.smpc_url: anx_list,
             attr.ema_url: ema_list,
-            attr.scrape_date_web: datetime.strftime(datetime.today(), '%d/%m/%Y'),
-            "overwrite_ec_files": "True"
+            attr.scrape_date_web: date.today().strftime('%Y-%m-%d'),
+            attr.overwrite_ec_files: "True"
         }
     }
-    attributes_dict["scrape_date_web"] = datetime.strftime(datetime.today(), '%d/%m/%Y')
+    attributes_dict[attr.scrape_date_web] = date.today().strftime('%Y-%m-%d')
     # Creates a directory if the medicine doesn't exist yet
     Path(f"{target_path}").mkdir(exist_ok=True)
 

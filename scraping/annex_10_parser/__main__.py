@@ -1,14 +1,14 @@
-import pandas as pd
-import logging
-
-import os
-from os import path
 import json
-from datetime import datetime
 import logging
-import scraping.utilities.json.json_compiler as json_compiler
+import os
+from datetime import datetime
+from os import path
+
+import pandas as pd
+
 import scraping.utilities.definitions.attribute_values as attribute_values
 import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.json.json_compiler as json_compiler
 
 log = logging.getLogger("annex_10_parser")
 annex_10_json_file = "annex_10_parser.json"
@@ -138,7 +138,7 @@ def product_name_in_epars(product_name: str, all_data: list[dict], opinion_date:
         if not medicine["epars"]:
             continue
         chmp_opinion_date = medicine["epars"][0][attr.chmp_opinion_date]
-        if chmp_opinion_date == attribute_values.not_found:
+        if chmp_opinion_date == attribute_values.date_not_found:
             log.warning(f"Annex_10_parser: no chmp opinion date found in EPAR for {eu_num}")
             continue
         # Check if the chmp_opinion_date and opinion_date are within 4 days of each other
@@ -160,21 +160,19 @@ def annexes_already_parsed(annex_10_folder: str) -> bool:
     Returns:
         bool: True if file already exists and last annex is included, False otherwise
     """
-    all_annexes_parsed = False
-    if os.path.exists(annex_10_json_file):
+    annex_10_path = os.path.join(annex_10_folder, annex_10_json_file)
+    if os.path.exists(annex_10_path):
         try:
-            f = open(annex_10_json_file, "r", encoding="utf-8")
+            f = open(annex_10_path, "r", encoding="utf-8")
             parsed_data = json.load(f)
             for filename in os.listdir(annex_10_folder):
                 if filename.split(".")[0] in parsed_data:
-                    all_annexes_parsed = True
+                    log.info("All annexes in folder were already parsed")
+                    return True
         except FileNotFoundError:
             log.error(f"{annex_10_json_file} not found.")
         except json.decoder.JSONDecodeError as error:
             log.error(f"Can't open {annex_10_json_file}: Decode error | " + str(error))
-        if all_annexes_parsed:
-            log.info("All annexes in folder were already parsed")
-            return True
     return False
 
 

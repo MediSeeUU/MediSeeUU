@@ -1,5 +1,7 @@
 import logging
+
 import requests
+
 from scraping.utilities.web import json_helper
 
 

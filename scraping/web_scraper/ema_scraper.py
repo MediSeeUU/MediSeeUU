@@ -1,6 +1,6 @@
 import logging
 import multiprocessing
-from datetime import datetime
+from datetime import datetime, date
 from itertools import repeat
 
 import bs4
@@ -38,7 +38,6 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
     # Last part of the url, contains the medicine name
     medicine_name: str = url.split('&')[0].split('/')[-1]
 
-    # TODO: Graceful handling
     html_active.raise_for_status()
 
     soup = bs4.BeautifulSoup(html_active.text, html_parser_str)
@@ -59,9 +58,9 @@ def scrape_medicine_page(url: str, html_active: requests.Response) -> dict[str, 
     # Final dict that will be returned.
     # Filled with values here, last attribute "other_ema_urls" filled after
     result_dict: dict[str, str | list[tuple]] = {
-        "odwar_url": find_priority_link(med_type.odwar_priority_list, url_list_init),
-        "omar_url": find_priority_link(med_type.omar_priority_list, url_list_init),
-        "epar_url": find_priority_link(med_type.epar_priority_list, url_list_init)
+        attr.odwar_url: find_priority_link(med_type.odwar_priority_list, url_list_init),
+        attr.omar_url: find_priority_link(med_type.omar_priority_list, url_list_init),
+        attr.epar_url: find_priority_link(med_type.epar_priority_list, url_list_init)
     }
 
     # All links that are not saved into the dictionary already, as well as the links under assessment history
@@ -220,8 +219,8 @@ def get_annex10_data(url: str, annex_dict: dict[str, dict[str, str]]) -> dict[st
                 continue
 
         annex_dict[year_s] = {
-            "last_updated": datetime.strftime(datetime.now(), '%d/%m/%Y'),
-            "annex10_url": excel_link
+            "last_updated": date.today().strftime('%d/%m/%Y'),
+            attr.annex10_url: excel_link
         }
 
     return annex_dict
@@ -308,7 +307,7 @@ def get_epar_excel_url(url: str, ema_excel_json_helper: json_helper.JsonHelper) 
     # Saves the (new) url and the scrape date to the dictionary
     ema_excel_json_helper.overwrite_dict({
         "url": excel_url,
-        "last_scrape_date": datetime.strftime(datetime.now(), "%d/%m/%Y")
+        "last_scrape_date": date.today().strftime("%d/%m/%Y")
     })
     ema_excel_json_helper.save_dict()
 

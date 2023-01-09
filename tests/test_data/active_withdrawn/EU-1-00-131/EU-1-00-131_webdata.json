@@ -8,7 +8,7 @@
     "atc_code": "L03AB10",
     "orphan_status": "h",
     "eu_aut_date": "2000-05-25",
-    "eu_aut_type_initial": "attribute not available on release",
+    "eu_aut_type_initial": "Not available at time of release",
     "eu_aut_type_current": "standard",
     "ema_number": "EMEA/H/C/280",
     "ema_number_id": "280",
@@ -16,552 +16,552 @@
     "eu_suspension": "False",
     "ema_number_certainty": "1.0",
     "authorisation_row": "0",
-    "scrape_date_web": "22/12/2022",
+    "scrape_date_web": "2023-01-07",
     "filedates": {
         "EU-1-00-131_h_dec_0.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2000/200005253611/dec_3611_en.pdf",
             "pdf_date": "2000-05-25",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_1.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2000/200011163917/dec_3917_en.pdf",
             "pdf_date": "2000-11-16",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_2.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2001/200103264238/dec_4238_en.pdf",
             "pdf_date": "2001-03-26",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_3.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2002/200202064806/dec_4806_en.pdf",
             "pdf_date": "2002-02-06",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_4.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2002/200205075079/dec_5079_en.pdf",
             "pdf_date": "2002-05-07",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_5.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2002/200207115570/dec_5570_en.pdf",
             "pdf_date": "2002-07-11",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_6.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2002/200207195591/dec_5591_en.pdf",
             "pdf_date": "2002-07-19",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_7.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2002/200207155590/dec_5590_en.pdf",
             "pdf_date": "2002-07-15",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_8.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2002/200211266082/dec_6082_en.pdf",
             "pdf_date": "2002-11-26",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_9.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2003/200303176267/dec_6267_en.pdf",
             "pdf_date": "2003-03-17",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_10.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2003/200305146560/dec_6560_en.pdf",
             "pdf_date": "2003-05-14",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_11.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2003/200310026974/dec_6974_en.pdf",
             "pdf_date": "2003-10-02",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_12.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2003/200310247075/dec_7075_en.pdf",
             "pdf_date": "2003-10-24",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_13.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2004/200402057559/dec_7559_en.pdf",
             "pdf_date": "2004-02-05",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_14.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2004/200403167717/dec_7717_en.pdf",
             "pdf_date": "2004-03-16",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_15.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2004/200408238364/dec_8364_en.pdf",
             "pdf_date": "2004-08-23",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_16.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2004/200410208680/dec_8680_en.pdf",
             "pdf_date": "2004-10-20",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_17.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2005/200503229486/dec_9486_en.pdf",
             "pdf_date": "2005-03-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_18.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2005/200505259608/dec_9608_en.pdf",
             "pdf_date": "2005-05-25",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_19.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2005/2005090810164/dec_10164_en.pdf",
             "pdf_date": "2005-09-08",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_20.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2005/2005111510490/dec_10490_en.pdf",
             "pdf_date": "2005-11-15",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_21.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2006/2006042711426/dec_11426_en.pdf",
             "pdf_date": "2006-04-27",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_22.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2006/2006051911579/dec_11579_en.pdf",
             "pdf_date": "2006-05-19",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_23.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2006/2006071912590/dec_12590_en.pdf",
             "pdf_date": "2006-07-19",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_24.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2006/2006090113490/dec_13490_en.pdf",
             "pdf_date": "2006-09-01",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_25.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2006/2006102315061/dec_15061_en.pdf",
             "pdf_date": "2006-10-23",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_26.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2007/2007061325730/dec_25730_en.pdf",
             "pdf_date": "2007-06-13",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_27.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2007/2007103033528/dec_33528_en.pdf",
             "pdf_date": "2007-10-30",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_28.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2008/2008012839088/dec_39088_en.pdf",
             "pdf_date": "2008-01-28",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_29.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2008/2008041443248/dec_43248_en.pdf",
             "pdf_date": "2008-04-14",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_30.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2008/2008071047808/dec_47808_en.pdf",
             "pdf_date": "2008-07-10",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_31.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2008/2008103150649/dec_50649_en.pdf",
             "pdf_date": "2008-10-31",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_32.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2008/2008120551835/dec_51835_en.pdf",
             "pdf_date": "2008-12-05",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_33.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2009/2009080363949/dec_63949_en.pdf",
             "pdf_date": "2009-08-03",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_34.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2009/2009111169772/dec_69772_en.pdf",
             "pdf_date": "2009-11-11",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_35.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2010/2010050577452/dec_77452_en.pdf",
             "pdf_date": "2010-05-05",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_36.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2010/2010102890588/dec_90588_en.pdf",
             "pdf_date": "2010-10-28",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_37.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2011/2011022898789/dec_98789_en.pdf",
             "pdf_date": "2011-02-28",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_38.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2011/20110615104548/dec_104548_en.pdf",
             "pdf_date": "2011-06-15",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_39.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2011/20110629105928/dec_105928_en.pdf",
             "pdf_date": "2011-06-29",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_40.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2011/20110824108032/dec_108032_en.pdf",
             "pdf_date": "2011-08-24",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_41.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2012/20120319120390/dec_120390_en.pdf",
             "pdf_date": "2012-03-19",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_42.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2012/20120326120749/dec_120749_en.pdf",
             "pdf_date": "2012-03-26",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_43.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2013/20130530126047/dec_126047_en.pdf",
             "pdf_date": "2013-05-30",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_44.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2014/20140522128591/dec_128591_en.pdf",
             "pdf_date": "2014-05-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_45.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2016/20160629135304/dec_135304_en.pdf",
             "pdf_date": "2016-06-29",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_46.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2018/20180219139970/dec_139970_en.pdf",
             "pdf_date": "2018-02-19",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_47.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2018/20180928142066/dec_142066_en.pdf",
             "pdf_date": "2018-09-28",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_dec_48.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2021/20210421151446/dec_151446_en.pdf",
             "pdf_date": "2021-04-21",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_0.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2000/200005253611/anx_3611_en.pdf",
             "pdf_date": "2000-05-25",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_1.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2000/200011163917/anx_3917_en.pdf",
             "pdf_date": "2000-11-16",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_2.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2001/200103264238/anx_4238_en.pdf",
             "pdf_date": "2001-03-26",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_3.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2002/200202064806/anx_4806_en.pdf",
             "pdf_date": "2002-02-06",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_4.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2002/200205075079/anx_5079_en.pdf",
             "pdf_date": "2002-05-07",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_5.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2002/200207115570/anx_5570_en.pdf",
             "pdf_date": "2002-07-11",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_6.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2002/200207195591/anx_5591_en.pdf",
             "pdf_date": "2002-07-19",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_7.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2002/200207155590/anx_5590_en.pdf",
             "pdf_date": "2002-07-15",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_8.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2002/200211266082/anx_6082_en.pdf",
             "pdf_date": "2002-11-26",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_9.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2003/200303176267/anx_6267_en.pdf",
             "pdf_date": "2003-03-17",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_10.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2003/200305146560/anx_6560_en.pdf",
             "pdf_date": "2003-05-14",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_11.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2003/200310026974/anx_6974_en.pdf",
             "pdf_date": "2003-10-02",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_12.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2003/200310247075/anx_7075_en.pdf",
             "pdf_date": "2003-10-24",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_13.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2004/200402057559/anx_7559_en.pdf",
             "pdf_date": "2004-02-05",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_14.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2004/200403167717/anx_7717_en.pdf",
             "pdf_date": "2004-03-16",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_15.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2004/200408238364/anx_8364_en.pdf",
             "pdf_date": "2004-08-23",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_16.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2004/200410208680/anx_8680_en.pdf",
             "pdf_date": "2004-10-20",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_17.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2005/200503229486/anx_9486_en.pdf",
             "pdf_date": "2005-03-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_18.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2005/200505259608/anx_9608_en.pdf",
             "pdf_date": "2005-05-25",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_19.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2005/2005090810164/anx_10164_en.pdf",
             "pdf_date": "2005-09-08",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_20.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2005/2005111510490/anx_10490_en.pdf",
             "pdf_date": "2005-11-15",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_21.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2006/2006042711426/anx_11426_en.pdf",
             "pdf_date": "2006-04-27",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_22.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2006/2006051911579/anx_11579_en.pdf",
             "pdf_date": "2006-05-19",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_23.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2006/2006071912590/anx_12590_en.pdf",
             "pdf_date": "2006-07-19",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_24.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2006/2006090113490/anx_13490_en.pdf",
             "pdf_date": "2006-09-01",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_25.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2006/2006102315061/anx_15061_en.pdf",
             "pdf_date": "2006-10-23",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_26.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2007/2007061325730/anx_25730_en.pdf",
             "pdf_date": "2007-06-13",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_27.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2007/2007103033528/anx_33528_en.pdf",
             "pdf_date": "2007-10-30",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_28.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2008/2008012839088/anx_39088_en.pdf",
             "pdf_date": "2008-01-28",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_29.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2008/2008041443248/anx_43248_en.pdf",
             "pdf_date": "2008-04-14",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_30.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2008/2008071047808/anx_47808_en.pdf",
             "pdf_date": "2008-07-10",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_31.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2008/2008103150649/anx_50649_en.pdf",
             "pdf_date": "2008-10-31",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_32.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2008/2008120551835/anx_51835_en.pdf",
             "pdf_date": "2008-12-05",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_33.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2009/2009080363949/anx_63949_en.pdf",
             "pdf_date": "2009-08-03",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_34.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2009/2009111169772/anx_69772_en.pdf",
             "pdf_date": "2009-11-11",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_35.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2010/2010050577452/anx_77452_en.pdf",
             "pdf_date": "2010-05-05",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_36.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2010/2010102890588/anx_90588_en.pdf",
             "pdf_date": "2010-10-28",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_37.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2011/2011022898789/anx_98789_en.pdf",
             "pdf_date": "2011-02-28",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_38.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2011/20110615104548/anx_104548_en.pdf",
             "pdf_date": "2011-06-15",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_39.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2011/20110629105928/anx_105928_en.pdf",
             "pdf_date": "2011-06-29",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_40.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2011/20110824108032/anx_108032_en.pdf",
             "pdf_date": "2011-08-24",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_41.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2012/20120319120390/anx_120390_en.pdf",
             "pdf_date": "2012-03-19",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_42.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2012/20120326120749/anx_120749_en.pdf",
             "pdf_date": "2012-03-26",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_43.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2013/20130530126047/anx_126047_en.pdf",
             "pdf_date": "2013-05-30",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_44.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2014/20140522128591/anx_128591_en.pdf",
             "pdf_date": "2014-05-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_45.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2016/20160629135304/anx_135304_en.pdf",
             "pdf_date": "2016-06-29",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_46.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2018/20180219139970/anx_139970_en.pdf",
             "pdf_date": "2018-02-19",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_anx_47.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2018/20180928142066/anx_142066_en.pdf",
             "pdf_date": "2018-09-28",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_procedural-steps-taken-authorisation.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/procedural-steps/pegintron-epar-procedural-steps-taken-authorisation_en.pdf",
-            "pdf_date": "2022-12-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_date": "2023-01-07",
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_epar-other_0.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/procedural-steps-after/pegintron-epar-procedural-steps-taken-scientific-information-after-authorisation_en.pdf",
-            "pdf_date": "2022-12-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_date": "2023-01-07",
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_epar-other_1.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/scientific-conclusion/pegintron-h-c-280-psuv-0117-epar-scientific-conclusions-grounds-recommending-variation-terms_en.pdf",
-            "pdf_date": "2022-12-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_date": "2023-01-07",
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_epar-other_2.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/variation-report/pegintron-h-c-280-ws-0216-epar-assessment-report-variation_en.pdf",
-            "pdf_date": "2022-12-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_date": "2023-01-07",
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_epar-other_3.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/variation-report/pegintron-h-c-280-ii-0085-epar-assessment-report-variation_en.pdf",
-            "pdf_date": "2022-12-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_date": "2023-01-07",
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_epar-other_4.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/variation-report/pegintron-h-c-208-ii-0087-epar-assessment-report-variation_en.pdf",
-            "pdf_date": "2022-12-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_date": "2023-01-07",
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_epar-other_5.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion-variation/pegintron-h-c-280-ii-0054-epar-scientific-discussion-variation_en.pdf",
-            "pdf_date": "2022-12-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_date": "2023-01-07",
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_epar-other_6.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion-variation/pegintron-h-c-280-ii-0069-epar-scientific-discussion-variation_en.pdf",
-            "pdf_date": "2022-12-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_date": "2023-01-07",
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_epar-other_7.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion-variation/pegintron-h-c-280-ii-0068-epar-scientific-discussion-variation_en.pdf",
-            "pdf_date": "2022-12-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_date": "2023-01-07",
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_epar-other_8.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion-variation/pegintron-h-c-280-ii-0045-epar-scientific-discussion-variation_en.pdf",
-            "pdf_date": "2022-12-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_date": "2023-01-07",
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_epar-other_9.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/steps-after-cutoff/pegintron-epar-steps-taken-after-authorisation-when-cutoff-date-has-been-used_en.pdf",
-            "pdf_date": "2022-12-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_date": "2023-01-07",
+            "pdf_scrape_date": "2023-01-07"
         },
         "EU-1-00-131_h_epar-other_10.pdf": {
             "pdf_link": "https://www.ema.europa.eu/documents/scientific-discussion/pegintron-epar-scientific-discussion_en.pdf",
-            "pdf_date": "2022-12-22",
-            "pdf_scrape_date": "2022-12-22"
+            "pdf_date": "2023-01-07",
+            "pdf_scrape_date": "2023-01-07"
         }
     }
 }

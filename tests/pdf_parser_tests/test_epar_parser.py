@@ -55,7 +55,7 @@ class TestEparParse(TestCase):
         # Call get_date
         for (xml_body, filename) in xml_bodies:
             output = epar_parser.get_date(xml_body)
-            if output != attribute_values.not_found and output != attribute_values.not_scrapeable:
+            if output != attribute_values.date_not_found and output != attribute_values.not_scrapeable:
                 found_count += 1
                 output = output.strftime("%d/%m/%Y")
                 day = re.search(r"\d{2}/", output)[0][:2].strip()
@@ -78,7 +78,7 @@ class TestEparParse(TestCase):
             output = epar_parser.get_opinion_date(xml_body)
             if not output:
                 self.fail(f"No output found for {filename}")
-            if output != attribute_values.not_found and output != attribute_values.not_scrapeable:
+            if output != attribute_values.date_not_found and output != attribute_values.not_scrapeable:
                 found_count += 1
                 output = output.strftime("%d/%m/%Y")
                 day = re.search(r"\d{2}/", output)[0][:2].strip()

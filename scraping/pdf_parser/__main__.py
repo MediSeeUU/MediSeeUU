@@ -1,19 +1,20 @@
-import scraping.pdf_parser.parsed_info_struct as pis
-from os import listdir
-import os.path as path
+import datetime
 import json
 import logging
-import joblib
-import datetime
 import multiprocessing
-from tqdm import tqdm
-import scraping.utilities.definitions.attributes as attr
+import os.path as path
+from os import listdir
 
+import joblib
+from tqdm import tqdm
+
+import scraping.pdf_parser.parsed_info_struct as pis
+import scraping.utilities.definitions.attributes as attr
+from scraping.pdf_parser.parsers import annex_parser
 # for main
 from scraping.pdf_parser.parsers import dec_parser
 from scraping.pdf_parser.parsers import epar_parser
 from scraping.pdf_parser.parsers import omar_parser
-from scraping.pdf_parser.parsers import annex_parser
 
 log = logging.getLogger("pdf_parser")
 
@@ -166,7 +167,7 @@ def folder_has_no_pdf_json(directory: str, folder: str) -> bool:
     return True
 
 
-def datetime_serializer(date: datetime.datetime):
+def datetime_serializer(date: datetime.datetime) -> str:
     """
     Datetime to string serializer for json dumping
     Convert datetime.datetime to string
