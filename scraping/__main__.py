@@ -10,6 +10,7 @@ import scraping.transformer.__main__ as transformer
 import scraping.web_scraper.__main__ as web_scraper
 import scraping.xml_converter.__main__ as xml_converter
 import scraping.db_communicator.__main__ as db_communicator
+import scraping.utilities.config.__main__ as cf
 from scraping.utilities.log import log_tools
 from scraping.utilities.web import config_objects
 
@@ -39,8 +40,7 @@ def run_all():
     web_config = config_objects.WebConfig().run_all().set_parallel()
     # web_config = config_objects.WebConfig().run_custom(scrape_ec=True, scrape_ema=True).set_parallel()
 
-    # Any module can be commented or uncommented here, as the modules they work separately
-    import scraping.utilities.config.config as cf
+    # modules run based on configfile
     config = cf.load_config()
     if config[cf.run_web]:
         web_scraper.main(web_config)

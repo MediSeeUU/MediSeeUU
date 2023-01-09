@@ -1,4 +1,6 @@
 import json
+import os
+
 filename = "scraping_config.txt"
 
 run_web = 'run_web'
@@ -12,6 +14,7 @@ xml_convert_all = 'xml_convert_all'
 pdf_parse_all = 'pdf_parse_all'
 db_com_send_together = 'db_com_send_together'
 
+# if no config found, use default values
 default_config = {
     run_web: True,
     run_xml: True,
@@ -26,10 +29,18 @@ default_config = {
 }
 
 def load_config():
-  try:
-    with open(filename, 'r') as f:
-      return json.load(f)
-  except FileNotFoundError:
-    with open(filename, 'w') as f:
-      json.dump(default_config, f, indent=4)
-      return default_config
+    """
+    loads config file, if file does not exist, creates file with default values.
+
+    Returns:
+    dict[bool]: dictionary containing bools to indicate on/off
+
+    """
+
+    if os.path.exists(filename):
+        with open(filename, 'r') as f:
+            return json.load(f)
+    else:
+        with open(filename, 'w') as f:
+            json.dump(default_config, f, indent=4)
+        return default_config
