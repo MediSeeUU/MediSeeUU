@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+
 import scraping.utilities.definitions.xml_tags as tags
 
 

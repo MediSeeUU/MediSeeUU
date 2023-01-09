@@ -21,4 +21,4 @@ jobs:
         run: |
           cp /etc/medctrl/config/deploy_${{inputs.build_name}}.py ./API/api_settings/settings/
           BUILD_NAME=${{inputs.build_name}} ./build.sh
-        working-directory: medctrl-backend
+        working-directory: backend

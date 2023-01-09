@@ -1,0 +1,116 @@
+{
+    "eu_accel_assess_g": "Not available at time of release",
+    "eu_od_number": "__SCRAPER_NOT_FOUND__",
+    "active_substance": "Mitotane",
+    "eu_aut_status": [
+        {
+            "value": "ACTIVE",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_brand_name_current": [
+        {
+            "value": "Lysodren",
+            "date": "2023-01-09"
+        }
+    ],
+    "assess_time_days_total": 527,
+    "ema_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_brand_name_initial": {
+        "value": "Lysodren",
+        "date": "2023-01-09"
+    },
+    "assess_time_days_active": "Not found",
+    "eu_od_con": "__SCRAPER_NOT_FOUND__",
+    "ema_number": "EMEA/H/C/521",
+    "atc_code": "L01XX23",
+    "eu_nas": "Not available at time of release",
+    "ema_number_id": "521",
+    "assess_time_days_cstop": "Not found",
+    "eu_od_date": "Date is left blank in source",
+    "ema_procedure_start_initial": "2002-11-18",
+    "chmp_opinion_date": "2004-04-28",
+    "ema_number_certainty": "0.7916666666666666",
+    "ec_decision_time_days": 6830,
+    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_date": "2004-04-28",
+    "ema_number_check": true,
+    "eu_aut_type_initial": {
+        "value": "Not available at time of release",
+        "date": "2023-01-09"
+    },
+    "eu_mah_current": [
+        {
+            "value": "HRA Pharma Rare Diseases",
+            "date": "2023-01-09"
+        }
+    ],
+    "ema_reexamination": "False",
+    "eu_od_sponsor": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_aut_type_current": [
+        {
+            "value": "standard",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_mah_initial": {
+        "value": "Laboratoire HRA Pharma",
+        "date": "2023-01-09"
+    },
+    "eu_orphan_con_current": [
+        {
+            "value": [
+                {
+                    "pre": "o",
+                    "id": "102",
+                    "eu_num": "EU/3/02/102",
+                    "indication": "Treatment of adrenal cortical carcinoma",
+                    "link_date": "2004-04-30",
+                    "end_date": "2014-04-30"
+                }
+            ],
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_od_comp_date": "Date is left blank in source",
+    "eu_pnumber": "EU/1/04/273",
+    "eu_prime_initial": {
+        "value": "Not available at time of release",
+        "date": "2023-01-09"
+    },
+    "eu_legal_basis": [
+        "__SCRAPER_NOT_FOUND__"
+    ],
+    "eu_referral": "False",
+    "eu_indication_initial": {
+        "value": "symptomatic treatment of advanced (unresectable, metastatic or relapsed) adrenal cortical carcinoma. the effect of lysodren on non-functional adrenal cortical carcinoma is not established.\n",
+        "date": "2023-01-09"
+    },
+    "aut_url": "https://ec.europa.eu/health/documents/community-register/2004/200404287648/dec_7648_en.pdf",
+    "eu_od_initial": {
+        "value": "adopted",
+        "date": "2023-01-09"
+    },
+    "eu_suspension": "False",
+    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
+    "smpc_url": "https://ec.europa.eu/health/documents/community-register/2004/200404287648/anx_7648_en.pdf",
+    "ema_rapp": "dr gonzalo calvo rojas",
+    "omar_url": "404_url_not_found",
+    "epar_url": "https://www.ema.europa.eu/documents/procedural-steps/lysodren-epar-procedural-steps-taken-authorisation_en.pdf",
+    "eu_procedures_todo": [
+        {
+            "eu_referral": false,
+            "eu_suspension": false
+        }
+    ],
+    "eu_atmp": "Not available at time of release",
+    "ema_corapp": "prof silvio garattini",
+    "odwar_url": "404_url_not_found",
+    "orphan_status": "h",
+    "eu_med_type": "small molecule"
+}

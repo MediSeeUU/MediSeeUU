@@ -36,9 +36,9 @@ def get_date_from_url(url: str) -> dict[str, str]:
         if url_date[:2] == "19" or url_date[:2] == "20":
             file_date = datetime.strptime(url_date, '%Y%m%d')
     return {
-        "pdf_link": url,
-        "pdf_date": str(file_date),
-        "pdf_scrape_date": str(datetime.now())
+        attr.file_date_pdf_link: url,
+        attr.file_date_pdf_date: str(file_date.date()),
+        attr.file_date_pdf_scrape_date: str(date.today())
     }
 
 
@@ -93,6 +93,12 @@ def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements:
         overwrite (bool): if true, files will be downloaded again if they exist
     """
     filename: str = f"{medicine_identifier}_{'_'.join(filename_elements)}.pdf"
+    if not attr_dict:
+        log.error("No webdata.json dictionary found.")
+    elif attr.filedates_web not in attr_dict:
+        log.warning(f"No key {attr.filedates_web} in the webdata.json file: {attr_dict}.")
+    else:
+        attr_dict[attr.filedates_web][filename] = get_date_from_url(url)
 
     if not overwrite:
         filepath = Path(f"{target_path}/{filename}")
@@ -109,13 +115,10 @@ def download_pdf_from_url(url: str, medicine_identifier: str, filename_elements:
             f.write(f"{filename}@{url}@{downloaded_file.status_code}\n")
             return
 
-    # TODO: Runs this check for every downloaded file. Could be more efficient?
     Path(f"{target_path}").mkdir(exist_ok=True)
     with open(f"{target_path}/{filename}", "wb") as file:
         file.write(downloaded_file.content)
         log.debug(f"DOWNLOADED {filename} for {medicine_identifier}")
-
-    attr_dict[attr.filedates_web][filename] = get_date_from_url(url)
 
 
 # Download pdfs using the dictionaries created from the json file
@@ -160,7 +163,7 @@ def download_pdfs_ec(medicine_identifier: str, pdf_type: str, pdf_urls: list[str
     if pdf_type == "anx":
         overwrite_dict: json = {
             medicine_identifier: {
-                "overwrite_ec_files": "False"
+                attr.overwrite_ec_files: "False"
             }
         }
         urls_dict.add_to_dict(overwrite_dict)
@@ -227,7 +230,7 @@ def download_medicine_files(medicine_identifier: str, url_dict: dict[str, list[s
         if key not in url_dict.keys():
             log.error(f"Key {key} not in keys of url_dict with identifier {medicine_identifier}. url_dict: {url_dict}")
         download_pdfs_ec(medicine_identifier, filetype, url_dict[key], attr_dict, target_path, urls_json,
-                         url_dict.get("overwrite_ec_files", "True") == "True")
+                         url_dict.get(attr.overwrite_ec_files, "True") == "True")
 
     download_list_ema = [('epar', attr.epar_url), ('omar', attr.omar_url), ("odwar", attr.odwar_url)]
     for (filetype, key) in download_list_ema:

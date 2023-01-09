@@ -38,14 +38,14 @@ jobs:
           source ../virtualenv/bin/activate
           cp /etc/medctrl/config/dev_settings.py API/api_settings/settings/
           pip install -r requirements.txt
-        working-directory: "medctrl-backend"
+        working-directory: "backend"
 
       - name: Run python server
         run: |
           source ../virtualenv/bin/activate
           cd API/
           python manage.py runserver &
-        working-directory: "medctrl-backend"
+        working-directory: "backend"
 
 
       - name: Install dependencies

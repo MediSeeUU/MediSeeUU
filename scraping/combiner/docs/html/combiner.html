@@ -1,34 +1,62 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>combiner package &mdash; Combiner 1.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/js/theme.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="combiner" href="modules.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
+          
 
 <a href="../../../../docs/html/README.html">
   <img src="_static/medisee.svg" class="logo" alt="Logo"/>
@@ -40,7 +68,11 @@
 
 
 
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
     <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
       <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
       <ul>
@@ -49,12 +81,17 @@
         <li class="toctree-l1 "><a href="../../../../scraping/pdf_parser/docs/html/index.html">File Parser</a></li>
         <li class="toctree-l1 current-module"><a href="../../../../scraping/combiner/docs/html/index.html">Combiner</a></li>
         <li class="toctree-l1 "><a href="../../../../scraping/db_communicator/docs/html/index.html">DB Communicator</a></li>
-        <li class="toctree-l1 "><a href="../../../../medctrl-backend/API/docs/html/index.html">Backend</a></li>
+        <li class="toctree-l1 "><a href="../../../../backend/API/docs/html/index.html">Backend</a></li>
         <li class="toctree-l1 margin-top "><a href="../../../../tests/docs/html/index.html">Tests</a></li>
       </ul>
     </div>
     
       
+            
+            
+              
+            
+            
               <p class="caption" role="heading"><span class="caption-text">Readme</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="README.html">General</a></li>
@@ -71,18 +108,34 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">combiner package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-combiner.__main__">combiner.__main__ module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.__main__.combine_folder"><code class="docutils literal notranslate"><span class="pre">combine_folder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.__main__.create_file_dicts"><code class="docutils literal notranslate"><span class="pre">create_file_dicts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.__main__.get_dict"><code class="docutils literal notranslate"><span class="pre">get_dict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#combiner.__main__.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-combiner.attribute_combining_functions">combiner.attribute_combining_functions module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.check_all_equal"><code class="docutils literal notranslate"><span class="pre">check_all_equal()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_best_source"><code class="docutils literal notranslate"><span class="pre">combine_best_source()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_assess_time_days_active"><code class="docutils literal notranslate"><span class="pre">combine_assess_time_days_active()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_assess_time_days_cstop"><code class="docutils literal notranslate"><span class="pre">combine_assess_time_days_cstop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_assess_time_days_total"><code class="docutils literal notranslate"><span class="pre">combine_assess_time_days_total()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_date"><code class="docutils literal notranslate"><span class="pre">combine_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_decision_time_days"><code class="docutils literal notranslate"><span class="pre">combine_decision_time_days()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_ema_number_check"><code class="docutils literal notranslate"><span class="pre">combine_ema_number_check()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_eu_aut_status"><code class="docutils literal notranslate"><span class="pre">combine_eu_aut_status()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_eu_med_type"><code class="docutils literal notranslate"><span class="pre">combine_eu_med_type()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_select_string_overlap"><code class="docutils literal notranslate"><span class="pre">combine_select_string_overlap()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.get_file_date"><code class="docutils literal notranslate"><span class="pre">get_file_date()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.json_history_current"><code class="docutils literal notranslate"><span class="pre">json_history_current()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.json_history_initial"><code class="docutils literal notranslate"><span class="pre">json_history_initial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_eu_procedures_todo"><code class="docutils literal notranslate"><span class="pre">combine_eu_procedures_todo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_first"><code class="docutils literal notranslate"><span class="pre">combine_first()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_get_file_url"><code class="docutils literal notranslate"><span class="pre">combine_get_file_url()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.combine_string_overlap"><code class="docutils literal notranslate"><span class="pre">combine_string_overlap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.convert_ema_num"><code class="docutils literal notranslate"><span class="pre">convert_ema_num()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.get_attribute_date"><code class="docutils literal notranslate"><span class="pre">get_attribute_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.get_ema_excel"><code class="docutils literal notranslate"><span class="pre">get_ema_excel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.get_values_from_sources"><code class="docutils literal notranslate"><span class="pre">get_values_from_sources()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.json_current"><code class="docutils literal notranslate"><span class="pre">json_current()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.json_initial"><code class="docutils literal notranslate"><span class="pre">json_initial()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.json_static"><code class="docutils literal notranslate"><span class="pre">json_static()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combiner.attribute_combining_functions.string_overlap"><code class="docutils literal notranslate"><span class="pre">string_overlap()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -91,154 +144,599 @@
 </li>
 </ul>
 
+            
+          
     
 
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Combiner</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">combiner</a></li>
-      <li class="breadcrumb-item active">combiner package</li>
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">combiner</a> &raquo;</li>
+        
+      <li>combiner package</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
+            
   <section id="module-combiner">
-<span id="combiner-package"></span><h1>combiner package<a class="headerlink" href="#module-combiner" title="Permalink to this heading"></a></h1>
+<span id="combiner-package"></span><h1>combiner package<a class="headerlink" href="#module-combiner" title="Permalink to this heading">¶</a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="module-combiner.__main__">
-<span id="combiner-main-module"></span><h2>combiner.__main__ module<a class="headerlink" href="#module-combiner.__main__" title="Permalink to this heading"></a></h2>
+<span id="combiner-main-module"></span><h2>combiner.__main__ module<a class="headerlink" href="#module-combiner.__main__" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="combiner.__main__.main">
-<span class="sig-prename descclassname"><span class="pre">combiner.__main__.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#combiner.__main__.main" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</section>
-<section id="module-combiner.attribute_combining_functions">
-<span id="combiner-attribute-combining-functions-module"></span><h2>combiner.attribute_combining_functions module<a class="headerlink" href="#module-combiner.attribute_combining_functions" title="Permalink to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="combiner.attribute_combining_functions.check_all_equal">
-<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">check_all_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.check_all_equal" title="Permalink to this definition"></a></dt>
-<dd><p>checks if two values are equal and not None
-:param v1: value to compare
-:type v1: any
-:param v2: value to compare
-:type v2: any</p>
-<p>Returns (bool): result of check</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_best_source">
-<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_best_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">attribute_name:</span> <span class="pre">str,</span> <span class="pre">sources:</span> <span class="pre">list[str],</span> <span class="pre">file_dicts:</span> <span class="pre">dict[str,</span> <span class="pre">dict[str,</span> <span class="pre">any]])</span> <span class="pre">-&gt;</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">any&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_best_source" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="sig sig-object py" id="combiner.__main__.combine_folder">
+<span class="sig-prename descclassname"><span class="pre">combiner.__main__.</span></span><span class="sig-name descname"><span class="pre">combine_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#combiner.__main__.combine_folder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Combines the web data json and pdf_parser json into a combined.json for a medicine and saves this combined.json.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>attribute_name</strong> – </p></li>
-<li><p><strong>dicts</strong> – </p></li>
-<li><p><strong>combine_attributes</strong> – </p></li>
+<li><p><strong>filepath</strong> (<em>str</em>) – Path to the medicine folder</p></li>
+<li><p><strong>folder_name</strong> (<em>str</em>) – Name of the medicine folder</p></li>
 </ul>
 </dd>
 </dl>
-<p>Returns:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.__main__.create_file_dicts">
+<span class="sig-prename descclassname"><span class="pre">combiner.__main__.</span></span><span class="sig-name descname"><span class="pre">create_file_dicts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#combiner.__main__.create_file_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create dictionary of all sources with their attributes in a medicine folder</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – Path to the medicine folder</p></li>
+<li><p><strong>folder_name</strong> (<em>str</em>) – Name of the medicine folder</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with sources as keys, and data of sources as attributes</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.__main__.get_dict">
+<span class="sig-prename descclassname"><span class="pre">combiner.__main__.</span></span><span class="sig-name descname"><span class="pre">get_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#combiner.__main__.get_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives the dictionary/data from the source “source” in folder/medicine “folder_name”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<em>str</em>) – Name of the source</p></li>
+<li><p><strong>filepath</strong> (<em>str</em>) – Path to the medicine folder</p></li>
+<li><p><strong>folder_name</strong> (<em>str</em>) – Name of the medicine folder</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of data in the given source</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.__main__.main">
+<span class="sig-prename descclassname"><span class="pre">combiner.__main__.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#combiner.__main__.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Combines all web data jsons and pdf_parser jsons into combined jsons</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data_directory</strong> (<em>str</em>) – Main data folder containing the active_withdrawn folder with medicines</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-combiner.attribute_combining_functions">
+<span id="combiner-attribute-combining-functions-module"></span><h2>combiner.attribute_combining_functions module<a class="headerlink" href="#module-combiner.attribute_combining_functions" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.check_all_equal">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">check_all_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.check_all_equal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if two values are equal and not None
+:param list[Any]: List of values to check</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether all values are equal or not</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_assess_time_days_active">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_assess_time_days_active</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_pnumber</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_assess_time_days_active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives the assessment time days active from the latest annex 10 file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_pnumber</strong> (<em>str</em>) – EU number of medicine</p></li>
+<li><p><strong>file_dicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Dictionary with sources as keys, and data of sources as attributes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value of assess_time_days_active, else not_found_str</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int | str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_assess_time_days_cstop">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_assess_time_days_cstop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu_pnumber</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_assess_time_days_cstop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives the assessment time day cstop from the latest annex 10 file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu_pnumber</strong> (<em>str</em>) – EU number of medicine</p></li>
+<li><p><strong>file_dicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Dictionary with sources as keys, and data of sources as attributes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value of combine_assess_time_days_cstop, else not_found_str</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int | str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_assess_time_days_total">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_assess_time_days_total</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_assess_time_days_total" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives amount of days between CHMP opinion date and initial procedure start date</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_dicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Dictionary with sources as keys, and data of sources as attributes</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Days between initial_chmp_opinion_date and initial_procedure_start_date if available,
+else not_found_str</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int | str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_date">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives the date from the first source.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_dicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Dictionary with sources as keys, and data of sources as attributes</p></li>
+<li><p><strong>sources</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – Potential sources of the attribute</p></li>
+<li><p><strong>attribute_name</strong> (<em>str</em>) – Name of attribute to add</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value from first source that is available, date_not_found if no source is available</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime.date</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_decision_time_days">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_decision_time_days</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_decision_time_days" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives amount of days between decision time and initial procedure start date</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_dicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Dictionary with sources as keys, and data of sources as attributes</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Days between initial_decision_date and initial_procedure_date if available, else not_found_str</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int | str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_ema_number_check">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_ema_number_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_ema_number_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether brand name overlaps significantly between webdata and ema_excel file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_dicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Dictionary with sources as keys, and data of sources as attributes</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether brand name overlaps significantly between webdata and ema_excel file</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_eu_aut_status">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_eu_aut_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_eu_aut_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives value and its scrape date from first source for attribute_name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_dicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Dictionary with sources as keys, and data of sources as attributes</p></li>
+<li><p><strong>attribute_name</strong> (<em>str</em>) – Name of attribute to add</p></li>
+<li><p><strong>sources</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – Potential sources of the attribute</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of dictionary of value and date from first source that is available</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[dict]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_eu_med_type">
-<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_eu_med_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_eu_med_type" title="Permalink to this definition"></a></dt>
-<dd><p>_summary_</p>
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_eu_med_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu_pnumber</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_eu_med_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives the value for eu_med_type from the initial annex file, one of [“biologicals”, “ATMP”, “small molecule”]</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filedicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>any</em><em>]</em><em>]</em>) – Dictionary of all source dictionaries generated by combine_folder()</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_dicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Dictionary with sources as keys, and data of sources as attributes</p></li>
+<li><p><strong>eu_pnumber</strong> (<em>str</em>) – EU number of medicine</p></li>
+</ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>_description_</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value from initial annex file for eu_med_type [“biologicals”, “ATMP”, “small molecule”]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_eu_procedures_todo">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_eu_procedures_todo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_eu_procedures_todo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives referral and suspension as booleans, depending on their string boolean value in webdata</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_dicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Dictionary with sources as keys, and data of sources as attributes</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict of referral and suspension booleans</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_first">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_first</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_first" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives value from first source for attribute_name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_dicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Dictionary with sources as keys, and data of sources as attributes</p></li>
+<li><p><strong>sources</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – Potential sources of the attribute</p></li>
+<li><p><strong>attribute_name</strong> (<em>str</em>) – Name of attribute to add</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value from first source that is available</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_get_file_url">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_get_file_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_get_file_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives the URL of the medicine from source in sources</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_dicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Dictionary with sources as keys, and data of sources as attributes</p></li>
+<li><p><strong>sources</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – Potential sources of the attribute</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Found URL for the given medicine or url_not_found string</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_select_string_overlap">
-<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_select_string_overlap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_matching_fraction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.8</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_select_string_overlap" title="Permalink to this definition"></a></dt>
-<dd><p>compares two strings to see if a percentage of the shortest string is identical to the longest string
-:param s1: first string
-:type s1: str
-:param s2: second string
-:type s2: str
-:param perc: percentage float between 0 and 1
-:type perc: float</p>
-<p>Returns (bool): bool indicating equality</p>
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.combine_string_overlap">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">combine_string_overlap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.combine_string_overlap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives overlapping part of values for attribute_name from all sources, if overlap is insufficient, gives the value
+from first source in sources.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_dicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Dictionary with sources as keys, and data of sources as attributes</p></li>
+<li><p><strong>sources</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – Potential sources of the attribute</p></li>
+<li><p><strong>attribute_name</strong> (<em>str</em>) – Name of attribute to add</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Overlapping part of strings or the value from the first source</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="combiner.attribute_combining_functions.get_file_date">
-<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">get_file_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.get_file_date" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.convert_ema_num">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">convert_ema_num</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ema_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.convert_ema_num" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts EMA number to right format: removes leading 0’s from the digits of the EMA number</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ema_number</strong> (<em>str</em>) – Original EMA number</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Converted EMA number or not_found string</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="combiner.attribute_combining_functions.json_history_current">
-<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">json_history_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.json_history_current" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.get_attribute_date">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">get_attribute_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime.datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.get_attribute_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives the scrape or download date of a source file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_string</strong> (<em>str</em>) – Name of source of the attribute</p></li>
+<li><p><strong>file_dicts</strong> (<em>str</em>) – All data stored on source location</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Parse date of the source</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime | str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="combiner.attribute_combining_functions.json_history_initial">
-<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">json_history_initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.json_history_initial" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.get_ema_excel">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">get_ema_excel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.get_ema_excel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives cleaned dictionary of EMA Excel file after saving the cleaned version to its original location</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – Path of EMA Excel file containing folder</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – Name of EMA Excel file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Cleaned dictionary of EMA Excel file</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.get_values_from_sources">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">get_values_from_sources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.get_values_from_sources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get values from all sources for a given attribute</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attribute_name</strong> (<em>str</em>) – Name of the attribute values to be returned</p></li>
+<li><p><strong>sources</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – All sources of the medicine</p></li>
+<li><p><strong>file_dicts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Dictionary with sources as keys, and data of sources as attributes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Values for the attribute from all sources</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.json_current">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">json_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.json_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves both value and scrape date of an attribute as a list of a dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>Any</em>) – Value of some attribute</p></li>
+<li><p><strong>date</strong> (<em>Any</em>) – Scrape date of some attribute</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of value and its scrape date, in a list</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(list[dict[str, str | Any]])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.json_initial">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">json_initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.json_initial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves both value and scrape date of an attribute as a dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>Any</em>) – Value of some attribute</p></li>
+<li><p><strong>date</strong> (<em>Any</em>) – Scrape date of some attribute</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of value and its scrape date</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(dict[str, str | Any])</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="combiner.attribute_combining_functions.json_static">
-<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">json_static</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">any</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.json_static" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">json_static</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.json_static" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves only the value of an attribute</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>Any</em>) – Value of some attribute</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value of some attribute</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Any)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="combiner.attribute_combining_functions.string_overlap">
+<span class="sig-prename descclassname"><span class="pre">combiner.attribute_combining_functions.</span></span><span class="sig-name descname"><span class="pre">string_overlap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#combiner.attribute_combining_functions.string_overlap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if strings overlap more than a certain percentage, then return the overlapping part.
+Otherwise, returns first element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>strings</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – Strings to check for overlap</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>First string if strings do not overlap enough, overlapping part if they do</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[str, bool]</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 </section>
 
 
            </div>
+           
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="modules.html" class="btn btn-neutral float-left" title="combiner" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Medisee.</p>
-  </div>
+    <p>
+        &#169; Copyright 2022, Medisee.
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(false);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

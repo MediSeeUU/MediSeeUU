@@ -9,10 +9,10 @@ from scraping.utilities.log import log_tools
 from scraping.utilities.io import safe_io
 import scraping.utilities.web.config_objects as config
 
-data_path = "../test_data"
+data_path = "../tests/test_data"
 if "pdf_parser_tests" in os.getcwd():
-    data_path = "../../test_data"
-parent_path = "/".join((data_path.split('/')[:-1]))
+    data_path = "../../tests/test_data"
+parent_path = "/".join((data_path.split('/')[:-2]))
 active_withdrawn_dir = f"{data_path}/active_withdrawn"
 
 

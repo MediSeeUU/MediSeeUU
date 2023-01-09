@@ -1,0 +1,123 @@
+{
+    "eu_accel_assess_g": "True",
+    "eu_od_number": "__SCRAPER_NOT_FOUND__",
+    "active_substance": "brexucabtagene autoleucel",
+    "eu_aut_status": [
+        {
+            "value": "ACTIVE",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_brand_name_current": [
+        {
+            "value": "Tecartus",
+            "date": "2023-01-09"
+        }
+    ],
+    "assess_time_days_total": 308,
+    "ema_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_brand_name_initial": {
+        "value": "Tecartus",
+        "date": "2023-01-09"
+    },
+    "assess_time_days_active": 172,
+    "eu_od_con": "__SCRAPER_NOT_FOUND__",
+    "ema_number": "EMEA/H/C/005102",
+    "atc_code": "L01X",
+    "eu_nas": true,
+    "ema_number_id": "5102",
+    "assess_time_days_cstop": 90,
+    "eu_od_date": "Date is left blank in source",
+    "ema_procedure_start_initial": "2019-12-12",
+    "chmp_opinion_date": "2020-10-15",
+    "ema_number_certainty": "0.9",
+    "ec_decision_time_days": 816,
+    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_date": "2020-12-14",
+    "ema_number_check": false,
+    "eu_aut_type_initial": {
+        "value": "conditional",
+        "date": "2023-01-09"
+    },
+    "eu_mah_current": [
+        {
+            "value": "Kite Pharma EU B.V.",
+            "date": "2023-01-09"
+        }
+    ],
+    "ema_reexamination": "False",
+    "eu_od_sponsor": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_aut_type_current": [
+        {
+            "value": "conditional",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_mah_initial": {
+        "value": "Kite Pharma EU B.V.",
+        "date": "2023-01-09"
+    },
+    "eu_orphan_con_current": [
+        {
+            "value": [
+                {
+                    "pre": "o",
+                    "id": "2220",
+                    "eu_num": "EU/3/19/2220",
+                    "indication": "Treatment of mantle cell lymphoma",
+                    "link_date": "2020-12-15"
+                }
+            ],
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_od_comp_date": "Date is left blank in source",
+    "eu_pnumber": "EU/1/20/1492",
+    "eu_prime_initial": {
+        "value": "True",
+        "date": "2023-01-09"
+    },
+    "eu_legal_basis": [
+        "article 8.3"
+    ],
+    "eu_referral": "False",
+    "eu_indication_initial": {
+        "value": "tecartus is indicated for the treatment of adult patients with relapsed or refractory mantle cell lymphoma (mcl) after two or more lines of systemic therapy including a bruton\u2019s tyrosine kinase \n (btk) inhibitor.\n",
+        "date": "2023-01-09"
+    },
+    "aut_url": "https://ec.europa.eu/health/documents/community-register/2020/20201214149806/dec_149806_en.pdf",
+    "eu_od_initial": {
+        "value": "adopted",
+        "date": "2023-01-09"
+    },
+    "eu_suspension": "False",
+    "ema_omar_condition": [
+        {
+            "eu_od_number": "eu/3/19/2220",
+            "eu_od_prevalence": "the prevalence of mantle cell lymphoma (hereinafter referred to as \u201cthe condition\u201d) was estimated to remain below 5 in 10,000 and was concluded to be 0.6 in 10,000 persons in the european union, at the time of the review of the designation criteria; ",
+            "eu_od_alt_treatment": "significant_benefit",
+            "eu_od_sig_benefit": "__SCRAPER_NOT_FOUND__",
+            "ema_report_date": "2020-12-14"
+        }
+    ],
+    "smpc_url": "https://ec.europa.eu/health/documents/community-register/2020/20201214149806/anx_149806_en.pdf",
+    "ema_rapp": "jan mueller-berghaus",
+    "omar_url": "https://www.ema.europa.eu/documents/orphan-maintenance-report/tecartus-orphan-maintenance-assessment-report-initial-authorisation_en.pdf",
+    "epar_url": "https://www.ema.europa.eu/documents/assessment-report/tecartus-epar-public-assessment-report_en.pdf",
+    "eu_procedures_todo": [
+        {
+            "eu_referral": false,
+            "eu_suspension": false
+        }
+    ],
+    "eu_atmp": true,
+    "ema_corapp": "rune kjeken",
+    "odwar_url": "404_url_not_found",
+    "orphan_status": "h",
+    "eu_med_type": "small molecule"
+}

@@ -1,14 +1,16 @@
-from joblib import Parallel, delayed
-import fitz
+import json
+import logging
+import multiprocessing
 import os
 import re
-import json
-import multiprocessing
-import logging
-from scraping.utilities.log import log_tools
-from scraping.utilities.io import safe_io
-from scraping.utilities.definitions import values, attributes
+
+import fitz
+from joblib import Parallel, delayed
 from tqdm import tqdm
+
+from scraping.utilities.definitions import attribute_values as values, attributes
+from scraping.utilities.io import safe_io
+from scraping.utilities.log import log_tools
 
 wrong_doctype_str = "@wrong_doctype"
 cpu_count: int = multiprocessing.cpu_count()
@@ -196,7 +198,7 @@ def get_url(filename: str, directory: str) -> str:
         with open(f'{json_path}urls.json') as urls_json:
             try:
                 urls = json.load(urls_json)
-            except JSONDecodeError as e:
+            except json.JSONDecodeError as e:
                 log.warning(f"Filter: Cannot open urls.json. Error: {e}")
                 return "cannot_open_urls_json"
             try:

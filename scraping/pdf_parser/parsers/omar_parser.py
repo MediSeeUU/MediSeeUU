@@ -1,14 +1,15 @@
 # OMAR parser
-import re
-import xml.etree.ElementTree as ET
-import scraping.pdf_parser.parsed_info_struct as pis
-import scraping.utilities.xml.xml_parsing_utils as xml_utils
-import scraping.utilities.pdf.helper as helper
-import scraping.utilities.definitions.values as values
-import scraping.utilities.definitions.attributes as attr
+import datetime
 import logging
 import os
-import datetime
+import re
+import xml.etree.ElementTree as ET
+
+import scraping.pdf_parser.parsed_info_struct as pis
+import scraping.utilities.definitions.attribute_values as attribute_values
+import scraping.utilities.definitions.attributes as attr
+import scraping.utilities.pdf.helper as helper
+import scraping.utilities.xml.xml_parsing_utils as xml_utils
 
 log = logging.getLogger("pdf_parser")
 
@@ -52,7 +53,6 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
         attr.xml_file: os.path.basename(filepath),
         attr.creation_date: creation_date,
         attr.modification_date: modification_date,
-        attr.ema_report_date: report_date,
         attr.ema_omar_condition: []
     }
 
@@ -85,6 +85,9 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
             if attributes:
                 omar_attributes[attr.ema_omar_condition].append(attributes)
 
+    for dict in omar_attributes[attr.ema_omar_condition]:
+        dict[attr.ema_report_date] = report_date
+
     medicine_struct.omars.append(omar_attributes)
 
     # When no conditions have been found it will be logged.
@@ -94,7 +97,7 @@ def parse_file(filepath: str, medicine_struct: pis.ParsedInfoStruct):
     return medicine_struct
 
 
-def get_report_date(xml_body: ET.Element, pdf_file: str) -> datetime.datetime:
+def get_report_date(xml_body: ET.Element, pdf_file: str) -> datetime.date:
     section = xml_utils.get_body_section_by_index(0, xml_body)
     header = xml_utils.get_section_header(section)
 
@@ -126,9 +129,9 @@ def get_attributes(section: ET.Element, eu_od_flag: bool) -> dict[str, str]:
     alternative_treatments = get_alternative_treatments(bullet_points)
     omar_attributes = {
         attr.eu_od_number: get_eu_od_number(section, eu_od_flag),
-        attr.ema_prevalence: get_prevalence(bullet_points),
-        attr.ema_alternative_treatments: alternative_treatments,
-        attr.ema_significant_benefit: get_significant_benefit(bullet_points, alternative_treatments)
+        attr.eu_od_prevalence: get_prevalence(bullet_points),
+        attr.eu_od_alt_treatment: alternative_treatments,
+        attr.eu_od_sig_benefit: get_significant_benefit(bullet_points, alternative_treatments)
     }
 
     return omar_attributes
@@ -155,7 +158,7 @@ def get_eu_od_number(section: ET.Element, eu_od_flag: bool) -> str:
     if len(eu_od_number) > 0:
         return eu_od_number[0]
     else:
-        return values.not_found
+        return attribute_values.not_found
 
 
 def get_prevalence(bullet_points: list[str]) -> str:
@@ -172,7 +175,7 @@ def get_prevalence(bullet_points: list[str]) -> str:
             clean = re.sub(r'\s+', ' ', b).lstrip(" ")
             return clean
 
-    return values.not_found
+    return attribute_values.not_found
 
 
 def get_alternative_treatments(bullet_points: list[str]) -> str:
@@ -191,11 +194,11 @@ def get_alternative_treatments(bullet_points: list[str]) -> str:
             return "No Satisfactory Method"
         if "significant benefit" in b:
             if "does not hold" in b:
-                return values.eu_alt_treatment_no_benefit
+                return attribute_values.eu_alt_treatment_no_benefit
             else:
-                return values.eu_alt_treatment_benefit
+                return attribute_values.eu_alt_treatment_benefit
 
-    return values.not_found
+    return attribute_values.not_found
 
 
 def get_significant_benefit(bullet_points: list[str], alternative_treatment: str) -> str:
@@ -243,4 +246,4 @@ def get_significant_benefit(bullet_points: list[str], alternative_treatment: str
             if len(result) > 0:
                 return result[0]
 
-    return values.not_found
+    return attribute_values.not_found
