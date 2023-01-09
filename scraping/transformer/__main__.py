@@ -1,6 +1,8 @@
 import json
 import logging
 from os import listdir, path
+import re
+from typing import Any
 
 import scraping.utilities.definitions.attribute_objects as attr_objects
 import scraping.utilities.definitions.attribute_values as values
@@ -95,8 +97,12 @@ def save_transformed_json(transformed_json_path: str, final_json: dict):
         transformed_json_path (str): Location of the transformed JSON
         final_json (dict): Dictionary of all human or orphan attributes
     """
-    with open(transformed_json_path, 'w') as transformed_file:
-        json.dump(final_json, transformed_file, indent=4)
+    try:
+        with open(transformed_json_path, 'w', encoding='utf-8') as transformed_file:
+            json.dump(final_json, transformed_file, indent=4, ensure_ascii=False)
+    except UnicodeDecodeError:
+        with open(transformed_json_path, 'w') as transformed_file:
+            json.dump(final_json, transformed_file, indent=4)
 
 
 def get_final_json(final_json: dict, json_data: dict, all_names: list):
