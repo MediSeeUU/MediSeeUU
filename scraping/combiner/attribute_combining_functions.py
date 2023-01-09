@@ -13,6 +13,8 @@ import scraping.utilities.definitions.attributes as attr
 import scraping.utilities.definitions.sources as src
 
 log = logging.getLogger("combiner")
+log_crosscheck = logging.getLogger("combiner.crosscheck")
+log_ema_excel = logging.getLogger("combiner.log_ema_excel")
 date_str_format = "%Y-%m-%d"
 
 
@@ -84,7 +86,7 @@ def check_all_equal(values: list[Any]) -> bool:
     return all_same and values[0] is not None
 
 
-def string_overlap(strings: list[str]) -> tuple[str, bool]:
+def string_overlap(strings: list[str], ema = False) -> tuple[str, bool]:
     """
     Check if strings overlap more than a certain percentage, then return the overlapping part.
     Otherwise, returns first element.
@@ -105,7 +107,10 @@ def string_overlap(strings: list[str]) -> tuple[str, bool]:
     if overlap_fraction >= min_matching_fraction:
         return strings[0][overlap.a:overlap.a + overlap.size], True
 
-    log.info(f"Strings {strings} did not overlap sufficiently, returning first")
+    if ema:
+        log_ema_excel.info(f"Brandnames {strings} did not overlap sufficiently, ema crosscheck not possible")
+    else:
+        log_crosscheck.info(f"Strings {strings} did not overlap sufficiently, returning first")
     return strings[0], False
 
 
@@ -331,6 +336,8 @@ def combine_ema_number_check(file_dicts: dict[str, dict[str, Any]], **_) -> bool
         web_brand_name = web_dict[attr.eu_brand_name_current]
         excel_brand_name = ema_excel[ema_number_web]
         _, are_equal = string_overlap([web_brand_name, excel_brand_name])
+    else:
+        log_ema_excel.info(f"ema_number: {ema_number_web} not found in ema_excel")
     return are_equal
 
 
