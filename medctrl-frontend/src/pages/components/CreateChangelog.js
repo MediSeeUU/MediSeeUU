@@ -6,8 +6,17 @@ function ChangelogToText(changes)
 {
     let text = ""
 
+
+    // "change": "added section",
+    // "header": "1 | turn the page for more advice",
+    // "section_text": "now turn over>\n 17\n",
+
+
     for(var key1 in changes) {
         text += changes[key1]["change_note"]
+        // text += changes[key1]["change"]
+        // text += changes[key1]["header"] + "\n"
+        // text += "Section Text: " + changes[key1]["section_text"] + "\n"
         // for (var key2 in changes[key1]) {
             // if (changes[key1][key2] == "") 
             // {
