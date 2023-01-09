@@ -53,7 +53,7 @@ class AutStatus(models.TextChoices, metaclass=NAChoices):
     ACTIVE = "ACTIVE"
     WITHDRAWN = "WITHDRAWN"
     REFUSED = "REFUSED"
-    NOT_RENEWED = "NOT_RENEWED"
+    NOT_RENEWED = "NOT RENEWED"
     EXPIRED = "EXPIRED"
 
 
@@ -73,3 +73,8 @@ class LegalBasesTypes(models.TextChoices, metaclass=NAChoices):
     article_10_a = "article 10.a"
     article_10_b = "article 10.b"
     article_10_c = "article 10.c"
+
+
+class ODChoices(models.TextChoices, metaclass=NAChoices):
+    ADOPTED = "adopted"
+    APPOINTED = "appointed"

@@ -99,8 +99,12 @@ def add_list(pk_name, pk, model, serializer, name, data, replace):
     if items is not None and len(items) > 0:
         if model_data and replace:
             model_data.delete()
-        for item in items:
-            new_data = {name: item, pk_name: pk}
+        if isinstance(items, list):
+            for item in items:
+                new_data = {name: item, pk_name: pk}
+                insert_data(new_data, None, serializer)
+        else:
+            new_data = {name: items, pk_name: pk}
             insert_data(new_data, None, serializer)
 
 
@@ -125,8 +129,12 @@ def add_model_list(pk_name, pk, model, serializer, name, data, replace):
     if items is not None and len(items) > 0:
         if model_data and replace:
             model_data.delete()
-        for item in items:
-            new_data = item | {pk_name: pk}
+        if isinstance(items, list):
+            for item in items:
+                new_data = item | {pk_name: pk}
+                insert_data(new_data, None, serializer)
+        else:
+            new_data = items | {pk_name: pk}
             insert_data(new_data, None, serializer)
 
 
