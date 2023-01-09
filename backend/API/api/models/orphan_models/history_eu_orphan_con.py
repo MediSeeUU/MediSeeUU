@@ -55,9 +55,25 @@ class HistoryEUOrphanCon(models.Model):
         db_table = "history_eu_orphan_con"
 
     class HistoryInfo:
-        category = Category.Medicinal_product
-        data_format = DataFormats.Dictionary_List
-        current_name = "eu_orphan_con_current"
-        current_title = "Status of EU orphan designations"
-        timeline_title = "EU orphan conditions"
-        timeline_name = "eu_orphan_con"
+        dashboard_columns = [
+            {
+                "category": Category.Medicinal_product,
+                "data-key": "eu_orphan_con_current",
+                "data-format": DataFormats.Dictionary_List,
+                "data-value": "Status of EU orphan designations",
+            }
+        ]
+        timeline_items = [
+            {
+                "category": Category.Medicinal_product,
+                "data-key": "eu_orphan_con",
+                "data-format": DataFormats.Dictionary_List,
+                "data-value": "EU orphan conditions",
+            },
+            {
+                "category": Category.Orphan_product,
+                "data-key": "eu_orphan_con",
+                "data-format": DataFormats.Dictionary,
+                "data-value": "EU orphan conditions",
+            }
+        ]

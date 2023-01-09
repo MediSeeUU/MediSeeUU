@@ -45,9 +45,19 @@ class HistoryAuthorisationType(models.Model):
         db_table = "history_authorisation_type"
 
     class HistoryInfo:
-        category = Category.Marketing_authorisation
-        data_format = DataFormats.String
-        current_name = "eu_aut_type_current"
-        current_title = "Current type of EU authorisation"
-        timeline_title = "EU Authorisation Type"
-        timeline_name = "eu_aut_type"
+        dashboard_columns = [
+            {
+                "category": Category.Marketing_authorisation,
+                "data-key": "eu_aut_type_current",
+                "data-format": DataFormats.String,
+                "data-value": "Current type of EU authorisation",
+            }
+        ]
+        timeline_items = [
+            {
+                "category": Category.Marketing_authorisation,
+                "data-key": "eu_aut_type",
+                "data-format": DataFormats.String,
+                "data-value": "EU Authorisation Type",
+            }
+        ]

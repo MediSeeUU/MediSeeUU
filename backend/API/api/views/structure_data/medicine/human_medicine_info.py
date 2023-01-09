@@ -36,5 +36,5 @@ class HumanMedicineInfo(views.APIView):
             Category.Medicinal_product,
             Category.Ingredients_and_substances,
             Category.Marketing_authorisation,
-            Category.Procedures
+            Category.Procedures,
         ]))

@@ -45,7 +45,11 @@ class HistoryOD(models.Model):
         db_table = "history_od"
 
     class HistoryInfo:
-        category = Category.Marketing_authorisation
-        data_format = DataFormats.Bool
-        timeline_title = "EU orphan designation"
-        timeline_name = "eu_od"
+        timeline_items = [
+            {
+                "category": Category.Marketing_authorisation,
+                "data-key": "eu_od",
+                "data-format": DataFormats.Bool,
+                "data-value": "EU orphan designation",
+            }
+        ]

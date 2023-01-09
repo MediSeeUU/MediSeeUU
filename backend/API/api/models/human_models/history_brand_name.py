@@ -44,9 +44,19 @@ class HistoryBrandName(models.Model):
         db_table = "history_brand_name"
 
     class HistoryInfo:
-        category = Category.Medicinal_product
-        data_format = DataFormats.String
-        current_name = "eu_brand_name_current"
-        current_title = "Current EU brand name"
-        timeline_title = "EU Brand Name"
-        timeline_name = "eu_brand_name"
+        dashboard_columns = [
+            {
+                "category": Category.Medicinal_product,
+                "data-key": "eu_brand_name_current",
+                "data-format": DataFormats.String,
+                "data-value": "Current EU brand name",
+            }
+        ]
+        timeline_items = [
+            {
+                "category": Category.Medicinal_product,
+                "data-key": "eu_brand_name",
+                "data-format": DataFormats.String,
+                "data-value": "EU Brand Name",
+            }
+        ]

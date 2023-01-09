@@ -18,6 +18,7 @@ class DataFormats(Enum):
     Date = ("date", generic_na_values + ["Date is left blank in source"])
     Link = ("link", generic_na_values)
     String_List = ("[string]", generic_na_values)
+    Dictionary = ("dict", generic_na_values)
     Dictionary_List = ("[dict]", generic_na_values)
 
     @property

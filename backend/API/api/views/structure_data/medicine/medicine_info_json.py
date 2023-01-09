@@ -34,17 +34,18 @@ def get_medicine_info(perm, categories: list[Category]):
     # for every field created with create_dashboard_column(), add it to the correct category in JSON
     for model in models:
 
-        if hasattr(model, "HistoryInfo"):
-            if hasattr(model.HistoryInfo, "current_name") and hasattr(model.HistoryInfo, "current_title"):
-                if has_permission(perm, model.HistoryInfo.current_name):
-                    data[model.HistoryInfo.category.value].append({
-                        "data-key": model.HistoryInfo.current_name,
-                        "data-format": model.HistoryInfo.data_format.data_format,
-                        "data-value": model.HistoryInfo.current_title,
+        if hasattr(model, "HistoryInfo") and hasattr(model.HistoryInfo, "dashboard_columns"):
+            for dashboard_column in model.HistoryInfo.dashboard_columns:
+                if dashboard_column["category"] in categories and has_permission(perm, dashboard_column["data-key"]):
+                    data[dashboard_column["category"].value].append({
+                        "data-key": dashboard_column["data-key"],
+                        "data-format": dashboard_column["data-format"].data_format,
+                        "data-value": dashboard_column["data-value"],
                     })
 
         for field in model._meta.get_fields():
-            if hasattr(field, "dashboard_column") and has_permission(perm, field.name) and field.dashboard_column.category in categories:
+            if hasattr(field, "dashboard_column") and has_permission(perm, field.name) \
+                    and field.dashboard_column.category in categories:
                 data_info = field.dashboard_column.get_all_data_info(field.name)
                 for data_key, data_format, data_value in data_info:
                     if has_permission(perm, data_key):

@@ -45,7 +45,11 @@ class HistoryPrime(models.Model):
         db_table = "history_prime"
 
     class HistoryInfo:
-        category = Category.Medicinal_product
-        data_format = DataFormats.Bool
-        timeline_title = "EU Priority Medicine"
-        timeline_name = "eu_prime"
+        timeline_items = [
+            {
+                "category": Category.Medicinal_product,
+                "data-key": "eu_prime",
+                "data-format": DataFormats.Bool,
+                "data-value": "EU Priority Medicine",
+            }
+        ]

@@ -45,9 +45,19 @@ class HistoryMAH(models.Model):
         db_table = "eu_mah_history"
 
     class HistoryInfo:
-        category = Category.Marketing_authorisation
-        data_format = DataFormats.String
-        current_name = "eu_mah_current"
-        current_title = "Current EU marketing authorisation holder"
-        timeline_title = "EU Marketing Authorisation Holder"
-        timeline_name = "eu_mah"
+        dashboard_columns = [
+            {
+                "category": Category.Marketing_authorisation,
+                "data-key": "eu_mah_current",
+                "data-format": DataFormats.String,
+                "data-value": "Current EU marketing authorisation holder",
+            }
+        ]
+        timeline_items = [
+            {
+                "category": Category.Marketing_authorisation,
+                "data-key": "eu_mah",
+                "data-format": DataFormats.String,
+                "data-value": "EU Marketing Authorisation Holder",
+            }
+        ]
