@@ -45,6 +45,8 @@ class HistoryAuthorisationStatus(models.Model):
 
     class Meta:
         db_table = "history_authorisation_status"
+        verbose_name = "History Authorisation Status"
+        verbose_name_plural = "Histories Authorisation Status"
 
     class HistoryInfo:
         dashboard_columns = [

@@ -88,3 +88,5 @@ class IngredientsAndSubstances(models.Model):
 
     class Meta:
         db_table = "ingredients_and_substances"
+        verbose_name = "Ingredients And Substances"
+        verbose_name_plural = "Ingredients And Substances"

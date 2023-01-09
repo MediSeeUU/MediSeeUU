@@ -47,6 +47,8 @@ class HistoryEUOrphanCon(models.Model):
 
     class Meta:
         db_table = "history_eu_orphan_con"
+        verbose_name = "History EU Orphan Con"
+        verbose_name_plural = "Histories EU Orphan Con"
 
     class HistoryInfo:
         dashboard_columns = [

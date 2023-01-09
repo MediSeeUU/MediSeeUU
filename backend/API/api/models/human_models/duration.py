@@ -63,3 +63,5 @@ class Duration(models.Model):
 
     class Meta:
         db_table = "duration"
+        verbose_name = "Duration"
+        verbose_name_plural = "Durations"

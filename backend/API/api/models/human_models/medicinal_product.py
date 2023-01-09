@@ -176,3 +176,5 @@ class MedicinalProduct(models.Model):
 
     class Meta:
         db_table = "medicinal_product"
+        verbose_name = "Medicinal Product"
+        verbose_name_plural = "Medicinal Products"
