@@ -209,7 +209,8 @@ def combine_decision_time_days(file_dicts: dict[str, dict[str, Any]], **_) -> in
             initial_chmp_opinion_date != attribute_values.date_not_found:
         initial_decision_date = datetime.strptime(initial_decision_date, date_str_format)
         initial_procedure_start_date = datetime.strptime(initial_chmp_opinion_date, date_str_format)
-        return (initial_decision_date - initial_procedure_start_date).days
+        days = (initial_decision_date - initial_procedure_start_date).days
+        return days if days >= 0 else 0
 
     return attribute_values.not_found_str
 
@@ -235,7 +236,8 @@ def combine_assess_time_days_total(file_dicts: dict[str, dict[str, Any]], **_) -
             initial_procedure_start_date != attribute_values.date_not_found:
         initial_chmp_opinion_date = datetime.strptime(initial_chmp_opinion_date, date_str_format)
         initial_procedure_start_date = datetime.strptime(initial_procedure_start_date, date_str_format)
-        return (initial_chmp_opinion_date - initial_procedure_start_date).days
+        days = (initial_chmp_opinion_date - initial_procedure_start_date).days
+        return days if days >= 0 else 0
     return attribute_values.not_found_str
 
 
