@@ -1,7 +1,7 @@
 import logging
-import os
-import scraping.utilities.web.config_objects as config
 from pathlib import Path
+
+import scraping.utilities.web.config_objects as config
 
 all_loggers: list[logging.getLoggerClass()] = []
 

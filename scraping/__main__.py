@@ -1,18 +1,16 @@
-from pathlib import Path
 from datetime import datetime, timedelta
+from pathlib import Path
 
 import pause
 
-import scraping.web_scraper.__main__ as web_scraper
-import scraping.xml_converter.__main__ as xml_converter
-import scraping.pdf_parser.__main__ as pdf_parser
 import scraping.annex_10_parser.__main__ as annex_10_parser
 import scraping.combiner.__main__ as combiner
+import scraping.pdf_parser.__main__ as pdf_parser
 import scraping.transformer.__main__ as transformer
-import scraping.db_communicator.__main__ as db_communicator
+import scraping.web_scraper.__main__ as web_scraper
+import scraping.xml_converter.__main__ as xml_converter
 from scraping.utilities.log import log_tools
 from scraping.utilities.web import config_objects
-import scraping.utilities.debugging_tools.data_compiler as dc
 
 
 def main():
@@ -45,8 +43,8 @@ def run_all():
     xml_converter.main(data_folder_directory)
     pdf_parser.main(data_folder_directory)
     annex_10_parser.main(data_folder_directory)
-    # combiner.main(data_folder_directory)
-    # transformer.main(data_folder_directory)
+    combiner.main(data_folder_directory)
+    transformer.main(data_folder_directory)
     # db_communicator_main.main(data_folder_directory)
 
 

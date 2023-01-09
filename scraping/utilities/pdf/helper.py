@@ -1,9 +1,10 @@
 import datetime
+import logging
 import re
 
 import dateutil.parser as dateparser
+
 import scraping.utilities.definitions.attribute_values as attribute_values
-import logging
 
 log = logging.getLogger("pdf_parser")
 
@@ -60,7 +61,7 @@ def convert_months(date_str: str) -> datetime.date | str:
         if k in date_str:
             date_str = date_str.replace(f" {k} ", f"/{months[k]}/")
             break
-    date = attribute_values.not_found
+    date = attribute_values.date_not_found
     try:
         date = datetime.datetime.strptime(date_str, '%d/%m/%Y').date()
     except ValueError as e:
@@ -124,7 +125,7 @@ def convert_articles(articles: list[str]) -> list[str]:
     return list(set(res))
 
 
-def get_date(txt: str) -> datetime.date:
+def get_date(txt: str) -> datetime.date | str:
     """
     Extracts date from a text, also including months with roman numerals and fully written months (IV, january)
 
@@ -132,10 +133,10 @@ def get_date(txt: str) -> datetime.date:
         txt (str): text containing date
 
     Returns:
-        datetime.date: found date.
+        datetime.date: found date or date_not_found string
     """
     if not txt:
-        return attribute_values.default_date
+        return attribute_values.date_not_found
         txt = txt.lower()
     #try dateparser
     try:
@@ -160,4 +161,4 @@ def get_date(txt: str) -> datetime.date:
     except dateparser._parser.ParserError:
         pass
 
-    return attribute_values.default_date
+    return attribute_values.date_not_found

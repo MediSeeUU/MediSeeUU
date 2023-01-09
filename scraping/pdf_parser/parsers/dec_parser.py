@@ -1,14 +1,16 @@
 # EC parser
-import re
-import os.path as path
 import datetime
+import logging
+import os.path as path
+import re
+
 import fitz
+
+import scraping.pdf_parser.parsed_info_struct as PIS
+import scraping.utilities.definitions.attribute_values as attribute_values
+import scraping.utilities.definitions.attributes as attr
 from scraping.utilities.pdf import helper as helper
 from scraping.utilities.pdf import pdf_helper as pdf_helper
-import scraping.pdf_parser.parsed_info_struct as PIS
-import logging
-import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.definitions.attribute_values as attribute_values
 
 log = logging.getLogger("pdf_parser")
 
@@ -101,7 +103,7 @@ def get_data(filename: str, txt: str) -> dict:
 
     # if date was left blank use default date to not find date dependent attributes.
     if isinstance(date, str):
-        date = attribute_values.default_date
+        date = attribute_values.date_not_found
 
     if '_h_' in filename:
         filedata[attr.eu_brand_name_initial] = dec_get_bn(txt)
@@ -150,7 +152,7 @@ def dec_get_date(txt: str) -> str | datetime.date:
         section = re.split('of ', txt, 1)[1]
         section = section[:17]
         if '...' in section or '(date)' in section or 'xxx' in section:
-            return attribute_values.eu_aut_date_blank
+            return attribute_values.date_not_found
         if '/' in section:
             section = section.replace('/', '-')
 
@@ -164,7 +166,7 @@ def dec_get_date(txt: str) -> str | datetime.date:
             section = re.split('of ', next_page, 1)[1]
             section = section[:17]
             if '...' in section or '(date)' in section or 'xxx' in section:
-                return attribute_values.eu_aut_date_blank
+                return attribute_values.date_not_found
             return helper.get_date(section)
 
     return helper.get_date('')
@@ -258,8 +260,9 @@ def dec_get_decision_type(txt: str, date: datetime.date) -> str:
         str: found type or default value
     """
     # check if there can be a CMA.
-    if date < datetime.date(2006, 1, 1):
-        return attribute_values.NA_before
+    if date != attribute_values.date_not_found:
+        if date < datetime.date(2006, 1, 1):
+            return attribute_values.NA_before
 
     exceptional = re.search(r"article\s+14\W8", txt.lower())  # exceptional: Article 14(8) or alt. (e.g. Article 14.8)
     # conditional
@@ -325,8 +328,9 @@ def dec_get_od(txt: str, date: datetime.date) -> str:
         str: found orphan designation or default value
     """
     # check if there can be a NAS.
-    if date < datetime.date(2000, 4, 28):
-        return attribute_values.NA_before
+    if date != attribute_values.date_not_found:
+        if date < datetime.date(2000, 4, 28):
+            return attribute_values.NA_before
 
     if 'orphan medicinal product' in txt.lower():
         txt = txt.lower().split('orphan medicinal product', 1)[1]
@@ -349,8 +353,9 @@ def dec_get_atmp(txt: str, date: datetime.date) -> str | bool:
         bool: found result
     """
     # check if there can be a ATMP.
-    if date < datetime.date(2007, 12, 30):
-        return attribute_values.NA_before
+    if date != attribute_values.date_not_found:
+        if date < datetime.date(2007, 12, 30):
+            return attribute_values.NA_before
 
     regulation = "Regulation (EC) No 1394/2007"
     fn_idx = txt.find("regulation as last amended by")  # sometimes regulation is mentioned in footnote
@@ -375,15 +380,16 @@ def dec_get_nas(txt, date) -> str | bool:
         bool: found result
     """
     # check if there can be a NAS.
-    if date < datetime.date(2012, 1, 1):
-        return attribute_values.NA_before
+    if date != attribute_values.date_not_found:
+        if date < datetime.date(2012, 1, 1):
+            return attribute_values.NA_before
 
     if "committee for medicinal products for human use" in txt.lower() and "a new active substance" in txt.lower():
         return True
     return False
 
 
-def dec_get_od_comp_date(txt) -> datetime.date:
+def dec_get_od_comp_date(txt) -> datetime.date | str:
     """
     Gives date of orphan comp from decision files.
 
@@ -391,7 +397,7 @@ def dec_get_od_comp_date(txt) -> datetime.date:
         txt (str): plain decision pdf text
 
     Returns:
-        datetime.date: date found
+        datetime.date | str: date found or date_not_found string
     """
     keyword1 = 'opinion'
     keyword2 = 'Committee for Orphan Medicinal Products'.lower()

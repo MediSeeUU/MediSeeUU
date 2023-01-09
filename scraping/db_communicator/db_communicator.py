@@ -1,10 +1,12 @@
-import requests
 import datetime
 import logging
+
+import requests
 import unicodedata
+
+import scraping.utilities.definitions.communicator_urls as urls
 from scraping.db_communicator.handlers.login_handler import login
 from scraping.db_communicator.handlers.logout_handler import logout
-import scraping.utilities.definitions.communicator_urls as urls
 
 log = logging.getLogger("db_communicator")
 medicine_log = logging.getLogger("db_communicator.medicine_info")

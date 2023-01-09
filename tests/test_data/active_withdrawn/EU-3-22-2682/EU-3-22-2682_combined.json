@@ -1,0 +1,105 @@
+{
+    "atc_code": "__SCRAPER_NOT_FOUND__",
+    "ema_number_id": "91543",
+    "eu_nas": "__SCRAPER_NOT_FOUND__",
+    "ec_decision_time_days": "Not found",
+    "ema_number_certainty": "1.0",
+    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "ema_procedure_start_initial": "__SCRAPER_NOT_FOUND__",
+    "eu_med_type": "__SCRAPER_NOT_FOUND__",
+    "ema_reexamination": "__SCRAPER_NOT_FOUND__",
+    "chmp_opinion_date": "Date is left blank in source",
+    "eu_mah_current": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-07"
+        }
+    ],
+    "eu_od_sponsor": [
+        {
+            "value": "Alnylam Netherlands B.V.",
+            "date": "2023-01-07"
+        }
+    ],
+    "eu_aut_date": "2022-08-10",
+    "eu_mah_initial": {
+        "value": "Alnylam Netherlands B.V.",
+        "date": "2023-01-07"
+    },
+    "eu_orphan_con_current": [
+        {
+            "value": "__SCRAPER_NOT_FOUND__",
+            "date": "2023-01-07"
+        }
+    ],
+    "eu_od_comp_date": "2022-07-14",
+    "eu_aut_type_initial": {
+        "value": "standard",
+        "date": "2023-01-07"
+    },
+    "ema_number_check": false,
+    "eu_prime_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "Date is left blank in source"
+    },
+    "eu_referral": "False",
+    "eu_aut_type_current": [
+        {
+            "value": "standard",
+            "date": "2023-01-07"
+        }
+    ],
+    "eu_indication_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "Date is left blank in source"
+    },
+    "eu_od_initial": {
+        "value": "adopted",
+        "date": "2023-01-07"
+    },
+    "eu_pnumber": "__SCRAPER_NOT_FOUND__",
+    "eu_suspension": "False",
+    "eu_od_date": "2022-08-10",
+    "eu_legal_basis": "__SCRAPER_NOT_FOUND__",
+    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
+    "ema_rapp": "__SCRAPER_NOT_FOUND__",
+    "aut_url": "https://ec.europa.eu/health/documents/community-register/2022/20220810156710/dec_156710_en.pdf",
+    "omar_url": "404_url_not_found",
+    "eu_procedures_todo": [
+        {
+            "eu_referral": false,
+            "eu_suspension": false
+        }
+    ],
+    "smpc_url": "404_url_not_found",
+    "ema_corapp": "__SCRAPER_NOT_FOUND__",
+    "odwar_url": "404_url_not_found",
+    "epar_url": "404_url_not_found",
+    "orphan_status": "o",
+    "active_substance": "Vutrisiran",
+    "eu_accel_assess_g": "__SCRAPER_NOT_FOUND__",
+    "eu_atmp": "__SCRAPER_NOT_FOUND__",
+    "eu_od_number": "EU/3/22/2682",
+    "eu_aut_status": [
+        {
+            "value": "ACTIVE",
+            "date": "2023-01-07"
+        }
+    ],
+    "ema_od_number": "EMA/OD/0000091543",
+    "eu_brand_name_current": [
+        {
+            "value": "EU/3/22/2682",
+            "date": "2023-01-07"
+        }
+    ],
+    "assess_time_days_active": "Not found",
+    "eu_brand_name_initial": {
+        "value": "Vutrisiran",
+        "date": "2023-01-07"
+    },
+    "eu_od_con": "Treatment of Stargardt&#39;s disease",
+    "assess_time_days_cstop": "Not found",
+    "ema_number": "__SCRAPER_NOT_FOUND__",
+    "assess_time_days_total": "Not found"
+}
