@@ -18,17 +18,17 @@
     "eu_suspension": "False",
     "ema_number_certainty": "1.0",
     "authorisation_row": "0",
-    "scrape_date_web": "2023-01-07",
+    "scrape_date_web": "2023-01-09",
     "filedates": {
         "EU-3-22-2689_o_dec_0.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220810156719/dec_156719_en.pdf",
             "pdf_date": "2022-08-10",
-            "pdf_scrape_date": "2023-01-07"
+            "pdf_scrape_date": "2023-01-09"
         },
         "EU-3-22-2689_o_dec_1.pdf": {
             "pdf_link": "https://ec.europa.eu/health/documents/community-register/2022/20220810157864/dec_157864_en.pdf",
             "pdf_date": "2022-08-10",
-            "pdf_scrape_date": "2023-01-07"
+            "pdf_scrape_date": "2023-01-09"
         }
     }
 }
