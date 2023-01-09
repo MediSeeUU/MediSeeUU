@@ -1,30 +1,66 @@
 {
+    "eu_accel_assess_g": "False",
+    "eu_od_number": "__SCRAPER_NOT_FOUND__",
+    "active_substance": "Sitaxentan sodium",
+    "eu_aut_status": [
+        {
+            "value": "WITHDRAWN",
+            "date": "2023-01-09"
+        }
+    ],
+    "eu_brand_name_current": [
+        {
+            "value": "Thelin",
+            "date": "2023-01-09"
+        }
+    ],
+    "assess_time_days_total": 378,
+    "ema_od_number": "__SCRAPER_NOT_FOUND__",
+    "eu_brand_name_initial": {
+        "value": "Thelin",
+        "date": "2023-01-09"
+    },
+    "assess_time_days_active": "Not found",
+    "eu_od_con": "__SCRAPER_NOT_FOUND__",
+    "ema_number": "EMEA/H/C/679",
     "atc_code": "C02KX03",
-    "ema_number_id": "679",
     "eu_nas": "Not available at time of release",
-    "ec_decision_time_days": 5994,
-    "ema_number_certainty": "1.0",
-    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "ema_number_id": "679",
+    "assess_time_days_cstop": "Not found",
+    "eu_od_date": "Date is left blank in source",
     "ema_procedure_start_initial": "2005-07-28",
-    "eu_med_type": "__SCRAPER_NOT_FOUND__",
-    "ema_reexamination": "False",
     "chmp_opinion_date": "2006-08-10",
+    "ema_number_certainty": "1.0",
+    "ec_decision_time_days": 5996,
+    "eu_od_pnumber": "__SCRAPER_NOT_FOUND__",
+    "eu_aut_date": "2006-08-10",
+    "ema_number_check": true,
+    "eu_aut_type_initial": {
+        "value": "Not parsed",
+        "date": "2023-01-09"
+    },
     "eu_mah_current": [
         {
             "value": "Pfizer Limited",
-            "date": "2023-01-07"
+            "date": "2023-01-09"
         }
     ],
+    "ema_reexamination": "False",
     "eu_od_sponsor": [
         {
             "value": "__SCRAPER_NOT_FOUND__",
-            "date": "2023-01-07"
+            "date": "2023-01-09"
         }
     ],
-    "eu_aut_date": "2006-08-10",
+    "eu_aut_type_current": [
+        {
+            "value": "standard",
+            "date": "2023-01-09"
+        }
+    ],
     "eu_mah_initial": {
         "value": "Not parsed",
-        "date": "2023-01-07"
+        "date": "2023-01-09"
     },
     "eu_orphan_con_current": [
         {
@@ -38,79 +74,43 @@
                     "end_date": "2011-01-11"
                 }
             ],
-            "date": "2023-01-07"
+            "date": "2023-01-09"
         }
     ],
     "eu_od_comp_date": "Date is left blank in source",
-    "eu_aut_type_initial": {
-        "value": "Not parsed",
-        "date": "2023-01-07"
-    },
-    "ema_number_check": true,
+    "eu_pnumber": "EU/1/06/353",
     "eu_prime_initial": {
         "value": "Not available at time of release",
-        "date": "2023-01-07"
+        "date": "2023-01-09"
     },
-    "eu_referral": "False",
-    "eu_aut_type_current": [
-        {
-            "value": "standard",
-            "date": "2023-01-07"
-        }
-    ],
-    "eu_indication_initial": {
-        "value": "__SCRAPER_NOT_FOUND__",
-        "date": "2023-01-07"
-    },
-    "eu_od_initial": {
-        "value": "Not parsed",
-        "date": "2023-01-07"
-    },
-    "eu_pnumber": "EU/1/06/353",
-    "eu_suspension": "False",
-    "eu_od_date": "Date is left blank in source",
     "eu_legal_basis": [
         "article 8.3"
     ],
-    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
-    "ema_rapp": "dr. j.f.f. lekkerkerker",
+    "eu_referral": "False",
+    "eu_indication_initial": {
+        "value": "__SCRAPER_NOT_FOUND__",
+        "date": "2023-01-09"
+    },
     "aut_url": "https://ec.europa.eu/health/documents/community-register/2006/2006081012348/dec_12348_en.pdf",
+    "eu_od_initial": {
+        "value": "Not parsed",
+        "date": "2023-01-09"
+    },
+    "eu_suspension": "False",
+    "ema_omar_condition": "__SCRAPER_NOT_FOUND__",
+    "smpc_url": "https://ec.europa.eu/health/documents/community-register/2006/2006081012348/anx_12348_en.pdf",
+    "ema_rapp": "dr. j.f.f. lekkerkerker",
     "omar_url": "404_url_not_found",
+    "epar_url": "https://www.ema.europa.eu/documents/procedural-steps/thelin-epar-procedural-steps-taken-authorisation_en.pdf",
     "eu_procedures_todo": [
         {
             "eu_referral": false,
             "eu_suspension": false
         }
     ],
-    "smpc_url": "https://ec.europa.eu/health/documents/community-register/2006/2006081012348/anx_12348_en.pdf",
+    "eu_atmp": "Not available at time of release",
     "ema_corapp": "dr. k. broich",
     "odwar_url": "404_url_not_found",
-    "epar_url": "https://www.ema.europa.eu/documents/procedural-steps/thelin-epar-procedural-steps-taken-authorisation_en.pdf",
     "orphan_status": "h",
-    "active_substance": "Sitaxentan sodium",
-    "eu_accel_assess_g": "False",
-    "eu_atmp": "Not available at time of release",
-    "eu_od_number": "__SCRAPER_NOT_FOUND__",
-    "eu_aut_status": [
-        {
-            "value": "WITHDRAWN",
-            "date": "2023-01-07"
-        }
-    ],
-    "ema_od_number": "__SCRAPER_NOT_FOUND__",
-    "eu_brand_name_current": [
-        {
-            "value": "Thelin",
-            "date": "2023-01-07"
-        }
-    ],
-    "assess_time_days_active": "Not found",
-    "eu_brand_name_initial": {
-        "value": "Thelin",
-        "date": "2023-01-07"
-    },
-    "eu_od_con": "__SCRAPER_NOT_FOUND__",
-    "assess_time_days_cstop": "Not found",
-    "ema_number": "EMEA/H/C/679",
-    "assess_time_days_total": 378
+    "eu_med_type": "__SCRAPER_NOT_FOUND__"
 }
