@@ -1,8 +1,20 @@
 import json
 import os
+from pathlib import Path
+
+
+# File located at
+#   (MediSee)/scraping/utilities/config.py
+# We need to climb three folder
+root_path: Path = Path(__file__).resolve().parent.parent.parent
+
+scraping_path: Path = root_path / "scraping"
+data_path: Path = root_path / "data"
+logging_path: Path = root_path / "logs"
 
 filename = "scraping_config.txt"
 
+parallelized = "parallelized"
 run_web = 'run_web'
 run_xml = 'run_xml'
 run_pdf = 'run_pdf'
@@ -16,6 +28,7 @@ db_com_send_together = 'db_com_send_together'
 
 # if no config found, use default values
 default_config = {
+    parallelized: True,
     run_web: True,
     run_xml: True,
     run_pdf: True,
