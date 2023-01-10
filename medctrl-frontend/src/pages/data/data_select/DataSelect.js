@@ -91,6 +91,10 @@ function DataSelect() {
           select={true}
           text="No data to display, please clear your search or filters."
         />
+        <hr className="med-top-separator" />
+        <h3>
+          *: The source document was uploaded before the introduction of this variable
+        </h3>
       </div>
     </>
   )

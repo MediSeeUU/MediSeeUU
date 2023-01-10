@@ -45,6 +45,28 @@ export function DataProvider({ mock, children }) {
     }
   }, [structData, setData, mock])
 
+
+  // useOrphan(() => {
+  //   async function fetchData() {
+  //     const medResponse = await fetchWithToken(
+  //       `${process.env.PUBLIC_URL}/api/medicine/orphan/`,
+  //       {
+  //         method: 'GET',
+  //         headers: { 'Content-Type': 'application/json' },
+  //       }
+  //     )
+
+  //     const medResponseData = await medResponse.json()
+  //     setData(cleanFetchedData(medResponseData, structData))
+  //   }
+
+  //   // The update will only happen if the structure data is retrieved already
+  //   // And the provider is not being mocked
+  //   if (structData && !mock) {
+  //     fetchData()
+  //   }
+  // }, [structData, setData, mock])
+
   // Provide the mock data if this is given, otherwise the obtained medicines data
   return (
     <DataContext.Provider value={mock || data}>{children}</DataContext.Provider>
