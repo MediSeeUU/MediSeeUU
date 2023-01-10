@@ -15,7 +15,7 @@ from api.serializers.medicine_serializers.public.human import (
 )
 
 
-class HumanHistoriesViewSet(viewsets.ViewSet):
+class ProceduresViewSet(viewsets.ViewSet):
 
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 

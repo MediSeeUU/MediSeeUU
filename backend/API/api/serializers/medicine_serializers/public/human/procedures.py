@@ -24,4 +24,4 @@ class ProceduresSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = Procedures
-        exclude = ["id", ]
+        exclude = ("id", "eu_pnumber", )
