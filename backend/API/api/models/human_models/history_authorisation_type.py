@@ -6,10 +6,14 @@ from .medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import (
     Category,
 )
-from api.models.common import DataFormats, AutTypes
+from api.models.common import (
+    DataFormats,
+    AutTypes,
+)
+from api.models.other import LockModel
 
 
-class HistoryAuthorisationType(models.Model):
+class HistoryAuthorisationType(LockModel):
     """
     This is the model class for the Authorisation Type history table. New attributes can be added here.
     This model is derived from a base model from the Django library.

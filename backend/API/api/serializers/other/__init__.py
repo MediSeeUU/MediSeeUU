@@ -4,6 +4,5 @@
 
 from .saved_selection import SavedSelectionSerializer
 from .locks import (
-    MedicineLocksSerializer,
-    OrphanLocksSerializer,
+    LocksSerializer,
 )

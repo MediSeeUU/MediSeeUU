@@ -4,11 +4,14 @@
 from django.db import models
 from .medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import create_dashboard_column, Category
-from api.models.common import DataFormats
+from api.models.common import (
+    DataFormats,
+)
 from api.models.na_fields import BooleanWithNAField
+from api.models.other import LockModel
 
 
-class Procedures(models.Model):
+class Procedures(LockModel):
     """
     This is the model class for the Procedures table. New attributes can be added here.
     This model is derived from a base model from the Django library.

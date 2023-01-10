@@ -15,7 +15,6 @@ from api.serializers.medicine_serializers.scraper.post.orphan import (
 from api.serializers.medicine_serializers.scraper.update.orphan import (
     OrphanProductFlexVarUpdateSerializer,
 )
-from api.models.other import OrphanLocks
 from .common import (
     pop_foreign_key_histories_data,
     add_or_update_model,
@@ -28,11 +27,6 @@ from .common import (
 def post(data):
     if eu_od_number := data.get("eu_od_number"):
         override = data.get("override")
-        locks = OrphanLocks.objects.filter(
-            eu_od_number=eu_od_number
-        ).values_list("column_name", flat=True)
-
-        data = {key: value for key, value in data.items() if key not in locks}
 
         foreign_key_history_data = pop_foreign_key_histories_data(data)
 

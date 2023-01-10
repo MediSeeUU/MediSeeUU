@@ -39,7 +39,6 @@ from api.serializers.medicine_serializers.scraper.update.human import (
     AcceleratedAssessmentFlexVarUpdateSerializer,
     DurationFlexVarUpdateSerializer,
 )
-from api.models.other import MedicineLocks
 from .common import (
     pop_foreign_key_histories_data,
     add_or_update_model,
@@ -53,12 +52,6 @@ from .common import (
 def post(data):
     if eu_pnumber := data.get("eu_pnumber"):
         override = data.get("override")
-        # if variable is locked, delete it from the data
-        locks = MedicineLocks.objects.filter(
-            eu_pnumber=eu_pnumber
-        ).values_list("column_name", flat=True)
-
-        data = {key: value for key, value in data.items() if key not in locks}
 
         # pop history foreign keys from data to add them later because of circular dependency
         foreign_key_history_data = pop_foreign_key_histories_data(data)
