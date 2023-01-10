@@ -29,7 +29,7 @@ class BooleanWithNAField(models.Field):
     def db_type(self, connection):
         return f"VARCHAR({self.max_length})"
 
-    def from_db_value(self, value, expression, connection):
+    def from_db_value(self, value, *_):
         if value == "True":
             return True
         elif value == "False":
@@ -82,7 +82,7 @@ class TypeWithNAWidget(forms.MultiWidget):
 
 class IntegerWithNAField(models.Field):
     def __init__(self, *args, **kwargs):
-        self.values = ["True", "False"] + DataFormats.Number.na_values
+        self.values = DataFormats.Number.na_values
         if "extra_na_values" in kwargs:
             self.values += kwargs["extra_na_values"]
             del kwargs["extra_na_values"]
@@ -100,7 +100,7 @@ class IntegerWithNAField(models.Field):
     def db_type(self, connection):
         return "LONGTEXT"
 
-    def from_db_value(self, value, expression, connection):
+    def from_db_value(self, value, *_):
         if value is None or not str.isdigit(value):
             return value
         else:
@@ -144,7 +144,7 @@ class IntegerWithNAField(models.Field):
 
 class DateWithNAField(models.Field):
     def __init__(self, *args, **kwargs):
-        self.values = ["True", "False"] + DataFormats.Date.na_values
+        self.values = DataFormats.Date.na_values
         if "extra_na_values" in kwargs:
             self.values += kwargs["extra_na_values"]
             del kwargs["extra_na_values"]
@@ -210,7 +210,7 @@ class DateWithNAField(models.Field):
 
 class URLWithNAField(models.Field):
     def __init__(self, *args, **kwargs):
-        self.values = ["True", "False"] + DataFormats.Link.na_values
+        self.values = DataFormats.Link.na_values
         if "extra_na_values" in kwargs:
             self.values += kwargs["extra_na_values"]
             del kwargs["extra_na_values"]
