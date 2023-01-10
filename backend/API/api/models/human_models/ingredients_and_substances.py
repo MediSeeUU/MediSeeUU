@@ -76,7 +76,7 @@ class IngredientsAndSubstances(models.Model):
     eu_nas = create_dashboard_column(
         BooleanWithNAField(
             null=True,
-            blank=False,
+            blank=True,
         ),
         Category.Ingredients_and_substances,
         DataFormats.Bool,
@@ -87,4 +87,6 @@ class IngredientsAndSubstances(models.Model):
         return self.active_substance
 
     class Meta:
-        db_table = "ingredients_and_substances"
+        db_table = "ingredients_and_substance"
+        verbose_name = "Ingredients And Substances"
+        verbose_name_plural = "Ingredients And Substances"

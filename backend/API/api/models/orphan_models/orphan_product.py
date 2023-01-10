@@ -120,3 +120,5 @@ class OrphanProduct(models.Model):
 
     class Meta:
         db_table = "orphan_product"
+        verbose_name = "Orphan Product"
+        verbose_name_plural = "Orphan Products"

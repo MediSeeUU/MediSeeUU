@@ -1,6 +1,7 @@
 import json
 import logging
 import os.path as path
+import datetime
 from os import listdir
 from typing import Any
 
@@ -19,6 +20,7 @@ def main(data_directory: str):
     Args:
         data_directory (str): Main data folder containing the active_withdrawn folder with medicines
     """
+    log.info(f"=== NEW LOG {datetime.datetime.today()} ===")
     log.info("Combining JSON files")
     active_withdrawn_folder = path.join(data_directory, "active_withdrawn")
     directory_folders = [folder for folder in listdir(active_withdrawn_folder) if
