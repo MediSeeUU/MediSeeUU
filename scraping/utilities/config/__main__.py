@@ -22,6 +22,7 @@ run_annex_10 = 'run_annex_10'
 run_combiner = 'run_combiner'
 run_transformer = 'run_transformer'
 run_db_com = 'run_db_communicator'
+run_annex_comparer = "run_annex_comparer"
 xml_convert_all = 'xml_convert_all'
 pdf_parse_all = 'pdf_parse_all'
 db_com_send_together = 'db_com_send_together'
@@ -45,6 +46,7 @@ default_config = {
     run_combiner: True,
     run_transformer: True,
     run_db_com: True,
+    run_annex_comparer: True,
     xml_convert_all: False,
     pdf_parse_all: False,
     db_com_send_together: True,

@@ -44,6 +44,8 @@ def run_all():
         pdf_parser.main(data_folder_directory, config[cf.pdf_parse_all])
     if config[cf.run_annex_10]:
         annex_10_parser.main(data_folder_directory)
+    if config[cf.run_annex_comparer]:
+        pass
     if config[cf.run_combiner]:
         combiner.main(data_folder_directory)
     if config[cf.run_transformer]:
