@@ -1,14 +1,16 @@
 # This program has been developed by students from the bachelor Computer Science at
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
-from hashlib import md5
 from django.db import models
 from api.models.create_dashboard_columns import create_dashboard_column, Category, ExtraDashBoardColumn
 from api.models.na_fields import BooleanWithNAField
-from api.models.common import DataFormats
+from api.models.common import (
+    DataFormats,
+)
+from api.models.other import LockModel
 
 
-class IngredientsAndSubstances(models.Model):
+class IngredientsAndSubstances(LockModel):
     """
     This is the model class for the Ingredients and Substances table. New attributes can be added here.
     This model is derived from a base model from the Django library.
@@ -87,6 +89,6 @@ class IngredientsAndSubstances(models.Model):
         return self.active_substance
 
     class Meta:
-        db_table = "ingredients_and_substance"
-        verbose_name = "Ingredients And Substances"
+        db_table = "ingredients_and_substances"
+        verbose_name = "Ingredients And Substance"
         verbose_name_plural = "Ingredients And Substances"

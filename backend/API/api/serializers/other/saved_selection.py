@@ -6,7 +6,7 @@
 # of an user.
 # ------------------------------------------------------
 from rest_framework import serializers
-from api.models.other import SavedSelection
+from api.models.user import SavedSelection
 
 
 # Gets all data selections that a user saved

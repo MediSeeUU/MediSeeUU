@@ -7,6 +7,4 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-from .saved_selection import SavedSelection
-from .medicine_locks import MedicineLocks
-from .orphan_locks import OrphanLocks
+from .locks import Locks, LockModel

@@ -6,10 +6,13 @@ from .medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import (
     Category
 )
-from api.models.common import DataFormats
+from api.models.common import (
+    DataFormats,
+)
+from api.models.other import LockModel
 
 
-class HistoryMAH(models.Model):
+class HistoryMAH(LockModel):
     """
     This is the model class for the Marketing Authorisation Holder history table. New attributes can be added here.
     This model is derived from a base model from the Django library.

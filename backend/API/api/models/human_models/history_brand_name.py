@@ -6,10 +6,13 @@ from api.models.human_models import MedicinalProduct
 from api.models.create_dashboard_columns import (
     Category,
 )
-from api.models.common import DataFormats
+from api.models.common import (
+    DataFormats,
+)
+from api.models.other import LockModel
 
 
-class HistoryBrandName(models.Model):
+class HistoryBrandName(LockModel):
     """
     This is the model class for the Brand Name history table. New attributes can be added here.
     This model is derived from a base model from the Django library.

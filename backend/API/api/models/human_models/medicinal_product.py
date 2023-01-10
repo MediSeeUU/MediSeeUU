@@ -6,14 +6,16 @@ from api.models.create_dashboard_columns import (
     create_dashboard_column,
     create_dashboard_history_foreign_key_column,
     Category,
-    ExtraDashBoardColumn,
 )
 from .ingredients_and_substances import IngredientsAndSubstances
-from api.models.common import DataFormats
+from api.models.common import (
+    DataFormats,
+)
 from api.models.na_fields import BooleanWithNAField, URLWithNAField
+from api.models.other import LockModel
 
 
-class MedicinalProduct(models.Model):
+class MedicinalProduct(LockModel):
     """
     This is the model class for the Medicinal Product table. New attributes can be added here.
     This model is derived from a base model from the Django library.
@@ -103,6 +105,16 @@ class MedicinalProduct(models.Model):
         Category.Medicinal_product,
         DataFormats.Bool,
         "EU ATMP",
+    )
+
+    eu_indication_initial = create_dashboard_column(
+        models.TextField(
+            null=True,
+            blank=True,
+        ),
+        Category.Medicinal_product,
+        DataFormats.String,
+        "Therapeutic Indications",
     )
 
     ingredients_and_substances = models.ForeignKey(

@@ -6,28 +6,13 @@
 # ------------------------------------------------------
 from rest_framework import serializers
 from api.models.other import (
-    MedicineLocks,
-    OrphanLocks,
+    Locks,
 )
 
 
-class MedicineLocksSerializer(serializers.ModelSerializer):
+class LocksSerializer(serializers.ModelSerializer):
     """
-    Serializer for the :py:class:`.MedicineLocks` model
-    """
-
-    class Meta:
-        """
-        Meta class, return all fields by default
-        """
-
-        model = MedicineLocks
-        fields = "__all__"
-
-
-class OrphanLocksSerializer(serializers.ModelSerializer):
-    """
-    Serializer for the :py:class:`.OrphanLocks` model
+    Serializer for the :py:class:`.Locks` model
     """
 
     class Meta:
@@ -35,5 +20,5 @@ class OrphanLocksSerializer(serializers.ModelSerializer):
         Meta class, return all fields by default
         """
 
-        model = OrphanLocks
+        model = Locks
         fields = "__all__"

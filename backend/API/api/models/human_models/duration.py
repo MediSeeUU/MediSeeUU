@@ -3,11 +3,14 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
 from api.models.create_dashboard_columns import create_dashboard_column, Category
-from api.models.common import DataFormats
+from api.models.common import (
+    DataFormats,
+)
 from api.models.na_fields import IntegerWithNAField
+from api.models.other import LockModel
 
 
-class Duration(models.Model):
+class Duration(LockModel):
     """
     This is the model class for the Duration table. New attributes can be added here.
     This model is derived from a base model from the Django library.

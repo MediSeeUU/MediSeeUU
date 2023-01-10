@@ -12,11 +12,14 @@ from api.models.create_dashboard_columns import (
     create_dashboard_history_foreign_key_column,
     Category,
 )
-from api.models.common import DataFormats
+from api.models.common import (
+    DataFormats,
+)
 from api.models.na_fields import BooleanWithNAField, DateWithNAField, URLWithNAField
+from api.models.other import LockModel
 
 
-class MarketingAuthorisation(models.Model):
+class MarketingAuthorisation(LockModel):
     """
     This is the model class for the Marketing Authorisation table. New attributes can be added here.
     This model is derived from a base model from the Django library.

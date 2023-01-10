@@ -25,3 +25,4 @@ from .ingredients_and_substances_admin import IngredientsAndSubstancesResource, 
 from .marketing_authorisation_admin import MarketingAuthorisationResource, MarketingAuthorisationAdmin
 from .medicinal_product_admin import MedicinalProductResource, MedicinalProductAdmin
 from .orphan_product_admin import OrphanProductResource, OrphanProductAdmin
+from .locks_admin import LocksResource, LocksAdmin

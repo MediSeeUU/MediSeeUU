@@ -11,9 +11,10 @@ from api.models.common import (
     ODChoices,
 )
 from api.models.na_fields import BooleanWithNAField
+from api.models.other import LockModel
 
 
-class HistoryOD(models.Model):
+class HistoryOD(LockModel):
     """
     This is the model class for the Orphan Designation history table. New attributes can be added here.
     This model is derived from a base model from the Django library.

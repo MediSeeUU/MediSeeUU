@@ -22,7 +22,6 @@ class MedicinalProductFlexVarUpdateSerializer(serializers.ModelSerializer):
         """
         model = MedicinalProduct
         fields = [
-            "ema_number_check",
             "ema_url",
             "ec_url",
         ]
