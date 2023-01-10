@@ -197,17 +197,18 @@ def scrape_medicine_page(eu_num: str, html_active: requests.Response, medicine_t
     medicine_json, procedures_json, *_ = get_ec_json_objects(html_active)
 
     # Gets all the necessary information from the medicine_json and procedures_json objects
-    medicine_dict, ema_url_list = get_data_from_medicine_json(medicine_json, eu_num, medicine_type)
-
     procedures_dict, dec_url_list, anx_url_list = get_data_from_procedures_json(procedures_json, eu_num, data_folder)
 
+    medicine_dict, ema_url_list = get_data_from_medicine_json(procedures_dict, medicine_json, eu_num, medicine_type)
+
     # combine the attributes from both dictionaries files in a single JSON file
-    all_attributes_dict = medicine_dict | procedures_dict
+    # all_attributes_dict = medicine_dict | procedures_dict
 
-    return dec_url_list, anx_url_list, ema_url_list, all_attributes_dict
+    return dec_url_list, anx_url_list, ema_url_list, medicine_dict
 
 
-def get_data_from_medicine_json(medicine_json: dict,
+def get_data_from_medicine_json(medicine_dict: dict,
+                                medicine_json: dict,
                                 eu_num: str,
                                 medicine_type: MedicineType) \
         -> (dict[str, str], list[str]):
@@ -218,6 +219,7 @@ def get_data_from_medicine_json(medicine_json: dict,
     so that they can be used and stored. Whenever an attribute is not found, this is logged.
 
     Args:
+        medicine_dict (dict): The dictionary that contains all the webdata attributes
         medicine_json (dict): The JSON object that contains all relevant attributes and links.
         eu_num (str): The EU number for the medicine that belongs to this JSON.
         medicine_type (MedicineType): The type of medicine that belongs to this JSON.
@@ -227,7 +229,6 @@ def get_data_from_medicine_json(medicine_json: dict,
             First item in the tuple is a dictionary with all the attribute values.
             The second item in the tuple is a list with all the links to the EMA.
     """
-    medicine_dict: dict[str, str] = {}
     ema_url_list: list[str] = []
     # Whether current web page is about a human or orphan medicine
     human_medicine = True
@@ -285,14 +286,14 @@ def get_data_from_medicine_json(medicine_json: dict,
     return medicine_dict, ema_url_list
 
 
-def set_human_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str]), row: dict):
+def set_human_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str | str, dict]), row: dict):
     """
     Updates medicine_dict with attributes from the EC website for human use medicines
 
     Args:
         ema_url_list (list[str]): List of URLs to EMA websites
-        medicine_dict (dict[str, str]): A dictionary containing all the attribute values and a list
-            with all the links to the EMA.
+        medicine_dict (dict[str, str | str, dict]): A dictionary containing all the attribute values and a
+            list with all the links to the EMA.
         row (dict): Row in medicine_json to be searched
     """
     match row["type"]:
@@ -308,7 +309,29 @@ def set_human_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str]
             # TODO: retrieve date for every PDF
 
         case "orphan_links":
-            medicine_dict[attr.eu_orphan_con_current]: str = row["meta"]
+            min_date = min([datetime.strptime(od["link_date"], "%Y-%m-%d").date() for od in row["meta"]])
+            eu_od_con_first_list = []
+            eu_od_at_marketing_list = []
+            od_history_dict = {}
+            for linked_orphan in row["meta"]:
+                od = linked_orphan['eu_num']
+                # eu_od_at_marketing
+                link_date = datetime.strptime(linked_orphan["link_date"], "%Y-%m-%d").date()
+                if link_date == datetime.strptime(medicine_dict[attr.eu_aut_closed_date], '%Y-%m-%d').date():
+                    eu_od_at_marketing_list.append(od)
+                # eu_od_con_history
+                od_history_dict[od] = {}
+                od_history_dict[od]["start date"] = linked_orphan["link_date"]
+                od_history_dict[od]["status"] = "Active"
+                if "end_date" in linked_orphan:
+                    od_history_dict[od]["status"] = "Expired"
+                # eu_od_con_first
+                if link_date == min_date:
+                    eu_od_con_first_list.append(od)
+            if len(eu_od_at_marketing_list) > 0:
+                medicine_dict[attr.eu_od_at_marketing] = str(eu_od_at_marketing_list)
+            medicine_dict[attr.eu_od_con_history] = od_history_dict
+            medicine_dict[attr.eu_od_con_first] = str(eu_od_con_first_list)
 
 
 def set_orphan_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str]), row: dict):
@@ -436,14 +459,18 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
 
     # Gets the oldest authorization procedure (which is the first in the list) and gets the date from there
     eu_aut_str: str = procedures_json[authorisation_row]["decision"]["date"]
+
     if eu_aut_str is not None:
         eu_aut_date: datetime.date = datetime.strptime(eu_aut_str, '%Y-%m-%d').date()
         eu_aut_type_initial: str = determine_initial_aut_type(eu_aut_date.year,
                                                               is_exceptional,
                                                               is_conditional)
+        eu_aut_closed_date: datetime.date = datetime.strptime(procedures_json[authorisation_row]["closed"], '%Y-%m-%d')\
+            .date()
     else:
         eu_aut_date = values.date_not_found
         eu_aut_type_initial: str = values.not_found
+        eu_aut_closed_date: datetime.date = values.date_not_found
 
     # From the list of EMA numbers, the right one is chosen and its certainty determined
     if ema_numbers:
@@ -469,6 +496,7 @@ def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folde
     procedures_dict[attr.eu_suspension] = str(eu_suspension)
     procedures_dict[attr.ema_number_certainty] = str(ema_number_certainty)
     procedures_dict[attr.authorisation_row] = str(authorisation_row)
+    procedures_dict[attr.eu_aut_closed_date] = str(eu_aut_closed_date)
 
     for key, value in procedures_dict.items():
         if value == values.not_found or value == values.date_not_found:
