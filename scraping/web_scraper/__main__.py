@@ -45,6 +45,7 @@ def main(config: dict[bool], medicine_list = None):
         config (config_objects.WebConfig): Object that contains the variables that define the behaviour of webscraper
     """
     log.info(f"=== NEW LOG {datetime.today()} ===")
+    web_config = config[cf.web_config]
 
     if medicine_list is None:
         medicine_list = ec_scraper.scrape_medicines_list()
@@ -52,41 +53,41 @@ def main(config: dict[bool], medicine_list = None):
     Path(json_path).mkdir(exist_ok=True, parents=True)
 
     log.info("TASK SUCCESS on Generating directories")
-    if config[cf.web_scrape_ec] and config[cf.web_scrape_ema]:
+    if web_config[cf.web_scrape_ec] and web_config[cf.web_scrape_ema]:
         url_file.overwrite_dict({})
 
-    if config[cf.web_download_annex10]:
+    if web_config[cf.web_download_annex10]:
         url_scraper.get_annex_10_urls("https://www.ema.europa.eu/en/about-us/annual-reports-work-programmes",
                                       annex10_file)
 
-    if config[cf.web_scrape_ec]:
+    if web_config[cf.web_scrape_ec]:
         ec_scraper.scrape_ec(config, medicine_list, url_file, url_refused_file)
 
-    if config[cf.web_scrape_ema]:
+    if web_config[cf.web_scrape_ema]:
         ema_scraper.scrape_ema(config, url_file)
 
-    if config[cf.web_download]:
+    if web_config[cf.web_download]:
         log.info("TASK START downloading PDF files from fetched urls from EC and EMA")
-        download.download_all(config.path_data, url_file, parallel_download=config.parallelized)
+        download.download_all(cf.data_path, url_file, parallel_download=config[cf.parallelized])
         url_file.save_dict()
 
-    if config[cf.web_download_refused]:
+    if web_config[cf.web_download_refused]:
         log.info("TASK START downloading refused PDF files from fetched urls from EC and EMA")
-        download.download_all(config.path_data, url_refused_file, parallel_download=config.parallelized)
+        download.download_all(cf.path_data, url_refused_file, parallel_download=config[cf.parallelized])
         url_refused_file.save_dict()
 
-    if config[cf.web_download_annex10]:
+    if web_config[cf.web_download_annex10]:
         log.info("TASK START downloading Annex 10 Excel files from fetched urls from EC and EMA")
-        download.download_annex10_files(config.path_data, annex10_file)
+        download.download_annex10_files(cf.path_data, annex10_file)
 
-    if config[cf.web_download_ema_excel]:
+    if web_config[cf.web_download_ema_excel]:
         if ema_scraper.get_epar_excel_url("https://www.ema.europa.eu/en/medicines/download-medicine-data#european-"
                                           "public-assessment-reports-(epar)-section", ema_excel_file):
             log.info("TASK START downloading EMA excel file from the fetched url")
-            download.download_ema_excel_file(config.path_data, ema_excel_file)
+            download.download_ema_excel_file(cf.path_data, ema_excel_file)
 
-    if config[cf.web_run_filter]:
-        filter_retry.run_filter(3, config.path_data)
+    if web_config[cf.web_run_filter]:
+        filter_retry.run_filter(3, cf.path_data)
     log.info("=== LOG FINISH ===")
 
 

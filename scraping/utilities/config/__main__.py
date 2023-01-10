@@ -6,7 +6,7 @@ from pathlib import Path
 # File located at
 #   (MediSee)/scraping/utilities/config.py
 # We need to climb three folder
-root_path: Path = Path(__file__).resolve().parent.parent.parent
+root_path: Path = Path(__file__).resolve().parent.parent.parent.parent
 
 scraping_path: Path = root_path / "scraping"
 data_path: Path = root_path / "data"

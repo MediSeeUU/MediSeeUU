@@ -14,7 +14,8 @@ from tqdm import tqdm
 import scraping.utilities.definitions.attribute_values as values
 import scraping.utilities.definitions.attributes as attr
 import scraping.utilities.log.log_tools as log_tools
-from scraping.utilities.web import web_utils as utils, config_objects, json_helper
+import scraping.utilities.config.__main__ as cf
+from scraping.utilities.web import web_utils as utils, json_helper
 from scraping.utilities.web.medicine_type import MedicineType
 from scraping.web_scraper import url_scraper
 
@@ -598,7 +599,7 @@ def determine_ema_number(ema_numbers: list[str]) -> (str, float):
     return most_occurring_item, fraction
 
 
-def scrape_ec(config: config_objects.WebConfig, medicine_list: list[(str, str, int, str)],
+def scrape_ec(config: dict, medicine_list: list[(str, str, int, str)],
               url_file: json_helper.JsonHelper, url_refused_file: json_helper.JsonHelper):
     """
     Scrapes all medicine URLs and medicine data from the EC website
@@ -611,7 +612,7 @@ def scrape_ec(config: config_objects.WebConfig, medicine_list: list[(str, str, i
         url_refused_file (json_helper.JsonHelper): The dictionary containing the urls of all refused files
     """
 
-    log_path = log_tools.get_log_path("no_english_available.txt", config_objects.default_path_data)
+    log_path = log_tools.get_log_path("no_english_available.txt", cf.data_path)
     with open(log_path, 'w', encoding="utf-8"):
         pass  # open/clean no_english_available file
 
@@ -619,16 +620,16 @@ def scrape_ec(config: config_objects.WebConfig, medicine_list: list[(str, str, i
     # Transform zipped list into individual lists for thread_map function
     # The last element of the medicine_codes tuple is not of interest, thus we pop()
     with tqdm_logging.logging_redirect_tqdm():
-        if config.parallelized:
+        if config[cf.parallelized]:
             unzipped_medicine_list = [list(t) for t in zip(*medicine_list)]
             unzipped_medicine_list.pop()
             tqdm_concurrent.thread_map(url_scraper.get_urls_ec,
                                        *unzipped_medicine_list,
-                                       repeat(config.path_data), repeat(url_file), repeat(url_refused_file),
+                                       repeat(cf.path_data), repeat(url_file), repeat(url_refused_file),
                                        max_workers=cpu_count)
         else:
             for (medicine_url, eu_n, medicine_type, _) in tqdm(medicine_list):
-                url_scraper.get_urls_ec(medicine_url, eu_n, medicine_type, config.path_data, url_file, url_refused_file)
+                url_scraper.get_urls_ec(medicine_url, eu_n, medicine_type, cf.path_data, url_file, url_refused_file)
     # Set empty EMA values for refused_file
     for eu_n in url_refused_file.local_dict:
         utils.init_ema_dict(eu_n, url_refused_file)

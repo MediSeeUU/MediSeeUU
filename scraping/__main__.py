@@ -37,7 +37,7 @@ def run_all():
     # modules run based on configfile
     config = cf.load_config()
     if config[cf.run_web]:
-        web_scraper.main(config[cf.web_config])
+        web_scraper.main(config)
     if config[cf.run_xml]:
         xml_converter.main(data_folder_directory, config[cf.xml_convert_all])
     if config[cf.run_pdf]:

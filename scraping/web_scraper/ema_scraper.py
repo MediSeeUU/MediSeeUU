@@ -11,7 +11,8 @@ import tqdm.contrib.logging as tqdm_logging
 from tqdm import tqdm
 
 import scraping.utilities.definitions.attributes as attr
-from scraping.utilities.web import web_utils as utils, json_helper, config_objects, medicine_type as med_type
+import scraping.utilities.config.__main__ as cf
+from scraping.utilities.web import web_utils as utils, json_helper, medicine_type as med_type
 from scraping.web_scraper import url_scraper
 
 log = logging.getLogger("web_scraper.ema_scraper")
@@ -314,7 +315,7 @@ def get_epar_excel_url(url: str, ema_excel_json_helper: json_helper.JsonHelper) 
     return download_excel
 
 
-def scrape_ema(config: config_objects.WebConfig, url_file: json_helper.JsonHelper):
+def scrape_ema(config: dict, url_file: json_helper.JsonHelper):
     """
     Scrapes all medicine URLs and medicine data from the EMA website
 
@@ -323,7 +324,7 @@ def scrape_ema(config: config_objects.WebConfig, url_file: json_helper.JsonHelpe
         url_file (json_helper.JsonHelper): the dictionary containing all the urls of a specific medicine
     """
     log.info("Scraping all individual medicine pages of EMA")
-    if not config.run_scrape_ec:
+    if not config[cf.web_config][cf.web_scrape_ec]:
         url_file.load_json()
     # Transform JSON object into list of (eu_n, url)
     ema_urls: list[tuple[str, str]] = [
@@ -335,7 +336,7 @@ def scrape_ema(config: config_objects.WebConfig, url_file: json_helper.JsonHelpe
     for eu_n in url_file.local_dict:
         utils.init_ema_dict(eu_n, url_file)
     with tqdm_logging.logging_redirect_tqdm():
-        if config.parallelized and len(unzipped_ema_urls) > 0:
+        if config[cf.parallelized] and len(unzipped_ema_urls) > 0:
             tqdm_concurrent.thread_map(url_scraper.get_urls_ema, *unzipped_ema_urls, repeat(url_file),
                                        max_workers=cpu_count)
 
