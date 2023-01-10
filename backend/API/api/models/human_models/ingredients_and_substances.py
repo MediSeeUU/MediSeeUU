@@ -76,7 +76,7 @@ class IngredientsAndSubstances(models.Model):
     eu_nas = create_dashboard_column(
         BooleanWithNAField(
             null=True,
-            blank=False,
+            blank=True,
         ),
         Category.Ingredients_and_substances,
         DataFormats.Bool,

@@ -115,7 +115,7 @@ class PublicMedicinalProductSerializer(RelatedMixin, ManyRelatedMixin,
         Meta information
         """
         model = MedicinalProduct
-        exclude = ("ema_number_check",)
+        exclude = ()
         # Serializers to be added and flattened
         related = [
             ("ingredients_and_substances", IngredientsAndSubstancesSerializer),

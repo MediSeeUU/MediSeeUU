@@ -105,11 +105,6 @@ class MedicinalProduct(models.Model):
         "EU ATMP",
     )
 
-    ema_number_check = BooleanWithNAField(
-        null=True,
-        blank=True,
-    )
-
     ingredients_and_substances = models.ForeignKey(
         IngredientsAndSubstances,
         models.PROTECT,
