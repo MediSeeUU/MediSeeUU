@@ -9,7 +9,7 @@ from .history_authorisation_type import HistoryAuthorisationType
 from .history_mah import HistoryMAH
 from api.models.create_dashboard_columns import (
     create_dashboard_column,
-    create_dashboard_history_initial_column,
+    create_dashboard_history_foreign_key_column,
     Category,
 )
 from api.models.common import DataFormats
@@ -106,7 +106,8 @@ class MarketingAuthorisation(models.Model):
 
     ema_rapp = create_dashboard_column(
         models.TextField(
-            null=False,
+            null=True,
+            blank=True,
         ),
         Category.Marketing_authorisation,
         DataFormats.String,
@@ -115,7 +116,8 @@ class MarketingAuthorisation(models.Model):
 
     ema_corapp = create_dashboard_column(
         models.TextField(
-            null=False,
+            null=True,
+            blank=True,
         ),
         Category.Marketing_authorisation,
         DataFormats.String,
@@ -139,27 +141,32 @@ class MarketingAuthorisation(models.Model):
         "EMA re-examination performed",
     )
 
-    eu_aut_type_initial = create_dashboard_history_initial_column(
+    eu_aut_type_initial = create_dashboard_history_foreign_key_column(
         models.OneToOneField(
             HistoryAuthorisationType,
             models.SET_NULL,
             null=True,
+            blank=True,
         ),
         Category.Marketing_authorisation,
         DataFormats.String,
         "Initial type of EU authorisation",
     )
 
-    eu_mah_initial = create_dashboard_history_initial_column(
+    eu_mah_initial = create_dashboard_history_foreign_key_column(
         models.OneToOneField(
             HistoryMAH,
             models.SET_NULL,
             null=True,
+            blank=True,
         ),
         Category.Marketing_authorisation,
         DataFormats.String,
         "Initial EU marketing authorisation holder",
     )
+
+    def __str__(self):
+        return self.eu_pnumber.__str__()
 
     class Meta:
         db_table = "marketing_authorisation"

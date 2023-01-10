@@ -110,8 +110,11 @@ def get_transformed_dict(cur_dir: str, med_name: str) -> dict | None:
         dict: The json file converted to a dictionary
     """
     try:
-        with open(path.join(cur_dir, med_name + "_transformed.json"), "r") as transformed_json:
+        with open(path.join(cur_dir, med_name + "_transformed.json"), "r", encoding='utf-8') as transformed_json:
+            return json.load(transformed_json)
+    except UnicodeDecodeError:
+        with open(path.join(cur_dir, med_name + "_transformed.json", "r")) as transformed_json:
             return json.load(transformed_json)
     except FileNotFoundError:
         log.info(f"COMMUNICATOR: no transformed.json found in data for {cur_dir}")
-        return None
+        return

@@ -2,15 +2,24 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
+from collections import OrderedDict
+from typing import Any
+from django.db.models import Model
 from rest_framework import serializers
+from api.serializers.medicine_serializers.public.common import (
+    ManyRelatedMixin,
+)
 from api.models.human_models import (
     HistoryAuthorisationStatus,
     HistoryAuthorisationType,
     HistoryBrandName,
-    HistoryEUOrphanCon,
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
+)
+from api.models.orphan_models import (
+    OrphanProduct,
+    HistoryEUOrphanCon,
 )
 
 
@@ -86,13 +95,43 @@ class PrimeSerializer(serializers.ModelSerializer):
         fields = ("eu_prime", "change_date", )
 
 
-class EUOrphanConSerializer (serializers.ModelSerializer):
+class HistoryEUOrphanConSerializer(serializers.ModelSerializer):
     """
     This serializer serializes the :py:class:`.HistoryEUOrphanCon` model.
     """
+
     class Meta:
         """
         Meta information
         """
         model = HistoryEUOrphanCon
-        fields = ("eu_orphan_con", "change_date", )
+        exclude = ("id",)
+
+
+def transform_eu_orphan_con(data):
+    transformed_data = []
+    for item in data:
+        change_date = item.pop("change_date")
+        transformed_item = OrderedDict([("eu_orphan_con", item), ("change_date", change_date)])
+        transformed_data.append(transformed_item)
+    return transformed_data
+
+
+class EUOrphanConSerializer(ManyRelatedMixin, serializers.ModelSerializer):
+    """
+    This serializer serializes the :py:class:`.HistoryEUOrphanCon` model.
+    """
+
+    class Meta:
+        """
+        Meta information
+        """
+        model = OrphanProduct
+        fields = ()
+        many_related = [
+            ("eu_orphan_con", HistoryEUOrphanConSerializer, transform_eu_orphan_con)
+        ]
+
+    def to_representation(self, obj: Model) -> OrderedDict[str, Any]:
+        representation = super().to_representation(obj)
+        return representation

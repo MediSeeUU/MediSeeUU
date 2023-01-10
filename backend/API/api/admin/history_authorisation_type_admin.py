@@ -34,12 +34,11 @@ class HistoryAuthorisationTypeAdmin(import_admin.ImportExportModelAdmin, CacheMo
     Admin View for HistoryAuthorisationTypeCode
     """
     resource_class = HistoryAuthorisationTypeResource
-    list = (
-        "id",
+    list_display = [
         "eu_pnumber",
         "change_date",
         "eu_aut_type",
-    )
+    ]
 
 
 admin.site.register(HistoryAuthorisationType, HistoryAuthorisationTypeAdmin)

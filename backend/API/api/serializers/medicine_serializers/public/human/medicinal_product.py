@@ -8,9 +8,11 @@ The medicine data is spread out over several tables in the database and therefor
 has to access all different tables and merge all this data in a one dimensional object.
 """
 
+from datetime import date, datetime
 from rest_framework import serializers
 from api.serializers.medicine_serializers.public.common import (
     RelatedMixin,
+    ManyRelatedMixin,
     ListMixin,
     HistoryMixin,
     AnyBoolsList,
@@ -20,7 +22,10 @@ from api.models.human_models import (
     LegalBases,
     IngredientsAndSubstances,
 )
-from api.serializers.medicine_serializers.public import (
+from api.models.orphan_models import (
+    OrphanProduct,
+)
+from api.serializers.medicine_serializers.public.human import (
     MarketingAuthorisationSerializer,
     AuthorisationStatusSerializer,
     AuthorisationTypeSerializer,
@@ -28,8 +33,8 @@ from api.serializers.medicine_serializers.public import (
     MAHSerializer,
     OrphanDesignationSerializer,
     PrimeSerializer,
-    EUOrphanConSerializer,
     ProceduresSerializer,
+    EUOrphanConSerializer,
 )
 
 
@@ -55,10 +60,51 @@ class IngredientsAndSubstancesSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = IngredientsAndSubstances
-        exclude = ["active_substance_hash", ]
+        exclude = ("id", )
 
 
-class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, AnyBoolsList, serializers.ModelSerializer):
+class HistoryEUOrphanConSerializer(HistoryMixin, serializers.ModelSerializer):
+    """
+    This serializer serializes the :py:class:`.HistoryEUOrphanCon` model.
+    """
+    class Meta:
+        """
+        Meta information
+        """
+        model = OrphanProduct
+        fields = ("eu_orphan_con_initial", )
+        initial_history = [
+            ("eu_orphan_con_initial", EUOrphanConSerializer),
+        ]
+        current_history = [
+            ("eu_orphan_con", EUOrphanConSerializer, "eu_orphan_con_current"),
+        ]
+
+
+def transform_eu_orphan_con(data):
+    eu_orphan_con_initial = []
+    eu_orphan_con_current = []
+
+    most_current_change_date = date.min
+    for orphan in data:
+        if current_data := orphan.get("eu_orphan_con_current"):
+            change_date = datetime.strptime(current_data.get("change_date"), "%Y-%m-%d").date()
+            most_current_change_date = max(most_current_change_date, change_date)
+
+    for orphan in data:
+        if initial_data := orphan.get("eu_orphan_con_initial"):
+            initial_data.pop("change_date", None)
+            eu_orphan_con_initial.append(initial_data)
+        if current_data := orphan.get("eu_orphan_con_current"):
+            if datetime.strptime(current_data.get("change_date"), "%Y-%m-%d").date() == most_current_change_date:
+                current_data.pop("change_date", None)
+                eu_orphan_con_current.append(current_data)
+    return {"eu_orphan_con_initial": eu_orphan_con_initial, "eu_orphan_con_current": eu_orphan_con_current}
+
+
+class PublicMedicinalProductSerializer(RelatedMixin, ManyRelatedMixin,
+                                       ListMixin, HistoryMixin, AnyBoolsList,
+                                       serializers.ModelSerializer):
     """
     This serializer serializers all the needed data for the medicine view from the :py:class:`.MedicinalProduct` model.
     """
@@ -73,6 +119,9 @@ class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, An
             ("ingredients_and_substances", IngredientsAndSubstancesSerializer),
             ("marketing_authorisation", MarketingAuthorisationSerializer),
         ]
+        many_related = [
+            ("eu_od_pnumber", HistoryEUOrphanConSerializer, transform_eu_orphan_con)
+        ]
         # serializers to be added as a list and flattened
         list = [
             ("eu_legal_basis", LegalBasesSerializer),
@@ -82,17 +131,15 @@ class PublicMedicinalProductSerializer(RelatedMixin, ListMixin, HistoryMixin, An
             ("eu_brand_name_initial", BrandNameSerializer),
             ("eu_od_initial", OrphanDesignationSerializer),
             ("eu_prime_initial", PrimeSerializer),
-            ("eu_orphan_con_initial", EUOrphanConSerializer),
         ]
         # serializers to be added as a current history variable and flattened
         current_history = [
-            ("eu_aut_status", AuthorisationStatusSerializer),
-            ("eu_aut_type", AuthorisationTypeSerializer),
-            ("eu_brand_name", BrandNameSerializer),
-            ("eu_mah", MAHSerializer),
-            ("eu_od", OrphanDesignationSerializer),
-            ("eu_prime", PrimeSerializer),
-            ("eu_orphan_con", EUOrphanConSerializer),
+            ("eu_aut_status", AuthorisationStatusSerializer, "eu_aut_status"),
+            ("eu_aut_type", AuthorisationTypeSerializer, "eu_aut_type_current"),
+            ("eu_brand_name", BrandNameSerializer, "eu_brand_name_current"),
+            ("eu_mah", MAHSerializer, "eu_mah_current"),
+            ("eu_od", OrphanDesignationSerializer, "eu_od_current"),
+            ("eu_prime", PrimeSerializer, "eu_prime_current"),
         ]
         any_bools_list = [
             ("procedures", ProceduresSerializer, ["eu_referral", "eu_suspension"]),
