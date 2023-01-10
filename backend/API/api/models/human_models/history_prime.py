@@ -58,3 +58,6 @@ class HistoryPrime(LockModel):
                 "data-value": "EU Priority Medicine",
             }
         ]
+
+    def __str__(self):
+        return f"Prime<{self.eu_prime}> History Item"

@@ -69,3 +69,6 @@ class HistoryAuthorisationStatus(LockModel):
                 "data-value": "EU Authorisation Status",
             }
         ]
+
+    def __str__(self):
+        return f"AutStatus<{self.eu_aut_status}> History Item"

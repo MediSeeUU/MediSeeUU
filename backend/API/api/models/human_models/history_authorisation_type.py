@@ -67,3 +67,6 @@ class HistoryAuthorisationType(LockModel):
                 "data-value": "EU Authorisation Type",
             }
         ]
+
+    def __str__(self):
+        return f"AutType<{self.eu_aut_type}> History Item"

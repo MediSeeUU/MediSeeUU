@@ -162,3 +162,6 @@ class OrphanProduct(LockModel):
         db_table = "orphan_product"
         verbose_name = "Orphan Product"
         verbose_name_plural = "Orphan Products"
+
+    def __str__(self):
+        return self.eu_od_number

@@ -65,3 +65,6 @@ class HistoryEUODSponsor(LockModel):
                 "data-value": "EU orphan designation sponsor",
             }
         ]
+
+    def __str__(self):
+        return f"EUODSponsor<{self.eu_od_sponsor}> History Item"

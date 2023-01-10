@@ -49,3 +49,6 @@ class LegalBases(LockModel):
         ]
         verbose_name = "Legal Basis"
         verbose_name_plural = "Legal Bases"
+
+    def __str__(self):
+        return f"LegalBases<{self.eu_legal_basis}> Item"

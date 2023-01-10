@@ -76,3 +76,6 @@ class HistoryEUOrphanCon(LockModel):
                 "data-value": "EU orphan conditions",
             }
         ]
+
+    def __str__(self):
+        return f"EUOrphanCon<{self.indication}> History Item"

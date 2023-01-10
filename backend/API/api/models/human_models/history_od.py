@@ -61,3 +61,6 @@ class HistoryOD(LockModel):
                 "data-value": "EU orphan designation",
             }
         ]
+
+    def __str__(self):
+        return f"OD<{self.eu_od}> History Item"

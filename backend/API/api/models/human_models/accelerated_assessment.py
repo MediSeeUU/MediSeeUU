@@ -43,3 +43,6 @@ class AcceleratedAssessment(LockModel):
         db_table = "accelerated_assessment"
         verbose_name = "Accelerated Assessment"
         verbose_name_plural = "Accelerated Assessments"
+
+    def __str__(self):
+        return f"AcceleratedAssessment<{self.eu_accel_assess_g},{self.eu_accel_assess_m}> Item"

@@ -66,3 +66,6 @@ class HistoryMAH(LockModel):
                 "data-value": "EU Marketing Authorisation Holder",
             }
         ]
+
+    def __str__(self):
+        return f"MAH<{self.eu_mah}> History Item"

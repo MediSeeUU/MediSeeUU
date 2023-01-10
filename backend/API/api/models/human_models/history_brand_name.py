@@ -65,3 +65,6 @@ class HistoryBrandName(LockModel):
                 "data-value": "EU Brand Name",
             }
         ]
+
+    def __str__(self):
+        return f"BrandName<{self.eu_brand_name}> History Item"

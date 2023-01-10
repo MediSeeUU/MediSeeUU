@@ -175,14 +175,7 @@ class MarketingAuthorisation(LockModel):
         verbose_name_plural = "Marketing Authorisations"
 
     def __str__(self):
-        return self.eu_pnumber.__str__()
-
-    def delete(self, *args, **kwargs):
-        if self.duration:
-            self.duration.delete()
-        if self.ema_accelerated_assessment:
-            self.ema_accelerated_assessment.delete()
-        super().delete(*args, **kwargs)
+        return f"MarketingAuthorisation<{self.eu_pnumber.__str__()}> Item"
 
 
 @receiver(models.signals.post_delete, sender=MarketingAuthorisation)

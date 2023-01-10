@@ -56,3 +56,6 @@ class Procedures(LockModel):
         db_table = "procedures"
         verbose_name = "Procedures"
         verbose_name_plural = "Procedures"
+
+    def __str__(self):
+        return f"Procedures<{self.eu_suspension},{self.eu_referral}> Item"

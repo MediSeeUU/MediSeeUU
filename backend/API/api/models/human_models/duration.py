@@ -68,3 +68,7 @@ class Duration(LockModel):
         db_table = "duration"
         verbose_name = "Duration"
         verbose_name_plural = "Durations"
+
+    def __str__(self):
+        return f"""Duration<{self.assess_time_days_total},{self.assess_time_days_active},
+               {self.assess_time_days_cstop},{self.ec_decision_time_days}> Item"""

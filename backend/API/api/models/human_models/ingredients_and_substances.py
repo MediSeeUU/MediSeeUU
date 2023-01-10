@@ -85,10 +85,10 @@ class IngredientsAndSubstances(LockModel):
         "EU New Active Substance",
     )
 
-    def __str__(self):
-        return self.active_substance
-
     class Meta:
         db_table = "ingredients_and_substances"
         verbose_name = "Ingredients And Substance"
         verbose_name_plural = "Ingredients And Substances"
+
+    def __str__(self):
+        return f"IngredientsAndSubstances<{self.active_substance}> Item"
