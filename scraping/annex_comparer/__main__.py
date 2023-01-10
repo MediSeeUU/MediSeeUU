@@ -8,16 +8,16 @@ import scraping.utilities.xml.xml_file_compare as xml_compare
 import scraping.utilities.log as log
 from tqdm import tqdm
 
+
 def filter_and_sort_annex_files(annex_files: list[str]) -> list[str]:
     annex_files = [file for file in annex_files if int(file.split(".")[-2].split("_")[-1]) >= 0]
-    annex_files.sort(key= lambda annex_name: int(annex_name.split(".")[-2].split("_")[-1]))
+    annex_files.sort(key=lambda annex_name: int(annex_name.split(".")[-2].split("_")[-1]))
     return annex_files
     
 
 def folder_changelog_up_to_date(folder: str, filepath: str) -> bool:
     annex_files = [path.join(folder, file) for file in os.listdir(folder) if ".xml" in file and "anx_" in file]
     annex_files = filter_and_sort_annex_files(annex_files)
-    changelogs = []
 
     try:
         with open(filepath) as comparison_file:
@@ -36,32 +36,30 @@ def folder_changelog_up_to_date(folder: str, filepath: str) -> bool:
     if (len(annex_files) == 0) and len(changelogs) == 0:
         return True
 
-    return  (len(annex_files) - 1) == len(changelogs)
+    return (len(annex_files) - 1) == len(changelogs)
 
 
-def annex_changelog_json_folder(folder: str, replace_all = False, filename_suffix: str = "_annex_changelog.json"):
+def annex_changelog_json_folder(folder: str, replace_all=False, filename_suffix: str = "_annex_changelog.json"):
     annex_files = [path.join(folder, file) for file in os.listdir(folder) if ".xml" in file and "anx_" in file]
     annex_files = filter_and_sort_annex_files(annex_files)
-    annex_files.sort(key= lambda annex_name: int(annex_name.split(".")[-2].split("_")[-1]))
-    subfolders = [path.join(folder, subfolder) for subfolder in os.listdir(folder) if path.isdir(path.join(folder, subfolder))]
+    annex_files.sort(key=lambda annex_name: int(annex_name.split(".")[-2].split("_")[-1]))
+    subdirs = [path.join(folder, subdir) for subdir in os.listdir(folder) if path.isdir(path.join(folder, subdir))]
     comparisons = {"eu_number": path.basename(folder),
                    "last_updated": datetime.datetime.now(),
                    "changelogs": []}
-    # filename = path.basename(folder) + filename_suffix
     filename = path.join(folder, path.basename(folder) + filename_suffix)
 
     if folder_changelog_up_to_date(folder, filename) and not replace_all:
         annex_files = []
 
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(annex_changelog_json_folder)(subfolder) for subfolder in
-        tqdm(subfolders))
+        joblib.delayed(annex_changelog_json_folder)(subdir) for subdir in
+        tqdm(subdirs))
 
     comparisons["changelogs"] = joblib.Parallel(
         n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
         joblib.delayed(xml_compare.compare_xml_files_dict)(annex_files[i], annex_files[i - 1]) for i in
         range(1, len(annex_files)))
-
 
     # single threaded version for debugging
     # for subfolder in subfolders:
@@ -79,12 +77,13 @@ def annex_changelog_json_folder(folder: str, replace_all = False, filename_suffi
             print("ANNEX COMPARER: cannot write", filename)
             print(e)
 
+
 def clean_section_text(change_key: str, change: dict[str, str]) -> str:
     enter_seperator = "\n\t\t"
     return enter_seperator.join(list(map(str.strip, change[change_key].split("\n"))))
 
 
-def change_dict_to_string(change: dict[str,str]) -> str:
+def change_dict_to_string(change: dict[str, str]) -> str:
     text = "\t" + change["change"].strip() + ": " + change["header"].replace("\n", "").strip() + "\n\n"
     keys = change.keys()
 
@@ -107,7 +106,6 @@ def change_dict_to_string(change: dict[str,str]) -> str:
 
 
 def changelog_json_to_text(changelog_filepath: str) -> str:
-    changelog_dict = {}
     try:
         with open(changelog_filepath, "r") as changelog_json:
             changelog_dict = json.load(changelog_json)
@@ -126,14 +124,14 @@ def changelog_json_to_text(changelog_filepath: str) -> str:
 
 
 def changelog_json_to_text_file(changelog_filepath: str, save_filepath: str):
-    # skip making new annex_changelog.txt if the existing one is up to date
+    # skip making new annex_changelog.txt if the existing one is up-to-date
     try:
         json_modify_date = path.getmtime(changelog_filepath)
         txt_modify_date = path.getmtime(changelog_filepath.replace(".json", ".txt"))
         if json_modify_date < txt_modify_date:
             return
-    except:
-        pass # should try to make a new annex_changelog.txt if failed
+    except Exception:
+        pass  # should try to make a new annex_changelog.txt if failed
     
     try:
         with open(changelog_filepath, "r") as changelog_json:
@@ -147,7 +145,6 @@ def changelog_json_to_text_file(changelog_filepath: str, save_filepath: str):
     except Exception as e:
         print("ANNEX COMPARER:", e, "| cannot create", save_filepath)
         return
-        
 
     for changelog_dict in changelog_dict["changelogs"]:
         try:
@@ -166,12 +163,12 @@ def changelog_json_to_text_file(changelog_filepath: str, save_filepath: str):
 
 
 def annex_changelog_text_folder(folder: str):
-    changelog_jsons = [path.join(folder, file) for file in os.listdir(folder) if ".json" in file and "changelog" in file]
-    subfolders = [path.join(folder, subfolder) for subfolder in os.listdir(folder) if path.isdir(path.join(folder, subfolder))]
+    changelog_jsons = [path.join(folder, file) for file in os.listdir(folder) if "json" in file and "changelog" in file]
+    subdirs = [path.join(folder, subdir) for subdir in os.listdir(folder) if path.isdir(path.join(folder, subdir))]
 
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(annex_changelog_text_folder)(subfolder) for subfolder in
-        tqdm(subfolders))
+        joblib.delayed(annex_changelog_text_folder)(subdir) for subdir in
+        tqdm(subdirs))
 
     for changelog_json in changelog_jsons:
         changelog_json_to_text_file(changelog_json, changelog_json.replace("json", "txt"))
@@ -180,17 +177,3 @@ def annex_changelog_text_folder(folder: str):
 def main(directory: str):
     annex_changelog_json_folder(directory)
     annex_changelog_text_folder(directory)
-
-
-# data_folder = "D:\\Git_repos\\MediSeeUU\\data"
-# new_xml         = "D:\\Git_repos\\MediSeeUU\\data\\active_withdrawn\\EU-1-00-130\\EU-1-00-130_h_anx_2.xml"
-# old_xml         = "D:\\Git_repos\\MediSeeUU\\data\\active_withdrawn\\EU-1-00-130\\EU-1-00-130_h_anx_1.xml"
-# changelog_json  = "D:\\Git_repos\\MediSeeUU\\data\\active_withdrawn\\EU-1-00-130\\EU-1-00-130_annex_changelog.json"
-# changelog_txt   = "D:\\Git_repos\\MediSeeUU\\data\\active_withdrawn\\EU-1-00-130\\EU-1-00-130_annex_changelog.txt"
-# save_dir = "D:\\Git_repos\\MediSeeUU\\data\\active_withdrawn\\EU-1-00-130"
-# compare_xml_files_file(new_xml, old_xml, save_dir)
-# changelog_json_to_text_file(changelog_json, changelog_txt)
-# compare_annexes_folder(data_folder)
-# create_changelogs_folder(data_folder)
-# print(changelog_json_to_text(changelog_json))
-# main(data_folder)

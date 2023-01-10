@@ -192,9 +192,10 @@ def section_contains_header_number(header_number: str, header: ET.Element) -> bo
 
     return header.attrib["n"] == header_number
 
+
 def section_get_header_number(section: ET.Element) -> tuple[bool, str]:
     """
-    Returns tuple indicating whether the header of a section contains a header number and the headernumber as string.
+    Returns tuple indicating whether the header of a section contains a header number and the header number.
     If the section header contains a header number ending on a dot then the last dot will be removed. 
     
     <header>"4.1. Therapeutic indications"</header> returns (True, "4.1")
@@ -211,9 +212,10 @@ def section_get_header_number(section: ET.Element) -> tuple[bool, str]:
 
     header = section.findall(tags.header)[0]
     if len(header.attrib) == 0:
-        return (False, "")
+        return False, ""
 
-    return (True, header.attrib["n"])
+    return True, header.attrib["n"]
+
 
 def section_get_header_text(section: ET.Element) -> str:
     """
@@ -229,7 +231,6 @@ def section_get_header_text(section: ET.Element) -> str:
         str: text contained within the header of given section.
     """
     header = section.findall(tags.header)[0]
-    # print(header.text)
     return header.text.strip()
 
 
@@ -248,6 +249,7 @@ def section_set_header_text(new_text: str, section: ET.Element) -> ET.Element:
     section_header.text = new_text
 
     return section
+
 
 def section_contains_paragraph_substring(substring: str, section: ET.Element) -> bool:
     """
