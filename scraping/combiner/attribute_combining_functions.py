@@ -33,15 +33,17 @@ def get_attribute_date(source_string: str, file_dicts: dict[str, dict[str, Any]]
         return file_dicts[src.web][attr.scrape_date_web]
     if file_dicts == {}:
         return attribute_values.date_not_found
-    if source_string in file_dicts.keys():
-        if file_dicts[source_string] == {}:
-            return attribute_values.date_not_found
-        if attr.pdf_file not in file_dicts[source_string].keys():
-            log.warning(f"\"{attr.pdf_file}\" not in the keys of the source: {source_string}")
-            return attribute_values.date_not_found
-        file_name = file_dicts[source_string][attr.pdf_file]
-        return file_dicts[src.web][attr.filedates_web][file_name][attr.file_date_pdf_date]
-    log.warning(f"{source_string} not in the keys of file_dicts")
+    if source_string not in file_dicts.keys():
+        return attribute_values.date_not_found
+    if file_dicts[source_string] == {}:
+        return attribute_values.date_not_found
+    if attr.pdf_file not in file_dicts[source_string].keys():
+        log.warning(f"\"{attr.pdf_file}\" not in the keys of the source: {source_string}")
+        return attribute_values.date_not_found
+    file_name = file_dicts[source_string][attr.pdf_file]
+    if file_name not in file_dicts[src.web][attr.filedates_web].keys():
+        return attribute_values.date_not_found
+    return file_dicts[src.web][attr.filedates_web][file_name][attr.file_date_pdf_date]
 
 
 def get_values_from_sources(attribute_name: str, sources: list[str], file_dicts: dict[str, dict[str, Any]]) -> \
@@ -184,7 +186,10 @@ def combine_get_file_url(file_dicts: dict[str, dict[str, Any]], sources: list[st
             continue
         if attr.pdf_file not in file_dicts[source].keys():
             continue
-        return file_dicts[src.web][attr.filedates_web][file_dicts[source][attr.pdf_file]]["pdf_link"]
+        filename = file_dicts[source][attr.pdf_file]
+        if filename not in file_dicts[src.web][attr.filedates_web].keys():
+            continue
+        return file_dicts[src.web][attr.filedates_web][filename]["pdf_link"]
     log.info(f"COMBINER: failed to get url, sources are {sources}")
 
     return attribute_values.url_not_found
