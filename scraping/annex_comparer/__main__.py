@@ -24,7 +24,7 @@ def filter_and_sort_annex_files(annex_files: list[str]) -> list[str]:
 
     Returns:
         list[str]: List of filenames where the [number] suffix is in range(0, max int) sorted in ascending order.
-    """    
+    """
     annex_files = [file for file in annex_files if int(file.split(".")[-2].split("_")[-1]) >= 0]
     annex_files.sort(key=lambda annex_name: int(annex_name.split(".")[-2].split("_")[-1]))
     return annex_files
@@ -67,14 +67,17 @@ def folder_changelog_up_to_date(folder: str, filepath: str) -> bool:
 
 def annex_changelog_json_folder(folder: str, replace_all=False, filename_suffix: str = "_annex_changelog.json"):
     """
-    Recursively creates a changelog.json for all annex files starting at initial annex within folder and all of it's subfolders.\n
+    Recursively creates a changelog.json for all annex files starting at initial annex within folder and all of its
+    subfolders.\n
     Folders containing existing up-to-date changelog.json will be skipped unless replace_all is set to True.\n
     changelog.json files created will be named at directory path.join(folder, path.basename(folder) + filename_suffix).
 
     Args:
         folder (str): Folder to start recursively create changelog.json files in.
-        replace_all (bool, optional): Replaces all existing changelog.json files including up-to-date ones if True. Defaults to False.
-        filename_suffix (str, optional): suffix to be used for changelog.json files created. Defaults to "_annex_changelog.json".
+        replace_all (bool, optional): Forces replacing all existing changelog.json files. Defaults to False.
+        filename_suffix (str, optional): suffix of changelog.json filename. Defaults to "_annex_changelog.json".
+    Returns:
+        None
     """    
     annex_files = [path.join(folder, file) for file in os.listdir(folder) if ".xml" in file and "anx_" in file]
     annex_files = filter_and_sort_annex_files(annex_files)
@@ -130,7 +133,7 @@ def clean_section_text(dict_key: str, change_dict: dict[str, str]) -> str:
             }
 
     Returns:
-        str: change_dict[dict_key] content with all whitespace at the front and end stripped and \\n's replaced with \\n\\t\\t.
+        str: change_dict[dict_key] string with all and \\n's replaced with \\n\\t\\t and unnecessary whitespace removed.
     """    
     enter_seperator = "\n\t\t"
     return enter_seperator.join(list(map(str.strip, change_dict[dict_key].split("\n"))))
@@ -168,10 +171,7 @@ def change_dict_to_string(change_dict: dict[str, str]) -> str:
             }
 
     Returns:
-        str: Changenote string generated from change_dict.
-
-            
-
+        str: Changenote string generated from change_dict.  
     """
     text = "\t" + change_dict["change"].strip() + ": " + change_dict["header"].replace("\n", "").strip() + "\n\n"
     keys = change_dict.keys()
@@ -232,7 +232,6 @@ def changelog_json_to_text(changelog_filepath: str) -> str:
 
     Returns:
         str: String containing the full changenotes for a given changelog.json file.
-
     """    
     try:
         with open(changelog_filepath, "r") as changelog_json:
