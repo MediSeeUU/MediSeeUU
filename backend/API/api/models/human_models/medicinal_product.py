@@ -107,6 +107,16 @@ class MedicinalProduct(LockModel):
         "EU ATMP",
     )
 
+    eu_indication_initial = create_dashboard_column(
+        models.TextField(
+            null=True,
+            blank=True,
+        ),
+        Category.Medicinal_product,
+        DataFormats.String,
+        "Therapeutic Indications",
+    )
+
     ingredients_and_substances = models.ForeignKey(
         IngredientsAndSubstances,
         models.PROTECT,
