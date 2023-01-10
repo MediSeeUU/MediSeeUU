@@ -8,10 +8,11 @@ from api.models.common import DataFormats
 
 
 class BooleanWithNAField(models.Field):
-
-    values = ["True", "False"] + DataFormats.Bool.na_values
-
     def __init__(self, *args, **kwargs):
+        self.values = ["True", "False"] + DataFormats.Bool.na_values
+        if "extra_na_values" in kwargs:
+            self.values += kwargs["extra_na_values"]
+            del kwargs["extra_na_values"]
         kwargs["max_length"] = 256
         # Set the field to support null values
         kwargs["null"] = True
@@ -46,6 +47,7 @@ class BooleanWithNAField(models.Field):
             raise ValidationError(f"{self.name}: {value} must be either a boolean or a NA message")
 
     def formfield(self, **kwargs):
+        setattr(self.FormField, "values", self.values)
         defaults = {'form_class': self.FormField}
         defaults.update(kwargs)
         return super().formfield(**defaults)
@@ -54,7 +56,7 @@ class BooleanWithNAField(models.Field):
         def __init__(self, **kwargs):
             super().__init__(
                 widget=forms.Select,
-                choices=[("", "----")] + [(value, value) for value in BooleanWithNAField.values],
+                choices=[("", "----")] + [(value, value) for value in getattr(self, "values")],
                 **kwargs
             )
 
@@ -79,10 +81,11 @@ class TypeWithNAWidget(forms.MultiWidget):
 
 
 class IntegerWithNAField(models.Field):
-
-    values = DataFormats.Number.na_values
-
     def __init__(self, *args, **kwargs):
+        self.values = ["True", "False"] + DataFormats.Number.na_values
+        if "extra_na_values" in kwargs:
+            self.values += kwargs["extra_na_values"]
+            del kwargs["extra_na_values"]
         # Set the field to support null values
         kwargs["null"] = True
         kwargs["blank"] = True
@@ -112,6 +115,7 @@ class IntegerWithNAField(models.Field):
             raise ValidationError(f"{self.name}: {value} must be either a integer or a NA message")
 
     def formfield(self, **kwargs):
+        setattr(self.FormField, "values", self.values)
         defaults = {'form_class': self.FormField}
         defaults.update(kwargs)
         return super().formfield(**defaults)
@@ -120,7 +124,7 @@ class IntegerWithNAField(models.Field):
         def __init__(self, **kwargs):
             super().__init__(
                 widget=TypeWithNAWidget(
-                    IntegerWithNAField.values,
+                    getattr(self, "values"),
                     widgets=[
                         forms.NumberInput(
                             attrs={"oninput": "{if (this.value) {this.nextSibling.value = \"\"}}"},
@@ -130,7 +134,7 @@ class IntegerWithNAField(models.Field):
                                 "onfocus": "{this.firstChild.hidden = true}",
                                 "oninput": "{if (this.value) {this.previousSibling.value = \"\"}}",
                             },
-                            choices=[(value, value) for value in [""] + IntegerWithNAField.values],
+                            choices=[(value, value) for value in [""] + getattr(self, "values")],
                         ),
                     ],
                 ),
@@ -139,10 +143,11 @@ class IntegerWithNAField(models.Field):
 
 
 class DateWithNAField(models.Field):
-
-    values = DataFormats.Date.na_values
-
     def __init__(self, *args, **kwargs):
+        self.values = ["True", "False"] + DataFormats.Date.na_values
+        if "extra_na_values" in kwargs:
+            self.values += kwargs["extra_na_values"]
+            del kwargs["extra_na_values"]
         kwargs["max_length"] = 256
         # Set the field to support null values
         kwargs["null"] = True
@@ -173,6 +178,7 @@ class DateWithNAField(models.Field):
             return value
 
     def formfield(self, **kwargs):
+        setattr(self.FormField, "values", self.values)
         defaults = {'form_class': self.FormField}
         defaults.update(kwargs)
         return super().formfield(**defaults)
@@ -181,7 +187,7 @@ class DateWithNAField(models.Field):
         def __init__(self, **kwargs):
             super().__init__(
                 widget=TypeWithNAWidget(
-                    DateWithNAField.values,
+                    getattr(self, "values"),
                     widgets=[
                         widgets.AdminDateWidget(
                             attrs={
@@ -194,7 +200,7 @@ class DateWithNAField(models.Field):
                                 "onfocus": "{this.firstChild.hidden = true}",
                                 "oninput": "{if (this.value) {this.previousSibling.previousSibling.value = \"\"}}",
                             },
-                            choices=[(value, value) for value in [""] + DateWithNAField.values],
+                            choices=[(value, value) for value in [""] + getattr(self, "values")],
                         ),
                     ],
                 ),
@@ -203,10 +209,11 @@ class DateWithNAField(models.Field):
 
 
 class URLWithNAField(models.Field):
-
-    values = DataFormats.Link.na_values
-
     def __init__(self, *args, **kwargs):
+        self.values = ["True", "False"] + DataFormats.Link.na_values
+        if "extra_na_values" in kwargs:
+            self.values += kwargs["extra_na_values"]
+            del kwargs["extra_na_values"]
         kwargs["max_length"] = 256
         # Set the field to support null values
         kwargs["null"] = True
@@ -232,6 +239,7 @@ class URLWithNAField(models.Field):
             raise ValidationError(f"{self.name}: {value} must be either an url or a NA message")
 
     def formfield(self, **kwargs):
+        setattr(self.FormField, "values", self.values)
         defaults = {'form_class': self.FormField}
         defaults.update(kwargs)
         return super().formfield(**defaults)
@@ -240,7 +248,7 @@ class URLWithNAField(models.Field):
         def __init__(self, **kwargs):
             super().__init__(
                 widget=TypeWithNAWidget(
-                    URLWithNAField.values,
+                    getattr(self, "values"),
                     widgets=[
                         forms.URLInput(
                             attrs={"oninput": "{if (this.value) {this.nextSibling.value = \"\"}}"},
@@ -250,7 +258,7 @@ class URLWithNAField(models.Field):
                                 "onfocus": "{this.firstChild.hidden = true}",
                                 "oninput": "{if (this.value) {this.previousSibling.value = \"\"}}",
                             },
-                            choices=[(value, value) for value in [""] + URLWithNAField.values],
+                            choices=[(value, value) for value in [""] + getattr(self, "values")],
                         ),
                     ],
                 ),
