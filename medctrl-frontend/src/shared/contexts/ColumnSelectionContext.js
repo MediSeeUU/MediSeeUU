@@ -12,14 +12,33 @@ export function useColumnSelection() {
   return useContext(ColumnSelectionContext)
 }
 
-// Represents the default column selection
-export const defaultColumns = [
-  'eu_pnumber',
-  'eu_brand_name_current',
-  'eu_mah_current',
-  'eu_aut_date',
-  'atc_code',
-]
+function DefaultTableColumns() {
+
+
+  let columns = []
+
+  if (true)
+  {
+    columns = [
+      'eu_od_number',
+    ]
+  }
+  else
+  {
+    columns = [
+      'eu_od_number',
+      'ema_od_number',
+      'eu_od_con',
+      'eu_od_date',
+      'eu_od_comp_date',
+      'eu_od_sponsor'
+    ]
+  }
+
+  return columns
+}
+
+export const defaultColumns = DefaultTableColumns()
 
 // Provider component that provides the column selection state in the application
 export function ColumnSelectionProvider({ children }) {

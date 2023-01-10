@@ -11,7 +11,7 @@ export default function cleanFetchedData(fetchedData, structData) {
     const dataPoint = fetchedData[i]
     // The datapoint should only be included if it is a valid datapoint
     // This is the case when it has a non null eunumber (Short EU Number)
-    if (dataPoint.eu_pnumber && structData) {
+    if ((dataPoint.eu_pnumber && structData) || (dataPoint.eu_od_number && structData)) {
       cleanedData.push(cleanFetchedDataPoint(dataPoint, structData))
     }
   }
