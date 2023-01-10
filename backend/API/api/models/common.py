@@ -6,7 +6,7 @@ from enum import Enum
 
 generic_na_values = [
     "Not found",
-    "Not available at time of release",
+    "Attribute not yet reported*",
     "Value should be present in source",
 ]
 
@@ -55,24 +55,6 @@ class AutStatus(models.TextChoices, metaclass=NAChoices):
     REFUSED = "REFUSED"
     NOT_RENEWED = "NOT RENEWED"
     EXPIRED = "EXPIRED"
-
-
-class LegalBasesTypes(models.TextChoices, metaclass=NAChoices):
-    """
-    Choice types for legal bases. Is derived from the enumerated choice class.
-    """
-    article4_8 = "article 4.8"
-    article4_8_1 = "article 4.8.1"
-    article4_8_2 = "article 4.8.2"
-    article4_8_3 = "article 4.8.3"
-    article8_3 = "article 8.3"
-    article_10_1 = "article 10.1"
-    article_10_2 = "article 10.2"
-    article_10_3 = "article 10.3"
-    article_10_4 = "article 10.4"
-    article_10_a = "article 10.a"
-    article_10_b = "article 10.b"
-    article_10_c = "article 10.c"
 
 
 class ODChoices(models.TextChoices, metaclass=NAChoices):

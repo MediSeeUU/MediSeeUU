@@ -13,6 +13,7 @@ from .legal_bases_admin import LegalBasesResource, LegalBasesAdmin
 from .history_authorisation_status_admin import HistoryAuthorisationStatusResource, HistoryAuthorisationStatusAdmin
 from .history_authorisation_type_admin import HistoryAuthorisationTypeResource, HistoryAuthorisationTypeAdmin
 from .history_brand_name_admin import HistoryBrandNameResource, HistoryBrandNameAdmin
+from .history_eu_od_sponsor_admin import HistoryEUODSponsorResource, HistoryEUODSponsorAdmin
 from .history_eu_orphan_con_admin import HistoryEUOrphanConResource, HistoryEUOrphanConAdmin
 from .history_mah_admin import HistoryMAHResource, HistoryMAHAdmin
 from .history_od_admin import HistoryODResource, HistoryODAdmin

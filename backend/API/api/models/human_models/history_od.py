@@ -48,6 +48,8 @@ class HistoryOD(models.Model):
 
     class Meta:
         db_table = "history_od"
+        verbose_name = "History Orphan Designation"
+        verbose_name_plural = "Histories Orphan Designation"
 
     class HistoryInfo:
         timeline_items = [

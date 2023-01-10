@@ -52,15 +52,6 @@ class MedicinalProduct(models.Model):
         Category.Marketing_authorisation,
         DataFormats.String,
         "EU Product Number",
-        [
-            ExtraDashBoardColumn(
-                Category.Marketing_authorisation,
-                "eu_pnumber_id",
-                DataFormats.Number,
-                "EU product number ID",
-                lambda x: int(x[-3:]),
-            )
-        ]
     )
 
     ema_url = create_dashboard_column(
@@ -92,15 +83,6 @@ class MedicinalProduct(models.Model):
         Category.Medicinal_product,
         DataFormats.String,
         "EMA Application Number",
-        [
-            ExtraDashBoardColumn(
-                Category.Medicinal_product,
-                "ema_number_id",
-                DataFormats.String,
-                "EMA application number ID",
-                lambda x: int(x[-3:]),
-            )
-        ]
     )
 
     eu_med_type = create_dashboard_column(
@@ -121,11 +103,6 @@ class MedicinalProduct(models.Model):
         Category.Medicinal_product,
         DataFormats.Bool,
         "EU ATMP",
-    )
-
-    ema_number_check = BooleanWithNAField(
-        null=True,
-        blank=True,
     )
 
     ingredients_and_substances = models.ForeignKey(
@@ -176,3 +153,5 @@ class MedicinalProduct(models.Model):
 
     class Meta:
         db_table = "medicinal_product"
+        verbose_name = "Medicinal Product"
+        verbose_name_plural = "Medicinal Products"
