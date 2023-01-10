@@ -4,6 +4,7 @@
 
 import React from 'react'
 import Chart from 'react-apexcharts'
+import * as Colors from './Colors'
 
 // line graph component
 function LineChart(props) {
@@ -17,12 +18,13 @@ function LineChart(props) {
         foreColor: 'var(--text-primary)',
         events: {
           dataPointSelection: (event, chartContext, config) => {
-            let euNumbers =
-              props.series[config.seriesIndex].euNumbers[config.dataPointIndex]
-            props.onDataClick(euNumbers)
+            let eu_pnumbers =
+              props.series[config.seriesIndex].eu_pnumbers[config.dataPointIndex]
+            props.onDataClick(eu_pnumbers)
           },
         },
       },
+      colors: Colors.line_color,
       xaxis: {
         categories: props.categories,
         labels: {

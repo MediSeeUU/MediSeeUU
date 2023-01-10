@@ -177,7 +177,7 @@ def get_last_updated_date(html_active: requests.Response) -> datetime.date:
 
 
 def scrape_medicine_page(eu_num: str, html_active: requests.Response, medicine_type: MedicineType, data_folder: str) \
-                                           -> (list[(str, int)], list[(str, int)], list[str], dict[str, str]):
+                                           -> tuple[list[(str, int)], list[(str, int)], list[str], dict[str, str]]:
     """
     Scrapes a medicine page for all pdf urls, urls to the ema website and attributes for a single medicine.
 
@@ -210,7 +210,7 @@ def scrape_medicine_page(eu_num: str, html_active: requests.Response, medicine_t
 def get_data_from_medicine_json(medicine_json: dict,
                                 eu_num: str,
                                 medicine_type: MedicineType) \
-        -> (dict[str, str], list[str]):
+        -> tuple[dict[str, str], list[str]]:
     """
     Gets all attribute information that is stored in the medicine JSON, and all links to the EMA website.
 
@@ -334,7 +334,7 @@ def set_orphan_attributes(ema_url_list: list[str], medicine_dict: (dict[str, str
 
 
 def get_data_from_procedures_json(procedures_json: dict, eu_num: str, data_folder: str) \
-                                 -> (dict[str, str], list[(str, int)], list[(str, int)]):
+                                 -> tuple[dict[str, str], list[(str, int)], list[(str, int)]]:
     """
     Gets all attribute information that is stored in the procedures JSON, and all links the decision and annex PDFs.
 
@@ -568,7 +568,7 @@ def format_ema_number(ema_number: str) -> list[str]:
     return ema_numbers_formatted
 
 
-def determine_ema_number(ema_numbers: list[str]) -> (str, float):
+def determine_ema_number(ema_numbers: list[str]) -> tuple[str, float]:
     """
     Determines the right EMA number from the list of procedures
 

@@ -5,7 +5,7 @@
 import { fetchWithToken } from '../../../../shared/api'
 
 // Handler that creates the JSON and posts the selection to the server
-export default async function postSavedSelection(eunumbers, saveName) {
+export default async function postSavedSelection(eu_pnumbers, saveName) {
   var success = false
 
   // Call to server: /api/saveselection
@@ -18,7 +18,7 @@ export default async function postSavedSelection(eunumbers, saveName) {
       },
       body: JSON.stringify({
         name: saveName,
-        eunumbers: eunumbers,
+        eu_pnumbers: eu_pnumbers,
       }),
     }
   )

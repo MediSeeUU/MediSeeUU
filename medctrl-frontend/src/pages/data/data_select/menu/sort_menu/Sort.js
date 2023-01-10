@@ -8,7 +8,7 @@ import VariableSelect from '../../../../../shared/VariableSelect'
 // Function based component which renders a sort item
 function Sort(props) {
   return (
-    <div id={props.id} className="med-table-menu-sort-item">
+    <div id={props.id} className="med-table-menu-filter-item">
       {/* Render the variable options select */}
       <VariableSelect
         className="med-table-menu-select med-select"

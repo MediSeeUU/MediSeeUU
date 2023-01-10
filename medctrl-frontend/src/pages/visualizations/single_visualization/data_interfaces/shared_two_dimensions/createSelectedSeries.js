@@ -7,7 +7,7 @@
 // a 0 will be added, otherwise the amount of occurrences is added.
 export default function createSelectedSeries(
   dict,
-  euNumbers,
+  eu_pnumbers,
   categoriesSelectedY,
   categoriesSelectedX
 ) {
@@ -28,7 +28,7 @@ export default function createSelectedSeries(
         euSeries[category].push([])
       } else {
         series[category].push(dict[k][category])
-        euSeries[category].push(euNumbers[k][category])
+        euSeries[category].push(eu_pnumbers[k][category])
       }
     })
   })

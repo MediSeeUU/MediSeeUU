@@ -13,7 +13,7 @@ function ClearAll({ data }) {
   const removeAllSelected = () => {
     let updatedCheckedState = JSON.parse(JSON.stringify(checkedState))
     for (let element of data) {
-      updatedCheckedState[element.eunumber] = false
+      updatedCheckedState[element.eu_pnumber] = false
     }
     setCheckedState(updatedCheckedState)
   }

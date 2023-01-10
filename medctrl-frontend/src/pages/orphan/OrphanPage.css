@@ -1,0 +1,81 @@
+/* This program has been developed by students from the bachelor Computer Science at
+Utrecht University within the Software Project course.
+© Copyright Utrecht University (Department of Information and Computing Sciences) */
+
+.med-bottom-container-holder {
+  position: sticky;
+  top: 100%;
+  width: 100%;
+  height: 30px;
+  margin-top: 5px;
+}
+
+.med-result-count-selector-container {
+  position: sticky;
+  width: 210px;
+  height: 30px;
+  left: 100%;
+}
+
+#med-result-count-selector {
+  width: 55px;
+  height: 25px;
+  margin: 2px 0px 0px 10px;
+}
+
+.med-table-placeholder-text {
+  float: none;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+}
+
+.med-table-page-button {
+  float: none;
+  font-weight: bold;
+  width: 25px;
+  text-align: center;
+  cursor: pointer;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.med-table-page-button:hover {
+  background-color: var(--med-page-count-hover);
+  border-radius: 2px;
+}
+
+.med-table-page-button.med-page-selected {
+  background-color: var(--med-page-count-selected);
+  color: white;
+  border-radius: 2px;
+}
+
+.med-table-pagination-container {
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+}
+
+.med-table-change-page {
+  font-size: 25px;
+  cursor: pointer;
+  color: var(--blue-alt);
+}
+
+.med-clear-all-button {
+  position: absolute;
+  z-index: 1;
+  border: none;
+  height: 36px;
+  font-size: 14px;
+}
+
+.med-header {
+  display: inline-block;
+}

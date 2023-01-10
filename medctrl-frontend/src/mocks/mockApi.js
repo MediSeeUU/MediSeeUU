@@ -18,21 +18,21 @@ const mockApi = setupServer(
           name: 'test1',
           created_at: '2022-05-17T11:16:47.141360Z',
           created_by: 'admin',
-          eunumbers: [1, 2, 3],
+          eu_pnumbers: [1, 2, 3],
         },
         {
           id: '772268f6-1468-47a4-aff6-786d1a826c5b',
           name: 'test2',
           created_at: '2022-05-17T11:10:36.026106Z',
           created_by: 'admin',
-          eunumbers: [4, 5, 6],
+          eu_pnumbers: [4, 5, 6],
         },
         {
           id: '998d1243-802f-4af6-86aa-215d3679163e',
           name: 'test3',
           created_at: '2022-05-17T07:30:39.319753Z',
           created_by: 'admin',
-          eunumbers: [7, 8, 9],
+          eu_pnumbers: [7, 8, 9],
         },
       ])
     )
@@ -44,7 +44,7 @@ const mockApi = setupServer(
         name: 'great selection',
         created_at: '2022-06-20T10:30:53.081142Z',
         created_by: 'admin',
-        eunumbers: [1, 2, 3],
+        eu_pnumbers: [1, 2, 3],
       })
     )
   }),

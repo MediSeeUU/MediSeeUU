@@ -66,17 +66,18 @@ function SortMenu({ sorters, setSorters, defaultObj }) {
         {
           /* Only render an add sort option if there are at most 3 sorters */
           sorters.length < 4 && (
-            <label
-              className="med-able-menu-add-sort-button med-primary-text"
-              onClick={addSort}
-              role={'button'}
-              tabIndex={'0'}
-              onKeyPress={(e) => {
-                if (e.key === 'Enter') addSort()
-              }}
-            >
-              Add Sorting option +
-            </label>
+            <div
+            className="med-table-menu-add-filter med-primary-text"
+            onClick={addSort}
+            role={'button'}
+            tabIndex={'0'}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') addSort()
+            }}
+          >
+            Add Sorting
+            <i className="bx bxs-plus-square med-table-menu-add-filter-icon"></i>
+          </div>
           )
         }
       </div>

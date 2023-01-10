@@ -140,7 +140,7 @@ fabric.properties
 
 # all PDFs & test data
 *.DS_Store
-data/
+/data/
 data_backup/
 data_old/
 

@@ -19,13 +19,13 @@ export default function generateHistogramSeries(settings) {
     settings.chartSpecificOptions.categoriesSelectedX
   )
 
-  let [dict, euNumbers] = pollChosenVariable(data, xAxis, chosenCategories)
+  let [dict, eu_pnumbers] = pollChosenVariable(data, xAxis, chosenCategories)
 
   return [
     {
       name: 'number',
       data: Object.values(dict),
-      euNumbers: Object.values(euNumbers),
+      eu_pnumbers: Object.values(eu_pnumbers),
     },
   ]
 }

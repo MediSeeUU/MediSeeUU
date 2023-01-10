@@ -23,7 +23,7 @@ export function SelectedProvider({ children }) {
 
   // Initialize the state with the selected datapoints
   const selectedData = data.filter((item, _) => {
-    return checkedState[item.eunumber]
+    return checkedState[item.eu_pnumber]
   })
 
   return (

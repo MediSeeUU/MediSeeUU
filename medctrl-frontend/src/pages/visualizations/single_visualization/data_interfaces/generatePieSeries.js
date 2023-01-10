@@ -9,7 +9,7 @@ import pollChosenVariable from './shared_one_dimension/pollChosenVariable'
 export default function generatePieSeries(settings) {
   // no categories have been selected
   if (settings.chartSpecificOptions.categoriesSelectedX.length === 0) {
-    return { data: [], euNumbers: [] }
+    return { data: [], eu_pnumbers: [] }
   }
 
   const xAxis = settings.chartSpecificOptions.xAxis
@@ -19,7 +19,7 @@ export default function generatePieSeries(settings) {
     settings.chartSpecificOptions.categoriesSelectedX
   )
 
-  let [dict, euNumbers] = pollChosenVariable(data, xAxis, chosenCategories)
+  let [dict, eu_pnumbers] = pollChosenVariable(data, xAxis, chosenCategories)
 
-  return { data: Object.values(dict), euNumbers: Object.values(euNumbers) }
+  return { data: Object.values(dict), eu_pnumbers: Object.values(eu_pnumbers) }
 }

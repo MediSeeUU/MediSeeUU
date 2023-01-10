@@ -17,7 +17,7 @@ Utrecht University within the Software Project course.
 
 @media screen and (min-width: 1200px) {
   .med-flex-columns {
-    column-count: 3;
+    column-count: 1;
     column-fill: balance;
   }
 }
@@ -266,6 +266,48 @@ Utrecht University within the Software Project course.
   .med-info-timeline-element-decoration:before {
   left: calc(100% - 12.5px);
 }
+
+.med-info-changelog {
+  width: 100%;
+  overflow: auto;
+  overflow-wrap: normal;
+}
+
+.med-info-changelog-button {
+  width: 500px;
+  height: 40px;
+  margin: 5px 5px 5px 5px;
+
+  font-size: 15px;
+  font-weight: 400;
+
+  border-radius: 5px;
+  border: none;
+
+  white-space: break-spaces;
+}
+
+.med-info-download-button {
+  width: 250px;
+  height: 40px;
+  margin: 15px 5px 15px 5px;
+
+  font-size: 15px;
+  font-weight: 400;
+
+  border-radius: 5px;
+  border: none;
+}
+
+.med-info-changelog-container {
+  width: auto;
+  height: 500px;
+  word-wrap: break-word;
+  overflow-y: scroll;
+  white-space: pre-wrap;
+  border-style: groove;
+}
+
 
 /* for special (i.e. highlighted) timeline elements */
 

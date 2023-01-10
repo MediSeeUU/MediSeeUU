@@ -17,6 +17,14 @@ import Procedure from './components/Procedure'
 import CustomLink from './components/CustomLink'
 import TimeLine from './components/TimeLine'
 import ProcSelectModal from './components/ProcSelectModal'
+import DownloadChangelog from '../components/DownloadChangelog'
+import CollapsibleButton from '../components/CollapsibleButton'
+
+//import Record from '../components/EU-1-00-142_annex_changelog.json'
+import Record from '../components/EU-1-00-129_annex_changelog.json'
+
+import Col from 'react-bootstrap/esm/Col'
+import CreateChangelog from '../components/CreateChangelog'
 
 // Function based component, which represents the top level detailed info page
 // component, it collects and fetches all the correct data and then passes this data
@@ -29,7 +37,7 @@ export default function DetailedInfoPage() {
   // corresponding to the desired medicine is extracted from the array
   const alldata = useData()
   let medData = alldata.find(
-    (element) => element.eunumber.toString() === medID.toString()
+    (element) => element.eu_pnumber.toString() === medID.toString()
   )
 
   // All of the procedure data related to the desired medicine is asynchronously
@@ -161,7 +169,10 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
         }
 
         details.push(
-          <Detail name={variable['data-value']} value={value} key={v4()} />
+          <Detail 
+            name={variable['data-value']} 
+            value={value} key={v4()} 
+          />
         )
       }
     }
@@ -183,10 +194,38 @@ export function InfoPage({ medData, procData, lastUpdatedDate }) {
   return (
     <div>
       <div className="med-content-container">
-        <h1>{medData.BrandName} Medicine Details</h1>
+        <h1>{medData.eu_pnumber} - Medicine Details</h1>
         <hr className="med-top-separator" />
 
         <div className="med-flex-columns">{detailGroups}</div>
+      </div>
+
+      <div className="med-content-container">
+        <h1 className="med-header">Changelog</h1>
+
+        <DownloadChangelog
+          data={Record}
+          fileName={medData.eu_pnumber}
+          fileType=".json"
+        />
+
+        <DownloadChangelog
+          data={Record}
+          fileName={medData.eu_pnumber}
+          fileType=".txt"
+        />
+
+
+        <hr className="med-top-separator" />
+        
+        <CreateChangelog
+          json={Record}
+        />
+
+        <hr className="med-top-separator" />
+        <div className='med-info-changelog'>
+
+        </div>
       </div>
 
       {timeLineContainer}

@@ -7,7 +7,7 @@
 export default function toSeriesFormat(dict, euSeries) {
   let series = []
   for (let key in dict) {
-    series.push({ name: key, data: dict[key], euNumbers: euSeries[key] })
+    series.push({ name: key, data: dict[key], eu_pnumbers: euSeries[key] })
   }
   return series
 }

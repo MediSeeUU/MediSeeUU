@@ -15,7 +15,7 @@ test('no categories selected', () => {
   }
   const series = generatePieSeries(options)
   expect(series.data).toHaveLength(0)
-  expect(series.euNumbers).toHaveLength(0)
+  expect(series.eu_pnumbers).toHaveLength(0)
 })
 
 test('some categories selected', () => {
@@ -28,7 +28,7 @@ test('some categories selected', () => {
   }
   const series = generatePieSeries(options)
   expect(series.data).toHaveLength(2)
-  expect(series.euNumbers).toHaveLength(2)
+  expect(series.eu_pnumbers).toHaveLength(2)
 })
 
 test('categories in data', () => {
@@ -41,7 +41,7 @@ test('categories in data', () => {
   }
   const series = generatePieSeries(options)
   let filteredData = data.filter((element) =>
-    series.euNumbers.flat().includes(element.eunumber)
+    series.eu_pnumbers.flat().includes(element.eu_pnumber)
   )
   filteredData.forEach((element) => {
     expect(element.Rapporteur).toMatch(/(United Kingdom|Denmark)/i)

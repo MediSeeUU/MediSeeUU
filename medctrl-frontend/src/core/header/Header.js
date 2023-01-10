@@ -5,6 +5,7 @@
 import React from 'react'
 import './Header.css'
 import logo from '../../images/logo.svg'
+import { Link, NavLink, Router } from 'react-router-dom'
 
 // Function based component rendering the header of the site
 function Header() {
@@ -12,11 +13,15 @@ function Header() {
     // Renders the text above the page and the logo
     // Most work is done in the CSS file
     <header className="med-main-header">
-      <img
-        src={logo}
-        alt="Logo of the European Database For Pharmaceutical Policy website "
-        id="header__logo"
-      ></img>
+      <Link to='/'>
+        <div>      
+          <img
+            src={logo}
+            alt="Logo of the European Database For Pharmaceutical Policy website "
+            id="header__logo"
+          ></img>
+        </div>
+      </Link>
       <h1>European Medicines Regulatory Database</h1>
       <div class="med-header-github-button">
         <a

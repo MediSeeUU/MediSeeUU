@@ -11,7 +11,7 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
   const { checkedState, setCheckedState } = useCheckedState()
 
   // Create a set with the eunumbers for quicker lookup
-  const selection = new Set(savedSelection.eunumbers)
+  const selection = new Set(savedSelection.eu_pnumbers)
 
   // A state which describes if this saved selection is currently selected
   const [isCurrent, setIsCurrent] = useState(false)
@@ -27,8 +27,8 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
       let match = key.match(/EU\/\d\/\d{2}\/(\d+)|(\d+)/)
       if (match) {
         // Find the eunumber and select it if it is in the selection
-        const eunumber = match[1] ? match[1] : match[2]
-        const value = parseInt(eunumber)
+        const eu_pnumber = match[1] ? match[1] : match[2]
+        const value = parseInt(eu_pnumber)
         updatedCheckedState[key] = selection.has(value)
       }
     }
@@ -59,7 +59,7 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
     let match = !isEmptyObject(checkedState)
     for (let key in checkedState) {
       const isChecked = checkedState[parseInt(key)]
-      const isInSelection = savedSelection.eunumbers.includes(parseInt(key))
+      const isInSelection = savedSelection.eu_pnumbers.includes(parseInt(key))
 
       if (isChecked !== isInSelection) {
         match = false
@@ -76,7 +76,7 @@ function SavedSelection({ savedSelection, setSavedSelection }) {
   return (
     <tr className="med-saved-selection">
       <td className="med-selection-name">{savedSelection.name}</td>
-      <td className="med-selection-count">{savedSelection.eunumbers.length}</td>
+      <td className="med-selection-count">{savedSelection.eu_pnumbers.length}</td>
       <td className="med-selection-created">
         {date.toLocaleDateString()} {date.toLocaleTimeString()}
       </td>

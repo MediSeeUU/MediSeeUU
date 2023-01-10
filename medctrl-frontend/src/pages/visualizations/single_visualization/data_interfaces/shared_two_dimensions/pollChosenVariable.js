@@ -12,12 +12,12 @@ export default function pollChosenVariable(
   data
 ) {
   let dict = {}
-  let euNumbers = {}
+  let eu_pnumbers = {}
 
   // adding a key for each category
   categoriesSelectedX.forEach((category) => {
     dict[category] = {}
-    euNumbers[category] = {}
+    eu_pnumbers[category] = {}
   })
 
   // going through all data entries
@@ -30,13 +30,13 @@ export default function pollChosenVariable(
       if (dict[element[xAxis]][element[yAxis]] === undefined) {
         // 'initializing' the entry
         dict[element[xAxis]][element[yAxis]] = 1
-        euNumbers[element[xAxis]][element[yAxis]] = [element.eunumber]
+        eu_pnumbers[element[xAxis]][element[yAxis]] = [element.eu_pnumber]
       } else {
         dict[element[xAxis]][element[yAxis]] += 1
-        euNumbers[element[xAxis]][element[yAxis]].push(element.eunumber)
+        eu_pnumbers[element[xAxis]][element[yAxis]].push(element.eu_pnumber)
       }
     }
   })
 
-  return [dict, euNumbers]
+  return [dict, eu_pnumbers]
 }

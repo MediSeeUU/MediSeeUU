@@ -5,7 +5,7 @@
 import searchData from '../search'
 import DummyData from '../../../../json/data.json'
 
-const columnSelection = ['eunumber', 'brandname', 'mah', 'decisiondate']
+const columnSelection = ['eu_pnumber', 'brandname', 'mah', 'decisiondate']
 
 test('query results in right search results', () => {
   let updatedData = searchData(DummyData, '10', columnSelection)

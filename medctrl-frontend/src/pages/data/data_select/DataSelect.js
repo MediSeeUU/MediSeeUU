@@ -11,6 +11,11 @@ import { useTableUtils } from '../../../shared/contexts/TableUtilsContext'
 import { useColumnSelection } from '../../../shared/contexts/ColumnSelectionContext'
 import { useData } from '../../../shared/contexts/DataContext'
 import getUniqueCategories from '../../visualizations/single_visualization/utils/getUniqueCategories'
+import ButtonComponent from '../../components/ButtonComponent.js'
+import ToggleButtons from '../../components/ToggleButtons.js'
+import { graphemeAt } from 'voca'
+import * as ButtonFunctions from '../../components/ButtonFunctionality.js'
+import OpenFields from '../../components/OpenFields'
 
 // Function based component that displays the search bar and table with all the datapoints that can be selected
 function DataSelect() {
@@ -58,13 +63,26 @@ function DataSelect() {
         initial={tableUtils.search}
       />
       <div tour="step-data-select" className="med-content-container">
+
+        <ToggleButtons
+          clickFunction1={ButtonFunctions.OpenHuman}
+          clickFunction2={ButtonFunctions.OpenOrphan}
+        />
+
+        <hr className="med-top-separator" />
         <h1 className="med-header">Data Selection Table</h1>
+
         <Menu
           filters={tableUtils.filters}
           sorters={tableUtils.sorters}
           update={menuUpdate}
           categories={categories}
         />
+
+        <OpenFields
+
+        />
+        
         <hr className="med-top-separator" />
         <TableView
           data={updatedData}
