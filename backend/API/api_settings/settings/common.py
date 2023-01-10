@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-import logging
 import os
 from pathlib import Path
 
@@ -159,26 +158,34 @@ LOGGING = {
         },
         'djangoHandler': {
             'level': 'INFO',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': 'django.log',
+            'maxBytes': 1024 * 1024 * 20,
+            'backupCount': 1,
             'formatter': 'simple'
         },
         'debugHandler': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': 'debug.log',
+            'maxBytes': 1024 * 1024 * 20,
+            'backupCount': 1,
             'formatter': 'simple'
         },
         'infoHandler': {
             'level': 'INFO',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': 'api_log.log',
+            'maxBytes': 1024 * 1024 * 20,
+            'backupCount': 1,
             'formatter': 'verbose'
         },
         'warningHandler': {
             'level': 'WARNING',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': 'warning.log',
+            'maxBytes': 1024 * 1024 * 20,
+            'backupCount': 1,
             'formatter': 'verbose'
         }
     },
@@ -189,15 +196,10 @@ LOGGING = {
             'propagate': True,
         },
         'django': {
-            'handlers': ['djangoHandler'],
+            'handlers': ['djangoHandler', 'console'],
             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
             'propagate': True,
         }
-        #        'api.views.medicine_views.medicine': {
-        #            'handlers': ['warningHandler'],
-        #            'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR'),
-        #            'propagate': True,
-        #        }
     },
     'formatters': {
         'simple': {
