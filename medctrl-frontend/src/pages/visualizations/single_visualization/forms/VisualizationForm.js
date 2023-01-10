@@ -9,6 +9,7 @@ import BarForm from './types/BarForm'
 import LineForm from './types/LineForm'
 import PieForm from './types/PieForm'
 import HistogramForm from './types/HistogramForm'
+import TimelineForm from './types/TimelineForm'
 
 // form component for a single visualization
 function VisualizationForm(props) {
@@ -80,6 +81,15 @@ function VisualizationForm(props) {
           />
         )
 
+        case 'timeline':
+        return (
+          <TimelineForm
+            uniqueCategories={props.uniqueCategories}
+            onChange={handleChange}
+            chartSpecificOptions={settings.chartSpecificOptions}
+          />
+        )
+
       default:
         throw Error('form error: chart type is ineligible: {' + settings + '}')
     }
@@ -102,6 +112,7 @@ function VisualizationForm(props) {
           <option value="line">Line chart</option>
           <option value="pie">Pie chart</option>
           <option value="histogram">Histogram</option>
+          <option value="timeline">Timeline</option>
         </select>
       </label>
       {renderChartOptions(settings.chartType)}
