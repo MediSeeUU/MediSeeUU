@@ -15,6 +15,7 @@ import BarChart from './visualization_types/BarChart'
 import LineChart from './visualization_types/LineChart'
 import PieChart from './visualization_types/PieChart'
 import HistogramChart from './visualization_types/HistogramChart'
+import TimelineChart from './visualization_types/TimelineChart'
 import HandleSVGExport from './exports/HandleSVGExport'
 import HandlePNGExport from './exports/HandlePNGExport'
 import sortCategoryData from './utils/sortCategoryData'
@@ -144,6 +145,19 @@ function SingleVisualization(props) {
       case 'histogram':
         return (
           <HistogramChart
+            legend={legendOn}
+            labels={labelsOn}
+            id={id}
+            series={series}
+            categories={categories}
+            options={options}
+            onDataClick={onDataClick}
+          />
+        )
+
+        case 'timeline':
+        return (
+          <TimelineChart
             legend={legendOn}
             labels={labelsOn}
             id={id}

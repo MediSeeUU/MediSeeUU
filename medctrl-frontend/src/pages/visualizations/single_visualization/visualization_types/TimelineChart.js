@@ -23,7 +23,7 @@ function TimelineChart(props) {
           },
         },
       },
-      colors: Colors.timeline_colors,
+      colors: Colors.timeline_color,
       dataLabels: {
         enabled: props.labels,
       },

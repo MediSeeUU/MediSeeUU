@@ -21,3 +21,5 @@ export const bar_color = ["#546E7A"]
 export const histogram_color = ["#00E396"]
 
 export const line_color = ["#FA4443"]
+
+export const timeline_color = ["#FA4443"]
