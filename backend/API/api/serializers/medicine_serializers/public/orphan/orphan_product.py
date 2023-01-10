@@ -9,12 +9,18 @@ has to access all different tables and merge all this data in a one dimensional 
 """
 
 from rest_framework import serializers
+from api.serializers.medicine_serializers.public.common import (
+    HistoryMixin,
+)
 from api.models.orphan_models import (
     OrphanProduct,
 )
+from api.serializers.medicine_serializers.public.orphan import (
+    EUODSponsorSerializer,
+)
 
 
-class OrphanProductSerializer(serializers.ModelSerializer):
+class OrphanProductSerializer(HistoryMixin, serializers.ModelSerializer):
     """
     This serializer serializers all the needed data for the medicine view from the :py:class:`.OrphanProduct` model.
     """
@@ -24,5 +30,7 @@ class OrphanProductSerializer(serializers.ModelSerializer):
         Meta information
         """
         model = OrphanProduct
-
-        fields = "__all__"
+        exclude = ("eu_orphan_con_initial",)
+        current_history = [
+            ("eu_od_sponsor", EUODSponsorSerializer),
+        ]

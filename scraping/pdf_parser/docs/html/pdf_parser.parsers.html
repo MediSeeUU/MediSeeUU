@@ -468,17 +468,17 @@ bool: found result</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.dec_parser.dec_get_od_comp_date">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_od_comp_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_od_comp_date" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.dec_parser.</span></span><span class="sig-name descname"><span class="pre">dec_get_od_comp_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime.date</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.dec_parser.dec_get_od_comp_date" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gives date of orphan comp from decision files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>txt</strong> (<em>str</em>) – plain decision pdf text</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>date found</p>
+<dd class="field-even"><p>date found or date_not_found string</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>datetime.date</p>
+<dd class="field-odd"><p>datetime.date | str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -878,31 +878,30 @@ including the attributes of this XML file</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.omar_parser.get_alternative_treatments">
 <span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_alternative_treatments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bullet_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_alternative_treatments" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="simple">
-<dt>Finds the bullet point that contains the appropriate information and return</dt><dd><p>short description about the findings.</p>
-</dd>
-</dl>
+<dd><p>Finds the bullet point that contains the appropriate information and return short description about the findings.
+:param bullet_points: These are all the bullet points from the appropriate section.
+:type bullet_points: list[str]</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>bullet_points</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – These are all the bullet points from the appropriate section.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Return a short description depending on what was found in the bullet point.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Return a short description depending on what was found in the bullet point.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.omar_parser.get_attributes">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu_od_flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_attributes" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu_od_flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xml_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function returns the dictionary with all the parsed attributes in it.
 :param section: Section (ET.Element): This is the section obtained with the xml converter.
 :type section: ET.Element
 :param eu_od_flag: This boolean represents the presence of a comp section.
-:type eu_od_flag: bool</p>
+:type eu_od_flag: bool
+:param pdf_file: This makes sure that the log can show what file was missing the attribute.
+:type pdf_file: str
+:param xml_body: This is required for the report date to be parsed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Return a dictionary with the parsed attributes.</p>
@@ -950,17 +949,31 @@ including the attributes of this XML file</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.omar_parser.get_report_date">
 <span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_report_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_report_date" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This function finds the date of the report that is on the front page of the PDF.
+:param xml_body: This is required for the report date to be parsed.
+:param pdf_file: This makes sure that the log can show what file was missing the attribute.
+:type pdf_file: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the date as a simple datetime.date.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>datetime.date</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pdf_parser.parsers.omar_parser.get_significant_benefit">
-<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_significant_benefit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bullet_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alternative_treatment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_significant_benefit" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pdf_parser.parsers.omar_parser.</span></span><span class="sig-name descname"><span class="pre">get_significant_benefit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bullet_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alternative_treatment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pdf_parser.parsers.omar_parser.get_significant_benefit" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function finds the piece of text that supports the reason for the orphan medicine to be
 of significant benefit.
 :param bullet_points: These are all the bullet points from the appropriate section.
 :type bullet_points: list[str]
 :param alternative_treatment: The result of the get_alternative_treatment function
-:type alternative_treatment: str</p>
+:type alternative_treatment: str
+:param pdf_file: This makes sure that the log can show what file was missing the attribute.
+:type pdf_file: str</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Returns the appropriate string, depending on what was found in the file.</p>

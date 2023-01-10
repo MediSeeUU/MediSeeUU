@@ -11,7 +11,7 @@ webdata_not_found = "404_webdata_not_found"
 annex_10_not_found = "404_annex_10_not_found"
 
 insufficient_overlap = "|->INSUFFICIENT OVERLAP<-|"
-NA_before = "Not available at time of release"
+NA_before = "Attribute not yet reported*"
 not_scrapeable = "Value should be present in source"
 date_not_found = "Date is left blank in source"
 default_date = "0001-01-01"

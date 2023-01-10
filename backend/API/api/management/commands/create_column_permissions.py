@@ -22,34 +22,48 @@ class Command(BaseCommand):
     help = "Creates permissions for the columns per table"
 
     def handle(self, *args, **options):
-        content_type = ContentType.objects.filter(model="medicine").first()
-
+        columns = []
         for model in models:
             content_type = ContentType.objects.filter(model=model.__name__).first()
 
             # pylint: disable=protected-access
             for field in model._meta.get_fields():
-                name = f"{model.__name__.lower()}.{field.name}.view"
-                description = f"Can view {field.name} in {model.__name__}"
+                if field.concrete:
+                    name = f"{model.__name__.lower()}.{field.name}.view"
+                    description = f"Can view {field.name} in {model.__name__}"
 
-                columns = [(name, description)]
+                    columns.append((name, description, content_type))
 
-                # Add view permissions for every extra dashboard column
-                if hasattr(field, "dashboard_column"):
-                    data_info = field.dashboard_column.get_all_data_info(field.name)
-                    for data_key, _, _ in data_info:
-                        if data_key != field.name:
-                            name = f"{model.__name__.lower()}.{data_key}.view"
-                            description = f"Can view {data_key} in {model.__name__}"
-                            columns.append((name, description))
+                    # Add view permissions for every extra dashboard column
+                    if hasattr(field, "dashboard_column"):
+                        data_info = field.dashboard_column.get_all_data_info(field.name)
+                        for data_key, _, _ in data_info:
+                            if data_key != field.name:
+                                name = f"{model.__name__.lower()}.{data_key}.view"
+                                description = f"Can view {data_key} in {model.__name__}"
+                                columns.append((name, description, content_type))
 
-                for column in columns:
-                    perm, created = Permission.objects.update_or_create(
-                        codename=column[0],
-                        name=column[1],
-                        content_type=content_type,
-                    )
-                    if created:
-                        logging.getLogger(__name__).info(f"Created new permission '{perm}'")
-                    else:
-                        logging.getLogger(__name__).info(f"Permission '{perm}' already exists")
+            if hasattr(model, "HistoryInfo"):
+                if hasattr(model.HistoryInfo, "dashboard_columns"):
+                    for dashboard_column in model.HistoryInfo.dashboard_columns:
+                        data_key = dashboard_column["data-key"]
+                        name = f"{model.__name__.lower()}.{data_key}.view"
+                        description = f"Can view {data_key} in {model.__name__}"
+                        columns.append((name, description, content_type))
+                if hasattr(model.HistoryInfo, "timeline_items"):
+                    for timeline_item in model.HistoryInfo.timeline_items:
+                        data_key = timeline_item["data-key"]
+                        name = f"{model.__name__.lower()}.{data_key}.view"
+                        description = f"Can view {data_key} in {model.__name__}"
+                        columns.append((name, description, content_type))
+
+        for codename, name, content_type in columns:
+            perm, created = Permission.objects.update_or_create(
+                codename=codename,
+                name=name,
+                content_type=content_type,
+            )
+            if created:
+                logging.getLogger(__name__).info(f"Created new permission '{perm}'")
+            else:
+                logging.getLogger(__name__).info(f"Permission '{perm}' already exists")

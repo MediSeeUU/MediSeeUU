@@ -13,6 +13,7 @@ data_path: Path = root_path / "data"
 logging_path: Path = root_path / "logs"
 
 filename = "scraping_config.txt"
+log = logging.getLogger("config")
 
 parallelized = "parallelized"
 run_web = 'run_web'
@@ -63,6 +64,7 @@ default_config = {
     ]
 }
 
+
 def load_config():
     """
     loads config file, if file does not exist, creates file with default values.
@@ -71,11 +73,13 @@ def load_config():
     dict[bool]: dictionary containing bools to indicate on/off
 
     """
-
     if os.path.exists(filename):
-        with open(filename, 'r') as f:
-            return json.load(f)
+        try:
+            with open(filename, 'r') as f:
+                return json.load(f)
+        except json.JSONDecodeError:
+            log.warning("Config file has incorrect syntax, using default configuration instead")
     else:
         with open(filename, 'w') as f:
             json.dump(default_config, f, indent=4)
-        return default_config
+    return default_config

@@ -5,6 +5,7 @@ from django.db import models
 from api.models.human_models.medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import (
     create_dashboard_column,
+    create_dashboard_history_foreign_key_column,
     Category,
 )
 from api.models.common import DataFormats
@@ -68,6 +69,7 @@ class OrphanProduct(models.Model):
         MedicinalProduct,
         models.CASCADE,
         null=True,
+        related_name="eu_od_pnumber",
     )
 
     ema_od_number = create_dashboard_column(
@@ -103,14 +105,20 @@ class OrphanProduct(models.Model):
         "COMP decision date (for EU orphan designation)",
     )
 
-    eu_od_sponsor = create_dashboard_column(
-        models.TextField(
-            null=False
+    eu_orphan_con_initial = create_dashboard_history_foreign_key_column(
+        models.ForeignKey(
+            "HistoryEUOrphanCon",
+            models.SET_NULL,
+            null=True,
+            blank=True,
+            related_name="eu_orphan_con_initial"
         ),
-        Category.Orphan_product,
-        DataFormats.String,
-        "Sponsor for EU orphan designation",
+        Category.Medicinal_product,
+        DataFormats.Dictionary_List,
+        "Initial EU orphan conditions",
     )
 
     class Meta:
         db_table = "orphan_product"
+        verbose_name = "Orphan Product"
+        verbose_name_plural = "Orphan Products"

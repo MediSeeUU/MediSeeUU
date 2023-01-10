@@ -20,7 +20,6 @@ from .history_brand_name import HistoryBrandName
 from .history_mah import HistoryMAH
 from .history_od import HistoryOD
 from .history_prime import HistoryPrime
-from .history_eu_orphan_con import HistoryEUOrphanCon
 from .legal_bases import LegalBases
 
 # place all medicine models here
@@ -37,6 +36,5 @@ models = [
     HistoryMAH,
     HistoryOD,
     HistoryPrime,
-    HistoryEUOrphanCon,
     LegalBases,
 ]

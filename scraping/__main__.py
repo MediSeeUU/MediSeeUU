@@ -3,12 +3,12 @@ from pathlib import Path
 
 import pause
 
-import scraping.annex_10_parser.__main__ as annex_10_parser
-import scraping.combiner.__main__ as combiner
-import scraping.pdf_parser.__main__ as pdf_parser
-import scraping.transformer.__main__ as transformer
 import scraping.web_scraper.__main__ as web_scraper
 import scraping.xml_converter.__main__ as xml_converter
+import scraping.pdf_parser.__main__ as pdf_parser
+import scraping.annex_10_parser.__main__ as annex_10_parser
+import scraping.combiner.__main__ as combiner
+import scraping.transformer.__main__ as transformer
 import scraping.db_communicator.__main__ as db_communicator
 import scraping.utilities.config.__main__ as cf
 from scraping.utilities.log import log_tools

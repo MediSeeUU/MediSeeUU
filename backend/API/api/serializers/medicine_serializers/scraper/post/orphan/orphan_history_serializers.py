@@ -7,3 +7,35 @@
 # ---------------------------------------------
 
 from rest_framework import serializers
+from api.models.orphan_models import (
+    HistoryEUOrphanCon,
+    HistoryEUODSponsor,
+)
+
+
+class EUOrphanConSerializer(serializers.ModelSerializer):
+    """
+    Orphan Condition table serializer for the post endpoint
+    """
+
+    class Meta:
+        """
+        Meta information
+        """
+
+        model = HistoryEUOrphanCon
+        exclude = ("id", )
+
+
+class EUODSponsorSerializer(serializers.ModelSerializer):
+    """
+    Orphan sponsor table serializer for the post endpoint
+    """
+
+    class Meta:
+        """
+        Meta information
+        """
+
+        model = HistoryEUODSponsor
+        exclude = ("id", )
