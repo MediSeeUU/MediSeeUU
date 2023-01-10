@@ -87,6 +87,6 @@ class IngredientsAndSubstances(models.Model):
         return self.active_substance
 
     class Meta:
-        db_table = "ingredients_and_substances"
+        db_table = "ingredients_and_substance"
         verbose_name = "Ingredients And Substances"
         verbose_name_plural = "Ingredients And Substances"

@@ -44,5 +44,5 @@ class LegalBases(models.Model):
             models.UniqueConstraint(fields=['eu_pnumber', 'eu_legal_basis'],
                                     name="eu_pnumber eu_legal_basis composite key")
         ]
-        verbose_name = "Legal Bases"
+        verbose_name = "Legal Basis"
         verbose_name_plural = "Legal Bases"
