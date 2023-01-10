@@ -21,4 +21,7 @@ class OrphanProductFlexVarUpdateSerializer(serializers.ModelSerializer):
         fields = [
             "omar_url",
             "odwar_url",
+            "eu_od_prevalence",
+            "eu_od_alt_treatment",
+            "eu_od_sig_benefit",
         ]

@@ -94,6 +94,36 @@ class OrphanProduct(LockModel):
         "EU orphan designation condition",
     )
 
+    eu_od_prevalence = create_dashboard_column(
+        models.TextField(
+            null=True,
+            blank=True,
+        ),
+        Category.Orphan_product,
+        DataFormats.String,
+        "Prevalence",
+    )
+
+    eu_od_alt_treatment = create_dashboard_column(
+        models.TextField(
+            null=True,
+            blank=True,
+        ),
+        Category.Orphan_product,
+        DataFormats.String,
+        "Alternative treatments",
+    )
+
+    eu_od_sig_benefit = create_dashboard_column(
+        models.TextField(
+            null=True,
+            blank=True,
+        ),
+        Category.Orphan_product,
+        DataFormats.String,
+        "Significant benefit"
+    )
+
     eu_od_date = create_dashboard_column(
         DateWithNAField(),
         Category.Orphan_product,
@@ -106,6 +136,13 @@ class OrphanProduct(LockModel):
         Category.Orphan_product,
         DataFormats.Date,
         "COMP decision date (for EU orphan designation)",
+    )
+
+    ema_report_date = create_dashboard_column(
+        DateWithNAField(),
+        Category.Orphan_product,
+        DataFormats.Date,
+        "Date of reporting of the OMAR",
     )
 
     eu_orphan_con_initial = create_dashboard_history_foreign_key_column(
