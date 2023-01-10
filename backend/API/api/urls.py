@@ -16,6 +16,7 @@ from knox import views as knox_views
 
 from api.views.medicine_views import HumanMedicineViewSet, OrphanMedicineViewSet
 from api.views.histories_views import HumanHistoriesViewSet, OrphanHistoriesViewSet
+from api.views.procedures_views import ProceduresViewSet
 from api.views.account_views import LoginAPI
 from api.views.other import SavedSelectionViewSet, HumanOrphanViewSet
 from api.views.structure_data.medicine import HumanMedicineInfo, OrphanMedicineInfo
@@ -31,6 +32,7 @@ router.register(r"medicine/human", HumanMedicineViewSet, basename="medicine/huma
 router.register(r"medicine/orphan", OrphanMedicineViewSet, basename="medicine/orphan")
 router.register(r"medicine/humanHistories", HumanHistoriesViewSet, basename="medicine/humanHistories")
 router.register(r"medicine/orphanHistories", OrphanHistoriesViewSet, basename="medicine/orphanHistories")
+router.register(r"medicine/procedures", ProceduresViewSet, basename="medicine/procedures")
 
 # human orphan splits
 router.register(r"structureData", HumanOrphanViewSet, basename="structureData")
