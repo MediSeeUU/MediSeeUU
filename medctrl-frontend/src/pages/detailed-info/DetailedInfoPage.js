@@ -45,7 +45,7 @@ export default function DetailedInfoPage() {
   useEffect(() => {
     async function fetchProcedureData(medID) {
       const response = await fetchWithToken(
-        `${process.env.PUBLIC_URL}/api/procedure/` + medID + '/',
+        `${process.env.PUBLIC_URL}/api/management/procedures/` + medID + '/',
         {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
