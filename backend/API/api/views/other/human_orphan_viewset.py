@@ -27,7 +27,8 @@ class HumanOrphanViewSet(viewsets.ViewSet):
         redirect_urls = {
             "human": current_url + "human/",
             "orphan": current_url + "orphan/",
-            "human histories:": current_url + "humanHistories",
-            "orphan histories:": current_url + "orphanHistories",
+            "human histories:": current_url + "humanHistories/",
+            "orphan histories:": current_url + "orphanHistories/",
+            "procedures": current_url + "procedures/"
         }
         return Response(redirect_urls)
