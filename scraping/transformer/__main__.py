@@ -99,10 +99,10 @@ def save_transformed_json(transformed_json_path: str, final_json: dict):
     """
     try:
         with open(transformed_json_path, 'w', encoding='utf-8') as transformed_file:
-            json.dump(final_json, transformed_file, indent=4, ensure_ascii=False)
+            json.dump(final_json, transformed_file, indent=4, ensure_ascii=False, sort_keys=True)
     except UnicodeDecodeError:
         with open(transformed_json_path, 'w') as transformed_file:
-            json.dump(final_json, transformed_file, indent=4)
+            json.dump(final_json, transformed_file, indent=4, sort_keys=True)
 
 
 def load_json(transformed_json_path: str):
