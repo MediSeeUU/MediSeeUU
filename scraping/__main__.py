@@ -12,7 +12,6 @@ import scraping.xml_converter.__main__ as xml_converter
 import scraping.db_communicator.__main__ as db_communicator
 import scraping.utilities.config.__main__ as cf
 from scraping.utilities.log import log_tools
-from scraping.utilities.web import config_objects
 
 
 def main():
@@ -34,16 +33,11 @@ def run_all():
     """
     log_tools.init_loggers()
     data_folder_directory = create_data_folders()
-    config_objects.default_path_data = data_folder_directory
-
-    # Standard config is to run all. Uncomment line below to use custom setup.
-    web_config = config_objects.WebConfig().run_all().set_parallel()
-    # web_config = config_objects.WebConfig().run_custom(scrape_ec=True, scrape_ema=True).set_parallel()
 
     # modules run based on configfile
     config = cf.load_config()
     if config[cf.run_web]:
-        web_scraper.main(web_config)
+        web_scraper.main(config[cf.web_config])
     if config[cf.run_xml]:
         xml_converter.main(data_folder_directory, config[cf.xml_convert_all])
     if config[cf.run_pdf]:

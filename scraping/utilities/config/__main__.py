@@ -13,6 +13,15 @@ run_db_com =  'run_db_communicator'
 xml_convert_all = 'xml_convert_all'
 pdf_parse_all = 'pdf_parse_all'
 db_com_send_together = 'db_com_send_together'
+web_config = 'web_config'
+web_scrape_ec = 'web_scrape_ec'
+web_scrape_ema = 'web_scrape_ema'
+web_download = 'web_download'
+web_download_refused = 'web_download_refused'
+web_download_annex10 = 'web_download_annex10'
+web_download_ema_excel = 'web_download_ema_excel'
+web_run_filter = 'web_run_filter'
+
 
 # if no config found, use default values
 default_config = {
@@ -25,7 +34,18 @@ default_config = {
     run_db_com: True,
     xml_convert_all: False,
     pdf_parse_all: False,
-    db_com_send_together: True
+    db_com_send_together: True,
+    web_config: [
+        {
+            web_scrape_ec: True,
+            web_scrape_ema: True,
+            web_download: True,
+            web_download_refused: True,
+            web_download_annex10: True,
+            web_download_ema_excel: True,
+            web_run_filter: True
+        }
+    ]
 }
 
 def load_config():
