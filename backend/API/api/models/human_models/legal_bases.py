@@ -4,7 +4,6 @@
 from django.db import models
 from .medicinal_product import MedicinalProduct
 from api.models.create_dashboard_columns import create_dashboard_column, Category
-from api.models.common import LegalBasesTypes
 from api.models.common import DataFormats
 
 
@@ -30,8 +29,7 @@ class LegalBases(models.Model):
 
     eu_legal_basis = create_dashboard_column(
         models.CharField(
-            max_length=45,
-            choices=LegalBasesTypes.choices,
+            max_length=255,
             null=False,
             blank=False,
         ),
