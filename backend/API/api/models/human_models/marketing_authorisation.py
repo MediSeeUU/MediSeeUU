@@ -2,6 +2,7 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 from django.db import models
+from django.dispatch import receiver
 from .medicinal_product import MedicinalProduct
 from .accelerated_assessment import AcceleratedAssessment
 from .duration import Duration
@@ -168,10 +169,25 @@ class MarketingAuthorisation(LockModel):
         "Initial EU marketing authorisation holder",
     )
 
-    def __str__(self):
-        return self.eu_pnumber.__str__()
-
     class Meta:
         db_table = "marketing_authorisation"
         verbose_name = "Marketing Authorisation"
         verbose_name_plural = "Marketing Authorisations"
+
+    def __str__(self):
+        return self.eu_pnumber.__str__()
+
+    def delete(self, *args, **kwargs):
+        if self.duration:
+            self.duration.delete()
+        if self.ema_accelerated_assessment:
+            self.ema_accelerated_assessment.delete()
+        super().delete(*args, **kwargs)
+
+
+@receiver(models.signals.post_delete, sender=MarketingAuthorisation)
+def handle_deleted_marketing__authorisation(sender, instance, **kwargs):
+    if instance.duration:
+        instance.duration.delete()
+    if instance.ema_accelerated_assessment:
+        instance.ema_accelerated_assessment.delete()
