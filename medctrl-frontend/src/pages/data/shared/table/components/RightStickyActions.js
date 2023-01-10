@@ -23,11 +23,11 @@ function RightStickyActions({ entry, select, onChange }) {
           ></i>
         )
       }
-      <Link to={`/details/${entry.eu_pnumber}`}>
+      <Link to={`/details/${entry.eu_pnumber.replaceAll("/", "_")}`}>
         <i
           className="bx bx-info-circle med-table-icons med-primary-text"
-          id={'detailInfo' + entry.eu_pnumber}
-          testid={'detailInfo' + entry.eu_pnumber}
+          id={'detailInfo' + entry.eu_pnumber.replaceAll("/", "_")}
+          testid={'detailInfo' + entry.eu_pnumber.replaceAll("/", "_")}
         />
       </Link>
     </td>
