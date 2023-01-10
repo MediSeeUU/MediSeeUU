@@ -43,6 +43,8 @@ class HistoryAuthorisationType(models.Model):
 
     class Meta:
         db_table = "history_authorisation_type"
+        verbose_name = "History Authorisation Type"
+        verbose_name_plural = "Histories Authorisation Type"
 
     class HistoryInfo:
         dashboard_columns = [

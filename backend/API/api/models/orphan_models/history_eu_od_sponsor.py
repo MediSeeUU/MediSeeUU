@@ -42,6 +42,8 @@ class HistoryEUODSponsor(models.Model):
 
     class Meta:
         db_table = "history_eu_od_sponsor"
+        verbose_name = "History EU OD Sponsor"
+        verbose_name_plural = "Histories EU OD Sponsor"
 
     class HistoryInfo:
         dashboard_columns = [

@@ -51,3 +51,5 @@ class Procedures(models.Model):
 
     class Meta:
         db_table = "procedures"
+        verbose_name = "Procedures"
+        verbose_name_plural = "Procedures"

@@ -43,6 +43,8 @@ class HistoryMAH(models.Model):
 
     class Meta:
         db_table = "eu_mah_history"
+        verbose_name = "History MAH"
+        verbose_name_plural = "Histories MAH"
 
     class HistoryInfo:
         dashboard_columns = [
