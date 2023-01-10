@@ -4,14 +4,14 @@
 from django.contrib import admin
 from import_export import resources, admin as import_admin
 from api.models.orphan_models import OrphanProduct
-from api.models.orphan_models import HistoryEUOrphanCon
+from api.models.orphan_models import HistoryEUODSponsor
 from api.admin.common import import_foreign_key
 from api.admin.cachemodeladmin import CacheModelAdmin
 
 
-class HistoryEUOrphanConResource(resources.ModelResource):
+class HistoryEUODSponsorResource(resources.ModelResource):
     """
-    Necessary resource class for the HistoryEUOrphonCon admin view.
+    Necessary resource class for the HistoryODSponsor admin view.
     Has explicit foreign keys so Django import/export can automatically create the values if needed.
     ModelResource is Resource subclass for handling Django models.
     """
@@ -19,24 +19,24 @@ class HistoryEUOrphanConResource(resources.ModelResource):
 
     class Meta:
         """
-        Meta class for HistoryEUOrphanConResource
+        Meta class for HistoryODSponsorResource
         """
-        model = HistoryEUOrphanCon
+        model = HistoryEUODSponsor
         import_id_fields = (
             "eu_od_number",
         )
 
 
-class HistoryEUOrphanConAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
+class HistoryEUODSponsorAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     """
-    Admin View for HistoryEUOrphanCon
+    Admin View for HistoryEUODSponsor
     """
-    resource_class = HistoryEUOrphanConResource
+    resource_class = HistoryEUODSponsorResource
     list_display = [
         "eu_od_number",
         "change_date",
-        "indication",
+        "eu_od_sponsor",
     ]
 
 
-admin.site.register(HistoryEUOrphanCon, HistoryEUOrphanConAdmin)
+admin.site.register(HistoryEUODSponsor, HistoryEUODSponsorAdmin)

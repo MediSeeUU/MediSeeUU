@@ -170,3 +170,5 @@ class MarketingAuthorisation(models.Model):
 
     class Meta:
         db_table = "marketing_authorisation"
+        verbose_name = "Marketing Authorisation"
+        verbose_name_plural = "Marketing Authorisations"

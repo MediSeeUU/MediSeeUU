@@ -42,6 +42,8 @@ class HistoryBrandName(models.Model):
 
     class Meta:
         db_table = "history_brand_name"
+        verbose_name = "History Brand Name"
+        verbose_name_plural = "Histories Brand Name"
 
     class HistoryInfo:
         dashboard_columns = [

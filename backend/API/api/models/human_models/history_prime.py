@@ -43,6 +43,8 @@ class HistoryPrime(models.Model):
 
     class Meta:
         db_table = "history_prime"
+        verbose_name = "History Prime"
+        verbose_name_plural = "Histories Prime"
 
     class HistoryInfo:
         timeline_items = [
