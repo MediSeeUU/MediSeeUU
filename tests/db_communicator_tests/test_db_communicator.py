@@ -56,3 +56,21 @@ class TestDbCommunicator(unittest.TestCase):
     #     self.assertFalse(comm.request_token())
     #     self.assertEqual(comm.api_key, "")
     #     self.assertEqual(comm.last_retrieval, initial_date)
+
+
+# Cases integratietest:
+# Main:
+# 1) Wordt uitgevoerd met alle medicines tegelijk
+    # - Er moeten medicines zijn die succeeden en die falen
+# 2) Wordt uitgevoerd met individual medicines
+    # - Er moeten medicines zijn die succeeden en die falen
+# 3) Generic (maakt niet uit welke flag)
+    # - Hij moet niet crashen als de backend niet reageert (wel loggen en stoppen)
+    # - Hij moet niet crashen als er geen valid token geretrieved kan worden (wel loggen en stoppen)
+
+# To mock:
+# Backend
+    # - Token handling
+    # - Medicine endpoint
+        # - Communication/Status
+    # - Medicine logs
