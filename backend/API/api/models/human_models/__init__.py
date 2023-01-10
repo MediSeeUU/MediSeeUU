@@ -21,7 +21,6 @@ from .history_mah import HistoryMAH
 from .history_od import HistoryOD
 from .history_prime import HistoryPrime
 from .legal_bases import LegalBases
-from .saved_selection import SavedSelection
 
 # place all medicine models here
 models = [
