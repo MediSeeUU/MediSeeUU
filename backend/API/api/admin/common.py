@@ -31,6 +31,3 @@ class CustomForeignKeyWidget(widgets.ForeignKeyWidget):
             value, _ = self.model.objects.get_or_create(**{self.field: value})
 
         return value
-
-
-admin.site.index_template = "adminIndex.html"
