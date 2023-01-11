@@ -1,6 +1,30 @@
 import xml.etree.ElementTree as ET
 import scraping.utilities.definitions.xml_tags as tags
 
+def xml_get_text(xml_element: ET.Element) -> str:
+    """
+    Returns text content of an XML ET.Element with all special escaped XML characters
+    replaced with their non-escaped counterparts for readability.
+
+    Example:
+        input: <p>XML text containing escaped characters such as \&amp;, \&quot;, \&apos;, \&lt;, \&gt;.</p>
+        output: "XML text containing escaped characters such as &, \", \', <, >."
+
+    Args:
+        xml_element (ET.Element): XML element containing pure text: <element> pure text </element>
+
+    Returns:
+        str: String with XML text content where escaped characters replaced with original.
+    """
+    xml_text = xml_element.text
+    xml_text.replace("&amp;", "&")
+    xml_text.replace("&quot;", "\"")
+    xml_text.replace("&apos;", "\'")
+    xml_text.replace("&lt;", "<")
+    xml_text.replace("&gt;", ">")
+
+    return xml_text
+
 
 def file_is_initial(xml_head: ET.Element) -> bool:
     """
@@ -14,7 +38,7 @@ def file_is_initial(xml_head: ET.Element) -> bool:
     """
 
     initial_element = xml_head.findall(tags.initial_authorization)[0]
-    return initial_element.text.strip() == "True"
+    return xml_get_text(initial_element).strip() == "True"
 
 
 def file_get_name_pdf(xml_head: ET.Element) -> str:
@@ -28,7 +52,7 @@ def file_get_name_pdf(xml_head: ET.Element) -> str:
         str: Name of the pdf file in string format.
     """
 
-    return xml_head.findall(tags.pdf_file)[0].text.strip()
+    return xml_get_text(xml_head.findall(tags.pdf_file)[0]).strip()
 
 
 def file_get_creation_date(xml_head: ET.Element) -> str:
@@ -42,12 +66,13 @@ def file_get_creation_date(xml_head: ET.Element) -> str:
         str: String representing the creation datetime in the original pdf metadata, can be null.
     """
 
-    if xml_head.findall(tags.creation_date)[0].text:
-        return xml_head.findall(tags.creation_date)[0].text.strip()
+    creation_date_text = xml_get_text(xml_head.findall(tags.creation_date)[0])
+    if creation_date_text != "":
+        return creation_date_text.strip()
     return "no_creation_date"
 
-
-def get_paragraphs_by_header(header: str, xml: ET.Element) -> list[str]:
+#TODO: docstring is niet duidelijk, verander variabele namen om duidelijker te zijn
+def get_paragraphs_by_header(header: str, xml_body: ET.Element) -> list[str]:
     """
     Returns a list of all paragraphs contained by the given header.
 
@@ -58,13 +83,13 @@ def get_paragraphs_by_header(header: str, xml: ET.Element) -> list[str]:
     Returns:
         list[str]: List of all paragraphs contained by the given header
     """
-    res = []
-    for section in xml:
+    all_text = []
+    for section in xml_body:
         if section_contains_header_substring(header, section):
-            for txt in reversed(section):
-                txt = txt.text
-                res.append(txt)
-    return res
+            for element in reversed(section):
+                element = xml_get_text(element)
+                all_text.append(element)
+    return all_text
 
 
 def file_get_modification_date(xml_head: ET.Element) -> str:
@@ -78,8 +103,9 @@ def file_get_modification_date(xml_head: ET.Element) -> str:
         str: String representing the modification datetime in the original pdf metadata, can be null.
     """
 
-    if xml_head.findall(tags.modification_date)[0].text:
-        return xml_head.findall(tags.modification_date)[0].text.strip()
+    modification_date_text = xml_get_text(xml_head.findall(tags.modification_date)[0])
+    if modification_date_text != "":
+        return modification_date_text.strip()
     return "no_modification_date"
 
 
@@ -128,9 +154,7 @@ def section_contains_header_substring(substring: str, section: ET.Element) -> bo
     """
 
     for head in section.findall(tags.header):
-        if not head.text:
-            return False
-        if substring.lower() in head.text.lower():
+        if substring.lower() in xml_get_text(head).lower():
             return True
     return False
 
@@ -149,9 +173,7 @@ def section_contains_header_substring_set(substring_set: list[str], section: ET.
 
     for head in section.findall(tags.header):
         for substring in substring_set:
-            if not head.text:
-                return False
-            if substring.lower() in head.text.lower():
+            if substring.lower() in xml_get_text(head).lower():
                 return True
 
     return False
@@ -169,7 +191,7 @@ def section_contains_header_substring_set_all(substring_set: list[str], section:
         bool: bool indicating whether the section contains all the substrings in substring_set.
     """    
     head = section.findall(tags.header)[0]
-    substring_in_header = [substring in head.text.lower() for substring in substring_set]
+    substring_in_header = [substring in xml_get_text(head).lower() for substring in substring_set]
 
     return all(substring_in_header)
 
@@ -195,6 +217,7 @@ def section_contains_header_number(header_number: str, header: ET.Element) -> bo
 def section_contains_paragraph_substring(substring: str, section: ET.Element) -> bool:
     """
     Returns whether a section contains a substring within any of its paragraphs.
+    Not case sensitive.
 
     Args:
         substring (str): substring to search for in paragraphs of section.
@@ -205,9 +228,7 @@ def section_contains_paragraph_substring(substring: str, section: ET.Element) ->
     """
 
     for paragraph in section.findall(tags.paragraph):
-        if not paragraph.text:
-            return False
-        if substring.lower() in paragraph.text:
+        if substring.lower() in xml_get_text(paragraph).lower():
             return True
 
     return False
@@ -227,9 +248,7 @@ def section_contains_paragraph_substring_set(substring_set: list[str], section: 
 
     for paragraph in section.findall(tags.paragraph):
         for substring in substring_set:
-            if not paragraph.text:
-                return False
-            if substring.lower() in paragraph.text:
+            if substring.lower() in xml_get_text(paragraph).lower():
                 return True
 
     return False
@@ -245,7 +264,7 @@ def section_is_table_of_contents(section: ET.Element) -> bool:
     Returns:
         bool: Returns whether a section is part of the table of contents.
     """
-    return section.findall(tags.header)[0].text.count('.') >= 3
+    return xml_get_text(section.findall(tags.header)[0]).count('.') >= 3
 
 
 def paragraph_contains_substring(substring: str, paragraph: ET.Element) -> bool:
@@ -260,7 +279,7 @@ def paragraph_contains_substring(substring: str, paragraph: ET.Element) -> bool:
         bool: bool value indicating whether the paragraph contains the given substring.
     """
 
-    return substring.lower() in paragraph.text.lower()
+    return substring.lower() in xml_get_text(paragraph).lower()
 
 
 def section_append_paragraphs(section: ET.Element) -> str:
@@ -276,7 +295,7 @@ def section_append_paragraphs(section: ET.Element) -> str:
 
     combined_text = ""
     for paragraph in section.findall(tags.paragraph):
-        combined_text += paragraph.text + "\n"
+        combined_text += xml_get_text(paragraph) + "\n"
 
     return combined_text
 
@@ -308,7 +327,7 @@ def section_get_paragraph_text(index: int, section: ET.Element) -> str:
         str: Text contained within the paragraph accessed by index.
     """
 
-    return section.findall(tags.paragraph)[index].text
+    return xml_get_text(section.findall(tags.paragraph)[index])
 
 
 def get_section_header(section: ET.Element) -> str:
@@ -321,7 +340,7 @@ def get_section_header(section: ET.Element) -> str:
     Returns:
         str: Returns the text of the <header>...</header> text from a section.
     """    
-    return section.findall(tags.header)[0].text
+    return xml_get_text(section.findall(tags.header)[0])
 
 
 def get_body_section_by_index(index: int, xml_body: ET.Element) -> ET.Element:
