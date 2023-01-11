@@ -116,6 +116,34 @@ def header_split_check(old_text: str, text: str) -> bool:
     return False
 
 
+def is_page_number(char_dict: dict[str: any], page_height: int) -> bool:
+    footer_start_height = page_height - (page_height * 0.065)
+    char_bbox = char_dict["bbox"]
+    return min(char_bbox[1], char_bbox[3]) > footer_start_height  # and char_dict["c"].isdigit()
+
+
+def filter_page_footer(text_blocks: list[dict[str, any]], page_height: int) -> list[dict[str, any]]:
+    for text_block in text_blocks:
+        if text_block["type"] != 0:  #skip non text-blocks
+            continue
+
+        for line in text_block["lines"]:
+            for span in line["spans"]:
+                old_text = "".join([char["c"] for char in span["chars"]])
+                new_text = "".join([char["c"] for char in span["chars"] if not is_page_number(char, page_height)])
+                span["text"] = new_text
+
+                # split_text = span["text"].split("/")
+                # if not span["text"].isdigit() and not (all(map(lambda x: x.isdigit(), split_text)) and len(split_text) == 2):
+                #     span["text"] = old_text
+
+                if old_text != new_text:
+                    print("old", old_text)
+                    print("new", new_text)
+    
+    return text_blocks
+
+
 def get_text_format(pdf: fitz.Document, lower: bool = False) -> list[(str, int, str)]:
     """
     Returns formatted text from PDF document, optionally lowered
@@ -129,8 +157,10 @@ def get_text_format(pdf: fitz.Document, lower: bool = False) -> list[(str, int, 
     """
     results = []
     for page in pdf:
-        dict_ = page.get_text("dict")
+        dict_ = page.get_text("rawdict")
+        page_height = dict_["height"]
         blocks = dict_["blocks"]
+        blocks = filter_page_footer(blocks, page_height)
         get_text(blocks, results, lower)
     return results
 
