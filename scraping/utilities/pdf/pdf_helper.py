@@ -109,6 +109,7 @@ def header_split_check(old_text: str, text: str) -> bool:
     Returns:
         bool: True if old_text should be split from text, False otherwise
     """
+    #TODO: more complex splitting needed
     if old_text.strip() != "" and text.strip() != "" and len(old_text.split()) > 1:
         return all((n.isdigit() or n == '.') for n in old_text.split()[0]) and \
                all((n.isdigit() or n == '.') for n in text.split()[0]) and \
@@ -116,11 +117,15 @@ def header_split_check(old_text: str, text: str) -> bool:
     return False
 
 
-def is_page_number(char_dict: dict[str: any], page_height: int) -> bool:
+def is_page_number(char_dict: dict[str, any], page_height: int) -> bool:
     footer_start_height = page_height - (page_height * 0.065)
     char_bbox = char_dict["bbox"]
     return min(char_bbox[1], char_bbox[3]) > footer_start_height  # and char_dict["c"].isdigit()
 
+def span_in_footer(span_dict: dict[str, any], page_height: int) -> bool:
+    footer_start_height = page_height - (page_height * 0.065)
+    span_bbox = span_dict["bbox"]
+    return min(span_bbox[1], span_bbox[3]) > footer_start_height
 
 def filter_page_footer(text_blocks: list[dict[str, any]], page_height: int) -> list[dict[str, any]]:
     for text_block in text_blocks:
@@ -130,16 +135,19 @@ def filter_page_footer(text_blocks: list[dict[str, any]], page_height: int) -> l
         for line in text_block["lines"]:
             for span in line["spans"]:
                 old_text = "".join([char["c"] for char in span["chars"]])
-                new_text = "".join([char["c"] for char in span["chars"] if not is_page_number(char, page_height)])
-                span["text"] = new_text
+                # new_text = "".join([char["c"] for char in span["chars"] if not is_page_number(char, page_height)])
+                # span["text"] = new_text
+                span["text"] = old_text
 
                 # split_text = span["text"].split("/")
                 # if not span["text"].isdigit() and not (all(map(lambda x: x.isdigit(), split_text)) and len(split_text) == 2):
                 #     span["text"] = old_text
 
-                if old_text != new_text:
-                    print("old", old_text)
-                    print("new", new_text)
+                # if old_text != new_text:
+                #     print("old", old_text)
+                #     print("new", new_text)
+            
+            line["spans"] = [span for span in line["spans"] if not span_in_footer(span, page_height)]
     
     return text_blocks
 
