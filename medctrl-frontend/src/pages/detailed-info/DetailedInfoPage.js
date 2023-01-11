@@ -36,6 +36,7 @@ export default function DetailedInfoPage() {
   // All information of all medicines is retrieved and the correct entry
   // corresponding to the desired medicine is extracted from the array
   const alldata = useData()
+  // console.log(alldata[0]["eu_pnumber"])
   let medData = alldata.find(
     (element) => element.eu_pnumber.toString() === medID.toString()
   )
@@ -43,9 +44,10 @@ export default function DetailedInfoPage() {
   // All of the procedure data related to the desired medicine is asynchronously
   // retrieved from the server. The result is stored in a state.
   useEffect(() => {
+    console.log(medID)
     async function fetchProcedureData(medID) {
       const response = await fetchWithToken(
-        `${process.env.PUBLIC_URL}/api/management/procedures/` + medID + '/',
+        `${process.env.PUBLIC_URL}/api/medicine/procedures/` + medID + '/',
         {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
@@ -53,9 +55,11 @@ export default function DetailedInfoPage() {
       )
       const data = await response.json()
       setProcData(data)
+      console.log(response)
     }
     fetchProcedureData(medID)
   }, [setProcData, medID])
+  
 
   // Retrieve a date from the backend which indicates when the last update
   // to the procedures in the database was. i.e. the database, and thus the
