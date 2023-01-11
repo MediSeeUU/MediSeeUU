@@ -114,7 +114,8 @@ def list_variables(eu_pnumber, data):
         LegalBasesSerializer,
         "eu_legal_basis",
         data,
-        True,
+        replace=True,
+        static=True,
     )
 
     add_model_list(

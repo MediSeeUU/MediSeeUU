@@ -78,7 +78,7 @@ def add_or_update_foreign_key(data, current, related_model, insert_serializer, u
     data[attribute] = insert_data(data, None, insert_serializer)
 
 
-def add_list(pk_name, pk, model, serializer, name, data, replace):
+def add_list(pk_name, pk, model, serializer, name, data, replace=False, static=False):
     """
     Add a new object to the given list model.
 
@@ -97,15 +97,16 @@ def add_list(pk_name, pk, model, serializer, name, data, replace):
     filters = {pk_name: pk}
     model_data = model.objects.filter(**filters).all()
     if items is not None and len(items) > 0:
-        if model_data and replace:
-            model_data.delete()
-        if isinstance(items, list):
-            for item in items:
-                new_data = {name: item, pk_name: pk}
+        if not (model_data and static):
+            if model_data and replace:
+                model_data.delete()
+            if isinstance(items, list):
+                for item in items:
+                    new_data = {name: item, pk_name: pk}
+                    insert_data(new_data, None, serializer)
+            else:
+                new_data = {name: items, pk_name: pk}
                 insert_data(new_data, None, serializer)
-        else:
-            new_data = {name: items, pk_name: pk}
-            insert_data(new_data, None, serializer)
 
 
 def add_model_list(pk_name, pk, model, serializer, name, data, replace):
