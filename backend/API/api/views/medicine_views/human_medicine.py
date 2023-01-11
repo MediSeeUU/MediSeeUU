@@ -14,6 +14,7 @@ from django.core.cache import cache
 from api.models.human_models import models, MedicinalProduct
 from api.models.get_dashboard_columns import insert_extra_dashboard_columns
 from api.serializers.medicine_serializers.public.human import PublicMedicinalProductSerializer
+from api.views.update_cache import get_human_cache
 from api.views.other import permission_filter
 
 
@@ -31,16 +32,7 @@ class HumanMedicineViewSet(viewsets.ViewSet):
         Returns:
             httpResponse: returns a list of filtered medicine corresponding to this type of user.
         """        
-        human_cache = cache.get("human_cache")
-
-        # if the data is not present in the cache, we just obtain the data from the database
-        if not human_cache:
-            queryset = MedicinalProduct.objects.all()
-            serializer = PublicMedicinalProductSerializer(queryset, many=True)
-            data = serializer.data
-            # Insert extra dashboard columns defined in the models
-            human_cache = insert_extra_dashboard_columns(data, models)
-            cache.set("human_cache", human_cache, None)
+        human_cache = get_human_cache()
 
         user = self.request.user
         perms = permission_filter(user)
