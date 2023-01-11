@@ -5,9 +5,10 @@ import os.path as path
 import multiprocessing
 import datetime
 import scraping.utilities.xml.xml_file_compare as xml_compare
-import scraping.utilities.log as log
+import logging
 from tqdm import tqdm
 
+log = logging.getLogger("db_communicator")
 
 def filter_and_sort_annex_files(annex_files: list[str]) -> list[str]:
     """
@@ -52,11 +53,11 @@ def folder_changelog_up_to_date(folder: str, filepath: str) -> bool:
     except FileNotFoundError:
         return len(annex_files) == 0
     except json.JSONDecodeError as e:
-        print("ANNEX COMPARER:", e, "| invalid json file:", filepath, ", file will be deleted")
+        log.warning("ANNEX COMPARER: invalid json file:", filepath, ", file will be deleted | error:", e)
         os.remove(filepath)
         return len(annex_files) == 0
     except Exception as e:
-        print("ANNEX COMPARER:", e, "| cannot determine whether changelog is up to date:", filepath)
+        log.warning("ANNEX COMPARER: cannot determine whether changelog is up to date:", filepath, "file will be updated | error:", e)
         return False
         
     if (len(annex_files) == 0) and len(changelogs) == 0:
@@ -109,12 +110,11 @@ def annex_changelog_json_folder(folder: str, replace_all=False, filename_suffix:
 
     if len(annex_files) > 0:
         try:
-            print("writing to file", str(filename))
             with open(filename, "w") as comparison_json:
                 json.dump(comparisons, comparison_json, default=str)
+            log.info("ANNEX COMPARER: created", filename)
         except Exception as e:
-            print("ANNEX COMPARER: cannot write", filename)
-            print(e)
+            log.warning("ANNEX COMPARER: cannot create", filename, "| error:", e)
 
 
 def clean_section_text(dict_key: str, change_dict: dict[str, str]) -> str:
@@ -236,8 +236,8 @@ def changelog_json_to_text(changelog_filepath: str) -> str:
     try:
         with open(changelog_filepath, "r") as changelog_json:
             changelog_dict = json.load(changelog_json)
-    except Exception:
-        print("ANNEX COMPARER:", changelog_filepath, "does not exist")
+    except Exception as e:
+        log.warning("ANNEX COMPARER: could not read:", changelog_filepath, "| error:", e)
         return ""
     
     text = "Medicine" + changelog_dict["eu_number"] + "\nLast updated on " + changelog_dict["last_updated"] + "\n"
@@ -276,27 +276,27 @@ def changelog_json_to_text_file(changelog_filepath: str, save_filepath: str):
         with open(changelog_filepath, "r") as changelog_json:
             changelog_dict = json.load(changelog_json)
     except Exception as e:
-        print("ANNEX COMPARER:", e, "| file does not exist:", changelog_filepath)
+        log.warning("ANNEX COMPARER: could not read:", changelog_filepath, "| error:", e)
         return
         
     try:
         changelog_text_file = open(save_filepath, "w", encoding="utf-8")
     except Exception as e:
-        print("ANNEX COMPARER:", e, "| cannot create", save_filepath)
+        log.warning("ANNEX COMPARER: cannot create", save_filepath, "| error:", e)
         return
 
     for changelog_dict in changelog_dict["changelogs"]:
         try:
             changelog_text_file.write(changelog_dict["new_file"] + ":\n\n")
         except Exception as e:
-            print(e)
+            log.warning("ANNEX COMPARER: could not write to", changelog_text_file, "| error:", e)
             return
         for change_dict in changelog_dict["changes"]:
             text = change_dict_to_string(change_dict)
             try:
                 changelog_text_file.write(text)
             except Exception as e:
-                print("ANNEX COMPARER:", e, "| cannot write line: ", text)
+                log.warning("ANNEX COMPARER: could not write to", changelog_text_file, "| error:", e)
 
     changelog_text_file.close()
 
