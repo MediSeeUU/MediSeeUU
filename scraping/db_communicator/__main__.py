@@ -17,7 +17,11 @@ def main(directory: str, send_together=True):
         (False)
     """
     # Initialize the communicator class
-    db_communicator = DbCommunicator()
+    try:
+        db_communicator = DbCommunicator()
+    except:
+        log.error("Can't create a db_communicator instance. no medicines will be send to the database")
+        return
 
     active_withdrawn_folder = path.join(directory, "active_withdrawn")
     directory_human_folders = [folder for folder in listdir(active_withdrawn_folder) if

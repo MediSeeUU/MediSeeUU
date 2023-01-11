@@ -57,8 +57,15 @@ class DbCommunicator:
             'Accept': 'application/json',
             'Authorization': self.token["token"]
         }
+        response = None
+        try:
+            response = requests.post(url=urls.scraper, headers=api_headers, data=data)
+        except:
+            log.error("Backend is not reacting when trying to send data")
 
-        response = requests.post(url=urls.scraper, headers=api_headers, data=data)
+        if response is None:
+            return False
+
         for failed_medicine in response.json():
             error_string = str(failed_medicine)
             error_string = unicodedata.normalize("NFKD", error_string).encode('utf-8', 'ignore')
