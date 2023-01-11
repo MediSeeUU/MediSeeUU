@@ -44,7 +44,7 @@ def init_loggers():
 
     # Create logging module for all other modules
     logging_names = ["pdf_parser", "annex_10_parser", "annex_comparer","xml_converter", "combiner", "transformer", "db_communicator",
-                     "safe_io"]
+                     "utils_xml_comparer", "safe_io"]
     for log_name in logging_names:
         log = logging.getLogger(log_name)
 

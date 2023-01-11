@@ -1,11 +1,12 @@
 import xml.etree.ElementTree as ET
 import scraping.utilities.definitions.xml_tags as xml_tags
 import scraping.utilities.xml.xml_parsing_utils as xml_utils
-import scraping.utilities.log as log
+import logging
 from tqdm import tqdm
 import os.path as path
 import json
 
+log = logging.getLogger("utils_xml_comparer")
 
 def clean_string(string: str) -> str:
     """
@@ -124,8 +125,8 @@ def open_xml_path(xml_path: str) -> ET.ElementTree:
     try:
         xml_body = ET.parse(xml_path).getroot()[1]  # get xml_body
         xml_body = rename_duplicate_headers(xml_body)
-    except ET.ParseError:
-        # log.warning("ANNEX COMPARER: failed to open xml file", xml_path) #TODO: enable logging
+    except ET.ParseError as e:
+        log.warning("ANNEX COMPARER: failed to open xml file", xml_path, "| error:", e)
         return {}
 
     return xml_body
@@ -262,5 +263,5 @@ def compare_xml_files_file(new_xml_path: str, old_xml_path: str, save_dir: str, 
     try:
         with open(path.join(save_dir, filename), "w") as comparison_json:
             json.dump(comparison_dict, comparison_json)
-    except Exception:
-        print("ANNEX COMPARER: write", path.join(save_dir, filename))
+    except Exception as e:
+        log.warning("ANNEX COMPARER: could not create", filename, "| error", e)
