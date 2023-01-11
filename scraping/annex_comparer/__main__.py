@@ -299,6 +299,7 @@ def changelog_json_to_text_file(changelog_filepath: str, save_filepath: str):
                 log.warning("ANNEX COMPARER: could not write to", changelog_text_file, "| error:", e)
 
     changelog_text_file.close()
+    log.info("ANNEX COMPARER: created", save_filepath)
 
 
 def annex_changelog_text_folder(folder: str):
