@@ -7,6 +7,7 @@ import scraping.web_scraper.__main__ as web_scraper
 import scraping.xml_converter.__main__ as xml_converter
 import scraping.pdf_parser.__main__ as pdf_parser
 import scraping.annex_10_parser.__main__ as annex_10_parser
+import scraping.annex_comparer.__main__ as annex_comparer
 import scraping.combiner.__main__ as combiner
 import scraping.transformer.__main__ as transformer
 import scraping.db_communicator.__main__ as db_communicator
@@ -50,6 +51,8 @@ def run_all():
         pdf_parser.main(data_folder_directory, config[cf.pdf_parse_all])
     if config[cf.run_annex_10]:
         annex_10_parser.main(data_folder_directory)
+    if True:
+        annex_comparer.main(data_folder_directory, False, True)
     if config[cf.run_combiner]:
         combiner.main(data_folder_directory)
     if config[cf.run_transformer]:

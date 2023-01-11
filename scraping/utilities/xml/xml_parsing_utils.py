@@ -193,6 +193,64 @@ def section_contains_header_number(header_number: str, header: ET.Element) -> bo
     return header.attrib["n"] == header_number
 
 
+def section_get_header_number(section: ET.Element) -> tuple[bool, str]:
+    """
+    Returns tuple indicating whether the header of a section contains a header number and the header number.
+    If the section header contains a header number ending on a dot then the last dot will be removed. 
+    
+    <header>"4.1. Therapeutic indications"</header> returns (True, "4.1")
+    <header>"4.1  Therapeutic indications"</header> returns (True, "4.1")
+    <header>"Therapeutic indications"</header>  returns (False, "")
+
+    Args:
+        section (ET.Element): A xml Element of the <section>...</section> node within a xml_body.
+
+    Returns:
+        tuple[bool, str]: bool indicating the section contains an attribute n. 
+                          str is the value of n, empty string if no attribute n.
+    """
+
+    header = section.findall(tags.header)[0]
+    if len(header.attrib) == 0:
+        return False, ""
+
+    return True, header.attrib["n"]
+
+
+def section_get_header_text(section: ET.Element) -> str:
+    """
+    Returns string containing the text within the header of the given section.
+
+    e.g.:
+    <header>"4.1. Therapeutic indications"</header> returns "4.1. Therapeutic indications"
+
+    Args:
+        section (ET.Element): A xml Element of the <section>...</section> node within a xml_body.
+
+    Returns:
+        str: text contained within the header of given section.
+    """
+    header = section.findall(tags.header)[0]
+    return header.text.strip()
+
+
+def section_set_header_text(new_text: str, section: ET.Element) -> ET.Element:
+    """
+    Returns a modified version of xml_section where text content has been set to new_text.
+
+    Args:
+        new_text (str): new text content to set header to
+        section (ET.Element): A xml Element of the <section>...</section> node within a xml_body.
+
+    Returns:
+        ET.Element: Modified xml section Element of the <section>...</section> node within a xml_body.
+    """    
+    section_header = section.findall(tags.header)[0]
+    section_header.text = new_text
+
+    return section
+
+
 def section_contains_paragraph_substring(substring: str, section: ET.Element) -> bool:
     """
     Returns whether a section contains a substring within any of its paragraphs.
