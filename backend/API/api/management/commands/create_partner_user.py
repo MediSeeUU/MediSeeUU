@@ -3,8 +3,10 @@
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
 from django.contrib.auth.models import User, Permission
+from django.core.exceptions import ValidationError
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.password_validation import validate_password
 from django.core.management.base import BaseCommand
 
 from api.models import models
@@ -17,6 +19,13 @@ This file is responsible for creating partner users. Partner users have permissi
 
 
 class Command(BaseCommand):
+    @staticmethod
+    def check_password(password):
+        try:
+            validate_password(password)
+        except ValidationError as err:
+            return " ".join(err.messages)
+
     def handle(self, *args, **options):
         """
         Takes a username and password and creates a partner user. Partner users have permissions to change data in the database
@@ -33,11 +42,15 @@ class Command(BaseCommand):
 
         password = password2 = None
         while password != password2 or not password:
-            while not (password := getpass.getpass("Password: ")):
-                self.stdout.write(self.style.NOTICE("Error: Blank passwords aren't allowed."))
+            while not (password := getpass.getpass("Password: ")) or (error := self.check_password(password)):
+                if error:
+                    self.stdout.write(self.style.NOTICE(error))
+                else:
+                    self.stdout.write(self.style.NOTICE("Error: Blank passwords aren't allowed."))
 
             while not (password2 := getpass.getpass("Password (again): ")):
                 self.stdout.write(self.style.NOTICE("Error: Blank passwords aren't allowed."))
+
             if password != password2:
                 self.stdout.write(self.style.NOTICE("Error: Your passwords didn't match."))
 
