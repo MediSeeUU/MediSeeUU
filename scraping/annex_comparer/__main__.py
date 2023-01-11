@@ -66,7 +66,7 @@ def folder_changelog_up_to_date(folder: str, filepath: str) -> bool:
     return (len(annex_files) - 1) == len(changelogs)
 
 
-def annex_changelog_json_folder(folder: str, replace_all=False, filename_suffix: str = "_annex_changelog.json"):
+def annex_changelog_json_folder(folder: str, replace_all: bool = False, filename_suffix: str = "_annex_changelog.json"):
     """
     Recursively creates a changelog.json for all annex files starting at initial annex within folder and all of its
     subfolders.\n
@@ -93,7 +93,7 @@ def annex_changelog_json_folder(folder: str, replace_all=False, filename_suffix:
         annex_files = []
 
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(annex_changelog_json_folder)(subdir) for subdir in
+        joblib.delayed(annex_changelog_json_folder)(subdir, replace_all) for subdir in
         tqdm(subdirs))
 
     comparisons["changelogs"] = joblib.Parallel(
@@ -250,7 +250,7 @@ def changelog_json_to_text(changelog_filepath: str) -> str:
     return text
 
 
-def changelog_json_to_text_file(changelog_filepath: str, save_filepath: str):
+def changelog_json_to_text_file(changelog_filepath: str, save_filepath: str, replace_all: bool = False):
     """
     Creates a txt file containing a formatted changelog based on given changelog.json.
     If a txt file already exists at save_filepath with a last modified date more recent
@@ -259,18 +259,19 @@ def changelog_json_to_text_file(changelog_filepath: str, save_filepath: str):
     Args:
         changelog_filepath (str): Filepath to a changelog.json
         save_filepath (str): Filepath to write the changelog txt file.
+        replace_all (bool, optional): Forces replacing all existing changelog.txt files. Defaults to False.
 
     Returns:
         None
     """    
     # skip making new annex_changelog.txt if the existing one is up-to-date
-    try:
-        json_modify_date = path.getmtime(changelog_filepath)
-        txt_modify_date = path.getmtime(changelog_filepath.replace(".json", ".txt"))
-        if json_modify_date < txt_modify_date:
-            return
-    except Exception:
-        pass  # should try to make a new annex_changelog.txt if failed
+    # try:
+    #     json_modify_date = path.getmtime(changelog_filepath)
+    #     txt_modify_date = path.getmtime(changelog_filepath.replace(".json", ".txt"))
+    #     if json_modify_date < txt_modify_date and not replace_all:
+    #         return
+    # except Exception:
+    #     pass  # should try to make a new annex_changelog.txt if failed
     
     try:
         with open(changelog_filepath, "r") as changelog_json:
@@ -302,12 +303,13 @@ def changelog_json_to_text_file(changelog_filepath: str, save_filepath: str):
     log.info("ANNEX COMPARER: created", save_filepath)
 
 
-def annex_changelog_text_folder(folder: str):
+def annex_changelog_text_folder(folder: str, replace_all: bool = False):
     """
     Creates a txt changelog for every changelog.json in the given folder and its subfolders recusively.
 
     Args:
         folder (str): Directory to search for changelog.jsons within.
+        replace_all (bool, optional): Forces replacing all existing changelog.txt files. Defaults to False.
 
     Returns:
         None
@@ -316,23 +318,24 @@ def annex_changelog_text_folder(folder: str):
     subdirs = [path.join(folder, subdir) for subdir in os.listdir(folder) if path.isdir(path.join(folder, subdir))]
 
     joblib.Parallel(n_jobs=max(int(multiprocessing.cpu_count() - 1), 1), require=None)(
-        joblib.delayed(annex_changelog_text_folder)(subdir) for subdir in
+        joblib.delayed(annex_changelog_text_folder)(subdir, replace_all) for subdir in
         tqdm(subdirs))
 
     for changelog_json in changelog_jsons:
-        changelog_json_to_text_file(changelog_json, changelog_json.replace("json", "txt"))
+        changelog_json_to_text_file(changelog_json, changelog_json.replace("json", "txt"), replace_all)
 
 
-def main(directory: str):
+def main(directory: str, replace_all_json: bool = False, replace_all_txt: bool = False):
     """
     Main function of the Annex Comparer Module, creates changelog.json and changelog.txt files
     for all folders and subfolders in given directory.
 
     Args:
         directory (str): Directory to recursively create annex changelogs in.
+        replace_all (bool, optional): Forces replacing all existing changelog json and txt files. Defaults to False.
 
     Returns:
         None
     """    
-    annex_changelog_json_folder(directory)
-    annex_changelog_text_folder(directory)
+    annex_changelog_json_folder(directory, replace_all_json)
+    annex_changelog_text_folder(directory, replace_all_txt)

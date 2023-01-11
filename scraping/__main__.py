@@ -43,22 +43,22 @@ def run_all():
 
     # modules run based on configfile
     config = cf.load_config()
-    if config[cf.run_web]:
-        web_scraper.main(web_config)
-    if config[cf.run_xml]:
-        xml_converter.main(data_folder_directory, config[cf.xml_convert_all])
-    if config[cf.run_pdf]:
-        pdf_parser.main(data_folder_directory, config[cf.pdf_parse_all])
-    if config[cf.run_annex_10]:
-        annex_10_parser.main(data_folder_directory)
+    # if config[cf.run_web]:
+    #     web_scraper.main(web_config)
+    # if config[cf.run_xml]:
+    #     xml_converter.main(data_folder_directory, config[cf.xml_convert_all])
+    # if config[cf.run_pdf]:
+    #     pdf_parser.main(data_folder_directory, config[cf.pdf_parse_all])
+    # if config[cf.run_annex_10]:
+    #     annex_10_parser.main(data_folder_directory)
     if True:
-        annex_comparer.main(data_folder_directory)
-    if config[cf.run_combiner]:
-        combiner.main(data_folder_directory)
-    if config[cf.run_transformer]:
-        transformer.main(data_folder_directory)
-    if config[cf.run_db_com]:
-        db_communicator.main(data_folder_directory, config[cf.db_com_send_together])
+        annex_comparer.main(data_folder_directory, False, True)
+    # if config[cf.run_combiner]:
+    #     combiner.main(data_folder_directory)
+    # if config[cf.run_transformer]:
+    #     transformer.main(data_folder_directory)
+    # if config[cf.run_db_com]:
+    #     db_communicator.main(data_folder_directory, config[cf.db_com_send_together])
 
 
 def create_data_folders() -> str:
