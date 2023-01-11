@@ -7,3 +7,4 @@ python manage.py migrate
 python manage.py create_column_permissions
 python manage.py init_setup
 python manage.py createsuperuser
+python manage.py create_partner_user

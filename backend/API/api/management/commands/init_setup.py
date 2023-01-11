@@ -3,7 +3,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.management.base import BaseCommand
 
 from api.models.human_models import models
-from api.management.commands.create_partner_user import create_partner_user
 import logging
 
 # This file is responsible for setting up some initial
@@ -28,6 +27,3 @@ class Command(BaseCommand):
         # Create anonymous group
         anon, created = Group.objects.update_or_create(name="anonymous")
         logging.getLogger(__name__).info(f"Anonymous group {get_action(created)}")
-
-        # Create scraper user
-        create_partner_user(username="scraper", password="VeranderDitWachtwoord123!")
