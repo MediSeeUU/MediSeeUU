@@ -38,3 +38,5 @@ class AcceleratedAssessment(models.Model):
 
     class Meta:
         db_table = "accelerated_assessment"
+        verbose_name = "Accelerated Assessment"
+        verbose_name_plural = "Accelerated Assessments"

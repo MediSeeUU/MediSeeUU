@@ -4,7 +4,7 @@
 from django.db import models
 from api.models.create_dashboard_columns import (
     create_dashboard_column,
-    create_dashboard_history_initial_column,
+    create_dashboard_history_foreign_key_column,
     Category,
     ExtraDashBoardColumn,
 )
@@ -52,26 +52,23 @@ class MedicinalProduct(models.Model):
         Category.Marketing_authorisation,
         DataFormats.String,
         "EU Product Number",
-        [
-            ExtraDashBoardColumn(
-                Category.Marketing_authorisation,
-                "eu_pnumber_id",
-                DataFormats.Number,
-                "EU product number ID",
-                lambda x: int(x[-3:]),
-            )
-        ]
     )
 
     ema_url = create_dashboard_column(
-        URLWithNAField(),
+        URLWithNAField(
+            null=True,
+            blank=True,
+        ),
         Category.Medicinal_product,
         DataFormats.Link,
         "EMA Product Page Link",
     )
 
     ec_url = create_dashboard_column(
-        URLWithNAField(),
+        URLWithNAField(
+            null=True,
+            blank=True,
+        ),
         Category.Medicinal_product,
         DataFormats.Link,
         "EC Product Page Link",
@@ -80,6 +77,8 @@ class MedicinalProduct(models.Model):
     ema_number = create_dashboard_column(
         models.CharField(
             max_length=255,
+            null=True,
+            blank=True,
         ),
         Category.Medicinal_product,
         DataFormats.String,
@@ -87,7 +86,10 @@ class MedicinalProduct(models.Model):
     )
 
     eu_med_type = create_dashboard_column(
-        models.TextField(),
+        models.TextField(
+            null=True,
+            blank=True,
+        ),
         Category.Medicinal_product,
         DataFormats.String,
         "EU Medicine Type",
@@ -96,65 +98,60 @@ class MedicinalProduct(models.Model):
     eu_atmp = create_dashboard_column(
         BooleanWithNAField(
             null=True,
+            blank=True,
         ),
         Category.Medicinal_product,
         DataFormats.Bool,
         "EU ATMP",
     )
 
-    ema_number_check = BooleanWithNAField(
-        null=True,
-    )
-
     ingredients_and_substances = models.ForeignKey(
         IngredientsAndSubstances,
         models.PROTECT,
         null=True,
+        blank=True,
     )
 
-    eu_brand_name_initial = create_dashboard_history_initial_column(
+    eu_brand_name_initial = create_dashboard_history_foreign_key_column(
         models.OneToOneField(
             "HistoryBrandName",
             models.SET_NULL,
             null=True,
+            blank=True,
         ),
         Category.Medicinal_product,
         DataFormats.String,
         "Initial EU brand name",
     )
 
-    eu_od_initial = create_dashboard_history_initial_column(
+    eu_od_initial = create_dashboard_history_foreign_key_column(
         models.OneToOneField(
             "HistoryOD",
             models.SET_NULL,
             null=True,
+            blank=True,
         ),
         Category.Medicinal_product,
         DataFormats.Bool,
         "EU orphan designation at authorisation",
     )
 
-    eu_prime_initial = create_dashboard_history_initial_column(
+    eu_prime_initial = create_dashboard_history_foreign_key_column(
         models.OneToOneField(
             "HistoryPrime",
             models.SET_NULL,
             null=True,
+            blank=True,
         ),
         Category.Medicinal_product,
         DataFormats.Bool,
         "EU Priority Medicine at authorisation",
     )
 
-    eu_orphan_con_initial = create_dashboard_history_initial_column(
-        models.OneToOneField(
-            "HistoryEUOrphanCon",
-            models.SET_NULL,
-            null=True,
-        ),
-        Category.Medicinal_product,
-        DataFormats.String,
-        "Initial EU orphan conditions",
-    )
+    def __str__(self):
+        return self.eu_pnumber
 
     class Meta:
         db_table = "medicinal_product"
+        verbose_name = "Medicinal Product"
+        verbose_name_plural = "Medicinal Products"

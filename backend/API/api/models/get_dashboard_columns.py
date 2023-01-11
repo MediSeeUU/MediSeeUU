@@ -1,11 +1,13 @@
 from django.db.models import Model
-from api.models.create_dashboard_columns import DashBoardHistoryInitialColumn
+from api.models.create_dashboard_columns import (
+    DashBoardHistoryForeignKeyColumn,
+)
 import logging
 
 logger = logging.getLogger(__name__)
 
 
-def get_initial_history_columns(model_list: list[Model]) -> list[str]:
+def get_foreign_key_history_columns(model_list: list[Model]) -> list[str]:
     """
 
     Args:
@@ -18,7 +20,7 @@ def get_initial_history_columns(model_list: list[Model]) -> list[str]:
     for model in model_list:
         for field in model._meta.get_fields():
             if hasattr(field, "dashboard_column"):
-                if isinstance(field.dashboard_column, DashBoardHistoryInitialColumn):
+                if isinstance(field.dashboard_column, DashBoardHistoryForeignKeyColumn):
                     result.append(field.name)
     return result
 

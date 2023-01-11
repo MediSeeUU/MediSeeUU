@@ -34,12 +34,11 @@ class HistoryPrimeAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     Admin View for HistoryPrime
     """
     resource_class = HistoryPrimeResource
-    list = (
-        "id",
+    list_display = [
         "eu_pnumber",
         "change_date",
         "eu_prime",
-    )
+    ]
 
 
 admin.site.register(HistoryPrime, HistoryPrimeAdmin)

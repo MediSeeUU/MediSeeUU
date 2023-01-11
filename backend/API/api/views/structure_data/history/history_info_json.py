@@ -2,23 +2,21 @@
 # Utrecht University within the Software Project course.
 # © Copyright Utrecht University (Department of Information and Computing Sciences)
 
-from django.db.models import Model
+from api.models import models
+from api.models.create_dashboard_columns import Category
 
 
-def get_history_info(perm, models: list[Model]):
+def get_history_info(perm, categories: list[Category]):
     data = []
-
     for model in models:
-        for field in model._meta.get_fields():
-            if hasattr(field, "history_dashboard_column") and has_permission(perm, field.name):
-                data_info = field.history_dashboard_column.get_all_data_info(field.name)
-                for data_key, data_format, data_value in data_info:
-                    if has_permission(perm, data_key):
-                        data.append({
-                            "data-key": data_key,
-                            "data-format": data_format,
-                            "data-value": data_value,
-                        })
+        if hasattr(model, "HistoryInfo") and hasattr(model.HistoryInfo, "timeline_items"):
+            for timeline_item in model.HistoryInfo.timeline_items:
+                if timeline_item["category"] in categories and has_permission(perm, timeline_item["data-key"]):
+                    data.append({
+                        "data-key": timeline_item["data-key"],
+                        "data-format": timeline_item["data-format"].data_format,
+                        "data-value": timeline_item["data-value"],
+                    })
     return data
 
 

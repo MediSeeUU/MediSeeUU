@@ -34,12 +34,11 @@ class HistoryODAdmin(import_admin.ImportExportModelAdmin, CacheModelAdmin):
     Admin View for HistoryOD
     """
     resource_class = HistoryODResource
-    list = (
-        "id",
+    list_display = [
         "eu_pnumber",
         "change_date",
         "eu_od",
-    )
+    ]
 
 
 admin.site.register(HistoryOD, HistoryODAdmin)
