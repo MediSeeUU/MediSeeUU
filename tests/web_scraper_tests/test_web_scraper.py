@@ -6,7 +6,7 @@ import regex as re
 from parameterized import parameterized
 
 import scraping.utilities.definitions.attributes as attr
-import scraping.utilities.web.config_objects as config
+import scraping.utilities.config.__main__ as cf
 from scraping.utilities.io.pathlib_extended import Path
 from scraping.utilities.log import log_tools
 from scraping.web_scraper import __main__ as web
@@ -58,8 +58,8 @@ class TestWebScraper(TestCase):
         """
         Set up the class to make sure the integration test can run without changing existing data.
         """
-        config.default_path_data = data_path_str
-        config.default_path_logging = f"{scraping_root_path}/tests/logs/log_files"
+        cf.data_path = data_path_str
+        cf.logging_path = f"{scraping_root_path}/tests/logs/log_files"
 
         json_path.rmdir_recursive(not_exist_ok=True)
         data_path.rmdir_recursive(not_exist_ok=True)
@@ -112,15 +112,16 @@ class TestWebScraper(TestCase):
         """
         self.parallel = parallel
         self.medicine_list = medicine_list
-        web.main(config.WebConfig().run_all().supply_medicine_list(self.medicine_list))
+        web.main(cf.default_config,self.medicine_list)
 
     def run_ec_scraper(self):
         """
         Runs EC scraper and checks if everything works and correct files are created.
         """
-        web.main(config.WebConfig().run_custom(scrape_ec=True, download_refused=True)
-                 .set_parallel(self.parallel)
-                 .supply_medicine_list(self.medicine_list))
+        test_config = cf.off_config[cf.web_config]
+        test_config[cf.web_scrape_ec] = True
+        test_config[cf.web_download_refused] = True
+        web.main(test_config,self.medicine_list)
 
         # check if data folder for eu_n exists and is filled
         medicine_folder = data_path_local / self.eu_n
@@ -142,9 +143,9 @@ class TestWebScraper(TestCase):
         """
         Runs EMA scraper and checks if everything works and correct files are created.
         """
-        web.main(config.WebConfig().run_custom(scrape_ema=True)
-                 .set_parallel(self.parallel)
-                 .supply_medicine_list(self.medicine_list))
+        test_config = cf.off_config[cf.web_config]
+        test_config[cf.web_scrape_ema] = True
+        web.main(test_config, self.medicine_list)
 
         with open(json_path / "urls.json") as f:
             url_dict = (json.load(f))[self.eu_n]
@@ -156,9 +157,9 @@ class TestWebScraper(TestCase):
         """
         Runs download and checks if all files are downloaded and correct files are created.
         """
-        web.main(config.WebConfig().run_custom(download=True)
-                 .set_parallel(self.parallel)
-                 .supply_medicine_list(self.medicine_list))
+        test_config = cf.off_config[cf.web_config]
+        test_config[cf.web_download] = True
+        web.main(test_config, self.medicine_list)
 
         medicine_folder = data_path_local / self.eu_n
 
@@ -198,9 +199,9 @@ class TestWebScraper(TestCase):
         """
         Runs filter_retry and checks if filter.txt is created
         """
-        web.main(config.WebConfig().run_custom(filtering=True)
-                 .set_parallel(self.parallel)
-                 .supply_medicine_list(self.medicine_list))
+        test_config = cf.off_config[cf.web_config]
+        test_config[cf.web_run_filter] = True
+        web.main(test_config, self.medicine_list)
 
         # check if filter.txt exists
         filter_path = scraping_root_path / "tests/logs/txt_files/filter.txt"

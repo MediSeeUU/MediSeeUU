@@ -599,7 +599,7 @@ def determine_ema_number(ema_numbers: list[str]) -> (str, float):
     return most_occurring_item, fraction
 
 
-def scrape_ec(config: dict, medicine_list: list[(str, str, int, str)],
+def scrape_ec(web_config: dict, medicine_list: list[(str, str, int, str)],
               url_file: json_helper.JsonHelper, url_refused_file: json_helper.JsonHelper):
     """
     Scrapes all medicine URLs and medicine data from the EC website
@@ -620,7 +620,7 @@ def scrape_ec(config: dict, medicine_list: list[(str, str, int, str)],
     # Transform zipped list into individual lists for thread_map function
     # The last element of the medicine_codes tuple is not of interest, thus we pop()
     with tqdm_logging.logging_redirect_tqdm():
-        if config[cf.parallelized]:
+        if web_config[cf.web_parallelized]:
             unzipped_medicine_list = [list(t) for t in zip(*medicine_list)]
             unzipped_medicine_list.pop()
             tqdm_concurrent.thread_map(url_scraper.get_urls_ec,

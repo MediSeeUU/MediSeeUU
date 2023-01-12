@@ -1,5 +1,6 @@
 import json
 import os
+import logging
 from pathlib import Path
 
 
@@ -51,7 +52,7 @@ default_config = {
     xml_convert_all: False,
     pdf_parse_all: False,
     db_com_send_together: True,
-    web_config: [
+    web_config:
         {
             web_parallelized: True,
             web_scrape_ec: True,
@@ -62,8 +63,27 @@ default_config = {
             web_download_ema_excel: True,
             web_run_filter: True
         }
-    ]
 }
+
+def turn_off(value: any) -> any:
+    """
+    Function that turns a bool or the values in a lists with bools to false
+    Args:
+        value: a value of the config
+
+    Returns: list or bool with false value
+
+    """
+    if isinstance(value,dict):
+        return dict.fromkeys(value, False)
+
+    return False
+
+# config with all values turned off
+off_config = {key:turn_off(value) for (key,value) in default_config.items()}
+print(off_config)
+
+
 
 
 def load_config():

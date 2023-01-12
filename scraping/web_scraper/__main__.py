@@ -60,10 +60,10 @@ def main(web_config: dict[bool], medicine_list = None):
                                       annex10_file)
 
     if web_config[cf.web_scrape_ec]:
-        ec_scraper.scrape_ec(config, medicine_list, url_file, url_refused_file)
+        ec_scraper.scrape_ec(web_config, medicine_list, url_file, url_refused_file)
 
     if web_config[cf.web_scrape_ema]:
-        ema_scraper.scrape_ema(config, url_file)
+        ema_scraper.scrape_ema(web_config, url_file)
 
     if web_config[cf.web_download]:
         log.info("TASK START downloading PDF files from fetched urls from EC and EMA")
