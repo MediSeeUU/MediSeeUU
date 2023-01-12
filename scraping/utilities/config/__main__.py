@@ -28,6 +28,7 @@ xml_convert_all = 'xml_convert_all'
 pdf_parse_all = 'pdf_parse_all'
 db_com_send_together = 'db_com_send_together'
 web_config = 'web_config'
+web_parallelized = 'web_parallelized'
 web_scrape_ec = 'web_scrape_ec'
 web_scrape_ema = 'web_scrape_ema'
 web_download = 'web_download'
@@ -39,7 +40,6 @@ web_run_filter = 'web_run_filter'
 
 # if no config found, use default values
 default_config = {
-    parallelized: True,
     run_web: True,
     run_xml: True,
     run_pdf: True,
@@ -53,6 +53,7 @@ default_config = {
     db_com_send_together: True,
     web_config: [
         {
+            web_parallelized: True,
             web_scrape_ec: True,
             web_scrape_ema: True,
             web_download: True,

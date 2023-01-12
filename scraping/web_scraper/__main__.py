@@ -34,7 +34,7 @@ ema_excel_file = json_helper.JsonHelper(f"{json_path}ema_excel.json")
 
 
 # Main web scraper function with default settings
-def main(config: dict[bool], medicine_list = None):
+def main(web_config: dict[bool], medicine_list = None):
     """
     Main function that controls which scrapers are activated, and if it runs parallel or not.
 
@@ -45,7 +45,6 @@ def main(config: dict[bool], medicine_list = None):
         config (config_objects.WebConfig): Object that contains the variables that define the behaviour of webscraper
     """
     log.info(f"=== NEW LOG {datetime.today()} ===")
-    web_config = config[cf.web_config]
 
     if medicine_list is None:
         medicine_list = ec_scraper.scrape_medicines_list()
@@ -68,12 +67,12 @@ def main(config: dict[bool], medicine_list = None):
 
     if web_config[cf.web_download]:
         log.info("TASK START downloading PDF files from fetched urls from EC and EMA")
-        download.download_all(cf.data_path, url_file, parallel_download=config[cf.parallelized])
+        download.download_all(cf.data_path, url_file, parallel_download=web_config[cf.web_parallelized])
         url_file.save_dict()
 
     if web_config[cf.web_download_refused]:
         log.info("TASK START downloading refused PDF files from fetched urls from EC and EMA")
-        download.download_all(cf.path_data, url_refused_file, parallel_download=config[cf.parallelized])
+        download.download_all(cf.path_data, url_refused_file, parallel_download=web_config[cf.web_parallelized])
         url_refused_file.save_dict()
 
     if web_config[cf.web_download_annex10]:
